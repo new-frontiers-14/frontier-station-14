@@ -251,11 +251,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (!_container.Insert(toInsert.Value, cryopod.Comp.BodyContainer))
             return false;
 
-        //TODO: Warning logic should go here
-
-
+        var ui = new CryoSleepEui(toInsert.Value, cryopod, this);
         if (session != null)
-            _euiManager.OpenEui(new CryoSleepEui(toInsert.Value, cryopod, this), session);
+            _euiManager.OpenEui(ui, session);
+        ui.SendMessage(GetWarningMessages(toInsert.Value));
 
         // Start a do-after event - if the inserted body is still inside and has not decided to sleep/leave, it will be stored.
         // It does not matter whether the entity has a mind or not.
@@ -282,7 +281,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     }
 
     //TODO: Document this with whatever the javadoc equivilant is
-    private CryoSleepWarningMessage? GetWarningMessages(EntityUid entity)
+    private CryoSleepWarningMessage GetWarningMessages(EntityUid entity)
     {
         //Items check
         //TODO: Full body scan

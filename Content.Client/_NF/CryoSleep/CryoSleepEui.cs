@@ -95,7 +95,7 @@ public sealed class CryoSleepEui : BaseEui
 
             if (itemWarningLoc != null)
             {
-                _window.UplinkWarningText.SetMessage(itemWarningLoc, null, WarningColor);
+                _window.ItemWarningText.SetMessage(itemWarningLoc, null, WarningColor);
             }
         }
     }
