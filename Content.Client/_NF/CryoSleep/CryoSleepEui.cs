@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.Eui;
 using Content.Client.Inventory;
@@ -7,6 +8,7 @@ using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Systems;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Components;
+using Content.Shared.Eui;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
@@ -49,64 +51,6 @@ public sealed class CryoSleepEui : BaseEui
             _window.StoreText.Text = Loc.GetString("accept-cryo-window-prompt-not-stored");
         }
 
-
-        //TODO: Find a good balance between checking everything and performance
-        //TODO: Replace this with a full inventory scan, maybe write a helper method in another class?
-
-        var warningColor = Color.Yellow;
-
-        //Scan the player's inventory slots
-        //TODO: Refactor this with InventorySystem.TryGetSlotEntity
-        //I spent so much time on this I am NOT rewriting this now
-        if (_entityManager.TryGetComponent<InventorySlotsComponent>(playerEntity, out var slots))
-        {
-
-            StorageHelper.FoundItem? foundShuttleDeed = null;
-            var foundMoreShuttles = false;
-            StorageHelper.FoundItem? foundUplink = null;
-            //Shuttle and uplink check
-            //Reverse for loop to allow for modification of the list while looping through it
-            for (var i = warningItemsList.Count - 1; i >= 0 ; i--)
-            {
-                var foundItem = warningItemsList[i];
-                if (_entityManager.HasComponent<ShuttleDeedComponent>(foundItem.Item))
-                {
-                    if (foundShuttleDeed.HasValue)
-                        foundMoreShuttles = true;
-                    else
-                        foundShuttleDeed = foundItem;
-                    //The item will be handled by a separate message, it shouldn't get lumped in with the other items
-                    warningItemsList.RemoveAt(i);
-                }
-                else if (_entityManager.HasComponent<StoreComponent>(foundItem.Item))
-                {
-                    foundUplink = foundItem;
-                    //See above
-                    warningItemsList.RemoveAt(i);
-                }
-            }
-            //At this point, the only items left in this list are things flagged with "WarnOnCryoSleep"
-
-            //Check their ID card for any shuttle deeds, and update the warning as needed
-            //The message chosser is in a different method to make the code easier to read
-            //This is broken for the moment :(
-            //var idCard = GetIDCardFromPDASlot(playerEntity.Value, _entityManager);
-            var hasShuttleOnPDA = true;
-                //(idCard.HasValue && _entityManager.HasComponent<ShuttleDeedComponent>(idCard));
-            string? localizedShuttleWarning = GetShuttleWarningLocMessage(hasShuttleOnPDA, foundMoreShuttles, foundShuttleDeed, _entityManager);
-            if (localizedShuttleWarning != null)
-                _window.ShuttleWarningText.SetMessage(localizedShuttleWarning, null, warningColor);
-            string? localizedItemWarningMessage = GetImportantItemWarningLocMessage(warningItemsList, _entityManager);
-            if (localizedItemWarningMessage != null)
-                _window.ItemWarningText.SetMessage(localizedItemWarningMessage, null, warningColor);
-            if (foundUplink.HasValue)
-            {
-                string? localizedUplinkWarningMessage = GetUplinkWarningLocMessage(foundUplink.Value, _entityManager);
-                if (localizedUplinkWarningMessage != null)
-                    _window.UplinkWarningText.SetMessage(localizedUplinkWarningMessage, null, warningColor);
-            }
-        }
-
         _window.OnAccept += () =>
         {
             SendMessage(new AcceptCryoChoiceMessage(AcceptCryoUiButton.Accept));
@@ -120,105 +64,147 @@ public sealed class CryoSleepEui : BaseEui
         };
     }
 
+    private static readonly Color WarningColor = Color.Yellow;
+
+    public override void HandleMessage(EuiMessageBase msg)
+    {
+        base.HandleMessage(msg);
+        if (msg is CryoSleepWarningMessage warningMsg)
+        {
+            //Shuttle
+            string? shuttleWarningLoc = GetShuttleWarningLocMessage(warningMsg.ShuttleOnPDA,
+                warningMsg.FoundMoreShuttles,
+                warningMsg.InventoryShuttleDeed,
+                _entityManager);
+            //Uplink
+            string? uplinkWarningLoc = warningMsg.FoundUplink.HasValue
+                ? GetUplinkWarningLocMessage(warningMsg.FoundUplink.Value)
+                : null;
+            //Items
+            string? itemWarningLoc = GetImportantItemWarningLocMessage(warningMsg.ImportantItems);
+
+            if (shuttleWarningLoc != null)
+            {
+                _window.ShuttleWarningText.SetMessage(shuttleWarningLoc, null, WarningColor);
+            }
+
+            if (uplinkWarningLoc != null)
+            {
+                _window.UplinkWarningText.SetMessage(uplinkWarningLoc, null, WarningColor);
+            }
+
+            if (itemWarningLoc != null)
+            {
+                _window.UplinkWarningText.SetMessage(itemWarningLoc, null, WarningColor);
+            }
+        }
+    }
+
+    //TODO: Write a method to "prettyify" the ID names
+    //TODO: Ask around to see if anyone knows if you can get localized names of item slots
+    string GetStorageName(CryoSleepWarningMessage.NetworkedWarningItem item)
+    {
+        if (item.SlotId == null)
+        {
+            return Identity.Name(_entityManager.GetEntity(item.Container!.Value), _entityManager);
+        }
+        else
+        {
+            return item.SlotId!.Contains("pocket") ? "pocket" : item.SlotId!;
+        }
+    }
+
 
     //The if statement was too hard to read, so I moved it to its own method where I can just return the string
     //This returns null if no warning is needed
     private string? GetShuttleWarningLocMessage(bool hasShuttleOnPDA,
         bool foundMoreShuttles,
-        StorageHelper.FoundItem? foundShuttleDeed,
+        CryoSleepWarningMessage.NetworkedWarningItem? foundShuttleDeed,
         IEntityManager entityManager)
     {
-        if (hasShuttleOnPDA)
-        {
-            if (!foundShuttleDeed.HasValue)
-                return Loc.GetString("accept-cryo-window-prompt-shuttle-pda-warning");
 
-            var key = foundMoreShuttles
-                ? "accept cryo-window-prompt-shuttle-pda-and-many-bag-warning"
-                : "accept-cryo-window-prompt-shuttle-pda-and-bag-warning";
-            return Loc.GetString(key,
-                ("deed", Identity.Name(foundShuttleDeed.Value.Item, entityManager)),
-                ("storage", Identity.Name(foundShuttleDeed.Value.Container, entityManager)));
-        }
-        //They don't have a shuttle on their PDA, but you still gotta warn if its in the bag
         if (foundShuttleDeed.HasValue)
         {
-            var key = foundMoreShuttles
-                ? "accept cryo-window-prompt-shuttle-many-bag-warning"
-                : "accept-cryo-window-prompt-shuttle-bag-warning";
-            return Loc.GetString(key,
-                ("deed", Identity.Name(foundShuttleDeed.Value.Item, entityManager)),
-                ("storage", Identity.Name(foundShuttleDeed.Value.Container, entityManager)));
+            var localDeed = _entityManager.GetEntity(foundShuttleDeed.Value.Item);
+            //Get either the name of the item the deed is in, or the id of the slot.
+            var storageName = foundShuttleDeed.Value.SlotId != null
+                ? foundShuttleDeed.Value.SlotId
+                //We know that Container has to be non-null at this point since both cannot be null
+                : Identity.Name(_entityManager.GetEntity(foundShuttleDeed.Value.Container!.Value),
+                    _entityManager);
+            string key;
+            //Four different messages for four different cases, thankfully they all have the same blank spots
+            if (hasShuttleOnPDA)
+            {
+                key = foundMoreShuttles
+                    ? "accept-cryo-window-prompt-shuttle-pda-and-many-bag-warning"
+                    : "accept-cryo-window-prompt-shuttle-pda-and-bag-warning";
+            }
+            else
+            {
+                key = foundMoreShuttles
+                    ? "accept-cryo-window-prompt-shuttle-many-bag-warning"
+                    : "accept-cryo-window-prompt-shuttle-bag-warning";
+            }
 
+            return Loc.GetString(key,
+                ("deed", Identity.Name(localDeed, _entityManager)),
+                ("storage", storageName));
         }
-        //No warning needed!
-        return null;
+
+        //No shuttle in their bag, so all we need to do is warn if its in the PDA
+        return hasShuttleOnPDA
+            ? Loc.GetString("accept-cryo-window-prompt-shuttle-pda-warning")
+            : null;
     }
 
     //Extracting to a separate method to make the code easier on me!
     //This returns null if no warning is needed
-    private string? GetImportantItemWarningLocMessage(List<StorageHelper.FoundItem> warningItemsList, IEntityManager manager)
+    private string? GetImportantItemWarningLocMessage(List<CryoSleepWarningMessage.NetworkedWarningItem> warningItemsList)
     {
         if (warningItemsList.Count == 0)
             return null;
         //At this point in the code, none of these values should be null. If it is, something went *very* wrong in the code about
         var item1 = warningItemsList[0];
+        var storageName1 = GetStorageName(item1);
         if (warningItemsList.Count == 1)
+        {
             return Loc.GetString("accept-cryo-window-prompt-one-item-warning",
-                ("item", item1.Item),
-                ("storage", item1.Container));
+                ("item", Identity.Name(_entityManager.GetEntity(item1.Item), _entityManager)),
+                ("storage", storageName1));
+        }
+
         //We know there are at least 2 items now
         var item2 = warningItemsList[1];
         var key = warningItemsList.Count > 2 ? "accept-cryo-window-prompt-many-items-warning" : "accept-cryo-window-prompt-two-items-warning";
+        var storageName2 = GetStorageName(item2);
         return Loc.GetString(key,
-            ("item1", Identity.Name(item1.Item, manager)),
-            ("storage1", Identity.Name(item1.Container, manager)),
-            ("item2", Identity.Name(item2.Item, manager)),
-            ("storage2", Identity.Name(item2.Container, manager)),
+            ("item1", Identity.Name(_entityManager.GetEntity(item1.Item), _entityManager)),
+            ("storage1", storageName1),
+            ("item2", Identity.Name(_entityManager.GetEntity(item2.Item), _entityManager)),
+            ("storage2", storageName2),
             //This key is not always needed, but put here to save a lot of copy pasting, and doesn't break the code, so :P
             ("num-extra-items", warningItemsList.Count - 2));
 
     }
 
     //Returns null if no warning is needed
-    private string? GetUplinkWarningLocMessage(StorageHelper.FoundItem foundUplink, IEntityManager manager)
+    private string? GetUplinkWarningLocMessage(CryoSleepWarningMessage.NetworkedWarningItem foundUplink)
     {
-        if (manager.TryGetComponent<StoreComponent>(foundUplink.Item, out var store))
-        {
-            var currencyPrototype = store.Balance.Keys.First();
-            var amount = store.Balance[currencyPrototype];
-            if (amount == 0)
-                return "";
-            return Loc.GetString("accept-cryo-window-prompt-uplink-warning",
-                ("uplink", Identity.Name(foundUplink.Item, manager)),
-                ("storage", Identity.Name(foundUplink.Container, manager)),
-                ("amount", amount),
-                //TODO: Properly localize the currency name
-                ("currency", currencyPrototype));
-        }
-
-        return null;
+        var localUplink = _entityManager.GetEntity(foundUplink.Item);
+        if (!_entityManager.TryGetComponent<StoreComponent>(localUplink, out var store))
+            return null;
+        var currencyPrototype = store.Balance.Keys.First();
+        var amount = store.Balance[currencyPrototype];
+        if (amount == 0)
+            return null;
+        return Loc.GetString("accept-cryo-window-prompt-uplink-warning",
+            ("uplink", Identity.Name(_entityManager.GetEntity(foundUplink.Item), _entityManager)),
+            ("storage", GetStorageName(foundUplink)),
+            ("amount", amount),
+            //TODO: Properly localize the currency name
+            ("currency", currencyPrototype));
     }
-
-    //Broken :(
-    /*
-    //Turned this into a method to avoid headaches as well
-    //TODO: Possibly move this to a more central place
-    EntityUid? GetIDCardFromPDASlot(EntityUid entity, IEntityManager manager)
-    {
-
-        if (_inventorySystem.TryGetSlotEntity(entity, "id", out var thingInIdSlot))
-        {
-            if (manager.HasComponent<IdCardComponent>(thingInIdSlot))
-                return entity;
-            if (manager.TryGetComponent<PdaComponent>(thingInIdSlot, out var pdaComp)
-                && pdaComp.IdSlot.HasItem)
-                return pdaComp.IdSlot.Item;
-        }
-
-        return null;
-    }
-    */
 
     public override void Opened()
     {

@@ -282,10 +282,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
     }
 
     //TODO: Document this with whatever the javadoc equivilant is
-    private void GetWarningMessages(EntityUid? entity)
+    private CryoSleepWarningMessage? GetWarningMessages(EntityUid entity)
     {
-        if (!entity.HasValue)
-            return;
         //Items check
         //TODO: Full body scan
         string[] slotsToCheck = ["back", "wallet"];
@@ -294,7 +292,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         List<StorageHelper.FoundItem> unconvertedFoundItem = [];
         foreach (var slotId in slotsToCheck)
         {
-            if (_inventory.TryGetSlotEntity(entity.Value, slotId, out var slotItem))
+            if (_inventory.TryGetSlotEntity(entity, slotId, out var slotItem))
             {
                 if (ShouldItemWarnOnCryo(slotItem.Value))
                     warningItemsList.Add(new WarningItem(slotId, null, slotItem.Value));
@@ -312,7 +310,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         WarningItem? backpackShuttleDeed = null;
         //Listing every point where a shuttle deed was found runs you out of space very fast.
         bool foundMoreShuttles = false;
-        bool hasShuttleOnPDA = (TryGetIdCard(entity.Value, out var card)
+        bool hasShuttleOnPDA = (TryGetIdCard(entity, out var card)
                                 && HasComp<ShuttleDeedComponent>(card));
 
         //Find all the shuttles and uplinks and remove them from the list
@@ -334,7 +332,18 @@ public sealed partial class CryoSleepSystem : EntitySystem
                 warningItemsList.RemoveAt(i);
             }
         }
-        return new CryoSleepWarningMessage()
+
+        var networkedWarningItems = new List<CryoSleepWarningMessage.NetworkedWarningItem>();
+        warningItemsList.ForEach(item => networkedWarningItems.Add(item.ToNetworked(_entityManager)));
+
+        var nwBackpackShuttleDeed =
+            backpackShuttleDeed?.ToNetworked(_entityManager);
+        var nwUplink = uplink?.ToNetworked(_entityManager);
+        return new CryoSleepWarningMessage(hasShuttleOnPDA,
+            nwBackpackShuttleDeed,
+            foundMoreShuttles,
+            nwUplink,
+            networkedWarningItems);
     }
 
     private bool TryGetIdCard(EntityUid ent, [NotNullWhen(true)] out EntityUid? idCard)

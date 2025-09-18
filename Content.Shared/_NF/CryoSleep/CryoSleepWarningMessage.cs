@@ -7,22 +7,36 @@ namespace Content.Shared._NF.CryoSleep;
 public sealed class CryoSleepWarningMessage(
     bool shuttleOnPda,
     CryoSleepWarningMessage.NetworkedWarningItem? inventoryShuttleDeed,
+    bool foundMoreShuttles,
     CryoSleepWarningMessage.NetworkedWarningItem? foundUplink,
     List<CryoSleepWarningMessage.NetworkedWarningItem> importantItems)
     : EuiMessageBase
 {
     public readonly bool ShuttleOnPDA = shuttleOnPda;
     public readonly NetworkedWarningItem? InventoryShuttleDeed = inventoryShuttleDeed;
+    public readonly bool FoundMoreShuttles = foundMoreShuttles;
     public readonly NetworkedWarningItem? FoundUplink = foundUplink;
     public readonly List<NetworkedWarningItem> ImportantItems = importantItems;
 
     [Serializable] [NetSerializable]
-    public struct NetworkedWarningItem(string? slotId, NetEntity? container, NetEntity item)
+    public struct NetworkedWarningItem
     {
-        //Exactly one of these two values should be null
-        public readonly string? SlotId = slotId;
-        public readonly NetEntity? Container = container;
+    public NetworkedWarningItem(string? slotId, NetEntity? container, NetEntity item)
+    {
+        if (slotId == null && !container.HasValue)
+        {
+            throw new ArgumentException(
+                "CryoSleepWarningMessage.NetworkedWarningItem was attempted to be created with both slotId and container as null values");
+        }
 
-        public readonly NetEntity Item = item;
+        SlotId = slotId;
+        Container = container;
+        Item = item;
+        }
+ //Exactly one of these two values should be null
+        public readonly string? SlotId;
+        public readonly NetEntity? Container;
+
+        public readonly NetEntity Item;
     }
 }
