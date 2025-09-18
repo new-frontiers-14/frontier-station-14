@@ -254,7 +254,9 @@ public sealed partial class CryoSleepSystem : EntitySystem
         var ui = new CryoSleepEui(toInsert.Value, cryopod, this);
         if (session != null)
             _euiManager.OpenEui(ui, session);
-        ui.SendMessage(GetWarningMessages(toInsert.Value));
+        var warningMessage = GetWarningMessages(toInsert.Value);
+        if (warningMessage != null)
+            ui.SendMessage(warningMessage);
 
         // Start a do-after event - if the inserted body is still inside and has not decided to sleep/leave, it will be stored.
         // It does not matter whether the entity has a mind or not.
@@ -281,20 +283,24 @@ public sealed partial class CryoSleepSystem : EntitySystem
     }
 
     //TODO: Document this with whatever the javadoc equivilant is
-    private CryoSleepWarningMessage GetWarningMessages(EntityUid entity)
+    private CryoSleepWarningMessage? GetWarningMessages(EntityUid entity)
     {
+        if (!TryComp<InventoryComponent>(entity, out var inventoryComp))
+            return null;
         //Items check
-        //TODO: Full body scan
-        string[] slotsToCheck = ["back", "wallet"];
+        SlotDefinition[] slotsToCheck = inventoryComp.Slots;
         List<WarningItem> warningItemsList = [];
         //Doing the conversion to WarningItem all at once makes more sense to me
         List<StorageHelper.FoundItem> unconvertedFoundItem = [];
-        foreach (var slotId in slotsToCheck)
+        foreach (var slotDefinition in slotsToCheck)
         {
-            if (_inventory.TryGetSlotEntity(entity, slotId, out var slotItem))
+            //The ID is manually checked for a shuttle deed later, and since your PDA *technically* has an uplink in it, this has to be skipped manually.
+            if (slotDefinition.Name == "id")
+                continue;
+            if (_inventory.TryGetSlotEntity(entity, slotDefinition.Name, out var slotItem))
             {
                 if (ShouldItemWarnOnCryo(slotItem.Value))
-                    warningItemsList.Add(new WarningItem(slotId, null, slotItem.Value));
+                    warningItemsList.Add(new WarningItem(slotDefinition.Name, null, slotItem.Value));
                 else if (_entityManager.HasComponent<StorageComponent>(slotItem.Value))
                     StorageHelper.ScanStorageForCondition(slotItem.Value, ShouldItemWarnOnCryo, ref unconvertedFoundItem);
             }
@@ -349,13 +355,13 @@ public sealed partial class CryoSleepSystem : EntitySystem
     {
         if (_inventory.TryGetSlotEntity(ent, "id", out var pdaSlotItem))
         {
-            if (HasComp<IdCardComponent>(ent))
+            if (HasComp<IdCardComponent>(pdaSlotItem))
             {
                 idCard = ent;
                 return true;
             }
 
-            if (TryComp<PdaComponent>(ent, out var pda)
+            if (TryComp<PdaComponent>(pdaSlotItem, out var pda)
                 && pda.ContainedId.HasValue)
             {
                     idCard = pda.ContainedId.Value;

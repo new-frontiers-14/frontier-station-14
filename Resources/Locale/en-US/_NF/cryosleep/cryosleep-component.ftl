@@ -16,6 +16,7 @@ accept-cryo-window-prompt-one-item-warning = You have {$item} in your {$storage}
 accept-cryo-window-prompt-two-items-warning = You have {$item1} in your {$storage1} and {$item2} in your {$storage2}!
 accept-cryo-window-prompt-many-items-warning = You have {$item1} in your {$storage1}, {$item2} in your {$storage2}, and {$num-extra-items} important items elsewhere!
 accept-cryo-window-prompt-uplink-warning = You have a {$uplink} in your {$storage} with {$amount} {$currency}!
+accept-cryo-window-prompt-unable-to-scan = Your inventory couldn't be scanned for important items due to an error.
 accept-cryo-window-title = Cryo Sleep Chamber
 
 cryo-wakeup-window-title = Waking Up
