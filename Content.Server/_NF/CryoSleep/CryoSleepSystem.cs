@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.DoAfter;
@@ -7,7 +8,10 @@ using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared._NF.CCVar;
+using Content.Shared._NF.CryoSleep;
 using Content.Shared._NF.CryoSleep.Events;
+using Content.Shared._NF.Shipyard.Components;
+using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -21,8 +25,10 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
+using Content.Shared.PDA;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
+using Content.Shared.Store.Components;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -283,21 +289,98 @@ public sealed partial class CryoSleepSystem : EntitySystem
         //Items check
         //TODO: Full body scan
         string[] slotsToCheck = ["back", "wallet"];
-        List<StorageHelper.FoundItem> warningItemsList = [];
+        List<WarningItem> warningItemsList = [];
+        //Doing the conversion to WarningItem all at once makes more sense to me
+        List<StorageHelper.FoundItem> unconvertedFoundItem = [];
         foreach (var slotId in slotsToCheck)
         {
-            if (_inventory.TryGetSlotEntity(entity.Value, slotId, out var foundItem))
+            if (_inventory.TryGetSlotEntity(entity.Value, slotId, out var slotItem))
             {
-
+                if (ShouldItemWarnOnCryo(slotItem.Value))
+                    warningItemsList.Add(new WarningItem(slotId, null, slotItem.Value));
+                else if (_entityManager.HasComponent<StorageComponent>(slotItem.Value))
+                    StorageHelper.ScanStorageForCondition(slotItem.Value, ShouldItemWarnOnCryo, ref unconvertedFoundItem);
             }
+        }
+        //Convert all FoundItem to a WarningItem
+        foreach (var found in unconvertedFoundItem)
+        {
+            warningItemsList.Add(new WarningItem(null, found.Container, found.Item));
+        }
+        //Now, we extract the uplinks and shuttle deeds.
+        WarningItem? uplink = null;
+        WarningItem? backpackShuttleDeed = null;
+        //Listing every point where a shuttle deed was found runs you out of space very fast.
+        bool foundMoreShuttles = false;
+        bool hasShuttleOnPDA = (TryGetIdCard(entity.Value, out var card)
+                                && HasComp<ShuttleDeedComponent>(card));
+
+        //Find all the shuttles and uplinks and remove them from the list
+        for (var i = warningItemsList.Count - 1; i >= 0 ; i--)
+        {
+            var itemStruct = warningItemsList[i];
+            if (_entityManager.HasComponent<ShuttleDeedComponent>(itemStruct.Item))
+            {
+                if (backpackShuttleDeed.HasValue)
+                    foundMoreShuttles = true;
+                else
+                    backpackShuttleDeed = itemStruct;
+
+                warningItemsList.RemoveAt(i);
+            }
+            else if (HasComp<StoreComponent>(itemStruct.Item) && !uplink.HasValue)
+            {
+                uplink = itemStruct;
+                warningItemsList.RemoveAt(i);
+            }
+        }
+        return new CryoSleepWarningMessage()
+    }
+
+    private bool TryGetIdCard(EntityUid ent, [NotNullWhen(true)] out EntityUid? idCard)
+    {
+        if (_inventory.TryGetSlotEntity(ent, "id", out var pdaSlotItem))
+        {
+            if (HasComp<IdCardComponent>(ent))
+            {
+                idCard = ent;
+                return true;
+            }
+
+            if (TryComp<PdaComponent>(ent, out var pda)
+                && pda.ContainedId.HasValue)
+            {
+                    idCard = pda.ContainedId.Value;
+                    return true;
+            }
+        }
+
+        idCard = null;
+        return false;
+    }
+
+    public struct WarningItem(string? slotId, EntityUid? container, EntityUid item)
+    {
+        //Exactly one of these two values should be null
+        public readonly string? SlotId = slotId;
+        public readonly EntityUid? Container = container;
+
+        public readonly EntityUid Item = item;
+
+        public CryoSleepWarningMessage.NetworkedWarningItem ToNetworked(IEntityManager manager)
+        {
+            return new CryoSleepWarningMessage.NetworkedWarningItem(slotId,
+                manager.GetNetEntity(Container),
+                manager.GetNetEntity(Item));
         }
     }
 
-    private struct FoundSlotItem
+    private bool ShouldItemWarnOnCryo(EntityUid ent)
     {
-
+        return _entityManager.HasComponent<ShuttleDeedComponent>(ent)
+               || _entityManager.HasComponent<WarnOnCryoSleepComponent>(ent)
+               || _entityManager.HasComponent<StoreComponent>(ent);
     }
-
 
 
     public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod)

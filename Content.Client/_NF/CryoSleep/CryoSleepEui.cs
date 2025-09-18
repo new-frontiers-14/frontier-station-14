@@ -60,15 +60,6 @@ public sealed class CryoSleepEui : BaseEui
         //I spent so much time on this I am NOT rewriting this now
         if (_entityManager.TryGetComponent<InventorySlotsComponent>(playerEntity, out var slots))
         {
-            var warningItemsList = new List<StorageHelper.FoundItem>();
-            foreach (string slot in slotsToCheck)
-            {
-                var item = slots.SlotData[slot].HeldEntity;
-                if (!item.HasValue)
-                    continue;
-                if (_entityManager.TryGetComponent<StorageComponent>(item, out var storageComp))
-                    StorageHelper.ScanStorageForCondition(item.Value, ShouldItemWarnOnCryo, ref warningItemsList);
-            }
 
             StorageHelper.FoundItem? foundShuttleDeed = null;
             var foundMoreShuttles = false;
@@ -129,12 +120,6 @@ public sealed class CryoSleepEui : BaseEui
         };
     }
 
-    private bool ShouldItemWarnOnCryo(EntityUid ent)
-    {
-        return _entityManager.HasComponent<ShuttleDeedComponent>(ent)
-               || _entityManager.HasComponent<WarnOnCryoSleepComponent>(ent)
-               || _entityManager.HasComponent<StoreComponent>(ent);
-    }
 
     //The if statement was too hard to read, so I moved it to its own method where I can just return the string
     //This returns null if no warning is needed

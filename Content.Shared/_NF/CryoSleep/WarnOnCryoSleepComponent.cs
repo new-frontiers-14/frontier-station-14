@@ -1,4 +1,3 @@
-using Content.Shared.Eui;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.CryoSleep;
@@ -8,7 +7,7 @@ namespace Content.Shared._NF.CryoSleep;
 //Warns the user if they enter cryosleep with this in their inventory
 [RegisterComponent]
 [NetworkedComponent]
-public sealed partial class WarnOnCryoSleepComponent : EuiMessageBase
+public sealed partial class WarnOnCryoSleepComponent : Component
 {
 
 }
