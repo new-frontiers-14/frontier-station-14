@@ -1,0 +1,328 @@
+#region base
+- type: entity
+  parent: BaseItem
+  id: WeaponChargedStaffBase
+  name: tactical battle-staff
+  description: Big magic wand for big spells.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: change
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 1 # With fireCost 40 the recharge rate should restore one charge every 40 seconds or so
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,3,1
+    inhandVisuals:
+      left:
+      - state: change-inhand-left
+      right:
+      - state: change-inhand-right
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponStaffRechargeableWizard
+  abstract: true
+  components:
+  - type: WizardStaffRechargeable
+
+- type: entity
+  id: WeaponStaffRechargeableBloodCult
+  abstract: true
+  components:
+  - type: BloodCultStaffRechargeable
+
+# VARIATIONS
+#region wizard staffs
+- type: entity
+  id: WeaponChargedStaffWizardLightning
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard lightning staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: change
+  - type: HitscanBatteryAmmoProvider
+    proto: WizardHitscanLightning
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: change-inhand-left
+      right:
+      - state: change-inhand-right
+
+- type: entity
+  id: WeaponChargedStaffWizardIce
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard ice staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: nothing
+    - state: nothing-unshaded
+      shader: unshaded
+      color: "cyan"
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletIceGlobe
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: staff-inhand-left
+      - state: staff-inhand-left-unshaded
+        shader: unshaded
+        color: "cyan"
+      right:
+      - state: staff-inhand-right
+      - state: staff-inhand-right-unshaded
+        shader: unshaded
+        color: "cyan"
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffWizardElemental
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard blue curacao elemental staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: nothing
+    - state: nothing-unshaded
+      shader: unshaded
+      color: "#75b1f0"
+  - type: ProjectileBatteryAmmoProvider
+    proto: WaterElementalConjuredStaff
+    fireCost: 400
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: staff-inhand-left
+      - state: staff-inhand-left-unshaded
+        shader: unshaded
+        color: "#75b1f0"
+      right:
+      - state: staff-inhand-right
+      - state: staff-inhand-right-unshaded
+        shader: unshaded
+        color: "#75b1f0"
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffWizardSoap
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard soap staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: healing
+  - type: ProjectileBatteryAmmoProvider
+    proto: SoapConjured
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: healing-inhand-left
+      right:
+      - state: healing-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffWizardBoltFire
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard fire bolt staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: animation
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletFireBolt
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffWizardBoltMagic
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard magic bolt staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: chaos
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletMagicBolt
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: chaos-inhand-left
+      right:
+      - state: chaos-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffWizardCaustic
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard caustic beam staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: nothing
+    - state: nothing-unshaded
+      shader: unshaded
+      color: "#26e200"
+  - type: ProjectileBatteryAmmoProvider
+    proto: CausticBeam
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: staff-inhand-left
+      - state: staff-inhand-left-unshaded
+        shader: unshaded
+        color: "#26e200"
+      right:
+      - state: staff-inhand-right
+      - state: staff-inhand-right-unshaded
+        shader: unshaded
+        color: "#26e200"
+  - type: StaticPrice
+    price: 190
+
+#region blood cult staffs
+- type: entity
+  id: WeaponChargedStaffCultistBoltDark
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableBloodCult
+  name: cultist's staff of blood bolt
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: animation
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBloodCultDarkBolt
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffCultistHand
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableBloodCult
+  name: cultist's staff of blood hand
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: animation
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBloodCultHand
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  id: WeaponChargedStaffCultistLightning
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableBloodCult
+  name: cultist's staff of blood lightning
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: animation
+  - type: HitscanBatteryAmmoProvider
+    proto: BloodCultLaser
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
