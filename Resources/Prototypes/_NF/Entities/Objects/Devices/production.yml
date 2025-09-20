@@ -327,6 +327,22 @@
       price: 40
 
 - type: entity
+  id: PortableSMESMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: portable SMES machine board
+  description: A machine printed circuit board for a portable SMES.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableSMESEmpty
+      requirements:
+        Capacitor: 1
+        PowerCell: 4
+      stackRequirements:
+        CableHV: 10
+
+- type: entity
   id: BlueprintLithographMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: blueprint lithograph machine board
