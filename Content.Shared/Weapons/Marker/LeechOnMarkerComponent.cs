@@ -13,4 +13,9 @@ public sealed partial class LeechOnMarkerComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("leech", required: true)]
     public DamageSpecifier Leech = new();
+
+    // Frontier - Limited leech hits on dead mobs
+    // The number of leech hits you can do on a mob until draining stops happening
+    // Leeching always works if the foe is alive, but is checked against this when the mob is dead.
+    [DataField] public int NumGuaranteedLeechHits = 5;
 }
