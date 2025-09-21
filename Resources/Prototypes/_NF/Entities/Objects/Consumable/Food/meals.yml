@@ -642,3 +642,61 @@
   - type: Tag
     tags:
     - Meat
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMeatSausage
+  name: cooked sausage
+  description: A simple sausage. Who knows what's in this thing?
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - NFHotdog
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausagecooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 2
+  - type: Construction
+    graph: NFHotdogStove
+    node: cookeddog
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealHotdog
+  name: hotdog
+  description: Hot diggity dog!
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: hotdog
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Construction
+    graph: NFHotdog
+    node: hotteddog
