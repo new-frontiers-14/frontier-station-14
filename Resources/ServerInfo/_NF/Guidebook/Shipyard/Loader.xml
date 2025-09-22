@@ -2,7 +2,7 @@
   # LOADER-CLASS CARGO SHUTTLE
   <Box>
   <GuideEntityEmbed Entity="CrateTradeSecureNormal" Caption="trading crate"/>
-  <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="trading crate"/>
+  <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="express trading crate"/>
   </Box>  
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapLoader" Caption=""/>
@@ -18,7 +18,14 @@
 	[color=#a4885c]IFF Console:[/color] None
 	
   "A compact cargo ship designed for hauling shipments."
-    
+
+  # Ship Functions
+
+  <Box>
+    <GuideEntityEmbed Entity="ButtonFrameCautionSecurity" Caption="Bolt Exterior Airlocks"/>
+    <GuideEntityEmbed Entity="ButtonFrameGrey" Caption="Toggle Shutters/Blast Doors"/>
+  </Box>
+  
   # PREFLIGHT CHECKLIST
   
   ## 1. Power supply
@@ -41,14 +48,15 @@
   - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
   - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
   - Check that the P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power to 12-13** [bold]kW[/bold].
+  - Set Target Power to 13** [bold]kW[/bold].
   - Start the P.A.C.M.A.N. generator unit.
   
   ## 2. Atmospherics
   
   ## 2.1. Distribution Loop
   <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
   <GuideEntityEmbed Entity="GasPort"/>
   </Box>
   
@@ -74,8 +82,8 @@
   
   ## Sidenotes
   
-  * - Loader-class cargo ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (11.3 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+  * - Loader-class cargo ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (12.7 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
   
-  ** - Loader-class cargo ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 12 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 13 kW.
+  ** - Loader-class cargo ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 13 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 14 kW.
 
 </Document>
