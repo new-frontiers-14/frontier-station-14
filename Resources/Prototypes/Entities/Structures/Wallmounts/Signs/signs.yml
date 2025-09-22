@@ -1157,6 +1157,15 @@
 
 - type: entity
   parent: BaseSign
+  id: WarningHelium
+  name: helium waste sign
+  description: WARNING! Helium flow tube. Ensure the flow is disengaged before working.
+  components:
+  - type: Sprite
+    state: atmos_helium
+
+- type: entity
+  parent: BaseSign
   id: WarningN2
   name: N2 warning sign
   description: WARNING! N2 flow tube. Ensure the flow is disengaged before working.
@@ -1190,6 +1199,15 @@
   components:
   - type: Sprite
     state: atmos_plasma
+
+- type: entity
+  parent: BaseSign
+  id: WarningRespiron
+  name: respiron waste sign
+  description: WARNING! Respiron flow tube. Ensure the flow is disengaged before working.
+  components:
+  - type: Sprite
+    state: atmos_respiron
 
 - type: entity
   parent: BaseSign
