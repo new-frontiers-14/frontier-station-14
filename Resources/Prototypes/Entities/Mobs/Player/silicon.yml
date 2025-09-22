@@ -174,7 +174,7 @@
   suffix: Empty
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: WarpPoint
@@ -194,7 +194,30 @@
         sound:
           collection: MetalBreak
       - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+        acts: [ "Breakage" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          SheetPlasteel:
+            min: 2
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: DamageVisuals
+    thresholds: [25, 50, 75, 100, 200, 300, 400]
+    damageDivisor: 4
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Mobs/Silicon/station_ai_cracks.rsi
   - type: ApcPowerReceiver
     powerLoad: 1000
     needsPower: false
