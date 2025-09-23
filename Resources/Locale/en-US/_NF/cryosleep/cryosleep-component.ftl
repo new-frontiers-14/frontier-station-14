@@ -2,11 +2,13 @@
 cryopod-examine-empty = Empty
 cryopod-examine-occupied = Occupied
 cryopod-verb-target-unknown = Unknown
+accept-cryo-window-title = Cryo Sleep Chamber
 accept-cryo-window-accept-button = Accept
 accept-cryo-window-deny-button = Cancel
 accept-cryo-window-prompt-text-part = Enter cryo sleep and finish your shift?
 accept-cryo-window-prompt-stored = Your body will be stored for {PLAYTIME($time)}.
 accept-cryo-window-prompt-not-stored = Your body will not be stored, but your job slot will be reopened if you haven't done it yourself.
+# Warnings
 accept-cryo-window-prompt-shuttle-bag-warning = You have an active ship deed on your {$deed} in your {$storage}!
 accept-cryo-window-prompt-shuttle-many-bag-warning = You have an active ship deed on your {$deed} in your {$storage}, and more deeds elsewhere!
 accept-cryo-window-prompt-shuttle-pda-warning = You currently own a unsold ship!
@@ -17,7 +19,6 @@ accept-cryo-window-prompt-two-items-warning = You have {$item1} in your {$storag
 accept-cryo-window-prompt-many-items-warning = You have {$item1} in your {$storage1}, {$item2} in your {$storage2}, and {$num-extra-items} important items elsewhere!
 accept-cryo-window-prompt-uplink-warning = You have a {$uplink} in your {$storage} with {$amount} {$currency}!
 accept-cryo-window-prompt-unable-to-scan = Your inventory couldn't be scanned for important items due to an error.
-accept-cryo-window-title = Cryo Sleep Chamber
 
 cryo-wakeup-window-title = Waking Up
 cryo-wakeup-window-accept-button = Accept

@@ -74,11 +74,16 @@ public static class StorageHelper
         return false;
     }
 
-    //TODO: Standardize both of these methods to take either a StorageComp or EntityUid
 
-    //TODO: Document
-    //TODO: Figure out how to deal with someone passing a bad input
-    //Scans a storage and all nested storages for items matching the condition.
+    //Frontier: Simple utility method for storage scanning
+
+    /// <summary>
+    /// Scans a storage and all nested storages for items matching the condition.
+    /// </summary>
+    /// <param name="storageItem">The top level storage entity to be scanned.</param>
+    /// <param name="condition">The condition all items are checked against.</param>
+    /// <param name="foundItemsAndContainers">A list of FoundItem structs representing all found items.</param>
+    /// <exception cref="ArgumentException">Thrown if storageItem does not have StorageComponent.</exception>
     //Outputs a dictionary of <FoundItems, ContainingStorages>
     public static void ScanStorageForCondition(EntityUid storageItem,
         Predicate<EntityUid> condition,
@@ -103,10 +108,16 @@ public static class StorageHelper
         }
     }
 
-    //For use with ScanStorageForCondition()
+    /// <summary>
+    /// Represents an item found by ScanStorageForCondition.
+    /// </summary>
+    /// <param name="item">The found item.</param>
+    /// <param name="container">The entity it is stored in. Might be a nested storage.</param>
     public struct FoundItem(EntityUid item, EntityUid container)
     {
         public EntityUid Item = item;
         public EntityUid Container = container;
     }
+
+    //End Frontier
 }

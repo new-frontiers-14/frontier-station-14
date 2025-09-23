@@ -106,9 +106,7 @@ public sealed class CryoSleepEui : BaseEui
         }
     }
 
-    //TODO: Write a method to "prettyify" the ID names
-    //TODO: Ask around to see if anyone knows if you can get localized names of item slots
-    string GetStorageName(CryoSleepWarningMessage.NetworkedWarningItem item, InventorySlotsComponent inventoryComp)
+    private string GetStorageName(CryoSleepWarningMessage.NetworkedWarningItem item, InventorySlotsComponent inventoryComp)
     {
         if (item.SlotId == null)
         {
@@ -116,7 +114,10 @@ public sealed class CryoSleepEui : BaseEui
         }
         else
         {
-            return inventoryComp.SlotData[item.SlotId].SlotDisplayName;
+            //Lowercase this just to make the name not look weird in the popup
+            var returnVal = inventoryComp.SlotData[item.SlotId].SlotDisplayName;
+            //I can't execute without assigning it first
+            return returnVal.ToLower();
         }
     }
 

@@ -3,6 +3,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.CryoSleep;
 
+/// <summary>
+/// A message for CryoSleepEui containing all the items the server found, along with some other data to build the clientside warning messages.
+/// </summary>
 [Serializable] [NetSerializable]
 public sealed class CryoSleepWarningMessage(
     bool shuttleOnPda,

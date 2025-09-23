@@ -282,7 +282,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
         return true;
     }
 
-    //TODO: Document this with whatever the javadoc equivilant is
+    /// <summary>
+    /// Scans the inventory of an entity about to cryo in order to contrusct a warning message of all appropriate items.
+    /// </summary>
+    /// <returns>A warning message to be used with CryoSleepEui</returns>
     private CryoSleepWarningMessage? GetWarningMessages(EntityUid entity)
     {
         if (!TryComp<InventoryComponent>(entity, out var inventoryComp))
@@ -351,6 +354,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
             networkedWarningItems);
     }
 
+    //Get an entity's ID card from their ID slot, even if it is in a PDA
     private bool TryGetIdCard(EntityUid ent, [NotNullWhen(true)] out EntityUid? idCard)
     {
         if (_inventory.TryGetSlotEntity(ent, "id", out var pdaSlotItem))
@@ -373,7 +377,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         return false;
     }
 
-    public struct WarningItem(string? slotId, EntityUid? container, EntityUid item)
+    private readonly struct WarningItem(string? slotId, EntityUid? container, EntityUid item)
     {
         //Exactly one of these two values should be null
         public readonly string? SlotId = slotId;
@@ -383,12 +387,13 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         public CryoSleepWarningMessage.NetworkedWarningItem ToNetworked(IEntityManager manager)
         {
-            return new CryoSleepWarningMessage.NetworkedWarningItem(slotId,
+            return new CryoSleepWarningMessage.NetworkedWarningItem(SlotId,
                 manager.GetNetEntity(Container),
                 manager.GetNetEntity(Item));
         }
     }
 
+    //Predicate method for GetWarningMessages
     private bool ShouldItemWarnOnCryo(EntityUid ent)
     {
         return _entityManager.HasComponent<ShuttleDeedComponent>(ent)
