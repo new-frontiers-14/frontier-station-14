@@ -155,7 +155,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             (_, SecurityStatus.Paroled) => "paroled",
             // prisoner did their time
             (_, SecurityStatus.Discharged) => "released",
-            //Frontier begin 
+            //Frontier begin
             (_, SecurityStatus.Permitted) => "permitted", // Obtained permit
             (SecurityStatus.Permitted, SecurityStatus.Wanted) => "broke-permit", // Permit conditions violated
             (SecurityStatus.Permitted, SecurityStatus.None) => "withdrew-permit", // Withdrew permit eg. a second sheriff with different policy stripping existing ones
@@ -283,37 +283,5 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         key = new StationRecordKey(id, station);
         mob = user;
         return true;
-    }
-
-    /// <summary>
-    /// Checks if the new identity's name has a criminal record attached to it, and gives the entity the icon that
-    /// belongs to the status if it does.
-    /// </summary>
-    public void CheckNewIdentity(EntityUid uid)
-    {
-        var name = Identity.Name(uid, EntityManager);
-        var xform = Transform(uid);
-
-        // Frontier: sector-wide records
-        // TODO use the entity's station? Not the station of the map that it happens to currently be on?
-        // var station = _station.GetStationInMap(xform.MapID);
-        // // var owningStation = _station.GetOwningStation(uid);
-
-        var station = _sectorService.GetServiceEntity();
-        // End Frontier
-
-        if (station.IsValid() && _records.GetRecordByName(station, name) is { } id) // Frontier: "station != null" < station.IsValid(), station.Value < station
-        {
-            if (_records.TryGetRecord<CriminalRecord>(new StationRecordKey(id, station), // Frontier: station.Value<station
-                    out var record))
-            {
-                if (record.Status != SecurityStatus.None)
-                {
-                    _criminalRecords.SetCriminalIcon(name, record.Status, uid);
-                    return;
-                }
-            }
-        }
-        RemComp<CriminalRecordComponent>(uid);
     }
 }
