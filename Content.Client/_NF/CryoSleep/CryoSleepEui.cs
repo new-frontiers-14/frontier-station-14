@@ -25,9 +25,6 @@ namespace Content.Client._NF.CryoSleep;
 [UsedImplicitly]
 public sealed class CryoSleepEui : BaseEui
 {
-    //Broken :(
-    //TODO: Find a replacement for the broken _inventorySystem
-    //[Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
     private readonly AcceptCryoWindow _window;
     private EntityUid? _playerEntity = IoCManager.Resolve<ISharedPlayerManager>().LocalEntity;
@@ -71,7 +68,7 @@ public sealed class CryoSleepEui : BaseEui
         base.HandleMessage(msg);
         if (msg is CryoSleepWarningMessage warningMsg)
         {
-            //I don't anticipate this check ever failing, but its better to visually fail than silently fair or throw
+            //I don't anticipate this check ever failing, but it's better to visually fail than silently fail or throw
             if (!_entityManager.TryGetComponent<InventorySlotsComponent>(_playerEntity, out var slotsComp))
             {
                 _window.UplinkWarningText.Text = Loc.GetString("accept-cryo-window-prompt-unable-to-scan");
@@ -121,9 +118,10 @@ public sealed class CryoSleepEui : BaseEui
         }
     }
 
+    //All of these message get methods were moved to be separate to make the code less rigid, and easier to read.
 
-    //The if statement was too hard to read, so I moved it to its own method where I can just return the string
-    //This returns null if no warning is needed
+    //Grab any needed shuttle warnings.
+    //Returns null if no warning is needed
     private string? GetShuttleWarningLocMessage(bool hasShuttleOnPDA,
         bool foundMoreShuttles,
         CryoSleepWarningMessage.NetworkedWarningItem? foundShuttleDeed,
@@ -161,14 +159,14 @@ public sealed class CryoSleepEui : BaseEui
             : null;
     }
 
-    //Extracting to a separate method to make the code easier on me!
-    //This returns null if no warning is needed
+    //Grab any needed item warnings.
+    //Returns null if no warning is needed
     private string? GetImportantItemWarningLocMessage(List<CryoSleepWarningMessage.NetworkedWarningItem> warningItemsList,
         InventorySlotsComponent slotsComp)
     {
         if (warningItemsList.Count == 0)
             return null;
-        //At this point in the code, none of these values should be null. If it is, something went *very* wrong in the code about
+        //At this point in the code, none of these values should be null. If it is, something went *very* wrong in the code above
         var item1 = warningItemsList[0];
         var storageName1 = GetStorageName(item1, slotsComp);
         if (warningItemsList.Count == 1)
@@ -187,11 +185,12 @@ public sealed class CryoSleepEui : BaseEui
             ("storage1", storageName1),
             ("item2", Identity.Name(_entityManager.GetEntity(item2.Item), _entityManager)),
             ("storage2", storageName2),
-            //This key is not always needed, but put here to save a lot of copy pasting, and doesn't break the code, so :P
+            //This key is not always needed, but putting it in doesn't break anything
             ("num-extra-items", warningItemsList.Count - 2));
 
     }
 
+    //Grab any needed uplink warnings.
     //Returns null if no warning is needed
     private string? GetUplinkWarningLocMessage(CryoSleepWarningMessage.NetworkedWarningItem foundUplink,
         InventorySlotsComponent slotsComp)
@@ -208,7 +207,7 @@ public sealed class CryoSleepEui : BaseEui
             ("storage", GetStorageName(foundUplink, slotsComp)),
             ("amount", amount),
             //TODO: Properly localize the currency name
-            ("currency", currencyPrototype));
+            ("currency",  currencyPrototype));
     }
 
     public override void Opened()

@@ -90,11 +90,8 @@ public static class StorageHelper
         ref List<FoundItem> foundItemsAndContainers)
     {
         var entityManager = IoCManager.Resolve<IEntityManager>();
-        entityManager.TryGetComponent<StorageComponent>(storageItem, out var storageComp);
-        //Only way I know how to get this to compile
-        if (storageComp == null)
+        if (!entityManager.TryGetComponent<StorageComponent>(storageItem, out var storageComp))
         {
-            //You done goofed up
             throw new ArgumentException("An object was passed to ScanStorageForCondition that did not have a storage component.");
         }
 
