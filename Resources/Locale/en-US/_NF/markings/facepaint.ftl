@@ -10,6 +10,18 @@ marking-FacepaintMimeSad = Sad Mime Facepaint
 marking-FacepaintMimeSerious = Serious Mime Facepaint
 marking-FacepaintWhite = White Facepaint
 
+marking-FacepaintClownReptilian = Clown Facepaint
+marking-FacepaintClownMinimalReptilian = Minimalist Clown Facepaint
+marking-FacepaintClownSadReptilian = Sad Clown Facepaint
+marking-FacepaintClownSeriousReptilian = Serious Clown Facepaint
+marking-FacepaintClownSmugReptilian = Smug Clown Facepaint
+marking-FacepaintMimeReptilian = Mime Facepaint
+marking-FacepaintMimeBlushReptilian = Blushing Mime Facepaint
+marking-FacepaintMimeOddReptilian = Odd Mime Facepaint
+marking-FacepaintMimeSadReptilian = Sad Mime Facepaint
+marking-FacepaintMimeSeriousReptilian = Serious Mime Facepaint
+marking-FacepaintWhiteReptilian = White Facepaint
+
 marking-FacepaintClownVulpkanin = Clown Facepaint
 marking-FacepaintClownMinimalVulpkanin = Minimalist Clown Facepaint
 marking-FacepaintClownSadVulpkanin = Sad Clown Facepaint
@@ -21,3 +33,16 @@ marking-FacepaintMimeOddVulpkanin = Odd Mime Facepaint
 marking-FacepaintMimeSadVulpkanin = Sad Mime Facepaint
 marking-FacepaintMimeSeriousVulpkanin = Serious Mime Facepaint
 marking-FacepaintWhiteVulpkanin = White Facepaint
+
+marking-FacepaintBlushHead = Blush
+marking-FacepaintBlushHead-facepaint_blush = Blush
+marking-FacepaintEyebrowsHead = Eyebrows
+marking-FacepaintEyebrowsHead-facepaint_eyebrows = Eyebrows
+marking-FacepaintLipstickHead = Lipstick
+marking-FacepaintLipstickHead-facepaint_lipstick = Lipstick
+marking-FacepaintBlushSnout = Blush
+marking-FacepaintBlushSnout-facepaint_blush = Blush
+marking-FacepaintEyebrowsSnout = Eyebrows
+marking-FacepaintEyebrowsSnout-facepaint_eyebrows = Eyebrows
+marking-FacepaintLipstickSnout = Lipstick
+marking-FacepaintLipstickSnout-facepaint_lipstick_snout = Lipstick
