@@ -12,11 +12,6 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Implants; // Frontier
-using Content.Shared.Implants.Components; // Frontier
-using Content.Shared.Radio.Components; // Frontier
-using Robust.Shared.Containers; // Frontier
-using Robust.Shared.Network; // Frontier
 
 namespace Content.Shared.Station;
 
@@ -29,9 +24,6 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly INetManager _net = default!; // Frontier
-    [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier
-    [Dependency] private readonly SharedImplanterSystem _implanter = default!; // Frontier
 
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
@@ -215,34 +207,6 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             }
         }
 
-        // Frontier: extra fields
-        // Implants must run on server, container initialization only runs on server, and lobby dummies don't work.
-        if (_net.IsServer && startingGear.Implants.Count > 0)
-        {
-            var coords = _xformSystem.GetMapCoordinates(entity);
-            foreach (var entProto in startingGear.Implants)
-            {
-                var spawnedEntity = Spawn(entProto, coords);
-                if (TryComp<ImplanterComponent>(spawnedEntity, out var implanter))
-                    _implanter.Implant(entity, entity, spawnedEntity, implanter);
-                else
-                    DebugTools.Assert(false, $"Entity has an implant for {entProto}, which doesn't have an implanter component!");
-                QueueDel(spawnedEntity);
-            }
-        }
-
-        if (startingGear.EncryptionKeys.Count > 0)
-        {
-            EquipEncryptionKeysIfPossible(entity, startingGear.EncryptionKeys);
-        }
-
-        // PDA cartridges must run on server, installation logic exists server-side.
-        if (_net.IsServer && startingGear.Cartridges.Count > 0)
-        {
-            EquipPdaCartridgesIfPossible(entity, startingGear.Cartridges);
-        }
-        // End Frontier
-
         if (raiseEvent)
         {
             var ev = new StartingGearEquippedEvent(entity);
@@ -279,45 +243,4 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         return null;
     }
-
-    // Frontier: extra loadout fields
-    /// Function to equip an entity with encryption keys.
-    /// If not possible, will delete them.
-    /// Only called in practice server-side.
-    /// </summary>
-    /// <param name="entity">The entity to receive equipment.</param>
-    /// <param name="encryptionKeys">The encryption key prototype IDs to equip.</param>
-    protected void EquipEncryptionKeysIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys)
-    {
-        if (!InventorySystem.TryGetSlotEntity(entity, "ears", out var slotEnt))
-        {
-            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but doesn't have a headset!");
-            return;
-        }
-        if (!_container.TryGetContainer(slotEnt.Value, EncryptionKeyHolderComponent.KeyContainerName, out var keyContainer))
-        {
-            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but their headset doesn't have an encryption key container!");
-            return;
-        }
-        var coords = _xformSystem.GetMapCoordinates(entity);
-        foreach (var entProto in encryptionKeys)
-        {
-            var spawnedEntity = Spawn(entProto, coords);
-            if (!_container.Insert(spawnedEntity, keyContainer))
-            {
-                QueueDel(spawnedEntity);
-                DebugTools.Assert(false, $"Entity {entity} could not insert their loadout encryption key {entProto} into their headset!");
-            }
-        }
-    }
-
-    /// <summary>
-    /// Function to equip an entity with PDA cartridges.
-    /// If not possible, will delete them.
-    /// Only called in practice server-side.
-    /// </summary>
-    /// <param name="entity">The entity to receive equipment.</param>
-    /// <param name="encryptionKeys">The PDA cartridge prototype IDs to equip.</param>
-    protected abstract void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys);
-    // End Frontier: extra loadout fields
 }
