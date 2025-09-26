@@ -18,6 +18,7 @@ using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 
 namespace Content.Client._NF.CryoSleep;
@@ -25,7 +26,8 @@ namespace Content.Client._NF.CryoSleep;
 [UsedImplicitly]
 public sealed class CryoSleepEui : BaseEui
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private readonly AcceptCryoWindow _window;
     private EntityUid? _playerEntity = IoCManager.Resolve<ISharedPlayerManager>().LocalEntity;
     public CryoSleepEui()
@@ -198,16 +200,16 @@ public sealed class CryoSleepEui : BaseEui
         var localUplink = _entityManager.GetEntity(foundUplink.Item);
         if (!_entityManager.TryGetComponent<StoreComponent>(localUplink, out var store))
             return null;
-        var currencyPrototype = store.Balance.Keys.First();
-        var amount = store.Balance[currencyPrototype];
-        if (amount == 0)
+        var currencyProtoId = store.Balance.Keys.First();
+        var amount = store.Balance[currencyProtoId];
+        if (amount == 0
+            || !_prototypeManager.TryIndex(currencyProtoId, out var currencyProto))
             return null;
         return Loc.GetString("accept-cryo-window-prompt-uplink-warning",
             ("uplink", Identity.Name(_entityManager.GetEntity(foundUplink.Item), _entityManager)),
             ("storage", GetStorageName(foundUplink, slotsComp)),
             ("amount", amount),
-            //TODO: Properly localize the currency name
-            ("currency",  currencyPrototype));
+            ("currency",  Loc.GetString(currencyProto.DisplayName)));
     }
 
     public override void Opened()
