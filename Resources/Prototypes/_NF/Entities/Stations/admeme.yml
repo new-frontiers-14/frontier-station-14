@@ -1,0 +1,25 @@
+# region Frontier Outpost
+- type: entity
+  id: AdmemeFrontierSpaceship
+  suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationSiliconLawFrontierStation
+  - BaseStationSectorNews
+  - BaseStationMail # Mail
+  - BaseStationDeadDrops
+  - NFBaseStationCargo
+  - BaseStationMagnet
+  - BaseStationCargoMarket
+  - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
+  - BaseStationRenameWarpPoints
+  - BaseStationExpeditions
+  - BaseStationCargo
+  - BaseStationAllEventsEligible
+  - BaseStationDeliveries
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
