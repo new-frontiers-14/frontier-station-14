@@ -15,3 +15,18 @@
   effects:
     - !type:CreateEntityReactionEffect
       entity: FoodRiceDough
+
+#Condiments
+
+- type: reaction
+  id: CookingStellanara
+  minTemp: 373
+  reactants:
+    JuiceTomato:
+      amount: 3
+    Stellibinin:
+      amount: 1
+    OilOlive:
+      amount: 1
+  products:
+    Stellanara: 4
