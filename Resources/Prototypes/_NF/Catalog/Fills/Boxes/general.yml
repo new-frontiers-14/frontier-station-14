@@ -67,6 +67,27 @@
         amount: 10
 
 - type: entity
+  id: BoxPaperColored
+  parent: BoxPaper
+  name: colored paper box
+  description: A box full of colored papers.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Storage/boxes.rsi
+      layers:
+        - state: icon-rainbow
+    - type: StorageFill
+      contents:
+        - id: PaperColoredRed
+        - id: PaperColoredOrange
+        - id: PaperColoredYellow
+        - id: PaperColoredGreen
+        - id: PaperColoredBlue
+        - id: PaperColoredPurple
+    - type: StaticPrice
+      vendPrice: 600
+          
+- type: entity
   name: mystery spacemen minifigure bulk box
   parent: BoxCardboard
   id: MysteryFigureBoxBulk
