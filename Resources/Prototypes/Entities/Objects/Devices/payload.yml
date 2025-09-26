@@ -21,7 +21,7 @@
 
 - type: entity
   name: explosive payload
-  parent: [BasePayload, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
+  parent: [ BasePayload, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband>BaseC2ContrabandUnredeemable
   id: ExplosivePayload
   components:
   - type: Sprite
@@ -37,12 +37,6 @@
   - type: Destructible
     thresholds:
     - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 25
-      behaviors:
-      - !type:ExplodeBehavior
-    - trigger:
         !type:DamageTrigger
         damage: 50
       behaviors:
@@ -51,7 +45,7 @@
 
 - type: entity
   name: chemical payload
-  parent: BasePayload
+  parent: [ BasePayload, BaseC2ContrabandUnredeemable ] # Frontier: BaseMedicalScienceContraband>BaseC2ContrabandUnredeemable
   id: ChemicalPayload
   description: A chemical payload. Has space to store two beakers. In combination with a trigger and a case, this can be used to initiate chemical reactions.
   components:
@@ -87,7 +81,7 @@
 
 - type: entity
   name: flash payload
-  parent: [BasePayload, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
+  parent: [ BasePayload, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityScienceCommandContraband>BaseC2ContrabandUnredeemable
   id: FlashPayload
   description: A single-use flash payload.
   components:

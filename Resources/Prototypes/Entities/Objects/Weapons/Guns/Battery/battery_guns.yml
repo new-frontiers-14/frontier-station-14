@@ -152,7 +152,7 @@
 
 - type: entity
   name: makeshift laser pistol
-  parent: [BaseWeaponBatterySmall, BaseC1Contraband] # Frontier: added BaseC1Contraband
+  parent: [BaseWeaponBatterySmall, BaseC1Contraband] # Frontier: BaseMinorContraband>BaseC1Contraband
   id: WeaponMakeshiftLaser
   description: Better pray it won't burn your hands off. At least it's legal.
   components:
@@ -180,7 +180,7 @@
 
 - type: entity
   name: tesla gun
-  parent: [BaseWeaponBattery, BaseC3Contraband] # Frontier: added BaseC3Contraband
+  parent: [BaseWeaponBattery, BaseC3Contraband] # Frontier: BaseMajorContraband>BaseC3Contraband
   id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands. An experimental and illegal weapon.
   components:
@@ -253,7 +253,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
   name: pulse pistol
-  parent: [BaseWeaponBatterySmall, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
+  parent: [BaseWeaponBatterySmall, BaseC2ContrabandUnredeemable] # Frontier: BaseCentcommContraband>BaseC2ContrabandUnredeemable
   id: WeaponPulsePistol
   description: A state of the art energy pistol favoured as a sidearm by the NT operatives. On the handle is a label that says 'for authorized use only.'
   components:
@@ -325,7 +325,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
   name: pulse rifle
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseC2ContrabandUnredeemable] # Frontier: BaseCentcommContraband>BaseC2ContrabandUnredeemable
   id: WeaponPulseRifle
   description: A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'
   components:
@@ -390,7 +390,7 @@
 
 - type: entity
   name: portable particle decelerator
-  parent: BaseWeaponBattery # Frontier: removed BaseRestrictedContraband
+  parent: BaseWeaponBattery # Frontier: removed BaseEngineeringContraband
   id: WeaponParticleDecelerator
   description: A portable particle decelerator capable of decomposing a tesla or singularity. On the handle is a label that says 'for authorized use only.' # Frontier: added label sentence
   components:
@@ -422,7 +422,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
   name: x-ray cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseC3Contraband] # Frontier: added BaseSecurityContraband<BaseC3Contraband
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseC3Contraband] # Frontier: BaseSecurityContraband<BaseC3Contraband
   id: WeaponXrayCannon
   description: An illegal and experimental weapon that uses concentrated x-ray energy against its target.
   components:
@@ -484,7 +484,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletDisablerPractice # Frontier: use NF variant
-    fireCost: 50
+    fireCost: 50 # Frontier: 62.5>50
   - type: Tag
     tags:
     - Taser
@@ -512,7 +512,7 @@
       - Belt
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletDisabler # Frontier
-    fireCost: 50
+    fireCost: 50 # Frontier: 62.5>50
   - type: GuideHelp
     guides:
     - Security
@@ -560,7 +560,7 @@
   name: taser
   parent: [ BaseWeaponBatterySmall, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: WeaponTaser
-  description: A low-capacity, energy-based stun gun used by security teams to subdue targets at range. On the handle is a label that says 'for authorized use only.'
+  description: A low-capacity, energy-based stun gun used by security teams to subdue targets at close range. On the handle is a label that says 'for authorized use only.'
   components:
   - type: Tag
     tags:
@@ -591,6 +591,23 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: elite taser
+  parent: WeaponTaser # Frontier: Remove BaseCentcommContraband (already C2Unredeemable from parent)
+  id: WeaponTaserSuper
+  suffix: ADMEME
+  description: A low-capacity, energy-based stun gun used by elite security teams to disable even the toughest of targets.
+  components:
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Effects/tesla_collapse.ogg # The wrath of god...
+      params:
+        volume: -6
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletTaserSuper
+    fireCost: 200
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -725,7 +742,7 @@
   name: experimental C.H.I.M.P. handcannon
   parent: [BaseC3SyndicateContraband, WeaponPistolCHIMP] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponPistolCHIMPUpgraded
-  description: This C.H.I.M.P. seems to have a greater punch than is usual...
+  description: This C.H.I.M.P. seems to have a greater punch than usual...
   components:
   - type: BatteryWeaponFireModes
     # Frontier: moved to NF variants
@@ -827,7 +844,7 @@
 
 - type: entity
   name: temperature gun
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseC2Contraband] # Frontier: BaseSecurityContraband<BaseC2Contraband
   id: WeaponTemperatureGun
   description: An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
   components:
@@ -871,12 +888,12 @@
 
 - type: entity
   name: xenoborg laser gun
-  parent: [ WeaponAdvancedLaser, BaseXenoborgContraband ]
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
   id: XenoborgLaserGun
 
 - type: entity
   name: xenoborg heavy laser gun
-  parent: [ WeaponAdvancedLaser, BaseXenoborgContraband ]
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
   id: XenoborgHeavyLaserGun
   components:
   - type: HitscanBatteryAmmoProvider

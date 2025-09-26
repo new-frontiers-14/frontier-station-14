@@ -71,8 +71,7 @@ public sealed class SuitSensorSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _gameTiming.CurTime;
-        //var sensors = EntityManager.EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent>(); // Frontier modification
-        var sensors = EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier modification
+        var sensors = EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier: Added TransformComponent
 
         while (sensors.MoveNext(out var uid, out var sensor, out var device, out var xform)) // Frontier modification
         {
@@ -421,7 +420,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
         // get health mob state
         var isAlive = false;
-        if (EntityManager.TryGetComponent(sensor.User.Value, out MobStateComponent? mobState))
+        if (TryComp(sensor.User.Value, out MobStateComponent? mobState))
             isAlive = !_mobStateSystem.IsDead(sensor.User.Value, mobState);
 
         // get mob total damage

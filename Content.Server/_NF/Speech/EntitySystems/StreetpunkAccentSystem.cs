@@ -1,5 +1,5 @@
 using Content.Server._NF.Speech.Components;
-using Content.Server.Speech;
+using Content.Shared.Speech;
 using Content.Server.Speech.EntitySystems;
 using System.Text.RegularExpressions;
 
