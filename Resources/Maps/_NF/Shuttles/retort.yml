@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/18/2025 05:17:42
-  entityCount: 805
+  time: 09/27/2025 01:51:16
+  entityCount: 803
 maps: []
 grids:
 - 1
@@ -4298,12 +4298,6 @@ entities:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
-  - uid: 106
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-7.5
-      parent: 1
   - uid: 120
     components:
     - type: Transform
@@ -4314,12 +4308,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-7.5
-      parent: 1
-  - uid: 156
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-7.5
       parent: 1
   - uid: 159
     components:
@@ -4688,6 +4676,12 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
+  - uid: 106
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-6.5
+      parent: 1
   - uid: 253
     components:
     - type: Transform
@@ -4768,12 +4762,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-2.5
-      parent: 1
-  - uid: 519
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,-5.5
       parent: 1
   - uid: 642
     components:
@@ -4916,6 +4904,38 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-6.5
+      parent: 1
+- proto: ReinforcedUraniumWindow
+  entities:
+  - uid: 193
+    components:
+    - type: Transform
+      pos: 4.5,-7.5
+      parent: 1
+  - uid: 225
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 1
+  - uid: 237
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+  - uid: 238
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 1
+  - uid: 300
+    components:
+    - type: Transform
+      pos: 5.5,-7.5
+      parent: 1
+  - uid: 302
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
@@ -6205,6 +6225,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-11.5
       parent: 1
+  - uid: 156
+    components:
+    - type: Transform
+      pos: 6.5,-7.5
+      parent: 1
   - uid: 162
     components:
     - type: Transform
@@ -6239,6 +6264,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-6.5
+      parent: 1
+  - uid: 229
+    components:
+    - type: Transform
+      pos: 3.5,-7.5
       parent: 1
   - uid: 239
     components:
@@ -6353,55 +6383,5 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-3.5
-      parent: 1
-- proto: Window
-  entities:
-  - uid: 193
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-0.5
-      parent: 1
-  - uid: 225
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-7.5
-      parent: 1
-  - uid: 229
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-7.5
-      parent: 1
-  - uid: 237
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-7.5
-      parent: 1
-  - uid: 238
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-7.5
-      parent: 1
-  - uid: 300
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-3.5
-      parent: 1
-  - uid: 302
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,2.5
-      parent: 1
-  - uid: 663
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-5.5
       parent: 1
 ...
