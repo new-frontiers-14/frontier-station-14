@@ -4,8 +4,8 @@
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
                       xmlns:nf="clr-namespace:Content.Client._NF.Research.UI"
                       Title="{Loc 'research-console-menu-title'}"
-                      SetSize="1300 850"
-                      MinSize="1300 400">
+                      SetSize="1000 600"
+                      MinSize="800 400">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -37,11 +37,11 @@
                         <gfx:StyleBoxFlat BackgroundColor="#0F1419" />
                     </PanelContainer.PanelOverride>
                     <!-- Add ScrollContainer - vertical only -->
-                    <ScrollContainer 
+                    <ScrollContainer
                         Name="TechScrollContainer"
                         Access="Public"
-                        HorizontalExpand="True" 
-                        VerticalExpand="True" 
+                        HorizontalExpand="True"
+                        VerticalExpand="True"
                         HScrollEnabled="False"
                         VScrollEnabled="True"
                         ReserveScrollbarSpace="True"
@@ -51,7 +51,8 @@
                             VerticalExpand="True"
                             Name="DragContainer"
                             MouseFilter="Pass"
-                            RectClipContent="True">
+                            RectClipContent="True"
+                            HorizontalAlignment="Left">
                             <!-- There lives all of technologies -->
                         </nf:ResearchesContainerPanel>
                     </ScrollContainer>
@@ -70,7 +71,7 @@
                     Margin="0">
                     <Control
                         Margin="5"
-                        MinWidth="450"
+                        MinWidth="350"
                         VerticalExpand="True"
                         HorizontalExpand="True"/>
                 </BoxContainer>

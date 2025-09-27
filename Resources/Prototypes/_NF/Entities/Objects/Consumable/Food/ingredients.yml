@@ -256,3 +256,129 @@
           Quantity: 2
         - ReagentId: Sugar
           Quantity: 1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodRiceNoodlesSheet
+  name: rice noodles sheet
+  description: A sheet of rice, ready to be chopped into noodles. Probably better cooked.
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: rice-noodle-sheet
+  - type: SliceableFood
+    count: 4
+    slice: FoodRiceNoodles
+  - type: Tag
+    tags:
+    - Raw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 65 # it's a bunch of raw rice. How sad to eat this.
+        reagents:
+        - ReagentId: Rice
+          Quantity: 40
+        - ReagentId: TableSalt
+          Quantity: 10
+        - ReagentId: Cornoil
+          Quantity: 10
+
+- type: entity
+  parent: FoodNoodlesBase
+  id: FoodRiceNoodles
+  name: rice noodles
+  description: A nest of delicate rice noodles. Probably better cooked.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: rice-noodle
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Rice
+          Quantity: 10
+        - ReagentId: TableSalt
+          Quantity: 2
+        - ReagentId: Cornoil
+          Quantity: 2
+
+- type: entity
+  name: rice dough
+  parent: FoodBakingBase
+  id: FoodRiceDough
+  description: You're pretty sure this is just rice and water. You have no idea how it's holding together.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: rice-dough
+  - type: SliceableFood
+    count: 4
+    slice: FoodRiceDoughSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 65 # it's a bunch of raw rice. How sad to eat this.
+        reagents:
+        - ReagentId: Rice
+          Quantity: 40
+
+- type: entity
+  name: rice dough slice
+  parent: FoodBakingBase
+  id: FoodRiceDoughSlice
+  description: A slice of rice dough.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: rice-dough-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Rice
+          Quantity: 10
+
+- type: entity
+  parent: FoodMeatBase
+  id: FoodSausageRaw
+  name: raw sausage
+  description: A simple sausage. Who knows what's in this thing?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: sausageraw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Construction
+    graph: NFHotdogStove
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: FoodSausageCasing
+  name: sausage casing
+  description: The intestine or some equivalent of some poor creature out there..
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: sausagecasing
+  - type: Construction
+    graph: Cutlet
+    node: casing

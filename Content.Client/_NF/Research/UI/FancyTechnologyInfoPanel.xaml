@@ -2,7 +2,7 @@
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
          Margin="5"
-         MinWidth="450"
+         MinWidth="350"
          VerticalExpand="True"
          HorizontalExpand="True">
     <BoxContainer Orientation="Vertical"
@@ -11,9 +11,8 @@
         <BoxContainer
             Name="InfoContainer"
             Orientation="Vertical"
-            VerticalExpand="True"
             HorizontalExpand="True"
-            Margin="5"
+            Margin="5 5 5 0"
             SizeFlagsStretchRatio="3">
             <BoxContainer Orientation="Horizontal"
                     HorizontalExpand="True">
@@ -40,46 +39,36 @@
             <Button Name="ResearchButton"
                     Text="{Loc 'research-console-menu-server-research-button'}"
                     HorizontalAlignment="Left"
-                    Margin="0 4"/>
+                    Margin="0 4 0 0"/>
         </BoxContainer>
-        <Control SizeFlagsStretchRatio="1"
-                 HorizontalExpand="True"/>
         <BoxContainer
             Orientation="Vertical"
             VerticalExpand="True"
             Margin="5"
-            SizeFlagsStretchRatio="5">
+            SizeFlagsStretchRatio="1">
             <BoxContainer Name="PrereqsContainer"
                           Orientation="Vertical"
-                          VerticalExpand="True"
-                          Margin="5"
-                          SizeFlagsStretchRatio="1">
+                          Margin="5">
                 <Label Text="{Loc 'research-console-required-text'}"
                         HorizontalAlignment="Center"/>
                 <customControls:HSeparator StyleClasses="LowDivider"
                         Margin="0 0 0 10"/>
-                <PanelContainer VerticalExpand="True">
+                <PanelContainer>
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E"/>
                     </PanelContainer.PanelOverride>
-                    <ScrollContainer
-                        HScrollEnabled="False"
-                        HorizontalExpand="True"
-                        VerticalExpand="True">
-                        <BoxContainer
-                            Name="RequiredTechContainer"
-                            Orientation="Vertical"
-                            VerticalExpand="True">
-                            <RichTextLabel Name="NoPrereqLabel" HorizontalAlignment="Center" Text="{Loc 'research-console-no-tech-requirements'}" Visible="True"/>
-                        </BoxContainer>
-                    </ScrollContainer>
+                    <BoxContainer
+                        Name="RequiredTechContainer"
+                        Orientation="Vertical">
+                        <RichTextLabel Name="NoPrereqLabel" HorizontalAlignment="Center" Text="{Loc 'research-console-no-tech-requirements'}" Visible="True"/>
+                    </BoxContainer>
                 </PanelContainer>
             </BoxContainer>
             <BoxContainer
                 Name="RecipesContainer"
                 Orientation="Vertical"
                 VerticalExpand="True"
-                SizeFlagsStretchRatio="2"
+                SizeFlagsStretchRatio="1"
                 Margin="5">
                 <Label Text="{Loc 'research-console-unlocks-text'}"
                         HorizontalAlignment="Center"/>
