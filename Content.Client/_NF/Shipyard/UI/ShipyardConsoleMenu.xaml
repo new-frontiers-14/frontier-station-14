@@ -51,10 +51,13 @@
             <Button Name="SellShipButton"
                 Text="Sell"
                 Disabled="True" />
-            <BoxContainer Orientation="Vertical">
-                <Label Text="{Loc 'shipyard-console-deed-label'}" />
-                <Label Name="DeedTitle"
-                    Text=""/>
+            <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True">
+                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}"/>
+                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" Name="DeedContainer" Visible="False">
+                <Label Text="{Loc 'shipyard-console-deed-label'}"/>
+                <Label Name="DeedTitle" Text=""/>
             </BoxContainer>
         </GridContainer>
     </BoxContainer>
