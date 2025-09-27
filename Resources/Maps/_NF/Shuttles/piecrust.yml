@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/27/2025 04:17:15
-  entityCount: 381
+  time: 09/27/2025 04:29:22
+  entityCount: 384
 maps: []
 grids:
 - 8756
@@ -1073,17 +1073,11 @@ entities:
       parent: 8756
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 118
+  - uid: 381
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -2.5,-2.5
-      parent: 8756
-  - uid: 259
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,1.5
       parent: 8756
 - proto: DVSmartFridge
   entities:
@@ -1104,6 +1098,11 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,6.5
+      parent: 8756
+  - uid: 118
+    components:
+    - type: Transform
+      pos: -1.5,0.5
       parent: 8756
   - uid: 230
     components:
@@ -2015,6 +2014,14 @@ entities:
     - type: Transform
       pos: 0.17713857,4.624546
       parent: 8756
+- proto: LockerWallColorGenericGreen
+  entities:
+  - uid: 259
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,1.5
+      parent: 8756
 - proto: LockerWallColorHydroponicsFilled
   entities:
   - uid: 216
@@ -2185,6 +2192,20 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,2.5
+      parent: 8756
+- proto: PoweredlightExterior
+  entities:
+  - uid: 382
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-4.5
+      parent: 8756
+  - uid: 383
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,9.5
       parent: 8756
 - proto: PoweredSmallLight
   entities:
