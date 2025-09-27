@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/26/2025 23:58:52
+  time: 09/27/2025 23:11:32
   entityCount: 592
 maps: []
 grids:
@@ -2558,6 +2558,13 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeStraightAlt1
   entities:
+  - uid: 282
+    components:
+    - type: Transform
+      pos: 2.5,-16.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 308
     components:
     - type: Transform
@@ -2733,13 +2740,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 580
-    components:
-    - type: Transform
-      pos: 2.5,-15.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 581
     components:
     - type: Transform
@@ -2833,12 +2833,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-9.5
       parent: 1
-- proto: GasPressurePumpOnMax
+- proto: GasPressurePumpOn
   entities:
-  - uid: 282
+  - uid: 580
     components:
     - type: Transform
-      pos: 2.5,-16.5
+      pos: 2.5,-15.5
       parent: 1
     - type: AtmosPipeLayers
       pipeLayer: Secondary
