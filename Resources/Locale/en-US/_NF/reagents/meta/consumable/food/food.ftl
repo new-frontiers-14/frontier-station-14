@@ -6,6 +6,3 @@ reagent-desc-raisins = Are they the best or worst part of the cookie? They're a 
 
 reagent-name-everyspice = everyspice
 reagent-desc-everyspice = A versatile flavoring, this spice has a flavor for every occasion.
-
-reagent-name-alliflavocin = alliflavocin
-reagent-desc-alliflavocin = A variant of flavorol altered by the presence of allicin and its related compounds, making them much more bio-available and, as a result, more toxic to animals.
