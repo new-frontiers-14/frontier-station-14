@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/15/2025 22:11:28
-  entityCount: 588
+  time: 09/27/2025 23:11:32
+  entityCount: 592
 maps: []
 grids:
 - 1
@@ -2558,6 +2558,13 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeStraightAlt1
   entities:
+  - uid: 282
+    components:
+    - type: Transform
+      pos: 2.5,-16.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 308
     components:
     - type: Transform
@@ -2661,14 +2668,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 332
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-11.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 333
     components:
     - type: Transform
@@ -2741,6 +2740,20 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 581
+    components:
+    - type: Transform
+      pos: 2.5,-14.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 582
+    components:
+    - type: Transform
+      pos: 2.5,-13.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
   - uid: 338
@@ -2791,6 +2804,21 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 332
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 587
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-12.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPort
   entities:
   - uid: 160
@@ -2805,12 +2833,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-9.5
       parent: 1
-- proto: GasPressurePumpOnMax
+- proto: GasPressurePumpOn
   entities:
-  - uid: 282
+  - uid: 580
     components:
     - type: Transform
-      pos: 2.5,-16.5
+      pos: 2.5,-15.5
       parent: 1
     - type: AtmosPipeLayers
       pipeLayer: Secondary
