@@ -65,3 +65,29 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: NFLightTubeShieldedFixture
+  graph: LightFixture
+  startNode: start
+  targetNode: tubeLightShielded
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: NFLightSmallShieldedFixture
+  graph: LightFixture
+  startNode: start
+  targetNode: bulbLightShielded
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
