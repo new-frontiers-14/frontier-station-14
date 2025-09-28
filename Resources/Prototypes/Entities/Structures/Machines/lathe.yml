@@ -241,11 +241,7 @@
     whitelist:
       tags:
       - NFBlueprintProtolathe
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      blueprint: !type:Container
+      - NFBlueprintAdvanced
   # End Frontier: accept blueprints
 
 - type: entity
@@ -496,6 +492,7 @@
       whitelist: # Frontier
         tags: # Frontier
         - NFBlueprintMercenaryTechfab # Frontier
+        - NFBlueprintAdvanced # Frontier
 
 - type: entity
   id: MedicalTechFab
@@ -542,6 +539,7 @@
     whitelist: # Frontier
       tags: # Frontier
       - NFBlueprintMedicalTechfab # Frontier
+      - NFBlueprintAdvanced # Frontier
 
 - type: entity
   parent: BaseLathe
