@@ -385,6 +385,22 @@
         # CableHV: 10
 
 - type: entity
+  id: PortableSMESMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: portable SMES machine board
+  description: A machine printed circuit board for a portable SMES.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableSMESEmpty
+      requirements:
+        Capacitor: 1
+        PowerCell: 4
+      stackRequirements:
+        CableHV: 10
+
+- type: entity
   id: BlueprintLithographMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: blueprint lithograph machine board
@@ -521,6 +537,23 @@
       prototype: CondimentDispenserEmpty
       requirements:
         MatterBin: 1
+      stackRequirements:
+        Steel: 5
+      tagRequirements:
+          GlassBeaker:
+            amount: 1
+            defaultPrototype: Beaker
+
+- type: entity
+  id: ImpCoffeeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: spacepresso machine board
+  description: A machine printed circuit board for a spacepresso machine.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: ImpCoffeeMachineEmpty
       stackRequirements:
         Steel: 5
       tagRequirements:

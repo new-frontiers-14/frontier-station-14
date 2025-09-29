@@ -41,8 +41,8 @@
         top:
           True: { visible: false }
           False: { visible: true }
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: True }
           False: { visible: False }
   - type: Storage
@@ -104,7 +104,7 @@
     - state: controller
     - state: controller-on
       visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
       shader: unshaded
   - type: Storage
     whitelist:
@@ -130,7 +130,7 @@
     - state: controller
     - state: controller-on
       visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
       shader: unshaded
   - type: Storage
     whitelist:
@@ -161,7 +161,7 @@
     - state: controller
     - state: controller-on
       visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
       shader: unshaded
   - type: Storage
     whitelist:
@@ -186,7 +186,7 @@
     - state: controller
     - state: controller-on
       visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
       shader: unshaded
   - type: Flammable
     fireSpread: true
@@ -203,3 +203,42 @@
       - Recyclable
       - Trash
     maxItemSize: Huge # so you can pick up scrap chunks
+
+#region treasure box
+- type: entity
+  id: NFMagnetBoxTreasure
+  parent: NFBaseMagnetBox
+  name: treasure chest
+  description: A large storage container for holding treasure.
+  components:
+    - type: GenericVisualizer
+      visuals:
+        enum.StorageVisuals.Open:
+          closed:
+            True: { visible: false }
+            False: { visible: true }
+          open:
+            True: { visible: true }
+            False: { visible: false }
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { visible: True }
+            False: { visible: False }
+    - type: Sprite
+      layers:
+        - state: treasurebox-closed
+          map: [ closed ]
+          visible: true
+        - state: treasurebox-open
+          map: [ open ]
+          visible: false
+        - state: controller
+        - state: controller-on
+          visible: false
+          map: [ "enum.ToggleableVisuals.Layer" ]
+          shader: unshaded
+    - type: Storage
+      whitelist:
+        components:
+          - NFTreasure
+          - NFCoin

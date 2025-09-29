@@ -8,24 +8,23 @@
       time: 10800
   startingGear: ValetGear
   alwaysUseSpawner: true
-  icon: "JobIconValet" # Frontier: JobIconServiceWorker<JobIconValet
+  icon: "JobIconValet"
   supervisors: job-supervisors-sr
-  weight: 60 # Frontier
-  displayWeight: 10 # Frontier
+  weight: 60
+  displayWeight: 10
   canBeAntag: false
   access:
   - Maintenance
-  - External # Frontier
+  - External
   - Service
-  - Frontier # Frontier
+  - Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  - !type:GiveItemOnHolidaySpecial # Frontier
-    holiday: FrontierBirthday # Frontier
-    prototype: FrontierBirthdayGift # Frontier
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
-# Frontier: valet loadout
 - type: startingGear
   id: ValetGear
   equipment:
@@ -34,6 +33,17 @@
     id: ValetPDA
   storage:
     back:
-    - EncryptionKeyService # Frontier
+    - EncryptionKeyService
     - ShipVoucherFrontierValet
-# End Frontier
+  encryptionKeys:
+  - EncryptionKeyGreeting
+
+- type: chameleonOutfit
+  id: ValetChameleonOutfit
+  job: Valet
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBellhop
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterVestValet
+    gloves: ClothingHandsGlovesColorWhite
