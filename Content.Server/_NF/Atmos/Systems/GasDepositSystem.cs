@@ -268,7 +268,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         var amount = 0.0;
         foreach (var salePoint in GetNearbySalePoints(ent, gridUid))
         {
-            amount += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
+            amount += _atmosphere.GetPrice(salePoint.Comp.GasStorage, true);
             salePoint.Comp.GasStorage.Clear();
         }
 
@@ -312,7 +312,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         foreach (var salePoint in GetNearbySalePoints(consoleUid, gridUid))
         {
             _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
-            value += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
+            value += _atmosphere.GetPrice(salePoint.Comp.GasStorage, true);
         }
     }
 
