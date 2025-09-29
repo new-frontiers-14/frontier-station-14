@@ -11,6 +11,17 @@ namespace Content.Shared.Telephone;
 public sealed partial class TelephoneComponent : Component
 {
     /// <summary>
+    /// Frontier, allows AI to transmit messages when it itself is a holopad
+    /// </summary>
+    [DataField]
+    public bool AllowSourceTransmit = false;
+    /// <summary>
+    /// Frontier, allows AI to transmit messages when it itself is a holopad, without echo
+    /// </summary>
+    [DataField]
+    public bool BlockNextMessage = false;
+
+    /// <summary>
     /// Sets how long the telephone will ring before it automatically hangs up
     /// </summary>
     [DataField]
