@@ -201,6 +201,72 @@
   - Oven
   - Microwave
 
+- type: microwaveMealRecipe
+  id: RecipeSausageRaw
+  name: raw sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    FoodSausageCasing: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRawStomachRat
+  name: raw stomach sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    OrganRatStomach: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRawStomachHuman
+  name: raw stomach sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    OrganHumanStomach: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageCooked
+  name: cooked sausage recipe
+  result: FoodMeatSausage
+  time: 10
+  group: Savory
+  solids:
+    FoodSausageRaw: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeHotdog
+  name: hotdog recipe
+  result: FoodMealHotdog
+  time: 10
+  group: Savory
+  solids:
+    FoodSausageRaw: 1
+    FoodBreadBun: 1
+  recipeType:
+  - Oven
+
 # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
 
 - type: microwaveMealRecipe
@@ -251,6 +317,19 @@
   recipeType:
   - Oven
 
+- type: microwaveMealRecipe
+  id: RecipeChickenParmesan
+  name: Chicken Parmesan
+  result: FoodMealChickenParmesan
+  time: 5
+  group: Savory
+  solids:
+    FoodMeatChickenFried: 1
+    FoodNoodlesBoiled: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
+  recipeType:
+  - Assembler
 
 # Sushi
 
@@ -962,8 +1041,9 @@
   result: FoodRiceNoodlesSheet
   time: 15
   group: Pasta
-  reagents:
-    Rice: 45
+  solids:
+    FoodRiceDough: 1
+  reagents: 
     TableSalt: 10
     Cornoil: 10
   recipeType: Assembler
@@ -1069,24 +1149,13 @@
   - Oven
 
 - type: microwaveMealRecipe
-  id: RecipeBunCotton
-  name: cotton bun recipe
-  result: FoodBunCotton
-  time: 5
-  group: Moth
-  solids:
-    FoodDoughCottonSlice: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
   id: RecipeBurgerPlainCotton
   name: plain cotton burger recipe
   result: FoodBurgerCotton
   time: 10
   group: Moth
   solids:
-    FoodBunCotton: 1
+    FoodCottonBun: 1
     CottonBol: 1
   recipeType:
   - Oven
@@ -1098,7 +1167,7 @@
   time: 10
   group: Moth
   solids:
-    FoodBunCotton: 1
+    FoodCottonBun: 1
     CottonBol: 1
     FoodCheeseSlice: 1
   recipeType:
@@ -1332,19 +1401,121 @@
   - Assembler
 
 - type: microwaveMealRecipe
-  id: RecipeChickenParmesan
-  name: Chicken Parmesan
-  result: FoodMealChickenParmesan
+  id: RecipeMochi
+  name: mochi
+  result: FoodFrozenMochi
   time: 5
-  group: Savory
+  group: Dessert
   solids:
-    FoodMeatChickenFried: 1
-    FoodNoodlesBoiled: 1
-    FoodTomato: 1
-    FoodCheeseSlice: 1
+    FoodRiceDoughSlice: 1
+  reagents:
+    IceCream: 5
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeMochiCherry
+  name: cherry mochi
+  result: FoodFrozenMochiCherry
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    JuiceCherry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiBungo
+  name: bungo mochi
+  result: FoodFrozenMochiBungo
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    JuiceBungo: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiChocolate
+  name: chocolate mochi
+  result: FoodFrozenMochiChocolate
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    CocoaPowder: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiFiber
+  name: fiber mochi
+  result: FoodFrozenMochiFiber
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Fiber: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiMoth
+  name: rosy mochi
+  result: FoodFrozenMochiMoth
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    PinkDrink: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiSpice
+  name: spice mochi
+  result: FoodFrozenMochiSpice
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Everyspice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiTea
+  name: tea mochi
+  result: FoodFrozenMochiTea
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Tea: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiUbe
+  name: ube mochi
+  result: FoodFrozenMochiUbe
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    PolypyryliumOligomers: 2
+  recipeType:
+  - Assembler
 # NOT ACTUAL FOOD
 
 - type: microwaveMealRecipe
