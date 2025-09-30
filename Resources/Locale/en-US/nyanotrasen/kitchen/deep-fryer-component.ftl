@@ -43,6 +43,7 @@ deep-fried-fried-item-examine = It's covered in a thick, crispy layer.
 deep-fried-burned-item = burned {$entity}
 deep-fried-burned-item-examine = It's blackened with char.
 
+# Frontier: deep fryier upgrade status popup
 deep-fryier-component-upgrade-storage = Storage
 
 # Frontier: cauldron definitions
