@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/30/2025 11:06:19
-  entityCount: 1336
+  time: 10/01/2025 10:15:35
+  entityCount: 1337
 maps: []
 grids:
 - 1
@@ -511,6 +511,8 @@ entities:
             id: Delivery
           decals:
             2018: 19,-23
+            2349: 13,-22
+            2350: 14,-22
         - node:
             color: '#446326FF'
             id: DeliveryGreyscale
@@ -696,7 +698,6 @@ entities:
           decals:
             2277: 8,-16
             2278: 19,-20
-            2279: 13,-21
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -1122,10 +1123,11 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineN
           decals:
-            5: 13,-22
-            6: 14,-22
             1148: 4,-21
             1149: 5,-21
+            2323: 14,-22
+            2347: 13,-21
+            2348: 14,-21
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
@@ -1137,12 +1139,13 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineW
           decals:
-            3: 13,-22
-            4: 14,-22
             1150: 4,-21
             1151: 5,-21
             1368: 13,-3
             1413: 14,-3
+            2321: 14,-22
+            2345: 13,-23
+            2346: 14,-23
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinInnerNe
@@ -1546,8 +1549,8 @@ entities:
       - 422
       - 1009
       - 431
-      - 420
-      - 421
+      - 949
+      - 434
       - 429
       - 415
       - 428
@@ -1841,6 +1844,13 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-21.5
+      parent: 1
+- proto: AppraisalTool
+  entities:
+  - uid: 1337
+    components:
+    - type: Transform
+      pos: 8.488993,-26.183666
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -4161,26 +4171,44 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 8
-- proto: FirelockGlass
+- proto: FirelockEdge
   entities:
   - uid: 420
     components:
     - type: Transform
-      pos: 13.5,-21.5
+      rot: 3.141592653589793 rad
+      pos: 14.5,-22.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2
       - 7
   - uid: 421
     components:
     - type: Transform
-      pos: 14.5,-21.5
+      rot: 3.141592653589793 rad
+      pos: 13.5,-22.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 7
+  - uid: 434
+    components:
+    - type: Transform
+      pos: 13.5,-20.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
       - 2
-      - 7
+  - uid: 949
+    components:
+    - type: Transform
+      pos: 14.5,-20.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
+- proto: FirelockGlass
+  entities:
   - uid: 422
     components:
     - type: Transform
@@ -7291,14 +7319,6 @@ entities:
     - type: Transform
       pos: 8.5,-26.5
       parent: 1
-- proto: PosterContrabandDonutCorp
-  entities:
-  - uid: 434
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 21.5,-20.5
-      parent: 1
 - proto: PosterContrabandGreyTide
   entities:
   - uid: 807
@@ -8353,11 +8373,6 @@ entities:
     components:
     - type: Transform
       pos: 20.5,-21.5
-      parent: 1
-  - uid: 949
-    components:
-    - type: Transform
-      pos: 7.5,-26.5
       parent: 1
   - uid: 951
     components:
