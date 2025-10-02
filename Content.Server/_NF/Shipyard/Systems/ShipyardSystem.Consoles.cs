@@ -42,6 +42,7 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.Forensics.Components;
 using Robust.Server.Player;
 using Robust.Shared.Timing;
+using Content.Server._NF.GC.Components;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -220,6 +221,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             _idSystem.TryChangeJobTitle(targetId, Loc.GetString(component.NewJobTitle), idCard, player);
         }
+
+        EnsureComp<DeletionCensusExemptComponent>(shuttleUid); // Ensure ship doesn't get deleted, though chunks should be.
 
         // The following block of code is entirely to do with trying to sanely handle moving records from station to station.
         // it is ass.
