@@ -18,6 +18,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Server._NF.Medical; // Frontier
 using Content.Server._NF.Traits.Assorted; // Frontier
 
 namespace Content.Server.Medical;
@@ -218,6 +219,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             unclonable = true;
         // End Frontier: add unclonable
 
+        var printable = HasComp<HealthAnalyzerPrinterComponent>(healthAnalyzer); // Frontier
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
@@ -225,7 +228,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             scanMode,
             bleeding,
             unrevivable,
-            unclonable // Frontier
+            unclonable, // Frontier
+            printable // Frontier
         ));
     }
 }
