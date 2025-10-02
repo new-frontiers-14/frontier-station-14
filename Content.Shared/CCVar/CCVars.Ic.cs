@@ -75,7 +75,7 @@ public sealed partial class CCVars
     ///     Forces SSD characters to sleep after ICSSDSleepTime seconds
     /// </summary>
     public static readonly CVarDef<bool> ICSSDSleep =
-        CVarDef.Create("ic.ssd_sleep", true, CVar.SERVER);
+        CVarDef.Create("ic.ssd_sleep", false, CVar.SERVER); // Frontier: true < false
 
     /// <summary>
     ///     Time between character getting SSD status and falling asleep
