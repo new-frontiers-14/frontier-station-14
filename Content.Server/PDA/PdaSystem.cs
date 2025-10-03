@@ -114,7 +114,7 @@ namespace Content.Server.PDA
 
         protected override void OnItemRemoved(EntityUid uid, PdaComponent pda, EntRemovedFromContainerMessage args)
         {
-            if (args.Container.ID != pda.IdSlot.ID && args.Container.ID != pda.PenSlot.ID && args.Container.ID != pda.PaiSlot.ID && args.Container.ID != pda.BookSlot.ID)
+            if (args.Container.ID != pda.IdSlot.ID && args.Container.ID != pda.PenSlot.ID && args.Container.ID != pda.PaiSlot.ID && args.Container.ID != pda.BookSlot.ID && args.Container.ID != pda.KeySlot.ID)
                 return;
 
             // TODO: This is super cursed just use compstates please.
@@ -222,6 +222,7 @@ namespace Content.Server.PDA
                 pda.PenSlot.HasItem,
                 pda.PaiSlot.HasItem,
                 pda.BookSlot.HasItem,
+                pda.KeySlot.HasItem,
                 new PdaIdInfoText
                 {
                     ActualOwnerName = pda.OwnerName,

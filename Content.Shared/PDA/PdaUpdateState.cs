@@ -48,6 +48,11 @@ namespace Content.Shared.PDA
             Balance = balance; // Frontier
             OwnedShipName = ownedShipName; // Frontier
         }
+
+        public PdaUpdateState(List<NetEntity> programs, NetEntity? getNetEntity, bool pdaFlashlightOn, bool penSlotHasItem, bool paiSlotHasItem, bool bookSlotHasItem, bool keySlotHasItem, PdaIdInfoText balance, int ownedShipName, string stationName, string? pdaStationName, bool canPlayMusic, bool hasInstrument, string? address) : base(BASE)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     [Serializable, NetSerializable]
