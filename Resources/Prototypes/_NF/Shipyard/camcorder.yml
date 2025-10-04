@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Bartholemew-Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: Bartholemew_Dingleberry
+
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Camcorder
+  parent: BaseVessel
+  name: DBC Camcorder
+  description: All your Reporting needs inside a very thematically shapped ship! with on board solars and spare filming equipment alongside 2 offices and a main news office with a greenscreen! -nanotrassen issued editing software sold seperatly-
+  price: 45000 # no idea if this is a good price 
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/camcorder.yml
+  guidebookPage: ShipyardCamcorder
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Camcorder
+  mapName: 'DBC Camcorder'
+  mapPath: /Maps/_NF/Shuttles/camcorder.yml
+  minPlayers: 0
+  stations:
+    Camcorder:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Camcorder {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
