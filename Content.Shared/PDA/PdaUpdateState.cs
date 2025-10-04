@@ -4,14 +4,16 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.PDA
 {
     [Serializable, NetSerializable]
-    public sealed class PdaUpdateState : CartridgeLoaderUiState // WTF is this. what. I ... fuck me I just want net entities to work
-        // TODO purge this shit
-        //AAAAAAAAAAAAAAAA
+    public sealed class
+        PdaUpdateState : CartridgeLoaderUiState // WTF is this. what. I ... fuck me I just want net entities to work
+    // TODO purge this shit
+    //AAAAAAAAAAAAAAAA
     {
         public bool FlashlightEnabled;
         public bool HasPen;
         public bool HasPai;
         public bool HasBook;
+        public bool HasKey;
         public PdaIdInfoText PdaOwnerInfo;
         public string? StationName;
         public bool HasUplink;
@@ -27,6 +29,7 @@ namespace Content.Shared.PDA
             bool hasPen,
             bool hasPai,
             bool hasBook,
+            bool hasKey,
             PdaIdInfoText pdaOwnerInfo,
             int balance, // Frontier
             string? ownedShipName, // Frontier
@@ -48,15 +51,15 @@ namespace Content.Shared.PDA
             Balance = balance; // Frontier
             OwnedShipName = ownedShipName; // Frontier
         }
-    }
 
-    [Serializable, NetSerializable]
-    public struct PdaIdInfoText
-    {
-        public string? ActualOwnerName;
-        public string? IdOwner;
-        public string? JobTitle;
-        public string? StationAlertLevel;
-        public Color StationAlertColor;
+        [Serializable, NetSerializable]
+        public struct PdaIdInfoText
+        {
+            public string? ActualOwnerName;
+            public string? IdOwner;
+            public string? JobTitle;
+            public string? StationAlertLevel;
+            public Color StationAlertColor;
+        }
     }
 }
