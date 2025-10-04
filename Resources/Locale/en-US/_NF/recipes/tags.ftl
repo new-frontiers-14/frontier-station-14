@@ -12,3 +12,4 @@ construction-graph-tag-ore = ore
 construction-graph-tag-crystal-orange = an orange crystal shard
 construction-graph-tag-mothroach-hide = a mothroach hide
 construction-graph-tag-syringe = a syringe
+construction-graph-tag-hotdog = hotdog
