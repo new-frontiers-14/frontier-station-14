@@ -718,7 +718,7 @@ public sealed partial class ShuttleSystem
         ShuttleComponent component,
         EntityUid targetUid,
         string? priorityTag = null,
-        DockType dockType = DockType.Airlock) // Frontier
+        DockType dockType = DockType.None) // Frontier
     {
         return TryFTLDock(shuttleUid, component, targetUid, out _, priorityTag, dockType); // Frontier: add dockType
     }
@@ -733,7 +733,7 @@ public sealed partial class ShuttleSystem
         EntityUid targetUid,
         [NotNullWhen(true)] out DockingConfig? config,
         string? priorityTag = null,
-        DockType dockType = DockType.Airlock) // Frontier
+        DockType dockType = DockType.None) // Frontier
     {
         config = null;
 
