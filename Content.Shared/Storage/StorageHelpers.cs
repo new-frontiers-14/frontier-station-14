@@ -73,4 +73,48 @@ public static class StorageHelper
 
         return false;
     }
+
+
+    //Frontier: Simple utility method for storage scanning
+
+    /// <summary>
+    /// Scans a storage and all nested storages for items matching the condition.
+    /// </summary>
+    /// <param name="storageItem">The top level storage entity to be scanned.</param>
+    /// <param name="condition">The condition all items are checked against.</param>
+    /// <param name="foundItemsAndContainers">A list of FoundItem structs representing all found items.</param>
+    /// <exception cref="ArgumentException">Thrown if storageItem does not have StorageComponent.</exception>
+    //Outputs a dictionary of <FoundItems, ContainingStorages>
+    public static void ScanStorageForCondition(EntityUid storageItem,
+        Predicate<EntityUid> condition,
+        ref List<FoundItem> foundItemsAndContainers)
+    {
+        var entityManager = IoCManager.Resolve<IEntityManager>();
+        if (!entityManager.TryGetComponent<StorageComponent>(storageItem, out var storageComp))
+        {
+            throw new ArgumentException("An object was passed to ScanStorageForCondition that did not have a storage component.");
+        }
+
+        foreach (var item in storageComp.StoredItems.Keys)
+        {
+            if (condition.Invoke(item))
+                foundItemsAndContainers.Add(new FoundItem(item, storageItem));
+
+            if (entityManager.TryGetComponent<StorageComponent>(item, out var storeComp))
+                ScanStorageForCondition(item, condition, ref foundItemsAndContainers);
+        }
+    }
+
+    /// <summary>
+    /// Represents an item found by ScanStorageForCondition.
+    /// </summary>
+    /// <param name="item">The found item.</param>
+    /// <param name="container">The entity it is stored in. Might be a nested storage.</param>
+    public struct FoundItem(EntityUid item, EntityUid container)
+    {
+        public EntityUid Item = item;
+        public EntityUid Container = container;
+    }
+
+    //End Frontier
 }
