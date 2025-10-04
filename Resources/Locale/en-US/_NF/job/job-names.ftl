@@ -25,6 +25,7 @@ job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
 job-name-valet = Valet
+job-name-drillsergeant = Drill Sergeant
 
 # Job titles
 job-title-ert-mail-carrier = ERT Mail Carrier
