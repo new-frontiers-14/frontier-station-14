@@ -101,7 +101,7 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalRed
-      
+
 - type: entity
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeGreen
@@ -111,3 +111,18 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalGreen
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeSodiumSiren
+  suffix: "Siren, Sodium"
+  components:  
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: SodiumLightBulb
+  - type: AmbientSound
+    volume: 0
+    range: 20
+    sound:
+      path: "/Audio/Misc/adminlarm.ogg"
