@@ -14,7 +14,7 @@ using Robust.Shared.Player; // Frontier
 using Content.Shared.Ghost; // Frontier
 using Content.Server.Administration.Managers; // Frontier
 using Content.Server.Administration; // Frontier
-using Content.Shared.GameTicking; // Frontier
+using Content.Server.GameTicking.Events; // Frontier
 using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server._Corvax.Respawn;
@@ -46,7 +46,7 @@ public sealed class RespawnSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart); // Frontier
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart); // Frontier
 
         _admin.OnPermsChanged += OnAdminPermsChanged; // Frontier
         _player.PlayerStatusChanged += PlayerStatusChanged; // Frontier
@@ -193,7 +193,7 @@ public sealed class RespawnSystem : EntitySystem
     }
 
     // Frontier: reset game state, we have a new round.
-    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    private void OnRoundStart(RoundStartingEvent ev)
     {
         _respawnInfo.Clear();
     }
