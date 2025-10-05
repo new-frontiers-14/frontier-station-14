@@ -202,12 +202,12 @@ public sealed partial class NFCargoSystem
                 if (TryComp(ent, out AdditionalPalletCurrencyComponent? currencyComponent))
                 {
                     if (_random.Prob(currencyComponent.SpawnProbability))
-                    { 
+                    {
                         if (!additionalCurrency.ContainsKey(currencyComponent.Currency))
                         {
                             additionalCurrency.TryAdd(currencyComponent.Currency, 0);
                         }
-                        additionalCurrency[currencyComponent.Currency] += currencyComponent.Amount;   
+                        additionalCurrency[currencyComponent.Currency] += currencyComponent.Amount;
                     }
                 }
             }
@@ -274,7 +274,7 @@ public sealed partial class NFCargoSystem
         {
             var currencyUid = _stack.Spawn((int)currencyAmount, currencyId, args.Actor.ToCoordinates());
             if (!_hands.TryPickupAnyHand(args.Actor, currencyUid))
-                _transform.SetLocalRotation(stackUid, Angle.Zero);
+                _transform.SetLocalRotation(currencyUid, Angle.Zero);
         }
         _audio.PlayPvs(ApproveSound, ent);
         UpdatePalletConsoleInterface(ent);
