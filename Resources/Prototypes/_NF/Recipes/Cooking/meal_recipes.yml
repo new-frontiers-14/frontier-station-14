@@ -201,19 +201,6 @@
   - Oven
   - Microwave
 
-
-- type: microwaveMealRecipe # Garlic bread contributor, merge conflict made me place the proper hot dog here.
-  id: RecipeHotdog
-  name: hotdog recipe
-  result: FoodMealHotdog
-  time: 10
-  group: Savory
-  solids:
-    FoodSausageRaw: 1
-    FoodBreadBun: 1
-  recipeType:
-  - Oven
-
 - type: microwaveMealRecipe
   id: RecipeFoodBakedGarlicBreadBaguette
   name: french garlic bread recipe
@@ -238,7 +225,9 @@
     FoodBreadBaguetteSlice: 2
     FoodButterSlice: 1
     FoodGarlic: 1
-    
+  recipeType:
+  - Oven
+
  # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
 
 - type: microwaveMealRecipe
@@ -306,6 +295,18 @@
   recipeType:
   - Oven
   - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeHotdog
+  name: hotdog recipe
+  result: FoodMealHotdog
+  time: 10
+  group: Savory
+  solids:
+    FoodSausageRaw: 1
+    FoodBreadBun: 1
+  recipeType:
+  - Oven
 
 # Birb
 
