@@ -10,6 +10,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using System.Numerics;
 using Content.Shared.Coordinates;
+using Robust.Shared.Random;
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -45,7 +46,7 @@ public sealed partial class NFCargoSystem
         }
 
         // Modify prices based on modifier.
-        GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount);
+        GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount, out Dictionary<string, double> additionalCurrency);
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
         {
             amount *= priceMod.Mod;
@@ -134,9 +135,9 @@ public sealed partial class NFCargoSystem
 
     #region Station
 
-    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
+    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount
     {
-        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount);
+        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount, out additionalCurrency);
 
         Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)");
 
@@ -152,11 +153,12 @@ public sealed partial class NFCargoSystem
         return true;
     }
 
-    private void GetPalletGoods(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
+    private void GetPalletGoods(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount
     {
         amount = 0;
         noMultiplierAmount = 0;
         toSell = new HashSet<EntityUid>();
+        additionalCurrency = new();
 
         foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
         {
@@ -195,6 +197,19 @@ public sealed partial class NFCargoSystem
                     noMultiplierAmount += price;
                 else
                     amount += price;
+                
+                // Check for any additional currency payouts
+                if (TryComp(ent, out AdditionalPalletCurrencyComponent? currencyComponent))
+                {
+                    if (_random.Prob(currencyComponent.SpawnProbability))
+                    {
+                        if (!additionalCurrency.ContainsKey(currencyComponent.Currency))
+                        {
+                            additionalCurrency.TryAdd(currencyComponent.Currency, 0);
+                        }
+                        additionalCurrency[currencyComponent.Currency] += currencyComponent.Amount;
+                    }
+                }
             }
         }
     }
@@ -239,7 +254,7 @@ public sealed partial class NFCargoSystem
             return;
         }
 
-        if (!SellPallets(ent, gridUid, out var price, out var noMultiplierPrice))
+        if (!SellPallets(ent, gridUid, out var price, out var noMultiplierPrice, out Dictionary<string, double> additionalCurrency))
             return;
 
         // Handle market modifiers & immune objects
@@ -253,6 +268,14 @@ public sealed partial class NFCargoSystem
         var stackUid = _stack.Spawn((int)price, stackPrototype, args.Actor.ToCoordinates());
         if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
             _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
+        
+        // Iterate through additional currency payouts, putting them in hand if possible
+        foreach (var (currencyId, currencyAmount) in additionalCurrency)
+        {
+            var currencyUid = _stack.Spawn((int)currencyAmount, currencyId, args.Actor.ToCoordinates());
+            if (!_hands.TryPickupAnyHand(args.Actor, currencyUid))
+                _transform.SetLocalRotation(currencyUid, Angle.Zero);
+        }
         _audio.PlayPvs(ApproveSound, ent);
         UpdatePalletConsoleInterface(ent);
     }

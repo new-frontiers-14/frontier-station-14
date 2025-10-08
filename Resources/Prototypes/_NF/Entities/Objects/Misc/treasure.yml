@@ -137,3 +137,44 @@
   - type: Stack
     stackType: TreasureCoinDiamond
     count: 10
+
+# Gold Leaf
+
+- type: entity
+  parent: BaseItem
+  id: GoldLeaf
+  name: gold leaf
+  description: A shimmering golden leaf. It casts a light that conjures dreams of peaceful autumns past. Sell it for money.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/valuables.rsi
+    state: gold_leaf
+  - type: Item
+    size: Tiny
+  - type: StackPrice
+    price: 30
+  - type: Stack
+    stackType: GoldLeaf
+    count: 1
+
+- type: stack
+  id: GoldLeaf
+  name: goldleaf
+  spawn: GoldLeaf1
+  maxCount: 30
+
+- type: entity
+  id: GoldLeaf1
+  parent: GoldLeaf
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  id: GoldLeaf30
+  parent: GoldLeaf
+  suffix: Full
+  components:
+  - type: Stack
+    count: 30

@@ -46,8 +46,11 @@ public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
             var lightQuery = EntityQueryEnumerator<PoweredLightComponent>();
             while (lightQuery.MoveNext(out var lightEnt, out var light))
             {
-                if (RobustRandom.Prob(component.LightBreakChancePerSecond))
+                // Frontier: shielded lights
+                var prob = component.LightBreakChancePerSecond * light.SolarFlareShieldingCoefficient;
+                if (RobustRandom.Prob(prob))
                     _poweredLight.TryDestroyBulb(lightEnt, light);
+                // End Frontier: shielded lights
             }
             var airlockQuery = EntityQueryEnumerator<AirlockComponent, DoorComponent>();
             while (airlockQuery.MoveNext(out var airlockEnt, out var airlock, out var door))

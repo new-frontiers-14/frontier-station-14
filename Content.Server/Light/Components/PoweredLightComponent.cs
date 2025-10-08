@@ -79,5 +79,15 @@ namespace Content.Server.Light.Components
 
         [DataField("lightBreakChance")]
         public float LightBreakChance = 0.1f;
+
+        // Frontier: shielded lights
+        /// <summary>
+        /// Coefficient multiplied with the solar flare's LightBreakChancePerSecond.
+        /// Higher value means more likely to break, lower value means less likely.
+        /// 0 is totally immune to solar flares.
+        /// </summary>
+        [DataField]
+        public float SolarFlareShieldingCoefficient = 1.0f;
+        // End Frontier: shielded lights
     }
 }
