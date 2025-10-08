@@ -1,54 +1,13 @@
-# The mercenary techfab made into packs.
-# TODO: Reorganize these into common packs.
+- type: latheRecipePack
+  id: NFMercenaryStatic
+  recipes:
+  - ClothingOuterEVASuitMercenary
+  - ClothingOuterEVASuitPrivateSec
 
 - type: latheRecipePack
-  id: NFMercenaryTechfabDeprecatedStatic
+  id: NFMercenaryToolsStatic
   recipes:
-# Shared lathe recipes
-## Basic tools
-  - Wirecutter
-  - Screwdriver
-  - Welder
-  - Wrench
-  - CrowbarGreen
-  - Multitool
-  - FlashlightLantern
-  - AppraisalTool
-  - HandLabeler
-  - Signaller
-  - ClothingMaskWeldingGas
-## Basic storage
-  - ToolboxArtisticNF
-  - ToolboxElectricalNF
-  - ToolboxMechanicalNF
-  - ToolboxEmergencyNF
-## Basic parts
-  - CableStack
-  - LightTube
-  - LedLightTube
-  - SodiumLightTube
-  - ExteriorLightTube
-  - LightBulb
-  - LedLightBulb
-  - SodiumLightBulb
-  - ExteriorLightBulb
-  - ConveyorBeltAssembly
-  - PowerCellSmall
-  - PowerCellMedium
-## Basic electronics
-  - SignalTimerElectronics
-  - BorgChargerCircuitboard
-  - WeaponCapacitorRechargerCircuitboard
-  - AirTank
-# Mercenary techfab
-## Clothing / Armor
   - NFRiotShield
-  - ClothingNeckIFFNeutral
-  - ClothingNeckIFFGreen
-  - ClothingNeckIFFRed
-  - ClothingNeckIFFBlue
-  - ClothingNeckIFFOrange
-  - ClothingNeckIFFPurple
   - ClothingHeadHelmetMercenary
   - ClothingHeadHelmetBasic
   - ClothingOuterVestWebMercenary
@@ -66,20 +25,23 @@
   - ClothingMaskBreathMedicalSecurity
   - ClothingMaskGasSecurity
   - ClothingBeltBandolier
-## EVA / Hardsuits
-  - ClothingOuterEVASuitMercenary
-  - ClothingOuterEVASuitPrivateSec
-## Storage
+
+- type: latheRecipePack
+  id: NFMercenaryStorageStatic
+  recipes:
   - MedkitCombat
   - WeaponCaseShort
   - WeaponCaseLong
   - WeaponCaseHeavy
   - WeaponCaseShortAmmo
   - WeaponCaseShortExplosives
-## Weapons
+
+- type: latheRecipePack
+  id: NFMercenaryWeaponsStatic
+  recipes:
   - NFCombatKnife
   #- WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-  - NFWeaponEnergyPistolLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+  - NFWeaponEnergyPistolLaser
   - NFWeaponRevolverArgenti
   - NFWeaponPistolMk58
   - NFWeaponShotgunDoubleBarreled
@@ -88,7 +50,10 @@
   - BaseBallBatNF
   - CrossbowModern
   - WeaponPistolPollock
-## Ammo boxes
+
+- type: latheRecipePack
+  id: NFMercenaryAmmoBoxesStatic
+  recipes:
   - NFAmmunitionBoxPistol35
   - NFAmmunitionBoxShellShotgunBuckshot
   - NFAmmunitionBoxRifle20
@@ -101,7 +66,10 @@
   - NFAmmunitionBoxPistol35Rubber
   - NFAmmunitionBoxPistol45Rubber
   - NFAmmunitionBoxRifle20Rubber
-## Mags / Speedloaders / Clips
+
+- type: latheRecipePack
+  id: NFMercenarySpeedloadersStatic
+  recipes:
   - NFMagazinePistol35Empty
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
