@@ -46,7 +46,7 @@
     sprite: _NF/Clothing/Neck/Mantles/nfsdsheriff.rsi
   - type: Clothing
     sprite: _NF/Clothing/Neck/Mantles/nfsdsheriff.rsi
-    
+
 - type: entity
   parent: ClothingNeckMantleHOP
   id: ClothingNeckMantleSr
@@ -89,3 +89,10 @@
   - type: Construction
     graph: NFGoblinMadeClothingNeckTrashMantle
     node: NFGoblinMadeClothingNeckTrashMantle
+  - type: Butcherable
+    spawned:
+    - id: ScrapOre1
+      amount: 1
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrap: 200
