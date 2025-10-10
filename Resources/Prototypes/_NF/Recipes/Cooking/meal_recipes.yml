@@ -201,7 +201,51 @@
   - Oven
   - Microwave
 
-# Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+# Dough Alternative Recipes
+
+- type: microwaveMealRecipe
+  id: RecipeFoodRiceDough
+  name: rice dough recipe
+  result: FoodRiceDough
+  time: 5
+  group: Savory
+  solids:
+    RiceBushel: 4
+  reagents:
+    Water: 10
+  recipeType:
+  - Assembler
+
+# Hot Dog Haven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedGarlicBreadBaguette
+  name: french garlic bread recipe
+  result: FoodBreadGarlicBaguette
+  resultCount: 2 # food reagents are cut in half, this yields two french garlic bread halves 
+  time: 20
+  group: Breads
+  solids:
+    FoodBreadBaguette: 1
+    FoodCheeseSlice: 2
+    FoodGarlic: 4
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedTexasToast
+  name: texas toast recipe
+  result: FoodBreadTexasToast
+  time: 10
+  group: Breads
+  solids:
+    FoodBreadBaguetteSlice: 2
+    FoodButterSlice: 1
+    FoodGarlic: 1
+  recipeType:
+  - Oven
+
+ # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
 
 - type: microwaveMealRecipe
   id: RecipeCuredCarp
@@ -215,6 +259,72 @@
     Stellibinin: 10
   recipeType:
   - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRaw
+  name: raw sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    FoodSausageCasing: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRawStomachRat
+  name: raw stomach sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    OrganRatStomach: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRawStomachHuman
+  name: raw stomach sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    OrganHumanStomach: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageCooked
+  name: cooked sausage recipe
+  result: FoodMeatSausage
+  time: 10
+  group: Savory
+  solids:
+    FoodSausageRaw: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeHotdog
+  name: hotdog recipe
+  result: FoodMealHotdog
+  time: 10
+  group: Savory
+  solids:
+    FoodSausageRaw: 1
+    FoodBreadBun: 1
+  recipeType:
+  - Oven
 
 # Birb
 
