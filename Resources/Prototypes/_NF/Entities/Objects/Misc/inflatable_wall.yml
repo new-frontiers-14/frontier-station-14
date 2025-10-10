@@ -87,13 +87,13 @@
     sprite: _NF/Objects/Misc/inflatable_door.rsi
     state: closed
   - type: Door
-    occludes: true
     openSound:
       path: /Audio/Misc/zip.ogg
     closeSound:
       path: /Audio/Misc/zip.ogg
   - type: NavMapDoor
   - type: Occluder
+    enabled: true
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableDoorStack1
     disassembleTime: 3
