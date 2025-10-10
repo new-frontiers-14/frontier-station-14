@@ -113,3 +113,5 @@ stack-light-mosaic-wood-floor = light mosaic wood floor
 stack-fancy-wood-floor = fancy wood floor
 stack-versailles-wood-floor = versailles wood floor
 stack-cheese-floor = cheese floor
+stack-inflatable-floor = inflatable floor
+stack-inflatable-window = inflatable window

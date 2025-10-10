@@ -1,0 +1,99 @@
+#region wall
+- type: entity
+  parent: InflatableWall
+  id: NFInflatableWall
+  name: inflatable wall
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Occluder
+  - type: IsRoof
+  - type: PlacementReplacement
+    key: walls
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Objects/Misc/inflatable_wall.rsi
+    state: inflatable_wall
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 15
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableWallStack1
+    disassembleTime: 3
+
+#region window
+- type: entity
+  parent: InflatableWall
+  id: NFInflatableWindow
+  name: inflatable window
+  description: An inflated membrane with semitransparent window. Activate to deflate. Do not puncture.
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: WallMount
+    arc: 360 # interact despite grilles
+  - type: BlockWeather
+  - type: PlacementReplacement
+    key: Window
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Objects/Misc/inflatable_window.rsi
+    state: inflatable_window
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 15
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableWindowStack1
+    disassembleTime: 3
+
+#region door
+- type: entity
+  parent: InflatableDoor
+  id: NFInflatableDoor
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/inflatable_door.rsi
+    state: closed
+  - type: Door
+    occludes: true
+    openSound:
+      path: /Audio/Misc/zip.ogg
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+  - type: NavMapDoor
+  - type: Occluder
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableDoorStack1
+    disassembleTime: 3
