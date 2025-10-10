@@ -130,25 +130,6 @@
   suffix: Frontier, Docking
   components:
   - type: Docking
-  - type: DockingSignalControl
-  - type: DeviceLinkSource
-    ports:
-      - DoorStatus
-      - DockStatus
-  - type: DoorSignalControl
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - Open
-      - Close
-      - Toggle
-      - AutoClose
-      - DoorBolt
-  - type: Airlock
   - type: NavMapDoor
   - type: Sprite
     sprite: _NF/Objects/Misc/inflatable_dock.rsi
