@@ -77,7 +77,7 @@
 
 #region doors
 - type: entity
-  parent: InflatableDoor
+  parent: BaseMaterialDoor
   id: NFInflatableDoor
   suffix: Frontier
   placement:
@@ -87,20 +87,27 @@
     sprite: _NF/Objects/Misc/inflatable_door.rsi
     state: closed
   - type: Door
-    occludes: true
     openSound:
       path: /Audio/Misc/zip.ogg
     closeSound:
       path: /Audio/Misc/zip.ogg
-  - type: NavMapDoor
-  - type: Occluder
-    #enabled: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableDoorStack1
     disassembleTime: 3
 
 - type: entity
-  parent: InflatableDoor
+  parent: NFInflatableDoor
   id: NFInflatableDoorWindow
   name: inflatable windoor
   suffix: Frontier
@@ -111,13 +118,13 @@
     sprite: _NF/Objects/Misc/inflatable_door_window.rsi
     state: closed
   - type: Door
+    occludes: false
     openSound:
       path: /Audio/Misc/zip.ogg
     closeSound:
       path: /Audio/Misc/zip.ogg
-  - type: NavMapDoor
   - type: Occluder
-    #enabled: false
+    enabled: false
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableDoorWindowStack1
     disassembleTime: 3
@@ -135,7 +142,6 @@
     sprite: _NF/Objects/Misc/inflatable_dock.rsi
     state: closed
   - type: Door
-    occludes: true
     openSound:
       path: /Audio/Misc/zip.ogg
     closeSound:
