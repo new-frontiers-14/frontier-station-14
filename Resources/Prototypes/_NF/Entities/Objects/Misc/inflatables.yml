@@ -198,14 +198,20 @@
   heatCapacity: 10000
 
 #region crate
+# had to copy most of the CrateGeneric defenition because of undesirable inheritance of construction graph
 - type: entity
   name: inflatable crate
-  parent: CrateGeneric # ToolboxBase
+  parent: BaseStructureDynamic
   id: NFInflatableCrate
   description: A single use inflated storage container. Can not be deflated. Do not puncture.
   suffix: Frontier
   components:
-  #- type: MultiHandedItem
+  - type: Animateable
+  - type: Transform
+    noRot: true
+  - type: InteractionOutline
+  - type: PlaceableSurface
+    isPlaceable: false # defaults to closed.
   - type: Icon
     sprite: _NF/Objects/Misc/inflatable_crate.rsi
     state: icon
@@ -220,6 +226,7 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
+  - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
@@ -246,15 +253,50 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/pop_high.ogg
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
   - type: EntityStorage
-    capacity: 16
+    capacity: 20
     closeSound:
       path: /Audio/Misc/zip.ogg
     openSound:
       path: /Audio/Misc/zip.ogg
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+        components: # Frontier
+        - Blueprint # Frontier
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      paper_label: !type:ContainerSlot
+  - type: ItemSlots
   # Commented out DisassembleOnAltVerb because it deletes stored entities, but maybe one day this wont be a problem
   #- type: DisassembleOnAltVerb
     #prototypeToSpawn: NFInflatableCrateStack1
     #disassembleTime: 3
   - type: StaticPrice
-    price: 5
+    price: 2
+  - type: RequireProjectileTarget
+  - type: NFCrate # Frontier
