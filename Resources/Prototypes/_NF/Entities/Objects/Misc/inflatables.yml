@@ -75,7 +75,7 @@
     prototypeToSpawn: NFInflatableWindowStack1
     disassembleTime: 3
 
-#region door
+#region doors
 - type: entity
   parent: InflatableDoor
   id: NFInflatableDoor
@@ -87,15 +87,39 @@
     sprite: _NF/Objects/Misc/inflatable_door.rsi
     state: closed
   - type: Door
+    occludes: true
     openSound:
       path: /Audio/Misc/zip.ogg
     closeSound:
       path: /Audio/Misc/zip.ogg
   - type: NavMapDoor
   - type: Occluder
-    enabled: true
+    enabled: false
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableDoorStack1
+    disassembleTime: 3
+
+- type: entity
+  parent: InflatableDoor
+  id: NFInflatableDoorWindow
+  name: inflatable windoor
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/inflatable_door_window.rsi
+    state: closed
+  - type: Door
+    openSound:
+      path: /Audio/Misc/zip.ogg
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+  - type: NavMapDoor
+  - type: Occluder
+    enabled: false
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableDoorWindowStack1
     disassembleTime: 3
 
 #region floor
@@ -158,6 +182,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/pop_high.ogg
   - type: EntityStorage
     capacity: 16
     closeSound:
