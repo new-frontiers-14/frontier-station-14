@@ -97,3 +97,76 @@
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableDoorStack1
     disassembleTime: 3
+
+#region floor
+- type: tile
+  id: NFInflatablePlating
+  name: tiles-inflatable-plating
+  sprite: /Textures/_NF/Objects/Misc/inflatable_floor.rsi/inflatable-floor.png
+  baseTurf: Lattice
+  isSubfloor: true
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepPlating
+  itemDrop: NFInflatableFloorStack1
+  friction: 1.5
+  heatCapacity: 10000
+
+#region crate
+- type: entity
+  name: inflatable crate
+  parent: CrateGeneric # ToolboxBase
+  id: NFInflatableCrate
+  description: A single use inflated storage container. Can not be deflated. Do not puncture.
+  suffix: Frontier
+  components:
+  #- type: MultiHandedItem
+  - type: Icon
+    sprite: _NF/Objects/Misc/inflatable_crate.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    sprite: _NF/Objects/Misc/inflatable_crate.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 15
+        mask:
+        - CrateMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:EmptyAllContainersBehaviour
+  - type: EntityStorage
+    capacity: 16
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+    openSound:
+      path: /Audio/Misc/zip.ogg
+  # Commented out DisassembleOnAltVerb because it deletes stored entities, but maybe one day this wont be a problem
+  #- type: DisassembleOnAltVerb
+    #prototypeToSpawn: NFInflatableCrateStack1
+    #disassembleTime: 3
+  - type: StaticPrice
+    price: 1

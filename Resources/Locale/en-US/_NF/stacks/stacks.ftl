@@ -115,3 +115,4 @@ stack-versailles-wood-floor = versailles wood floor
 stack-cheese-floor = cheese floor
 stack-inflatable-floor = inflatable floor
 stack-inflatable-window = inflatable window
+stack-inflatable-crate = inflatable crate

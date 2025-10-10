@@ -66,6 +66,28 @@
     - type: ConstructionMaterials
 
 - type: entity
+  id: NFInflatableCrateStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable crate
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableCrate
+      count: 4
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_crate.rsi
+      state: item-folded
+    - type: Item
+      sprite: _NF/Objects/Misc/inflatable_crate.rsi
+      size: Small
+    - type: SpawnAfterInteract
+      prototype: NFInflatableCrate
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
   name: inflatable floor
   parent: FloorTileItemBase
   id: NFInflatableFloorStack
@@ -140,6 +162,16 @@
   components:
     - type: Sprite
       state: item_window
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableCrateStack
+  id: NFInflatableCrateStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item-folded
     - type: Stack
       count: 1
 
