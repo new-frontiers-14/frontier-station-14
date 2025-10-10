@@ -122,6 +122,77 @@
     prototypeToSpawn: NFInflatableDoorWindowStack1
     disassembleTime: 3
 
+- type: entity
+  parent: NFInflatableDoor
+  id: NFInflatableDock
+  name: inflatable external airlock
+  description: An inflated membrane with reinforced hardpoints, capable of docking. Activate to deflate. Do not puncture.
+  suffix: Frontier, Docking
+  components:
+  - type: Docking
+  - type: DockingSignalControl
+  - type: DeviceLinkSource
+    ports:
+      - DoorStatus
+      - DockStatus
+  - type: DoorSignalControl
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - Open
+      - Close
+      - Toggle
+      - AutoClose
+      - DoorBolt
+  - type: Airlock
+  - type: NavMapDoor
+  - type: Sprite
+    sprite: _NF/Objects/Misc/inflatable_dock.rsi
+    state: closed
+  - type: Door
+    occludes: true
+    openSound:
+      path: /Audio/Misc/zip.ogg
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+      docking:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+          position: "0,-0.5"
+        hard: false
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+      - South
+  - type: Tag
+    tags:
+      - ForceNoFixRotations
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableDockStack1
+    disassembleTime: 3
+
 #region floor
 - type: tile
   id: NFInflatablePlating
