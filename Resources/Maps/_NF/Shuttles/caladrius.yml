@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/11/2025 22:44:48
-  entityCount: 2441
+  time: 10/11/2025 23:09:43
+  entityCount: 2442
 maps: []
 grids:
 - 1
@@ -1594,6 +1594,7 @@ entities:
             5516: -5,1
             5517: -6,1
             6565: -4,1
+            6570: 7,2
         - node:
             color: '#E6E6E67F'
             id: MonoOverlay
@@ -2700,7 +2701,7 @@ entities:
       pos: 5.5,-23.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -51968.28
+      secondsUntilStateChange: -52048.15
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2871,7 +2872,7 @@ entities:
       pos: -15.5,-13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -47970.617
+      secondsUntilStateChange: -48050.484
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -8372,6 +8373,13 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: GasAnalyzer
+  entities:
+  - uid: 2420
+    components:
+    - type: Transform
+      pos: -0.53198934,3.9571
+      parent: 1
 - proto: GasFilter
   entities:
   - uid: 357
@@ -11544,8 +11552,6 @@ entities:
       parent: 1
     - type: GasThermoMachine
       targetTemperature: 90
-    - type: ApcPowerReceiver
-      powerDisabled: True
     - type: AtmosPipeColor
       color: '#00FFFFFF'
 - proto: GasValve
