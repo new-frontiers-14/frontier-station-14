@@ -46,7 +46,7 @@
     sprite: _NF/Clothing/Neck/Mantles/nfsdsheriff.rsi
   - type: Clothing
     sprite: _NF/Clothing/Neck/Mantles/nfsdsheriff.rsi
-    
+
 - type: entity
   parent: ClothingNeckMantleHOP
   id: ClothingNeckMantleSr
@@ -68,3 +68,31 @@
     sprite: _NF/Clothing/Neck/Mantles/bounty_hunter_mantle.rsi
   - type: Clothing
     sprite: _NF/Clothing/Neck/Mantles/bounty_hunter_mantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: NFGoblinMadeClothingNeckTrashMantle
+  name: trashtle
+  description: A mantle crafted from trash bags. With every movement, its soft rustle makes you feel at home.
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Mantles/goblin_trash_mantle.rsi
+  - type: ToggleableClothing
+    clothingPrototype: NFGoblinMadeClothingHeadHatHoodTrashMantle
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: NFGoblinMadeClothingNeckTrashMantle
+    node: NFGoblinMadeClothingNeckTrashMantle
+  - type: Butcherable
+    spawned:
+    - id: ScrapOre1
+      amount: 1
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrap: 200
