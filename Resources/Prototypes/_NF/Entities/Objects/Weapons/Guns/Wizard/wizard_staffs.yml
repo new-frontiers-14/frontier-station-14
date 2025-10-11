@@ -13,9 +13,9 @@
   - type: AmmoCounter
   - type: Gun
     fireRate: 2
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     availableModes:
-    - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
   - type: Battery
@@ -56,12 +56,14 @@
 
 - type: entity
   id: WeaponStaffRechargeableWizard
+  parent: BaseC3WizardContraband
   abstract: true
   components:
   - type: WizardStaffRechargeable
 
 - type: entity
   id: WeaponStaffRechargeableBloodCult
+  parent: BaseC3CultContraband
   abstract: true
   components:
   - type: BloodCultStaffRechargeable
