@@ -356,3 +356,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-SyndiHypo-name = Syndicate Hypospray
+uplink-SyndiHypo-desc = Inject chemicals at rapid speed
