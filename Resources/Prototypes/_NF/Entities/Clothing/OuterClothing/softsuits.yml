@@ -36,6 +36,20 @@
 #FS suit
 
 - type: entity
+  parent: ClothingOuterHardsuitMercenary
+  id: ClothingOuterEVASuitFsa
+  name: FSA EVA suit
+  description: The standard issue EVA suit for Far Star Arms vessels. It comes pre-loaded with standard issue space camo green.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/fsa_voidsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/fsa_voidsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitFSA
+    slot: head
+
+- type: entity
   parent: NFClothingOuterEVASuitBase
   id: ClothingOuterEVASuitFsb
   name: FSB EVA suit
