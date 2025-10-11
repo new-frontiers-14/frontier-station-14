@@ -1,10 +1,9 @@
 - type: latheRecipePack
-  id: NFServiceStorage
+  id: NFServiceStorageStatic
   recipes:
   - NFBoxMREEmpty
   - NFHappyHonkEmpty
   - NFHappyHonkMimeEmpty
-  - NFHappyHonkMcCargoEmpty
   - NFFoodBoxPizza
   - NFFoodBoxDonutEmpty
   - NFFoodBoxNuggetEmpty
@@ -15,24 +14,106 @@
   - DrinkKegWood
 
 - type: latheRecipePack
-  id: NFServiceStatic
+  id: NFBotanyToolsStatic
   recipes:
-  - Durathread # Frontier
-  - FoodCondimentSqueezeBottleClear # Frontier
+  - PlantBGoneSprayEmpty
+  - WeedSprayEmpty
+  - PestSprayEmpty
+  - HydroponicsToolMiniHoe
+  - HydroponicsToolScythe
+  - HydroponicsToolHatchet
+  - HydroponicsToolSpade
+  - HydroponicsToolClippers
+  - ServiceSelectiveDropper
+  - DiseaseSwab
+  - PlantBag
 
 - type: latheRecipePack
-  id: NFService
+  id: NFServiceEvaPackStatic
   recipes:
-  - ServiceSelectiveDropper # Frontier
-  - PlantAnalyzer # Frontier
-  - JanicartFlatpack # Frontier
-  - PlantBagOfHolding # Delta-V
+  - ClothingOuterEVASuitHydro
+  - ClothingOuterEVASuitJanitor
+  - ClothingOuterEVASuitServiceWorker
+  - ClothingOuterEVASuitChaplain
+  - ClothingOuterEVASuitBoxerRed
+  - ClothingOuterEVASuitBoxerGreen
+  - ClothingOuterEVASuitBoxerBlue
+  - ClothingOuterEVASuitBoxerYellow
+
+- type: latheRecipePack
+  id: NFServiceKitchenStatic
+  recipes:
+  - DrinkMug
+  - DrinkMugMetal
+  - DrinkGlass
+  - DrinkIceBucketEmpty
+  - KitchenKnife
+  - ButchCleaver
+  - ServiceRollingPin
+  - ServiceSpoon
+  - ServiceFork
+  - ServicePairedChopsticks
+  - FoodBowlBig
+  - FoodPlate
+  - FoodPlateSmall
+  - FoodPlateMuffinTin
+  - FoodPlateTin
+  - FoodKebabSkewer
+  - DrinkShotGlass
+  - DrinkGlassCoupeShaped
+  - CustomDrinkJug
+  - FoodPlatePlastic
+  - FoodPlateSmallPlastic
+  - NapkinDrum
+  - Napkin
+  - CondimentCupDispenser
+  - CondimentCup
+  - FoodCondimentSqueezeBottleClear
+  - FoodFrozenPopsicleTrash
+  - DrinkWaterCup
+  - DrinkDisposableCup #imp
+
+- type: latheRecipePack
+  id: NFServiceStatic
+  recipes:
+  - Durathread
+  - WetFloorSign
+  - DeskBell
+  - BrbSign
+
+- type: latheRecipePack
+  id: NFPaperAndPaperAccessories
+  recipes:
+  - NFMaterialCardboard1Processed
+  - NFSheetPaperFromWood
+  - NFSheetPaperFromCardboard
+  - PaperFromSheetPaper
 
 - type: latheRecipePack
   id: NFServiceBoardsStatic
   recipes:
   - CondimentDispenserCircuitboard
   - ImpCoffeeMachineCircuitboard #imp
+
+- type: latheRecipePack
+  id: NFServiceTechfabEmagStatic
+  recipes:
+    - NFHappyHonkNukieEmpty
+    - NFHappyHonkCluwneEmpty
+
+  # Begin McFab
+
+- type: latheRecipePack
+  id: NFMcServiceTechfabStatic
+  recipes:
+    - MysteryFigureBox
+    - SpaceBladeMc
+    - NFHappyHonkMcCargoEmpty
+    - ClothingHeadHatMcCrown
+    - CigPackMcCargo
+    - DrinkDisposableMcCup #imp
+
+# End McFab
 
 - type: latheRecipePack
   id: NFServiceBoards
@@ -50,8 +131,9 @@
   - PortablePumpMachineCircuitBoard
 
 - type: latheRecipePack
-  id: NFPaperAndPaperAccessories
+  id: NFService
   recipes:
-  - NFMaterialCardboard1Processed
-  - NFSheetPaperFromWood
-  - NFSheetPaperFromCardboard
+  - ServiceSelectiveDropper # Frontier
+  - PlantAnalyzer # Frontier
+  - JanicartFlatpack # Frontier
+  - PlantBagOfHolding # Delta-V
