@@ -1,5 +1,4 @@
-## Plushies
-
+#region Plushies
 - type: entity
   parent: BasePlushie
   id: PlushieJester #Weh!
@@ -906,6 +905,45 @@
     entries:
       CottonBurger: PlushieMoffbar
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieGoblin
+  name: goblin plushie
+  description: Just a little guy. With a tiny-little shiv! "Bung me all yah dimmocks, cake!"
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    layers:
+    - state: plushie_goblin
+    - state: plushie_goblin_shiv
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          plushie_goblin_shiv: GlassColors
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_NF/Voice/Goblin/goblin_cackle_1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_NF/Voice/Goblin/goblin_gasp_1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_NF/Voice/Goblin/goblin_cackle_2.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_NF/Voice/Goblin/goblin_scream_1.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_NF/Voice/Goblin/goblin_cackle_3.ogg
+  - type: StinkyTrait
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: GoblinPlushie
+
+#region toy guns
 - type: entity
   name: toy rocket launcher
   parent: [BaseClearContraband, BasePlushie, NFWeaponLauncherRocket]
