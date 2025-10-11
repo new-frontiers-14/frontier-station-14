@@ -35,6 +35,7 @@
     solutionName: hypospray
   - type: PirateBountyItem
     id: HypoMini
+  
 
 - type: entity
   name: NTCS-102 hypospray
@@ -52,6 +53,12 @@
       visible: false
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+  - type: UseDelay
+    delay: 2.0
 
 - type: entity
   name: NTCS-103 hypospray
@@ -69,6 +76,12 @@
       visible: false
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypominilimitededition.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: UseDelay
+    delay: 1.5
 
 - type: entity
   name: empty medipen
