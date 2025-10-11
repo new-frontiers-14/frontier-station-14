@@ -61,7 +61,6 @@ public sealed class NFImplantSystem : EntitySystem
 
         RemComp<MimePowersComponent>(implanted.ImplantedEntity.Value);
     }
-
     private void OnInsulatedInserted(EntityUid uid, InsulatedImplantComponent component, ImplantImplantedEvent args)
     {
         if (!args.Implanted.HasValue)
@@ -77,4 +76,5 @@ public sealed class NFImplantSystem : EntitySystem
 
         RemComp<InsulatedComponent>(implanted.ImplantedEntity.Value);
     }
+
 }
