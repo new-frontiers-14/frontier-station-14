@@ -1,5 +1,5 @@
 
-# Acid raincoat
+#region Acid raincoats
 - type: entity
   id: ClothingOuterCoatAcidRaincoat
   parent: [ ClothingOuterStorageToggleableBase, RecyclableItemClothDurable ]
@@ -65,7 +65,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodAcidRaincoatGreen
 
-# Jackets
+#region Jackets
 - type: entity
   id: ClothingOuterCoatBomberPunkRed
   parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
@@ -176,7 +176,7 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/bomber_pinksleeves.rsi
 
-# Procedural punk jackets
+#region Procedural jackets
 - type: entity
   id: ClothingOuterCoatBomberRandomized
   parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
@@ -210,11 +210,15 @@
     - jacket_main:
         base_OuterClothing_jacket_01: Cyberpunk
         base_OuterClothing_jacket_02: Cyberpunk
-        base_OuterClothing_jacket_03: Cyberpunk
         base_OuterClothing_jacket_04: Cyberpunk
+        base_OuterClothing_jacket_05: Cyberpunk
+        base_OuterClothing_jacket_06: Cyberpunk
       jacket_decor:
         decor_base_OuterClothing_jacket_01: Cyberpunk
         decor_base_OuterClothing_jacket_02: Cyberpunk
+        decor_base_OuterClothing_jacket_03: Cyberpunk
+        decor_base_OuterClothing_jacket_04: Cyberpunk
+        decor_base_OuterClothing_jacket_05: Cyberpunk
       jacket_overlay:
         overlay_base_OuterClothing_jacket_01: CyberpunkNeon
         overlay_base_OuterClothing_jacket_02: CyberpunkNeon
@@ -223,6 +227,16 @@
         overlay_base_OuterClothing_jacket_05: CyberpunkNeon
         overlay_base_OuterClothing_jacket_06: CyberpunkNeon
         overlay_base_OuterClothing_jacket_07: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_08: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_09: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_10: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_11: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_12: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_13: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_14: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_15: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_16: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_17: CyberpunkNeon
         mask_null: ""
 
 - type: entity
@@ -253,3 +267,65 @@
         base_OuterClothing_letterman: Cyberpunk
       jacket_decor:
         decor_base_OuterClothing_letterman: Cyberpunk
+
+- type: entity
+  id: ClothingOuterCoatRandomized
+  parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
+  name: punk coat
+  description: You look like a good Joe.
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/jacket_procedural.rsi
+    layers:
+    - state: base_OuterClothing_jacket_09
+      map: [ "jacket_main" ]
+    - state: decor_base_OuterClothing_jacket_01
+      map: [ "jacket_decor" ]
+    - state: mask_null
+      map: [ "jacket_overlay" ]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/jacket_procedural.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: base_OuterClothing_jacket_01
+        map: [ "jacket_main" ]
+      - state: decor_base_OuterClothing_jacket_01
+        map: [ "jacket_decor" ]
+      - state: mask_null
+        map: [ "jacket_overlay" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    - jacket_main:
+        base_OuterClothing_jacket_03: Cyberpunk
+        base_OuterClothing_jacket_07: Cyberpunk
+        base_OuterClothing_jacket_08: Cyberpunk
+        base_OuterClothing_jacket_09: Cyberpunk
+      jacket_decor:
+        decor_base_OuterClothing_jacket_01: Cyberpunk
+        decor_base_OuterClothing_jacket_02: Cyberpunk
+        decor_base_OuterClothing_jacket_03: Cyberpunk
+        decor_base_OuterClothing_jacket_04: Cyberpunk
+        decor_base_OuterClothing_jacket_05: Cyberpunk
+      jacket_overlay:
+        overlay_base_OuterClothing_jacket_01: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_02: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_03: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_04: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_05: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_06: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_07: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_08: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_09: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_10: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_11: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_12: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_13: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_14: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_15: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_16: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_17: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_18: CyberpunkNeon # This one works only with coats
+        mask_null: ""
