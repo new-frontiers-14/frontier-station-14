@@ -2,9 +2,9 @@
   name: blood cultist
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
-  - NFMobRestrictions
   id: MobBloodCultistBase
   components:
   - type: NpcFactionMember
@@ -20,22 +20,15 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
-    gib: false
-    useArgumentEntity: true
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# Humans
+#region Humans
 # Blood Cult Priest, ranged mab, bolts deal 10 slash damage
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: blood cult priest
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -72,6 +65,8 @@
 - type: entity
   name: blood cult janitor
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaSpecial
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -84,8 +79,6 @@
   - type: Loadout
     prototypes:
     - BloodCultistJanitorGear
-  - type: Stamina
-    critThreshold: 500
   - type: BasicEntityAmmoProvider
     proto: ShellSoapConjuredBloodCultCluster # SoapConjuredBloodCultCluster
     capacity: 1
@@ -109,6 +102,8 @@
 - type: entity
   name: blood cult acolyte
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -125,6 +120,8 @@
 - type: entity
   name: blood cult zealot
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistZealotMelee
@@ -140,6 +137,8 @@
 - type: entity
   name: blood cult zealot
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistZealotRanged
@@ -174,6 +173,8 @@
 - type: entity
   name: blood cult zealot
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistCaster
@@ -201,15 +202,17 @@
       path: /Audio/_NF/Effects/silence.ogg
 
 # Non-human mobs
+#region Leech
 # Blood Leech, melee, fast, has moderate health regen
 - type: entity
   name: blood leech
   categories: [ HideSpawnMenu ]
   parent:
+  - MobMovementSpeedModifierSpecial
+  - MobStaminaFodder
   - MobNonHumanHostileBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
-  - NFMobRestrictions
   id: MobBloodCultLeech
   description: This cultist, once human, is now a twisted and corrupted abomination, its body warped and distorted by the dark energies of Nar'Sie's influence.
   components:
@@ -237,11 +240,6 @@
       0: Alive
       60: Critical
       120: Dead
-  - type: Stamina
-    critThreshold: 80
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4
-    baseSprintSpeed: 6
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -251,17 +249,17 @@
         Structural: 20
     animation: WeaponArcBite
 
+#region Boss
 # Ascended Cultist, spawns 2 Drained Ones
 - type: entity
   name: ascended cultist
   description: Elevated above their mortal forms by Nar'Sie herself as a reward for their devotion.
   categories: [ HideSpawnMenu ]
   parent:
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - MobHostileBossBase
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
-  #- MobLaserReflect # Added to prevent laser abuse from players
-  - NFMobRestrictions
-  - NFMobBossRestrictions
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -309,8 +307,6 @@
       0: Alive
       240: Critical
       320: Dead
-  - type: Stamina
-    critThreshold: 320
   - type: BasicEntityAmmoProvider
     proto: SpawnMobBloodCultistAscendedSummons # MobBloodCultDrainedOne
     capacity: 2
@@ -351,15 +347,14 @@
     spawned:
     - id: ClothingNeckAmuletBloodCult
       amount: 1
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# Drained One, melee
+#region Drained One, melee
 - type: entity
   name: drained one
   categories: [ HideSpawnMenu ]
   parent:
+  - MobStaminaSpecial
+  - MobMovementSpeedModifierMelee
   - MobNonHumanHostileBase
   - FlyingMobBase
   - MobPassiveRegen
@@ -407,8 +402,6 @@
       0: Alive
       80: Critical
       100: Dead
-  - type: Stamina
-    critThreshold: 320
   - type: MeleeWeapon
     soundHit:
       collection: MetalThud
@@ -429,9 +422,6 @@
     speechVerb: Ghost
   - type: Ammo
     muzzleFlash: null
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 - type: entity
   name: cultist shade
@@ -478,6 +468,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent:
+  - MobStaminaFodder
   - BaseC3MobCreatureNoValue
   - MobBloodCultDrainedOne
   - NFMobTimedDespawn180
@@ -501,7 +492,7 @@
     factions:
     - NanoTrasen
 
-# Turrets
+#region Turrets
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity

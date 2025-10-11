@@ -7,7 +7,7 @@ shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
 shipyard-console-leaving-secret = Unregistered vessel detected leaving your sector.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
-shipyard-console-no-idcard = No ID card present.
+shipyard-console-no-idcard = Insert ID card.
 shipyard-console-already-deeded = ID card already has a Deed.
 shipyard-console-invalid-station = Not a valid station.
 shipyard-console-no-bank = No bank account found.
@@ -18,6 +18,8 @@ shipyard-console-sale-organic-aboard = All crew must disembark. {$name} is still
 # This error message is bad, but if it happens, something awful's happened.
 shipyard-console-sale-invalid-ship = Ship is invalid and cannot be sold.
 shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
+shipyard-console-no-idcard-helper-line1 = Insert ID card to buy or sell a ship.
+shipyard-console-no-idcard-helper-line2 = Your ID card is in your PDA.
 shipyard-console-deed-label = Registered Ship:
 shipyard-console-appraisal-label = Shuttle Resale Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
@@ -26,6 +28,7 @@ shipyard-console-invalid-voucher-type = This voucher cannot be used at this cons
 shipyard-console-contraband-onboard = Smuggled contraband detected onboard.
 shipyard-console-station-resources = Vital station resources detected onboard.
 shipyard-console-dangerous-materials = Dangerous materials detected onboard.
+shipyard-console-cute-pets = Adorable pets detected onboard.
 shipyard-console-fallback-prevent-sale = YML-class bugs detected onboard. Please file a bug report when possible.
 
 shipyard-console-menu-size-label = Size:{" "}

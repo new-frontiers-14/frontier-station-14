@@ -1,0 +1,16 @@
+# Tethers for
+- type: entity
+  name: danger tether
+  description: Dangerous objects on this map (singularities, teslas) must be within 500 m of one of these objects.
+  id: DangerTether
+  suffix: "range 500m"
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    layers:
+      - state: singularitytoy
+      - sprite: Markers/cross.rsi
+        state: pink
+  - type: DangerTether
+    maxDistance: 500

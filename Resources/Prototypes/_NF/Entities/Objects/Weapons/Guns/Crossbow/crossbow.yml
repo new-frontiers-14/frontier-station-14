@@ -82,11 +82,13 @@
     - suitStorage
     - Belt
   - type: UseDelay
-    delay: 2
+    delay: 1.5
   - type: Gun
     fireRate: 1
-    minAngle: 2.2
-    maxAngle: 6.6
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 2.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -212,17 +214,16 @@
     - Back
     - suitStorage
   - type: GunWieldBonus
-    minAngle: -33
-    maxAngle: -33
+    minAngle: -30
+    maxAngle: -30
   - type: Wieldable
     wieldSound:
       path: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
   - type: UseDelay
     delay: 1
   - type: Gun
-    angleDecay: 35
-    minAngle: 34
-    maxAngle: 36
+    minAngle: 31.8
+    maxAngle: 39
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:

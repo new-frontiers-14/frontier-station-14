@@ -740,7 +740,7 @@
 - type: entity
   parent: BaseComputerTabletopStationAdminBankATM
   id: ComputerTabletopStationAdminBankATMFrontier
-  description: Used to transfer funds from Frontier Outpost's bank account
+  description: Used to transfer funds to and from Frontier Outpost's bank account.
   suffix: Frontier, Tabletop
   components:
   - type: StationBankATM
@@ -749,7 +749,7 @@
 - type: entity
   parent: BaseComputerTabletopStationAdminBankATM
   id: ComputerTabletopStationAdminBankATMNfsd
-  description: Used to transfer funds from NFSD's bank account
+  description: Used to transfer funds to and from NFSD's bank account.
   suffix: NFSD, Tabletop
   components:
   - type: StationBankATM
@@ -758,11 +758,20 @@
 - type: entity
   parent: BaseComputerTabletopStationAdminBankATM
   id: ComputerTabletopStationAdminBankATMMedical
-  description: Used to transfer funds from Medical Dispatch's bank account
+  description: Used to transfer funds to and from the medical bank account.
   suffix: Medical, Tabletop
   components:
   - type: StationBankATM
     account: Medical
+
+- type: entity
+  parent: BaseComputerTabletopStationAdminBankATM
+  id: ComputerTabletopStationAdminBankATMEdison
+  description: Used to transfer funds to and from Edison's bank account.
+  suffix: Edison, Tabletop
+  components:
+  - type: StationBankATM
+    account: Edison
 
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerContrabandPalletConsole]

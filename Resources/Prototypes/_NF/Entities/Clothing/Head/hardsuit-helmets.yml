@@ -300,3 +300,28 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+#Wizard Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitWizardBrick
+  name: brick wizard hardsuit helmet
+  description: A weird helmet with ornaments made of baked clay and magical gemstones.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/brickwizard.rsi
+    offset: 0,0.1
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/brickwizard.rsi
+  - type: PointLight
+    color: "#6dead6"
+  - type: PressureProtection
+    highPressureMultiplier: 0.27
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8

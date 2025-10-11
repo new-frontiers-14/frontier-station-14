@@ -20,6 +20,15 @@ public sealed partial class EmagComponent : Component
     [AutoNetworkedField]
     public ProtoId<TagPrototype> EmagImmuneTag = "EmagImmune";
 
+    // Frontier: demag immunity
+    /// <summary>
+    /// The tag that marks an entity as immune to demags
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public ProtoId<TagPrototype> DemagImmuneTag = "DemagImmune";
+    // End Frontier: demag immunity
+
     /// <summary>
     /// What type of emag effect this device will do
     /// </summary>

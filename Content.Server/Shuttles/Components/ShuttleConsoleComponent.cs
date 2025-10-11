@@ -33,13 +33,13 @@ namespace Content.Server.Shuttles.Components
         /// <summary>
         ///     While disabled by EMP
         /// </summary>
-        [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
 
-        [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public float DisableDuration = 60f;
 
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public InertiaDampeningMode DampeningMode = InertiaDampeningMode.Dampen;
         // End Frontier
     }

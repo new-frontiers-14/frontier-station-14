@@ -1,3 +1,4 @@
+#region base
 - type: entity # Spawns random graffiti (even if the mob is dead)
   id: MobVandalizer
   abstract: true
@@ -16,10 +17,12 @@
   name: punk
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobStaminaFodder
+  - MobMovementSpeedModifierMelee
   - MobHumanoidHostileBase
   - MobVandalizer
   - MobHumanoidInvetory
-  - NFMobRestrictions
   description: |-
    "Criminally-inclined individuals", as NT Security documents call them, these are armed with a variety of weapons. These weapons range from makeshift shivs and machined truncheons to rusty pistols and shotguns. Some may be armored, so plan appropriately.
   components:
@@ -54,12 +57,9 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Humans
-## Tier 1
+#region Tier 1
 - type: entity
   id: MobPunkGangerMeleeT1
   parent:
@@ -74,6 +74,7 @@
 - type: entity
   id: MobPunkGangerPistol
   parent:
+  - MobMovementSpeedModifierRanged
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   categories: [ HideSpawnMenu ]
@@ -100,7 +101,7 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-## Tier 2
+#region Tier 2
 - type: entity
   id: MobPunkGangerMeleeT2
   parent:
@@ -120,13 +121,11 @@
 - type: entity
   id: MobPunkGangerShotgun
   parent:
+  - MobMovementSpeedModifierRanged
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearShotgun
@@ -146,7 +145,7 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-## Tier 3
+#region Tier 3
 - type: entity
   id: MobPunkGangerMeleeT3
   parent:
@@ -165,14 +164,12 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierRanged
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   id: MobPunkGangerSmg
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearSmg
@@ -192,21 +189,17 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
 
-## Tier 4 - Dungeon boss
+#region Tier 4 - Dungeon boss
 - type: entity
   id: MobPunkGangerLeader
   parent:
   - MobHostileBossBase
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
-  - NFMobBossRestrictions
   name: punk gang leader
   description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearLaser
@@ -276,16 +269,18 @@
 
 - type: entity
   id: ActionThrowPartyNade
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Throw a party 'nade[/color]"
   description: "Hurls activated party 'nade filled with party chems, explodes on contact. [color=yellow]20 second cooldown.[/color]"
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : Objects/Weapons/Grenades/metalfoam.rsi, state: primed }
-    event: !type:ActionGunShootEvent
     priority: 2
+    itemIconStyle: BigAction
+    useDelay: 20
+  - type: TargetAction
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction
-  - type: UseDelay
-    delay: 20
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent

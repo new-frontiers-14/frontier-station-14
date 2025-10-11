@@ -2,6 +2,10 @@ stack-scrap-chunk = scrap {$amount ->
     [1] chunk
     *[other] chunks
 }
+stack-tech-scrap-chunk = tech scrap {$amount ->
+    [1] chunk
+    *[other] chunks
+}
 stack-iron-coin = iron {$amount ->
     [1] coin
     *[other] coins

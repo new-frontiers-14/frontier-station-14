@@ -86,8 +86,8 @@
           map: ["enum.VehicleVisualLayers.AutoAnimate"]
       noRot: true
     - type: MovementSpeedModifier
-      acceleration: 2
-      friction: 1.5
+      baseAcceleration: 2
+      baseFriction: 1.5
       baseWalkSpeed: 4.5
       baseSprintSpeed: 7
     - type: UnpoweredFlashlight
@@ -155,8 +155,8 @@
       visible: false
     noRot: true
   - type: MovementSpeedModifier
-    acceleration: 1
-    friction: 0.8
+    baseAcceleration: 1
+    baseFriction: 0.8
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4.3
   - type: Destructible
@@ -212,10 +212,10 @@
     volume: 5
     enabled: false
   - type: MovementSpeedModifier
-    acceleration: 2
-    friction: 1.5
-    baseWalkSpeed: 4.5
-    baseSprintSpeed: 7
+    baseAcceleration: 1.7
+    baseFriction: 0.6
+    baseWalkSpeed: 4.3
+    baseSprintSpeed: 8
   - type: Sprite
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
     layers:
@@ -564,10 +564,10 @@
       params:
         variation: 0.125
   - type: MovementSpeedModifier # Very petty on my end
-    acceleration: 1.9
-    friction: 1.4
-    baseWalkSpeed: 4.3
-    baseSprintSpeed: 6.8
+    baseAcceleration: 1.6
+    baseFriction: 0.6
+    baseWalkSpeed: 4.2
+    baseSprintSpeed: 7.8
   - type: Sprite
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
     layers:
@@ -615,6 +615,10 @@
     energy: 3
     color: "#FF4020"
     mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - EmagImmune
 
 - type: entity
   parent: NFVehicleHoverbikeNfsd
@@ -695,6 +699,12 @@
             - Gun
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
   - type: Appearance
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - DemagImmune
+  - type: Vehicle
+    radarBlip: false
 
 - type: entity
   parent: VehicleHoverbikePirate
@@ -779,6 +789,12 @@
     color: green
     radius: 6
     energy: 3
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - DemagImmune
+  - type: Vehicle
+    radarBlip: false
 
 - type: entity
   parent: VehicleHoverbikeSyndicate
@@ -844,16 +860,16 @@
     - sprite: _NF/Structures/Storage/magnetbox.rsi
       state: controller-on
       visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
       shader: unshaded
     - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
       state: overlay-icon
       shader: unshaded
   - type: MovementSpeedModifier
-    acceleration: 1
-    friction: 0.8
+    baseAcceleration: 0.6
+    baseFriction: 0.5
     baseWalkSpeed: 3.5
-    baseSprintSpeed: 4.3
+    baseSprintSpeed: 6
   - type: Destructible
     thresholds:
     - trigger:

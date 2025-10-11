@@ -44,6 +44,7 @@
     - NFServiceTechfabDeprecatedStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
+    - NFLightsColoredStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
@@ -396,7 +397,7 @@
   id: ScrapProcessor
   parent: BaseLatheLube
   name: scrap processor
-  description: It produces sheets and ingots using scrap.
+  description: This machine reclaims scrap into usable materials.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/scrap_processor.rsi
@@ -422,7 +423,7 @@
     runningState: building
     unlitIdleState: unshaded
     unlitRunningState: building-unshaded
-    defaultProductionAmount: 10
+    defaultProductionAmount: 1
     productValueModifier: null
     staticPacks:
     - NFScrapStatic

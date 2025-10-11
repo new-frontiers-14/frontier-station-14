@@ -17,24 +17,29 @@ namespace Content.Client.Shuttles.UI;
 
 public sealed partial class ShuttleNavControl
 {
+    // Dependency
     private readonly StationSystem _station;
     private readonly RadarBlipSystem _blips;
 
     // Constants for gunnery system
     // These 2 handle timing updates
     private const float RadarUpdateInterval = 0f;
+    private const float FireRateLimit = 0.1f; // 100ms between shots
+    private static readonly Color TargetColor = Color.FromHex("#99ff66");
     private float _updateAccumulator = 0f;
 
     private bool _isMouseDown;
     private bool _isMouseInside;
     private Vector2 _lastMousePos;
     private float _lastFireTime;
-    private const float FireRateLimit = 0.1f; // 100ms between shots
 
     // Constants for IFF system
     public float MaximumIFFDistance { get; set; } = -1f;
     public bool HideCoords { get; set; } = false;
     private static Color _dockLabelColor = Color.White;
+    public bool HideTarget { get; set; } = false;
+    public Vector2? Target { get; set; } = null;
+    public NetEntity? TargetEntity { get; set; } = null;
 
     public InertiaDampeningMode DampeningMode { get; set; }
     public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
@@ -45,9 +50,16 @@ public sealed partial class ShuttleNavControl
     /// <param name="state">The navigation interface state.</param>
     private void NFUpdateState(NavInterfaceState state)
     {
+        if (state.MaxIffRange != null)
+            MaximumIFFDistance = state.MaxIffRange.Value;
+        HideCoords = state.HideCoords;
+        Target = state.Target;
+        TargetEntity = state.TargetEntity;
+        HideTarget = state.HideTarget;
+
         if (!EntManager.GetCoordinates(state.Coordinates).HasValue ||
             !EntManager.TryGetComponent(EntManager.GetCoordinates(state.Coordinates).GetValueOrDefault().EntityId, out TransformComponent? transform) ||
-            !EntManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent))
+            !EntManager.HasComponent<PhysicsComponent>(transform.GridUid))
         {
             return;
         }
