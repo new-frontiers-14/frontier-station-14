@@ -222,7 +222,8 @@ namespace Content.Server.PDA
                 pda.PenSlot.HasItem,
                 pda.PaiSlot.HasItem,
                 pda.BookSlot.HasItem,
-                new PdaIdInfoText
+                pda.KeySlot.HasItem,
+                new PdaUpdateState.PdaIdInfoText
                 {
                     ActualOwnerName = pda.OwnerName,
                     IdOwner = id?.FullName,
