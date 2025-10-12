@@ -18,7 +18,7 @@ public sealed partial class RareWeaponSpawnerCaseComponent : Component
     /// Modifier that can be applied to the gun's accuracy.
     /// </summary>
     [DataField]
-    public StatModifier AccuracyModifier = new StatModifier(-1.35f, -1.15f); // Note: -1.35 < -1.15
+    public StatModifier AccuracyModifier = new StatModifier(0.65f, 0.85f);
 
     /// <summary>
     /// Modifier that can be applied to the gun's projectile speed.
