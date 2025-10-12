@@ -1,7 +1,9 @@
 - type: entity
   id: CondimentDispenserEmpty
   parent: ReagentDispenserBase
+  name: condiment dispenser
   suffix: Empty
+  description: A condiment dispenser with a single slot for a condiment cup.
   components:
   - type: Storage
     openOnActivate: false
@@ -39,9 +41,7 @@
 - type: entity  
   id: CondimentDispenser
   parent: CondimentDispenserEmpty
-  name: condiment dispenser
   suffix: Filled
-  description: A condiment dispenser with a single slot for a condiment cup.
   components:
   - type: StorageFill
     contents:
