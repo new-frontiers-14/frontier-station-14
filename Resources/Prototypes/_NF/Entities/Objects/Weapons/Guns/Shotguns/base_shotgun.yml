@@ -1,7 +1,7 @@
 #region frame
 - type: entity
   id: NFBaseWeaponFrameShotgun
-  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
   abstract: true
   components:
   - type: Sprite
@@ -10,10 +10,10 @@
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Gun
     projectileSpeed: 20
-    minAngle: 4.1
-    maxAngle: 20.5
-    angleIncrease: 2
-    angleDecay: 4
+    minAngle: 3.4
+    maxAngle: 17
+    angleIncrease: 0.9
+    angleDecay: 4.5
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
