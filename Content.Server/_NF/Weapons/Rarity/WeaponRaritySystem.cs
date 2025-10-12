@@ -22,29 +22,25 @@ public sealed partial class WeaponRaritySystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<RareWeaponSpawnerCaseComponent, StorageFilledEvent>(OnCaseSpawn);
+        SubscribeLocalEvent<RareWeaponComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
     }
 
     private void OnCaseSpawn(Entity<RareWeaponSpawnerCaseComponent> ent, ref StorageFilledEvent args)
     {
-        var comp = ent.Comp;
-        if (!TryComp<StorageComponent>(ent, out StorageComponent? storage))
+        if (!TryComp(ent, out StorageComponent? storage))
             return;
 
-        var contents = storage.StoredItems;
-        GunComponent? gunComp = null;
-        EntityUid gun = default;
-        foreach (var item in contents)
+        foreach (var item in storage.StoredItems)
         {
-            if (TryComp(item.Key, out gunComp))
+            if (TryComp(item.Key, out GunComponent? gunComp))
             {
-                gun = item.Key;
-                break;
+                ModifyGun(ent.Comp, item.Key, gunComp);
             }
         }
+    }
 
-        if (gunComp == null || !gun.IsValid() )
-            return;
-
+    private void ModifyGun(RareWeaponSpawnerCaseComponent comp, EntityUid gun, GunComponent gunComp)
+    {
         //Basic functionality of 3 rarity levels
         var rarity = comp.Rarity;
         if (comp.RandomRarity)
@@ -60,25 +56,25 @@ public sealed partial class WeaponRaritySystem : EntitySystem
             switch (chance)
             {
                 case 1:
-                    ImproveAccuracy(gun, gunComp);
+                    ImproveAccuracy(comp.AccuracyModifier, gun, gunComp);
                     break;
                 case 2:
-                    ImproveFireRate(gun, gunComp);
+                    ImproveFireRate(comp.FireRateModifier, gun, gunComp);
                     break;
                 case 3:
-                    ImproveProjectileSpeed(gun, gunComp);
+                    ImproveProjectileSpeed(comp.ProjectileSpeedModifier, gun, gunComp);
                     break;
             }
             rarity--;
         }
     }
 
-    private void ImproveAccuracy(EntityUid gun, GunComponent? gunComp)
+    private void ImproveAccuracy(StatModifier modifier, EntityUid gun, GunComponent? gunComp)
     {
         if (!Resolve(gun, ref gunComp))
             return;
 
-        var buff = 1 - _random.NextFloat(0.15f, 0.35f);
+        var buff = modifier.Next(_random);
 
         gunComp.MinAngle *= buff;
         gunComp.MinAngleModified *= buff;
@@ -90,23 +86,23 @@ public sealed partial class WeaponRaritySystem : EntitySystem
         gunComp.AngleDecayModified *= 1 / buff;
     }
 
-    private void ImproveFireRate(EntityUid gun, GunComponent? gunComp)
+    private void ImproveFireRate(StatModifier modifier, EntityUid gun, GunComponent? gunComp)
     {
         if (!Resolve(gun, ref gunComp))
             return;
 
-        var buff = 1 + _random.NextFloat(0.15f, 0.35f);
+        var buff = modifier.Next(_random);
 
         gunComp.FireRate *= buff;
         gunComp.FireRateModified *= buff;
     }
 
-    private void ImproveProjectileSpeed(EntityUid gun, GunComponent? gunComp)
+    private void ImproveProjectileSpeed(StatModifier modifier, EntityUid gun, GunComponent? gunComp)
     {
         if (!Resolve(gun, ref gunComp))
             return;
 
-        var buff = 1 + _random.NextFloat(0.15f, 0.35f);
+        var buff = modifier.Next(_random);
 
         gunComp.ProjectileSpeed *= buff;
         gunComp.ProjectileSpeedModified *= buff;
@@ -119,27 +115,32 @@ public sealed partial class WeaponRaritySystem : EntitySystem
         var datasetEpic = _protoMan.Index<LocalizedDatasetPrototype>("NFNamesGunsEpic");
 
         var meta = MetaData(gun);
-        var oldName = _namingSystem.GetBaseName(gun);
+        var rareComp = EnsureComp<RareWeaponComponent>(gun);
 
         if (rarity == 1)
         {
-            var pick = _random.Pick(datasetUncommon.Values);
-            var newName = Loc.GetString(pick) + " " + oldName;
-            _metaSystem.SetEntityName(gun, newName, meta, false);
+            rareComp.NameModifiers.Add(_random.Pick(datasetUncommon.Values));
         }
         else if (rarity == 2)
         {
-            var pick1 = _random.Pick(datasetUncommon.Values);
-            var pick2 = _random.Pick(datasetRare.Values);
-            var newName = Loc.GetString(pick2) + " " + Loc.GetString(pick1)+ " " + oldName;
-            _metaSystem.SetEntityName(gun, newName, meta, false);
+            rareComp.NameModifiers.Add(_random.Pick(datasetUncommon.Values));
+            rareComp.NameModifiers.Add(_random.Pick(datasetRare.Values));
         }
         else if (rarity >= 3)
         {
+            // At this rarity, we rename the entire gun instead of adding a modifier
             var pick = _random.Pick(datasetEpic.Values);
             _metaSystem.SetEntityName(gun, Loc.GetString(pick), meta, false);
         }
 
         _namingSystem.RefreshNameModifiers(gun);
+    }
+
+    private void OnRefreshNameModifiers(Entity<RareWeaponComponent> ent, ref RefreshNameModifiersEvent args)
+    {
+        foreach (var modifier in ent.Comp.NameModifiers)
+        {
+            args.AddModifier(modifier);
+        }
     }
 }
