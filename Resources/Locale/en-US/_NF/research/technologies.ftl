@@ -1,3 +1,4 @@
+nf-research-discipline-all = All Available
 nf-research-discipline-engineering = Engineering
 nf-research-discipline-medical = Medical
 nf-research-discipline-arsenal-mercenary = Mercenary
