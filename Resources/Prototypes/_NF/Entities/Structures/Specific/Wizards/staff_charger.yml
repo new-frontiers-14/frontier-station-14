@@ -1,10 +1,14 @@
 - type: entity
   id: StaffRechargerWizard
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: [ BaseMachine, SmallConstructibleMachine ]
   name: staff altar
+  description: A magically attuned altar that can replenish arcane energies of wizard staffs.
   placement:
     mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
+  - type: RequireProjectileTarget
   - type: Sprite
     sprite: _NF/Structures/Specific/Wizard/recharger_altar.rsi
     snapCardinals: true
@@ -18,20 +22,23 @@
     board: ScrollWizardStaffRechargerAltar
   - type: Appearance
   - type: Charger
-    chargeRate: 40
+    chargeRate: 80
     slotId: charger_slot
   - type: Anchorable
     delay: 1
   - type: StaticPrice
     price: 250
   - type: PowerChargerVisuals
-  #- type: ContainerContainer
-    #containers:
-      #charger_slot: !type:ContainerSlot
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
   - type: ItemSlots
     slots:
       charger_slot:
         ejectOnInteract: true
+        name: staff-charger-slot-wizard-name-default
         whitelist:
           components:
           - WizardStaffRechargeable
@@ -40,6 +47,7 @@
   id: StaffRechargerCult
   parent: StaffRechargerWizard
   name: cult staff altar
+  description: A cursed attuned altar that can replenish vile energies of cultist's staffs.
   placement:
     mode: SnapgridCenter
   components:
@@ -51,6 +59,7 @@
     slots:
       charger_slot:
         ejectOnInteract: true
+        name: staff-charger-slot-cult-name-default
         whitelist:
           components:
           - BloodCultStaffRechargeable
