@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client.CartridgeLoader.Cartridges;
 using Content.Client.Eui;
 using Content.Client.Inventory;
 using Content.Shared._NF.CCVar;
@@ -163,27 +164,30 @@ public sealed class CryoSleepEui : BaseEui
 
     //Grab any needed item warnings.
     //Returns null if no warning is needed
-    private string? GetImportantItemWarningLocMessage(List<CryoSleepWarningMessage.NetworkedWarningItem> warningItemsList,
+    private string? GetImportantItemWarningLocMessage(
+        List<CryoSleepWarningMessage.NetworkedWarningItem> warningItemsList,
         InventorySlotsComponent slotsComp)
     {
         switch (warningItemsList.Count)
         {
             case 0:
                 return null;
-
             case 1:
+            {
                 var item = warningItemsList[0];
                 var storageName = GetStorageName(item, slotsComp);
                 return Loc.GetString("accept-cryo-window-prompt-one-item-warning",
                     ("item", Identity.Name(_entityManager.GetEntity(item.Item), _entityManager)),
                     ("storage", storageName));
-
-            default:
+            }
+            case >= 2:
+            {
                 var item1 = warningItemsList[0];
                 var storageName1 = GetStorageName(item1, slotsComp);
                 var item2 = warningItemsList[1];
                 var storageName2 = GetStorageName(item2, slotsComp);
-                //This branch both functions for 2 and more than two items, the only difference is which localization key to use
+                //This branch both functions for 2 and more than two items, the only difference is which localization key to use.
+                //To save copy and pasting, I just pick the key here.
                 var key = warningItemsList.Count > 2
                     ? "accept-cryo-window-prompt-many-items-warning"
                     : "accept-cryo-window-prompt-two-items-warning";
@@ -193,8 +197,13 @@ public sealed class CryoSleepEui : BaseEui
                     ("storage1", storageName1),
                     ("item2", Identity.Name(_entityManager.GetEntity(item2.Item), _entityManager)),
                     ("storage2", storageName2),
-                    //This key is not always needed, but putting it in doesn't break anything
+                    //This key is only needed if there are 3+ items(since the two-items key doesn't have this blank),
+                    //but putting it in doesn't break anything if the key doesn't have this blank in it.
                     ("num-extra-items", warningItemsList.Count - 2));
+            }
+            default:
+                //Unreachable statement, but gotta make the complier happy /shrug
+                throw new Exception("An array was somehow created with a negative amount of items.");
         }
 
     }
