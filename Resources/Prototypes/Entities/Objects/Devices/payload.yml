@@ -36,6 +36,14 @@
   - type: ExplodeOnTrigger
   - type: Destructible
     thresholds:
+    # Begin Frontier removed to prevent explosion cascades
+#    - trigger: 
+#        !type:DamageTypeTrigger
+#        damageType: Heat
+#        damage: 25
+#      behaviors:
+#      - !type:ExplodeBehavior
+    # End Frontier
     - trigger:
         !type:DamageTrigger
         damage: 50
