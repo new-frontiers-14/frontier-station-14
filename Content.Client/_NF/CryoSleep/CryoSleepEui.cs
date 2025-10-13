@@ -166,29 +166,36 @@ public sealed class CryoSleepEui : BaseEui
     private string? GetImportantItemWarningLocMessage(List<CryoSleepWarningMessage.NetworkedWarningItem> warningItemsList,
         InventorySlotsComponent slotsComp)
     {
-        if (warningItemsList.Count == 0)
-            return null;
-        //At this point in the code, none of these values should be null. If it is, something went *very* wrong in the code above
-        var item1 = warningItemsList[0];
-        var storageName1 = GetStorageName(item1, slotsComp);
-        if (warningItemsList.Count == 1)
+        switch (warningItemsList.Count)
         {
-            return Loc.GetString("accept-cryo-window-prompt-one-item-warning",
-                ("item", Identity.Name(_entityManager.GetEntity(item1.Item), _entityManager)),
-                ("storage", storageName1));
-        }
+            case 0:
+                return null;
 
-        //We know there are at least 2 items now
-        var item2 = warningItemsList[1];
-        var key = warningItemsList.Count > 2 ? "accept-cryo-window-prompt-many-items-warning" : "accept-cryo-window-prompt-two-items-warning";
-        var storageName2 = GetStorageName(item2, slotsComp);
-        return Loc.GetString(key,
-            ("item1", Identity.Name(_entityManager.GetEntity(item1.Item), _entityManager)),
-            ("storage1", storageName1),
-            ("item2", Identity.Name(_entityManager.GetEntity(item2.Item), _entityManager)),
-            ("storage2", storageName2),
-            //This key is not always needed, but putting it in doesn't break anything
-            ("num-extra-items", warningItemsList.Count - 2));
+            case 1:
+                var item = warningItemsList[0];
+                var storageName = GetStorageName(item, slotsComp);
+                return Loc.GetString("accept-cryo-window-prompt-one-item-warning",
+                    ("item", Identity.Name(_entityManager.GetEntity(item.Item), _entityManager)),
+                    ("storage", storageName));
+
+            default:
+                var item1 = warningItemsList[0];
+                var storageName1 = GetStorageName(item1, slotsComp);
+                var item2 = warningItemsList[1];
+                var storageName2 = GetStorageName(item2, slotsComp);
+                //This branch both functions for 2 and more than two items, the only difference is which localization key to use
+                var key = warningItemsList.Count > 2
+                    ? "accept-cryo-window-prompt-many-items-warning"
+                    : "accept-cryo-window-prompt-two-items-warning";
+
+                return Loc.GetString(key,
+                    ("item1", Identity.Name(_entityManager.GetEntity(item1.Item), _entityManager)),
+                    ("storage1", storageName1),
+                    ("item2", Identity.Name(_entityManager.GetEntity(item2.Item), _entityManager)),
+                    ("storage2", storageName2),
+                    //This key is not always needed, but putting it in doesn't break anything
+                    ("num-extra-items", warningItemsList.Count - 2));
+        }
 
     }
 
