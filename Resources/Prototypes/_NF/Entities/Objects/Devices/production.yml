@@ -330,11 +330,19 @@
 - type: entity
   id: ScrollWizardStaffRechargerAltar
   parent: BaseMachineCircuitboard
-  name: staff altar binding scroll
+  name: wizard staff altar binding scroll
   components:
     - type: Sprite
       sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
-      state: crystalpaper
+      layers:
+      - state: crystalpaper
+        color: "#79bcff"
+      - state: crystalpaper-text-unshaded
+        color: "#293dc7"
+        shader: unshaded
+      - state: crystalpaper-sparks-unshaded
+        color: "#79bcff"
+        shader: unshaded
     - type: MachineBoard
       prototype: StaffRechargerWizard
       # requirements:
@@ -353,12 +361,39 @@
 - type: entity
   id: ScrollCultStaffRechargerAltar
   parent: ScrollWizardStaffRechargerAltar
-  name: cult staff altar binding scroll
+  name: blood cult staff altar binding scroll
   components:
-    - type: Sprite # placeholder
-      sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-      state: scroll-text
-      color: "red"
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+      layers:
+      - state: crystalpaper
+        color: "#ffb2b2"
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-outer-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-inner-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-center-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-words-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - state: crystalpaper-text-unshaded
+        color: "#c72929"
+        shader: unshaded
+      - state: crystalpaper-sparks-unshaded
+        color: "#ff3e3e"
+        shader: unshaded
     - type: MachineBoard
       prototype: StaffRechargerCult
       # requirements:
@@ -372,10 +407,32 @@
   parent: ScrollWizardStaffRechargerAltar
   name: cult forge binding scroll
   components:
-    - type: Sprite # placeholder
-      sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-      state: scroll-text
-      color: "red"
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+      layers:
+      - state: crystalpaper
+        color: "#ffb2b2"
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-inner-03
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-center-03
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-words-03
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - state: crystalpaper-text-unshaded
+        color: "#c72929"
+        shader: unshaded
+      - state: crystalpaper-sparks-unshaded
+        color: "#ff3e3e"
+        shader: unshaded
     - type: MachineBoard
       prototype: BloodCultProp02
       # requirements:
