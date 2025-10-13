@@ -203,7 +203,7 @@ public sealed class CryoSleepEui : BaseEui
             }
             default:
                 //Unreachable statement, but gotta make the complier happy /shrug
-                throw new Exception("An array was somehow created with a negative amount of items.");
+                throw new Exception("warningItemsList.Count was somehow less than 0 in CryoSleepEui.cs.");
         }
 
     }
