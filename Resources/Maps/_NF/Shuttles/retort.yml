@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/27/2025 01:51:16
-  entityCount: 803
+  time: 10/13/2025 01:09:29
+  entityCount: 804
 maps: []
 grids:
 - 1
@@ -141,12 +141,7 @@ entities:
             1613: -1,-18
             1614: 0,-19
             1615: 1,-18
-        - node:
-            cleanable: True
-            color: '#FFFFFFFF'
-            id: Bot
-          decals:
-            1663: -3,-4
+            1666: -3,-4
         - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
@@ -158,7 +153,6 @@ entities:
             885: -4,-2
             886: -4,-3
             887: -3,-3
-            888: -3,-4
             889: -4,-4
             891: -1,-1
             893: 0,-2
@@ -460,10 +454,14 @@ entities:
             875: -4,-2
             876: -4,-3
             877: -3,-3
-            878: -3,-4
             879: -4,-4
             1380: 0,-1
             1381: 0,0
+        - node:
+            color: '#D699497F'
+            id: DeliveryGreyscale
+          decals:
+            1665: -3,-4
         - node:
             color: '#3EB38819'
             id: DiagonalCheckerBOverlay
@@ -4583,6 +4581,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-11.5
+      parent: 1
+- proto: NFPosterContrabandGas
+  entities:
+  - uid: 519
+    components:
+    - type: Transform
+      pos: -1.5,-11.5
       parent: 1
 - proto: NitrogenCanister
   entities:
