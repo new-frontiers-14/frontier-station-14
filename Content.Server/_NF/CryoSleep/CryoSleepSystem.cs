@@ -317,8 +317,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
         WarningItem? uplink = null;
         WarningItem? backpackShuttleDeed = null;
         //Listing every point where a shuttle deed was found runs you out of space very fast.
-        bool foundMoreShuttles = false;
-        bool hasShuttleOnPDA = (TryGetIdCard(entity, out var card)
+        var foundMoreShuttles = false;
+        var hasShuttleOnPDA = (TryGetIdCard(entity, out var card)
                                 && HasComp<ShuttleDeedComponent>(card));
 
         //Find all the shuttles and uplinks and remove them from the list
@@ -361,15 +361,15 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             if (HasComp<IdCardComponent>(pdaSlotItem))
             {
-                idCard = ent;
+                idCard = pdaSlotItem;
                 return true;
             }
 
             if (TryComp<PdaComponent>(pdaSlotItem, out var pda)
                 && pda.ContainedId.HasValue)
             {
-                    idCard = pda.ContainedId.Value;
-                    return true;
+                idCard = pda.ContainedId.Value;
+                return true;
             }
         }
 
