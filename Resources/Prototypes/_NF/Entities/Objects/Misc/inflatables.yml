@@ -70,7 +70,7 @@
         mask:
         - FullTileMask
         layer:
-        - GlassLayer
+        - WallLayer # Blocks lasers, but not LoS
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableWindowStack1
     disassembleTime: 3
@@ -185,8 +185,8 @@
   id: NFInflatablePlating
   name: tiles-inflatable-plating
   sprite: /Textures/_NF/Objects/Misc/inflatable_floor.rsi/inflatable-floor.png
-  baseTurf: Lattice
-  isSubfloor: true
+  baseTurf: Space
+  isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepClown
