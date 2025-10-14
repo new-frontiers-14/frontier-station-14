@@ -308,3 +308,22 @@
     - state: prop-7
     - state: unshaded-0
       shader: unshaded
+
+- type: entity
+  parent: StaffRechargerWizard
+  id: StaffRechargerCult
+  name: blood cult staff altar
+  description: A cursed attuned altar that can replenish vile energies of cultist's staffs.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/recharger_altar_cult.rsi
+  - type: Machine
+    board: ScrollCultStaffRechargerAltar
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        name: staff-charger-slot-cult-name-default
+        whitelist:
+          components:
+          - BloodCultStaffRechargeable

@@ -1,24 +1,18 @@
 #region Base
 # this whore thing is cursed: each scroll when unfolded is a single shot gun.
 - type: entity
+  abstract: true
+  parent: BaseItem
   id: SpellScrollRolled
   name: spell scroll
-  parent: BaseItem
-  description: Rolled piece of paper emanating eldritch energies.
-  abstract: true
   suffix: Folded
+  description: Rolled piece of paper emanating eldritch energies.
   components:
+  - type: Sprite
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-    layers:
-    - state: scroll-rolled
-    - state: scroll-seal-rolled
-      color: "red"
-      shader: unshaded
   - type: SpawnItemsOnUse
     items:
     - id: SpellScrollBase
@@ -26,57 +20,45 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  id: SpellScrollBase
+  abstract: true
   parent: BaseItem
+  id: SpellScrollBase
   name: spell scroll
   description: A piece of paper with arcane inscriptions on it.
-  abstract: true
   components:
+  - type: Sprite
   - type: Item
     size: Small
     shape:
     - 0,0,1,1
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/runes.rsi
-    layers:
-    - sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-      state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-      state: scroll-0
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: rune-outer-01
-      color: "red"
-      scale: 0.32, 0.32
-      offset: 0.01,-0.005
-      shader: unshaded
-      map: [ "rune_outer" ]
-    - state: rune-inner-01
-      color: "red"
-      scale: 0.32, 0.32
-      offset: 0.01,-0.005
-      shader: unshaded
-      map: [ "rune_inner" ]
-    - state: rune-center-01
-      color: "red"
-      scale: 0.32, 0.32
-      offset: 0.01,-0.005
-      shader: unshaded
-      map: [ "rune_center" ]
-    - state: rune-words-01
-      color: "red"
-      scale: 0.32, 0.32
-      offset: 0.01,-0.005
-      shader: unshaded
-      map: [ "rune_words" ]
-    - sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-      state: scroll-seal-unrolled
-      color: "red"
-      shader: unshaded
+  - type: MagazineVisuals
+    magState: scroll
+    steps: 1
+    zeroVisible: true
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: BasicEntityAmmoProvider
+    proto: WaterElementalConjuredStaff
+    capacity: 1
+    count: 1
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  abstract: true
+  parent: SpellScrollBase
+  id: SpellScrollBaseRandomRuneVisuals
+  components:
   - type: RandomSprite
     available:
       - rune_outer:
-          rune-outer-01: WizardMagicColorsBlue # Alt palettes: BloodCultMagicColors
+          rune-outer-01: WizardMagicColorsBlue
         rune_inner:
           rune-inner-01: WizardMagicColorsBlue
           rune-inner-02: WizardMagicColorsBlue
@@ -101,30 +83,12 @@
           rune-words-05: WizardMagicColorsBlue
           rune-words-06: WizardMagicColorsBlue
           rune-words-07: WizardMagicColorsBlue
-  - type: MagazineVisuals
-    magState: scroll
-    steps: 1
-    zeroVisible: true
-  - type: Tag
-    tags:
-    - Sidearm
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    soundGunshot:
-      path: /Audio/Effects/teleport_arrival.ogg
-  - type: BasicEntityAmmoProvider
-    proto: WaterElementalConjuredStaff
-    capacity: 1
-    count: 1
-  - type: StaticPrice
-    price: 500
 
 # Variants
 #region Offencive
 - type: entity
-  id: SpellScrollRolledElementalWater
   parent: SpellScrollRolled
+  id: SpellScrollRolledElementalWater
   name: conjure water elemental spell scroll
   components:
   - type: Sprite
@@ -141,8 +105,9 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
+  parent: SpellScrollBaseRandomRuneVisuals
   id: SpellScrollElementalWater
-  parent: SpellScrollBase
+  categories: [ HideSpawnMenu ]
   name: conjure water elemental spell scroll
   components:
   - type: Sprite

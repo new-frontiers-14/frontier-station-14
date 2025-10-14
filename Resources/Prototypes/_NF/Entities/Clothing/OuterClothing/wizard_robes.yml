@@ -1,10 +1,6 @@
 - type: entity
+  parent: [ BaseC3WizardContraband, ClothingOuterStorageToggleableBase, RecyclableItemClothArmor, ContrabandClothing ]
   id: ClothingOuterRobeTacticalWizardBlue
-  parent:
-  - BaseC3WizardContraband
-  - ClothingOuterStorageToggleableBase
-  - RecyclableItemClothArmor
-  - ContrabandClothing
   name: blue wizard tactical robes
   description: The perfect synthesis of tradition with modern materials and warfare practices.
   components:
@@ -26,10 +22,9 @@
     damageCoefficient: 0.40
 
 - type: entity
-  id: ClothingOuterRobeTacticalWizardRed
   parent: ClothingOuterRobeTacticalWizardBlue
+  id: ClothingOuterRobeTacticalWizardRed
   name: red wizard tactical robes
-  description: The perfect synthesis of tradition with modern materials and warfare practices.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_red.rsi
@@ -48,10 +43,9 @@
     damageCoefficient: 0.40
 
 - type: entity
-  id: ClothingOuterRobeTacticalWizardPurple
   parent: ClothingOuterRobeTacticalWizardBlue
+  id: ClothingOuterRobeTacticalWizardPurple
   name: purple wizard tactical robes
-  description: The perfect synthesis of tradition with modern materials and warfare practices.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_purple.rsi

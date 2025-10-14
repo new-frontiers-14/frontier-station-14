@@ -1,11 +1,8 @@
 - type: entity
   id: ClothingBeltWizardBlue
-  parent:
-  - ClothingBeltStorageBase
-  - RecyclableItemClothBasic
-  - ContrabandClothing
+  parent: [ ClothingBeltStorageBase, RecyclableItemClothBasic, ContrabandClothing ]
   name: blue wizard sash
-  description: A webbing with pockets lined with waterproof (water, huh?) material.
+  description: A magical sash without visible pockets yet capable of storing items.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Belt/wizard_sash.rsi
@@ -28,13 +25,10 @@
         color: "#9595af"
 
 - type: entity
+  parent: [ ClothingBeltStorageBase, RecyclableItemClothBasic, ContrabandClothing ]
   id: ClothingBeltWizardRed
-  parent:
-  - ClothingBeltStorageBase
-  - RecyclableItemClothBasic
-  - ContrabandClothing
-  name: blue wizard sash
-  description: A webbing with pockets lined with waterproof (water, huh?) material.
+  name: red wizard sash
+  description: A magical sash without visible pockets yet capable of storing items.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Belt/wizard_sash.rsi
@@ -57,13 +51,10 @@
         color: "#d81919"
 
 - type: entity
+  parent: [ ClothingBeltStorageBase, RecyclableItemClothBasic, ContrabandClothing ]
   id: ClothingBeltWizardPurple
-  parent:
-  - ClothingBeltStorageBase
-  - RecyclableItemClothBasic
-  - ContrabandClothing
   name: purple wizard sash
-  description: A webbing with pockets lined with waterproof (water, huh?) material.
+  description: A magical sash without visible pockets yet capable of storing items.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Belt/wizard_sash.rsi
