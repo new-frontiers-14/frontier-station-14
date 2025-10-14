@@ -2,25 +2,20 @@
 - type: entity
   abstract: true
   parent: BaseItem
-  id: WeaponChargedStaffBase
+  id: WeaponInertStaffBase
   name: tactical battle-staff
   description: Big magic wand for big spells.
   components:
-  - type: Sprite
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Effects/Lightning/lightningshock.ogg
-  - type: Battery
-    maxCharge: 800
-    startingCharge: 800
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 1 # With fireCost 40 the recharge rate should restore one charge every 40 seconds or so
+  - type: AltFireMelee
+    attackType: Heavy # Swing
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.9
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      collection: MetalThud
   - type: Item
     size: Normal
     shape:
@@ -43,12 +38,40 @@
           MaterialWoodPlank:
             min: 1
             max: 1
+  - type: Tool
+    qualities:
+      - Digging
+    useSound:
+      path: /Audio/Items/shovel_dig.ogg
+  - type: Tag
+    tags:
+    - WizardStaff
   - type: StaticPrice
     price: 190
 
 - type: entity
   abstract: true
-  parent: BaseC3WizardContraband
+  parent: WeaponInertStaffBase
+  id: WeaponChargedStaffBase
+  components:
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 1
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3WizardContraband, WeaponChargedStaffBase ]
   id: WeaponStaffRechargeableWizard
   description: An acolyte-grade battle staff.
   components:
@@ -56,7 +79,7 @@
 
 - type: entity
   abstract: true
-  parent: BaseC3CultContraband
+  parent: [ BaseC3CultContraband, WeaponChargedStaffBase ]
   id: WeaponStaffRechargeableBloodCult
   description: An acolyte-grade battle staff.
   components:
@@ -65,25 +88,33 @@
 # VARIATIONS
 #region adept
 - type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
-  id: WeaponChargedStaffWizardLightningAdept
-  name: adept lightning staff
+  parent: WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardElementalAdept
+  name: adept-wizard blue curacao elemental staff
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
     layers:
-    - state: thunder-staff
+      - state: noitus-erectus
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
-    heldPrefix: thunder-staff
-  - type: HitscanBatteryAmmoProvider
-    proto: WizardHitscanLightning
-    fireCost: 80
+    inhandVisuals:
+      left:
+      - state: noitus-erectus-inhand-left
+      right:
+      - state: noitus-erectus-inhand-right
+  - type: ProjectileBatteryAmmoProvider
+    proto: WaterElementalConjuredStaff
+    fireCost: 800
+  - type: Construction
+    graph: WeaponChargedStaffWizardElementalAdeptActivation
+    node: WeaponChargedStaffWizardElementalAdept
+    deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
+  parent: WeaponStaffRechargeableWizard
   id: WeaponChargedStaffWizardIceAdept
-  name: adept ice staff
+  name: adept-wizard ice staff
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
@@ -108,31 +139,35 @@
   - type: ProjectileBatteryAmmoProvider
     proto: BulletIceGlobe
     fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardIceAdeptActivation
+    node: WeaponChargedStaffWizardIceAdept
+    deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
-  id: WeaponChargedStaffWizardElementalAdept
-  name: adept blue curacao elemental staff
+  parent: WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardLightningAdept
+  name: adept-wizard lightning staff
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
     layers:
-      - state: noitus-erectus
+    - state: thunder-staff
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
-    inhandVisuals:
-      left:
-      - state: noitus-erectus-inhand-left
-      right:
-      - state: noitus-erectus-inhand-right
-  - type: ProjectileBatteryAmmoProvider
-    proto: WaterElementalConjuredStaff
-    fireCost: 800
+    heldPrefix: thunder-staff
+  - type: HitscanBatteryAmmoProvider
+    proto: WizardHitscanLightning
+    fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardLightningAdeptActivation
+    node: WeaponChargedStaffWizardLightningAdept
+    deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
+  parent: WeaponStaffRechargeableWizard
   id: WeaponChargedStaffWizardSoapAdept
-  name: adept soap staff
+  name: adept-wizard soap staff
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
@@ -148,11 +183,39 @@
   - type: ProjectileBatteryAmmoProvider
     proto: SoapConjured
     fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardSoapAdeptActivation
+    node: WeaponChargedStaffWizardSoapAdept
+    deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
+  parent: WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardBoltMagicAdept
+  name: adept-wizard magic bolt staff
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+      - state: cthulhu-staff
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+    inhandVisuals:
+      left:
+      - state: cthulhu-staff-inhand-left
+      right:
+      - state: cthulhu-staff-inhand-right
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletMagicBolt
+    fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardBoltMagicAdeptActivation
+    node: WeaponChargedStaffWizardBoltMagicAdept
+    deconstructionTarget: null
+
+- type: entity
+  parent: WeaponStaffRechargeableWizard
   id: WeaponChargedStaffWizardBoltFireAdept
-  name: adept fire bolt staff
+  name: adept-wizard fire bolt staff
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
@@ -177,31 +240,15 @@
   - type: ProjectileBatteryAmmoProvider
     proto: BulletFireBolt
     fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardBoltFireAdeptActivation
+    node: WeaponChargedStaffWizardBoltFireAdept
+    deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
-  id: WeaponChargedStaffWizardBoltMagicAdept
-  name: adept magic bolt staff
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
-    layers:
-      - state: cthulhu-staff
-  - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
-    inhandVisuals:
-      left:
-      - state: cthulhu-staff-inhand-left
-      right:
-      - state: cthulhu-staff-inhand-right
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletMagicBolt
-    fireCost: 80
-
-- type: entity
-  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableWizard ]
+  parent: WeaponStaffRechargeableWizard
   id: WeaponChargedStaffWizardCausticAdept
-  name: adept caustic beam staff
+  name: adept-wizard caustic beam staff
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
@@ -226,12 +273,40 @@
   - type: HitscanBatteryAmmoProvider
     proto: CausticBeam
     fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardCausticAdeptActivation
+    node: WeaponChargedStaffWizardCausticAdept
+    deconstructionTarget: null
+
+- type: entity
+  parent: WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardBrickAdept
+  name: adept-wizard brick staff
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+      - state: brick
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+    inhandVisuals:
+      left:
+      - state: brick-inhand-left
+      right:
+      - state: brick-inhand-right
+  - type: ProjectileBatteryAmmoProvider
+    proto: BrickConjured
+    fireCost: 80
+  - type: Construction
+    graph: WeaponChargedStaffWizardBrickAdeptActivation
+    node: WeaponChargedStaffWizardBrickAdept
+    deconstructionTarget: null
 
 #region master
 - type: entity
   parent: WeaponChargedStaffWizardLightningAdept
   id: WeaponChargedStaffWizardLightningMaster
-  name: master lightning staff
+  name: master-wizard lightning staff
   components:
   - type: HitscanBatteryAmmoProvider
     proto: WizardHitscanLightning
@@ -240,7 +315,7 @@
 - type: entity
   parent: WeaponChargedStaffWizardIceAdept
   id: WeaponChargedStaffWizardIceMaster
-  name: master ice staff
+  name: master-wizard ice staff
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: BulletIceGlobe
@@ -249,7 +324,7 @@
 - type: entity
   parent: WeaponChargedStaffWizardElementalAdept
   id: WeaponChargedStaffWizardElementalMaster
-  name: master blue curacao elemental staff
+  name: master-wizard blue curacao elemental staff
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: WaterElementalConjuredStaff
@@ -258,7 +333,7 @@
 - type: entity
   parent: WeaponChargedStaffWizardSoapAdept
   id: WeaponChargedStaffWizardSoapMaster
-  name: master soap staff
+  name: master-wizard soap staff
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: SoapConjured
@@ -267,7 +342,7 @@
 - type: entity
   parent: WeaponChargedStaffWizardBoltFireAdept
   id: WeaponChargedStaffWizardBoltFireMaster
-  name: master fire bolt staff
+  name: master-wizard fire bolt staff
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: BulletFireBolt
@@ -276,7 +351,7 @@
 - type: entity
   parent: WeaponChargedStaffWizardBoltMagicAdept
   id: WeaponChargedStaffWizardBoltMagicMaster
-  name: master magic bolt staff
+  name: master-wizard magic bolt staff
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: BulletMagicBolt
@@ -285,7 +360,7 @@
 - type: entity
   parent: WeaponChargedStaffWizardCausticAdept
   id: WeaponChargedStaffWizardCausticMaster
-  name: master caustic beam staff
+  name: master-wizard caustic beam staff
   components:
   - type: HitscanBatteryAmmoProvider
     proto: CausticBeam
@@ -351,3 +426,23 @@
   - type: HitscanBatteryAmmoProvider
     proto: BloodCultLaser
     fireCost: 40
+
+- type: entity
+  parent: [ WeaponChargedStaffBase, WeaponStaffRechargeableBloodCult ]
+  id: WeaponChargedStaffCultistSoap
+  name: blood cult staff of shredded soap
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+      - state: animation
+  - type: Item
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShellSoapConjuredBloodCultCluster
+    fireCost: 120

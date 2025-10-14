@@ -1,0 +1,141 @@
+#region Blue wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardElementalAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardElementalAdept
+      steps:
+      - tag: CrystalBlue
+        name: construction-graph-tag-blue-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardElementalAdept
+    entity: WeaponChargedStaffWizardElementalAdept
+
+- type: constructionGraph
+  id: WeaponChargedStaffWizardIceAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardIceAdept
+      steps:
+      - tag: CrystalCyan
+        name: construction-graph-tag-cyan-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardIceAdept
+    entity: WeaponChargedStaffWizardIceAdept
+
+- type: constructionGraph
+  id: WeaponChargedStaffWizardLightningAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardLightningAdept
+      steps:
+      - tag: CrystalYellow
+        name: construction-graph-tag-yellow-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardLightningAdept
+    entity: WeaponChargedStaffWizardLightningAdept
+
+#region soap wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardSoapAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardSoapAdept
+      steps:
+      - tag: CrystalBlack
+        name: construction-graph-tag-black-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardSoapAdept
+    entity: WeaponChargedStaffWizardSoapAdept
+
+#region violet wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardBoltMagicAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardBoltMagicAdept
+      steps:
+      - tag: CrystalPink
+        name: construction-graph-tag-pink-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBoltMagic
+    entity: WeaponChargedStaffWizardBoltMagic
+
+#region red wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardBoltFireAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardBoltFireAdept
+      steps:
+      - tag: CrystalOrange
+        name: construction-graph-tag-orange-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBoltFireAdept
+    entity: WeaponChargedStaffWizardBoltFireAdept
+
+#region green? wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardCausticAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardCausticAdept
+      steps:
+      - tag: CrystalGreen
+        name: construction-graph-tag-green-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardCausticAdept
+    entity: WeaponChargedStaffWizardCausticAdept
+
+#region brick wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardBrickAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardBrickAdept
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBrickAdept
+    entity: WeaponChargedStaffWizardBrickAdept

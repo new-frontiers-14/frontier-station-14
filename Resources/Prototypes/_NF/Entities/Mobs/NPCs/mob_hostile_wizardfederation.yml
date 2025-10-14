@@ -1,6 +1,5 @@
-## Mob base
+#region Mob base
 - type: entity
-  name: Wizard
   abstract: true
   parent:
   - NFMobNoEquipmentOnGib
@@ -12,6 +11,7 @@
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobWizFedlBase
+  name: Wizard
   components:
   - type: NpcFactionMember
     factions:
@@ -42,13 +42,13 @@
     nextAdvertisementTime: 10
   - type: AutoWakeUp
 
-# Humans
-# Blue Wizard, summons 2 Blue Curacao Elementals
+#region Tier 2
+# blue wizard summons 2 Blue Curacao Elementals
 - type: entity
-  name: Blue Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardBlue
   categories: [ HideSpawnMenu ]
+  name: Blue Wizard
   components:
   - type: Loadout
     prototypes:
