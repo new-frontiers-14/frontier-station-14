@@ -157,6 +157,12 @@ public sealed partial class MaterialReclaimerComponent : Component
     /// </summary>
     [DataField]
     public bool ProcessMaterials = true;
+    
+    /// <summary>
+    /// If false, machine will not spill excess reagents onto the floor when buffer is full
+    /// </summary>
+    [DataField]
+    public bool SpillExcessBuffer = true;
     // End Frontier
 }
 
