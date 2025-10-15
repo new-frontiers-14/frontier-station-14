@@ -1,4 +1,4 @@
-# Teapot of infinite tea
+#region Teapot
 - type: entity
   id: DrinkTeapotEndless
   parent: [ DrinkTeapot, BaseC3WizardContraband ]
@@ -26,7 +26,7 @@
     - Tea
     quantity: 10
 
-# Wallet of boundless greed
+#region Wallet
 - type: entity
   id: ClothingWalletInfiniteGreed
   parent: [ ClothingWalletLeatherBrown, BaseC3WizardContraband ]
@@ -39,7 +39,7 @@
   - type: MagnetPickup
     magnetEnabled: true
 
-# The Shaker (it's just shaking shaker)
+#region The Shaker
 - type: entity
   id: DrinkShakerShaking
   parent: [ DrinkShaker, BaseC3WizardContraband ]
@@ -79,7 +79,7 @@
       params:
         variation: 0.125
 
-# Animated mop (cleanbot variant)
+#region Mop
 - type: entity
   parent: [ MobCleanBot, BaseC3WizardContraband ]
   id: MobCleanBotWizard
@@ -111,7 +111,7 @@
       params:
         variation: 0.2
 
-# Sandals with planewalker socks (magboots that don't need grid)
+#region Sandals
 - type: entity
   id: ClothingShoesWizardMagboots
   parent: [ ClothingShoesBaseButcherable, BaseC3WizardContraband ]
@@ -135,9 +135,9 @@
     walkModifier: 1.0
     sprintModifier: 1.0
 
-# Sash of holding (with cursed gridinv layout ofc)
+#region Sash of holding
 
-# "Bottomless" gas canister, made by WizFed brand "Bottomless" tm, (c)
+#region Inf. canister
 - type: entity
   id: WizardGasCanisterBottomless
   parent: [ GasCanister, BaseC3WizardContraband ]
@@ -186,7 +186,7 @@
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
 
-# "Bottomless" gas tank, made by WizFed brand "Bottomless" tm, (c)
+#region Inf. gas tank
 - type: entity
   id: GasTankWizardBottomless
   parent: [ EmergencyOxygenTank, BaseC3WizardContraband ]
@@ -203,3 +203,175 @@
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency_extended.rsi # placeholder
+
+#region Singing rock
+- type: entity
+  parent: [ BaseMachine, BaseC3WizardContraband ]
+  id: SingingRock
+  name: singing rock
+  description: A rock with charming, melodic voice.
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_rockssolid.rsi
+    layers:
+    - state: rocksolid03
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Transform
+    anchored: true
+  - type: Jukebox
+    onState: rocksolid03
+    offState: rocksolid03
+    selectState: rocksolid03
+  - type: Appearance
+  - type: ExtensionCableReceiver
+  - type: ActivatableUI
+    key: enum.JukeboxUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+        enum.JukeboxUiKey.Key:
+          type: JukeboxBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+
+#region Jar of fairies
+
+#region cloak of holding
+
+#region Wings
+- type: entity
+  parent: [ BaseJetpack, BaseC3WizardContraband ]
+  id: FairyDragonWings
+  name: fairy dragon wings
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi
+  - type: Jetpack
+    moleUsage: 0.00020
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 50
+      temperature: 293.15
+      moles:
+        - 10.25689525 # oxygen
+        - 10.25689525 # nitrogen
+
+#region Ravenbar
+- type: entity
+  parent: [ BaseCrowbar, BaseC3WizardContraband ]
+  id: NFRavenbar
+  name: ravenbar
+  description: A multipurpose tool to pry open doors and fight interdimensional invaders.
+  components:
+  - type: Sprite
+    state: icon
+  - type: Item
+    storedSprite:
+      sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: _NF prefix
+      state: storage
+  - type: Prying
+    speedModifier: 2
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+    useSound: /Audio/Items/jaws_pry.ogg
+
+#region scarf of warmth
+- type: entity
+  parent: [ ClothingNeckScarfWizardPurple, BaseC3WizardContraband ]
+  id: ClothingNeckScarfWizardWarmth
+  name: scarf of warmth
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        color: "#4593a5"
+      - state: icon-unshaded
+        shader: unshaded
+        color: "#A65746"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#4593a5"
+      - state: inhand-left-unshaded
+        shader: unshaded
+        color: "#A65746"
+      right:
+      - state: inhand-right
+        color: "#4593a5"
+      - state: inhand-right-unshaded
+        shader: unshaded
+        color: "#A65746"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#4593a5"
+        map: [ "wizard_stole_base" ]
+      - state: equipped-NECK-unshaded-01
+        map: [ "wizard_stole_runes" ]
+        shader: unshaded
+        color: "#A65746"
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.1
+  - type: RandomSprite
+    available:
+      - wizard_stole_base:
+          equipped-NECK: WizardMagicColorsPurple
+        wizard_stole_runes:
+          equipped-NECK-unshaded-01: WizardMagicColorsPurple
+          equipped-NECK-unshaded-02: WizardMagicColorsPurple
+          equipped-NECK-unshaded-03: WizardMagicColorsPurple
+
+#region Infernal Core
+- type: entity
+  parent: [ BaseItem, BaseGenerator, BaseC3WizardContraband ]
+  id: NFGeneratorWizardInfernalCore5kW
+  suffix: 5kW, Anchored
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/pyro_anom.rsi
+    state: anom
+    snapCardinals: true
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: PowerSupplier
+    supplyRate: 5000
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: GeneratorExhaustGas
+    gasType: Plasma
+    moleRatio: 0.25
