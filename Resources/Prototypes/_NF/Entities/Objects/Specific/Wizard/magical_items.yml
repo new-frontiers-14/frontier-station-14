@@ -28,7 +28,7 @@
 
 # Wallet of boundless greed
 - type: entity
-  id: ClothingWalletInfiniteGrid
+  id: ClothingWalletInfiniteGreed
   parent: [ ClothingWalletLeatherBrown, BaseC3WizardContraband ]
   name: the wallet of boundless greed
   description: Surprisingly thick. Careful not to lose it, and don't sit on it.
@@ -37,13 +37,13 @@
     sprite: _NF/Clothing/Wallet/leather.rsi # placeholder
   - type: Dumpable
   - type: MagnetPickup
-    magnetEnabled: false
+    magnetEnabled: true
 
 # The Shaker (it's just shaking shaker)
 - type: entity
   id: DrinkShakerShaking
   parent: [ DrinkShaker, BaseC3WizardContraband ]
-  name: the shaker
+  name: The Shaker
   components:
   - type: Sprite
     sprite: Objects/Consumable/Drinks/shaker.rsi # placeholder
@@ -128,6 +128,8 @@
   - type: ComponentToggler
     components:
     - type: NoSlip
+    - type: MovementIgnoreGravity
+    - type: ProtectedFromStepTriggers
   - type: Magboots
   - type: ClothingSpeedModifier
     walkModifier: 1.0

@@ -1,141 +1,143 @@
-#region T1 apprentice
-
-#region T2 adept
+#region T1: apprentice
 - type: startingGear
-  id: NPCWizardAdeptBlueGear
+  id: NpcGearWizardBlueApprentice
   equipment:
     head: ClothingHeadHatHoodTacticalWizardBlue
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWizardBlue
     outerClothing: ClothingOuterRobeTacticalWizardBlue
-    mask: ClothingMaskWizardBlue
     gloves: ClothingHandsGlovesFingerless
-  inhand:
-    - WeaponInertStaffWizardElementalAdept
-
-#region T3 master
-- type: startingGear
-  id: NPCWizardMasterBlueGear
-  equipment:
-    head: ClothingHeadHatHoodTacticalWizardBlue
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWizardBlue
-    neck: ClothingNeckScarfWizardBlue
-    outerClothing: ClothingOuterRobeTacticalWizardBlue
-    mask: ClothingMaskWizardBlue
-    gloves: ClothingHandsGlovesFingerless
-  inhand:
-    - WeaponInertStaffWizardLightningAdept
-
-# Wizard
-- type: startingGear
-  id: NPCWizardBlueGear
-  equipment:
-    head: ClothingHeadHatHoodTacticalWizardBlue
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    neck: ClothingNeckScarfStripedLightBlue
-    outerClothing: ClothingOuterWizard
+    shoes: ClothingShoesBootsJack
+    back: NFBlueWizardGiftBoxApprentice
   inhand:
     - WeaponInertStaffWizardElementalAdept
 
 - type: startingGear
-  id: NPCWizardRedGear
-  equipment:
-    head: ClothingHeadHatRedwizard
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    neck: ClothingNeckScarfStripedRed
-    outerClothing: ClothingOuterWizardRed
-  inhand:
-    - WeaponInertStaffWizardBoltFireAdept
-
-- type: startingGear
-  id: NPCWizardVioletGear
-  equipment:
-    head: ClothingHeadHatVioletwizard
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    neck: ClothingNeckScarfStripedPurple
-    outerClothing: ClothingOuterWizardViolet
-  inhand:
-    - WeaponInertStaffWizardBoltMagicAdept
-
-- type: startingGear
-  id: NPCWizardSoapGear
+  id: NpcGearWizardSoapApprentice
   equipment:
     head: ClothingHeadHatRedwizard
     mask: ClothingMaskClown
     jumpsuit: ClothingUniformJumpsuitClown
     shoes: ClothingShoesClown
     outerClothing: ClothingOuterClownPriest
-    pocket1: BikeHorn
+    back: NFRedWizardGiftBoxApprentice
   inhand:
      - WeaponInertStaffWizardSoapAdept
 
 - type: startingGear
-  id: NPCWizardBrickGear
+  id: NpcGearWizardPurpleApprentice
   equipment:
-    head: ClothingHeadHatBrickwizard
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    # neck: ClothingNeckScarfStripedRed - Does not need neck slot
-    outerClothing: ClothingOuterWizardBrick
+    head: ClothingHeadHatHoodTacticalWizardPurple
+    outerClothing: ClothingOuterRobeTacticalWizardPurple
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFPurpleWizardGiftBoxApprentice
   inhand:
-    - WeaponInertStaffWizardBrickAdept
+    - WeaponInertStaffWizardCausticAdept
 
-# Hardsuits
+#region T2: adept
 - type: startingGear
-  id: NPCWizardBlueHardsuitGear
+  id: NpcGearWizardAdeptBlue
   equipment:
-    head: ClothingHeadHelmetWizardHelm
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    neck: ClothingNeckScarfStripedLightBlue
-    outerClothing: ClothingOuterArmorMagusblue # Well, it's not a hardsuit but whatever
+    head: ClothingHeadHatHoodTacticalWizardBlue
+    mask: ClothingMaskWizardBlue
+    neck: ClothingNeckScarfWizardBlue
+    outerClothing: ClothingOuterRobeTacticalWizardBlue
+    belt: ClothingBeltWizardBlue
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFBlueWizardGiftBoxAdept
   inhand:
-    - WeaponInertStaffWizardElementalAdept
+    - WeaponInertStaffWizardIceAdept
 
 - type: startingGear
-  id: NPCWizardRedHardsuitGear
+  id: NpcGearWizardAdeptRed
   equipment:
-    head: ClothingHeadHelmetWizardHelm
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    neck: ClothingNeckScarfStripedRed
-    outerClothing: ClothingOuterArmorMagusred # Well, it's not a hardsuit but whatever
+    head: ClothingHeadHatHoodTacticalWizardRed
+    mask: ClothingMaskWizardRed
+    neck: ClothingNeckScarfWizardRed
+    outerClothing: ClothingOuterRobeTacticalWizardRed
+    belt: ClothingBeltWizardRed
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFRedWizardGiftBoxAdept
   inhand:
     - WeaponInertStaffWizardBoltFireAdept
 
 - type: startingGear
-  id: NPCWizardVioletHardsuitGear
+  id: NpcGearWizardAdeptPurple
   equipment:
-    head: ClothingHeadHelmetWizardHelm
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
-    neck: ClothingNeckScarfStripedPurple
-    outerClothing: ClothingOuterHardsuitWizard
+    head: ClothingHeadHatHoodTacticalWizardPurple
+    mask: ClothingMaskWizardPurple
+    neck: ClothingNeckScarfWizardPurple
+    outerClothing: ClothingOuterRobeTacticalWizardPurple
+    belt: ClothingBeltWizardPurple
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFPurpleWizardGiftBoxAdept
   inhand:
     - WeaponInertStaffWizardBoltMagicAdept
 
 - type: startingGear
-  id: NPCWizardSoapHardsuitGear
+  id: NpcGearWizardAdeptBrick
+  equipment:
+    head: ClothingHeadHatBrickwizard
+    neck: ClothingNeckScarfWizardRed
+    outerClothing: ClothingOuterWizardBrick
+    belt: ClothingBeltWizardRed
+    shoes: ClothingShoesWizard
+    back: NFRedWizardGiftBoxAdept
+  inhand:
+    - WeaponInertStaffWizardBrickAdept
+
+#region T3: master
+- type: startingGear
+  id: NpcGearWizardMasterBlue
   equipment:
     head: ClothingHeadHelmetWizardHelm
-    mask: ClothingMaskClown
-    jumpsuit: ClothingUniformJumpsuitClown
-    shoes: ClothingShoesClown
-    neck: ClothingNeckScarfStripedRed
-    outerClothing: ClothingOuterHardsuitClown
+    mask: ClothingMaskWizardBlue
+    neck: ClothingNeckScarfWizardBlue
+    outerClothing: ClothingOuterArmorMagusblue
+    belt: ClothingBeltWizardBlue
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFBlueWizardGiftBoxMaster
   inhand:
-    - WeaponInertStaffWizardSoapAdept
+    - WeaponInertStaffWizardLightningAdept
 
 - type: startingGear
-  id: NPCWizardBrickHardsuitGear
+  id: NpcGearWizardMasterRed
+  equipment:
+    head: ClothingHeadHelmetWizardHelm
+    neck: ClothingNeckScarfWizardRed
+    outerClothing: ClothingOuterArmorMagusred
+    belt: ClothingBeltWizardRed
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFRedWizardGiftBoxMaster
+  inhand:
+    - WeaponInertStaffWizardBoltFireAdept
+
+- type: startingGear
+  id: NpcGearWizardMasterPurple
+  equipment:
+    head: ClothingHeadHelmetWizardHelm
+    neck: ClothingNeckScarfWizardPurple
+    outerClothing: ClothingOuterHardsuitWizard
+    belt: ClothingBeltWizardPurple
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFPurpleWizardGiftBoxMaster
+  inhand:
+    - WeaponInertStaffWizardBoltFireAdept
+
+- type: startingGear
+  id: NpcGearWizardMasterBrick
   equipment:
     head: ClothingHeadHelmetHardsuitWizardBrick
-    shoes: ClothingShoesWizard
-    belt: ClothingBeltWand
+    neck: ClothingNeckScarfWizardRed
     outerClothing: ClothingOuterHardsuitWizardBrick
+    belt: ClothingBeltWizardRed
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: NFRedWizardGiftBoxMaster
   inhand:
     - WeaponInertStaffWizardBrickAdept

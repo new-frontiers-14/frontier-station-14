@@ -1,45 +1,55 @@
-# Random Spawners
+#region Random Spawners
 - type: entity
-  name: Random Wizard Spawner
-  id: SpawnMobWizFedWizard
-  suffix: AI
   parent: MarkerBase
+  id: SpawnNFMobWizardApprentice
+  name: random apprentice wizard spawner
+  suffix: AI, Hostile, T1
   components:
   - type: Sprite
     layers:
       - state: red
+      - sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+        state: crystal-staff
       - state: ai
   - type: RandomSpawner
     prototypes:
-    - MobWizFedWizardBlue
-    - MobWizFedWizardRed
-    - MobWizFedWizardViolet
-    - MobWizFedWizardBrick
+    - NFMobWizardWizardBlueApprentice
+    - NFMobWizardWizardPurpleApprentice
     rarePrototypes:
-    - MobWizFedWizardSoap
+    - NFMobWizardWizardApprenticeSoap
     rareChance: 0.1
 
 - type: entity
-  name: Random Wizard Spawner
-  id: SpawnMobWizFedWizardHardsuit
-  suffix: AI, Hardsuit
-  parent: MarkerBase
+  parent: SpawnNFMobWizardApprentice
+  id: SpawnNFMobWizardAdept
+  name: random adept wizard spawner
+  suffix: AI, Hostile, T2
   components:
-  - type: Sprite
-    layers:
-      - state: red
-      - state: ai
   - type: RandomSpawner
     prototypes:
-    - MobWizFedWizardBlueHardsuit
-    - MobWizFedWizardRedHardsuit
-    - MobWizFedWizardVioletHardsuit
-    - MobWizFedWizardBrickHardsuit
+    - NFMobWizardAdeptBlue
+    - NFMobWizardAdeptRed
+    - NFMobWizardAdeptPurple
     rarePrototypes:
-    - MobWizFedWizardSoapHardsuit
+    - NFMobWizardAdeptBrick
     rareChance: 0.1
 
-# Fixed Spawners
+- type: entity
+  parent: SpawnNFMobWizardApprentice
+  id: SpawnNFMobWizardMaster
+  name: random master wizard spawner
+  suffix: AI, Hostile, T3
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - NFMobWizardMasterBlue
+    - NFMobWizardMasterRed
+    - NFMobWizardMasterPurple
+    rarePrototypes:
+    - NFMobWizardMasterBrick
+    rareChance: 0.1
+
+#region Fixed Spawners
 - type: entity
   name: Blue Wizard Spawner
   id: SpawnMobWizFedWizardBlue
@@ -152,20 +162,6 @@
   - type: ConditionalSpawner
     prototypes:
       - MobWizFedWizardVioletHardsuit
-
-- type: entity
-  name: Soap Wizard Spawner
-  suffix: AI, Hardsuit
-  id: SpawnMobWizFedWizardSoapHardsuit
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: red
-      - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-      - MobWizFedWizardSoapHardsuit
 
 - type: entity
   name: Brick Wizard Spawner
