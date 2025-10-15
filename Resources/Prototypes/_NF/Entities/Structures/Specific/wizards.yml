@@ -1,3 +1,4 @@
+#region staff altar
 - type: entity
   parent: BaseItemRecharger # [ BaseMachine, SmallConstructibleMachine ]
   id: StaffRechargerWizard
@@ -42,3 +43,122 @@
           - WizardStaffRechargeable
   - type: StaticPrice
     price: 250
+
+#region floor decor
+- type: entity
+  parent: BaseRune
+  id: WizardGlowingFloorBlue
+  name: rune of concentration
+  suffix: Decor
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/runes.rsi
+    layers:
+    - state: rune-outer-01
+      shader: unshaded
+      map: [ "rune_outer" ]
+    - state: rune-inner-02
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - state: rune-center-02
+      shader: unshaded
+      map: [ "rune_center" ]
+    - state: rune-words-02
+      shader: unshaded
+      map: [ "rune_words" ]
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: WizardMagicColorsBlue
+        rune_inner:
+          rune-inner-01: WizardMagicColorsBlue
+          rune-inner-02: WizardMagicColorsBlue
+          rune-inner-03: WizardMagicColorsBlue
+          rune-inner-04: WizardMagicColorsBlue
+          rune-inner-05: WizardMagicColorsBlue
+          rune-inner-06: WizardMagicColorsBlue
+          rune-inner-07: WizardMagicColorsBlue
+        rune_center:
+          rune-center-01: WizardMagicColorsBlue
+          rune-center-02: WizardMagicColorsBlue
+          rune-center-03: WizardMagicColorsBlue
+          rune-center-04: WizardMagicColorsBlue
+          rune-center-05: WizardMagicColorsBlue
+          rune-center-06: WizardMagicColorsBlue
+          rune-center-07: WizardMagicColorsBlue
+        rune_words:
+          rune-words-01: WizardMagicColorsBlue
+          rune-words-02: WizardMagicColorsBlue
+          rune-words-03: WizardMagicColorsBlue
+          rune-words-04: WizardMagicColorsBlue
+          rune-words-05: WizardMagicColorsBlue
+          rune-words-06: WizardMagicColorsBlue
+          rune-words-07: WizardMagicColorsBlue
+
+- type: entity
+  parent: WizardGlowingFloorBlue
+  id: WizardGlowingFloorRed
+  name: rune of anger
+  components:
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: WizardMagicColorsRed
+        rune_inner:
+          rune-inner-01: WizardMagicColorsRed
+          rune-inner-02: WizardMagicColorsRed
+          rune-inner-03: WizardMagicColorsRed
+          rune-inner-04: WizardMagicColorsRed
+          rune-inner-05: WizardMagicColorsRed
+          rune-inner-06: WizardMagicColorsRed
+          rune-inner-07: WizardMagicColorsRed
+        rune_center:
+          rune-center-01: WizardMagicColorsRed
+          rune-center-02: WizardMagicColorsRed
+          rune-center-03: WizardMagicColorsRed
+          rune-center-04: WizardMagicColorsRed
+          rune-center-05: WizardMagicColorsRed
+          rune-center-06: WizardMagicColorsRed
+          rune-center-07: WizardMagicColorsRed
+        rune_words:
+          rune-words-01: WizardMagicColorsRed
+          rune-words-02: WizardMagicColorsRed
+          rune-words-03: WizardMagicColorsRed
+          rune-words-04: WizardMagicColorsRed
+          rune-words-05: WizardMagicColorsRed
+          rune-words-06: WizardMagicColorsRed
+          rune-words-07: WizardMagicColorsRed
+
+- type: entity
+  parent: WizardGlowingFloorBlue
+  id: WizardGlowingFloorPurple
+  name: rune of knowledge
+  components:
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: WizardMagicColorsPurple
+        rune_inner:
+          rune-inner-01: WizardMagicColorsPurple
+          rune-inner-02: WizardMagicColorsPurple
+          rune-inner-03: WizardMagicColorsPurple
+          rune-inner-04: WizardMagicColorsPurple
+          rune-inner-05: WizardMagicColorsPurple
+          rune-inner-06: WizardMagicColorsPurple
+          rune-inner-07: WizardMagicColorsPurple
+        rune_center:
+          rune-center-01: WizardMagicColorsPurple
+          rune-center-02: WizardMagicColorsPurple
+          rune-center-03: WizardMagicColorsPurple
+          rune-center-04: WizardMagicColorsPurple
+          rune-center-05: WizardMagicColorsPurple
+          rune-center-06: WizardMagicColorsPurple
+          rune-center-07: WizardMagicColorsPurple
+        rune_words:
+          rune-words-01: WizardMagicColorsPurple
+          rune-words-02: WizardMagicColorsPurple
+          rune-words-03: WizardMagicColorsPurple
+          rune-words-04: WizardMagicColorsPurple
+          rune-words-05: WizardMagicColorsPurple
+          rune-words-06: WizardMagicColorsPurple
+          rune-words-07: WizardMagicColorsPurple

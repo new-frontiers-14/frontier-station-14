@@ -492,6 +492,51 @@
     factions:
     - NanoTrasen
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - MobStaminaFodder
+  - BaseC3MobCreatureNoValue
+  - MobBloodCultShade
+  - NFMobTimedDespawn180
+  id: MobBloodCultShadeNanoTrasen
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/shade.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: shade
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: shade
+        BaseUnshaded: unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: KillerTomatoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
 #region Turrets
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
