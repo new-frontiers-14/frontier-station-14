@@ -1,0 +1,57 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseInflatablesRecipe
+  categories:
+  - NFInflatables
+  completetime: 0.8
+  materials:
+    Plastic: 75
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseInflatablesComplexRecipe
+  parent: NFBaseInflatablesRecipe
+  completetime: 2
+  materials:
+    Steel: 150
+    Plastic: 150
+
+# Recipes
+
+- type: latheRecipe
+  id: NFInflatableWallStack1
+  parent: NFBaseInflatablesRecipe
+  result: NFInflatableWallStack1
+  name: lathe-recipe-NFInflatableWallStack1-name
+
+- type: latheRecipe
+  id: NFInflatableWindowStack1
+  parent: NFBaseInflatablesRecipe
+  result: NFInflatableWindowStack1
+  name: lathe-recipe-NFInflatableWindowStack1-name
+
+- type: latheRecipe
+  id: NFInflatableDoorStack1
+  parent: NFBaseInflatablesRecipe
+  result: NFInflatableDoorStack1
+  name: lathe-recipe-NFInflatableDoorStack1-name
+
+- type: latheRecipe
+  id: NFInflatableDoorWindowStack1
+  parent: NFBaseInflatablesRecipe
+  result: NFInflatableDoorWindowStack1
+  name: lathe-recipe-NFInflatableDoorWindowStack1-name
+
+- type: latheRecipe
+  id: NFInflatableDockStack1
+  parent: NFBaseInflatablesComplexRecipe
+  result: NFInflatableDockStack1
+  name: lathe-recipe-NFInflatableDockStack1-name
+
+- type: latheRecipe
+  id: NFInflatableCrateStack1
+  parent: NFBaseInflatablesRecipe
+  result: NFInflatableCrateStack1
+  name: lathe-recipe-NFInflatableCrateStack1-name
