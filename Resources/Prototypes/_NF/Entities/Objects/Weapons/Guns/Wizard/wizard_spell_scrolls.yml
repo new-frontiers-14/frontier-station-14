@@ -9,10 +9,17 @@
   description: Rolled piece of paper emanating eldritch energies.
   components:
   - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
   - type: Item
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
     size: Small
     shape:
     - 0,0,1,0
+    inhandVisuals:
+      left:
+      - state: scroll-rolled-inhand-left
+      right:
+      - state: scroll-rolled-inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: SpellScrollBase
@@ -21,32 +28,32 @@
 
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [ BaseItem, ConjuredObject60 ]
   id: SpellScrollBase
   name: spell scroll
-  description: A piece of paper with arcane inscriptions on it.
+  description: A piece of paper with arcane inscriptions on it. The scroll will vanish within next minute, better read those magic words fast!
   components:
   - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
   - type: Item
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
     size: Small
     shape:
     - 0,0,1,1
-  - type: MagazineVisuals
-    magState: scroll
-    steps: 1
-    zeroVisible: true
+    inhandVisuals:
+      left:
+      - state: scroll-text-inhand-left
+      - state: scroll-text-glow-inhand-left
+        color: "#89CFF0"
+        shader: unshaded
+      right:
+      - state: scroll-text-inhand-right
+      - state: scroll-text-glow-inhand-right
+        color: "#89CFF0"
+        shader: unshaded
   - type: Tag
     tags:
     - Sidearm
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    soundGunshot:
-      path: /Audio/Effects/teleport_arrival.ogg
-  - type: BasicEntityAmmoProvider
-    proto: WaterElementalConjuredStaff
-    capacity: 1
-    count: 1
   - type: StaticPrice
     price: 500
 
@@ -84,17 +91,17 @@
           rune-words-06: WizardMagicColorsBlue
           rune-words-07: WizardMagicColorsBlue
 
-# Variants
-#region Offencive
+#region blue curacao scroll
 - type: entity
   parent: SpellScrollRolled
   id: SpellScrollRolledElementalWater
   name: conjure water elemental spell scroll
   components:
   - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
     layers:
     - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "cyan"
     - state: scroll-seal-rolled
       color: "blue"
       shader: unshaded
@@ -105,15 +112,16 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  parent: SpellScrollBaseRandomRuneVisuals
+  parent: SpellScrollBase
   id: SpellScrollElementalWater
   categories: [ HideSpawnMenu ]
   name: conjure water elemental spell scroll
   components:
   - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
     layers:
     - state: scroll-text
+    - state: scroll-text-ribbon
+      color: "cyan"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
       state: rune-outer-01
       color: "cyan"
@@ -145,11 +153,532 @@
     - state: scroll-seal-unrolled
       color: "blue"
       shader: unshaded
-  - type: BasicEntityAmmoProvider
-    proto: WaterElementalConjuredStaff
-    capacity: 1
-    count: 1
+  - type: Spellbook
+    spellActions:
+      ActionConjureWaterElementalSpell: 1
 
-#region Utility
+#region fireball scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledFireball
+  name: fireball spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "red"
+    - state: scroll-seal-rolled
+      color: "orange"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollFireball
+    sound:
+      path: /Audio/Effects/unwrap.ogg
 
-#region Memes
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollFireball
+  categories: [ HideSpawnMenu ]
+  name: fireball spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - state: scroll-text-ribbon
+      color: "red"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_outer" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: "orange"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionFireball: 1
+
+#region smoke scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledSmoke
+  name: smoke spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "gray"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollSmoke
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollSmoke
+  categories: [ HideSpawnMenu ]
+  name: smoke spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-03
+      color: "gray"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-03
+      color: "gray"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-03
+      color: "gray"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: "gray"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionSmoke: 1
+
+#region force wall scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledWall
+  name: force wall spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "blue"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollWall
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollWall
+  categories: [ HideSpawnMenu ]
+  name: force wall spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_outer" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-04
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-04
+      color: "blue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-04
+      color: "blue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: "cyan"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionForceWall: 4
+
+#region magivend scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledMagiVend
+  name: conjure magivend spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "#8130f2"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollMagiVend
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollMagiVend
+  categories: [ HideSpawnMenu ]
+  name: conjure magivend spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "#8130f2"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_outer" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-05
+      color: "#8130f2"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-05
+      color: "#8130f2"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-05
+      color: "#8130f2"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: "#ffe420"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionConjureMagiVendSpell: 1
+
+#region flash rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneFlash
+  name: flash rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "pink"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneFlash
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneFlash
+  categories: [ HideSpawnMenu ]
+  name: flash rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "lightblue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-04
+      color: "lightblue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-06
+      color: "lightblue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: "pink"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionFlashRune: 1
+
+#region ignite rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneIgnite
+  name: ignite rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: '#FF0000'
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneIgnite
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneIgnite
+  categories: [ HideSpawnMenu ]
+  name: ignite rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-06
+      color: '#FF000055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-06
+      color: '#FF000055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-06
+      color: '#FF000055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: '#FF0000'
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionIgniteRune: 1
+
+#region stun rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneStun
+  name: stun rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: '#FFFF00'
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneStun
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneStun
+  categories: [ HideSpawnMenu ]
+  name: stun rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-04
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-03
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: '#FFFF00'
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionStunRune: 1
+
+#region explosion rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneExplosion
+  name: explosion rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "orange"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneExplosion
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneExplosion
+  categories: [ HideSpawnMenu ]
+  name: explosion rune spell scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_center" ]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+      map: [ "rune_words" ]
+    - state: scroll-seal-unrolled
+      color: "orange"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionExplosionRune: 1
+
+#region not spell scrolls
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledWizardStaffRechargerAltar
+  name: wizard staff altar binding scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#667566"
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-seal-rolled
+      color: "cyan"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollWizardStaffRechargerAltar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledCultStaffRechargerAltar
+  name: blood cult staff altar binding scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#ffb2b2"
+    - state: scroll-rolled-ribbon
+      color: "#721313"
+    - state: scroll-seal-rolled
+      color: "red"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollCultStaffRechargerAltar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledCultForge
+  name: cult forge binding scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#ffb2b2"
+    - state: scroll-rolled-ribbon
+      color: "#721313"
+    - state: scroll-seal-rolled
+      color: "orange"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollCultForge
+    sound:
+      path: /Audio/Effects/unwrap.ogg
