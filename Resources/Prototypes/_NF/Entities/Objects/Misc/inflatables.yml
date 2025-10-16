@@ -1,0 +1,302 @@
+#region wall
+- type: entity
+  parent: InflatableWall
+  id: NFInflatableWall
+  name: inflatable wall
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Occluder
+  - type: IsRoof
+  - type: PlacementReplacement
+    key: walls
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Objects/Misc/inflatable_wall.rsi
+    state: inflatable_wall
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 15
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableWallStack1
+    disassembleTime: 3
+
+#region window
+- type: entity
+  parent: InflatableWall
+  id: NFInflatableWindow
+  name: inflatable window
+  description: An inflated membrane with semitransparent window. Activate to deflate. Do not puncture.
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: WallMount
+    arc: 360 # interact despite grilles
+  - type: BlockWeather
+  - type: PlacementReplacement
+    key: Window
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Objects/Misc/inflatable_window.rsi
+    state: inflatable_window
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 15
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer # Blocks lasers, but not LoS
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableWindowStack1
+    disassembleTime: 3
+
+#region doors
+- type: entity
+  parent: BaseMaterialDoor
+  id: NFInflatableDoor
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/inflatable_door.rsi
+    state: closed
+  - type: Door
+    openSound:
+      path: /Audio/Misc/zip.ogg
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableDoorStack1
+    disassembleTime: 3
+
+- type: entity
+  parent: NFInflatableDoor
+  id: NFInflatableDoorWindow
+  name: inflatable windoor
+  suffix: Frontier
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/inflatable_door_window.rsi
+    state: closed
+  - type: Door
+    occludes: false
+    openSound:
+      path: /Audio/Misc/zip.ogg
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+  - type: Occluder
+    enabled: false
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableDoorWindowStack1
+    disassembleTime: 3
+
+- type: entity
+  parent: NFInflatableDoor
+  id: NFInflatableDock
+  name: inflatable external airlock
+  description: An inflated membrane with reinforced hardpoints, capable of docking. Activate to deflate. Do not puncture.
+  suffix: Frontier, Docking
+  components:
+  - type: Docking
+  - type: NavMapDoor
+  - type: Sprite
+    sprite: _NF/Objects/Misc/inflatable_dock.rsi
+    state: closed
+  - type: Door
+    openSound:
+      path: /Audio/Misc/zip.ogg
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+      docking:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+          position: "0,-0.5"
+        hard: false
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+      - South
+  - type: Tag
+    tags:
+      - ForceNoFixRotations
+  - type: DisassembleOnAltVerb
+    prototypeToSpawn: NFInflatableDockStack1
+    disassembleTime: 3
+
+#region floor
+- type: tile
+  id: NFInflatablePlating
+  name: tiles-inflatable-plating
+  sprite: /Textures/_NF/Objects/Misc/inflatable_floor.rsi/inflatable-floor.png
+  baseTurf: Space
+  isSubfloor: true
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepClown
+    params:
+      volume: -10
+      variation: 0.17
+  itemDrop: NFInflatableFloorStack1
+  friction: 1.5
+  heatCapacity: 10000
+
+#region crate
+# had to copy most of the CrateGeneric defenition because of undesirable inheritance of construction graph
+- type: entity
+  name: inflatable crate
+  parent: BaseStructureDynamic
+  id: NFInflatableCrate
+  description: A single use inflated storage container. Can not be deflated. Do not puncture.
+  suffix: Frontier
+  components:
+  - type: Animateable
+  - type: Transform
+    noRot: true
+  - type: InteractionOutline
+  - type: PlaceableSurface
+    isPlaceable: false # defaults to closed.
+  - type: Icon
+    sprite: _NF/Objects/Misc/inflatable_crate.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    sprite: _NF/Objects/Misc/inflatable_crate.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 15
+        mask:
+        - CrateMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/pop_high.ogg
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
+  - type: EntityStorage
+    capacity: 20
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+    openSound:
+      path: /Audio/Misc/zip.ogg
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+        components: # Frontier
+        - Blueprint # Frontier
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      paper_label: !type:ContainerSlot
+  - type: ItemSlots
+  # Commented out DisassembleOnAltVerb because it deletes stored entities, but maybe one day this wont be a problem
+  #- type: DisassembleOnAltVerb
+    #prototypeToSpawn: NFInflatableCrateStack1
+    #disassembleTime: 3
+  - type: StaticPrice
+    price: 4
+  - type: RequireProjectileTarget
+  - type: NFCrate # Frontier

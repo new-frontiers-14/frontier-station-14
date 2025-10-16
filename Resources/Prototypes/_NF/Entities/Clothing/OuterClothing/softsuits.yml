@@ -6,6 +6,7 @@
   - ClothingOuterEVASuitBase
   - ClothingOuterHardsuitBase
   id: NFClothingOuterEVASuitBase
+  suffix: Frontier
   components:
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -33,13 +34,13 @@
     - SuitEVA
     - WhitelistChameleon
 
-#FSB suit
+#FS suit
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
   id: ClothingOuterEVASuitFsb
   name: FSB EVA suit
-  description: The standard issue EVA suit for Far Star Biotech corporation vessels. It comes with two cupholders.
+  description: The standard issue EVA suit for Far Star Biotech vessels. It comes with two cupholders.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
@@ -47,4 +48,18 @@
     sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitFSB
+    slot: head
+
+- type: entity
+  parent: NFClothingOuterEVASuitBase
+  id: ClothingOuterEVASuitFsc
+  name: FSC EVA suit
+  description: The standard issue EVA suit for Far Star Commerce vessels. It comes pre-loaded with elbow grease.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/fsc_voidsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/fsc_voidsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitFSC
     slot: head
