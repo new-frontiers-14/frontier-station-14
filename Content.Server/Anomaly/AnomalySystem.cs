@@ -251,16 +251,24 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (ent.Comp.CrystalPrototype == null || ent.Comp.PointsPerCrystalUnit <= 0)
             return;
 
-        var pointCost = ent.Comp.PointsPerCrystalUnit;
-        var numCrystals = 0;
-        while (pointCost < ent.Comp.PointsEarned && numCrystals < ent.Comp.MaxCrystals)
-        {
-            pointCost += (int)(pointCost * ent.Comp.PointsPerCrystalMult);
-            numCrystals++;
-        }
+        var numCrystals = GetNumCrystals(ent.Comp);
 
         if (numCrystals > 0)
             _stack.SpawnMultiple(ent.Comp.CrystalPrototype, numCrystals, ent);
     }
+
+    // Calculate how many crystals to spawn.
+    private static int GetNumCrystals(AnomalyComponent comp)
+    {
+        var pointCost = comp.PointsPerCrystalUnit;
+        var numCrystals = 0;
+        while (pointCost < comp.PointsEarned && numCrystals < comp.MaxCrystals)
+        {
+            pointCost += (int)(pointCost * comp.PointsPerCrystalMult);
+            numCrystals++;
+        }
+        return numCrystals;
+    }
+
     // End Frontier: crystal spawning
 }
