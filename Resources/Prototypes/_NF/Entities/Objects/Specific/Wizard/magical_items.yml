@@ -1,3 +1,29 @@
+#region base
+- type: entity
+  abstract: true
+  id: NFDestructibleItems
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
 #region Teapot
 - type: entity
   id: DrinkTeapotEndless
@@ -34,7 +60,24 @@
   description: Surprisingly thick. Careful not to lose it, and don't sit on it.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Wallet/leather.rsi # placeholder
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    layers:
+    - state: closed-wizard
+      map: ["closeLayer"]
+    - state: open-wizard
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"] # scuffed values to deal with ItemMapper complaining
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+    - state: wizard-unshaded
+      shader: unshaded
   - type: Dumpable
   - type: MagnetPickup
     magnetEnabled: true
@@ -130,6 +173,7 @@
     - type: NoSlip
     - type: MovementIgnoreGravity
     - type: ProtectedFromStepTriggers
+    - type: CanMoveInAir
   - type: Magboots
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -137,8 +181,8 @@
 
 #region Inf. canister
 - type: entity
-  id: WizardGasCanisterBottomless
   parent: [ GasCanister, BaseC3WizardContraband ]
+  id: WizardGasCanisterBottomless
   name: bottomless canister
   description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
@@ -148,7 +192,7 @@
         - state: storage
     - type: GasCanister
       gasMixture:
-        volume: 1000000
+        volume: 300000 # 1500[base canister volume] * 20
         moles: # List of gasses for easy reference
           - 0 # oxygen
           - 0 # nitrogen
@@ -197,7 +241,7 @@
     sprite: Objects/Tanks/emergency_extended.rsi # placeholder
   - type: GasTank
     air:
-      volume: 10000
+      volume: 9000
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency_extended.rsi # placeholder
@@ -288,9 +332,9 @@
   components:
   - type: Sprite
     offset: "0.0,0.3"
-    sprite: Structures/Furniture/potted_plants.rsi
+    sprite: _NF/Objects/Specific/Wizard/coin_tree.rsi
+    state: coin-tree
     noRot: true
-    state: plant-21
   - type: Pullable
   - type: Anchorable
   - type: Transform
@@ -306,6 +350,8 @@
           !type:PhysShapeCircle
           radius: 0.3
         density: 350
+        layer:
+        - TableLayer
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -315,12 +361,12 @@
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 2
 
-#region Jar of goblin-fairies
+#region Jar of fairies
 - type: entity
   parent: BaseItem
-  id: JarOfGoblinFairies
-  name: jar of goblin-fairies
-  description: Starter kit for a new apiarist.
+  id: JarOfAngryFairies
+  name: jar of angry fairies
+  description: Careful not to break it if you don't want to feel the wrath of those little cuties.
   components:
     - type: Sprite
       sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
@@ -359,11 +405,24 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseC3WizardContraband ]
   id: ClothingNeckCloakWizardHolding
-  name: cloak of many small things
-  description: Worn by the most skilled salvagers, for one who has mastered space and made the mining asteroid his domain. They don't just hand these things out, y'know?
+  name: wizard's portal cloak of holding
+  description: What happens when your wizardry instructor forbids portal conjuring, yet you do it anyway and attempt to conceal it under your cloak when they are back to check on you?
   components:
   - type: Sprite
-    sprite: Clothing/Neck/Cloaks/miner.rsi
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Item
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-unshaded
+        shader: unshaded
   - type: Storage
     grid:
     - 0,0,3,3
@@ -372,7 +431,7 @@
     - 6,4,7,5
     - 9,2,10,3
     - 9,5,9,5
-    maxItemSize: small
+    maxItemSize: Small
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -429,11 +488,18 @@
   id: FairyDragonWings
   name: fairy dragon wings
   suffix: Filled
+  description: A jetpack fashioned to look like fairy wings. They even make a faint buzzing sound when you fly. Too bad that vacuum doesn't transmit sounds.
   components:
   - type: Sprite
-    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi
+    sprite: _NF/Objects/Specific/Wizard/fairy_wings.rsi
   - type: Clothing
-    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi
+    sprite: _NF/Objects/Specific/Wizard/fairy_wings.rsi
+    slots:
+    - Back
+    - Belt
+    - suitStorage
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/fairy_wings.rsi
   - type: Jetpack
     moleUsage: 0.00020
   - type: GasTank
@@ -450,7 +516,7 @@
   parent: [ BaseCrowbar, BaseC3WizardContraband ]
   id: NFRavenbar
   name: ravenbar
-  description: A multipurpose tool to pry open doors and fight interdimensional invaders.
+  description: CAAAW!
   components:
   - type: Sprite
     state: icon
@@ -470,7 +536,8 @@
 - type: entity
   parent: [ ClothingNeckScarfWizardPurple, BaseC3WizardContraband ]
   id: ClothingNeckScarfWizardWarmth
-  name: scarf of warmth
+  name: wizard scarf of warmth
+  description: You don't feel neither cold nor warm wearing it. Wonder if it keeps you safe from plasmafires?
   components:
   - type: Sprite
     layers:
@@ -521,7 +588,9 @@
 - type: entity
   parent: [ BaseItem, BaseGenerator, BaseC3WizardContraband ]
   id: NFGeneratorWizardInfernalCore5kW
+  name: infernal core
   suffix: 5kW, Anchored
+  description: A small, intensely hot core of magical energy. There is an LV cable port there.
   components:
   - type: Sprite
     sprite: Structures/Specific/Anomalies/pyro_anom.rsi
@@ -546,12 +615,54 @@
 
 #region Flying broom
 - type: entity
+  parent: VehicleKeyHoverbikeNF
+  id: NFVehicleKeyBroom
+  name: flying broom keys
+  description: Cute bibelot.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/broom.rsi
+    state: keys
+  - type: Tag
+    tags:
+    - VehicleKey
+    - FlyingBroomKeys
+
+- type: Tag
+  id: FlyingBroomKeys
+
+- type: entity
   parent: [ NFVehicleHoverbikeKeys, BaseC3WizardContraband ]
   id: NFVehicleFlyingBroomWithKey
   name: flying broom
   suffix: With key
   description: A magically animated broom capable of flight.
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/broom.rsi
+    layers:
+    - state: hull
+      map: [ "broom_wraps" ]
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: lights
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    noRot: true
+  - type: RandomSprite
+    available:
+    - broom_wraps:
+        hull: Sixteen
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: Vehicle
+    renderOver: North, South
+    northOffset: 0, 0
+    southOffset: 0, 0
+    eastOffset: 0, 0
+    westOffset: 0, 0
   - type: ItemSlots
     slots:
       key_slot:
@@ -560,32 +671,72 @@
           requireAll: true
           tags:
           - VehicleKey
-          - HoverbikeKeys
-        startingItem: VehicleKeyHoverbikeNF
+          - FlyingBroomKeys
+        startingItem: NFVehicleKeyBroom
         priority: 1
         insertSound:
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -5
-      bag:
-        name: stored bag
-        whitelist:
-          components:
-            - Storage
-        priority: 2
-        insertSound:
-          path: /Audio/Items/belt_equip.ogg
-          params:
-            volume: -3
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 2
+    color: "#FFC458"
+    mask: /Textures/Effects/LightMasks/cone.png
+    netsync: false
+    autoRot: true
 
 #region wizard's luggage
+- type: entity
+  parent: BaseItem
+  id: CrateWizardLuggageWhistle
+  name: wizard's luggage whistle
+  description: A whistle that summons a wizard's luggage when blown.
+  components:
+  - type: Item
+    sprite: Objects/Fun/whistles.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/whistles.rsi
+    state: trench
+  - type: Clothing
+    sprite: Objects/Fun/whistles.rsi
+    equippedPrefix: trench
+    quickEquip: false
+    slots: neck
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnMobWizardLuggage
+    sound:
+      collection: TrenchWhistle
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnMobWizardLuggage
+  categories: [ HideSpawnMenu ]
+  name: spawn wizard's luggage
+  suffix: AI
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobWizardLuggage
+
 - type: entity
   parent:
   - BaseC3WizardContraband
   - NFInflatableCrate
+  - BaseMob
+  - MobStaminaFodder
+  - MobDamageable
+  - MobCombat
+  - NFMobAtmos
+  - MobBloodstream
+  - MobFlammable
   - MobEnhancedMovement
   - NFMobRoadkillable
-  id: CrateWizardLuggage
+  id: MobWizardLuggage
+  categories: [ HideSpawnMenu ]
   name: wizard's luggage
   components:
   - type: NPCImprintingOnSpawnBehaviour
@@ -609,10 +760,29 @@
     sprite: Structures/Storage/Crates/generic.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/generic.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.40,-0.30,0.40,0.45"
+        density: 350
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
   - type: NPCRetaliation
     attackMemoryLength: 10
-  - type: MobMover
+  - type: Buckle
   - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: ZombieImmune
+  - type: Hands
+  - type: Puller
+  - type: FTLKnockdownImmune
+  - type: NameIdentifier
+    group: GenericNumber
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2
@@ -625,15 +795,11 @@
     speedModifierThresholds:
       40: 0.7
       60: 0.5
-  - type: NameIdentifier
-    group: GenericNumber
   - type: Tag
     tags:
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-  - type: FTLKnockdownImmune
-  - type: ZombieImmune
   - type: EntityStorage
     capacity: 40
     closeSound:
