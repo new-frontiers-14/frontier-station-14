@@ -300,7 +300,6 @@ public sealed partial class CryoSleepSystem : EntitySystem
             //The ID is manually checked for a shuttle deed later, and since your PDA *technically* has an uplink in it, this has to be skipped manually.
             if (slotDefinition.Name == "id")
                 continue;
-            //TODO: Check hand slots for important items
             if (_inventory.TryGetSlotEntity(entity, slotDefinition.Name, out var slotItem))
             {
                 if (ShouldItemWarnOnCryo(slotItem.Value))
