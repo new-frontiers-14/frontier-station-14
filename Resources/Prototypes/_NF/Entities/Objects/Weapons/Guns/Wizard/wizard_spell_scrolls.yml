@@ -25,6 +25,8 @@
     - id: SpellScrollBase
     sound:
       path: /Audio/Effects/unwrap.ogg
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   abstract: true
@@ -54,8 +56,7 @@
   - type: Tag
     tags:
     - Sidearm
-  - type: StaticPrice
-    price: 500
+    - Spellbook
 
 #region blue curacao scroll
 - type: entity
@@ -1026,6 +1027,68 @@
   - type: Spellbook
     spellActions:
       ActionBloodCultDrainedOneSpell: 1
+
+#region lightningball scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledLightningball
+  name: lightningball scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "cyan"
+    - state: scroll-seal-rolled
+      color: "gray"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollLightningball
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollLightningball
+  categories: [ HideSpawnMenu ]
+  name: lightningball scroll
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-text
+    - state: scroll-text-ribbon
+      color: "cyan"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-seal-unrolled
+      color: "gray"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      NFActionTeslaball: 1
 
 #region not spell scrolls
 - type: entity

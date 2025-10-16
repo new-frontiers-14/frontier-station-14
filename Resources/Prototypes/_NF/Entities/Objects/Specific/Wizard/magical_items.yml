@@ -135,8 +135,6 @@
     walkModifier: 1.0
     sprintModifier: 1.0
 
-#region Sash of holding
-
 #region Inf. canister
 - type: entity
   id: WizardGasCanisterBottomless
@@ -251,9 +249,179 @@
         - MachineLayer
         density: 200
 
-#region Jar of fairies
+#region money tree
+- type: entityTable
+  id: TableTreeCoin
+  table: !type:GroupSelector
+    children:
+    - id: TreasureCoinIron
+      weight: 30
+    - id: TreasureCoinIron3
+      weight: 25
+    - id: TreasureCoinSilver
+      weight: 20
+    - id: TreasureCoinSilver3
+      weight: 5
+    - id: TreasureCoinGold
+      weight: 10
+    - id: TreasureCoinGold3
+      weight: 5
+    - id: TreasureCoinAdamantine
+      weight: 5
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnTreeCoin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableTreeCoin
+      prob: 1.00
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: PottedPlantCoinTree
+  name: potted coin tree
+  description: Source of mad riches.
+  components:
+  - type: Sprite
+    offset: "0.0,0.3"
+    sprite: Structures/Furniture/potted_plants.rsi
+    noRot: true
+    state: plant-21
+  - type: Pullable
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 350
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnTreeCoin
+    chance: 0.75
+    intervalSeconds: 120
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+#region Jar of goblin-fairies
+- type: entity
+  parent: BaseItem
+  id: JarOfGoblinFairies
+  name: jar of goblin-fairies
+  description: Starter kit for a new apiarist.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
+      state: seed
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Glass
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MobAngryBeeTimed:
+              min: 1
+              max: 1
+          transferForensics: true
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: DamageOnLand
+      ignoreResistances: true
+      damage:
+        types:
+          Blunt: 3
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Blunt: 3
 
 #region cloak of holding
+- type: entity
+  parent: [ ClothingNeckBase, BaseC3WizardContraband ]
+  id: ClothingNeckCloakWizardHolding
+  name: cloak of many small things
+  description: Worn by the most skilled salvagers, for one who has mastered space and made the mining asteroid his domain. They don't just hand these things out, y'know?
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Cloaks/miner.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    - 5,0,7,2
+    - 0,5,7,5
+    - 6,4,7,5
+    - 9,2,10,3
+    - 9,5,9,5
+    maxItemSize: small
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+#region Sash of holding
+- type: entity
+  parent: ClothingBeltWizardBlue
+  id: ClothingBeltWizardHolding
+  name: wizard sash of holding
+  description: A magical sash without visible pockets yet capable of storing items.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    layers:
+      - state: icon-base-01
+        color: "#3e2147"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-01
+        color: "#3e2147"
+      right:
+      - state: inhand-right-base-01
+        color: "#3e2147"
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-belt-base-01
+        color: "#3e2147"
+  - type: Storage
+    grid:
+    - 0,0,0,3
+    - 0,0,2,0
+    - 0,3,2,3
+    - 2,2,2,2
+    - 4,1,4,3
+    - 6,1,6,3
+    - 5,2,5,2
+    - 5,0,5,0
+    - 9,2,9,3
+    - 8,0,8,1
+    - 10,0,10,1
+    maxItemSize: Huge
 
 #region Wings
 - type: entity
@@ -365,7 +533,7 @@
     sound:
       path: /Audio/Ambience/Objects/engine_hum.ogg
   - type: PowerSupplier
-    supplyRate: 5000
+    supplyRate: 6666
   - type: NodeContainer
     examinable: true
     nodes:
@@ -374,4 +542,122 @@
         nodeGroupID: Apc
   - type: GeneratorExhaustGas
     gasType: Plasma
-    moleRatio: 0.25
+    moleRatio: 0.15
+
+#region Flying broom
+- type: entity
+  parent: [ NFVehicleHoverbikeKeys, BaseC3WizardContraband ]
+  id: NFVehicleFlyingBroomWithKey
+  name: flying broom
+  suffix: With key
+  description: A magically animated broom capable of flight.
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        startingItem: VehicleKeyHoverbikeNF
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+      bag:
+        name: stored bag
+        whitelist:
+          components:
+            - Storage
+        priority: 2
+        insertSound:
+          path: /Audio/Items/belt_equip.ogg
+          params:
+            volume: -3
+
+#region wizard's luggage
+- type: entity
+  parent:
+  - BaseC3WizardContraband
+  - NFInflatableCrate
+  - MobEnhancedMovement
+  - NFMobRoadkillable
+  id: CrateWizardLuggage
+  name: wizard's luggage
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: NonCombatantFollowerCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Icon
+    sprite: Structures/Storage/Crates/generic.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/generic.rsi
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: MobMover
+  - type: StandingState
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      40: 0.7
+      60: 0.5
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: FTLKnockdownImmune
+  - type: ZombieImmune
+  - type: EntityStorage
+    capacity: 40
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+    openSound:
+      path: /Audio/Misc/zip.ogg
+  - type: Reflect
+    reflects:
+    - Energy
+    reflectProb: 0.2
+    spread: 90
+  - type: RadiationBlockingContainer
+    resistance: 2.5
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
