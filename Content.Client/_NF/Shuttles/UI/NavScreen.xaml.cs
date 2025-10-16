@@ -1,7 +1,9 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
+using System.Numerics;
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.UserInterface.Controls;
 
@@ -12,13 +14,15 @@ namespace Content.Client.Shuttles.UI
         private readonly ButtonGroup _buttonGroup = new();
         public event Action<NetEntity?, InertiaDampeningMode>? OnInertiaDampeningModeChanged;
         public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
+        public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
+        public event Action<NetEntity?, bool>? OnSetHideTarget;
+
+        private bool _targetCoordsModified = false;
 
         private void NfInitialize()
         {
-            // Frontier - IFF search
             IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
 
-            // Frontier - Maximum IFF Distance
             MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8, 0, 0, 0);
             MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
 
@@ -37,6 +41,11 @@ namespace Content.Client.Shuttles.UI
             ServiceFlagServices.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Services);
             ServiceFlagTrade.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Trade);
             ServiceFlagSocial.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Social);
+
+            TargetX.OnTextChanged += _ => _targetCoordsModified = true;
+            TargetY.OnTextChanged += _ => _targetCoordsModified = true;
+            TargetSet.OnPressed += _ => SetTargetCoords();
+            TargetShow.OnPressed += _ => SetHideTarget(!TargetShow.Pressed);
         }
 
         private void SetDampenerMode(InertiaDampeningMode mode)
@@ -46,7 +55,7 @@ namespace Content.Client.Shuttles.UI
             OnInertiaDampeningModeChanged?.Invoke(shuttle, mode);
         }
 
-        private void NfUpdateState()
+        private void NfUpdateState(NavInterfaceState state)
         {
             if (NavRadar.DampeningMode == InertiaDampeningMode.Station)
             {
@@ -63,12 +72,26 @@ namespace Content.Client.Shuttles.UI
                 ToggleServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
             }
 
+            TargetShow.Pressed = !state.HideTarget;
+            if (!_targetCoordsModified)
+            {
+                if (state.Target != null)
+                {
+                    var target = state.Target.Value;
+                    TargetX.Text = target.X.ToString("F1");
+                    TargetY.Text = target.Y.ToString("F1");
+                }
+                else
+                {
+                    TargetX.Text = 0.0f.ToString("F1");
+                    TargetY.Text = 0.0f.ToString("F1");
+                }
+            }
         }
 
-        // Frontier - Maximum IFF Distance
         private void OnRangeFilterChanged(int value)
         {
-            NavRadar.MaximumIFFDistance = (float) value;
+            NavRadar.MaximumIFFDistance = value;
         }
 
         private void ToggleServiceFlags(ServiceFlags flags, bool updateButtonsOnly = false)
@@ -109,7 +132,6 @@ namespace Content.Client.Shuttles.UI
 
         private void NfAddShuttleDesignation(EntityUid? shuttle)
         {
-            // Frontier - PR #1284 Add Shuttle Designation
             if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))
             {
                 var shipNameParts = metadata.EntityName.Split(' ');
@@ -122,8 +144,28 @@ namespace Content.Client.Shuttles.UI
                 else
                     NavDisplayLabel.Text = metadata.EntityName;
             }
-            // End Frontier - PR #1284
         }
 
+        private void SetTargetCoords()
+        {
+            Vector2 outputVector;
+            if (!float.TryParse(TargetX.Text, out outputVector.X))
+                outputVector.X = 0.0f;
+
+            if (!float.TryParse(TargetY.Text, out outputVector.Y))
+                outputVector.Y = 0.0f;
+
+            NavRadar.Target = outputVector;
+            NavRadar.TargetEntity = NetEntity.Invalid;
+            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+            OnSetTargetCoordinates?.Invoke(shuttle, outputVector);
+            _targetCoordsModified = false;
+        }
+
+        private void SetHideTarget(bool hide)
+        {
+            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+            OnSetHideTarget?.Invoke(shuttle, hide);
+        }
     }
 }

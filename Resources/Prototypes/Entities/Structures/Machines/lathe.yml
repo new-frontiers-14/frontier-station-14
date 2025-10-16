@@ -174,7 +174,7 @@
 
 - type: entity
   id: Protolathe
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, NFBlueprintReceiverBase] # Frontier: Add BlueprintRecieverBase as parent
   name: protolathe
   description: Converts raw materials into advanced items.
   components:
@@ -241,6 +241,7 @@
     whitelist:
       tags:
       - NFBlueprintProtolathe
+      - NFBlueprintAdvanced
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -496,6 +497,7 @@
       whitelist: # Frontier
         tags: # Frontier
         - NFBlueprintMercenaryTechfab # Frontier
+        - NFBlueprintAdvanced # Frontier
 
 - type: entity
   id: MedicalTechFab
@@ -529,6 +531,8 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - NFMedicalStatic # Frontier
+    - LightsStatic # Frontier
+    - NFLights # Frontier
     # dynamicPacks: # Frontier
     # - Chemistry # Frontier
   - type: Machine
@@ -542,6 +546,7 @@
     whitelist: # Frontier
       tags: # Frontier
       - NFBlueprintMedicalTechfab # Frontier
+      - NFBlueprintAdvanced # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -595,7 +600,7 @@
         - Sheet
         - RawMaterial
         - Ingot
-  - type: OreSiloClient # Frontier
+  - type: OreSiloClient
 
 - type: entity
   id: Biogenerator
@@ -801,4 +806,4 @@
         - RawMaterial
         - Plastic
         - Ingot # Frontier
-  - type: OreSiloClient # Frontier
+  - type: OreSiloClient

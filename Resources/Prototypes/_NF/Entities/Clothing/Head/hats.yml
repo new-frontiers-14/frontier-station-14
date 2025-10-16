@@ -266,9 +266,36 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
   - type: HamsterWearable
-    
+
 - type: entity
   parent: ClothingHeadHatBeretHoS
   id: ClothingHeadHatBeretCommander
   name: commander's beret
   description: A black beret with a commander's rank emblem.
+
+- type: entity
+  parent: ClothingHeadBaseButcherable
+  id: ClothingHeadHatBrickwizard
+  name: brick wizard hat
+  description: A wizard's hat with red dust on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/Wizard/brickwizard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/Wizard/brickwizard.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: 0,0.2
+  - type: CatWearable
+
+- type: entity
+  parent: ClothingHeadBaseButcherable
+  id: ClothingHeadHatFakeWizard
+  name: wizard hat
+  description: It has WIZZARD written across it in sequins. Comes with a cool beard.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/Wizard/wizard-fake.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/Wizard/wizard-fake.rsi

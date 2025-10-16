@@ -19,6 +19,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
 
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
+    public event Action<NetEntity?, NetEntity>? RequestTrackEntity; // Frontier
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
@@ -52,6 +53,13 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         {
             RequestBeaconFTL?.Invoke(ent, angle);
         };
+
+        // Frontier: entity tracking
+        MapContainer.RequestTrackEntity += (ent, trackEntity) =>
+        {
+            RequestTrackEntity?.Invoke(ent, trackEntity);
+        };
+        // End Frontier
 
         DockContainer.DockRequest += (entity, netEntity) =>
         {

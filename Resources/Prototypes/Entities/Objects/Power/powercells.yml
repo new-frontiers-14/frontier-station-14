@@ -1,7 +1,7 @@
 - type: entity
   id: BasePowerCell
   abstract: true
-  parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
+  parent: BaseItem
   components:
   - type: Item
     storedRotation: -90
@@ -38,7 +38,7 @@
   name: potato battery
   description: Someone's stuck two nails and some wire in a large potato. Somehow it provides a little charge.
   id: PowerCellPotato
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemNoMats] # Frontier: added RecyclableItemNoMats
   components:
   - type: Sprite
     layers:
@@ -61,7 +61,7 @@
   description: A rechargeable power cell. This is the cheapest kind you can find.
   id: PowerCellSmall
   suffix: Full
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny
   components:
   - type: Sprite
     layers:
@@ -114,7 +114,7 @@
   description: A rechargeable power cell. This is the popular and reliable version.
   id: PowerCellMedium
   suffix: Full
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemSteelSmall] # Frontier: added RecyclableItemSteelSmall
   components:
   - type: Sprite
     layers:
@@ -152,7 +152,7 @@
   description: A rechargeable standardized power cell. This premium brand stores up to 50% more energy than the competition.
   id: PowerCellHigh
   suffix: Full
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny
   components:
   - type: Sprite
     layers:
@@ -187,10 +187,10 @@
 
 - type: entity
   name: hyper-capacity power cell
-  description: A rechargeable standardized power cell. This one looks like a rare and powerful prototype.
+  description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, boasting 66% more capacity than its predecessor.
   id: PowerCellHyper
   suffix: Full
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   components:
   - type: Sprite
     layers:
@@ -224,7 +224,7 @@
     startingCharge: 0
 
 - type: entity
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: PowerCellMicroreactor
   name: microreactor power cell
   description: A rechargeable standardized microreactor cell. Has lower capacity but slowly recharges by itself.
@@ -267,7 +267,7 @@
   name: antique power cell prototype
   description: A small cell that self recharges. Used in old laser arms research.
   id: PowerCellAntiqueProto
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   components:
     - type: Sprite
       layers:
@@ -291,7 +291,7 @@
 - type: entity
   id: BasePowerCage
   abstract: true
-  parent: BasePowerCell
+  parent: [BasePowerCell, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   components:
   - type: Item
     size: Ginormous
@@ -333,7 +333,7 @@
 
 - type: entity
   id: PowerCageMedium
-  parent: BasePowerCage
+  parent: [BasePowerCell, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   name: medium-capacity power cage
   description: A rechargeable power cage for big devices. The gold standard of capacity and cost.
   components:
@@ -351,7 +351,7 @@
 
 - type: entity
   id: PowerCageHigh
-  parent: BasePowerCage
+  parent: [BasePowerCell, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   name: high-capacity power cage
   description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
   components:

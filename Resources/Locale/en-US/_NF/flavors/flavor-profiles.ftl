@@ -20,3 +20,5 @@ flavor-complex-hairy = hairy and pungent
 flavor-complex-licorice = like licorice
 flavor-complex-blueraspberry = like blue
 flavor-complex-silence = like silence
+flavor-complex-creative = like mad creativity
+flavor-complex-texas = like texan ingenuity

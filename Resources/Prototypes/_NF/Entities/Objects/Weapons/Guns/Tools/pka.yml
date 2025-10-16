@@ -20,11 +20,11 @@
       shader: unshaded
       map: [ "empty-icon" ]
   - type: Gun
-    projectileSpeed: 20
-    minAngle: 34.4
-    maxAngle: 43.2
-    angleIncrease: 7
-    angleDecay: 5
+    projectileSpeed: 22.5
+    minAngle: 32.7
+    maxAngle: 43.5
+    angleIncrease: 5.6
+    angleDecay: 3.7
     fireRate: 0.5
     selectedMode: SemiAuto
     availableModes:
@@ -48,15 +48,13 @@
   parent: [ NFBaseWeaponFramePka ]
   abstract: true
   components:
-  # Effective range ~8 tiles on wield
+  # Effective range ~12 tiles on wield
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -30
   - type: Gun
-    #minAngle: 36.4
-    #maxAngle: 49.2
     fireRate: 0.5
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions

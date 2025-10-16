@@ -60,6 +60,8 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
     - type: GridPathfinding
+    - type: BecomesStation
+      id: Grifty
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
@@ -5290,7 +5292,7 @@ entities:
     - type: Transform
       pos: -7.5197897,3.5972664
       parent: 1
-- proto: SpawnDungeonVendomatsRecreational
+- proto: RandomVending
   entities:
   - uid: 645
     components:

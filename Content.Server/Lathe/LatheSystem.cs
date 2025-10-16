@@ -68,6 +68,11 @@ namespace Content.Server.Lathe
         /// </summary>
         private readonly List<GasMixture> _environments = new();
         private const int MaxItemsPerRequest = 100_000; // Frontier
+        /// <summary>
+        /// Multiplier applied to ALL lathe production times, to make upgrades feel
+        /// actually relevant. Upstream lathe recipes are simply too fast.
+        /// </summary>
+        private const int ProductionTimeMultiplier = 3; // Frontier
 
         public override void Initialize()
         {
@@ -103,7 +108,7 @@ namespace Content.Server.Lathe
                 if (lathe.CurrentRecipe == null)
                     continue;
 
-                if (_timing.CurTime - comp.StartTime >= (comp.ProductionLength * 3))
+                if (_timing.CurTime - comp.StartTime >= comp.ProductionLength * ProductionTimeMultiplier) // Frontier: increase production time
                     FinishProducing(uid, lathe);
             }
 

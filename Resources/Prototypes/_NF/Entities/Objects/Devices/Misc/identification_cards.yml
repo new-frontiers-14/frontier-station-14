@@ -284,7 +284,39 @@
   - type: Clothing
     sprite: _NF/Objects/Misc/id_cards.rsi
   - type: Item
-    heldPrefix: medic #temporary to OBSERVE
+    heldPrefix: silver
+
+- type: entity
+  parent: IDCardStandard
+  id: PlantTechnicianIDCard
+  name: plant technician ID card
+  components:
+  - type: PresetIdCard
+    job: PlantTechnician
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idplanttechnician
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+
+- type: entity
+  parent: [IDCardStandard, BaseCommandContraband]
+  id: PlantManagerIDCard
+  name: plant manager ID card
+  components:
+  - type: PresetIdCard
+    job: PlantManager
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idplantmanager
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: silver
 
 # Cats
 - type: entity
@@ -294,6 +326,14 @@
   components:
   - type: PresetIdCard
     name: Clippy
+
+- type: entity
+  parent: PlantTechnicianIDCard
+  id: CurieIDCard
+  name: curie ID card
+  components:
+  - type: PresetIdCard
+    name: Curie
 
 - type: entity
   parent: NFPirateFirstMateIDCard

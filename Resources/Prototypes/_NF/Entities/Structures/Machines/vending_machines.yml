@@ -591,6 +591,8 @@
   components:
   - type: VendingMachine
     pack: CiviMedVendInventory
+    taxAccounts:
+      Medical: 0.4
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -676,6 +678,8 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+    taxAccounts:
+      Frontier: 0.75
   - type: Advertise
     pack: MailVendAds
   - type: SpeakOnUIClosed

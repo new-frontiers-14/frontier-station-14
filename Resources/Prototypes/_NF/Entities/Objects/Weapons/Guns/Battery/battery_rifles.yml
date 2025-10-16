@@ -77,6 +77,40 @@
     energyConsumption: 2700000
     disableDuration: 30
 
+- type: entity
+  name: portable particle decelerator
+  parent: [BaseC2ContrabandEngineeringUnredeemable, NFBaseWeaponEnergyRifleParticle, BaseWeaponBattery ]
+  id: NFWeaponParticleDecelerator
+  description: A portable particle decelerator capable of decomposing a tesla or singularity.
+  components:
+    - type: Item
+      size: Ginormous # No launcher encumbrance, this thing's an oddball.
+    - type: MultiHandedItem
+    - type: ClothingSpeedModifier
+      walkModifier: 0.6
+      sprintModifier: 0.6
+    - type: HeldSpeedModifier
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      fireRate: 0.5
+      soundGunshot:
+        path: /Audio/Weapons/emitter.ogg
+        params:
+          pitch: 2
+    - type: NFWeaponDetails
+      manufacturer: weapon-details-manufacturer-nanotrasen-technologies # one-off, no parent
+    # Taken from energy rifle definition
+    - type: Battery
+      maxCharge: 2400
+      startingCharge: 2400
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 4
+
 #region Thermal
 - type: entity
   id: NFWeaponEnergyRifleTemperature
@@ -105,7 +139,7 @@
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: NFBoltTempgunCold 
+    - proto: NFBoltTempgunCold
       fireCost: 100
     - proto: NFBoltTempgunHot
       fireCost: 100

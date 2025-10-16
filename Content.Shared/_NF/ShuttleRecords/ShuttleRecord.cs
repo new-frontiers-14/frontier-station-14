@@ -14,16 +14,20 @@ public class ShuttleRecord(
     NetEntity entityUid,
     bool purchasedWithVoucher,
     uint purchasePrice,
+    string vesselPrototypeId,
     TimeSpan? timeOfPurchase = null,
-    TimeSpan? timeOfSale = null,
-    string? originalName = null
+    TimeSpan? timeOfSale = null
 )
 {
     [ViewVariables]
     public string Name { get; set; } = name;
 
+    /// <summary>
+    /// The ID of the VesselPrototype this shuttle came from. Used internally
+    /// for the shipyard statistics printout.
+    /// </summary>
     [ViewVariables]
-    public string? OriginalName { get; set; } = originalName;
+    public string VesselPrototypeId { get; set; } = vesselPrototypeId;
 
     [ViewVariables]
     public string? Suffix { get; set; } = suffix;
