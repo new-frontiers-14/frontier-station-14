@@ -1,0 +1,40 @@
+- type: entity
+  parent: [ BaseGenerator, BaseItem, BaseC3WizardContraband ]
+  id: NFGeneratorWizardInfernalCore6kW
+  name: infernal core
+  suffix: 6.66kW, Anchored
+  description: An infernal core sealed in a jar, it's rage contained and harnessed through wizardry to provide power.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    layers:
+    - state: infernal-core
+    - state: infernal-core-unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    state: infernal-core
+    size: Large
+    shape:
+    - 0,0,3,3
+  - type: PowerMonitoringDevice
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    state: infernal-core
+  - type: Physics
+    bodyType: Static
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: PowerSupplier
+    supplyRate: 6666
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: GeneratorExhaustGas
+    gasType: WaterVapor
+    moleRatio: 0.35

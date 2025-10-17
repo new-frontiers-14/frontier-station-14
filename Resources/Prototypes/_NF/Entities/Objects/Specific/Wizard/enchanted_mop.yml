@@ -1,0 +1,30 @@
+- type: entity
+  parent: [ MobCleanBot, BaseC3WizardContraband ]
+  id: MobCleanBotWizard
+  name: enchanted broom
+  description: Magically animated broom with a simple goal in it's "not life" - cleaning.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NFSyndicate
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/wizard_broom.rsi
+    layers:
+    - state: broom
+    - state: broom-unshaded
+      shader: unshaded
+  - type: HTN
+    rootTask:
+      task: CleanbotCompound
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []
+  - type: SoundWhileAlive
+  - type: SpamEmitSound
+    minInterval: 30
+    maxInterval: 60
+    sound:
+      collection: MaleSigh
+      params:
+        variation: 0.2

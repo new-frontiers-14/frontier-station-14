@@ -52,36 +52,6 @@
     - Tea
     quantity: 10
 
-#region Wallet
-- type: entity
-  id: ClothingWalletInfiniteGreed
-  parent: [ ClothingWalletLeatherBrown, BaseC3WizardContraband ]
-  name: the wallet of boundless greed
-  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Wallet/leather.rsi
-    layers:
-    - state: closed-wizard
-      map: ["closeLayer"]
-    - state: open-wizard
-      map: ["openLayer"]
-      visible: false
-    - state: closed-paper
-      map: ["closed-paper"] # scuffed values to deal with ItemMapper complaining
-      visible: false
-    - state: closed-cash
-      map: ["closed-cash"]
-      visible: false
-    - state: closed-coin
-      map: ["closed-coin"]
-      visible: false
-    - state: wizard-unshaded
-      shader: unshaded
-  - type: Dumpable
-  - type: MagnetPickup
-    magnetEnabled: true
-
 #region The Shaker
 - type: entity
   id: DrinkShakerShaking
@@ -121,38 +91,6 @@
       collection: MaleScreams
       params:
         variation: 0.125
-
-#region Mop
-- type: entity
-  parent: [ MobCleanBot, BaseC3WizardContraband ]
-  id: MobCleanBotWizard
-  name: animated broom
-  description: Magically animated broom with a simple goal in it's "not life" - cleaning.
-  components:
-  - type: NpcFactionMember
-    factions:
-    - NFSyndicate
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/wizard_broom.rsi
-    layers:
-    - state: broom
-    - state: broom-unshaded
-      shader: unshaded
-  - type: HTN
-    rootTask:
-      task: CleanbotCompound
-  - type: NFSalvageMobRestrictions
-    despawnIfOffLinkedGrid: false
-    addComponentsOnDeath: []
-    removeComponentsOnDeath: []
-  - type: SoundWhileAlive
-  - type: SpamEmitSound
-    minInterval: 30
-    maxInterval: 60
-    sound:
-      collection: MaleSigh
-      params:
-        variation: 0.2
 
 #region Sandals
 - type: entity
@@ -246,121 +184,6 @@
   - type: Clothing
     sprite: Objects/Tanks/emergency_extended.rsi # placeholder
 
-#region Singing rock
-- type: entity
-  parent: [ BaseMachine, BaseC3WizardContraband ]
-  id: SingingRock
-  name: singing rock
-  description: A rock with charming, melodic voice.
-  components:
-  - type: StationAiWhitelist
-  - type: Sprite
-    sprite: Objects/Decoration/Flora/flora_rockssolid.rsi
-    layers:
-    - state: rocksolid03
-      map: ["enum.JukeboxVisualLayers.Base"]
-  - type: Transform
-    anchored: true
-  - type: Jukebox
-    onState: rocksolid03
-    offState: rocksolid03
-    selectState: rocksolid03
-  - type: Appearance
-  - type: ExtensionCableReceiver
-  - type: ActivatableUI
-    key: enum.JukeboxUiKey.Key
-  - type: ActivatableUIRequiresPower
-  - type: UserInterface
-    interfaces:
-        enum.JukeboxUiKey.Key:
-          type: JukeboxBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.45,0.25,0.45"
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-        density: 200
-
-#region coin tree
-- type: entityTable
-  id: TableTreeCoin
-  table: !type:GroupSelector
-    children:
-    - id: TreasureCoinIron
-      weight: 30
-    - id: TreasureCoinIron3
-      weight: 25
-    - id: TreasureCoinSilver
-      weight: 20
-    - id: TreasureCoinSilver3
-      weight: 5
-    - id: TreasureCoinGold
-      weight: 10
-    - id: TreasureCoinGold3
-      weight: 5
-    - id: TreasureCoinAdamantine
-      weight: 5
-
-- type: entity
-  parent: MarkerBasePlaceFree
-  id: SpawnTreeCoin
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: EntityTableSpawner
-    offset: 0.0
-    table: !type:NestedSelector
-      tableId: TableTreeCoin
-      prob: 1.00
-
-- type: entity
-  parent: BaseStructureDynamic
-  id: PottedPlantCoinTree
-  name: potted coin tree
-  description: Source of mad riches.
-  components:
-  - type: Sprite
-    offset: "0.0,0.3"
-    sprite: _NF/Objects/Specific/Wizard/coin_tree.rsi
-    state: coin-tree
-    noRot: true
-  - type: Pullable
-  - type: Anchorable
-  - type: Transform
-    anchored: true
-    noRot: true
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.3
-        density: 350
-        layer:
-        - TableLayer
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-    - SpawnTreeCoin
-    chance: 0.75
-    intervalSeconds: 120
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 2
-
 #region Jar of fairies
 - type: entity
   parent: BaseItem
@@ -400,46 +223,6 @@
       damage:
         types:
           Blunt: 3
-
-#region cloak of holding
-- type: entity
-  parent: [ ClothingNeckBase, BaseC3WizardContraband ]
-  id: ClothingNeckCloakWizardHolding
-  name: wizard's portal cloak of holding
-  description: What happens when your wizardry instructor forbids portal conjuring, yet you do it anyway and attempt to conceal it under your cloak when they are back to check on you?
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-  - type: Item
-    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
-    clothingVisuals:
-      neck:
-      - state: equipped-NECK
-      - state: equipped-NECK-unshaded
-        shader: unshaded
-  - type: Storage
-    grid:
-    - 0,0,3,3
-    - 5,0,7,2
-    - 0,5,7,5
-    - 6,4,7,5
-    - 9,2,10,3
-    - 9,5,9,5
-    maxItemSize: Small
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
 
 #region Sash of holding
 - type: entity
@@ -511,30 +294,6 @@
         - 10.25689525 # oxygen
         - 10.25689525 # nitrogen
 
-#region Ravenbar
-- type: entity
-  parent: [ BaseCrowbar, BaseC3WizardContraband ]
-  id: NFRavenbar
-  name: ravenbar
-  description: CAAAW!
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
-    state: icon
-  - type: Clothing
-    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
-  - type: Item
-    storedSprite:
-      sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
-      state: storage
-  - type: Prying
-    speedModifier: 3
-    pryPowered: !type:Bool
-      true
-    force: !type:Bool
-      true
-    useSound: /Audio/_NF/Animals/crow_caw1.ogg
-
 #region scarf of warmth
 - type: entity
   parent: [ ClothingNeckScarfWizardPurple, BaseC3WizardContraband ]
@@ -587,261 +346,72 @@
           equipped-NECK-unshaded-02: WizardMagicColorsPurple
           equipped-NECK-unshaded-03: WizardMagicColorsPurple
 
-#region Infernal Core
+#region cloak of holding
 - type: entity
-  parent: [ BaseItem, BaseGenerator, BaseC3WizardContraband ]
-  id: NFGeneratorWizardInfernalCore6kW
-  name: infernal core
-  suffix: 6.66kW, Anchored
-  description: A small, intensely hot core of magical energy. There is an LV cable port there.
+  parent: [ ClothingNeckBase, BaseC3WizardContraband ]
+  id: ClothingNeckCloakWizardHolding
+  name: wizard's portal cloak of holding
+  description: What happens when your wizardry instructor forbids portal conjuring, yet you do it anyway and attempt to conceal it under your cloak when they are back to check on you?
   components:
   - type: Sprite
-    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
     layers:
-    - state: infernal-core
-    - state: infernal-core-unshaded
-      shader: unshaded
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
   - type: Item
-    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
-    layers:
-    - state: infernal-core
-    - state: infernal-core-unshaded
-      shader: unshaded
-    size: Large
-    shape:
-    - 0,0,3,3
-  - type: PowerMonitoringDevice
-    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
-    state: infernal-core
-  - type: Physics
-    bodyType: Static
-  - type: AmbientSound
-    range: 5
-    volume: -5
-    sound:
-      path: /Audio/Ambience/Objects/fireplace.ogg
-  - type: PowerSupplier
-    supplyRate: 6666
-  - type: NodeContainer
-    examinable: true
-    nodes:
-      output:
-        !type:CableDeviceNode
-        nodeGroupID: Apc
-  - type: GeneratorExhaustGas
-    gasType: WaterVapor
-    moleRatio: 0.35
-
-#region Flying broom
-- type: entity
-  parent: VehicleKeyHoverbikeNF
-  id: NFVehicleKeyBroom
-  name: flying broom keys
-  description: Cute bibelot.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Vehicles/broom.rsi
-    state: keys
-  - type: Tag
-    tags:
-    - VehicleKey
-    - FlyingBroomKeys
-
-- type: Tag
-  id: FlyingBroomKeys
-
-- type: entity
-  parent: [ NFVehicleHoverbikeKeys, BaseC3WizardContraband ]
-  id: NFVehicleFlyingBroomWithKey
-  name: flying broom
-  suffix: With key
-  description: A magically animated broom capable of flight.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Vehicles/broom.rsi
-    layers:
-    - state: hull
-      map: [ "broom_wraps" ]
-    - state: engine
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
-    - state: lights
-      shader: unshaded
-      visible: false
-      map: [ "light" ]
-    noRot: true
-  - type: RandomSprite
-    available:
-    - broom_wraps:
-        hull: Sixteen
-  - type: Appearance
-  - type: ToggleableVisuals
-    spriteLayer: light
-  - type: Vehicle
-    renderOver: North, South
-    northOffset: 0, 0
-    southOffset: 0, 0
-    eastOffset: 0, 0
-    westOffset: 0, 0
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: vehicle-slot-component-slot-name-keys
-        whitelist:
-          requireAll: true
-          tags:
-          - VehicleKey
-          - FlyingBroomKeys
-        startingItem: NFVehicleKeyBroom
-        priority: 1
-        insertSound:
-          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
-          params:
-            volume: -5
-  - type: PointLight
-    enabled: false
-    radius: 3.5
-    softness: 2
-    color: "#FFC458"
-    mask: /Textures/Effects/LightMasks/cone.png
-    netsync: false
-    autoRot: true
-
-#region wizard's luggage
-- type: entity
-  parent: BaseItem
-  id: CrateWizardLuggageWhistle
-  name: wizard's luggage whistle
-  description: A whistle that summons a wizard's luggage when blown.
-  components:
-  - type: Item
-    sprite: _NF/Mobs/Wizard/luggage.rsi
-    size: Tiny
-  - type: Sprite
-    sprite: _NF/Mobs/Wizard/luggage.rsi
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
   - type: Clothing
-    sprite: _NF/Mobs/Wizard/luggage.rsi
-    quickEquip: false
-    slots: neck
-  - type: SpawnItemsOnUse
-    items:
-    - id: SpawnMobWizardLuggage
-    sound:
-      collection: TrenchWhistle
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    - 5,0,7,2
+    - 0,5,7,5
+    - 6,4,7,5
+    - 9,2,10,3
+    - 9,5,9,5
+    maxItemSize: Small
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
 
+#region Wallet
 - type: entity
-  parent: MarkerBasePlaceFree
-  id: SpawnMobWizardLuggage
-  categories: [ HideSpawnMenu ]
-  name: spawn wizard's luggage
-  suffix: AI
+  id: ClothingWalletInfiniteGreed
+  parent: [ ClothingWalletLeatherBrown, BaseC3WizardContraband ]
+  name: the wallet of boundless greed
+  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
   components:
-  - type: ConditionalSpawner
-    prototypes:
-    - MobWizardLuggage
-
-- type: entity
-  parent:
-  - BaseC3WizardContraband
-  - NFInflatableCrate
-  - BaseMob
-  - MobStaminaFodder
-  - MobDamageable
-  - MobCombat
-  - NFMobAtmos
-  - MobBloodstream
-  - MobFlammable
-  - MobEnhancedMovement
-  - NFMobRoadkillable
-  id: MobWizardLuggage
-  categories: [ HideSpawnMenu ]
-  name: wizard's luggage
-  description: A wizard's luggage that happily follows the conjurer. For the most part. But not in airports.
-  components:
-  - type: NPCImprintingOnSpawnBehaviour
-    whitelist:
-      components:
-      - HumanoidAppearance
-  - type: HTN
-    rootTask:
-       task: NonCombatantFollowerCompound
-    blackboard:
-      NavClimb: !type:Bool
-        false
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
-  - type: Icon
-    sprite: _NF/Mobs/Wizard/luggage.rsi
   - type: Sprite
-    sprite: _NF/Mobs/Wizard/luggage.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.40,-0.30,0.40,0.45"
-        density: 350
-        mask:
-        - TableMask
-        layer:
-        - TableLayer
-  - type: NPCRetaliation
-    attackMemoryLength: 10
-  - type: Buckle
-  - type: StandingState
-  - type: InputMover
-  - type: MobMover
-  - type: ZombieImmune
-  - type: Hands
-  - type: Puller
-  - type: FTLKnockdownImmune
-  - type: NameIdentifier
-    group: GenericNumber
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Critical
-      120: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      40: 0.7
-      60: 0.5
-  - type: Tag
-    tags:
-    - FootstepSound
-    - DoorBumpOpener
-    - CannotSuicide
-  - type: EntityStorage
-    capacity: 40
-    closeSound:
-      path: /Audio/Misc/zip.ogg
-    openSound:
-      path: /Audio/Misc/zip.ogg
-  - type: Reflect
-    reflects:
-    - Energy
-    reflectProb: 0.2
-    spread: 90
-  - type: RadiationBlockingContainer
-    resistance: 2.5
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    layers:
+    - state: closed-wizard
+      map: ["closeLayer"]
+    - state: open-wizard
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"] # scuffed values to deal with ItemMapper complaining
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+    - state: wizard-unshaded
+      shader: unshaded
+  - type: Dumpable
+  - type: MagnetPickup
+    magnetEnabled: true
