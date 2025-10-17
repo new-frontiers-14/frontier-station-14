@@ -1,35 +1,51 @@
-#region wizard
+#region table
 - type: entityTable
   id: TableRandomMagicItemsWizard
   table: !type:GroupSelector
     children:
-    - id: DrinkTeapotEndless
-    - id: ClothingWalletInfiniteGreed
-    - id: DrinkShakerShaking
-    - id: ClothingShoesWizardMagboots
-    - id: WizardGasCanisterBottomless
-    - id: GasTankWizardBottomless
-    - id: PottedPlantCoinTree
-    - id: JarOfAngryFairies
-    - id: ClothingNeckCloakWizardHolding
-    - id: ClothingBeltWizardHolding
-    - id: FairyDragonWings
-    - id: NFRavenbar
-    - id: ClothingNeckScarfWizardWarmth
-    - id: NFGeneratorWizardInfernalCore5kW
+    # low impact items
+    - !type:GroupSelector
+      weight: 50
+      children:
+      - id: DrinkTeapotEndless
+      - id: ClothingWalletInfiniteGreed
+      - id: DrinkShakerShaking
+      - id: JarOfAngryFairies
+      - id: NFRavenbar
+      - id: ClothingNeckScarfWizardWarmth
+    # medium impact items
+    - !type:GroupSelector
+      weight: 40
+      children:
+      - id: PottedPlantCoinTree
+      - id: NFGeneratorWizardInfernalCore5kW
+      - id: ClothingNeckCloakWizardHolding
+      - id: ClothingBeltWizardHolding
+      - id: CrateWizardLuggageWhistle
+    # high impact items
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: ClothingShoesWizardMagboots
+      - id: WizardGasCanisterBottomless
+      - id: GasTankWizardBottomless
+      - id: FairyDragonWings
 
+#region spawner
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnRandomMagicItemsWizard
-  name: random spell scroll
+  name: random magical item
   suffix: Wizard
   components:
   - type: Sprite
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
-        state: scroll-rolled
+      - sprite: _NF/Clothing/Wallet/leather.rsi
+        state: closed-wizard
+      - sprite: _NF/Clothing/Wallet/leather.rsi
+        state: wizard-unshaded
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: green

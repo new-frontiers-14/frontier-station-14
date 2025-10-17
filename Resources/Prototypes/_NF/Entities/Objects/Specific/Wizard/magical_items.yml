@@ -293,7 +293,7 @@
         - MachineLayer
         density: 200
 
-#region money tree
+#region coin tree
 - type: entityTable
   id: TableTreeCoin
   table: !type:GroupSelector
@@ -342,7 +342,7 @@
     noRot: true
   - type: InteractionOutline
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -519,18 +519,21 @@
   description: CAAAW!
   components:
   - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
     state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
   - type: Item
     storedSprite:
-      sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: _NF prefix
+      sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
       state: storage
   - type: Prying
-    speedModifier: 2
+    speedModifier: 3
     pryPowered: !type:Bool
       true
     force: !type:Bool
       true
-    useSound: /Audio/Items/jaws_pry.ogg
+    useSound: /Audio/_NF/Animals/crow_caw1.ogg
 
 #region scarf of warmth
 - type: entity
