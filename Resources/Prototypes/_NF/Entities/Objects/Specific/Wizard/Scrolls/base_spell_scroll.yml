@@ -3,9 +3,7 @@
   abstract: true
   parent: BaseItem
   id: SpellScrollRolled
-  name: scroll
   suffix: Folded
-  description: Rolled piece of paper emanating eldritch energies.
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
@@ -24,6 +22,9 @@
     - id: SpellScrollBase
     sound:
       path: /Audio/Effects/unwrap.ogg
+  - type: Tag
+    tags:
+    - Sidearm
   - type: StaticPrice
     price: 500
 
@@ -32,8 +33,6 @@
   abstract: true
   parent: [ BaseItem, ConjuredObject60 ]
   id: SpellScrollBase
-  name: scroll
-  description: A piece of paper with arcane inscriptions on it. The scroll will vanish within next minute, better read those magic words fast!
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
@@ -44,13 +43,13 @@
     - 0,0,1,1
     inhandVisuals:
       left:
-      - state: scroll-text-inhand-left
-      - state: scroll-text-glow-inhand-left
+      - state: scroll-unrolled-inhand-left
+      - state: scroll-unrolled-glow-inhand-left
         color: "#89CFF0"
         shader: unshaded
       right:
-      - state: scroll-text-inhand-right
-      - state: scroll-text-glow-inhand-right
+      - state: scroll-unrolled-inhand-right
+      - state: scroll-unrolled-glow-inhand-right
         color: "#89CFF0"
         shader: unshaded
   - type: Tag

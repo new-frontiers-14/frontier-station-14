@@ -12,7 +12,7 @@
     - state: scroll-rolled
     - state: scroll-rolled-ribbon
       color: "red"
-    - state: scroll-seal-rolled
+    - state: scroll-rolled-seal
       color: "orange"
       shader: unshaded
   - type: SpawnItemsOnUse
@@ -32,8 +32,10 @@
   components:
   - type: Sprite
     layers:
-    - state: scroll-text
-    - state: scroll-text-ribbon
+    - state: scroll-unrolled
+    - state: scroll-unrolled-text-1
+      color: "orange"
+    - state: scroll-unrolled-ribbon
       color: "red"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
       state: rune-outer-01
@@ -59,7 +61,7 @@
       scale: 0.32, 0.32
       offset: 0.01,-0.005
       shader: unshaded
-    - state: scroll-seal-unrolled
+    - state: scroll-unrolled-seal
       color: "orange"
       shader: unshaded
   - type: Spellbook
@@ -80,7 +82,7 @@
     - state: scroll-rolled
     - state: scroll-rolled-ribbon
       color: "cyan"
-    - state: scroll-seal-rolled
+    - state: scroll-rolled-seal
       color: "gray"
       shader: unshaded
   - type: SpawnItemsOnUse
@@ -100,8 +102,10 @@
   components:
   - type: Sprite
     layers:
-    - state: scroll-text
-    - state: scroll-text-ribbon
+    - state: scroll-unrolled
+    - state: scroll-unrolled-text-0
+      color: "blue"
+    - state: scroll-unrolled-ribbon
       color: "cyan"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
       state: rune-outer-01
@@ -127,7 +131,7 @@
       scale: 0.32, 0.32
       offset: 0.01,-0.005
       shader: unshaded
-    - state: scroll-seal-unrolled
+    - state: scroll-unrolled-seal
       color: "gray"
       shader: unshaded
   - type: Spellbook

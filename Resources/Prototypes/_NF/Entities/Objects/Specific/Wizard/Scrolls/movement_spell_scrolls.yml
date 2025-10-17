@@ -10,8 +10,8 @@
   - type: Sprite
     layers:
     - state: scroll-rolled
-    - state: scroll-seal-rolled
-      color: "yellow"
+    - state: scroll-rolled-seal
+      color: "green"
       shader: unshaded
   - type: SpawnItemsOnUse
     items:
@@ -30,7 +30,9 @@
   components:
   - type: Sprite
     layers:
-    - state: scroll-text
+    - state: scroll-unrolled
+    - state: scroll-unrolled-text-0
+      color: "violet"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
       state: rune-outer-01
       color: "gold"
@@ -55,8 +57,8 @@
       scale: 0.32, 0.32
       offset: 0.01,-0.005
       shader: unshaded
-    - state: scroll-seal-unrolled
-      color: "yellow"
+    - state: scroll-unrolled-seal
+      color: "green"
       shader: unshaded
   - type: Spellbook
     spellActions:
@@ -74,8 +76,8 @@
   - type: Sprite
     layers:
     - state: scroll-rolled
-    - state: scroll-seal-rolled
-      color: "yellow"
+    - state: scroll-rolled-seal
+      color: "green"
       shader: unshaded
   - type: SpawnItemsOnUse
     items:
@@ -94,7 +96,9 @@
   components:
   - type: Sprite
     layers:
-    - state: scroll-text
+    - state: scroll-unrolled
+    - state: scroll-unrolled-text-1
+      color: "purple"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
       state: rune-outer-01
       color: "gold"
@@ -102,7 +106,7 @@
       offset: 0.01,-0.005
       shader: unshaded
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
-      state: rune-inner-07
+      state: rune-inner-05
       color: "gold"
       scale: 0.32, 0.32
       offset: 0.01,-0.005
@@ -114,13 +118,13 @@
       offset: 0.01,-0.005
       shader: unshaded
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
-      state: rune-words-07
+      state: rune-words-05
       color: "gold"
       scale: 0.32, 0.32
       offset: 0.01,-0.005
       shader: unshaded
-    - state: scroll-seal-unrolled
-      color: "yellow"
+    - state: scroll-unrolled-seal
+      color: "green"
       shader: unshaded
   - type: Spellbook
     spellActions:

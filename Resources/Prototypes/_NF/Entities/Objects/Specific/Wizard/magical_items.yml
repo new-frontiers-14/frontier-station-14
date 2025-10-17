@@ -596,6 +596,8 @@
     sprite: Structures/Specific/Anomalies/pyro_anom.rsi
     state: anom
     snapCardinals: true
+  - type: Physics
+    bodyType: Static
   - type: AmbientSound
     range: 5
     volume: -5
@@ -695,14 +697,12 @@
   description: A whistle that summons a wizard's luggage when blown.
   components:
   - type: Item
-    sprite: Objects/Fun/whistles.rsi
+    sprite: _NF/Mobs/Wizard/luggage.rsi
     size: Tiny
   - type: Sprite
-    sprite: Objects/Fun/whistles.rsi
-    state: trench
+    sprite: _NF/Mobs/Wizard/luggage.rsi
   - type: Clothing
-    sprite: Objects/Fun/whistles.rsi
-    equippedPrefix: trench
+    sprite: _NF/Mobs/Wizard/luggage.rsi
     quickEquip: false
     slots: neck
   - type: SpawnItemsOnUse
@@ -738,6 +738,7 @@
   id: MobWizardLuggage
   categories: [ HideSpawnMenu ]
   name: wizard's luggage
+  description: A wizard's luggage that happily follows the conjurer. For the most part. But not in airports.
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
@@ -757,9 +758,9 @@
     factions:
     - NanoTrasen
   - type: Icon
-    sprite: Structures/Storage/Crates/generic.rsi
+    sprite: _NF/Mobs/Wizard/luggage.rsi
   - type: Sprite
-    sprite: Structures/Storage/Crates/generic.rsi
+    sprite: _NF/Mobs/Wizard/luggage.rsi
   - type: Fixtures
     fixtures:
       fix1:
