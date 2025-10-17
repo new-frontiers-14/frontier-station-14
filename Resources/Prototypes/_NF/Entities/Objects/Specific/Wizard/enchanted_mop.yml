@@ -1,3 +1,4 @@
+#region broom
 - type: entity
   parent: [ MobCleanBot, BaseC3WizardContraband ]
   id: MobCleanBotWizard
@@ -28,3 +29,19 @@
       collection: MaleSigh
       params:
         variation: 0.2
+
+#region spawner
+- type: entity
+  parent: SpawnNFMobWizardApprentice
+  id: SpawnMobCleanBotWizard
+  name: enchanted broom spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Specific/Wizard/wizard_broom.rsi
+      state: broom
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCleanBotWizard

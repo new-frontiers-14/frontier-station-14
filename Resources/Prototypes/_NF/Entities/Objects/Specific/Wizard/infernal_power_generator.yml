@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseGenerator, BaseItem, BaseC3WizardContraband ]
+  parent: [ BaseGenerator, BaseC3WizardContraband ]
   id: NFGeneratorWizardInfernalCore6kW
   name: infernal core
   suffix: 6.66kW, Anchored
@@ -16,6 +16,17 @@
     size: Large
     shape:
     - 0,0,3,3
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: Pullable
+  - type: DamageExaminable
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/drop.ogg
+      params:
+        volume: 2
   - type: PowerMonitoringDevice
     sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
     state: infernal-core
