@@ -115,8 +115,8 @@
         sound:
           collection: MetalBreak
   - type: SpamEmitSound
-    minInterval: 5
-    maxInterval: 20
+    minInterval: 0
+    maxInterval: 5
     sound:
       collection: MaleScreams
       params:
@@ -590,22 +590,36 @@
 #region Infernal Core
 - type: entity
   parent: [ BaseItem, BaseGenerator, BaseC3WizardContraband ]
-  id: NFGeneratorWizardInfernalCore5kW
+  id: NFGeneratorWizardInfernalCore6kW
   name: infernal core
-  suffix: 5kW, Anchored
+  suffix: 6.66kW, Anchored
   description: A small, intensely hot core of magical energy. There is an LV cable port there.
   components:
   - type: Sprite
-    sprite: Structures/Specific/Anomalies/pyro_anom.rsi
-    state: anom
-    snapCardinals: true
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    layers:
+    - state: infernal-core
+    - state: infernal-core-unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    layers:
+    - state: infernal-core
+    - state: infernal-core-unshaded
+      shader: unshaded
+    size: Large
+    shape:
+    - 0,0,3,3
+  - type: PowerMonitoringDevice
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    state: infernal-core
   - type: Physics
     bodyType: Static
   - type: AmbientSound
     range: 5
     volume: -5
     sound:
-      path: /Audio/Ambience/Objects/engine_hum.ogg
+      path: /Audio/Ambience/Objects/fireplace.ogg
   - type: PowerSupplier
     supplyRate: 6666
   - type: NodeContainer
@@ -615,8 +629,8 @@
         !type:CableDeviceNode
         nodeGroupID: Apc
   - type: GeneratorExhaustGas
-    gasType: Plasma
-    moleRatio: 0.15
+    gasType: WaterVapor
+    moleRatio: 0.35
 
 #region Flying broom
 - type: entity
