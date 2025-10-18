@@ -15,6 +15,9 @@ using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Robust.Shared.Physics; // Frontier
+using Content.Shared._NF.Salvage.Components; //Frontier
+using Content.Shared.Containers.ItemSlots; //Frontier
+using Robust.Shared.Log; //DEBUG
 
 namespace Content.Server.Salvage;
 
@@ -25,12 +28,16 @@ public sealed partial class SalvageSystem
 
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
     [Dependency] private readonly SalvageSystem _salvage = default!; // Frontier
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
 
     private const float ShuttleFTLMassThreshold = 50f; // Frontier
     private const float ShuttleFTLRange = 150f; // Frontier
 
+    protected ISawmill Sawmill = default!;
+
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
+        Sawmill = Logger.GetSawmill("ExpeditionConsole"); //debug
         var station = _station.GetOwningStation(uid);
 
         if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
@@ -38,6 +45,41 @@ public sealed partial class SalvageSystem
 
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
+
+        // Frontier: allow expedition only if correct difficulty coordinate disk is present in console
+        if (!TryComp<ItemSlotsComponent>(uid, out var slot))
+        {
+            return;
+        }
+        if (!_itemSlots.TryGetSlot(uid, SalvageExpeditionCoordinatesComponent.DiskSlotName, out var itemSlot, component: slot) || !itemSlot.HasItem)
+        {
+            PlayDenySound((uid, component));
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-no-disk"), uid, PopupType.MediumCaution);
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+        if (itemSlot.Item is { Valid: true } disk)
+        {
+            SalvageExpeditionCoordinatesComponent? diskCoordinates = null;
+            if (!Resolve(disk, ref diskCoordinates))
+            {
+                return;
+            }
+
+            var diskCoords = diskCoordinates.Difficulty;
+
+            if (diskCoords == null || diskCoords != missionparams.Difficulty)
+            {
+                PlayDenySound((uid, component));
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-wrong-disk"), uid, PopupType.MediumCaution);
+                UpdateConsoles((station.Value, data));
+                return;
+            }
+        }
+        else
+        {
+            return;
+        }
 
         // Frontier: prevent expeditions if there are too many out already.
         var activeExpeditionCount = 0;
@@ -55,6 +97,7 @@ public sealed partial class SalvageSystem
             UpdateConsoles((station.Value, data));
             return;
         }
+        Sawmill.Info($"Expedition mission: {missionparams.Difficulty}");
         // End Frontier
 
         // var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates); // Frontier: no disk-based FTL
@@ -105,6 +148,9 @@ public sealed partial class SalvageSystem
                 return;
             }
         }
+        // Once all checks passed, then consume the expedition difficulty coordinate disk
+        EntityManager.QueueDeleteEntity(disk);
+
         SpawnMission(missionparams, station.Value, null);
         #endregion Frontier FTL changes
         // End Frontier
