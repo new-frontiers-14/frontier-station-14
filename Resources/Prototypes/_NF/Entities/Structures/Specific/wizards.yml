@@ -44,7 +44,255 @@
   - type: StaticPrice
     price: 250
 
-#region floor decor
+#region wall light
+- type: entity
+  parent: AlwaysPoweredWallLight
+  id: SmallLightCrystalGreen
+  name: crystal wall light
+  description: An always powered magical light.
+  suffix: Always Powered, Green
+  components:
+    - type: Reflect
+      reflectProb: 0.5
+      reflects:
+      - Energy
+      spread: 75
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#52ff39"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#52ff39"
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,0.5,0.1,0.255"
+          density: 190
+          mask:
+          - None
+          layer:
+          - TabletopMachineLayer
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Glass
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalGreen:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalPink
+  suffix: Always Powered, Pink
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#ff66cc"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#ff66cc"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalPink:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalRed
+  suffix: Always Powered, Red
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#fb4747"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#fb4747"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalRed:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalOrange
+  suffix: Always Powered, Orange
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#ff8227"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#ff8227"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalOrange:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalBlue
+  suffix: Always Powered, Blue
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#39a1ff"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#39a1ff"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalBlue:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalYellow
+  suffix: Always Powered, Yellow
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#ffde46"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#ffde46"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalYellow:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalCyan
+  suffix: Always Powered, Cyan
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#47f8ff"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#47f8ff"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalCyan:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+#region floor decor 32z32
 - type: entity
   parent: BaseRune
   id: WizardGlowingFloorBlue
@@ -162,3 +410,46 @@
           rune-words-05: WizardMagicColorsPurple
           rune-words-06: WizardMagicColorsPurple
           rune-words-07: WizardMagicColorsPurple
+
+#region floor decor 96x96
+- type: entity
+  parent: BaseRune
+  id: WizardGlowingRuneFloorBig
+  name: rune of transmutation
+  suffix: Decor
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/runes_96x96.rsi
+    layers:
+    - state: transmitate-circle
+      shader: unshaded
+      map: [ "rune_96x96_outer" ]
+    - state: transmitate-words
+      shader: unshaded
+      map: [ "rune_96x96_words" ]
+    - state: transmitate-center
+      shader: unshaded
+      map: [ "rune_96x96_center" ]
+    - state: transmitate-rune-1
+      shader: unshaded
+      map: [ "rune_96x96_rune1" ]
+    - state: transmitate-rune-2
+      shader: unshaded
+      map: [ "rune_96x96_rune2" ]
+    - state: transmitate-rune-3
+      shader: unshaded
+      map: [ "rune_96x96_rune3" ]
+  - type: RandomSprite
+    available:
+      - rune_96x96_outer:
+          transmitate-circle: WizardMagicColorsRed
+        rune_96x96_words:
+          transmitate-words: WizardMagicColorsRed
+        rune_96x96_center:
+          transmitate-center: WizardMagicColorsPurple
+        rune_96x96_rune1:
+          transmitate-rune-1: WizardMagicColorsBlue
+        rune_96x96_rune2:
+          transmitate-rune-2: WizardMagicColorsBlue
+        rune_96x96_rune3:
+          transmitate-rune-3: WizardMagicColorsBlue

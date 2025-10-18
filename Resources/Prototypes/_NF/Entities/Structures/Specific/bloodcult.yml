@@ -1,4 +1,4 @@
-# Salvage expedition objective
+#region Salvage expedition objective
 - type: entity
   parent: CybersunDataMiner
   id: BloodCollector
@@ -60,7 +60,7 @@
         - ReagentId: Blood
           Quantity: 1000
 
-# Wall for POI
+#region Wall for POI
 - type: entity
   parent: BaseWall
   id: WallCultIndestructible
@@ -78,6 +78,7 @@
     key: walls
     base: cult
 
+#region Window for POI
 - type: entity
   parent: BaseStructure
   id: WindowCultIndestructibleInvisible
@@ -118,7 +119,7 @@
   - type: Airtight
   - type: BlockWeather
 
-# Blood Cult Airlock
+#region Blood Cult Airlock
 - type: entity
   parent: AirlockGlass
   id: AirlockBloodCult
@@ -138,7 +139,7 @@
         layer:
         - AirlockLayer
 
-# Glowing Floor Thingy
+#region Glowing Floor Thingy
 - type: entity
   id: BloodCultGlowingFloor
   name: blood cult glowing floor
@@ -194,7 +195,7 @@
           rune-words-06: BloodCultMagicColors
           rune-words-07: BloodCultMagicColors
 
-# Mini gravity generator
+#region Mini gravity generator
 - type: entity
   id: BloodCultGravityGeneratorMini
   parent: [BaseStructureDisableToolUse, GravityGeneratorMini]
@@ -218,7 +219,7 @@
     castShadows: false
     netsync: false
 
-# Wall Light
+#region Wall Light
 - type: entity
   name: blood cult light
   description: "How is this thing glowing? Why?"
@@ -243,7 +244,7 @@
     offset: "0, -0.5"
     color: "#990000"
 
-# Props and decoration
+#region Props and decoration
 - type: entity
   parent: XenoWardingTower
   id: BloodCultProp01
