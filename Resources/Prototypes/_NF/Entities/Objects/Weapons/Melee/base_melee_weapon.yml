@@ -1,16 +1,41 @@
 
 - type: entity
-  id: GunMeleeAttackBluntBase # Allows using a ranged weapon in melee, blunt
   abstract: true
+  id: NFBaseGunMeleeAttackLow
   components:
+  - type: AltFireMelee
+    attackType: Light
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 8
+        Blunt: 6
     angle: 0
+    attackRate: 1.1
     wideAnimationRotation: -135
     animation: WeaponArcThrust
     soundHit:
       collection: MetalThud
   - type: StaminaDamageOnHit
-    damage: 5
+    damage: 4
+
+- type: entity
+  abstract: true
+  parent: NFBaseGunMeleeAttackLow
+  id: NFBaseGunMeleeAttackMedium
+  components:
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    attackRate: 1
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 4
