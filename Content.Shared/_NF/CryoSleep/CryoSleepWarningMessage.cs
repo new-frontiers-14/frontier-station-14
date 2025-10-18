@@ -6,7 +6,8 @@ namespace Content.Shared._NF.CryoSleep;
 /// <summary>
 /// A message for CryoSleepEui containing all the items the server found, along with some other data to build the clientside warning messages.
 /// </summary>
-[Serializable] [NetSerializable]
+[Serializable]
+[NetSerializable]
 public sealed class CryoSleepWarningMessage(
     bool shuttleOnPda,
     CryoSleepWarningMessage.NetworkedWarningItem? inventoryShuttleDeed,
@@ -21,23 +22,26 @@ public sealed class CryoSleepWarningMessage(
     public readonly NetworkedWarningItem? FoundUplink = foundUplink;
     public readonly List<NetworkedWarningItem> ImportantItems = importantItems;
 
-    [Serializable] [NetSerializable]
+    [Serializable]
+    [NetSerializable]
     public struct NetworkedWarningItem
     {
-    public NetworkedWarningItem(string? slotId, NetEntity? container, NetEntity item)
-    {
-        if (slotId == null && !container.HasValue)
+        public NetworkedWarningItem(string? slotId, string? handId, NetEntity? container, NetEntity item)
         {
-            throw new ArgumentException(
-                "CryoSleepWarningMessage.NetworkedWarningItem was attempted to be created with both slotId and container as null values");
-        }
+            if (slotId == null && handId == null && !container.HasValue)
+            {
+                throw new ArgumentException(
+                    "CryoSleepWarningMessage.NetworkedWarningItem was attempted to be created with all locations as null values");
+            }
 
-        SlotId = slotId;
-        Container = container;
-        Item = item;
+            SlotId = slotId;
+            HandId = handId;
+            Container = container;
+            Item = item;
         }
- //Exactly one of these two values should be null
+        //Exactly one of these two values should be null
         public readonly string? SlotId;
+        public readonly string? HandId;
         public readonly NetEntity? Container;
 
         public readonly NetEntity Item;
