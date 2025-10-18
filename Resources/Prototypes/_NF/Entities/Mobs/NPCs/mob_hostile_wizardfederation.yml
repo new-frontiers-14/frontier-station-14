@@ -94,24 +94,15 @@
   - type: Loadout
     prototypes:
     - NpcGearWizardPurpleApprentice
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 50
-  - type: Battery
-    maxCharge: 800
-    startingCharge: 800
-  - type: HitscanBatteryAmmoProvider
-    proto: CausticBeam
-    fireCost: 100
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagicBolt
+    capacity: 2
+    count: 2
   - type: Gun
     showExamineText: false
-    fireRate: 3
+    fireRate: 1
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.5
-    rechargeSound:
-      path: /Audio/_NF/Effects/silence.ogg
 
 #region Tier 2
 - type: entity
@@ -161,15 +152,24 @@
   - type: Loadout
     prototypes:
     - NpcGearWizardAdeptPurple
-  - type: BasicEntityAmmoProvider
-    proto: BulletMagicBolt
-    capacity: 2
-    count: 2
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: HitscanBatteryAmmoProvider
+    proto: CausticBeam
+    fireCost: 100
   - type: Gun
     showExamineText: false
-    fireRate: 1
+    fireRate: 3
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
 
 - type: entity
   parent: NFMobWizardlBase

@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 18:46:34
-  entityCount: 1793
+  time: 10/18/2025 22:00:47
+  entityCount: 1799
 maps: []
 grids:
 - 1
@@ -6439,6 +6439,38 @@ entities:
     - type: Transform
       pos: 5.5,-32.5
       parent: 1
+- proto: NFBannerWizard
+  entities:
+  - uid: 1794
+    components:
+    - type: Transform
+      pos: -0.5,4.5
+      parent: 1
+  - uid: 1795
+    components:
+    - type: Transform
+      pos: 1.5,4.5
+      parent: 1
+  - uid: 1796
+    components:
+    - type: Transform
+      pos: 1.5,-39.5
+      parent: 1
+  - uid: 1797
+    components:
+    - type: Transform
+      pos: 3.5,-39.5
+      parent: 1
+  - uid: 1798
+    components:
+    - type: Transform
+      pos: 2.5,-25.5
+      parent: 1
+  - uid: 1799
+    components:
+    - type: Transform
+      pos: -0.5,-5.5
+      parent: 1
 - proto: NFCandleInfiniteSpawner
   entities:
   - uid: 1472
@@ -6733,26 +6765,6 @@ entities:
     - type: Transform
       pos: 8.5,-8.5
       parent: 1
-- proto: NitrogenCanister
-  entities:
-  - uid: 1264
-    components:
-    - type: Transform
-      anchored: True
-      pos: 10.5,-36.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-- proto: OxygenCanister
-  entities:
-  - uid: 1263
-    components:
-    - type: Transform
-      anchored: True
-      pos: 9.5,-36.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: Pen
   entities:
   - uid: 1671
@@ -7182,13 +7194,13 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 9.5,-36.5
+      pos: 10.5,-36.5
       parent: 1
   - uid: 1700
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 10.5,-36.5
+      pos: 9.5,-36.5
       parent: 1
 - proto: RailingCorner
   entities:
@@ -11021,6 +11033,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-13.5
       parent: 1
+- proto: WizardGasCanisterBottomlessNitrogen
+  entities:
+  - uid: 1263
+    components:
+    - type: Transform
+      anchored: True
+      pos: 10.5,-36.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
+- proto: WizardGasCanisterBottomlessOxygen
+  entities:
+  - uid: 1264
+    components:
+    - type: Transform
+      anchored: True
+      pos: 9.5,-36.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: WizardGlowingFloorBlue
   entities:
   - uid: 77

@@ -120,19 +120,23 @@
 #region Inf. canister
 - type: entity
   parent: [ GasCanister, BaseC3WizardContraband ]
-  id: WizardGasCanisterBottomless
+  id: WizardGasCanisterBottomlessOxygen
   name: bottomless canister
+  suffix: Filled, Oxygen
   description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # placeholder
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi # placeholder
       layers:
-        - state: storage
+        - state: gas-portal
+          shader: unshaded
+          color: "#88cffa"
+        - state: canister
     - type: GasCanister
       gasMixture:
-        volume: 300000 # 1500[base canister volume] * 20
+        volume: 15000 # 1500[base canister volume] * 10
         moles: # List of gasses for easy reference
-          - 0 # oxygen
+          - 18717.1051 # oxygen
           - 0 # nitrogen
           - 0 # CO2
           - 0 # Plasma
@@ -142,47 +146,57 @@
           - 0 # N2O
           - 0 # Frezon
         temperature: 293.15
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 600
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 300
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            StorageCanisterBroken:
-              min: 1
-              max: 1
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:DumpCanisterBehavior
+
+- type: entity
+  parent: [ GasCanister, BaseC3WizardContraband ]
+  id: WizardGasCanisterBottomlessNitrogen
+  name: bottomless canister
+  suffix: Filled, Nitrogen
+  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi # placeholder
+      layers:
+        - state: gas-portal
+          shader: unshaded
+          color: "#ed1529"
+        - state: canister
+    - type: GasCanister
+      gasMixture:
+        volume: 15000 # 1500[base canister volume] * 10
+        moles: # List of gasses for easy reference
+          - 0 # oxygen
+          - 18717.1051 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 293.15
 
 #region Inf. gas tank
 - type: entity
   id: GasTankWizardBottomless
-  parent: [ EmergencyOxygenTank, BaseC3WizardContraband ]
+  parent: [ GasTankRoundBase, BaseC3WizardContraband ]
   name: bottomless gas tank
   description: An unusual looking gas tank that can hold more volume that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
   - type: Sprite
-    sprite: Objects/Tanks/emergency_extended.rsi # placeholder
+    sprite: _NF/Objects/Tanks/wizard.rsi
+    layers:
+    - state: icon-gas-portal
+      shader: unshaded
+    - state: icon
   - type: Item
-    sprite: Objects/Tanks/emergency_extended.rsi # placeholder
+    sprite: _NF/Objects/Tanks/wizard.rsi
   - type: GasTank
     air:
       volume: 9000
       temperature: 293.15
   - type: Clothing
-    sprite: Objects/Tanks/emergency_extended.rsi # placeholder
+    sprite: _NF/Objects/Tanks/wizard.rsi
 
 #region Jar of fairies
 - type: entity
