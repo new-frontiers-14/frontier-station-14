@@ -92,6 +92,7 @@
         loop: true
     useOldSolutionLogic: true
     solutionContainerId: output
+    spillExcessBuffer: false
   - type: MaterialStorage
     insertOnInteract: false
   - type: ContainerContainer
@@ -102,7 +103,7 @@
   - type: SolutionContainerManager
     solutions:
       output:
-        maxVol: 1000
+        maxVol: 2000
   - type: DrainableSolution
     solution: output
   - type: ExaminableSolution
