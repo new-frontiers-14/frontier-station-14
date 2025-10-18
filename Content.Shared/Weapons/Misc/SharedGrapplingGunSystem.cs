@@ -3,9 +3,11 @@ using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Events;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
+using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
@@ -42,6 +44,8 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
         SubscribeLocalEvent<GrapplingGunComponent, GunShotEvent>(OnGrapplingShot);
         SubscribeLocalEvent<GrapplingGunComponent, ActivateInWorldEvent>(OnGunActivate);
         SubscribeLocalEvent<GrapplingGunComponent, HandDeselectedEvent>(OnGrapplingDeselected);
+        SubscribeLocalEvent<GrapplingGunComponent, DroppedEvent>(OnGunDropped); // Frontier
+        SubscribeLocalEvent<GrapplingGunComponent, ThrownEvent>(OnGunThrown); // Frontier
     }
 
     private void OnGrappleJointRemoved(EntityUid uid, GrapplingProjectileComponent component, JointRemovedEvent args)
@@ -114,18 +118,12 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
 
     private void OnGunActivate(EntityUid uid, GrapplingGunComponent component, ActivateInWorldEvent args)
     {
-        if (!Timing.IsFirstTimePredicted || args.Handled || !args.Complex || component.Projectile is not {} projectile)
+        // Frontier: break tether when dropped or thrown
+        if (!Timing.IsFirstTimePredicted || args.Handled || !args.Complex)
             return;
 
-        _audio.PlayPredicted(component.CycleSound, uid, args.User);
-        _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, true);
-
-        if (_netManager.IsServer)
-            QueueDel(projectile);
-
-        component.Projectile = null;
-        SetReeling(uid, component, false, args.User);
-        _gun.ChangeBasicEntityAmmoCount(uid,  1);
+        TryRetractGrapple(uid, component, args.User);
+        // End Frontier
 
         args.Handled = true;
     }
@@ -214,6 +212,34 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
         // joint.Breakpoint = 4000f;
         Dirty(uid, jointComp);
     }
+
+    // Frontier: break tether when dropped or thrown
+    private void OnGunDropped(EntityUid uid, GrapplingGunComponent component, ref DroppedEvent args)
+    {
+        TryRetractGrapple(uid, component, args.User);
+    }
+
+    private void OnGunThrown(EntityUid uid, GrapplingGunComponent component, ref ThrownEvent args)
+    {
+        TryRetractGrapple(uid, component, args.User);
+    }
+
+    private void TryRetractGrapple(EntityUid uid, GrapplingGunComponent component, EntityUid? user)
+    {
+        if (component.Projectile is not { } projectile)
+            return;
+
+        _audio.PlayPredicted(component.CycleSound, uid, user);
+        _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, true);
+
+        if (_netManager.IsServer)
+            QueueDel(projectile);
+
+        component.Projectile = null;
+        SetReeling(uid, component, false, user);
+        _gun.ChangeBasicEntityAmmoCount(uid, 1);
+    }
+    // End Frontier
 
     [Serializable, NetSerializable]
     protected sealed class RequestGrapplingReelMessage : EntityEventArgs
