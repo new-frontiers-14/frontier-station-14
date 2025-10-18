@@ -846,6 +846,17 @@
 
 #region conjured MagiVend
 - type: entity
+  parent: [ BaseC3WizardContraband, VendingMachineMagivend ]
+  id: NFVendingMachineMagivend
+  suffix: Frontier
+  components:
+  - type: VendingMachine
+    pack: MagivendConjuredInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+
+- type: entity
   parent: [ VendingMachineMagivend, ConjuredObject180 ]
   id: VendingMachineMagivendConjured
   name: conjured MagiVend
