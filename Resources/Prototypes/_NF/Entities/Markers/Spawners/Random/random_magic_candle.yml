@@ -1,12 +1,13 @@
 - type: entity
+  parent: MarkerBasePlaceFree
   id: NFCandleInfiniteSpawner
   name: magic candle spawner
   suffix: Frontier, 100%
-  parent: MarkerBase
   components:
     - type: Sprite
       layers:
-        - state: red
+        - state: green
+          scale: 0.7, 0.7
         - sprite: Objects/Misc/candles.rsi
           state: candle-big
     - type: RandomSpawner

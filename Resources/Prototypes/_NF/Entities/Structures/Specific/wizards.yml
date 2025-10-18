@@ -44,6 +44,167 @@
   - type: StaticPrice
     price: 250
 
+#region power generator
+- type: entity
+  parent: [ BaseGenerator, BaseC3WizardContraband ]
+  id: NFGeneratorWizardInfernalCore6kW
+  name: infernal core
+  suffix: 6.66kW, Anchored
+  description: An infernal core sealed in a jar, it's rage contained and harnessed through wizardry to provide power.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    layers:
+    - state: infernal-core
+    - state: infernal-core-unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    size: Large
+    shape:
+    - 0,0,3,3
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: Pullable
+  - type: DamageExaminable
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/drop.ogg
+      params:
+        volume: 2
+  - type: PowerMonitoringDevice
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    state: infernal-core
+  - type: Physics
+    bodyType: Static
+    canCollide: True
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: PowerSupplier
+    supplyRate: 6666
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: GeneratorExhaustGas
+    gasType: WaterVapor
+    moleRatio: 0.35
+  - type: RadiationSource
+    intensity: 1
+
+#region singing rock
+- type: entity
+  parent: [ BaseMachine, BaseC3WizardContraband ]
+  id: SingingRock
+  name: singing rock
+  description: A rock with charming, melodic voice.
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_rockssolid.rsi
+    layers:
+    - state: rocksolid03
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Transform
+    anchored: true
+  - type: Jukebox
+    onState: rocksolid03
+    offState: rocksolid03
+    selectState: rocksolid03
+  - type: Appearance
+  - type: ExtensionCableReceiver
+  - type: ActivatableUI
+    key: enum.JukeboxUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+        enum.JukeboxUiKey.Key:
+          type: JukeboxBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+
+#region Inf. canisters
+- type: entity
+  parent: [ GasCanister, BaseC3WizardContraband ]
+  id: WizardGasCanisterBottomlessOxygen
+  name: bottomless canister
+  suffix: Filled, Oxygen
+  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi # placeholder
+      layers:
+        - state: gas-portal
+          shader: unshaded
+          color: "#88cffa"
+        - state: canister
+    - type: GasCanister
+      gasMixture:
+        volume: 15000 # 1500[base canister volume] * 10
+        moles: # List of gasses for easy reference
+          - 18717.1051 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 293.15
+
+- type: entity
+  parent: [ GasCanister, BaseC3WizardContraband ]
+  id: WizardGasCanisterBottomlessNitrogen
+  name: bottomless canister
+  suffix: Filled, Nitrogen
+  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi # placeholder
+      layers:
+        - state: gas-portal
+          shader: unshaded
+          color: "#ed1529"
+        - state: canister
+    - type: GasCanister
+      gasMixture:
+        volume: 15000 # 1500[base canister volume] * 10
+        moles: # List of gasses for easy reference
+          - 0 # oxygen
+          - 18717.1051 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 293.15
+
 #region small wall light
 - type: entity
   parent: AlwaysPoweredWallLight
