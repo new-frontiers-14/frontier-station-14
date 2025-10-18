@@ -10,8 +10,10 @@
   - type: Sprite
     layers:
     - state: scroll-rolled
-    - state: scroll-rolled-seal
+    - state: scroll-rolled-ribbon
       color: "green"
+    - state: scroll-rolled-seal
+      color: "cyan"
       shader: unshaded
   - type: SpawnItemsOnUse
     items:
@@ -31,6 +33,8 @@
   - type: Sprite
     layers:
     - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "green"
     - state: scroll-unrolled-text-0
       color: "violet"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
@@ -58,7 +62,7 @@
       offset: 0.01,-0.005
       shader: unshaded
     - state: scroll-unrolled-seal
-      color: "green"
+      color: "cyan"
       shader: unshaded
   - type: Spellbook
     spellActions:
@@ -76,8 +80,10 @@
   - type: Sprite
     layers:
     - state: scroll-rolled
-    - state: scroll-rolled-seal
+    - state: scroll-rolled-ribbon
       color: "green"
+    - state: scroll-rolled-seal
+      color: "purple"
       shader: unshaded
   - type: SpawnItemsOnUse
     items:
@@ -97,6 +103,8 @@
   - type: Sprite
     layers:
     - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "green"
     - state: scroll-unrolled-text-1
       color: "purple"
     - sprite: _NF/Objects/Specific/Wizard/runes.rsi
