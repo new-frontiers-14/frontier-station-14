@@ -207,7 +207,7 @@
   - type: MobPrice
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
-  - type: CanEscapeInventory # Carrying system from nyanotrasen.  
+  - type: CanEscapeInventory # Carrying system from nyanotrasen.
   - type: Tag
     tags:
     - CanPilot
@@ -238,6 +238,8 @@
     damage:
       types:
         Heat: -0.07
+        Shock: -0.07 # Frontier
+        Cold: -0.07 # Frontier
       groups:
         Brute: -0.07
   - type: Fingerprint
