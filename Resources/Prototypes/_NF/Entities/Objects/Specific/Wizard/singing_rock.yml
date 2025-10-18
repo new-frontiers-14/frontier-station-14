@@ -1,0 +1,45 @@
+- type: entity
+  parent: [ BaseMachine, BaseC3WizardContraband ]
+  id: SingingRock
+  name: singing rock
+  description: A rock with charming, melodic voice.
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_rockssolid.rsi
+    layers:
+    - state: rocksolid03
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Transform
+    anchored: true
+  - type: Jukebox
+    onState: rocksolid03
+    offState: rocksolid03
+    selectState: rocksolid03
+  - type: Appearance
+  - type: ExtensionCableReceiver
+  - type: ActivatableUI
+    key: enum.JukeboxUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+        enum.JukeboxUiKey.Key:
+          type: JukeboxBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200

@@ -1,0 +1,265 @@
+#region base
+- type: entity
+  abstract: true
+  parent: PunkMessengerGiftBox
+  id: NFBlueWizardGiftBox
+  categories: [ HideSpawnMenu ]
+  name: blue wizard bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#41729F"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#D9790E"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#41729F"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#D9790E"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#41729F"
+      - state: clasp-inhand-left
+        color: "#D9790E"
+      right:
+      - state: base-inhand-right
+        color: "#41729F"
+      - state: clasp-inhand-right
+        color: "#D9790E"
+
+- type: entity
+  abstract: true
+  parent: NFBlueWizardGiftBox
+  id: NFRedWizardGiftBox
+  categories: [ HideSpawnMenu ]
+  name: red wizard bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#FF4500"
+    - state: icon-sling
+      color: "#FF6347"
+    - state: icon-clasp
+      color: "#79bcff"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#FF4500"
+      - state: sling-equipped-BACKPACK
+        color: "#FF6347"
+      - state: clasp-equipped-BACKPACK
+        color: "#79bcff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#FF4500"
+      - state: clasp-inhand-left
+        color: "#79bcff"
+      right:
+      - state: base-inhand-right
+        color: "#FF4500"
+      - state: clasp-inhand-right
+        color: "#79bcff"
+
+- type: entity
+  abstract: true
+  parent: NFBlueWizardGiftBox
+  id: NFPurpleWizardGiftBox
+  categories: [ HideSpawnMenu ]
+  name: purple wizard bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#876393"
+    - state: icon-sling
+      color: "#73517f"
+    - state: icon-clasp
+      color: "#6F9463"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#876393"
+      - state: sling-equipped-BACKPACK
+        color: "#73517f"
+      - state: clasp-equipped-BACKPACK
+        color: "#6F9463"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#876393"
+      - state: clasp-inhand-left
+        color: "#6F9463"
+      right:
+      - state: base-inhand-right
+        color: "#41729F"
+      - state: clasp-inhand-right
+        color: "#6F9463"
+
+#region loot T1
+- type: entity
+  abstract: true
+  id: NFWizardGiftBoxApprentice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 0.95
+      amount: 1
+    - id: SpaceCash500
+      prob: 1
+      amount: 1
+    - id: SpaceCash500
+      prob: 0.25
+      amount: 2
+    # Wizard Stuff
+    - id: SpawnRandomSpellScrollWizard
+      prob: 0.15
+    - id: ShardCrystalRandom
+      prob: 0.15
+      amount: 2
+    # Rare Wizard Stuff
+    - id: SpawnRandomMagicItemsWizard
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: [ NFWizardGiftBoxApprentice, NFBlueWizardGiftBox ]
+  id: NFBlueWizardGiftBoxApprentice
+  name: blue wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ NFWizardGiftBoxApprentice, NFRedWizardGiftBox ]
+  id: NFRedWizardGiftBoxApprentice
+  name: red wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ NFWizardGiftBoxApprentice, NFPurpleWizardGiftBox ]
+  id: NFPurpleWizardGiftBoxApprentice
+  name: purple wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+#region loot T2
+- type: entity
+  abstract: true
+  id: NFWizardGiftBoxAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 1
+      amount: 1
+    - id: SpaceCash500
+      prob: 1
+      amount: 1
+    - id: SpaceCash500
+      prob: 0.5
+      amount: 2
+    # Wizard Stuff
+    - id: SpawnRandomSpellScrollWizard
+      prob: 0.45
+    - id: SpawnRandomSpellScrollWizard
+      prob: 0.15
+    - id: ShardCrystalRandom
+      prob: 0.5
+      amount: 2
+    # Rare Wizard Stuff
+    - id: SpawnRandomMagicItemsWizard
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: [ NFWizardGiftBoxAdept, NFBlueWizardGiftBox ]
+  id: NFBlueWizardGiftBoxAdept
+  name: blue wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ NFWizardGiftBoxAdept, NFRedWizardGiftBox ]
+  id: NFRedWizardGiftBoxAdept
+  name: red wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ NFWizardGiftBoxAdept, NFPurpleWizardGiftBox ]
+  id: NFPurpleWizardGiftBoxAdept
+  name: purple wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+#region loot T3
+- type: entity
+  abstract: true
+  id: NFWizardGiftBoxMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 1
+      amount: 1
+    - id: SpaceCash500
+      prob: 1
+      amount: 2
+    - id: SpaceCash500
+      prob: 0.75
+      amount: 2
+    # Wizard Stuff
+    - id: SpawnRandomSpellScrollWizard
+      prob: 0.85
+    - id: SpawnRandomSpellScrollWizard
+      prob: 0.45
+    - id: ShardCrystalRandom
+      prob: 0.75
+      amount: 2
+    # Rare Wizard Stuff
+    - id: SpawnRandomMagicItemsWizard
+      prob: 0.15
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: [ NFWizardGiftBoxMaster, NFBlueWizardGiftBox ]
+  id: NFBlueWizardGiftBoxMaster
+  name: blue wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ NFWizardGiftBoxMaster, NFRedWizardGiftBox ]
+  id: NFRedWizardGiftBoxMaster
+  name: red wizard gear bundle
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ NFWizardGiftBoxMaster, NFPurpleWizardGiftBox ]
+  id: NFPurpleWizardGiftBoxMaster
+  name: purple wizard gear bundle
+  categories: [ HideSpawnMenu ]

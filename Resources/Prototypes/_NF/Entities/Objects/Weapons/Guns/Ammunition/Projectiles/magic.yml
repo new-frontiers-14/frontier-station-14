@@ -1,8 +1,9 @@
-﻿- type: entity
+﻿#region Bullets
+- type: entity
   parent: BaseBulletTrigger
   id: BulletFireBolt
-  name: fire bolt
   categories: [ HideSpawnMenu ]
+  name: fire bolt
   components:
   - type: Projectile
     damage:
@@ -21,8 +22,8 @@
 - type: entity
   parent: BaseBulletTrigger
   id: BulletMagicBolt
-  name: magic bolt
   categories: [ HideSpawnMenu ]
+  name: magic bolt
   components:
   - type: Projectile
     damage:
@@ -40,8 +41,8 @@
 - type: entity
   parent: BaseBulletTrigger
   id: BulletBloodCultDarkBolt
-  name: blood bolt
   categories: [ HideSpawnMenu ]
+  name: blood bolt
   components:
   - type: Projectile
     damage:
@@ -57,33 +58,17 @@
   - type: Ammo
     muzzleFlash: null
 
-- type: hitscan
-  id: BloodCultLaser
-  damage:
-    types:
-      Slash: 8
-  muzzleFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  travelFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  impactFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-
-- type: entity # For blood cult cat
-  parent: BaseBullet
-  id: BulletEldritchHand
-  name: eldritch hand
+- type: entity
+  parent: BaseBulletTrigger
+  id: BulletBloodCultHand
   categories: [ HideSpawnMenu ]
+  name: blood hand
   components:
-  - type: StaminaDamageOnCollide
-    damage: 100
   - type: Projectile
     damage:
       types:
-        Asphyxiation: 0
+        Asphyxiation: 2
+        Blunt: 5
   - type: Sprite
     noRot: false
     sprite: _NF/Effects/bloodcultprojectiles.rsi
@@ -95,8 +80,8 @@
 - type: entity # For t-rex
   parent: BaseBullet
   id: BulletTRexRoar
-  name: t-rex roar
   categories: [ HideSpawnMenu ]
+  name: t-rex roar
   components:
   - type: StaminaDamageOnCollide
     damage: 100
@@ -118,8 +103,29 @@
     muzzleFlash: null
 
 - type: entity
-  id: ProjectileIcicleLowDamage
+  parent: BaseBulletTrigger
+  id: BulletIceGlobe
+  categories: [ HideSpawnMenu ]
+  name : ice globe
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Cold: 5
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: ice
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
   parent: ProjectileIcicle
+  id: ProjectileIcicleLowDamage
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -128,3 +134,69 @@
         Piercing: 4
         Cold: 4
         Structural: 10
+
+- type: entity # For blood cult cat
+  parent: BaseBullet
+  id: BulletEldritchHand
+  categories: [ HideSpawnMenu ]
+  name: eldritch hand
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 0
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+  - type: Ammo
+    muzzleFlash: null
+
+#region Hitscan
+- type: hitscan
+  id: BloodCultLaser
+  damage:
+    types:
+      Slash: 8
+  muzzleFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+
+- type: hitscan
+  id: WizardHitscanLightning
+  damage:
+    types:
+      Shock: 10
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-muzzle-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-hit-01
+
+- type: hitscan
+  id: CausticBeam
+  damage:
+    types:
+      Caustic: 8
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
