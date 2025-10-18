@@ -6,13 +6,15 @@
   - MobMovementSpeedModifierRanged
   - MobStaminaSpecial
   - MobHumanoidHostileBase
-  - MobPassiveRegen
+  - MobPassiveRegenWeak
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: NFMobWizardlBase
   name: wizard
   components:
+  - type: Damageable
+    damageModifierSet: MobHereticDamageModifierSet
   - type: NpcFactionMember
     factions:
     - WizFedFaction
@@ -29,12 +31,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      160: Dead
+      80: Critical
+      140: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      40: 0.7
+      60: 0.5
   - type: Advertise
     pack: wizardhumanoidchatter
     minimumWait: 30

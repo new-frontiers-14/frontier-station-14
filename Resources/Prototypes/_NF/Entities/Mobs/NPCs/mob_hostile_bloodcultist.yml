@@ -1,3 +1,4 @@
+#region base
 - type: entity
   name: blood cultist
   abstract: true
@@ -7,6 +8,8 @@
   - MobHumanoidInvetory
   id: MobBloodCultistBase
   components:
+  - type: Damageable
+    damageModifierSet: MobHereticDamageModifierSet
   - type: NpcFactionMember
     factions:
       - BloodCultNF
