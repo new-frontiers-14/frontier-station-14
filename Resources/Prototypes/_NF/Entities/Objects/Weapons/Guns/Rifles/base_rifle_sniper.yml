@@ -1,9 +1,9 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameRifleSniper
-  parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGun ]
-  suffix: Frontier
   abstract: true
+  parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseGunMeleeAttackHigh, NFBaseItemWeaponGun ]
+  id: NFBaseWeaponFrameRifleSniper
+  suffix: Frontier
   components:
   - type: Wieldable
     unwieldOnUse: false
@@ -30,9 +30,9 @@
 
 #region manufacturer
 - type: entity
-  id: NFBaseWeaponFrameRifleSniperCybersun
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSniper ]
   abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSniper ]
+  id: NFBaseWeaponFrameRifleSniperCybersun
   components:
   - type: Gun
     angleIncrease: 5.6
@@ -43,8 +43,8 @@
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponRifleChamber60
   abstract: true
+  id: NFBaseWeaponRifleChamber60
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-60

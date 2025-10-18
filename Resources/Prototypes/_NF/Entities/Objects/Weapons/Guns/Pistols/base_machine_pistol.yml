@@ -1,9 +1,9 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameMachinePistol
-  parent: [ NFBaseWeaponEncumbranceMachinePistol, NFBaseItemWeaponGunMagazineFed ]
-  name: machine pistol
   abstract: true
+  parent: [ NFBaseWeaponEncumbranceMachinePistol, NFBaseGunMeleeAttackLow, NFBaseItemWeaponGunMagazineFed ]
+  id: NFBaseWeaponFrameMachinePistol
+  name: machine pistol
   components:
   - type: Gun
     projectileSpeed: 22.5
@@ -24,9 +24,9 @@
 
 #region manufacturer
 - type: entity
-  id: NFBaseWeaponFrameMachinePistolNanotrasen
-  parent: NFBaseWeaponFrameMachinePistol
   abstract: true
+  parent: NFBaseWeaponFrameMachinePistol
+  id: NFBaseWeaponFrameMachinePistolNanotrasen
   components:
   - type: Gun
     minAngle: 3.6
@@ -38,9 +38,9 @@
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
-  id: NFBaseWeaponFrameMachinePistolGorlex
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameMachinePistol ]
   abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameMachinePistol ]
+  id: NFBaseWeaponFrameMachinePistolGorlex
   components:
   - type: Gun
     minAngle: 3.4

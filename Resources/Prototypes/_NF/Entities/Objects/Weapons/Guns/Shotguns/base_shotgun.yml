@@ -1,8 +1,8 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameShotgun
-  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
   abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseGunMeleeAttackLow, NFBaseItemWeaponGun ]
+  id: NFBaseWeaponFrameShotgun
   components:
   - type: Sprite
     layers:
@@ -28,9 +28,9 @@
     class: weapon-details-class-shotgun
 
 - type: entity
-  id: NFBaseWeaponFrameShotgunWieldable
-  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFrameShotgun ]
   abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseGunMeleeAttackMedium, NFBaseWeaponFrameShotgun ]
+  id: NFBaseWeaponFrameShotgunWieldable
   components:
   - type: Wieldable
     unwieldOnUse: false
@@ -41,8 +41,8 @@
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponShotgunChamber50
   abstract: true
+  id: NFBaseWeaponShotgunChamber50
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-50
@@ -60,8 +60,8 @@
         ents: []
 
 - type: entity
-  id: NFBaseWeaponShotgunChamber50Magazine
   abstract: true
+  id: NFBaseWeaponShotgunChamber50Magazine
   components:
   - type: Sprite # janky here, but mag is optional and tied with chamber
     layers:
