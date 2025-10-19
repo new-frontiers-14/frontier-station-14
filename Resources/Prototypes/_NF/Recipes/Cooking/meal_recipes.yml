@@ -201,6 +201,65 @@
   - Oven
   - Microwave
 
+# Dough Alternative Recipes
+
+- type: microwaveMealRecipe
+  id: RecipeFoodRiceDough
+  name: rice dough recipe
+  result: FoodRiceDough
+  time: 5
+  group: Savory
+  solids:
+    RiceBushel: 4
+  reagents:
+    Water: 10
+  recipeType:
+  - Assembler
+
+# Hot Dog Haven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedGarlicBreadBaguette
+  name: french garlic bread recipe
+  result: FoodBreadGarlicBaguette
+  resultCount: 2 # food reagents are cut in half, this yields two french garlic bread halves
+  time: 20
+  group: Breads
+  solids:
+    FoodBreadBaguette: 1
+    FoodCheeseSlice: 2
+    FoodGarlic: 4
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedTexasToast
+  name: texas toast recipe
+  result: FoodBreadTexasToast
+  time: 10
+  group: Breads
+  solids:
+    FoodBreadBaguetteSlice: 2
+    FoodButterSlice: 1
+    FoodGarlic: 1
+  recipeType:
+  - Oven
+
+ # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarp
+  name: cured carp
+  result: FoodCuredCarp
+  time: 5
+  group: Savory # TODO: move to ingredients
+  solids:
+    FoodMeatFish: 1
+  reagents:
+    Stellibinin: 10
+  recipeType:
+  - Assembler
+
 - type: microwaveMealRecipe
   id: RecipeSausageRaw
   name: raw sausage recipe
@@ -266,21 +325,6 @@
     FoodBreadBun: 1
   recipeType:
   - Oven
-
-# Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
-
-- type: microwaveMealRecipe
-  id: RecipeCuredCarp
-  name: cured carp
-  result: FoodCuredCarp
-  time: 5
-  group: Savory # TODO: move to ingredients
-  solids:
-    FoodMeatFish: 1
-  reagents:
-    Stellibinin: 10
-  recipeType:
-  - Assembler
 
 # Birb
 
@@ -421,7 +465,7 @@
   name: cotton salad recipe
   result: FoodMothCottonSalad
   time: 5
-  group: MothFood
+  group: Moth
   reagents:
     OilOlive: 5
   solids:
@@ -1043,7 +1087,7 @@
   group: Pasta
   solids:
     FoodRiceDough: 1
-  reagents: 
+  reagents:
     TableSalt: 10
     Cornoil: 10
   recipeType: Assembler

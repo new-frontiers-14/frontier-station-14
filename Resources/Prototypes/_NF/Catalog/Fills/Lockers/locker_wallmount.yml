@@ -207,6 +207,16 @@
   suffix: Frontier, Filled
 
 - type: entity
+  parent: [ LockerWallEVAColorFsa, StorageFillEVASuitFsa ]
+  id: LockerWallEVAColorFsaFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallEVAColorFsa ]
+  id: LockerWallEVAColorFsaEmpty
+  suffix: Frontier, Empty
+
+- type: entity
   parent: [ LockerWallEVAColorFsb, StorageFillEVASuitFsb ]
   id: LockerWallEVAColorFsbFilled
   suffix: Frontier, Filled
@@ -315,27 +325,20 @@
 
 - type: entity
   id: LockerWallColorMedicalFilled
-  parent:
-  - LockerWallColorMedical
-  - BaseStructureWallmount
-  - LockerWallMedicalFilled
+  parent: LockerWallColorMedical
   name: medicine wall locker
   suffix: Filled, Frontier
-  components: # fixes sprite errors from parenting
-  - type: EntityStorageVisuals
-    stateBaseClosed: base
-    stateDoorOpen: open
-    stateDoorClosed: door
-  - type: ContainerContainer
+  components:
+  - type: EntityTableContainerFill
     containers:
-      storagebase: !type:Container
-        showEnts: False
-        occludes: True
-        ents: []
-      entity_storage: !type:Container
-        showEnts: False
-        occludes: True
-        ents: []
+      storagebase: !type:NestedSelector
+        tableId: LockerFillMedicine
+
+- type: entity
+  id: LockerWallColorMedicalEmpty
+  parent: LockerWallColorMedical
+  name: medicine wall locker
+  suffix: Empty, Frontier
 # endregion
 
 # region Chemistry
