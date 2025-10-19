@@ -3,7 +3,6 @@
   id: SmartFridge
   name: SmartFridge
   description: A refrigerated storage unit for keeping items cold and fresh.
-  categories: [ HideSpawnMenu ] # DeltaV - apparently we can't migrate abstract/disabled prototypes
   components:
   - type: StationAiWhitelist
   - type: Vocalizer
@@ -40,6 +39,7 @@
       - Pill
       - Produce
       - Seed
+      - Hypospray # Frontier
       tags:
       - PillCanister
       - Bottle
@@ -123,6 +123,7 @@
   parent: SmartFridge
   id: SmartFridgeMedical
   suffix: Medical
+  categories: [ HideSpawnMenu ] # Frontier, hide this one as we don't use the access systems for it.
   components:
   - type: SmartFridge
     flavorText: smart-fridge-request-chemistry

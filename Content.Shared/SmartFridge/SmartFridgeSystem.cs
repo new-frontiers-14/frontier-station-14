@@ -94,6 +94,13 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (ent.Comp.ContainedEntries.TryGetValue(key, out var contained))
         {
             contained.Remove(GetNetEntity(args.Entity));
+            // Frontier: remove listing when empty
+            if (contained.Count <= 0)
+            {
+                ent.Comp.ContainedEntries.Remove(key);
+                ent.Comp.Entries.Remove(key);
+            }
+            // End Frontier: remove listing when empty
         }
 
         Dirty(ent);
@@ -131,6 +138,13 @@ public sealed class SmartFridgeSystem : EntitySystem
 
             _audio.PlayPredicted(ent.Comp.SoundVend, ent, args.Actor);
             contained.Remove(item);
+            // Frontier: remove listing when empty
+            if (contained.Count <= 0)
+            {
+                ent.Comp.ContainedEntries.Remove(args.Entry);
+                ent.Comp.Entries.Remove(args.Entry);
+            }
+            // End Frontier: remove listing when empty
             Dirty(ent);
             return;
         }
@@ -141,7 +155,7 @@ public sealed class SmartFridgeSystem : EntitySystem
 
     private void OnGetDumpableVerb(Entity<SmartFridgeComponent> ent, ref GetDumpableVerbEvent args)
     {
-        if (_accessReader.IsAllowed(args.User, ent))
+        if (!ent.Comp.CheckAccessOnInsert || _accessReader.IsAllowed(args.User, ent)) // Frontier: add CheckAccessOnInsert
         {
             args.Verb = Loc.GetString("dump-smartfridge-verb-name", ("unit", ent));
         }
