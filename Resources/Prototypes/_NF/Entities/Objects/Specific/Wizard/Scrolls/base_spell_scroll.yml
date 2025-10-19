@@ -1,7 +1,7 @@
 #region rolled scroll
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [ BaseItem, RecyclableItemPaper ]
   id: SpellScrollRolled
   suffix: Folded
   components:
@@ -31,7 +31,7 @@
 #region unrolled scroll
 - type: entity
   abstract: true
-  parent: [ BaseItem, ConjuredObject60 ]
+  parent: [ BaseItem, ConjuredObject60, RecyclableItemPaper ]
   id: SpellScrollBase
   components:
   - type: Sprite
