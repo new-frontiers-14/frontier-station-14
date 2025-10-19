@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 22:48:07
-  entityCount: 1801
+  time: 10/19/2025 00:54:02
+  entityCount: 1803
 maps: []
 grids:
 - 1
@@ -654,12 +654,6 @@ entities:
       parent: 1
 - proto: BookRandomStory
   entities:
-  - uid: 1644
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -7.4954844,-34.47576
-      parent: 1
   - uid: 1645
     components:
     - type: Transform
@@ -3747,6 +3741,13 @@ entities:
     - type: Transform
       pos: -6.477776,-14.435758
       parent: 1
+- proto: ClothingWalletInfiniteGreed
+  entities:
+  - uid: 1803
+    components:
+    - type: Transform
+      pos: -7.497953,-34.3865
+      parent: 1
 - proto: ComputerTabletopAlert
   entities:
   - uid: 248
@@ -4070,6 +4071,14 @@ entities:
     - type: Transform
       pos: 3.518543,-8.249415
       parent: 1
+- proto: FairyDragonWings
+  entities:
+  - uid: 1644
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.4600048,-2.5755274
+      parent: 1
 - proto: FaxMachineShipAntag
   entities:
   - uid: 55
@@ -4230,6 +4239,19 @@ entities:
     - type: Transform
       pos: 2.8777184,-13.480615
       parent: 1
+- proto: GasMixerOnFlipped
+  entities:
+  - uid: 1154
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,-35.5
+      parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.20999998
+      inletOneConcentration: 0.79
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 1278
@@ -5749,13 +5771,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 1154
-    components:
-    - type: Transform
-      pos: 9.5,-35.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 1156
     components:
     - type: Transform
@@ -5954,6 +5969,13 @@ entities:
       pipeLayer: Secondary
     - type: AtmosPipeColor
       color: '#990000FF'
+- proto: GasTankWizardBottomless
+  entities:
+  - uid: 1802
+    components:
+    - type: Transform
+      pos: 15.461364,-33.01075
+      parent: 1
 - proto: GasVentPump
   entities:
   - uid: 1232
