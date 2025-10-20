@@ -190,14 +190,15 @@
   id: NFBaseGunMeleeAttackLow
   components:
   - type: AltFireMelee
-    attackType: Light
+    attackType: Heavy # Swing
   - type: MeleeWeapon
     attackRate: 1.1
     damage:
       types:
         Blunt: 6
-    angle: 0
-    wideAnimationRotation: -135
+        Structural: 4
+    angle: 30
+    wideAnimationRotation: 90
     animation: WeaponArcThrust
     soundHit:
       collection: MetalThud
@@ -210,14 +211,15 @@
   id: NFBaseGunMeleeAttackMedium
   components:
   - type: AltFireMelee
-    attackType: Heavy
+    attackType: Heavy # Swing
   - type: MeleeWeapon
     attackRate: 1
     damage:
       types:
         Blunt: 6
-    angle: 0
-    wideAnimationRotation: -135
+        Structural: 4
+    angle: 30
+    wideAnimationRotation: 90
     animation: WeaponArcThrust
     soundHit:
       collection: MetalThud
@@ -225,6 +227,7 @@
     damage:
       types:
         Blunt: 2
+        Structural: 4
 
 - type: entity
   abstract: true
@@ -232,14 +235,15 @@
   id: NFBaseGunMeleeAttackHigh
   components:
   - type: AltFireMelee
-    attackType: Heavy
+    attackType: Heavy # Swing
   - type: MeleeWeapon
     attackRate: 0.95
     damage:
       types:
         Blunt: 8
-    angle: 0
-    wideAnimationRotation: -135
+        Structural: 6
+    angle: 30
+    wideAnimationRotation: 90
     animation: WeaponArcThrust
     soundHit:
       collection: MetalThud
@@ -247,6 +251,7 @@
     damage:
       types:
         Blunt: 4
+        Structural: 4
 
 # melee attack for weapons with bayonets
 - type: entity
@@ -254,6 +259,8 @@
   parent: NFBaseGunMeleeAttackHigh
   id: NFBaseGunMeleeAttackBayonet
   components:
+  - type: AltFireMelee
+    attackType: Light # Stab
   - type: MeleeRequiresWield
   - type: MeleeWeapon
     attackRate: .85
