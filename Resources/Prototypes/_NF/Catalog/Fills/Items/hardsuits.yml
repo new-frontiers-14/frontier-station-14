@@ -1,0 +1,28 @@
+- type: entity
+  id: HardsuitMercEntity
+  suffix: Merc Random
+  categories: [ HideSpawnMenu ]
+  parent: MarkerBasePlaceFree
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableHardsuitMerc
+      prob: 1
+  - type: Sprite
+    noRot: true
+
+- type: entityTable
+  id: TableHardsuitMerc
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitMercenary
+      weight: 0.35
+    - id: ClothingOuterHardsuitPrivateSecurity
+      weight: 0.30
+    - id: ClothingOuterHardsuitSurplus
+      weight: 0.20
+    - id: ClothingOuterHardsuitScaf
+      weight: 0.10
+    - id: ClothingOuterHardsuitNoble
+      weight: 0.05

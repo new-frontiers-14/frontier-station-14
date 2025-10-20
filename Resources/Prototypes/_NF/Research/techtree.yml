@@ -421,20 +421,21 @@
   - ClothingOuterHardsuitCap
   - ClothingOuterHardsuitEngineeringWhite # CE
   - ClothingOuterHardsuitLuxury
-  - ClothingOuterHardsuitHostileEnvironment
+
   technologyPrerequisites:
   - NFHardsuitsEngineering
   position: 3, 8
 
 - type: technology
-  id: NFHardsuitsExperimentalRD
-  name: nf-research-technology-hardsuits-experimental-rd
+  id: NFHardsuitsExperimentalProtection
+  name: nf-research-technology-hardsuits-experimental-protection
   entityIcon: ClothingOuterHardsuitRd
   discipline: NFScience
   tier: 1
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitRd
+  - ClothingOuterHardsuitHostileEnvironment
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFSuperParts
@@ -482,7 +483,7 @@
   - ClothingOuterHardsuitMaximPrototype
   prerequisiteLineType: Tree
   technologyPrerequisites:
-  - NFHardsuitsExperimentalRD
+  - NFHardsuitsExperimentalProtection
   - NFHardsuitsArmored
   position: 5, 8
 
