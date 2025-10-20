@@ -17,21 +17,21 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootToolsBasicEngineering
-    - SpawnDungeonLootToolsBasicEngineering
-    - SpawnDungeonLootMaterialsValuableSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootClothesEngi
-    - SpawnDungeonLootVendingRestocks
+    - SpawnDungeonLootEngineeringParts #tmp
+    - SpawnDungeonLootEngineeringParts #tmp
+    - SpawnDungeonLootEngineeringParts #tmp
+    - SpawnDungeonLootEngineeringParts #tmp
+    - SpawnDungeonLootEngineeringTools #tmp
+    - SpawnDungeonLootEngineeringTools #tmp
+    - SpawnDungeonLootMaterialsValuableSingle #tmp
+    - SpawnDungeonLootMaterialsBasicSingle #tmp
+    - SpawnDungeonLootClothesEngi #tmp
+    - SpawnDungeonLootVendingRestocks #tmp
     chance: 1
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootCircuitBoard
-    - SpawnDungeonLootToolbox
+    - SpawnDungeonLootEngineeringToolboxes #tmp
     - SpawnDungeonLootFlatpacksEngi
     - SpawnDungeonLootFlatpacks
     rareChance: 0.05
@@ -322,54 +322,6 @@
     rareChance: 0.01
 
 # Other
-- type: entity
-  name: random parts
-  id: SpawnDungeonLootPartsEngi
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: _NF/Objects/Misc/stock_parts.rsi
-        state: bluespace_matter_bin
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    # T1
-    - MicroManipulatorStockPart
-    - MatterBinStockPart
-    - CapacitorStockPart
-    # T2
-    - AdvancedCapacitorStockPart
-    - NanoManipulatorStockPart
-    - AdvancedMatterBinStockPart
-    # T3
-    - SuperCapacitorStockPart
-    - PicoManipulatorStockPart
-    - SuperMatterBinStockPart
-    # Engi related things
-    - SpawnDungeonLootPowerCell
-    - ProximitySensor
-    - RemoteSignaller
-    - Igniter
-    - DrinkSpaceLube
-    - VoiceTrigger
-    - TimerTrigger
-    - SciFlash
-    chance: 0.95
-    offset: 0.0
-    rarePrototypes:
-    #- HandheldStationMap
-    # T4
-    - QuadraticCapacitorStockPart
-    - FemtoManipulatorStockPart
-    - BluespaceMatterBinStockPart
-    rareChance: 0.05
-
 - type: entity
   name: random power cell
   id: SpawnDungeonLootPowerCell
