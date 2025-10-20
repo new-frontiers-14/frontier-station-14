@@ -1,0 +1,310 @@
+#region tools
+- type: entityTable
+  id: TableDungeonLootEngineeringTools
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringPowerDrill
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringJawsOfLife
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringWelder
+      weight: 14
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringHoloprojector
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsRare
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsCommon
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralHandheldDisplays
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
+      weight: 10
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralLighters
+        weight: 20
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralFlashlights
+        weight: 60
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralFlares
+        weight: 20
+
+- type: entityTable
+  id: TableDungeonLootEngineeringPowerDrill
+  table: !type:GroupSelector
+    children:
+    - id: Screwdriver
+      weight: 30
+    - id: Wrench
+      weight: 30
+    - id: PowerDrill
+      weight: 40
+
+- type: entityTable
+  id: TableDungeonLootEngineeringJawsOfLife
+  table: !type:GroupSelector
+    children:
+    - id: Wirecutter
+      weight: 30
+    - id: Crowbar
+      weight: 30
+    - id: JawsOfLife
+      weight: 40
+
+- type: entityTable
+  id: TableDungeonLootEngineeringWelder
+  table: !type:GroupSelector
+    children:
+      - id: WelderMini
+        weight: 5
+      - id: Welder
+        weight: 5
+      - id: Cowelder
+        weight: 5
+      - id: RefuelingWelder
+        weight: 30
+      - id: WelderIndustrial
+        weight: 15
+      - id: WelderIndustrialAdvanced
+        weight: 10
+      - id: WelderExperimental
+        weight: 30
+
+- type: entityTable
+  id: TableDungeonLootEngineeringSprayPainter
+  table: !type:GroupSelector
+    children:
+    - id: SprayPainter
+      weight: 95
+    - id: SprayPainterMagic
+      weight: 5
+
+- type: entityTable
+  id: TableDungeonLootEngineeringHoloprojector
+  table: !type:GroupSelector
+    children:
+    - id: HolofanProjector
+      weight: 90
+    - id: HoloprojectorField
+      weight: 10
+
+- type: entityTable
+  id: TableDungeonLootEngineeringToolsRare
+  table: !type:GroupSelector
+    children:
+    - id: RPED
+    - !type:AllSelector
+      children:
+      - id: ShipyardRCD
+      - id: ShipyardRCDAmmo
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: TableDungeonLootEngineeringToolsCommon
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: Multitool
+        weight: 70
+      - id: NetworkConfigurator
+        weight: 30
+    # Assorted devices
+    - id: trayScanner
+    - id: GasAnalyzer
+    - id: GasDepositLocator
+    - id: GeigerCounter
+    - id: AppraisalTool
+    - id: RadioHandheldNF
+    - !type:GroupSelector # TODO: maybe split into its own table
+      children:
+      - id: ClothingEyesGlassesMeson
+        weight: 70
+      - id: ClothingEyesHudDiagnostic
+        weight: 20
+      - id: ClothingEyesGlassesThermal
+        weight: 10
+
+- type: entityTable
+  id: TableDungeonLootEngineeringToolboxes
+  table: !type:GroupSelector
+    children:
+    # Electrical
+    - !type:GroupSelector
+      weight: 32
+      children:
+      - id: ToolboxElectricalFilled
+        weight: 60
+      - id: ToolboxElectrical
+        weight: 40
+    # Emergency
+    - !type:GroupSelector
+      weight: 32
+      children:
+      - id: ToolboxEmergencyFilled
+        weight: 60
+      - id: ToolboxEmergency
+        weight: 40
+    # Mechanical
+    - !type:GroupSelector
+      weight: 32
+      children:
+      - id: ToolboxMechanicalFilledAllTools
+        weight: 35
+      - id: ToolboxMechanicalFilled
+        weight: 35
+      - id: ToolboxMechanical
+        weight: 30
+    # Trap
+    - !type:GroupSelector
+      weight: 4
+      children:
+      - id: NFToolboxMineCryo
+      - id: NFToolboxMineExplosive
+      - id: NFToolboxMineFire
+# Commented out: buy it from your local SyndiVend
+#    # Syndicate
+#    - !type:GroupSelector
+#      children:
+#      - id: ToolboxSyndicateFilled
+#        weight: 60
+#      - id: ToolboxSyndicate
+#        weight: 40
+
+- type: entityTable # TODO: move to general loot tables
+  id: TableDungeonLootGeneralFlashlights
+  table: !type:GroupSelector
+    children:
+    - id: Lantern
+    - id: FlashlightLantern
+    - id: Floodlight
+    - id: FlashlightSeclite
+
+- type: entityTable # TODO: move to general loot tables
+  id: TableDungeonLootGeneralLighters
+  table: !type:GroupSelector
+    children:
+    - id: Matchstick
+    - id: Matchbox
+    - id: CheapLighter
+    - id: Lighter
+    - id: FlippoLighter
+    - id: FlippoEngravedLighter
+
+- type: entityTable # TODO: move to general loot tables
+  id: TableDungeonLootGeneralFlares
+  table: !type:GroupSelector
+    children:
+    - id: Flare
+    - id: BoxDispenserFlare
+    - !type:AllSelector
+      children:
+      - id: WeaponFlareGun
+      - id: NFAmmunitionBoxShellShotgunFlare
+    - id: NFWeaponHoloflareGun
+
+- type: entityTable # TODO: move to general loot tables
+  id: TableDungeonLootGeneralHandheldDisplays
+  table: !type:GroupSelector
+    children:
+    - id: HandheldStationMap
+    - id: HandHeldMassScanner
+    - id: HandheldCrewMonitor
+    - id: HandheldSecurityMonitor
+
+#region parts
+- type: entityTable
+  id: TableDungeonLootEngineeringParts
+  table: !type:GroupSelector
+    children:
+    # Capacitors
+    - !type:GroupSelector
+      weight: 30
+      amount: !type:RangeNumberSelector
+        range: 4, 6
+      children:
+      - id: CapacitorStockPart
+        weight: 10
+      - id: AdvancedCapacitorStockPart
+        weight: 30
+      - id: SuperCapacitorStockPart
+        weight: 40
+      - id: QuadraticCapacitorStockPart
+        weight: 20
+    # Manipulators
+    - !type:GroupSelector
+      weight: 30
+      amount: !type:RangeNumberSelector
+        range: 4, 6
+      children:
+      - id: MicroManipulatorStockPart
+        weight: 10
+      - id: NanoManipulatorStockPart
+        weight: 30
+      - id: PicoManipulatorStockPart
+        weight: 40
+      - id: FemtoManipulatorStockPart
+        weight: 20
+    # Matter bins
+    - !type:GroupSelector
+      weight: 30
+      amount: !type:RangeNumberSelector
+        range: 4, 6
+      children:
+      - id: MatterBinStockPart
+        weight: 10
+      - id: AdvancedMatterBinStockPart
+        weight: 30
+      - id: SuperMatterBinStockPart
+        weight: 40
+      - id: BluespaceMatterBinStockPart
+        weight: 20
+    # Power Cells
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: PowerCellPotato
+        weight: 5
+      - id: PowerCellSmall
+        weight: 5
+      - id: PowerCellMedium
+        weight: 20
+      - id: PowerCellHigh
+        weight: 20
+      - id: PowerCellHyper
+        weight: 35
+      - id: PowerCellMicroreactor
+        weight: 10
+      - id: PowerCellAntiqueProto
+        weight: 5
+
+- type: entityTable
+  id: TableDungeonLootEngineeringCraftingComponents
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: RemoteSignaller
+        weight: 30
+      - id: RemoteSignallerAdvanced
+        weight: 70
+    - id: ProximitySensor
+    - id: Igniter
+    - id: VoiceTrigger
+    - id: TimerTrigger
+    - id: SignalTrigger
+    - id: SciFlash
+    - id: DrinkSpaceLube
+    - id: DrinkSpaceGlue

@@ -1,0 +1,44 @@
+#region Tools
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootEngineeringTools
+  name: random tool
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Tools/wrench.rsi
+      state: icon
+    - sprite: _NF/Objects/Tools/crowbar.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringTools
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootEngineeringToolboxes
+  name: random toolbox
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
