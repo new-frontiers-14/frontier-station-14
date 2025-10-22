@@ -33,6 +33,9 @@ trait-moth-accent-desc = Some of your words have a certain buzzz to them.
 trait-dwarf-accent-name = Dwarven accent
 trait-dwarf-accent-desc = Ye sound like ye've spent tae long wi ae pickaxe in your hands. Rock and stone!
 
+trait-russian-accent-name = Russian Accent
+trait-russian-accent-desc = Яussiаи аccеит.
+
 trait-fluffy-name = Fluffy (Moth only)
 trait-fluffy-desc = You look more fluffy than other moths.
 
