@@ -9,6 +9,15 @@
   materials:
     Steel: 75
 
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipePiety
+  categories:
+  - NFPiety
+  completetime: 1
+  materials:
+    Steel: 200
+
 # Recipes
 
 - type: latheRecipe
@@ -182,3 +191,34 @@
   result: DrinkDisposableMcCup
   materials:
     Cardboard: 50
+
+#region piety
+- type: latheRecipe
+  id: NFServiceCenser
+  result: Censer
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceClothingNeckCrucifix
+  result: ClothingNeckCrucifix
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: ServiceUrnMortuary
+  result: UrnMortuary
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Steel: 400
+
+- type: latheRecipe
+  id: NFServiceUrn
+  result: Urn
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceClothingMaskPlague
+  result: ClothingMaskPlague
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Steel: 300
+    Cloth: 200
