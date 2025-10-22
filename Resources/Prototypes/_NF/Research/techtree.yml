@@ -421,19 +421,21 @@
   - ClothingOuterHardsuitCap
   - ClothingOuterHardsuitEngineeringWhite # CE
   - ClothingOuterHardsuitLuxury
+
   technologyPrerequisites:
   - NFHardsuitsEngineering
   position: 3, 8
 
 - type: technology
-  id: NFHardsuitsExperimentalRD
-  name: nf-research-technology-hardsuits-experimental-rd
+  id: NFHardsuitsExperimentalProtection
+  name: nf-research-technology-hardsuits-experimental-protection
   entityIcon: ClothingOuterHardsuitRd
   discipline: NFScience
   tier: 1
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitRd
+  - ClothingOuterHardsuitHostileEnvironment
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFSuperParts
@@ -456,6 +458,20 @@
   position: 4, 9
 
 - type: technology
+  id: NFHardsuitsOldWar
+  name: nf-research-technology-hardsuits-old-war
+  entityIcon: ClothingOuterHardsuitSurplus
+  discipline: NFArsenalMercenary
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSurplus
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+    - NFHardsuitsArmored
+  position: 5, 10
+
+- type: technology
   id: NFHardsuitsExperimentalIndustrial
   name: nf-research-technology-hardsuits-experimental-industrial
   entityIcon: ClothingOuterHardsuitMaximPrototype
@@ -467,7 +483,7 @@
   - ClothingOuterHardsuitMaximPrototype
   prerequisiteLineType: Tree
   technologyPrerequisites:
-  - NFHardsuitsExperimentalRD
+  - NFHardsuitsExperimentalProtection
   - NFHardsuitsArmored
   position: 5, 8
 
@@ -480,6 +496,7 @@
   cost: 20000
   recipeUnlocks:
   - ClothingOuterHardsuitScaf
+  - ClothingOuterHardsuitNoble
   technologyPrerequisites:
   - NFHardsuitsArmored
   position: 5, 9
