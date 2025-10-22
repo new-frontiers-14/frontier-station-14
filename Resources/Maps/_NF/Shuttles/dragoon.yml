@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/21/2025 01:51:38
-  entityCount: 386
+  time: 10/22/2025 05:18:54
+  entityCount: 392
 maps: []
 grids:
 - 1
@@ -1337,6 +1337,36 @@ entities:
     - type: Transform
       pos: -0.5,-4.5
       parent: 1
+- proto: EmergencyLight
+  entities:
+  - uid: 388
+    components:
+    - type: Transform
+      pos: -2.5,-3.5
+      parent: 1
+  - uid: 389
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-0.5
+      parent: 1
+  - uid: 390
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,3.5
+      parent: 1
+  - uid: 391
+    components:
+    - type: Transform
+      pos: 3.5,-3.5
+      parent: 1
+  - uid: 392
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-10.5
+      parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 272
@@ -2114,6 +2144,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-10.5
       parent: 1
+- proto: MachineMaterialSilo
+  entities:
+  - uid: 387
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
 - proto: MaterialReclaimer
   entities:
   - uid: 218
@@ -2170,6 +2209,8 @@ entities:
     - type: Transform
       pos: -2.5,-10.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 27000
 - proto: PosterLegitSafetyMothPiping
   entities:
   - uid: 357
@@ -2536,6 +2577,9 @@ entities:
         - - Pressed
           - Toggle
         3:
+        - - Pressed
+          - Toggle
+        7:
         - - Pressed
           - Toggle
   - uid: 354
