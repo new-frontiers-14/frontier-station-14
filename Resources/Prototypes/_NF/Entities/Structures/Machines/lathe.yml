@@ -6,6 +6,7 @@
     whitelist:
       tags:
       - BlueprintAutolathe
+      - NFBlueprintAdvanced
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -41,17 +42,31 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFServiceTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFServiceStorageStatic
+    - NFBotanyToolsStatic
+    - NFServiceToolsStatic
+    - NFServiceEvaPackStatic
+    - NFServiceKitchenStatic
+    - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFLightsColoredStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - NFServiceTechfabDeprecatedEmagStatic
+    - NFServiceTechfabEmagStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintServiceTechfab
+      - NFBlueprintAdvanced
   - type: OreSiloClient
 
 - type: entity
@@ -77,9 +92,23 @@
     board: McServiceTechFabCircuitboard
   - type: Lathe
     staticPacks:
-    - NFServiceTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFServiceStorageStatic
+    - NFBotanyToolsStatic
+    - NFServiceToolsStatic
+    - NFServiceEvaPackStatic
+    - NFServiceKitchenStatic
+    - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
+    - NFLightsColoredStatic
     - NFMcServiceTechfabStatic
 
 - type: entity
@@ -108,11 +137,26 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFEngineeringTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFServiceToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFEngineeringToolsStatic
+    - NFEngineeringBoardsStatic
+    - NFEngineeringStructureBoardsStatic
+    - NFEngineeringMaterialsStatic
+    - NFInflatablesStatic
+
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintEngineeringTechfab
+      - NFBlueprintAdvanced
   - type: OreSiloClient
 
 - type: entity
@@ -141,14 +185,27 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFSalvageTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFMaterialElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFBasicEvaLightsStatic
+    - NFSalvageStatic
+    - NFSalvageBoardsStatic
+    - NFInflatablesStatic
+
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - NFSalvageTechfabDeprecatedEmag
+    - NFSalvageTechfabEmag
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintSalvageTechfab
+      - NFBlueprintAdvanced
   - type: OreSiloClient
 
 - type: entity
@@ -177,14 +234,28 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFNfsdTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - ReportingStatic # DeltaV
+    - NfsdWeaponsStatic
     - NfsdPracticeStatic
     - NfsdAmmoStatic
-    - ReportingStatic # DeltaV
+    - NFMercenaryMagazineStatic
+    - NFMercenaryStorageStatic
+    - NfsdToolsStatic
+    - NfsdTargetsStatic
+    - NfsdBoardsStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintNfsdTechfab
+      - NFBlueprintAdvanced
   - type: OreSiloClient
 
 - type: entity
@@ -213,12 +284,27 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFMercenaryTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFBasicEvaLightsStatic
+    - NFMercenaryStatic
+    - NFMercenaryToolsStatic
+    - NFMercenaryStorageStatic
+    - NFMercenaryWeaponsStatic
+    - NFMercenaryAmmoBoxesStatic
     - NfsdPracticeStatic
+    - NFMercenaryMagazineStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintMercenaryTechfab
+      - NFBlueprintAdvanced
   - type: OreSiloClient
 
 - type: entity
@@ -261,12 +347,29 @@
     idleState: mercenary-hacked
     runningState: mercenary-hacked
     staticPacks:
-    - NFHackedMercenaryTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFBasicEvaLightsStatic
+    - NFMaterialElectronicsStatic 
+    - NFMercenaryStatic
+    - NFMercenaryToolsStatic
+    - NFMercenaryStorageStatic
+    - NFMercenaryWeaponsStatic
+    - NFMercenaryAmmoBoxesStatic
+    - NfsdPracticeStatic
+    - NFHackedMercenaryClothingStatic
+    - NFMercenaryMagazineStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintMercenaryTechfab
       - NFBlueprintNfsdTechfab
+      - NFBlueprintAdvanced
   - type: OreSiloClient
 
 - type: entity
