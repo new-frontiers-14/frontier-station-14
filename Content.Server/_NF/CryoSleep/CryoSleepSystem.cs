@@ -241,10 +241,9 @@ public sealed partial class CryoSleepSystem : EntitySystem
         }
 
         // If the inserted player has disconnected, it will be stored immediately.
-        _player.TryGetSessionByEntity(toInsert.Value, out var session);
-        if (session?.Status == SessionStatus.Disconnected)
+        if (!_player.TryGetSessionByEntity(toInsert.Value, out var session) || session?.Status == SessionStatus.Disconnected)
         {
-            CryoStoreBody(toInsert.Value, cryopod);
+            CryoStoreBody(toInsert.Value, cryopod, true);
             return true;
         }
 
@@ -253,10 +252,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         var ui = new CryoSleepEui(toInsert.Value, cryopod, this);
         if (session != null)
+        {
             _euiManager.OpenEui(ui, session);
-        var warningMessage = GetWarningMessages(toInsert.Value);
-        if (warningMessage != null)
-            ui.SendMessage(warningMessage);
+            var warningMessage = GetWarningMessages(toInsert.Value);
+            if (warningMessage != null)
+                ui.SendMessage(warningMessage);
+        }
 
         // Start a do-after event - if the inserted body is still inside and has not decided to sleep/leave, it will be stored.
         // It does not matter whether the entity has a mind or not.
@@ -323,7 +324,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
                                 && HasComp<ShuttleDeedComponent>(card));
 
         //Find all the shuttles and uplinks and remove them from the list
-        for (var i = warningItemsList.Count - 1; i >= 0 ; i--)
+        for (var i = warningItemsList.Count - 1; i >= 0; i--)
         {
             var itemStruct = warningItemsList[i];
             if (_entityManager.HasComponent<ShuttleDeedComponent>(itemStruct.Item))
@@ -403,7 +404,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     }
 
 
-    public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod)
+    public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod, bool immediate = false)
     {
         if (!TryComp<CryoSleepComponent>(cryopod, out var cryo))
             return;
@@ -430,8 +431,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
             _ghost.OnGhostAttempt(mindEntity, false, true, mind: mind);
         }
 
+        if (!immediate)
+            _container.Remove(bodyId, cryo.BodyContainer, reparent: false, force: true);
+
         var storage = GetStorageMap();
-        _container.Remove(bodyId, cryo.BodyContainer, reparent: false, force: true);
         _transform.SetCoordinates(bodyId, new EntityCoordinates(storage, Vector2.Zero));
 
         RaiseLocalEvent(bodyId, new CryosleepEnterEvent(cryopod, mind?.UserId), true);
