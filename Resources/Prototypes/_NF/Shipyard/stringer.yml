@@ -9,31 +9,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Legman
+  id: Stringer
   parent: BaseVessel
-  name: LVHI Legman
-  description: A small maneuverable shuttle with low operational costs for reporters who want to be first on a scene. Manufactured by Langstad-Voigt Heavy Industries.
-  price: 25500 # 10675 0.05 11208.75 temporarily very expensive until a more robust version can be made, at present it's an obscene cheap shuttle with a broadcaster.
+  name: LVHI Stringer
+  description: A small shuttle with low operational costs for reporters who want to be first on a scene. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 27000 # $25200 [on mapinit] + ~$1600 [6% markup]
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/legman.yml
-  guidebookPage: ShipyardLegman
+  shuttlePath: /Maps/_NF/Shuttles/stringer.yml
+  guidebookPage: ShipyardStringer
   class:
   - Civilian
   engine:
-  - Plasma
+  - Uranium
 
 - type: gameMap
-  id: Legman
-  mapName: 'Legman'
-  mapPath: /Maps/_NF/Shuttles/legman.yml
+  id: Stringer
+  mapName: 'Stringer'
+  mapPath: /Maps/_NF/Shuttles/stringer.yml
   minPlayers: 0
   stations:
-    Legman:
+    Stringer:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Legman {1}'
+          mapNameTemplate: 'Stringer {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
