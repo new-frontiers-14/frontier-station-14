@@ -10,19 +10,19 @@
 # Byarr
 - type: pointOfInterest
   id: Cove
+  parent: BasePOI
   name: Pirate Cove
   minimumDistance: 10000
   maximumDistance: 15000
+  spawnGamePreset: [ NFPirate ]
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/cove.yml
   hideWarp: true
   addComponents:
   - type: IFF
     color: "#C83737"
-    flags: [HideLabel]
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+    flags: [HideLabel, Hide]
+    readOnly: false
 
 - type: gameMap
   id: Cove
@@ -39,11 +39,14 @@
           iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
           stationSubtext: 'frontier-lobby-pirate-subtext'
           stationDescription: 'frontier-lobby-pirate-description'
+          lobbySortOrder: 6
         - type: StationJobs
           availableJobs:
-            PirateCaptain: [ 1, 1 ]
-            PirateFirstMate: [ 1, 1 ]
-            Pirate: [ 0, 0 ]
+            NFPirateCaptain: [ 1, 1 ]
+            NFPirateFirstMate: [ 1, 1 ]
+            NFPirate: [ 0, 0 ]
         - type: StationDeadDropReporting
           messageSet: Pirate
         - type: StationDeadDropHintExempt
+        - type: TradeCrateWildcardDestination
+        - type: BindToStationVariationPassExemption

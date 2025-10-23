@@ -13,6 +13,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 10800 # 3 hours as deputy
   startingGear: NFDetectiveGear
   icon: JobIconNFDetective
   supervisors: job-supervisors-bailiff
@@ -33,16 +36,31 @@
 - type: startingGear
   id: NFDetectiveGear
   equipment:
-    pocket1: WeaponRevolverInspector
-    pocket2: SpeedLoaderMagnum
+    pocket1: NFWeaponRevolverInspector
+    pocket2: FlashlightNfsdLite
   storage:
     back:
     - Flash
-    - MagazinePistol
-    - MagazinePistolRubber
+    - NFSpeedLoaderPistol45Overpressure
+    - NFSpeedLoaderPistol45Rubber
     - ForensicPad
     - ForensicScanner
     - FrontierUplinkCoin10
-    - LogProbeCartridge
     - RubberStampDetective
     - ContrabandForensicsModule
+  cartridges:
+  - LogProbeCartridge
+
+- type: chameleonOutfit
+  id: NFDetectiveChameleonOutfit
+  job: NFDetective
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatFedoraBrown
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingEyesGlassesNfsd
+    neck: ClothingNeckNfsdBadgeDetective
+    gloves: ClothingHandsGlovesForensic
+    shoes: ClothingShoesBootsNfsdBrownFilled
+    belt: ClothingBeltNfsdFilled
+    outerClothing: ClothingOuterCoatTrench

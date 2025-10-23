@@ -4,7 +4,7 @@ from yaml import SafeLoader
 from typing import List, Union
 from logging import Logger, getLogger
 
-from config import ILLEGAL_MATCHES, CONDITIONALLY_ILLEGAL_MATCHES
+from config import ILLEGAL_MATCHES, LEGAL_OVERRIDES, CONDITIONALLY_ILLEGAL_MATCHES
 
 
 def get_logger(debug: bool = False) -> Logger:
@@ -37,18 +37,26 @@ YamlLoaderIgnoringTags.add_constructor(None, YamlLoaderIgnoringTags.ignore_unkno
 # End of snippet
 
 
-def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -> Union[bool, List[str]]:
+def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str], proto_categories: List[str]) -> Union[bool, List[str]]:
     """
     Checks prototype information against the ILLEGAL_MATCHES and CONDITIONALLY_ILLEGAL_MATCHES constants.
 
     :param proto_id: The prototype's ID.
     :param proto_name: The prototype's name.
     :param proto_suffixes: The prototype's suffixes.
+    :param proto_categories: The prototype's categories.
     :return:
     - True if the prototype is legal
     - False if the prototype is globally illegal (matched by ILLEGAL_MATCHES)
     - A list of shipyard keys if the prototype is conditionally illegal (matched by CONDITIONALLY_ILLEGAL_MATCHES)
     """
+    # Check against LEGAL_OVERRIDES (no suffix!)
+    for legal_match in LEGAL_OVERRIDES:
+        if legal_match.lower() in proto_name.lower():
+            return True
+
+        if legal_match.lower() in proto_id.lower():
+            return True
 
     # Check against ILLEGAL_MATCHES.
     for illegal_match in ILLEGAL_MATCHES:
@@ -60,6 +68,10 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -
 
         for suffix in proto_suffixes:
             if illegal_match.lower() == suffix.lower():
+                return False
+
+        for category in proto_categories:
+            if illegal_match.lower() == category.lower():
                 return False
 
     # Check against CONDITIONALLY_ILLEGAL_MATCHES.
@@ -79,6 +91,11 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -
 
             for suffix in proto_suffixes:
                 if cond_illegal_match.lower() == suffix.lower():
+                    conditionally_illegal_keys.append(key)
+                    break
+
+            for category in proto_categories:
+                if cond_illegal_match.lower() == category.lower():
                     conditionally_illegal_keys.append(key)
                     break
 

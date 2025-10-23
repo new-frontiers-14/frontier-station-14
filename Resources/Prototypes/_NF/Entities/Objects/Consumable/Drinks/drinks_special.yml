@@ -1,0 +1,17 @@
+- type: entity
+  parent: [BaseItem, BartenderMixer]
+  id: DrinkIceBucketEmpty
+  name: ice bucket
+  suffix: Empty
+  description: A special bucket that was specifically designed to hold ice.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 200
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/icebucket.rsi
+    state: icon
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50

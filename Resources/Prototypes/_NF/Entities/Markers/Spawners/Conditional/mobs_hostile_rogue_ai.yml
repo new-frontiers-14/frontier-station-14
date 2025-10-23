@@ -15,3 +15,37 @@
   - type: ConditionalSpawner
     prototypes:
     - MobRogueSiliconViscerator
+
+- type: entity
+  name: one star unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobRogueSiliconBoss
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Silicon/onestar.rsi
+        state: onestar_boss
+      - sprite: Mobs/Silicon/onestar.rsi
+        state: onestar_boss_screen
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconBoss
+
+- type: entity
+  name: guardian unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobRogueSiliconGuardian
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/RogueSilicons/netguardian.rsi
+        state: netguardian
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconGuardian

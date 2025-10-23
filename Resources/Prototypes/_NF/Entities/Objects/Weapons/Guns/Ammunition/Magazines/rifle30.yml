@@ -1,0 +1,361 @@
+# WizDen
+#region base .30
+- type: entity
+  id: NFBaseMagazineRifle30
+  name: magazine (.30 rifle)
+  parent: [ BaseC1Contraband, RecyclableItemSteelTiny, BaseMagazineLightRifle ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineRifle30 # TODO: make it make sense, change the tags
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgeRifle30
+    proto: NFCartridgeRifle30
+    capacity: 30
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle30_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle30_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: NFBaseMagazineLowCapacityRifle30
+  name: low cap magazine (.30 rifle)
+  parent: NFBaseMagazineRifle30
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineLowCapacityRifle30
+  - type: Item
+    size: Tiny
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle30_low_cap_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: BallisticAmmoProvider
+    capacity: 15
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle30_low_cap_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    steps: 7
+
+#region .30 magazines
+- type: entity
+  id: NFMagazineRifle30Empty
+  name: magazine (.30 rifle, any)
+  parent: NFBaseMagazineRifle30
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineRifle30
+  name: magazine (.30 rifle)
+  parent: NFBaseMagazineRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
+
+- type: entity
+  id: NFMagazineRifle30Overpressure
+  name: magazine (.30 rifle, overpressure)
+  parent: NFBaseMagazineRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineRifle30Incendiary
+  name: magazine (.30 rifle, incendiary)
+  parent: NFBaseMagazineRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineRifle30Uranium
+  name: magazine (.30 rifle, uranium)
+  parent: NFBaseMagazineRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineRifle30Practice
+  name: magazine (.30 rifle, practice)
+  parent: NFBaseMagazineRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dddddd"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dddddd"
+
+- type: entity
+  id: NFMagazineRifle30Rubber # MagazineLightRifleRubber
+  name: magazine (.30 rifle, rubber)
+  parent: NFBaseMagazineRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+#region .30 low cap
+- type: entity
+  id: NFMagazineLowCapacityRifle30Empty
+  name: low cap magazine (.30 rifle, any)
+  parent: NFBaseMagazineLowCapacityRifle30
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineLowCapacityRifle30
+  name: low cap magazine (.30 rifle)
+  parent: NFBaseMagazineLowCapacityRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
+
+- type: entity
+  id: NFMagazineLowCapacityRifle30Overpressure
+  name: low cap magazine (.30 rifle, overpressure)
+  parent: NFBaseMagazineLowCapacityRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineLowCapacityRifle30Incendiary
+  name: low cap magazine (.30 rifle, incendiary)
+  parent: NFBaseMagazineLowCapacityRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineLowCapacityRifle30Uranium
+  name: low cap magazine (.30 rifle, uranium)
+  parent: NFBaseMagazineLowCapacityRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineLowCapacityRifle30Practice
+  name: low cap magazine (.30 rifle, practice)
+  parent: NFBaseMagazineLowCapacityRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dddddd"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dddddd"
+
+- type: entity
+  id: NFMagazineLowCapacityRifle30Rubber
+  name: low cap magazine (.30 rifle, rubber)
+  parent: NFBaseMagazineLowCapacityRifle30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"

@@ -232,7 +232,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -293,7 +293,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 4.5
@@ -671,6 +671,7 @@
           Quantity: 5
         - ReagentId: Fiber
           Quantity: 10
+  - type: MothFood # Frontier
 
 - type: entity
   name: slice of cotton pizza
@@ -690,6 +691,8 @@
     - ClothMade
     - Pizza
     - Slice
+  - type: Food # Frontier
+    requiresSpecialDigestion: true # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -700,4 +703,57 @@
         - ReagentId: Vitamin
           Quantity: 0.8
         - ReagentId: Fiber
+          Quantity: 1.5
+  - type: MothFood # Frontier
+
+- type: entity
+  name: world peazza
+  parent: FoodPizzaBase
+  id: FoodPizzaWorldpeas
+  description: Modern diplomacy in the shape of a disc.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - numbingtranquility
+  - type: Sprite
+    layers:
+    - state: worldpeas
+  - type: SliceableFood
+    slice: FoodPizzaWorldpeasSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Happiness
+          Quantity: 12
+        - ReagentId: Pax
+          Quantity: 8
+
+- type: entity
+  name: slice of world peazza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaWorldpeasSlice
+  description: Dividing the world up is a small price to pay for harmony.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - numbingtranquility
+  - type: Sprite
+    layers:
+    - state: worldpeas-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3.5
+        - ReagentId: Happiness
+          Quantity: 2
+        - ReagentId: Pax
           Quantity: 1.5

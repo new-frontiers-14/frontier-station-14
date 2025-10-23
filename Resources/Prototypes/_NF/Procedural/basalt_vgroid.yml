@@ -42,7 +42,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockBasalt
-      entity: BasaltElementalSpawner
+      entity: NFBasaltElementalSpawner
       count: 100
       minGroupSize: 1
       maxGroupSize: 1
@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockBasalt
-      entity: WallBasaltCobblebrickNF
+      entity: NFWallBasaltCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -127,7 +127,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockBasalt
-      entity: WallRockBasaltBluespace
+      entity: NFWallRockBasaltBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorBasalt
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -143,8 +143,8 @@
     - !type:OreDunGen
       tileMask:
       - FloorBasalt
-      entity: SpawnMobMercenaryT3
-      count: 25
+      entity: SpawnMobMercenaryEVAT3
+      count: 5
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorBasalt
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorGrayConcreteMono
-      WidenTile: FloorBasalt
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsBasalt
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorGrayConcreteMono
+    widenTile: FloorBasalt
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsBasalt
@@ -205,42 +203,87 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: LavaMercenary
+    proto: NFLavaMercenary
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 30
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
+  - !type:MobsDunGen
+    minCount: 3
+    maxCount: 6
+    contents: SpawnMobMercenaryEVAT1Table
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobMercenaryT2
+    contents: SpawnMobMercenaryEVAT2Table
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 3
+    contents: SpawnMobMercenaryEVAT3Table
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    contents: SpawnMobMercenaryCaptainEVATable
+
+
+- type: entityTable
+  id: SpawnMobMercenaryEVAT1Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryEVAT1
+      amount: 2
+
+- type: entityTable
+  id: SpawnMobMercenaryEVAT2Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryEVAT2
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobMercenaryEVAT3Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryEVAT3
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobMercenaryCaptainEVATable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryCaptainEVA
       amount: 1
 
 #- type: dungeonConfig
@@ -309,9 +352,9 @@
       allowedTiles:
         - FloorBasalt
       entities:
-        - FloraRockSolid01
-        - FloraRockSolid02
-        - FloraRockSolid03
+        - FloraRockSolid
+        - FloraRockSolid
+        - FloraRockSolid
         - CrystalOrange
     - !type:BiomeEntityLayer
       threshold: 0.2

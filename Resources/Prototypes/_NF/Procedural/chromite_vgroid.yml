@@ -42,7 +42,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockChromite
-      entity: ChromiteElementalSpawner
+      entity: NFChromiteElementalSpawner
       count: 100
       minGroupSize: 1
       maxGroupSize: 1
@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockChromite
-      entity: WallChromiteCobblebrickNF
+      entity: NFWallChromiteCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -127,7 +127,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockChromite
-      entity: WallRockChromiteBluespace
+      entity: NFWallRockChromiteBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorChromite
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -144,7 +144,7 @@
       tileMask:
       - FloorChromite
       entity: SpawnMobBloodCultLeech
-      count: 25
+      count: 5
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorChromite
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorDarkHerringbone
-      WidenTile: FloorChromite
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsChromite
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorDarkHerringbone
+    widenTile: FloorChromite
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsChromite
@@ -205,67 +203,121 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: VirologyLab
+    proto: NFVirologyLab
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 30
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
+    contents: SpawnMobBloodCultistPriestTable
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobBloodCultistAcolyteTable
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobBloodCultistZealotMeleeTable
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobBloodCultistZealotRangedTable
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobBloodCultistCasterTable
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    contents: SpawnMobBloodCultistAscendedTable # Boss
+  # - !type:MobsDunGen # Dies to barotrauma - equip it for space if you want this restored
+  #   minCount: 1
+  #   maxCount: 1
+  #   contents:SpawnMobCatBloodCultLowChanceTable
+
+- type: entityTable
+  id: SpawnMobBloodCultistPriestTable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobBloodCultistPriest
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
+
+- type: entityTable
+  id: SpawnMobBloodCultistAcolyteTable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobBloodCultistAcolyte
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
+
+- type: entityTable
+  id: SpawnMobBloodCultistZealotMeleeTable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobBloodCultistZealotMelee
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
+
+- type: entityTable
+  id: SpawnMobBloodCultistZealotRangedTable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobBloodCultistZealotRanged
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
+
+- type: entityTable
+  id: SpawnMobBloodCultistCasterTable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobBloodCultistCaster
       amount: 1
+
+- type: entityTable
+  id: SpawnMobBloodCultistAscendedTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistAscended
+      amount: 1
+
+# Dies to barotrauma - equip it for space if you want this restored
+#- type: entityTable
+#  id: SpawnMobCatBloodCultLowChanceTable
+#  table: !type:GroupSelector
+#    children:
+#    - id: SpawnMobCatBloodCultLowChance
+#      amount: 1
 
 #- type: dungeonConfig
 #  id: NFVGRoidInteriorDungeonsChromite
@@ -324,16 +376,7 @@
       allowedTiles:
         - FloorChromite
       entities:
-        - ShadowTree01
-        - ShadowTree02
-        - ShadowTree03
-        - ShadowTree04
-        - ShadowTree05
-        - ShadowTree06
-        - CrystalPink
-        - CrystalPink
-        - CrystalPink
-        - CrystalPink
+        - ShadowTree
         - CrystalPink
     # Rock formations
     - !type:BiomeEntityLayer

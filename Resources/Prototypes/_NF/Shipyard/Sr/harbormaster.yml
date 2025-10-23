@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Harbormaster
+  parent: BaseVessel
+  name: LVHI Harbormaster
+  description: A small tugboat. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 28000 # 25391 0.05 26660.55
+  category: Small
+  group: Sr
+  access: StationTrafficController
+  shuttlePath: /Maps/_NF/Shuttles/Sr/harbormaster.yml
+  guidebookPage: ShipyardHarbormaster
+  class:
+  - Civilian
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Harbormaster
+  mapName: 'Harbormaster'
+  mapPath: /Maps/_NF/Shuttles/Sr/harbormaster.yml
+  minPlayers: 0
+  stations:
+    Harbormaster:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Harbormaster {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

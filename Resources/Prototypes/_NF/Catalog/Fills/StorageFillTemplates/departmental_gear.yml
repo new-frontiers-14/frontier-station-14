@@ -1,0 +1,44 @@
+#region Cargo
+- type: entityTable
+  id: NFStorageFillGearSalvageSpecialist
+  table: !type:AllSelector
+    children:
+    - id: ClothingBeltUtilityEngineering
+    - id: OreBag
+    - id: NFWeaponPka
+    - id: Pickaxe
+    - id: NFWeaponHoloflareGun
+    - id: SurvivalKnife
+    - id: RadioHandheldNF
+    - id: AppraisalTool
+    - id: ClothingEyesGlassesMeson
+# endregion
+
+#region Medical
+- type: entityTable
+  id: NFStorageFillGearMedicalDoctor
+  table: !type:AllSelector
+    children:
+    - id: ClothingBeltMedicalFilled
+    - id: ClothingEyesHudMedical
+    - id: HandheldHealthAnalyzer
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingMaskSterile
+
+- type: entityTable
+  id: NFStorageFillGearChemistry
+  table: !type:AllSelector
+    children:
+    - id: ChemBag
+    - id: ClothingEyesGlassesChemical
+    - id: PlasmaChemistryVial
+    - id: HandLabeler
+
+- type: entityTable
+  id: NFStorageFillGearParamedic
+  table: !type:AllSelector
+    children:
+    - id: ClothingBeltMedicalEMTFilled
+    - id: MedkitFilled
+    - id: ClothingEyesHudMedical
+# endregion

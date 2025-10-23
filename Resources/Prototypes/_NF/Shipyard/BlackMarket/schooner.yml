@@ -1,8 +1,18 @@
+# Author Info
+# GitHub: Unknown
+# Discord: Unknown
+
+# Maintainer Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Shuttle Notes:
 - type: vessel
   id: Schooner
+  parent: BaseVesselAntag
   name: Schooner
   description: A small wooden ship with 2 central cargo bays.
-  price: 60000
+  price: 60000 # 27535 1.25 61953.75
   category: Medium
   group: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/schooner.yml
@@ -19,7 +29,7 @@
   minPlayers: 0
   stations:
     Schooner:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Schooner {1}'
@@ -28,4 +38,4 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Pirate: [ 0, 0 ]
+            NFPirate: [ 0, 0 ]

@@ -42,7 +42,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRock
-      entity: RockElementalSpawner
+      entity: NFRockElementalSpawner
       count: 100
       minGroupSize: 1
       maxGroupSize: 1
@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRock
-      entity: WallCobblebrickNF
+      entity: NFWallCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -127,7 +127,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRock
-      entity: WallRockBluespace
+      entity: NFWallRockBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorCaveDrought
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -143,8 +143,8 @@
     - !type:OreDunGen
       tileMask:
       - FloorCaveDrought
-      entity: SpawnMobExplorerT3
-      count: 25
+      entity: SpawnMobExplorerEVAT3
+      count: 5
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorCave
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: PlatingAsteroid
-      WidenTile: FloorCaveDrought
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsCave
   - !type:SplineDungeonConnectorDunGen
+    tile: PlatingAsteroid
+    widenTile: FloorCaveDrought
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsCave
@@ -205,42 +203,64 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: SalvageOutpost
+    proto: NFSalvageOutpost
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 30
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobExplorerT2
+    contents: SpawnMobExplorerEVAT2Table
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    contents: SpawnMobExplorerBossTable # Boss
+
+- type: entityTable
+  id: SpawnMobExplorerEVAT2Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorerEVAT2
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobExplorerBossTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorerBoss
       amount: 1
 
 #- type: dungeonConfig
@@ -292,12 +312,7 @@
       allowedTiles:
       - FloorCaveDrought
       entities:
-      - FloraStalagmite1
-      - FloraStalagmite2
-      - FloraStalagmite3
-      - FloraStalagmite4
-      - FloraStalagmite5
-      - FloraStalagmite6
+      - FloraStalagmite
     - !type:BiomeEntityLayer
       threshold: -0.5
       invert: true

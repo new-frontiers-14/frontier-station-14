@@ -1,0 +1,11 @@
+<PanelContainer
+        xmlns="https://spacestation14.io"
+        xmlns:cc="clr-namespace:Content.Client._DV.Administration.UI"
+        StyleClasses="BackgroundDark"
+        HorizontalExpand="True"
+        Margin="4"> <!-- Frontier: ghost role set whitelist -->
+    <BoxContainer Orientation="Vertical">
+        <CheckBox Name="GhostRoleSet"/> <!-- Toggles all jobs in the department at once -->
+	    <GridContainer Name="RolesContainer" Columns="4"/> <!-- Populated with each job to toggle individually-->
+    </BoxContainer>
+</PanelContainer>

@@ -42,7 +42,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockSnow
-      entity: SnowElementalSpawner
+      entity: NFSnowElementalSpawner
       count: 100
       minGroupSize: 1
       maxGroupSize: 1
@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockSnow
-      entity: WallSnowCobblebrickNF
+      entity: NFWallSnowCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -127,7 +127,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockSnow
-      entity: WallRockSnowBluespace
+      entity: NFWallRockSnowBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorSnow
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -144,22 +144,29 @@
       tileMask:
       - FloorSnow
       entity: SpawnMobArgocyteTiny
-      count: 13
+      count: 5
       minGroupSize: 2
       maxGroupSize: 3
     - !type:OreDunGen
       tileMask:
       - FloorSnow
       entity: SpawnMobArgocyteSmall
-      count: 7
+      count: 3
       minGroupSize: 1
       maxGroupSize: 2
     - !type:OreDunGen
       tileMask:
       - FloorSnow
       entity: SpawnMobArgocyteMedium
-      count: 5
+      count: 2
       minGroupSize: 1
+      maxGroupSize: 1
+    - !type:OreDunGen
+      tileMask:
+      - FloorSnow
+      entity: SpawnMobArgocyteLeviathingExpeditions
+      count: 1
+      minGroupSize: 0
       maxGroupSize: 1
 
 # Configs
@@ -203,14 +210,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorSnow
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorSnowDug
-      WidenTile: FloorSnow
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsSnow
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorSnowDug
+    widenTile: FloorSnow
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsSnow
@@ -219,42 +224,64 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: SnowyLabs
+    proto: NFSnowyLabs
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 30
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobXenoT2
+    contents: NFSpawnMobXenoT2Table
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    contents: NFSpawnMobXenoQueenTable
+
+- type: entityTable
+  id: NFSpawnMobXenoT2Table
+  table: !type:GroupSelector
+    children:
+    - id: NFSpawnMobXenoT2
+      amount: 1
+
+- type: entityTable
+  id: NFSpawnMobXenoQueenTable
+  table: !type:GroupSelector
+    children:
+    - id: NFSpawnMobXenoQueen
       amount: 1
 
 #- type: dungeonConfig

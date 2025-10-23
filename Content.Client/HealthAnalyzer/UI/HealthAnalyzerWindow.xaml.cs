@@ -36,6 +36,8 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
 
+        public Action? OnPrintPatientRecord; // Frontier: Allow printing hardcopy of patient information
+
         public HealthAnalyzerWindow()
         {
             RobustXamlLoader.Load(this);
@@ -45,6 +47,8 @@ namespace Content.Client.HealthAnalyzer.UI
             _spriteSystem = _entityManager.System<SpriteSystem>();
             _prototypes = dependencies.Resolve<IPrototypeManager>();
             _cache = dependencies.Resolve<IResourceCache>();
+
+            PrintRecordButton.OnPressed += (_) => OnPrintPatientRecord?.Invoke(); // Frontier
         }
 
         public void Populate(HealthAnalyzerScannedUserMessage msg)
@@ -55,6 +59,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
             {
                 NoPatientDataText.Visible = true;
+                PrintButtonsContainer.Visible = false; // Frontier
                 return;
             }
 
@@ -69,6 +74,8 @@ namespace Content.Client.HealthAnalyzer.UI
                 : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
             ScanModeLabel.FontColorOverride = msg.ScanMode.HasValue && msg.ScanMode.Value ? Color.Green : Color.Red;
+
+            PrintButtonsContainer.Visible = msg is { Printable: true, ScanMode: true }; // Frontier
 
             // Patient Information
 
@@ -110,7 +117,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || msg.Unclonable == true; // Frontier: add Unclonable cond
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -125,6 +132,16 @@ namespace Content.Client.HealthAnalyzer.UI
                     Margin = new Thickness(0, 4),
                     MaxWidth = 300
                 });
+
+            // Frontier: unclonable text
+            if (msg.Unclonable == true)
+                AlertsContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString("health-analyzer-window-entity-unclonable-text"),
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300
+                });
+            // End Frontier
 
             if (msg.Bleeding == true)
                 AlertsContainer.AddChild(new RichTextLabel

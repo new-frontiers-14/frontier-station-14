@@ -1,6 +1,7 @@
 using Content.Client._NF.Pirate.UI;
 using Content.Shared._NF.Pirate.Components;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Pirate.BUI;
 
@@ -18,21 +19,19 @@ public sealed class PirateBountyConsoleBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _menu = new();
-
-        _menu.OnClose += Close;
-
-        _menu.OnLabelButtonPressed += id =>
+        if (_menu == null)
         {
-            SendMessage(new PirateBountyAcceptMessage(id));
-        };
+            _menu = this.CreateWindow<PirateBountyMenu>();
+            _menu.OnLabelButtonPressed += id =>
+            {
+                SendMessage(new PirateBountyAcceptMessage(id));
+            };
 
-        _menu.OnSkipButtonPressed += id =>
-        {
-            SendMessage(new PirateBountySkipMessage(id));
-        };
-
-        _menu.OpenCentered();
+            _menu.OnSkipButtonPressed += id =>
+            {
+                SendMessage(new PirateBountySkipMessage(id));
+            };
+        }
     }
 
     protected override void UpdateState(BoundUserInterfaceState message)
@@ -43,15 +42,5 @@ public sealed class PirateBountyConsoleBoundUserInterface : BoundUserInterface
             return;
 
         _menu?.UpdateEntries(state.Bounties, state.UntilNextSkip);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        _menu?.Dispose();
     }
 }

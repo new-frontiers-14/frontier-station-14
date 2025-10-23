@@ -256,8 +256,25 @@
     layers:
     - state: base-gun
       color: "#56422b"
+    - state: lock
+      color: "#1f6626"
     - state: base-gun-decal
       color: "#537045"
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["Security"] ]
+  - type: LockVisuals
+  - type: Lock
+    locked: true
+  - type: ItemSlotsLock
+    slots:
+    - weapon1
+    - weapon2
+    - weapon3
+    - weapon4
+    - weapon5
 
 - type: entity
   id: StructureGunRackWallmountedNfsd
@@ -268,8 +285,25 @@
     layers:
     - state: base-gun-wall
       color: "#56422b"
+    - state: lock
+      color: "#1f6626"
     - state: base-gun-wall-decal
       color: "#537045"
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["Security"] ]
+  - type: LockVisuals
+  - type: Lock
+    locked: true
+  - type: ItemSlotsLock
+    slots:
+    - weapon1
+    - weapon2
+    - weapon3
+    - weapon4
+    - weapon5
 
 # Melee weapon racks
 - type: entity
@@ -281,8 +315,25 @@
     layers:
     - state: base-melee
       color: "#56422b"
+    - state: lock
+      color: "#1f6626"
     - state: base-melee-decal
       color: "#537045"
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["Security"] ]
+  - type: LockVisuals
+  - type: Lock
+    locked: true
+  - type: ItemSlotsLock
+    slots:
+    - weapon1
+    - weapon2
+    - weapon3
+    - weapon4
+    - weapon5
 
 - type: entity
   id: StructureMeleeWeaponRackWallmountedNfsd
@@ -293,8 +344,25 @@
     layers:
     - state: base-melee-wall
       color: "#56422b"
+    - state: lock
+      color: "#1f6626"
     - state: base-melee-wall-decal
       color: "#537045"
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["Security"] ]
+  - type: LockVisuals
+  - type: Lock
+    locked: true
+  - type: ItemSlotsLock
+    slots:
+    - weapon1
+    - weapon2
+    - weapon3
+    - weapon4
+    - weapon5
 
 # Sidearm racks
 - type: entity
@@ -306,8 +374,24 @@
     layers:
     - state: base-pistol
       color: "#56422b"
+    - state: lock
+      color: "#1f6626"
     - state: base-pistol-decal
       color: "#537045"
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["Security"] ]
+  - type: LockVisuals
+  - type: Lock
+    locked: true
+  - type: ItemSlotsLock
+    slots:
+    - weapon1
+    - weapon2
+    - weapon3
+    - weapon4
 
 - type: entity
   id: StructurePistolRackWallmountedNfsd
@@ -318,8 +402,24 @@
     layers:
     - state: base-pistol-wall
       color: "#56422b"
+    - state: lock
+      color: "#1f6626"
     - state: base-pistol-wall-decal
       color: "#537045"
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["Security"] ]
+  - type: LockVisuals
+  - type: Lock
+    locked: true
+  - type: ItemSlotsLock
+    slots:
+    - weapon1
+    - weapon2
+    - weapon3
+    - weapon4
 
 ## Blood Cult
 # Melee weapon racks

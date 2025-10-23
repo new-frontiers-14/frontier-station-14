@@ -46,8 +46,11 @@ public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
             var lightQuery = EntityQueryEnumerator<PoweredLightComponent>();
             while (lightQuery.MoveNext(out var lightEnt, out var light))
             {
-                if (RobustRandom.Prob(component.LightBreakChancePerSecond))
+                // Frontier: shielded lights
+                var prob = component.LightBreakChancePerSecond * light.SolarFlareShieldingCoefficient;
+                if (RobustRandom.Prob(prob))
                     _poweredLight.TryDestroyBulb(lightEnt, light);
+                // End Frontier: shielded lights
             }
             var airlockQuery = EntityQueryEnumerator<AirlockComponent, DoorComponent>();
             while (airlockQuery.MoveNext(out var airlockEnt, out var airlock, out var door))
@@ -66,7 +69,7 @@ public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
             if (!GameTicker.IsGameRuleActive(uid, gameRule))
                 continue;
 
-            if (!flare.AffectedChannels.Contains(args.Channel.ID))
+            if (!flare.AllChannels && !flare.AffectedChannels.Contains(args.Channel.ID)) // Frontier: add flare.AllChannels
                 continue;
 
             if (!flare.OnlyJamHeadsets || (HasComp<HeadsetComponent>(args.RadioReceiver) || HasComp<HeadsetComponent>(args.RadioSource)))

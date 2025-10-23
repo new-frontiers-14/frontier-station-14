@@ -1,0 +1,18 @@
+# Scrap: Worthless items that can be recycled into materials
+
+- type: entityTable
+  id: SalvageScrapBrass
+  table: !type:GroupSelector
+    children:
+    - id: SheetBrass1
+      weight: 0.7
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+    - id: SheetBrass10
+      weight: 0.1
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: SheetClockworkGlass1
+      weight: 0.2
+      amount: !type:RangeNumberSelector
+        range: 2, 3

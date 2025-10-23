@@ -14,6 +14,9 @@ public static class MarketDataExtensions
     /// <param name="marketDataList">The market data list to modify.</param>
     /// <param name="estimatedPrice">The estimated price by the pricing system.</param>
     /// <param name="stackPrototypeId">The stack prototype id for this prototype if any.</param>
+    /// <remarks>
+    /// For existing data, increaseAmount is not validated. Any update that would result in a non-positive quantity results in item removal.
+    /// </remarks>
     public static void Upsert(this List<MarketData> marketDataList,
         string entityPrototypeId,
         int increaseAmount,
@@ -23,14 +26,13 @@ public static class MarketDataExtensions
         // Find the MarketData for the given EntityPrototype.
         var prototypeMarketData = marketDataList.FirstOrDefault(md => md.Prototype == entityPrototypeId);
 
-        if (prototypeMarketData != null && (prototypeMarketData.Quantity + increaseAmount) >= 0)
+        if (prototypeMarketData != null)
         {
-            // If it exists, change the count.
             prototypeMarketData.Quantity += increaseAmount;
+
+            // Prune empty/negative quantities (overflow, emptying, or excessive withdrawal)
             if (prototypeMarketData.Quantity <= 0)
-            {
                 marketDataList.Remove(prototypeMarketData);
-            }
         }
         else if (increaseAmount > 0)
         {
@@ -82,6 +84,6 @@ public static class MarketDataExtensions
         if (dataList.Count <= 0)
             return 0;
 
-        return dataList.Sum(marketData => (int) Math.Round(marketData.Price * marketData.Quantity * marketModifier));
+        return dataList.Sum(marketData => (int)Math.Round(marketData.Price * marketData.Quantity * marketModifier));
     }
 }

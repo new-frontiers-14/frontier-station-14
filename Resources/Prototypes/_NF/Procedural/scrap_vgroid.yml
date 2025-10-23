@@ -39,93 +39,93 @@
     # "Ores"
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPile # ScrapElementalSpawner
+      - NFWallRockScrapPile
+      entity: NFAsteroidScrapBotWallSpawner # Wall that spawn mobs
       count: 100
       minGroupSize: 1
       maxGroupSize: 1
     # Ores
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileIron
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileIron
       count: 30
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileCoal
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileCoal
       count: 30
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileQuartz
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileQuartz
       count: 10
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileSalt
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileSalt
       count: 10
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileGold
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileGold
       count: 15
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileSilver
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileSilver
       count: 15
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPilePlasma
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPilePlasma
       count: 20
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileUranium
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileUranium
       count: 20
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
+      - NFWallRockScrapPile
       entity: WallSolidRust
       count: 70
       minGroupSize: 6
       maxGroupSize: 16
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileArtifactFragment
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileArtifactFragment
       count: 15
       minGroupSize: 1
       maxGroupSize: 3
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileDiamond
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileDiamond
       count: 5
       minGroupSize: 1
       maxGroupSize: 2
     - !type:OreDunGen
       entityMask:
-      - WallRockScrapPile
-      entity: WallRockScrapPileBluespace
+      - NFWallRockScrapPile
+      entity: NFWallRockScrapPileBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
@@ -133,7 +133,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - Plating
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -142,7 +142,14 @@
       tileMask:
       - Plating
       entity: SpawnMobRogueScapT1
-      count: 25
+      count: 3
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      tileMask:
+      - Plating
+      entity: SpawnMobRogueDronesT1
+      count: 2
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -168,14 +175,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorScrap
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorTechMaint3
-      WidenTile: Lattice # Plating
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsScrap
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorTechMaint3
+    widenTile: Lattice # Plating
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsScrap
@@ -184,66 +189,86 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: SalvageOutpost
+    proto: NFSalvageOutpost
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 30
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
+    contents: SpawnMobRogueSiliconsT3Table
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobRogueSiliconsT2Table
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobRogueScapT1Table
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    contents: SpawnMobRogueSiliconBossRandomTable
+
+- type: entityTable
+  id: SpawnMobRogueSiliconsT3Table
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobRogueSiliconsT3
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
+
+- type: entityTable
+  id: SpawnMobRogueSiliconsT2Table
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobRogueSiliconsT2
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
+
+- type: entityTable
+  id: SpawnMobRogueScapT1Table
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobRogueScapT1
       amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
-    - id: SpawnMobRogueScapT1
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
-    - id: SpawnMobRogueSiliconsT2
+
+- type: entityTable
+  id: SpawnMobRogueSiliconBossRandomTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobRogueSiliconBossRandom
       amount: 1
 
 #- type: dungeonConfig
@@ -311,7 +336,7 @@
       allowedTiles:
         - Lattice # Plating
       entities:
-        - WallRockScrapPile
+        - NFWallRockScrapPile
     - !type:BiomeDummyLayer
       id: Loot
     # Fill scrap

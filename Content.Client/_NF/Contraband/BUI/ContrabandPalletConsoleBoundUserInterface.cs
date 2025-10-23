@@ -2,7 +2,7 @@ using Content.Client._NF.Contraband.UI;
 using Content.Shared._NF.Contraband.BUI;
 using Content.Shared._NF.Contraband.Components;
 using Content.Shared._NF.Contraband.Events;
-using Robust.Shared.GameObjects;
+using Robust.Client.UserInterface;
 using Robust.Shared.Utility;
 
 namespace Content.Client._NF.Contraband.BUI;
@@ -24,22 +24,16 @@ public sealed class ContrabandPalletConsoleBoundUserInterface : BoundUserInterfa
     protected override void Open()
     {
         base.Open();
-        var disclaimer = new FormattedMessage();
-        disclaimer.AddText(Loc.GetString($"{_locPrefix}contraband-pallet-disclaimer"));
-        _menu = new ContrabandPalletMenu(_locPrefix);
-        _menu.AppraiseRequested += OnAppraisal;
-        _menu.SellRequested += OnSell;
-        _menu.OnClose += Close;
-        _menu.Disclaimer.SetMessage(disclaimer);
-        _menu.OpenCentered();
-    }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing)
+        if (_menu == null)
         {
-            _menu?.Dispose();
+            _menu = this.CreateWindow<ContrabandPalletMenu>();
+            _menu.AppraiseRequested += OnAppraisal;
+            _menu.SellRequested += OnSell;
+            _menu.SetWindowText(_locPrefix);
+            var disclaimer = new FormattedMessage();
+            disclaimer.AddText(Loc.GetString($"{_locPrefix}contraband-pallet-disclaimer"));
+            _menu.Disclaimer.SetMessage(disclaimer);
         }
     }
 

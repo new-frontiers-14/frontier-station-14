@@ -1,18 +1,4 @@
 - type: entity
-  id: CrateServiceJanitorialSupplies2
-  parent: CratePlasticBiodegradable
-  name: janitorial supplies crate B
-  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials™! Contains two trash bag boxes, one box of wet floor signs and two bottles of spray cleaner.
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxTrashbag
-        amount: 2
-      - id: SprayBottleSpaceCleaner
-        amount: 2
-      - id: BoxWetFloorSign
-
-- type: entity
   id: CrateVehicleJanicart
   parent: CrateLivestock
   name: janicart crate
@@ -20,5 +6,33 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleJanicart
+      - id: NFVehicleJanicart
       - id: VehicleKeyJanicart
+
+- type: entity
+  id: CrateServiceReplacementColoredLights
+  name: colored lights crate
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxColoredLighttube
+      - id: BoxColoredLightbulb
+
+- type: entity
+  id: CrateServiceCoffeeDispenser
+  parent: CrateGenericSteel
+  name: spacepresso refill crate
+  description: Contains refills for the spacepresso coffee dispenser.
+  components:
+  - type: StorageFill
+    contents:
+      - id: DrinkCoffeeJug
+      - id: DrinkCreamCartonXL
+      - id: DrinkSugarJug
+      - id: DrinkIceJug
+      - id: DrinkMilkCarton
+      - id: DrinkSoyMilkCarton
+      - id: JugCaramexinin
+      - id: JugCocoa
+      - id: JugWater

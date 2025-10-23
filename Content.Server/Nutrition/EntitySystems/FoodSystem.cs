@@ -179,7 +179,7 @@ public sealed class FoodSystem : EntitySystem
         if (forceFeed)
         {
             var userName = Identity.Entity(user, EntityManager);
-            _popup.PopupEntity(Loc.GetString(foodComp.ForceFeedMessage, ("user", userName)), // Frontier - Loc
+            _popup.PopupEntity(Loc.GetString("food-system-force-feed", ("user", userName)),
                 user, target);
 
             // logging
@@ -268,7 +268,7 @@ public sealed class FoodSystem : EntitySystem
         if (stomachToUse == null)
         {
             _solutionContainer.TryAddSolution(soln.Value, split);
-            _popup.PopupEntity(forceFeed ? Loc.GetString(entity.Comp.CannotEatAnyMoreOtherMessage) : Loc.GetString(entity.Comp.CannotEatAnyMoreMessage), args.Target.Value, args.User); // Frontier - Loc
+            _popup.PopupEntity(forceFeed ? Loc.GetString("food-system-you-cannot-eat-any-more-other", ("target", args.Target.Value)) : Loc.GetString("food-system-you-cannot-eat-any-more"), args.Target.Value, args.User);
             return;
         }
 
@@ -281,9 +281,9 @@ public sealed class FoodSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessMessage, ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value); // Frontier: entity.Owner->args.Target.Value
+            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value); // Frontier: entity.Owner->args.Target.Value
 
-            _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessUserMessage, ("target", targetName)), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
 
             // log successful force feed
             _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(entity.Owner):user} forced {ToPrettyString(args.User):target} to eat {ToPrettyString(entity.Owner):food}");
@@ -337,6 +337,14 @@ public sealed class FoodSystem : EntitySystem
         RaiseLocalEvent(food, ev);
         if (ev.Cancelled)
             return;
+
+        var attemptEv = new DestructionAttemptEvent();
+        RaiseLocalEvent(food, attemptEv);
+        if (attemptEv.Cancelled)
+            return;
+
+        var afterEvent = new AfterFullyEatenEvent(user);
+        RaiseLocalEvent(food, ref afterEvent);
 
         var dev = new DestructionEventArgs();
         RaiseLocalEvent(food, dev);
@@ -393,7 +401,7 @@ public sealed class FoodSystem : EntitySystem
                 TryFeed(user, user, entity, entity.Comp);
             },
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/cutlery.svg.192dpi.png")),
-            Text = Loc.GetString(entity.Comp.VerbEat), // Frontier - Loc
+            Text = Loc.GetString("food-system-verb-eat"),
             Priority = -1
         };
 
@@ -429,14 +437,18 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var ent in stomachs)
         {
+            if (!component.RequiresSpecialDigestion && !ent.Comp1.SpecialDigestibleOnly) // Frontier: stomachs that can digest "normal food"
+                return true; // Frontier
             // Find a stomach with a SpecialDigestible
             if (ent.Comp1.SpecialDigestible == null)
                 continue;
             // Check if the food is in the whitelist
             if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
                 return true;
-            // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
-            return false;
+
+            // If their diet is whitelist exclusive, then they cannot eat anything but what follows their whitelisted tags. Else, they can eat their tags AND human food.
+            if (ent.Comp1.IsSpecialDigestibleExclusive)
+                return false;
         }
 
         if (component.RequiresSpecialDigestion)
@@ -476,7 +488,7 @@ public sealed class FoodSystem : EntitySystem
         // If "required" field is set, try to block eating without proper utensils used
         if (component.UtensilRequired && (usedTypes & component.Utensil) != component.Utensil)
         {
-            _popup.PopupEntity(Loc.GetString(component.UtensilMessage, ("utensil", component.Utensil ^ usedTypes)), user, user);  // Frontier - Loc
+            _popup.PopupEntity(Loc.GetString("food-you-need-to-hold-utensil", ("utensil", component.Utensil ^ usedTypes)), user, user);
             return false;
         }
 

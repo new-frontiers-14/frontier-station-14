@@ -1,8 +1,8 @@
 ﻿- type: entity
-  name: nfsdlite
+  name: tac-lite
   parent: FlashlightLantern
   id: FlashlightNfsdLite
-  description: A robust flashlight used by the nfsd.
+  description: A tactical flashlight used by the NFSD.
   components:
   - type: Tag
     tags:
@@ -14,7 +14,7 @@
         startingItem: PowerCellHigh
   - type: HandheldLight
     addPrefix: false
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     inhandVisuals:
       left:
       - state: inhand-left-light
@@ -36,6 +36,7 @@
         Blunt: 10
   - type: Item
     sprite: _NF/Objects/Tools/nfsdlite.rsi
+  - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
     radius: 8

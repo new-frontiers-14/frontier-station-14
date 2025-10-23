@@ -29,10 +29,28 @@
 - type: entity
   parent: ClothingEyesGlassesSecurity
   id: ClothingEyesGlassesNfsd
-  name: nfsd glasses
+  name: NFSD glasses
   description: Upgraded sunglasses that provide flash immunity and a security HUD.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/nfsd_glasses.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Glasses/nfsd_glasses.rsi
+
+- type: entity
+  parent: [ClothingEyesGlassesMeson, BaseCommandContraband]
+  id: ClothingEyesGlassesMesonPlantManager
+  name: plant manager's goggles
+  description: Green-tinted protective goggles with an integrated HUD for crew identification.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Glasses/manager_meson.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Glasses/manager_meson.rsi
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: StaticPrice
+    price: 250
+  - type: VisionCorrection
+  - type: ShowJobIcons

@@ -84,7 +84,7 @@
   name: chat-radio-binary
   keycode: 'b'
   frequency: 1001
-  color: "#2ed2fd"
+  color: "#5ed7aa"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
 
@@ -96,3 +96,23 @@
   color: "#f6ce64"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   #longRange: true # Frontier - Move to server on cove
+
+- type: radioChannel
+  abstract: true # Frontier
+  id: Xenoborg
+  name: chat-radio-xenoborg
+  keycode: 'x'
+  frequency: 2002
+  color: "#2288ff"
+  # long range since I don't wanna make a special xenoborg telecomm server
+  longRange: true
+
+- type: radioChannel
+  abstract: true # Frontier
+  id: Mothership
+  name: chat-radio-mothership
+  keycode: 'z'
+  frequency: 2003
+  color: "#ff2222"
+  # long range since I don't wanna make a special xenoborg telecomm server
+  longRange: true

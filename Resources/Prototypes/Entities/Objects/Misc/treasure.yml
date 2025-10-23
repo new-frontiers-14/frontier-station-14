@@ -83,11 +83,6 @@
     - state: cpu_super
   - type: Item
     size: Tiny
-  - type: PhysicalComposition
-    materialComposition: # big mats if you don't sell it
-      Steel: 500
-      Glass: 1000
-      Silver: 300
   - type: StaticPrice
     price: 750
 
@@ -155,11 +150,12 @@
     state: coin_iron
   - type: Item
     size: Tiny
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 300
-  - type: StaticPrice
+  - type: StackPrice # Frontier: Static<Stack
     price: 75
+  - type: Stack # Frontier
+    stackType: TreasureCoinIron # Frontier
+    count: 1 # Frontier
+  - type: NFCoin # Frontier: relying on inheritance for other coins.
 
 - type: entity
   parent: TreasureCoinIron
@@ -167,12 +163,11 @@
   components:
   - type: Sprite
     state: coin_silver
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100 # coins are fake on the inside
-      Silver: 200
-  - type: StaticPrice
-    price: 135
+  - type: StackPrice # Frontier: Static<Stack
+    price: 125
+  - type: Stack # Frontier
+    stackType: TreasureCoinSilver # Frontier
+    count: 1 # Frontier
 
 - type: entity
   parent: TreasureCoinIron
@@ -180,12 +175,11 @@
   components:
   - type: Sprite
     state: coin_gold
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-      Gold: 200
-  - type: StaticPrice
+  - type: StackPrice # Frontier: Static<Stack
     price: 175
+  - type: Stack # Frontier
+    stackType: TreasureCoinGold # Frontier
+    count: 1 # Frontier
 
 - type: entity
   parent: TreasureCoinIron
@@ -193,12 +187,11 @@
   components:
   - type: Sprite
     state: coin_adamantine
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 400
-      Diamond: 5
-  - type: StaticPrice
+  - type: StackPrice # Frontier: Static<Stack
     price: 250
+  - type: Stack # Frontier
+    stackType: TreasureCoinAdamantine # Frontier
+    count: 1 # Frontier
 
 - type: entity
   parent: TreasureCoinIron
@@ -206,10 +199,9 @@
   components:
   - type: Sprite
     state: coin_diamond
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 300
-      Diamond: 15
-  - type: StaticPrice
+  - type: StackPrice # Frontier: Static<Stack
     price: 500
+  - type: Stack # Frontier
+    stackType: TreasureCoinDiamond # Frontier
+    count: 1 # Frontier
 

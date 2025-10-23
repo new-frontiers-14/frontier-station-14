@@ -1,29 +1,40 @@
 - type: cargoProduct
-  id: BulkSpaceCleaner
+  id: CargoBarreSpaceCleaner
   icon:
-    sprite: Objects/Specific/Chemistry/jug.rsi
-    state: jug
-  product: CrateSpaceCleaner
-  cost: 2000
-  category: cargoproduct-category-name-service
-  group: market
-
-- type: cargoProduct
-  id: ServiceJanitorial2
-  icon:
-    sprite: Objects/Specific/Janitorial/janitorial.rsi
-    state: cleaner
-  product: CrateServiceJanitorialSupplies2
-  cost: 800
+    sprite: _NF/Objects/Storage/Barrels/blue.rsi
+    state: icon
+  product: ChemicalBarrelSpaceCleaner
+  cost: 3500
   category: cargoproduct-category-name-service
   group: market
 
 - type: cargoProduct
   id: ServiceVehicleJanicart
+  abstract: true
   icon:
     sprite: Objects/Vehicles/janicart.rsi
     state: icon
   product: CrateVehicleJanicart
   cost: 1500
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: ServiceColoredLightsReplacement
+  icon:
+    sprite: Objects/Power/light_bulb.rsi
+    state: normal
+  product: CrateServiceReplacementColoredLights
+  cost: 600
+  category: Service
+  group: market
+
+- type: cargoProduct
+  id: ServiceCoffeeDispenser
+  icon:
+    sprite: Objects/Consumable/Drinks/generic_jug.rsi
+    state: icon
+  product: CrateServiceCoffeeDispenser
+  cost: 4000 # Beeg number
   category: cargoproduct-category-name-service
   group: market

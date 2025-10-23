@@ -175,6 +175,21 @@ public sealed partial class AnomalySystem
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-output-unknown"));
         else
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-output", ("point", GetAnomalyPointValue(anomaly, anomalyComp))));
+        //Frontier: Points earned
+        msg.PushNewline();
+        if (secret != null && secret.Secret.Contains(AnomalySecretData.PointsEarned))
+        {
+            msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-earned-unknown"));
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-anomalite-expected-unknown"));
+        }
+        else
+        {
+            msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-earned", ("point", anomalyComp.PointsEarned)));
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-anomalite-expected", ("count", int.Min(anomalyComp.PointsEarned / anomalyComp.PointsPerCrystalUnit, anomalyComp.MaxCrystals))));
+        }
+        // End Frontier
         msg.PushNewline();
         msg.PushNewline();
 

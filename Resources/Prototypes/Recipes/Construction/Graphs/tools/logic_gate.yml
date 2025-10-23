@@ -40,17 +40,19 @@
         icon:
           sprite: _NF/Objects/Tools/multitool.rsi # Frontier: separate sprites (add _NF folder)
           state: icon
-        name: a multitool
+        name: construction-graph-tag-multitool
       - material: Cable
         amount: 2
         doAfter: 1
     - to: memory_cell
       steps:
-      - tag: CapacitorStockPart
+      - tag: MicroManipulatorStockPart
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
-        name: a capacitor
+          state: micro_mani
+        name: construction-graph-tag-manipulator
+      - material: Manipulator
+        amount: 1
       - material: Cable
         amount: 2
         doAfter: 1
@@ -101,7 +103,7 @@
         doAfter: 2
       completed:
       - !type:SpawnPrototype
-        prototype: CapacitorStockPart
+        prototype: MicroManipulatorStockPart
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2

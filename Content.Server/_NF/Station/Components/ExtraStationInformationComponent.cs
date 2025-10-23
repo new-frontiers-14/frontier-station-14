@@ -3,7 +3,7 @@
 namespace Content.Server._NF.Station.Components;
 
 [RegisterComponent]
-public sealed partial class ExtraStationInformationComponent: Component
+public sealed partial class ExtraStationInformationComponent : Component
 {
     [DataField]
     public ResPath? IconPath;
@@ -24,10 +24,4 @@ public sealed partial class ExtraStationInformationComponent: Component
      */
     [DataField]
     public int LobbySortOrder;
-
-    /**
-     * Determines if the station is a latejoin station option they can see in the latejoin menu.
-     */
-    [DataField]
-    public bool IsLateJoinStation = true;
 }

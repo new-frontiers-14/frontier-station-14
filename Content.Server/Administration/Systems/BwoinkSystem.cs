@@ -172,7 +172,7 @@ namespace Content.Server.Administration.Systems
                 }
 
                 // Check if the user has been banned
-                var ban = await _dbManager.GetServerBanAsync(null, e.Session.UserId, null);
+                var ban = await _dbManager.GetServerBanAsync(null, e.Session.UserId, null, null);
                 if (ban != null)
                 {
                     var banMessage = Loc.GetString("bwoink-system-player-banned", ("banReason", ban.Reason));
@@ -351,7 +351,7 @@ namespace Content.Server.Administration.Systems
             {
                 // TODO: Ideally, CVar validation during setting should be better integrated
                 Log.Warning("Webhook URL does not appear to be valid. Using anyways...");
-                await GetWebhookData(url); // Frontier - Support for Custom URLS, we still want to see if theres Webhook data available
+                _webhookData = await GetWebhookData(url); // Frontier - Support for Custom URLS, we still want to see if theres Webhook data available
                 return;
             }
 
@@ -362,7 +362,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Fire and forget
-            await GetWebhookData(url); // Frontier - Support for Custom URLS
+            _webhookData = await GetWebhookData(url); // Frontier - Support for Custom URLS
         }
 
         private async Task<WebhookData?> GetWebhookData(string url)
@@ -407,7 +407,7 @@ namespace Content.Server.Administration.Systems
                 if (lookup == null)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Unable to find player for NetUserId {userId} when sending discord webhook.");
+                        $"Unable to find player for NetUserId {userId} when sending webhook."); // Frontier: remove "discord"
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -485,15 +485,29 @@ namespace Content.Server.Administration.Systems
             // Otherwise patch (edit) it
             if (existingEmbed.Id == null)
             {
-                var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
-                    new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                // Frontier: Replaced with Try/Catch for network issues
+                HttpResponseMessage request;
+                try
+                {
+                    request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
+                        new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                }
+                catch (Exception ex)
+                {
+                    _sawmill.Log(LogLevel.Error,
+                        $"Webhook POST failed (network / refused) for user {userId}: {ex.Message}\n{ex}");
+                    _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, There might be times were Source or Target have temporarily network issues.
+                    return;
+                }
 
                 var content = await request.Content.ReadAsStringAsync();
                 if (!request.IsSuccessStatusCode)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Discord returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        $"Webhook returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: "Discord"<"Webhook"
                     _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, if post fails we discard the embed and make a new one
                     return;
                 }
 
@@ -501,7 +515,7 @@ namespace Content.Server.Administration.Systems
                 if (id == null)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Could not find id in json-content returned from discord webhook: {content}");
+                        $"Could not find id in json-content returned from webhook: {content}"); // Frontier: remove "discord"
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -510,15 +524,29 @@ namespace Content.Server.Administration.Systems
             }
             else
             {
-                var request = await _httpClient.PatchAsync($"{_webhookUrl}/messages/{existingEmbed.Id}",
-                    new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                // Frontier: Replaced with Try/Catch for network issues
+                HttpResponseMessage request;
+                try
+                {
+                    request = await _httpClient.PatchAsync($"{_webhookUrl}/messages/{existingEmbed.Id}",
+                        new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                }
+                catch (Exception ex)
+                {
+                    _sawmill.Log(LogLevel.Error,
+                        $"Webhook PATCH failed (network / refused) for user {userId} (will discard current embed state): {ex.Message}\n{ex}");
+                    _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, There might be times were Source or Target have temporarily network issues.
+                    return;
+                }
 
                 if (!request.IsSuccessStatusCode)
                 {
                     var content = await request.Content.ReadAsStringAsync();
                     _sawmill.Log(LogLevel.Error,
-                        $"Discord returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        $"Webhook returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: "Discord"<"Webhook"
                     _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, if patch fails we discard the embed and make a new one
                     return;
                 }
             }
@@ -547,13 +575,27 @@ namespace Content.Server.Administration.Systems
 
                     payload = GeneratePayload(message.ToString(), existingEmbed.Username, userId, existingEmbed.CharacterName);
 
-                    var request = await _httpClient.PostAsync($"{_onCallUrl}?wait=true",
-                        new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
-
-                    var content = await request.Content.ReadAsStringAsync();
-                    if (!request.IsSuccessStatusCode)
+                    // Frontier: Replaced with Try/Catch for network issues
+                    HttpResponseMessage request;
+                    try
                     {
-                        _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting relay message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        request = await _httpClient.PostAsync($"{_onCallUrl}?wait=true",
+                            new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                    }
+                    catch (Exception ex)
+                    {
+                        _sawmill.Log(LogLevel.Error,
+                            $"On-call webhook POST failed (network / refused) for user {userId}: {ex.Message}\n{ex}");
+                        request = null!;
+                    }
+
+                    if (request != null)
+                    {
+                        var content = await request.Content.ReadAsStringAsync();
+                        if (!request.IsSuccessStatusCode)
+                        {
+                            _sawmill.Log(LogLevel.Error, $"Webhook returned bad status code when posting relay message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: Discord<Webhook
+                        }
                     }
                 }
             }
@@ -650,7 +692,7 @@ namespace Content.Server.Administration.Systems
             var personalChannel = senderSession.UserId == message.UserId;
             var senderAdmin = _adminManager.GetAdminData(senderSession);
             var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
-            var authorized = personalChannel || senderAHelpAdmin;
+            var authorized = personalChannel && !message.AdminOnly || senderAHelpAdmin;
             if (!authorized)
             {
                 // Unauthorized bwoink (log?)
@@ -667,7 +709,7 @@ namespace Content.Server.Administration.Systems
         /// Sends a bwoink. Common to both internal messages (sent via the ahelp or admin interface) and webhook messages (sent through the webhook, e.g. via Discord)
         /// </summary>
         /// <param name="message">The message being sent.</param>
-        /// <param name="senderId">The network GUID of the person sending the message.</param>
+        /// <param name="senderId">The network GUID of the person sending the message. Frontier: This can be a SystemUserId if originated from a webhook.</param>
         /// <param name="senderAdmin">The admin privileges of the person sending the message.</param>
         /// <param name="senderName">The name of the person sending the message.</param>
         /// <param name="senderChannel">The channel to send a message to, e.g. in case of failure to send</param>
@@ -703,14 +745,12 @@ namespace Content.Server.Administration.Systems
                 bwoinkText = $"{senderName}";
             }
 
-            if (fromWebhook)
-                bwoinkText = $"(DC) {bwoinkText}";
+            bwoinkText = $"{(message.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : !message.PlaySound ? Loc.GetString("bwoink-message-silent") : "")}{(fromWebhook ? Loc.GetString("bwoink-message-discord") : "")} {bwoinkText}: {escapedText}";
 
-            bwoinkText = $"{(message.PlaySound ? "" : "(S) ")}{bwoinkText}: {escapedText}";
-
-            // If it's not an admin / admin chooses to keep the sound then play it.
-            var playSound = senderAdmin == null || message.PlaySound;
-            var msg = new BwoinkTextMessage(message.UserId, senderId, bwoinkText, playSound: playSound);
+            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
+            var playSound = (!senderAHelpAdmin || message.PlaySound) && !message.AdminOnly;
+            var msg = new BwoinkTextMessage(message.UserId, senderId, bwoinkText, playSound: playSound, adminOnly: message.AdminOnly);
 
             LogBwoink(msg);
 
@@ -733,7 +773,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Notify player
-            if (_playerManager.TryGetSessionById(message.UserId, out var session))
+            if (_playerManager.TryGetSessionById(message.UserId, out var session) && !message.AdminOnly)
             {
                 if (!admins.Contains(session.Channel))
                 {
@@ -796,6 +836,7 @@ namespace Content.Server.Administration.Systems
                     _gameTicker.RunLevel,
                     playedSound: playSound,
                     isDiscord: fromWebhook,
+                    adminOnly: message.AdminOnly,
                     noReceivers: nonAfkAdmins.Count == 0
                 );
                 _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(messageParams));
@@ -812,7 +853,7 @@ namespace Content.Server.Administration.Systems
                 RaiseNetworkEvent(starMuteMsg, senderChannel);
             }
         }
-        // End Frontier:
+        // End Frontier: webhook text messages
 
         private IList<INetChannel> GetNonAfkAdmins()
         {
@@ -831,7 +872,7 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        private static DiscordRelayedData GenerateAHelpMessage(AHelpMessageParams parameters)
+        private DiscordRelayedData GenerateAHelpMessage(AHelpMessageParams parameters)
         {
             var stringbuilder = new StringBuilder();
 
@@ -847,11 +888,9 @@ namespace Content.Server.Administration.Systems
             if (parameters.RoundTime != string.Empty && parameters.RoundState == GameRunLevel.InRound)
                 stringbuilder.Append($" **{parameters.RoundTime}**");
             if (!parameters.PlayedSound)
-                stringbuilder.Append(" **(S)**");
-
+                stringbuilder.Append($" **{(parameters.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : Loc.GetString("bwoink-message-silent"))}**");
             if (parameters.IsDiscord) // Frontier - Discord Indicator
-                stringbuilder.Append(" **(DC)**");
-
+                stringbuilder.Append($" **{Loc.GetString("bwoink-message-discord")}**"); // Frontier - Discord Indicator
             if (parameters.Icon == null)
                 stringbuilder.Append($" **{parameters.Username}:** ");
             else
@@ -914,6 +953,7 @@ namespace Content.Server.Administration.Systems
         public string RoundTime { get; set; }
         public GameRunLevel RoundState { get; set; }
         public bool PlayedSound { get; set; }
+        public readonly bool AdminOnly;
         public bool NoReceivers { get; set; }
         public bool IsDiscord { get; set; } // Frontier
         public string? Icon { get; set; }
@@ -926,6 +966,7 @@ namespace Content.Server.Administration.Systems
             GameRunLevel roundState,
             bool playedSound,
             bool isDiscord = false, // Frontier
+            bool adminOnly = false,
             bool noReceivers = false,
             string? icon = null)
         {
@@ -936,6 +977,7 @@ namespace Content.Server.Administration.Systems
             RoundState = roundState;
             IsDiscord = isDiscord; // Frontier
             PlayedSound = playedSound;
+            AdminOnly = adminOnly;
             NoReceivers = noReceivers;
             Icon = icon;
         }

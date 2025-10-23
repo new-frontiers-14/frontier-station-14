@@ -49,4 +49,22 @@ public sealed partial class AnomalyCoreComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public int Charge = 5;
+
+    /// <summary>
+    /// Frontier: the fraction of the price to be taken from the researched points
+    /// </summary>
+    [DataField]
+    public double PointPriceCoefficient = 0.4;
+
+    /// <summary>
+    /// Frontier: the maximum price for the core to be worth
+    /// </summary>
+    [DataField]
+    public double MaximumPrice = 30000;
+
+    /// <summary>
+    /// Frontier: the maximum price for the core to be worth
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public double MinimumPrice = 200;
 }

@@ -1,4 +1,4 @@
-# Wall freezers
+#region Wall freezers
 - type: entity
   id: ShelfWallFreezerWhite
   parent: ShelfBaseReinforced
@@ -36,14 +36,8 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetPlasteel1:
-            min: 0
-            max: 3
-          SheetPlastic1:
-            min: 0
-            max: 3
-          ShardGlass:
-            min: 0
-            max: 3
+            min: 2
+            max: 4
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Storage
@@ -94,3 +88,4 @@
   components:
   - type: AccessReader
     access: [["Security"]]
+# endregion

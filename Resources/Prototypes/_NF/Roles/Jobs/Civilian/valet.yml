@@ -1,0 +1,49 @@
+﻿- type: job
+  id: Valet
+  name: job-name-valet
+  description: job-description-valet
+  playTimeTracker: JobValet
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
+  startingGear: ValetGear
+  alwaysUseSpawner: true
+  icon: "JobIconValet"
+  supervisors: job-supervisors-sr
+  weight: 60
+  displayWeight: 10
+  canBeAntag: false
+  access:
+  - Maintenance
+  - External
+  - Service
+  - Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: ValetGear
+  equipment:
+    head: ClothingHeadHatBellhop
+    gloves: ClothingHandsGlovesColorWhite
+    id: ValetPDA
+  storage:
+    back:
+    - ShipVoucherFrontierValet
+  encryptionKeys:
+  - EncryptionKeyGreeting
+  - EncryptionKeyService
+
+- type: chameleonOutfit
+  id: ValetChameleonOutfit
+  job: Valet
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBellhop
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterVestValet
+    gloves: ClothingHandsGlovesColorWhite

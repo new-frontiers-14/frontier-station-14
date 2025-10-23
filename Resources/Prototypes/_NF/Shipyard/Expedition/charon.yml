@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: chrome-cirrus
+# Discord: scry
+
+# Maintainer Info
+# GitHub: chrome-cirrus
+# Discord: scry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Charon
+  parent: BaseVessel
+  name: EIS Charon
+  description: Originally built as a roll-on, roll-off transport for heavy terraforming equipment. Since its obsolescence and appearance on the secondary market, the Charon has become a favorite of upfitters for the broad possibilities afforded by its open equipment bay. A product of Endurance Industrial Shipyards.
+  price: 82000 #67630 0.2 81156  
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/charon.yml
+  guidebookPage: ShipyardCharon
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: Charon
+  mapName: 'Charon'
+  mapPath: /Maps/_NF/Shuttles/Expedition/charon.yml
+  minPlayers: 0
+  stations: 
+    Charon:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Charon {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

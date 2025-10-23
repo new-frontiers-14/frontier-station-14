@@ -36,7 +36,7 @@ public sealed partial class TriggerSystem
         // Re-check for contacts as we cleared them.
         else if (TryComp<PhysicsComponent>(uid, out var body))
         {
-            _broadphase.RegenerateContacts(uid, body);
+            _broadphase.RegenerateContacts((uid, body));
         }
     }
 
@@ -67,6 +67,9 @@ public sealed partial class TriggerSystem
     private void OnProximityStartCollide(EntityUid uid, TriggerOnProximityComponent component, ref StartCollideEvent args)
     {
         if (args.OurFixtureId != TriggerOnProximityComponent.FixtureID)
+            return;
+
+        if (_whitelist.IsWhitelistFail(component.Whitelist, args.OtherEntity)) // Frontier
             return;
 
         component.Colliding[args.OtherEntity] = args.OtherBody;

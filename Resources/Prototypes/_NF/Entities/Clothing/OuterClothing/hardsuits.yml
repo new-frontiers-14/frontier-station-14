@@ -3,7 +3,7 @@
   parent: ClothingOuterHardsuitBaseNF
   id: ClothingOuterHardsuitMercenary # stats are of luxury mining hardsuit
   name: mercenary hardsuit
-  description: A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss proof.
+  description: A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss-proof.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
@@ -24,8 +24,8 @@
         Radiation: 0.6
         Caustic: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.8
+    walkModifier: 0.95
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
@@ -148,8 +148,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitNfsdBronze
-  name: nfsd bronze patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD bronze patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This bronze variant has cadet rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
@@ -175,8 +175,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdSilver
-  name: nfsd silver patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD silver patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This silver variant has officer rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
@@ -188,8 +188,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdGold
-  name: nfsd gold patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD gold patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has supervisor rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
@@ -201,8 +201,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdSheriff
-  name: nfsd sheriff patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD sheriff patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has sheriff rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
@@ -214,8 +214,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdBrigmedic
-  name: nfsd brigmedic patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD brigmedic patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This brighter variant has brigmedic rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
@@ -227,8 +227,8 @@
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
   id: ClothingOuterHardsuitNfsdExperimental
-  name: experimental nfsd hardsuit
-  description: An experimental nfsd hardsuit, never before seen!
+  name: NFSD experimental combat suit
+  description: A very heavily armored NFSD suit. This space proof marvel of engineering uses state of the art alloys to provide immense protection while sacrificing little mobility.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
@@ -260,8 +260,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitNfsdCombat
-  name: nfsd combat hardsuit
-  description: Medium armored hardsuit helmet for NFSD raids.
+  name: NFSD combat suit
+  description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
@@ -288,8 +288,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitNfsdCommand
-  name: nfsd command hardsuit
-  description: Medium armored hardsuit helmet for NFSD raids.
+  name: NFSD command combat suit
+  description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility. This variant has supervisor rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
@@ -316,7 +316,7 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitScaf
-  name: scaf hardsuit
+  name: SCAF hardsuit
   description: A green and brown combat hardsuit. Old yet sturdy nonetheless.
   components:
   - type: Sprite
@@ -370,8 +370,8 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier # So many layers of stain protection makes it very heavy
-    walkModifier: 0.55
-    sprintModifier: 0.55
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: FootstepModifier
     footstepSoundCollection:
@@ -380,7 +380,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
 
 - type: entity
-  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF]
+  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing]
   id: ClothingOuterHardsuitPirateElite
   name: elite pirate hardsuit
   description: An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -405,3 +405,130 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+
+#Wizard Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent
+  id: ClothingOuterHardsuitWizardBrick
+  name: brick wizard hardsuit
+  description: A weird hardsuit with ornaments made of baked clay and magical gemstones.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/brickwizard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/brickwizard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWizardBrick
+
+#Hostile Environment Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNF
+  id: ClothingOuterHardsuitHostileEnvironment
+  name: hostile environment hardsuit
+  description: No matter where you are sent to operate, the hostile enviroment hardsuit ensures you will more or less make it out in one piece!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/hostile_environment.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/hostile_environment.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.5
+        Radiation: 0.15
+        Caustic: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitHostileEnvironment
+
+#Surplus Combat Suit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNF
+  id: ClothingOuterHardsuitSurplus
+  name: surplus combat suit
+  description: What was once a mainstay combat suit, its now nothing more then outdated gear from wars long past. Still can stop a bullet though!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/surplus.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/surplus.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.5
+        Heat: 0.85
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSurplus
+
+#Noble combat suit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNF
+  id: ClothingOuterHardsuitNoble
+  name: noble combat suit
+  description: What is your quarrel today oh brave hero? Do you seek a dragon? Maybe you pursue an ascended cultist? Or do you plan to put an end to the syndicates machinations? Whatever the job, the Noble has you.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/noble.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/noble.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.4
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitNoble

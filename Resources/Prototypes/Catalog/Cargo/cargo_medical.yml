@@ -2,7 +2,7 @@
   id: MedicalSupplies
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: firstaid
   product: CrateMedicalSupplies
   cost: 2400
@@ -33,7 +33,7 @@
   id: EmergencyBurnKit
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: burnkit
   product: CrateEmergencyBurnKit
   cost: 700
@@ -44,7 +44,7 @@
   id: EmergencyToxinKit
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: toxinkit
   product: CrateEmergencyToxinKit
   cost: 600
@@ -55,7 +55,7 @@
   id: EmergencyO2Kit
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: o2kit
   product: CrateEmergencyO2Kit
   cost: 600
@@ -66,7 +66,7 @@
   id: EmergencyBruteKit
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: brutekit
   product: CrateEmergencyBruteKit
   cost: 600
@@ -77,7 +77,7 @@
   id: EmergencyAdvancedKit
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: advkit
   product: CrateEmergencyAdvancedKit
   cost: 1200
@@ -88,7 +88,7 @@
   id: EmergencyRadiationKit
   abstract: true # Frontier
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
     state: radkit
   product: CrateEmergencyRadiationKit
   cost: 600
@@ -130,6 +130,7 @@
 
 - type: cargoProduct
   id: ChemistryP
+  abstract: true # Frontier
   icon:
     sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     state: icon
@@ -140,6 +141,7 @@
 
 - type: cargoProduct
   id: ChemistryS
+  abstract: true # Frontier
   icon:
     sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     state: icon
@@ -150,6 +152,7 @@
 
 - type: cargoProduct
   id: CrateChemistryD
+  abstract: true # Frontier
   icon:
     sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     state: icon

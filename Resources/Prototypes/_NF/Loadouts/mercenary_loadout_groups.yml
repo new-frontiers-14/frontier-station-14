@@ -27,6 +27,8 @@
   - MercenaryClothingBackpackDuffelMercenary
   - MercenaryClothingBackpackSatchelMercenary
   - MercenaryClothingBackpackMessengerMercenary
+  - MercenaryClothingBackpackDuffelPrivateSecurity
+  - MercenaryClothingBackpackMessengerPrivateSecurity
   - SecurityBackpack
   - SecuritySatchel
   - SecurityDuffel
@@ -47,11 +49,10 @@
   - MercenaryClothingOuterArmorPunkOrange # Punkish (Static visuals)
   - MercenaryClothingOuterArmorPunkRed # Punkish (Static visuals)
   - MercenaryClothingOuterArmorPunkRandomized # Punkish (Randomized visuals)
+  - MercenaryClothingOuterArmorCaptainCarapace
   subgroups:
   - PilotOuterClothing
   - ContractorOuterClothing
-  fallbacks:
-  - ContractorClothingOuterVestTank # Vox-only, default them to have this equipped
 
 - type: loadoutGroup
   id: MercenaryShoes
@@ -60,6 +61,8 @@
   - MercenaryClothingShoesBootsMercenary
   - MercenaryClothingShoesBootsJack
   - MercenaryClothingShoesBootsCombat
+  - MercenaryClothingShoesMagMercenary
+  - MercenaryClothingShoesMagSecurity
   subgroups:
   - PilotShoes
   - ContractorShoes
@@ -75,8 +78,11 @@
   - MercenaryClothingHeadHelmetMercenaryBlack
   - MercenaryClothingHeadBandMercenary
   - MercenaryClothingHeadHatBeretMercenary
-  - SecurityHelmet
-  - SecurityBeret
+  - MercenaryClothingHeadHatBeretCommander
+  - SecurityGuardSecurityHelmet
+  - SecurityGuardSecurityHat
+  - SecurityGuardSecurityBeret
+  - SecurityGuardTrooperHat
   subgroups:
   - PilotHead
   - ContractorHead
@@ -109,7 +115,7 @@
 
 - type: loadoutGroup
   id: MercenaryPDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   loadouts:
   - MercenaryMercenaryPDA
   subgroups:
@@ -117,7 +123,7 @@
   - ContractorPDA
   fallbacks:
   - MercenaryMercenaryPDA
-  
+
 - type: loadoutGroup
   id: MercenaryGlasses
   name: loadout-group-contractor-glasses

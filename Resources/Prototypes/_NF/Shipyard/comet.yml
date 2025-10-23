@@ -3,16 +3,17 @@
 # Discord: ???
 
 # Maintainer Info
-# GitHub: ???
-# Discord: ???
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
 
 # Shuttle Notes:
 #
 - type: vessel
   id: Comet
+  parent: BaseVessel
   name: NT Comet
   description: A mining and construction vessel intended to help build or repair quickly.
-  price: 55000
+  price: 62000 # 47022 0.3 61128.6 
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/comet.yml
@@ -21,7 +22,7 @@
   - Salvage
   - Engineering
   engine:
-  - AME
+  - Uranium
 
 - type: gameMap
   id: Comet
@@ -39,6 +40,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

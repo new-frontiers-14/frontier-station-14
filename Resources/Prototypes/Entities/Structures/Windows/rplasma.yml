@@ -5,9 +5,9 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi # Frontier
   - type: Icon
-    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi # Frontier
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -54,7 +54,18 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
-    price: 65
+    price: 65 # Frontier: 132<65
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
 
 - type: entity
   id: PlasmaReinforcedWindowDirectional
@@ -82,6 +93,8 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
+  - type: Damageable
+    damageModifierSet: RGlass
   - type: RadiationBlocker
     resistance: 2
   - type: Destructible
@@ -123,14 +136,17 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_diagonal.rsi # Frontier
     state: state0
+  - type: Tag
+    tags:
+    - Diagonal
   - type: IconSmooth
     mode: Diagonal
     key: walls # Frontier: windows<walls
     base: state
   - type: Icon
-    sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_diagonal.rsi # Frontier
     state: state0
   - type: Fixtures
     fixtures:
@@ -145,6 +161,7 @@
         - FullTileMask
         layer:
         - GlassLayer
+        density: 2000
   - type: Airtight
     noAirWhenFullyAirBlocked: false
     airBlockedDirection:

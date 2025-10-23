@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Disciple
+  parent: BaseVessel
   name: NSV Disciple
   description: A cheaply made amalgamation of religious ships. For the seasoned religious assistant.
   price: 15000 # Appraises at 12179, ~25% margin - TODO: fix this value, getting tests to pass - Whatstone
@@ -39,6 +40,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

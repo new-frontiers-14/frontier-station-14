@@ -1,0 +1,14 @@
+- type: entity
+  id: NFHolopadShipMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: bluespace holopad machine board
+  description: A machine printed circuit board for a bluespace holopad.
+  components:
+    - type: MachineBoard
+      prototype: NFHolopadShip
+      # mirroring the base holopad reqs
+      requirements:
+        Capacitor: 4
+      stackRequirements:
+        Cable: 4
+        Glass: 2

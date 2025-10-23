@@ -1,0 +1,178 @@
+#region base
+- type: entity
+  id: NFBaseAmmunitionBoxShellShotgun
+  parent: NFBaseAmmunitionBox
+  name: shell box (.50 shell)
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 20
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
+
+#region boxesPellets
+- type: entity
+  id: NFAmmunitionBoxShellShotgunBuckshot
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 buckshot)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBuckshot
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#333333"
+    - state: decal-shell-buckshot
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunOverpressure
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBuckshotOverpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#ff8d00FF"
+    - state: decal-shell-overpressure
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunIncendiary
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#ff0000"
+    - state: decal-shell-incendiary
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunPractice
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#dddddd"
+    - state: decal-shell-practice
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunUranium
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 uranium)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#00ff00"
+    - state: decal-shell-uranium
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#region boxesSlugs
+- type: entity
+  id: NFAmmunitionBoxShellShotgunSlug
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 slug)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunSlug
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#333333"
+    - state: decal-shell-slug
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunBeanbag
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 beanbag)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-shell-beanbag
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunFlare
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 flare)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunFlare
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#ffd900"
+    - state: decal-shell-flare
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxShellShotgunTranquilizer
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 tranquilizer)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunTranquilizer
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#00ffff"
+    - state: decal-shell-tranquilizer
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

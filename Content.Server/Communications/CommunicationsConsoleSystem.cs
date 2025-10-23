@@ -1,9 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
@@ -16,11 +14,12 @@ using Content.Shared.Chat;
 using Content.Shared.Communications;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Emag.Components;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.Communications
 {
@@ -37,6 +36,7 @@ namespace Content.Server.Communications
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier: sector-wide alerts
 
         private const float UIUpdateInterval = 5.0f;
 
@@ -110,9 +110,9 @@ namespace Content.Server.Communications
             var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                var entStation = _stationSystem.GetOwningStation(uid);
-                if (args.Station == entStation)
-                    UpdateCommsConsoleInterface(uid, comp);
+                // var entStation = _stationSystem.GetOwningStation(uid); // Frontier: sector-wide alerts
+                // if (args.Station == entStation) // Frontier: sector-wide alerts
+                UpdateCommsConsoleInterface(uid, comp);
             }
         }
 
@@ -133,14 +133,15 @@ namespace Content.Server.Communications
         /// </summary>
         public void UpdateCommsConsoleInterface(EntityUid uid, CommunicationsConsoleComponent comp)
         {
-            var stationUid = _stationSystem.GetOwningStation(uid);
+            //var stationUid = _stationSystem.GetOwningStation(uid); // Frontier: sector-wide alerts
+            var stationUid = _sectorService.GetServiceEntity(); // Frontier: sector-wide alerts
             List<string>? levels = null;
             string currentLevel = default!;
             float currentDelay = 0;
 
-            if (stationUid != null)
+            if (stationUid.Valid) // Frontier: != null < .Valid
             {
-                if (TryComp(stationUid.Value, out AlertLevelComponent? alertComp) &&
+                if (TryComp(stationUid, out AlertLevelComponent? alertComp) && // Frontier: stationUid.Value<stationUid
                     alertComp.AlertLevels != null)
                 {
                     if (alertComp.IsSelectable)
@@ -156,7 +157,7 @@ namespace Content.Server.Communications
                     }
 
                     currentLevel = alertComp.CurrentLevel;
-                    currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid.Value, alertComp);
+                    currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid, alertComp); // Frontier: stationUid.Value<stationUid
                 }
             }
 
@@ -177,7 +178,7 @@ namespace Content.Server.Communications
 
         private bool CanUse(EntityUid user, EntityUid console)
         {
-            if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent) && !HasComp<EmaggedComponent>(console))
+            if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent))
             {
                 return _accessReaderSystem.IsAllowed(user, console, accessReaderComponent);
             }
@@ -261,7 +262,9 @@ namespace Content.Server.Communications
             Loc.TryGetString(comp.Title, out var title);
             title ??= comp.Title;
 
-            msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            if (comp.AnnounceSentBy)
+                msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+
             if (comp.Global)
             {
                 _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
@@ -280,6 +283,17 @@ namespace Content.Server.Communications
         {
             if (!TryComp<DeviceNetworkComponent>(uid, out var net))
                 return;
+
+            // Frontier: check access for broadcast
+            if (message.Actor is { Valid: true } mob)
+            {
+                if (!CanUse(mob, uid))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("comms-console-permission-denied"), uid, message.Actor);
+                    return;
+                }
+            }
+            // End Frontier
 
             var payload = new NetworkPayload
             {
@@ -313,7 +327,7 @@ namespace Content.Server.Communications
             }
 
             _roundEndSystem.RequestRoundEnd(uid);
-            _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(mob):player} has called the shuttle.");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(mob):player} has called the shuttle.");
         }
 
         private void OnRecallShuttleMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleRecallEmergencyShuttleMessage message)
@@ -328,7 +342,7 @@ namespace Content.Server.Communications
             }
 
             _roundEndSystem.CancelRoundEndCountdown(uid);
-            _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
     }
 

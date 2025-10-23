@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseStationEventNFModerateDelay
+  id: NFBaseStationEventModerateDelay
   parent: BaseGameRule
   abstract: true
   components:
@@ -9,26 +9,32 @@
         max:  40
 
 - type: entity
-  id: BluespaceCargoCrate
-  parent: BaseStationEventNFModerateDelay
+  id: NFBluespaceCargoCrate
+  parent: NFBaseStationEventModerateDelay
   components:
   - type: StationEvent
     startAnnouncement: bluespace-cargo-event-announcement
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_normal_crate.ogg
     weight: 5
     duration: 35
     reoccurrenceDelay: 120
   - type: BluespaceCargoRule
     spawnerPrototype: RandomCargoSpawner
+    flashPrototype: EffectFlashBluespaceQuiet
     requireSafeAtmosphere: true
     minimumSpawns: 2
     maximumSpawns: 5
 
 - type: entity
-  id: BluespaceMcCargoCrate
-  parent: BaseStationEventNFModerateDelay
+  id: NFBluespaceMcCargoCrate
+  parent: NFBaseStationEventModerateDelay
   components:
   - type: StationEvent
+  #Todo add path to  start warning and end Voiceover
     startAnnouncement: bluespace-cargo-event-announcement
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_normal_crate.ogg
     earliestStart: 20
     weight: 5
     duration: 35
@@ -40,24 +46,24 @@
     requireSafeAtmosphere: true
 
 - type: entity
-  id: BluespaceSyndicateCrate
-  parent: BaseStationEventNFModerateDelay
+  id: NFBluespaceSyndicateCrate
+  parent: NFBaseStationEventModerateDelay
   components:
   - type: StationEvent
     startAnnouncement: bluespace-syndicate-crate-event-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_syndie_crate.ogg
     weight: 1
     duration: 35
     earliestStart: 90
     minimumPlayers: 20
     reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceCargoRule
-    spawnerPrototype: CrateSyndicateLightSurplusBundle
-    maximumSpawns: 2
+    spawnerPrototype: CrateSyndicateSurplusBundle
+    maximumSpawns: 1
 
 - type: entity
-  id: SmugglingFax
+  id: NFSmugglingFax
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
@@ -80,7 +86,7 @@
     - !type:GetRandomDeadDropAction
 
 - type: entity
-  id: SmugglingFaxBig
+  id: NFSmugglingFaxBig
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent

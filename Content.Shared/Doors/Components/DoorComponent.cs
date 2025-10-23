@@ -66,7 +66,7 @@ public sealed partial class DoorComponent : Component
     /// <summary>
     ///     When the door is active, this is the time when the state will next update.
     /// </summary>
-    [AutoNetworkedField]
+    [AutoNetworkedField, ViewVariables]
     public TimeSpan? NextStateChange;
 
     /// <summary>
@@ -296,6 +296,12 @@ public sealed partial class DoorComponent : Component
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int ClosedDrawDepth = (int) DrawDepth.DrawDepth.Doors;
+
+    /// <summary>
+    /// Frontier - Whether the door can be controlled by shipyard door remotes. Normal door remotes bypass this.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool RemoteCompatible = true;
 }
 
 [Serializable, NetSerializable]
@@ -314,11 +320,9 @@ public enum DoorState : byte
 public enum DoorVisuals : byte
 {
     State,
-    Powered,
     BoltLights,
     EmergencyLights,
     ClosedLights,
-    BaseRSI,
 }
 
 public enum DoorVisualLayers : byte

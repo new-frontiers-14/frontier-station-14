@@ -11,6 +11,8 @@
     allowSpeech: true
     allowMovement: true
     prototype: EmotionalSupportPet
+    mindRoles:
+    - MindRoleGhostRoleEmotionalSupportPet
   - type: Grammar
     attributes:
       proper: true
@@ -37,6 +39,8 @@
   parent: BaseEmotionalGhost
   abstract: true
   components:
+  - type: RandomMetadata
+    nameSegments: [NamesCat]
   - type: ReplacementAccent
     accent: cat
   - type: Vocal
@@ -56,6 +60,8 @@
   parent: BaseEmotionalGhost
   abstract: true
   components:
+  - type: RandomMetadata
+    nameSegments: [NamesDog]
   - type: ReplacementAccent
     accent: dog
   - type: Vocal
@@ -71,8 +77,6 @@
   parent: [BaseEmotionalGhostCat, MobCat]
   id: MobCatGhost
   components:
-  - type: RandomMetadata
-    nameSegments: [names_cat]
   - type: DamageStateVisuals
     states:
       Alive:
@@ -84,7 +88,7 @@
   id: MobCatCalicoGhost
   components:
   - type: RandomMetadata
-    nameSegments: [names_cat_calico]
+    nameSegments: [NamesCatCalico]
   - type: DamageStateVisuals
     states:
       Alive:
@@ -96,7 +100,7 @@
   id: MobBingusGhost
   components:
   - type: RandomMetadata
-    nameSegments: [names_cat_bingus]
+    nameSegments: [NamesCatBingus]
   - type: DamageStateVisuals
     states:
       Alive:
@@ -108,7 +112,7 @@
   id: MobCatCaracalGhost
   components:
   - type: RandomMetadata
-    nameSegments: [names_cat_caracal]
+    nameSegments: [NamesCatCaracal]
   - type: DamageStateVisuals
     states:
       Alive:
@@ -122,7 +126,7 @@
   id: MobCatSpaceGhost
   components:
   - type: RandomMetadata
-    nameSegments: [names_cat_space]
+    nameSegments: [NamesCatSpace]
   - type: DamageStateVisuals
     states:
       Alive:
@@ -134,17 +138,24 @@
   suffix: Ghost
   parent: [BaseEmotionalGhostDog, MobCorgi]
   id: MobCorgiGhost
-  components:
-  - type: RandomMetadata
-    nameSegments: [names_corgi]
 
 - type: entity
   suffix: Ghost
   parent: [BaseEmotionalGhostDog, MobCorgiPuppy]
   id: MobCorgiPuppyGhost
   components:
+  - type: Inventory
+    speciesId: puppy
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobMcGriff]
+  id: MobPugGhost
+  name: pug # Just for the spawn menu.
+  description: A stocky dog with a little smushed-in face. Adorable? # The default description doesn't really fit.
+  components:
   - type: RandomMetadata
-    nameSegments: [names_corgi]
+    nameSegments: [NamesDogPug]
   - type: Inventory
     speciesId: puppy
 
@@ -169,7 +180,7 @@
       Female: Chicken
       Unsexed: Chicken
   - type: RandomMetadata
-    nameSegments: [names_chicken]
+    nameSegments: [NamesChicken]
   - type: Inventory
     speciesId: chicken
 
@@ -186,6 +197,6 @@
       Female: Fox
       Unsexed: Fox
   - type: RandomMetadata
-    nameSegments: [names_fox]
+    nameSegments: [NamesFox]
   - type: Inventory
     speciesId: fox

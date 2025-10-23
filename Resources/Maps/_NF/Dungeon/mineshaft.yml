@@ -18,9 +18,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -524,14 +522,14 @@ entities:
     - type: Transform
       pos: 24.5,32.5
       parent: 2
-- proto: BorgModuleGPS
+- proto: BorgModuleAdvancedTool
   entities:
   - uid: 800
     components:
     - type: Transform
       pos: 43.60813,21.699238
       parent: 2
-- proto: BorgModuleMining
+- proto: BorgModuleAdvancedMining
   entities:
   - uid: 272
     components:
@@ -3018,13 +3016,6 @@ entities:
     components:
     - type: Transform
       pos: 43.312515,23.740736
-      parent: 2
-- proto: MachineAnomalySynchronizer
-  entities:
-  - uid: 591
-    components:
-    - type: Transform
-      pos: 36.5,22.5
       parent: 2
 - proto: MachineArtifactCrusher
   entities:
@@ -6463,7 +6454,7 @@ entities:
     - type: Transform
       pos: 38.5,34.5
       parent: 2
-- proto: WeaponPistolCHIMP
+- proto: NFWeaponPistolCHIMP
   entities:
   - uid: 617
     components:

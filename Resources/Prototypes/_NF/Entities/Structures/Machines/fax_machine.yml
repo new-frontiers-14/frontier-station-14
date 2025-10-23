@@ -74,6 +74,16 @@
     name: "Omnichurch Beacon"
 
 - type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFBarrierGate
+  suffix: POI, Barrier Gate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Barrier Gate"
+  - type: ApcPowerReceiver
+
+- type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineSyndie, FaxMachineShipAntag]
   id: FaxMachineNFLPBravo
   suffix: POI, LP Bravo
@@ -128,6 +138,24 @@
   components:
   - type: FaxMachine
     name: "Trade Outpost STC"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFTradeMallSTC
+  suffix: POI, Mall STC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Trade Mall STC"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFTradeMallNFSD
+  suffix: POI, Trade NFSD
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Trade Mall NFSD Post"
 
 - type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineBase]
@@ -210,6 +238,15 @@
   - type: FaxMachine
     name: "Edison Power Plant"
 
+- type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFMedicalDispatch
+  suffix: POI, Medical Dispatch
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Medical Dispatch"
+
 # Events
 - type: entity
   parent: FaxMachineNFLPBravo
@@ -221,15 +258,3 @@
     name: "Unknown"
   - type: ApcPowerReceiver
     powerDisabled: false #starts off
-
-# Ships
-- type: entity
-  parent: FaxMachineBase
-  id: FaxMachineShipMcCargo
-  suffix: Ship, McCargo
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: FaxMachine
-    useStationName: true
-    stationNameSuffix: McDrive Thru
-  - type: PowerSwitch

@@ -8,13 +8,11 @@ on:
     - "Resources/Prototypes/Entities/**/*.yml"
     - "Resources/Prototypes/_NF/Entities/**/*.yml"
     - "Resources/Prototypes/Nyanotrasen/Entities/**/*.yml"
-    - "Resources/Prototypes/_Nyano/Entities/**/*.yml"
-    - "Resources/Prototypes/DeltaV/Entities/**/*.yml"
+    - "Resources/Prototypes/_DV/Entities/**/*.yml"
     # Map pathspecs - If any maps are changed, this should run.
     - "Resources/Maps/**/*.yml"
     # Also the mapchecker itself
     - ".github/mapchecker/**"
-    
 
 permissions:
   contents: read
@@ -25,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.2.2
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:

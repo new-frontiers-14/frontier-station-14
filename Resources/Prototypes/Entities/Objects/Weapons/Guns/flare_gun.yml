@@ -16,7 +16,7 @@
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: ShellShotgunFlare
+        startingItem: NFShellShotgunFlare # Frontier: use NF prefix
         priority: 1
         whitelist:
           tags: ## TODO: Add a risk of the gun blowing up if using non-light shotgun shells, and then re-enable them.
@@ -27,7 +27,7 @@
       gun_chamber: !type:ContainerSlot
   - type: ChamberMagazineAmmoProvider
     autoCycle: false
-    boltClosed: true
+    boltClosed: false
     canRack: false
     soundBoltClosed: /Audio/Weapons/Guns/Cock/revolver_cock.ogg
     soundBoltOpened: /Audio/Weapons/Guns/Cock/revolver_cock.ogg
@@ -51,6 +51,7 @@
 
 
 - type: entity
+  abstract: true # Frontier: use NF variant
   name: security shell gun
   parent: [WeaponFlareGun, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: WeaponFlareGunSecurity

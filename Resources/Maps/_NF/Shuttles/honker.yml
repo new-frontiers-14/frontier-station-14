@@ -18,6 +18,8 @@ entities:
     - type: Transform
       pos: -0.6250305,0.875
       parent: invalid
+    - type: BecomesStation
+      id: Honker
     - type: MapGrid
       chunks:
         0,0:
@@ -132,10 +134,12 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 3
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
-    - type: InstantAction
+    - type: Action
       container: 1
 - proto: AirAlarm
   entities:
@@ -327,7 +331,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: BoxCartridgeCap
+- proto: NFBoxCartridgeCap
   entities:
   - uid: 224
     components:
@@ -1114,6 +1118,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,10.5
       parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 183
+    components:
+    - type: Transform
+      pos: 2.5,10.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 143
@@ -1172,10 +1183,6 @@ entities:
     - type: Transform
       pos: 5.5,11.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandClown
   entities:
   - uid: 197
@@ -1211,7 +1218,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 2
-- proto: RevolverCapGun
+- proto: NFRevolverCapGun
   entities:
   - uid: 221
     components:
@@ -1299,7 +1306,7 @@ entities:
     - type: Transform
       pos: 2.5,10.5
       parent: 2
-- proto: SpeedLoaderCap
+- proto: NFSpeedLoaderCap
   entities:
   - uid: 229
     components:
@@ -1677,7 +1684,7 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 209
     components:

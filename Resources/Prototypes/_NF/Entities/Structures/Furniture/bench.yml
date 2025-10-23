@@ -1,0 +1,13 @@
+- type: entity
+  parent: BenchComfy
+  id: BenchComfyTransit
+  suffix: Transit Livery
+  components:
+  - type: Sprite
+    layers:
+    - state: bench_solo_base
+      color: "#767e82"
+    - state: bench_solo_cover
+      map: ["enum.PublicTransitVisualLayers.Livery"]
+  - type: PublicTransitVisuals
+  - type: Appearance

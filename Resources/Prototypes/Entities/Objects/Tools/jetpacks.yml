@@ -25,45 +25,52 @@
   name: jetpack
   description: It's a jetpack. It can hold 5 L of gas.
   components:
-    - type: InputMover
-      toParent: true
-    - type: MovementSpeedModifier
-      weightlessAcceleration: 1
-      weightlessFriction: 0.3
-      weightlessModifier: 1.2
-    - type: CanMoveInAir
-    - type: Sprite
-      sprite: Objects/Tanks/Jetpacks/blue.rsi
-      state: icon
-    - type: Item
-      sprite: Objects/Tanks/Jetpacks/blue.rsi
-      size: Huge
-    - type: UserInterface
-      interfaces:
-        enum.SharedGasTankUiKey.Key:
-          type: GasTankBoundUserInterface
-    - type: Clothing
-      sprite: Objects/Tanks/Jetpacks/blue.rsi
-      quickEquip: false
-      slots:
-        - Back
-    - type: GasTank
-      outputPressure: 21.3
-      air:
-        volume: 5
-        temperature: 293.15
-    - type: Jetpack
-      moleUsage: 0.00085
-    - type: Appearance
-    - type: StaticPrice
-      price: 100
+  - type: Sprite
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    layers:
+    - state: icon
+      map: ["enum.JetpackVisuals.Layer"]
+  - type: Item
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    size: Huge
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: Clothing
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    quickEquip: false
+    slots:
+    - Back
+    - SuitStorage # DeltaV - Allow all jetpacks to fit in the suit storage slot
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      temperature: 293.15
+  - type: Jetpack
+    moleUsage: 0.00085
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.JetpackVisuals.Enabled:
+        enum.JetpackVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
+  - type: StaticPrice
+    price: 100
 
 - type: entity
+  parent: BaseAction
   id: ActionToggleJetpack
   name: Toggle jetpack
   description: Toggles the jetpack, giving you movement outside the station.
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Objects/Tanks/Jetpacks/blue.rsi
       state: icon
@@ -71,6 +78,7 @@
       sprite: Objects/Tanks/Jetpacks/blue.rsi
       state: icon-on
     useDelay: 1.0
+  - type: InstantAction
     event: !type:ToggleJetpackEvent
 
 #Empty blue
@@ -81,11 +89,13 @@
   suffix: Empty
   components:
   - type: Sprite
-    sprite: Objects/Tanks/Jetpacks/blue.rsi
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
-    sprite: Objects/Tanks/Jetpacks/blue.rsi
-    slots:
-      - Back
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    # DeltaV modifications - Covered by modifications on parent
+    #slots:
+    #  - Back
+    # End DeltaV modifications
 
 # Filled blue
 - type: entity
@@ -112,13 +122,22 @@
   suffix: Empty
   components:
   - type: Item
-    sprite: Objects/Tanks/Jetpacks/black.rsi
+    sprite: _DV/Objects/Tanks/Jetpacks/black.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Sprite
-    sprite: Objects/Tanks/Jetpacks/black.rsi
+    sprite: _DV/Objects/Tanks/Jetpacks/black.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
-    sprite: Objects/Tanks/Jetpacks/black.rsi
-    slots:
-      - Back
+    sprite: _DV/Objects/Tanks/Jetpacks/black.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    # DeltaV modifications - Covered by modifications on parent
+    #slots:
+    #  - Back
+    # End DeltaV modifications
+  # Frontier: emaggable jetpacks
+  - type: Tag
+    tags:
+      - DemagImmune
+  - type: Jetpack
+    radarBlip: false
+  # End Frontier: emaggable jetpacks
 
 # Filled black
 - type: entity
@@ -141,16 +160,17 @@
 - type: entity
   id: JetpackCaptain
   parent: BaseJetpack # Frontier: remove BaseGrandTheftContraband
-  name: captain's jetpack
+  name: gold jetpack # Frontier: "captain's"<"gold"
   suffix: Empty
   components:
   - type: Sprite
     sprite: Objects/Tanks/Jetpacks/captain.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/captain.rsi
-    slots:
-      - Back
-      - SuitStorage
+    # DeltaV modifications - Covered by modifications on parent
+    #slots:
+    #  - Back
+    # End DeltaV modifications
   - type: Item
     sprite: Objects/Tanks/Jetpacks/captain.rsi
     size: Normal
@@ -164,7 +184,7 @@
 - type: entity
   id: JetpackCaptainFilled
   parent: JetpackCaptain
-  name: captain's jetpack
+  # name: captain's jetpack # Frontier
   suffix: Filled
   components:
   - type: GasTank
@@ -187,6 +207,8 @@
   components:
     - type: Item
       sprite: Objects/Tanks/Jetpacks/mini.rsi
+      shape: # Frontier
+      - 0,0,3,2 # Frontier
     - type: Sprite
       sprite: Objects/Tanks/Jetpacks/mini.rsi
     - type: Clothing
@@ -222,24 +244,26 @@
 #Empty security
 - type: entity
   id: JetpackSecurity
-  parent: [BaseJetpack, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
-  name: security jetpack
+  parent: [BaseJetpack] # Frontier: removed BaseSecurityContraband
+  name: red jetpack # Frontier: "security"<"red"
   suffix: Empty
   components:
   - type: Item
-    sprite: Objects/Tanks/Jetpacks/security.rsi
+    sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Sprite
-    sprite: Objects/Tanks/Jetpacks/security.rsi
+    sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
-    sprite: Objects/Tanks/Jetpacks/security.rsi
-    slots:
-      - Back
+    sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    # DeltaV modifications - Covered by modifications on parent
+    #slots:
+    #  - Back
+    # End DeltaV modifications
 
 #Filled security
 - type: entity
   id: JetpackSecurityFilled
   parent: JetpackSecurity
-  name: security jetpack
+  # name: security jetpack # Frontier
   suffix: Filled
   components:
   - type: GasTank
@@ -286,3 +310,22 @@
       moles:
         - 1.025689525 # oxygen
         - 1.025689525 # nitrogen
+
+# Infinite jetpack
+- type: entity
+  parent: [ JetpackBlack, BaseXenoborgContraband ]
+  id: JetpackXenoborg
+  name: xenoborg jetpack
+  suffix: Infinite
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      temperature: 293.15
+  - type: Jetpack
+    moleUsage: 0
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.3
+    weightlessFriction: 0.3
+    weightlessModifier: 1

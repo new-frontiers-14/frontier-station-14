@@ -1,0 +1,27 @@
+name: "Changelog Validator"
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+
+jobs:
+  validate-changelog:
+    name: Changelog validator
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Branch
+      uses: actions/checkout@v4.2.2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: Validate Changelog
+      run: |
+        cd "Tools/_NF/changelog"
+        node validate_changelog.js
+      shell: bash

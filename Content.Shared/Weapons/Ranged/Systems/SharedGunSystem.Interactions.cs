@@ -16,10 +16,19 @@ public abstract partial class SharedGunSystem
 
         using (args.PushGroup(nameof(GunComponent)))
         {
+            // Emberfall - Add caliber info
+            if (TryGetGunCaliber(uid, component, out var caliber))
+            {
+                args.PushMarkup(Loc.GetString("gun-examine-caliber",
+                    ("color", FireRateExamineColor),
+                    ("caliber", caliber)));
+            }
+            // End Emberfall
+
             args.PushMarkup(Loc.GetString("gun-selected-mode-examine", ("color", ModeExamineColor),
                 ("mode", GetLocSelector(component.SelectedMode))));
-            args.PushMarkup(Loc.GetString("gun-fire-rate-examine", ("color", FireRateExamineColor),
-                ("fireRate", $"{component.FireRateModified:0.0}")));
+            //args.PushMarkup(Loc.GetString("gun-fire-rate-examine", ("color", FireRateExamineColor), // Emberfall
+            //    ("fireRate", $"{component.FireRateModified:0.0}"))); // Emberfall
         }
     }
 
@@ -30,7 +39,7 @@ public abstract partial class SharedGunSystem
 
     private void OnAltVerb(EntityUid uid, GunComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || component.SelectedMode == component.AvailableModes)
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.SelectedMode == component.AvailableModes)
             return;
 
         var nextMode = GetNextMode(component);

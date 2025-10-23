@@ -1,5 +1,5 @@
 # VARIATIONS
-# Contraband denying turret
+#region CDET Contraband denying turret
 - type: entity # Targets players wearing contra and all hostile to NT factions
   id: WeaponTurretContrabandDenyingDeployed
   name: CDET
@@ -24,7 +24,7 @@
       params:
         variation: 0.125
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisablerStaminaOnly
+    proto: NFBulletDisablerStaminaOnly
     fireCost: 10
   - type: NpcFactionMember
     factions:
@@ -77,7 +77,7 @@
         - tool: Screwing
           doAfter: 14
 
-# Basic laser turrets
+#region SLAT Self-Recharging Laser Auto Turret
 - type: entity
   id: WeaponTurretLaserNanoTrasenDeployed
   name: SLAT
@@ -99,7 +99,7 @@
       params:
         variation: 0.125
   - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
+    proto: NFRedLightLaser
     fireCost: 10
   - type: NpcFactionMember
     factions:
@@ -153,7 +153,7 @@
           doAfter: 14
 
 - type: entity
-  id: WeaponTurretLaserSyndicateNF
+  id: NFWeaponTurretLaserSyndicate
   name: laser turret
   suffix: Frontier, Syndicate
   parent:
@@ -171,11 +171,11 @@
       params:
         variation: 0.125
   - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
+    proto: NFRedLightLaser
     fireCost: 10
   - type: NpcFactionMember
     factions:
-    - SyndicateNF
+    - NFSyndicate
 
 - type: entity
   id: WeaponTurretLaserHostileNF
@@ -183,13 +183,14 @@
   suffix: Frontier, Hostile
   parent:
   - BaseC3Contraband
-  - WeaponTurretLaserSyndicateNF
+  - NFWeaponTurretLaserSyndicate
   components:
   - type: NpcFactionMember
     factions:
     - HostileUniversally
 
-## Magazine fed, deployable NanoTrasen turret
+#region ASMGT Autonomous Sentry Machine Gun Turret
+# Deployable NanoTrasen turret
 - type: entity # deployed turret
   id: WeaponTurretAsmgtNtDeployed
   name: ASMGT
@@ -200,6 +201,8 @@
   - BaseC2ContrabandUnredeemable
   - BaseWeaponTurretMagazineFed
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-asmgt
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
       components:

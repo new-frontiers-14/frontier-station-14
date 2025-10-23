@@ -4,6 +4,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
+using Content.Shared.Movement.Components; // Frontier
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -47,6 +48,9 @@ public sealed class LegsParalyzedSystem : EntitySystem
 
     private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
     {
+        if (HasComp<RelayInputMoverComponent>(uid)) // Frontier: allow relaying input with paralyzed legs
+            return; // Frontier: allow relaying input with paralyzed legs
+
         args.Cancel();
     }
 

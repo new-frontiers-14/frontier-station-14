@@ -1,3 +1,5 @@
+# region FRONTIER - IGNORED
+
 # As opposed to MagazineBox these are boxes of magazines so BoxMagazine
 # CaselessRifle
 - type: entity
@@ -56,11 +58,12 @@
       - id: MagazineLightRiflePractice
         amount: 4
 
+# Magnum
 - type: entity
-  name: box of Vector magazines
+  name: box of SMG .45 magnum magazines
   parent: BoxMagazine
   id: BoxMagazineMagnumSubMachineGun
-  description: A box full of Vector magazines.
+  description: A box full of SMG .45 magnum magazines.
   components:
   - type: StorageFill
     contents:
@@ -68,10 +71,10 @@
         amount: 3
 
 - type: entity
-  name: box of Vector (practice) magazines
+  name: box of SMG .45 magnum (practice) magazines
   parent: BoxMagazine
   id: BoxMagazineMagnumSubMachineGunPractice
-  description: A box full of Vector (practice) magazines.
+  description: A box full of SMG .45 magnum (practice) magazines.
   components:
   - type: StorageFill
     contents:
@@ -154,17 +157,6 @@
   - type: StorageFill
     contents:
       - id: MagazinePistolSubMachineGunPractice
-        amount: 3
-
-- type: entity
-  name: box of SMG .35 auto (emp) magazines
-  parent: BoxMagazine
-  id: BoxMagazinePistolSubMachineGunEmp
-  description: A box full of SMG .35 auto (emp) magazines.
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolSubMachineGunEmp
         amount: 3
 
 # Shotgun

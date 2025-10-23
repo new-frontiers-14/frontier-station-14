@@ -1,0 +1,29 @@
+- type: constructionGraph
+  id: NFWebStructures
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DestroyEntity {}
+    edges:
+    - to: nest
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: WebSilk
+        amount: 6
+        doAfter: 3
+
+  # Deconstruction is down here
+  - node: nest
+    entity: WebNest
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWebSilk1
+        amount: 5
+      steps:
+      - tool: Cutting
+        doAfter: 2

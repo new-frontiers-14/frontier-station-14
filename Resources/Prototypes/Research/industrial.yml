@@ -1,3 +1,4 @@
+# region FRONTIER - IGNORED
 # Tier 1
 
 - type: technology
@@ -11,10 +12,7 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
-  - WeaponGrapplingGun # Frontier
   - MineralScannerEmpty
-  - BorgModuleMining
-  - BorgModuleGrapplingGun
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
 
@@ -30,7 +28,6 @@
   recipeUnlocks:
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  - BorgModuleGPS
 
 - type: technology
   id: AdvancedPowercells
@@ -44,6 +41,7 @@
   recipeUnlocks:
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
+  - SMESAdvancedMachineCircuitboard
 
 - type: technology
   id: MechanicalCompression
@@ -85,7 +83,6 @@
   - PortableGeneratorPacmanMachineCircuitboard
   - PortableGeneratorSuperPacmanMachineCircuitboard
   - PortableGeneratorJrPacmanMachineCircuitboard
-  - PowerComputerCircuitboard #the actual solar panel itself should be in here
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
@@ -138,8 +135,6 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
-  - SmallThrusterMachineCircuitboard # Frontier
-  - SmallGyroscopeMachineCircuitboard # Frontier
 
 - type: technology
   id: AdvancedAtmospherics
@@ -170,12 +165,9 @@
     - WelderExperimental
     - PowerDrill
     - JawsOfLife
-    - UtilityBeltChiefEngineer
     - BorgModuleAdvancedTool
-    - BorgModuleRCD
-    - NFBlueprintPowerDrill # Frontier
-    - NFBlueprintJawsOfLife # Frontier
-    - NFBlueprintWelderExperimental # Frontier
+    - Fulton
+    - FultonBeacon
 
 - type: technology
   id: MassExcavation
@@ -190,10 +182,7 @@
     - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
-    - NFBlueprintOreBagOfHolding # Frontier
-    - NFBlueprintMiningDrillDiamond # Frontier
-    - NFBlueprintAdvancedMineralScannerEmpty # Frontier
-    - BorgModuleAdvancedMining # Frontier
+    - BorgModuleAdvancedMining
 
 # Tier 3
 
@@ -210,15 +199,10 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
-  - ClothingBackpackMessengerHolding # Frontier
-  - NFBlueprintClothingBackpackHolding # Frontier
-  - NFBlueprintClothingBackpackSatchelHolding # Frontier
-  - NFBlueprintClothingBackpackDuffelHolding # Frontier
-  - NFBlueprintClothingBackpackMessengerHolding # Frontier
 
 - type: technology
-  id: PortableFission
-  name: research-technology-portable-fission
+  id: OptimizedMicrogalvanism
+  name: research-technology-optimized-microgalvanism
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: microreactor
@@ -227,20 +211,6 @@
   cost: 10000
   recipeUnlocks:
   - PowerCellMicroreactor
-  - NFBlueprintPowerCellMicroreactor # Frontier
+  # - PowerCellHyper # Frontier: moved to PowerCellHyperNF
   technologyPrerequisites:
   - AdvancedPowercells
-
-- type: technology
-  id: RapidConstruction
-  name: research-technology-rapid-construction
-  icon:
-    sprite: _NF/Objects/Tools/rcd.rsi
-    state: icon-shipyard # Frontier
-  discipline: Industrial
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-    - ShipyardRCD # Frontier
-    - ShipyardRCDAmmo # Frontier
-    - NFBlueprintShipyardRCDAmmo # Frontier

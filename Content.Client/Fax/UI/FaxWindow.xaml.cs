@@ -74,8 +74,13 @@ public sealed partial class FaxWindow : DefaultWindow
         {
             PeerSelector.Clear();
 
-            foreach (var (address, name) in state.AvailablePeers)
+            // Frontier: sorted fax address list
+            var sortedPeers = state.AvailablePeers.ToList();
+            sortedPeers.Sort((p1, p2) => p1.Value.CompareTo(p2.Value));
+
+            foreach (var (address, name) in sortedPeers)
             {
+                // Frontier End: sorted fax address list
                 var id = AddPeerSelect(name, address);
                 if (address == state.DestinationAddress)
                     PeerSelector.Select(id);

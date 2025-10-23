@@ -7,9 +7,11 @@
     - PetsNT
     - Zombie
     - Revolutionary
+    - AllHostile
     - WizFedFaction # Frontier
     - BloodCultNF # Frontier
-    - PirateNF # Frontier
+    - NFSyndicate # Frontier
+    - NFPirate # Frontier
     - ExplorersExpeditionNF # Frontier
     - ArtifactConstruct # Frontier
     - StreetGangNF # Frontier
@@ -28,9 +30,14 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
-  - PirateNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -44,6 +51,9 @@
   id: Mouse
   hostile:
   - PetsNT
+  # - AllHostile # Frontier
+  - HostileUniversally # Frontier
+  - Wizard
 
 - type: npcFaction
   id: Passive
@@ -52,20 +62,12 @@
   id: PetsNT
   hostile:
   - Mouse
-  - SimpleHostile
-  - Zombie
-  - Xeno
-  - WizFedFaction # Frontier
-  - BloodCultNF # Frontier
-  - PirateNF # Frontier
-  - ExplorersExpeditionNF # Frontier
-  - ArtifactConstruct # Frontier
-  - StreetGangNF # Frontier
-  - DinosaursNF # Frontier
-  - MercenariesExpeditionNF # Frontier
-  - SiliconsExpeditionNF # Frontier
-  - AberrantFleshExpeditionNF # Frontier
-  - ContrabandClothing # Frontier
+  # - SimpleHostile # Frontier
+  # - Zombie # Frontier
+  # - Xeno # Frontier
+  # - AllHostile # Frontier
+  # - Wizard # Frontier
+  # - Dragon # Frontier
 
 - type: npcFaction
   id: SimpleHostile
@@ -76,9 +78,15 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - Dragon
+  - Xeno
+  - AllHostile
+  - Wizard
+  - Xenoborg
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
-  - PirateNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -95,16 +103,20 @@
 - type: npcFaction
   id: Syndicate
   friendly: # Frontier
-  - SyndicateNF # Frontier
+  - NFSyndicate # Frontier
   hostile:
   - NanoTrasen
   - SimpleHostile
   - Xeno
   - PetsNT
   - Zombie
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
-  - PirateNF # Frontier
+  - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -124,9 +136,14 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
+  - Wizard
+  - Dragon
+  - Xenoborg
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
-  - PirateNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -147,9 +164,14 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - AllHostile
+  - Wizard
+  - Dragon
+  - Xenoborg
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
-  - PirateNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -167,12 +189,90 @@
   - Zombie
   - SimpleHostile
   - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
-  - PirateNF # Frontier
+  - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   #- StreetGangNF # Frontier
+  - DinosaursNF # Frontier
+  - MercenariesExpeditionNF # Frontier
+  - SiliconsExpeditionNF # Frontier
+  - AberrantFleshExpeditionNF # Frontier
+  - ContrabandClothing # Frontier
+  - ContrabandDetection # Frontier
+
+- type: npcFaction
+  id: AllHostile # Frontier: use HostileUniversally
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Wizard
+  - Xenoborg
+
+- type: npcFaction
+  id: Wizard
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Xenoborg
+  # - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
+  - ExplorersExpeditionNF # Frontier
+  - ArtifactConstruct # Frontier
+  - StreetGangNF # Frontier
+  - DinosaursNF # Frontier
+  - MercenariesExpeditionNF # Frontier
+  - SiliconsExpeditionNF # Frontier
+  - AberrantFleshExpeditionNF # Frontier
+  - ContrabandClothing # Frontier
+  - ContrabandDetection # Frontier
+
+- type: npcFaction
+  id: Xenoborg
+  hostile:
+  # they have brains
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  - Wizard
+
+  - Xeno # rivalry
+
+  # cause they are hostile to them
+  - SimpleHostile 
+  - AllHostile
+  - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - NFPirate # Frontier
+  - ExplorersExpeditionNF # Frontier
+  - ArtifactConstruct # Frontier
+  - StreetGangNF # Frontier
   - DinosaursNF # Frontier
   - MercenariesExpeditionNF # Frontier
   - SiliconsExpeditionNF # Frontier

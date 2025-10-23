@@ -33,13 +33,24 @@
   id: SecurityGuardGear
   equipment:
     eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
-    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
-    pocket2: MagazinePistol
+    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+    pocket2: NFMagazineHighCapacityPistol35
   storage:
     back:
-    - EncryptionKeyService
-    - EncryptionKeySecurity
     - Flash
-    - MagazinePistol
-    - MagazinePistolRubber
+    - NFMagazineHighCapacityPistol35
+    - NFMagazineHighCapacityPistol35Rubber
     - ShipVoucherFrontierGuard
+  encryptionKeys:
+  - EncryptionKeyService
+  - EncryptionKeySecurity
+
+
+- type: chameleonOutfit
+  id: SecurityGuardChameleonOutfit
+  job: SecurityGuard
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesColorBlack

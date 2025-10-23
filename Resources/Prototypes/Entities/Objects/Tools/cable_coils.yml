@@ -29,6 +29,10 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 15
+  - type: GuideHelp
+    guides:
+    - VoltageNetworks
+    - Power
 
 - type: entity
   id: CableHVStack
@@ -206,6 +210,9 @@
       state: coillv-10
     - type: Stack
       count: 10
+    - type: Construction # Frontier
+      graph: CableApcStack10 # Frontier
+      node: CableApcStack10 # Frontier
 
 - type: entity
   parent: CableApcStack10

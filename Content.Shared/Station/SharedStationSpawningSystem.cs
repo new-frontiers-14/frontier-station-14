@@ -2,6 +2,8 @@ using System.Linq;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
+using Content.Shared.Item;
+using Content.Shared.NameIdentifier;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
@@ -10,6 +12,11 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Implants; // Frontier
+using Content.Shared.Implants.Components; // Frontier
+using Content.Shared.Radio.Components; // Frontier
+using Robust.Shared.Containers; // Frontier
+using Robust.Shared.Network; // Frontier
 
 namespace Content.Shared.Station;
 
@@ -22,6 +29,9 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private readonly INetManager _net = default!; // Frontier
+    [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier
+    [Dependency] private readonly SharedImplanterSystem _implanter = default!; // Frontier
 
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
@@ -100,9 +110,14 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     {
         string? name = null;
 
+        if (roleProto.CanCustomizeName)
+        {
+            name = loadout.EntityName;
+        }
+
         if (string.IsNullOrEmpty(name) && PrototypeManager.TryIndex(roleProto.NameDataset, out var nameData))
         {
-            name = _random.Pick(nameData.Values);
+            name = Loc.GetString(_random.Pick(nameData.Values));
         }
 
         if (!string.IsNullOrEmpty(name))
@@ -114,7 +129,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     public void EquipStartingGear(EntityUid entity, LoadoutPrototype loadout, bool raiseEvent = true)
     {
         EquipStartingGear(entity, loadout.StartingGear, raiseEvent);
-        EquipStartingGear(entity, (IEquipmentLoadout) loadout, raiseEvent);
+        EquipStartingGear(entity, (IEquipmentLoadout)loadout, raiseEvent);
     }
 
     /// <summary>
@@ -131,7 +146,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// </summary>
     public void EquipStartingGear(EntityUid entity, StartingGearPrototype? startingGear, bool raiseEvent = true)
     {
-        EquipStartingGear(entity, (IEquipmentLoadout?) startingGear, raiseEvent);
+        EquipStartingGear(entity, (IEquipmentLoadout?)startingGear, raiseEvent);
     }
 
     /// <summary>
@@ -178,31 +193,55 @@ public abstract class SharedStationSpawningSystem : EntitySystem
         if (startingGear.Storage.Count > 0)
         {
             var coords = _xformSystem.GetMapCoordinates(entity);
-            var ents = new ValueList<EntityUid>();
             _inventoryQuery.TryComp(entity, out var inventoryComp);
 
-            foreach (var (slot, entProtos) in startingGear.Storage)
+            foreach (var (slotName, entProtos) in startingGear.Storage)
             {
-                ents.Clear();
-                if (entProtos.Count == 0)
+                if (entProtos == null || entProtos.Count == 0)
                     continue;
 
                 if (inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slot, out var slotEnt, inventoryComponent: inventoryComp) &&
+                    InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt, inventoryComponent: inventoryComp) &&
                     _storageQuery.TryComp(slotEnt, out var storage))
                 {
-                    foreach (var ent in entProtos)
-                    {
-                        ents.Add(Spawn(ent, coords));
-                    }
 
-                    foreach (var ent in ents)
+                    foreach (var entProto in entProtos)
                     {
-                        _storage.Insert(slotEnt.Value, ent, out _, storageComp: storage, playSound: false);
+                        var spawnedEntity = Spawn(entProto, coords);
+
+                        _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
                     }
                 }
             }
         }
+
+        // Frontier: extra fields
+        // Implants must run on server, container initialization only runs on server, and lobby dummies don't work.
+        if (_net.IsServer && startingGear.Implants.Count > 0)
+        {
+            var coords = _xformSystem.GetMapCoordinates(entity);
+            foreach (var entProto in startingGear.Implants)
+            {
+                var spawnedEntity = Spawn(entProto, coords);
+                if (TryComp<ImplanterComponent>(spawnedEntity, out var implanter))
+                    _implanter.Implant(entity, entity, spawnedEntity, implanter);
+                else
+                    DebugTools.Assert(false, $"Entity has an implant for {entProto}, which doesn't have an implanter component!");
+                QueueDel(spawnedEntity);
+            }
+        }
+
+        if (startingGear.EncryptionKeys.Count > 0)
+        {
+            EquipEncryptionKeysIfPossible(entity, startingGear.EncryptionKeys);
+        }
+
+        // PDA cartridges must run on server, installation logic exists server-side.
+        if (_net.IsServer && startingGear.Cartridges.Count > 0)
+        {
+            EquipPdaCartridgesIfPossible(entity, startingGear.Cartridges);
+        }
+        // End Frontier
 
         if (raiseEvent)
         {
@@ -210,4 +249,75 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             RaiseLocalEvent(entity, ref ev);
         }
     }
+
+    /// <summary>
+    ///     Gets all the gear for a given slot when passed a loadout.
+    /// </summary>
+    /// <param name="loadout">The loadout to look through.</param>
+    /// <param name="slot">The slot that you want the clothing for.</param>
+    /// <returns>
+    ///     If there is a value for the given slot, it will return the proto id for that slot.
+    ///     If nothing was found, will return null
+    /// </returns>
+    public string? GetGearForSlot(RoleLoadout? loadout, string slot)
+    {
+        if (loadout == null)
+            return null;
+
+        foreach (var group in loadout.SelectedLoadouts)
+        {
+            foreach (var items in group.Value)
+            {
+                if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutPrototype))
+                    return null;
+
+                var gear = ((IEquipmentLoadout)loadoutPrototype).GetGear(slot);
+                if (gear != string.Empty)
+                    return gear;
+            }
+        }
+
+        return null;
+    }
+
+    // Frontier: extra loadout fields
+    /// Function to equip an entity with encryption keys.
+    /// If not possible, will delete them.
+    /// Only called in practice server-side.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="encryptionKeys">The encryption key prototype IDs to equip.</param>
+    protected void EquipEncryptionKeysIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys)
+    {
+        if (!InventorySystem.TryGetSlotEntity(entity, "ears", out var slotEnt))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but doesn't have a headset!");
+            return;
+        }
+        if (!_container.TryGetContainer(slotEnt.Value, EncryptionKeyHolderComponent.KeyContainerName, out var keyContainer))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but their headset doesn't have an encryption key container!");
+            return;
+        }
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in encryptionKeys)
+        {
+            var spawnedEntity = Spawn(entProto, coords);
+            if (!_container.Insert(spawnedEntity, keyContainer))
+            {
+                QueueDel(spawnedEntity);
+                DebugTools.Assert(false, $"Entity {entity} could not insert their loadout encryption key {entProto} into their headset!");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Function to equip an entity with PDA cartridges.
+    /// If not possible, will delete them.
+    /// Only called in practice server-side.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="encryptionKeys">The PDA cartridge prototype IDs to equip.</param>
+    protected abstract void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys);
+    // End Frontier: extra loadout fields
 }

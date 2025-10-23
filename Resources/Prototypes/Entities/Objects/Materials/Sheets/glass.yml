@@ -198,6 +198,15 @@
         canReact: false
 
 - type: entity
+  parent: SheetRGlass
+  id: SheetRGlassLingering0
+  suffix: Lingering, 0
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
+
+- type: entity
   parent: SheetGlassBase
   id: SheetPGlass
   name: plasma glass
@@ -224,6 +233,11 @@
   - type: Construction
     graph: Glass
     node: SheetPGlass
+  # Frontier : Placable Plasma glass floor tile
+  - type: FloorTile
+    outputs:
+    - FloorPGlass
+  # End Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -296,6 +310,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: rpglass
+  # Frontier : Placable reinforced plasma glass floor tile
+  - type: FloorTile
+    outputs:
+    - FloorRPGlass
+  # End Frontier
   - type: Construction
     graph: Glass
     node: SheetRPGlass
@@ -328,6 +347,15 @@
     count: 1
 
 - type: entity
+  parent: SheetRPGlass
+  id: SheetRPGlassLingering0
+  suffix: Lingering, 0
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
+
+- type: entity
   parent: SheetGlassBase
   id: SheetUGlass
   name: uranium glass
@@ -351,6 +379,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: uglass
+  # Frontier : Placable Uranium glass
+  - type: FloorTile
+    outputs:
+    - FloorUGlass
+  # End Frontier
   - type: Construction
     graph: Glass
     node: SheetUGlass
@@ -425,6 +458,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: ruglass
+  # Frontier : Placable Reinforced Uranium Glass
+  - type: FloorTile
+    outputs:
+    - FloorRUGlass
+  # End Frontier
   - type: Construction
     graph: Glass
     node: SheetRUGlass

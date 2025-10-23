@@ -35,6 +35,10 @@
       weight: 0.5
       amount: !type:RangeNumberSelector
         range: 1, 3
+    - id: CrayonBox # Frontier
+      weight: 0.01 # Frontier
+    - id: CrayonMagic # Frontier
+      weight: 0.0001 # Frontier
 
 - type: entityTable
   id: SalvageScrapHighValue
@@ -44,11 +48,13 @@
       weight: 2
     - id: ScrapGlass
       weight: 2
-    # - id: ScrapPlastic TODO: high-value plastic scrap.
-    #  weight: 2
+    - id: ScrapPlastic #Frontier
+      weight: 2 #Frontier
     - id: SheetSteel10
     - id: SheetGlass10
     - id: SheetPlastic10
+    - id: ScrapGeneratorFuelTank
+      weight: 0.5
     - id: PartRodMetal10
       weight: 0.33
     - id: MaterialWoodPlank10
@@ -59,11 +65,16 @@
       weight: 0.05
     - id: SheetPlasteel10
       weight: 0.05
+    - id: NFScrapSilver # Frontier
+      weight: 2 # Frontier
 
 - type: entityTable
   id: SalvageScrapLarge
   table: !type:GroupSelector
     children:
+    - !type:NestedSelector
+      tableId: RandomGeneratorTable
+      weight: 2
     - id: ScrapAirlock1
     - id: ScrapCloset
     - id: ScrapFirelock1
@@ -72,6 +83,24 @@
       weight: 0.5
     - id: ScrapMopBucket
       weight: 0.5
+    - id: NFScrapSolarGlass # Frontier
+    - id: ScrapGenericBrokenMachine # Frontier
+      weight: 0.5 # Frontier
+    - id: ScrapGenericBrokenMachineAncient # Frontier
+      weight: 0.25 # Frontier
+    - id: ScrapGenericMachineAncient # Frontier
+      weight: 0.1 # Frontier
+# Frontier: Remove duplicate upstream chem barrels
+#    - !type:GroupSelector 
+#      weight: 2 
+#      children: 
+#      - !type:NestedSelector 
+#        weight: 3 
+#        tableId: RandomChemicalBarrel 
+#      - !type:NestedSelector 
+#        weight: 1 
+#        tableId: RandomChemicalBarrelRadioactive 
+# End Frontier: Remove duplicate upstream chem barrels
 
 # Treasure: High-value scatterables that don't do a ton.
 
@@ -123,8 +152,8 @@
     children:
     - id: MaterialDiamond1
     - id: TreasureCPUSupercharged
-    - id: TechnologyDiskRare
-      weight: 0.5
+    # - id: TechnologyDiskRare # Frontier
+    #   weight: 0.5 # Frontier
     - id: ResearchDisk10000
       weight: 0.5
     - id: ArabianLamp
@@ -149,6 +178,18 @@
           weight: 1
     - !type:NestedSelector
       tableId: RingTableRare
+    - id: CardBoxNanotrasen # Frontier
+      weight: 0.05 # Frontier
+    - id: CardBoxSyndicate # Frontier
+      weight: 0.005 # Frontier
+    - !type:NestedSelector # Frontier
+      tableId: TableStashVariety # Frontier
+    - id: ScrapGenericBrokenMachine # Frontier
+      weight: 0.5 # Frontier
+    - id: ScrapGenericBrokenMachineAncient # Frontier
+      weight: 0.25 # Frontier
+    - id: ScrapGenericMachineAncient # Frontier
+      weight: 0.1 # Frontier
 
 - type: entityTable
   id: SalvageTreasureLegendary
@@ -158,6 +199,8 @@
     - id: ClothingHeadHatFancyCrown
     - id: GoldenBikeHorn
     - id: ClothingHeadHatCatEars
+      weight: 0.001 # Frontier - 1 in 1000
+    - id: GoldenPersonalAI
     - id: TreasureCoinDiamond
       amount: !type:RangeNumberSelector
         range: 2, 5
@@ -165,6 +208,8 @@
       tableId: RingTableRare
       rolls: !type:RangeNumberSelector
         range: 2, 3
+    - !type:NestedSelector # Frontier
+      tableId: TableStashVariety # Frontier
 
 # Equipment: Tools and things used by salvagers. Quote unquote "Gamer Loot"
 
@@ -187,6 +232,13 @@
     - id: FlashlightLantern
     - id: FireExtinguisher
     - id: SurvivalKnife
+    - !type:GroupSelector # Frontier
+      children: # Frontier
+      - id: BoxInflatable # Frontier
+      - id: BoxLighttube # Frontier
+      - id: BoxLightbulb # Frontier
+      - id: BoxColoredLighttube # Frontier
+      - id: BoxColoredLightbulb # Frontier
 
 - type: entityTable
   id: SalvageEquipmentUncommon
@@ -198,7 +250,7 @@
     - id: RadioHandheldNF # Frontier RadioHandheld<RadioHandheldNF
     - id: ClothingBeltUtility
     - id: Floodlight
-    - id: WeaponProtoKineticAccelerator
+    - id: NFWeaponPka # Frontier: WeaponProtoKineticAccelerator<NFWeaponPka
       weight: 0.5
     - id: OxygenTankFilled
     - id: WelderIndustrial
@@ -218,10 +270,11 @@
   id: SalvageEquipmentRare
   table: !type:GroupSelector
     children:
-#    - id: FultonBeacon # Frontier
-#    - id: Fulton # Frontier
-#      amount: !type:RangeNumberSelector # Frontier
-#        range: 1, 3 # Frontier
+    # - id: BlueprintDoubleEmergencyTank # Frontier
+    # - id: FultonBeacon # Frontier
+    # - id: Fulton # Frontier
+    #   amount: !type:RangeNumberSelector # Frontier
+    #     range: 1, 3 # Frontier
     - id: HandHeldMassScanner
     - id: WeaponCrusherDagger
     - id: MiningDrill
@@ -238,6 +291,7 @@
       - id: JetpackMini # Frontier JetpackBlack<JetpackMini
     - id: MysterySpaceBladeBox # Frontier
     - id: CrossbowModernHand # Frontier
+    - id: NFWeaponHoloflareGun # Frontier
 
 - type: entityTable
   id: SalvageEquipmentLegendary
@@ -248,8 +302,28 @@
 #    - id: BlueprintSeismicCharge # Frontier
     - id: WeaponCrusherGlaive
     - id: ClothingOuterHardsuitSalvage
-    - id: OmnizineChemistryBottle
+    - id: ChemistryBottleOmnizine
     - !type:GroupSelector
       children:
       - id: JetpackBlueFilled
       - id: JetpackMiniFilled # Frontier JetpackBlackFilled<JetpackMiniFilled
+    # - !type:GroupSelector # Frontier
+    #   children: # Frontier
+    #   - id: PKAUpgradeDamage # Frontier
+    #   - id: PKAUpgradeRange # Frontier
+    #   - id: PKAUpgradeFireRate # Frontier
+    - id: PowerCellAntiqueProto # Frontier
+    - id: NFShovel # Frontier
+
+- type: entityTable
+  id: RandomGeneratorTable
+  table: !type:GroupSelector
+    children:
+    - id: ScrapGeneratorPlasmaLeaking
+    - id: ScrapGeneratorUraniumLeaking
+    - id: ScrapGeneratorPlasma
+      weight: 0.5
+    - id: ScrapGeneratorUranium
+      weight: 0.5
+    - id: ScrapGeneratorFrame
+      weight: 0.25

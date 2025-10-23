@@ -5,6 +5,7 @@
   description: A standard-issue Nanotrasen storage unit.
   abstract: true
   components:
+  - type: Animateable
   - type: ResistLocker
   - type: Transform
     noRot: true
@@ -19,17 +20,23 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: MovedByPressure
   - type: PaperLabel
     labelSlot:
-      insertVerbText: Attach Label
-      ejectVerbText: Remove Label
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
       whitelist:
         components:
         - Paper
       blacklist:
         tags:
         - Book
+        components: # Frontier
+        - Blueprint # Frontier
   - type: ItemSlots
   - type: DamageOnHighSpeedImpact
     damage:
@@ -86,6 +93,21 @@
           SheetSteel1:
             min: 1
             max: 1
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StorageVisuals.Open:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: generic
@@ -93,6 +115,7 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 50 # Frontier: 75<50 - TODO: material value rework
+  - type: NFForkLiftable # Frontier
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -104,6 +127,8 @@
     node: done
     containers:
     - entity_storage
+  - type: Paintable
+    group: Closet
 
 #Wall Closet
 - type: entity
@@ -180,6 +205,8 @@
     node: done
     containers:
     - entity_storage
+  - type: Paintable
+    group: WallCloset
 
 #Wall locker
 - type: entity
@@ -203,6 +230,8 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+  # - type: Paintable # Frontier: return when there are more than one locked wall lockers
+  #   group: WallLocker
 
 #Base suit storage unit
 #I am terribly sorry for duplicating the closet almost-wholesale, but the game malds at me if I don't so here we are.
@@ -226,6 +255,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+      map: ["enum.StorageVisualLayers.Base"] # Frontier: test fixes
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -291,7 +321,7 @@
             max: 1
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBase: base
+    stateBaseClosed: base # Frontier: stateBase<stateBaseClosed
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals

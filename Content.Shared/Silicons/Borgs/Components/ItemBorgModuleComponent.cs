@@ -47,5 +47,11 @@ public sealed partial class ItemBorgModuleComponent : Component
     /// </summary>
     [DataField("providedContainerId")]
     public string ProvidedContainerId = "provided_container";
+
+    /// <summary>
+    /// Frontier: a module ID to check for equivalence
+    /// </summary>
+    [DataField(required: true)]
+    public string ModuleId = default!;
 }
 

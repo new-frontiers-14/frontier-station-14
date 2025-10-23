@@ -1,7 +1,7 @@
 #Medical implanters
 - type: entity
   id: MedicalTrackingImplanter
-  suffix: medical tracking
+  name: medical tracking implanter
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter
@@ -9,7 +9,7 @@
 
 - type: entity
   id: FreelanceTrackingImplanter
-  suffix: freelance tracking
+  name: freelance tracking implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -17,7 +17,7 @@
 
 - type: entity
   id: DeathAcidifierImplanterNF
-  suffix: death acidifier
+  name: death acidifier implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -25,7 +25,7 @@
 
 - type: entity
   id: GibAcidifierImplanterNF
-  suffix: gib acidifier
+  name: gib acidifier implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -33,41 +33,26 @@
 
 - type: entity
   id: BibleUserImplanter
-  suffix: faith
+  name: faith implanter
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter
     implant: BibleUserImplant
 
-# Labeled implanters (for vendors)
 - type: entity
-  id: MedicalTrackingImplanterLabeled
-  parent: MedicalTrackingImplanter
-  suffix: medical tracking, Labeled
+  id: MimePowersImplanter
+  name: mime vow implanter
+  parent: BaseImplantOnlyImplanter
   components:
-  - type: Label
-    currentLabel: implanter-label-medical-tracking
+  - type: Implanter
+    implant: MimePowersImplant
+
+# Centcomm implanters
 
 - type: entity
-  id: SadTromboneImplanterLabeled
-  parent: SadTromboneImplanter
-  suffix: sad trombone, Labeled
+  id: RadioImplanterFreelance
+  name: freelance radio implanter
+  parent: BaseImplantOnlyImplanter
   components:
-  - type: Label
-    currentLabel: implanter-label-sad-trombone
-
-- type: entity
-  id: LightImplanterLabeled
-  parent: LightImplanter
-  suffix: light, Labeled
-  components:
-  - type: Label
-    currentLabel: implanter-label-light
-
-- type: entity
-  id: BikeHornImplanterLabeled
-  parent: BikeHornImplanter
-  suffix: bike horn, Labeled
-  components:
-  - type: Label
-    currentLabel: implanter-label-bike-horn
+  - type: Implanter
+    implant: RadioImplantFreelance

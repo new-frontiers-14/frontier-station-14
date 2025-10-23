@@ -73,12 +73,16 @@ public sealed partial class GhostRoleComponent : Component
         }
     }
 
-    [DataField("allowSpeech")]
-    [ViewVariables(VVAccess.ReadWrite)]
+    /// <summary>
+    /// The mind roles that will be added to the mob's mind entity
+    /// </summary>
+    [DataField, Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // Don't make eye contact
+    public List<EntProtoId> MindRoles = new() { "MindRoleGhostRoleNeutral" };
+
+    [DataField]
     public bool AllowSpeech { get; set; } = true;
 
-    [DataField("allowMovement")]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool AllowMovement { get; set; }
 
     [ViewVariables(VVAccess.ReadOnly)]
@@ -117,3 +121,4 @@ public sealed partial class GhostRoleComponent : Component
     public ProtoId<GhostRolePrototype>? Prototype { get; set; }
     // End Frontier
 }
+

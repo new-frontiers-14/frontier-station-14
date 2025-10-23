@@ -9,6 +9,16 @@
   group: market
 
 - type: cargoProduct
+  id: HandheldArtifactContainer
+  icon:
+    sprite: Objects/Storage/artifact_container.rsi
+    state: icon
+  product: HandheldArtifactContainer
+  cost: 500
+  category: cargoproduct-category-name-science
+  group: market
+
+- type: cargoProduct
   id: RandomArtifact
   abstract: true # Frontier
   icon:
@@ -27,5 +37,16 @@
     state: icon
   product: CrateScienceBiosuit
   cost: 800
+  category: cargoproduct-category-name-science
+  group: market
+
+- type: cargoProduct
+  id: CrewMonitoring
+  abstract: true # Frontier
+  icon:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  product: CrateCrewMonitoring
+  cost: 2000
   category: cargoproduct-category-name-science
   group: market

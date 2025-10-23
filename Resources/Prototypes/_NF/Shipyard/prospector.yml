@@ -10,9 +10,10 @@
 #
 - type: vessel
   id: Prospector
+  parent: BaseVessel
   name: NC Prospector
   description: A small mining vessel designed to assist salvage operations.
-  price: 24500
+  price: 22000 # 19706 0.05 20691.3
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/prospector.yml
@@ -38,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

@@ -1,3 +1,4 @@
+# region FRONTIER - IGNORED
 # Tier 1
 
 - type: technology
@@ -8,17 +9,11 @@
     state: seedextractor
   discipline: CivilianServices
   tier: 1
-  cost: 7500 # Delta Price. 5000 is pre-adjustment.
+  cost: 5000
   recipeUnlocks:
-  - BorgModuleGardening
-  - BorgModuleHarvesting
-  - PlantBagOfHolding #DeltaV
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
-  - PlantAnalyzer # Frontier
-  - NFBlueprintPlantAnalyzerEmpty # Frontier
-  - NFBlueprintPlantBagOfHolding # Frontier
 
 - type: technology
   id: CritterMechs
@@ -41,22 +36,6 @@
   - VimHarness
 
 - type: technology
-  id: FoodService
-  name: research-technology-food-service
-  icon:
-    sprite: Structures/Machines/juicer.rsi
-    state: juicer1
-  discipline: CivilianServices
-  tier: 1
-  cost: 7500
-  recipeUnlocks: #remove all of these once we have more kitchen equipment
-  - MicrowaveMachineCircuitboard
-  - ReagentGrinderMachineCircuitboard
-  - ElectricGrillMachineCircuitboard
-  - BoozeDispenserMachineCircuitboard
-  - SodaDispenserMachineCircuitboard
-
-- type: technology
   id: AudioVisualCommunication
   name: research-technology-audio-visual-communication
   icon:
@@ -67,12 +46,13 @@
   cost: 5000
   recipeUnlocks:
   - SurveillanceCameraRouterCircuitboard
-#  - SurveillanceCameraWirelessRouterCircuitboard # Frontier - Removal of range limits made it useless to build
+  - SurveillanceCameraWirelessRouterCircuitboard
   - SurveillanceWirelessCameraMovableCircuitboard
   - SurveillanceWirelessCameraAnchoredCircuitboard
   - SurveillanceCameraMonitorCircuitboard
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
+  - HolopadMachineCircuitboard
 
 - type: technology
   id: AdvancedEntertainment
@@ -86,24 +66,9 @@
   recipeUnlocks:
     - ComputerTelevisionCircuitboard
     - SynthesizerInstrument
-    - BorgModuleMusique
-    - BorgModuleClowning
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
-
-- type: technology
-  id: RoboticCleanliness
-  name: research-technology-robotic-cleanliness
-  icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: janitor
-  discipline: CivilianServices
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleLightReplacer
-  - BorgModuleAdvancedCleaning
 
 - type: technology
   id: MeatManipulation
@@ -117,6 +82,7 @@
   recipeUnlocks:
   - FatExtractorMachineCircuitboard
   - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
+  - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
 
 # Tier 2
@@ -136,6 +102,7 @@
   - FauxTileJungleAstroGrass
   - FauxTileAstroIce
   - FauxTileAstroSnow
+  - FauxTileAstroAsteroidSand
 
 - type: technology
   id: BiochemicalStasis
@@ -152,7 +119,7 @@
   - CryostasisBeaker
   - SyringeCryostasis
 
-- type: technology
+- type: technology # Merge with other T2 medical research if possible!
   id: MechanizedTreatment
   name: research-technology-mechanized-treatment
   icon:
@@ -162,8 +129,7 @@
   tier: 2
   cost: 5000
   recipeUnlocks:
-  - BorgModuleAdvancedTreatment
-  - BorgModuleDefibrillator
+  - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic # Frontier
 
 - type: technology
@@ -178,7 +144,9 @@
   recipeUnlocks:
   - AdvMopItem
   - MegaSprayBottle
-  - NFBlueprintAdvMopItem # Frontier
+  - BorgModuleAdvancedCleaning
+  - ReinforcedJug # Frontier
+  - PortablePumpMachineCircuitBoard # Frontier
 
 - type: technology
   id: HONKMech
@@ -213,19 +181,35 @@
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
 
-# Tier 3
+# Frontier
 
-# - type: technology # Frontier
-  # id: BluespaceCargoTransport
-  # name: research-technology-bluespace-cargo-transport
-  # icon:
-    # sprite: Structures/cargo_telepad.rsi
-    # state: display
-  # discipline: CivilianServices
-  # tier: 3
-  # cost: 15000
-  # recipeUnlocks:
-  # - CargoTelepadMachineCircuitboard
+# - type: technology
+#   id: BluespaceCargoTransport
+#   name: research-technology-bluespace-cargo-transport
+#   icon:
+#     sprite: Structures/cargo_telepad.rsi
+#     state: display
+#   discipline: CivilianServices
+#   tier: 2
+#   cost: 15000
+#   recipeUnlocks:
+#   - CargoTelepadMachineCircuitboard
+
+# End Frontier
+
+- type: technology
+  id: PushHorn
+  name: research-technology-clowning-utilities
+  icon:
+    sprite: Objects/Fun/push_horn.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - PushHorn
+
+# Tier 3
 
 - type: technology
   id: QuantumFiberWeaving
@@ -251,7 +235,18 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - JugBluespace # Frontier
   - VialBluespace # Frontier
-  - NFBlueprintBluespaceBeaker # Frontier
-  - NFBlueprintSyringeBluespace # Frontier
-  - NFBlueprintVialBluespace # Frontier
+
+- type: technology
+  id: LauncherSyringe
+  name: research-technology-launcher-syringe
+  icon:
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe_gun
+  discipline: CivilianServices
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - LauncherSyringe
+  - MiniSyringe

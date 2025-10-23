@@ -39,11 +39,23 @@
   - type: StorageFill
     contents:
       - id: SrIDCard
-      - id: ClothingHeadsetCentCom # Frontier
       - id: BoxHandcuff # Frontier
       - id: IDComputerCircuitboard
       - id: CommsComputerCircuitboard # Frontier
       - id: MedalCase # Frontier
+      - id: Demag # Frontier
+
+- type: entity
+  id: LockerNfsdSheriffFilled
+  suffix: Filled
+  parent: LockerNfsdSheriff
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShriffIDCard
+      - id: BoxHandcuff # Frontier
+      - id: CommsComputerCircuitboard # Frontier
+      - id: MedalCaseNfsd # Frontier
       - id: Demag # Frontier
 
 - type: entity
@@ -57,7 +69,20 @@
   - type: StorageFill
     contents:
     - id: WeaponCaseHeavyCdet
-    - id: WeaponPistolMk58
+    - id: NFWeaponPistolMk58
       amount: 1
-    - id: MagazinePistol
+    - id: NFMagazinePistol35
+      amount: 2
+
+- type: entity
+  parent: GunSafe
+  id: GunSafePlantManager
+  name: plant manager's gun safe
+  suffix: Filled
+  components:
+  - type: AccessReader
+    access: [["ChiefEngineer"]]
+  - type: StorageFill
+    contents:
+    - id: NFWeaponParticleDecelerator
       amount: 2

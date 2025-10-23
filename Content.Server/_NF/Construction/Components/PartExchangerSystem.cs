@@ -29,7 +29,6 @@ public sealed class PartExchangerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StorageSystem _storage = default!;
     [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly EntityManager _entity = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -309,7 +308,7 @@ public sealed class PartExchangerSystem : EntitySystem
             foreach (var partState in partSet)
             {
                 if (!partState.state.InContainer)
-                    _storage.Insert(uid, partState.part, out _, playSound: false);
+                    _storage.Insert(storageEnt, partState.part, out _, playSound: false);
             }
         }
     }

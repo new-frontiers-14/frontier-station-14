@@ -69,7 +69,7 @@ public sealed partial class MindTests
         Assert.Multiple(() =>
         {
             Assert.That(entMan.Deleted(entity));
-            Assert.That(mind.Comp.OwnedEntity, Is.Null);
+            Assert.That(mind.Comp.OwnedEntity, Is.Not.EqualTo(entity));
         });
 
         // Reconnect

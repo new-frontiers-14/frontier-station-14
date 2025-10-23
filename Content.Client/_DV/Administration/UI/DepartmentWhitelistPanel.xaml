@@ -1,0 +1,11 @@
+<PanelContainer
+        xmlns="https://spacestation14.io"
+        xmlns:cc="clr-namespace:Content.Client._DV.Administration.UI"
+        StyleClasses="BackgroundDark"
+        HorizontalExpand="True"
+        Margin="4">
+    <BoxContainer Orientation="Vertical">
+        <CheckBox Name="Department"/> <!-- Toggles all jobs in the department at once -->
+	    <GridContainer Name="JobsContainer" Columns="4"/> <!-- Populated with each job to toggle individually-->
+    </BoxContainer>
+</PanelContainer>

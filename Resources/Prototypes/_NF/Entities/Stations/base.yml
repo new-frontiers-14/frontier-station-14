@@ -19,6 +19,12 @@
   - type: StationRenameFaxes
 
 - type: entity
+  id: BaseStationRenameHolopads
+  abstract: true
+  components:
+  - type: StationRenameHolopads
+
+- type: entity
   id: BaseStationRenameWarpPoints
   abstract: true
   components:
@@ -46,30 +52,30 @@
   - type: StationDampening
 
 - type: entity
+  id: NFBaseStationCargo
+  abstract: true
+  components:
+    - type: NFStationCargoOrderDatabase
+
+- type: entity
   id: BaseStationCargoMarket
   abstract: true
   components:
   - type: CargoMarketData
-    whitelist:
+    whitelist: #whitelist won't work if the item doesn't have a price, unless sold in a box with other items
       tags:
       - Ore
       - Sheet
       - Metal
       - Ingot
-      - RawMaterial
-      - CrystalRed
-      - CrystalGreen
-      - CrystalPink
-      - CrystalOrange
-      - CrystalBlue
-      - CrystalCyan
+      - ArtifactFragment
       components:
       - Material
       - ConstructionMaterials
-      - ToolRefinable
+      # ToolRefinable #only used by light bulbs and broken glass and blocked by SpaceTrash component anyway
       - MachinePart
       - VendingMachineRestock
-      - Seed
+      - Seed # do we really need that if everyone has a biogenerator already? It just clogs up the UI
       - MachineBoard
       - ComputerBoard
     blacklist:
@@ -93,11 +99,14 @@
       - MindContainer # Positronic brains
       - Body # No corpses
       - MobPrice # Animals (live or dead) and the like
-      - Artifact # Unique, abusable for research points
+      - XenoArtifact # Unique, abusable for research points
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
+      - StationBoundObject # no laundering your rental ship machines
     whitelistOverride:
+      tags:
+      - RawMaterial
       components:
       - UraniumMaterials # Counts as food
 
@@ -113,3 +122,9 @@
   abstract: true
   components:
     - type: StationDeadDropHintExempt
+
+- type: entity
+  id: BaseStationBusDepot
+  abstract: true
+  components:
+  - type: StationBusDepot

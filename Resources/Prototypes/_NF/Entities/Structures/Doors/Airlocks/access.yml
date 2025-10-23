@@ -1,4 +1,13 @@
-# Airlocks
+# region Airlocks
+- type: entity
+  parent: AirlockAtmospherics
+  id: AirlockAtmosphericsEngineeringLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
 - type: entity
   parent: AirlockCommandLocked
   id: AirlockFrontierLocked
@@ -136,24 +145,6 @@
 
 - type: entity
   parent: AirlockNfsd
-  id: AirlockNfsdLawyerLocked
-  suffix: NFSD Lawyer, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSecurityLawyer ]
-
-- type: entity
-  parent: AirlockNfsdGlass
-  id: AirlockNfsdLawyerGlassLocked
-  suffix: NFSD Lawyer, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSecurityLawyer ]
-
-- type: entity
-  parent: AirlockNfsd
   id: AirlockNfsdArmoryLocked
   suffix: NFSD Armory, Locked
   components:
@@ -179,7 +170,7 @@
     containers:
       board: [ DoorElectronicsMailCarrier ]
 
-# Glass Airlocks
+# region Glass Airlocks
 - type: entity
   parent: AirlockCommandGlassLocked
   id: AirlockFrontierGlassLocked
@@ -278,3 +269,68 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockPirateGlassLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassPirateLocked
+  suffix: Pirate, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockMiningGlass
+  id: AirlockMiningGlassPirateLocked
+  suffix: Pirate, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockShuttleSyndicate
+  id: AirlockShuttleSyndicatePirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockGlassShuttleSyndicatePirateLocked
+  suffix: Pirate, Glass Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+# region HighSecDoors
+- type: entity
+  parent: HighSecDoor
+  id: HighSecEngineeringLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
+# region Airtight Hatch
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchPirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]

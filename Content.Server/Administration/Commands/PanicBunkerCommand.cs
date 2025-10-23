@@ -155,7 +155,7 @@ public sealed class PanicBunkerMinAccountAgeCommand : LocalizedCommands
         }
 
         _cfg.SetCVar(CCVars.PanicBunkerMinAccountAge, minutes);
-        shell.WriteLine(Loc.GetString("panicbunker-command-min-account-age-set", ("minutes", minutes)));
+        shell.WriteLine(Loc.GetString("panicbunker-command-min-overall-minutes-set", ("minutes", minutes)));
     }
 }
 
@@ -187,6 +187,6 @@ public sealed class PanicBunkerMinOverallMinutesCommand : LocalizedCommands
         }
 
         _cfg.SetCVar(CCVars.PanicBunkerMinOverallMinutes, minutes);
-        shell.WriteLine(Loc.GetString("panicbunker-command-overall-minutes-age-set", ("minutes", minutes)));
+        shell.WriteLine(Loc.GetString("panicbunker-command-min-overall-minutes-set", ("minutes", minutes)));
     }
 }

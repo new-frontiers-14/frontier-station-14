@@ -1,17 +1,16 @@
 using Content.Server.Tools;
-using Content.Shared.Tools.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
+using Content.Shared._NF.Weapons.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Abilities.Oni
 {
     public sealed class OniSystem : EntitySystem
     {
-        [Dependency] private readonly ToolSystem _toolSystem = default!;
         [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
         private const double GunInaccuracyFactor = 17.0; // Frontier (20x<18x -> 10% buff)
@@ -31,7 +30,8 @@ namespace Content.Server.Abilities.Oni
             var heldComp = EnsureComp<HeldByOniComponent>(args.Entity);
             heldComp.Holder = uid;
 
-            if (TryComp<GunComponent>(args.Entity, out var gun))
+            // Frontier: Oni-friendly "guns" (crusher)
+            if (TryComp<GunComponent>(args.Entity, out var gun) && !HasComp<NFOniFriendlyGunComponent>(args.Entity))
             {
                 // Frontier: adjust penalty for wielded malus (ensuring it's actually wieldable)
                 if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus) && HasComp<WieldableComponent>(args.Entity))
@@ -59,8 +59,9 @@ namespace Content.Server.Abilities.Oni
         private void OnEntRemoved(EntityUid uid, OniComponent component, EntRemovedFromContainerMessage args)
         {
             // Frontier: angle manipulation stored in HeldByOniComponent
+            // Frontier: Oni-friendly "guns" (crusher)
             if (TryComp<GunComponent>(args.Entity, out var gun) &&
-                TryComp<HeldByOniComponent>(args.Entity, out var heldComp))
+                TryComp<HeldByOniComponent>(args.Entity, out var heldComp) && !HasComp<NFOniFriendlyGunComponent>(args.Entity))
             {
                 gun.MinAngle -= heldComp.minAngleAdded;
                 gun.AngleIncrease -= heldComp.angleIncreaseAdded;

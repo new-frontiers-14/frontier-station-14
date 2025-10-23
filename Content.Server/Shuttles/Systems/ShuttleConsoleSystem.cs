@@ -22,7 +22,9 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Shared.UserInterface;
+using Robust.Shared.Prototypes;
 using Content.Shared.Access.Systems; // Frontier
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -45,6 +47,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
+
+    private static readonly ProtoId<TagPrototype> CanPilotTag = "CanPilot";
 
     public override void Initialize()
     {
@@ -174,7 +178,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private bool TryPilot(EntityUid user, EntityUid uid)
     {
-        if (!_tags.HasTag(user, "CanPilot") ||
+        if (!_tags.HasTag(user, CanPilotTag) ||
             !TryComp<ShuttleConsoleComponent>(uid, out var component) ||
             !this.IsPowered(uid, EntityManager) ||
             !Transform(uid).Anchored ||
@@ -229,6 +233,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             if (xform.ParentUid != xform.GridUid)
                 continue;
 
+            // Frontier: skip unanchored docks (e.g. portable gaslocks)
+            if (HasComp<AnchorableComponent>(uid) && !xform.Anchored)
+                continue;
+            // End Frontier
+
             var gridDocks = result.GetOrNew(GetNetEntity(xform.GridUid.Value));
 
             var state = new DockingPortState()
@@ -242,6 +251,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                     GetNetEntity(otherDockXform.GridUid) :
                     null,
                 LabelName = comp.Name != null ? Loc.GetString(comp.Name) : null, // Frontier: docking labels
+                RadarColor = comp.RadarColor, // Frontier
+                HighlightedRadarColor = comp.HighlightedRadarColor, // Frontier
+                DockType = comp.DockType, // Frontier
+                ReceiveOnly = comp.ReceiveOnly, // Frontier
             };
 
             gridDocks.Add(state);
@@ -276,7 +289,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), InertiaDampeningMode.Dampen); // Frontier: inertia dampening);
+            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: inertia dampening
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -391,7 +404,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, Shared._NF.Shuttles.Events.InertiaDampeningMode.Dampen); // Frontier: add inertia dampening
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertia dampening, target
 
         return GetNavState(
             entity,
@@ -407,14 +420,18 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen); // Frontier: add inertial dampening
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertial dampening, target
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
             angle,
             docks,
-            _shuttle.NfGetInertiaDampeningMode(entity)); // Frontier: inertia dampening
+            _shuttle.NfGetInertiaDampeningMode(entity), // Frontier
+            _shuttle.NfGetServiceFlags(entity), // Frontier
+            entity.Comp1.Target, // Frontier
+            GetNetEntity(entity.Comp1.TargetEntity), // Frontier
+            entity.Comp1.HideTarget); // Frontier
     }
 
     /// <summary>

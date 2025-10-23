@@ -15,7 +15,7 @@ namespace Content.Client.RoundEnd
         public int RoundId;
 
         public RoundEndSummaryWindow(string gm, string roundEnd, TimeSpan roundTimeSpan, int roundId,
-            RoundEndMessageEvent.RoundEndPlayerInfo[] info, IEntityManager entityManager)
+            RoundEndMessageEvent.RoundEndPlayerInfo[] info, IEntityManager entityManager, string customObjective) // Frontier: add customObjective
         {
             _entityManager = entityManager;
 
@@ -32,6 +32,7 @@ namespace Content.Client.RoundEnd
             RoundId = roundId;
             var roundEndTabs = new TabContainer();
             roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId));
+            roundEndTabs.AddChild(MakeCustomObjectiveTab(customObjective)); // Frontier
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
 
             Contents.AddChild(roundEndTabs);
@@ -166,6 +167,46 @@ namespace Content.Client.RoundEnd
 
             return playerManifestTab;
         }
+
+        // Frontier: custom objective tab
+        private BoxContainer MakeCustomObjectiveTab(string customObjectives)
+        {
+            var objectiveTab = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                Name = Loc.GetString("round-end-summary-window-stories-tab-title")
+            };
+
+            var objectiveContainerScrollbox = new ScrollContainer
+            {
+                VerticalExpand = true,
+                Margin = new Thickness(10),
+                HScrollEnabled = false
+            };
+
+            var objectiveContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical
+            };
+
+            var objectiveText = new RichTextLabel
+            {
+                VerticalAlignment = VAlignment.Top,
+                VerticalExpand = true,
+            };
+
+            if (string.IsNullOrEmpty(customObjectives))
+                objectiveText.SetMarkup(Loc.GetString("round-end-summary-window-no-stories"));
+            else
+                objectiveText.SetMarkup(customObjectives);
+
+            objectiveContainer.AddChild(objectiveText);
+            objectiveContainerScrollbox.AddChild(objectiveContainer);
+            objectiveTab.AddChild(objectiveContainerScrollbox);
+
+            return objectiveTab;
+        }
+        // End Frontier: custom objective tab
     }
 
 }

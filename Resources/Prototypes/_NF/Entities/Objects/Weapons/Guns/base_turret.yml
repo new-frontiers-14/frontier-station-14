@@ -108,13 +108,14 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Gun
+    examineCaliber: gun-examine-caliber-25
     fireRate: 6
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    proto: NFCartridgeRifle25
     capacity: 500
 
 - type: entity # Magazine fed turret
@@ -136,13 +137,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGun
+        startingItem: NFMagazineSubMachineGun35
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 1
         whitelist:
           tags:
-          - MagazinePistolSubMachineGun
+          - NFMagazineSubMachineGunPistol35
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

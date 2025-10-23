@@ -1,0 +1,35 @@
+- type: entity
+  id: PoweredlightUltraviolet
+  suffix: UV
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightTubeUltraviolet
+
+- type: entity
+  id: NFPoweredlightShieldedEmpty
+  parent: PoweredlightEmpty
+  name: shielded light
+  description: A light fixture. Draws power and produces light when equipped with a light tube. Reinforced with plasteel to shield it from solar flares.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/Lighting/light_tube_shielded.rsi
+  - type: Construction
+    node: tubeLightShielded
+  - type: PoweredLight
+    solarFlareShieldingCoefficient: 0.001 # nothing is immune over time
+
+- type: entity
+  id: NFPoweredSmallLightShieldedEmpty
+  parent: PoweredSmallLightEmpty
+  name: shielded small light
+  description: A light fixture. Draws power and produces light when equipped with a light tube. Reinforced with plasteel to shield it from solar flares.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/Lighting/light_small_shielded.rsi
+  - type: Construction
+    node: bulbLightShielded
+  - type: PoweredLight
+    solarFlareShieldingCoefficient: 0.001 # nothing is immune over time

@@ -4,8 +4,6 @@ using Content.Server.AlertLevel;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
@@ -21,7 +19,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.DeviceNetwork.Components;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.RoundEnd
 {
@@ -42,6 +42,7 @@ namespace Content.Server.RoundEnd
         [Dependency] private readonly EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier: sector-wide alerts
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -125,13 +126,14 @@ namespace Content.Server.RoundEnd
             return _countdownTokenSource != null;
         }
 
-        public void RequestRoundEnd(EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement")
+        public void RequestRoundEnd(EntityUid? requester = null, bool checkCooldown = true, string text = "nf-round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement") // Frontier
         {
             var duration = DefaultCountdownDuration;
 
             if (requester != null)
             {
-                var stationUid = _stationSystem.GetOwningStation(requester.Value);
+                var stationUid = _sectorService.GetServiceEntity(); // Frontier: sector-wide alerts
+                // var stationUid = _stationSystem.GetOwningStation(requester.Value); // Frontier: sector-wide alerts
                 if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel))
                 {
                     duration = _protoManager
@@ -143,7 +145,7 @@ namespace Content.Server.RoundEnd
             RequestRoundEnd(duration, requester, checkCooldown, text, name);
         }
 
-        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement")
+        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "nf-round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement") // Frontier
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
@@ -188,7 +190,7 @@ namespace Content.Server.RoundEnd
                 null,
                 Color.Gold);
 
-            _audio.PlayGlobal("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast(), true);
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_near.ogg", Filter.Broadcast(), true); // Frontier
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -234,9 +236,9 @@ namespace Content.Server.RoundEnd
             }
 
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
-                Loc.GetString("Station"), false, colorOverride: Color.Gold);
+                Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
 
-            _audio.PlayGlobal("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast(), true);
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_extend.ogg", Filter.Broadcast(), true); // Frontier
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
@@ -290,6 +292,7 @@ namespace Content.Server.RoundEnd
                     ("time", time),
                     ("units", Loc.GetString(unitsLocString))));
             Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_end.ogg", Filter.Broadcast(), true); // Frontier
         }
 
         /// <summary>
@@ -303,8 +306,8 @@ namespace Content.Server.RoundEnd
         public void DoRoundEndBehavior(RoundEndBehavior behavior,
             TimeSpan time,
             string sender = "comms-console-announcement-title-centcom",
-            string textCall = "round-end-system-shuttle-called-announcement",
-            string textAnnounce = "round-end-system-shuttle-already-called-announcement")
+            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier 
+            string textAnnounce = "nf-round-end-system-shuttle-already-called-announcement") // Frontier
         {
             switch (behavior)
             {
@@ -358,7 +361,7 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    RequestRoundEnd(null, false, "nf-round-end-system-shuttle-auto-called-announcement");// Frontier
                     _autoCalledBefore = true;
                 }
 

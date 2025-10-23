@@ -1,0 +1,68 @@
+# Big ol' SMES. 10 SMESeses.
+- type: entity
+  id: SMESBig
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseSMES]
+  name: BLES
+  description: A bluespace-leveraged energy storage (BLES) unit.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Power/bles.rsi
+    offset: 0,0.5
+    snapCardinals: false
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - state: bles
+      - state: bles-unlit
+        shader: unshaded
+      - state: bles-glass
+      - map: ["enum.SmesVisualLayers.Charge"]
+        state: "bles-og1" # -og0 does not exist
+        shader: unshaded
+        visible: false
+      - map: ["enum.SmesVisualLayers.Input"]
+        state: "bles-oc0"
+        shader: unshaded
+      - map: ["enum.SmesVisualLayers.Output"]
+        state: "bles-op1"
+        shader: unshaded
+      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        state: bles-open
+  - type: UpgradeBattery
+    maxChargeMultiplier: 1 # non-upgradeable
+    baseMaxCharge: 80000000
+  - type: BatteryInterface
+    minChargeRate: 50000
+    maxChargeRate: 1500000
+    minSupply: 50000
+    maxSupply: 1500000
+  - type: Battery
+    maxCharge: 80000000
+  - type: PowerNetworkBattery
+    maxSupply: 1500000
+    maxChargeRate: 50000
+    supplyRampTolerance: 50000
+    supplyRampRate: 10000
+  - type: PointLight
+    radius: 3
+    energy: 1.6
+    color: "#00ccff"
+    castShadows: false
+  - type: Transform
+    noRot: true
+  - type: SpriteFade
+  - type: Smes
+    chargeOverlayPrefix: bles-og
+    inputOverlayPrefix: bles-oc
+    outputOverlayPrefix: bles-op
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer

@@ -2,7 +2,8 @@
 random-sentience-event-data-1 = scans from our long-range sensors
 random-sentience-event-data-2 = our sophisticated probabilistic models
 random-sentience-event-data-3 = our omnipotence
-random-sentience-event-data-4 = the communications traffic on your station
+# Frontier: "from your station"<"within the sector"
+random-sentience-event-data-4 = the communications traffic within the sector
 random-sentience-event-data-5 = energy emissions we detected
 random-sentience-event-data-6 = [REDACTED]
 
@@ -10,15 +11,18 @@ random-sentience-event-data-6 = [REDACTED]
 random-sentience-event-strength-1 = human
 random-sentience-event-strength-2 = primate
 random-sentience-event-strength-3 = moderate
-random-sentience-event-strength-4 = security
-random-sentience-event-strength-5 = command
+# Frontier: security < high (...)
+random-sentience-event-strength-4 = high
+# Frontier: command < genius (......)
+random-sentience-event-strength-5 = genius
 random-sentience-event-strength-6 = clown
 random-sentience-event-strength-7 = low
 random-sentience-event-strength-8 = AI
 
 ## Announcement text
 
-station-event-random-sentience-announcement = Based on { $data }, we believe that some of the station's { $amount ->
+# Frontier: station<sector
+station-event-random-sentience-announcement = Based on { $data }, we believe that some of the sector's { $amount ->
     [1] { $kind1 }
     [2] { $kind1 } and { $kind2 }
     [3] { $kind1 }, { $kind2 }, and { $kind3 }

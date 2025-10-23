@@ -13,10 +13,7 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - ContractorClothingOuterVestTank
   - SeniorOfficerOuterClothing
-  fallbacks:
-  - ContractorClothingOuterVestTank
 
 - type: loadoutGroup
   id: SeniorOfficerHead
@@ -28,15 +25,27 @@
 - type: loadoutGroup
   id: SeniorOfficerNeck
   name: loadout-group-contractor-neck
-  minLimit: 0
+  hidden: true
   loadouts:
+  - SeniorOfficerClothingNeckBadgeSeniorOfficer
+  fallbacks:
   - SeniorOfficerClothingNeckBadgeSeniorOfficer
 
 - type: loadoutGroup
   id: SeniorOfficerPDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - SeniorOfficerSeniorOfficerPDA
   fallbacks:
   - SeniorOfficerSeniorOfficerPDA
+
+- type: loadoutGroup
+  id: SeniorOfficerBackpackItems
+  name: loadout-group-contractor-backpack-items
+  minLimit: 0
+  maxLimit: 6
+  loadouts:
+  - SeniorOfficerNFPouchNfsd
+  subgroups:
+  - ContractorBackpackItems

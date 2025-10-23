@@ -35,21 +35,66 @@
   parent: ClothingShoesBaseButcherable
   id: ClothingShoeSlippersDuck
   name: ducky slippers
-  # description: You wish these made quacking sounds as you walked.
-  description: Comfy, yet haunted by the ghosts of ducks you fed bread to as a child.
+  description: You wish these made quacking sounds as you walked. It's a good thing they don't, though.
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Misc/duck-slippers.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Misc/duck-slippers.rsi
+  - type: ToggleClothing #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    action: ActionToggleWaddling #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepDuck
+      collection: FootstepDuck # Frontier: Upstream removed Quack!
       params:
         variation: 0.07
   - type: Construction
     graph: ClothingShoeSlippersDuck
     node: shoes
+  - type: WaddleWhenWorn # DeltaV - upstream removed waddling
+    tumbleIntensity: 10 # DeltaV - smaller than clown shoes
+    waddlingAlert: Waddling #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+  #start imp edit
+  - type: ItemToggle
+    activated: true #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    onUse: false #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    onActivate: false #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    soundActivate:
+      path: /Audio/Items/Toys/quack.ogg
+    soundDeactivate:
+      path: /Audio/Items/Toys/quack.ogg
+  #end imp edit
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoeSlippersLizard
+  name: lizard plushie slippers
+  description: An adorable pair of slippers that resemble a lizardperson. Combine this with some other green clothing and you'll be the coolest crewmember on the station!
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Misc/lizard-slippers.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Misc/lizard-slippers.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCarpet
+      params:
+        variation: 0.02
+  - type: Construction
+    graph: ClothingShoeSlippersLizard
+    node: shoes
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 60
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 20
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 20
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -89,31 +134,31 @@
   parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
   id: ClothingShoesBootsSpeed
   name: speed boots
-  description: High-tech boots woven with quantum fibers, able to convert electricity into pure speed!
+  description: High-tech boots with interwoven bluespace fibers, able to convert electricity into pure speed! # DeltaV illegal ops
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/speedboots.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Clothing/Shoes/Boots/speedboots.rsi
   - type: ToggleClothing
     action: ActionToggleSpeedBoots
   - type: ClothingSpeedModifier
-    walkModifier: 1.15 # Frontier 1.5<1.15
-    sprintModifier: 1.15 # Frontier 1.5<1.15
+    walkModifier: 1.7 # DeltaV
+    sprintModifier: 1.7 # DeltaV
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
   - type: StaticPrice
     price: 500
   - type: PowerCellDraw
-    drawRate: 4
+    drawRate: 30 # DeltaV 4>30, you have to turn off micro reactor at somepoint
   - type: ToggleCellDraw
   - type: ItemSlots
     slots:
@@ -123,12 +168,14 @@
     tags: []
 
 - type: entity
+  parent: BaseAction
   id: ActionToggleSpeedBoots
   name: Toggle Speed Boots
   description: Toggles the speed boots on and off.
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigItem
+  - type: InstantAction
     event: !type:ToggleActionEvent
 
 - type: entity
@@ -136,6 +183,7 @@
   id: ClothingShoesBootsMoon
   name: moon boots
   description: Special anti-gravity boots developed with a speciality blend of lunar rock gel. Shipped from the Netherlands.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/moonboots.rsi

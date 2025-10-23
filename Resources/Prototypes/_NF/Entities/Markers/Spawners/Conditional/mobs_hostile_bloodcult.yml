@@ -1,5 +1,5 @@
 - type: entity
-  name: Blood Cult Priest Spawner
+  name: blood cult priest spawner
   suffix: AI, Hostile, Caster
   id: SpawnMobBloodCultistPriest
   parent: MarkerBase
@@ -23,7 +23,7 @@
       - MobBloodCultistPriest
 
 - type: entity
-  name: Blood Cult Acolyte
+  name: blood cult acolyte spawner
   suffix: AI, Hostile, Melee
   id: SpawnMobBloodCultistAcolyte
   parent: MarkerBase
@@ -47,7 +47,7 @@
       - MobBloodCultistAcolyte
 
 - type: entity
-  name: Blood Cult Zealot
+  name: blood cult zealot spawner
   suffix: AI, Hostile, Melee
   id: SpawnMobBloodCultistZealotMelee
   parent: MarkerBase
@@ -71,7 +71,7 @@
       - MobBloodCultistZealotMelee
 
 - type: entity
-  name: Blood Cult Zealot
+  name: blood cult zealot spawner
   suffix: AI, Hostile, Ranged
   id: SpawnMobBloodCultistZealotRanged
   parent: MarkerBase
@@ -95,7 +95,7 @@
       - MobBloodCultistZealotRanged
 
 - type: entity
-  name: Blood Cult Zealot
+  name: blood cult zealot spawner
   suffix: AI, Hostile, Caster
   id: SpawnMobBloodCultistCaster
   parent: MarkerBase
@@ -119,7 +119,7 @@
       - MobBloodCultistCaster
 
 - type: entity
-  name: Blood Cult Leech
+  name: blood cult leech spawner
   suffix: AI, Hostile, Melee, Fast
   id: SpawnMobBloodCultLeech
   parent: MarkerBase
@@ -135,7 +135,7 @@
       - MobBloodCultLeech
 
 - type: entity
-  name: Ascended Cultist
+  name: ascended cultist spawner
   suffix: AI, Hostile, Caster, Megafauna
   id: SpawnMobBloodCultistAscended
   parent: MarkerBase
@@ -151,7 +151,7 @@
       - MobBloodCultistAscended
 
 - type: entity
-  name: Blood Cult Janitor
+  name: blood cult janitor spawner
   suffix: AI, Hostile, Melee
   id: SpawnMobBloodCultistJanitor
   parent: MarkerBase
@@ -175,3 +175,18 @@
   - type: ConditionalSpawner
     prototypes:
       - MobBloodCultistJanitor
+
+- type: entity
+  name: blood cult cat spawner
+  suffix: Ghost
+  id: SpawnMobCatBloodCult
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Mobs/Pets/cat.rsi
+        state: cultcat
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatBloodCult

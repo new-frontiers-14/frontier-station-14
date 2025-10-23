@@ -12,11 +12,17 @@ namespace Content.Shared.Preferences.Loadouts;
 public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
 {
     [IdDataField]
-    public string ID { get; } = string.Empty;
+    public string ID { get; private set; } = string.Empty;
 
     /*
      * You can either use an existing StartingGearPrototype or specify it inline to avoid bloating yaml.
      */
+
+    /// <summary>
+    /// An entity whose sprite, name and description is used for display in the interface. If null, tries to get the proto of the item from gear (if it is a single item).
+    /// </summary>
+    [DataField]
+    public EntProtoId? DummyEntity;
 
     [DataField]
     public ProtoId<StartingGearPrototype>? StartingGear;
@@ -39,6 +45,23 @@ public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
     /// <inheritdoc />
     [DataField]
     public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
+
+    // Frontier: extra fields
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> EncryptionKeys { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> Implants { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> Cartridges { get; set; } = new();
+    // End Frontier: extra fields
 
     /// <summary>
     /// Frontier - the cost of the item simple as

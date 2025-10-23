@@ -7,24 +7,25 @@
 # Discord: Tych0
 
 # Shuttle Notes:
-#
+# "Wait, are you serious? No man, I'm Vega!" - Ptolemy upon discovering Lyra, probably.
 - type: vessel
   id: Lyrae
-  name: SBB Lyrae
-  description: A medium size science vessel with laboratories for both anomalous and xenoarchaeology research. 
-  price: 60000 # TODO: fix this value, getting tests to pass - Whatstone
+  parent: BaseVessel
+  name: BB Lyrae
+  description: A medium size science vessel with laboratories for both anomalous and xenoarchaeology research.
+  price: 60000 # 53624 0.1 58986.4
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/lyrae.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardLyrae
   class:
   - Science
   engine:
-  - AME
+  - Bananium
 
 - type: gameMap
   id: Lyrae
-  mapName: 'SBB Lyrae'
+  mapName: 'BB Lyrae'
   mapPath: /Maps/_NF/Shuttles/lyrae.yml
   minPlayers: 0
   stations:
@@ -38,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

@@ -27,7 +27,7 @@
       - !type:EntityAnchored {}
       steps:
       - tag: Toolbox
-        name: toolbox (any)
+        name: construction-graph-tag-toolbox
         store: altar_component
         icon:
           sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
@@ -42,13 +42,13 @@
       - !type:EntityAnchored {}
       steps:
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -63,19 +63,19 @@
       - !type:EntityAnchored {}
       steps:
       - component: FireExtinguisher
-        name: fire extinguisher
+        name: construction-graph-component-fire-extinguisher
         store: altar_component
         icon:
           sprite: _NF/Objects/Misc/fire_extinguisher.rsi # Frontier
           state: fire_extinguisher_closed
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -90,19 +90,19 @@
       - !type:EntityAnchored {}
       steps:
       - component: PriceGun
-        name: appraisal tool
+        name: construction-graph-component-price-gun
         store: altar_component
         icon:
           sprite: Objects/Tools/appraisal-tool.rsi
           state: icon
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -117,19 +117,19 @@
       - !type:EntityAnchored {}
       steps:
       - component: RandomFillSolution
-        name: strange pill
+        name: construction-graph-component-random-fill-solution
         store: altar_component
         icon:
           sprite: Objects/Specific/Chemistry/pills.rsi
           state: pill1
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -144,19 +144,19 @@
       - !type:EntityAnchored {}
       steps:
       - tag: Ore
-        name: raw ore (any)
+        name: construction-graph-tag-ore
         store: altar_component
         icon:
           sprite: Objects/Materials/ore.rsi
           state: iron
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -171,19 +171,19 @@
       - !type:EntityAnchored {}
       steps:
       - component: Sharp
-        name: sharp melee weapon (any)
+        name: construction-graph-component-sharp
         store: altar_component
         icon:
           sprite: Objects/Weapons/Melee/captain_sabre.rsi
           state: icon
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -198,20 +198,20 @@
       - !type:EntityAnchored {}
       steps:
       - tag: CrystalOrange
-        name: orange crystal shard
+        name: construction-graph-tag-crystal-orange
         store: altar_component
         icon:
           sprite: Objects/Materials/Shards/crystal.rsi
           state: shard1
           color: "#ff8227"
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi
@@ -226,7 +226,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: MachineBoard
-        name: machine board (any)
+        name: construction-graph-component-machine-board
         store: altar_component
         icon:
           sprite: Objects/Misc/module.rsi
@@ -241,7 +241,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: IdCard
-        name: ID card (any)
+        name: construction-graph-component-id-card
         store: altar_component
         icon:
           sprite: Objects/Misc/id_cards.rsi
@@ -256,7 +256,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: Dice
-        name: dice (any)
+        name: construction-graph-component-dice
         store: altar_component
         icon:
           sprite: Objects/Fun/dice.rsi
@@ -271,7 +271,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: Seed
-        name: seed (any)
+        name: construction-graph-component-seed
         store: altar_component
         icon:
           sprite: Objects/Specific/Hydroponics/seeds.rsi
@@ -286,7 +286,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: TabletopGame
-        name: tabletop battlemap (any)
+        name: construction-graph-component-tabletop-game
         store: altar_component
         icon:
           sprite: Objects/Fun/Tabletop/Battlemaps/shipbm.rsi
@@ -301,7 +301,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: Instrument
-        name: musical instrument (any)
+        name: construction-graph-component-instrument
         store: altar_component
         icon:
           sprite: Objects/Fun/Instruments/eguitar.rsi
@@ -316,7 +316,7 @@
       - !type:EntityAnchored {}
       steps:
       - component: Mail
-        name: mail (any)
+        name: construction-graph-component-mail
         store: altar_component
         icon:
           sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
@@ -331,19 +331,19 @@
       - !type:EntityAnchored {}
       steps:
       - component: Bible
-        name: bible
+        name: construction-graph-component-bible
         store: altar_component
         icon:
           sprite: Objects/Specific/Chapel/bible.rsi
           state: icon
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle1
         icon:
           sprite: Objects/Misc/candles.rsi
           state: candle-big
       - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
-        name: candle (any)
+        name: construction-graph-component-extinguish-on-interact
         store: altar_candle2
         icon:
           sprite: Objects/Misc/candles.rsi

@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Copperhead
+  parent: BaseVessel
+  name: LVHI Copperhead
+  description: Copperhead is an affordable, versatile, small shuttle with room for customization optimized for mining and salvage missions. Whether operating within a fleet or autonomously, its design is a compromise between speed, which is important for medium- to long-distance travel, and maneuverability, which is crucial for navigating asteroid fields. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 24000 # ~21724 0.05 22810.2
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/copperhead.yml
+  guidebookPage: ShipyardCopperhead
+  class:
+  - Salvage
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Copperhead
+  mapName: 'Copperhead'
+  mapPath: /Maps/_NF/Shuttles/copperhead.yml
+  minPlayers: 0
+  stations:
+    Copperhead:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Copperhead {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

@@ -26,6 +26,7 @@ namespace Content.IntegrationTests.Tests
     idlePower: 50
     chargeRate: 1000000000 # Set this really high so it discharges in a single tick.
     activePower: 500
+    activeChargingPower: 500 # Frontier
   - type: ApcPowerReceiver
   - type: UserInterface
 ";

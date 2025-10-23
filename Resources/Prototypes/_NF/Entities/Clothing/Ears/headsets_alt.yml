@@ -21,7 +21,7 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltNfsdBrown
-  name: nfsd over-ear headset
+  name: NFSD over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -53,7 +53,7 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltNfsdBrownCentcom
   name: sheriff's over-ear headset
   categories: [ HideSpawnMenu ]
@@ -61,7 +61,6 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
@@ -87,6 +86,22 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltEngineeringPlantManager
+  name: plant manager's over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyEngineering
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/engineering.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/engineering.rsi
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltMercenary]

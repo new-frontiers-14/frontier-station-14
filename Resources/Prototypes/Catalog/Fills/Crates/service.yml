@@ -7,7 +7,7 @@
   - type: StorageFill
     contents:
       - id: MopItem
-      - id: MopBucket
+      - id: MopBucketCubeWrapped
       - id: Bucket
         amount: 1 # Frontier 3<1
       - id: WetFloorSign
@@ -23,6 +23,17 @@
         amount: 1
 
 - type: entity
+  id: CrateServiceCleanerGrenades
+  parent: CratePlastic
+  name: bulk cleanades crate
+  description: Contains two boxes of cleaner grenades, for those deeply-entrenched stains.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxCleanerGrenades
+        amount: 2
+
+- type: entity
   id: CrateServiceReplacementLights
   parent: CrateGenericSteel
   name: replacement lights crate
@@ -32,6 +43,17 @@
     contents:
       - id: BoxLighttube
       - id: BoxLightbulb
+
+- type: entity
+  id: CrateServiceHolidayLights
+  parent: CrateGenericSteel
+  name: holiday lights crate
+  description: Deck the halls with these festive holiday lights!
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxLighttubeHoliday
+      - id: BoxLighttubeHoliday
 
 - type: entity
   id: CrateMousetrapBoxes
@@ -79,6 +101,7 @@
     contents:
     - id: ClothingUniformJumpskirtPerformer
     - id: ClothingShoesBootsPerformer
+    - id: ClothingHeadPerformerWig
     - id: ClothingOuterSuitMonkey
     - id: ClothingHeadHatAnimalMonkey
     - id: ClothingNeckCloakMoth
@@ -87,7 +110,7 @@
     - id: ClothingShoesClown
     - id: ClothingUniformJumpskirtJanimaid
     - id: ClothingNeckCloakVoid
-    - id: RevolverCapGun
+    - id: NFRevolverCapGun # Frontier: RevolverCapGun<NFRevolverCapGun
     - id: BarberScissors
     - id: ClothingUniformJumpskirtOldDress
     - id: BikeHorn
@@ -131,6 +154,7 @@
     - id: BoxFolderYellow
     - id: NewtonCradle
     - id: BoxEnvelope
+    - id: BrbSign
     - id: RubberStampCaptain # Frontier
 
 - type: entity
@@ -187,7 +211,7 @@
       - id: BookMedicalReferenceBook
       - id: BookHowToSurvive
       - id: BookChemicalCompendium
-      - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+      - id: NFHyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<NFHyperlinkBookSpaceLaw
 
 - type: entity
   id: CrateServiceSodaDispenser
@@ -215,6 +239,7 @@
       - id: DrinkTeaJug
       - id: DrinkTonicWaterBottleFull
       - id: DrinkWaterMelonJuiceJug
+      - id: JugCaramexinin # Frontier: Caramexinin<JugCaramexinin
 
 - type: entity
   id: CrateServiceBoozeDispenser
@@ -350,3 +375,14 @@
         amount: 2
       - id: BoxCandleSmall
         amount: 2
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateServiceColorfulLights
+  name: colorful lights crate
+  description: It's not a party until it's hard to see, a little disorienting, and your ears hurt.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxLightbulbColorfulMixed
+    - id: BoxLighttubeColorfulMixed

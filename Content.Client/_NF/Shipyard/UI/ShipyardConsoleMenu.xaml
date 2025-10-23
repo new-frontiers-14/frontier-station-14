@@ -1,0 +1,64 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                           xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                           xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                           SetSize="640 500"
+                           MinSize="640 300">
+    <BoxContainer Orientation="Vertical" Margin="5 0 5 0">
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'bank-atm-menu-balance-label'}"
+                    StyleClasses="LabelKeyText" />
+                <Label Name="BalanceLabel"
+                    Text="{Loc 'shipyard-console-no-bank'}" />
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'shipyard-console-appraisal-label'}"
+                    StyleClasses="LabelKeyText" />
+                <Label Name="ShipAppraisalLabel"
+                    Text="{Loc 'shipyard-console-no-deed'}" />
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <LineEdit Name="SearchBar"
+                      PlaceHolder="{Loc 'cargo-console-menu-search-bar-placeholder'}"
+                      HorizontalExpand="True" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <OptionButton Name="Categories"
+                          Prefix="{Loc 'shipyard-console-menu-size-label'}"
+                          HorizontalExpand="True" />
+            <OptionButton Name="Classes"
+                          Prefix="{Loc 'shipyard-console-menu-class-label'}"
+                          HorizontalExpand="True" />
+            <OptionButton Name="Engines"
+                          Prefix="{Loc 'shipyard-console-menu-engine-label'}"
+                          HorizontalExpand="True" />
+        </BoxContainer>
+        <ScrollContainer HorizontalExpand="True"
+                         VerticalExpand="True"
+                         SizeFlagsStretchRatio="6">
+            <BoxContainer Name="Vessels"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True">
+                <!-- Vessels get added here by code -->
+            </BoxContainer>
+        </ScrollContainer>
+        <GridContainer Columns="3" HorizontalExpand="True" Margin="0 8 0 2">
+            <Button Name="TargetIdButton" Access="Public"/>
+            <Button Name="SellShipButton"
+                Text="Sell"
+                Disabled="True" />
+            <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True">
+                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}"/>
+                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" Name="DeedContainer" Visible="False">
+                <Label Text="{Loc 'shipyard-console-deed-label'}"/>
+                <Label Name="DeedTitle" Text=""/>
+            </BoxContainer>
+        </GridContainer>
+    </BoxContainer>
+</controls:FancyWindow>

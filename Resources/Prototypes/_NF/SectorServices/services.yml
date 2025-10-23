@@ -4,9 +4,10 @@
   - type: SectorPirateBountyDatabase
 
 - type: sectorService
-  id: MailMetrics
+  id: Mail
   components:
   - type: SectorLogisticStats
+  - type: SectorMail # Contains sector-wide mail parameters
 
 - type: sectorService
   id: ShuttleRecords
@@ -25,4 +26,34 @@
       Nfsd:
         !type:SectorBankAccountInfo
         balance: 8000
-        increasePerSecond: 20 # 72K per hour, about enough for minimum wage for the default NFSD size
+        increasePerSecond: 25 # 90K per hour, will offset the "Loss" of the vault money
+      Medical:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 6 # 21.6K per hour, a bit over for the DOC MOM's wage.
+      Edison:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 1 # A trickle - generate your own power to sell for stuff.
+
+# A global source of character records (DNA, fingerprints, criminal records, etc.)
+- type: sectorService
+  id: SectorRecords
+  components:
+  - type: StationRecords
+
+- type: sectorService
+  id: Alerts
+  components:
+  - type: AlertLevel
+    alertLevelPrototype: stationAlerts
+
+- type: sectorService
+  id: BountyContracts
+  components:
+  - type: BountyContractData
+
+- type: sectorService
+  id: PublicTransit
+  components:
+  - type: SectorPublicTransit

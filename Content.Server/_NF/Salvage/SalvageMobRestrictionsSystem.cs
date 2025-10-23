@@ -60,7 +60,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
         foreach (EntityUid target in component.MobsToKill)
         {
             // Don't destroy yourself, don't destroy things being destroyed.
-            if (uid == target || MetaData(target).EntityLifeStage >= EntityLifeStage.Terminating)
+            if (uid == target || TerminatingOrDeleted(target))
                 continue;
 
             if (TryComp(target, out BodyComponent? body))
@@ -82,7 +82,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
     private void OnMobState(EntityUid uid, NFSalvageMobRestrictionsComponent component, MobStateChangedEvent args)
     {
         // If this entity is being destroyed, no need to fiddle with components
-        if (Terminating(uid))
+        if (TerminatingOrDeleted(uid))
             return;
 
         if (args.NewMobState == MobState.Dead)
@@ -100,7 +100,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
     private void OnParentChanged(EntityUid uid, NFSalvageMobRestrictionsComponent component, ref EntParentChangedMessage args)
     {
         // If this entity is being destroyed, no need to fiddle with components
-        if (Terminating(uid))
+        if (TerminatingOrDeleted(uid))
             return;
 
         var gridUid = Transform(uid).GridUid;
@@ -117,7 +117,8 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
             if (actor.PlayerSession.AttachedEntity == null)
                 return;
 
-            _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(actor.PlayerSession.AttachedEntity.Value):player} returned to dungeon grid");
+            if (component.DespawnIfOffLinkedGrid)
+                _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(actor.PlayerSession.AttachedEntity.Value):player} returned to dungeon grid");
         }
         else
         {
@@ -130,15 +131,12 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
             if (actor.PlayerSession.AttachedEntity == null)
                 return;
 
-            _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(actor.PlayerSession.AttachedEntity.Value):player} left the dungeon grid");
-            _popupSystem.PopupEntity(popupMessage, actor.PlayerSession.AttachedEntity.Value, actor.PlayerSession, PopupType.MediumCaution);
+            if (component.DespawnIfOffLinkedGrid)
+            {
+                _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(actor.PlayerSession.AttachedEntity.Value):player} left the dungeon grid");
+                _popupSystem.PopupEntity(popupMessage, actor.PlayerSession.AttachedEntity.Value, actor.PlayerSession, PopupType.MediumCaution);
+            }
         }
-    }
-
-    // Returns true if the given entity is invalid or terminating
-    private bool Terminating(EntityUid uid)
-    {
-        return !TryComp(uid, out MetaDataComponent? meta) || meta.EntityLifeStage >= EntityLifeStage.Terminating;
     }
 }
 
