@@ -161,6 +161,20 @@
           tatortot: ""
           ramen: ""
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunEmp
+  name: pellet (.50 grapeshot)
+  parent: NFBasePellet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 4
+        Blunt: 4
+  - type: StaminaDamageOnCollide
+    damage: 4 # 15 hits to slowdown
+
 # Soap
 - type: entity
   parent: SoapletSyndie
@@ -259,6 +273,22 @@
   components:
   - type: ProjectileSpread
     proto: PelletShotgunSoaplet
+
+- type: entity
+  parent: [ NFBasePelletShotgunSpread, NFPelletShotgun ]
+  id: PelletShotgunDisablerSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletDisablerTiny
+
+- type: entity
+  parent: [ NFBasePelletShotgunSpread, NFPelletShotgun ]
+  id: PelletShotgunLaserSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletLaserLow
 
 #region Slugs
 - type: entity
