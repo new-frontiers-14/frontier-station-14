@@ -1,3 +1,4 @@
+#region base
 - type: entity
   name: blood cultist
   abstract: true
@@ -7,6 +8,8 @@
   - MobHumanoidInvetory
   id: MobBloodCultistBase
   components:
+  - type: Damageable
+    damageModifierSet: MobHereticDamageModifierSet
   - type: NpcFactionMember
     factions:
       - BloodCultNF
@@ -480,7 +483,52 @@
       - HumanoidAppearance
   - type: HTN
     rootTask:
-       task: KillerTomatoCompound
+       task: MeleeFollowerCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - MobStaminaFodder
+  - BaseC3MobCreatureNoValue
+  - MobBloodCultShade
+  - NFMobTimedDespawn180
+  id: MobBloodCultShadeNanoTrasen
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/shade.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: shade
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: shade
+        BaseUnshaded: unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
     blackboard:
       NavClimb: !type:Bool
         false

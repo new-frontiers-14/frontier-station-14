@@ -1,0 +1,22 @@
+- type: entity
+  parent: [ BaseCrowbar, BaseC3WizardContraband ]
+  id: NFRavenbar
+  name: ravenbar
+  description: CAAAW!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
+  - type: Item
+    storedSprite:
+      sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
+      state: storage
+  - type: Prying
+    speedModifier: 3
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+    useSound: /Audio/_NF/Animals/crow_caw1.ogg
