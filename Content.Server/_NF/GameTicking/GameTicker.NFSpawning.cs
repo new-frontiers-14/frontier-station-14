@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Players.PlayTimeTracking;
+using Content.Shared.Preferences.Loadouts;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._NF.CCVar;
 using Content.Shared.Radio;
@@ -18,18 +19,25 @@ public sealed partial class GameTicker
     private ProtoId<RadioChannelPrototype> _newPlayerRadioChannel = "Service";
     private EntProtoId _greetingRadioSource = "GreetingRadioSource";
     private EntityUid _greetingEntity = EntityUid.Invalid;
+    private LoadoutPrototype? _newPlayerLoadoutPrototype = null;
 
     public void NFInitialize()
     {
         Subs.CVar(_cfg, NFCCVars.NewPlayerRadioGreetingEnabled, e => _newPlayerGreetingEnabled = e, true);
         Subs.CVar(_cfg, NFCCVars.NewPlayerRadioGreetingMaxPlaytime, e => _newPlayerGreetingMaxTime = TimeSpan.FromMinutes(e), true);
         Subs.CVar(_cfg, NFCCVars.NewPlayerRadioGreetingChannel, SetChannel, true);
+        Subs.CVar(_cfg, NFCCVars.NewPlayerStarterLoadout, SetLoadout, true);
     }
 
     private void SetChannel(string channel)
     {
         if (_prototypeManager.HasIndex<RadioChannelPrototype>(channel))
             _newPlayerRadioChannel = channel;
+    }
+
+    private void SetLoadout(string loadout)
+    {
+        _prototypeManager.TryIndex<LoadoutPrototype>(loadout, out _newPlayerLoadoutPrototype);
     }
 
     private void NFRoundStarted()
@@ -63,6 +71,14 @@ public sealed partial class GameTicker
 
         if (playtime < _newPlayerGreetingMaxTime)
         {
+            // Equip new player loadout if one is specified
+            // Ordered before the radio message so the new player can see it, thus communicating that it exists
+            if (_newPlayerLoadoutPrototype is not null)
+            {
+                _stationSpawning.EquipStartingGear(mob, _newPlayerLoadoutPrototype, false);
+                _stationSpawning.TryAutoEquipMisc(mob, _newPlayerLoadoutPrototype);
+            }
+
             _radio.SendRadioMessage(_greetingEntity, Loc.GetString("latejoin-arrival-new-player-announcement",
                     ("character", MetaData(mob).EntityName),
                     ("station", station)),
