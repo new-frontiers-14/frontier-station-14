@@ -1,6 +1,6 @@
 using Content.Server._NF.Explosion.Components;
 using Content.Shared.Implants;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Shared._NF.Interaction.Events;
 using Content.Shared.Projectiles;
 

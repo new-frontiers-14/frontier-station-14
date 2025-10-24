@@ -148,16 +148,16 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
     /// Tries to add a hand to the given cyborg entity and insert the given item into it.
     /// On failure, the hand will be deleted.
     /// </summary>
-    private void AddItemAsHand(Entity<HandsComponent> chassis, EntityUid item, string handId)
+    private void AddItemAsHand(Entity<HandsComponent?> chassis, EntityUid item, string handId)
     {
-        _hands.AddHand(chassis, handId, HandLocation.Middle, chassis.Comp);
-        var hand = chassis.Comp.Hands[handId];
-        _hands.DoPickup(chassis, hand, item, chassis.Comp);
-        if (hand.HeldEntity != item)
+        _hands.AddHand(chassis, handId, HandLocation.Middle);
+
+        _hands.DoPickup(chassis, handId, item, chassis.Comp);
+        if (!_hands.TryGetHeldItem(chassis, handId, out var held) || held != item)
         {
-            Log.Error($"Failed to pick up {ToPrettyString(item)} into hand {handId} of {ToPrettyString(chassis)}, it holds {ToPrettyString(hand.HeldEntity)}");
+            Log.Error($"Failed to pick up {ToPrettyString(item)} into hand {handId} of {ToPrettyString(chassis)}, it holds {ToPrettyString(held)}");
             // If we didn't pick up our expected item, delete the hand.  No free hands!
-            _hands.RemoveHand(chassis, handId, chassis.Comp);
+            _hands.RemoveHand(chassis, handId);
         }
 
         _interaction.DoContactInteraction(chassis, item); // for potential forensics or other systems (why does hands system not do this)
@@ -167,36 +167,34 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
     /// <summary>
     /// Removes the named hand from the given cyborg, returning its item to the given container.
     /// </summary>
-    private bool DeleteHandAndStoreItem(Entity<HandsComponent> chassis, BaseContainer container, string handId)
+    private bool DeleteHandAndStoreItem(Entity<HandsComponent?> chassis, BaseContainer container, string handId)
     {
         var ret = true;
-        _hands.TryGetHand(chassis, handId, out var hand, chassis.Comp);
-        if (hand?.HeldEntity is { } item)
+        if (_hands.TryGetHeldItem(chassis, handId, out var item))
         {
-            _placeholder.SetEnabled(item, false);
-            _container.Insert(item, container, force: true);
+            _placeholder.SetEnabled(item.Value, false);
+            _container.Insert(item.Value, container, force: true);
         }
         else
             ret = false;
 
-        _hands.RemoveHand(chassis, handId, chassis.Comp);
+        _hands.RemoveHand(chassis, handId);
         return ret;
     }
 
     /// <summary>
     /// Removes the named hand from the given cyborg, deleting its held item.
     /// </summary>
-    private bool DeleteHandAndHeldItem(Entity<HandsComponent> chassis, string handId)
+    private bool DeleteHandAndHeldItem(Entity<HandsComponent?> chassis, string handId)
     {
-        bool ret = true;
-        _hands.TryGetHand(chassis, handId, out var hand, chassis.Comp);
+        var ret = true;
 
-        if (hand?.HeldEntity is { } item)
+        if (_hands.TryGetHeldItem(chassis, handId, out var item))
             QueueDel(item);
         else if (!TerminatingOrDeleted(chassis) && Transform(chassis).MapID != MapId.Nullspace) // don't care if its empty if the server is shutting down
             ret = false;
 
-        _hands.RemoveHand(chassis, handId, chassis.Comp);
+        _hands.RemoveHand(chassis, handId);
         return ret;
     }
 }

@@ -29,7 +29,7 @@ namespace Content.Shared.Lathe
         /// The lathe's construction queue
         /// </summary>
         [DataField]
-        public List<LatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
+        public List<LatheRecipeBatch> Queue = new(); // Frontier: Queue<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
 
         /// <summary>
         /// The sound that plays when the lathe is producing an item, if any
@@ -64,7 +64,7 @@ namespace Content.Shared.Lathe
         /// The recipe the lathe is currently producing
         /// </summary>
         [ViewVariables]
-        public LatheRecipePrototype? CurrentRecipe;
+        public ProtoId<LatheRecipePrototype>? CurrentRecipe;
 
         #region MachineUpgrading
         /// <summary>
@@ -150,11 +150,11 @@ namespace Content.Shared.Lathe
     [Serializable]
     public sealed partial class LatheRecipeBatch : EntityEventArgs
     {
-        public LatheRecipePrototype Recipe;
+        public ProtoId<LatheRecipePrototype> Recipe;
         public int ItemsPrinted;
         public int ItemsRequested;
 
-        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested)
+        public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
         {
             Recipe = recipe;
             ItemsPrinted = itemsPrinted;
@@ -167,5 +167,5 @@ namespace Content.Shared.Lathe
     /// Event raised on a lathe when it starts producing a recipe.
     /// </summary>
     [ByRefEvent]
-    public readonly record struct LatheStartPrintingEvent(LatheRecipePrototype Recipe);
+    public readonly record struct LatheStartPrintingEvent(ProtoId<LatheRecipePrototype> Recipe);
 }

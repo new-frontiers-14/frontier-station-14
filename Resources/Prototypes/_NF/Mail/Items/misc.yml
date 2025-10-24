@@ -165,10 +165,19 @@
           Quantity: 30
 
 # Premium Alcohol: wait, it's just marketing?
+
+# TODO: make inhand fill sprites (and I guess inhand sprites)
+- type: entity
+  id: DrinkBottleVisualsNoInHand
+  abstract: true
+  components:
+  - type: SolutionContainerVisuals
+    inHandsMaxFillLevels: 0
+
 # TODO: different sprites would be nice.
 - type: entity
   id: DrinkPremiumVodkaBottleFull
-  parent: DrinkVodkaBottleFull
+  parent: [ DrinkBottleVisualsNoInHand, DrinkVodkaBottleFull ]
   name: Moment of Clarity vodka bottle
   description: When things get a bit hectic, all you need is a Moment of Clarity.
   components:
@@ -177,7 +186,7 @@
 
 - type: entity
   id: DrinkPremiumGinBottleFull
-  parent: DrinkGinBottleFull
+  parent: [ DrinkBottleVisualsNoInHand, DrinkGinBottleFull ]
   name: Harry's gin bottle
   description: An interesting set of botanicals, for sure. Is that pumpkin?
   components:
@@ -186,7 +195,7 @@
 
 - type: entity
   id: DrinkPremiumTequilaBottleFull
-  parent: DrinkTequilaBottleFull
+  parent: [ DrinkBottleVisualsNoInHand, DrinkTequilaBottleFull ]
   name: Casa del Eorg tequila bottle
   description: Save the best for last. Casa del Eorg, 100% agave.
   components:
@@ -195,7 +204,7 @@
 
 - type: entity
   id: DrinkPremiumWhiskeyBottleFull
-  parent: DrinkWhiskeyBottleFull
+  parent: [ DrinkBottleVisualsNoInHand, DrinkWhiskeyBottleFull ]
   name: Ol' Prowler 18 whiskey bottle
   description: Surprisingly smooth, it has a nasty habit of sneaking up on you.
   components:
@@ -204,7 +213,7 @@
 
 - type: entity
   id: DrinkPremiumRumBottleFull
-  parent: DrinkRumBottleFull
+  parent: [ DrinkBottleVisualsNoInHand, DrinkRumBottleFull ]
   name: Redeemer's Bounty rum bottle
   description: Well, you asked for it. Navy strength.
   components:
@@ -213,7 +222,7 @@
 
 - type: entity
   id: DrinkPremiumAbsintheBottleFull
-  parent: DrinkAbsintheBottleFull
+  parent: [ DrinkBottleVisualsNoInHand, DrinkAbsintheBottleFull ]
   name: Bureaucracy's Kiss absinthe bottle
   description: A refined taste that tends to linger.
   components:
