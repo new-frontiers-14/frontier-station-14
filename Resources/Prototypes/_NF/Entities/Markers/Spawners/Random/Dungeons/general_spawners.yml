@@ -1,0 +1,109 @@
+#region Machines
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonMachineFrame
+  categories: [ HideSpawnMenu ]
+  name: random machine frame
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonComputerFrame
+  categories: [ HideSpawnMenu ]
+  name: random computer frame
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameComputer
+
+#region Materials
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootMaterialsBasicSingle
+  name: random materials
+  suffix: "Dungeon, Basic, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/Sheets/metal.rsi
+        state: plasteel
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialBasicSingle
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootMaterialsValuableSingle
+  name: random materials
+  suffix: "Dungeon, Valuable, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/ingots.rsi
+        state: gold
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialValuableSingle
+
+#region Other
+- type: entity
+  name: random restock box
+  id: SpawnDungeonLootVendingRestocks
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: base
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: green_bit
+        shader: unshaded
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: refill_booze
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocks
