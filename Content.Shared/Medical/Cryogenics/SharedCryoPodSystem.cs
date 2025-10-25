@@ -12,6 +12,7 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Map; // Frontier - proper cryo pod drop spot
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Medical.Cryogenics;
@@ -26,6 +27,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier - proper cryo pod drop spot
 
     public override void Initialize()
     {
@@ -118,7 +120,9 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         if (cryoPodComponent.BodyContainer.ContainedEntity is not {Valid: true} contained)
             return null;
 
+        var dropCoords = new EntityCoordinates(uid, cryoPodComponent.DropOffset); // Frontier - proper cryo pod drop spot
         _containerSystem.Remove(contained, cryoPodComponent.BodyContainer);
+        _transform.SetWorldPosition(contained, _transform.ToWorldPosition(dropCoords)); // Frontier - proper cryo pod drop spot
         // InsideCryoPodComponent is removed automatically in its EntGotRemovedFromContainerMessage listener
         // RemComp<InsideCryoPodComponent>(contained);
 
@@ -132,6 +136,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
             _standingStateSystem.Stand(contained);
         }
 
+        // Frontier - merge note - remove the forceclimb statement
         UpdateAppearance(uid, cryoPodComponent);
         return contained;
     }
