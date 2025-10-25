@@ -51,3 +51,39 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+
+- type: reagent
+  id: NFSnackNutriment # Like Nutriment, but with OD. For use in snacks: OD on consumption of 2 snacks in a row
+  name: reagent-name-nutriment
+  group: Foods
+  desc: reagent-desc-nutriment
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: nutriment
+  color: "#55a712"
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        type: Local
+        visualType: Medium
+        messages: [ "generic-reagent-effect-nauseous" ]
+        probability: 0.5
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        probability: 0.3
+      - !type:Drunk
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 1.5
+  - !type:PlantAdjustHealth
+    amount: 0.75
+  pricePerUnit: 2
