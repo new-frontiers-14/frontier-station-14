@@ -36,7 +36,7 @@
 #region paste
 - type: entity
   abstract: true
-  parent: FoodSnackBase
+  parent: FoodBase
   id: NFBaseSnackPaste
   components:
   - type: Sprite
@@ -48,15 +48,12 @@
   - type: Item
     sprite: _NF/Objects/Consumable/Food/snack_paste.rsi
     heldPrefix: paste
-  - type: SpaceGarbage
-  - type: NFIngredient
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: NFSnackNutriment
-          Quantity: 15
+    size: Tiny
+  - type: StaticPrice
+    price: 1
+  - type: Tag
+    tags:
+      - FoodSnack
 
 - type: entity
   parent: NFBaseSnackPaste
