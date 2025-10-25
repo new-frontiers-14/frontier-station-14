@@ -1,0 +1,50 @@
+# TODO: sprites for all the items listed here
+#region packaging
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: NFBaseSnackPackage
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/condiments.rsi # placeholder
+    layers:
+    - state: packet-trans-2
+    - state: packet-layer
+    - state: packet-label-a
+  - type: Icon
+    sprite: Objects/Consumable/Food/condiments.rsi # placeholder
+    state: packet-astrotame
+  - type: SpaceGarbage
+  - type: StaticPrice
+    price: 0
+  - type: NFIngredient
+
+- type: entity
+  parent: NFBaseSnackPackage
+  id: NFSnackPackage
+  name: blank snack packet
+  description: An empty package for a snack.
+
+#region paste
+# TODO: make it glow in the dark a bit (unshaded layer with animation? actual weak light source?)
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: NFBaseSnackPaste
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi # placeholder
+    state: energybar-open
+  - type: Icon
+    sprite: Objects/Consumable/Food/snacks.rsi # placeholder
+    state: energybar-open
+  - type: SpaceGarbage
+  - type: StaticPrice
+    price: 0
+  - type: NFIngredient
+
+- type: entity
+  parent: NFBaseSnackPaste
+  id: NFSnackPaste
+  name: ONV compound 16c
+  description: I should probably stop thinking about what the hell this thing even is.
