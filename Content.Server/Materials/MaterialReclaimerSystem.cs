@@ -329,7 +329,10 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             !_solutionContainer.TryTransferSolution(outputSolution.Value, totalChemicals, totalChemicals.Volume) ||
             totalChemicals.Volume > 0)
         {
-            _puddle.TrySpillAt(reclaimer, totalChemicals, out _, sound, transformComponent: xform);
+            if (reclaimerComponent.SpillExcessBuffer) // Frontier: make excess reagent spillover optional
+            {
+                _puddle.TrySpillAt(reclaimer, totalChemicals, out _, sound, transformComponent: xform);
+            }
         }
     }
 }

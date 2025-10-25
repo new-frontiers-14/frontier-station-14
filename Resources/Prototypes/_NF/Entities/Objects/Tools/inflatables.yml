@@ -1,0 +1,250 @@
+#region full stacks
+- type: entity
+  id: NFInflatableWallStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable wall
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableWall
+      count: 10
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_wall.rsi
+      state: item_wall
+    - type: Item
+      size: Small
+      sprite: _NF/Objects/Misc/inflatable_wall.rsi
+    - type: SpawnAfterInteract
+      prototype: NFInflatableWall
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
+  id: NFInflatableDoorStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable door
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableDoor
+      count: 4
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_door.rsi
+      state: item_door
+    - type: Item
+      sprite: _NF/Objects/Misc/inflatable_door.rsi
+      size: Small
+    - type: SpawnAfterInteract
+      prototype: NFInflatableDoor
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
+  id: NFInflatableDockStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable external airlock
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableDock
+      count: 2
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_dock.rsi
+      state: item_door
+    - type: Item
+      sprite: _NF/Objects/Misc/inflatable_dock.rsi
+      size: Small
+    - type: SpawnAfterInteract
+      prototype: NFInflatableDock
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
+  id: NFInflatableWindowStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable window
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableWindow
+      count: 10
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_window.rsi
+      state: item_window
+    - type: Item
+      sprite: _NF/Objects/Misc/inflatable_window.rsi
+      size: Small
+    - type: SpawnAfterInteract
+      prototype: NFInflatableWindow
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
+  id: NFInflatableDoorWindowStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable windoor
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableDoorWindow
+      count: 10
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_door_window.rsi
+      state: item_door
+    - type: Item
+      sprite: _NF/Objects/Misc/inflatable_door_window.rsi
+      size: Small
+    - type: SpawnAfterInteract
+      prototype: NFInflatableDoorWindow
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
+  id: NFInflatableCrateStack
+  parent: [ BaseItem, RecyclableItemPlasticSmall ]
+  name: inflatable crate
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: NFInflatableCrate
+      count: 4
+    - type: Sprite
+      sprite: _NF/Objects/Misc/inflatable_crate.rsi
+      state: item-folded
+    - type: Item
+      sprite: _NF/Objects/Misc/inflatable_crate.rsi
+      size: Small
+    - type: SpawnAfterInteract
+      prototype: NFInflatableCrate
+      doAfter: 1
+      removeOnInteract: true
+    - type: PhysicalComposition
+    - type: ConstructionMaterials
+
+- type: entity
+  name: inflatable floor
+  parent: FloorTileItemBase
+  id: NFInflatableFloorStack
+  description: These couldn't work as a throwing weapon.
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: NFInflatableFloor
+    count: 30
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Misc/inflatable_floor.rsi
+    state: item_inflatable_floor
+  - type: Item
+    sprite: /Textures/_NF/Objects/Misc/inflatable_floor.rsi
+  - type: FloorTile
+    outputs:
+      - NFInflatablePlating
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 0
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 0
+
+#region partial stacks
+- type: entity
+  parent: NFInflatableWallStack
+  id: NFInflatableWallStack5
+  suffix: 5
+  components:
+    - type: Sprite
+      state: item_wall
+    - type: Stack
+      count: 5
+
+- type: entity
+  parent: NFInflatableWallStack
+  id: NFInflatableWallStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item_wall
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableDoorStack
+  id: NFInflatableDoorStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item_door
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableDockStack
+  id: NFInflatableDockStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item_door
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableDoorWindowStack
+  id: NFInflatableDoorWindowStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item_door
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableWindowStack
+  id: NFInflatableWindowStack5
+  suffix: 5
+  components:
+    - type: Sprite
+      state: item_window
+    - type: Stack
+      count: 5
+
+- type: entity
+  parent: NFInflatableWindowStack
+  id: NFInflatableWindowStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item_window
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableCrateStack
+  id: NFInflatableCrateStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item-folded
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: NFInflatableFloorStack
+  id: NFInflatableFloorStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      state: item_inflatable_floor
+    - type: Stack
+      count: 1

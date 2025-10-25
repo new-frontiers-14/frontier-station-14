@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Stringer
+  parent: BaseVessel
+  name: LVHI Stringer
+  description: A small shuttle with low operational costs for reporters who want to be first on a scene. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 27000 # $25200 [on mapinit] + ~$1600 [6% markup]
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/stringer.yml
+  guidebookPage: ShipyardStringer
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Stringer
+  mapName: 'Stringer'
+  mapPath: /Maps/_NF/Shuttles/stringer.yml
+  minPlayers: 0
+  stations:
+    Stringer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Stringer {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
