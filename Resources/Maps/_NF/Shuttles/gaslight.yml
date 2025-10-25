@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/25/2025 00:16:48
+  time: 10/25/2025 15:04:11
   entityCount: 435
 maps: []
 grids:
@@ -574,19 +574,29 @@ entities:
       id: Gaslight
 - proto: AirAlarm
   entities:
-  - uid: 187
+  - uid: 140
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-3.5
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-2.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 129
+      - 114
+  - uid: 147
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
       parent: 1
     - type: AirAlarm
       autoMode: False
     - type: DeviceList
       devices:
-      - 132
       - 146
       - 162
+      - 132
       - 148
   - uid: 298
     components:
@@ -596,15 +606,11 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 171
-      - 288
+      - 233
+      - 222
+      - 309
       - 80
       - 223
-      - 222
-      - 233
-      - 129
-      - 114
-      - 309
     - type: DeviceLinkSource
       linkedPorts:
         301:
@@ -684,7 +690,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 187
+      - 147
   - uid: 309
     components:
     - type: Transform
@@ -1570,17 +1576,11 @@ entities:
     - type: Transform
       pos: -3.5,-2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 298
   - uid: 288
     components:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 298
 - proto: Floodlight
   entities:
   - uid: 430
@@ -1602,15 +1602,15 @@ entities:
       parent: 1
 - proto: GasDepositLocator
   entities:
-  - uid: 144
+  - uid: 98
     components:
     - type: Transform
-      pos: -5.8689814,1.3764362
+      pos: -5.745903,1.4063466
       parent: 1
-  - uid: 147
+  - uid: 136
     components:
     - type: Transform
-      pos: -5.8689814,1.8295612
+      pos: -5.7354865,1.73968
       parent: 1
 - proto: GasFilter
   entities:
@@ -2202,7 +2202,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 298
+      - 140
     - type: AtmosPipeColor
       color: '#0055CCFF'
     - type: AtmosPipeLayers
@@ -2252,7 +2252,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 298
+      - 140
     - type: AtmosPipeColor
       color: '#9955CCFF'
   - uid: 132
@@ -2263,7 +2263,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 187
+      - 147
     - type: GasVentScrubber
       wideNet: True
       filterGases: []
@@ -2276,7 +2276,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 187
+      - 147
     - type: GasVentScrubber
       wideNet: True
       filterGases: []
@@ -2289,7 +2289,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 187
+      - 147
     - type: GasVentScrubber
       wideNet: True
       filterGases: []
@@ -2392,12 +2392,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,-1.5
       parent: 1
-  - uid: 255
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-2.5
-      parent: 1
   - uid: 256
     components:
     - type: Transform
@@ -2460,7 +2454,7 @@ entities:
       color: '#00FFFFFF'
 - proto: ImpCoffeeMachine
   entities:
-  - uid: 287
+  - uid: 255
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -2620,10 +2614,10 @@ entities:
       bodyType: Static
 - proto: PlushieLamp
   entities:
-  - uid: 140
+  - uid: 287
     components:
     - type: Transform
-      pos: -2.3225355,2.1123514
+      pos: -2.2497034,2.2518187
       parent: 1
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
@@ -2790,12 +2784,6 @@ entities:
       parent: 1
 - proto: ReinforcedPlasmaWindow
   entities:
-  - uid: 98
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-2.5
-      parent: 1
   - uid: 300
     components:
     - type: Transform
@@ -3145,15 +3133,15 @@ entities:
       parent: 1
 - proto: SpawnRandomDrinkMug
   entities:
-  - uid: 136
+  - uid: 187
     components:
     - type: Transform
-      pos: -2.6974144,-0.48587704
+      pos: -2.4858146,-0.4634592
       parent: 1
   - uid: 286
     components:
     - type: Transform
-      pos: -2.3640811,-0.6942103
+      pos: -2.2358146,-0.7620703
       parent: 1
 - proto: StairDark
   entities:
@@ -3679,6 +3667,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,1.5
+      parent: 1
+  - uid: 144
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
       parent: 1
   - uid: 188
     components:
