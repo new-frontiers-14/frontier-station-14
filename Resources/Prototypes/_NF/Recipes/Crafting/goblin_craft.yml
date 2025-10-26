@@ -231,3 +231,21 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+#region glowshroms
+- type: construction
+  name: glowshroom
+  id: NFGlowshroomConstruction
+  entityWhitelist: *goblinWhitelist
+  graph: NFGlowshroomStructure
+  startNode: start
+  targetNode: NFGlowshroom
+  category: construction-category-goblin
+  description: Mushrooms that glow in the dark.
+  icon: { sprite: _NF/Objects/Misc/glowshroom.rsi, state: structure }
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
