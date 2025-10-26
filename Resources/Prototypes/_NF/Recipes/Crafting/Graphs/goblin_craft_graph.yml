@@ -771,3 +771,20 @@
         doAfter: 5
   - node: NFGlowshroom
     entity: NFGlowshroom
+
+- type: constructionGraph
+  id: NFGlowshroomStructureWall
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGlowshroomWall
+      steps:
+      - tag: NFGlowshroomSpores
+        name: glowshroom spores
+        icon:
+          sprite: _NF/Objects/Misc/glowshroom.rsi
+          state: seed
+        doAfter: 5
+  - node: NFGlowshroomWall
+    entity: NFGlowshroomWall
