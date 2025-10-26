@@ -1,4 +1,5 @@
-﻿using Content.Shared.MedicalScanner;
+﻿using Content.Shared._NF.Medical; // Frontier
+using Content.Shared.MedicalScanner;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -21,6 +22,8 @@ namespace Content.Client.HealthAnalyzer.UI
             _window = this.CreateWindow<HealthAnalyzerWindow>();
 
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+
+            _window.OnPrintPatientRecord += () => SendMessage(new HealthAnalyzerPrintPatientRecordMessage()); // Frontier
         }
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)

@@ -81,7 +81,7 @@
 - type: entity
   parent: [ LockerSalvageSpecialistFilled, StorageFillEVASuitSalvage ]
   id: SuitStorageEVASalvageFilled
-  suffix: EVA, Salvage Specialist, Filled  
+  suffix: EVA, Salvage Specialist, Filled
   components:
   - type: AccessReader
 
@@ -273,6 +273,38 @@
         - id: ClothingMaskGasMercenary
         - id: JetpackMiniFilled
         - id: ClothingShoesBootsMagMercenaryFilled
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+#Surplus hardsuit
+- type: entity
+  id: SuitStorageSurplus
+  parent: SuitStorageBase
+  suffix: Surplus
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterHardsuitSurplus
+        - id: ClothingMaskGasSecurity
+        - id: JetpackMiniFilled
+        - id: ClothingShoesBootsMagSecurity
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+#Noble hardsuit
+- type: entity
+  id: SuitStorageNoble
+  parent: SuitStorageBase
+  suffix: Noble
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterHardsuitNoble
+        - id: ClothingMaskGasSecurity
+        - id: JetpackMiniFilled
+        - id: ClothingShoesBootsMagSecurity
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
 
