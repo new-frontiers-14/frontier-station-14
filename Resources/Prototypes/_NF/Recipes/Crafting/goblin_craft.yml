@@ -234,14 +234,13 @@
 
 #region glowshroms
 - type: construction
-  name: glowshroom (floor)
   id: NFGlowshroomConstruction
   entityWhitelist: *goblinWhitelist
   graph: NFGlowshroomStructure
+  name: recipes-glowshrooms-floor-name
   startNode: start
   targetNode: NFGlowshroom
   category: construction-category-goblin
-  icon: { sprite: _NF/Objects/Misc/glowshroom.rsi, state: structure-1 }
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -250,14 +249,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: glowshroom (wall)
   id: NFGlowshroomWallConstruction
   entityWhitelist: *goblinWhitelist
   graph: NFGlowshroomStructureWall
+  name: recipes-glowshrooms-wallmount-name
   startNode: start
   targetNode: NFGlowshroomWall
   category: construction-category-goblin
-  icon: { sprite: _NF/Objects/Misc/glowshroom.rsi, state: structure-wall-1 }
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
