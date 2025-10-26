@@ -955,11 +955,11 @@
       - state: equipped-head-visor
         color: "#8f1717"
 
-#region FSB Void suit helmet
+#region Far Star Void suit helmet
 - type: entity
   parent: [ ClothingHeadSuitWithLightBase, NFClothingHeadClearEVAHelmetBase ]
   id: ClothingHeadHelmetHardsuitFSB
-  name: far star biotech voidsuit helmet
+  name: Far Star Biotech voidsuit helmet
   description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
   categories: [ HideSpawnMenu ]
   components:
@@ -988,8 +988,17 @@
 - type: entity
   parent: ClothingHeadHelmetHardsuitFSB
   id: ClothingHeadHelmetHardsuitFSC
-  name: far star corporation voidsuit helmet
+  name: Far Star Commerce voidsuit helmet
   description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Helmets/fsc_eva_helmet.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitFSB
+  id: ClothingHeadHelmetHardsuitFSA
+  name: far star arms voidsuit helmet
+  description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/fsa_eva_helmet.rsi

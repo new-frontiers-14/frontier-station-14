@@ -1,10 +1,15 @@
 - type: entity
+  id: CondimentDispenserEmpty
   parent: ReagentDispenserBase
-  id: CondimentDispenser
   name: condiment dispenser
-  suffix: Filled
+  suffix: Empty
   description: A condiment dispenser with a single slot for a condiment cup.
   components:
+  - type: Storage
+    openOnActivate: false
+    whitelist:
+      tags:
+      - DrinkBottle
   - type: Fixtures
     fixtures:
       fix1:
@@ -24,6 +29,22 @@
     sprite: _NF/Structures/smalldispensers.rsi
     drawdepth: SmallObjects
     state: icon
+  - type: Transform
+    noRot: false
+  - type: Machine
+    board: CondimentDispenserCircuitboard
+  - type: GuideHelp
+    guides:
+    - Bartender
+    - Drinks
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  id: CondimentDispenser
+  parent: CondimentDispenserEmpty
+  suffix: Filled
+  components:
   - type: StorageFill
     contents:
     - id: DrinkAstrotameJug
@@ -35,22 +56,3 @@
     - id: DrinkMustardJug
     - id: DrinkSoysauceJug
     - id: DrinkMayoJug
-  - type: Transform
-    noRot: false
-  - type: Machine
-    board: CondimentDispenserCircuitboard
-  - type: GuideHelp
-    guides:
-    - Bartender
-    - Drinks
-
-- type: entity
-  id: CondimentDispenserEmpty
-  suffix: Empty
-  parent: CondimentDispenser
-  components:
-  - type: Storage
-    openOnActivate: false
-    whitelist:
-      tags:
-      - DrinkBottle

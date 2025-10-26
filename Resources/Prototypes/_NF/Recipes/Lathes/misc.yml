@@ -12,6 +12,16 @@
 
 - type: latheRecipe
   abstract: true
+  id: NFColoredLightRecipe
+  categories:
+  - Lights
+  completetime: 2
+  materials:
+    Steel: 50
+    Glass: 100
+
+- type: latheRecipe
+  abstract: true
   id: NFBaseGlowstickRecipe
   parent: NFBaseLightTubeRecipe
   completetime: 0.5
@@ -27,7 +37,91 @@
     Plastic: 500
     Silver: 100
 
-# Recipes
+### Recipes
+
+# Colored Lights
+
+- type: latheRecipe
+  id: LightBulbCrystalGreen
+  result: LightBulbCrystalGreen
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalRed
+  result: LightBulbCrystalRed
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalBlack
+  result: LightBulbCrystalBlack
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalOrange
+  result: LightBulbCrystalOrange
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalPink
+  result: LightBulbCrystalPink
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalYellow
+  result: LightBulbCrystalYellow
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalBlue
+  result: LightBulbCrystalBlue
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightBulbCrystalCyan
+  result: LightBulbCrystalCyan
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalGreen
+  result: LightTubeCrystalGreen
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalRed
+  result: LightTubeCrystalRed
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalBlack
+  result: LightTubeCrystalBlack
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalOrange
+  result: LightTubeCrystalOrange
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalPink
+  result: LightTubeCrystalPink
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalYellow
+  result: LightTubeCrystalYellow
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalBlue
+  result: LightTubeCrystalBlue
+  parent: NFColoredLightRecipe
+
+- type: latheRecipe
+  id: LightTubeCrystalCyan
+  result: LightTubeCrystalCyan
+  parent: NFColoredLightRecipe
+
+# Other
 
 - type: latheRecipe
   id: MailCapsule
@@ -51,7 +145,7 @@
   result: Floodlight
   parent: NFBaseLightTubeRecipe
   materials:
-    Glass: 500
+    Glass: 1000
     Plastic: 1000
     Steel: 1500
 
@@ -158,6 +252,13 @@
   completetime: 2
   materials:
     Steel: 600
+
+- type: latheRecipe
+  id: DoubleEmergencyAirTank
+  result: DoubleEmergencyAirTank
+  completetime: 4
+  materials:
+    Steel: 250
 
 # Toys
 - type: latheRecipe

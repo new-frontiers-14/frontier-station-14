@@ -5,6 +5,9 @@
   - type: GhostRole
   - type: IntrinsicRadioReceiver
   - type: CargoSellBlacklist
+  - type: ShipyardSellCondition # The SR can no longer sell Clippy
+    blockSale: true
+    reason: shipyard-console-cute-pets
 
 - type: entity
   id: MobCatClippy
@@ -207,6 +210,12 @@
     states:
       Alive:
         Base: slimecat
+  - type: Temperature
+    heatDamageThreshold: 423
+    coldDamageThreshold: -40
+  - type: MovementAlwaysTouching
+  - type: PressureImmunity
+  - type: Insulated
   - type: GhostRole
     name: ghost-role-information-curie-name
     description: ghost-role-information-curie-description
