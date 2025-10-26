@@ -369,6 +369,28 @@
       color: "#fcdec7"
 # endregion Scrap Table
 
+# region Flesh Table
+- type: entity
+  id: NFBaseAsteroidFleshDebris
+  parent: NFBaseDebris
+  abstract: true
+  components:
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - Lattice
+    - type: SimpleFloorPlanPopulator
+      entries:
+        Lattice:
+          - id: NFFleshMineralSoft
+            orGroup: rock
+            prob: 0.77
+          - id: NFWallFleshRock
+            orGroup: rock
+            prob: 0.05
+    - type: IFF
+      color: "#c95779"
+# endregion Scrap Table
+
 # region Asteroid Sizes
 - type: entity
   id: NFBaseAsteroidSmall
@@ -985,3 +1007,65 @@
   parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Scrap Entities
+
+# region Flesh Entities
+- type: entity
+  id: NFAsteroidFleshDebrisSmall
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidSmall]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisMedium
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidMedium]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisLarge
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisExtraLarge
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidExtraLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisHuge
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisExtraHuge
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidExtraHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisEnormous
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidEnormous]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisExtraEnormous
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidExtraEnormous]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisMassive
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidMassive]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisExtraMassive
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidExtraMassive]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisGigantic
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidGigantic]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidFleshDebrisExtraGigantic
+  parent: [NFBaseAsteroidFleshDebris, NFBaseAsteroidExtraGigantic]
+  categories: [ HideSpawnMenu ]
+# endregion Flesh Entities

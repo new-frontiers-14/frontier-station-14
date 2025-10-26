@@ -1016,3 +1016,35 @@
     table: !type:NestedSelector
       tableId: NFScrapMineralSoft
 # endregion Scrap Spawners
+
+# region Flesh Spawners
+- type: entityTable
+  id: NFFleshMineralSoft
+  table: !type:GroupSelector
+    children:
+    - id: NFWallFleshRock
+      weight: 0.45
+    - id: NFWallFleshBiomass
+      weight: 0.5
+    - id: NFWallFleshAberrantMobSpawner
+      weight: 0.05
+
+- type: entity
+  id: NFFleshMineralSoft
+  parent: MarkerBase
+  name: flesh mineral spawner
+  suffix: Soft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Walls/rock.rsi
+      state: meat
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFFleshMineralSoft
+# endregion Scrap Spawners

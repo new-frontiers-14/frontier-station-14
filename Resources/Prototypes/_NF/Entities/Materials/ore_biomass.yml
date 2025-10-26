@@ -1,0 +1,80 @@
+
+#region raw biomass
+- type: entity
+  parent: MaterialBiomass
+  id: NFMaterialBiomassRaw
+  name: raw biomass
+  suffix: Full
+  description: "Fresh. Wriggling. Juicy. Who even needs those 'tatoes'?"
+  components:
+  - type: Sprite
+    sprite: /Textures/Objects/Misc/monkeycube.rsi # Placeholder
+    state: cube
+    color: "#7c4052"
+  - type: PhysicalComposition
+    materialComposition:
+      Biomass: 1
+  - type: Stack
+    stackType: NFBiomassRaw
+    count: 100
+  - type: Tag
+    tags:
+    - Ore # Makes it collectible with ore bag
+    - DroneUsable
+    - RawMaterial
+
+#region Ore vein
+- type: ore
+  id: NFOreBiomassRaw
+  oreEntity: NFOreBiomassRaw3
+  minOreYield: 2
+  maxOreYield: 3
+
+#region Random spawners
+- type: entity
+  id: NFOreBiomassRaw3
+  categories: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - NFMaterialBiomassRaw3
+
+#region Stacks
+- type: stack
+  id: NFBiomassRaw
+  name: stack-biomass-raw
+  icon: { sprite: /Textures/Objects/Misc/monkeycube.rsi, state: cube }
+  spawn: NFMaterialBiomassRaw1
+  maxCount: 100
+
+- type: entity
+  parent: NFMaterialBiomassRaw
+  id: NFMaterialBiomassRaw1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: NFMaterialBiomassRaw
+  id: NFMaterialBiomassRaw3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: NFMaterialBiomassRaw
+  id: NFMaterialBiomassRaw20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
+
+- type: entity
+  parent: NFMaterialBiomassRaw
+  id: NFMaterialBiomassRaw50
+  suffix: 50
+  components:
+  - type: Stack
+    count: 50

@@ -87,6 +87,10 @@ stack-doubloon = {$amount ->
     [8] pieces of eight
     *[other] doubloons
 }
+stack-biomass-raw = raw biomass {$amount ->
+    [1] chunk
+    *[other] chunks
+}
 stack-anomalite = anomalite
 stack-fuel-grade-plasma = fuel-grade plasma
 stack-fuel-grade-uranium = fuel-grade uranium

@@ -580,6 +580,35 @@
     offset: 0.2
 # endregion Scrap Spawners
 
+# region aberrant flesh
+- type: entity
+  name: asteroid aberrant flesh spawner
+  id: NFAsteroidAberrantFleshSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: RandomSpawner
+    rarePrototypes:
+    - MobFleshAssimilatedMiner
+    rareChance: 0.1
+    prototypes:
+    - MobFleshJaredExpeditions
+    - MobFleshJaredOldExpeditions
+    - MobFleshGolemExpeditions
+    - MobFleshGolemAltExpeditions
+    - MobFleshGolemOldExpeditions
+    - MobFleshClampExpeditions
+    - MobFleshClampOldExpeditions
+    - MobFleshLoverExpeditions
+    chance: 0.45
+    offset: 0.2
+# end region aberrant flesh
+
 # region Wreck/Expedition Spawners
 - type: entity
   name: Salvage Material Crate Spawner

@@ -47,6 +47,25 @@
   id: NFWallRockAndesiteOre
   abstract: true
 
+- type: entity
+  parent: [NFBaseSoftOreVein, AsteroidRock]
+  id: NFBaseWallMeatRock
+  abstract: true
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/slash.ogg"
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+        - Pickaxe
+      components:
+        - MiningGatheringHard
+        - MiningGatheringSoft
+
 # region Ore
 - type: entity
   id: NFAsteroidRockBluespace
@@ -639,6 +658,58 @@
   id: NFWallRockScrapPileBluespaceBot
   parent: [NFBaseScrapBotVein, NFWallRockScrapPileBluespace]
 # endregion Scrap with Ore
+
+#region Meat Ore
+- type: entity
+  parent: NFBaseWallMeatRock
+  id: NFWallFleshRock
+  name: flesh mass
+  suffix: No Ore
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Walls/rock.rsi # placeholder
+    state: meat
+  - type: Sprite
+    sprite: _NF/Structures/Walls/rock.rsi # placeholder
+    layers:
+    - state: meat
+    - map: [ "enum.EdgeLayer.South" ]
+      state: meat_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: meat_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: meat_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: meat_west
+
+- type: entity
+  parent: NFWallFleshRock
+  id: NFWallFleshBiomass
+  suffix: Raw Biomass
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreBiomassRaw
+  - type: Sprite
+    layers:
+    - state: meat
+    - map: [ "enum.EdgeLayer.South" ]
+      state: meat_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: meat_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: meat_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: meat_west
+    - sprite: Objects/Misc/fleshkudzu.rsi # placeholder
+      state: kudzu_33
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  parent: [ NFBaseAberrantFleshVein, NFWallFleshBiomass ]
+  id: NFWallFleshAberrantMobSpawner
+  suffix: Aberrant Flesh Spawner
+# endregion Meat Ore
 
 # region Bananium Crabs
 - type: entity
