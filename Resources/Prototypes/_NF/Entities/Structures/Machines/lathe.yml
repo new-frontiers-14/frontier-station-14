@@ -102,6 +102,7 @@
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFLightsColoredStatic
+    - NFServiceArchetypeStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabEmagStatic
@@ -152,6 +153,7 @@
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFLightsColoredStatic
+    - NFServiceArchetypeStatic
     - NFMcServiceTechfabStatic
 
 - type: entity
@@ -194,6 +196,7 @@
     - NFEngineeringStructureBoardsStatic
     - NFEngineeringMaterialsStatic
     - NFInflatablesStatic
+    - NFEngineeringArchetypeStatic
 
   - type: BlueprintReceiver
     whitelist:
@@ -337,12 +340,13 @@
     - NFMaterialElectronicsStatic
     - NFBasicEvaLightsStatic
     - NFMercenaryStatic
-    - NFMercenaryToolsStatic
+    - NFMercenaryClothesStatic
     - NFMercenaryStorageStatic
     - NFMercenaryWeaponsStatic
     - NFMercenaryAmmoBoxesStatic
     - NfsdPracticeStatic
     - NFMercenaryMagazineStatic
+    - NFMercenaryArchetypeStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -400,13 +404,14 @@
     - NFBasicEvaLightsStatic
     - NFMaterialElectronicsStatic 
     - NFMercenaryStatic
-    - NFMercenaryToolsStatic
+    - NFMercenaryClothesStatic
     - NFMercenaryStorageStatic
     - NFMercenaryWeaponsStatic
     - NFMercenaryAmmoBoxesStatic
     - NfsdPracticeStatic
     - NFHackedMercenaryClothingStatic
     - NFMercenaryMagazineStatic
+    - NFMercenaryArchetypeStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -639,3 +644,30 @@
   - type: Lathe
     staticPacks:
     - NFPirateClothing
+
+- type: entity
+  id: PirateTechFab
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
+  name: pirate techfab
+  description: You can hear it humming with the anticipation of being fed liberated blueprints.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: pirate
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: PirateTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+  - type: OreSiloClient
