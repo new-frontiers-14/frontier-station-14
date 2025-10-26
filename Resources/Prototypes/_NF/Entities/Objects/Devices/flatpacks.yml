@@ -574,6 +574,26 @@
   - type: Flatpack
     entity: ScrapProcessor
 
+- type: entity
+  parent: OreProcessorFlatpack
+  id: CargoTechfabNFFlatpack
+  name: cargo techfab flatpack
+  description: A flatpack used for constructing a cargo techfab.
+  components:
+  - type: Flatpack
+    entity: CargoTechFabNF
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: CrateStorageRackFlatpack
+  name: crate storage rack
+  description: A storage rack prefab. Grab your screwdriver and get to work!
+  components:
+  - type: Flatpack
+    entity: CrateStorageRack
+    qualityNeeded: Screwing
+    unpackSound: /Audio/Items/screwdriver2.ogg
+
 #region Mercenary
 - type: entity
   parent: BaseNFFlatpack
