@@ -38,6 +38,34 @@
     graph: ClothingNeckCloakRosyGraph
     node: ClothingNeckCloakRosy
 
+- type: entity
+  parent: ClothingNeckBase
+  id: NFGoblinMadeClothingNeckTrashCloak
+  name: cloakash
+  description: A cloak stitched from a patchwork of food wrappings. Somehow, wearing it always makes your mind wander to the nearest food joint.
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Cloaks/goblin_trash_cloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: NFGoblinMadeClothingHeadHatHoodTrashCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: NFGoblinMadeClothingNeckTrashCloak
+    node: NFGoblinMadeClothingNeckTrashCloak
+  - type: Butcherable
+    spawned:
+    - id: ScrapOre1
+      amount: 2
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrap: 400
+
 # Upstream removed
 
 - type: entity
