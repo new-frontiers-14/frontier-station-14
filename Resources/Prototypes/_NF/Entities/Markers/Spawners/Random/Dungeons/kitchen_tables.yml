@@ -1,0 +1,121 @@
+#region Clutter
+
+#region Tools
+- type: entityTable
+  id: TableDungeonLootServiceTools
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCutlery
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceTableware
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceMugs
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceFlasks
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootServiceCutlery
+  table: !type:GroupSelector
+    children:
+    - id: Fork
+    - id: Spoon
+    - id: ForkPlastic
+    - id: SpoonPlastic
+    - id: KnifePlastic
+    - id: KitchenKnife
+      weight: 0.1
+    - id: ButchCleaver
+      weight: 0.1
+    - id: RollingPin
+      weight: 0.1
+    - id: FoodKebabSkewer
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootServiceTableware
+  table: !type:GroupSelector
+    children:
+    - id: FoodPlateTin
+    - id: FoodPlateSmall
+    - id: FoodPlate
+    - id: FoodPlateTrash
+    - id: FoodPlateSmallTrash
+    - id: CandyBowl
+    - id: FoodBowlBig
+    - id: FoodBowlFancy
+    - id: FoodBowlBigTrash
+    - id: FoodPlatePlastic
+    - id: FoodPlateSmallPlastic
+    - id: FoodShakerPepper
+    - id: FoodShakerSalt
+    - id: NFAshtray
+
+- type: entityTable
+  id: TableDungeonLootServiceMugs
+  table: !type:GroupSelector
+    children:
+    - id: DrinkMugOne
+    - id: DrinkMugBlack
+    - id: DrinkMugDog
+    - id: DrinkMugBlue
+    - id: DrinkMugGreen
+    - id: DrinkMugHeart
+    - id: DrinkMugMetal
+    - id: DrinkMugMoebius
+    - id: DrinkMug
+    - id: DrinkMugRainbow
+    - id: DrinkMugRed
+    - id: DrinkGlassCoupeShaped
+    - id: DrinkGlass
+    - id: DrinkShotGlass
+
+- type: entityTable
+  id: TableDungeonLootServiceFlasks
+  table: !type:GroupSelector
+    children:
+    - id: DrinkFlaskBar
+    - id: DrinkFlaskOld
+    - id: DrinkLithiumFlask
+    - id: DrinkShinyFlask
+    - id: DrinkVacuumFlask
+
+#region Clothes
+- type: entityTable
+  id: TableDungeonLootServiceClothesBags
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 3
+      children:
+      - id: NFClothingDuffel
+      - id: NFClothingBackpackDuffelColorBlue
+      - id: NFClothingBackpackDuffelColorBlack
+      - id: NFClothingBackpackDuffelColorOrange
+      - id: NFClothingBackpackDuffelColorPurple
+      - id: NFClothingBackpackDuffelColorWhite
+      - id: NFClothingBackpackDuffelColorGreen
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMessenger
+      - id: ClothingBackpackMessengerContractor
+      - id: ClothingBackpackMessengerColorBlack
+      - id: ClothingBackpackMessengerColorBlue
+      - id: ClothingBackpackMessengerColorBrown
+      - id: ClothingBackpackMessengerColorOrange
+      - id: ClothingBackpackMessengerColorPurple
+      - id: ClothingBackpackMessengerColorWhite
+    - id: NFClothingBackpack
+      weight: 2
+    - id: ClothingBackpackSatchel
+      weight: 2
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchContractor
+      - id: NFPouchUtility
