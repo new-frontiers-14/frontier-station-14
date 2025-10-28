@@ -189,7 +189,7 @@
   parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
   id: NFMobZombieOdysseus
   #categories: [ HideSpawnMenu ]
-  name: odysseus mech with trapped zombie
+  name: zombie trapped in odysseus mech
   description: |-
    A fast, lightly armored medical exosuit: so advanced it practically pilots itself! It appears a zombie is trapped inside the suit.
   components:
@@ -201,6 +201,34 @@
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: odysseus
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_30: LiquidsBiologicalHumanBlood
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_30: LiquidsBiologicalHumanBlood
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
   - type: DamageStateVisuals
     states:
       Alive:
