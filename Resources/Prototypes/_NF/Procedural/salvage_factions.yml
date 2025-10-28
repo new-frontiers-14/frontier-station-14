@@ -1,5 +1,23 @@
 # region Moderate
 - type: salvageFaction
+  id: NFZombies
+  desc: nf-salvage-faction-zombies
+  entries:
+    - proto: NFMobZombieSuit
+      cost: 2
+    - proto: NFMobZombieJumpsuit
+      cost: 2
+    - proto: NFMobZombieSuitRadiation
+      cost: 3
+    - proto: NFMobZombieClown
+      cost: 2
+      prob: 0.1
+  configs:
+    DefenseStructure: NFZombiePile
+    Megafauna: NFMobZombieOdysseus
+    Difficulties: NFModerate
+
+- type: salvageFaction
   id: NFXenos
   desc: nf-salvage-faction-xenos
   entries:
