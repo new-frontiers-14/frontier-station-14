@@ -1,0 +1,273 @@
+# region base
+- type: entity
+  abstract: true
+  parent:
+  - NFMobNoEquipmentOnGib
+  - MobStaminaBoss
+  - MobMovementSpeedModifierEVAMelee
+  - MobNonHumanHostileBase
+  - MobHumanoidInvetory
+  - MobPassiveRegenStrong
+  id: NFMobZombieBase
+  name: zombie
+  description: |-
+   Your NT Employee Guide to the Galaxy says: "A zombie is a mythological undead corporeal revenant created through the reanimation of a corpse." This one is very real.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Zombies/zombie_human.rsi
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: NpcFactionMember
+    factions:
+    - Zombie
+  - type: Body
+    prototype: NFHumanNoHands
+    requiredLegs: 2
+  - type: Damageable
+    damageModifierSet: Zombie
+  - type: MeleeWeapon
+    attackRate: 0.9
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 2
+        Slash: 10
+        Structural: 45
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 10
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: Butcherable
+    spawned:
+    - id: SalvageSpawnerScrapValuable75 # TODO: replace with curated loot
+      amount: 1
+    - id: FoodMeatRotten
+      amount: 1
+  - type: Bloodstream
+    bloodReagent: ZombieBlood
+    bloodMaxVolume: 250
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
+  - type: ReplacementAccent
+    accent: zombie
+  - type: SpamEmitSound
+    minInterval: 3
+    maxInterval: 9
+    sound:
+      collection: ZombieScreams
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
+  - type: Advertise
+    pack: spacepunkhumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: AutoWakeUp
+
+# region variations
+- type: entity
+  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  id: NFMobZombieSuit
+  #categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-virology-bio
+      map: ["zombieRandomSuit"]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-virology-bio: ""
+        suit-torn-security-bio: ""
+        suit-torn-security: ""
+
+- type: entity
+  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  id: NFMobZombieSuitRadiation
+  #categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-radiation
+  - type: RadiationSource
+    intensity: 0.3
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    softness: 0.5
+    color: LightGreen
+    castShadows: false
+
+- type: entity
+  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  id: NFMobZombieJumpsuit
+  #categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-engineer
+      map: ["zombieRandomSuit"]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-engineer: ""
+        suit-torn-pilot: ""
+        suit-torn-science: ""
+
+- type: entity
+  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  id: NFMobZombieClown
+  #categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-clown
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: squeezeBottleUseSounds
+
+# region boss
+- type: entity
+  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  id: NFMobZombieOdysseus
+  #categories: [ HideSpawnMenu ]
+  name: odysseus mech with trapped zombie
+  description: |-
+   A fast, lightly armored medical exosuit: so advanced it practically pilots itself! It appears a zombie is trapped inside the suit.
+  components:
+  - type: Damageable
+    damageModifierSet: MobRogueSiliconDamageModifierSet
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: odysseus
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: odysseus
+      Critical:
+        Base: odysseus-broken
+      Dead:
+        Base: odysseus-broken
+  - type: Bloodstream
+    bloodReagent: WeldingFuel
+    bloodMaxVolume: 100
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      160: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 155
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          NFSpawnMobZombie:
+            min: 1
+            max: 1
+          RipleyChassis:
+            min: 1
+            max: 1
+          RipleyCentralElectronics:
+            min: 1
+            max: 1
+          RipleyPeripheralsElectronics:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+        Structural: 60
+    soundHit:
+      collection: MetalThud
+  - type: PointLight
+    radius: 5
+    energy: 2
+
+# region pile
+- type: entity # TODO: move to specific structures
+  parent: AberrantFleshDigestiveSack
+  id: NFZombiePile
+  name: pile of bodybags
+  description: A stacked pile of reinforced body bags. Some of them are moving!
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - NFSpawnMobZombie
+    chance: 1
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 2
+    maximumEntitiesSpawned: 3
+  - type: Sprite
+    sprite: _NF/Mobs/Zombies/zombie_human.rsi
+    layers:
+    - state: spawner
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Zombie
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeatRotten:
+            min: 1
+            max: 3
