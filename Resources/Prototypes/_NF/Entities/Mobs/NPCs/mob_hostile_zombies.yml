@@ -243,7 +243,7 @@
   - type: Timer
   - type: TimedSpawner
     prototypes:
-    - NFZombiePile
+    - NFSpawnZombiePile
     chance: 0.7
     intervalSeconds: 180
     minimumEntitiesSpawned: 1
@@ -266,7 +266,7 @@
           NFSpawnMobZombie:
             min: 1
             max: 1
-          NFZombiePile:
+          NFSpawnZombiePile:
             min: 1
             max: 1
           RipleyChassis:
@@ -300,7 +300,7 @@
 - type: entity # TODO: move to specific structures
   parent: AberrantFleshDigestiveSack
   id: NFZombiePile
-  name: pile of bodybags
+  name: pile of body bags
   description: A stacked pile of reinforced body bags. Some of them are moving!
   components:
   - type: TimedSpawner

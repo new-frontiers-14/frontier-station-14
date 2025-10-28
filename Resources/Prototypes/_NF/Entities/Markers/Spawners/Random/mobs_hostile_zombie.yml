@@ -14,7 +14,7 @@
     - id: NFMobZombieOdysseus
       weight: 0.5
 
-# region spawner
+# region random spawner
 - type: entity
   parent: MarkerBase
   id: NFSpawnMobZombie
@@ -34,3 +34,76 @@
     table: !type:NestedSelector
       tableId: TableZombieRandom
       prob: 1.00
+
+# region conditional spawners
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieRadiation
+  name: zombie radiation spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieSuitRadiation
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieClown
+  name: zombie clown spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieClown
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieOdysseus
+  name: zombie in exosuit spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieOdysseus
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombiePile
+  name: pile of body bags spawner
+  suffix: Frontier, Zombie Spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: spawner
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: ConditionalSpawner
+    prototypes:
+    - NFZombiePile
