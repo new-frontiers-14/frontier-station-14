@@ -143,7 +143,7 @@
     - !type:OreDunGen
       tileMask:
       - FloorCaveDrought
-      entity: SpawnMobZombieRandomNoBossTable
+      entity: NFSpawnMobZombie
       count: 5
       minGroupSize: 1
       maxGroupSize: 1
@@ -229,30 +229,35 @@
   table: !type:GroupSelector
     children:
     - id: NFSpawnMobZombie
+      amount: 1
 
 - type: entityTable
   id: SpawnMobZombiePileTable
   table: !type:GroupSelector
     children:
     - id: NFSpawnZombiePile
+      amount: 1
 
 - type: entityTable
   id: SpawnMobZombieRadiationTable
   table: !type:GroupSelector
     children:
     - id: NFSpawnZombieRadiation
+      amount: 1
 
 - type: entityTable
   id: SpawnMobZombieClownTable
   table: !type:GroupSelector
     children:
     - id: NFSpawnZombieClown
+      amount: 1
 
 - type: entityTable
   id: SpawnMobZombieOdysseusTable
   table: !type:GroupSelector
     children:
     - id: NFSpawnZombieOdysseus
+      amount: 1
 
 #- type: dungeonConfig
 #  id: NFVGRoidInteriorDungeonsCave
