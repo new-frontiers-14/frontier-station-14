@@ -142,7 +142,7 @@
         suit-torn-science: ""
 
 - type: entity
-  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  parent: [ NFMobZombieBase, MobHumanoidHostileAIComplex ]
   id: NFMobZombieClown
   #categories: [ HideSpawnMenu ]
   components:
@@ -150,9 +150,39 @@
     layers:
     - state: zombie
     - state: suit-torn-clown
+  - type: Butcherable
+    spawned:
+    - id: SalvageSpawnerTreasureValuable # TODO: replace with curated loot
+      amount: 1
+    - id: ClothingShoesClownModKetchup
+      amount: 1
+    - id: FoodMeatRotten
+      amount: 3
   - type: FootstepModifier
     footstepSoundCollection:
       collection: squeezeBottleUseSounds
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 15
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: FoodPieBananaCream
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/Toys/sitcom_laugh.ogg
+  - type: SpamEmitSound
+    minInterval: 3
+    maxInterval: 9
+    sound:
+      collection: ZombieClownScreams
+      params:
+        variation: 0.125
 
 # region boss
 - type: entity
