@@ -36,7 +36,7 @@
     damage:
       types:
         Blunt: 2
-        Slash: 10
+        Slash: 8
         Structural: 45
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -49,9 +49,9 @@
     generated:
       reagents:
       - ReagentId: Toxin
-        Quantity: 1
+        Quantity: 0.5
   - type: MeleeChemicalInjector
-    transferAmount: 0.75
+    transferAmount: 0.5
     solution: melee
   - type: Butcherable
     spawned:
@@ -244,7 +244,7 @@
   - type: TimedSpawner
     prototypes:
     - NFSpawnZombiePile
-    chance: 0.7
+    chance: 1
     intervalSeconds: 180
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
@@ -297,7 +297,7 @@
     energy: 2
 
 # region pile
-- type: entity # TODO: move to specific structures
+- type: entity
   parent: AberrantFleshDigestiveSack
   id: NFZombiePile
   name: pile of body bags
