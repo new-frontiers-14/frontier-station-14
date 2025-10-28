@@ -14,6 +14,43 @@
     - id: NFMobZombieOdysseus
       weight: 0.5
 
+- type: entityTable
+  id: TableZombieRandomNoBoss
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieSuit
+      weight: 49
+    - id: NFMobZombieJumpsuit
+      weight: 25
+    - id: NFMobZombieSuitRadiation
+      weight: 16
+    - id: NFMobZombieClown
+      weight: 10
+
+- type: entityTable
+  id: TableMobZombieRadiation
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieSuitRadiation
+
+- type: entityTable
+  id: TableMobZombieClown
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieClown
+
+- type: entityTable
+  id: TableMobZombieOdysseus
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieOdysseus
+
+- type: entityTable
+  id: TableMobZombiePile
+  table: !type:GroupSelector
+    children:
+    - id: NFZombiePile
+
 # region random spawner
 - type: entity
   parent: MarkerBase
@@ -32,7 +69,7 @@
   - type: EntityTableSpawner
     offset: 0.1
     table: !type:NestedSelector
-      tableId: TableZombieRandom
+      tableId: TableZombieRandomNoBoss
       prob: 1.00
 
 # region conditional spawners
@@ -50,9 +87,11 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: ConditionalSpawner
-    prototypes:
-    - NFMobZombieSuitRadiation
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableMobZombieRadiation
+      prob: 1.00
 
 - type: entity
   parent: MarkerBase
@@ -68,9 +107,11 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: ConditionalSpawner
-    prototypes:
-    - NFMobZombieClown
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableMobZombieClown
+      prob: 1.00
 
 - type: entity
   parent: MarkerBase
@@ -86,9 +127,11 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: ConditionalSpawner
-    prototypes:
-    - NFMobZombieOdysseus
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableMobZombieOdysseus
+      prob: 1.00
 
 - type: entity
   parent: MarkerBase
@@ -104,6 +147,7 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: ConditionalSpawner
-    prototypes:
-    - NFZombiePile
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: TableMobZombiePile
+      prob: 1.00

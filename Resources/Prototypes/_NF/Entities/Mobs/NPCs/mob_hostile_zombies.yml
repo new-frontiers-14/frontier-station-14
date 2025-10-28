@@ -2,15 +2,14 @@
 - type: entity
   abstract: true
   parent:
-  - NFMobNoEquipmentOnGib
-  - MobStaminaBoss
   - MobMovementSpeedModifierEVAMelee
+  - MobStaminaBoss
   - MobNonHumanHostileBase
-  - MobHumanoidInvetory
   - MobPassiveRegenStrong
+  - MobHumanoidHostileAISimpleMelee
   id: NFMobZombieBase
   name: zombie
-  suffix: AI, Hostile, Frontier
+  suffix: AI, Hostile, No Infection
   description: |-
    Your NT Employee Guide to the Galaxy says: "A zombie is a mythological undead corporeal revenant created through the reanimation of a corpse." This one is very real.
   components:
@@ -23,9 +22,6 @@
   - type: NpcFactionMember
     factions:
     - Zombie
-  - type: Body
-    prototype: NFHumanNoHands
-    requiredLegs: 2
   - type: Damageable
     damageModifierSet: Zombie
   - type: MeleeWeapon
@@ -90,9 +86,9 @@
 
 # region variations
 - type: entity
-  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  parent: NFMobZombieBase
   id: NFMobZombieSuit
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -107,9 +103,9 @@
         suit-torn-security: ""
 
 - type: entity
-  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  parent: NFMobZombieBase
   id: NFMobZombieSuitRadiation
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -125,9 +121,9 @@
     castShadows: false
 
 - type: entity
-  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  parent: NFMobZombieBase
   id: NFMobZombieJumpsuit
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -142,9 +138,9 @@
         suit-torn-science: ""
 
 - type: entity
-  parent: [ NFMobZombieBase, MobHumanoidHostileAIComplex ]
+  parent: [ MobHumanoidHostileAIComplex, NFMobZombieBase ]
   id: NFMobZombieClown
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -186,9 +182,9 @@
 
 # region boss
 - type: entity
-  parent: [ NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  parent: [ MobHostileBossBase, NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
   id: NFMobZombieOdysseus
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   name: zombie trapped in odysseus mech
   description: |-
    A fast, lightly armored medical exosuit: so advanced it practically pilots itself! It appears a zombie is trapped inside the suit.
