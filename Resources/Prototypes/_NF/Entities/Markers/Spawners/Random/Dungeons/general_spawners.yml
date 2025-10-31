@@ -82,6 +82,48 @@
     table: !type:NestedSelector
       tableId: TableDungeonLootGeneralMaterialValuableSingle
 
+- type: entity
+  name: random ores
+  id: SpawnDungeonLootOresSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Materials/ore.rsi
+        state: plasma
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralOreSingle
+
+- type: entity
+  name: random ores
+  id: SpawnDungeonLootOresFull
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Full"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Materials/ore.rsi
+        state: plasma
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralOreFull
+
 #region Other
 - type: entity
   name: random restock box

@@ -1,3 +1,33 @@
+# region Clutter
+- type: entityTable
+  id: TableDungeonLootEngineeringClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyTools
+      weight: 3
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringParts
+      weight: 4
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothes
+      weight: 1
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyCircuitBoards
+      weight: 1
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
+      weight: 0.5
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyMachinesFabricators
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralOreSingle
+      weight: 1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralOreFull
+      weight: 0.1
+
 # region Tools
 - type: entityTable
   id: TableDungeonLootSupplyTools
@@ -69,19 +99,270 @@
     - id: ShuttleGunKineticFlatpack
       weight: 0.01
 
+# region Parts
+- type: entityTable
+  id: TableDungeonLootSupplyCircuitBoards
+  table: !type:GroupSelector
+    children:
+    # Computers
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: ComputerIFFCircuitboard
+    # Lathes
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: AutolatheMachineCircuitboard
+        weight: 0.05
+      - id: SalvageTechFabCircuitboardNF
+        weight: 0.3
+      #- id: CargoTechFabCircuitboardNF # Future is now. Unless it isn't.
+      #  weight: 0.3
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      #- id: OreProcessorCivilianCircuitboard # Future is now. Unless it isn't.
+      - id: OreProcessorMachineCircuitboard
+      - id: OreProcessorIndustrialMachineCircuitboard
+      - id: AmmoTechFabCircuitboard
+    # Machines
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: NFScrapProcessorCircuitboard
+      - id: MaterialReclaimerMachineCircuitboard
+      - id: TurboItemRechargerCircuitboard
+      - id: GyroscopeMachineCircuitboard
+      - id: MiniGravityGeneratorCircuitboard
+      - id: ThrusterMachineCircuitboard
+      - id: ShuttleGunKineticCircuitboard
+        weight: 0.01
+      - id: ShuttleGunSvalinnMachineGunCircuitboard
+        weight: 0.01
+
+# region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootSupplyClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothesBags
+      weight: 40
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothesHats
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothesJumpsuits
+      weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothesBoots
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothesBelts
+      weight: 15
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootSupplyEvas
+      - !type:NestedSelector
+        tableId: TableDungeonLootSupplyHardsuits
+
+- type: entityTable
+  id: TableDungeonLootSupplyClothesBags
+  table: !type:GroupSelector
+    children:
+    - id: ClothingBackpackDuffelCargo
+      weight: 3
+    - id: ClothingBackpackDuffelSalvage
+      weight: 3
+    - id: ClothingBackpackMessengerCargo
+      weight: 2
+    - id: ClothingBackpackMessengerSalvage
+      weight: 2
+    - id: ClothingBackpackCargo
+      weight: 2
+    - id: ClothingBackpackSalvage
+      weight: 2
+    - id: ClothingBackpackSatchelCargo
+      weight: 2
+    - id: ClothingBackpackSatchelSalvage
+      weight: 2
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchCargo
+      - id: NFPouchSalvage
+      - id: NFPouchUtility
+
+- type: entityTable
+  id: TableDungeonLootSupplyClothesBelts
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty belts to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: ClothingBeltUtility
+        weight: 0.7
+      - id: ClothingBeltUtilityFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: ClothingBeltSalvageWebbing
+        weight: 0.7
+      - id: ClothingBeltSalvageWebbingFilledNF
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: ConstructionBag
+        weight: 0.95
+      - id: ConstructionBagOfHolding
+        weight: 0.05
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: OreBag
+        weight: 0.95
+      - id: OreBagOfHolding
+        weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootSupplyClothesHats
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHatCargosoft
+      weight: 4
+    - id: ClothingHeadHatOrangesoft
+      weight: 4
+    - id: ClothingHeadHatQMsoft
+      weight: 0.5
+
+- type: entityTable
+  id: TableDungeonLootSupplyClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: ClothingUniformJumpsuitCargo
+      - id: ClothingUniformJumpsuitMilitaryCargo
+      - id: ClothingUniformJumpsuitSalvageSpecialist
+      - id: ClothingUniformJumpsuitMilitarySalvageSpecialist
+
+- type: entityTable
+  id: TableDungeonLootSupplyClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesBootsWork
+    - id: ClothingShoesBootsSalvage
+
+# region EVA
+- type: entityTable
+  id: TableDungeonLootSupplyEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitCargo
+      weight: 0.45
+    - id: ClothingBackpackDuffelEVABundleCargo
+      weight: 0.05
+    - id: ClothingOuterEVASuitSalvage
+      weight: 0.45
+    - id: ClothingBackpackDuffelEVABundleSalvage
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootSupplyHardsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitSpatio
+      weight: 0.25
+    - id: ClothingOuterHardsuitLuxury
+      weight: 0.45
+    - id: ClothingOuterHardsuitSalvage
+      weight: 0.25
+    - id: ClothingOuterHardsuitHostileEnvironment
+      weight: 0.025
+    - id: ClothingOuterHardsuitMaximPrototype
+      weight: 0.025
+
+#region Lockers
+- type: entityTable
+  id: TableDungeonLootSupplyLockers
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.45
+      children:
+      - id: LockerSalvageSpecialist
+        weight: 0.7
+      - id: LockerSalvageSpecialistFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.45
+      children:
+      - id: WardrobeCargo
+        weight: 0.7
+      - id: WardrobeCargoFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: LockerQuarterMaster
+        weight: 0.7
+      - id: LockerQuarterMasterFilled
+        weight: 0.3
+
+- type: entityTable
+  id: TableDungeonLootSupplySuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 55
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: SuitStorageEVACargo
+      - id: SuitStorageSalv
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: SuitStorageEVASalvage
+      - id: SuitStorageQuartermaster
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: SuitStorageNTSRA
+      - id: SuitStorageMining
+
 # region Machines
 - type: entityTable
   id: TableDungeonLootSupplyMachinesFabricators
   table: !type:GroupSelector
     children:
     - id: Autolathe
+      weight: 0.05
     - id: SalvageTechfabNF
+      weight: 0.3
+    #- id: CargoTechFabNF # Future is now. Unless it isn't.
+    #  weight: 0.2
     - id: MachineMaterialSilo
+      weight: 0.1
     - !type:GroupSelector
+      weight: 0.3
       children:
       #- id: OreProcessorCivilian # Future is now. Unless it isn't.
+      #  weight: 0.2
       - id: OreProcessor
+        weight: 0.5
       - id: OreProcessorIndustrial
+        weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralFrameMachine
       weight: 0.05
@@ -98,10 +379,38 @@
       weight: 0.1
     - id: VendingMachineFlatpackVend
       weight: 0.05
-    - !type:NestedSelector
-      tableId: TableDungeonLootGeneralFrameMachine
-      weight: 0.1
     - id: VendingMachineYouTool
       weight: 0.05
     - id: VendingMachineVendomat
       weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootSupplyFlatpacks
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.55
+      children:
+      - id: ScrapProcessorFlatpack
+      - id: MaterialReclaimerFlatpack
+      - id: SalvageTechfabNFFlatpack
+      #- id: CargoTechfabNFFlatpack # Future is now. Unless it isn't.
+    - id: TelecomServerFlatpack
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      #- id: OreProcessorCivilianFlatpack # Future is now. Unless it isn't.
+      #  weight: 0.2
+      - id: OreProcessorFlatpack
+        weight: 0.5
+      - id: OreProcessorIndustrialFlatpack
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: WeaponCapacitorRechargerFlatpack
+      - id: ShuttleGunKineticFlatpack
+      - id: AmmoTechFabFlatpack

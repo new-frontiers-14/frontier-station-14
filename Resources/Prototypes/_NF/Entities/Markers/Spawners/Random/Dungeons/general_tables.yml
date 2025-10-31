@@ -109,7 +109,7 @@
     - id: ComputerBroken
       weight: 70
 
-#region Materials
+# region Materials
 - type: entityTable
   id: TableDungeonLootGeneralMaterialBasicSingle
   table: !type:GroupSelector
@@ -156,7 +156,51 @@
       - id: MaterialBones1
       - id: MaterialDiamond1
 
-#region Other
+- type: entityTable
+  id: TableDungeonLootGeneralOreSingle
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: GoldOre1
+    - id: SteelOre1
+    - id: PlasmaOre1
+    - id: SilverOre1
+    - id: SpaceQuartz1
+    - id: UraniumOre1
+    - id: Coal1
+    - id: BananiumOre1
+    - id: ScrapOre1
+    - id: ScrapOreTech1
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: DiamondOre1
+      - id: BluespaceOre1
+
+- type: entityTable
+  id: TableDungeonLootGeneralOreFull
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: GoldOre
+    - id: SteelOre
+    - id: PlasmaOre
+    - id: SilverOre
+    - id: SpaceQuartz
+    - id: UraniumOre
+    - id: Coal
+    - id: BananiumOre
+    - id: ScrapOre
+    - id: ScrapOreTech
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: DiamondOre
+      - id: BluespaceOre
+
+# region Other
 - type: entityTable
   id: TableDungeonLootGeneralRestocks
   table: !type:GroupSelector
