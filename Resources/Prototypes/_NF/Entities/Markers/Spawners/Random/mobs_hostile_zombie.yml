@@ -151,3 +151,58 @@
     table: !type:NestedSelector
       tableId: TableMobZombiePile
       prob: 1.00
+
+# region vgroid spawners
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieSuit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieSuit
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieJumpsuit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieJumpsuit
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieRadiation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieSuitRadiation
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieClown
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieClown
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieOdysseus
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieOdysseus
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombiePile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFZombiePile

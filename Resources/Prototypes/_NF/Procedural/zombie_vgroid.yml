@@ -204,8 +204,8 @@
       tableId: SalvageEquipmentSpawnerValuable
     perDungeon: true
   - !type:MobsDunGen
-    minCount: 8
-    maxCount: 15
+    minCount: 10
+    maxCount: 18
     contents: SpawnMobZombieRandomNoBossTable
   - !type:MobsDunGen
     minCount: 1
@@ -228,35 +228,45 @@
   id: SpawnMobZombieRandomNoBossTable
   table: !type:GroupSelector
     children:
-    - id: NFSpawnMobZombie
+    - id: NFVGRoidSpawnZombieSuit
       amount: 1
+      weight: 0.4
+    - id: NFVGRoidSpawnZombieJumpsuit
+      amount: 1
+      weight: 0.25
+    - id: NFVGRoidSpawnZombieRadiation
+      amount: 1
+      weight: 0.16
+    - id: NFVGRoidSpawnZombieClown
+      amount: 1
+      weight: 0.1
 
 - type: entityTable
   id: SpawnMobZombiePileTable
   table: !type:GroupSelector
     children:
-    - id: NFSpawnZombiePile
+    - id: NFVGRoidSpawnZombiePile
       amount: 1
 
 - type: entityTable
   id: SpawnMobZombieRadiationTable
   table: !type:GroupSelector
     children:
-    - id: NFSpawnZombieRadiation
+    - id: NFVGRoidSpawnZombieRadiation
       amount: 1
 
 - type: entityTable
   id: SpawnMobZombieClownTable
   table: !type:GroupSelector
     children:
-    - id: NFSpawnZombieClown
+    - id: NFVGRoidSpawnZombieClown
       amount: 1
 
 - type: entityTable
   id: SpawnMobZombieOdysseusTable
   table: !type:GroupSelector
     children:
-    - id: NFSpawnZombieOdysseus
+    - id: NFVGRoidSpawnZombieOdysseus
       amount: 1
 
 #- type: dungeonConfig
