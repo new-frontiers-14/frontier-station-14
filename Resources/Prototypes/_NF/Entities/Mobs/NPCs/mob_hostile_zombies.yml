@@ -84,7 +84,7 @@
   - type: AutoWakeUp
   - type: StinkyTrait
 
-# region variations
+# region common
 - type: entity
   parent: NFMobZombieBase
   id: NFMobZombieSuit
@@ -104,6 +104,24 @@
 
 - type: entity
   parent: NFMobZombieBase
+  id: NFMobZombieJumpsuit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-engineer
+      map: ["zombieRandomSuit"]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-engineer: ""
+        suit-torn-pilot: ""
+        suit-torn-science: ""
+
+# region radioactive
+- type: entity
+  parent: NFMobZombieBase
   id: NFMobZombieSuitRadiation
   categories: [ HideSpawnMenu ]
   components:
@@ -120,23 +138,136 @@
     color: LightGreen
     castShadows: false
 
+# region exploding
 - type: entity
   parent: NFMobZombieBase
-  id: NFMobZombieJumpsuit
+  id: NFMobZombieExploding
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
     - state: zombie
-    - state: suit-torn-engineer
-      map: ["zombieRandomSuit"]
-  - type: RandomSprite
-    available:
-    - zombieRandomSuit:
-        suit-torn-engineer: ""
-        suit-torn-pilot: ""
-        suit-torn-science: ""
+    - state: suit-torn-cargo
+  - type: SingularityDistortion
+    intensity: 500
+    falloffPower: 5
+  - type: RepulseAttract
+    speed: -15 #Anything above this pushes things too far away from the Wizard
+    range: 5
+    whitelist:
+      components:
+      - MobMover
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          NFZombieExplosion:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
+- type: entity
+  id: NFZombieExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 9
+    intensitySlope: 2.5
+    maxIntensity: 2
+    canCreateVacuum: false
+
+# region flaming
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieSuitFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-fire
+    - sprite: Mobs/Effects/onfire.rsi
+      state: Generic_mob_burning
+      shader: unshaded
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 0
+  - type: IgniteOnMeleeHit
+    fireStacks: 1
+  - type: IgnitionSource
+    temperature: 800
+    ignited: true
+  - type: PointLight
+    color: "#E25822"
+    radius: 2
+    energy: 1
+    softness: 1
+    castShadows: false
+
+# region cold
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieSuitAtmos
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+      color: "#00eeff"
+    - state: suit-torn-atmos-winter
+  - type: MeleeWeapon
+    damage:
+      types:
+        Cold: 4
+        Slash: 6
+        Structural: 45
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Fresium
+        Quantity: 1
+  - type: PointLight
+    radius: 2
+    energy: 1
+    softness: 0.5
+    color: cyan
+    castShadows: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 15
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemCold
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/Toys/sitcom_laugh.ogg
+
+# region clown
 - type: entity
   parent: [ MobHumanoidHostileAIComplex, NFMobZombieBase ]
   id: NFMobZombieClown

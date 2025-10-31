@@ -3,35 +3,60 @@
   id: TableZombieRandom
   table: !type:GroupSelector
     children:
-    - id: NFMobZombieSuit
-      weight: 49
-    - id: NFMobZombieJumpsuit
-      weight: 25
-    - id: NFMobZombieSuitRadiation
-      weight: 15.5
-    - id: NFMobZombieClown
-      weight: 10
-    - id: NFMobZombieOdysseus
-      weight: 0.5
+    - !type:NestedSelector
+      tableId: TableZombieRandomCommon
+      weight: 0.7
+    - !type:NestedSelector
+      tableId: TableZombieRandomSpecial
+      weight: 0.3
 
 - type: entityTable
-  id: TableZombieRandomNoBoss
+  id: TableZombieRandomCommon
   table: !type:GroupSelector
     children:
     - id: NFMobZombieSuit
-      weight: 49
+      weight: 0.6
     - id: NFMobZombieJumpsuit
-      weight: 25
+      weight: 0.4
+
+- type: entityTable
+  id: TableZombieRandomSpecial
+  table: !type:GroupSelector
+    children:
     - id: NFMobZombieSuitRadiation
-      weight: 16
+      weight: 0.3
     - id: NFMobZombieClown
-      weight: 10
+      weight: 0.3
+    - id: NFMobZombieExploding
+      weight: 0.15
+    - id: NFMobZombieSuitFire
+      weight: 0.125
+    - id: NFMobZombieSuitAtmos
+      weight: 0.125
 
 - type: entityTable
   id: TableMobZombieRadiation
   table: !type:GroupSelector
     children:
     - id: NFMobZombieSuitRadiation
+
+- type: entityTable
+  id: TableMobZombieExploding
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieExploding
+
+- type: entityTable
+  id: TableMobZombieSuitFire
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieSuitFire
+
+- type: entityTable
+  id: TableMobZombieSuitAtmos
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieSuitAtmos
 
 - type: entityTable
   id: TableMobZombieClown
@@ -55,7 +80,51 @@
 - type: entity
   parent: MarkerBase
   id: NFSpawnMobZombie
-  name: zombie spawner
+  name: common zombie spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-radiation
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableZombieRandomCommon
+      prob: 1.00
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnMobZombieSpecial
+  name: special zombie spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-fire
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableZombieRandomSpecial
+      prob: 1.00
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnMobZombieRandom
+  name: random zombie spawner
   suffix: AI, Hostile, No Infection
   components:
   - type: Sprite
@@ -67,16 +136,16 @@
         state: questionmark
         color: red
   - type: EntityTableSpawner
-    offset: 0.1
+    offset: 0.0
     table: !type:NestedSelector
-      tableId: TableZombieRandomNoBoss
+      tableId: TableZombieRandom
       prob: 1.00
 
 # region conditional spawners
 - type: entity
   parent: MarkerBase
   id: NFSpawnZombieRadiation
-  name: zombie radiation spawner
+  name: radioactive zombie spawner
   suffix: AI, Hostile, No Infection
   components:
   - type: Sprite
@@ -84,11 +153,10 @@
       - state: red
       - sprite: _NF/Mobs/Zombies/zombie_human.rsi
         state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-radiation
   - type: EntityTableSpawner
-    offset: 0.1
+    offset: 0.0
     table: !type:NestedSelector
       tableId: TableMobZombieRadiation
       prob: 1.00
@@ -104,13 +172,69 @@
       - state: red
       - sprite: _NF/Mobs/Zombies/zombie_human.rsi
         state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-clown
   - type: EntityTableSpawner
-    offset: 0.1
+    offset: 0.0
     table: !type:NestedSelector
       tableId: TableMobZombieClown
+      prob: 1.00
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieExploding
+  name: exploding zombie spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-cargo
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableMobZombieExploding
+      prob: 1.00
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieFire
+  name: flaming zombie spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-fire
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableMobZombieSuitFire
+      prob: 1.00
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieAtmos
+  name: cold zombie spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: suit-torn-atmos-winter
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableMobZombieSuitAtmos
       prob: 1.00
 
 - type: entity
@@ -124,11 +248,10 @@
       - state: red
       - sprite: _NF/Mobs/Zombies/zombie_human.rsi
         state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: odysseus
   - type: EntityTableSpawner
-    offset: 0.1
+    offset: 0.0
     table: !type:NestedSelector
       tableId: TableMobZombieOdysseus
       prob: 1.00
@@ -144,9 +267,6 @@
       - state: red
       - sprite: _NF/Mobs/Zombies/zombie_human.rsi
         state: spawner
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: TableMobZombiePile
@@ -188,6 +308,33 @@
   - type: ConditionalSpawner
     prototypes:
     - NFMobZombieClown
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieExploding
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieExploding
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieSuitFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieSuitFire
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieSuitAtmos
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieSuitAtmos
 
 - type: entity
   parent: MarkerBase

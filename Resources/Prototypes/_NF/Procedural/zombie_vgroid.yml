@@ -14,8 +14,6 @@
       proto: NFVGRoidBlobCave
     - !type:PrototypeDunGen
       proto: NFVGRoidExteriorCaveVirologyLabZombies
-#    - !type:PrototypeDunGen
-#      proto: NFVGRoidSmallerCave
     - !type:PrototypeDunGen
       proto: NFVGRoidSmallPathsCave
     - !type:EntityTableDunGen
@@ -27,9 +25,6 @@
       biomeTemplate: NFVGRoidCaves
       tileMask:
       - FloorCaveDrought
-    # Fill
-    # - !type:PrototypeDunGen
-      # proto: NFVGRoidFillCave
     # "WarpPoint"
     - !type:OreDunGen
       tileMask:
@@ -131,14 +126,6 @@
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
-    # Decoration
-    # - !type:OreDunGen
-      # tileMask:
-      # - FloorCaveDrought
-      # entity: FloraRockSolid
-      # count: 20
-      # minGroupSize: 1
-      # maxGroupSize: 1
     # Mobs
     - !type:OreDunGen
       tileMask:
@@ -206,26 +193,22 @@
   - !type:MobsDunGen
     minCount: 10
     maxCount: 18
-    contents: SpawnMobZombieRandomNoBossTable
+    contents: SpawnMobZombieRandomCommon
   - !type:MobsDunGen
-    minCount: 1
+    minCount: 2
     maxCount: 2
-    contents: SpawnMobZombiePileTable
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 1
-    contents: SpawnMobZombieRadiationTable # Special
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 1
-    contents: SpawnMobZombieClownTable # Special
+    contents: SpawnMobZombieRandomSpecial # Special
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
     contents: SpawnMobZombieOdysseusTable # Boss
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobZombiePileTable # Infinite Spawner (Timed)
 
 - type: entityTable
-  id: SpawnMobZombieRandomNoBossTable
+  id: SpawnMobZombieRandomCommon
   table: !type:GroupSelector
     children:
     - id: NFVGRoidSpawnZombieSuit
@@ -238,6 +221,26 @@
       amount: 1
       weight: 0.16
     - id: NFVGRoidSpawnZombieClown
+      amount: 1
+      weight: 0.1
+
+- type: entityTable
+  id: SpawnMobZombieRandomSpecial
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieRadiation
+      amount: 1
+      weight: 0.3
+    - id: NFVGRoidSpawnZombieClown
+      amount: 1
+      weight: 0.3
+    - id: NFVGRoidSpawnZombieExploding
+      amount: 1
+      weight: 0.15
+    - id: NFVGRoidSpawnZombieSuitFire
+      amount: 1
+      weight: 0.15
+    - id: NFVGRoidSpawnZombieSuitAtmos
       amount: 1
       weight: 0.1
 
@@ -268,9 +271,3 @@
     children:
     - id: NFVGRoidSpawnZombieOdysseus
       amount: 1
-
-#- type: dungeonConfig
-#  id: NFVGRoidInteriorDungeonsCave
-#  minCount: 3
-#  maxCount: 5
-#  # Just randomly spawn these in bounds, doesn't really matter if they go out.
