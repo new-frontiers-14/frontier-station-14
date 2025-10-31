@@ -1,0 +1,107 @@
+# region Tools
+- type: entityTable
+  id: TableDungeonLootSupplyTools
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyMining
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyCrushers
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyPka
+      weight: 14
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsCommon
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralHandheldDisplays
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
+      weight: 10
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralLighters
+        weight: 20
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralFlashlights
+        weight: 60
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralFlares
+        weight: 20
+
+- type: entityTable
+  id: TableDungeonLootSupplyMining
+  table: !type:GroupSelector
+    children:
+    - id: Pickaxe
+      weight: 0.2
+    - id: MiningDrill
+      weight: 0.75
+    - id: MiningDrillDiamond
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootSupplyCrushers
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCrusherDagger
+      weight: 0.4
+    - id: WeaponCrusher
+      weight: 0.35
+    - id: WeaponCrusherGlaive
+      weight: 0.25
+
+- type: entityTable
+  id: TableDungeonLootSupplyPka
+  table: !type:GroupSelector
+    children:
+    - id: NFWeaponPkaSawn
+      weight: 0.24
+    - id: NFWeaponPka
+      weight: 0.35
+    - id: NFWeaponPkaCannon
+      weight: 0.4
+    - id: ShuttleGunKineticFlatpack
+      weight: 0.01
+
+# region Machines
+- type: entityTable
+  id: TableDungeonLootSupplyMachinesFabricators
+  table: !type:GroupSelector
+    children:
+    - id: Autolathe
+    - id: SalvageTechfabNF
+    - id: MachineMaterialSilo
+    - !type:GroupSelector
+      children:
+      #- id: OreProcessorCivilian # Future is now. Unless it isn't.
+      - id: OreProcessor
+      - id: OreProcessorIndustrial
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootSupplyMachinesVending
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachineSalvage
+      weight: 0.4
+    - id: VendingMachineWinter
+      weight: 0.2
+    - id: VendingMachineCargoDrobe
+      weight: 0.1
+    - id: VendingMachineFlatpackVend
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.1
+    - id: VendingMachineYouTool
+      weight: 0.05
+    - id: VendingMachineVendomat
+      weight: 0.1

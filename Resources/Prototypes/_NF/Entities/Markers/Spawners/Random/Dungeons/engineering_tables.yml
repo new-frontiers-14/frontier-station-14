@@ -378,6 +378,7 @@
     - id: ThrusterMachineCircuitboard
     - id: SmallThrusterMachineCircuitboard
     - id: StationMapCircuitboard
+    - id: MaterialSiloMachineCircuitboard
     # Computers
     - !type:GroupSelector
       children:
@@ -717,6 +718,9 @@
         weight: 80
       - id: ProtolatheHyperConvection
         weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 5
 
 - type: entityTable
   id: TableDungeonLootEngineeringMachinesVending
@@ -733,6 +737,9 @@
       weight: 0.2
     - id: VendingMachineRobotics
       weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.03
 
 - type: entityTable
   id: TableDungeonLootEngineeringFlatpacks
@@ -750,6 +757,7 @@
     - id: BorgChargerFlatpack
     - id: MachineFlatpackerFlatpack
     - id: MachineFlatpackerFlatpack
+    - id: MaterialSiloFlatpack
     - !type:GroupSelector # TODO: add DK flatpacks
       children:
       - id: PortableGeneratorJrPacmanFlatpack
