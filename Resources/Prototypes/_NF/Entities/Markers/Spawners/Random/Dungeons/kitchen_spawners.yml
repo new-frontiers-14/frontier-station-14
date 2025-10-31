@@ -1,0 +1,87 @@
+
+# region Tools
+- type: entity
+  name: random cutlery
+  id: SpawnDungeonLootCutlery
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/bowl.rsi
+        state: bowl
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceTools
+
+- type: entity
+  name: random mug
+  id: SpawnDungeonLootMugs
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Drinks/mug_moebius.rsi
+        state: icon-0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceMugsFlasks
+
+# region Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesKitchen
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Head/Hats/chefhat.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceClothes
+
+# region Other
+- type: entity
+  name: random food
+  id: SpawnDungeonLootFood
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Spoiled"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/burger.rsi
+        state: plain
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceFoodSpoiled
