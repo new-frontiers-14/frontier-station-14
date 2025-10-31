@@ -110,8 +110,8 @@
         weight: 0.6
     # Meds
     - !type:GroupSelector
-      amount: !type:RangeNumberSelector
-        range: 0, 1
+      rolls: !type:RangeNumberSelector
+        range: -1, 1
       children:
       - id: PillCharcoal
       - id: PillHyronalin
