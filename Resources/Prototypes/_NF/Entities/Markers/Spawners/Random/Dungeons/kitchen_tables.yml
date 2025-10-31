@@ -1,6 +1,22 @@
-#region Clutter
+# region Clutter
+- type: entityTable
+  id: TableDungeonLootServiceClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceTools
+      weight: 3
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothes
+      weight: 1
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceMachinesFlatpacks
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceFoodSpoiled
+      weight: 2
 
-#region Tools
+# region Tools
 - type: entityTable
   id: TableDungeonLootServiceTools
   table: !type:GroupSelector
@@ -89,7 +105,7 @@
     - id: DrinkShinyFlask
     - id: DrinkVacuumFlask
 
-#region Clothes
+# region Clothes
 - type: entityTable
   id: TableDungeonLootServiceClothes
   table: !type:GroupSelector
@@ -199,6 +215,107 @@
     - id: ClothingOuterVest
       weight: 0.05
 
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootServiceLockers
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: FoodCartHot
+      - id: FoodCartCold
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: LockerFreezerBase
+        weight: 0.7
+      - id: NFClosetChefFilled
+        weight: 0.15
+      - id: LockerFreezerSushi
+        weight: 0.15
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: CrateFreezer
+        weight: 0.7
+      - id: CrateMaterialBiomass50
+        weight: 0.15
+      - id: CrateMaterialBiomass
+        weight: 0.15
+
+#region Crates
+- type: entityTable
+  id: TableDungeonLootServiceCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesEmpty
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesFilled
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesRestockService
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesMaterial
+      weight: 0.4
+
+- type: entityTable
+  id: TableDungeonLootServiceCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CrateTrashCartJani
+    - id: CrateTrashCart
+    - id: CrateHydroponics
+    - id: CrateHydroSecure
+    - id: CratePlastic
+    - id: CratePlasticBiodegradable
+
+- type: entityTable
+  id: TableDungeonLootServiceCratesFilled
+  table: !type:GroupSelector
+    children:
+    - id: CrateServiceReplacementLights
+    - id: CrateServiceReplacementColoredLights
+    - id: CrateFunArtSupplies
+    - id: CrateServiceJanitorialSupplies
+    - id: JanitorialTrolley
+    - id: FoodCartHot
+    - id: FoodCartCold
+    - id: CrateFoodDinnerware
+    - id: CrateServiceCustomSmokable
+    - id: CrateServiceSmokeables
+    - id: CrateMousetrapBoxes
+    - id: CrateFoodBarSupply
+    - id: CrateServiceBoozeDispenser
+    - id: CrateServiceKitCleanades
+    # Edible food
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: CrateFoodCooking
+    # Full kitchen kit
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: CrateServiceKitKitchen
+      - id: CrateServiceKitHydroponics
+
+- type: entityTable
+  id: TableDungeonLootServiceCratesRestockService
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockBoozeFilled
+    - id: CrateVendingMachineRestockChefvendFilled
+    - id: CrateVendingMachineRestockCondimentStationFilled
+    - id: CrateVendingMachineRestockDinnerwareFilled
+    - id: CrateVendingMachineRestockSmokesFilled
+    - id: CrateVendingMachineRestockHappyHonkFilled
+
 # region Machines
 - type: entityTable # Tabletop machines
   id: TableDungeonLootServiceMachines
@@ -221,18 +338,22 @@
     # Common
     - id: UniformPrinterFlatpack
     - id: ServiceTechFabFlatpack
-    - id: KitchenElectricGrillFlatpack
-    - id: KitchenMicrowaveFlatpack
-    - id: KitchenReagentGrinderFlatpack
     - id: MaterialReclaimerFlatpack
     - id: CutterMachineFlatpack
     - id: DawInstrumentFlatpack
     - id: MinimoogInstrumentFlatpack
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+    - id: KitchenElectricGrillFlatpack
+    - id: KitchenMicrowaveFlatpack
+    - id: KitchenReagentGrinderFlatpack
     - id: JukeboxFlatpack
     - id: ComputerWithdrawBankATMFlatpack
     # Rare
     - !type:GroupSelector
-      weight: 0.1
+      weight: 0.2
       children:
     - id: VendingMachineBoozeFlatpack
     - id: VendingMachineCigsFlatpack
