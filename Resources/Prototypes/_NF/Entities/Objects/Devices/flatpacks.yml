@@ -607,6 +607,20 @@
   - type: StaticPrice
     price: 600
 
+#region Pirate
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PirateTechFabFlatpack
+  name: pirate techfab flatpack
+  description: A flatpack used for constructing a pirate techfab.
+  components:
+  - type: Flatpack
+    entity: PirateTechFab
+  - type: Sprite
+    layers:
+    - state: pirate_lathe
+
 #region Consoles
 - type: entity
   parent: BaseNFFlatpack
