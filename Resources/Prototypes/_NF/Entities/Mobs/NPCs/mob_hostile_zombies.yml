@@ -51,10 +51,8 @@
     solution: melee
   - type: Butcherable
     spawned:
-    - id: SalvageSpawnerTreasureValuable # TODO: replace with curated loot
+    - id: NFSpawnZombieLoot
       amount: 1
-    - id: FoodMeatRotten
-      amount: 3
   - type: Bloodstream
     bloodReagent: ZombieBlood
     bloodMaxVolume: 250
@@ -84,7 +82,57 @@
   - type: AutoWakeUp
   - type: StinkyTrait
 
-# region common
+# region loot
+- type: entityTable
+  id: TableZombieLoot
+  table: !type:AllSelector
+    children:
+    - id: FoodMeatRotten
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    # Cash
+    - !type:GroupSelector
+      children:
+      - id: SpaceCash100
+        weight: 0.1
+      - id: SpaceCash500
+        weight: 0.2
+      - id: SpaceCash1000
+        weight: 0.4
+      - id: SpaceCash2500
+        weight: 0.3
+    # Things
+    - !type:GroupSelector
+      children:
+      - id: TreasureSampleTube
+        weight: 0.4
+      - id: ScrapTube
+        weight: 0.6
+    # Meds
+    - !type:GroupSelector
+      amount: !type:RangeNumberSelector
+        range: 0, 1
+      children:
+      - id: PillCharcoal
+      - id: PillHyronalin
+      - id: PillTricordrazine
+      - id: Gauze1
+      - id: Brutepack1
+      - id: ChemistryBottleMysteryLiquid
+        weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: NFSpawnZombieLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.15
+    table: !type:NestedSelector
+      tableId: TableZombieLoot
+      prob: 1.00
+
+# region common zombie
 - type: entity
   parent: NFMobZombieBase
   id: NFMobZombieSuit
@@ -279,12 +327,10 @@
     - state: suit-torn-clown
   - type: Butcherable
     spawned:
-    - id: SalvageSpawnerTreasureValuable # TODO: replace with curated loot
+    - id: NFSpawnZombieLoot
       amount: 1
     - id: ClothingShoesClownModKetchup
       amount: 1
-    - id: FoodMeatRotten
-      amount: 3
   - type: FootstepModifier
     footstepSoundCollection:
       collection: squeezeBottleUseSounds
@@ -432,7 +478,7 @@
   components:
   - type: TimedSpawner
     prototypes:
-    - NFSpawnMobZombie
+    - NFSpawnMobZombieRandom
     chance: 1
     intervalSeconds: 180
     minimumEntitiesSpawned: 2
