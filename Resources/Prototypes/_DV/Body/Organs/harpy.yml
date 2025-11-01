@@ -10,14 +10,14 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    updateInterval: 2.0
+    #updateInterval: 2.0 # Frontier, gaspaway
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
     metabolizerTypes: [ Human ]
     groups:
     - id: Gas
-      rateModifier: 200.0
+      rateModifier: 100.0 # Frontier, no more gasping
   - type: SolutionContainerManager
     solutions:
       organ:
