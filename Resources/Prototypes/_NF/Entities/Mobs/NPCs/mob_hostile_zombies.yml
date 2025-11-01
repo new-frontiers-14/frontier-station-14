@@ -1,11 +1,27 @@
 # region base
 - type: entity
+  id: MobPassiveRegenZombie
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+    damageCap: 9999
+    damage:
+      groups:
+        Brute: -0.4
+        Burn: -0.2
+        Airloss: -1
+
+- type: entity
   abstract: true
   parent:
   - MobMovementSpeedModifierEVAMelee
   - MobStaminaBoss
   - MobNonHumanHostileBase
-  - MobPassiveRegenStrong
+  - MobPassiveRegenZombie
   - MobHumanoidHostileAISimpleMelee
   id: NFMobZombieBase
   name: zombie
@@ -25,30 +41,31 @@
   - type: Damageable
     damageModifierSet: Zombie
   - type: MeleeWeapon
-    attackRate: 0.9
+    attackRate: 0.8
     altDisarm: false
     angle: 0
     animation: WeaponArcBite
     damage:
       types:
-        Blunt: 2
-        Slash: 8
+        Blunt: 1
+        Slash: 3
+        Poison: 6
         Structural: 45
     soundHit:
       path: /Audio/Effects/bite.ogg
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 10
-  - type: SolutionRegeneration
-    solution: melee
-    generated:
-      reagents:
-      - ReagentId: Toxin
-        Quantity: 0.5
-  - type: MeleeChemicalInjector
-    transferAmount: 0.5
-    solution: melee
+#  - type: SolutionContainerManager
+#    solutions:
+#      melee:
+#        maxVol: 10
+#  - type: SolutionRegeneration
+#    solution: melee
+#    generated:
+#      reagents:
+#      - ReagentId: Toxin
+#        Quantity: 0.5
+#  - type: MeleeChemicalInjector
+#    transferAmount: 0.5
+#    solution: melee
   - type: Butcherable
     spawned:
     - id: NFSpawnZombieLoot
@@ -81,6 +98,12 @@
     nextAdvertisementTime: 10
   - type: AutoWakeUp
   - type: StinkyTrait
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Emoting
 
 # region loot
 - type: entityTable
@@ -96,18 +119,20 @@
       - id: SpaceCash100
         weight: 0.1
       - id: SpaceCash500
-        weight: 0.2
+        weight: 0.15
       - id: SpaceCash1000
-        weight: 0.4
+        weight: 0.25
       - id: SpaceCash2500
-        weight: 0.3
+        weight: 0.5
     # Things
-    - !type:GroupSelector
+    - !type:AllSelector
       children:
       - id: TreasureSampleTube
-        weight: 0.4
+        amount: !type:RangeNumberSelector
+          range: 1, 3
       - id: ScrapTube
-        weight: 0.6
+      - !type:NestedSelector
+        tableId: SalvageTreasureUncommon
     # Meds
     - !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -418,7 +443,7 @@
     prototypes:
     - NFSpawnZombiePile
     chance: 1
-    intervalSeconds: 180
+    intervalSeconds: 240 # 4 min
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
   - type: MobThresholds
@@ -480,8 +505,8 @@
     prototypes:
     - NFSpawnMobZombieRandom
     chance: 1
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 2
+    intervalSeconds: 300 # 5 min
+    minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 3
   - type: Sprite
     sprite: _NF/Mobs/Zombies/zombie_human.rsi
