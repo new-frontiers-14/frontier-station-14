@@ -20,11 +20,17 @@ public sealed partial class AtmosphereSystem
         _consoleHost.RegisterCommand("fixgridatmos",
             "Makes every tile on a grid have a roundstart gas mix.",
             "fixgridatmos <grid Ids>", FixGridAtmosCommand, FixGridAtmosCommandCompletions);
+
+        // Frontier: Toggle atmos per map
+        _consoleHost.RegisterCommand("setmapatmosenabled",
+        "Sets whether atmos devices should work on a map",
+        "setmapatmosenabled <map id> <enabled>", SetMapAtmosEnabledCommand);
     }
 
     private void ShutdownCommands()
     {
         _consoleHost.UnregisterCommand("fixgridatmos");
+        _consoleHost.UnregisterCommand("setmapatmosenabled"); // Frontier
     }
 
     [AdminCommand(AdminFlags.Debug)]
@@ -195,4 +201,34 @@ public sealed partial class AtmosphereSystem
 
         return CompletionResult.FromOptions(options);
     }
+
+    // Frontier: Toggle atmos per map
+    [AdminCommand(AdminFlags.Debug)]
+    private void SetMapAtmosEnabledCommand(IConsoleShell shell, string argstr, string[] args)
+    {
+        if (args.Length != 2)
+        {
+            shell.WriteError("Not enough arguments.");
+            return;
+        }
+
+        if (!bool.TryParse(args[1], out var enable) || !int.TryParse(args[0], out var intMapId))
+        {
+            shell.WriteError("Invalid arguments.");
+            return;
+        }
+
+        MapId mapId;
+        mapId = new MapId(intMapId);
+
+        if (enable)
+        {
+            _atmosEnabledMaps.Add(mapId);
+        }
+        else
+        {
+            _atmosEnabledMaps.Remove(mapId);
+        }
+    }
+    // End Frontier: Toggle atmos per map
 }
