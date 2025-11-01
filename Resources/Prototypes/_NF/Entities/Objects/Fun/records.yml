@@ -1,0 +1,55 @@
+- type: entity
+  parent: BaseItem
+  id: BaseRecord
+  name: vinyl record
+  description: For storing analogue data, everyone knows that circles are unparalleled.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/records.rsi
+    state: baserecord
+    scale: 0.5, 0.5
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: BaseRecord
+  id: WesternRecord
+  name: dusty record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like gunpowder and horses.
+  components:
+  - type: JukeboxContainer
+    tracks:
+    - meanwhilebackatthesaloon
+    - murderonthebayou
+
+- type: entity
+  parent: BaseRecord
+  id: PirateRecord
+  name: salty record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like a cool sea breeze.
+  components:
+  - type: JukeboxContainer
+    tracks:
+    - dreadpirateroberts
+    - threesheetstothewind
+
+- type: entity
+  parent: BaseRecord
+  id: JazzRecord
+  name: vintage record
+  components:
+  - type: JukeboxContainer
+    tracks:
+    - bringinthehorns
+    - caffeinated
+
+- type: entity
+  parent: BaseRecord
+  id: PunkRecord
+  name: futuristic record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like illegal stimulants.
+  components:
+  - type: JukeboxContainer
+    tracks:
+    - skubstep
