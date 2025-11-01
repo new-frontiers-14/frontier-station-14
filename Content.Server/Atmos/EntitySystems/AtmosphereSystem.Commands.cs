@@ -223,7 +223,8 @@ public sealed partial class AtmosphereSystem
 
         if (enable)
         {
-            _atmosEnabledMaps.Add(mapId);
+            if (!_atmosEnabledMaps.Contains(mapId))
+                _atmosEnabledMaps.Add(mapId);
         }
         else
         {

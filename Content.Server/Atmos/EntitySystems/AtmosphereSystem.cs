@@ -51,7 +51,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private string[] _burntDecals = [];
 
-    private HashSet<MapId> _atmosEnabledMaps = new(); // Frontier
+    private List<MapId> _atmosEnabledMaps = new(); // Frontier
 
     public override void Initialize()
     {
