@@ -119,10 +119,12 @@
       - id: SpaceCash100
         weight: 0.05
       - id: SpaceCash500
-        amount: 3
+        rolls: !type:ConstantNumberSelector
+          value: 3
         weight: 0.2
       - id: SpaceCash1000
-        amount: 2
+        rolls: !type:ConstantNumberSelector
+          value: 2
         weight: 0.25
       - id: SpaceCash2500
         weight: 0.5
