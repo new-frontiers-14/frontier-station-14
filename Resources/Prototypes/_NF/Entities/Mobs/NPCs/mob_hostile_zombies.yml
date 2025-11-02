@@ -112,15 +112,17 @@
     children:
     - id: FoodMeatRotten
       amount: !type:RangeNumberSelector
-        range: 1, 3
+        range: 0, 2
     # Cash
     - !type:GroupSelector
       children:
       - id: SpaceCash100
-        weight: 0.1
+        weight: 0.05
       - id: SpaceCash500
-        weight: 0.15
+        amount: 3
+        weight: 0.2
       - id: SpaceCash1000
+        amount: 2
         weight: 0.25
       - id: SpaceCash2500
         weight: 0.5
@@ -129,10 +131,14 @@
       children:
       - id: TreasureSampleTube
         amount: !type:RangeNumberSelector
-          range: 1, 3
+          range: 0, 2
       - id: ScrapTube
+        amount: !type:RangeNumberSelector
+          range: -1, 1
       - !type:NestedSelector
         tableId: SalvageTreasureUncommon
+        amount: !type:RangeNumberSelector
+          range: 1, 2
     # Meds
     - !type:GroupSelector
       rolls: !type:RangeNumberSelector
