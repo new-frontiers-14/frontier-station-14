@@ -51,44 +51,6 @@
 
 # Tools
 - type: entity
-  name: random medkit
-  id: SpawnDungeonLootKitsFirstAid
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi # Frontier: _NF prefix
-        state: firstaid
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - MedkitFilled
-    - MedkitFilled
-    - MedkitFilled
-    - Medkit
-    - MedkitBruteFilled
-    - MedkitBrute
-    - MedkitBurnFilled
-    - MedkitBurn
-    - MedkitToxinFilled
-    - MedkitToxin
-    - MedkitRadiationFilled
-    - MedkitRadiation
-    chance: 0.75
-    offset: 0.0
-    rarePrototypes:
-    - MedkitAdvancedFilled
-    - MedkitAdvanced
-    - MedkitCombatFilled
-    - MedkitCombat
-    rareChance: 0.01
-
-- type: entity
   name: random tool
   id: SpawnDungeonLootToolsSurgeryCrude
   parent: MarkerBasePlaceFree

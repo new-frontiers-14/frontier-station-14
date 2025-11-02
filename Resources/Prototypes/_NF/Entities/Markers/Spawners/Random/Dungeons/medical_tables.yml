@@ -1,0 +1,67 @@
+# region Clutter
+
+# region Tools
+- type: entityTable
+  id: TableDungeonLootMedicalFirstAidKits
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - !type:GroupSelector
+        children:
+        - id: Medkit
+          weight: 0.4
+        - id: MedkitFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitBrute
+          weight: 0.4
+        - id: MedkitBruteFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitBurn
+          weight: 0.4
+        - id: MedkitBurnFilled
+          weight: 0.6
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:GroupSelector
+        children:
+        - id: MedkitToxin
+          weight: 0.4
+        - id: MedkitToxinFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitRadiation
+          weight: 0.4
+        - id: MedkitRadiationFilled
+          weight: 0.6
+    # Rare (either good or undesirable)
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - !type:GroupSelector
+        children:
+        - id: MedkitAdvanced
+          weight: 0.4
+        - id: MedkitAdvancedFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitCombat
+          weight: 0.4
+        - id: MedkitCombatFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitO2
+          weight: 0.4
+        - id: MedkitOxygenFilled
+          weight: 0.6

@@ -1,0 +1,21 @@
+# region Tools
+- type: entity
+  name: random medkit
+  id: SpawnDungeonLootKitsFirstAid
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi
+        state: firstaid
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalFirstAidKits
