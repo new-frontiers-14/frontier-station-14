@@ -18,6 +18,8 @@
   name: dusty record
   description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like gunpowder and horses.
   components:
+  - type: Sprite
+    state: dusty
   - type: JukeboxContainer
     tracks:
     - meanwhilebackatthesaloon
@@ -29,6 +31,8 @@
   name: salty record
   description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like a cool sea breeze.
   components:
+  - type: Sprite
+    state: pirate
   - type: JukeboxContainer
     tracks:
     - dreadpirateroberts
@@ -39,6 +43,8 @@
   id: JazzRecord
   name: vintage record
   components:
+  - type: Sprite
+    state: jazz
   - type: JukeboxContainer
     tracks:
     - bringinthehorns
@@ -50,6 +56,32 @@
   name: futuristic record
   description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like illegal stimulants.
   components:
+  - type: Sprite
+    state: punk
+  - type: JukeboxContainer
+    tracks:
+    - skubstep
+
+- type: entity
+  parent: BaseRecord
+  id: GoldenRecord
+  name: golden record
+  description: For storing analogue data, everyone knows that circles are unparalleled. Hang on, this one's got an image on it.
+  components:
+  - type: Sprite
+    state: golden
+  - type: JukeboxContainer
+    tracks:
+    - skubstep
+
+- type: entity
+  parent: BaseRecord
+  id: CorporateRecord
+  name: management approved record
+  description: For storing analogue data, everyone knows that circles are unparalleled.
+  components:
+  - type: Sprite
+    state: corpo
   - type: JukeboxContainer
     tracks:
     - skubstep
