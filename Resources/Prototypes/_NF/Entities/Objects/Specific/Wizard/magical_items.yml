@@ -223,3 +223,18 @@
   - type: Dumpable
   - type: MagnetPickup
     magnetEnabled: true
+
+# region neck tie
+- type: entity
+  parent: ClothingNeckTieRed
+  id: NFClothingNeckTieMetronome
+  name: metronome tie
+  description: Surprisingly heavy for what appears to be just a piece of cloth. It sways and flails wildly with every step.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Ties/metronome_tie.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Ties/metronome_tie.rsi
+  - type: WaddleWhenWorn # DeltaV - upstream removed waddling
+    tumbleIntensity: 10 # DeltaV - smaller than clown shoes
+    waddlingAlert: Waddling # Fixes to prevent waddling without wearing.
