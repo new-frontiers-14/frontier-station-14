@@ -24,7 +24,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         SubscribeLocalEvent<ProduceMaterialExtractorComponent, AfterInteractUsingEvent>(OnInteractUsing);
     }
 
-    // BEGIN Frontier - Cherry pick wizden#32633
+    // BEGIN Frontier - Cherry pick wizden#32663
     private void OnInteractUsing(Entity<ProduceMaterialExtractorComponent> ent, ref AfterInteractUsingEvent args)
     {
         if (args.Handled)
@@ -71,7 +71,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         if (changed == 0)
         {
             _popup.PopupEntity(Loc.GetString("material-extractor-comp-wrongreagent", ("used", args.Used)), args.User, args.User);
-            return false; // Frontier TODO: Nuke this file and replace with upstream one once Wizden#32633 gets merged
+            return false; // Frontier TODO: Nuke this file and replace with upstream one once Wizden#32663 gets merged
         }
 
         _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.ExtractedMaterial, changed);
