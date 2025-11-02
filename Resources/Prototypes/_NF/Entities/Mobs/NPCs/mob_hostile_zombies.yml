@@ -91,19 +91,19 @@
       params:
         variation: 0.125
   - type: SoundWhileAlive
-  - type: Advertise
-    pack: spacepunkhumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
-  - type: AutoWakeUp
-  - type: StinkyTrait
+  - type: Emoting
   - type: Vocal
     sounds:
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: MaleHuman
-  - type: Emoting
+  - type: Vocalizer
+    minimumWait: 30
+    maximumWait: 120
+  - type: DatasetVocalizer
+    dataset: spacepunkhumanoidchatter
+  - type: AutoWakeUp
+  - type: StinkyTrait
 
 # region loot
 - type: entityTable
