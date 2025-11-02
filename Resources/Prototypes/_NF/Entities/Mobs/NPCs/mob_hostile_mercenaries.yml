@@ -55,11 +55,11 @@
       path: /Audio/Weapons/bladeslice.ogg
       params:
         variation: 0.125
-  - type: Advertise
-    pack: mercenaryhumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
+  - type: Vocalizer
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: mercenaryhumanoidchatter
   - type: AutoWakeUp
 
 # Variations
