@@ -18,6 +18,14 @@
   materials:
     Steel: 200
 
+- type: latheRecipe
+  abstract: true
+  parent: BaseServiceItemsRecipePiety
+  id: BaseServiceItemsRecipeCandle
+  materials:
+    Cloth: 20
+    Wood: 25
+
 # Recipes
 
 - type: latheRecipe
@@ -291,3 +299,33 @@
   materials:
     Plasteel: 200
     ReinforcedGlass: 100
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleBlack
+  result: CandleBlack
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleBlue
+  result: CandleBlue
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleGreen
+  result: CandleGreen
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleRed
+  result: CandleRed
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandlePurple
+  result: CandlePurple
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: Candle
+  result: Candle
