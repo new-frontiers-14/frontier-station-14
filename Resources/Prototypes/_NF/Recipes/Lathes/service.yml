@@ -20,11 +20,21 @@
 
 - type: latheRecipe
   abstract: true
-  parent: BaseServiceItemsRecipePiety
   id: BaseServiceItemsRecipeCandle
+  categories:
+  - NFCandles
+  completetime: 1
   materials:
     Cloth: 20
     Wood: 25
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseServiceItemsRecipeCandle
+  id: BaseServiceItemsRecipeCandleSmall
+  materials:
+    Cloth: 20
+    Wood: 20
 
 # Recipes
 
@@ -300,6 +310,7 @@
     Plasteel: 200
     ReinforcedGlass: 100
 
+# region candles
 - type: latheRecipe
   parent: BaseServiceItemsRecipeCandle
   id: CandleBlack
@@ -329,3 +340,33 @@
   parent: BaseServiceItemsRecipeCandle
   id: Candle
   result: Candle
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleBlackSmall
+  result: CandleBlackSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleBlueSmall
+  result: CandleBlueSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleGreenSmall
+  result: CandleGreenSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleRedSmall
+  result: CandleRedSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandlePurpleSmall
+  result: CandlePurpleSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleSmall
+  result: CandleSmall
