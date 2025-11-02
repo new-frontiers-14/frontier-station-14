@@ -28,3 +28,4 @@ food-sequence-cotton-burger-content-plushie-vulpkanin = vulp
 food-sequence-cotton-burger-content-plushie-corgi = corgi
 food-sequence-cotton-burger-content-plushie-cat = cat
 food-sequence-cotton-burger-content-plushie-rpg = rocket
+food-sequence-cotton-burger-content-plushie-goblin = goblin
