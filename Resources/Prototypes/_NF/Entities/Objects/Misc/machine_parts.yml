@@ -1,13 +1,12 @@
 # Frontier: old versions of upgraded components, made stackable.
 
-# Rating 1
-
+# region Rating 1
 - type: entity
   id: CapacitorStockPart
   name: capacitor
   parent: BaseStockPart
   description: A basic capacitor used in the construction of a variety of devices.
-  suffix: Rating 1
+  suffix: Rating 1, Single
   components:
     - type: Sprite
       state: capacitor
@@ -24,7 +23,7 @@
   name: matter bin
   parent: BaseStockPart
   description: A basic matter bin used in the construction of a variety of devices.
-  suffix: Rating 1
+  suffix: Rating 1, Single
   components:
     - type: Sprite
       state: matter_bin
@@ -35,14 +34,14 @@
       stackType: MatterBin
     - type: StackPrice
       price: 5
-# Rating 2
 
+# region Rating 2
 - type: entity
   id: AdvancedCapacitorStockPart
   name: advanced capacitor
   parent: CapacitorStockPart
   description: An advanced capacitor used in the construction of a variety of devices.
-  suffix: Rating 2
+  suffix: Rating 2, Single
   components:
     - type: Sprite
       state: adv_capacitor
@@ -68,7 +67,7 @@
   name: advanced manipulator
   parent: MicroManipulatorStockPart
   description: An advanced manipulator used in the construction of a variety of devices.
-  suffix: Rating 2
+  suffix: Rating 2, Single
   components:
     - type: Sprite
       state: nano_mani
@@ -94,7 +93,7 @@
   name: advanced matter bin
   parent: MatterBinStockPart
   description: An advanced matter bin used in the construction of a variety of devices.
-  suffix: Rating 2
+  suffix: Rating 2, Single
   components:
     - type: Sprite
       state: advanced_matter_bin
@@ -115,14 +114,13 @@
       stackType: AdvancedMatterBin
       count: 10
 
-# Rating 3
-
+# region Rating 3
 - type: entity
   id: SuperCapacitorStockPart
   name: super capacitor
   parent: CapacitorStockPart
   description: A super capacitor used in the construction of a variety of devices.
-  suffix: Rating 3
+  suffix: Rating 3, Single
   components:
     - type: Sprite
       state: super_capacitor
@@ -148,7 +146,7 @@
   name: super manipulator
   parent: MicroManipulatorStockPart
   description: A super manipulator used in the construction of a variety of devices.
-  suffix: Rating 3
+  suffix: Rating 3, Single
   components:
     - type: Sprite
       state: pico_mani
@@ -195,8 +193,7 @@
       stackType: SuperMatterBin
       count: 10
 
-# Rating 4
-
+# region Rating 4
 - type: entity
   id: QuadraticCapacitorStockPart
   name: bluespace capacitor
