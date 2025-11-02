@@ -25,7 +25,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server.Construction; // Frontier
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Singularity.EntitySystems
 {
