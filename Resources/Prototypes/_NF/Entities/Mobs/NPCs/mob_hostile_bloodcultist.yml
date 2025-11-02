@@ -17,11 +17,11 @@
     rechargeCooldown: 1.5
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
+  - type: Vocalizer
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: AutoWakeUp
 
 #region Humans
@@ -222,8 +222,8 @@
   - type: NpcFactionMember
     factions:
     - BloodCultNF
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/bloodcultleech.rsi
@@ -283,8 +283,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
@@ -373,8 +373,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/drainedone.rsi
