@@ -74,9 +74,21 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         LoadoutsContainer.DisposeAllChildren();
 
         // Get all loadout prototypes for this group.
-        var validProtos = _groupProto.Loadouts.Select(id => protoMan.Index(id)) // Frontier: hide loadout effects
-            .Where(p => !loadout.IsHidden(profile, session, p, collection)); // Frontier: hide loadout effects
+        // Frontier: hide loadout effects, support for subgroups
+        var validProtos = _groupProto.Loadouts.Select(id => protoMan.Index(id))
+            .Where(p => !loadout.IsHidden(profile, session, p, collection));
 
+        foreach (var subgroup in _groupProto.Subgroups)
+        {
+            if (!protoMan.TryIndex(subgroup, out var loadoutGroupProto))
+                continue;
+
+            var subgroupProtos = loadoutGroupProto.Loadouts.Select(id => protoMan.Index(id))
+            .Where(p => !loadout.IsHidden(profile, session, p, collection));
+
+            validProtos = (validProtos ?? Enumerable.Empty<LoadoutPrototype>()).Concat(subgroupProtos ?? Enumerable.Empty<LoadoutPrototype>());
+        }
+        // End Frontier: hide loadout effects, support for subgroups
         /*
          * Group the prototypes based on their GroupBy field.
          * - If GroupBy is null or empty, fallback to grouping by the prototype ID itself.
