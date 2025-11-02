@@ -1,5 +1,5 @@
 using Content.Server.Chemistry.Components;
-using Content.Server.Construction;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
