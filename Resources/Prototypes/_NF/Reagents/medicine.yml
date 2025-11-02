@@ -43,6 +43,21 @@
           groups:
             Brute: 3
 
+- type: reagent
+  id: Caffeine
+  name: reagent-name-caffeine
+  desc: reagent-desc-caffeine
+  physicalDesc: reagent-physical-desc-aromatic
+  color: "#5C6274"
+  recognizable: true
+  metabolisms:
+    Drink:
+      metabolismRate: 0.1
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+
 #impstation
 - type: reagent
   id: Caramexinin
