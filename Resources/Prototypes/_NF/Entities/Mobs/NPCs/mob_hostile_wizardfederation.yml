@@ -1,4 +1,4 @@
-#region Mob base
+# region Mob base
 - type: entity
   abstract: true
   parent:
@@ -15,7 +15,7 @@
   - type: Damageable
     damageModifierSet: MobHereticDamageModifierSet
   - type: Inventory
-    templateId: hostilewizard # Supports loadouts
+    templateId: hostilewizard # Supports loadouts, more lootable slots
   - type: InventorySlots
   - type: NpcFactionMember
     factions:
@@ -46,7 +46,7 @@
     nextAdvertisementTime: 10
   - type: AutoWakeUp
 
-#region Tier 1
+# region Tier 1
 - type: entity
   parent: NFMobWizardlBase
   id: NFMobWizardBlueApprentice
@@ -108,7 +108,7 @@
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
 
-#region Tier 2
+# region Tier 2
 - type: entity
   parent: NFMobWizardlBase
   id: NFMobWizardAdeptBlue
@@ -194,7 +194,7 @@
     soundGunshot:
         collection: Woosh
 
-#region Tier 3
+# region Tier 3
 - type: entity
   parent: NFMobWizardAdeptBlue
   id: NFMobWizardMasterBlue
@@ -245,7 +245,7 @@
     prototypes:
     - NpcGearWizardMasterBrick
 
-#region Conjured Creatures
+# region Conjured Creatures
 - type: entity
   name: Blue Curacao Elemental
   categories: [ HideSpawnMenu ]
@@ -307,7 +307,7 @@
     baseWalkSpeed : 4.5
     baseSprintSpeed : 4.5
 
-- type: entity
+- type: entity # Used for player spawns
   categories: [ HideSpawnMenu ]
   parent: WaterElementalConjured
   id: WaterElementalConjuredStaff

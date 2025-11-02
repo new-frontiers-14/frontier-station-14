@@ -26,6 +26,83 @@
     - Tea
     quantity: 10
 
+#region Smoking Pipes
+- type: entity
+  parent: BaseCigar
+  id: SmokingPipeWizardThc
+  name: wizard's corn cob pipe
+  suffix: Cannabis
+  description: The leaves appear to be fused with the pipe bowl. It has a distinct smell of cannabis.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/cobpipe.rsi
+    state: unlit-icon
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/cobpipe.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/cobpipe.rsi
+  - type: BurnStateVisuals
+    unlitIcon: unlit-icon
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 0.3
+        reagents:
+        - ReagentId: THC
+          Quantity: 0.3
+  - type: SolutionRegeneration
+    solution: smokable
+    generated:
+      reagents:
+      - ReagentId: THC
+        Quantity: 0.3
+  - type: SolutionPurge
+    solution: smokable
+    preserve:
+    - THC
+    quantity: 0.3
+
+- type: entity
+  parent: BaseCigar
+  id: SmokingPipeWizardNicotine
+  name: wizard's pipe
+  suffix: Tabacco
+  description: The leaves appear to be fused with the pipe bowl. It has a distinct smell of tobacco.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Smokeables/Pipes/pipe.rsi
+    state: unlit-icon
+  - type: Clothing
+    sprite: Objects/Consumable/Smokeables/Pipes/pipe.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+    sprite: Objects/Consumable/Smokeables/Pipes/pipe.rsi
+  - type: BurnStateVisuals
+    unlitIcon: unlit-icon
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 0.3
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 0.3
+  - type: SolutionRegeneration
+    solution: smokable
+    generated:
+      reagents:
+      - ReagentId: Nicotine
+        Quantity: 0.3
+  - type: SolutionPurge
+    solution: smokable
+    preserve:
+    - Nicotine
+    quantity: 0.3
+
 #region The Shaker
 - type: entity
   id: DrinkShakerShaking
