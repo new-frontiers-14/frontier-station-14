@@ -111,7 +111,7 @@
   table: !type:AllSelector
     children:
     - id: FoodMeatRotten
-      amount: !type:RangeNumberSelector
+      rolls: !type:RangeNumberSelector
         range: 0, 2
     # Cash
     - !type:GroupSelector
@@ -132,14 +132,14 @@
     - !type:AllSelector
       children:
       - id: TreasureSampleTube
-        amount: !type:RangeNumberSelector
+        rolls: !type:RangeNumberSelector
           range: 0, 2
       - id: ScrapTube
-        amount: !type:RangeNumberSelector
+        rolls: !type:RangeNumberSelector
           range: -1, 1
       - !type:NestedSelector
         tableId: SalvageTreasureUncommon
-        amount: !type:RangeNumberSelector
+        rolls: !type:RangeNumberSelector
           range: 1, 2
     # Meds
     - !type:GroupSelector
