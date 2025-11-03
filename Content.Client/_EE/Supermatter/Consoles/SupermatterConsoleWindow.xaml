@@ -1,0 +1,69 @@
+<!--
+SPDX-FileCopyrightText: 2025 VMSolidus <evilexecutive@gmail.com>
+SPDX-FileCopyrightText: 2025 corresp0nd <46357632+corresp0nd@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 taydeo <td12233a@gmail.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later AND MIT
+-->
+
+<controls:FancyWindow
+    MinSize="700 400"
+    Resizable="True"
+    SetSize="700 400"
+    Title="{Loc 'supermatter-console-window-title'}"
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:ui="clr-namespace:Content.Client.Pinpointer.UI">
+    <BoxContainer Orientation="Vertical">
+        <!--  Main display  -->
+        <BoxContainer
+            HorizontalExpand="True"
+            Orientation="Horizontal"
+            VerticalExpand="True">
+            <!--  Supermatter list  -->
+            <BoxContainer
+                HorizontalExpand="True"
+                Margin="10,0,10,10"
+                Orientation="Vertical"
+                VerticalExpand="True">
+                <!--  Supermatters (entries added by C# code)  -->
+                <BoxContainer
+                    HorizontalExpand="True"
+                    Margin="0,10,0,0"
+                    VerticalExpand="True">
+                    <ScrollContainer HorizontalExpand="True">
+                        <BoxContainer
+                            HorizontalExpand="True"
+                            Margin="0,0,0,10"
+                            Name="SupermattersTable"
+                            Orientation="Vertical"
+                            VerticalExpand="True" />
+                    </ScrollContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+
+        <!--  Footer  -->
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer StyleClasses="LowDivider" />
+            <BoxContainer
+                Margin="10,2,5,0"
+                Orientation="Horizontal"
+                VerticalAlignment="Bottom">
+                <Label StyleClasses="WindowFooterText" Text="{Loc 'supermatter-console-window-flavor-left'}" />
+                <Label
+                    HorizontalAlignment="Right"
+                    HorizontalExpand="True"
+                    Margin="0,0,5,0"
+                    StyleClasses="WindowFooterText"
+                    Text="{Loc 'supermatter-console-window-flavor-right'}" />
+                <TextureRect
+                    HorizontalAlignment="Right"
+                    SetSize="19 19"
+                    Stretch="KeepAspectCentered"
+                    StyleClasses="NTLogoDark"
+                    VerticalAlignment="Center" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
