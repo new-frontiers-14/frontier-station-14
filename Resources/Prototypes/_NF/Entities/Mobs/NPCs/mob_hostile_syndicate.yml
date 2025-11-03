@@ -35,11 +35,11 @@
     rechargeCooldown: 1
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: syndicatehumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
+  - type: Vocalizer
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: syndicatehumanoidchatter
   - type: AutoWakeUp
 
 #region Humans
@@ -684,11 +684,11 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalMimeGear
-    - type: Advertise
-      pack: mimehumanoidchatter
-      minimumWait: 120
-      maximumWait: 240
-      nextAdvertisementTime: 0
+    - type: Vocalizer
+      minVocalizeInterval: 120
+      maxVocalizeInterval: 240
+    - type: DatasetVocalizer
+      dataset: mimehumanoidchatter
 
 # Syndicate Chemwarrior, shoots healthy mixes of chems
 # Look for chems here: /Resources/Prototypes/_NF/Entities/Objects/Weapons/Ammunition/Projectiles/chem.yml
