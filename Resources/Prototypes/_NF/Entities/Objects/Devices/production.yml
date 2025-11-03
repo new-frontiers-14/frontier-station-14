@@ -1,4 +1,22 @@
 - type: entity
+  id: CargoTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: cargo techfab machine board
+  description: A machine printed circuit board for a cargo techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: CargoTechFabNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
   id: ShredderMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: shredder machine board
@@ -131,6 +149,25 @@
       state: nfsd
     - type: MachineBoard
       prototype: NfsdTechFab
+
+- type: entity
+  id: PirateTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: pirate techfab machine board
+  description: A machine printed circuit board for a pirate techfab.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
+      state: pirate
+    - type: MachineBoard
+      prototype: PirateTechFab
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
 
 # Thrusters
 - type: entity
