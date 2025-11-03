@@ -24,7 +24,7 @@
 #region Tools
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootEngineeringTools
+  id: SpawnDungeonLootToolsBasicEngineering
   name: random tool
   suffix: "Loot (Frontier), Engineering"
   components:
@@ -45,9 +45,14 @@
     table: !type:NestedSelector
       tableId: TableDungeonLootEngineeringTools
 
+- type: entity # Lame but easier to keep it for now
+  parent: SpawnDungeonLootToolsBasicEngineering
+  id: SpawnDungeonLootToolsAdvancedEngineering
+  categories: [ HideSpawnMenu ]
+
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootEngineeringToolboxes
+  id: SpawnDungeonLootToolbox
   name: random toolbox
   suffix: Loot (Frontier)
   components:
@@ -69,7 +74,7 @@
 #region Parts
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootEngineeringParts
+  id: SpawnDungeonLootPartsEngi
   name: random parts
   suffix: Loot (Frontier)
   components:
