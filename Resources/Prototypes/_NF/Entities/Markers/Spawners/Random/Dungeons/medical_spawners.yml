@@ -293,3 +293,87 @@
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
       tableId: TableDungeonLootMedicalClothes
+
+# region Lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: med_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: med_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalLockers
+
+# region Crates
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalCrates
+
+- type: entity
+  name: random crate (empty)
+  id: SpawnDungeonLootCrateEmptyMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesEmpty
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesRestock

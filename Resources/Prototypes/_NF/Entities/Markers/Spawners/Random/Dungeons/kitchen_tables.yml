@@ -262,6 +262,18 @@
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralCratesMaterial
       weight: 0.4
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootServiceBarrelsCondiments
+        weight: 0.45
+      - !type:NestedSelector
+        tableId: TableDungeonLootServiceBarrelsAlcohol
+        weight: 0.45
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalBarrelsChems
+        weight: 0.1
 
 - type: entityTable
   id: TableDungeonLootServiceCratesEmpty
@@ -314,6 +326,36 @@
     - id: CrateVendingMachineRestockDinnerwareFilled
     - id: CrateVendingMachineRestockSmokesFilled
     - id: CrateVendingMachineRestockHappyHonkFilled
+
+# region Barrels
+- type: entityTable
+  id: TableDungeonLootServiceBarrelsCondiments
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelOil
+    - id: ChemicalBarrelMustard
+    - id: ChemicalBarrelKetchup
+    - id: ChemicalBarrelMayo
+    - id: ChemicalBarrelCornoil
+    - id: ChemicalBarrelOliveoil
+
+- type: entityTable
+  id: TableDungeonLootServiceBarrelsAlcohol
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelAbsinthe
+    - id: ChemicalBarrelAle
+    - id: ChemicalBarrelBeer
+    - id: ChemicalBarrelCoffeeLiqueur
+    - id: ChemicalBarrelCognac
+    - id: ChemicalBarrelGin
+    - id: ChemicalBarrelMead
+    - id: ChemicalBarrelRum
+    - id: ChemicalBarrelTequila
+    - id: ChemicalBarrelVermouth
+    - id: ChemicalBarrelVodka
+    - id: ChemicalBarrelWhiskey
+    - id: ChemicalBarrelWine
 
 # region Machines
 - type: entityTable # Tabletop machines

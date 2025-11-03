@@ -96,6 +96,39 @@
       - id: WeldingFuelTankHighCapacity
         weight: 70
 
+# region Barrels
+- type: entityTable
+  id: TableDungeonLootGeneralBarrels
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelExplosiveFilled
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralBarrelsEmpty
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalBarrelsChems
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceBarrelsCondiments
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceBarrelsAlcohol
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootGeneralBarrelsEmpty
+  table: !type:GroupSelector
+    children:
+    - id: MetalBarrelGrey
+    - id: MetalBarrelBlue
+    - id: MetalBarrelRed
+    - id: MetalBarrelYellow
+    - id: MetalBarrelGreen
+    - id: MetalBarrelWhite
+    - id: MetalBarrelBlack
+    - id: ChemicalBarrelExplosiveEmpty
+
 #region Machines
 - type: entityTable
   id: TableDungeonLootGeneralFrameMachine
