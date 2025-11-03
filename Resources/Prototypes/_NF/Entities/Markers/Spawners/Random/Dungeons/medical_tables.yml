@@ -376,7 +376,7 @@
     - id: BodyBag
     - id: BodyBagFolded
     - id: CrateCoffin
-    # Memes
+    # T5: Memes
     - !type:GroupSelector
       weight: 0.05
       children:
@@ -386,3 +386,282 @@
         weight: 0.15
       - id: ClothingHandsKnuckleDustersStun
         weight: 0.05
+
+# region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootMedicalClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesBags
+      weight: 40
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesHats
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesJumpsuits
+      weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesJackets
+      weight: 15
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesBoots
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesBelts
+      weight: 15
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalEvas
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalHardsuits
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesBags
+  table: !type:GroupSelector
+    children:
+    # Duffels
+    - !type:GroupSelector
+      weight: 3
+      children:
+      - id: ClothingBackpackDuffelMedical
+      - id: ClothingBackpackDuffelVirology
+      - id: ClothingBackpackDuffelGenetics
+      - id: ClothingBackpackDuffelTrauma
+      - id: ClothingBackpackDuffelChemistry
+        weight: 0.1
+    # Messenger bags
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMessengerMedical
+      - id: ClothingBackpackMessengerVirology
+      - id: ClothingBackpackMessengerGenetics
+      - id: ClothingBackpackMessengerChemistry
+        weight: 0.1
+    # Backpacks
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMedical
+      - id: ClothingBackpackVirology
+      - id: ClothingBackpackGenetics
+      - id: ClothingBackpackChemistry
+        weight: 0.1
+    # Satchels
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackSatchelMedical
+      - id: ClothingBackpackSatchelVirology
+      - id: ClothingBackpackSatchelGenetics
+      - id: ClothingBackpackSatchelChemistry
+        weight: 0.1
+    # Pouches
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchFirstAid
+        weight: 0.4
+      - id: NFPouchFirstAidAlt
+        weight: 0.4
+      - id: MedicalPouch # Ugly
+        weight: 0.2
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesBelts
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty belts to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingBeltMedical
+        weight: 0.7
+      - id: ClothingBeltMedicalFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingBeltMedicalEMT
+        weight: 0.7
+      - id: ClothingBeltMedicalEMTFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: MedicalBag
+      - id: ChemBag
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesHats
+  table: !type:GroupSelector
+    children:
+    # Surgical
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: ClothingHeadHatSurgcapPurple
+      - id: ClothingHeadHatSurgcapGreen
+      - id: ClothingHeadHatSurgcapBlue
+    # Bio hoods
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingHeadHatHoodBioCmo
+      - id: ClothingHeadHatHoodBioGeneral
+      - id: ClothingHeadHatHoodBioVirology
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    # Scrubs
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: UniformScrubsColorPurple
+      - id: UniformScrubsColorBlue
+      - id: UniformScrubsColorGreen
+    # Jumpsuits
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingUniformJumpsuitMedicalDoctor
+      - id: ClothingUniformJumpsuitMilitaryMedicalDoctor
+      - id: ClothingUniformJumpsuitParamedicNT
+      - id: ClothingUniformJumpsuitParamedic
+      - id: ClothingUniformJumpsuitMilitaryParamedic
+      - id: ClothingUniformJumpsuitChemistry
+      - id: ClothingUniformJumpsuitMilitaryChemistry
+      - id: ClothingUniformJumpsuitVirology
+      - id: ClothingUniformJumpsuitMilitaryVirology
+      - id: ClothingUniformJumpsuitGenetics
+      - id: ClothingUniformJumpsuitMilitaryGenetics
+      - id: ClothingUniformJumpsuitSeniorPhysician
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesJackets
+  table: !type:GroupSelector
+    children:
+    # Lab coats
+    - !type:GroupSelector
+      weight: 0.65
+      children:
+      - id: ClothingOuterCoatLab
+      - id: ClothingOuterCoatLabChem
+      - id: ClothingOuterCoatLabGene
+      - id: ClothingOuterCoatLabSeniorPhysician
+      - id: ClothingOuterCoatLabViro
+      - id: ClothingOuterCoatAMG
+        weight: 0.05
+    # Bio suits
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingOuterBioCmo
+      - id: ClothingOuterBioGeneral
+      - id: ClothingOuterBioVirology
+    - id: ClothingOuterHospitalGown
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesColorBlack
+    - id: ClothingShoesColorWhite
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingShoesLeather
+
+#region EVA
+- type: entityTable
+  id: TableDungeonLootMedicalEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitMedic
+    - id: ClothingOuterEVASuitParamedic
+
+- type: entityTable
+  id: TableDungeonLootMedicalHardsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitVoidParamed
+      weight: 0.5
+    - id: ClothingOuterEVASuitFsb
+      weight: 0.4
+    - id: ClothingOuterHardsuitMedical
+      weight: 0.1
+
+#region Lockers
+- type: entityTable
+  id: TableDungeonLootMedicalLockers
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 30
+      children:
+      - id: LockerEngineer
+        weight: 70
+      - id: LockerEngineerFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: LockerAtmospherics
+        weight: 70
+      - id: LockerAtmosphericsFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: LockerChiefEngineer
+        weight: 70
+      - id: LockerChiefEngineerFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 40
+      children:
+      - id: LockerElectricalSupplies
+        weight: 70
+      - id: LockerWeldingSupplies
+        weight: 70
+      - id: ClosetTool
+        weight: 70
+      - id: LockerEvacRepair
+        weight: 70
+      - id: LockerElectricalSuppliesFilled
+        weight: 25
+      - id: LockerWeldingSuppliesFilled
+        weight: 25
+      - id: ClosetToolFilled
+        weight: 25
+      - id: LockerEvacRepairFilled
+        weight: 25
+
+- type: entityTable
+  id: TableDungeonLootMedicalSuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 55
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SuitStorageEVAEngineer
+      - id: SuitStorageEngi
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SuitStorageEVAAtmosTech
+      - id: SuitStorageAtmos
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: SuitStorageNTSRA
+      - id: SuitStorageCE
