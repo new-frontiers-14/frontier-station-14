@@ -574,6 +574,24 @@
   - type: Flatpack
     entity: ScrapProcessor
 
+- type: entity
+  parent: OreProcessorFlatpack
+  id: CargoTechfabNFFlatpack
+  name: cargo techfab flatpack
+  description: A flatpack used for constructing a cargo techfab.
+  components:
+  - type: Flatpack
+    entity: CargoTechFabNF
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: CrateStorageRackFlatpack
+  name: crate storage rack flatpack
+  description: A storage rack prefab.
+  components:
+  - type: Flatpack
+    entity: CrateStorageRack
+
 #region Mercenary
 - type: entity
   parent: BaseNFFlatpack
@@ -597,6 +615,20 @@
     entity: MercenaryTechFab
   - type: StaticPrice
     price: 600
+
+#region Pirate
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PirateTechFabFlatpack
+  name: pirate techfab flatpack
+  description: A flatpack used for constructing a pirate techfab.
+  components:
+  - type: Flatpack
+    entity: PirateTechFab
+  - type: Sprite
+    layers:
+    - state: pirate_lathe
 
 #region Consoles
 - type: entity
