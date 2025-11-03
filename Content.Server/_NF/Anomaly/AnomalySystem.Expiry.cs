@@ -10,7 +10,6 @@ namespace Content.Server.Anomaly;
 /// </summary>
 public sealed partial class AnomalySystem
 {
-    [Dependency] private readonly SharedTransformSystem _coords = default!;
 
     /// <summary> Finish unlocking phase when the time is up. </summary>
     private void UpdateLinkExpiry()
@@ -45,7 +44,7 @@ public sealed partial class AnomalySystem
             }
 
             // if they're within the max distance and are an infection anom, leave the link as is
-            if (HasComp<InnerBodyAnomalyComponent>(anom) && _coords.InRange(uid, anom, comp.MaxDistance))
+            if (HasComp<InnerBodyAnomalyComponent>(anom) && _transform.InRange(uid, anom, comp.MaxDistance))
                 return;
 
             vesselComp.Anomaly = null;

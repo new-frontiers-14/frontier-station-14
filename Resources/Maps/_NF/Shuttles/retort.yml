@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/13/2025 01:09:29
-  entityCount: 804
+  time: 10/26/2025 21:11:11
+  entityCount: 806
 maps: []
 grids:
 - 1
@@ -2503,13 +2503,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,-6.5
       parent: 1
-- proto: CircuitImprinter
-  entities:
-  - uid: 380
-    components:
-    - type: Transform
-      pos: -1.5,-10.5
-      parent: 1
 - proto: ClothingHeadHatWelding
   entities:
   - uid: 354
@@ -2658,13 +2651,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-2.5
-      parent: 1
-- proto: CrateMaterialsBasicFilled
-  entities:
-  - uid: 135
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
       parent: 1
 - proto: CrateMaterialSteel
   entities:
@@ -4034,6 +4020,14 @@ entities:
       color: '#990000FF'
 - proto: GasPressurePumpOnMax
   entities:
+  - uid: 466
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#3EB388FF'
   - uid: 560
     components:
     - type: Transform
@@ -4232,14 +4226,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#3EB388FF'
-  - uid: 584
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#3EB388FF'
   - uid: 598
     components:
     - type: Transform
@@ -4394,6 +4380,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-14.5
       parent: 1
+- proto: HolofanProjector
+  entities:
+  - uid: 188
+    components:
+    - type: Transform
+      pos: 3.769137,-10.380325
+      parent: 1
 - proto: ImpCoffeeMachine
   entities:
   - uid: 443
@@ -4460,13 +4453,6 @@ entities:
         40:
         - - Pressed
           - Toggle
-- proto: LockerAtmosphericsFilledHardsuit
-  entities:
-  - uid: 188
-    components:
-    - type: Transform
-      pos: 9.5,-6.5
-      parent: 1
 - proto: LockerWallColorGenericBlack
   entities:
   - uid: 790
@@ -4515,13 +4501,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-7.5
-      parent: 1
-- proto: LockerWallMaterialsBasicFilled
-  entities:
-  - uid: 466
-    components:
-    - type: Transform
-      pos: -2.5,-7.5
       parent: 1
 - proto: LockerWallMaterialsFuelBananiumFilled
   entities:
@@ -4599,6 +4578,13 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: OreProcessor
+  entities:
+  - uid: 805
+    components:
+    - type: Transform
+      pos: -5.5,0.5
+      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 317
@@ -4622,6 +4608,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,5.5
+      parent: 1
+- proto: PlushieAtmosian
+  entities:
+  - uid: 663
+    components:
+    - type: Transform
+      pos: 7.5518694,-11.165894
       parent: 1
 - proto: PlushieLamp
   entities:
@@ -4991,6 +4984,13 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-4.5
+      parent: 1
+- proto: SalvageTechfabNF
+  entities:
+  - uid: 380
+    components:
+    - type: Transform
+      pos: -1.5,-10.5
       parent: 1
 - proto: ShelfBar
   entities:
@@ -5452,12 +5452,26 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: StorageFillMaterialsFilled
+  entities:
+  - uid: 584
+    components:
+    - type: Transform
+      pos: -2.5,-7.5
+      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 194
     components:
     - type: Transform
       pos: 1.5,-14.5
+      parent: 1
+- proto: SuitStorageAtmos
+  entities:
+  - uid: 135
+    components:
+    - type: Transform
+      pos: 9.5,-6.5
       parent: 1
 - proto: TableCounterMetal
   entities:
@@ -5671,7 +5685,7 @@ entities:
   - uid: 227
     components:
     - type: Transform
-      pos: 3.4146626,-10.383429
+      pos: 3.331637,-10.442825
       parent: 1
 - proto: TwoWayLever
   entities:
