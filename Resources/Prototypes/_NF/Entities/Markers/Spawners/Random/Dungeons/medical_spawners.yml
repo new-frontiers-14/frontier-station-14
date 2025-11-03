@@ -1,3 +1,25 @@
+# region Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonClutterMedical
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalClutter
+
 # region Tools
 - type: entity
   name: random medkit
@@ -60,7 +82,7 @@
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableDungeonLootMedicalToolsSurgery
+      tableId: TableDungeonLootMedicalToolsSurgeryCommon
 
 - type: entity
   name: random tool
@@ -231,6 +253,27 @@
       tableId: TableDungeonLootMedicalToolsTopicalsSingle
 
 - type: entity
+  name: random chemicals
+  id: SpawnDungeonLootChems
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Chemistry"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker.rsi
+        state: beaker
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalGlasswareFilled
+
+- type: entity
   name: random implanter
   id: SpawnDungeonClutterImplanter
   parent: MarkerBasePlaceFree
@@ -377,3 +420,67 @@
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
       tableId: TableDungeonLootMedicalCratesRestock
+
+# region Machines
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/medical.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalMachinesVending
+
+# region Flatpacks
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalFlatpacks
+
+# region Circuit Boards
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: medical
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMedicalCircuitBoards
