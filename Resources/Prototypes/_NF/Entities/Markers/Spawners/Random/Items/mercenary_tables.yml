@@ -1,0 +1,62 @@
+
+# region Fabricators
+- type: entityTable
+  id: TableDungeonLootMercenaryMachinesFabricators
+  table: !type:GroupSelector
+    children:
+    - id: AmmoTechFab
+      weight: 0.5
+    - id: MercenaryTechFab
+      weight: 0.3
+    - id: MercenaryTechFabHacked
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+# region Vendomats
+- type: entityTable
+  id: TableDungeonLootMercenaryMachinesVending
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachinePickNPack
+      weight: 0.3
+    - id: VendingMachineAmmo
+      weight: 0.25
+    - id: VendingMachineBountyVend
+      weight: 0.2
+    - id: LessLethalVendingMachine
+      weight: 0.05
+    - id: VendingMachineExpeditionaryFlatpackVend
+      weight: 0.05
+    - id: VendingMachineArcadia
+      weight: 0.05
+    - id: VendingMachineSyndieContraband
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+# region Flatpacks
+- type: entityTable
+  id: TableDungeonLootMercenaryMachinesFlatpacks
+  table: !type:GroupSelector
+    children:
+    - id: AmmoTechFabFlatpack
+      weight: 0.5
+    - id: MercenaryTechFabFlatpack
+      weight: 0.3
+    - id: MercenaryTechFabHackedFlatpack
+      weight: 0.1
+
+# region Circuit Boards
+- type: entityTable
+  id: TableDungeonLootMercenaryCircuitBoards
+  table: !type:GroupSelector
+    children:
+    - id: AmmoTechFabCircuitboard
+      weight: 0.5
+    - id: MercenaryTechFabCircuitboardNF
+      weight: 0.3
+    - id: MercenaryTechFabHackedCircuitboardNF
+      weight: 0.1

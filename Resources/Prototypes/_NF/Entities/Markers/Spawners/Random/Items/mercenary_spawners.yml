@@ -1,0 +1,42 @@
+# region Machines
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsArmory
+  parent: MarkerBase
+  suffix: "Loot (Frontier), Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryMachinesVending
+
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLatheArmory
+  parent: MarkerBase
+  suffix: "Loot (Frontier), Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: sec
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryMachinesFabricators

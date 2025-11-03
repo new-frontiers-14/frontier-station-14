@@ -3,7 +3,7 @@
   name: random clutter
   id: SpawnDungeonLootArmoryClutter
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Mercenary"
+  suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
     layers:
@@ -38,7 +38,7 @@
   name: random clutter
   id: SpawnDungeonLootArmoryClutterSec
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Security"
+  suffix: "Loot (Frontier), Security"
   components:
   - type: Sprite
     layers:
@@ -83,7 +83,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryGuns
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Loose, T1"
+  suffix: "Loot (Frontier), Loose, T1"
   components:
   - type: Sprite
     layers:
@@ -120,7 +120,7 @@
   name: random weapon
   id: SpawnDungeonLootVaultGuns
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Vault, T2"
+  suffix: "Loot (Frontier), Vault, T2"
   components:
   - type: Sprite
     layers:
@@ -149,7 +149,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryMelee
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Melee, T1-T2"
+  suffix: "Loot (Frontier), Melee, T1-T2"
   components:
   - type: Sprite
     layers:
@@ -174,7 +174,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryRare
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Vault, T3"
+  suffix: "Loot (Frontier), Vault, T3"
   components:
   - type: Sprite
     layers:
@@ -202,7 +202,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryExplosives
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Explosives, T1-T2"
+  suffix: "Loot (Frontier), Explosives, T1-T2"
   components:
   - type: Sprite
     layers:
@@ -230,7 +230,7 @@
   name: random shields
   id: SpawnDungeonLootShieldsMercenary
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Mercenary"
+  suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
     layers:
@@ -257,7 +257,7 @@
   name: random clothes
   id: SpawnDungeonLootClothesMercenary
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Mercenary"
+  suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
     layers:
@@ -295,7 +295,7 @@
   name: random armor
   id: SpawnDungeonLootArmorMercenary
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Mercenary"
+  suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
     layers:
@@ -339,7 +339,7 @@
   name: random hardsuits
   id: SpawnDungeonLootHardsuitsMercenary
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Mercenary"
+  suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
     layers:
@@ -361,7 +361,7 @@
   name: random locker
   id: SpawnDungeonLootLockersArmory
   parent: MarkerBase
-  suffix: "Dungeon, Armory, Mercenary"
+  suffix: "Loot (Frontier), Armory, Mercenary"
   components:
   - type: Sprite
     layers:
@@ -389,7 +389,7 @@
   name: random suit storage unit
   id: SpawnDungeonLootSuitStorageUnitsMercenary
   parent: MarkerBase
-  suffix: "Dungeon, Mercenary"
+  suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
     layers:
@@ -419,7 +419,7 @@
   name: random crate
   id: SpawnDungeonLootCrateArmoryWeapon
   parent: MarkerBase
-  suffix: "Dungeon, Armory, Weapon"
+  suffix: "Loot (Frontier), Armory, Weapon"
   components:
   - type: Sprite
     layers:
@@ -503,7 +503,7 @@
   name: random crate
   id: SpawnDungeonLootCrateArmoryArmor
   parent: MarkerBase
-  suffix: "Dungeon, Armory, Armor"
+  suffix: "Loot (Frontier), Armory, Armor"
   components:
   - type: Sprite
     layers:
@@ -528,7 +528,7 @@
   name: random crate (restock)
   id: SpawnDungeonLootCrateRestockArmory
   parent: MarkerBase
-  suffix: "Dungeon, Armory"
+  suffix: "Loot (Frontier), Armory"
   components:
   - type: Sprite
     layers:
@@ -545,66 +545,3 @@
     - CrateVendingMachineRestockNonLethalVendFilled
     chance: 1.0
     offset: 0.0
-
-#region Machines
-- type: entity
-  name: random vendomat
-  id: SpawnDungeonVendomatsArmory
-  parent: MarkerBase
-  suffix: "Dungeon, Armory"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
-        state: off
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - VendingMachineBountyVend
-    - VendingMachineAmmo
-    - LessLethalVendingMachine
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - VendingMachineArcadia
-    #- VendingMachineSec
-    #- VendingMachineSecDrobe
-    - SpawnDungeonMachineFrame
-    rareChance: 0.01
-
-- type: entity
-  name: random machine techfab
-  id: SpawnDungeonLootLatheArmory
-  parent: MarkerBase
-  suffix: "Dungeon, Armory"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Machines/techfab.rsi
-        state: icon
-      - sprite: Structures/Machines/techfab.rsi
-        state: sec
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - AmmoTechFab
-    - MercenaryTechFab
-    - MercenaryTechFabFlatpack
-    - MercenaryTechFabCircuitboardNF
-    - AmmoTechFabFlatpack
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - MercenaryTechFab
-    - MercenaryTechFabFlatpack
-    - MercenaryTechFabCircuitboardNF
-    - AmmoTechFabFlatpack
-    - MercenaryTechFabCircuitboardHackedNF
-    - MercenaryTechFabHacked
-    rareChance: 0.005
