@@ -112,19 +112,19 @@
     children:
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothesBags
-      weight: 40
+      weight: 0.4
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothesHats
-      weight: 5
+      weight: 0.05
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothesJumpsuits
-      weight: 20
+      weight: 0.2
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothesJackets
-      weight: 15
+      weight: 0.15
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothesBelts
-      weight: 15
+      weight: 0.15
 
 - type: entityTable
   id: TableDungeonLootServiceClothesBags
@@ -235,7 +235,6 @@
         weight: 0.15
       - id: LockerFreezerSushi
         weight: 0.15
-    # spawn probabilities skewed towards empty lockers to reduce entity spam
     - !type:GroupSelector
       weight: 0.4
       children:
@@ -336,32 +335,35 @@
   table: !type:GroupSelector
     children:
     # Common
-    - id: UniformPrinterFlatpack
-    - id: ServiceTechFabFlatpack
-    - id: MaterialReclaimerFlatpack
-    - id: CutterMachineFlatpack
-    - id: DawInstrumentFlatpack
-    - id: MinimoogInstrumentFlatpack
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: UniformPrinterFlatpack
+      - id: ServiceTechFabFlatpack
+      - id: MaterialReclaimerFlatpack
+      - id: CutterMachineFlatpack
+      - id: MinimoogInstrumentFlatpack
     # Uncommon
     - !type:GroupSelector
       weight: 0.3
       children:
-    - id: KitchenElectricGrillFlatpack
-    - id: KitchenMicrowaveFlatpack
-    - id: KitchenReagentGrinderFlatpack
-    - id: JukeboxFlatpack
-    - id: ComputerWithdrawBankATMFlatpack
+      - id: KitchenElectricGrillFlatpack
+      - id: KitchenMicrowaveFlatpack
+      - id: KitchenReagentGrinderFlatpack
+      - id: JukeboxFlatpack
+      - id: ComputerWithdrawBankATMFlatpack
+      - id: DawInstrumentFlatpack
     # Rare
     - !type:GroupSelector
-      weight: 0.2
+      weight: 0.1
       children:
-    - id: VendingMachineBoozeFlatpack
-    - id: VendingMachineCigsFlatpack
-    - id: VendingMachineChefvendFlatpack
-    - id: VendingMachineSeedsUnlockedFlatpack
-    - id: VendingMachineNutriFlatpack
-    - id: VendingMachineDinnerwareFlatpack
-    - id: HydroponicsTrayEmptyFlatpack
+      - id: VendingMachineBoozeFlatpack
+      - id: VendingMachineCigsFlatpack
+      - id: VendingMachineChefvendFlatpack
+      - id: VendingMachineSeedsUnlockedFlatpack
+      - id: VendingMachineNutriFlatpack
+      - id: VendingMachineDinnerwareFlatpack
+      - id: HydroponicsTrayEmptyFlatpack
 
 # region Other
 - type: entityTable

@@ -12,8 +12,18 @@
   id: TableDungeonLootGeneralLighters
   table: !type:GroupSelector
     children:
-    - id: Matchstick
-    - id: Matchbox
+    - !type:GroupSelector
+      children:
+      - id: Matchstick
+        weight: 0.6
+      - id: GorlexMatchstick
+        weight: 0.4
+    - !type:GroupSelector
+      children:
+      - id: Matchbox
+        weight: 0.9
+      - id: GorlexMatchbox
+        weight: 0.1
     - id: CheapLighter
     - id: Lighter
     - id: FlippoLighter
