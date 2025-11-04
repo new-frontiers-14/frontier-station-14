@@ -980,3 +980,29 @@
     - MetalBarrelBlack
     - ChemicalBarrelExplosiveEmpty
     offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  name: jukebox record spawner
+  id: NFJukeboxRecordSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Fun/records.rsi
+      state: baserecord
+  - type: RandomSpawner
+    prototypes:
+    - WesternRecord
+    - PirateRecord
+    - JazzRecord
+    - PunkRecord
+    - CorporateRecord
+    - DeltaRecord
+    - SpaceRecord
+    chance: 0.95
+    rarePrototypes:
+    - GoldenRecord
+    - SyndieRecord
+    rareChance: 0.05
+    offset: 0.0
