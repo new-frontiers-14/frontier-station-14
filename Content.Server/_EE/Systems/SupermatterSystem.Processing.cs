@@ -49,7 +49,6 @@ namespace Content.Server._EE.Supermatter.Systems;
 
 public sealed partial class SupermatterSystem
 {
-    [Dependency] private readonly IGameTiming _smTiming = default!;
     /// <summary>
     /// Handle power and radiation output depending on atmospheric things.
     /// </summary>
