@@ -259,9 +259,9 @@
   table: !type:GroupSelector
     children:
     - id: ClothingOuterEVASuitHydro
-      weight: 50
+      weight: 0.7
     - id: ClothingBackpackDuffelEVABundleHydro
-      weight: 5
+      weight: 0.3
 
 #region Lockers
 - type: entityTable
@@ -270,7 +270,6 @@
     children:
     # spawn probabilities skewed towards empty lockers to reduce entity spam
     - !type:GroupSelector
-      weight: 30
       children:
       - id: LockerBotanist
         weight: 50

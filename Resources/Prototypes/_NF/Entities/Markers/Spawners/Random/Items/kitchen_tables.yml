@@ -5,16 +5,19 @@
     children:
     - !type:NestedSelector
       tableId: TableDungeonLootServiceTools
-      weight: 3
+      weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothes
-      weight: 1
+      weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootServiceMachinesFlatpacks
-      weight: 0.4
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCircuitBoards
+      weight: 0.1
     - !type:NestedSelector
       tableId: TableDungeonLootServiceFoodSpoiled
-      weight: 2
+      weight: 0.2
 
 # region Tools
 - type: entityTable
@@ -316,7 +319,7 @@
       - id: CrateServiceKitKitchen
       - id: CrateServiceKitHydroponics
 
-- type: entityTable
+- type: entityTable # Probably should be removed
   id: TableDungeonLootServiceCratesRestockService
   table: !type:GroupSelector
     children:
@@ -371,6 +374,30 @@
     - id: SodaDispenserEmpty
     - id: SyndicateMicrowave
       weight: 0.05
+
+- type: entityTable # Tabletop machines
+  id: TableDungeonLootServiceCircuitBoards
+  table: !type:GroupSelector
+    children:
+    - id: SeedExtractorMachineCircuitboard
+    - id: ChemMasterMachineCircuitboard
+    - id: SurveillanceWirelessCameraMovableCircuitboard
+    - id: ComputerTelevisionCircuitboard
+    - id: BoozeDispenserMachineCircuitboard
+    - id: SodaDispenserMachineCircuitboard
+    - id: SurveillanceWirelessCameraMonitorCircuitboard
+    - id: ServiceTechFabCircuitboard
+    - id: CutterMachineCircuitboard
+    - id: UniformPrinterMachineCircuitboard
+    - !type:GroupSelector
+      weight: 0.025
+      children:
+      - id: MicrowaveMachineCircuitboard
+      - id: ReagentGrinderMachineCircuitboard
+      - id: BiogeneratorMachineCircuitboard
+      - id: ElectricRangeMachineCircuitboard
+      - id: KitchenAssemblerMachineCircuitboard
+      - id: DeepFryerMachineCircuitboard
 
 - type: entityTable
   id: TableDungeonLootServiceMachinesFlatpacks
