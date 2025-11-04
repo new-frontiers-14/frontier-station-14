@@ -41,6 +41,148 @@
     table: !type:NestedSelector
       tableId: TableDungeonLootMercenaryClutter
 
+# region Weapons
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootArmoryGuns
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Loose"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsMelee
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsRanged
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsAmmunition
+        weight: 0.2
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsExplosives
+        weight: 0.2
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootVaultGuns
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Vault"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsMelee
+        weight: 0.2
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsRanged
+        weight: 0.5
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsAmmunition
+        weight: 0.25
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsExplosives
+        weight: 0.05
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootArmoryMelee
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Melee"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/combat_knife.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMelee
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootArmoryRare
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Vault, T3"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsMelee
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsRanged
+        weight: 0.5
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsAmmunition
+        weight: 0.1
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsExplosives
+        weight: 0.1
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootArmoryExplosives
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Explosives, T1-T2"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Bombs/seismic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosives
+
 # region Shields
 - type: entity
   name: random shields
