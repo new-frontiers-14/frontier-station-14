@@ -1,5 +1,4 @@
 using Content.Shared.Research.Prototypes;
-using NetSerializer;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -10,11 +9,11 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
 {
     public List<ProtoId<LatheRecipePrototype>> Recipes;
 
-    public List<LatheRecipeBatch> Queue; // Frontier: ProtoId<LatheRecipePrototype>[] < List<LatheRecipeBatch>
+    public List<LatheRecipeBatch> Queue; // Frontier: LatheRecipePrototype<LatheRecipeBatch
 
-    public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
+    public LatheRecipePrototype? CurrentlyProducing;
 
-    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, List<LatheRecipeBatch> queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null) // Frontier: change queue type
+    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, List<LatheRecipeBatch> queue, LatheRecipePrototype? currentlyProducing = null) // Frontier: change queue type
     {
         Recipes = recipes;
         Queue = queue;

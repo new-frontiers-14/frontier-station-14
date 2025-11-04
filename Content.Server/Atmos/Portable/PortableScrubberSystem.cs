@@ -17,7 +17,6 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Database;
 using Content.Shared.Power;
-using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Atmos.Portable
 {

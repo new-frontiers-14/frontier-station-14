@@ -3,7 +3,10 @@
   id: BaseFlag
   abstract: true
   components:
+  - type: WallMount
+    arc: 360
   - type: Sprite
+    drawdepth: WallMountedItems
     sprite: Structures/Wallmounts/flags.rsi
     # Begin DeltaV additions - Craftable Pride Flags
   - type: StaticPrice
@@ -92,9 +95,10 @@
   description: Raise the jolly roger, scallywags!
   components:
   - type: Sprite
-    state: pirate_flag
     # Begin Frontier additions
+    state: pirate_flag
   - type: Construction
     graph: NF_Flags
     node: PirateFlag
     # End Frontier additions
+

@@ -82,7 +82,7 @@ public sealed class AtmosAlarmableSystem : EntitySystem
     {
         if (component.IgnoreAlarms) return;
 
-        if (!TryComp(uid, out DeviceNetworkComponent? netConn))
+        if (!EntityManager.TryGetComponent(uid, out DeviceNetworkComponent? netConn))
             return;
 
         if (!args.Data.TryGetValue(DeviceNetworkConstants.Command, out string? cmd)
@@ -108,9 +108,9 @@ public sealed class AtmosAlarmableSystem : EntitySystem
                     break;
                 }
 
-                if (args.Data.TryGetValue(AlertTypes, out AtmosMonitorThresholdTypeFlags types) && component.MonitorAlertTypes != AtmosMonitorThresholdTypeFlags.None)
+                if (args.Data.TryGetValue(AlertTypes, out HashSet<AtmosMonitorThresholdType>? types) && component.MonitorAlertTypes != null)
                 {
-                    isValid = (types & component.MonitorAlertTypes) != 0;
+                    isValid = types.Any(type => component.MonitorAlertTypes.Contains(type));
                 }
 
                 if (!component.NetworkAlarmStates.ContainsKey(args.SenderAddress))

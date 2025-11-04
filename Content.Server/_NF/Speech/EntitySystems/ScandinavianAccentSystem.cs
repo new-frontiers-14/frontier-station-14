@@ -2,7 +2,7 @@ using System.Text;
 using Robust.Shared.Random;
 using Content.Server.Speech.EntitySystems;
 using Content.Server._NF.Speech.Components;
-using Content.Shared.Speech;
+using Content.Server.Speech;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 

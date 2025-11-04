@@ -7,7 +7,6 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Research.Components;
 using Content.Shared._NF.Anomaly; // Frontier
-using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Anomaly;
 

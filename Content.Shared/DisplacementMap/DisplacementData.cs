@@ -1,8 +1,6 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Shared.DisplacementMap;
 
-[DataDefinition, Serializable, NetSerializable]
+[DataDefinition]
 public sealed partial class DisplacementData
 {
     /// <summary>
@@ -12,5 +10,5 @@ public sealed partial class DisplacementData
     public Dictionary<int, PrototypeLayerData> SizeMaps = new();
 
     [DataField]
-    public string? ShaderOverride = "DisplacedDraw";
+    public string? ShaderOverride = "DisplacedStencilDraw";
 }

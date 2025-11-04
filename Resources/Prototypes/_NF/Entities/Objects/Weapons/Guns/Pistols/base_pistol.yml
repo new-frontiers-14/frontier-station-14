@@ -1,9 +1,9 @@
 #region frame
 - type: entity
-  abstract: true
-  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseGunMeleeAttackLow, NFBaseItemWeaponGunMagazineFed ]
   id: NFBaseWeaponFramePistol
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGunMagazineFed ]
   name: pistol
+  abstract: true
   components:
   - type: Gun
     projectileSpeed: 22.5
@@ -23,9 +23,9 @@
 
 #region manufacturer
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponFramePistol
   id: NFBaseWeaponFramePistolNanotrasen
+  parent: NFBaseWeaponFramePistol
+  abstract: true
   components:
   - type: Gun
     minAngle: 3.1
@@ -37,9 +37,9 @@
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
-  abstract: true
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFramePistol ]
   id: NFBaseWeaponFramePistolCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFramePistol ]
+  abstract: true
   components:
   - type: Gun
     angleIncrease: 0.8
@@ -50,8 +50,8 @@
 
 #region chamber
 - type: entity
-  abstract: true
   id: NFBaseWeaponPistolChamber
+  abstract: true
   components:
   - type: Gun
     soundGunshot:
@@ -65,9 +65,9 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponPistolChamber
   id: NFBaseWeaponPistolChamber35
+  parent: NFBaseWeaponPistolChamber
+  abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-35
@@ -93,9 +93,9 @@
             - NFCartridgePistol35
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponPistolChamber35
   id: NFBaseWeaponPistolChamber35HighCapacity
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
   components:
   - type: ItemSlots
     slots:
@@ -110,9 +110,9 @@
       gun_chamber: *chamber35Standard
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponPistolChamber35
   id: NFBaseWeaponPistolChamber35HighCapacityOverpressure
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
   components:
   - type: ItemSlots
     slots:
@@ -133,9 +133,9 @@
             - NFCartridgePistol35
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponPistolChamber35
   id: NFBaseWeaponPistolChamber35HighCapacityRubber
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
   components:
   - type: ItemSlots
     slots:
@@ -156,9 +156,9 @@
             - NFCartridgePistol35
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponPistolChamber
   id: NFBaseWeaponPistolChamber45
+  parent: NFBaseWeaponPistolChamber
+  abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-45

@@ -475,11 +475,6 @@ public enum LogType
     /// </summary>
     ShuttleImpact = 102,
 
-    /// <summary>
-    /// Events relating to midi playback.
-    /// </summary>
-    Instrument = 103,
-
     // Frontier Station Specific
     #region Frontier Values
     ATMUsage = 200,

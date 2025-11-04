@@ -242,7 +242,7 @@ public sealed partial class ShuttleSystem
         {
 
             // Too large to FTL
-            if (FTLMassLimit > 0 && shuttlePhysics.Mass > FTLMassLimit)
+            if (FTLMassLimit > 0 &&  shuttlePhysics.Mass > FTLMassLimit)
             {
                 reason = Loc.GetString("shuttle-console-mass");
                 return false;
@@ -634,8 +634,11 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
+                if (!_statusQuery.TryGetComponent(child, out var status))
+                    continue;
+
                 if (!HasComp<FTLKnockdownImmuneComponent>(child)) // Frontier: FTL knockdown immunity
-                    _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
+                    _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
 
                 // If the guy we knocked down is on a spaced tile, throw them too
                 if (grid != null)
@@ -695,7 +698,7 @@ public sealed partial class ShuttleSystem
         // only toss if its on lattice/space
         var tile = _mapSystem.GetTileRef(shuttleEntity, shuttleGrid, childXform.Coordinates);
 
-        if (!_turf.IsSpace(tile))
+        if (!tile.IsSpace(_tileDefManager))
             return;
 
         var throwDirection = childXform.LocalPosition - shuttleBody.LocalCenter;

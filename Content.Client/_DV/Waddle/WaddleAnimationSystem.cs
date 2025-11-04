@@ -58,7 +58,7 @@ public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
             return;
 
         // Imp edit: exit the method if the entity is already down
-        if (_standing.IsDown(ent.Owner))
+        if (_standing.IsDown(ent))
             return;
 
         sprite.Offset = new Vector2();

@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Construction.Components; // Frontier
+using Content.Server.Construction; // Frontier
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
@@ -211,12 +211,12 @@ namespace Content.Server.Lathe
             }
 
             // Frontier: queue up a batch
-            if (component.Queue.Count > 0 && component.Queue[^1].Recipe == recipe.ID)
+            if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
                 component.Queue[^1].ItemsRequested += quantity;
             else
-                component.Queue.Add(new LatheRecipeBatch(recipe.ID, 0, quantity));
+                component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
             // End Frontier
-            // component.Queue.Enqueue(recipe); // Frontier
+            // component.Queue.Add(recipe); // Frontier
 
             return true;
         }
@@ -236,10 +236,7 @@ namespace Content.Server.Lathe
             var recipe = batch.Recipe;
             // End Frontier
 
-            // var recipeProto = component.Queue.Dequeue();
-            // var recipe = _proto.Index(recipeProto);
-
-            var time = _reagentSpeed.ApplySpeed(uid, _proto.Index(recipe).CompleteTime) * component.TimeMultiplier;
+            var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
@@ -267,8 +264,7 @@ namespace Content.Server.Lathe
 
             if (comp.CurrentRecipe != null)
             {
-                var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
-                if (currentRecipe.Result is { } resultProto)
+                if (comp.CurrentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
 
@@ -284,7 +280,7 @@ namespace Content.Server.Lathe
                     _stack.TryMergeToContacts(result);
                 }
 
-                if (currentRecipe.ResultReagents is { } resultReagents &&
+                if (comp.CurrentRecipe.ResultReagents is { } resultReagents &&
                     comp.ReagentOutputSlotId is { } slotId)
                 {
                     var toAdd = new Solution(
@@ -321,9 +317,7 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-            var producing = component.CurrentRecipe;
-            if (producing == null && component.Queue.Count != 0 && component.Queue.First() is { } node) // Frontier - add extra checks since we're still using a list
-                producing = node.Recipe; // Frontier, remove .Value.
+            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
@@ -563,7 +557,7 @@ namespace Content.Server.Lathe
                     var batch = component.Queue.First();
                     if (batch.Recipe != component.CurrentRecipe)
                     {
-                        var newBatch = new LatheRecipeBatch(_proto.Index(component.CurrentRecipe.GetValueOrDefault()), 0, 1);
+                        var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
                         component.Queue.Insert(0, newBatch);
                     }
                     else if (batch.ItemsPrinted > 0)
@@ -615,7 +609,7 @@ namespace Content.Server.Lathe
 
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(_proto.Index(component.CurrentRecipe.GetValueOrDefault()))} at {ToPrettyString(uid):lathe}");
+                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(component.CurrentRecipe)} at {ToPrettyString(uid):lathe}");
 
             component.CurrentRecipe = null;
             FinishProducing(uid, component);

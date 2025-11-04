@@ -1,14 +1,13 @@
 using System.Linq;
 using Content.Server._NF.Cargo.Components;
+using Content.Server.Construction;
 using Content.Server.Power.Components;
 using Content.Shared._NF.Cargo.Components;
 using Content.Shared.Cargo;
-using Content.Shared.Construction.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Power;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
-
 
 namespace Content.Server._NF.Cargo.Systems;
 

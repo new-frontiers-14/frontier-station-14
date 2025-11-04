@@ -18,48 +18,6 @@
 
 - type: entity
   parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
-  id: CargoTechFabNF
-  name: cargo techfab
-  description: Prints equipment for cargonians.
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/techfab.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: cargo
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: CargoTechFabCircuitboardNF
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    staticPacks:
-    - NFLightsStatic
-    - NFBasicToolsStatic
-    - NFBasicStorageStatic
-    - NFBasicPartsStatic
-    - NFBasicElectronicsStatic
-    - NFBasicEvaStatic
-    - NFBasicEVAToolsStatic
-    - NFServiceToolsStatic
-    - NFMaterialElectronicsStatic
-    - NFCargoArchetypeStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - NFBlueprintAdvanced
-  - type: OreSiloClient
-
-- type: entity
-  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -101,9 +59,6 @@
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFLightsColoredStatic
-    - NFServiceArchetypeStatic
-    - NFPietyStatic
-    - NFCandlesStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabEmagStatic
@@ -154,7 +109,6 @@
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFLightsColoredStatic
-    - NFServiceArchetypeStatic
     - NFMcServiceTechfabStatic
 
 - type: entity
@@ -197,7 +151,6 @@
     - NFEngineeringStructureBoardsStatic
     - NFEngineeringMaterialsStatic
     - NFInflatablesStatic
-    - NFEngineeringArchetypeStatic
 
   - type: BlueprintReceiver
     whitelist:
@@ -244,7 +197,6 @@
     - NFSalvageStatic
     - NFSalvageBoardsStatic
     - NFInflatablesStatic
-    - NFSalvageArchetypeStatic
 
   - type: EmagLatheRecipes
     emagStaticPacks:
@@ -342,15 +294,12 @@
     - NFMaterialElectronicsStatic
     - NFBasicEvaLightsStatic
     - NFMercenaryStatic
-    - NFMercenaryClothesStatic
+    - NFMercenaryToolsStatic
     - NFMercenaryStorageStatic
     - NFMercenaryWeaponsStatic
     - NFMercenaryAmmoBoxesStatic
     - NfsdPracticeStatic
     - NFMercenaryMagazineStatic
-    - NFTopicalsStatic
-    - NFMercenaryArchetypeStatic
-
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -406,16 +355,15 @@
     - NFBasicEvaStatic
     - NFBasicEVAToolsStatic
     - NFBasicEvaLightsStatic
-    - NFMaterialElectronicsStatic
+    - NFMaterialElectronicsStatic 
     - NFMercenaryStatic
-    - NFMercenaryClothesStatic
+    - NFMercenaryToolsStatic
     - NFMercenaryStorageStatic
     - NFMercenaryWeaponsStatic
     - NFMercenaryAmmoBoxesStatic
     - NfsdPracticeStatic
     - NFHackedMercenaryClothingStatic
     - NFMercenaryMagazineStatic
-    - NFMercenaryArchetypeStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -440,8 +388,8 @@
   - type: LitOnPowered
   - type: ApcPowerReceiver
     powerLoad: 200
-  - type: DatasetVocalizer
-    dataset: CuddlyCritterAds
+  - type: Advertise
+    pack: CuddlyCritterAds
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -648,30 +596,3 @@
   - type: Lathe
     staticPacks:
     - NFPirateClothing
-
-- type: entity
-  id: PirateTechFab
-  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
-  name: pirate techfab
-  description: You can hear it humming with the anticipation of being fed liberated blueprints.
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/techfab.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: pirate
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: PirateTechFabCircuitboardNF
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-  - type: OreSiloClient

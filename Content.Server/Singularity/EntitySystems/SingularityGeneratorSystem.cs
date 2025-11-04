@@ -55,7 +55,7 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             return;
 
         SetPower(uid, 0, comp);
-        Spawn(comp.SpawnPrototype, Transform(uid).Coordinates);
+        EntityManager.SpawnEntity(comp.SpawnPrototype, Transform(uid).Coordinates);
     }
 
     #region Getters/Setters
@@ -111,12 +111,12 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
     /// <param name="args">The state of the beginning of the collision.</param>
     private void HandleParticleCollide(EntityUid uid, ParticleProjectileComponent component, ref StartCollideEvent args)
     {
-        if (!TryComp<SingularityGeneratorComponent>(args.OtherEntity, out var generatorComp))
+        if (!EntityManager.TryGetComponent<SingularityGeneratorComponent>(args.OtherEntity, out var generatorComp))
             return;
 
         if (_timing.CurTime < _metadata.GetPauseTime(uid) + generatorComp.NextFailsafe && !generatorComp.FailsafeDisabled)
         {
-            QueueDel(uid);
+            EntityManager.QueueDeleteEntity(uid);
             return;
         }
 
@@ -163,7 +163,7 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             );
         }
 
-        QueueDel(uid);
+        EntityManager.QueueDeleteEntity(uid);
     }
     #endregion Event Handlers
 

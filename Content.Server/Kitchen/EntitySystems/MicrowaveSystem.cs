@@ -43,7 +43,6 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Kitchen.Components; // Frontier
-using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -72,7 +71,8 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedSuicideSystem _suicide = default!;
 
-        private static readonly EntProtoId MalfunctionSpark = "Spark";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string MalfunctionSpark = "Spark";
 
         private static readonly ProtoId<TagPrototype> MetalTag = "Metal";
         private static readonly ProtoId<TagPrototype> PlasticTag = "Plastic";
@@ -144,7 +144,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void OnActiveMicrowaveRemove(Entity<ActiveMicrowaveComponent> ent, ref EntRemovedFromContainerMessage args)
         {
-            RemCompDeferred<ActivelyMicrowavedComponent>(args.Entity);
+            EntityManager.RemoveComponentDeferred<ActivelyMicrowavedComponent>(args.Entity);
         }
 
         // Stop items from transforming through constructiongraphs while being microwaved.
@@ -790,7 +790,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!HasContents(ent.Comp) || HasComp<ActiveMicrowaveComponent>(ent))
                 return;
 
-            _container.Remove(GetEntity(args.EntityID), ent.Comp.Storage);
+            _container.Remove(EntityManager.GetEntity(args.EntityID), ent.Comp.Storage);
             UpdateUserInterfaceState(ent, ent.Comp);
         }
 

@@ -2,7 +2,7 @@
 using System.Linq;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Mind;
+using Content.Server.Mind.Commands;
 using Content.Server.Roles;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -24,8 +24,6 @@ namespace Content.IntegrationTests.Tests.Minds;
 [TestFixture]
 public sealed partial class MindTests
 {
-    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
-
     [TestPrototypes]
     private const string Prototypes = @"
 - type: entity
@@ -146,7 +144,7 @@ public sealed partial class MindTests
         await server.WaitAssertion(() =>
         {
             var damageable = entMan.GetComponent<DamageableComponent>(entity);
-            if (!protoMan.TryIndex(BluntDamageType, out var prototype))
+            if (!protoMan.TryIndex<DamageTypePrototype>("Blunt", out var prototype))
             {
                 return;
             }
@@ -339,7 +337,7 @@ public sealed partial class MindTests
         var entMan = server.ResolveDependency<IServerEntityManager>();
         var playerMan = server.ResolveDependency<IPlayerManager>();
 
-        var mindSystem = entMan.EntitySysManager.GetEntitySystem<MindSystem>();
+        var mindSystem = entMan.EntitySysManager.GetEntitySystem<SharedMindSystem>();
 
         EntityUid entity = default!;
         EntityUid mindId = default!;
@@ -379,7 +377,7 @@ public sealed partial class MindTests
 
             mob = entMan.SpawnEntity(null, new MapCoordinates());
 
-            mindSystem.MakeSentient(mob);
+            MakeSentientCommand.MakeSentient(mob, entMan);
             mobMindId = mindSystem.CreateMind(player.UserId, "Mindy McThinker the Second");
             mobMind = entMan.GetComponent<MindComponent>(mobMindId);
 

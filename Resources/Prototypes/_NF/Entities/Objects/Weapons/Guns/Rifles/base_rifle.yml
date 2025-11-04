@@ -1,8 +1,8 @@
 #region frame
 - type: entity
-  abstract: true
-  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseGunMeleeAttackMedium, NFBaseItemWeaponGun ]
   id: NFBaseWeaponFrameRifle
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
+  abstract: true
   components:
   - type: Wieldable
     unwieldOnUse: false
@@ -31,9 +31,9 @@
 
 #region manufacturer
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponFrameRifle
   id: NFBaseWeaponFrameRifleFrontierGunsmith
+  parent: NFBaseWeaponFrameRifle
+  abstract: true
   components:
   - type: Gun
     minAngle: 1.9
@@ -45,9 +45,9 @@
     manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 - type: entity
-  abstract: true
-  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRifle ]
   id: NFBaseWeaponFrameRifleSteelbolt
+  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRifle ]
+  abstract: true
   components:
   - type: Gun
     minAngle: 1.8
@@ -59,9 +59,9 @@
     manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponFrameRifleFrontierGunsmith
   id: NFBaseWeaponFrameRifleFoamForce
+  parent: NFBaseWeaponFrameRifleFrontierGunsmith
+  abstract: true
   components:
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-foam-force-llc
@@ -71,8 +71,8 @@
 
 #region chamber
 - type: entity
-  abstract: true
   id: NFBaseWeaponRifleChamber
+  abstract: true
   components:
   - type: Gun
     soundGunshot:
@@ -85,9 +85,9 @@
         ents: []
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponRifleChamber
   id: NFBaseWeaponRifleChamber20
+  parent: NFBaseWeaponRifleChamber
+  abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -99,9 +99,9 @@
       - NFCartridgeRifle20
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponRifleChamber
   id: NFBaseWeaponRifleChamber30
+  parent: NFBaseWeaponRifleChamber
+  abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-30
@@ -114,9 +114,9 @@
       - NFCartridgeRifle30
 
 - type: entity
-  abstract: true
-  parent: NFBaseWeaponRifleChamber
   id: NFBaseWeaponRifleChamberDartFoam
+  parent: NFBaseWeaponRifleChamber
+  abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-foam

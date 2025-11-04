@@ -6,7 +6,6 @@ using Content.Shared.Item;
 using Content.Shared.Nyanotrasen.Item.PseudoItem;
 using Content.Shared.Storage;
 using Content.Shared.Verbs;
-using Content.Shared.Hands.EntitySystems; // Frontier
 
 namespace Content.Server.Nyanotrasen.Item.PseudoItem;
 
@@ -14,7 +13,6 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
 {
     [Dependency] private readonly CarryingSystem _carrying = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!; // Frontier
 
     public override void Initialize()
     {
@@ -37,14 +35,14 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         if (!CheckItemFits((uid, component), (args.Using.Value, targetStorage)))
             return;
 
-        if (!_hands.TryGetActiveItem(uid, out var item)) // Frontier - hand refactor compliance (wizden #38438)
+        if (args.Hands?.ActiveHandEntity == null)
             return;
 
         AlternativeVerb verb = new()
         {
             Act = () =>
             {
-                StartInsertDoAfter(args.User, uid, item.Value, component); // Frontier - hand refactor compliance (wizden #38438)
+                StartInsertDoAfter(args.User, uid, args.Hands.ActiveHandEntity.Value, component);
             },
             Text = Loc.GetString("action-name-insert-other", ("target", Identity.Entity(args.Target, EntityManager))),
             Priority = 2

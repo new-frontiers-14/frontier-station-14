@@ -49,7 +49,8 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
 
-    private static readonly ProtoId<WeightedRandomPrototype> WeightListProto = "AnomalyBehaviorList";
+    [ValidatePrototypeId<WeightedRandomPrototype>]
+    const string WeightListProto = "AnomalyBehaviorList";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -70,7 +71,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     private void OnMapInit(Entity<AnomalyComponent> anomaly, ref MapInitEvent args)
     {
         anomaly.Comp.NextPulseTime = Timing.CurTime + GetPulseLength(anomaly.Comp) * 3; // longer the first time
-        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1, anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
+        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1 , anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
         ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
 
         ShuffleParticlesEffect(anomaly);
@@ -181,7 +182,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         var severityValue = 1 / (1 + MathF.Pow(MathF.E, -7 * (component.Severity - 0.5f)));
 
-        return (int)((component.MaxPointsPerSecond - component.MinPointsPerSecond) * severityValue * multiplier) + component.MinPointsPerSecond;
+        return (int) ((component.MaxPointsPerSecond - component.MinPointsPerSecond) * severityValue * multiplier) + component.MinPointsPerSecond;
     }
 
     /// <summary>
@@ -213,7 +214,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     #region Behavior
     private string GetRandomBehavior()
     {
-        var weightList = _prototype.Index(WeightListProto);
+        var weightList = _prototype.Index<WeightedRandomPrototype>(WeightListProto);
         return weightList.Pick(_random);
     }
 
@@ -250,24 +251,9 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (ent.Comp.CrystalPrototype == null || ent.Comp.PointsPerCrystalUnit <= 0)
             return;
 
-        var numCrystals = GetNumCrystals(ent.Comp);
-
+        int numCrystals = int.Min(ent.Comp.PointsEarned / ent.Comp.PointsPerCrystalUnit, ent.Comp.MaxCrystals);
         if (numCrystals > 0)
             _stack.SpawnMultiple(ent.Comp.CrystalPrototype, numCrystals, ent);
     }
-
-    // Calculate how many crystals to spawn.
-    private static int GetNumCrystals(AnomalyComponent comp)
-    {
-        var pointCost = comp.PointsPerCrystalUnit;
-        var numCrystals = 0;
-        while (pointCost < comp.PointsEarned && numCrystals < comp.MaxCrystals)
-        {
-            pointCost += (int)(pointCost * comp.PointsPerCrystalMult);
-            numCrystals++;
-        }
-        return numCrystals;
-    }
-
     // End Frontier: crystal spawning
 }

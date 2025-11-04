@@ -57,16 +57,6 @@
     Steel: 25
     Plastic: 25
 
-- type: latheRecipe
-  abstract: true
-  parent: BaseTileRecipe
-  id: BaseMarbleTileRecipe
-  categories:
-  - Marble
-  materials:
-    Steel: 25
-    Glass: 25
-
 ## Recipes
 
 # Steel tiles
@@ -171,11 +161,6 @@
   id: FloorTileItemDarkOffset
   result: FloorTileItemDarkOffset
 
-- type: latheRecipe
-  parent: BaseDarkTileRecipe
-  id: FloorTileItemDarkSquiggly
-  result: FloorTileItemDarkSquiggly
-
 # White steel tiles
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
@@ -238,11 +223,6 @@
   id: FloorTileItemSteelMaint
   result: FloorTileItemSteelMaint
 
-- type: latheRecipe
-  parent: BaseMaintTileRecipe
-  id: FloorTileItemTechmaintDark
-  result: FloorTileItemTechmaintDark
-
 # Wood
 - type: latheRecipe
   parent: BaseWoodTileRecipe
@@ -304,14 +284,3 @@
   parent: BaseConcreteTileRecipe
   id: FloorTileItemOldConcreteSmooth
   result: FloorTileItemOldConcreteSmooth
-
-# Marble
-- type: latheRecipe
-  parent: BaseMarbleTileRecipe
-  id: FloorTileItemWhiteMarble
-  result: FloorTileItemWhiteMarble
-
-- type: latheRecipe
-  parent: BaseMarbleTileRecipe
-  id: FloorTileItemDarkMarble
-  result: FloorTileItemDarkMarble

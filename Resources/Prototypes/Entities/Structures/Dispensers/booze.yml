@@ -1,7 +1,7 @@
 - type: entity
-  id: BoozeDispenserEmpty
+  id: BoozeDispenser
   name: booze dispenser
-  suffix: Empty
+  suffix: Filled
   description: A booze dispenser with a single slot for a container to be filled.
   parent: ReagentDispenserBase
   components:
@@ -15,6 +15,20 @@
     whitelist:
       tags:
       - DrinkBottle
+  - type: StorageFill
+    contents:
+    - id: DrinkAleBottleFullGrowler
+    - id: DrinkBeerGrowler
+    - id: DrinkCoffeeLiqueurBottleFull
+    - id: DrinkCognacBottleFull
+    - id: DrinkGinBottleFull
+    - id: DrinkMeadJug
+    - id: DrinkRumBottleFull
+    - id: DrinkTequilaBottleFull
+    - id: DrinkVermouthBottleFull
+    - id: DrinkVodkaBottleFull
+    - id: DrinkWhiskeyBottleFull
+    - id: DrinkWineBottleFull
   - type: Transform
     noRot: false
   - type: Machine
@@ -31,21 +45,11 @@
     price: 500 # Frontier
 
 - type: entity
-  id: BoozeDispenser
-  suffix: Filled
-  parent: BoozeDispenserEmpty
+  id: BoozeDispenserEmpty
+  suffix: Empty
+  parent: BoozeDispenser
   components:
-  - type: StorageFill
-    contents:
-    - id: DrinkAleBottleFullGrowler
-    - id: DrinkBeerGrowler
-    - id: DrinkCoffeeLiqueurBottleFull
-    - id: DrinkCognacBottleFull
-    - id: DrinkGinBottleFull
-    - id: DrinkMeadJug
-    - id: DrinkRumBottleFull
-    - id: DrinkTequilaBottleFull
-    - id: DrinkVermouthBottleFull
-    - id: DrinkVodkaBottleFull
-    - id: DrinkWhiskeyBottleFull
-    - id: DrinkWineBottleFull
+  - type: Storage
+    whitelist:
+      tags:
+      - DrinkBottle

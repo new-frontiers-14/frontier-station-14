@@ -223,35 +223,29 @@ public sealed class ThrowingSystem : EntitySystem
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
         // Give thrower an impulse in the other direction
-        if (pushbackRatio == 0.0f ||
-            physics.Mass == 0f ||
-            !TryComp(user.Value, out PhysicsComponent? userPhysics))
-            return;
-        var msg = new ThrowPushbackAttemptEvent();
-        RaiseLocalEvent(uid, msg);
-
-        if (msg.Cancelled)
-            return;
-
-        var pushEv = new ThrowerImpulseEvent();
-        RaiseLocalEvent(user.Value, ref pushEv);
-        const float massLimit = 5f;
-
-        if (pushEv.Push)
+        if (pushbackRatio != 0.0f &&
+            physics.Mass > 0f &&
+            TryComp(user.Value, out PhysicsComponent? userPhysics) &&
+            _gravity.IsWeightless(user.Value, userPhysics))
         {
-            // Frontier: apply impulse to buckled object if buckled
-            if (TryComp<BuckleComponent>(user, out var buckle) && buckle.BuckledTo is not null)
-            {
-                if (TryComp<PhysicsComponent>(buckle.BuckledTo, out var buckledPhys))
-                    _physics.ApplyLinearImpulse(buckle.BuckledTo.Value, -impulseVector / buckledPhys.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: buckledPhys);
-            }
-            else
-            {
-                _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
-            }
-            // End Frontier
-            // _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
-        }
+            var msg = new ThrowPushbackAttemptEvent();
+            RaiseLocalEvent(uid, msg);
+            const float massLimit = 5f;
 
+            if (!msg.Cancelled)
+                
+                // Frontier: apply impulse to buckled object if buckled
+                if (TryComp<BuckleComponent>(user, out var buckle) && buckle.BuckledTo is not null)
+                {
+                    if(TryComp<PhysicsComponent>(buckle.BuckledTo, out var buckledPhys))
+                        _physics.ApplyLinearImpulse(buckle.BuckledTo.Value, -impulseVector / buckledPhys.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: buckledPhys);
+                }
+                else
+                {
+                    _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
+                }
+                // End Frontier
+                //_physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics); // Frontier: old implementation
+        }
     }
 }

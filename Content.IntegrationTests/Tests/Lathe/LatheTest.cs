@@ -88,7 +88,7 @@ public sealed class LatheTest
                     // Check each recipe assigned to this lathe
                     foreach (var recipeId in recipes)
                     {
-                        Assert.That(protoMan.TryIndex(recipeId, out var recipeProto), $"Lathe {latheProto.ID} has recipe {recipeId} but does not have a (non abstract) prototype"); // Frontier: disambiguate test failure
+                        Assert.That(protoMan.TryIndex(recipeId, out var recipeProto));
 
                         // Track the total material volume of the recipe
                         var totalQuantity = 0;
