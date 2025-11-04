@@ -379,6 +379,8 @@
       tableId: TableDungeonLootMedicalCratesRestock
     - !type:NestedSelector
       tableId: TableDungeonLootMercenaryCratesRestock
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocksStuff
 
 - type: entityTable # Probably should be removed
   id: TableDungeonLootGeneralRestockClothes
@@ -821,7 +823,7 @@
       weight: 0.01
 
 - type: entityTable
-  id: TableDungeonLootGeneralRestocks
+  id: TableDungeonLootGeneralRestocksStuff
   table: !type:GroupSelector
     children:
     - id: VendingMachineRestockBooze
