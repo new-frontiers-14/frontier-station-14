@@ -650,6 +650,22 @@
     - NFPirateClothing
 
 - type: entity
+  parent: OreProcessor
+  id: OreProcessorCivilian
+  name: civilian ore processor
+  description: A stand alone ore processor designed to operate independently of shuttle infrastructure. Time to live off the grid!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/civilian_ore_processor.rsi
+  - type: Machine
+    board: OreProcessorCivilianCircuitboard
+  - type: Lathe
+    materialUseMultiplier: 1.25
+    timeMultiplier: 1.5
+    staticPacks:
+    - CivilianOreSmelting    
+
+- type: entity
   id: PirateTechFab
   parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   name: pirate techfab
@@ -675,3 +691,4 @@
     idleState: icon
     runningState: icon
   - type: OreSiloClient
+
