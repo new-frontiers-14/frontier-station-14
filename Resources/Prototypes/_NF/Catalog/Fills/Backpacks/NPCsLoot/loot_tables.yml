@@ -1,0 +1,54 @@
+# TODO: move to the dungeon tables collection
+- type: entityTable
+  id: TableDungeonLootNpcMaterialRandom
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcMaterialBasicRandom
+      weight: 0.7
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcMaterialValuableRandom
+      weight: 0.3
+
+- type: entityTable
+  id: TableDungeonLootNpcMaterialBasicRandom
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetBrassRandom
+    - id: SheetGlassRandom
+    - id: SheetSteelRandom
+    - id: SheetPlasmaRandom
+    - id: SheetPlasticRandom
+    - id: MaterialClothRandom
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: PartRodMetalRandom
+      - id: SheetPaperRandom
+      - id: MaterialWoodPlankRandom
+      - id: CableHVStackRandom
+      - id: CableMVStackRandom
+      - id: CableApcStackRandom
+
+- type: entityTable
+  id: TableDungeonLootNpcMaterialValuableRandom
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetUraniumRandom
+    - id: IngotGoldRandom
+    - id: IngotSilverRandom
+    - id: SheetRPGlassRandom
+    - id: SheetRUGlassRandom
+    - id: SheetPlasteelRandom
+    - id: MaterialDurathreadRandom
+    - id: SheetRGlassRandom
+    - id: SheetPGlassRandom
+    - id: SheetUGlassRandom
+    # Rare
+    - !type:GroupSelector
+      weight: 0.08
+      children:
+      - id: MaterialBananiumRandom
