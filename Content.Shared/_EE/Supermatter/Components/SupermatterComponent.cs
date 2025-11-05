@@ -320,7 +320,7 @@ public sealed partial class SupermatterComponent : Component
     /// The point at which we should start sending radio messages about the damage.
     /// </summary>
     [DataField]
-    public float DamageWarningThreshold = 50;
+    public float DamageWarningThreshold = 100;
 
     /// <summary>
     /// The point at which we start sending station announcements about the damage.

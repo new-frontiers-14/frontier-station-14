@@ -181,5 +181,5 @@ public sealed partial class ECCVars
     ///     How often the supermatter should announce its status.
     /// </summary>
     public static readonly CVarDef<float> SupermatterYellTimer =
-        CVarDef.Create("supermatter.yell_timer", 60f, CVar.SERVER);
+        CVarDef.Create("supermatter.yell_timer", 120f, CVar.SERVER);
 }
