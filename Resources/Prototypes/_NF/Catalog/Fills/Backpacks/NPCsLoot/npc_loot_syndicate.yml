@@ -1,36 +1,19 @@
 #region BASE
 - type: entity
-  parent: BaseItem
+  abstract: true
+  parent: NFBaseNpcLootBackpack
   id: SyndieDuffelGiftBox
   name: syndicate naval operative bundle
-  description: Loot boxes? Here?
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  suffix: NPC Loot
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/syndicate.rsi
     state: icon-ammo
-  - type: Item
-    size: Normal
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - back
-  - type: SpawnItemsOnUse
-    items:
-      - id: SpaceCash10
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SyndieDuffelGiftBox
+  abstract: true
+  parent: NFBaseNpcLootBackpack
   id: SyndieMessengerGiftBox
   name: syndicate naval operative bundle
-  description: Loot boxes? Here?
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  suffix: NPC Loot
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/color.rsi

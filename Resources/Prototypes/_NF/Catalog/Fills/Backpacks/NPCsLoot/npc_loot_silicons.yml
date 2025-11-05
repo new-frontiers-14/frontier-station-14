@@ -1,29 +1,20 @@
 # BASE
 - type: entity
-  parent: BaseItem
+  abstract: true
+  parent: NFBaseNpcLootBackpack
   id: RogueSiliconGiftBox
   name: rogue unit's bundle
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  suffix: NPC Loot
   components:
   - type: Sprite
     sprite: _NF/Objects/Tools/bundles.rsi
     state: engi-base
     scale: 0.7, 0.7
-  - type: Item
-    size: Normal
   - type: Clothing
-    slots:
-    - back
-    quickEquip: false
     sprite: _NF/Objects/Tools/bundles.rsi
     clothingVisuals:
       back:
       - state: mask_null
   - type: SpawnItemsOnUse
-    items:
-      - id: SpaceCash10
     sound:
       path: /Audio/Machines/windoor_open.ogg
 

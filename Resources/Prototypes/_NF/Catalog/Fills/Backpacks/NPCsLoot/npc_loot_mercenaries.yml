@@ -1,13 +1,10 @@
 #region BASE
 ## BACK - for gear and cash
 - type: entity
-  parent: BaseItem
+  abstract: true
+  parent: NFBaseNpcLootBackpack
   id: MercenaryDuffelGiftBox
   name: mercenary gear bundle
-  description: Loot boxes? Here?
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  suffix: NPC Loot
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Duffels/color.rsi
@@ -65,23 +62,14 @@
 
 ## BELT - for ammo and mags
 - type: entity
-  parent: BaseItem
+  abstract: true
+  parent: NFBaseNpcLootBelt
   id: MercenaryWebbingBox
   name: mercanary ammo bundle
-  description: Loot boxes? Here?
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  suffix: NPC Loot
   components:
   - type: Sprite
     sprite: Clothing/Belt/mercwebbing.rsi
     state: icon
-  - type: Item
-    size: Normal
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - belt
 
 # MERCENARY NPC LOOT
 #region TIER 1

@@ -1,18 +1,15 @@
-# BASE
+#region base
 - type: entity
-  parent: SyndieDuffelGiftBox
+  abstract: true
+  parent: NFBaseNpcLootBackpack
   id: ExplorerDuffelGiftBox
   name: explorer's bundle
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  suffix: NPC Loot
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/salvage.rsi
     state: icon
 
-# EXPLORER NPC LOOT
-## TIER 1
+# region TIER 1
 - type: entity
   parent: ExplorerDuffelGiftBox
   id: ClothingBackpackExplorerMeleeT1
@@ -22,25 +19,31 @@
     items:
     # Cash
     - id: SpaceCash100
-      prob: 0.9
+      orGroup: SpaceCash
+      prob: 0.2
     - id: SpaceCash500
-      prob: 0.4
-    - id: SpaceCash500
+      orGroup: SpaceCash
+      prob: 0.6
+    - id: SpaceCash1000
+      orGroup: SpaceCash
       prob: 0.2
     # Weapons
     - id: Pickaxe
-      prob: 0.4
+      orGroup: Weapons
+      prob: 0.7
+    - id: SpawnDungeonLootMeleeT1
+      orGroup: Weapons
+      prob: 0.3
     # Items
     - id: SpawnDungeonLootMaterialsBasicFull
-      prob: 0.9
-    - id: SpawnDungeonLootMaterialsBasicFull
-      prob: 0.4
+      orGroup: Items
+      prob: 0.7
     - id: SpawnDungeonLootOresFull
+      orGroup: Items
       prob: 0.2
     - id: ClothingNeckIFFCyan
+      orGroup: Items
       prob: 0.1
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ExplorerDuffelGiftBox
@@ -51,28 +54,29 @@
     items:
     # Cash
     - id: SpaceCash100
-      prob: 0.9
+      orGroup: SpaceCash
+      prob: 0.2
     - id: SpaceCash500
-      prob: 0.4
-    - id: SpaceCash500
+      orGroup: SpaceCash
+      prob: 0.6
+    - id: SpaceCash1000
+      orGroup: SpaceCash
       prob: 0.2
     # Weapons
     - id: NFWeaponPka
       prob: 0.4
     # Items
-    - id: SpawnDungeonLootClutterEngi
-      prob: 0.9
-      amount: 6
     - id: SpawnDungeonLootMaterialsBasicFull
-      prob: 0.4
+      orGroup: Items
+      prob: 0.7
     - id: SpawnDungeonLootOresFull
+      orGroup: Items
       prob: 0.2
     - id: ClothingNeckIFFCyan
+      orGroup: Items
       prob: 0.1
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
-## TIER 2
+# region TIER 2
 - type: entity
   parent: ExplorerDuffelGiftBox
   id: ClothingBackpackExplorerMeleeT2
@@ -152,7 +156,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## TIER 3
+# region TIER 3
 - type: entity
   parent: ExplorerDuffelGiftBox
   id: ClothingBackpackExplorerMeleeT3
@@ -247,7 +251,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## TIER 4
+# region TIER 4
 - type: entity
   parent: ExplorerDuffelGiftBox
   id: ClothingBackpackExplorerBoss
