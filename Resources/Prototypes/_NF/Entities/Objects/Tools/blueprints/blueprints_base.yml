@@ -531,15 +531,16 @@
     - Paper
 
 - type: entity
+  abstract: true
   parent: NFBaseBlueprintExpedition
   id: NFBaseBlueprintExpeditionPunk
-  abstract: true
   components:
   - type: Sprite
     layers:
       - state: icon-base
         map: [ "blueprintIconBase" ]
       - state: icon-text
+        shader: unshaded
         map: [ "blueprintIconText" ]
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
@@ -556,11 +557,13 @@
       - state: inhand-left-base
         map: [ "blueprintInHandLBase" ]
       - state: inhand-left-text
+        shader: unshaded
         map: [ "blueprintInHandLText" ]
       right:
       - state: inhand-right-base
         map: [ "blueprintInHandRBase" ]
       - state: inhand-right-text
+        shader: unshaded
         map: [ "blueprintInHandRText" ]
   - type: RandomSprite
     available:
