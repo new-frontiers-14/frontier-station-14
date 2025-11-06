@@ -29,6 +29,17 @@
     providedRecipes:
     - NFWeaponEnergyRifleTemperature
 
+# region engineering devices
+- type: entity
+  parent: NFBlueprintEngineering
+  id: NFBlueprintPortableRecharger
+  name: portable recharger blueprint
+  description: A blueprint with a schematic of a portable recharger. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - PortableRecharger
+
 # region explorers
 - type: entity
   parent: NFBaseBlueprintExpeditionSalvage
@@ -159,6 +170,15 @@
     - ClothingUniformRandomPunkCroptopShorts
     - ClothingBeltPunkRandomized
     - ClothingShoesBootsPunkRandomized
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionPunk
+  id: NFBlueprintWearablePunk
+  name: punk wearable devices blueprint
+  description: A blueprint with a schematic of punk wearable devices. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
     - ClothingEyesPunkGoggles
     - ClothingEyesPunkInfoShades
     - ClothingMaskPunkHalf
@@ -173,3 +193,16 @@
     providedRecipes:
     - ClothingOuterArmorPunkRandomized
     - ClothingOuterArmorElitePunkRandomized
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionPunk
+  id: NFBlueprintWeaponsMeleePunk
+  name: punk melee weapons blueprint
+  description: A blueprint with a schematic of punk melee weapons. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - BaseBallBat
+    - Machete
+    - KukriKnife
+    - NFKatana

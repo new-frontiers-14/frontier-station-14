@@ -1,4 +1,5 @@
 # TODO: move to the dungeon tables collection
+# region materials
 - type: entityTable
   id: TableDungeonLootNpcMaterialRandom
   table: !type:GroupSelector
@@ -88,3 +89,35 @@
       - id: MiningDrillDiamond
       - id: NFBlueprintWeaponCrusher
       - id: NFBlueprintWeaponCrusherGlaive
+
+# region punk blueprints
+- type: entityTable
+  id: TableDungeonLootNpcBlueprintsPunks
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintClothesPunk
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFBlueprintPouchPunk
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: NFBlueprintArmorPunk
+      - id: NFBlueprintWeaponsMeleePunk
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintWearablePunk
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: NFBlueprintPortableRecharger
