@@ -1,5 +1,4 @@
-# Guns
-
+# region Guns
 - type: entity
   parent: NFBaseBlueprintExpeditionArmory
   id: NFBlueprintWeaponLaserCannon
@@ -30,7 +29,60 @@
     providedRecipes:
     - NFWeaponEnergyRifleTemperature
 
-# Tools
+# region explorers
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintPouchExplorers
+  name: pouches blueprint
+  description: A blueprint with a schematic of several pouches. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFPouchContractor
+    - NFPouchUtility
+    - NFPouchSalvage
+    - NFPouchFirstAid
+    - NFPouchFirstAidAlt
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintMineralScannerEmpty
+  name: mineral scanner blueprint
+  description: A blueprint with a schematic of a mineral scanner. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MineralScannerEmpty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintWeaponCrusher
+  name: crusher axe blueprint
+  description: A blueprint with a schematic of a crusher axe. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - WeaponCrusher
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintWeaponCrusherDagger
+  name: crusher dagger blueprint
+  description: A blueprint with a schematic of a crusher dagger. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - WeaponCrusherDagger
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintWeaponCrusherGlaive
+  name: crusher dagger glaive
+  description: A blueprint with a schematic of a crusher glaive. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - WeaponCrusherGlaive
 
 - type: entity
   parent: NFBaseBlueprintExpeditionSalvage
@@ -54,6 +106,26 @@
 
 - type: entity
   parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintConstructionBagOfHolding
+  name: construction bag of holding blueprint
+  description: A blueprint with a schematic of a construction bag of holding. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ConstructionBagOfHolding
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintMiningDrill
+  name: mining drill blueprint
+  description: A blueprint with a schematic of a mining drill. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MiningDrill
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
   id: NFBlueprintMiningDrillDiamond
   name: diamond tipped mining drill blueprint
   description: A blueprint with a schematic of a diamond tipped mining drill. It can be inserted into a protolathe or techfab.
@@ -61,3 +133,43 @@
   - type: Blueprint
     providedRecipes:
     - MiningDrillDiamond
+
+# region punks
+- type: entity
+  parent: NFBaseBlueprintExpeditionPunk
+  id: NFBlueprintPouchPunk
+  name: punk pouch blueprint
+  description: A blueprint with a schematic of a punk pouch. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFPouchPunk
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionPunk
+  id: NFBlueprintClothesPunk
+  name: punk clothes blueprint
+  description: A blueprint with a schematic of punk closes. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ClothingUniformRandomPunkTanktop
+    - ClothingUniformRandomPunkTanktopShorts
+    - ClothingUniformRandomPunkCroptop
+    - ClothingUniformRandomPunkCroptopShorts
+    - ClothingBeltPunkRandomized
+    - ClothingShoesBootsPunkRandomized
+    - ClothingEyesPunkGoggles
+    - ClothingEyesPunkInfoShades
+    - ClothingMaskPunkHalf
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionPunk
+  id: NFBlueprintArmorPunk
+  name: punk armor blueprint
+  description: A blueprint with a schematic of punk armor. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ClothingOuterArmorPunkRandomized
+    - ClothingOuterArmorElitePunkRandomized

@@ -23,11 +23,23 @@
 
 - type: entity
   parent: MarkerBasePlaceFree
-  id: TableStorageFillStashCoins
+  id: SpawnDungeonLootNpcCoins
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableStorageFillStashJewelry
+      tableId: TableStorageFillStashCoins
+
+# region explorers
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcExplorersBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcBlueprintsExplorers

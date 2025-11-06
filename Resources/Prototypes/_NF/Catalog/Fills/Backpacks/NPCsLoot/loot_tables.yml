@@ -52,3 +52,39 @@
       weight: 0.08
       children:
       - id: MaterialBananiumRandom
+
+# region explorer blueprints
+- type: entityTable
+  id: TableDungeonLootNpcBlueprintsExplorers
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintMineralScannerEmpty
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFBlueprintPouchExplorers
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: NFBlueprintEnergyPickaxe
+      - id: NFBlueprintOreBagOfHolding
+      - id: NFBlueprintConstructionBagOfHolding
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintWeaponCrusherDagger
+      - id: NFBlueprintMiningDrill
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: MiningDrillDiamond
+      - id: NFBlueprintWeaponCrusher
+      - id: NFBlueprintWeaponCrusherGlaive

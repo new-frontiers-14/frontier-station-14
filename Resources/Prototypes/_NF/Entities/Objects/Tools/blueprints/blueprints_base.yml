@@ -529,3 +529,61 @@
     - NFBlueprintAdvanced
     - Document
     - Paper
+
+- type: entity
+  parent: NFBaseBlueprintExpedition
+  id: NFBaseBlueprintExpeditionPunk
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        map: [ "blueprintIconBase" ]
+      - state: icon-text
+        map: [ "blueprintIconText" ]
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        map: [ "blueprintInHandLBase" ]
+      - state: inhand-left-text
+        map: [ "blueprintInHandLText" ]
+      right:
+      - state: inhand-right-base
+        map: [ "blueprintInHandRBase" ]
+      - state: inhand-right-text
+        map: [ "blueprintInHandRText" ]
+  - type: RandomSprite
+    available:
+      - blueprintIconBase:
+          icon-base: Base
+        blueprintIconText:
+          icon-text: Text
+        blueprintInHandLBase:
+          inhand-left-base: Base
+        blueprintInHandLText:
+          inhand-left-text: Text
+        blueprintInHandRBase:
+          inhand-right-base: Base
+        blueprintInHandRText:
+          inhand-right-text: Text
+    mappedColors:
+      Base: CyberpunkDark
+      Text: CyberpunkNeon
+  - type: Tag
+    tags:
+    - NFBlueprintServiceTechfab
+    - NFBlueprintMercenaryTechfab
+    - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
+    - Document
+    - Paper

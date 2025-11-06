@@ -188,7 +188,7 @@
     # Armor
     - id: ClothingOuterHardsuitSalvage
       orGroup: Armor
-      prob: 0.1
+      prob: 0.05
     # Items
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
@@ -204,8 +204,11 @@
       prob: 0.1
     - id: SpawnDungeonLootPartsEngi
       orGroup: Items
-      prob: 0.3
+      prob: 0.2
       amount: 3
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: Items
+      prob: 0.2
 
 - type: entity
   parent: ExplorerDuffelGiftBox
@@ -242,7 +245,7 @@
       prob: 0.3
     - id: SpawnDungeonLootOresFull
       orGroup: Items
-      prob: 0.4
+      prob: 0.3
     - id: ClothingNeckIFFCyan
       orGroup: Items
       prob: 0.1
@@ -253,6 +256,9 @@
       orGroup: Items
       prob: 0.2
       amount: 3
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: Items
+      prob: 0.2
 
 # region TIER 4
 - type: entity
@@ -284,7 +290,7 @@
     # Armor
     - id: ClothingOuterHardsuitMaximPrototype
       orGroup: Armor
-      prob: 0.1
+      prob: 0.05
     # Items
     - id: SpawnDungeonLootClutterEngi
       orGroup: Items
@@ -303,18 +309,12 @@
       orGroup: Items
       prob: 0.1
     # Boss Loot
-    - id: NFBlueprintEnergyPickaxe
+    - id: SpawnDungeonLootNpcExplorersBlueprints
       orGroup: BossLoot
-      prob: 0.1
-    - id: NFBlueprintMiningDrillDiamond
-      orGroup: BossLoot
-      prob: 0.05
-    - id: NFBlueprintOreBagOfHolding
-      orGroup: BossLoot
-      prob: 0.1
+      prob: 0.5
     - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
       orGroup: BossLoot
-      prob: 0.4
+      prob: 0.2
     - id: TableStorageFillStashCoins # From 75 to ~5000 spesos
       orGroup: BossLoot
-      prob: 0.35
+      prob: 0.3
