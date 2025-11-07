@@ -1,4 +1,4 @@
-# BASE
+# region base
 - type: entity
   abstract: true
   parent: NFBaseNpcLootBackpack
@@ -18,8 +18,8 @@
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
-# ROGUE SILICON NPC LOOT
-## TIER 0
+# region tier 0
+# TODO: spawners for disks (the ones labeled as tresure)
 - type: entity
   parent: RogueSiliconGiftBox
   id: ClothingBackpackRogueSiliconT0
@@ -39,13 +39,8 @@
       prob: 0.25
     - id: SpawnDungeonLootPartsEngi
       prob: 0.25
-    # Circuit boards
-  #  - id: SpawnDungeonLootCircuitBoardEngi
-   #   prob: 0.25
-    sound:
-      path: /Audio/Machines/windoor_open.ogg
 
-## TIER 1
+# region tier 1
 - type: entity
   parent: RogueSiliconGiftBox
   id: ClothingBackpackRogueSiliconT1
@@ -67,16 +62,8 @@
       prob: 0.25
     - id: SpawnDungeonLootPartsEngi
       prob: 0.25
-    # Circuit boards
-   # - id: SpawnDungeonLootCircuitBoardEngi
-   #   prob: 0.9
-    # Flatpacks
-   # - id: SpawnDungeonLootFlatpacks
-   #  prob: 0.8
-    sound:
-      path: /Audio/Machines/windoor_open.ogg
 
-## TIER 2
+# region tier 2
 - type: entity
   parent: RogueSiliconGiftBox
   id: ClothingBackpackRogueSiliconT2
@@ -99,19 +86,8 @@
     - id: SpawnDungeonLootPartsEngi
       amount: 2
       prob: 0.25
-    # Circuit boards
-  #  - id: SpawnDungeonLootCircuitBoardEngi
-  #    amount: 1
-  #    prob: 0.8
-  #  - id: SpawnDungeonLootCircuitBoardScience
-  #    prob: 0.8
-    # Flatpacks
-  #  - id: SpawnDungeonLootFlatpacks
-  #    prob: 0.8
-    sound:
-      path: /Audio/Machines/windoor_open.ogg
 
-## TIER 3
+# region tier 3
 - type: entity
   parent: RogueSiliconGiftBox
   id: ClothingBackpackRogueSiliconT3
@@ -134,23 +110,8 @@
     - id: SpawnDungeonLootPartsEngi
       amount: 3
       prob: 0.25
-    # Circuit boards
-  #  - id: SpawnDungeonLootCircuitBoardEngi
-  #    amount: 1
-  #    prob: 0.7
-  #  - id: SpawnDungeonLootCircuitBoardScience
-  #    amount: 1
-  #    prob: 0.7
-  #  - id: SpawnDungeonLootCircuitBoardSalvage
-  #    prob: 0.7
-    # Flatpacks
-  #  - id: SpawnDungeonLootFlatpacks
-  #   amount: 2
-  #    prob: 0.8
-    sound:
-      path: /Audio/Machines/windoor_open.ogg
 
-## TIER 4 (Placeholder)
+# region tier 4 - boss
 - type: entity
   parent: RogueSiliconGiftBox
   id: ClothingBackpackRogueSiliconT4
@@ -175,20 +136,3 @@
     - id: SpawnDungeonLootPartsEngi
       amount: 3
       prob: 0.25
-    # Circuit boards
-   # - id: SpawnDungeonLootCircuitBoardEngi
-   #   amount: 1
-   #   prob: 0.8
-   # - id: SpawnDungeonLootCircuitBoardScience
-   #   amount: 1
-   #   prob: 0.8
-   # - id: SpawnDungeonLootCircuitBoardSalvage
-   #   prob: 0.8
-   # - id: SpawnDungeonLootCircuitBoard
-   #   prob: 0.8
-    # Flatpacks
-  #  - id: SpawnDungeonLootFlatpacks
-   #   amount: 3
-   #   prob: 0.8
-    sound:
-      path: /Audio/Machines/windoor_open.ogg

@@ -1,4 +1,4 @@
-# BASE
+# region base
 - type: entity
   abstract: true
   parent: NFBaseNpcLootBackpack
@@ -40,7 +40,7 @@
 # region tier 1
 - type: entity
   parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkLootA
+  id: ClothingBackpackPunkMeleeT1
   name: punk gear bundle
   categories: [ HideSpawnMenu ]
   components:
@@ -93,7 +93,7 @@
 
 - type: entity
   parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkLootB
+  id: ClothingBackpackPunkRangedT1
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -150,9 +150,11 @@
       prob: 0.1
 
 # region tier 2
+# TODO: make a MeleeT2
+# TODO: make a weighted shotgun/ammo spawner
 - type: entity
   parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkLootC
+  id: ClothingBackpackPunkRangedT2
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -203,9 +205,10 @@
       prob: 0.1
 
 # region tier 3
+# TODO: make a MeleeT3
 - type: entity
   parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkLootD
+  id: ClothingBackpackPunkRangedT3
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -261,7 +264,7 @@
       orGroup: Items
       prob: 0.05
 
-# region tier 4
+# region tier 4 - boss
 - type: entity
   parent: PunkMessengerGiftBox
   id: ClothingBackpackPunkLootBoss
