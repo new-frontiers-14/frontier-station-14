@@ -17,6 +17,7 @@ using Content.Server.Chat.Systems;
 using Content.Server._NF.Radio;
 using Content.Server._NF.Speech.Components;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Lightning;
 using Content.Server.Singularity.Components;
 using Content.Server.Sound.Components;
 using Content.Shared._EE.CCVars;
@@ -44,6 +45,7 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Maths;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Timing;
+using System.ComponentModel;
 
 namespace Content.Server._EE.Supermatter.Systems;
 
@@ -201,7 +203,8 @@ public sealed partial class SupermatterSystem
     }
 
     /// <summary>
-    /// Shoot lightning bolts depending on accumulated power.
+    /// Shoot lightning bolts randomly as power increases
+    /// Shoot even more lightning bolts once above the severe threshold
     /// </summary>
     private void SupermatterZap(EntityUid uid, SupermatterComponent sm)
     {
@@ -212,12 +215,19 @@ public sealed partial class SupermatterSystem
         if (_random.Prob(0.05f))
             zapCount += 1;
 
+        if (_random.Prob(0.05f) && sm.Power >= 1000)
+            zapCount += 1;
+
+        if (_random.Prob(0.05f) && sm.Power >= 2000)
+            zapCount += 1;
+
         if (sm.Power >= _config.GetCVar(ECCVars.SupermatterPowerPenaltyThreshold))
-            zapCount += 2;
+        {
+            zapPower += 1;
+        }
 
         if (sm.Power >= _config.GetCVar(ECCVars.SupermatterSeverePowerPenaltyThreshold))
         {
-            zapPower += 1;
             zapCount += 1;
         }
 
@@ -228,7 +238,7 @@ public sealed partial class SupermatterSystem
         }
 
         if (zapCount >= 1)
-            _lightning.ShootRandomLightnings(uid, zapRange, zapCount, sm.LightningPrototypes[zapPower]);
+            _lightning.ShootRandomLightnings(uid, zapRange, zapCount, sm.LightningPrototypes[zapPower], hitCoordsChance: sm.ZapHitCoordinatesChance);
     }
 
     /// <summary>

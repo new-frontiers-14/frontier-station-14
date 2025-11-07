@@ -43,7 +43,7 @@ public sealed partial class ECCVars
 
     /// <summary>
     ///     The cutoff on power properly doing damage, pulling stuff around, and delaminating into a tesla.
-    ///     The supermatter will also spawn anomalies, and gains +2 bolts of electricity.
+    ///     The supermatter will also spawn anomalies and shoot stronger lightning.
     /// </summary>
     public static readonly CVarDef<float> SupermatterPowerPenaltyThreshold =
         CVarDef.Create("supermatter.power_penalty_threshold", 5000f, CVar.SERVER);

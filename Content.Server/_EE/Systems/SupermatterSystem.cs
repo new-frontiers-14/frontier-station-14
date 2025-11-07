@@ -40,6 +40,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceLinking;
@@ -129,6 +130,11 @@ public sealed partial class SupermatterSystem : EntitySystem
         HandleStatus(uid, sm);
         HandleSoundLoop(uid, sm);
         HandleAccent(uid, sm);
+
+        if (sm.Power > 500)
+        {
+            SupermatterZap(uid, sm);
+        }
 
         if (sm.Power > _config.GetCVar(ECCVars.SupermatterPowerPenaltyThreshold) || sm.Damage > sm.DamagePenaltyPoint)
         {
