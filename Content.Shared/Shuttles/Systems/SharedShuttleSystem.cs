@@ -142,10 +142,11 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         if (!Resolve(gridUid, ref physics))
             return true;
 
-        if (physics.BodyType != BodyType.Static && physics.Mass < 5f) // Frontier 10<5
-        {
-            return false;
-        }
+        // Frontier - don't hide tiny shuttles from IFF view
+        // if (physics.BodyType != BodyType.Static && physics.Mass < 5f) // Frontier 10<5
+        // {
+        //     return false;
+        // }
 
         if (!Resolve(gridUid, ref iffComp, false))
         {
