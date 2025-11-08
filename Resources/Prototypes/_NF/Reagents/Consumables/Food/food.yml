@@ -51,3 +51,35 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+
+- type: reagent
+  id: SourCream
+  name: reagent-name-sourcream
+  group: Foods
+  desc: reagent-desc-sourcream
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: sharp
+  color: "#F5F5F5"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 0.5
+
+- type: reagent
+  id: Salsa
+  name: reagent-name-salsa
+  group: Foods
+  desc: reagent-desc-salsa
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: tangy
+  color: "#ff6347"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 0.5
+      - !type:SatiateThirst
+        factor: 0.5 # watery, tomato-y

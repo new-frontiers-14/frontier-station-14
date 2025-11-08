@@ -15,3 +15,46 @@
   effects:
     - !type:CreateEntityReactionEffect
       entity: FoodRiceDough
+
+- type: reaction
+  id: CreateSourCreamLemon
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Cream:
+      amount: 1
+    JuiceLemon:
+      amount: 1
+  products:
+    SourCream: 2
+
+- type: reaction
+  id: CreateSourCreamLime
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Cream:
+      amount: 1
+    JuiceLime:
+      amount: 1
+  products:
+    SourCream: 2
+
+- type: reaction
+  id: CreateSalsa
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    JuiceTomato:
+      amount: 2
+    JuiceLemon:
+      amount: 1
+    Allicin:
+      amount: 1
+  CapsaicinOil:
+  amount: 1
+  products:
+    Salsa: 5

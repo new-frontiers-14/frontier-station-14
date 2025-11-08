@@ -700,3 +700,111 @@
   - type: Construction
     graph: NFHotdog
     node: hotteddog
+
+- type: entity
+  name: quesadilla
+  parent: FoodMealBase
+  id: FoodMealQuesadilla
+  description: A grilled cheese of another tasty cultural cuisine.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 13
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 7
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Consumable/Food/mexican.rsi
+    state: quesadilla
+
+- type: entity
+  name: burrito
+  parent: FoodMealBase
+  id: FoodMealBurrito
+  description: A tortilla-wrap stuffed to the brim. This thing is huge...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - savory
+      - tomato
+      - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 60
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 38
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 10
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Consumable/Food/mexican.rsi
+    state: burrito
+
+- type: entity
+  name: tamale
+  parent: BaseItem
+  id: FoodMealTamaleWrapped
+  description: Wrapped cornmeal goodness.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Consumable/Food/mexican.rsi
+    state: tamale_wrapped
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodTrashTamaleHusk
+      - id: FoodMealTamale
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: tamale
+  parent: FoodMealBase
+  id: FoodMealTamale
+  description: Unwrapped cornmeal goodness.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Consumable/Food/mexican.rsi
+    state: tamale
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - meaty
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: corn husk
+  parent: BaseItem
+  id: FoodTrashTamaleHusk
+  description: The ghost of a good meal.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Consumable/Food/mexican.rsi
+    state: tamale_husk
+
