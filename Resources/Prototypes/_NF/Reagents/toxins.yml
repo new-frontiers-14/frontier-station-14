@@ -51,10 +51,11 @@
         amount: -2
       - !type:Jitter
       - !type:PopupMessage
-          type: Local
+        type: Local
+        visualType: Medium
+        messages: ["dacafenol-effect-jitters", "dacafenol-effect-heart-pounds"]
+        probability: 0.05
+        conditions:
         - !type:ReagentThreshold
-          min: 30 # or max:
-          visualType: Medium
-          messages: ["dacafenol-effect-jitters", "dacafenol-effect-heart-pounds"]
-          type: Local
-          probability: 0.05
+          reagent: Dacafenol
+          min: 1
