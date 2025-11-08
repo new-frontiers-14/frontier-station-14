@@ -18,6 +18,48 @@
 
 - type: entity
   parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
+  id: CargoTechFabNF
+  name: cargo techfab
+  description: Prints equipment for cargonians.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: cargo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CargoTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFServiceToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFCargoArchetypeStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintAdvanced
+  - type: OreSiloClient
+
+- type: entity
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -42,13 +84,29 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFServiceTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFServiceStorageStatic
+    - NFBotanyToolsStatic
+    - NFServiceToolsStatic
+    - NFServiceEvaPackStatic
+    - NFServiceKitchenStatic
+    - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFLightsColoredStatic
+    - NFServiceArchetypeStatic
+    - NFPietyStatic
+    - NFCandlesStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - NFServiceTechfabDeprecatedEmagStatic
+    - NFServiceTechfabEmagStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -79,9 +137,24 @@
     board: McServiceTechFabCircuitboard
   - type: Lathe
     staticPacks:
-    - NFServiceTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFServiceStorageStatic
+    - NFBotanyToolsStatic
+    - NFServiceToolsStatic
+    - NFServiceEvaPackStatic
+    - NFServiceKitchenStatic
+    - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
+    - NFLightsColoredStatic
+    - NFServiceArchetypeStatic
     - NFMcServiceTechfabStatic
 
 - type: entity
@@ -110,7 +183,22 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFEngineeringTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFServiceToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFEngineeringToolsStatic
+    - NFEngineeringBoardsStatic
+    - NFEngineeringStructureBoardsStatic
+    - NFEngineeringMaterialsStatic
+    - NFInflatablesStatic
+    - NFEngineeringArchetypeStatic
+
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -144,10 +232,23 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFSalvageTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFMaterialElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFBasicEvaLightsStatic
+    - NFSalvageStatic
+    - NFSalvageBoardsStatic
+    - NFInflatablesStatic
+    - NFSalvageArchetypeStatic
+
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - NFSalvageTechfabDeprecatedEmag
+    - NFSalvageTechfabEmag
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -181,10 +282,23 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFNfsdTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - ReportingStatic # DeltaV
+    - NfsdWeaponsStatic
     - NfsdPracticeStatic
     - NfsdAmmoStatic
-    - ReportingStatic # DeltaV
+    - NFMercenaryMagazineStatic
+    - NFMercenaryStorageStatic
+    - NfsdToolsStatic
+    - NfsdTargetsStatic
+    - NfsdBoardsStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -218,8 +332,25 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - NFMercenaryTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFMaterialElectronicsStatic
+    - NFBasicEvaLightsStatic
+    - NFMercenaryStatic
+    - NFMercenaryClothesStatic
+    - NFMercenaryStorageStatic
+    - NFMercenaryWeaponsStatic
+    - NFMercenaryAmmoBoxesStatic
     - NfsdPracticeStatic
+    - NFMercenaryMagazineStatic
+    - NFTopicalsStatic
+    - NFMercenaryArchetypeStatic
+
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -267,7 +398,24 @@
     idleState: mercenary-hacked
     runningState: mercenary-hacked
     staticPacks:
-    - NFHackedMercenaryTechfabDeprecatedStatic
+    - NFLightsStatic
+    - NFBasicToolsStatic
+    - NFBasicStorageStatic
+    - NFBasicPartsStatic
+    - NFBasicElectronicsStatic
+    - NFBasicEvaStatic
+    - NFBasicEVAToolsStatic
+    - NFBasicEvaLightsStatic
+    - NFMaterialElectronicsStatic
+    - NFMercenaryStatic
+    - NFMercenaryClothesStatic
+    - NFMercenaryStorageStatic
+    - NFMercenaryWeaponsStatic
+    - NFMercenaryAmmoBoxesStatic
+    - NfsdPracticeStatic
+    - NFHackedMercenaryClothingStatic
+    - NFMercenaryMagazineStatic
+    - NFMercenaryArchetypeStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -292,8 +440,8 @@
   - type: LitOnPowered
   - type: ApcPowerReceiver
     powerLoad: 200
-  - type: Advertise
-    pack: CuddlyCritterAds
+  - type: DatasetVocalizer
+    dataset: CuddlyCritterAds
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -500,3 +648,47 @@
   - type: Lathe
     staticPacks:
     - NFPirateClothing
+
+- type: entity
+  parent: OreProcessor
+  id: OreProcessorCivilian
+  name: civilian ore processor
+  description: A stand alone ore processor designed to operate independently of shuttle infrastructure. Time to live off the grid!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/civilian_ore_processor.rsi
+  - type: Machine
+    board: OreProcessorCivilianCircuitboard
+  - type: Lathe
+    materialUseMultiplier: 1.25
+    timeMultiplier: 1.5
+    staticPacks:
+    - CivilianOreSmelting    
+
+- type: entity
+  id: PirateTechFab
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
+  name: pirate techfab
+  description: You can hear it humming with the anticipation of being fed liberated blueprints.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: pirate
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: PirateTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+  - type: OreSiloClient
+

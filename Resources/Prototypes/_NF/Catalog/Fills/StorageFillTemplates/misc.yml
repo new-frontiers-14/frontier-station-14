@@ -1,0 +1,62 @@
+# region T2 machine parts
+- type: entityTable
+  id: TableStorageFillT2Parts
+  table: !type:AllSelector
+    children:
+    - id: AdvancedCapacitorStockPart10
+      amount: 5
+    - id: NanoManipulatorStockPart10
+      amount: 4
+    - id: AdvancedMatterBinStockPart10
+      amount: 4
+
+- type: entity
+  abstract: true
+  id: StorageFillT2Parts
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillT2Parts
+
+# region T3 machine parts
+- type: entityTable
+  id: TableStorageFillT3Parts
+  table: !type:AllSelector
+    children:
+    - id: SuperCapacitorStockPart10
+      amount: 5
+    - id: PicoManipulatorStockPart10
+      amount: 4
+    - id: SuperMatterBinStockPart10
+      amount: 4
+
+- type: entity
+  abstract: true
+  id: StorageFillT3Parts
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillT3Parts
+
+# region T4 machine parts
+- type: entityTable
+  id: TableStorageFillT4Parts
+  table: !type:AllSelector
+    children:
+    - id: QuadraticCapacitorStockPart10
+      amount: 5
+    - id: FemtoManipulatorStockPart10
+      amount: 4
+    - id: BluespaceMatterBinStockPart10
+      amount: 4
+
+- type: entity
+  abstract: true
+  id: StorageFillT4Parts
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillT4Parts
