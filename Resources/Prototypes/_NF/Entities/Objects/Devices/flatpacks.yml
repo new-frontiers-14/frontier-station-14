@@ -535,6 +535,18 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: CivilianOreProcessorFlatpack
+  name: civilian ore processor flatpack
+  description: A flatpack used for constructing a civilian ore processor.
+  components:
+  - type: Flatpack
+    entity: OreProcessorCivilian
+  - type: Sprite
+    layers:
+    - state: supply_lathe
+
+- type: entity
+  parent: BaseNFFlatpack
   id: ShuttleGunKineticFlatpack
   name: PTK-1500e "Matter Dematerializer" flatpack
   description: A flatpack used for constructing a PTK-1500e "Matter Dematerializer".
