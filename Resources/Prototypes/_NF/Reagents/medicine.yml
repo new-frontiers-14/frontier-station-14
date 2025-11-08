@@ -55,8 +55,16 @@
       metabolismRate: 0.1
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.25
-        sprintSpeedModifier: 1.25
+        walkSpeedModifier: 1.02
+        sprintSpeedModifier: 1.02
+        refresh: true
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          min: 60
+        reagent: Dacafenol
+        amount: 1
 
 #impstation
 - type: reagent

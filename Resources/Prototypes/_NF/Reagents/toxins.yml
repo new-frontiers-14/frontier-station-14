@@ -27,3 +27,36 @@
         damage:
           types:
             Poison: 0.05
+
+- type: reagent
+  id: Dacafenol
+  parent: BaseDrink
+  name: reagent-name-dacafenol
+  group: Toxins
+  desc: reagent-desc-dacafenol
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: antiseptic
+  color: "#457c7d"
+  metabolisms: # This results in the system working as a governor, preventing banking too much reagent without being too punishing.
+    Poison:
+      effects:
+      - !type:MovespeedModifier 
+        walkSpeedModifier: .90
+        sprintSpeedModifier: .90
+        refresh: true
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          min: 1
+        reagent: Caffeine
+        amount: -2
+      - !type:Jitter
+      - !type:PopupMessage
+        condition:
+        - !type:ReagentThreshold
+          min: 30 # or max:
+        visualType: Medium
+        messages: ["dacafenol-effect-jitters", "dacafenol-effect-heart-pounds"]
+        type: Local
+        probability: 0.05
