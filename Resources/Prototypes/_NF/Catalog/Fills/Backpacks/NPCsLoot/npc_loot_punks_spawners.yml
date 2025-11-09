@@ -1,33 +1,32 @@
-# TODO: move to the dungeon spawner collection
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcMaterialRandom
+  id: SpawnDungeonLootNpcPunksBooze
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableDungeonLootNpcMaterialRandom
+      tableId: TableStorageFillStashBooze
 
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcJewelry
+  id: SpawnDungeonLootNpcPunksSmokes
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableStorageFillStashJewelry
+      tableId: TableStorageFillStashTobacco
 
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcCoins
+  id: SpawnDungeonLootNpcPunksBlueprints
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableStorageFillStashCoins
+      tableId: TableDungeonLootNpcBlueprintsPunks

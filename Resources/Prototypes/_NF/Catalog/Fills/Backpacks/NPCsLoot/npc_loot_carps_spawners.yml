@@ -1,33 +1,36 @@
-# TODO: move to the dungeon spawner collection
-- type: entity
-  parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcMaterialRandom
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: EntityTableSpawner
-    offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcMaterialRandom
 
+# region carps
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcJewelry
+  id: SpawnDungeonLootNpcCarps
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableStorageFillStashJewelry
+      tableId: TableDungeonLootNpcCarps
 
+# region wyverns
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcCoins
+  id: SpawnDungeonLootNpcCarpsWyvern
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
-      tableId: TableStorageFillStashCoins
+      tableId: TableDungeonLootNpcCarpsWyvern
+
+# region dragon (boss)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcCarpsDragon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcCarpsDragon
