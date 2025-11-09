@@ -1,8 +1,8 @@
 # region Bureaucracy
 - type: entity
-  name: random clutter
-  id: SpawnDungeonLootBureaucracy
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootBureaucracy
+  name: random clutter
   suffix: "Loot (Frontier), Bureaucracy"
   components:
   - type: Sprite
@@ -21,10 +21,10 @@
       tableId: TableDungeonLootGeneralBureaucracy
 
 - type: entity
-  name: random pen
+  parent: MarkerBasePlaceFree
   id: SpawnDungeonLootBureaucracyPen
   categories: [ HideSpawnMenu ]
-  parent: MarkerBasePlaceFree
+  name: random pen
   suffix: Loot (Frontier)
   components:
   - type: Sprite
@@ -44,9 +44,9 @@
 
 # region Lockers
 - type: entity
-  name: random locker
-  id: SpawnDungeonLootLockersGeneral
   parent: MarkerBase
+  id: SpawnDungeonLootLockersGeneral
+  name: random locker
   suffix: "Loot (Frontier), Generic"
   components:
   - type: Sprite
@@ -66,9 +66,9 @@
       tableId: TableDungeonLootGeneralWardrobes
 
 - type: entity
-  name: random suit storage unit
-  id: SpawnDungeonLootSuitStorageUnitsGeneral
   parent: MarkerBase
+  id: SpawnDungeonLootSuitStorageUnitsGeneral
+  name: random suit storage unit
   suffix: "Loot (Frontier), Generic"
   components:
   - type: Sprite
@@ -88,9 +88,9 @@
       tableId: TableDungeonLootGeneralSuitStorageUnits
 
 - type: entity
-  name: random locker
-  id: SpawnDungeonLootLockersProtectiveGear
   parent: MarkerBase
+  id: SpawnDungeonLootLockersProtectiveGear
+  name: random locker
   suffix: "Loot (Frontier), Protective Gear"
   components:
   - type: Sprite
@@ -110,10 +110,10 @@
       tableId: TableDungeonLootGeneralProtectiveGear
 
 - type: entity
-  name: random bedroom
-  id: SpawnDungeonFurnitureBedroom
   parent: MarkerBase
-  suffix: "Loot (Frontier), Furniture"
+  id: SpawnDungeonFurnitureBedroom
+  name: random bedroom
+  suffix: "Frontier, Furniture"
   components:
   - type: Sprite
     layers:
@@ -133,10 +133,10 @@
 
 # region Crates
 - type: entity
-  name: random crate
-  id: SpawnDungeonLootCrateGeneral
-  suffix: "Loot (Frontier), General"
   parent: MarkerBase
+  id: SpawnDungeonLootCrateGeneral
+  name: random crate
+  suffix: "Loot (Frontier), General"
   components:
   - type: Sprite
     layers:
@@ -153,9 +153,9 @@
       tableId: TableDungeonLootGeneralCrates
 
 - type: entity
-  name: random vehicle crate
-  id: SpawnDungeonLootCrateVehicle
   parent: MarkerBase
+  id: SpawnDungeonLootCrateVehicle
+  name: random vehicle crate
   suffix: "Loot (Frontier)"
   components:
   - type: Sprite
@@ -175,10 +175,10 @@
       tableId: TableDungeonLootGeneralCratesVehicle
 
 - type: entity
-  name: random crate
-  id: SpawnDungeonLootCrateMaterials
-  suffix: "Loot (Frontier), Materials"
   parent: MarkerBase
+  id: SpawnDungeonLootCrateMaterials
+  name: random crate
+  suffix: "Loot (Frontier), Materials"
   components:
   - type: Sprite
     layers:
@@ -195,9 +195,9 @@
       tableId: TableDungeonLootGeneralCratesMaterial
 
 - type: entity
-  name: random crate (restock)
-  id: SpawnDungeonLootCrateRestockGeneral
   parent: MarkerBase
+  id: SpawnDungeonLootCrateRestockGeneral
+  name: random crate (restock)
   suffix: "Loot (Frontier), General"
   components:
   - type: Sprite
@@ -215,9 +215,9 @@
       tableId: TableDungeonLootGeneralRestocks
 
 - type: entity
-  name: random crate (restock)
-  id: SpawnDungeonLootCrateRestockClothes
   parent: MarkerBase
+  id: SpawnDungeonLootCrateRestockClothes
+  name: random crate (restock)
   suffix: "Loot (Frontier), Clothes"
   components:
   - type: Sprite
@@ -278,9 +278,9 @@
       tableId: TableDungeonLootGeneralFrameComputer
 
 - type: entity
-  name: random flatpack
-  id: SpawnDungeonLootFlatpacks
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootFlatpacks
+  name: random flatpack
   suffix: Loot (Frontier)
   components:
   - type: Sprite
@@ -298,9 +298,9 @@
       tableId: TableDungeonLootGeneralFlatpacks
 
 - type: entity
-  name: random machine board
-  id: SpawnDungeonLootCircuitBoard
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootCircuitBoard
+  name: random machine board
   suffix: "Loot (Frontier), General"
   components:
   - type: Sprite
@@ -319,9 +319,9 @@
       tableId: TableDungeonLootGeneralCircuitBoards
 
 - type: entity
-  name: random machine techfab
-  id: SpawnDungeonLootLathe
   parent: MarkerBase
+  id: SpawnDungeonLootLathe
+  name: random machine techfab
   suffix: Loot (Frontier)
   components:
   - type: Sprite
@@ -340,9 +340,9 @@
 
 # region Vendomats
 - type: entity
-  name: random vendomat # drinks, smokes, toy, decor
-  id: SpawnDungeonVendomatsRecreational
   parent: MarkerBase
+  id: SpawnDungeonVendomatsRecreational
+  name: random vendomat # drinks, smokes, toy, decor
   suffix: "Loot (Frontier), Recreational"
   components:
   - type: Sprite
@@ -360,9 +360,9 @@
       tableId: TableDungeonLootGeneralVendomatsRecreational
 
 - type: entity
-  name: random vendomat
-  id: SpawnDungeonVendomatsClothes
   parent: MarkerBase
+  id: SpawnDungeonVendomatsClothes
+  name: random vendomat
   suffix: "Loot (Frontier), Clothes"
   components:
   - type: Sprite
@@ -380,9 +380,9 @@
       tableId: TableDungeonLootGeneralVendomatsClothes
 
 - type: entity
-  name: random vendomat
-  id: SpawnDungeonVendomatsTools
   parent: MarkerBase
+  id: SpawnDungeonVendomatsTools
+  name: random vendomat
   suffix: "Loot (Frontier), Tools"
   components:
   - type: Sprite
@@ -441,9 +441,9 @@
       tableId: TableDungeonLootGeneralMaterialValuableSingle
 
 - type: entity
-  name: random ores
-  id: SpawnDungeonLootOresSingle
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootOresSingle
+  name: random ores
   suffix: "Loot (Frontier), Single"
   components:
   - type: Sprite
@@ -462,9 +462,9 @@
       tableId: TableDungeonLootGeneralOreSingle
 
 - type: entity
-  name: random materials
-  id: SpawnDungeonLootMaterialsBasicFull
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootMaterialsBasicFull
+  name: random materials
   suffix: "Loot (Frontier), Basic"
   components:
   - type: Sprite
@@ -482,9 +482,9 @@
       tableId: TableDungeonLootGeneralMaterialBasicFull
 
 - type: entity
-  name: random materials
-  id: SpawnDungeonLootMaterialsValuableFull
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootMaterialsValuableFull
+  name: random materials
   suffix: "Loot (Frontier), Valuable"
   components:
   - type: Sprite
@@ -502,9 +502,9 @@
       tableId: TableDungeonLootGeneralMaterialValuableFull
 
 - type: entity
-  name: random ores
-  id: SpawnDungeonLootOresFull
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootOresFull
+  name: random ores
   suffix: "Loot (Frontier), Full"
   components:
   - type: Sprite
@@ -524,9 +524,9 @@
 
 #region Other
 - type: entity
-  name: random restock box
-  id: SpawnDungeonLootVendingRestocks
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootVendingRestocks
+  name: random restock box
   suffix: Loot (Frontier)
   components:
   - type: Sprite
@@ -549,9 +549,9 @@
       tableId: TableDungeonLootGeneralRestocksStuff
 
 - type: entity
-  name: random spesos
-  id: SpawnDungeonLootSpesos
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootSpesos
+  name: random spesos
   suffix: Loot (Frontier)
   components:
   - type: Sprite
@@ -570,9 +570,9 @@
       tableId: TableDungeonLootGeneralSpaceCash
 
 - type: entity
-  name: random briefcase
-  id: SpawnDungeonLootBriefcase
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootBriefcase
+  name: random briefcase
   suffix: Loot (Frontier)
   components:
   - type: Sprite
@@ -590,9 +590,9 @@
       tableId: TableDungeonLootGeneralBriefcases
 
 - type: entity
-  name: random canister broken
-  id: SpawnDungeonCanisterBroken
   parent: MarkerBase
+  id: SpawnDungeonCanisterBroken
+  name: random canister broken
   suffix: Loot (Frontier)
   categories: [ HideSpawnMenu ]
   components:

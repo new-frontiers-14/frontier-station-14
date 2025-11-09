@@ -1,8 +1,8 @@
 # region Clutter
 - type: entity
-  name: random clutter
-  id: SpawnDungeonLootArmoryClutter
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryClutter
+  name: random clutter
   suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
@@ -21,9 +21,9 @@
       tableId: TableDungeonLootMercenaryClutter
 
 - type: entity
-  name: random clutter
-  id: SpawnDungeonLootArmoryClutterSec
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryClutterSec
+  name: random clutter
   suffix: "Loot (Frontier), Security"
   components:
   - type: Sprite
@@ -43,9 +43,9 @@
 
 # region Weapons
 - type: entity
-  name: random weapon
-  id: SpawnDungeonLootArmoryGuns
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryGuns
+  name: random weapon
   suffix: "Loot (Frontier), Loose"
   components:
   - type: Sprite
@@ -64,21 +64,21 @@
       children:
       - !type:NestedSelector
         tableId: TableDungeonLootWeaponsMelee
-        weight: 0.3
+        weight: 0.2
       - !type:NestedSelector
         tableId: TableDungeonLootWeaponsRanged
-        weight: 0.3
+        weight: 0.45
       - !type:NestedSelector
         tableId: TableDungeonLootWeaponsAmmunition
         weight: 0.2
       - !type:NestedSelector
         tableId: TableDungeonLootWeaponsExplosives
-        weight: 0.2
+        weight: 0.15
 
 - type: entity
-  name: random weapon
-  id: SpawnDungeonLootVaultGuns
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootVaultGuns
+  name: random weapon
   suffix: "Loot (Frontier), Vault"
   components:
   - type: Sprite
@@ -109,9 +109,9 @@
         weight: 0.05
 
 - type: entity
-  name: random weapon
-  id: SpawnDungeonLootArmoryMelee
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryMelee
+  name: random weapon
   suffix: "Loot (Frontier), Melee"
   components:
   - type: Sprite
@@ -130,10 +130,10 @@
       tableId: TableDungeonLootWeaponsMelee
 
 - type: entity
-  name: random weapon
-  id: SpawnDungeonLootArmoryRare
   parent: MarkerBasePlaceFree
-  suffix: "Loot (Frontier), Vault, T3"
+  id: SpawnDungeonLootArmoryRare
+  name: random weapon
+  suffix: "Loot (Frontier), Vault"
   components:
   - type: Sprite
     layers:
@@ -163,10 +163,10 @@
         weight: 0.1
 
 - type: entity
-  name: random weapon
-  id: SpawnDungeonLootArmoryExplosives
   parent: MarkerBasePlaceFree
-  suffix: "Loot (Frontier), Explosives, T1-T2"
+  id: SpawnDungeonLootArmoryExplosives
+  name: random weapon
+  suffix: "Loot (Frontier), Explosives"
   components:
   - type: Sprite
     layers:
@@ -185,9 +185,9 @@
 
 # region Shields
 - type: entity
-  name: random shields
-  id: SpawnDungeonLootShieldsMercenary
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootShieldsMercenary
+  name: random shields
   suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
@@ -207,9 +207,9 @@
 
 # region Clothes
 - type: entity
-  name: random clothes
-  id: SpawnDungeonLootClothesMercenary
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClothesMercenary
+  name: random clothes
   suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
@@ -229,9 +229,9 @@
 
 # region Armor
 - type: entity
-  name: random armor
-  id: SpawnDungeonLootArmorMercenary
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmorMercenary
+  name: random armor
   suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
@@ -251,9 +251,9 @@
 
 # region Hardsuits
 - type: entity
-  name: random hardsuits
-  id: SpawnDungeonLootHardsuitsMercenary
   parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootHardsuitsMercenary
+  name: random hardsuits
   suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
@@ -273,9 +273,9 @@
 
 # region Lockers
 - type: entity
-  name: random locker
-  id: SpawnDungeonLootLockersArmory
   parent: MarkerBase
+  id: SpawnDungeonLootLockersArmory
+  name: random locker
   suffix: "Loot (Frontier), Armory, Mercenary"
   components:
   - type: Sprite
@@ -296,9 +296,9 @@
 
 # region Suit Storage
 - type: entity
-  name: random suit storage unit
-  id: SpawnDungeonLootSuitStorageUnitsMercenary
   parent: MarkerBase
+  id: SpawnDungeonLootSuitStorageUnitsMercenary
+  name: random suit storage unit
   suffix: "Loot (Frontier), Mercenary"
   components:
   - type: Sprite
@@ -319,9 +319,9 @@
 
 # region Crates
 - type: entity
-  name: random crate
-  id: SpawnDungeonLootCrateArmoryWeapon
   parent: MarkerBase
+  id: SpawnDungeonLootCrateArmoryWeapon
+  name: random crate
   suffix: "Loot (Frontier), Armory, Weapon"
   components:
   - type: Sprite
@@ -339,9 +339,9 @@
       tableId: TableDungeonLootMercenaryCrates
 
 - type: entity
-  name: random crate (restock)
-  id: SpawnDungeonLootCrateRestockArmory
   parent: MarkerBase
+  id: SpawnDungeonLootCrateRestockArmory
+  name: random crate (restock)
   suffix: "Loot (Frontier), Armory"
   components:
   - type: Sprite
@@ -359,9 +359,9 @@
       tableId: TableDungeonLootMercenaryCratesRestock
 
 - type: entity
-  name: random crate
-  id: SpawnDungeonLootCrateArmoryArmor
   parent: MarkerBase
+  id: SpawnDungeonLootCrateArmoryArmor
+  name: random crate
   suffix: "Loot (Frontier), Armor"
   components:
   - type: Sprite
@@ -380,9 +380,9 @@
 
 # region Machines
 - type: entity
-  name: random vendomat
-  id: SpawnDungeonVendomatsArmory
   parent: MarkerBase
+  id: SpawnDungeonVendomatsArmory
+  name: random vendomat
   suffix: "Loot (Frontier), Armory"
   components:
   - type: Sprite
@@ -400,9 +400,9 @@
       tableId: TableDungeonLootMercenaryMachinesVending
 
 - type: entity
-  name: random machine techfab
-  id: SpawnDungeonLootLatheArmory
   parent: MarkerBase
+  id: SpawnDungeonLootLatheArmory
+  name: random machine techfab
   suffix: "Loot (Frontier), Armory"
   components:
   - type: Sprite
