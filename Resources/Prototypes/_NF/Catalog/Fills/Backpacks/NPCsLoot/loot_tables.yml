@@ -54,6 +54,18 @@
       children:
       - id: MaterialBananiumRandom
 
+# region carps
+- type: entityTable # From 65 to 195 spesos per carp
+  id: TableDungeonLootNpcCarps
+  table: !type:GroupSelector
+    children:
+    - id: MaterialToothSpaceCarp1
+      rolls: !type:RangeNumberSelector
+        range: 1, 3 # From 50 to 150 spesos
+    - id: FoodMeatFish
+      rolls: !type:RangeNumberSelector
+        range: 1, 3 # From 15 to 45 spesos
+
 # region explorer blueprints
 - type: entityTable
   id: TableDungeonLootNpcBlueprintsExplorers
