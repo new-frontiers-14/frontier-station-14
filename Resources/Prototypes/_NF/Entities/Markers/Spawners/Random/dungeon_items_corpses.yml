@@ -2,7 +2,7 @@
   name: random corpse
   id: SpawnDungeonRandomHumanCorpse
   parent: MarkerBasePlaceFree
-  suffix: "Loot (Frontier), Corpse"
+  suffix: "Dungeon, Corpse"
   components:
   - type: Sprite
     sprite: Markers/jobs.rsi
@@ -13,8 +13,12 @@
     - sprite: _NF/Markers/general.rsi
       state: questionmark
       color: red
-  - type: EntityTableSpawner
-    offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootCorpse
+  - type: RandomSpawner
+    prototypes:
+    - DungeonHumanCorpseRandomService
+    - DungeonHumanCorpseRandomEngineer
+    - DungeonHumanCorpseRandomCargo
+    - DungeonHumanCorpseRandomMedic
+    - DungeonHumanCorpseRandomScience
+    chance: 0.9
+    offset: 0.0
