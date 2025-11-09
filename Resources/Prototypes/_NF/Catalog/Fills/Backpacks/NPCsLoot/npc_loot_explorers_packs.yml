@@ -1,32 +1,51 @@
-#region base
+#region packs
 - type: entity
   abstract: true
   parent: NFBaseNpcLootBackpack
-  id: ExplorerDuffelGiftBox
+  id: NFBaseNpcLootPackExplorer
   name: explorer's bundle
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/salvage.rsi
     state: icon
 
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletExplorer
+  name: explorer's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-black
+
 # region tier 1
 - type: entity
-  parent: ExplorerDuffelGiftBox
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 100 to 1500 spesos
+    - id: SpaceCash100
+      orGroup: SpaceCash
+      prob: 0.2
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.6
+    - id: SpaceCash500
+      orGroup: SpaceCash
+      prob: 0.2
+      amount: 3
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
   id: ClothingBackpackExplorerMeleeT1
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.2
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.6
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.2
     # Weapons
     - id: Pickaxe
       orGroup: Weapon
@@ -47,22 +66,12 @@
       prob: 0.1
 
 - type: entity
-  parent: ExplorerDuffelGiftBox
+  parent: NFBaseNpcLootPackExplorer
   id: ClothingBackpackExplorerRangedT1
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.2
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.6
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.2
     # Weapons
     - id: NFWeaponPka
       orGroup: Weapon
@@ -81,22 +90,32 @@
 
 # region tier 2
 - type: entity
-  parent: ExplorerDuffelGiftBox
-  id: ClothingBackpackExplorerMeleeT2
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerT2
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
+    # SpaceCash - from 100 to 2000 spesos
     - id: SpaceCash100
       orGroup: SpaceCash
       prob: 0.1
     - id: SpaceCash500
       orGroup: SpaceCash
       prob: 0.5
+      amount: 3
     - id: SpaceCash1000
       orGroup: SpaceCash
       prob: 0.4
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerMeleeT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
     # Weapons
     - id: SpawnDungeonLootMeleeT2
       orGroup: Weapon
@@ -109,6 +128,7 @@
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
       prob: 0.7
+      amount: 2
     - id: ClothingNeckIFFCyan
       orGroup: Items
       prob: 0.1
@@ -117,22 +137,12 @@
       prob: 0.2
 
 - type: entity
-  parent: ExplorerDuffelGiftBox
+  parent: NFBaseNpcLootPackExplorer
   id: ClothingBackpackExplorerRangedT2
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.5
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
     # Weapons
     - id: NFWeaponPka
       orGroup: Weapon
@@ -148,6 +158,7 @@
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
       prob: 0.5
+      amount: 2
     - id: ClothingNeckIFFCyan
       orGroup: Items
       prob: 0.1
@@ -157,24 +168,32 @@
 
 # region tier 3
 - type: entity
-  parent: ExplorerDuffelGiftBox
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 100 to 2500 spesos
+    - id: SpaceCash100
+      orGroup: SpaceCash
+      prob: 0.1
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.5
+      amount: 2
+    - id: SpaceCash500
+      orGroup: SpaceCash
+      prob: 0.4
+      amount: 5
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
   id: ClothingBackpackExplorerMeleeT3
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
     # Weapons
     - id: MiningDrill
       orGroup: Weapon
@@ -211,24 +230,13 @@
       prob: 0.2
 
 - type: entity
-  parent: ExplorerDuffelGiftBox
+  parent: NFBaseNpcLootPackExplorer
   id: ClothingBackpackExplorerRangedT3
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
+    # Weapons
     - id: NFWeaponPka
       orGroup: Weapon
       prob: 0.4
@@ -262,24 +270,32 @@
 
 # region tier 4 - boss
 - type: entity
-  parent: ExplorerDuffelGiftBox
-  id: ClothingBackpackExplorerBoss
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerBoss
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
+    # SpaceCash - from 2500 to 5000 spesos
     - id: SpaceCash2500
       orGroup: SpaceCash
       prob: 0.5
     - id: SpaceCash1000
       orGroup: SpaceCash
       prob: 0.2
-      amount: 2
+      amount: 3
     - id: SpaceCash2500
       orGroup: SpaceCash
       prob: 0.3
       amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
     # Weapons
     - id: NFEnergyPickaxe
       orGroup: Weapon

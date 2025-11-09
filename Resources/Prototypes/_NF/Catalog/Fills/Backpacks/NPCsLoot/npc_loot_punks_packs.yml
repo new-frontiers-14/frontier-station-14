@@ -2,7 +2,7 @@
 - type: entity
   abstract: true
   parent: NFBaseNpcLootBackpack
-  id: PunkMessengerGiftBox
+  id: NFBaseNpcLootPackPunk
   name: punk bundle
   components:
   - type: Sprite
@@ -37,11 +37,20 @@
       - state: clasp-inhand-right
         color: "#eeeeee"
 
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletPunk
+  name: punk's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-black
+
 # region tier 1
 - type: entity
-  parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkMeleeT1
-  name: punk gear bundle
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkT1
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -58,6 +67,15 @@
       orGroup: SpaceCash
       prob: 0.4
       amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkMeleeT1
+  name: punk gear bundle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
     # Weapon
     - id: SpawnDungeonLootMeleeT1
       orGroup: Weapon
@@ -92,24 +110,12 @@
       prob: 0.1
 
 - type: entity
-  parent: PunkMessengerGiftBox
+  parent: NFBaseNpcLootPackPunk
   id: ClothingBackpackPunkRangedT1
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 500 to 2000
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
     # Weapon
     - id: SpawnDungeonLootGunT1
       orGroup: Weapon
@@ -153,8 +159,8 @@
 # TODO: make a MeleeT2
 # TODO: make a weighted shotgun/ammo spawner
 - type: entity
-  parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkRangedT2
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkT2
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -171,6 +177,14 @@
       orGroup: SpaceCash
       prob: 0.4
       amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkRangedT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
     # Weapon
     - id: SpawnDungeonLootGunT2
       orGroup: Weapon
@@ -207,8 +221,8 @@
 # region tier 3
 # TODO: make a MeleeT3
 - type: entity
-  parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkRangedT3
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkT3
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -225,6 +239,14 @@
       orGroup: SpaceCash
       prob: 0.4
       amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkRangedT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
     # Weapon
     - id: SpawnDungeonLootGunT3
       orGroup: Weapon
@@ -266,8 +288,8 @@
 
 # region tier 4 - boss
 - type: entity
-  parent: PunkMessengerGiftBox
-  id: ClothingBackpackPunkLootBoss
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkBoss
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
@@ -285,6 +307,18 @@
       orGroup: SpaceCash
       prob: 0.3
       amount: 3
+    # BossLoot - from 75 to ~5000 spesos
+    - id: TableStorageFillStashCoins
+      orGroup: BossLoot
+      prob: 0.2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkLootBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
     # Weapon
     - id: WeaponCaseLongLaserCarbineExpedition
       orGroup: Weapon
@@ -318,16 +352,13 @@
     - id: HoloGraffitiProjectorEmpty
       orGroup: Items
       prob: 0.05
-    # Boss Loot
+    # BossLoot
     - id: SpawnDungeonLootNpcPunksBlueprints
       orGroup: BossLoot
-      prob: 0.4
+      prob: 0.45
     - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
       orGroup: BossLoot
-      prob: 0.2
-    - id: TableStorageFillStashCoins # From 75 to ~5000 spesos
-      orGroup: BossLoot
-      prob: 0.2
+      prob: 0.3
     - id: SpawnDungeonLootGunT3
       orGroup: BossLoot
-      prob: 0.2
+      prob: 0.25

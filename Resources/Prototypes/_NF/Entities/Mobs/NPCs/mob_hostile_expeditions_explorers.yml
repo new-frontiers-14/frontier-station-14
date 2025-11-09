@@ -1,6 +1,5 @@
-#region Base
+# region base
 - type: entity
-  name: explorer
   abstract: true
   parent:
   - NFMobNoEquipmentOnGib
@@ -61,16 +60,13 @@
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
 
-# Variations
-#region Tier 1
+# region Tier 1, melee
 - type: entity
-  name: looter
-  parent:
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleMelee
+  parent: [ MobExplorerBase, MobHumanoidHostileAISimpleMelee ]
   id: MobExplorerMeleeT1
-  description: Armed with a trusty pickaxe and greed, every group needs its grunts.
   categories: [ HideSpawnMenu ]
+  name: looter
+  description: Armed with a trusty pickaxe and greed, every group needs its grunts.
   components:
   - type: Loadout
     prototypes:
@@ -128,15 +124,13 @@
     soundHit:
       collection: MetalThud
 
+# region Tier 1, ranged
 - type: entity
-  name: scrapper
-  parent:
-  - MobMovementSpeedModifierRanged
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleRanged
+  parent: [ MobMovementSpeedModifierRanged, MobExplorerBase, MobHumanoidHostileAISimpleRanged ]
   id: MobExplorerRangedT1
-  description: Proto-kinetic accelerator in one hand, flashlight in the other, beer in the belly. That's how you explore.
   categories: [ HideSpawnMenu ]
+  name: scrapper
+  description: Proto-kinetic accelerator in one hand, flashlight in the other, beer in the belly. That's how you explore.
   components:
   - type: Loadout
     prototypes:
@@ -207,15 +201,13 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
 
-#region Tier 2
+# region Tier 2, melee
 - type: entity
-  name: scavenger
-  parent:
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleMelee
+  parent: [ MobExplorerBase, MobHumanoidHostileAISimpleMelee ]
   id: MobExplorerMeleeT2
-  description: A looter that scavenged enough coins to afford some decent equipment.
+  name: scavenger
   categories: [ HideSpawnMenu ]
+  description: A looter that scavenged enough coins to afford some decent equipment.
   components:
   - type: Loadout
     prototypes:
@@ -255,15 +247,13 @@
     soundHit:
       collection: MetalThud
 
+# region Tier 2, ranged
 - type: entity
-  name: salvager
-  parent:
-  - MobMovementSpeedModifierRanged
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleRanged
+  parent: [ MobMovementSpeedModifierRanged, MobExplorerBase, MobHumanoidHostileAISimpleRanged ]
   id: MobExplorerRangedT2
-  description: Sawn-off proto-kinetic accelerator in one hand, crusher dagger in the other, magm-ale both in the belly and in the hardsuit's boots.
   categories: [ HideSpawnMenu ]
+  name: salvager
+  description: Sawn-off proto-kinetic accelerator in one hand, crusher dagger in the other, magm-ale both in the belly and in the hardsuit's boots.
   components:
   - type: Loadout
     prototypes:
@@ -312,15 +302,13 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
 
-#region Tier 3
+# region Tier 3, melee
 - type: entity
-  name: miner
-  parent:
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleMelee
+  parent: [ MobExplorerBase, MobHumanoidHostileAISimpleMelee ]
   id: MobExplorerMeleeT3
-  description: Drilling in the name of... drilling. No rock formation can withstand the power of dual-wielded mining drills - good thing you aren't a rock.
   categories: [ HideSpawnMenu ]
+  name: miner
+  description: Drilling in the name of... drilling. No rock formation can withstand the power of dual-wielded mining drills - good thing you aren't a rock.
   components:
   - type: Loadout
     prototypes:
@@ -366,15 +354,13 @@
     radius: 7
     energy: 3
 
+# region Tier 3, ranged
 - type: entity
-  name: explorer
-  parent:
-  - MobMovementSpeedModifierRanged
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleRanged
+  parent: [ MobMovementSpeedModifierRanged, MobExplorerBase, MobHumanoidHostileAISimpleRanged ]
   id: MobExplorerRangedT3
-  description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   categories: [ HideSpawnMenu ]
+  name: explorer
+  description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   components:
   - type: Loadout
     prototypes:
@@ -424,21 +410,15 @@
     radius: 7
     energy: 3
 
+# region Tier 3, special
 - type: entity
-  name: hauler
-  categories: [ HideSpawnMenu ]
-  parent:
-  - MobStaminaSpecial
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleMelee
-  #- MobLaserReflect # Added to prevent laser abuse from players
+  parent: [ MobStaminaSpecial, MobExplorerBase, MobHumanoidHostileAISimpleMelee ]
   id: MobExplorerHauler
+  categories: [ HideSpawnMenu ]
+  name: hauler
   description: |-
    Loaded with heavy equipment for industrial-scale looting. Pardon me, "asset recovery".
   components:
-  - type: Loadout
-    prototypes:
-    - MobHumanoidExplorerGearMechT3
   - type: Damageable
     damageModifierSet: MobRogueSiliconDamageModifierSet
   - type: Sprite
@@ -503,16 +483,13 @@
     radius: 5
     energy: 2
 
-#region Tier 4 - Boss
+#region Tier 4, Boss
 - type: entity
-  name: explorer captain
-  parent:
-  - MobHostileBossBase
-  - MobExplorerBase
-  - MobHumanoidHostileAISimpleMelee
+  parent: [ MobHostileBossBase, MobExplorerBase, MobHumanoidHostileAISimpleMelee ]
   id: MobExplorerBoss
-  description: Fearless and battle-hardened salvage team leaders, it takes years picking through the darkest corners of space and navigating the galaxy's criminal underbelly of the galaxy before you can become a captain. Not to be underestimated.
   categories: [ HideSpawnMenu ]
+  name: explorer captain
+  description: Fearless and battle-hardened salvage team leaders, it takes years picking through the darkest corners of space and navigating the galaxy's criminal underbelly of the galaxy before you can become a captain. Not to be underestimated.
   components:
   - type: Reflect # Emulating holopickaxe to a degree
     reflectProb: 0.025
@@ -634,52 +611,40 @@
 
 #region space, t1
 - type: entity
+  parent: [ MobMovementSpeedModifierEVAMelee, MobExplorerMeleeT1 ]
   id: MobExplorerMeleeEVAT1
-  parent:
-  - MobMovementSpeedModifierEVAMelee
-  - MobExplorerMeleeT1
   categories: [ HideSpawnMenu ]
 
 - type: entity
+  parent: [ MobMovementSpeedModifierEVARanged, MobExplorerRangedT1 ]
   id: MobExplorerRangedEVAT1
-  parent:
-  - MobMovementSpeedModifierEVARanged
-  - MobExplorerRangedT1
   categories: [ HideSpawnMenu ]
 
 #region space, t2
 - type: entity
+  parent: [ MobMovementSpeedModifierEVAMelee, MobExplorerMeleeT2 ]
   id: MobExplorerMeleeEVAT2
-  parent:
-  - MobMovementSpeedModifierEVAMelee
-  - MobExplorerMeleeT2
   categories: [ HideSpawnMenu ]
 
 - type: entity
+  parent: [ MobMovementSpeedModifierEVARanged, MobExplorerRangedT2 ]
   id: MobExplorerRangedEVAT2
-  parent:
-  - MobMovementSpeedModifierEVARanged
-  - MobExplorerRangedT2
   categories: [ HideSpawnMenu ]
 
 #region space, t3
 - type: entity
+  parent: [ MobMovementSpeedModifierEVAMelee, MobExplorerMeleeT3 ]
   id: MobExplorerMeleeEVAT3
-  parent:
-  - MobMovementSpeedModifierEVAMelee
-  - MobExplorerMeleeT3
   categories: [ HideSpawnMenu ]
 
 - type: entity
+  parent: [ MobMovementSpeedModifierEVARanged, MobExplorerRangedT3 ]
   id: MobExplorerRangedEVAT3
-  parent:
-  - MobMovementSpeedModifierEVARanged
-  - MobExplorerRangedT3
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: MobExplorerHaulerEVA
   parent: MobExplorerHauler
+  id: MobExplorerHaulerEVA
   components:
   - type: Destructible
     thresholds:

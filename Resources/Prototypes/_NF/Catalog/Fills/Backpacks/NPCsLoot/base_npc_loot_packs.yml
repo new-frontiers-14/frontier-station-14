@@ -10,8 +10,7 @@
     size: Normal
   - type: Clothing
     quickEquip: false
-    slots:
-    - back
+    slots: [back]
   - type: SpawnItemsOnUse
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -20,9 +19,18 @@
   abstract: true
   parent: NFBaseNpcLootBackpack
   id: NFBaseNpcLootBelt
-  suffix: NPC Loot
   components:
   - type: Clothing
     quickEquip: false
-    slots:
-    - belt
+    slots: [belt]
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootWallet
+  components:
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: false
+    slots: [wallet]
