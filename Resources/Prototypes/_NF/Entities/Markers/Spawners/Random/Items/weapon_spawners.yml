@@ -1,0 +1,464 @@
+#region melee T1
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT1
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Melee, T1"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/shiv.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 1
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMeleeTier1
+
+#region melee T2
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT2
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Melee, T2"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 2
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMeleeTier2
+
+#region melee T3
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT3
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Melee, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMeleeTier3
+
+#region melee T4
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT4
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Melee, T4"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMeleeTier4
+
+#region melee T5
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT5
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Melee, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 5
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMeleeTier5
+
+# region ranged T1
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT1
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Gun, T1"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 1
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsRangedTier1
+
+# region ranged T2
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT2
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Gun, T2"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 2
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsRangedTier2
+
+# region ranged T3
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT3
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Gun, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsRangedTier3
+
+# region ranged T4
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT4
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Gun, T4"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsRangedTier4
+
+# region ranged T5
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT5
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Gun, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 5
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsRangedTier5
+
+# region explosives T1
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT1
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Explosives, T1"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 1
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosivesTier1
+
+# region explosives T2
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT2
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Explosives, T2"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 2
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosivesTier2
+
+# region explosives T3
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT3
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Explosives, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosivesTier3
+
+# region explosives T4
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT4
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Explosives, T4"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosivesTier4
+
+# region explosives T5
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT5
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Explosives, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 5
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosivesTier5
+
+#region ammo random
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoRandom
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Ammo, Random"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunition
+
+#region ammo lethal
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoLethal
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Ammo, Lethal"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunitionLethal
+
+# region ammo rubber
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoRubber
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Ammo, Rubber"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunitionRubber
+
+# region ammo incendiary
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoPractice
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Ammo, Practice"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunitionIncendiary
+
+# region ammo uranium
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoIncendiary
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Ammo, Incendiary"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunitionUranium
+
+# region ammo practice
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoUranium
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Ammo, Uranium"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunitionPractice
