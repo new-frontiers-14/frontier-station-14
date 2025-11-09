@@ -19,12 +19,27 @@
 - type: reaction
   id: CreateSourCreamLemon
   impact: Low
+  minTemp: 310
   quantized: true
   conserveEnergy: false
   reactants:
     Cream:
       amount: 1
     JuiceLemon:
+      amount: 1
+  products:
+    SourCream: 2
+
+- type: reaction
+  id: CreateSourCreamLime
+  impact: Low
+  minTemp: 310
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Cream:
+      amount: 1
+    JuiceLime:
       amount: 1
   products:
     SourCream: 2
