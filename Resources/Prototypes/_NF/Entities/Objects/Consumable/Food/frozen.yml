@@ -261,3 +261,63 @@
     - rice
     - icecream
     - antiseptic
+
+- type: entity
+  name: pumpkin mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiPumpkin
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's a cooler pumpkin.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: pumpkinmochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: PumpkinFlesh
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - pumpkin
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: FoodFrozenMochiCarvedPumpkin
+
+- type: entity
+  name: carved pumpkin mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiCarvedPumpkin
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's so spooky you could scream. Ice scream. HAH.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: carvedpumpkinmochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: PumpkinFlesh
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - spooky
