@@ -243,7 +243,7 @@ public sealed partial class SupermatterComponent : Component
     #region Timing
 
     /// <summary>
-    /// We yell if over 50 damage every YellTimer Seconds
+    /// We yell if over 100 damage every YellTimer Seconds
     /// </summary>
     [DataField]
     public TimeSpan YellTimer;
@@ -329,7 +329,7 @@ public sealed partial class SupermatterComponent : Component
     public float DamageEmergencyThreshold = 500;
 
     /// <summary>
-    /// The point at which the SM begins shooting lightning.
+    /// The point at which the SM begins shooting lightning and generating anoms.
     /// </summary>
     [DataField]
     public int DamagePenaltyPoint = 550;

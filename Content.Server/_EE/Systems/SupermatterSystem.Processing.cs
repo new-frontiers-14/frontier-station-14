@@ -204,7 +204,8 @@ public sealed partial class SupermatterSystem
 
     /// <summary>
     /// Shoot lightning bolts randomly as power increases
-    /// Shoot even more lightning bolts once above the severe threshold
+    /// Calling a bunch of random probs isn't great but it works for now
+    /// TODO: make this properly use a formula to determine zap count
     /// </summary>
     private void SupermatterZap(EntityUid uid, SupermatterComponent sm)
     {
@@ -215,10 +216,10 @@ public sealed partial class SupermatterSystem
         if (_random.Prob(0.05f))
             zapCount += 1;
 
-        if (_random.Prob(0.05f) && sm.Power >= 1000)
+        if (_random.Prob(0.03f) && sm.Power >= 1000)
             zapCount += 1;
 
-        if (_random.Prob(0.05f) && sm.Power >= 2000)
+        if (_random.Prob(0.03f) && sm.Power >= 2000)
             zapCount += 1;
 
         if (sm.Power >= _config.GetCVar(ECCVars.SupermatterPowerPenaltyThreshold))
@@ -226,11 +227,12 @@ public sealed partial class SupermatterSystem
             zapPower += 1;
         }
 
-        if (sm.Power >= _config.GetCVar(ECCVars.SupermatterSeverePowerPenaltyThreshold))
+        if (_random.Prob(0.05f) && sm.Power >= _config.GetCVar(ECCVars.SupermatterSeverePowerPenaltyThreshold))
         {
             zapCount += 1;
         }
 
+        /// Go absolutely mental and constantly shoot out lightning
         if (sm.Power >= _config.GetCVar(ECCVars.SupermatterCriticalPowerPenaltyThreshold))
         {
             zapPower += 1;
@@ -737,11 +739,11 @@ public sealed partial class SupermatterSystem
                 break;
 
             case DelamType.Singulo:
-                Spawn(sm.SingularitySpawnPrototype, xform.Coordinates);
+                Spawn(sm.SingularitySpawnPrototype, Transform(uid).Coordinates);
                 break;
 
             case DelamType.Tesla:
-                Spawn(sm.TeslaSpawnPrototype, xform.Coordinates);
+                Spawn(sm.TeslaSpawnPrototype, Transform(uid).Coordinates);
                 break;
 
             default:
