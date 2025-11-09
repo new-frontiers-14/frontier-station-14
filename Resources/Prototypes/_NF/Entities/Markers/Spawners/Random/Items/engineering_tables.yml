@@ -238,69 +238,63 @@
       tableId: TableDungeonLootEngineeringCraftingComponents
       weight: 30
 
-- type: entityTable
+- type: entityTable # Random stack size: 1 to 5
   id: TableDungeonLootEngineeringCapacitors
   table: !type:GroupSelector
-    rolls: !type:RangeNumberSelector
-      range: 4, 6
     children:
-    - id: CapacitorStockPart
+    - id: CapacitorStockPartRandomVeryLow
       weight: 10
-    - id: AdvancedCapacitorStockPart
+    - id: AdvancedCapacitorStockPartRandomVeryLow
       weight: 30
-    - id: SuperCapacitorStockPart
+    - id: SuperCapacitorStockPartRandomVeryLow
       weight: 40
-    - id: QuadraticCapacitorStockPart
+    - id: QuadraticCapacitorStockPartRandomVeryLow
       weight: 20
 
-- type: entityTable
+- type: entityTable # Random stack size: 1 to 5
   id: TableDungeonLootEngineeringManipulators
   table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 4, 6
-      children:
-      - id: MicroManipulatorStockPart
-        weight: 10
-      - id: NanoManipulatorStockPart
-        weight: 30
-      - id: PicoManipulatorStockPart
-        weight: 40
-      - id: FemtoManipulatorStockPart
-        weight: 20
+    children:
+    - id: MicroManipulatorStockPartRandomVeryLow
+      weight: 10
+    - id: NanoManipulatorStockPartRandomVeryLow
+      weight: 30
+    - id: PicoManipulatorStockPartRandomVeryLow
+      weight: 40
+    - id: FemtoManipulatorStockPartRandomVeryLow
+      weight: 20
 
-- type: entityTable
+- type: entityTable # Random stack size: 1 to 5
   id: TableDungeonLootEngineeringMatterBins
   table: !type:GroupSelector
-    rolls: !type:RangeNumberSelector
-      range: 4, 6
     children:
-    - id: MatterBinStockPart
+    - id: MatterBinStockPartRandomVeryLow
       weight: 10
-    - id: AdvancedMatterBinStockPart
+    - id: AdvancedMatterBinStockPartRandomVeryLow
       weight: 30
-    - id: SuperMatterBinStockPart
+    - id: SuperMatterBinStockPartRandomVeryLow
       weight: 40
-    - id: BluespaceMatterBinStockPart
+    - id: BluespaceMatterBinStockPartRandomVeryLow
       weight: 20
 
 - type: entityTable
   id: TableDungeonLootEngineeringPowerCells
   table: !type:GroupSelector
-      children:
-      - id: PowerCellPotato
-        weight: 5
-      - id: PowerCellSmall
-        weight: 5
-      - id: PowerCellMedium
-        weight: 20
-      - id: PowerCellHigh
-        weight: 20
-      - id: PowerCellHyper
-        weight: 35
-      - id: PowerCellMicroreactor
-        weight: 10
-      - id: PowerCellAntiqueProto
-        weight: 5
+    children:
+    - id: PowerCellPotato
+      weight: 5
+    - id: PowerCellSmall
+      weight: 5
+    - id: PowerCellMedium
+      weight: 20
+    - id: PowerCellHigh
+      weight: 20
+    - id: PowerCellHyper
+      weight: 35
+    - id: PowerCellMicroreactor
+      weight: 10
+    - id: PowerCellAntiqueProto
+      weight: 5
 
 - type: entityTable
   id: TableDungeonLootEngineeringCraftingComponents
