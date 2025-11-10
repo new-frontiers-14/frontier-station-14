@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: UBlueberry (https://github.com/UBlueberry)
+# Discord: UBlueberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Fullhouse
+  parent: BaseVessel
+  name: GC Fullhouse
+  description: This newly refurbished casino shuttle may be a little cramped but features an onboard blackjack table, dining and a small vault.
+  price: 1
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/fullhouse.yml
+  guidebookPage: ShipyardFullhouse
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Fullhouse
+  mapName: 'GC Fullhouse'
+  mapPath: /Maps/_NF/Shuttles/fullhouse.yml
+  minPlayers: 0
+  stations:
+    Dragoon:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Fullhouse {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          ContractorInterview: [ 0, 0 ]
+          PilotInterview: [ 0, 0 ]
+          MercenaryInterview: [ 0, 0 ]
