@@ -1,0 +1,442 @@
+# region base
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackPunk
+  name: punk bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#EF8100"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#EF8100"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#EF8100"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#EF8100"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletPunk
+  name: punk's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-black
+
+# region tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 500 to 2000
+    - id: SpaceCash500
+      orGroup: SpaceCash
+      prob: 0.1
+    - id: SpaceCash500
+      orGroup: SpaceCash
+      prob: 0.5
+      amount: 3
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.4
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkMeleeT1
+  name: punk gear bundle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootMeleeT1
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: GroundCannabisRandomVeryLow
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Substances
+      prob: 0.15
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+      prob: 0.25
+    # Items
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.3
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.1
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkRangedT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootGunT1
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: GroundCannabisRandomVeryLow
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Substances
+      prob: 0.15
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+      prob: 0.25
+    - id: WeaponCaseShortMk58Expedition
+      amount: 1
+      prob: 0.55
+    - id: HoloGraffitiProjectorEmpty
+      amount: 1
+      prob: 0.05
+    # Items
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.3
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.1
+
+# region tier 2
+# TODO: make a weighted shotgun/ammo spawner
+- type: entity
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 1000 to 3000
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.1
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.5
+      amount: 3
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.4
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkMeleeT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootMeleeT2
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: GroundCannabisRandomVeryLow
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Substances
+      prob: 0.15
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+      prob: 0.25
+    # Items
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.3
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.1
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkRangedT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootGunT2
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: GroundCannabisRandomVeryLow
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Substances
+      prob: 0.15
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+      prob: 0.25
+    # Items
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.3
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.1
+
+# region tier 3
+- type: entity
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 1000 to 3000
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.1
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.5
+      amount: 3
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.4
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkMeleeT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootMeleeT3
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: GroundCannabisRandomVeryLow
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Substances
+      prob: 0.15
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+      prob: 0.25
+    # Items
+    - id: SpawnDungeonLootNpcCoins # From 75 to ~5000 spesos
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksBlueprints
+      orGroup: Items
+      prob: 0.05
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.05
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkRangedT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootGunT3
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: GroundCannabisRandomVeryLow
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Substances
+      prob: 0.15
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+      prob: 0.3
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+      prob: 0.25
+    # Items
+    - id: SpawnDungeonLootNpcCoins # From 75 to ~5000 spesos
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksBlueprints
+      orGroup: Items
+      prob: 0.05
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.05
+
+# region tier 4 - boss
+- type: entity
+  parent: NFBaseNpcLootWalletPunk
+  id: ClothingWalletPunkBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 2500 to 7500
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.5
+      amount: 2
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.2
+      amount: 1
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.3
+      amount: 3
+    # BossLoot - from 75 to ~5000 spesos
+    - id: SpawnDungeonLootNpcCoins
+      orGroup: BossLoot
+      prob: 0.2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkLootBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: WeaponCaseLongLaserCarbineExpedition
+      orGroup: Weapons
+      prob: 0.5
+    # Substances
+    - id: SpawnDungeonLootNpcPunksBooze
+      orGroup: Substances
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Substances
+    - id: SpawnDungeonClutterSyringe
+      orGroup: Substances
+      amount: 4
+    - id: SpawnDungeonClutterHypospray
+      orGroup: Substances
+    # Items
+    - id: SpawnDungeonLootNpcCoins # From 75 to ~5000 spesos
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksBlueprints
+      orGroup: Items
+      prob: 0.05
+    - id: HoloGraffitiProjectorEmpty
+      orGroup: Items
+      prob: 0.05
+    # BossLoot
+    - id: SpawnDungeonLootNpcPunksBlueprints
+      orGroup: BossLoot
+      prob: 0.45
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      orGroup: BossLoot
+      prob: 0.3
+    - id: SpawnDungeonLootGunT3
+      orGroup: BossLoot
+      prob: 0.25
