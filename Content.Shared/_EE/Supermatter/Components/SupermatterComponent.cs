@@ -264,7 +264,7 @@ public sealed partial class SupermatterComponent : Component
     /// How long it takes in seconds for the supermatter to delaminate after reaching zero integrity
     /// </summary>
     [DataField]
-    public float DelamTimer = 30f;
+    public float DelamTimer = 60f;
 
     /// <summary>
     /// Last time a supermatter accent sound was triggered
@@ -476,12 +476,12 @@ public static class SupermatterGasData
         { Gas.Nitrogen,      new(0f,   -1.5f, -1f, 1f) },
         { Gas.CarbonDioxide, new(0f,   0.1f,  1f,  1f) },
         { Gas.Plasma,        new(4f,   15f,   1f,  1f) },
-        { Gas.Tritium,       new(30f,  10f,   1f,  1f) },
+        { Gas.Tritium,       new(30f,  10f,   1.092f,  1f) }, //Results in an even 3.00 power display on the console
         { Gas.WaterVapor,    new(2f,   12f,   1f,  1f) },
         { Gas.Ammonia,       new(0f,   1f,    1f , 1f) },
         { Gas.NitrousOxide,  new(0f,   -5f,   -1f, 6f) },
-        { Gas.Frezon,        new(3f,   -10f,  -1f, 1f) },
-        { Gas.Helium,        new(0.1f, 0.1f,  0.1f,0.1f) },
+        { Gas.Frezon,        new(3f,   -10f,  -1f, 2f) },
+        { Gas.Helium,        new(0f, 0.1f,  0.1f, 1f) },
         { Gas.Respiron,      new(2.4f,   4f,   1f, 1f) },
     };
 
