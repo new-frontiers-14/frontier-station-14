@@ -14,27 +14,3 @@
       - MobCatBloodCult
     chance: 0.05
     offset: 0.0
-
-- type: entity
-  name: ascended cultist summons
-  suffix: AI, Hostile
-  categories: [ HideSpawnMenu ]
-  id: SpawnMobBloodCultistAscendedSummons
-  parent: MarkerBase
-  components:
-  - type: Ammo
-    muzzleFlash: null
-  - type: Sprite
-    layers:
-      - state: red
-      - state: ai
-      - sprite: _NF/Mobs/BloodCult/drainedone.rsi
-        state: drained
-  - type: RandomSpawner
-    prototypes:
-    - MobBloodCultDrainedOne
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - MobBloodCultShade
-    rareChance: 0.05
