@@ -37,14 +37,6 @@
       - type: AllowSuitStorage
       displayName: Suit Storage
 
-    - name: outerClothing
-      slotTexture: suit
-      slotFlags: OUTERCLOTHING
-      stripTime: 9
-      uiWindowPos: 1,1
-      strippingWindowPos: 0,1
-      displayName: Suit
-
     - name: belt
       slotTexture: belt
       fullTextureName: template_small
@@ -83,6 +75,15 @@
       uiWindowPos: 2,1
       dependsOn: jumpsuit
       displayName: ID
+
+    - name: outerClothing
+      stripTime: 999999 # "Not strippable"
+      stripHidden: true
+      strippingWindowPos: 2,2
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      uiWindowPos: 1,1
+      displayName: Suit
 
     - name: gloves
       stripTime: 999999 # "Not strippable"
