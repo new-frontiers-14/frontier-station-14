@@ -1,4 +1,4 @@
-# iron
+# region iron coin
 - type: entity
   id: TreasureCoinIron3
   parent: TreasureCoinIron
@@ -26,7 +26,7 @@
     stackType: TreasureCoinIron
     count: 10
 
-# silver
+# region silver coin
 - type: entity
   id: TreasureCoinSilver3
   parent: TreasureCoinSilver
@@ -54,7 +54,7 @@
     stackType: TreasureCoinSilver
     count: 10
 
-# Gold
+# region Gold coin
 - type: entity
   id: TreasureCoinGold3
   parent: TreasureCoinGold
@@ -82,7 +82,7 @@
     stackType: TreasureCoinGold
     count: 10
 
-# Adamantine
+# region Adamantine coin
 - type: entity
   id: TreasureCoinAdamantine3
   parent: TreasureCoinAdamantine
@@ -110,7 +110,7 @@
     stackType: TreasureCoinAdamantine
     count: 10
 
-# Diamond
+# region Diamond coin
 - type: entity
   id: TreasureCoinDiamond3
   parent: TreasureCoinDiamond
@@ -138,7 +138,7 @@
     stackType: TreasureCoinDiamond
     count: 10
 
-# Gold Leaf
+# region Gold Leaf
 
 - type: entity
   parent: BaseItem
@@ -178,3 +178,51 @@
   components:
   - type: Stack
     count: 30
+
+# region organic material
+- type: entity
+  parent: BaseItem
+  id: NFTreasureOrganicSamples
+  name: organic samples
+  description: A living, intact sample of organic culture. It can be sold on the market or processed into biomass.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/valuables_organic.rsi
+    layers:
+    - state: membrane
+      color: "#c8594c"
+      map: ["base"]
+  - type: RandomSprite
+    available:
+    - base:
+        alveolar-sacs: FleshColors
+        capillary: FleshColors
+        cube: FleshColors
+        membrane: FleshColors
+        organoid-1: FleshColors
+        organoid-2: FleshColors
+        organoid-3: FleshColors
+        symbiont: FleshColors
+        tubules: FleshColors
+  - type: PhysicalComposition
+    materialComposition:
+      Biomass: 50
+  - type: Butcherable
+    spawned:
+    - id: MaterialBiomassRandomReduced # 6 to 24
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Trash
+  - type: SpaceGarbage
+  - type: StaticPrice
+    price: 120

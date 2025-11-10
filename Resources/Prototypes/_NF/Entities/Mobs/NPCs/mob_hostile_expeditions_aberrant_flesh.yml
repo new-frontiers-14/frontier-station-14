@@ -1,14 +1,10 @@
-#region BASE
+# region base
 - type: entity
-  parent:
-  - MobMovementSpeedModifierMelee
-  - MobStaminaFodder
-  - MobNonHumanHostileBase
-  - MobHumanoidHostileAISimpleMelee
+  abstract: true
+  parent: [ MobMovementSpeedModifierMelee, MobStaminaFodder, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee ]
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
-  abstract: true
   components:
   - type: NpcFactionMember
     factions:
@@ -28,10 +24,6 @@
     speedModifierThresholds:
       34: 0.7
       45: 0.5
-  - type: Butcherable
-    spawned:
-    - id: FoodMeat
-      amount: 1
   - type: Bloodstream
     bloodMaxVolume: 100
   - type: MeleeWeapon
@@ -46,13 +38,16 @@
         Structural: 20
   - type: ReplacementAccent
     accent: genericAggressive
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcAberrantFlesh
 
-#region MOBS
+# region melee
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
+  categories: [ HideSpawnMenu ]
   description: A mindless meat shield who charges threats directly. Weaker than the average human.
-  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -78,7 +73,7 @@
 - type: entity
   parent: MobFleshJaredExpeditions
   id: MobFleshJaredOldExpeditions
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -90,8 +85,8 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
+  categories: [ HideSpawnMenu ]
   description: A mindless brute with a heavy build. A bit more resilient than other flesh monsters, but less agile.
-  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -109,7 +104,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemAltExpeditions
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -127,7 +122,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemOldExpeditions
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -145,12 +140,10 @@
         Base: dead
 
 - type: entity
-  parent:
-  - BaseMobFleshExpeditions
-  #- MobLaserReflect # Added to prevent laser abuse from players
+  parent: BaseMobFleshExpeditions
   id: MobFleshAssimilatedMiner
+  categories: [ HideSpawnMenu ]
   description: An unfortunate miner that was infected upon contact with aberrant flesh and has been slowly assimilated.
-  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -187,14 +180,12 @@
         Base: dead
         BaseUnshaded: dead_unshaded
 
+# region ranged
 - type: entity
-  parent:
-  - MobMovementSpeedModifierRanged
-  - BaseMobFleshExpeditions
-  - MobHumanoidHostileAISimpleRanged
+  parent: [ MobMovementSpeedModifierRanged, BaseMobFleshExpeditions, MobHumanoidHostileAISimpleRanged ]
   id: MobFleshClampExpeditions
+  categories: [ HideSpawnMenu ]
   description: A flying flesh monster that can shoot spikes or toothy creatures that can latch on.
-  #categories: [ HideSpawnMenu ]
   components:
   - type: CanMoveInAir
   - type: Fixtures
@@ -255,7 +246,7 @@
 - type: entity
   parent: MobFleshClampExpeditions
   id: MobFleshClampOldExpeditions
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -284,13 +275,12 @@
     soundGunshot:
       collection: BulletMiss
 
+# region special
 - type: entity
-  parent:
-  - MobMovementSpeedModifierSpecial
-  - BaseMobFleshExpeditions
+  parent: [ MobMovementSpeedModifierSpecial, BaseMobFleshExpeditions ]
   id: MobFleshLoverExpeditions
+  categories: [ HideSpawnMenu ]
   description: The Lover's light frame makes it fragile, but capable of flight.
-  #categories: [ HideSpawnMenu ]
   components:
   - type: CanMoveInAir
   - type: Fixtures
@@ -337,15 +327,13 @@
       types:
         Blunt: 4
 
-#region BOSS
+#region boss
 - type: entity
-  parent:
-  - MobHostileBossBase
-  - BaseMobFleshExpeditions
+  parent: [ MobHostileBossBase, BaseMobFleshExpeditions ]
   id: MobHorrorExpeditions
+  categories: [ HideSpawnMenu ]
   name: aberrant flesh horror
   description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.
-  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -380,6 +368,9 @@
       types:
         Slash: 12
         Structural: 30
+  - type: Butcherable
+    spawned:
+    - id: TableDungeonLootNpcAberrantFleshBoss
   # Ghost role stuff
   - type: GhostRole
     allowMovement: true
@@ -438,7 +429,7 @@
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
 
-#region FUNNY LITTLE GUY
+# region funny little guy
 # embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
 - type: entity
   parent: [ BaseMobFleshExpeditions, NFMobTimedDespawn60 ]
@@ -486,15 +477,18 @@
     damage:
       types:
         Slash: 3
+  - type: Butcherable
+    spawned:
+    - id: MaterialBiomassRandomVeryLow # 1 to 5
 
-#region Newborns
+# region newborns
 # spawned from assimilation sack
 - type: entity
-  id: BaseMobFleshExpeditionsNewborn
+  abstract: true
   parent: BaseMobFleshExpeditions
+  id: BaseMobFleshExpeditionsNewborn
   name: aberrant flesh newborn
   description: This newborn monster is dripping with amniotic fluid; its movements are sluggish yet deliberate; its limbs, though weak, are lethal nonetheless.
-  abstract: true
   components:
   - type: MeleeWeapon
     attackRate: 0.8
@@ -511,8 +505,8 @@
     baseSprintSpeed : 3.8
 
 - type: entity
-  id: MobFleshJaredExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshJaredExpeditions ]
+  id: MobFleshJaredExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -526,8 +520,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshJaredOldExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshJaredOldExpeditions ]
+  id: MobFleshJaredOldExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -543,8 +537,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshGolemExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshGolemExpeditions ]
+  id: MobFleshGolemExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -558,8 +552,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshGolemAltExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshGolemAltExpeditions ]
+  id: MobFleshGolemAltExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -573,8 +567,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshGolemOldExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshGolemOldExpeditions ]
+  id: MobFleshGolemOldExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -590,8 +584,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshClampExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshClampExpeditions ]
+  id: MobFleshClampExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -605,8 +599,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshClampOldExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshClampOldExpeditions ]
+  id: MobFleshClampOldExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -621,8 +615,8 @@
       color: "pink"
 
 - type: entity
-  id: MobFleshLoverExpeditionsNewborn
   parent: [ BaseMobFleshExpeditionsNewborn, MobFleshLoverExpeditions ]
+  id: MobFleshLoverExpeditionsNewborn
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
