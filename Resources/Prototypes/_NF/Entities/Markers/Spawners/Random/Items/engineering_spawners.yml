@@ -116,6 +116,27 @@
 
 - type: entity
   parent: MarkerBasePlaceFree
+  id: SpawnPoiLootPowerCell
+  name: random power cell
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Power/power_cells.rsi
+        state: hyper
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TablePoiLootEngineeringPowerCells
+
+- type: entity
+  parent: MarkerBasePlaceFree
   id: SpawnDungeonLootCircuitBoardEngi
   name: random machine board
   suffix: "Loot (Frontier), Engineering"

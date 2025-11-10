@@ -20,6 +20,27 @@
     table: !type:NestedSelector
       tableId: TableDungeonLootMedicalClutter
 
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnPoiClutterMedical
+  name: random clutter
+  suffix: "Loot (Frontier), Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TablePoiLootMedicalClutter
+
 # region Tools
 - type: entity
   parent: MarkerBasePlaceFree

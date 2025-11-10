@@ -19,6 +19,20 @@
       tableId: TableDungeonLootServiceFoodSpoiled
       weight: 0.2
 
+- type: entityTable
+  id: TablePoiLootServiceClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceTools
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothes
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceFoodSpoiled
+      weight: 0.25
+
 # region Tools
 - type: entityTable
   id: TableDungeonLootServiceTools
@@ -29,7 +43,10 @@
       weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootServiceTableware
-      weight: 0.7
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceMugsFlasks
+      weight: 0.3
 
 - type: entityTable
   id: TableDungeonLootServiceMugsFlasks

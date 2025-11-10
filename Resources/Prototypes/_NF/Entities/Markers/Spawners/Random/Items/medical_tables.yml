@@ -68,6 +68,66 @@
       - id: DiseaseSwab
       - id: PillCanisterRandom
 
+- type: entityTable
+  id: TablePoiLootMedicalClutter
+  table: !type:GroupSelector
+    children:
+    # General Clutter and Tools
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsSurgery
+        weight: 0.4
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalClothes
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalFirstAidKits
+        weight: 0.25
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralRestocks
+        weight: 0.05
+    # Chems
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsLabGlassware
+        weight: 0.6
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalGlasswareFilled
+        weight: 0.4
+    # Region Meds
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsMedipens
+        weight: 0.35
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsHyposprays
+        weight: 0.15
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsTopicalsFull
+        weight: 0.15
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsTopicalsSingle
+        weight: 0.35
+    # Unsorted
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: BoxFolderWhite
+      - id: BoxBodyBag
+      - id: BoxPillCanister
+      - id: BoxNitrileGloves
+      - id: ClothingEyesHudMedical
+      - id: HandheldHealthAnalyzer
+      - id: ClothingEyesGlassesChemical
+      - id: DiseaseSwab
+      - id: PillCanisterRandom
+
 # region Medkits
 - type: entityTable
   id: TableDungeonLootMedicalFirstAidKits
