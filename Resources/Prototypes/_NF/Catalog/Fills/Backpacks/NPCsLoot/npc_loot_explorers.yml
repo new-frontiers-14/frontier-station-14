@@ -33,3 +33,14 @@
       - id: MiningDrillDiamond
       - id: NFBlueprintWeaponCrusher
       - id: NFBlueprintWeaponCrusherGlaive
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcExplorersBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcBlueprintsExplorers

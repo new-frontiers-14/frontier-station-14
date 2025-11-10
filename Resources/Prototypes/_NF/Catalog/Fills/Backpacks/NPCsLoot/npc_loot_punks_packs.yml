@@ -56,17 +56,7 @@
   - type: SpawnItemsOnUse
     items:
     # SpaceCash - from 500 to 2000
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
+    - id: SpawnDungeonLootNpcPunksSpaceCashTier1
 
 - type: entity
   parent: NFBaseNpcLootPackPunk
@@ -82,32 +72,11 @@
       prob: 0.7
     # Armor
     # Substances
-    - id: GroundCannabis
+    - id: SpawnDungeonLootNpcPunksSubstances
       orGroup: Substances
-      prob: 0.3
-      amount: 3
-    - id: SpawnDungeonLootNpcPunksSmokes
-      orGroup: Substances
-      prob: 0.15
-    - id: SpawnDungeonLootNpcPunksBooze
-      orGroup: Substances
-      prob: 0.3
-    - id: SpawnDungeonClutterMedipens
-      orGroup: Substances
-      prob: 0.25
     # Items
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+    - id: SpawnDungeonLootNpcPunksItemsTier1
       orGroup: Items
-      prob: 0.3
-    - id: SpawnDungeonLootMaterialsBasicFull
-      orGroup: Items
-      prob: 0.3
-    - id: SpawnDungeonLootPartsEngi
-      orGroup: Items
-      prob: 0.3
-    - id: HoloGraffitiProjectorEmpty
-      orGroup: Items
-      prob: 0.1
 
 - type: entity
   parent: NFBaseNpcLootPackPunk
@@ -122,41 +91,13 @@
       prob: 0.7
     # Armor
     # Substances
-    - id: GroundCannabis
+    - id: SpawnDungeonLootNpcPunksSubstances
       orGroup: Substances
-      prob: 0.3
-      amount: 3
-    - id: SpawnDungeonLootNpcPunksSmokes
-      orGroup: Substances
-      prob: 0.15
-    - id: SpawnDungeonLootNpcPunksBooze
-      orGroup: Substances
-      prob: 0.3
-    - id: SpawnDungeonClutterMedipens
-      orGroup: Substances
-      prob: 0.25
-    - id: WeaponCaseShortMk58Expedition
-      amount: 1
-      prob: 0.55
-    - id: HoloGraffitiProjectorEmpty
-      amount: 1
-      prob: 0.05
     # Items
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+    - id: SpawnDungeonLootNpcPunksItemsTier1
       orGroup: Items
-      prob: 0.3
-    - id: SpawnDungeonLootMaterialsBasicFull
-      orGroup: Items
-      prob: 0.3
-    - id: SpawnDungeonLootPartsEngi
-      orGroup: Items
-      prob: 0.3
-    - id: HoloGraffitiProjectorEmpty
-      orGroup: Items
-      prob: 0.1
 
 # region tier 2
-# TODO: make a MeleeT2
 # TODO: make a weighted shotgun/ammo spawner
 - type: entity
   parent: NFBaseNpcLootWalletPunk
@@ -166,17 +107,26 @@
   - type: SpawnItemsOnUse
     items:
     # SpaceCash - from 1000 to 3000
-    - id: SpaceCash1000
+    - id: SpawnDungeonLootNpcPunksSpaceCashTier4
       orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkMeleeT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapon
+    - id: SpawnDungeonLootMeleeT2
+      orGroup: Weapon
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: SpawnDungeonLootNpcPunksSubstances
+      orGroup: Substances
+    # Items
+    - id: SpawnDungeonLootNpcPunksItemsTier2
 
 - type: entity
   parent: NFBaseNpcLootPackPunk
@@ -191,35 +141,12 @@
       prob: 0.7
     # Armor
     # Substances
-    - id: GroundCannabis
+    - id: SpawnDungeonLootNpcPunksSubstances
       orGroup: Substances
-      prob: 0.3
-      amount: 3
-    - id: SpawnDungeonLootNpcPunksSmokes
-      orGroup: Substances
-      prob: 0.15
-    - id: SpawnDungeonLootNpcPunksBooze
-      orGroup: Substances
-      prob: 0.3
-    - id: SpawnDungeonClutterMedipens
-      orGroup: Substances
-      prob: 0.25
     # Items
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
-      orGroup: Items
-      prob: 0.3
-    - id: SpawnDungeonLootMaterialsValuableFull
-      orGroup: Items
-      prob: 0.3
-    - id: SpawnDungeonLootPartsEngi
-      orGroup: Items
-      prob: 0.3
-    - id: HoloGraffitiProjectorEmpty
-      orGroup: Items
-      prob: 0.1
+    - id: SpawnDungeonLootNpcPunksItemsTier2
 
 # region tier 3
-# TODO: make a MeleeT3
 - type: entity
   parent: NFBaseNpcLootWalletPunk
   id: ClothingWalletPunkT3
@@ -228,17 +155,27 @@
   - type: SpawnItemsOnUse
     items:
     # SpaceCash - from 1000 to 3000
-    - id: SpaceCash1000
+    - id: SpawnDungeonLootNpcPunksSpaceCashTier4
       orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackPunk
+  id: ClothingBackpackPunkMeleeT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapon
+    - id: SpawnDungeonLootMeleeT3
+      orGroup: Weapon
+      prob: 0.7
+    # Armor
+    # Substances
+    - id: SpawnDungeonLootNpcPunksSubstances
+      orGroup: Substances
+    # Items
+    - id: SpawnDungeonLootNpcPunksItemsTier3
+      orGroup: Items
 
 - type: entity
   parent: NFBaseNpcLootPackPunk
@@ -253,38 +190,11 @@
       prob: 0.7
     # Armor
     # Substances
-    - id: GroundCannabis
+    - id: SpawnDungeonLootNpcPunksSubstances
       orGroup: Substances
-      prob: 0.3
-      amount: 3
-    - id: SpawnDungeonLootNpcPunksSmokes
-      orGroup: Substances
-      prob: 0.15
-    - id: SpawnDungeonLootNpcPunksBooze
-      orGroup: Substances
-      prob: 0.3
-    - id: SpawnDungeonClutterMedipens
-      orGroup: Substances
-      prob: 0.25
     # Items
-    - id: TableStorageFillStashCoins # From 75 to ~5000 spesos
+    - id: SpawnDungeonLootNpcPunksItemsTier3
       orGroup: Items
-      prob: 0.25
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
-      orGroup: Items
-      prob: 0.25
-    - id: SpawnDungeonLootMaterialsValuableFull
-      orGroup: Items
-      prob: 0.2
-    - id: SpawnDungeonLootPartsEngi
-      orGroup: Items
-      prob: 0.2
-    - id: SpawnDungeonLootNpcPunksBlueprints
-      orGroup: Items
-      prob: 0.05
-    - id: HoloGraffitiProjectorEmpty
-      orGroup: Items
-      prob: 0.05
 
 # region tier 4 - boss
 - type: entity
@@ -295,20 +205,10 @@
   - type: SpawnItemsOnUse
     items:
     # SpaceCash - from 2500 to 7500
-    - id: SpaceCash2500
+    - id: SpawnDungeonLootNpcPunksSpaceCashTier4
       orGroup: SpaceCash
-      prob: 0.5
-      amount: 2
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.2
-      amount: 1
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.3
-      amount: 3
     # BossLoot - from 75 to ~5000 spesos
-    - id: TableStorageFillStashCoins
+    - id: SpawnDungeonLootNpcCoins
       orGroup: BossLoot
       prob: 0.2
 
@@ -324,41 +224,11 @@
       orGroup: Weapon
       prob: 0.5
     # Substances
-    - id: SpawnDungeonLootNpcPunksBooze
-      orGroup: Substances
-    - id: SpawnDungeonClutterMedipens
-      orGroup: Substances
-    - id: SpawnDungeonClutterSyringe
-      orGroup: Substances
-      amount: 4
-    - id: SpawnDungeonClutterHypospray
+    - id: SpawnDungeonLootNpcPunksSubstances
       orGroup: Substances
     # Items
-    - id: TableStorageFillStashCoins # From 75 to ~5000 spesos
+    - id: SpawnDungeonLootNpcPunksItemsTier3
       orGroup: Items
-      prob: 0.25
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
-      orGroup: Items
-      prob: 0.25
-    - id: SpawnDungeonLootMaterialsValuableFull
-      orGroup: Items
-      prob: 0.2
-    - id: SpawnDungeonLootPartsEngi
-      orGroup: Items
-      prob: 0.2
-    - id: SpawnDungeonLootNpcPunksBlueprints
-      orGroup: Items
-      prob: 0.05
-    - id: HoloGraffitiProjectorEmpty
-      orGroup: Items
-      prob: 0.05
     # BossLoot
-    - id: SpawnDungeonLootNpcPunksBlueprints
+    - id: SpawnDungeonLootNpcPunksBossLoot
       orGroup: BossLoot
-      prob: 0.45
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
-      orGroup: BossLoot
-      prob: 0.3
-    - id: SpawnDungeonLootGunT3
-      orGroup: BossLoot
-      prob: 0.25

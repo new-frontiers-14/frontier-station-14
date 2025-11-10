@@ -1,0 +1,278 @@
+# region tier 1, SpaceCash
+- type: entityTable # from 500 to 2000
+  id: TableDungeonLootNpcPunksSpaceCashTier1
+  table: !type:GroupSelector
+    children:
+    - id: SpaceCash500
+      weight: 0.1
+    - id: SpaceCash500
+      rolls: !type:RangeNumberSelector
+        value: 3
+      weight: 0.5
+    - id: SpaceCash1000
+      rolls: !type:RangeNumberSelector
+        value: 3
+      weight: 0.4
+
+- type: entity # from 500 to 2000
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSpaceCashTier1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksSpaceCashTier1
+
+# region tier 1, Items
+- type: entityTable
+  id: TableDungeonLootNpcPunksItemsTier1
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      weight: 0.2
+    - id: SpawnDungeonLootMaterialsBasicFull
+      weight: 0.3
+    - id: SpawnDungeonLootPartsEngi
+      weight: 0.3
+    - id: HoloGraffitiProjectorEmpty
+      weight: 0.2
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksItemsTier1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksItemsTier1
+
+# region tier 2, SpaceCash
+- type: entityTable # from 1000 to 3000
+  id: TableDungeonLootNpcPunksSpaceCashTier2
+  table: !type:GroupSelector
+    children:
+    - id: SpaceCash1000
+      weight: 0.1
+    - id: SpaceCash1000
+      rolls: !type:RangeNumberSelector
+        value: 3
+      weight: 0.5
+    - id: SpaceCash1000
+      rolls: !type:RangeNumberSelector
+        value: 2
+      weight: 0.4
+
+- type: entity # from 1000 to 3000
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSpaceCashTier2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksSpaceCashTier2
+
+# region tier 2, Items
+- type: entityTable
+  id: TableDungeonLootNpcPunksItemsTier2
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      weight: 0.2
+    - id: SpawnDungeonLootMaterialsValuableFull
+      weight: 0.3
+    - id: SpawnDungeonLootPartsEngi
+      weight: 0.3
+    - id: HoloGraffitiProjectorEmpty
+      weight: 0.2
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksItemsTier2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksItemsTier2
+
+# region tier 3, Items
+- type: entityTable
+  id: TableDungeonLootNpcPunksItemsTier3
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDungeonLootNpcCoins # From 75 to ~5000 spesos
+      weight: 0.25
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      weight: 0.25
+    - id: SpawnDungeonLootMaterialsValuableFull
+      weight: 0.2
+    - id: SpawnDungeonLootPartsEngi
+      weight: 0.2
+    - id: SpawnDungeonLootNpcPunksBlueprints
+      weight: 0.05
+    - id: HoloGraffitiProjectorEmpty
+      weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksItemsTier3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksItemsTier3
+
+# region tier 4, SpaceCash
+- type: entityTable # from 2500 to 7500
+  id: TableDungeonLootNpcPunksSpaceCashTier4
+  table: !type:GroupSelector
+    children:
+    - id: SpaceCash2500
+      rolls: !type:RangeNumberSelector
+        value: 2
+      weight: 0.5
+    - id: SpaceCash2500
+      rolls: !type:RangeNumberSelector
+        value: 1
+      weight: 0.2
+    - id: SpaceCash2500
+      rolls: !type:RangeNumberSelector
+        value: 3
+      weight: 0.3
+
+- type: entity # from 2500 to 7500
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSpaceCashTier4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksSpaceCashTier4
+
+# region tier 4, BossLoot
+- type: entityTable
+  id: TableDungeonLootNpcPunksBossLoot
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+      weight: 0.3
+    - id: SpawnDungeonLootNpcPunksBlueprints
+      weight: 0.45
+    - id: SpawnDungeonLootGunT3
+      weight: 0.25
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBossLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksBossLoot
+
+# region booze
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBooze
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableStorageFillStashBooze
+
+# region smokes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSmokes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableStorageFillStashTobacco
+
+# region Substances
+- type: entityTable
+  id: TableDungeonLootNpcPunksSubstances
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDungeonLootNpcPunksSmokes
+      weight: 0.15
+    - id: GroundCannabisRandomVeryLow # 1 to 5
+      weight: 0.25
+    - id: SpawnDungeonLootNpcPunksBooze
+      weight: 0.3
+    - id: SpawnDungeonClutterMedipens
+      weight: 0.15
+    - id: SpawnDungeonClutterSyringe
+      weight: 0.15
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSubstances
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksSubstances
+
+# region blueprints
+- type: entityTable
+  id: TableDungeonLootNpcBlueprintsPunks
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintClothesPunk
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFBlueprintPouchPunk
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: NFBlueprintArmorPunk
+      - id: NFBlueprintWeaponsMeleePunk
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintWearablePunk
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: NFBlueprintPortableRecharger
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcBlueprintsPunks

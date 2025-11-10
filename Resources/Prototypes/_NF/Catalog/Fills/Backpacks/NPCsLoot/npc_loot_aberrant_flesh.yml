@@ -1,12 +1,12 @@
 # region normal
-- type: entityTable # From 0 to 240 spesos per carp
+- type: entityTable # From 0 to 360 spesos per carp
   id: TableDungeonLootNpcAberrantFlesh
   table: !type:AllSelector
     children:
     - id: MaterialBiomassRandomReduced # up to 2.4 spesos
     - id: NFTreasureOrganicSamples
       rolls: !type:RangeNumberSelector
-        range: 0, 2 # From 120 to 240 spesos
+        range: 0, 3 # From 120 to 360 spesos
 
 - type: entity
   parent: MarkerBasePlaceFree
