@@ -9,6 +9,7 @@
     - Wallmount
   components:
   - type: Sprite
+    sprite: _NF/Structures/Wallmounts/trophies.rsi
     drawdepth: WallTops
     snapCardinals: false
   - type: WallMount
@@ -23,28 +24,6 @@
     canCollide: false
   - type: Fixtures
     fixtures: {}
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-
-# region frame
-- type: entity
-  parent: NFBaseStructureWallTrophy
-  id: NFStructureWallTrophyFrame
-  name: trophy wallmount frame
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Wallmounts/trophies.rsi
-    layers:
-    - state: shield-frame
-      color: "#844b27" # "wood"
-    - state: shield-velvet
-      color: "#2d4877" # "fancy blue table"
   - type: ItemSlots
     slots:
       trophy:
@@ -52,21 +31,77 @@
         startingItem: null
         whitelist:
           tags:
-          - TreasureHeadDinosaurAnki
+          - NFTreasureHeadDinosaurAnki
+          - NFTreasureHeadDinosaurCompy
+          - NFTreasureHeadDinosaurDilo
+          - NFTreasureHeadDinosaurKentro
+          - NFTreasureHeadDinosaurPara
+          - NFTreasureHeadDinosaurRaptor
+          - NFTreasureHeadDinosaurSpino
+          - NFTreasureHeadDinosaurStego
+          - NFTreasureHeadDinosaurTrex
+          - NFTreasureHeadDinosaurTrike
   - type: ContainerContainer
     containers:
       trophy: !type:ContainerSlot
+  # I'll do anything to avoid fiddling with construction graphs
   - type: Appearance
   - type: ItemMapper
     mapLayers:
       head-anki:
         whitelist:
-          tags:
-          - TreasureHeadDinosaurAnki
+          tags: [ NFTreasureHeadDinosaurAnki ]
+      head-compy:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurCompy ]
+      head-dilo:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurDilo ]
+      head-kentro:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurKentro ]
+      head-para:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurPara ]
+      head-raptor:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurRaptor ]
+      head-spino:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurSpino ]
+      head-stego:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurStego ]
+      head-trex:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurTrex ]
+      head-trike:
+        whitelist:
+          tags: [ NFTreasureHeadDinosaurTrike ]
     sprite: _NF/Structures/Wallmounts/trophies.rsi
+
+# region frames
+- type: entity
+  parent: NFBaseStructureWallTrophy
+  id: NFStructureWallTrophyFrameWood
+  name: wooden trophy mount
+  components:
+  - type: Sprite
+    layers:
+    - state: shield-frame
+      color: "#844b27" # "wood"
+    - state: shield-velvet
+      color: "#2d4877" # "fancy blue table"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
   - type: Destructible
     thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
       behaviors:
+      - !type:EmptyAllContainersBehaviour
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
@@ -81,24 +116,46 @@
             min: 0
             max: 1
   - type: Construction
-    graph: NFStructureWallTrophyFrameGraph
-    node: NFStructureWallTrophyFrame
+    graph: NFStructureWallTrophyFrame
+    node: NFStructureWallTrophyFrameWood
   - type: StaticPrice
     price: 25
 
-# region dinosaur trophies
 - type: entity
   parent: NFBaseStructureWallTrophy
-  id: NFStructureWallTrophyDinosaurAnki
-  name: ankylosaurus trophy
+  id: NFStructureWallTrophyFrameBrass
+  name: brass trophy mount
   components:
   - type: Sprite
-    sprite: _NF/Structures/Wallmounts/trophies.rsi
     layers:
     - state: shield-frame
-      color: "#844b27" # "wood"
+      color: "#b18b25" # "Brass"
     - state: shield-velvet
-      color: "#2d4877" # "fancy blue table"
-    - state: head-anki
+      color: "#1f5f41" # "fancy green table"
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetBrass:
+            min: 0
+            max: 1
+          MaterialCloth:
+            min: 0
+            max: 1
+  - type: Construction
+    graph: NFStructureWallTrophyFrame
+    node: NFStructureWallTrophyFrameBrass
   - type: StaticPrice
-    price: 5000
+    price: 15
