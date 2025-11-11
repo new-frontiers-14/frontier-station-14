@@ -1,0 +1,30 @@
+- type: constructionGraph
+  id: NFStructureWallTrophyFrameGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFStructureWallTrophyFrame
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 2
+      - material: Cloth
+        amount: 1
+        doAfter: 1
+  - node: NFStructureWallTrophyFrame
+    entity: NFStructureWallTrophyFrame
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyAllContainers {}
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      - !type:SpawnPrototype
+        prototype: MaterialCloth1
+        amount: 1
+      - !type:DeleteEntity

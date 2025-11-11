@@ -226,3 +226,43 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 120
+
+# region dinosaur heads
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: NFBaseTreasureHeadBag
+  description: A cloth bag with preserved head. Morbid.
+  components:
+  - type: Sprite
+  - type: Item
+    size: Large
+  - type: PhysicalComposition
+    materialComposition:
+      Biomass: 150
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureHeadDinosaurAnki
+  name: ankylosaurus head
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/backpack.rsi # placeholder
+    state: icon
+  - type: StaticPrice
+    price: 5000
+  - type: Tag
+    tags: [ TreasureHeadDinosaurAnki ]
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: TreasureHeadDinosaurAnki

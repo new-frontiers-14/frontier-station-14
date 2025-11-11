@@ -27,3 +27,17 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
+
+- type: construction
+  id: NFStructureWallTrophyFrameConstruction
+  graph: NFStructureWallTrophyFrameGraph
+  name: recipes-glowshrooms-wallmount-name
+  startNode: start
+  targetNode: NFStructureWallTrophyFrame
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
