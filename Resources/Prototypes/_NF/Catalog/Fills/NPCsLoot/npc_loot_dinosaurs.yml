@@ -1,0 +1,219 @@
+# region core loot
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurBase
+  table: !type:AllSelector
+    children:
+    - id: MaterialBonesRandomLow
+    - id: FoodMeatChicken
+      rolls: !type:RangeNumberSelector
+        range: 0, 3
+
+# Sorted by health pool (less health => lower spawn probability for treasure)
+# region compsognathus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurCompy
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurCompy
+      weight: 0.2
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurCompy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurCompy
+
+# region dilophosaurus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurDilo
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurDilo
+      weight: 0.2
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurDilo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurDilo
+
+# region velociraptor
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurRaptor
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurRaptor
+      weight: 0.2
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurRaptor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurRaptor
+
+# region parasaurolophus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurPara
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurPara
+      weight: 0.3
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurPara
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurPara
+
+# region kentrosaurus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurKentro
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurKentro
+      weight: 0.3
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurKentro
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurKentro
+
+# region triceratops
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurTrike
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurTrike
+      weight: 0.3
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurTrike
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurTrike
+
+# region ankylosaurus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurAnki
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurAnki
+      weight: 0.4
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurAnki
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurAnki
+
+# region spinosaurus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurSpino
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurSpino
+      weight: 0.4
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurSpino
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurSpino
+
+# region stegosaurus
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurStego
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurStego
+      weight: 0.4
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurStego
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurStego
+
+# region tyrannosaurus (boss)
+- type: entityTable
+  id: TableDungeonLootNpcDinosaurTrex
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurBase
+    - id: NFTreasureHeadDinosaurTrex
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcDinosaurTrex
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcDinosaurTrex
