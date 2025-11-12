@@ -199,6 +199,7 @@
         capillary: FleshColors
         cube: FleshColors
         membrane: FleshColors
+        membrane-top: FleshColors
         organoid-1: FleshColors
         organoid-2: FleshColors
         organoid-3: FleshColors
@@ -207,6 +208,8 @@
   - type: PhysicalComposition
     materialComposition:
       Biomass: 50
+    chemicalComposition:
+      Blood: 20
   - type: Butcherable
     spawned:
     - id: MaterialBiomassRandomReduced # 6 to 24
@@ -225,14 +228,46 @@
     - Trash
   - type: SpaceGarbage
   - type: StaticPrice
-    price: 120
+    price: 150
 
-# region dinosaur heads
+- type: entity
+  parent: NFTreasureOrganicSamples
+  id: NFTreasureOrganicSamplesXeno
+  name: xenoid organic samples
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/valuables_organic.rsi
+    layers:
+    - state: symbiont
+      color: "#6c7385"
+      map: ["base"]
+  - type: RandomSprite
+    available:
+    - base:
+        alveolar-sacs: FleshColorsXeno
+        capillary: FleshColorsXeno
+        cube: FleshColorsXeno
+        membrane: FleshColorsXeno
+        membrane-top: FleshColorsXeno
+        organoid-1: FleshColorsXeno
+        organoid-2: FleshColorsXeno
+        organoid-3: FleshColorsXeno
+        symbiont: FleshColorsXeno
+        tubules: FleshColorsXeno
+  - type: PhysicalComposition
+    materialComposition:
+      Biomass: 75
+    chemicalComposition:
+      FluorosulfuricAcid: 40
+  - type: StaticPrice
+    price: 400
+
+# region head bag
 - type: entity
   abstract: true
   parent: BaseItem
   id: NFBaseTreasureHeadBag
-  description: A cloth bag with preserved head. Morbid.
+  description: A plastic bag with preserved head. Morbid.
   components:
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/trophies.rsi
@@ -254,291 +289,475 @@
   - type: StaticPrice
     price: 5000
 
+# region dinosaur heads
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurAnki
+  id: NFTreasureTrophyDinosaurAnki
   name: ankylosaurus head
   components:
   - type: Sprite
     layers:
-    - state: head-anki
+    - state: trophy-dino-anki
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurAnki ]
+    tags: [ NFTreasureTrophyDinosaurAnki ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurAnki
+  id: NFTreasureTrophyDinosaurAnki
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurCompy
+  id: NFTreasureTrophyDinosaurCompy
   name: compsognathus head
   components:
   - type: Sprite
     layers:
-    - state: head-compy
+    - state: trophy-dino-compy
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurCompy ]
+    tags: [ NFTreasureTrophyDinosaurCompy ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurCompy
+  id: NFTreasureTrophyDinosaurCompy
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurDilo
+  id: NFTreasureTrophyDinosaurDilo
   name: dilophosaurus head
   components:
   - type: Sprite
     layers:
-    - state: head-dilo
+    - state: trophy-dino-dilo
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurDilo ]
+    tags: [ NFTreasureTrophyDinosaurDilo ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurDilo
+  id: NFTreasureTrophyDinosaurDilo
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurKentro
+  id: NFTreasureTrophyDinosaurKentro
   name: kentrosaurus head
   components:
   - type: Sprite
     layers:
-    - state: head-kentro
+    - state: trophy-dino-kentro
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurKentro ]
+    tags: [ NFTreasureTrophyDinosaurKentro ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurKentro
+  id: NFTreasureTrophyDinosaurKentro
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurPara
+  id: NFTreasureTrophyDinosaurPara
   name: parasaurolophus head
   components:
   - type: Sprite
     layers:
-    - state: head-para
+    - state: trophy-dino-para
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurPara ]
+    tags: [ NFTreasureTrophyDinosaurPara ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurPara
+  id: NFTreasureTrophyDinosaurPara
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurRaptor
+  id: NFTreasureTrophyDinosaurRaptor
   name: velociraptor head
   components:
   - type: Sprite
     layers:
-    - state: head-raptor
+    - state: trophy-dino-raptor
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurRaptor ]
+    tags: [ NFTreasureTrophyDinosaurRaptor ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurRaptor
+  id: NFTreasureTrophyDinosaurRaptor
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurSpino
+  id: NFTreasureTrophyDinosaurSpino
   name: spinosaurus head
   components:
   - type: Sprite
     layers:
-    - state: head-spino
+    - state: trophy-dino-spino
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurSpino ]
+    tags: [ NFTreasureTrophyDinosaurSpino ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurSpino
+  id: NFTreasureTrophyDinosaurSpino
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurStego
+  id: NFTreasureTrophyDinosaurStego
   name: stegosaurus head
   components:
   - type: Sprite
     layers:
-    - state: head-stego
+    - state: trophy-dino-stego
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurStego ]
+    tags: [ NFTreasureTrophyDinosaurStego ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurStego
+  id: NFTreasureTrophyDinosaurStego
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurTrex
+  id: NFTreasureTrophyDinosaurTrex
   name: tyrannosaurus head
   components:
   - type: Sprite
     layers:
-    - state: head-trex
+    - state: trophy-dino-trex
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurTrex ]
+    tags: [ NFTreasureTrophyDinosaurTrex ]
   - type: StaticPrice
     price: 8000
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurTrex
+  id: NFTreasureTrophyDinosaurTrex
 
 - type: entity
   parent: NFBaseTreasureHeadBag
-  id: NFTreasureHeadDinosaurTrike
+  id: NFTreasureTrophyDinosaurTrike
   name: triceratops head
   components:
   - type: Sprite
     layers:
-    - state: head-trike
+    - state: trophy-dino-trike
       scale: 0.75,0.75
       offset: 0.0,-0.2
     - state: trophy-bag-liquid
-      color: "#80000099"
+      color: "#800000cc"
     - state: trophy-bag
   - type: Item
     inhandVisuals:
       left:
       - state: trophy-bag-inhand-left-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-left
       right:
       - state: trophy-bag-inhand-right-liquid
-        color: "#80000099"
+        color: "#800000cc"
       - state: trophy-bag-inhand-right
   - type: Tag
-    tags: [ NFTreasureHeadDinosaurTrike ]
+    tags: [ NFTreasureTrophyDinosaurTrike ]
 
 - type: Tag # TODO: move to tags (or maybe don't)
-  id: NFTreasureHeadDinosaurTrike
+  id: NFTreasureTrophyDinosaurTrike
+
+# region xeno heads
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureTrophyXenoBurrower
+  name: burrower head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-xeno-burrower
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#d9f500cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyXenoBurrower ]
+  - type: StaticPrice
+    price: 6000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyXenoBurrower
+
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureTrophyXenoDrone
+  name: drone head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-xeno-drone
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#d9f500cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyXenoDrone ]
+  - type: StaticPrice
+    price: 6000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyXenoDrone
+
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureTrophyXenoPraetorian
+  name: praetorian head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-xeno-praetorian
+      scale: 0.75,0.75
+      offset: 0.0,-0.15
+    - state: trophy-bag-liquid
+      color: "#d9f500cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyXenoPraetorian ]
+  - type: StaticPrice
+    price: 7000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyXenoPraetorian
+
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureTrophyXenoQueen
+  name: queen head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-xeno-queen
+      scale: 0.75,0.75
+      offset: 0.0,-0.125
+    - state: trophy-bag-liquid
+      color: "#d9f500cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyXenoQueen ]
+  - type: StaticPrice
+    price: 10000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyXenoQueen
+
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureTrophyXenoRavager
+  name: ravager claws
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-xeno-ravager
+      scale: 0.75,0.75
+      offset: 0.0,-0.1
+    - state: trophy-bag-liquid
+      color: "#d9f500cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyXenoRavager ]
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyXenoRavager
+
+- type: entity
+  parent: NFBaseTreasureHeadBag
+  id: NFTreasureTrophyXenoSpitter
+  name: spitter head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-xeno-spitter
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#d9f500cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#d9f500cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyXenoSpitter ]
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyXenoSpitter

@@ -32,16 +32,22 @@
         startingItem: null
         whitelist:
           tags:
-          - NFTreasureHeadDinosaurAnki
-          - NFTreasureHeadDinosaurCompy
-          - NFTreasureHeadDinosaurDilo
-          - NFTreasureHeadDinosaurKentro
-          - NFTreasureHeadDinosaurPara
-          - NFTreasureHeadDinosaurRaptor
-          - NFTreasureHeadDinosaurSpino
-          - NFTreasureHeadDinosaurStego
-          - NFTreasureHeadDinosaurTrex
-          - NFTreasureHeadDinosaurTrike
+          - NFTreasureTrophyDinosaurAnki
+          - NFTreasureTrophyDinosaurCompy
+          - NFTreasureTrophyDinosaurDilo
+          - NFTreasureTrophyDinosaurKentro
+          - NFTreasureTrophyDinosaurPara
+          - NFTreasureTrophyDinosaurRaptor
+          - NFTreasureTrophyDinosaurSpino
+          - NFTreasureTrophyDinosaurStego
+          - NFTreasureTrophyDinosaurTrex
+          - NFTreasureTrophyDinosaurTrike
+          - NFTreasureTrophyXenoBurrower
+          - NFTreasureTrophyXenoDrone
+          - NFTreasureTrophyXenoPraetorian
+          - NFTreasureTrophyXenoQueen
+          - NFTreasureTrophyXenoRavager
+          - NFTreasureTrophyXenoSpitter
   - type: ContainerContainer
     containers:
       trophy: !type:ContainerSlot
@@ -49,36 +55,54 @@
   - type: Appearance
   - type: ItemMapper
     mapLayers:
-      head-anki:
+      trophy-dino-anki:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurAnki ]
-      head-compy:
+          tags: [ NFTreasureTrophyDinosaurAnki ]
+      trophy-dino-compy:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurCompy ]
-      head-dilo:
+          tags: [ NFTreasureTrophyDinosaurCompy ]
+      trophy-dino-dilo:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurDilo ]
-      head-kentro:
+          tags: [ NFTreasureTrophyDinosaurDilo ]
+      trophy-dino-kentro:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurKentro ]
-      head-para:
+          tags: [ NFTreasureTrophyDinosaurKentro ]
+      trophy-dino-para:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurPara ]
-      head-raptor:
+          tags: [ NFTreasureTrophyDinosaurPara ]
+      trophy-dino-raptor:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurRaptor ]
-      head-spino:
+          tags: [ NFTreasureTrophyDinosaurRaptor ]
+      trophy-dino-spino:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurSpino ]
-      head-stego:
+          tags: [ NFTreasureTrophyDinosaurSpino ]
+      trophy-dino-stego:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurStego ]
-      head-trex:
+          tags: [ NFTreasureTrophyDinosaurStego ]
+      trophy-dino-trex:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurTrex ]
-      head-trike:
+          tags: [ NFTreasureTrophyDinosaurTrex ]
+      trophy-dino-trike:
         whitelist:
-          tags: [ NFTreasureHeadDinosaurTrike ]
+          tags: [ NFTreasureTrophyDinosaurTrike ]
+      trophy-xeno-burrower:
+        whitelist:
+          tags: [ NFTreasureTrophyXenoBurrower ]
+      trophy-xeno-drone:
+        whitelist:
+          tags: [ NFTreasureTrophyXenoDrone ]
+      trophy-xeno-praetorian:
+        whitelist:
+          tags: [ NFTreasureTrophyXenoPraetorian ]
+      trophy-xeno-queen:
+        whitelist:
+          tags: [ NFTreasureTrophyXenoQueen ]
+      trophy-xeno-ravager:
+        whitelist:
+          tags: [ NFTreasureTrophyXenoRavager ]
+      trophy-xeno-spitter:
+        whitelist:
+          tags: [ NFTreasureTrophyXenoSpitter ]
     sprite: _NF/Structures/Wallmounts/trophies.rsi
 
 # region frames
@@ -110,10 +134,10 @@
           collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
-          MaterialWoodPlank:
+          MaterialWoodPlank1:
             min: 1
             max: 2
-          MaterialCloth:
+          MaterialCloth1:
             min: 0
             max: 1
   - type: Construction
@@ -149,10 +173,10 @@
           collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetBrass:
+          SheetBrass1:
             min: 0
             max: 1
-          MaterialCloth:
+          MaterialCloth1:
             min: 0
             max: 1
   - type: Construction
@@ -188,10 +212,10 @@
           collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetPlasteel:
+          IngotSilver1:
             min: 0
             max: 1
-          MaterialCloth:
+          MaterialCloth1:
             min: 0
             max: 1
   - type: Construction
@@ -227,10 +251,10 @@
           collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetPlasteel:
+          IngotGold1:
             min: 0
             max: 1
-          MaterialCloth:
+          MaterialCloth1:
             min: 0
             max: 1
   - type: Construction

@@ -1,27 +1,47 @@
 - type: entity
-  id: NFMobXeno
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXeno]
-  suffix: Frontier
+  id: NFMobXeno
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoBurrower
+      amount: 1
 
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoPraetorian]
   id: NFMobXenoPraetorian
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoPraetorian
+      amount: 1
 
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoDrone]
   id: NFMobXenoDrone
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoDrone
+      amount: 1
 
 - type: entity
   parent: [MobHostileBossBase, NFMobSimpleHostileBase, MobXenoQueen]
   id: NFMobXenoQueen
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
   components:
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoQueen
+      amount: 1
   - type: ReplacementAccent
     accent: xeno
   - type: GhostRole
@@ -41,35 +61,55 @@
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoRavager]
   id: NFMobXenoRavager
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoRavager
+      amount: 1
 
 - type: entity
   parent: [MobStaminaSpecial, MobMovementSpeedModifierSpecial, NFMobSimpleHostileBase, MobXenoRunner]
   id: NFMobXenoRunner
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoRavager
+      amount: 1
 
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoRouny]
   id: NFMobXenoRouny
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoRavager
+      amount: 1
 
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierRanged, NFMobSimpleHostileBase, MobXenoSpitter]
   id: NFMobXenoSpitter
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcXenoSpitter
+      amount: 1
 
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobPurpleSnake]
   id: NFMobPurpleSnake
-  suffix: Frontier
   categories: [ HideSpawnMenu ]
+  suffix: Frontier
 
 - type: entity
   parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobSmallPurpleSnake]
   id: NFMobSmallPurpleSnake
-  suffix: Frontier, Small
   categories: [ HideSpawnMenu ]
+  suffix: Frontier, Small
