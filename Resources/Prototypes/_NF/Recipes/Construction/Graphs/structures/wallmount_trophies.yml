@@ -20,6 +20,22 @@
       - material: Cloth
         amount: 1
         doAfter: 1
+    - to: NFStructureWallTrophyFrameSilver
+      steps:
+      - material: Silver
+        amount: 1
+        doAfter: 1
+      - material: Cloth
+        amount: 1
+        doAfter: 1
+    - to: NFStructureWallTrophyFrameGold
+      steps:
+      - material: Gold
+        amount: 1
+        doAfter: 1
+      - material: Cloth
+        amount: 1
+        doAfter: 1
   - node: NFStructureWallTrophyFrameWood
     entity: NFStructureWallTrophyFrameWood
     edges:
@@ -47,6 +63,38 @@
       - !type:EmptyAllContainers {}
       - !type:SpawnPrototype
         prototype: SheetBrass1
+        amount: 1
+      - !type:SpawnPrototype
+        prototype: MaterialCloth1
+        amount: 1
+      - !type:DeleteEntity
+  - node: NFStructureWallTrophyFrameSilver
+    entity: NFStructureWallTrophyFrameSilver
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyAllContainers {}
+      - !type:SpawnPrototype
+        prototype: IngotSilver1
+        amount: 1
+      - !type:SpawnPrototype
+        prototype: MaterialCloth1
+        amount: 1
+      - !type:DeleteEntity
+  - node: NFStructureWallTrophyFrameGold
+    entity: NFStructureWallTrophyFrameGold
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyAllContainers {}
+      - !type:SpawnPrototype
+        prototype: IngotGold1
         amount: 1
       - !type:SpawnPrototype
         prototype: MaterialCloth1

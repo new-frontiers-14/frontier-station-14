@@ -3,6 +3,7 @@
   abstract: true
   id: NFBaseStructureWallTrophy
   suffix: Frontier
+  description: "A wall-mounted frame for showcasing the achievements of your parents' favorite child."
   placement:
     mode: SnapgridCenter
     snap:
@@ -159,3 +160,81 @@
     node: NFStructureWallTrophyFrameBrass
   - type: StaticPrice
     price: 15
+
+- type: entity
+  parent: NFBaseStructureWallTrophy
+  id: NFStructureWallTrophyFrameSilver
+  name: silver trophy mount
+  components:
+  - type: Sprite
+    layers:
+    - state: shield-frame
+      color: "#dcdcdc" # "Silver"
+    - state: shield-velvet
+      color: "#9b3170" # "fancy pink table"
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlasteel:
+            min: 0
+            max: 1
+          MaterialCloth:
+            min: 0
+            max: 1
+  - type: Construction
+    graph: NFStructureWallTrophyFrame
+    node: NFStructureWallTrophyFrameSilver
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  parent: NFBaseStructureWallTrophy
+  id: NFStructureWallTrophyFrameGold
+  name: golden trophy mount
+  components:
+  - type: Sprite
+    layers:
+    - state: shield-frame
+      color: "#ffc20e" # "Gold"
+    - state: shield-velvet
+      color: "#5a2355" # "fancy purple table"
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlasteel:
+            min: 0
+            max: 1
+          MaterialCloth:
+            min: 0
+            max: 1
+  - type: Construction
+    graph: NFStructureWallTrophyFrame
+    node: NFStructureWallTrophyFrameGold
+  - type: StaticPrice
+    price: 25
