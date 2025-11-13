@@ -236,7 +236,6 @@
   name: xenoid organic samples
   components:
   - type: Sprite
-    sprite: _NF/Objects/Misc/valuables_organic.rsi
     layers:
     - state: symbiont
       color: "#6c7385"
@@ -262,12 +261,35 @@
   - type: StaticPrice
     price: 400
 
-# region head bag
+- type: entity
+  parent: NFTreasureOrganicSamplesXeno
+  id: NFTreasureOrganicSamplesArgocyte
+  name: argocyte organic samples
+  components:
+  - type: Sprite
+    layers:
+    - state: membrane-top
+      color: "#b2b191"
+      map: ["base"]
+  - type: RandomSprite
+    available:
+    - base:
+        capillary: FleshColorsArgocyte
+        membrane-top: FleshColorsArgocyte
+        organoid-1: FleshColorsArgocyte
+        organoid-2: FleshColorsArgocyte
+        organoid-3: FleshColorsArgocyte
+        symbiont: FleshColorsArgocyte
+        tubules: FleshColorsArgocyte
+  - type: StaticPrice
+    price: 600
+
+# region trophy bag
 - type: entity
   abstract: true
   parent: BaseItem
-  id: NFBaseTreasureHeadBag
-  description: A plastic bag with preserved head. Morbid.
+  id: NFBaseTreasureTrophyBag
+  description: A plastic bag with preserved body part. Morbid.
   components:
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/trophies.rsi
@@ -289,9 +311,9 @@
   - type: StaticPrice
     price: 5000
 
-# region dinosaur heads
+# region dinosaur trophies
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurAnki
   name: ankylosaurus head
   components:
@@ -320,7 +342,7 @@
   id: NFTreasureTrophyDinosaurAnki
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurCompy
   name: compsognathus head
   components:
@@ -348,7 +370,7 @@
   id: NFTreasureTrophyDinosaurCompy
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurDilo
   name: dilophosaurus head
   components:
@@ -377,7 +399,7 @@
   id: NFTreasureTrophyDinosaurDilo
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurKentro
   name: kentrosaurus head
   components:
@@ -406,7 +428,7 @@
   id: NFTreasureTrophyDinosaurKentro
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurPara
   name: parasaurolophus head
   components:
@@ -434,7 +456,7 @@
   id: NFTreasureTrophyDinosaurPara
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurRaptor
   name: velociraptor head
   components:
@@ -462,7 +484,7 @@
   id: NFTreasureTrophyDinosaurRaptor
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurSpino
   name: spinosaurus head
   components:
@@ -491,7 +513,7 @@
   id: NFTreasureTrophyDinosaurSpino
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurStego
   name: stegosaurus head
   components:
@@ -520,7 +542,7 @@
   id: NFTreasureTrophyDinosaurStego
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurTrex
   name: tyrannosaurus head
   components:
@@ -551,7 +573,7 @@
   id: NFTreasureTrophyDinosaurTrex
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyDinosaurTrike
   name: triceratops head
   components:
@@ -579,9 +601,9 @@
 - type: Tag # TODO: move to tags (or maybe don't)
   id: NFTreasureTrophyDinosaurTrike
 
-# region xeno heads
+# region xeno trophies
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoBurrower
   name: burrower head
   components:
@@ -612,7 +634,7 @@
   id: NFTreasureTrophyXenoBurrower
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoDrone
   name: drone head
   components:
@@ -643,7 +665,7 @@
   id: NFTreasureTrophyXenoDrone
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoPraetorian
   name: praetorian head
   components:
@@ -674,7 +696,7 @@
   id: NFTreasureTrophyXenoPraetorian
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoQueen
   name: queen head
   components:
@@ -705,7 +727,7 @@
   id: NFTreasureTrophyXenoQueen
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoRavager
   name: ravager claws
   components:
@@ -734,7 +756,7 @@
   id: NFTreasureTrophyXenoRavager
 
 - type: entity
-  parent: NFBaseTreasureHeadBag
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoSpitter
   name: spitter head
   components:
@@ -761,3 +783,281 @@
 
 - type: Tag # TODO: move to tags (or maybe don't)
   id: NFTreasureTrophyXenoSpitter
+
+# region argocyte trophies
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteSwiper
+  name: swiper head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-swiper
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteSwiper ]
+  - type: StaticPrice
+    price: 6000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteSwiper
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteGlider
+  name: glider head plate
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-glider
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteGlider ]
+  - type: StaticPrice
+    price: 6000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteGlider
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteCrawler
+  name: crawler head plate
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-crawler
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteCrawler ]
+  - type: StaticPrice
+    price: 6000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteCrawler
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteFounder
+  name: founder head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-founder
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteFounder ]
+  - type: StaticPrice
+    price: 8000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteFounder
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteMolder
+  name: molder chitin plates
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-molder
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteMolder ]
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteMolder
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocytePouncer
+  name: pouncer head plate
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-pouncer
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocytePouncer ]
+  - type: StaticPrice
+    price: 6000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocytePouncer
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteHarvester
+  name: "harvester's scytes"
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-harvester
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteHarvester ]
+  - type: StaticPrice
+    price: 7000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteHarvester
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteEnforcer
+  name: enforcer head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-enforcer
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteEnforcer ]
+  - type: StaticPrice
+    price: 7000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteEnforcer
+
+- type: entity
+  parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyArgocyteLeviathing
+  name: leviathing head
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-argo-leviathing
+      scale: 0.75,0.75
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#48b3b8cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#48b3b8cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyArgocyteLeviathing ]
+  - type: StaticPrice
+    price: 12000
+
+- type: Tag # TODO: move to tags (or maybe don't)
+  id: NFTreasureTrophyArgocyteLeviathing

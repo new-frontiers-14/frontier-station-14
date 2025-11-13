@@ -1,14 +1,14 @@
 # region core loot
-- type: entityTable
+- type: entityTable # from 900 to 3545
   id: TableDungeonLootNpcXenoBase
   table: !type:AllSelector
     children:
-    - id: NFMaterialChitinXenoRandom # up to 50 spesos
+    - id: NFMaterialChitinXenoRandom # from 900 to 2700 spesos
     - id: NFTreasureOrganicSamplesXeno
-      rolls: !type:RangeNumberSelector # up to 800 spesos
+      rolls: !type:RangeNumberSelector # from 0 to 800 spesos
         range: 0, 2
     - id: FoodMeatXeno
-      rolls: !type:RangeNumberSelector # up to 45 spesos
+      rolls: !type:RangeNumberSelector # from 0 to 45 spesos
         range: 0, 3
 
 # region burrower
@@ -17,7 +17,7 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      tableId: TableDungeonLootNpcXenoBase # up to 895
+      tableId: TableDungeonLootNpcXenoBase # from 900 to 3545
     - id: NFTreasureTrophyXenoBurrower # 6000 spesos
       weight: 0.3
 
@@ -38,7 +38,7 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      tableId: TableDungeonLootNpcXenoBase # up to 895
+      tableId: TableDungeonLootNpcXenoBase # from 900 to 3545
     - id: NFTreasureTrophyXenoDrone # 6000 spesos
       weight: 0.3
 
@@ -59,7 +59,7 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      tableId: TableDungeonLootNpcXenoBase # up to 895
+      tableId: TableDungeonLootNpcXenoBase # from 900 to 3545
     - id: NFTreasureTrophyXenoPraetorian # 7000 spesos
       weight: 0.4
 
@@ -80,7 +80,7 @@
   table: !type:AllSelector
     children:
     - !type:NestedSelector
-      tableId: TableDungeonLootNpcXenoBase # up to 895
+      tableId: TableDungeonLootNpcXenoBase # from 900 to 3545
     - id: NFTreasureTrophyXenoQueen # 10000 spesos
 
 - type: entity
@@ -100,7 +100,7 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      tableId: TableDungeonLootNpcXenoBase # up to 895
+      tableId: TableDungeonLootNpcXenoBase # from 900 to 3545
     - id: NFTreasureTrophyXenoRavager # 5000 spesos
       weight: 0.4
 
@@ -121,7 +121,7 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      tableId: TableDungeonLootNpcXenoBase # up to 895
+      tableId: TableDungeonLootNpcXenoBase # from 900 to 3545
     - id: NFTreasureTrophyXenoSpitter # 5000 spesos
       weight: 0.3
 
