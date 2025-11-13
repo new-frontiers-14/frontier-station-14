@@ -587,6 +587,10 @@
   abstract: true
   id: MobArgocyteLeviathingSpawned
   components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSmall
+      amount: 1
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
       components:
@@ -601,30 +605,31 @@
         true
       NavPry: !type:Bool
         true
-  - type: Butcherable
-    spawned:
-    - id: SpawnDungeonLootNpcArgocyteSmall
-      amount: 1
 
 - type: entity
   parent: [MobArgocyteLeviathingSpawned, MobArgocyteMolderExpeditions]
   id: MobArgocyteMolderLeviathingSpawned
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [MobArgocyteLeviathingSpawned, MobArgocytePouncerExpeditions]
   id: MobArgocytePouncerLeviathingSpawned
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [MobArgocyteLeviathingSpawned, MobArgocyteGliderExpeditions]
   id: MobArgocyteGliderLeviathingSpawned
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [MobArgocyteLeviathingSpawned. MobArgocyteHarvesterExpeditions]
+  parent: [MobArgocyteLeviathingSpawned, MobArgocyteHarvesterExpeditions]
   id: MobArgocyteHarvesterLeviathingSpawned
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [MobArgocyteLeviathingSpawned, MobArgocyteCrawlerExpeditions]
   id: MobArgocyteCrawlerLeviathingSpawned
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: MarkerBase
