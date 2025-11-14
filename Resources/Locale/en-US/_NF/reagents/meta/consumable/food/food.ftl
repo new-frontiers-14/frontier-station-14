@@ -6,3 +6,6 @@ reagent-desc-raisins = Are they the best or worst part of the cookie? They're a 
 
 reagent-name-everyspice = everyspice
 reagent-desc-everyspice = A versatile flavoring, this spice has a flavor for every occasion.
+
+reagent-name-snack-nutriment = unprocessed nutriment
+reagent-desc-snack-nutriment = All the vitamins, minerals, and carbohydrates the body needs in raw and slightly unsafe form.
