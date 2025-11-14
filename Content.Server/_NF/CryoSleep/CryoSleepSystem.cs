@@ -292,7 +292,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (!TryComp<InventoryComponent>(entity, out var inventoryComp))
             return null;
         //Items check
-        SlotDefinition[] slotsToCheck = inventoryComp.Slots;
+        var slotsToCheck = inventoryComp.Slots;
         List<WarningItem> warningItemsList = [];
         //Doing the conversion to WarningItem all at once makes more sense to me
         List<StorageHelper.FoundItem> unconvertedFoundItem = [];
@@ -301,19 +301,36 @@ public sealed partial class CryoSleepSystem : EntitySystem
             //The ID is manually checked for a shuttle deed later, and since your PDA *technically* has an uplink in it, this has to be skipped manually.
             if (slotDefinition.Name == "id")
                 continue;
-            //TODO: Check hand slots for important items
             if (_inventory.TryGetSlotEntity(entity, slotDefinition.Name, out var slotItem))
             {
                 if (ShouldItemWarnOnCryo(slotItem.Value))
-                    warningItemsList.Add(new WarningItem(slotDefinition.Name, null, slotItem.Value));
+                    warningItemsList.Add(new WarningItem(slotDefinition.Name, null, null, slotItem.Value));
                 else if (_entityManager.HasComponent<StorageComponent>(slotItem.Value))
                     StorageHelper.ScanStorageForCondition(slotItem.Value, ShouldItemWarnOnCryo, ref unconvertedFoundItem);
             }
         }
+
+        // Check hands since they aren't slots
+        if (TryComp<HandsComponent>(entity, out var handsComp))
+        {
+            foreach (var hand in handsComp.Hands)
+            {
+                if (!hand.Value.HeldEntity.HasValue)
+                    continue;
+
+                var heldEntity = hand.Value.HeldEntity.Value;
+
+                if (ShouldItemWarnOnCryo(heldEntity))
+                    warningItemsList.Add(new WarningItem(null, hand.Key, null, heldEntity));
+                else if (_entityManager.HasComponent<StorageComponent>(heldEntity))
+                    StorageHelper.ScanStorageForCondition(heldEntity, ShouldItemWarnOnCryo, ref unconvertedFoundItem);
+            }
+        }
+
         //Convert all FoundItem to a WarningItem
         foreach (var found in unconvertedFoundItem)
         {
-            warningItemsList.Add(new WarningItem(null, found.Container, found.Item));
+            warningItemsList.Add(new WarningItem(null, null, found.Container, found.Item));
         }
         //Now, we extract the uplinks and shuttle deeds.
         WarningItem? uplink = null;
@@ -379,17 +396,18 @@ public sealed partial class CryoSleepSystem : EntitySystem
         return false;
     }
 
-    private readonly struct WarningItem(string? slotId, EntityUid? container, EntityUid item)
+    private readonly struct WarningItem(string? slotId, string? handId, EntityUid? container, EntityUid item)
     {
         //Exactly one of these two values should be null
         public readonly string? SlotId = slotId;
+        public readonly string? HandId = handId;
         public readonly EntityUid? Container = container;
 
         public readonly EntityUid Item = item;
 
         public CryoSleepWarningMessage.NetworkedWarningItem ToNetworked(IEntityManager manager)
         {
-            return new CryoSleepWarningMessage.NetworkedWarningItem(SlotId,
+            return new CryoSleepWarningMessage.NetworkedWarningItem(SlotId, HandId,
                 manager.GetNetEntity(Container),
                 manager.GetNetEntity(Item));
         }
