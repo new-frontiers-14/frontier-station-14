@@ -6,3 +6,9 @@ reagent-desc-raisins = Are they the best or worst part of the cookie? They're a 
 
 reagent-name-everyspice = everyspice
 reagent-desc-everyspice = A versatile flavoring, this spice has a flavor for every occasion.
+
+reagent-name-salsa = salsa
+reagent-desc-salsa = Refreshing and finely diced, this tomato-y base holds a sharp and fresh aroma.
+
+reagent-name-sourcream = sour cream
+reagent-desc-sourcream = Creamy in viscosity and texture, but with a sharp and fresh bite.
