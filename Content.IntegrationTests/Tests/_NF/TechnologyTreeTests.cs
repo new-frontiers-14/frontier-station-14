@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Content.Shared._NF.Research.Prototypes;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
@@ -20,6 +22,11 @@ public sealed class TechnologyTreeTests
 
         await server.WaitPost(() =>
         {
+            var blueprintablePrototypes = protoManager.EnumeratePrototypes<BlueprintPrototype>()
+                .SelectMany(it => it.Packs)
+                .SelectMany(it => protoManager.TryIndex(it, out var proto) ? proto.Recipes : [])
+                .ToHashSet();
+
             Assert.Multiple(() =>
             {
                 foreach (var tech in protoManager.EnumeratePrototypes<TechnologyPrototype>())
@@ -30,6 +37,7 @@ public sealed class TechnologyTreeTests
                     foreach (var recipe in tech.RecipeUnlocks)
                     {
                         Assert.That(protoManager.TryIndex(recipe, out var proto), Is.True, $"Technology {tech.ID} unlocks recipe {recipe} which does not exist.");
+                        Assert.That(blueprintablePrototypes, Contains.Item(recipe), $"Technology {tech.ID} unlocks recipe {recipe} which is not printable to any blueprint.");
                     }
 
                     foreach (var prereq in tech.TechnologyPrerequisites)
