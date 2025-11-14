@@ -206,3 +206,61 @@
     - MacheteNF
     - KukriKnifeNF
     - NFKatana
+
+# region mercenaries
+- type: entity
+  parent: NFBaseBlueprintExpeditionMercenary
+  id: NFBlueprintPouchMercenary
+  name: mercenary pouch blueprint
+  description: A blueprint with a schematic of a pouch. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFPouchFirstAid
+    - NFPouchFirstAidAlt
+    - NFPouchMercenary
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionMercenary
+  id: NFBlueprintAmmoOverpressureMercenary
+  name: overpressure ammo blueprint
+  description: A blueprint with a schematic of overpressure ammo. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxPistol35Overpressure
+    - NFAmmunitionBoxPistol45Overpressure
+    - NFAmmunitionBoxRifle20Overpressure
+    - NFAmmunitionBoxRifle30Overpressure
+    - NFAmmunitionBoxShellShotgunOverpressure
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionMercenary
+  id: NFBlueprintAmmo60Mercenary
+  name: high calibre ammo blueprint
+  description: A blueprint with a schematic of a pouch. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxRifle60
+    - NFAmmunitionBoxRifle60Rubber
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionMercenary
+  id: NFBlueprintHighCapPistol35MagMercenary
+  name: high capacity .35 pistol magazine blueprint
+  description: A blueprint with a schematic of a high capacity pistol magazine. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFMagazineHighCapacityPistol35Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionMercenary
+  id: NFBlueprintHighCapRifle20MagMercenary
+  name: high capacity .20 rifle magazine blueprint
+  description: A blueprint with a schematic of a high capacity pistol magazine. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFMagazineDrumRifle20Empty

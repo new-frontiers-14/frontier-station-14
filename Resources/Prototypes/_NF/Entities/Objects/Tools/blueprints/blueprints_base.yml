@@ -590,3 +590,39 @@
     - NFBlueprintAdvanced
     - Document
     - Paper
+
+- type: entity
+  parent: NFBaseBlueprintExpedition
+  id: NFBaseBlueprintExpeditionMercenary
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#7b7b3f"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#7b7b3f"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#7b7b3f"
+      - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
+    - Document
+    - Paper
