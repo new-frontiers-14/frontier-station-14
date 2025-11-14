@@ -5,31 +5,31 @@
     children:
     - !type:NestedSelector
       tableId: TableDungeonLootScienceTools
-      weight: 3
+      weight: 0.25
     - !type:NestedSelector
       tableId: TableDungeonLootEngineeringParts
-      weight: 4
-    - !type:NestedSelector
-      tableId: TableDungeonLootScienceClothes
-      weight: 1
-    - !type:NestedSelector
-      tableId: TableDungeonLootEngineeringCircuitBoards
-      weight: 1
-    - !type:NestedSelector
-      tableId: TableDungeonLootScienceFlatpacks
-      weight: 0.4
-    - !type:NestedSelector
-      tableId: TableDungeonLootGeneralRestocks
       weight: 0.1
     - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothes
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCircuitBoards
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceFlatpacks
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocks
+      weight: 0.05
+    - !type:NestedSelector
       tableId: TableDungeonLootScienceDisks
-      weight: 1
+      weight: 0.1
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralMaterialBasicSingle
-      weight: 1
+      weight: 0.1
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralMaterialValuableSingle
-      weight: 1
+      weight: 0.1
 
 # region Tools
 - type: entityTable
@@ -214,7 +214,7 @@
     - id: ClothingOuterHardsuitRd
       weight: 0.01
 
-#region Lockers
+# region Lockers
 - type: entityTable
   id: TableDungeonLootScienceLockersAndSuitStorage
   table: !type:GroupSelector
@@ -255,6 +255,7 @@
     - id: LockerResearchDirectorFilled
       weight: 0.03
 
+# region Lockers (SSU)
 - type: entityTable
   id: TableDungeonLootScienceSuitStorageUnits
   table: !type:GroupSelector

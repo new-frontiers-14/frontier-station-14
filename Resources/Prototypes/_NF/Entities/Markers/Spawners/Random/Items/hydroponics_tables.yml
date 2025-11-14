@@ -5,22 +5,22 @@
     children:
     - !type:NestedSelector
       tableId: TableDungeonLootHydroponicsTools
-      weight: 3
+      weight: 0.25
     - !type:NestedSelector
       tableId: TableDungeonLootHydroponicsSeeds
-      weight: 4
+      weight: 0.35
     - !type:NestedSelector
       tableId: TableDungeonLootHydroponicsClothes
-      weight: 1
+      weight: 0.25
     - !type:NestedSelector
       tableId: TableDungeonLootHydroponicsChemicals
-      weight: 1
+      weight: 0.1
     - !type:NestedSelector
       tableId: TableDungeonLootHydroponicsFlatpacks
-      weight: 0.3
+      weight: 0.025
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralRestocks
-      weight: 0.1
+      weight: 0.025
 
 #region Tools
 - type: entityTable
@@ -50,7 +50,7 @@
       - id: ServiceSelectiveDropper
         weight: 0.3
 
-#region Chems / Seeds
+#region Seeds
 - type: entityTable
   id: TableDungeonLootHydroponicsSeeds
   table: !type:GroupSelector
@@ -126,6 +126,7 @@
       - id: GlasstleSeeds
       - id: MonkananaSeeds
 
+# region Cemicals
 - type: entityTable
   id: TableDungeonLootHydroponicsChemicals
   table: !type:GroupSelector
@@ -330,7 +331,7 @@
     - id: CrateVendingMachineRestockNutriMaxFilled
     - id: CrateVendingMachineRestockSeedsFilled
 
-#region Machines
+# region Flatpacks
 - type: entityTable
   id: TableDungeonLootHydroponicsFlatpacks
   table: !type:GroupSelector

@@ -5,25 +5,22 @@
     children:
     - !type:NestedSelector
       tableId: TableDungeonLootSupplyTools
-      weight: 3
+      weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootEngineeringParts
-      weight: 4
+      weight: 0.05
     - !type:NestedSelector
       tableId: TableDungeonLootSupplyClothes
-      weight: 1
+      weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootSupplyCircuitBoards
-      weight: 1
+      weight: 0.05
     - !type:NestedSelector
       tableId: TableDungeonLootEngineeringToolboxes
-      weight: 0.5
-    - !type:NestedSelector
-      tableId: TableDungeonLootSupplyMachinesFabricators
-      weight: 0.4
+      weight: 0.15
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralOreSingle
-      weight: 1
+      weight: 0.05
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralOreFull
       weight: 0.1
@@ -114,11 +111,11 @@
       weight: 0.4
       children:
       - id: AutolatheMachineCircuitboard
-        weight: 0.05
+        weight: 0.4
       - id: SalvageTechFabCircuitboardNF
         weight: 0.3
-      #- id: CargoTechFabCircuitboardNF # Future is now. Unless it isn't.
-      #  weight: 0.3
+      - id: CargoTechFabCircuitboardNF
+        weight: 0.3
     - !type:GroupSelector
       weight: 0.2
       children:
@@ -318,6 +315,7 @@
       - id: LockerQuarterMasterFilled
         weight: 0.3
 
+#region Lockers (SSU)
 - type: entityTable
   id: TableDungeonLootSupplySuitStorageUnits
   table: !type:GroupSelector
@@ -347,22 +345,22 @@
   table: !type:GroupSelector
     children:
     - id: Autolathe
-      weight: 0.05
+      weight: 0.15
     - id: SalvageTechfabNF
-      weight: 0.3
+      weight: 0.1
     - id: CargoTechFabNF
       weight: 0.2
     - id: MachineMaterialSilo
-      weight: 0.1
+      weight: 0.2
     - !type:GroupSelector
       weight: 0.3
       children:
       #- id: OreProcessorCivilian # Future is now. Unless it isn't.
       #  weight: 0.2
       - id: OreProcessor
-        weight: 0.5
+        weight: 0.95
       - id: OreProcessorIndustrial
-        weight: 0.3
+        weight: 0.05
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralFrameMachine
       weight: 0.05

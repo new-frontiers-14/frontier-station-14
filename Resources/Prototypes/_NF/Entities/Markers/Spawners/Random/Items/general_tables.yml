@@ -142,6 +142,7 @@
       - id: WardrobeYellowFilled
         weight: 0.3
 
+# region Lockers (PPE)
 - type: entityTable
   id: TableDungeonLootGeneralProtectiveGear
   table: !type:GroupSelector
@@ -184,6 +185,7 @@
       - id: ClosetRadiationSuitFilled
         weight: 0.3
 
+# region Furniture
 - type: entityTable
   id: TableDungeonLootGeneralBedroomFurniture
   table: !type:GroupSelector
@@ -209,7 +211,7 @@
       tableId: TableDungeonLootGeneralProtectiveGear
       weight: 0.05
 
-# region Suit Storage Units
+# region Lockers (SSU)
 - type: entityTable
   id: TableDungeonLootGeneralSuitStorageUnits
   table: !type:GroupSelector
@@ -260,7 +262,7 @@
     - id: HandheldCrewMonitor
     - id: HandheldSecurityMonitor
 
-# region Crates
+# region Crates (Empty)
 - type: entityTable
   id: TableDungeonLootGeneralCratesEmpty
   table: !type:GroupSelector
@@ -278,6 +280,7 @@
     - !type:NestedSelector
       tableId: TableDungeonLootScienceCratesEmpty
 
+# region Crates (Filled)
 - type: entityTable
   id: TableDungeonLootGeneralCrates
   table: !type:GroupSelector
@@ -295,6 +298,7 @@
     - !type:NestedSelector
       tableId: TableDungeonLootScienceCrates
 
+# region Crates (Materials)
 - type: entityTable # maybe split the tables
   id: TableDungeonLootGeneralCratesMaterial
   table: !type:GroupSelector
@@ -348,19 +352,21 @@
       - id: WeldingFuelTankHighCapacity
         weight: 0.35
 
+# region Crates (Vehiccle)
 - type: entityTable
   id: TableDungeonLootGeneralCratesVehicle
   table: !type:GroupSelector
     children:
     - id: CrateFunATV
-      weight: 0.6
+      weight: 0.69
     - id: CrateFunHoverbikeNF
-      weight: 0.25
+      weight: 0.2
     - id: NFCrateFunSyndicateSegway
       weight: 0.1
     - id: CrateFunScurret
-      weight: 0.05
+      weight: 0.01
 
+# region Crates (Restock)
 - type: entityTable # Probably should be removed
   id: TableDungeonLootGeneralRestocks
   table: !type:GroupSelector

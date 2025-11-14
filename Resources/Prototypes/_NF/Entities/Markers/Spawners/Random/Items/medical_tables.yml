@@ -12,16 +12,16 @@
         weight: 0.3
       - !type:NestedSelector
         tableId: TableDungeonLootMedicalClothes
-        weight: 0.1
+        weight: 0.35
       - !type:NestedSelector
         tableId: TableDungeonLootMedicalCircuitBoards
-        weight: 0.3
+        weight: 0.025
       - !type:NestedSelector
         tableId: TableDungeonLootMedicalFirstAidKits
-        weight: 0.15
+        weight: 0.25
       - !type:NestedSelector
         tableId: TableDungeonLootMedicalFlatpacks
-        weight: 0.1
+        weight: 0.025
       - !type:NestedSelector
         tableId: TableDungeonLootGeneralRestocks
         weight: 0.05
@@ -68,6 +68,7 @@
       - id: DiseaseSwab
       - id: PillCanisterRandom
 
+# region Clutter (POI)
 - type: entityTable
   id: TablePoiLootMedicalClutter
   table: !type:GroupSelector
@@ -838,7 +839,7 @@
     - id: ClothingOuterHardsuitMedical
       weight: 0.1
 
-#region Lockers
+# region Lockers
 - type: entityTable
   id: TableDungeonLootMedicalLockers
   table: !type:GroupSelector
@@ -856,6 +857,7 @@
       tableId: TableDungeonLootMedicalSuitStorageUnits
       weight: 0.1
 
+# region Lockers (Medicine)
 - type: entityTable
   id: TableDungeonLootMedicalLockersMedicine
   table: !type:GroupSelector
@@ -897,6 +899,7 @@
       - id: LockerChemistryFilled
         weight: 0.3
 
+# region Lockers (PPE)
 - type: entityTable
   id: TableDungeonLootMedicalLockersBiohazard
   table: !type:GroupSelector
@@ -915,6 +918,7 @@
       - id: ClosetL3VirologyFilled
         weight: 0.3
 
+# region Lockers (Wardrobes)
 - type: entityTable
   id: TableDungeonLootMedicalLockersWardrobes
   table: !type:GroupSelector
@@ -939,6 +943,7 @@
       - id: WardrobeChemistryFilled
         weight: 0.3
 
+# region Lockers (SSU)
 - type: entityTable
   id: TableDungeonLootMedicalSuitStorageUnits
   table: !type:GroupSelector

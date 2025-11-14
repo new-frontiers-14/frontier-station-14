@@ -5,20 +5,21 @@
     children:
     - !type:NestedSelector
       tableId: TableDungeonLootServiceTools
-      weight: 0.3
+      weight: 0.35
     - !type:NestedSelector
       tableId: TableDungeonLootServiceClothes
       weight: 0.3
     - !type:NestedSelector
       tableId: TableDungeonLootServiceMachinesFlatpacks
-      weight: 0.1
+      weight: 0.025
     - !type:NestedSelector
       tableId: TableDungeonLootServiceCircuitBoards
-      weight: 0.1
+      weight: 0.05
     - !type:NestedSelector
       tableId: TableDungeonLootServiceFoodSpoiled
-      weight: 0.2
+      weight: 0.275
 
+# region Clutter (POI)
 - type: entityTable
   id: TablePoiLootServiceClutter
   table: !type:GroupSelector
@@ -48,6 +49,7 @@
       tableId: TableDungeonLootServiceMugsFlasks
       weight: 0.3
 
+# region MugsFlasks
 - type: entityTable
   id: TableDungeonLootServiceMugsFlasks
   table: !type:GroupSelector
@@ -59,6 +61,7 @@
       tableId: TableDungeonLootServiceFlasks
       weight: 0.1
 
+# region Cutlery
 - type: entityTable
   id: TableDungeonLootServiceCutlery
   table: !type:GroupSelector
@@ -77,6 +80,7 @@
     - id: FoodKebabSkewer
       weight: 0.1
 
+# region Tableware
 - type: entityTable
   id: TableDungeonLootServiceTableware
   table: !type:GroupSelector
@@ -96,6 +100,7 @@
     - id: FoodShakerSalt
     - id: NFAshtray
 
+# region Mugs
 - type: entityTable
   id: TableDungeonLootServiceMugs
   table: !type:GroupSelector
@@ -115,6 +120,7 @@
     - id: DrinkGlass
     - id: DrinkShotGlass
 
+# region Flasks
 - type: entityTable
   id: TableDungeonLootServiceFlasks
   table: !type:GroupSelector
@@ -265,7 +271,7 @@
       - id: CrateMaterialBiomass
         weight: 0.15
 
-#region Crates
+# region Crates
 - type: entityTable
   id: TableDungeonLootServiceCrates
   table: !type:GroupSelector
@@ -295,6 +301,7 @@
         tableId: TableDungeonLootMedicalBarrelsChems
         weight: 0.1
 
+# region Crates (Empty)
 - type: entityTable
   id: TableDungeonLootServiceCratesEmpty
   table: !type:GroupSelector
@@ -306,6 +313,7 @@
     - id: CratePlastic
     - id: CratePlasticBiodegradable
 
+# region Crates (Filled)
 - type: entityTable
   id: TableDungeonLootServiceCratesFilled
   table: !type:GroupSelector
@@ -336,6 +344,7 @@
       - id: CrateServiceKitKitchen
       - id: CrateServiceKitHydroponics
 
+# region Crates (Restock)
 - type: entityTable # Probably should be removed
   id: TableDungeonLootServiceCratesRestock
   table: !type:GroupSelector
@@ -359,6 +368,7 @@
     - id: ChemicalBarrelCornoil
     - id: ChemicalBarrelOliveoil
 
+# region Barrels (Alcohol)
 - type: entityTable
   id: TableDungeonLootServiceBarrelsAlcohol
   table: !type:GroupSelector
@@ -390,8 +400,9 @@
     - id: BoozeDispenserEmpty
     - id: SodaDispenserEmpty
     - id: SyndicateMicrowave
-      weight: 0.05
+      weight: 0.025
 
+# region CircuitBoards
 - type: entityTable # Tabletop machines
   id: TableDungeonLootServiceCircuitBoards
   table: !type:GroupSelector
@@ -416,6 +427,7 @@
       - id: KitchenAssemblerMachineCircuitboard
       - id: DeepFryerMachineCircuitboard
 
+# region Flatpacks
 - type: entityTable
   id: TableDungeonLootServiceMachinesFlatpacks
   table: !type:GroupSelector
@@ -451,7 +463,7 @@
       - id: VendingMachineDinnerwareFlatpack
       - id: HydroponicsTrayEmptyFlatpack
 
-# region Other
+# region Food (Rotten)
 - type: entityTable
   id: TableDungeonLootServiceFoodSpoiled
   table: !type:GroupSelector
