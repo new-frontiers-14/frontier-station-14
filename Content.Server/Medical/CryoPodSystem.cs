@@ -141,7 +141,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         if (cryoPodComponent.BodyContainer.ContainedEntity is not { Valid: true } contained)
             return null;
         base.EjectBody(uid, cryoPodComponent);
-        _climbSystem.ForciblySetClimbing(contained, uid);
+        // _climbSystem.ForciblySetClimbing(contained, uid); // Frontier
         return contained;
     }
 
