@@ -1,0 +1,86 @@
+- type: entity
+  name: plasteel mace
+  parent: [Truncheon, BaseC1Contraband]
+  id: PlasteelMace
+  description: It's a lightweight stick with a spikey bit. It would probably be better if it was a heavy stick with a spikey bit.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_mace.rsi
+    state: icon
+  - type: MeleeWeapon
+    autoAttack: true
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 15
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_mace.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+
+- type: entity
+  name: plasteel epee
+  parent: [BaseSword, BaseC1Contraband]
+  id: PlasteelEpee
+  description: You find yourself wondering if anyone else remembers Nidhogg.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_epee.rsi
+    state: icon
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 2
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 15
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_epee.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+
+- type: entity
+  name: plasteel axe
+  parent: [Truncheon, BaseC1Contraband]
+  id: PlasteelAxe
+  description: Probably no good at doing axe things but it's a much better conversation starter than a knife.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_axe.rsi
+    state: icon
+  - type: MeleeWeapon
+    autoAttack: true
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Slash: 15
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_axe.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+
+- type: entity
+  name: plasteel spear
+  parent: [SpearReinforced, BaseC1Contraband]
+  id: PlasteelSpear
+  description: It features a blade that can be coated in deadly poison. Or coffee. Or anything really. It's very coatable. Somehow worse than glass tied to a stick.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_spear.rsi
+    state: spear
+  - type: MeleeWeapon
+    autoAttack: true
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_spear.rsi
