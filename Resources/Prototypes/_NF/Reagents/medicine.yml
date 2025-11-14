@@ -43,6 +43,28 @@
           groups:
             Brute: 3
 
+- type: reagent
+  id: Caffeine
+  name: reagent-name-caffeine
+  desc: reagent-desc-caffeine
+  physicalDesc: reagent-physical-desc-aromatic
+  color: "#5C6274"
+  recognizable: true
+  metabolisms:
+    Drink:
+      metabolismRate: 0.3 # rough aim for a 5 minute metabolism for a 30u cuppa
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.02
+        sprintSpeedModifier: 1.02
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          min: 60
+        reagent: Dacafenol
+        amount: 1
+
 #impstation
 - type: reagent
   id: Caramexinin
