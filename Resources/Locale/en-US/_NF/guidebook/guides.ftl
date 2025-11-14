@@ -67,6 +67,7 @@ guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-dragoon = Dragoon
 guide-entry-shipyard-druid = Druid
 guide-entry-shipyard-eagle = Eagle
+guide-entry-shipyard-fullhouse = Fullhouse
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-gaslight = Gaslight
