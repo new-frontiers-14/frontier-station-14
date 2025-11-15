@@ -1,20 +1,19 @@
 #region base
 - type: entity
-  id: NFMobCarpBase
   abstract: true
-  parent:
-  - MobStaminaFodder
-  - MobMovementSpeedModifierMelee
-  - NFMobSimpleHostileBase
-  - NFMobRoadkillable
+  parent: [ MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, NFMobRoadkillable ]
+  id: NFMobCarpBase
+  suffix: "Frontier"
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcCarps
+      amount: 1
 
 #region Carps
 - type: entity
+  parent: [ NFMobCarpBase, MobCarp ]
   id: NFMobCarp
-  parent:
-  - NFMobCarpBase
-  - MobCarp
-  suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
   - type: MobThresholds
@@ -27,11 +26,8 @@
       26: 0.5
 
 - type: entity
+  parent: [ NFMobCarpBase, MobCarpMagic ]
   id: NFMobCarpMagic
-  parent:
-  - NFMobCarpBase
-  - MobCarpMagic
-  suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
   - type: MobThresholds
@@ -52,11 +48,8 @@
       shader: unshaded
 
 - type: entity
+  parent: [ NFMobCarpBase, MobCarpHolo ]
   id: NFMobCarpHolo
-  parent:
-  - NFMobCarpBase
-  - MobCarpHolo
-  suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
   - type: MobThresholds
@@ -77,11 +70,8 @@
       shader: unshaded
 
 - type: entity
+  parent: [ NFMobCarpBase, MobCarpRainbow ]
   id: NFMobCarpRainbow
-  parent:
-  - NFMobCarpBase
-  - MobCarpRainbow
-  suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
   - type: MobThresholds
@@ -94,11 +84,8 @@
       38: 0.5
 
 - type: entity
+  parent: [ NFMobCarpBase, MobShark ]
   id: NFMobShark
-  parent:
-  - NFMobCarpBase
-  - MobShark
-  suffix: "Frontier"
 #  categories: [ HideSpawnMenu ] # No spawner
   components:
   - type: MobThresholds
@@ -114,13 +101,14 @@
       types:
         Slash: 7
         Bloodloss: 7
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcCarpsWyvern
+      amount: 1
 
 #region Snakes
 - type: entity
-  parent:
-  - NFMobCarpBase
-  - NFMobRoadkillable
-  - MobPurpleSnake
+  parent: [ NFMobCarpBase, MobPurpleSnake ]
   id: NFMobSmallRainbowSnake
   suffix: Frontier, Rainbow
   #categories: [ HideSpawnMenu ] # No spawner
@@ -181,15 +169,12 @@
 
 #region Wyverns
 - type: entity
-  parent:
-  - MobMovementSpeedModifierRanged
-  - NFMobCarpBase
-  - MobCarp
+  parent: [ MobMovementSpeedModifierRanged, NFMobCarpBase, MobCarp ]
   id: NFMobRainbowWyvernIce
-  name: wyvern
-  description: A smaller relative of a space dragon known for its hunting provess and ability to conjure magical progectiles.
-  suffix: Frontier, Ice
   #categories: [ HideSpawnMenu ] # No spawner
+  name: wyvern
+  suffix: Frontier, Ice
+  description: A smaller relative of a space dragon known for its hunting provess and ability to conjure magical progectiles.
   components:
   - type: HTN
     rootTask:
@@ -257,12 +242,16 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcCarpsWyvern
+      amount: 1
 
 - type: entity
   parent: NFMobRainbowWyvernIce
   id: NFMobRainbowWyvernFire
-  suffix: Frontier, Fire
   #categories: [ HideSpawnMenu ] # No spawner
+  suffix: Frontier, Fire
   components:
   - type: Sprite
     drawdepth: SmallMobs
@@ -297,8 +286,8 @@
 - type: entity
   parent: NFMobRainbowWyvernIce
   id: NFMobRainbowWyvernCaustic
-  suffix: Frontier, Caustic
   #categories: [ HideSpawnMenu ] # No spawner
+  suffix: Frontier, Caustic
   components:
   - type: Sprite
     drawdepth: SmallMobs
@@ -332,12 +321,9 @@
 
 #region boss
 - type: entity
-  parent:
-  - MobHostileBossBase
-  - NFMobSimpleHostileBase
-  - MobDragonDungeon
+  parent: [ MobHostileBossBase, NFMobSimpleHostileBase, MobDragonDungeon ]
   id: NFMobDragonDungeon
-  suffix: Dungeon, Frontier
+  suffix: Frontier, Dungeon
   components:
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
@@ -351,14 +337,6 @@
     thresholds:
       0: Alive
       250: Dead
-  # less meat spawned since it's a lot easier to kill
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatDragon
-      amount: 3
-    - id: DragonEgg
-      amount: 1
-      prob: 0.3
   # half damage, spread evenly
   - type: MeleeWeapon
     damage:
@@ -367,3 +345,7 @@
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcCarpsDragon
+      amount: 1

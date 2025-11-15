@@ -1,0 +1,185 @@
+# region pistol
+- type: entityTable
+  id: TableDungeonLootNpcMercenariesPistols
+  table: !type:GroupSelector
+    children:
+    - id: NFWeaponPistolMk58Expedition
+      weight: 0.4
+    - id: NFWeaponPistolUniversalExpedition
+      weight: 0.3
+    - id: NFWeaponPistolPollockExpedition
+      weight: 0.2
+    - id: NFWeaponPistolViperExpedition
+      weight: 0.1
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcMercenariesPistols
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcMercenariesPistols
+
+# region shotguns
+- type: entityTable
+  id: TableDungeonLootNpcMercenariesShotguns
+  table: !type:GroupSelector
+    children:
+    - id: NFWeaponShotgunKammererExpedition
+      weight: 0.85
+    - id: NFWeaponShotgunEnforcerExpedition
+      weight: 0.1
+    - id: NFWeaponShotgunBulldogExpedition
+      weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcMercenariesShotguns
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcMercenariesShotguns
+
+# region assault rifles (.20)
+- type: entityTable
+  id: TableDungeonLootNpcMercenariesRifles
+  table: !type:GroupSelector
+    children:
+    - id: NFWeaponRifleAssaultNovaliteC1Expedition
+      weight: 0.65
+    - id: NFWeaponRifleAssaultJackdawExpedition
+      weight: 0.2
+    - id: NFWeaponRifleAssaultGestioExpedition
+      weight: 0.05
+    - id: NFWeaponRifleAssaultLecterExpedition
+      weight: 0.05
+    - id: NFWeaponRifleAssaultM90GrenadeLauncherExpedition
+      weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcMercenariesRifles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcMercenariesRifles
+
+# region energy
+- type: entityTable
+  id: TableDungeonLootNpcMercenariesEnergy
+  table: !type:GroupSelector
+    children:
+    - id: NFWeaponEnergyPistolLaserExpedition
+      weight: 0.75
+    - id: NFWeaponEnergyPistolLaserSvalinnExpedition
+      weight: 0.23
+    - id: NFWeaponEnergyRifleCarbineExpedition
+      weight: 0.01
+    - id: NFWeaponEnergyPistolLaserAdvancedExpedition
+      weight: 0.01
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcMercenariesEnergy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcMercenariesEnergy
+
+# region fluff
+- type: entityTable
+  id: TableDungeonLootNpcMercenariesFluff
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: Flash
+      - id: Zipties
+      - id: Handcuffs
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: ClothingEyesGlassesSecurity
+      - id: ClothingEyesGlassesMercenary
+      - id: ClothingEyesHudSecurity
+      - id: ClothingEyesHudBountyHunter
+      - id: ClothingEyesGlassesNoir
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: ClothingMaskGasSecurity
+      - id: ClothingMaskGasMercenary
+      - id: ClothingMaskGasSwat
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcMercenariesFluff
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcMercenariesFluff
+
+# region blueprints
+- type: entityTable
+  id: TableDungeonLootNpcMercenariesBlueprints
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintPouchMercenary
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFBlueprintAmmoOverpressureMercenary
+      - id: NFBlueprintAmmo60Mercenary
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: NFBlueprintHighCapPistol35MagMercenary
+      - id: NFBlueprintHighCapRifle20MagMercenary
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintJackdawMercenary
+      - id: NFBlueprintLecterMercenary
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: NFWeaponSubMachineGunWt550Expedition
+      - id: NFWeaponSubMachineGunDrozdExpedition
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcMercenariesBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcMercenariesBlueprints
