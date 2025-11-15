@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+using Content.Shared.Stacks;
+using Robust.Shared.Prototypes;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 namespace Content.IntegrationTests.Tests.Interaction;
 
@@ -35,11 +40,18 @@ public abstract partial class InteractionTest
     protected const string Battery1 = "PowerCellSmall";
     protected const string Battery4 = "PowerCellHyper";
 
+<<<<<<< HEAD
     // Frontier: maintaining removed parts
     protected const string Bin1 = "MatterBinStockPart";
     protected const string Bin4 = "BluespaceMatterBinStockPart";
     protected const string Cap1 = "CapacitorStockPart";
     protected const string Cap4 = "QuadraticCapacitorStockPart";
     // End Frontier: maintaining removed parts
+=======
+    // Inflatables & Needle used to pop them
+    protected static readonly EntProtoId InflatableWall = "InflatableWall";
+    protected static readonly EntProtoId Needle = "WeaponMeleeNeedle";
+    protected static readonly ProtoId<StackPrototype> InflatableWallStack = "InflatableWall";
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Content.Server.Body.Systems;
 using Content.Shared._DV.Chemistry.Components; // DeltaV
 using Content.Shared.Chemistry;
@@ -439,3 +440,11 @@ public sealed class InjectorSystem : SharedInjectorSystem
         AfterDraw(injector, target);
     }
 }
+=======
+
+using Content.Shared.Chemistry.EntitySystems;
+
+namespace Content.Server.Chemistry.EntitySystems;
+
+public sealed class InjectorSystem : SharedInjectorSystem;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8

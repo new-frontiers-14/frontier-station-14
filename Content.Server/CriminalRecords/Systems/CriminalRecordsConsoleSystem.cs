@@ -277,6 +277,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         mob = user;
         return true;
     }
+<<<<<<< HEAD
 
     /// <summary>
     /// Checks if the new identity's name has a criminal record attached to it, and gives the entity the icon that
@@ -309,4 +310,6 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         }
         RemComp<CriminalRecordComponent>(uid);
     }
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 }

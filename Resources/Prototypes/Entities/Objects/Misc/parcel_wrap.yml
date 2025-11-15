@@ -29,6 +29,17 @@
     maxCharges: 30
 
 - type: entity
+  parent: ParcelWrap
+  id: ParcelWrapAdmeme
+  name: bluespace wrap
+  suffix: Admeme
+  description: Paper used contain items for transport. This one seems to be able to store an unusual amount of space within it.
+  components:
+  - type: ParcelWrap
+    whitelist: null
+    blacklist: null
+
+- type: entity
   parent: BaseItem
   id: WrappedParcel
   categories: [ HideSpawnMenu ]
@@ -38,7 +49,11 @@
   - type: ContainerContainer
     containers:
       contents: !type:ContainerSlot
+<<<<<<< HEAD
       paper_label: !type:ContainerSlot # Frontier: labelable parcels
+=======
+      paper_label: !type:ContainerSlot
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -50,7 +65,10 @@
           "Large": { state: "parcel-medium" }
           "Huge": { state: "parcel-large" }
           "Ginormous": { state: "parcel-large" }
+<<<<<<< HEAD
       # Frontier: labelable parcels
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
       enum.PaperLabelVisuals.HasLabel:
         enum.PaperLabelVisuals.Layer:
           True: { visible: true }
@@ -61,16 +79,26 @@
           Bounty: { state: bounty }
           CaptainsPaper: { state: captains_paper }
           Invoice: { state: invoice }
+<<<<<<< HEAD
       # End Frontier: labelable parcels
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: Sprite
     sprite: Objects/Misc/ParcelWrap/wrapped_parcel.rsi
     layers:
     - state: parcel-medium
       map: [ "enum.WrappedParcelVisuals.Layer" ]
+<<<<<<< HEAD
     - state: paper # Frontier: labelable parcels
       sprite: _NF/Objects/Misc/parcel_labels.rsi # Frontier
       map: ["enum.PaperLabelVisuals.Layer"] # Frontier
       visible: false # Frontier
+=======
+    - state: paper
+      visible: false
+      sprite: Objects/Misc/ParcelWrap/paper_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: WrappedParcel
     unwrapDelay: 0.5
     unwrapSound:
@@ -78,6 +106,17 @@
       params:
         volume: -4
     unwrapTrash: ParcelWrapTrash
+  - type: ItemSlots
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible

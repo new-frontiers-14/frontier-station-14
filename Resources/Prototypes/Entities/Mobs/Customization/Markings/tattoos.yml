@@ -113,8 +113,13 @@
 - type: marking
   id: TattooEyeRight
   bodyPart: Eyes
+<<<<<<< HEAD
   markingCategory: Head
   speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Goblin, Sheleg, Felinid, Oni, Harpy, Vulpkanin] # Frontier: added Goblin and afterwards
+=======
+  markingCategory: [Head]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   coloring:
     default:
       type:
@@ -165,6 +170,34 @@
   sprites:
   - sprite: Mobs/Customization/tattoos.rsi
     state: tattoo_eye_moth_l
+
+- type: marking
+  id: TattooEyeVulpkaninRight
+  bodyPart: Eyes
+  markingCategory: [Head]
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+          negative: true
+  sprites:
+  - sprite: Mobs/Customization/tattoos.rsi
+    state: tattoo_eye_vulpkanin_r
+
+- type: marking
+  id: TattooEyeVulpkaninLeft
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+          negative: true
+  sprites:
+  - sprite: Mobs/Customization/tattoos.rsi
+    state: tattoo_eye_vulpkanin_l
 
 - type: marking
   id: TattooEyeshadowUpper

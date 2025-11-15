@@ -1,12 +1,16 @@
-using Content.Server.Emp;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.Pow3r;
 using Content.Shared.Access.Systems;
 using Content.Shared.APC;
 using Content.Shared.Emag.Systems;
+<<<<<<< HEAD
 using Content.Shared.Emp; // Frontier: Upstream - #28984
+=======
+using Content.Shared.Emp;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Rounding;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -220,7 +224,15 @@ public sealed class ApcSystem : EntitySystem
 
         return ApcExternalPowerState.Good;
     }
+<<<<<<< HEAD
     private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
+=======
+
+    // TODO: This subscription should be in shared.
+    // But I am not moving ApcComponent to shared, this PR already got soaped enough and that component uses several layers of OOP.
+    // At least the EMP visuals won't mispredict, since all APCs also have the BatteryComponent, which also has a EMP effect and is in shared.
+    private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     {
         //if (component.MainBreakerEnabled)
         //{

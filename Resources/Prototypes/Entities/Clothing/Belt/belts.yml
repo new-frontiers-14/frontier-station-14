@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Belts that need/have visualizers
 
 - type: entity
@@ -525,6 +526,9 @@
           - SmokeOnTrigger
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+=======
+## Belts that need/have visualizers
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: entity
   parent: [ClothingBeltBase, ClothingSlotBase, BaseC1Contraband] # Frontier: BaseCommandContraband<BaseC1Contraband
@@ -558,7 +562,36 @@
           - CaptainSabre
   - type: Appearance
 
-# Belts without visualizers
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltQuiver
+  name: quiver
+  description: Can hold up to 15 arrows, and fits snug around your waist.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/quiver.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.StorageContainerVisualLayers.Fill" ]
+      visible: false
+  - type: Clothing
+  - type: Storage
+    grid:
+    - 0,0,7,3
+    maxItemSize: Small
+    whitelist:
+      tags:
+      - Arrow
+      - Plunger
+  - type: Appearance
+  - type: StorageContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+  - type: Construction
+    graph: Quiver
+    node: Quiver
+
+## Belts without visualizers
 
 - type: entity
   parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseSecurityBartenderContraband<BaseC1Contraband
@@ -579,19 +612,24 @@
     capacity: 14
 
 - type: entity
-  parent: ClothingBeltBase
-  id: ClothingBeltChampion
-  name: championship belt
-  description: Proves to the world that you are the strongest!
+  parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]
+  id: ClothingBeltWand
+  name: wand belt
+  description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/champion.rsi
+    sprite: Clothing/Belt/wand.rsi
   - type: Clothing
-    sprite: Clothing/Belt/champion.rsi
-    quickEquip: true
-  - type: Tag
-    tags:
-    - Kangaroo
+    sprite: Clothing/Belt/wand.rsi
+  - type: Storage
+    grid:
+    - 0,0,15,1
+    whitelist:
+      tags:
+      - WizardWand
+      - WhitelistChameleon
+
+## Holsters
 
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
@@ -617,6 +655,7 @@
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
+<<<<<<< HEAD
   #- type: Item # Frontier
     #size: Ginormous # Frontier
   # - type: Storage # Frontier: commented out
@@ -628,9 +667,24 @@
         # - Gun
         # - BallisticAmmoProvider
         # - CartridgeAmmo
+=======
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: StaticPrice
     price: 500
 
+## Webbing
+
+# Weirdly the only webbing with a storage whitelist and item mapper.
+# Might be worth making less common (armory only?) and removing the whitelist to eliminate the inconsistency.
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltSecurityWebbing
@@ -689,6 +743,7 @@
     sprite: Clothing/Belt/militarywebbingmed.rsi
   - type: Clothing
     sprite: Clothing/Belt/militarywebbingmed.rsi
+<<<<<<< HEAD
   #- type: Item # Frontier
     #size: Huge # Frontier
   - type: ExplosionResistance
@@ -736,3 +791,5 @@
     # whitelist: # Frontier: commented out whitelist
       # tags:
       # - WizardWand
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8

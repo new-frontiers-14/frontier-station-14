@@ -149,5 +149,36 @@ public sealed partial class CCVars
     ///     Setting this to zero disables the explosion but still allows the tank to burst and leak.
     /// </summary>
     public static readonly CVarDef<float> AtmosTankFragment =
+<<<<<<< HEAD
         CVarDef.Create("atmos.max_explosion_range", 5f, CVar.SERVERONLY); // Frontier: 26<5 (matches wizden TOMLs)
+=======
+        CVarDef.Create("atmos.max_explosion_range", 26f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Whether atmospherics will process delta-pressure damage on entities with a DeltaPressureComponent.
+    /// Entities with this component will take damage if they are exposed to a pressure difference
+    /// above the minimum pressure threshold defined in the component.
+    /// </summary>
+    // TODO: Needs CVARs for global configuration, like min pressure, max damage, etc.
+    public static readonly CVarDef<bool> DeltaPressureDamage =
+        CVarDef.Create("atmos.delta_pressure_damage", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Number of entities to submit for parallel processing per processing run.
+    /// Low numbers may suffer from thinning out the work per job and leading to threads waiting,
+    /// or seeing a lot of threading overhead.
+    /// High numbers may cause Atmospherics to exceed its time budget per tick, as it will not
+    /// check its time often enough to know if it's exceeding it.
+    /// </summary>
+    public static readonly CVarDef<int> DeltaPressureParallelToProcessPerIteration =
+        CVarDef.Create("atmos.delta_pressure_parallel_process_per_iteration", 1000, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Number of entities to process per processing job.
+    /// Low numbers may cause Atmospherics to see high threading overhead,
+    /// high numbers may cause Atmospherics to distribute the work unevenly.
+    /// </summary>
+    public static readonly CVarDef<int> DeltaPressureParallelBatchSize =
+        CVarDef.Create("atmos.delta_pressure_parallel_batch_size", 10, CVar.SERVERONLY);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 }

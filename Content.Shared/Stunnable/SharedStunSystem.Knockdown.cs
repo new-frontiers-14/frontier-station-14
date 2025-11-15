@@ -95,7 +95,7 @@ public abstract partial class SharedStunSystem
 
     private void OnRejuvenate(Entity<KnockedDownComponent> entity, ref RejuvenateEvent args)
     {
-        SetKnockdownTime(entity, GameTiming.CurTime);
+        SetKnockdownNextUpdate((entity, entity), GameTiming.CurTime);
 
         if (entity.Comp.AutoStand)
             RemComp<KnockedDownComponent>(entity);
@@ -117,7 +117,7 @@ public abstract partial class SharedStunSystem
         entity.Comp.SpeedModifier = 1f;
 
         _standingState.Stand(entity);
-        Alerts.ClearAlert(entity, KnockdownAlert);
+        Alerts.ClearAlert(entity.Owner, KnockdownAlert);
     }
 
     #endregion
@@ -157,6 +157,19 @@ public abstract partial class SharedStunSystem
     }
 
     /// <summary>
+    /// Sets the time left of the knockdown timer to the inputted value.
+    /// </summary>
+    /// <param name="entity">Entity who's knockdown time we're updating.</param>
+    /// <param name="time">The time we're updating with.</param>
+    public void SetKnockdownTime(Entity<KnockedDownComponent?> entity, TimeSpan time)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        SetKnockdownNextUpdate(entity, GameTiming.CurTime + time);
+    }
+
+    /// <summary>
     /// Updates the knockdown timer of a knocked down entity with a given inputted time, then dirties the time.
     /// </summary>
     /// <param name="entity">Entity who's knockdown time we're updating.</param>
@@ -171,6 +184,7 @@ public abstract partial class SharedStunSystem
     }
 
     /// <summary>
+<<<<<<< HEAD
     /// Sets the next update datafield of an entity's <see cref="KnockedDownComponent"/> to a specific time.
     /// </summary>
     /// <param name="entity">Entity whose timer we're updating</param>
@@ -183,6 +197,8 @@ public abstract partial class SharedStunSystem
     }
 
     /// <summary>
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     /// Refreshes the amount of time an entity is knocked down to the inputted time, if it is greater than
     /// the current time left.
     /// </summary>
@@ -195,7 +211,11 @@ public abstract partial class SharedStunSystem
 
         var knockedTime = GameTiming.CurTime + time;
         if (entity.Comp.NextUpdate < knockedTime)
+<<<<<<< HEAD
             SetKnockdownTime((entity, entity.Comp), knockedTime);
+=======
+            SetKnockdownNextUpdate((entity, entity.Comp), knockedTime);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     /// <summary>
@@ -210,6 +230,7 @@ public abstract partial class SharedStunSystem
 
         if (entity.Comp.NextUpdate < GameTiming.CurTime)
         {
+<<<<<<< HEAD
             SetKnockdownTime((entity, entity.Comp), GameTiming.CurTime + time);
             return;
         }
@@ -217,11 +238,36 @@ public abstract partial class SharedStunSystem
         entity.Comp.NextUpdate += time;
         DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.NextUpdate));
         Alerts.ShowAlert(entity, KnockdownAlert, null, (GameTiming.CurTime, entity.Comp.NextUpdate));
+=======
+            SetKnockdownNextUpdate((entity, entity.Comp), GameTiming.CurTime + time);
+            return;
+        }
+
+        SetKnockdownNextUpdate((entity, entity.Comp), entity.Comp.NextUpdate + time);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     #endregion
 
     #region Knockdown Logic
+
+    /// <summary>
+    /// Sets the next update datafield of an entity's <see cref="KnockedDownComponent"/> to a specific time.
+    /// </summary>
+    /// <param name="entity">Entity whose timer we're updating</param>
+    /// <param name="time">The exact time we're setting the next update to.</param>
+    private void SetKnockdownNextUpdate(Entity<KnockedDownComponent?> entity, TimeSpan time)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        if (GameTiming.CurTime > time)
+            time = GameTiming.CurTime;
+
+        entity.Comp.NextUpdate = time;
+        DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.NextUpdate));
+        Alerts.UpdateAlert(entity.Owner, KnockdownAlert, null, entity.Comp.NextUpdate);
+    }
 
     private void HandleToggleKnockdown(ICommonSession? session)
     {

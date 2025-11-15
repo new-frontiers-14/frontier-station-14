@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothingGasTanks]
   id: ClothingOuterBioGeneral
   name: bio suit
   suffix: Generic
@@ -9,6 +9,9 @@
     sprite: Clothing/OuterClothing/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: Armor
     modifiers:
       coefficients:
@@ -63,7 +66,11 @@
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
 
 - type: entity
+<<<<<<< HEAD
   parent: [ClothingOuterBioGeneral, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+=======
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: ClothingOuterBioSecurity
   name: bio suit
   suffix: Security
@@ -81,7 +88,11 @@
         Piercing: 0.8
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.4
-
+  - type: GroupExamine
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioVirology

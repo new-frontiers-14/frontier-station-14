@@ -1,7 +1,11 @@
 - type: entity
   id: ShuttleWindow
   name: shuttle window
+<<<<<<< HEAD
   parent: Window # Frontier: WindowRCDResistant<Window
+=======
+  parent: [BaseDeltaPressureReinforcedGlass, WindowRCDResistant]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -70,6 +74,7 @@
   - type: Tag
     tags:
     - Diagonal
+    - Window
   - type: IconSmooth
     mode: Diagonal
     key: walls # Frontier: windows<walls

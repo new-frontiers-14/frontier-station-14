@@ -81,6 +81,12 @@
   - type: Construction
     graph: ClothingShoeSlippersLizard
     node: shoes
+  - type: Edible
+    useSound:
+      path: /Audio/Items/Toys/weh.ogg # Copied from lizard plush sound
+      params:
+        volume: -5
+    transferAmount: 10
   - type: Extractable
     juiceSolution:
       reagents:
@@ -122,13 +128,16 @@
   parent: ClothingShoesBase
   id: ClothingShoesSnakeskinBoots
   name: snakeskin boots
-  description: Boots made of high-class snakeskin, everyone around you will be jealous.
+  description: Boots made of once-valuable snakeskin, everyone around you would have been jealous.
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Misc/snakeskin.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Misc/snakeskin.rsi
+<<<<<<< HEAD
 #  - type: NoSlip # Frontier
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: entity
   parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
@@ -146,8 +155,13 @@
   - type: ToggleClothing
     action: ActionToggleSpeedBoots
   - type: ClothingSpeedModifier
+<<<<<<< HEAD
     walkModifier: 1.7 # DeltaV
     sprintModifier: 1.7 # DeltaV
+=======
+    walkModifier: 1.5
+    sprintModifier: 1.5
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     standing: true
   - type: Appearance
   - type: GenericVisualizer

@@ -6,6 +6,7 @@
   suffix: Full
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
     - type: Stack
       stackType: InflatableWall
       count: 10
@@ -22,6 +23,26 @@
     - type: Clickable
     - type: PhysicalComposition
     - type: ConstructionMaterials # Frontier
+=======
+  - type: Stack
+    stackType: InflatableWall
+    count: 10
+  - type: Sprite
+    sprite: Objects/Misc/inflatable_wall.rsi
+    state: item_wall
+  - type: Item
+    sprite: Objects/Misc/inflatable_wall.rsi
+    size: Small
+  - type: SpawnAfterInteract
+    prototype: InflatableWall
+    doAfter: 1
+    removeOnInteract: true
+  - type: Clickable
+  - type: PhysicalComposition
+  - type: Tag
+    tags:
+    - Inflatable
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 # TODO: Add stack sprites + visuals.
 
 - type: entity
@@ -32,6 +53,7 @@
   suffix: Full
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
     - type: Stack
       stackType: InflatableDoor
       count: 4
@@ -48,6 +70,26 @@
     - type: Clickable
     - type: PhysicalComposition
     - type: ConstructionMaterials # Frontier
+=======
+  - type: Stack
+    stackType: InflatableDoor
+    count: 4
+  - type: Sprite
+    sprite: Objects/Misc/inflatable_door.rsi
+    state: item_door
+  - type: Item
+    sprite: Objects/Misc/inflatable_door.rsi
+    size: Small
+  - type: SpawnAfterInteract
+    prototype: InflatableDoor
+    doAfter: 1
+    removeOnInteract: true
+  - type: Clickable
+  - type: PhysicalComposition
+  - type: Tag
+    tags:
+    - Inflatable
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 # TODO: Add stack sprites + visuals.
 
 - type: entity
@@ -56,10 +98,10 @@
   suffix: 5
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Sprite
-      state: item_wall
-    - type: Stack
-      count: 5
+  - type: Sprite
+    state: item_wall
+  - type: Stack
+    count: 5
 
 - type: entity
   parent: InflatableWallStack
@@ -67,10 +109,10 @@
   suffix: 1
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Sprite
-      state: item_wall
-    - type: Stack
-      count: 1
+  - type: Sprite
+    state: item_wall
+  - type: Stack
+    count: 1
 
 - type: entity
   parent: InflatableDoorStack
@@ -78,7 +120,7 @@
   suffix: 1
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Sprite
-      state: item_door
-    - type: Stack
-      count: 1
+  - type: Sprite
+    state: item_door
+  - type: Stack
+    count: 1

@@ -6,8 +6,13 @@
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
+<<<<<<< HEAD
     time: 18000 # 5h
   # guides: [ NuclearOperatives ] # Frontier: removed, irrelevant
+=======
+    time: 5h
+  guides: [ NuclearOperatives ]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: antag
   id: NukeopsMedic
@@ -17,11 +22,16 @@
   objective: roles-antag-nuclear-operative-agent-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 18000 # 5h
+    time: 5h
   - !type:RoleTimeRequirement
     role: JobChemist
+<<<<<<< HEAD
     time: 10800 # 3h
   # guides: [ NuclearOperatives ] # Frontier: removed, irrelevant
+=======
+    time: 3h
+  guides: [ NuclearOperatives ]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: antag
   id: NukeopsCommander
@@ -31,10 +41,10 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 18000 # 5h
+    time: 5h
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # 5h
+    time: 5h
   # should be changed to nukie playtime when thats tracked (wyci)
   # guides: [ NuclearOperatives ] # Frontier: removed, irrelevant
 
@@ -49,7 +59,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitSyndie
     shoes: ClothingShoesBootsCombatFilled
-    id: SyndiPDA
+    id: SyndiOperativePDA
     pocket2: PlushieCarp
     belt: ClothingBeltMilitaryWebbing
   storage:
@@ -79,6 +89,7 @@
   id: SyndicateCommanderGearFull
   parent: SyndicateOperativeGearFull
   equipment:
+    id: SyndiCommanderPDA
     neck: SyndicateWhistle
     outerClothing: ClothingOuterHardsuitSyndieCommander
   inhand:
@@ -101,7 +112,7 @@
     eyes: ClothingEyesHudSyndicateAgent
     outerClothing: ClothingOuterHardsuitSyndieMedic
     shoes: ClothingShoesBootsMagSyndie
-    id: SyndiAgentPDA
+    id: SyndiCorpsmanPDA
     belt: ClothingBeltMilitaryWebbingMedFilled
   storage:
     back:

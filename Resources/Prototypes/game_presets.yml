@@ -97,6 +97,23 @@
 #   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: Dynamic
+  alias:
+  - dynamic
+  - multiantag
+  - director
+  name: dynamic-title
+  showInVote: false # admin-only for now until we fix some bugs
+  description: dynamic-description
+  rules:
+  - DynamicRule
+  - DummyNonAntag
+  - DynamicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: Secret
   alias:
     - secret
@@ -108,6 +125,7 @@
     # - Secret
 
 - type: gamePreset
+<<<<<<< HEAD
   id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
   alias:
     - secretextended
@@ -132,6 +150,8 @@
 #   - BasicRoundstartVariation
 
 - type: gamePreset
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: Sandbox
   alias:
     - sandbox

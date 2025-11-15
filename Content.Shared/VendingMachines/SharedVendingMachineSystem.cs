@@ -1,19 +1,19 @@
-using Content.Shared.Emag.Components;
-using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Emp;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Containers.ItemSlots;
@@ -45,9 +45,14 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         SubscribeLocalEvent<VendingMachineComponent, ComponentGetState>(OnVendingGetState);
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
+<<<<<<< HEAD
         SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<VendingMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInserted); // Frontier
         SubscribeLocalEvent<VendingMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemoved); // Frontier
+=======
+        SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnRestockDoAfter);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
 
@@ -89,7 +94,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             EjectEnd = component.EjectEnd,
             DenyEnd = component.DenyEnd,
             DispenseOnHitEnd = component.DispenseOnHitEnd,
+<<<<<<< HEAD
             CashSlotBalance = component.CashSlotBalance, // Frontier
+=======
+            Broken = component.Broken,
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
         };
     }
 
@@ -155,6 +164,16 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (component.CashSlot != null && component.CashSlotName != null)
             ItemSlots.AddItemSlot(uid, component.CashSlotName, component.CashSlot);
         // End Frontier
+    }
+
+    private void OnEmpPulse(Entity<VendingMachineComponent> ent, ref EmpPulseEvent args)
+    {
+        if (!ent.Comp.Broken && _receiver.IsPowered(ent.Owner))
+        {
+            args.Affected = true;
+            args.Disabled = true;
+            ent.Comp.NextEmpEject = Timing.CurTime;
+        }
     }
 
     protected virtual void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false) { }

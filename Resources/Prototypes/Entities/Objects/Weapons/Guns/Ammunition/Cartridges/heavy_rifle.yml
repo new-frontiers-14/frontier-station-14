@@ -1,12 +1,16 @@
 - type: entity
   id: BaseCartridgeHeavyRifle
+<<<<<<< HEAD
   name: cartridge (.20 rifle)
   parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
+=======
+  name: cartridge (.10 rifle)
+  parent: [ BaseCartridge, BaseSecurityContraband ]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   abstract: true
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeHeavyRifle
   - type: CartridgeAmmo
     # proto: BulletHeavyRifle # Frontier

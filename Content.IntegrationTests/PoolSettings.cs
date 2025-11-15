@@ -1,42 +1,34 @@
+<<<<<<< HEAD
 #nullable enable
+=======
+﻿namespace Content.IntegrationTests;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
-using Robust.Shared.Random;
-
-namespace Content.IntegrationTests;
-
-/// <summary>
-/// Settings for the pooled server, and client pair.
-/// Some options are for changing the pair, and others are
-/// so the pool can properly clean up what you borrowed.
-/// </summary>
-public sealed class PoolSettings
+/// <inheritdoc/>
+public sealed class PoolSettings : PairSettings
 {
-    /// <summary>
-    /// Set to true if the test will ruin the server/client pair.
-    /// </summary>
-    public bool Destructive { get; init; }
+    public override bool Connected
+    {
+        get => _connected || InLobby;
+        init => _connected = value;
+    }
 
-    /// <summary>
-    /// Set to true if the given server/client pair should be created fresh.
-    /// </summary>
-    public bool Fresh { get; init; }
+    private readonly bool _dummyTicker = true;
+    private readonly bool _connected;
 
     /// <summary>
     /// Set to true if the given server should be using a dummy ticker. Ignored if <see cref="InLobby"/> is true.
     /// </summary>
-    public bool DummyTicker { get; init; } = true;
+    public bool DummyTicker
+    {
+        get => _dummyTicker && !InLobby;
+        init => _dummyTicker = value;
+    }
 
     /// <summary>
     /// If true, this enables the creation of admin logs during the test.
     /// </summary>
     public bool AdminLogsEnabled { get; init; }
-
-    /// <summary>
-    /// Set to true if the given server/client pair should be connected from each other.
-    /// Defaults to disconnected as it makes dirty recycling slightly faster.
-    /// If <see cref="InLobby"/> is true, this option is ignored.
-    /// </summary>
-    public bool Connected { get; init; }
 
     /// <summary>
     /// Set to true if the given server/client pair should be in the lobby.
@@ -54,27 +46,11 @@ public sealed class PoolSettings
     public bool NoLoadContent { get; init; }
 
     /// <summary>
-    /// This will return a server-client pair that has not loaded test prototypes.
-    /// Try avoiding this whenever possible, as this will always  create & destroy a new pair.
-    /// Use <see cref="Pair.TestPair.IsTestPrototype(Robust.Shared.Prototypes.EntityPrototype)"/> if you need to exclude test prototypees.
-    /// </summary>
-    public bool NoLoadTestPrototypes { get; init; }
-
-    /// <summary>
-    /// Set this to true to disable the NetInterp CVar on the given server/client pair
-    /// </summary>
-    public bool DisableInterpolate { get; init; }
-
-    /// <summary>
-    /// Set this to true to always clean up the server/client pair before giving it to another borrower
-    /// </summary>
-    public bool Dirty { get; init; }
-
-    /// <summary>
     /// Set this to the path of a map to have the given server/client pair load the map.
     /// </summary>
     public string Map { get; init; } = PoolManager.TestMap;
 
+<<<<<<< HEAD
     /// <summary>
     /// Overrides the test name detection, and uses this in the test history instead
     /// </summary>
@@ -121,21 +97,27 @@ public sealed class PoolSettings
     /// <param name="nextSettings">The next set of settings the old pair will be set to</param>
     /// <returns>If we can skip cleaning it up</returns>
     public bool CanFastRecycle(PoolSettings nextSettings)
+=======
+    public override bool CanFastRecycle(PairSettings nextSettings)
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     {
-        if (MustNotBeReused)
-            throw new InvalidOperationException("Attempting to recycle a non-reusable test.");
+        if (!base.CanFastRecycle(nextSettings))
+            return false;
 
-        if (nextSettings.MustBeNew)
-            throw new InvalidOperationException("Attempting to recycle a test while requesting a fresh test.");
-
-        if (Dirty)
+        if (nextSettings is not PoolSettings next)
             return false;
 
         // Check that certain settings match.
+<<<<<<< HEAD
         return !ShouldBeConnected == !nextSettings.ShouldBeConnected
                && UseDummyTicker == nextSettings.UseDummyTicker
                && Map == nextSettings.Map
                && InLobby == nextSettings.InLobby
                && GameLobbyDefaultPreset == nextSettings.GameLobbyDefaultPreset; // Frontier: swappable presets
+=======
+        return DummyTicker == next.DummyTicker
+               && Map == next.Map
+               && InLobby == next.InLobby;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 }

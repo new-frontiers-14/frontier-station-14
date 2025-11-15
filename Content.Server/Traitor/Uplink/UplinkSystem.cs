@@ -88,10 +88,14 @@ public sealed class UplinkSystem : EntitySystem
     /// </summary>
     private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts)
     {
+<<<<<<< HEAD
         // Frontier - don't try and implant an uplink
         return false;
         /*
         if (!_proto.TryIndex<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
+=======
+        if (!_proto.Resolve<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
             return false;
 
         if (!catalog.Cost.TryGetValue(TelecrystalCurrencyPrototype, out var cost))

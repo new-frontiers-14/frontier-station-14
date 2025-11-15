@@ -110,7 +110,12 @@ public sealed class MagnetPickupSystem : EntitySystem
             if (comp.NextScan > currentTime)
                 continue;
 
+<<<<<<< HEAD
             comp.NextScan = currentTime + ScanDelay; // Frontier: no need to rerun if built late in-round
+=======
+            comp.NextScan += ScanDelay;
+            Dirty(uid, comp);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
             // Frontier: combine DeltaV/White Dream's magnet toggle with old system
             if (comp.MagnetCanBeEnabled)

@@ -132,9 +132,15 @@ public abstract partial class SharedGravitySystem : EntitySystem
     private void OnWeightlessnessChanged(Entity<AlertsComponent> entity, ref WeightlessnessChangedEvent args)
     {
         if (args.Weightless)
+<<<<<<< HEAD
             _alerts.ShowAlert(entity, WeightlessAlert);
         else
             _alerts.ClearAlert(entity, WeightlessAlert);
+=======
+            _alerts.ShowAlert(entity.AsNullable(), WeightlessAlert);
+        else
+            _alerts.ClearAlert(entity.AsNullable(), WeightlessAlert);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     private void OnEntParentChanged(Entity<GravityAffectedComponent> entity, ref EntParentChangedMessage args)
@@ -202,12 +208,21 @@ public abstract partial class SharedGravitySystem : EntitySystem
             _alerts.ClearAlert(ev.Euid, WeightlessAlert);
     }
 
+<<<<<<< HEAD
     private void OnAlertsParentChange(EntityUid uid, AlertsComponent component, ref EntParentChangedMessage args)
     {
         if (IsWeightless(uid))
             _alerts.ShowAlert(uid, WeightlessAlert);
         else
             _alerts.ClearAlert(uid, WeightlessAlert);
+=======
+    private void OnAlertsParentChange(Entity<AlertsComponent> entity, ref EntParentChangedMessage args)
+    {
+        if (IsWeightless(entity.Owner))
+            _alerts.ShowAlert(entity.AsNullable(), WeightlessAlert);
+        else
+            _alerts.ClearAlert(entity.AsNullable(), WeightlessAlert);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     private void OnGridInit(GridInitializeEvent ev)
@@ -228,12 +243,20 @@ public abstract partial class SharedGravitySystem : EntitySystem
 
     private void OnThrowerImpulse(Entity<GravityAffectedComponent> entity, ref ThrowerImpulseEvent args)
     {
+<<<<<<< HEAD
         args.Push = true;
+=======
+        args.Push |= IsWeightless((entity.Owner, entity.Comp));
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     private void OnShooterImpulse(Entity<GravityAffectedComponent> entity, ref ShooterImpulseEvent args)
     {
+<<<<<<< HEAD
         args.Push = true;
+=======
+        args.Push |= IsWeightless((entity.Owner, entity.Comp));
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 }
 

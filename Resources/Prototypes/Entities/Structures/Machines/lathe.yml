@@ -126,6 +126,7 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+<<<<<<< HEAD
     #- AtmosStatic # Frontier
     #- CablesStatic # Frontier
     #- MaterialsStatic # Frontier
@@ -154,6 +155,26 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
+=======
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
+    - CargoStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - RollerBedsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SecurityAmmoStatic
+    - SyndicateAmmoStatic
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -230,6 +251,7 @@
     - Janitor
     - Instruments
     - Equipment
+<<<<<<< HEAD
     - FauxTiles
     - NFMedical # Frontier
     - NFEngineering # Frontier
@@ -237,6 +259,8 @@
     - NFService # Frontier
     - NFScience # Frontier
     - NFPouches # Frontier
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
@@ -297,10 +321,13 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
+<<<<<<< HEAD
     - CircuitFloorsStatic
     - NFScienceBoardsStatic # Frontier
     - NFServiceBoardsStatic # Frontier
     - NFSalvageBoardsStatic # Frontier
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -448,6 +475,7 @@
     - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
+<<<<<<< HEAD
     # dynamicPacks:
     # - SalvageSecurityBoards # Frontier
     # - SalvageSecurityWeapons # Frontier
@@ -457,6 +485,20 @@
     # - SecurityAmmo # Frontier
     # - SecurityWeapons # Frontier
     # - SecurityDisablers # Frontier
+=======
+    dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - SecurityEquipment
+    - SecurityBoards
+    - SecurityExplosives
+    - SecurityAmmo
+    - SecurityWeapons
+    - SecurityDisablers
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SyndicateAmmoStatic
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: MaterialStorage
     whitelist:
       tags:
@@ -493,8 +535,15 @@
       idleState: icon
       runningState: icon
       staticPacks:
+<<<<<<< HEAD
       - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
       - NFMercenaryMagazineStatic
+=======
+      - SecurityAmmoStatic
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+      - SyndicateAmmoStatic
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     - type: MaterialStorage
       whitelist:
         tags:
@@ -593,6 +642,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - TowelsStatic
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
@@ -811,6 +861,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+<<<<<<< HEAD
     - FloorTilesStatic
     - Carpets # Frontier
     - CircuitFloorsStatic # Frontier
@@ -822,6 +873,18 @@
   - type: EmagLatheRecipes # Frontier
     emagStaticPacks: # Frontier
     - NFFloorTilesStrange # Frontier
+=======
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: MaterialStorage
     whitelist:
       tags:

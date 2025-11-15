@@ -26,6 +26,7 @@ public sealed partial class AnomalySystem
         SubscribeLocalEvent<AnomalyVesselComponent, InteractUsingEvent>(OnVesselInteractUsing);
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<AnomalyVesselComponent, ResearchServerGetPointsPerSecondEvent>(OnVesselGetPointsPerSecond);
+<<<<<<< HEAD
         SubscribeLocalEvent<AnomalyShutdownEvent>(OnShutdown);
         SubscribeLocalEvent<AnomalyStabilityChangedEvent>(OnStabilityChanged);
         SubscribeLocalEvent<AnomalyVesselComponent, EntParentChangedMessage>(OnVesselParentChanged); // Frontier
@@ -41,6 +42,9 @@ public sealed partial class AnomalySystem
     {
         OnVesselAnomalyShutdown(ref args);
         OnScannerAnomalyShutdown(ref args);
+=======
+        SubscribeLocalEvent<AnomalyShutdownEvent>(OnVesselAnomalyShutdown);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     private void OnExamined(EntityUid uid, AnomalyVesselComponent component, ExaminedEvent args)
@@ -170,21 +174,10 @@ public sealed partial class AnomalySystem
         if (_pointLight.TryGetLight(uid, out var pointLightComponent))
             _pointLight.SetEnabled(uid, on, pointLightComponent);
 
-        // arbitrary value for the generic visualizer to use.
-        // i didn't feel like making an enum for this.
-        var value = 1;
-        if (TryComp<AnomalyComponent>(component.Anomaly, out var anomalyComp))
-        {
-            if (anomalyComp.Stability <= anomalyComp.DecayThreshold)
-            {
-                value = 2;
-            }
-            else if (anomalyComp.Stability >= anomalyComp.GrowthThreshold)
-            {
-                value = 3;
-            }
-        }
-        Appearance.SetData(uid, AnomalyVesselVisuals.AnomalyState, value, appearanceComponent);
+        if (component.Anomaly == null || !TryGetStabilityVisual(component.Anomaly.Value, out var visual))
+            visual = AnomalyStabilityVisuals.Stable;
+
+        Appearance.SetData(uid, AnomalyVesselVisuals.AnomalySeverity, visual, appearanceComponent);
 
         _ambient.SetAmbience(uid, on);
     }

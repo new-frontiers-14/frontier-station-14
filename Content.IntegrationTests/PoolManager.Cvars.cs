@@ -1,15 +1,14 @@
 #nullable enable
 using Content.Shared.CCVar;
-using Robust.Shared;
-using Robust.Shared.Configuration;
-using Robust.UnitTesting;
 
 namespace Content.IntegrationTests;
 
-// Partial class containing cvar logic
+// Partial class containing test cvars
+// This could probably be merged into the main file, but I'm keeping it separate to reduce
+// conflicts for forks.
 public static partial class PoolManager
 {
-    private static readonly (string cvar, string value)[] TestCvars =
+    public static readonly (string cvar, string value)[] TestCvars =
     {
         // @formatter:off
         (CCVars.DatabaseSynchronous.Name,     "true"),
@@ -17,10 +16,9 @@ public static partial class PoolManager
         (CCVars.HolidaysEnabled.Name,         "false"),
         (CCVars.GameMap.Name,                 TestMap),
         (CCVars.AdminLogsQueueSendDelay.Name, "0"),
-        (CVars.NetPVS.Name,                   "false"),
         (CCVars.NPCMaxUpdates.Name,           "999999"),
-        (CVars.ThreadParallelCount.Name,      "1"),
         (CCVars.GameRoleTimers.Name,          "false"),
+        (CCVars.GameRoleLoadoutTimers.Name,   "false"),
         (CCVars.GameRoleWhitelist.Name,       "false"),
         (CCVars.GridFill.Name,                "false"),
         (CCVars.PreloadGrids.Name,            "false"),
@@ -29,14 +27,11 @@ public static partial class PoolManager
         (CCVars.ProcgenPreload.Name,          "false"),
         (CCVars.WorldgenEnabled.Name,         "false"),
         (CCVars.GatewayGeneratorEnabled.Name, "false"),
-        (CVars.ReplayClientRecordingEnabled.Name, "false"),
-        (CVars.ReplayServerRecordingEnabled.Name, "false"),
         (CCVars.GameDummyTicker.Name, "true"),
         (CCVars.GameLobbyEnabled.Name, "false"),
         (CCVars.ConfigPresetDevelopment.Name, "false"),
         (CCVars.AdminLogsEnabled.Name, "false"),
         (CCVars.AutosaveEnabled.Name, "false"),
-        (CVars.NetBufferSize.Name, "0"),
         (CCVars.InteractionRateLimitCount.Name, "9999999"),
         (CCVars.InteractionRateLimitPeriod.Name, "0.1"),
         (CCVars.MovementMobPushing.Name, "false"),
@@ -44,6 +39,7 @@ public static partial class PoolManager
         (CCVars.StaticStorageUI.Name, "true"), // Frontier: causes storage test failures
         (CCVars.StorageLimit.Name, "1")// Frontier: test failures with multiple storage enabled
     };
+<<<<<<< HEAD
 
     public static async Task SetupCVars(RobustIntegrationTest.IntegrationInstance instance, PoolSettings settings)
     {
@@ -80,4 +76,6 @@ public static partial class PoolManager
             options.CVarOverrides[cvar] = value;
         }
     }
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 }

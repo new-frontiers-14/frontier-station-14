@@ -15,7 +15,11 @@ namespace Content.Shared.Fluids.Components
         public SoundSpecifier SpillSound = new SoundPathSpecifier("/Audio/Effects/Fluids/splat.ogg");
 
         [DataField]
+<<<<<<< HEAD
         public FixedPoint2 OverflowVolume = FixedPoint2.New(50); // Frontier: 20<50
+=======
+        public FixedPoint2 OverflowVolume = FixedPoint2.New(50);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
         [DataField("solution")] public string SolutionName = "puddle";
 

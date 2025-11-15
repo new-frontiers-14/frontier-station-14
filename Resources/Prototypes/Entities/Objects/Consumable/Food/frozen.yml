@@ -1,4 +1,4 @@
-# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_snack.yml
+﻿# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_snack.yml
 # Base
 
 - type: entity
@@ -6,7 +6,6 @@
   id: FoodFrozenBase
   abstract: true
   components:
-  - type: Food
   - type: Sprite
     sprite: Objects/Consumable/Food/frozen.rsi
   - type: SolutionContainerManager
@@ -20,11 +19,14 @@
 # Ice-cream
 
 - type: entity
-  name: ice-cream sandwich
   parent: FoodFrozenBase
   id: FoodFrozenSandwich
+  name: ice-cream sandwich
   description: Portable ice-cream in its own packaging.
   components:
+  - type: Item
+    shape:
+    - 0,0,1,0
   - type: Sprite
     state: sandwich
   - type: FlavorProfile # Frontier: add flavour profile
@@ -33,11 +35,14 @@
     - icecream # Frontier
 
 - type: entity
-  name: strawberry ice-cream sandwich
   parent: FoodFrozenBase
   id: FoodFrozenSandwichStrawberry
+  name: strawberry ice-cream sandwich
   description: Portable ice-cream in its own packaging of the strawberry variety.
   components:
+  - type: Item
+    shape:
+    - 0,0,1,0
   - type: Sprite
     state: sandwich-strawberry
   - type: FlavorProfile # Frontier: add flavour profile
@@ -74,11 +79,17 @@
     - icecream # Frontier
 
 - type: entity
+<<<<<<< HEAD
   name: choco horn # Frontier: cornuto<choco horn
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   parent: FoodFrozenBase
   id: FoodFrozenCornuto
+  name: cornuto
   description: A Neapolitan vanilla and chocolate ice-cream cone. It menaces with a sprinkling of caramelized nuts.
   components:
+  - type: Item
+    storedRotation: -45
   - type: Sprite
     state: cornuto
   - type: SolutionContainerManager
@@ -110,7 +121,11 @@
     - state: popsicle-base
     - state: popsicle
       color: orange
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenPopsicleTrash
   - type: Tag
@@ -135,7 +150,11 @@
     - state: popsicle-base
     - state: popsicle
       color: red
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenPopsicleTrash
   - type: Tag
@@ -158,7 +177,11 @@
     layers:
     - state: stick
     - state: jumbo
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenPopsicleTrash
   - type: SolutionContainerManager
@@ -194,7 +217,11 @@
         - state: cone
         - state: alpha-filling
     #      color: foo
+<<<<<<< HEAD
     - type: Food
+=======
+    - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
       trash:
       - FoodFrozenSnowconeTrash
     - type: SolutionContainerManager
@@ -241,7 +268,11 @@
     layers:
     - state: cone
     - state: berry
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenSnowconeTrash
   - type: Tag
@@ -263,7 +294,11 @@
     layers:
     - state: cone
     - state: fruitsalad
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenSnowconeTrash
   - type: Tag
@@ -286,7 +321,11 @@
     layers:
     - state: cone
     - state: clown
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenSnowconeTrash
   - type: FlavorProfile # Frontier: add flavour profile
@@ -305,7 +344,11 @@
     layers:
     - state: cone
     - state: mime
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenSnowconeTrash
   - type: FlavorProfile # Frontier: add flavour profile
@@ -324,7 +367,11 @@
     layers:
     - state: cone
     - state: rainbow
+<<<<<<< HEAD
   - type: Food
+=======
+  - type: Edible
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     trash:
     - FoodFrozenSnowconeTrash
   # Frontier: flavors, custom fill
@@ -353,11 +400,13 @@
 # Trash
 
 - type: entity
-  name: paper cone
   parent: BaseItem
   id: FoodFrozenSnowconeTrash
+  name: paper cone
   description: A crumpled paper cone used for an icy treat. Worthless.
   components:
+  - type: Item
+    size: Tiny
   - type: Sprite
     sprite: Objects/Consumable/Food/frozen.rsi
     state: cone-trash
