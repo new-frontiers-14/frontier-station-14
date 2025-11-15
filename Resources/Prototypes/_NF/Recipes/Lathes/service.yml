@@ -9,6 +9,33 @@
   materials:
     Steel: 75
 
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipePiety
+  categories:
+  - NFPiety
+  completetime: 1
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeCandle
+  categories:
+  - NFCandles
+  completetime: 1
+  materials:
+    Cloth: 20
+    Wood: 25
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseServiceItemsRecipeCandle
+  id: BaseServiceItemsRecipeCandleSmall
+  materials:
+    Cloth: 20
+    Wood: 20
+
 # Recipes
 
 - type: latheRecipe
@@ -182,3 +209,164 @@
   result: DrinkDisposableMcCup
   materials:
     Cardboard: 50
+
+#region piety
+- type: latheRecipe
+  id: NFServiceCenser
+  result: Censer
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceClothingNeckCrucifix
+  result: ClothingNeckCrucifix
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceUrnMortuary
+  result: UrnMortuary
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Steel: 400
+
+- type: latheRecipe
+  id: NFServiceUrn
+  result: Urn
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceClothingMaskPlague
+  result: ClothingMaskPlague
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Steel: 300
+    Cloth: 200
+
+- type: latheRecipe
+  id: NFSilverRingPrinted
+  result: NFSilverRingPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Silver: 250
+
+- type: latheRecipe
+  id: NFSilverRingGemPrinted
+  result: NFSilverRingGemPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Silver: 250
+    Glass: 100
+
+- type: latheRecipe
+  id: NFSilverRingDiamondPrinted
+  result: NFSilverRingDiamondPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Silver: 250
+    ReinforcedGlass: 100
+
+- type: latheRecipe
+  id: NFGoldRingPrinted
+  result: NFGoldRingPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Gold: 200
+
+- type: latheRecipe
+  id: NFGoldRingGemPrinted
+  result: NFGoldRingGemPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Gold: 200
+    Glass: 100
+
+- type: latheRecipe
+  id: NFGoldRingDiamondPrinted
+  result: NFGoldRingDiamondPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Gold: 200
+    ReinforcedGlass: 100
+
+- type: latheRecipe
+  id: NFPlasteelRingPrinted
+  result: NFPlasteelRingPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Plasteel: 200
+
+- type: latheRecipe
+  id: NFPlasteelRingGem
+  result: NFPlasteelRingGem
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Plasteel: 200
+    Glass: 100
+
+- type: latheRecipe
+  id: NFPlasteelRingDiamond
+  result: NFPlasteelRingDiamond
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Plasteel: 200
+    ReinforcedGlass: 100
+
+# region candles
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleBlack
+  result: CandleBlack
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleBlue
+  result: CandleBlue
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleGreen
+  result: CandleGreen
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleRed
+  result: CandleRed
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandlePurple
+  result: CandlePurple
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: Candle
+  result: Candle
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleBlackSmall
+  result: CandleBlackSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleBlueSmall
+  result: CandleBlueSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleGreenSmall
+  result: CandleGreenSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleRedSmall
+  result: CandleRedSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandlePurpleSmall
+  result: CandlePurpleSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleSmall
+  result: CandleSmall

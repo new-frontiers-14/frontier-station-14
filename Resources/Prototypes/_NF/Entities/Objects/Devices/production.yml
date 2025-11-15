@@ -1,4 +1,22 @@
 - type: entity
+  id: CargoTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: cargo techfab machine board
+  description: A machine printed circuit board for a cargo techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: CargoTechFabNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
   id: ShredderMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: shredder machine board
@@ -118,6 +136,22 @@
         Steel: 10
     - type: BindToStation
       enabled: false # should be draggable between stations
+
+- type: entity
+  id: OreProcessorCivilianCircuitboard
+  parent: BaseMachineCircuitboard
+  name: civilian ore processor machine board
+  description: A machine printed circuit board for a civilian ore processor.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: OreProcessorCivilian
+      requirements: 
+        MatterBin: 1
+        Manipulator: 3 
+      stackRequirements:
+        Glass: 1
 
 # TechFab
 - type: entity

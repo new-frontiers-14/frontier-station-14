@@ -1,9 +1,9 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameEnergyPistol
-  parent: [ NFBaseWeaponEncumbrancePistol, BaseWeaponBatterySmall ]
-  suffix: Frontier
   abstract: true
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseGunMeleeAttackLow, BaseWeaponBatterySmall ]
+  id: NFBaseWeaponFrameEnergyPistol
+  suffix: Frontier
   components:
   - type: Sprite
     layers:
