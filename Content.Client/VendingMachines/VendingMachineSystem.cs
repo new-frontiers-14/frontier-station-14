@@ -34,7 +34,11 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
         component.EjectEnd = state.EjectEnd;
         component.DenyEnd = state.DenyEnd;
         component.DispenseOnHitEnd = state.DispenseOnHitEnd;
+<<<<<<< HEAD
         component.CashSlotBalance = state.CashSlotBalance; // Frontier
+=======
+        component.Broken = state.Broken;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
         // If all we did was update amounts then we can leave BUI buttons in place.
         var fullUiUpdate = !component.Inventory.Keys.SequenceEqual(state.Inventory.Keys) ||

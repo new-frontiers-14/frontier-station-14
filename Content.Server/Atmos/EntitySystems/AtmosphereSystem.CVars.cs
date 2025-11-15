@@ -27,7 +27,13 @@ namespace Content.Server.Atmos.EntitySystems
         public float AtmosTickRate { get; private set; }
         public float Speedup { get; private set; }
         public float HeatScale { get; private set; }
+<<<<<<< HEAD
         public bool AllowMapGasExtraction { get; private set; } // Frontier
+=======
+        public bool DeltaPressureDamage { get; private set; }
+        public int DeltaPressureParallelProcessPerIteration { get; private set; }
+        public int DeltaPressureParallelBatchSize { get; private set; }
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
         /// <summary>
         /// Time between each atmos sub-update.  If you are writing an atmos device, use AtmosDeviceUpdateEvent.dt
@@ -57,7 +63,13 @@ namespace Content.Server.Atmos.EntitySystems
             Subs.CVar(_cfg, CCVars.AtmosHeatScale, value => { HeatScale = value; InitializeGases(); }, true);
             Subs.CVar(_cfg, CCVars.ExcitedGroups, value => ExcitedGroups = value, true);
             Subs.CVar(_cfg, CCVars.ExcitedGroupsSpaceIsAllConsuming, value => ExcitedGroupsSpaceIsAllConsuming = value, true);
+<<<<<<< HEAD
             Subs.CVar(_cfg, NFCCVars.AllowMapGasExtraction, value => AllowMapGasExtraction = value, true); // Frontier
+=======
+            Subs.CVar(_cfg, CCVars.DeltaPressureDamage, value => DeltaPressureDamage = value, true);
+            Subs.CVar(_cfg, CCVars.DeltaPressureParallelToProcessPerIteration, value => DeltaPressureParallelProcessPerIteration = value, true);
+            Subs.CVar(_cfg, CCVars.DeltaPressureParallelBatchSize, value => DeltaPressureParallelBatchSize = value, true);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
         }
     }
 }

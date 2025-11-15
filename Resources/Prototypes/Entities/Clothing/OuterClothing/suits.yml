@@ -27,6 +27,9 @@
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+      - Tail
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -70,6 +73,9 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -106,6 +112,9 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -131,10 +140,19 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+<<<<<<< HEAD
   - type: CatWearable # Frontier
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseC3Contraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing as parent
+=======
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseHighlyIllegalContraband]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -196,6 +214,9 @@
         whitelist:
           tags:
             - PowerCell
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: ClothingOuterBase
@@ -274,6 +295,8 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: AddAccentClothing
+    accent: BarkAccent
 
 - type: entity
   parent: ClothingOuterBase
@@ -293,7 +316,13 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+<<<<<<< HEAD
   - type: CatWearable # Frontier
+=======
+  - type: HideLayerClothing
+    slots:
+    - Tail
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: entity
   parent: ClothingOuterSuitCarp

@@ -587,8 +587,13 @@
     job: DeathSquad
 
 - type: entity
+<<<<<<< HEAD
   name: contractor ID card # Frontier: passenger<contractor
   parent: [IDCardStandard, BaseC3SyndicateContraband]
+=======
+  name: passenger ID card
+  parent: [IDCardStandard, BaseChameleon]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: AgentIDCard
   suffix: Agent
   components:
@@ -604,9 +609,10 @@
     - state: idcontractor # Frontier: idpassenger<idcontractor
       sprite: _NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
+  - type: UIRequiresLock
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
-    inHandsOnly: true
+    verbText: agent-id-open-ui-verb
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -654,14 +660,50 @@
   components:
   - type: Sprite
     layers:
-    - state: syndie
+    - state: black
+    - state: syndi
   - type: Access
     tags:
     - NuclearOperative
     - SyndicateAgent
 
 - type: entity
+<<<<<<< HEAD
   parent: [ BaseC3PirateContraband, IDCardStandard ] # Frontier: BaseMajorContraband<BaseC3PirateContraband
+=======
+  parent: [ SyndicateIDCard, BaseSyndicateContraband ]
+  id: SyndiOperativeIDCard
+  name: syndicate operative ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: syndi_operative
+  - type: AgentIDCard
+
+- type: entity
+  parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
+  id: SyndiCorpsmanIDCard
+  name: syndicate corpsman ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: syndi_corpsman
+
+- type: entity
+  parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
+  id: SyndiCommanderIDCard
+  name: syndicate commander ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: syndi_commander
+
+- type: entity
+  parent: [ IDCardStandard, BaseMajorContraband ]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: PirateIDCard
   name: pirate ID card
   categories: [ HideSpawnMenu ] # Frontier

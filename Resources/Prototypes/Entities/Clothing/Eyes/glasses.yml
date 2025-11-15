@@ -271,7 +271,11 @@
       - WhitelistChameleon
 
 - type: entity
+<<<<<<< HEAD
   parent: [ClothingEyesBase, BaseC3Contraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3Contraband added ContrabandClothing as parent
+=======
+  parent: [ClothingEyesBase, BaseHighlyIllegalContraband]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -283,7 +287,7 @@
   - type: FlashImmunity
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesNoir
   name: noir-tech glasses
   description: A pair of glasses that simulate what the world looked like before the invention of color.

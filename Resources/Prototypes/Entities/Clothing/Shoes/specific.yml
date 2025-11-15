@@ -124,7 +124,7 @@
   parent: ClothingShoesBase # Frontier: remove BaseJanitorContraband
   id: ClothingShoesGaloshes
   name: galoshes
-  description: Rubber boots.
+  description: Specialised non-slip rubber boots, designed to reduce janitorial workplace accidents; a tider's treasure.
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Specific/galoshes.rsi
@@ -138,7 +138,11 @@
     maxContactWalkSlowdown: 0.7
 
 - type: entity
+<<<<<<< HEAD
   parent: [ClothingShoesBaseButcherable, BaseC3Contraband, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing
+=======
+  parent: [ClothingShoesBaseButcherable, BaseHighlyIllegalContraband]
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   id: ClothingShoesSpaceNinja
   name: space ninja shoes
   description: A pair of nano-enhanced boots with built-in magnetic suction cups.
@@ -179,7 +183,7 @@
     sprite: Clothing/Shoes/Specific/wizard.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: [ClothingShoesBase, BaseChameleon]
   id: ClothingShoesChameleon
   name: black shoes
   suffix: Chameleon
@@ -213,10 +217,6 @@
     - type: ChameleonClothing
       slot: [FEET]
       default: ClothingShoesColorBlack
-    - type: UserInterface
-      interfaces:
-        enum.ChameleonUiKey.Key:
-          type: ChameleonBoundUserInterface
 
 - type: entity
   parent: [ClothingShoesChameleon, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband

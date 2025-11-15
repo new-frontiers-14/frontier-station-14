@@ -1,8 +1,6 @@
-using System.Numerics;
-using Content.Server.Access.Systems;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Emp;
 using Content.Server.Medical.CrewMonitoring;
+<<<<<<< HEAD
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
@@ -29,14 +27,19 @@ using Content.Shared.DeviceNetwork.Components;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server._NF.Medical.SuitSensors; // Frontier
 using Content.Shared.Emp; // Frontier
+=======
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Medical.SuitSensors;
+using Robust.Shared.Timing;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 namespace Content.Server.Medical.SuitSensors;
 
-public sealed class SuitSensorSystem : EntitySystem
+public sealed class SuitSensorSystem : SharedSuitSensorSystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
+<<<<<<< HEAD
     [Dependency] private readonly IdCardSystem _idCardSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -65,6 +68,9 @@ public sealed class SuitSensorSystem : EntitySystem
         SubscribeLocalEvent<SuitSensorComponent, EmpDisabledRemoved>(OnEmpFinished);
         SubscribeLocalEvent<SuitSensorComponent, SuitSensorChangeDoAfterEvent>(OnSuitSensorDoAfter);
     }
+=======
+    [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
     public override void Update(float frameTime)
     {
@@ -82,16 +88,19 @@ public sealed class SuitSensorSystem : EntitySystem
             if (curTime < sensor.NextUpdate)
                 continue;
 
+<<<<<<< HEAD
             /* -- Frontier modification
             if (!CheckSensorAssignedStation(uid, sensor))
+=======
+            if (!CheckSensorAssignedStation((uid, sensor)))
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
                 continue;
             */
 
-            // TODO: This would cause imprecision at different tick rates.
-            sensor.NextUpdate = curTime + sensor.UpdateRate;
+            sensor.NextUpdate += sensor.UpdateRate;
 
             // get sensor status
-            var status = GetSensorState(uid, sensor);
+            var status = GetSensorState((uid, sensor));
             if (status == null)
                 continue;
 
@@ -120,6 +129,7 @@ public sealed class SuitSensorSystem : EntitySystem
             _deviceNetworkSystem.QueuePacket(uid, sensor.ConnectedServer, payload, device: device);
         }
     }
+<<<<<<< HEAD
 
     /* -- Frontier modification
     /// <summary>
@@ -562,4 +572,6 @@ public sealed class SuitSensorSystem : EntitySystem
         };
         return status;
     }
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 }

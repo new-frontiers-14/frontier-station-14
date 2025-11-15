@@ -17,13 +17,14 @@ namespace Content.Server.Stack
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedUserInterfaceSystem _ui = default!; // Cherry-picked from space-station-14#32938 courtesy of Ilya246
 
+<<<<<<< HEAD
         public static readonly int[] DefaultSplitAmounts = { 1, 5, 10, 20, 50, 100, 500, 1000, 5000, 10000 };
 
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
         public override void Initialize()
         {
             base.Initialize();
-
-            SubscribeLocalEvent<StackComponent, GetVerbsEvent<AlternativeVerb>>(OnStackAlternativeInteract);
         }
 
         public override void SetCount(EntityUid uid, int amount, StackComponent? component = null)
@@ -34,7 +35,7 @@ namespace Content.Server.Stack
             base.SetCount(uid, amount, component);
 
             // Queue delete stack if count reaches zero.
-            if (component.Count <= 0 && !component.Lingering)
+            if (component.Count <= 0)
                 QueueDel(uid);
         }
 
@@ -166,6 +167,7 @@ namespace Content.Server.Stack
             return amounts;
         }
 
+<<<<<<< HEAD
         private void OnStackAlternativeInteract(EntityUid uid, StackComponent stack, GetVerbsEvent<AlternativeVerb> args)
         {
             if (!args.CanAccess || !args.CanInteract || args.Hands == null || stack.Count == 1)
@@ -233,6 +235,9 @@ namespace Content.Server.Stack
         // End cherry-pick from ss14#32938 courtesy of Ilya246
 
         private void UserSplit(EntityUid uid, EntityUid userUid, int amount,
+=======
+        protected override void UserSplit(EntityUid uid, EntityUid userUid, int amount,
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
             StackComponent? stack = null,
             TransformComponent? userTransform = null)
         {

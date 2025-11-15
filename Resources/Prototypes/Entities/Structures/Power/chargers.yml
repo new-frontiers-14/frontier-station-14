@@ -72,7 +72,11 @@
   parent: BaseItemRecharger
   id: PowerCellRecharger
   name: cell recharger
+<<<<<<< HEAD
   categories: [HideSpawnMenu] # Frontier: use the weapon recharger
+=======
+  description: An older model recharger that can recharge power cells.
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   components:
   - type: Sprite
     sprite: Structures/Power/cell_recharger.rsi
@@ -106,12 +110,19 @@
           tags:
           - PowerCell
           - PowerCellSmall
+        blacklist:
+          tags:
+          - PotatoBattery
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
   id: PowerCageRecharger
   name: cage recharger
+<<<<<<< HEAD
   description: A specialized machine made for recharging the heavy cage batteries used by ship-mounted weapons. # Wizden#38138
+=======
+  description: A specialized machine made for recharging the heavy cage batteries used by ship-mounted weapons.
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   components:
   - type: Fixtures
     fixtures:
@@ -152,7 +163,11 @@
   parent: BaseItemRecharger
   id: WeaponCapacitorRecharger
   name: recharger
+<<<<<<< HEAD
   description: A modern recharging station that can fit both power cells and small electronic devices. # Wizden#38138
+=======
+  description: A modern recharging station that can fit both power cells and small electronic devices.
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   components:
   - type: Sprite
     sprite: Structures/Power/recharger.rsi
@@ -167,16 +182,27 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+<<<<<<< HEAD
           - PowerCell # Frontier
         blacklist: # Frontier
           tags: # Frontier
           - PotatoBattery # Frontier
+=======
+          - PowerCell
+        blacklist:
+          tags:
+          - PotatoBattery
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: entity
   parent: BaseItemRecharger
   id: TurboItemRecharger
   name: turbo recharger
+<<<<<<< HEAD
   description: An overclocked recharger, fits both power cells and small electronic devices. Not recommended for use around asthmatics. # Frontier: based on Wizden#38138, extra restate that it works on cells/guns.
+=======
+  description: An overclocked recharger. Not recommended for use around asthmatics.
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   components:
   - type: Sprite
     sprite: Structures/Power/turbo_recharger.rsi
@@ -202,7 +228,11 @@
   parent: [ BaseItemRecharger, BaseWallmount ]
   id: WallWeaponCapacitorRecharger
   name: wall recharger
+<<<<<<< HEAD
   description: A sleek wall recharger, fits both power cells and small electronic devices. # Frontier
+=======
+  description: A compact wall-mounted recharger. It can only recharge electronic devices and has no space for power cells.
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   components:
   - type: Sprite
     snapCardinals: false # imp
@@ -224,6 +254,7 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+<<<<<<< HEAD
           - PowerCell # Frontier
         blacklist: # Frontier
           tags: # Frontier
@@ -235,6 +266,11 @@
     graph: WallWeaponCapacitorRecharger
     node: wall_recharger
   # imp end
+=======
+        blacklist:
+          tags:
+          - PotatoBattery
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 - type: entity
   parent: BaseRecharger

@@ -1,8 +1,9 @@
 using Content.Server.Power.Components;
-using Content.Server.Emp;
-using Content.Server.PowerCell;
 using Content.Shared.Examine;
+using Content.Server.PowerCell;
 using Content.Shared.Power;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Emp;
 using JetBrains.Annotations;
@@ -16,7 +17,7 @@ using Content.Server._NF.Power.Components; // Frontier
 namespace Content.Server.Power.EntitySystems;
 
 [UsedImplicitly]
-internal sealed class ChargerSystem : EntitySystem
+public sealed class ChargerSystem : SharedChargerSystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
@@ -26,6 +27,8 @@ internal sealed class ChargerSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<ChargerComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ChargerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<ChargerComponent, EntInsertedIntoContainerMessage>(OnInserted);
@@ -33,11 +36,14 @@ internal sealed class ChargerSystem : EntitySystem
         SubscribeLocalEvent<ChargerComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
         SubscribeLocalEvent<ChargerComponent, InsertIntoEntityStorageAttemptEvent>(OnEntityStorageInsertAttempt);
         SubscribeLocalEvent<ChargerComponent, ExaminedEvent>(OnChargerExamine);
+<<<<<<< HEAD
 
         SubscribeLocalEvent<ChargerComponent, ChargerUpdateStatusEvent>(OnUpdateStatus); // Frontier: Upstream - #28984
 
         SubscribeLocalEvent<ChargerComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<ChargerComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved); // Frontier: Upstream - #28984
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     private void OnStartup(EntityUid uid, ChargerComponent component, ComponentStartup args)
@@ -50,7 +56,7 @@ internal sealed class ChargerSystem : EntitySystem
         using (args.PushGroup(nameof(ChargerComponent)))
         {
             // rate at which the charger charges
-            args.PushMarkup(Loc.GetString("charger-examine", ("color", "yellow"), ("chargeRate", (int) component.ChargeRate)));
+            args.PushMarkup(Loc.GetString("charger-examine", ("color", "yellow"), ("chargeRate", (int)component.ChargeRate)));
 
             // try to get contents of the charger
             if (!_container.TryGetContainer(uid, component.SlotId, out var container))
@@ -74,7 +80,7 @@ internal sealed class ChargerSystem : EntitySystem
                         continue;
 
                     var chargePercentage = (battery.CurrentCharge / battery.MaxCharge) * 100;
-                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int) chargePercentage)));
+                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int)chargePercentage)));
                 }
             }
         }
@@ -265,6 +271,7 @@ internal sealed class ChargerSystem : EntitySystem
         }
     }
 
+<<<<<<< HEAD
     private void OnEmpPulse(EntityUid uid, ChargerComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
     {
         //args.Affected = true;
@@ -304,6 +311,9 @@ internal sealed class ChargerSystem : EntitySystem
     }
 
     private CellChargerStatus GetStatus(EntityUid uid, ChargerComponent component) // Frontier: Upstream - #28984
+=======
+    private CellChargerStatus GetStatus(EntityUid uid, ChargerComponent component)
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     {
         if (!component.Portable)
         {

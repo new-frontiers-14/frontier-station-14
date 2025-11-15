@@ -190,7 +190,13 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);
+<<<<<<< HEAD
             AddButton(ContentKeyFunctions.SmartEquipWallet); // Frontier
+=======
+            AddButton(ContentKeyFunctions.SmartEquipPocket1);
+            AddButton(ContentKeyFunctions.SmartEquipPocket2);
+            AddButton(ContentKeyFunctions.SmartEquipSuitStorage);
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
             AddButton(ContentKeyFunctions.OpenBackpack);
             AddButton(ContentKeyFunctions.OpenBelt);
             AddButton(ContentKeyFunctions.OpenWallet); // Frontier

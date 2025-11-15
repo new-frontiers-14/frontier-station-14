@@ -1,6 +1,5 @@
 using Content.Server.Anomaly.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Station.Components;
 using Content.Shared.Anomaly;
 using Content.Shared.CCVar;
 using Content.Shared.Materials;
@@ -196,8 +195,18 @@ public sealed partial class AnomalySystem
     {
         var xform = Transform(uid);
 
+<<<<<<< HEAD
         if (xform.GridUid == null)
             return;
+=======
+        if (_station.GetStationInMap(xform.MapID) is not { } station ||
+            _station.GetLargestGrid(station) is not { } grid)
+        {
+            if (xform.GridUid == null)
+                return;
+            grid = xform.GridUid.Value;
+        }
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
         SpawnOnRandomGridLocation(xform.GridUid.Value, component.SpawnerPrototype, (uid, component)); // Frontier: add (uid, component)
         RemComp<GeneratingAnomalyGeneratorComponent>(uid);

@@ -42,7 +42,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
     {
         var protoMan = collection.Resolve<IPrototypeManager>();
         var loadoutSystem = collection.Resolve<IEntityManager>().System<LoadoutSystem>();
-        RestrictionsContainer.DisposeAllChildren();
+        RestrictionsContainer.RemoveAllChildren();
 
         if (_groupProto.MinLimit > 0)
         {
@@ -62,7 +62,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             });
         }
 
-        if (protoMan.TryIndex(loadout.Role, out var roleProto) && roleProto.Points != null && loadout.Points != null)
+        if (protoMan.Resolve(loadout.Role, out var roleProto) && roleProto.Points != null && loadout.Points != null)
         {
             RestrictionsContainer.AddChild(new Label()
             {
@@ -71,7 +71,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             });
         }
 
-        LoadoutsContainer.DisposeAllChildren();
+        LoadoutsContainer.RemoveAllChildren();
 
         // Get all loadout prototypes for this group.
         // Frontier: hide loadout effects, support for subgroups

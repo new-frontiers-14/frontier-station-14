@@ -95,6 +95,7 @@ namespace Content.Shared.VendingMachines
 
         public string? NextItemToEject;
 
+        [DataField]
         public bool Broken;
 
         /// <summary>
@@ -166,6 +167,12 @@ namespace Content.Shared.VendingMachines
         /// </summary>
         [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan NextEmpEject = TimeSpan.Zero;
+
+        /// <summary>
+        /// Audio entity used during restock in case the doafter gets canceled.
+        /// </summary>
+        [DataField]
+        public EntityUid? RestockStream;
 
         #region Client Visuals
         /// <summary>
@@ -250,15 +257,18 @@ namespace Content.Shared.VendingMachines
         // End Frontier: taxes, cash slot
     }
 
-    [Serializable, NetSerializable]
-    public sealed class VendingMachineInventoryEntry
+    [Serializable, NetSerializable, DataDefinition]
+    public sealed partial class VendingMachineInventoryEntry
     {
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public InventoryType Type;
-        [ViewVariables(VVAccess.ReadWrite)]
+
+        [DataField]
         public string ID;
-        [ViewVariables(VVAccess.ReadWrite)]
+
+        [DataField]
         public uint Amount;
+
         public VendingMachineInventoryEntry(InventoryType type, string id, uint amount)
         {
             Type = type;
@@ -348,6 +358,11 @@ namespace Content.Shared.VendingMachines
         public TimeSpan? DenyEnd;
 
         public TimeSpan? DispenseOnHitEnd;
+<<<<<<< HEAD
         public int CashSlotBalance; // Frontier
+=======
+
+        public bool Broken;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 }

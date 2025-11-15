@@ -41,6 +41,22 @@ public sealed class ScaleCommand : ToolshedCommand
         }
     }
 
+<<<<<<< HEAD
+=======
+    [CommandImplementation("multiplyvector")]
+    public IEnumerable<EntityUid> Multiply([PipedArgument] IEnumerable<EntityUid> input, Vector2 factor)
+    {
+        _scaleVisuals ??= GetSys<SharedScaleVisualsSystem>();
+
+        foreach (var ent in input)
+        {
+            var scale = _scaleVisuals.GetSpriteScale(ent) * factor;
+            _scaleVisuals.SetSpriteScale(ent, scale);
+            yield return ent;
+        }
+    }
+
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     [CommandImplementation("multiplywithfixture")]
     public IEnumerable<EntityUid> MultiplyWithFixture([PipedArgument] IEnumerable<EntityUid> input, float factor)
     {

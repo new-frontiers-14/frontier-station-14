@@ -1,6 +1,10 @@
 using Content.Shared.Eui;
 using Content.Shared.Roles;
+<<<<<<< HEAD
 using Robust.Shared.Prototypes; // Frontier
+=======
+using Robust.Shared.Prototypes;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Ghost.Roles
@@ -14,11 +18,10 @@ namespace Content.Shared.Ghost.Roles
         public string Rules { get; set; }
         public ProtoId<GhostRolePrototype>? Prototype { get; set; } // Frontier: store GhostRolePrototype for whitelist lookup
 
-        // TODO ROLE TIMERS
-        // Actually make use of / enforce this requirement?
-        // Why is this even here.
-        // Move to ghost role prototype & respect CCvars.GameRoleTimerOverride
-        public HashSet<JobRequirement>? Requirements { get; set; }
+        /// <summary>
+        /// A list of all antag and job prototype IDs of the ghost role and its mind role(s).
+        /// </summary>
+        public (List<ProtoId<JobPrototype>>?,List<ProtoId<AntagPrototype>>?)  RolePrototypes;
 
         /// <inheritdoc cref="GhostRoleKind"/>
         public GhostRoleKind Kind { get; set; }

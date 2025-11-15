@@ -20,8 +20,13 @@ namespace Content.Server.Entry
             "LightFade",
             "HolidayRsiSwap",
             "OptionsVisualizer",
+<<<<<<< HEAD
             "MultipartMachineGhost",
             "BlueprintLatheClientState" // Frontier
+=======
+            "AnomalyScannerScreen",
+            "MultipartMachineGhost"
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
         };
     }
 }

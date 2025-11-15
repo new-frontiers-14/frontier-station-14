@@ -6,11 +6,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 18000 #5 hrs
+      time: 5h
     - !type:DepartmentTimeRequirement
       department: Security
+<<<<<<< HEAD
       time: 36000 #10 hrs
   # weight: 5 # Frontier
+=======
+      time: 10h
+  weight: 5
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos

@@ -32,7 +32,13 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenInventoryMenu = "OpenInventoryMenu";
         public static readonly BoundKeyFunction SmartEquipBackpack = "SmartEquipBackpack";
         public static readonly BoundKeyFunction SmartEquipBelt = "SmartEquipBelt";
+<<<<<<< HEAD
         public static readonly BoundKeyFunction SmartEquipWallet = "SmartEquipWallet"; // Frontier
+=======
+        public static readonly BoundKeyFunction SmartEquipPocket1 = "SmartEquipPocket1";
+        public static readonly BoundKeyFunction SmartEquipPocket2 = "SmartEquipPocket2";
+        public static readonly BoundKeyFunction SmartEquipSuitStorage = "SmartEquipSuitStorage";
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
         public static readonly BoundKeyFunction OpenBackpack = "OpenBackpack";
         public static readonly BoundKeyFunction OpenBelt = "OpenBelt";
         public static readonly BoundKeyFunction OpenWallet = "OpenWallet"; // Frontier

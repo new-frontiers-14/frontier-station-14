@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+<<<<<<< HEAD
 using Content.Shared.DoAfter;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
@@ -12,18 +13,23 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Content.Shared.Abilities; // Frontier
+=======
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 namespace Content.Shared.RatKing;
 
 public abstract class SharedRatKingSystem : EntitySystem
 {
+<<<<<<< HEAD
     [Dependency] private readonly IGameTiming _gameTiming = default!; // Used for rummage cooldown
     [Dependency] private readonly INetManager _net = default!;
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
     [Dependency] protected readonly IRobustRandom Random = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -31,14 +37,16 @@ public abstract class SharedRatKingSystem : EntitySystem
         SubscribeLocalEvent<RatKingComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<RatKingComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<RatKingComponent, RatKingOrderActionEvent>(OnOrderAction);
-
         SubscribeLocalEvent<RatKingServantComponent, ComponentShutdown>(OnServantShutdown);
+<<<<<<< HEAD
 
         SubscribeLocalEvent<RatKingRummageableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerb);
         SubscribeLocalEvent<RatKingRummageableComponent, RatKingRummageDoAfterEvent>(OnDoAfterComplete);
 
         SubscribeLocalEvent<RatKingRummageableComponent, ComponentInit>(OnComponentInit); // Goobstation - #660
         SubscribeLocalEvent<RummagerComponent, ComponentInit>(OnRummgerComponentInit); // Frontier
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     }
 
     private void OnStartup(EntityUid uid, RatKingComponent component, ComponentStartup args)
@@ -111,6 +119,7 @@ public abstract class SharedRatKingSystem : EntitySystem
         _action.StartUseDelay(component.ActionOrderLooseEntity);
     }
 
+<<<<<<< HEAD
     public void OnComponentInit(EntityUid uid, RatKingRummageableComponent component, ComponentInit args) // Goobstation - #660 Disposal unit rummage cooldown now start on spawn to prevent rummage abuse.
     {
         component.LastLooted = _gameTiming.CurTime;
@@ -178,6 +187,8 @@ public abstract class SharedRatKingSystem : EntitySystem
             Spawn(spawn, Transform(uid).Coordinates);
     }
 
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     public void UpdateAllServants(EntityUid uid, RatKingComponent component)
     {
         foreach (var servant in component.Servants)
@@ -195,10 +206,4 @@ public abstract class SharedRatKingSystem : EntitySystem
     {
 
     }
-}
-
-[Serializable, NetSerializable]
-public sealed partial class RatKingRummageDoAfterEvent : SimpleDoAfterEvent
-{
-
 }

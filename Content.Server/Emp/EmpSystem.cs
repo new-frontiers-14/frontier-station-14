@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.Components;
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
 using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
+<<<<<<< HEAD
 using Content.Shared.Examine;
 using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects;
@@ -17,11 +21,14 @@ using Robust.Shared; // Frontier: EMP Blast PVS
 using Content.Shared.Verbs; // Frontier: examine verb
 using Robust.Shared.Utility; // Frontier: examine verb
 using Content.Server.Examine; // Frontier: examine verb
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
 namespace Content.Server.Emp;
 
 public sealed class EmpSystem : SharedEmpSystem
 {
+<<<<<<< HEAD
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS
@@ -37,6 +44,11 @@ public sealed class EmpSystem : SharedEmpSystem
         SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
         SubscribeLocalEvent<EmpOnTriggerComponent, GetVerbsEvent<ExamineVerb>>(OnEmpTriggerExamine); // Frontier
         SubscribeLocalEvent<EmpDescriptionComponent, GetVerbsEvent<ExamineVerb>>(OnEmpDescriptorExamine); // Frontier
+=======
+    public override void Initialize()
+    {
+        base.Initialize();
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
@@ -44,6 +56,7 @@ public sealed class EmpSystem : SharedEmpSystem
         //SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive); // Frontier: Upstream - #28984
     }
 
+<<<<<<< HEAD
     /// <summary>
     ///   Triggers an EMP pulse at the given location, by first raising an <see cref="EmpAttemptEvent"/>, then a raising <see cref="EmpPulseEvent"/> on all entities in range.
     /// </summary>
@@ -217,6 +230,8 @@ public sealed class EmpSystem : SharedEmpSystem
         args.Handled = true;
     }
 
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
     private void OnRadioSendAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioSendAttemptEvent args)
     {
         args.Cancelled = true;
@@ -238,16 +253,3 @@ public sealed class EmpSystem : SharedEmpSystem
     //}
 
 }
-
-/// <summary>
-/// Raised on an entity before <see cref="EmpPulseEvent"/>. Cancel this to prevent the emp event being raised.
-/// </summary>
-public sealed partial class EmpAttemptEvent : CancellableEntityEventArgs
-{
-}
-
-[ByRefEvent]
-public record struct EmpPulseEvent(float EnergyConsumption, bool Affected, bool Disabled, TimeSpan Duration);
-
-[ByRefEvent]
-public record struct EmpDisabledRemoved();

@@ -188,12 +188,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         {
             if (args.DistanceThreshold != null)
             {
-                if (!_interaction.InRangeUnobstructed(args.User, args.Target.Value, args.DistanceThreshold.Value))
-                    return true;
-            }
-            else
-            {
-                if (!_interaction.InRangeUnobstructed(args.User, args.Target.Value))
+                if (!_interaction.InRangeAndAccessible(args.User, args.Target.Value, args.DistanceThreshold.Value))
                     return true;
             }
         }
@@ -206,11 +201,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 if (!_interaction.InRangeUnobstructed(args.User,
                         args.Used.Value,
                         args.DistanceThreshold.Value))
-                    return true;
-            }
-            else
-            {
-                if (!_interaction.InRangeUnobstructed(args.User,args.Used.Value))
                     return true;
             }
         }

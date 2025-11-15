@@ -198,10 +198,15 @@
     sprite: Clothing/Head/Misc/fancycrown.rsi
   - type: TypingIndicatorClothing
     proto: regal
+<<<<<<< HEAD
  # - type: MobPrice # Frontier - remove Mobprice
  #   price: 3000 # Frontier - remove Mobprice
   - type: StaticPrice # Frontier
     price: 3000 # Frontier
+=======
+  - type: StaticPrice
+    price: 3000
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8
   - type: AddAccentClothing
     accent: MobsterAccent
   - type: NFTreasure # Frontier
@@ -318,15 +323,17 @@
   - type: Clothing
     slots:
     - HEAD
-  - type: Food
+  - type: Edible
+    edible: Drink
     solution: drink
-    useSound: /Audio/Items/drink.ogg
-    eatMessage: drink-component-try-use-drink-success-slurp
     delay: 0.5
     forceFeedDelay: 1.5
+    utensil: Spoon
   - type: FlavorProfile
     flavors:
       - water
+  - type: DrainableSolution
+    solution: drink
   - type: SolutionContainerManager
     solutions:
       drink:

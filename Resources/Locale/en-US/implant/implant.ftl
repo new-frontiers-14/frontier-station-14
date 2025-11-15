@@ -25,6 +25,7 @@ implanter-label-draw = [color=red]{$implantName}[/color]
     Mode: [color=white]{$modeString}[/color]
 
 implanter-contained-implant-text = [color=green]{$desc}[/color]
+<<<<<<< HEAD
 
 ## Implant Popups
 
@@ -34,3 +35,5 @@ scramble-implant-activated-popup = Your appearance shifts and changes!
 
 deathrattle-implant-dead-message = {$user}{$specie} has died at {$grid}{$position}.
 deathrattle-implant-critical-message = {$user}{$specie} life signs critical, immediate assistance required at {$grid}{$position}.
+=======
+>>>>>>> e917c8e067e70fa369bf8f1f393a465dc51caee8

@@ -40,7 +40,7 @@ public sealed partial class LoadoutContainer : BoxContainer
             SelectButton.TooltipSupplier = _ => tooltip;
         }
 
-        if (_protoManager.TryIndex(proto, out var loadProto))
+        if (_protoManager.Resolve(proto, out var loadProto))
         {
             // Frontier: overrideable prototype fields (description, name, icon [via entity])
             Price.Text = "$" + loadProto.Price;
