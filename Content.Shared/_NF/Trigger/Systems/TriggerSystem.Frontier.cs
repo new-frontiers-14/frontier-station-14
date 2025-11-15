@@ -1,13 +1,16 @@
-using Content.Server._NF.Explosion.Components;
+using Content.Shared._NF.Trigger.Components;
 using Content.Shared.Implants;
 using Content.Shared.Body.Components;
 using Content.Shared._NF.Interaction.Events;
 using Content.Shared.Projectiles;
+using Robust.Shared.Containers;
 
-namespace Content.Server.Explosion.EntitySystems;
+namespace Content.Shared.Trigger.Systems;
 
 public sealed partial class TriggerSystem
 {
+
+    [Dependency] private readonly SharedContainerSystem _container = default!;
     private void NFInitialize()
     {
         SubscribeLocalEvent<TriggerOnBeingGibbedComponent, BeforeGibbedEvent>(OnBeingGibbed);

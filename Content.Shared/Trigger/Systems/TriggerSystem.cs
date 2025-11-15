@@ -12,7 +12,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Audio.Systems;
-
+using Content.Shared.Body.Components; // Frontier: Gib organs
 
 namespace Content.Shared.Trigger.Systems;
 
@@ -40,7 +40,7 @@ public sealed partial class TriggerSystem : EntitySystem
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
     [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
-
+    // [Dependency] private readonly StationSystem _station = default!; // Frontier: medical insurance
     public const string DefaultTriggerKey = "trigger";
 
     public override void Initialize()
@@ -55,6 +55,7 @@ public sealed partial class TriggerSystem : EntitySystem
         InitializeTimer();
         InitializeSpawn();
         InitializeVoice();
+        NFInitialize(); // Frontier
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Explosion.Components;
+namespace Content.Shared._NF.Trigger.Components;
 
 /// <summary>
 /// Triggers an entity when it's being gibbed.
