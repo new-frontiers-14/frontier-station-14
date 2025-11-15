@@ -53,19 +53,19 @@
         Structural: 45
     soundHit:
       path: /Audio/Effects/bite.ogg
-#  - type: SolutionContainerManager
-#    solutions:
-#      melee:
-#        maxVol: 10
-#  - type: SolutionRegeneration
-#    solution: melee
-#    generated:
-#      reagents:
-#      - ReagentId: Toxin
-#        Quantity: 0.5
-#  - type: MeleeChemicalInjector
-#    transferAmount: 0.5
-#    solution: melee
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 20
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: NFZombieBiteToxin # ~3-4 bites - slow down, ~8-9 bites - poison damage
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 1
+    solution: melee
   - type: Butcherable
     spawned:
     - id: NFSpawnZombieLoot
@@ -98,6 +98,7 @@
       Female: FemaleHuman
       Unsexed: MaleHuman
   - type: Vocalizer
+    hideChat: true
     minVocalizeInterval: 30
     maxVocalizeInterval: 120
   - type: DatasetVocalizer
@@ -176,12 +177,36 @@
     - state: zombie
     - state: suit-torn-virology-bio
       map: ["zombieRandomSuit"]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
   - type: RandomSprite
     available:
     - zombieRandomSuit:
         suit-torn-virology-bio: ""
         suit-torn-security-bio: ""
         suit-torn-security: ""
+      zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
 
 - type: entity
   parent: NFMobZombieBase
@@ -193,12 +218,37 @@
     - state: zombie
     - state: suit-torn-engineer
       map: ["zombieRandomSuit"]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
   - type: RandomSprite
     available:
     - zombieRandomSuit:
         suit-torn-engineer: ""
         suit-torn-pilot: ""
         suit-torn-science: ""
+        suit-torn-medic: ""
+      zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
 
 # region radioactive
 - type: entity
@@ -210,6 +260,18 @@
     layers:
     - state: zombie
     - state: suit-torn-radiation
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
   - type: RadiationSource
     intensity: 0.3
   - type: PointLight
@@ -218,6 +280,19 @@
     softness: 0.5
     color: LightGreen
     castShadows: false
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
 
 # region exploding
 - type: entity
@@ -229,6 +304,31 @@
     layers:
     - state: zombie
     - state: suit-torn-cargo
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
   - type: SingularityDistortion
     intensity: 500
     falloffPower: 5
@@ -282,9 +382,34 @@
     layers:
     - state: zombie
     - state: suit-torn-fire
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
     - sprite: Mobs/Effects/onfire.rsi
       state: Generic_mob_burning
       shader: unshaded
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
   - type: Flammable
     fireSpread: true
     canResistFire: true
@@ -314,6 +439,31 @@
     - state: zombie
       color: "#00eeff"
     - state: suit-torn-atmos-winter
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
   - type: MeleeWeapon
     damage:
       types:
@@ -358,6 +508,31 @@
     layers:
     - state: zombie
     - state: suit-torn-clown
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
   - type: Butcherable
     spawned:
     - id: NFSpawnZombieLoot
@@ -389,6 +564,53 @@
       collection: ZombieClownScreams
       params:
         variation: 0.125
+
+# region fast
+- type: entity
+  parent: [MobMovementSpeedModifierMelee, NFMobZombieBase]
+  id: NFMobZombieFast
+  #categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie-fast
+    - state: suit-torn-engineer
+      map: ["zombieRandomSuit"]
+    - state: zombie-fast-claws
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-security: ""
+        suit-torn-engineer: ""
+        suit-torn-pilot: ""
+        suit-torn-science: ""
+        suit-torn-medic: ""
+      zombieChestBloodSplatterRandom:
+        Chest_Brute_30: LiquidsBiologicalHumanBlood
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_30: LiquidsBiologicalHumanBlood
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
 
 # region boss
 - type: entity

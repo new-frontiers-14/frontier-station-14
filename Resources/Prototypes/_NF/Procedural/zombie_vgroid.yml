@@ -222,7 +222,10 @@
       weight: 0.16
     - id: NFVGRoidSpawnZombieClown
       amount: 1
-      weight: 0.1
+      weight: 0.05
+    - id: NFVGRoidSpawnZombieFast
+      amount: 1
+      weight: 0.05
 
 - type: entityTable
   id: SpawnMobZombieRandomSpecial
@@ -233,7 +236,10 @@
       weight: 0.3
     - id: NFVGRoidSpawnZombieClown
       amount: 1
-      weight: 0.3
+      weight: 0.1
+    - id: NFVGRoidSpawnZombieFast
+      amount: 1
+      weight: 0.2
     - id: NFVGRoidSpawnZombieExploding
       amount: 1
       weight: 0.15
@@ -263,6 +269,13 @@
   table: !type:GroupSelector
     children:
     - id: NFVGRoidSpawnZombieClown
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobZombieFastTable
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieFast
       amount: 1
 
 - type: entityTable

@@ -24,15 +24,17 @@
   table: !type:GroupSelector
     children:
     - id: NFMobZombieSuitRadiation
-      weight: 0.3
+      weight: 0.25
     - id: NFMobZombieClown
-      weight: 0.3
+      weight: 0.15
     - id: NFMobZombieExploding
       weight: 0.15
     - id: NFMobZombieSuitFire
       weight: 0.125
     - id: NFMobZombieSuitAtmos
       weight: 0.125
+    - id: NFMobZombieFast
+      weight: 0.2
 
 - type: entityTable
   id: TableMobZombieRadiation
@@ -63,6 +65,12 @@
   table: !type:GroupSelector
     children:
     - id: NFMobZombieClown
+
+- type: entityTable
+  id: TableMobZombieFast
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieFast
 
 - type: entityTable
   id: TableMobZombieOdysseus
@@ -178,6 +186,23 @@
     offset: 0.0
     table: !type:NestedSelector
       tableId: TableMobZombieClown
+      prob: 1.00
+
+- type: entity
+  parent: MarkerBase
+  id: NFSpawnZombieFast
+  name: fast zombie spawner
+  suffix: AI, Hostile, No Infection
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Mobs/Zombies/zombie_human.rsi
+        state: icon-fast
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableMobZombieFast
       prob: 1.00
 
 - type: entity
@@ -308,6 +333,15 @@
   - type: ConditionalSpawner
     prototypes:
     - NFMobZombieClown
+
+- type: entity
+  parent: MarkerBase
+  id: NFVGRoidSpawnZombieFast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobZombieFast
 
 - type: entity
   parent: MarkerBase
