@@ -103,17 +103,29 @@
   id: TableDungeonLootNpcMercenariesFluff
   table: !type:GroupSelector
     children:
-    - id: Flash
-    - id: Zipties
-    - id: Handcuffs
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingEyesGlassesMercenary
-    - id: ClothingEyesHudSecurity
-    - id: ClothingEyesHudBountyHunter
-    - id: ClothingEyesGlassesNoir
-    - id: ClothingMaskGasSecurity
-    - id: ClothingMaskGasMercenary
-    - id: ClothingMaskGasSwat
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: Flash
+      - id: Zipties
+      - id: Handcuffs
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: ClothingEyesGlassesSecurity
+      - id: ClothingEyesGlassesMercenary
+      - id: ClothingEyesHudSecurity
+      - id: ClothingEyesHudBountyHunter
+      - id: ClothingEyesGlassesNoir
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: ClothingMaskGasSecurity
+      - id: ClothingMaskGasMercenary
+      - id: ClothingMaskGasSwat
 
 - type: entity
   parent: MarkerBasePlaceFree
@@ -131,11 +143,35 @@
   id: TableDungeonLootNpcMercenariesBlueprints
   table: !type:GroupSelector
     children:
-    - id: NFBlueprintPouchMercenary
-    - id: NFBlueprintAmmoOverpressureMercenary
-    - id: NFBlueprintAmmo60Mercenary
-    - id: NFBlueprintHighCapPistol35MagMercenary
-    - id: NFBlueprintHighCapRifle20MagMercenary
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintPouchMercenary
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFBlueprintAmmoOverpressureMercenary
+      - id: NFBlueprintAmmo60Mercenary
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: NFBlueprintHighCapPistol35MagMercenary
+      - id: NFBlueprintHighCapRifle20MagMercenary
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintJackdawMercenary
+      - id: NFBlueprintLecterMercenary
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: NFWeaponSubMachineGunWt550Expedition
+      - id: NFWeaponSubMachineGunDrozdExpedition
 
 - type: entity
   parent: MarkerBasePlaceFree
