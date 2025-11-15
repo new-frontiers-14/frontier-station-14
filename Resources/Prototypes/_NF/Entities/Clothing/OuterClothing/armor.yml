@@ -23,6 +23,31 @@
     damageCoefficient: 0.60
   - type: GroupExamine
 
+# mercenary armored bio suit
+- type: entity
+  parent: ClothingOuterBioGeneral
+  id: ClothingOuterBioArmoredMercenary
+  name: mercenary bio suit
+  description: Favorite protective gear of any syndicate chemical warfare enjoyers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Bio/mercenary.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Bio/mercenary.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.8
+        Piercing: 0.8
+        Blunt: 0.84
+        Caustic: 0.4
+        Poison: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.84
+
 # Syndicate armored bio suit
 - type: entity
   parent:
