@@ -24,4 +24,12 @@ public sealed partial class RadioSpeakerComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool Enabled;
+
+    //Frontier: radio output volume
+    /// <summary>
+    /// The output chat type when a message is received.
+    /// </summary>
+    [DataField]
+    public InGameICChatType OutputChatType = InGameICChatType.Whisper;
+    // Frontier Upstream TODO: fix types
 }

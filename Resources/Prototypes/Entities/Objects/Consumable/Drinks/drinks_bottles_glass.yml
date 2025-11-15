@@ -53,6 +53,8 @@
         transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 16
 
 - type: entity
   abstract: true
@@ -155,7 +157,7 @@
   parent: [DrinkVisualsAllFilled, DrinkBottleGlassBaseFull]
   id: DrinkCognacBottleFull
   name: cognac bottle
-  description: A sweet and strongly alcoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time.
+  description: A sweet and strongly alcoholic drink, made after numerous distillations and years of maturing. # Frontier - description change
   components:
   - type: SolutionContainerManager
     solutions:
@@ -511,15 +513,20 @@
   parent: [DrinkVisualsOpenable, DrinkBottleGlassSmallBaseFull]
   id: DrinkSakeBottleFull
   name: small sake bottle
-  description: The regret of the next morning seems to be nipping on the bottle too.
+  # Frontier: haiku description
+  description: |
+    Spirit, clear or foggy
+    Taken hot or chilled on ice.
+    Fill a cup, drink up!
+  # End Frontier
   components:
   - type: SolutionContainerManager
     solutions:
       drink:
         reagents:
         - ReagentId: Sake
-          Quantity: 50
+          Quantity: 100 # Frontier: 50<100
   - type: Label
     currentLabel: reagent-name-sake
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/sakebottle.rsi
+    sprite: _NF/Objects/Consumable/Drinks/sakebottle.rsi # Frontier: use _NF version
