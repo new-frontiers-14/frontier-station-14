@@ -6,6 +6,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Random; //Frontier
 
 namespace Content.Server.NPC.Systems;
 
@@ -123,6 +124,13 @@ public sealed partial class NPCCombatSystem
 
             var worldPos = _transform.GetWorldPosition(xform);
             var targetPos = _transform.GetWorldPosition(targetXform);
+            
+            // Frontier -- Ranged NPC miss chance
+            if (_random.Prob(comp.MissChance))
+            {
+                targetPos = targetPos + _random.NextVector2(1.0f, 2.0f);
+            }
+            // End Frontier
 
             // We'll work out the projected spot of the target and shoot there instead of where they are.
             var distance = (targetPos - worldPos).Length();
