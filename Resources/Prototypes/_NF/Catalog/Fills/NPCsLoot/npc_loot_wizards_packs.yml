@@ -124,27 +124,28 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash1000
-      prob: 0.95
-      amount: 1
-    - id: SpaceCash500
-      prob: 1
-      amount: 1
-    - id: SpaceCash500
-      prob: 0.25
+    # SpaceCash - from 2500 to 5000 spesos
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.35
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.4
       amount: 2
-    # Wizard Stuff
+    - id: SpaceCash5000
+      orGroup: SpaceCash
+      prob: 0.25
+    # MagicItems
     - id: SpawnRandomSpellScrollWizard
+      orGroup: MagicItems
       prob: 0.15
     - id: ShardCrystalRandom
+      orGroup: MagicItems
       prob: 0.15
       amount: 1
-    # Rare Wizard Stuff
     - id: SpawnRandomMagicItemsWizard
+      orGroup: MagicItems
       prob: 0.05
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: [ NFWizardGiftBoxApprentice, NFBlueWizardGiftBox ]
@@ -172,29 +173,31 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash1000
-      prob: 1
-      amount: 1
-    - id: SpaceCash500
-      prob: 1
-      amount: 1
-    - id: SpaceCash500
-      prob: 0.5
+    # SpaceCash - from 2500 to 5000 spesos
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.35
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.4
       amount: 2
-    # Wizard Stuff
+    - id: SpaceCash5000
+      orGroup: SpaceCash
+      prob: 0.25
+    # MagicItems
     - id: SpawnRandomSpellScrollWizard
+      orGroup: MagicItems
       prob: 0.45
     - id: SpawnRandomSpellScrollWizard
+      orGroup: MagicItems
       prob: 0.15
     - id: ShardCrystalRandom
+      orGroup: MagicItems
       prob: 0.5
       amount: 1
-    # Rare Wizard Stuff
     - id: SpawnRandomMagicItemsWizard
+      orGroup: MagicItems
       prob: 0.1
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: [ NFWizardGiftBoxAdept, NFBlueWizardGiftBox ]
@@ -222,29 +225,31 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # Cash
-    - id: SpaceCash1000
-      prob: 1
-      amount: 1
-    - id: SpaceCash500
-      prob: 1
+    # SpaceCash - from 2500 to 5000 spesos
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.35
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.4
       amount: 2
-    - id: SpaceCash500
-      prob: 0.75
-      amount: 2
-    # Wizard Stuff
+    - id: SpaceCash5000
+      orGroup: SpaceCash
+      prob: 0.25
+    # MagicItems
     - id: SpawnRandomSpellScrollWizard
+      orGroup: MagicItems
       prob: 0.85
     - id: SpawnRandomSpellScrollWizard
+      orGroup: MagicItems
       prob: 0.45
     - id: ShardCrystalRandom
+      orGroup: MagicItems
       prob: 0.75
       amount: 1
-    # Rare Wizard Stuff
     - id: SpawnRandomMagicItemsWizard
+      orGroup: MagicItems
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: [ NFWizardGiftBoxMaster, NFBlueWizardGiftBox ]

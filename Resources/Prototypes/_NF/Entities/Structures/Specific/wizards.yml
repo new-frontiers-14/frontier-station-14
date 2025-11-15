@@ -52,6 +52,15 @@
   suffix: 6.66kW, Anchored
   description: An infernal core sealed in a jar, it's rage contained and harnessed through wizardry to provide power.
   components:
+  - type: PowerSupplier # Infernal core you see
+    supplyRate: 6666
+    supplyRampRate: 666
+    supplyRampTolerance: 666
+  - type: GeneratorExhaustGas
+    gasType: WaterVapor
+    moleRatio: 0.35
+  - type: RadiationSource
+    intensity: 1
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
     layers:
@@ -63,20 +72,20 @@
     size: Large
     shape:
     - 0,0,3,3
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    state: infernal-core
   - type: Animateable
   - type: Clickable
   - type: InteractionOutline
   - type: MovedByPressure
-  - type: Pullable
-  - type: DamageExaminable
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Effects/drop.ogg
       params:
         volume: 2
-  - type: PowerMonitoringDevice
-    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
-    state: infernal-core
   - type: Physics
     bodyType: Static
     canCollide: True
@@ -85,19 +94,6 @@
     volume: -5
     sound:
       path: /Audio/Ambience/Objects/fireplace.ogg
-  - type: PowerSupplier
-    supplyRate: 6666
-  - type: NodeContainer
-    examinable: true
-    nodes:
-      output:
-        !type:CableDeviceNode
-        nodeGroupID: Apc
-  - type: GeneratorExhaustGas
-    gasType: WaterVapor
-    moleRatio: 0.35
-  - type: RadiationSource
-    intensity: 1
 
 #region singing rock
 - type: entity
