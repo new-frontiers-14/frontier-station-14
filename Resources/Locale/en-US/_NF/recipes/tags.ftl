@@ -13,3 +13,4 @@ construction-graph-tag-crystal-orange = an orange crystal shard
 construction-graph-tag-mothroach-hide = a mothroach hide
 construction-graph-tag-syringe = a syringe
 construction-graph-tag-hotdog = hotdog
+construction-graph-tag-nf-bloodpack = a bloodpack

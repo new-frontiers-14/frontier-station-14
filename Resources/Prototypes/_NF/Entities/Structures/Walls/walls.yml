@@ -2783,3 +2783,20 @@
   parent: [NFBaseUraniumGolemVein, NFWallAndesiteCobblebrickUranium]
   suffix: Uranium Golem
 # endregion AndesiteCobblebrick Mobs
+
+#region Indestructable Walls
+- type: entity
+  parent: BaseWall
+  id: WallUraniumIndestructible
+  name: uranium wall
+  suffix: indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/uranium.rsi
+  - type: Icon
+    sprite: Structures/Walls/uranium.rsi
+  - type: IconSmooth
+    key: walls
+    base: uranium
+
+# endregion Indestructable Walls

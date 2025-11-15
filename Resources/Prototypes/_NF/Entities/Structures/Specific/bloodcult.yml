@@ -1,4 +1,4 @@
-# Salvage expedition objective
+#region Salvage expedition objective
 - type: entity
   parent: CybersunDataMiner
   id: BloodCollector
@@ -60,7 +60,7 @@
         - ReagentId: Blood
           Quantity: 1000
 
-# Wall for POI
+#region Wall for POI
 - type: entity
   parent: BaseWall
   id: WallCultIndestructible
@@ -78,6 +78,7 @@
     key: walls
     base: cult
 
+#region Window for POI
 - type: entity
   parent: BaseStructure
   id: WindowCultIndestructibleInvisible
@@ -118,7 +119,7 @@
   - type: Airtight
   - type: BlockWeather
 
-# Blood Cult Airlock
+#region Blood Cult Airlock
 - type: entity
   parent: AirlockGlass
   id: AirlockBloodCult
@@ -138,7 +139,7 @@
         layer:
         - AirlockLayer
 
-# Glowing Floor Thingy
+#region Glowing Floor Thingy
 - type: entity
   id: BloodCultGlowingFloor
   name: blood cult glowing floor
@@ -160,7 +161,41 @@
       layers:
       - state: prop-6
 
-# Mini gravity generator
+- type: entity
+  parent: WizardGlowingFloorBlue
+  id: BloodCultGlowingFloorRune
+  name: rune of blood
+  components:
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: BloodCultMagicColors
+        rune_inner:
+          rune-inner-01: BloodCultMagicColors
+          rune-inner-02: BloodCultMagicColors
+          rune-inner-03: BloodCultMagicColors
+          rune-inner-04: BloodCultMagicColors
+          rune-inner-05: BloodCultMagicColors
+          rune-inner-06: BloodCultMagicColors
+          rune-inner-07: BloodCultMagicColors
+        rune_center:
+          rune-center-01: BloodCultMagicColors
+          rune-center-02: BloodCultMagicColors
+          rune-center-03: BloodCultMagicColors
+          rune-center-04: BloodCultMagicColors
+          rune-center-05: BloodCultMagicColors
+          rune-center-06: BloodCultMagicColors
+          rune-center-07: BloodCultMagicColors
+        rune_words:
+          rune-words-01: BloodCultMagicColors
+          rune-words-02: BloodCultMagicColors
+          rune-words-03: BloodCultMagicColors
+          rune-words-04: BloodCultMagicColors
+          rune-words-05: BloodCultMagicColors
+          rune-words-06: BloodCultMagicColors
+          rune-words-07: BloodCultMagicColors
+
+#region Mini gravity generator
 - type: entity
   id: BloodCultGravityGeneratorMini
   parent: [BaseStructureDisableToolUse, GravityGeneratorMini]
@@ -184,7 +219,7 @@
     castShadows: false
     netsync: false
 
-# Wall Light
+#region Wall Light
 - type: entity
   name: blood cult light
   description: "How is this thing glowing? Why?"
@@ -209,7 +244,7 @@
     offset: "0, -0.5"
     color: "#990000"
 
-# Props and decoration
+#region Props and decoration
 - type: entity
   parent: XenoWardingTower
   id: BloodCultProp01
@@ -224,7 +259,7 @@
       shader: unshaded
 
 - type: entity
-  parent: Autolathe
+  parent: BaseLatheLube
   id: BloodCultProp02
   name: blood cult forge
   description: A forge for weapon and armor production.
@@ -242,6 +277,8 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScrollCultForge
   - type: MaterialStorage
     whitelist:
       tags:
@@ -306,3 +343,22 @@
     - state: prop-7
     - state: unshaded-0
       shader: unshaded
+
+- type: entity
+  parent: StaffRechargerWizard
+  id: StaffRechargerCult
+  name: blood cult staff altar
+  description: A cursed attuned altar that can replenish vile energies of cultist's staffs.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/recharger_altar_cult.rsi
+  - type: Machine
+    board: ScrollCultStaffRechargerAltar
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        name: staff-charger-slot-cult-name-default
+        whitelist:
+          components:
+          - BloodCultStaffRechargeable
