@@ -36,12 +36,21 @@ public sealed class ToiletSystem : EntitySystem
             Dirty(ent);
         }
 
-        if (_random.Prob(0.3f)
-            && TryComp<PlungerUseComponent>(ent, out var plunger))
+        // Frontier: selectively clog toilets, unclogged toilets don't get free stuff
+        if (TryComp<PlungerUseComponent>(ent, out var plunger))
         {
-            plunger.NeedsPlunger = true;
+            plunger.NeedsPlunger = _random.Prob(ent.Comp.ClogProbability);
+            plunger.Plunged = !plunger.NeedsPlunger;
             Dirty(ent, plunger);
         }
+
+        // if (_random.Prob(0.3f)
+        //     && TryComp<PlungerUseComponent>(ent, out var plunger))
+        // {
+        //     plunger.NeedsPlunger = true;
+        //     Dirty(ent, plunger);
+        // }
+        // End Frontier
 
         UpdateAppearance(ent);
     }

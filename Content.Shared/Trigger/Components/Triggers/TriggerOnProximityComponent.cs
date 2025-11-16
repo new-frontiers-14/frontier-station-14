@@ -4,6 +4,7 @@ using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.Whitelist; // Frontier
 
 namespace Content.Shared.Trigger.Components.Triggers;
 
@@ -88,4 +89,10 @@ public sealed partial class TriggerOnProximityComponent : BaseTriggerOnXComponen
     /// </summary>
     [DataField(customTypeSerializer: typeof(FlagSerializer<CollisionLayer>))]
     public int Layer = (int)(CollisionGroup.MidImpassable | CollisionGroup.LowImpassable | CollisionGroup.HighImpassable);
+
+    /// <summary>
+    /// Frontier: Use Whitelist to trigger
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Whitelist;
 }
