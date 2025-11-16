@@ -521,15 +521,15 @@
         Plastic: 5
 
 - type: entity
-  id: NFRecyclerMachineCircuitboard
+  id: NFSalvageRecyclerMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: recycler machine board
-  description: A machine printed circuit board for a recycler.
+  name: salvage recycler machine board
+  description: A machine printed circuit board for a salvage recycler.
   components:
     - type: Sprite
       state: supply
     - type: MachineBoard
-      prototype: Recycler
+      prototype: NFSalvageRecycler
       requirements:
         Manipulator: 2
       stackRequirements:
