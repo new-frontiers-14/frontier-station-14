@@ -42,6 +42,13 @@
             Radiation: -3
           groups:
             Brute: 3
+      # Prevent the brute damage from exsanguinating patients
+      - !type:ModifyBleedAmount
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        amount: -1.5
+
 
 #impstation
 - type: reagent
