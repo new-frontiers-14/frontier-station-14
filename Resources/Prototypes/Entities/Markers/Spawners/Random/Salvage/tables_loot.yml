@@ -91,15 +91,15 @@
     - id: ScrapGenericMachineAncient # Frontier
       weight: 0.1 # Frontier
 # Frontier: Remove duplicate upstream chem barrels
-#    - !type:GroupSelector 
-#      weight: 2 
-#      children: 
-#      - !type:NestedSelector 
-#        weight: 3 
-#        tableId: RandomChemicalBarrel 
-#      - !type:NestedSelector 
-#        weight: 1 
-#        tableId: RandomChemicalBarrelRadioactive 
+#    - !type:GroupSelector
+#      weight: 2
+#      children:
+#      - !type:NestedSelector
+#        weight: 3
+#        tableId: RandomChemicalBarrel
+#      - !type:NestedSelector
+#        weight: 1
+#        tableId: RandomChemicalBarrelRadioactive
 # End Frontier: Remove duplicate upstream chem barrels
 
 # Treasure: High-value scatterables that don't do a ton.
@@ -199,7 +199,7 @@
     - id: ClothingHeadHatFancyCrown
     - id: GoldenBikeHorn
     - id: ClothingHeadHatCatEars
-      weight: 0.001 # Frontier - 1 in 1000
+      weight: 0.01 # Frontier - 1 in 100
     - id: GoldenPersonalAI
     - id: TreasureCoinDiamond
       amount: !type:RangeNumberSelector
@@ -265,6 +265,7 @@
       - id: ClothingHeadHatWeldingMaskPainted
         weight: 0.1
     - id: ClothingBeltQuiverCrossbowFilledBolt # Frontier
+    - id: NFGlowshroom # Frontier
 
 - type: entityTable
   id: SalvageEquipmentRare
