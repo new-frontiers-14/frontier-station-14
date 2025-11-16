@@ -193,8 +193,6 @@ public sealed class ThrowingSystem : EntitySystem
             }
         }
 
-        var throwEvent = new ThrownEvent(user, uid);
-        RaiseLocalEvent(uid, ref throwEvent, true);
         if (user != null)
             _adminLogger.Add(LogType.Throw, LogImpact.Low, $"{ToPrettyString(user.Value):user} threw {ToPrettyString(uid):entity}");
 
@@ -206,6 +204,14 @@ public sealed class ThrowingSystem : EntitySystem
         var throwSpeed = compensateFriction ? direction.Length() / (flyTime + 1 / tileFriction) : baseThrowSpeed;
         var impulseVector = direction.Normalized() * throwSpeed * physics.Mass;
         _physics.ApplyLinearImpulse(uid, impulseVector, body: physics);
+
+        var thrownEvent = new ThrownEvent(user, uid);
+        RaiseLocalEvent(uid, ref thrownEvent, true);
+        if (user != null)
+        {
+            var throwEvent = new ThrowEvent(user, uid);
+            RaiseLocalEvent(user.Value, ref throwEvent, true);
+        }
 
         if (comp.LandTime == null || comp.LandTime <= TimeSpan.Zero)
         {
@@ -238,6 +244,7 @@ public sealed class ThrowingSystem : EntitySystem
         const float massLimit = 5f;
 
         if (pushEv.Push)
+<<<<<<< HEAD
         {
             // Frontier: apply impulse to buckled object if buckled
             if (TryComp<BuckleComponent>(user, out var buckle) && buckle.BuckledTo is not null)
@@ -253,5 +260,8 @@ public sealed class ThrowingSystem : EntitySystem
             // _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
         }
 
+=======
+            _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 }

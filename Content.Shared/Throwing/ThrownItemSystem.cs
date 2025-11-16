@@ -140,11 +140,18 @@ namespace Content.Shared.Throwing
                 _adminLogger.Add(LogType.ThrowHit, LogImpact.Low,
                     $"{ToPrettyString(thrown):thrown} thrown by {ToPrettyString(component.Thrower.Value):thrower} hit {ToPrettyString(target):target}.");
 
+<<<<<<< HEAD
             if (component.Thrower is not null)// Nyano - Summary: Gotta check if there was a thrower. 
                 RaiseLocalEvent(target, new ThrowHitByEvent(component.Thrower.Value, thrown, target, component), true); // Nyano - Summary: Gotta update for who threw it.
             else
                 RaiseLocalEvent(target, new ThrowHitByEvent(null, thrown, target, component), true); // Nyano - Summary: No thrower. 
             RaiseLocalEvent(thrown, new ThrowDoHitEvent(thrown, target, component), true);
+=======
+            var hitByEv = new ThrowHitByEvent(thrown, target, component);
+            var doHitEv = new ThrowDoHitEvent(thrown, target, component);
+            RaiseLocalEvent(target, ref hitByEv, true);
+            RaiseLocalEvent(thrown, ref doHitEv, true);
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
         }
 
         public override void Update(float frameTime)

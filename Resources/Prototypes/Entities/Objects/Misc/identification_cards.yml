@@ -587,8 +587,13 @@
     job: DeathSquad
 
 - type: entity
+<<<<<<< HEAD
   name: contractor ID card # Frontier: passenger<contractor
   parent: [IDCardStandard, BaseC3SyndicateContraband]
+=======
+  name: passenger ID card
+  parent: [IDCardStandard, BaseChameleon]
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
   id: AgentIDCard
   suffix: Agent
   components:
@@ -604,9 +609,11 @@
     - state: idcontractor # Frontier: idpassenger<idcontractor
       sprite: _NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
+  - type: UIRequiresLock
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
+    verbText: agent-id-open-ui-verb
   - type: Tag
     tags:
     - DoorBumpOpener

@@ -71,6 +71,7 @@
         damage: 400
       behaviors:
       - !type:GibBehavior { }
+<<<<<<< HEAD
 #    - trigger: # Frontier - Removed round remover
 #        !type:DamageTypeTrigger
 #        damageType: Heat
@@ -86,6 +87,38 @@
 #      - !type:PlaySoundBehavior
 #        sound:
 #          collection: MeatLaserImpact
+=======
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState

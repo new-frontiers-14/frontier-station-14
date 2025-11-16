@@ -20,7 +20,11 @@
         Glass: 230
       chemicalComposition:
         Silicon: 20
+<<<<<<< HEAD
     - type: BindToStation # Frontier
+=======
+    - type: Circuitboard
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -291,8 +295,22 @@
     state: cpu_service
   - type: ComputerBoard
     prototype: ComputerSurveillanceWirelessCameraMonitor
+<<<<<<< HEAD
   - type: ComputerTabletopBoard # Frontier
     prototype: ComputerTabletopSurveillanceWirelessCameraMonitor # Frontier
+=======
+  
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: XenoborgCameraMonitorCircuitboard
+  name: xenoborg camera monitor board
+  description: A computer printed circuit board for a xenoborg camera monitor.
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceWirelessXenoborgCameraMonitor
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -620,6 +638,17 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerRoboticsControl
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerXenoborgsControlCircuitboard
+  name: xenoborg control console board
+  description: A computer printed circuit board for a xenoborg control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerXenoborgsControl
 
 - type: entity
   parent: BaseComputerCircuitboard

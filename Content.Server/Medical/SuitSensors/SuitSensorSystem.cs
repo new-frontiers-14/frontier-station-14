@@ -1,8 +1,7 @@
-using System.Numerics;
-using Content.Server.Access.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Emp;
 using Content.Server.Medical.CrewMonitoring;
+<<<<<<< HEAD
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
@@ -29,30 +28,33 @@ using Content.Shared.DeviceNetwork.Components;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server._NF.Medical.SuitSensors; // Frontier
 using Content.Shared.Emp; // Frontier
+=======
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Medical.SuitSensor;
+using Content.Shared.Medical.SuitSensors;
+using Robust.Shared.Timing;
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 namespace Content.Server.Medical.SuitSensors;
 
-public sealed class SuitSensorSystem : EntitySystem
+public sealed class SuitSensorSystem : SharedSuitSensorSystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
+<<<<<<< HEAD
     [Dependency] private readonly IdCardSystem _idCardSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+<<<<<<< HEAD
         //SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn); // Frontier modification
         SubscribeLocalEvent<SuitSensorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SuitSensorComponent, ClothingGotEquippedEvent>(OnEquipped);
@@ -61,9 +63,11 @@ public sealed class SuitSensorSystem : EntitySystem
         SubscribeLocalEvent<SuitSensorComponent, GetVerbsEvent<Verb>>(OnVerb);
         SubscribeLocalEvent<SuitSensorComponent, EntGotInsertedIntoContainerMessage>(OnInsert);
         SubscribeLocalEvent<SuitSensorComponent, EntGotRemovedFromContainerMessage>(OnRemove);
+=======
+
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
         SubscribeLocalEvent<SuitSensorComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<SuitSensorComponent, EmpDisabledRemoved>(OnEmpFinished);
-        SubscribeLocalEvent<SuitSensorComponent, SuitSensorChangeDoAfterEvent>(OnSuitSensorDoAfter);
     }
 
     public override void Update(float frameTime)
@@ -82,16 +86,19 @@ public sealed class SuitSensorSystem : EntitySystem
             if (curTime < sensor.NextUpdate)
                 continue;
 
+<<<<<<< HEAD
             /* -- Frontier modification
             if (!CheckSensorAssignedStation(uid, sensor))
+=======
+            if (!CheckSensorAssignedStation((uid, sensor)))
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
                 continue;
             */
 
-            // TODO: This would cause imprecision at different tick rates.
-            sensor.NextUpdate = curTime + sensor.UpdateRate;
+            sensor.NextUpdate += sensor.UpdateRate;
 
             // get sensor status
-            var status = GetSensorState(uid, sensor);
+            var status = GetSensorState((uid, sensor));
             if (status == null)
                 continue;
 
@@ -121,6 +128,7 @@ public sealed class SuitSensorSystem : EntitySystem
         }
     }
 
+<<<<<<< HEAD
     /* -- Frontier modification
     /// <summary>
     /// Checks whether the sensor is assigned to a station or not
@@ -275,22 +283,31 @@ public sealed class SuitSensorSystem : EntitySystem
     }
 
     private void OnEmpPulse(EntityUid uid, SuitSensorComponent component, ref EmpPulseEvent args)
+=======
+    private void OnEmpPulse(Entity<SuitSensorComponent> ent, ref EmpPulseEvent args)
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     {
         args.Affected = true;
         args.Disabled = true;
 
+<<<<<<< HEAD
         if (HasComp<EmpDisabledComponent>(uid)) // Frontier: don't double disable sensors
             return; // Frontier
 
         component.PreviousMode = component.Mode;
         SetSensor((uid, component), SuitSensorMode.SensorOff, null);
+=======
+        ent.Comp.PreviousMode = ent.Comp.Mode;
+        SetSensor(ent.AsNullable(), SuitSensorMode.SensorOff, null);
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
-        component.PreviousControlsLocked = component.ControlsLocked;
-        component.ControlsLocked = true;
+        ent.Comp.PreviousControlsLocked = ent.Comp.ControlsLocked;
+        ent.Comp.ControlsLocked = true;
     }
 
-    private void OnEmpFinished(EntityUid uid, SuitSensorComponent component, ref EmpDisabledRemoved args)
+    private void OnEmpFinished(Entity<SuitSensorComponent> ent, ref EmpDisabledRemoved args)
     {
+<<<<<<< HEAD
         SetSensor((uid, component), component.PreviousMode, null);
         component.ControlsLocked = component.PreviousControlsLocked;
     }
@@ -561,5 +578,9 @@ public sealed class SuitSensorSystem : EntitySystem
             MapHash = mapHash, // Frontier - Crew monitor map check
         };
         return status;
+=======
+        SetSensor(ent.AsNullable(), ent.Comp.PreviousMode, null);
+        ent.Comp.ControlsLocked = ent.Comp.PreviousControlsLocked;
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 }

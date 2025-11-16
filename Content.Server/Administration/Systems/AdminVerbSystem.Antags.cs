@@ -29,10 +29,13 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultNukeOpRule = "LoneOpsSpawn";
     private static readonly EntProtoId DefaultRevsRule = "Revolutionary";
     private static readonly EntProtoId DefaultThiefRule = "Thief";
-    private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
-
+    private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
+<<<<<<< HEAD
     private static readonly EntProtoId PirateRuleId = "NFPirate"; // Frontier
+=======
+    private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -192,6 +195,21 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", thiefName, Loc.GetString("admin-verb-make-thief")),
         };
         args.Verbs.Add(thief);
+
+        var changelingName = Loc.GetString("admin-verb-text-make-changeling");
+        Verb changeling = new()
+        {
+            Text = changelingName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/armblade.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, DefaultChangelingRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", changelingName, Loc.GetString("admin-verb-make-changeling")),
+        };
+        args.Verbs.Add(changeling);
 
         var paradoxCloneName = Loc.GetString("admin-verb-text-make-paradox-clone");
         Verb paradox = new()

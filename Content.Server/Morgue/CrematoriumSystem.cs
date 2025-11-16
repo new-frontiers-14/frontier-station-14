@@ -1,16 +1,16 @@
 using Content.Server.Ghost;
-using Content.Server.Morgue.Components;
-using Content.Server.Storage.Components;
-using Content.Server.Storage.EntitySystems;
-using Content.Shared.Database;
-using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
+<<<<<<< HEAD
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 using Content.Shared.Morgue;
+using Content.Shared.Morgue.Components;
 using Content.Shared.Popups;
+<<<<<<< HEAD
 using Content.Shared.Standing;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
@@ -18,16 +18,16 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 using Robust.Shared.Player;
 using Robust.Server.Player; // Frontier
 
 namespace Content.Server.Morgue;
-
-public sealed class CrematoriumSystem : EntitySystem
+public sealed class CrematoriumSystem : SharedCrematoriumSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly GhostSystem _ghostSystem = default!;
+<<<<<<< HEAD
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
@@ -35,17 +35,17 @@ public sealed class CrematoriumSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
     [Dependency] private readonly IPlayerManager _player = default!; // Frontier
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CrematoriumComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<CrematoriumComponent, GetVerbsEvent<AlternativeVerb>>(AddCremateVerb);
         SubscribeLocalEvent<CrematoriumComponent, SuicideByEnvironmentEvent>(OnSuicideByEnvironment);
-        SubscribeLocalEvent<ActiveCrematoriumComponent, StorageOpenAttemptEvent>(OnAttemptOpen);
     }
 
+<<<<<<< HEAD
     private void OnExamine(EntityUid uid, CrematoriumComponent component, ExaminedEvent args)
     {
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
@@ -161,51 +161,43 @@ public sealed class CrematoriumSystem : EntitySystem
     }
 
     private void OnSuicideByEnvironment(EntityUid uid, CrematoriumComponent component, SuicideByEnvironmentEvent args)
+=======
+    private void OnSuicideByEnvironment(Entity<CrematoriumComponent> ent, ref SuicideByEnvironmentEvent args)
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     {
         if (args.Handled)
             return;
 
         var victim = args.Victim;
-        if (TryComp(victim, out ActorComponent? actor) && _minds.TryGetMind(victim, out var mindId, out var mind))
+        if (HasComp<ActorComponent>(victim) && Mind.TryGetMind(victim, out var mindId, out var mind))
         {
             _ghostSystem.OnGhostAttempt(mindId, false, mind: mind);
 
             if (mind.OwnedEntity is { Valid: true } entity)
             {
-                _popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message"), entity);
+                Popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message"), entity);
             }
         }
 
-        _popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message-others",
+        Popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message-others",
             ("victim", Identity.Entity(victim, EntityManager))),
-            victim, Filter.PvsExcept(victim), true, PopupType.LargeCaution);
+            victim,
+            Filter.PvsExcept(victim),
+            true,
+            PopupType.LargeCaution);
 
-        if (_entityStorage.CanInsert(victim, uid))
+        if (EntityStorage.CanInsert(victim, ent.Owner))
         {
-            _entityStorage.CloseStorage(uid);
-            _standing.Down(victim, false);
-            _entityStorage.Insert(victim, uid);
+            EntityStorage.CloseStorage(ent.Owner);
+            Standing.Down(victim, false);
+            EntityStorage.Insert(victim, ent.Owner);
         }
         else
         {
+            EntityStorage.CloseStorage(ent.Owner);
             Del(victim);
         }
-        _entityStorage.CloseStorage(uid);
-        Cremate(uid, component);
+        Cremate(ent.AsNullable());
         args.Handled = true;
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<ActiveCrematoriumComponent, CrematoriumComponent>();
-        while (query.MoveNext(out var uid, out var act, out var crem))
-        {
-            act.Accumulator += frameTime;
-
-            if (act.Accumulator >= crem.CookTime)
-                FinishCooking(uid, crem);
-        }
     }
 }

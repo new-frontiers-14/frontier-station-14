@@ -1,16 +1,14 @@
 using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
-using Robust.Shared.Audio;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
+<<<<<<< HEAD
 using Robust.Shared.Map;
 using Content.Server._NF.Salvage.Expeditions; // Frontier
 using Content.Server.Station.Components; // Frontier
@@ -22,6 +20,8 @@ using Content.Shared.Shuttles.Components; // Frontier
 using Robust.Shared.Configuration;
 using Content.Shared.Ghost;
 using System.Numerics; // Frontier
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 namespace Content.Server.Salvage;
 
@@ -58,6 +58,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentGetState>(OnExpeditionGetState);
         SubscribeLocalEvent<SalvageExpeditionComponent, EntityTerminatingEvent>(OnMapTerminating); // Frontier
 
+<<<<<<< HEAD
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
 
         _cooldown = _cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown);
@@ -68,6 +69,10 @@ public sealed partial class SalvageSystem
         Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionTravelTime, SetTravelTime); // Frontier
         ProximityCheck = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionProximityCheck); // Frontier
         Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionProximityCheck, SetProximityCheck); // Frontier
+=======
+        _cooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionCooldown);
+        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange);
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -279,6 +284,7 @@ public sealed partial class SalvageSystem
         _salvageJobs.Add((job, cancelToken));
         _salvageQueue.EnqueueJob(job);
     }
+<<<<<<< HEAD
 
     private void OnStructureExamine(EntityUid uid, SalvageStructureComponent component, ExaminedEvent args)
     {
@@ -309,4 +315,6 @@ public sealed partial class SalvageSystem
         }
     }
     // End Frontier
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 }
