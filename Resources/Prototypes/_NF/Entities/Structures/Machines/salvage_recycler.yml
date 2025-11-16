@@ -1,16 +1,15 @@
 - type: entity
   id: NFSalvageRecycler
-  parent: [BaseMachinePowered, Recycler]
+  parent: BaseMachinePowered
   name: salvage recycler
-  description: A large crushing machine used to recycle pretty much everything.
+  description: A large robust crushing machine with diamond tipped grinding wheels. Definetly no safety concerns with this.
   components:
   - type: AmbientSound
     enabled: false
     volume: -8
-    range: 5
+    range: 9
     sound:
-      # TODO: https://freesound.org/people/derjuli/sounds/448133/ CC-NC-
-      path: /Audio/Ambience/Objects/circular_saw.ogg
+      path: /Audio/_NF/Machines/heavy-machinery.ogg
   - type: Fixtures
     fixtures:
       brrt:
@@ -58,9 +57,14 @@
       map: ["enum.RecyclerVisualLayers.Main"]
   - type: Appearance
   - type: RecyclerVisuals
-# Frontier: Researchable and constructible recyclers
-
-# End Frontier
+  - type: Machine
+    board: NFRecyclerMachineCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: CollideMaterialReclaimer
   - type: MaterialReclaimer
     enabled: false
@@ -78,8 +82,8 @@
       - Recyclable
       - Cartridge # Frontier: Bullets
       - Book # Frontier
-      - Pen # Frontier
-      - Handcuffs # Frontier
+      - Pen
+      - Handcuffs
     blacklist:
       components:
       - Material
@@ -89,7 +93,7 @@
       tags:
       - HighRiskItem
     sound:
-      path: /Audio/Effects/saw.ogg
+      path: /Audio/_NF/Machines/recycler-crushing.ogg
       params:
         volume: -3
     cutOffSound: false
@@ -124,14 +128,5 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: SyndieBorg
-  - type: ApcPowerReceiver # Frontier
+  - type: ApcPowerReceiver
     powerLoad: 500 # Allows us to not use the 1000 baseline
-
-  - type: Machine
-    board: NFSalvageRecyclerMachineCircuitboard
-  - type: Construction
-    graph: Machine
-    node: machine
-    containers:
-    - machine_parts
-    - machine_board
