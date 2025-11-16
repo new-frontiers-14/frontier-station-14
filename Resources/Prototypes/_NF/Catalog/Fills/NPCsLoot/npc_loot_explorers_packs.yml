@@ -48,10 +48,10 @@
     items:
     # Weapons
     - id: Pickaxe
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.7
     - id: SpawnDungeonLootMeleeT1
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.3
     # Armor
     - id: ClothingOuterEVASuitSalvage
@@ -74,7 +74,7 @@
     items:
     # Weapons
     - id: NFWeaponPka
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.4
     # Armor
     - id: ClothingOuterEVASuitSalvage
@@ -118,12 +118,15 @@
     items:
     # Weapons
     - id: SpawnDungeonLootMeleeT2
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.3
     # Armor
+    - id: ClothingOuterEVASuitSalvage
+      orGroup: Armor
+      prob: 0.2
     - id: ClothingOuterHardsuitSpatio
       orGroup: Armor
-      prob: 0.3
+      prob: 0.1
     # Items
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
@@ -142,15 +145,18 @@
     items:
     # Weapons
     - id: NFWeaponPka
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.4
     - id: NFWeaponPkaCannon
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.6
     # Armor
+    - id: ClothingOuterEVASuitSalvage
+      orGroup: Armor
+      prob: 0.2
     - id: ClothingOuterHardsuitSpatio
       orGroup: Armor
-      prob: 0.3
+      prob: 0.1
     # Items
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
@@ -190,18 +196,18 @@
     items:
     # Weapons
     - id: MiningDrill
-      orGroup: Weapon
-      prob: 0.55
+      orGroup: Weapons
+      prob: 0.5
     - id: SpawnDungeonLootMeleeT2
-      orGroup: Weapon
-      prob: 0.4
-    - id: SpawnDungeonLootMeleeT3
-      orGroup: Weapon
-      prob: 0.05
+      orGroup: Weapons
+      prob: 0.25
     # Armor
+    - id: ClothingOuterHardsuitSpatio
+      orGroup: Armor
+      prob: 0.3
     - id: ClothingOuterHardsuitSalvage
       orGroup: Armor
-      prob: 0.05
+      prob: 0.1
     # Items
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
@@ -228,12 +234,15 @@
     items:
     # Weapons
     - id: NFWeaponPka
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.4
     - id: NFWeaponPkaCannon
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.6
     # Armor
+    - id: ClothingOuterHardsuitSpatio
+      orGroup: Armor
+      prob: 0.3
     - id: ClothingOuterHardsuitLuxury
       onGroup: Armor
       prob: 0.1
@@ -284,12 +293,24 @@
     items:
     # Weapons
     - id: NFEnergyPickaxe
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.4
     - id: NFWeaponPkaCannon
-      orGroup: Weapon
+      orGroup: Weapons
       prob: 0.3
+    - id: Pickaxe
+      orGroup: Weapons
+      prob: 0.2
+    - id: NFWeaponPka
+      orGroup: Weapons
+      prob: 0.15
     # Armor
+    - id: ClothingOuterHardsuitSalvage
+      orGroup: Armor
+      prob: 0.25
+    - id: ClothingOuterHardsuitLuxury
+      onGroup: Armor
+      prob: 0.15
     - id: ClothingOuterHardsuitMaximPrototype
       orGroup: Armor
       prob: 0.05
