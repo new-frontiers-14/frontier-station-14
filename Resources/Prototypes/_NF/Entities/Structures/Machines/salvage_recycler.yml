@@ -1,8 +1,8 @@
 - type: entity
-  id: Recycler
-  parent: BaseMachinePowered
-  name: recycler
-  description: A large crushing machine used to recycle small items inefficiently. There are lights on the side.
+  id: NFSalvageRecycler
+  parent: [BaseMachinePowered, Recycler]
+  name: salvage recycler
+  description: A large crushing machine used to recycle pretty much everything.
   components:
   - type: AmbientSound
     enabled: false
@@ -58,7 +58,9 @@
       map: ["enum.RecyclerVisualLayers.Main"]
   - type: Appearance
   - type: RecyclerVisuals
+# Frontier: Researchable and constructible recyclers
 
+# End Frontier
   - type: CollideMaterialReclaimer
   - type: MaterialReclaimer
     enabled: false
@@ -124,3 +126,12 @@
     speechSounds: SyndieBorg
   - type: ApcPowerReceiver # Frontier
     powerLoad: 500 # Allows us to not use the 1000 baseline
+
+  - type: Machine
+    board: NFSalvageRecyclerMachineCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
