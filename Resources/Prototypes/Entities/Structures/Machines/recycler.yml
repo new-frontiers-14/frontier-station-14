@@ -58,6 +58,16 @@
       map: ["enum.RecyclerVisualLayers.Main"]
   - type: Appearance
   - type: RecyclerVisuals
+# Frontier: Researchable and constructible recyclers
+  - type: Machine
+    board: NFRecyclerMachineCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
+# End Frontier
 
   - type: CollideMaterialReclaimer
   - type: MaterialReclaimer

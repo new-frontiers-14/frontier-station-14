@@ -147,9 +147,9 @@
       state: engineering
     - type: MachineBoard
       prototype: OreProcessorCivilian
-      requirements: 
+      requirements:
         MatterBin: 1
-        Manipulator: 3 
+        Manipulator: 3
       stackRequirements:
         Glass: 1
 
@@ -519,6 +519,23 @@
       stackRequirements:
         Steel: 5
         Plastic: 5
+
+- type: entity
+  id: NFRecyclerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: recycler machine board
+  description: A machine printed circuit board for a recycler.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: Recycler
+      requirements:
+        Manipulator: 2
+      stackRequirements:
+        Steel: 10
+        Plastic: 5
+        Diamond: 1
 
 - type: entity
   id: CondimentDispenserCircuitboard

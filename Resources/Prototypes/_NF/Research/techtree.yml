@@ -236,6 +236,31 @@
   - NFBluespaceStorage
   position: 4, 2
 
+- type: technology
+  id: NFMaterialReclaiming
+  name: nf-research-technology-material-reclaiming
+  entityIcon: MaterialReclaimer
+  discipline: NFEngineering
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MaterialReclaimerMachineCircuitboard
+  position: 4, 0
+
+- type: technology
+  id: NFMaterialRecycling
+  name: nf-research-technology-material-recycling
+  entityIcon: Recycler
+  discipline: NFEngineering
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - NFRecyclerMachineCircuitboard
+  prerequisiteLineType: Tree
+  technologyPrerequisites:
+  - NFMaterialReclaiming
+  position: 5, 0
+
 # region Xenoarch
 
 - type: technology
