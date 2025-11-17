@@ -587,13 +587,8 @@
     job: DeathSquad
 
 - type: entity
-<<<<<<< HEAD
   name: contractor ID card # Frontier: passenger<contractor
-  parent: [IDCardStandard, BaseC3SyndicateContraband]
-=======
-  name: passenger ID card
-  parent: [IDCardStandard, BaseChameleon]
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+  parent: [IDCardStandard, BaseChameleon, BaseC3SyndicateContraband] # Frontier: Add BaseC3SyndicateContraband (upstream merge todo: check if this reveals it)
   id: AgentIDCard
   suffix: Agent
   components:

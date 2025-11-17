@@ -112,21 +112,6 @@
   description: A disposable syringe exclusively designed for the injection of subdermal implants.
   abstract: true
   components:
-<<<<<<< HEAD
-    - type: Sprite
-      sprite: Objects/Specific/Medical/implanter.rsi
-      state: implanter0
-      layers:
-        - state: implanter1
-          map: [ "implantFull" ]
-          visible: true
-        - state: implanter0
-          map: [ "implantOnly" ]
-    - type: Implanter
-      currentMode: Inject
-      implantOnly: true
-    - type: GoblinPreciousTrash # Frontier
-=======
   - type: Sprite
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
@@ -139,7 +124,7 @@
   - type: Implanter
     currentMode: Inject
     implantOnly: true
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+  - type: GoblinPreciousTrash # Frontier
 
 - type: entity
   id: BaseImplantOnlyImplanterSyndi
@@ -148,33 +133,6 @@
   description: A compact disposable syringe exclusively designed for the injection of subdermal implants. Make sure to scrub it with soap or a rag to remove residual DNA after use!
   abstract: true
   components:
-<<<<<<< HEAD
-    - type: GoblinPreciousTrash # Frontier
-    - type: Item
-      sprite: Objects/Specific/Medical/syndi_implanter.rsi
-      heldPrefix: implanter
-    - type: Sprite
-      sprite: Objects/Specific/Medical/syndi_implanter.rsi
-      state: implanter1
-      layers:
-        - state: implanter0
-          map: [ "implantFull" ]
-          visible: true
-        - state: implanter1
-          map: [ "implantOnly" ]
-    - type: GenericVisualizer
-      visuals:
-        enum.ImplanterVisuals.Full:
-          implantFull:
-            True: {visible: true}
-            False: {visible: false}
-        enum.ImplanterImplantOnlyVisuals.ImplantOnly:
-          implantOnly:
-            True: {state: broken}
-            False: {state: implanter1}
-    - type: Tag
-      tags: []
-=======
   - type: Item
     sprite: Objects/Specific/Medical/syndi_implanter.rsi
     heldPrefix: implanter
@@ -199,7 +157,7 @@
           False: {state: implanter1}
   - type: Tag
     tags: []
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+  - type: GoblinPreciousTrash # Frontier
 
 #Fun implanters
 
