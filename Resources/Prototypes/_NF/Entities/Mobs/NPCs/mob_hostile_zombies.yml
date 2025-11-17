@@ -671,7 +671,7 @@
   - type: Timer
   - type: TimedSpawner
     prototypes:
-    - NFSpawnZombiePile
+    - NFZombiePileLoophole
     chance: 1
     intervalSeconds: 240 # 4 min
     minimumEntitiesSpawned: 1
@@ -770,3 +770,18 @@
           FoodMeatRotten:
             min: 1
             max: 3
+
+# timedspawners making timedspawners makes the iterator sad, so we use a loophole
+- type: entity
+  id: NFZombiePileLoophole
+  categories: [ HideSpawnMenu ]
+  description: If you see this, make a bug report.
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Zombies/zombie_human.rsi
+    layers:
+    - state: spawner
+  - type: TimedDespawn
+    lifetime: 0
+  - type: SpawnOnDespawn
+    prototype: NFZombiePile
