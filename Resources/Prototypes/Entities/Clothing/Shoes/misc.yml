@@ -71,11 +71,11 @@
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Misc/lizard-slippers.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Misc/lizard-slippers.rsi
+  - type: ToggleClothing # Frontier "Clothing" > "ToggleClothing" : Add waddling to Lizard Slippers
+    action: ActionToggleWaddling # Frontier "sprite: Clothing/Shoes/Misc/lizard-slippers.rsi" > "action: ActionToggleWaddling" : Add waddling to Lizard Slippers
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepCarpet
+      path: /Audio/Items/Toys/weh.ogg #Frontier: Changed from Collection FootstepCarpet to path weh.ogg
       params:
         variation: 0.02
   - type: Construction
@@ -95,6 +95,19 @@
           Quantity: 20
         - ReagentId: JuiceThatMakesYouWeh
           Quantity: 20
+  # Frontier : Add waddling to Lizard Slippers
+  - type: WaddleWhenWorn
+    tumbleIntensity: 10
+    waddlingAlert: Waddling
+  - type: ItemToggle
+    activated: true
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/Items/Toys/weh.ogg
+    soundDeactivate:
+      path: /Audio/Items/Toys/weh.ogg
+  # End Frontier
 
 - type: entity
   parent: ClothingShoesBaseButcherable
