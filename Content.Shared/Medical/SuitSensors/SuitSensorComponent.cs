@@ -71,13 +71,8 @@ public sealed partial class SuitSensorComponent : Component
     /// <summary>
     ///     The station this suit sensor belongs to. If it's null the suit didn't spawn on a station and the sensor doesn't work.
     /// </summary>
-<<<<<<< HEAD:Content.Server/Medical/SuitSensors/SuitSensorComponent.cs
-    //[DataField("station")] // Frontier: comment out field
-    //public EntityUid? StationId = null; // Frontier: comment out field
-=======
-    [DataField("station"), AutoNetworkedField]
-    public EntityUid? StationId = null;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78:Content.Shared/Medical/SuitSensors/SuitSensorComponent.cs
+    // [DataField("station"), AutoNetworkedField] // Frontier: comment out field
+    // public EntityUid? StationId = null; // Frontier: comment out field
 
     /// <summary>
     ///     The server the suit sensor sends it state to.

@@ -10,19 +10,11 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
 {
     public List<ProtoId<LatheRecipePrototype>> Recipes;
 
-<<<<<<< HEAD
-    public List<LatheRecipeBatch> Queue; // Frontier: ProtoId<LatheRecipePrototype>[] < List<LatheRecipeBatch>
-
-    public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
-
-    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, List<LatheRecipeBatch> queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null) // Frontier: change queue type
-=======
     public LatheRecipeBatch[] Queue;
 
     public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
 
     public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, LatheRecipeBatch[] queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null)
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     {
         Recipes = recipes;
         Queue = queue;

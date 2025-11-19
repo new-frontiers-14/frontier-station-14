@@ -41,13 +41,10 @@ namespace Content.Shared.Stacks
             SubscribeLocalEvent<StackComponent, ComponentStartup>(OnStackStarted);
             SubscribeLocalEvent<StackComponent, ExaminedEvent>(OnStackExamined);
             SubscribeLocalEvent<StackComponent, InteractUsingEvent>(OnStackInteractUsing);
-<<<<<<< HEAD
             SubscribeLocalEvent<StackComponent, StackCustomSplitAmountMessage>(OnCustomSplitMessage); // cherry-pick #32938
-=======
             SubscribeLocalEvent<StackComponent, BeforeIngestedEvent>(OnBeforeEaten);
             SubscribeLocalEvent<StackComponent, IngestedEvent>(OnEaten);
             SubscribeLocalEvent<StackComponent, GetVerbsEvent<AlternativeVerb>>(OnStackAlternativeInteract);
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
             _vvm.GetTypeHandler<StackComponent>()
                 .AddPath(nameof(StackComponent.Count), (_, comp) => comp.Count, SetCount);

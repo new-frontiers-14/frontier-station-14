@@ -26,25 +26,6 @@ public sealed partial class ButcherableComponent : Component
     [DataField, AutoNetworkedField]
     public float ButcherDelay = 8.0f;
 
-<<<<<<< HEAD
-        [ViewVariables(VVAccess.ReadWrite), DataField("butcheringType")]
-        public ButcheringType Type = ButcheringType.Knife;
-
-        /// <summary>
-        /// Prevents butchering same entity on two and more spikes simultaneously and multiple doAfters on the same Spike
-        /// </summary>
-        [ViewVariables]
-        public bool BeingButchered;
-    }
-
-    [Serializable, NetSerializable] // EE
-    public enum ButcheringType : byte
-    {
-        Knife, // e.g. goliaths
-        Spike, // e.g. monkeys
-        Gibber // e.g. humans. TODO
-    }
-=======
     /// <summary>
     /// Tool type used to butcher that entity.
     /// </summary>
@@ -68,5 +49,4 @@ public enum ButcheringType : byte
     /// E.g. humans.
     /// </summary>
     Gibber // TODO
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 }

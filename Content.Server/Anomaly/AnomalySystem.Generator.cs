@@ -195,18 +195,16 @@ public sealed partial class AnomalySystem
     {
         var xform = Transform(uid);
 
-<<<<<<< HEAD
-        if (xform.GridUid == null)
+        // if (_station.GetStationInMap(xform.MapID) is not { } station ||
+        //     _station.GetLargestGrid(station) is not { } grid)
+        // {
+        //     if (xform.GridUid == null)
+        //         return;
+        //     grid = xform.GridUid.Value;
+        // }
+
+        if (xform.GridUid == null) // Frontier
             return;
-=======
-        if (_station.GetStationInMap(xform.MapID) is not { } station ||
-            _station.GetLargestGrid(station) is not { } grid)
-        {
-            if (xform.GridUid == null)
-                return;
-            grid = xform.GridUid.Value;
-        }
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
         SpawnOnRandomGridLocation(xform.GridUid.Value, component.SpawnerPrototype, (uid, component)); // Frontier: add (uid, component)
         RemComp<GeneratingAnomalyGeneratorComponent>(uid);

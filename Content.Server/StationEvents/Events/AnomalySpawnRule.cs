@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-using Content.Server.Anomaly;
-using Content.Server.Station.Components;
-using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
-=======
 ﻿using Content.Server.Anomaly;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 namespace Content.Server.StationEvents.Events;
 
@@ -32,7 +25,7 @@ public sealed class AnomalySpawnRule : StationEventSystem<AnomalySpawnRuleCompon
     {
         base.Started(uid, component, gameRule, args);
 
-        if (TryGetRandomStation(out var chosenStation, HasComp<StationJobsComponent>))
+        if (!TryGetRandomStation(out var chosenStation))
             return;
 
         if (!TryComp<StationDataComponent>(chosenStation, out var stationData))

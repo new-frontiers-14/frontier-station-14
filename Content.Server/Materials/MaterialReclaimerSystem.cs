@@ -202,15 +202,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
         var xform = Transform(uid);
 
-<<<<<<< HEAD
-        // Frontier: industrial reagent grinder shouldn't process materials, it processes reagents and double counts the results.
-        if (component.ProcessMaterials)
-            SpawnMaterialsFromComposition(uid, item, completion * component.Efficiency, xform: xform);
-        // End Frontier
-=======
         if (component.ReclaimMaterials)
             SpawnMaterialsFromComposition(uid, item, completion * component.Efficiency, xform: xform);
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
         if (CanGib(uid, item, component))
         {

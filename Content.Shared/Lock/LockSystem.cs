@@ -50,12 +50,7 @@ public sealed class LockSystem : EntitySystem
         SubscribeLocalEvent<LockComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<LockComponent, LockDoAfter>(OnDoAfterLock);
         SubscribeLocalEvent<LockComponent, UnlockDoAfter>(OnDoAfterUnlock);
-<<<<<<< HEAD
-        SubscribeLocalEvent<LockComponent, StorageInteractAttemptEvent>(OnStorageInteractAttempt);
         SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - demag
-=======
-
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
         SubscribeLocalEvent<LockedWiresPanelComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
         SubscribeLocalEvent<LockedWiresPanelComponent, AttemptChangePanelEvent>(OnAttemptChangePanel);

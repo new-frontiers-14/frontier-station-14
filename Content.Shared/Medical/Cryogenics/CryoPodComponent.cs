@@ -41,12 +41,17 @@ public sealed partial class CryoPodComponent : Component
     public TimeSpan BeakerTransferTime = TimeSpan.FromSeconds(1);
 
     /// <summary>
-<<<<<<< HEAD
-    /// How many units of each reagent to transfer per tick from the beaker to the mob?
+    /// The timestamp for the next injection.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("beakerTransferAmount")]
-    public float BeakerTransferAmount = .25f; // Frontier: 1<0.25 (applied per reagent)
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan NextInjectionTime = TimeSpan.Zero;
+
+    /// <summary>
+    /// How many units to transfer per injection from the beaker to the mob?
+    /// </summary>
+    [DataField]
+    public FixedPoint2 BeakerTransferAmount = .25f; // Frontier: 1<0.25 (applied per reagent)
 
     // Frontier: more efficient cryogenics (#1443)
     /// <summary>
@@ -56,19 +61,6 @@ public sealed partial class CryoPodComponent : Component
     [DataField("PotencyAmount")]
     public float PotencyMultiplier = 2f;
     // End Frontier
-=======
-    /// The timestamp for the next injection.
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField, AutoPausedField]
-    public TimeSpan NextInjectionTime = TimeSpan.Zero;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
-
-    /// <summary>
-    /// How many units to transfer per injection from the beaker to the mob?
-    /// </summary>
-    [DataField]
-    public FixedPoint2 BeakerTransferAmount = 1;
 
     /// <summary>
     /// Delay applied when inserting a mob in the pod (in seconds).

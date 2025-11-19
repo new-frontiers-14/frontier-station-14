@@ -244,7 +244,6 @@ public sealed class ThrowingSystem : EntitySystem
         const float massLimit = 5f;
 
         if (pushEv.Push)
-<<<<<<< HEAD
         {
             // Frontier: apply impulse to buckled object if buckled
             if (TryComp<BuckleComponent>(user, out var buckle) && buckle.BuckledTo is not null)
@@ -260,8 +259,5 @@ public sealed class ThrowingSystem : EntitySystem
             // _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
         }
 
-=======
-            _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 }

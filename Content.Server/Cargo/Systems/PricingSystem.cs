@@ -107,14 +107,9 @@ public sealed class PricingSystem : EntitySystem
             var totalPartsPresent = partList.Sum(_ => 1);
             var totalParts = partList.Count;
 
-<<<<<<< HEAD
-        var partRatio = totalPartsPresent / (double)totalParts;
-        var partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
-=======
             var partRatio = totalPartsPresent / (double) totalParts;
             partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
         }
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty) * (HasComp<LabGrownComponent>(uid) ? 1.0 : component.LabGrownPenalty); // Frontier - LabGrown
     }

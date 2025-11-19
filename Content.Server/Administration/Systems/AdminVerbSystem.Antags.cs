@@ -31,11 +31,8 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultThiefRule = "Thief";
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
-<<<<<<< HEAD
     private static readonly EntProtoId PirateRuleId = "NFPirate"; // Frontier
-=======
-    private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+    // private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear"; // Frontier
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
