@@ -216,6 +216,12 @@
              Cellular: -4 # Frontier: -2<-4
             groups: # Frontier
                 Brute: 1 # Frontier
+        # Frontier: Prevent the brute damage from exsanguinating patients
+        - !type:ModifyBleedAmount # Frontier
+          conditions: # Frontier
+          - !type:Temperature # Frontier
+            max: 213.0 # Frontier
+          amount: -0.5 # Frontier
 
 - type: reagent
   id: Dermaline
