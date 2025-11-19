@@ -763,6 +763,16 @@ public sealed partial class SupermatterSystem
 
         // Max light scaling reached at 2500 power
         var scalar = Math.Clamp(sm.Power / 2500f + 1f, 1f, 2f);
+
+        // Mix colors between hsvNormal and hsvDelam depending on integrity
+        var integrity = GetIntegrity(sm);
+        var hsvNormal = Color.ToHsv(sm.LightColorNormal);
+        var hsvDelam = Color.ToHsv(sm.LightColorDelam);
+        var hsvFinal = Vector4.Lerp(hsvDelam, hsvNormal, integrity / 100f);
+
+        _light.SetEnergy(uid, 2f * scalar, light);
+        _light.SetRadius(uid, 10f * scalar, light);
+        _light.SetColor(uid, Color.FromHsv(hsvFinal), light);
     }
 
     /// <summary>

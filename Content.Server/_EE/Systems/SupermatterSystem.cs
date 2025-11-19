@@ -131,6 +131,7 @@ public sealed partial class SupermatterSystem : EntitySystem
         HandleSoundLoop(uid, sm);
         HandleAccent(uid, sm);
 
+        // Our power is enough to try and start throwing lightning
         if (sm.Power > 500)
         {
             SupermatterZap(uid, sm);

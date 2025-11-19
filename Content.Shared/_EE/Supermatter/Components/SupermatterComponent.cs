@@ -36,11 +36,14 @@ public sealed partial class SupermatterComponent : Component
     [DataField]
     public GasMixture? GasStorage;
 
+    /// <summary>
+    /// The color of the supermatter's light, shifts from normal to delam as health decreases
+    /// </summary>
     [DataField]
-    public Color LightColorNormal = Color.FromHex("#ffe000");
+    public Color LightColorNormal = Color.FromHex("#ffe838ff");
 
     [DataField]
-    public Color LightColorDelam = Color.FromHex("#ffe000");
+    public Color LightColorDelam = Color.FromHex("#07e000ff");
 
     #endregion
 
