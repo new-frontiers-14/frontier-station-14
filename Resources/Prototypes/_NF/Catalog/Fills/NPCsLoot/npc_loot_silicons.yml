@@ -1,138 +1,85 @@
-# region base
+# region treasure
 - type: entity
-  abstract: true
-  parent: NFBaseNpcLootBackpack
-  id: RogueSiliconGiftBox
-  name: rogue unit's bundle
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Tools/bundles.rsi
-    state: engi-base
-    scale: 0.7, 0.7
-  - type: Clothing
-    sprite: _NF/Objects/Tools/bundles.rsi
-    clothingVisuals:
-      back:
-      - state: mask_null
-  - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Machines/windoor_open.ogg
-
-# region tier 0
-# TODO: spawners for disks (the ones labeled as tresure)
-- type: entity
-  parent: RogueSiliconGiftBox
-  id: ClothingBackpackRogueSiliconT0
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcRogueSiliconTreasure
   categories: [ HideSpawnMenu ]
   components:
-  - type: SpawnItemsOnUse
-    items:
-    # Scrap chunks
-    - id: ScrapOre20RandomLowTech
-      prob: 1.0
-    # Parts
-    - id: AdvancedCapacitorStockPart
-      prob: 0.3
-    - id: AdvancedMatterBinStockPart
-      prob: 0.3
-    - id: SpawnDungeonLootPowerCell
-      prob: 0.25
-    - id: SpawnDungeonLootPartsEngi
-      prob: 0.25
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: TreasureHardDiskDrive # 275 spesos
+      - id: TreasureCDDrive # 300 spesos
+      - id: TreasureFlopDiskDrive # 350 spesos
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: TreasureDatadiskEncrypted # 500 spesos
+      - id: TreasureCPUSupercharged # 750 spesos
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: TreasureSsd # 900 spesos
+      - id: TreasureSelfRepairModule # 1350 spesos
 
-# region tier 1
+# region blueprints
 - type: entity
-  parent: RogueSiliconGiftBox
-  id: ClothingBackpackRogueSiliconT1
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcRogueSiliconBlueprints
   categories: [ HideSpawnMenu ]
   components:
-  - type: SpawnItemsOnUse
-    items:
-    # Scrap chunks
-    - id: ScrapOre20RandomLowTech
-      prob: 1.0
-    # Parts
-    - id: AdvancedCapacitorStockPart
-      prob: 0.4
-    - id: NanoManipulatorStockPart
-      prob: 0.4
-    - id: AdvancedMatterBinStockPart
-      prob: 0.4
-    - id: SpawnDungeonLootPowerCell
-      prob: 0.25
-    - id: SpawnDungeonLootPartsEngi
-      prob: 0.25
-
-# region tier 2
-- type: entity
-  parent: RogueSiliconGiftBox
-  id: ClothingBackpackRogueSiliconT2
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    # Scrap chunks
-    - id: ScrapOre20RandomHighTech
-      prob: 1.0
-    # Parts
-    - id: SuperCapacitorStockPart
-      prob: 0.4
-    - id: PicoManipulatorStockPart
-      prob: 0.4
-    - id: SuperMatterBinStockPart
-      prob: 0.4
-    - id: SpawnDungeonLootPowerCell
-      prob: 0.25
-    - id: SpawnDungeonLootPartsEngi
-      amount: 2
-      prob: 0.25
-
-# region tier 3
-- type: entity
-  parent: RogueSiliconGiftBox
-  id: ClothingBackpackRogueSiliconT3
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    # Scrap chunks
-    - id: ScrapOre20RandomHighTech
-      prob: 1.0
-    # Parts
-    - id: QuadraticCapacitorStockPart
-      prob: 0.05
-    - id: FemtoManipulatorStockPart
-      prob: 0.05
-    - id: BluespaceMatterBinStockPart
-      prob: 0.05
-    - id: SpawnDungeonLootPowerCell
-      prob: 0.25
-    - id: SpawnDungeonLootPartsEngi
-      amount: 3
-      prob: 0.25
-
-# region tier 4 - boss
-- type: entity
-  parent: RogueSiliconGiftBox
-  id: ClothingBackpackRogueSiliconT4
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    # Scrap chunks
-    - id: ScrapOre20RandomHighTech
-      prob: 1.0
-    - id: NFWeaponEnergyLightMachineGunTurbo
-      prob: 0.1
-    # Parts
-    - id: QuadraticCapacitorStockPart
-      prob: 0.05
-    - id: FemtoManipulatorStockPart
-      prob: 0.05
-    - id: BluespaceMatterBinStockPart
-      prob: 0.05
-    - id: SpawnDungeonLootPowerCell
-      prob: 0.05
-    - id: SpawnDungeonLootPartsEngi
-      amount: 3
-      prob: 0.25
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: NFBlueprintRogueSiliconAdvancedCapacitor
+      - id: NFBlueprintRogueSiliconAdvancedMatterBin
+      - id: NFBlueprintRogueSiliconAdvancedManipulator
+      - id: NFBlueprintRogueSiliconPowerCellHigh
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFBlueprintRogueSiliconSuperCapacitor
+      - id: NFBlueprintRogueSiliconSuperMatterBin
+      - id: NFBlueprintRogueSiliconSuperManipulator
+      - id: NFBlueprintRogueSiliconPowerCellHyper
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: NFBlueprintRogueSiliconAdvancedTools
+      - id: NFBlueprintRogueSiliconRPED
+      - id: NFBlueprintRogueSiliconShipyardRCD
+      - id: NFBlueprintOreBagOfHolding
+      - id: NFBlueprintConstructionBagOfHolding
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: NFBlueprintRogueSiliconRipley
+      - id: NFBlueprintRogueSiliconMechEquipmentFork
+      - id: NFBlueprintRogueSiliconMechEquipmentGrabber
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: NFBlueprintRogueSiliconHonker
+      - id: NFBlueprintRogueSiliconBluespaceBags
+    # Unique
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: NFBlueprintRogueSiliconBluespaceCapacitor
+      - id: NFBlueprintRogueSiliconBluespaceMatterBin
+      - id: NFBlueprintRogueSiliconBluespaceManipulator
+      - id: NFBlueprintRogueSiliconPowerCellMicroreactor

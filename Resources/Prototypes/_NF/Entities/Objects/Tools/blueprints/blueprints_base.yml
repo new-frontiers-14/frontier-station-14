@@ -437,9 +437,9 @@
 
 # region Expedition
 - type: entity
+  abstract: true
   parent: [ BaseC3Contraband, NFBaseBlueprint ]
   id: NFBaseBlueprintExpedition
-  abstract: true
   components:
   - type: Paper
     stampState: paper_stamp-rd
@@ -452,83 +452,14 @@
     price: 1000
 
 - type: entity
-  parent: NFBaseBlueprintExpedition
-  id: NFBaseBlueprintExpeditionSalvage
   abstract: true
-  components:
-  - type: Sprite
-    layers:
-      - state: icon-base
-        color: "#a6671a"
-      - state: icon-text
-        color: "#db7372"
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: paper_stamp-generic
-        offset: 0.15,-0.1
-        map: ["enum.PaperVisualLayers.Stamp"]
-        visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: paper_words
-        map: ["enum.PaperVisualLayers.Writing"]
-        visible: false
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-base
-        color: "#a6671a"
-      - state: inhand-left-text
-        color: "#db7372"
-      right:
-      - state: inhand-right-base
-        color: "#a6671a"
-      - state: inhand-right-text
-        color: "#db7372"
-  - type: Tag
-    tags:
-    - NFBlueprintSalvageTechfab
-    - NFBlueprintAdvanced
-    - Document
-    - Paper
+  parent: [ NFBaseBlueprintExpedition, NFBlueprintSalvage ]
+  id: NFBaseBlueprintExpeditionSalvage
 
 - type: entity
-  parent: NFBaseBlueprintExpedition
-  id: NFBaseBlueprintExpeditionArmory
   abstract: true
-  components:
-  - type: Sprite
-    layers:
-      - state: icon-base
-        color: "#d21a1a"
-      - state: icon-text
-        color: "#db7372"
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: paper_stamp-generic
-        offset: 0.15,-0.1
-        map: ["enum.PaperVisualLayers.Stamp"]
-        visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: paper_words
-        map: ["enum.PaperVisualLayers.Writing"]
-        visible: false
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-base
-        color: "#d21a1a"
-      - state: inhand-left-text
-        color: "#db7372"
-      right:
-      - state: inhand-right-base
-        color: "#d21a1a"
-      - state: inhand-right-text
-        color: "#db7372"
-  - type: Tag
-    tags:
-    - NFBlueprintMercenaryTechfab
-    - NFBlueprintNfsdTechfab
-    - NFBlueprintAdvanced
-    - Document
-    - Paper
+  parent: [ NFBaseBlueprintExpedition, NFBlueprintArsenalMercenary ]
+  id: NFBaseBlueprintExpeditionArmory
 
 - type: entity
   abstract: true
@@ -592,9 +523,9 @@
     - Paper
 
 - type: entity
+  abstract: true
   parent: NFBaseBlueprintExpedition
   id: NFBaseBlueprintExpeditionMercenary
-  abstract: true
   components:
   - type: Sprite
     layers:
@@ -626,3 +557,8 @@
     - NFBlueprintAdvanced
     - Document
     - Paper
+
+- type: entity
+  abstract: true
+  parent: [ NFBaseBlueprintExpedition, NFBlueprintEngineering ]
+  id: NFBaseBlueprintExpeditionRogueSilicon

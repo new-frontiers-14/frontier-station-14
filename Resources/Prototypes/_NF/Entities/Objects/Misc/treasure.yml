@@ -284,6 +284,66 @@
   - type: StaticPrice
     price: 600
 
+# region borg parts
+- type: entity
+  parent: BaseItem
+  id: TreasureNetworkBoard
+  name: network board
+  description: A network enabling device. Could be valuable to the right buyer.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: net_wired
+      map: [ "base" ]
+  - type: Item
+    storedRotation: -90
+  - type: RandomSprite
+    available:
+    - base:
+        radio: ""
+        radio_micro: ""
+        radio_mini: ""
+        net_wired: ""
+  - type: StaticPrice
+    price: 750
+
+- type: entity
+  parent: BaseItem
+  id: TreasureSsd
+  name: solid state drive
+  description: The data stored on this device could be valuable to the right buyer.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: ssd
+      map: [ "base" ]
+  - type: Item
+    storedRotation: -90
+  - type: RandomSprite
+    available:
+    - base:
+        ssd: ""
+        ssd_micro: ""
+        ssd_mini: ""
+        ssd_large: ""
+  - type: StaticPrice
+    price: 900
+
+- type: entity
+  parent: BaseItem
+  id: TreasureSelfRepairModule
+  name: damaged self-repair module
+  description: A module that can repair itself over time. Damaged. Could be sold though.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: selfrepair_on
+  - type: StaticPrice
+    price: 1350
+
 # region trophy bag
 - type: entity
   abstract: true
