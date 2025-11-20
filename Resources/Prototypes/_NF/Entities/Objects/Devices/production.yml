@@ -137,6 +137,22 @@
     - type: BindToStation
       enabled: false # should be draggable between stations
 
+- type: entity
+  id: OreProcessorCivilianCircuitboard
+  parent: BaseMachineCircuitboard
+  name: civilian ore processor machine board
+  description: A machine printed circuit board for a civilian ore processor.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: OreProcessorCivilian
+      requirements: 
+        MatterBin: 1
+        Manipulator: 3 
+      stackRequirements:
+        Glass: 1
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
