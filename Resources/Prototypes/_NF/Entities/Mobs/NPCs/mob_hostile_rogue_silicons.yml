@@ -262,6 +262,106 @@
     range: 5
     sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
+# region wrecks
+- type: entity
+  parent: BaseScrapLarge
+  id: ScrapGenericRogueSilicon
+  name: wrecked rogue silicon
+  description: This machine is beyond repair now, but you can probably salvage some usable materials from it.
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: wreck01
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000 # 10 sheets
+      Plastic: 500 # 5 sheets
+      RawScrap: 2000 # 20 sheets
+      RawScrapTech: 1500 # 15 sheets
+
+- type: entity
+  parent: ScrapGenericRogueSilicon
+  id: ScrapGenericRogueSiliconDrone
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/RogueSilicons/drones.rsi
+    layers:
+    - state: destroyed
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500 # 10 sheets
+      RawScrap: 1000 # 10 sheets
+      RawScrapTech: 500 # 5 sheets
+
+- type: entity
+  abstract: true
+  id: MobRogueSiliconDestructibleBehavior
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: /Audio/Machines/warning_buzzer.ogg
+          params:
+            variation: 0.250
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnGoblinMadeToolMalfunction:
+            min: 0
+            max: 1
+          ScrapGenericRogueSilicon:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  abstract: true
+  id: MobRogueSiliconDestructibleBehaviorDrone
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 140
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: /Audio/Machines/warning_buzzer.ogg
+          params:
+            variation: 0.250
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 180
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnGoblinMadeToolMalfunction:
+            min: 0
+            max: 1
+          ScrapGenericRogueSiliconDrone:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
 # VARIATIONS
 #region Tier 1
 - type: entity
@@ -270,6 +370,7 @@
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrap
   categories: [ HideSpawnMenu ]
   components:
@@ -334,6 +435,7 @@
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThreads
   categories: [ HideSpawnMenu ]
   components:
@@ -385,6 +487,7 @@
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrusters
   categories: [ HideSpawnMenu ]
   components:
@@ -457,6 +560,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapThrusters
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrustersRanged
   categories: [ HideSpawnMenu ]
   components:
@@ -484,6 +588,7 @@
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapFlayer
   categories: [ HideSpawnMenu ]
   components:
@@ -543,6 +648,7 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
+  - MobRogueSiliconDestructibleBehaviorDrone
   id: MobRogueSiliconDroneLethals
   description: Hacked by a rogue AI, these security drones are programmed to kill.
   categories: [ HideSpawnMenu ]
@@ -567,6 +673,7 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
+  - MobRogueSiliconDestructibleBehaviorDrone
   id: MobRogueSiliconDroneNonLethals
   description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
   categories: [ HideSpawnMenu ]
@@ -594,6 +701,7 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
+  - MobRogueSiliconDestructibleBehaviorDrone
   id: MobRogueSiliconDroneScience
   description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
   categories: [ HideSpawnMenu ]
@@ -673,6 +781,7 @@
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconServo
   name: servo unit
   description: With its programming rewritten, this crash test dummy will stop at nothing in exacting its revenge.
@@ -711,6 +820,7 @@
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconHerder
   name: herder unit
   description: This rogue silicon unit's primary directive is to corral and herd captives. Its stun prod can be used to good effect, take caution.
@@ -769,6 +879,7 @@
   - MobRogueSiliconDroneBase
   - MobPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconHunter
   name: hunter unit
   description: These mobile drones are tasked with reconnaissance, threat identification, and target elimination.
@@ -826,6 +937,7 @@
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconCatcher
   name: catcher unit
   description: Equipped with bolas, this unit is designed to slow, capture, and detain targets.
@@ -894,6 +1006,7 @@
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconTesla
   name: tesla unit
   description: Originally designed to service tesla power generators, this silicon's equipment has been repurposed as a makeshift stun gun.
@@ -1137,6 +1250,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapAsteroid
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
@@ -1203,6 +1317,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThreadsAsteroid
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
@@ -1256,6 +1371,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrustersAsteroid
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
@@ -1331,6 +1447,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapThrustersAsteroid
+  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrustersRangedAsteroid
   categories: [ HideSpawnMenu ]
   components:
