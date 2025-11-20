@@ -18,7 +18,7 @@
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
-# region tier 0
+# region tier 0 (asteroid)
 - type: entity
   parent: RogueSiliconGiftBox
   id: ClothingBackpackRogueSiliconT0
@@ -62,8 +62,11 @@
       prob: 0.4
     - id: SpawnDungeonLootNpcRogueSiliconTreasure
       orGroup: Items
-      prob: 0.6
+      prob: 0.5
       amount: 2
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      orGroup: Items
+      prob: 0.1
     # Blueprints
     - id: SpawnDungeonLootNpcRogueSiliconBlueprints
       orGroup: Blueprints
@@ -90,8 +93,11 @@
       prob: 0.4
     - id: SpawnDungeonLootNpcRogueSiliconTreasure
       orGroup: Items
-      prob: 0.6
+      prob: 0.5
       amount: 3
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      orGroup: Items
+      prob: 0.15
     # Blueprints
     - id: SpawnDungeonLootNpcRogueSiliconBlueprints
       orGroup: Blueprints
@@ -115,11 +121,14 @@
     # Items
     - id: SpawnDungeonLootNpcMaterialRandom
       orGroup: Items
-      prob: 0.4
+      prob: 0.3
     - id: SpawnDungeonLootNpcRogueSiliconTreasure
       orGroup: Items
-      prob: 0.6
+      prob: 0.5
       amount: 4
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      orGroup: Items
+      prob: 0.2
     # Blueprints
     - id: SpawnDungeonLootNpcRogueSiliconBlueprints
       orGroup: Blueprints
@@ -145,27 +154,31 @@
       prob: 0.3
     # Scrap
     - id: ScrapOreRandom
-      orGroup: Scrap
+      #orGroup: Scrap
       prob: 0.5
       amount: 4
     - id: ScrapOreTechRandom
-      orGroup: Scrap
+      #orGroup: Scrap
       prob: 0.5
       amount: 4
     # Items
     - id: SpawnDungeonLootNpcMaterialRandom
-      orGroup: Items
+      #orGroup: Items
       prob: 0.4
       amount: 4
     - id: SpawnDungeonLootNpcRogueSiliconTreasure
-      orGroup: Items
+      #orGroup: Items
       prob: 0.6
       amount: 4
     - id: SpawnDungeonLootFlatpacks
-      orGroup: Items
+      #orGroup: Items
       prob: 0.1
     - id: SpawnDungeonLootPartsEngi
-      orGroup: Items
+      #orGroup: Items
+      amount: 3
+      prob: 0.25
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      #orGroup: Items
       amount: 3
       prob: 0.25
     # Blueprints
