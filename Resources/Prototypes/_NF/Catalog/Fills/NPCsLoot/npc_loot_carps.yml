@@ -1,67 +1,48 @@
-
 # region carps
-- type: entityTable # From 65 to 195 spesos per carp
-  id: TableDungeonLootNpcCarps
-  table: !type:AllSelector
-    children:
-    - id: MaterialToothSpaceCarp1
-      rolls: !type:RangeNumberSelector
-        range: 1, 3 # From 50 to 150 spesos
-    - id: FoodMeatFish
-      rolls: !type:RangeNumberSelector
-        range: 1, 3 # From 15 to 45 spesos
-
-- type: entity
+- type: entity # From 65 to 195 spesos per carp
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcCarps
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcCarps
+    table: !type:AllSelector
+      children:
+      - id: MaterialToothSpaceCarp1
+        rolls: !type:RangeNumberSelector
+          range: 1, 3 # From 50 to 150 spesos
+      - id: FoodMeatFish
+        rolls: !type:RangeNumberSelector
+          range: 1, 3 # From 15 to 45 spesos
 
 # region wyverns
-- type: entityTable # From 265 to 875 spesos per wyvern
-  id: TableDungeonLootNpcCarpsWyvern
-  table: !type:AllSelector
-    children:
-    - id: MaterialToothSpaceCarpRandomLow # 4 to 16 teeth, From 200 to 800 spesos
-    - id: FoodMeatFish
-      rolls: !type:RangeNumberSelector
-        range: 2, 5 # From 30 to 75 spesos
-
-- type: entity
+- type: entity # From 265 to 875 spesos per wyvern
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcCarpsWyvern
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcCarpsWyvern
+    table: !type:AllSelector
+      children:
+      - id: MaterialToothSpaceCarpRandomLow # 4 to 16 teeth, From 200 to 800 spesos
+      - id: FoodMeatFish
+        rolls: !type:RangeNumberSelector
+          range: 2, 5 # From 30 to 75 spesos
 
 # region dragon (boss)
-- type: entityTable # From 315 to 1260 to 6260 spesos per dragon
-  id: TableDungeonLootNpcCarpsDragon
-  table: !type:AllSelector
-    children:
-    - id: MaterialToothSpaceCarpRandomReduced # 6 to 24 teeth, From 300 to 1200 spesos
-    - id: DragonEgg # 5000 spesos
-      prob: 0.1
-    - id: FoodMeatDragon
-      rolls: !type:RangeNumberSelector
-        range: 1, 4 # From 15 to 60 spesos
-
-- type: entity
+- type: entity # From 315 to 1260 to 6260 spesos per dragon
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcCarpsDragon
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcCarpsDragon
+    table: !type:AllSelector
+      children:
+      - id: MaterialToothSpaceCarpRandomReduced # 6 to 24 teeth, From 300 to 1200 spesos
+      - id: DragonEgg # 5000 spesos
+        prob: 0.1
+      - id: FoodMeatDragon
+        rolls: !type:RangeNumberSelector
+          range: 1, 4 # From 15 to 60 spesos

@@ -1,43 +1,31 @@
 # region normal
-- type: entityTable # From 0 to 360 spesos per carp
-  id: TableDungeonLootNpcAberrantFlesh
-  table: !type:AllSelector
-    children:
-    - id: MaterialBiomassRandomReduced # up to 2.4 spesos
-    - id: NFTreasureOrganicSamples
-      rolls: !type:RangeNumberSelector
-        range: 0, 3 # From 120 to 360 spesos
-
-- type: entity
+- type: entity # From 0 to 360 spesos
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcAberrantFlesh
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcAberrantFlesh
+    table: !type:AllSelector
+      children:
+      - id: MaterialBiomassRandomReduced # up to 2.4 spesos
+      - id: NFTreasureOrganicSamples
+        rolls: !type:RangeNumberSelector
+          range: 0, 3 # From 120 to 360 spesos
 
 # region boss
-- type: entityTable # From 240 to 480 spesos
-  id: TableDungeonLootNpcAberrantFleshBoss
-  table: !type:AllSelector
-    children:
-    - id: MaterialBiomassRandomReduced
-      rolls: !type:RangeNumberSelector
-        range: 2, 4
-    - id: NFTreasureOrganicSamples
-      rolls: !type:RangeNumberSelector
-        range: 2, 4 # From 240 to 480 spesos
-
-- type: entity
+- type: entity # From 240 to 480 spesos
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcAberrantFleshBoss
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcAberrantFleshBoss
+    table: !type:AllSelector
+      children:
+      - id: MaterialBiomassRandomReduced
+        rolls: !type:RangeNumberSelector
+          range: 2, 4
+      - id: NFTreasureOrganicSamples
+        rolls: !type:RangeNumberSelector
+          range: 2, 4 # From 240 to 480 spesos

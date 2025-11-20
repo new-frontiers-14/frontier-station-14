@@ -10,15 +10,6 @@
 
 # Sorted by health pool (less health => lower spawn probability for treasure)
 # region compsognathus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurCompy
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurCompy # 5000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurCompy
@@ -26,20 +17,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurCompy
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurCompy # 5000 spesos
+        weight: 0.3
 
 # region dilophosaurus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurDilo
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurDilo # 5000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurDilo
@@ -47,20 +32,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurDilo
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurDilo # 5000 spesos
+        weight: 0.3
 
 # region velociraptor
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurRaptor
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurRaptor # 5000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurRaptor
@@ -68,20 +47,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurRaptor
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurRaptor # 5000 spesos
+        weight: 0.3
 
 # region parasaurolophus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurPara
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurPara # 5000 spesos
-      weight: 0.4
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurPara
@@ -89,20 +62,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurPara
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurPara # 5000 spesos
+        weight: 0.4
 
 # region kentrosaurus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurKentro
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurKentro # 5000 spesos
-      weight: 0.4
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurKentro
@@ -110,20 +77,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurKentro
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurKentro # 5000 spesos
+        weight: 0.4
 
 # region triceratops
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurTrike
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurTrike # 5000 spesos
-      weight: 0.4
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurTrike
@@ -131,20 +92,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurTrike
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurTrike # 5000 spesos
+        weight: 0.4
 
 # region ankylosaurus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurAnki
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurAnki # 5000 spesos
-      weight: 0.5
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurAnki
@@ -152,20 +107,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurAnki
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurAnki # 5000 spesos
+        weight: 0.5
 
 # region spinosaurus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurSpino
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurSpino # 5000 spesos
-      weight: 0.5
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurSpino
@@ -173,20 +122,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurSpino
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurSpino # 5000 spesos
+        weight: 0.5
 
 # region stegosaurus
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurStego
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurStego # 5000 spesos
-      weight: 0.5
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurStego
@@ -194,19 +137,14 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurStego
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurStego # 5000 spesos
+        weight: 0.5
 
 # region tyrannosaurus (boss)
-- type: entityTable
-  id: TableDungeonLootNpcDinosaurTrex
-  table: !type:AllSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurBase
-    - id: NFTreasureTrophyDinosaurTrex # 8000 spesos
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcDinosaurTrex
@@ -214,6 +152,8 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcDinosaurTrex
+    table: !type:AllSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcDinosaurBase
+      - id: NFTreasureTrophyDinosaurTrex # 8000 spesos
