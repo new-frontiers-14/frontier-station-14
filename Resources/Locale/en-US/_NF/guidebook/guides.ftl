@@ -104,6 +104,7 @@ guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
+guide-entry-shipyard-yegorov = Yegorov
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
