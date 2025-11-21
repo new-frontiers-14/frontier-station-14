@@ -597,7 +597,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             var ev = new NFEntityEmotedEvent(source, action); // Frontier
             RaiseLocalEvent(source, ev, true); // Frontier
-            return;
+            // return; // Frontier: no return
         }
 
 
