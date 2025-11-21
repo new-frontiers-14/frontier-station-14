@@ -108,6 +108,51 @@
     graph: ImprovisedShotgunShellGraph
     node: shell
 
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunTrash
+  name: shell (.50 trash)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: soap # TODO: sprite trash fill
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunTrashSpread
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity
+  id: NFShellShotgunBuckshotDisabler
+  name: shell (.50 disabler)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+        state: disabler
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunDisablerSpread
+  - type: SpentAmmoVisuals
+    state: "disabler"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: NFShellShotgunBuckshotLaser
+  name: shell (.50 laser)
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+        state: energy
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunLaserSpread
+  - type: SpentAmmoVisuals
+    state: "energy"
+
 #region Slugs
 - type: entity
   id: NFShellShotgunSlug
@@ -173,3 +218,180 @@
           Quantity: 4
   - type: SolutionTransfer
     maxTransferAmount: 4
+
+#region Utility shells
+# Crafting mats
+- type: entity # TODO: modular recipe
+  id: BlankShellShotgunPrinted
+  name: shell (.50 empty)
+  parent: [ BaseItem, BaseC1Contraband ] # BaseCartridge
+  abstract: true
+  components:
+  - type: Item
+    size: Tiny
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: blank
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: "blank"
+  - type: StaticPrice
+    price: 1
+
+# Actual ammo
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunNet
+  name: shell (.50 net)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: net
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Bola
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunLaser
+  name: shell (.50 laser bolt)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: energy
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFBulletLaserHeavy
+  - type: SpentAmmoVisuals
+    state: "energy"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunDisabler
+  name: shell (.50 disabler bolt)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: disabler
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFBulletDisabler
+  - type: SpentAmmoVisuals
+    state: "disabler"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunHighExSlug
+  name: shell (.50 high-ex slug)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: highex
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunHighExSlug
+  - type: SpentAmmoVisuals
+    state: "highex"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunFlashbangSlug
+  name: shell (.50 flashbang slug)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: highex # TODO: sprite
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunFlashbangSlug
+  - type: SpentAmmoVisuals
+    state: "highex"
+
+- type: entity # TODO: add chem transfer mechanics from syringe gun once available
+  parent: NFBaseShellShotgun
+  id: ShellShotgunSyringe
+  name: shell (.50 syringe slug)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: syringe
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: syringe-fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: CartridgeAmmo
+    proto: NFShotgunSlugBeanbag # PelletShotgunTranquilizer
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 4
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 4
+  - type: SpentAmmoVisuals
+    state: "syringe"
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: syringe-fill-
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunCluster
+  name: shell (.50 cluster)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: cluster
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunCluster
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunBreaching
+  name: shell (.50 breaching slug)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: antimateriel
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFShotgunSlugBreaching
+  - type: SpentAmmoVisuals
+    state: "antimateriel"
+
+- type: entity
+  parent: NFBaseShellShotgun
+  id: ShellShotgunSoap
+  name: shell (.50 soap slug)
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: soap
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunSoapletSpread
+  - type: SpentAmmoVisuals
+    state: "blank"
