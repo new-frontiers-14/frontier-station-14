@@ -26,10 +26,18 @@ namespace Content.Shared.Lathe
         // Otherwise the material arbitrage test and/or LatheSystem.GetAllBaseRecipes needs to be updated
 
         /// <summary>
-        /// The lathe's construction queue
+        /// The lathe's construction queue.
         /// </summary>
+        /// <remarks>
+        /// This is a LinkedList to allow for constant time insertion/deletion (vs a List), and more efficient
+        /// moves (vs a Queue).
+        /// </remarks>
         [DataField]
+<<<<<<< HEAD
         public List<LatheRecipeBatch> Queue = new(); // Frontier: Queue<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
+=======
+        public LinkedList<LatheRecipeBatch> Queue = new();
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
         /// <summary>
         /// The sound that plays when the lathe is producing an item, if any
@@ -146,9 +154,14 @@ namespace Content.Shared.Lathe
         }
     }
 
+<<<<<<< HEAD
     // Frontier: batch lathe recipes
     [Serializable]
     public sealed partial class LatheRecipeBatch : EntityEventArgs
+=======
+    [Serializable]
+    public sealed partial class LatheRecipeBatch
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     {
         public ProtoId<LatheRecipePrototype> Recipe;
         public int ItemsPrinted;
@@ -161,7 +174,10 @@ namespace Content.Shared.Lathe
             ItemsRequested = itemsRequested;
         }
     }
+<<<<<<< HEAD
     // End Frontier
+=======
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     /// <summary>
     /// Event raised on a lathe when it starts producing a recipe.

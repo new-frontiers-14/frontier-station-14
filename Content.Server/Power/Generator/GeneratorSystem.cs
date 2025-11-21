@@ -244,6 +244,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         TryUpdateGeneratorRadiation(uid, on, generator); // Frontier
         generator.On = on;
         UpdateState(uid, generator);
+        Dirty(uid, generator);
     }
 
     public override void Update(float frameTime)

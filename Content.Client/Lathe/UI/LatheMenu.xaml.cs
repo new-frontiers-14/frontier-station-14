@@ -27,10 +27,17 @@ public sealed partial class LatheMenu : DefaultWindow
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
+<<<<<<< HEAD
     public event Action<int>? QueueDeleteAction; // Frontier
     public event Action<int>? QueueMoveUpAction; // Frontier
     public event Action<int>? QueueMoveDownAction; // Frontier
     public event Action? DeleteFabricatingAction; // Frontier
+=======
+    public event Action<int>? QueueDeleteAction;
+    public event Action<int>? QueueMoveUpAction;
+    public event Action<int>? QueueMoveDownAction;
+    public event Action? DeleteFabricatingAction;
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
@@ -55,14 +62,26 @@ public sealed partial class LatheMenu : DefaultWindow
         };
         AmountLineEdit.OnTextChanged += _ =>
         {
+            if (int.TryParse(AmountLineEdit.Text, out var amount))
+            {
+                if (amount > LatheSystem.MaxItemsPerRequest)
+                    AmountLineEdit.Text = LatheSystem.MaxItemsPerRequest.ToString();
+                else if (amount < 0)
+                    AmountLineEdit.Text = "0";
+            }
+
             PopulateRecipes();
         };
 
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
+<<<<<<< HEAD
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
         DeleteFabricating.AddStyleClass("OpenLeft"); // Frontier
+=======
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 
     public void SetEntity(EntityUid uid)
@@ -230,11 +249,16 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
+<<<<<<< HEAD
     public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: IReadOnlyCollection<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
+=======
+    public void PopulateQueueList(IReadOnlyCollection<LatheRecipeBatch> queue)
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     {
         QueueList.DisposeAllChildren();
 
         var idx = 1;
+<<<<<<< HEAD
         foreach (var batch in queue) // Frontier: recipe<batch
         {
             // Frontier: custom boxes
@@ -263,6 +287,24 @@ public sealed partial class LatheMenu : DefaultWindow
             queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
             queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
             queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
+=======
+        foreach (var batch in queue)
+        {
+            var recipe = _prototypeManager.Index(batch.Recipe);
+
+            var itemName = _lathe.GetRecipeName(batch.Recipe);
+            string displayText;
+            if (batch.ItemsRequested > 1)
+                displayText = Loc.GetString("lathe-menu-item-batch", ("index", idx), ("name", itemName), ("printed", batch.ItemsPrinted), ("total", batch.ItemsRequested));
+            else
+                displayText = Loc.GetString("lathe-menu-item-single", ("index", idx), ("name", itemName));
+
+            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(recipe));
+            queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
+            queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
+            queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
+
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
             QueueList.AddChild(queuedRecipeBox);
             // End Frontier: custom boxes
             idx++;
