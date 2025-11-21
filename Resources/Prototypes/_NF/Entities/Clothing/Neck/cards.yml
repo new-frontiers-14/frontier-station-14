@@ -1,13 +1,31 @@
+# region base
 - type: entity
-  parent: ClothingNeckBase
+  abstract: true
+  parent: [ RecyclableItemPlasticTiny, Clothing ]
+  id: NFBaseClothingNeckCard
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/card.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/card.rsi
+    quickEquip: true
+    slots:
+    - neck
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Recyclable
+    - WhitelistChameleon
+
+# region reporter
+- type: entity
+  parent: NFBaseClothingNeckCard
   id: NFClothingNeckCardReporter
   name: reporter card
   description: A press pass identifying the bearer as a member of the news media.
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
-    sprite: _NF/Clothing/Neck/Misc/card.rsi
     layers:
     - state: icon-base
       color: "#9fed58"
@@ -15,7 +33,6 @@
       color: "#96A3B0"
       shader: unshaded
   - type: Clothing
-    sprite: _NF/Clothing/Neck/Misc/card.rsi
     clothingVisuals:
       neck:
       - state: equipped-NECK
@@ -24,23 +41,20 @@
         shader: unshaded
         color: "#96A3B0"
 
+# region medic
 - type: entity
-  parent: ClothingNeckBase
+  parent: NFBaseClothingNeckCard
   id: NFClothingNeckCardMedic
   name: medic card
   description: An identification card for medical personnel.
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
-    sprite: _NF/Clothing/Neck/Misc/card.rsi
     layers:
     - state: icon-base
     - state: icon-unshaded
       color: "#5b97bc"
       shader: unshaded
   - type: Clothing
-    sprite: _NF/Clothing/Neck/Misc/card.rsi
     clothingVisuals:
       neck:
       - state: equipped-NECK
@@ -48,17 +62,14 @@
         shader: unshaded
         color: "#5b97bc"
 
-# Slot
+# region nfsd writ/permit
 - type: entity
-  parent: ClothingNeckBase
+  parent: NFBaseClothingNeckCard
   id: NFClothingNeckCardNfsdWrit
   name: nfsd permit card
-  description: A permit card issued by the NFSD. It has a slot for inserting paperwork. Property of NFSD, user may not temper with the contents.
+  description: A permit card issued by the NFSD. Includes a slot for inserting official paperwork. Property of the NFSD; contents are not to be tampered with by the holder..
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
-    sprite: _NF/Clothing/Neck/Misc/card.rsi
     layers:
     - state: icon-base
       color: "#63492a"
@@ -71,7 +82,6 @@
       color: "#784b4b"
       shader: unshaded
   - type: Clothing
-    sprite: _NF/Clothing/Neck/Misc/card.rsi
     clothingVisuals:
       neck:
       - state: equipped-NECK
