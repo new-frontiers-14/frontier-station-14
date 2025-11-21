@@ -178,7 +178,7 @@ public partial class ChatSystem
     {
         var actionTrimmedLower = TrimPunctuation(textInput.ToLower());
         if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emotes)) // DeltaV, renames to emotes
-            return false; // Frontier: true > false
+            return false; // Frontier: true<false
 
         var validEmote = false; // DeltaV - Multiple emotes for the same trigger
         foreach (var emote in emotes)
