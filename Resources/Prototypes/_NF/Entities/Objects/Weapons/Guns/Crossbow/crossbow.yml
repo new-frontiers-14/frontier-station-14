@@ -1,14 +1,11 @@
 ﻿#region Base
 - type: entity
+  abstract: true
+  parent: [ NFBaseWeaponEncumbranceCrossbow, BaseItem ]
   id: BaseCrossbow
   name: crossbow
-  parent: [ NFBaseWeaponEncumbranceCrossbow, BaseItem, GunMeleeAttackBluntBase ] # \Resources\Prototypes\_NF\Entities\Objects\Weapons\Melee\base_melee_weapon.yml
-  description: The original rooty tooty point and shooty.
-  abstract: true
+  description: A medieval ranged weapon that shoots projectiles called bolts. Now in space!
   components:
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 500
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbow.rsi
     layers:
@@ -81,6 +78,9 @@
     - Back
     - suitStorage
     - Belt
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
   - type: UseDelay
     delay: 1.5
   - type: Gun
@@ -204,9 +204,9 @@
           - CrossbowBoltShrapnel
 
 - type: entity
-  id: BaseCrossbowWieldable
-  parent: BaseCrossbow
   abstract: true
+  parent: [ NFBaseGunMeleeAttackMedium, BaseCrossbow ]
+  id: BaseCrossbowWieldable
   components:
   - type: Clothing
     quickEquip: false
@@ -267,8 +267,8 @@
 
 #region Wieldable
 - type: entity
-  id: CrossbowModern
   parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
+  id: CrossbowModern
   components:
   - type: UseDelay
     delay: 0.5
@@ -280,8 +280,8 @@
     deconstructionTarget: null
 
 - type: entity
-  id: CrossbowImprovised
   parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
+  id: CrossbowImprovised
   name: impovised crossbow
   components:
   - type: UseDelay
@@ -293,8 +293,8 @@
     node: ImprovisedCrossbow
 
 - type: entity
-  id: CrossbowBloodCult
   parent: [ BaseCrossbowWieldable, BaseC3CultContraband ]
+  id: CrossbowBloodCult
   name: blood cult crossbow
   components:
   - type: Sprite
@@ -308,8 +308,8 @@
 
 #region Hand xbows
 - type: entity
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC1Contraband ]
   id: CrossbowModernHand
-  parent: [ NFBaseWeaponEncumbranceCrossbowHand, BaseCrossbow, BaseC1Contraband ]
   name: hand crossbow
   components:
   - type: UseDelay
@@ -321,8 +321,8 @@
     node: CrossbowModernHand
 
 - type: entity
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC1Contraband ]
   id: CrossbowImprovisedHand
-  parent: [ NFBaseWeaponEncumbranceCrossbowHand, BaseCrossbow, BaseC1Contraband ]
   name: impovised hand crossbow
   components:
   - type: UseDelay
@@ -334,8 +334,8 @@
     node: ImprovisedCrossbowHand
 
 - type: entity
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC3CultContraband ]
   id: CrossbowBloodCultHand
-  parent: [ NFBaseWeaponEncumbranceCrossbowHand, BaseCrossbow, BaseC3CultContraband ]
   name: blood cult hand crossbow
   components:
   - type: Sprite
