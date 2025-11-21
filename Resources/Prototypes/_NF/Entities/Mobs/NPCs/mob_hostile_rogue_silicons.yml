@@ -302,16 +302,6 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: /Audio/Machines/warning_buzzer.ogg
-          params:
-            variation: 0.250
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:PlaySoundBehavior
@@ -366,11 +356,11 @@
 #region Tier 1
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrap
   categories: [ HideSpawnMenu ]
   components:
@@ -431,11 +421,11 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThreads
   categories: [ HideSpawnMenu ]
   components:
@@ -483,11 +473,11 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrusters
   categories: [ HideSpawnMenu ]
   components:
@@ -559,8 +549,8 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconScrapThrusters
   - MobRogueSiliconDestructibleBehavior
+  - MobRogueSiliconScrapThrusters
   id: MobRogueSiliconScrapThrustersRanged
   categories: [ HideSpawnMenu ]
   components:
@@ -584,11 +574,11 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapFlayer
   categories: [ HideSpawnMenu ]
   components:
@@ -646,9 +636,9 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehaviorDrone
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  - MobRogueSiliconDestructibleBehaviorDrone
   id: MobRogueSiliconDroneLethals
   description: Hacked by a rogue AI, these security drones are programmed to kill.
   categories: [ HideSpawnMenu ]
@@ -671,9 +661,9 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehaviorDrone
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  - MobRogueSiliconDestructibleBehaviorDrone
   id: MobRogueSiliconDroneNonLethals
   description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
   categories: [ HideSpawnMenu ]
@@ -699,9 +689,9 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehaviorDrone
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  - MobRogueSiliconDestructibleBehaviorDrone
   id: MobRogueSiliconDroneScience
   description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
   categories: [ HideSpawnMenu ]
@@ -777,6 +767,7 @@
 #region Tier 2
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
@@ -816,6 +807,7 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
@@ -934,6 +926,7 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
@@ -1002,6 +995,7 @@
 #region Tier 3
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
@@ -1247,6 +1241,7 @@
 ## Tier 1
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
@@ -1314,6 +1309,7 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
@@ -1368,6 +1364,7 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
@@ -1446,6 +1443,7 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobRogueSiliconScrapThrustersAsteroid
   - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrustersRangedAsteroid
