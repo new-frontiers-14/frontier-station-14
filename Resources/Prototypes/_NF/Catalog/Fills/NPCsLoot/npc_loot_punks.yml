@@ -1,0 +1,61 @@
+# region booze
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBooze
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableStorageFillStashBooze
+
+# region smokes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSmokes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableStorageFillStashTobacco
+
+# region blueprints
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintClothesPunk
+        - id: NFBlueprintArmorPunk
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: NFBlueprintPouchPunk
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.35
+        children:
+        - id: NFBlueprintArmorHeavyPunk
+        - id: NFBlueprintWeaponsMeleePunk
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintWearablePunk
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: NFBlueprintPortableRecharger
