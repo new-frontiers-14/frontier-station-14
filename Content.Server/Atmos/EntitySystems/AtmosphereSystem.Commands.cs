@@ -4,6 +4,7 @@ using Content.Server.Atmos.Components;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared._NF.Atmos.Components; // Frontier
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -218,17 +219,19 @@ public sealed partial class AtmosphereSystem
             return;
         }
 
-        MapId mapId;
-        mapId = new MapId(intMapId);
+        if (!_mapSystem.TryGetMap(new MapId(intMapId), out var mapUid))
+        {
+            shell.WriteError("Target map does not exist.");
+            return;
+        }
 
         if (enable)
         {
-            if (!_atmosEnabledMaps.Contains(mapId))
-                _atmosEnabledMaps.Add(mapId);
+            AddComp<AtmosEnabledMapComponent>(mapUid.Value);
         }
         else
         {
-            _atmosEnabledMaps.Remove(mapId);
+            RemComp<AtmosEnabledMapComponent>(mapUid.Value);
         }
     }
     // End Frontier: Toggle atmos per map

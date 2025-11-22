@@ -51,8 +51,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private string[] _burntDecals = [];
 
-    private List<MapId> _atmosEnabledMaps = new(); // Frontier
-
     public override void Initialize()
     {
         base.Initialize();
