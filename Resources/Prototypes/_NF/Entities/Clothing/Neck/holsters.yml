@@ -12,13 +12,13 @@
     slots:
       weapon:
         priority: 4
-        name: Sidearm
+        name: clothing-neck-sidearm
         whitelist:
           tags:
           - Sidearm
       magazine:
         priority: 3
-        name: Magazine
+        name: clothing-neck-magazine
         whitelist:
           tags:
           - NFMagazinePistol35
@@ -63,7 +63,7 @@
     slots:
       weapon:
         priority: 4
-        name: Dagger
+        name: clothing-neck-dagger
         whitelist:
           tags:
           - Knife
@@ -89,8 +89,23 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Neck/Misc/holster_thigh.rsi
+    layers:
+    - state: icon
+      color: "#515151"
   - type: Clothing
     sprite: _NF/Clothing/Neck/Misc/holster_thigh.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#515151"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#515151"
+      right:
+      - state: inhand-right
+        color: "#515151"
   - type: ItemMapper
     sprite: _NF/Clothing/Neck/Misc/holster_thigh.rsi
 
@@ -102,20 +117,20 @@
   - type: Sprite
     layers:
     - state: icon
-      color: "#967756"
+      color: "#493926"
   - type: Clothing
     clothingVisuals:
       neck:
       - state: equipped-NECK
-        color: "#705b44"
+        color: "#493926"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#705b44"
+        color: "#493926"
       right:
       - state: inhand-right
-        color: "#705b44"
+        color: "#493926"
 
 # region thigh sheath
 - type: entity
@@ -126,8 +141,23 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Neck/Misc/holster_thigh_sheath.rsi
+    layers:
+    - state: icon
+      color: "#515151"
   - type: Clothing
     sprite: _NF/Clothing/Neck/Misc/holster_thigh_sheath.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#515151"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#515151"
+      right:
+      - state: inhand-right
+        color: "#515151"
   - type: ItemMapper
     sprite: _NF/Clothing/Neck/Misc/holster_thigh_sheath.rsi
 
@@ -139,17 +169,17 @@
   - type: Sprite
     layers:
     - state: icon
-      color: "#967756"
+      color: "#493926"
   - type: Clothing
     clothingVisuals:
       neck:
       - state: equipped-NECK
-        color: "#705b44"
+        color: "#493926"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#705b44"
+        color: "#493926"
       right:
       - state: inhand-right
-        color: "#705b44"
+        color: "#493926"
