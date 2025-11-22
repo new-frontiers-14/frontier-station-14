@@ -199,7 +199,7 @@
           - PotatoBattery
 
 - type: entity
-  parent: [BaseStructureWallmount, BaseItemRecharger] # Frontier: add BaseStructureWallmount
+  parent: [ BaseItemRecharger, BaseWallmount ]
   id: WallWeaponCapacitorRecharger
   name: wall recharger
   description: A sleek wall recharger, fits both power cells and small electronic devices. # Frontier
@@ -213,7 +213,8 @@
     - map: ["enum.PowerChargerVisualLayers.Light"]
       state: "light-off"
       shader: "unshaded"
-  - type: WallMount
+  - type: Charger
+    chargeRate: 25
   - type: ItemSlots
     slots:
       charger_slot:
