@@ -772,7 +772,6 @@
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconServo
   name: servo unit
   description: With its programming rewritten, this crash test dummy will stop at nothing in exacting its revenge.
@@ -812,7 +811,6 @@
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconHerder
   name: herder unit
   description: This rogue silicon unit's primary directive is to corral and herd captives. Its stun prod can be used to good effect, take caution.
@@ -868,10 +866,10 @@
 
 - type: entity
   parent:
+  - MobRogueSiliconDestructibleBehavior
   - MobRogueSiliconDroneBase
   - MobPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconHunter
   name: hunter unit
   description: These mobile drones are tasked with reconnaissance, threat identification, and target elimination.
@@ -930,7 +928,6 @@
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconCatcher
   name: catcher unit
   description: Equipped with bolas, this unit is designed to slow, capture, and detain targets.
@@ -1000,7 +997,6 @@
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconTesla
   name: tesla unit
   description: Originally designed to service tesla power generators, this silicon's equipment has been repurposed as a makeshift stun gun.
@@ -1245,7 +1241,6 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapAsteroid
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
@@ -1313,7 +1308,6 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThreadsAsteroid
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
@@ -1368,7 +1362,6 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   - NFMobRoadkillable
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrustersAsteroid
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
@@ -1445,7 +1438,6 @@
   parent:
   - MobRogueSiliconDestructibleBehavior
   - MobRogueSiliconScrapThrustersAsteroid
-  - MobRogueSiliconDestructibleBehavior
   id: MobRogueSiliconScrapThrustersRangedAsteroid
   categories: [ HideSpawnMenu ]
   components:

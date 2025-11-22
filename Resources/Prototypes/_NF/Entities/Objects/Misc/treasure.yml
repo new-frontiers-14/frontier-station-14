@@ -232,6 +232,29 @@
 
 - type: entity
   parent: NFTreasureOrganicSamples
+  id: NFTreasureOrganicSamplesZombie
+  components:
+  - type: Sprite
+    layers:
+    - state: membrane
+      color: "#737039"
+      map: ["base"]
+  - type: RandomSprite
+    available:
+    - base:
+        alveolar-sacs: FleshColorsRotten
+        capillary: FleshColorsRotten
+        cube: FleshColorsRotten
+        membrane: FleshColorsRotten
+        membrane-top: FleshColorsRotten
+        organoid-1: FleshColorsRotten
+        organoid-2: FleshColorsRotten
+        organoid-3: FleshColorsRotten
+        symbiont: FleshColorsRotten
+        tubules: FleshColorsRotten
+
+- type: entity
+  parent: NFTreasureOrganicSamples
   id: NFTreasureOrganicSamplesXeno
   name: xenoid organic samples
   components:
