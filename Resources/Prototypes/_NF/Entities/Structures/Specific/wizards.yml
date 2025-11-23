@@ -151,11 +151,10 @@
   description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Specific/Wizard/canister.rsi # placeholder
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi
       layers:
-        - state: gas-portal
+        - state: oxygen
           shader: unshaded
-          color: "#88cffa"
         - state: canister
     - type: GasCanister
       gasMixture:
@@ -171,6 +170,8 @@
           - 0 # N2O
           - 0 # Frezon
         temperature: 293.15
+    - type: StaticPrice
+      price: 1250
 
 - type: entity
   parent: [ GasCanister, BaseC3WizardContraband ]
@@ -180,11 +181,10 @@
   description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Specific/Wizard/canister.rsi # placeholder
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi
       layers:
-        - state: gas-portal
+        - state: nitrogen
           shader: unshaded
-          color: "#ed1529"
         - state: canister
     - type: GasCanister
       gasMixture:
@@ -200,6 +200,8 @@
           - 0 # N2O
           - 0 # Frezon
         temperature: 293.15
+    - type: StaticPrice
+      price: 1250
 
 #region small wall light
 - type: entity
