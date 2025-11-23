@@ -1,4 +1,4 @@
-using System.Numerics;
+using System.Numerics; // Frontier
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -70,7 +70,7 @@ public sealed partial class CryoPodComponent : Component
     [ViewVariables]
     public ContainerSlot BodyContainer = default!;
 
-    // Frontier - proper cryo pod drop spot
+    // Frontier
     /// <summary>
     /// Tile offset to drop patients at
     /// </summary>

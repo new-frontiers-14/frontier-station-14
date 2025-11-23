@@ -192,7 +192,7 @@ public sealed partial class ClimbSystem : VirtualController
         if (args.Handled)
             return;
 
-        args.Handled = TryClimb(args.User, args.Dragged, uid, out _, component);
+        args.Handled = TryClimb(args.User, args.Dragged, uid, out _, component); // Frontier
     }
 
     public bool TryClimb(

@@ -1,22 +1,21 @@
 using Content.Server.Medical.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
-using Content.Shared.Climbing.Systems; // Frontier - proper cryo pod drop spot
+using Content.Shared.Climbing.Systems; // Frontier
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Emag.Systems;
-using Content.Shared.Interaction; // Frontier - proper cryo pod drop spot
+using Content.Shared.Interaction; // Frontier
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Physics; // Frontier - proper cryo pod drop spot
+using Content.Shared.Physics; // Frontier
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
-using Robust.Shared.Map; // Frontier - proper cryo pod drop spot
-using Robust.Shared.Maths; // Frontier - proper cryo pod drop spot
+using Robust.Shared.Map; // Frontier
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Medical.Cryogenics;
@@ -31,9 +30,9 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier - proper cryo pod drop spot
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier - proper cryo pod drop spot
-    [Dependency] private readonly ClimbSystem _climb = default!; // Frontier - proper cryo pod drop spot
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier
+    [Dependency] private readonly ClimbSystem _climb = default!; // Frontier
 
     public override void Initialize()
     {
@@ -136,7 +135,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         }
         else
         {
-            var foundfallbackspot = false;
+            var foundFallbackSpot = false;
             foreach (var dir in new[] { Direction.South, Direction.North, Direction.East, Direction.West })
             {
                 var fallbackCandidate = new EntityCoordinates(uid, dir.ToIntVec());
@@ -144,12 +143,12 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
                 {
                     _containerSystem.Remove(contained, cryoPodComponent.BodyContainer);
                     _transform.SetWorldPosition(contained, _transform.ToWorldPosition(fallbackCandidate));
-                    foundfallbackspot = true;
+                    foundFallbackSpot = true;
                     break;
                 }
             }
 
-            if (!foundfallbackspot)
+            if (!foundFallbackSpot)
             {
                 _containerSystem.Remove(contained, cryoPodComponent.BodyContainer);
                 _climb.ForciblySetClimbing(contained, uid);
