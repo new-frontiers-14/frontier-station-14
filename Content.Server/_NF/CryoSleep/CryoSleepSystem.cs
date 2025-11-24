@@ -285,6 +285,14 @@ public sealed partial class CryoSleepSystem : EntitySystem
         return true;
     }
 
+    public bool IsBodyInCryoPod(EntityUid body, Entity<CryoSleepComponent?> cryopod)
+    {
+        if (!Resolve(cryopod, ref cryopod.Comp))
+            return false;
+
+        return cryopod.Comp.BodyContainer.ContainedEntity == body;
+    }
+
     /// <summary>
     /// Scans the inventory of an entity about to cryo in order to contrusct a warning message of all appropriate items.
     /// </summary>
