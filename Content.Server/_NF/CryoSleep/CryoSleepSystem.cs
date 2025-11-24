@@ -409,6 +409,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (!TryComp<CryoSleepComponent>(cryopod, out var cryo))
             return;
 
+        // early return if the body isn't in the cryopod, unless immediate is true
+        if (!immediate && (!IsOccupied(cryo) || cryo.BodyContainer.ContainedEntity != bodyId))
+            return;
+
         var deleteEntity = false;
         NetUserId? id = null;
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid: true } body)
