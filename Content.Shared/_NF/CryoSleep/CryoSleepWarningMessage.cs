@@ -1,4 +1,5 @@
 using Content.Shared.Eui;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.CryoSleep;
@@ -6,12 +7,14 @@ namespace Content.Shared._NF.CryoSleep;
 /// <summary>
 /// A message for CryoSleepEui containing all the items the server found, along with some other data to build the clientside warning messages.
 /// </summary>
-[Serializable] [NetSerializable]
+[Serializable]
+[NetSerializable]
 public sealed class CryoSleepWarningMessage(
     bool shuttleOnPda,
     CryoSleepWarningMessage.NetworkedWarningItem? inventoryShuttleDeed,
     bool foundMoreShuttles,
     CryoSleepWarningMessage.NetworkedWarningItem? foundUplink,
+    FixedPoint2 uplinkBalance,
     List<CryoSleepWarningMessage.NetworkedWarningItem> importantItems)
     : EuiMessageBase
 {
@@ -19,9 +22,12 @@ public sealed class CryoSleepWarningMessage(
     public readonly NetworkedWarningItem? InventoryShuttleDeed = inventoryShuttleDeed;
     public readonly bool FoundMoreShuttles = foundMoreShuttles;
     public readonly NetworkedWarningItem? FoundUplink = foundUplink;
+    public readonly FixedPoint2 UplinkBalance = uplinkBalance;
     public readonly List<NetworkedWarningItem> ImportantItems = importantItems;
 
-    [Serializable] [NetSerializable]
+
+    [Serializable]
+    [NetSerializable]
     public struct NetworkedWarningItem
     {
     public NetworkedWarningItem(string? slotId, NetEntity? container, NetEntity item)
@@ -35,8 +41,8 @@ public sealed class CryoSleepWarningMessage(
         SlotId = slotId;
         Container = container;
         Item = item;
-        }
- //Exactly one of these two values should be null
+    }
+        //Exactly one of these two values should be null
         public readonly string? SlotId;
         public readonly NetEntity? Container;
 

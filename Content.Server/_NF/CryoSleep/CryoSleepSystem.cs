@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Numerics;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.DoAfter;
@@ -17,6 +18,7 @@ using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Events;
@@ -317,6 +319,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         }
         //Now, we extract the uplinks and shuttle deeds.
         WarningItem? uplink = null;
+        FixedPoint2 currencyAmount = 0;
         WarningItem? backpackShuttleDeed = null;
         //Listing every point where a shuttle deed was found runs you out of space very fast.
         var foundMoreShuttles = false;
@@ -336,10 +339,13 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
                 warningItemsList.RemoveAt(i);
             }
-            else if (HasComp<StoreComponent>(itemStruct.Item) && !uplink.HasValue)
+            else if (TryComp<StoreComponent>(itemStruct.Item, out var uplinkComp) && !uplink.HasValue)
             {
                 uplink = itemStruct;
                 warningItemsList.RemoveAt(i);
+                var currencyProtoId = uplinkComp.Balance.Keys.First();
+                currencyAmount = uplinkComp.Balance[currencyProtoId];
+
             }
         }
 
@@ -353,6 +359,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
             nwBackpackShuttleDeed,
             foundMoreShuttles,
             nwUplink,
+            currencyAmount,
             networkedWarningItems);
     }
 

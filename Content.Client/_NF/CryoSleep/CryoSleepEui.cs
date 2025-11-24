@@ -10,6 +10,7 @@ using Content.Shared._NF.Roles.Systems;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Eui;
+using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
@@ -84,7 +85,7 @@ public sealed class CryoSleepEui : BaseEui
                 slotsComp);
             //Uplink
             string? uplinkWarningLoc = warningMsg.FoundUplink.HasValue
-                ? GetUplinkWarningLocMessage(warningMsg.FoundUplink.Value, slotsComp)
+                ? GetUplinkWarningLocMessage(warningMsg.FoundUplink.Value, slotsComp, warningMsg.UplinkBalance)
                 : null;
             //Items
             string? itemWarningLoc = GetImportantItemWarningLocMessage(warningMsg.ImportantItems, slotsComp);
@@ -108,17 +109,19 @@ public sealed class CryoSleepEui : BaseEui
 
     private string GetStorageName(CryoSleepWarningMessage.NetworkedWarningItem item, InventorySlotsComponent inventoryComp)
     {
-        if (item.SlotId == null)
+        if (item.Container is not null)
         {
             return Identity.Name(_entityManager.GetEntity(item.Container!.Value), _entityManager);
         }
-        else
+        else if (item.SlotId is not null)
         {
             //Lowercase this just to make the name not look weird in the popup
             var returnVal = inventoryComp.SlotData[item.SlotId].SlotDisplayName;
             //I can't execute without assigning it first
             return returnVal.ToLower();
         }
+
+        return "ERROR";
     }
 
     //All of these message get methods were moved to be separate to make the code less rigid, and easier to read.
@@ -211,20 +214,20 @@ public sealed class CryoSleepEui : BaseEui
     //Grab any needed uplink warnings.
     //Returns null if no warning is needed
     private string? GetUplinkWarningLocMessage(CryoSleepWarningMessage.NetworkedWarningItem foundUplink,
-        InventorySlotsComponent slotsComp)
+        InventorySlotsComponent slotsComp,
+        FixedPoint2 balance)
     {
         var localUplink = _entityManager.GetEntity(foundUplink.Item);
         if (!_entityManager.TryGetComponent<StoreComponent>(localUplink, out var store))
             return null;
         var currencyProtoId = store.Balance.Keys.First();
-        var amount = store.Balance[currencyProtoId];
-        if (amount == 0
+        if (balance.Equals(0)
             || !_prototypeManager.TryIndex(currencyProtoId, out var currencyProto))
             return null;
         return Loc.GetString("accept-cryo-window-prompt-uplink-warning",
             ("uplink", Identity.Name(_entityManager.GetEntity(foundUplink.Item), _entityManager)),
             ("storage", GetStorageName(foundUplink, slotsComp)),
-            ("amount", amount),
+            ("amount", balance),
             ("currency",  Loc.GetString(currencyProto.DisplayName)));
     }
 
