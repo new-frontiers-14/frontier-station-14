@@ -30,21 +30,23 @@ public sealed class CryoSleepWarningMessage(
     [NetSerializable]
     public struct NetworkedWarningItem
     {
-    public NetworkedWarningItem(string? slotId, NetEntity? container, NetEntity item)
+    public NetworkedWarningItem(string? slotId, NetEntity? container, string? handId, NetEntity item)
     {
-        if (slotId == null && !container.HasValue)
+        if (slotId is null && !container.HasValue && handId is null)
         {
             throw new ArgumentException(
-                "CryoSleepWarningMessage.NetworkedWarningItem was attempted to be created with both slotId and container as null values");
+                "CryoSleepWarningMessage.NetworkedWarningItem was attempted to be created with all values as null values");
         }
 
         SlotId = slotId;
+        HandId = handId;
         Container = container;
         Item = item;
     }
         //Exactly one of these two values should be null
         public readonly string? SlotId;
         public readonly NetEntity? Container;
+        public readonly string? HandId;
 
         public readonly NetEntity Item;
     }

@@ -120,6 +120,10 @@ public sealed class CryoSleepEui : BaseEui
             //I can't execute without assigning it first
             return returnVal.ToLower();
         }
+        else if (item.HandId is not null)
+            //Hand IDs are not human readable, with no reliable way to get a human readable name. This is a bit hardcodey, but it should work in 95% of situations
+            //If someone has a way to convert to a human name, go for it
+            return Loc.GetString("accept-cryo-window-prompt-hand-slot-name");
 
         return "ERROR";
     }

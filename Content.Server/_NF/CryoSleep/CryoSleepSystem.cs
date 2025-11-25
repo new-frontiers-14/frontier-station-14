@@ -5,6 +5,7 @@ using Content.Server._NF.Shipyard.Systems;
 using Content.Server.DoAfter;
 using Content.Server.EUI;
 using Content.Server.Ghost;
+using Content.Server.Hands.Systems;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
@@ -63,6 +64,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly InventorySystem _inventory = default!; //For cryosleep warnings
+    [Dependency] private readonly HandsSystem _hands = default!;
 
     private readonly Dictionary<NetUserId, StoredBody?> _storedBodies = new();
     private EntityUid? _storageMap;
@@ -302,10 +304,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (!TryComp<InventoryComponent>(entity, out var inventoryComp))
             return null;
         //Items check
-        SlotDefinition[] slotsToCheck = inventoryComp.Slots;
+        var slotsToCheck = inventoryComp.Slots;
         List<WarningItem> warningItemsList = [];
         //Doing the conversion to WarningItem all at once makes more sense to me
-        List<StorageHelper.FoundItem> unconvertedFoundItem = [];
+        List<StorageHelper.FoundItem> unconvertedFoundItems = [];
         foreach (var slotDefinition in slotsToCheck)
         {
             //The ID is manually checked for a shuttle deed later, and since your PDA *technically* has an uplink in it, this has to be skipped manually.
@@ -315,15 +317,30 @@ public sealed partial class CryoSleepSystem : EntitySystem
             if (_inventory.TryGetSlotEntity(entity, slotDefinition.Name, out var slotItem))
             {
                 if (ShouldItemWarnOnCryo(slotItem.Value))
-                    warningItemsList.Add(new WarningItem(slotDefinition.Name, null, slotItem.Value));
+                    warningItemsList.Add(new WarningItem(slotDefinition.Name, null, null, slotItem.Value));
                 else if (_entityManager.HasComponent<StorageComponent>(slotItem.Value))
-                    StorageHelper.ScanStorageForCondition(slotItem.Value, ShouldItemWarnOnCryo, ref unconvertedFoundItem);
+                    StorageHelper.ScanStorageForCondition(slotItem.Value, ShouldItemWarnOnCryo, ref unconvertedFoundItems);
             }
         }
-        //Convert all FoundItem to a WarningItem
-        foreach (var found in unconvertedFoundItem)
+        //Check hands (Thank you Alkheemist for the original form of this code)
+        if (TryComp<HandsComponent>(entity, out var handsComp))
         {
-            warningItemsList.Add(new WarningItem(null, found.Container, found.Item));
+            foreach (var hand in handsComp.Hands)
+            {
+                if (!_hands.TryGetHeldItem(entity, hand.Key, out var heldEntity))
+                    continue;
+
+                if (ShouldItemWarnOnCryo(heldEntity.Value))
+                    warningItemsList.Add(new WarningItem(null, null, hand.Key, heldEntity.Value));
+                else if (_entityManager.HasComponent<StorageComponent>(heldEntity))
+                    StorageHelper.ScanStorageForCondition(heldEntity.Value, ShouldItemWarnOnCryo, ref unconvertedFoundItems);
+            }
+        }
+
+        //Convert all FoundItem to a WarningItem
+        foreach (var found in unconvertedFoundItems)
+        {
+            warningItemsList.Add(new WarningItem(null, found.Container, null, found.Item));
         }
         //Now, we extract the uplinks and shuttle deeds.
         WarningItem? uplink = null;
@@ -394,11 +411,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
         return false;
     }
 
-    private readonly struct WarningItem(string? slotId, EntityUid? container, EntityUid item)
+    private readonly struct WarningItem(string? slotId, EntityUid? container, string? handId, EntityUid item)
     {
-        //Exactly one of these two values should be null
+        //Exactly one of these three values should be null
         public readonly string? SlotId = slotId;
         public readonly EntityUid? Container = container;
+        public readonly string? HandId = handId;
 
         public readonly EntityUid Item = item;
 
@@ -406,6 +424,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             return new CryoSleepWarningMessage.NetworkedWarningItem(SlotId,
                 manager.GetNetEntity(Container),
+                HandId,
                 manager.GetNetEntity(Item));
         }
     }
