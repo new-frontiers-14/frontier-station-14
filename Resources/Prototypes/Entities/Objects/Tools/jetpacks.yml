@@ -243,17 +243,13 @@
         - 0.307706858 # oxygen
         - 0.307706858 # nitrogen
 
+# Frontier Upstream todo: figureo out if we want to keep red jetpacks as mini (from upstream) and make new sprites, or restore old capacity to keep using dV sprites
 #Empty security
 - type: entity
   id: JetpackSecurity
-<<<<<<< HEAD
-  parent: [BaseJetpack] # Frontier: removed BaseSecurityContraband
-  name: red jetpack # Frontier: "security"<"red"
-=======
-  parent: [JetpackMini, BaseSecurityContraband]
-  name: security mini jetpack
+  parent: [JetpackMini] # Frontier: removed BaseSecurityContraband
+  name: red mini jetpack # Frontier: "security"<"red"
   description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
   suffix: Empty
   components:
   - type: Item
@@ -261,15 +257,7 @@
   - type: Sprite
     sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
-<<<<<<< HEAD
     sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
-    # DeltaV modifications - Covered by modifications on parent
-    #slots:
-    #  - Back
-    # End DeltaV modifications
-=======
-    sprite: Objects/Tanks/Jetpacks/security.rsi
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 #Filled security
 - type: entity

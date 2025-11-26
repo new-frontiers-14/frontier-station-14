@@ -247,25 +247,7 @@
     availableModes:
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
-<<<<<<< HEAD
-    proto: NFRedLaserPractice # Frontier: use NF variant
-    fireCost: 62.5
-  - type: StaticPrice
-    price: 300
-
-- type: entity
-  name: laser rifle
-  parent: [WeaponLaserCarbinePractice, BaseGunWieldable, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
-  id: WeaponLaserCarbine
-  description: A simple civilian grade laser carbine, the workhorse of many private security organizations. # Frontier: description
-  components:
-  - type: StaticPrice
-    price: 420
-  - type: HitscanBatteryAmmoProvider
     proto: NFRedMediumLaser # Frontier: RedLaser<NFRedMediumLaser
-=======
-    proto: RedLaser
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     fireCost: 62.5
   - type: StaticPrice
     price: 420
@@ -279,7 +261,7 @@
   - type: StaticPrice
     price: 300
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice
+    proto: NFRedLaserPractice # Frontier: use NF variant
     fireCost: 62.5
   - type: PacifismAllowedGun
 
@@ -568,12 +550,8 @@
   - type: GuideHelp
     guides:
     - Security
-<<<<<<< HEAD
     # - Antagonists # Frontier: removed guidebook entry
-=======
-    - Antagonists
   - type: PacifismAllowedGun
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
 - type: entity
   name: disabler SMG
