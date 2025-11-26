@@ -63,6 +63,7 @@ guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-courier = Courier
 guide-entry-shipyard-construct = Construct
 guide-entry-shipyard-copperhead = Copperhead
+guide-entry-shipyard-crescent = Crescent
 guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-dragoon = Dragoon
 guide-entry-shipyard-druid = Druid
