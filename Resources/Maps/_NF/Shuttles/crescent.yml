@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/26/2025 20:43:33
-  entityCount: 3835
+  time: 11/26/2025 21:35:32
+  entityCount: 3841
 maps: []
 grids:
 - 1
@@ -5443,11 +5443,6 @@ entities:
     - type: Transform
       pos: 29.5,-28.5
       parent: 1
-  - uid: 1284
-    components:
-    - type: Transform
-      pos: -6.5,-24.5
-      parent: 1
 - proto: BannerNanotrasen
   entities:
   - uid: 1167
@@ -6020,7 +6015,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 9.5,-2.5
+      pos: 9.5,-2.1
       parent: 1
   - uid: 3416
     components:
@@ -10795,13 +10790,23 @@ entities:
   - uid: 1231
     components:
     - type: Transform
-      pos: -21.5,-6.5
+      anchored: False
+      pos: 16.5,-11.5
       parent: 1
+    - type: Anchorable
+      currentDelay: 2
+    - type: Physics
+      bodyType: Dynamic
   - uid: 1301
     components:
     - type: Transform
-      pos: -20.5,-6.5
+      anchored: False
+      pos: 16.5,-14.5
       parent: 1
+    - type: Anchorable
+      currentDelay: 2
+    - type: Physics
+      bodyType: Dynamic
 - proto: CurtainsBlueOpen
   entities:
   - uid: 1132
@@ -12207,6 +12212,8 @@ entities:
       pos: 0.5,-22.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 1935
   - uid: 2557
@@ -19797,6 +19804,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5,-36.5
       parent: 1
+  - uid: 3836
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-36.5
+      parent: 1
 - proto: GroundCannabis
   entities:
   - uid: 3743
@@ -22128,6 +22141,38 @@ entities:
     - type: Transform
       pos: 17.684622,-6.4344997
       parent: 1
+- proto: ScrapAirlock1
+  entities:
+  - uid: 3837
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.600143,-13.498045
+      parent: 1
+- proto: ScrapCloset
+  entities:
+  - uid: 3839
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.381393,-12.48242
+      parent: 1
+- proto: ScrapFaxMachine
+  entities:
+  - uid: 3840
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.553268,-10.498045
+      parent: 1
+- proto: ScrapFirelock1
+  entities:
+  - uid: 3841
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.443893,-10.20117
+      parent: 1
 - proto: ScrapProcessor
   entities:
   - uid: 2637
@@ -22137,6 +22182,14 @@ entities:
       parent: 1
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
+- proto: ScrapSteel
+  entities:
+  - uid: 3838
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.490768,-12.873045
+      parent: 1
 - proto: SeedExtractor
   entities:
   - uid: 214
@@ -22151,6 +22204,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,-37.5
+      parent: 1
+- proto: ServiceTechFab
+  entities:
+  - uid: 1284
+    components:
+    - type: Transform
+      pos: -6.5,-24.5
       parent: 1
 - proto: ShelfBar
   entities:
@@ -23801,7 +23861,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 9.5,-2.5
+      pos: 9.5,-2.1
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
