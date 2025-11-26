@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/26/2025 18:42:37
+  time: 11/26/2025 19:20:14
   entityCount: 3827
 maps: []
 grids:
@@ -2452,10 +2452,6 @@ entities:
             id: OffsetOverlay
           decals:
             1802: -1,-18
-        - node:
-            color: '#52B4E97F'
-            id: OffsetOverlay
-          decals:
             2420: 14,-16
         - node:
             color: '#7242767F'
@@ -4390,15 +4386,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 24.5,-37.5
       parent: 1
-- proto: AirlockSecurityGlass
+- proto: AirlockStandardGlass
   entities:
   - uid: 56
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 3.5,-27.5
       parent: 1
-- proto: AirlockStandardGlass
-  entities:
   - uid: 1518
     components:
     - type: Transform
@@ -24495,6 +24490,12 @@ entities:
       parent: 1
 - proto: SignReception
   entities:
+  - uid: 1305
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-26.5
+      parent: 1
   - uid: 1936
     components:
     - type: Transform
@@ -24523,14 +24524,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 26.5,-20.5
-      parent: 1
-- proto: SignSecurity
-  entities:
-  - uid: 2232
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,-26.5
       parent: 1
 - proto: SignToolStorage
   entities:
@@ -26875,11 +26868,6 @@ entities:
     - type: Transform
       pos: -8.5,-31.5
       parent: 1
-  - uid: 1305
-    components:
-    - type: Transform
-      pos: 3.5,-26.5
-      parent: 1
   - uid: 1431
     components:
     - type: Transform
@@ -26952,6 +26940,12 @@ entities:
     components:
     - type: Transform
       pos: 17.5,-21.5
+      parent: 1
+  - uid: 2232
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-26.5
       parent: 1
   - uid: 3745
     components:
