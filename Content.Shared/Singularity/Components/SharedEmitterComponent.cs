@@ -26,13 +26,8 @@ public sealed partial class EmitterComponent : Component
     /// <summary>
     /// The entity that is spawned when the emitter fires.
     /// </summary>
-<<<<<<< HEAD
-    [DataField("boltType", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string BoltType = "NFEmitterBolt"; // Frontier: use NF prefix
-=======
     [DataField, AutoNetworkedField]
-    public EntProtoId BoltType = "EmitterBolt";
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+    public EntProtoId BoltType = "NFEmitterBolt"; // Frontier: use NF prefix
 
     [DataField]
     public List<EntProtoId> SelectableTypes = new();
@@ -40,13 +35,8 @@ public sealed partial class EmitterComponent : Component
     /// <summary>
     /// The current amount of power being used.
     /// </summary>
-<<<<<<< HEAD
-    [DataField("powerUseActive")]
-    public int PowerUseActive = 1500; // Frontier 600<1500
-=======
     [DataField]
-    public int PowerUseActive = 600;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+    public int PowerUseActive = 1500; // Frontier 600<1500
 
     /// <summary>
     /// The amount of shots that are fired in a single "burst"
@@ -61,12 +51,6 @@ public sealed partial class EmitterComponent : Component
     public TimeSpan FireInterval = TimeSpan.FromSeconds(2);
 
     /// <summary>
-    /// The base amount of time between each shot during a burst.
-    /// </summary>
-    [DataField("baseFireInterval"), ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan BaseFireInterval = TimeSpan.FromSeconds(2);
-
-    /// <summary>
     /// The current minimum delay between bursts.
     /// </summary>
     [DataField]
@@ -77,33 +61,6 @@ public sealed partial class EmitterComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan FireBurstDelayMax = TimeSpan.FromSeconds(10);
-
-    /// <summary>
-    /// The base minimum delay between shot bursts.
-    /// Used for machine part rating calculations.
-    /// </summary>
-    [DataField("baseFireBurstDelayMin")]
-    public TimeSpan BaseFireBurstDelayMin = TimeSpan.FromSeconds(4);
-
-    /// <summary>
-    /// The base maximum delay between shot bursts.
-    /// Used for machine part rating calculations.
-    /// </summary>
-    [DataField("baseFireBurstDelayMax")]
-    public TimeSpan BaseFireBurstDelayMax = TimeSpan.FromSeconds(10);
-
-    /// <summary>
-    /// The multiplier for the base delay between shot bursts as well as
-    /// the fire interval
-    /// </summary>
-    [DataField("fireRateMultiplier"), ViewVariables(VVAccess.ReadWrite)]
-    public float FireRateMultiplier = 0.8f;
-
-    /// <summary>
-    /// The machine part that affects burst delay.
-    /// </summary>
-    [DataField("machinePartFireRate", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-    public string MachinePartFireRate = "Capacitor";
 
     /// <summary>
     /// The visual state that is set when the emitter is turned on
@@ -140,6 +97,41 @@ public sealed partial class EmitterComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<SinkPortPrototype>, EntProtoId> SetTypePorts = new();
+
+    // Frontier: machine part upgrades
+    /// <summary>
+    /// The multiplier for the base delay between shot bursts as well as
+    /// the fire interval
+    /// </summary>
+    [DataField]
+    public float FireRateMultiplier = 0.8f;
+
+    /// <summary>
+    /// The machine part that affects burst delay.
+    /// </summary>
+    [DataField]
+    public string MachinePartFireRate = "Capacitor";
+
+    /// <summary>
+    /// The base amount of time between each shot during a burst.
+    /// </summary>
+    [DataField]
+    public TimeSpan BaseFireInterval = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// The base minimum delay between shot bursts.
+    /// Used for machine part rating calculations.
+    /// </summary>
+    [DataField]
+    public TimeSpan BaseFireBurstDelayMin = TimeSpan.FromSeconds(4);
+
+    /// <summary>
+    /// The base maximum delay between shot bursts.
+    /// Used for machine part rating calculations.
+    /// </summary>
+    [DataField]
+    public TimeSpan BaseFireBurstDelayMax = TimeSpan.FromSeconds(10);
+    // End Frontier
 }
 
 [NetSerializable, Serializable]

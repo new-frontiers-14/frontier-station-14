@@ -340,7 +340,6 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         args.Handled = true;
     }
 
-<<<<<<< HEAD
     // Frontier: demag
     protected void OnUnemagged(EntityUid uid, CryoPodComponent? cryoPodComponent, ref GotUnEmaggedEvent args)
     {
@@ -360,19 +359,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     }
     // End Frontier: demag
 
-    protected void OnCryoPodPryFinished(EntityUid uid, CryoPodComponent cryoPodComponent, CryoPodPryFinished args)
-    {
-        if (args.Cancelled)
-            return;
-
-        var ejected = EjectBody(uid, cryoPodComponent);
-        if (ejected != null)
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ejected.Value)} pried out of {ToPrettyString(uid)} by {ToPrettyString(args.User)}");
-    }
-=======
     [Serializable, NetSerializable]
     public sealed partial class CryoPodPryFinished : SimpleDoAfterEvent;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     [Serializable, NetSerializable]
     public sealed partial class CryoPodDragFinished : SimpleDoAfterEvent;

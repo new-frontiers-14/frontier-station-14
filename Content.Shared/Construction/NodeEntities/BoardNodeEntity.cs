@@ -13,14 +13,11 @@ namespace Content.Shared.Construction.NodeEntities;
 [DataDefinition]
 public sealed partial class BoardNodeEntity : IGraphNodeEntity
 {
-<<<<<<< HEAD
-    [DataField("container")] public string Container { get; private set; } = string.Empty;
-    [DataField] public ComputerType Computer { get; private set; } = ComputerType.Default; // Frontier
-=======
     [DataField]
     public string Container { get; private set; } = string.Empty;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
+    [DataField] // Frontier
+    public ComputerType Computer { get; private set; } = ComputerType.Default; // Frontier
     public string? GetId(EntityUid? uid, EntityUid? userUid, GraphNodeEntityArgs args)
     {
         if (uid == null)
@@ -34,7 +31,6 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
 
         var board = container.ContainedEntities[0];
 
-<<<<<<< HEAD
         // Frontier - alternative computer variants
         switch (Computer)
         {
@@ -52,10 +48,7 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
         }
         // End Frontier
 
-        // There should not be a case where both of these components exist on the same entity...
-=======
         // There should not be a case where more than one of these components exist on the same entity
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))
             return machine.Prototype;
 

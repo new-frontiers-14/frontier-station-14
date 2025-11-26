@@ -16,42 +16,19 @@ public sealed partial class ToiletComponent : Component
     [DataField, AutoNetworkedField]
     public bool ToggleSeat;
 
-<<<<<<< HEAD
-
-        /// <summary>
-        /// Sound to play when toggling toilet seat.
-        /// </summary>
-        [DataField]
-        public SoundSpecifier SeatSound = new SoundPathSpecifier("/Audio/Effects/toilet_seat_down.ogg");
-
-        // Frontier: clog probability
-        /// <summary>
-        /// Sound to play when toggling toilet seat.
-        /// </summary>
-        [DataField]
-        public float ClogProbability = 0.0f;
-        // End Frontier
-    }
-
-    [Serializable, NetSerializable]
-    public enum ToiletVisuals : byte
-    {
-        SeatVisualState,
-    }
-
-    [Serializable, NetSerializable]
-    public enum SeatVisualState : byte
-    {
-        SeatUp,
-        SeatDown
-    }
-=======
     /// <summary>
     /// Sound to play when toggling toilet seat.
     /// </summary>
     [DataField]
     public SoundSpecifier SeatSound = new SoundPathSpecifier("/Audio/Effects/toilet_seat_down.ogg");
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+
+    // Frontier: clog probability
+    /// <summary>
+    /// Chance of being clogged upon mapinit.
+    /// </summary>
+    [DataField]
+    public float ClogProbability = 0.0f;
+    // End Frontier
 }
 
 [Serializable, NetSerializable]

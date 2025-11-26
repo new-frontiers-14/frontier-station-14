@@ -27,38 +27,14 @@ public sealed partial class ItemBorgModuleComponent : Component
     /// <summary>
     /// An ID for the container where items are stored when not in use.
     /// </summary>
-<<<<<<< HEAD
-    [DataField("handCounter")]
-    public int HandCounter;
-
-    /// <summary>
-    /// Whether or not the items have been created and stored in <see cref="ProvidedContainer"/>
-    /// </summary>
-    [DataField("itemsCrated")]
-    public bool ItemsCreated;
-
-    /// <summary>
-    /// A container where provided items are stored when not being used.
-    /// This is helpful as it means that items retain state.
-    /// </summary>
-    [ViewVariables]
-    public Container ProvidedContainer = default!;
-
-    /// <summary>
-    /// An ID for the container where provided items are stored when not used.
-    /// </summary>
-    [DataField("providedContainerId")]
-    public string ProvidedContainerId = "provided_container";
+    [DataField]
+    public string HoldingContainer = "holding_container";
 
     /// <summary>
     /// Frontier: a module ID to check for equivalence
     /// </summary>
     [DataField(required: true)]
     public string ModuleId = default!;
-=======
-    [DataField]
-    public string HoldingContainer = "holding_container";
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 }
 
 [DataDefinition, Serializable, NetSerializable]
