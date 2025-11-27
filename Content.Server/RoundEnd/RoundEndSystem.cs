@@ -74,6 +74,7 @@ namespace Content.Server.RoundEnd
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
             SetAutoCallTime();
             Subs.CVar(_cfg, NFCCVars.ScheduledRoundendTimes, SetScheduledAutoCallTime, true); // Frontier
+            SetScheduledAutoCallTime(); // Frontier
         }
 
         private void SetAutoCallTime()
@@ -89,7 +90,8 @@ namespace Content.Server.RoundEnd
         private void SetScheduledAutoCallTime(string scheduledRoundendTimes)
         {
             var nextScheduled = new List<TimeSpan>();
-            var times = scheduledRoundendTimes.Split(',');
+            var delimiters = new char[] { '\n', '\r' }; // I want to know why we still take carriage returns seriously
+            var times = scheduledRoundendTimes.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
             var currentTime = DateTime.UtcNow;
 
