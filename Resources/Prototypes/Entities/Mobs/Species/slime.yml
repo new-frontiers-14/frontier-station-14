@@ -52,6 +52,15 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 6 # Slightly stronger, slightly slower
   - type: PassiveDamage # Around 8 damage a minute healed
     allowedStates:
     - Alive
@@ -59,6 +68,10 @@
     damage:
       types:
         Heat: -0.14
+        Caustic: -0.04 # Slow regeneration for minor acid damage. They are slimes, after all
+        Poison: -0.07 # Slimes don't actually take less poison damage from chemicals. Helps represent that resistance
+        Shock: -0.07 # Frontier
+        Cold: -0.04 # Frontier, heals cold damage slower than humans
       groups:
         Brute: -0.14
   - type: DamageVisuals
@@ -73,7 +86,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Blunt: 0.3 # Per second, scales with pressure and other constants. Lowered to match slime blunt resistance.
         Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make slime boil more than blunt stretch them so i decided on this instead.
   - type: Reactive
     groups:
@@ -91,12 +104,35 @@
         scaleByQuantity: true
         damage:
           types:
-            Heat: 0.1
+            Heat: 0.25 # Frontier 0.1<0.25, 0.1 damage is hardly relevant even when drenched in water
       - !type:PopupMessage
         type: Local
         visualType: Large
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
+  - type: Temperature
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold: 0.15 #per second, scales with temperature & other constants, 50% more than humans means they will freeze quick without protection
+    heatDamage:
+      types:
+        Heat: 1.5 #per second, scales with temperature & other constants
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 200 #weighs more than humans because goo
+        restitution: 0.0
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
   - type: Butcherable
     butcheringType: Spike
     spawned:
