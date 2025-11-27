@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/27/2025 01:09:03
-  entityCount: 3856
+  time: 11/27/2025 02:59:33
+  entityCount: 3853
 maps: []
 grids:
 - 1
@@ -5662,12 +5662,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
-  - uid: 2936
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 21.5,-6.5
-      parent: 1
 - proto: BenchSofaCorpLeft
   entities:
   - uid: 341
@@ -5700,11 +5694,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-1.5
       parent: 1
-  - uid: 2935
-    components:
-    - type: Transform
-      pos: 22.5,-6.5
-      parent: 1
 - proto: BenchSofaCorpRight
   entities:
   - uid: 615
@@ -5713,17 +5702,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,-13.5
       parent: 1
-  - uid: 905
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 21.5,-7.5
-      parent: 1
   - uid: 1465
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-1.5
+      parent: 1
+  - uid: 2132
+    components:
+    - type: Transform
+      pos: 22.5,-6.5
       parent: 1
 - proto: BiogeneratorFill
   entities:
@@ -10308,6 +10296,12 @@ entities:
       parent: 1
 - proto: ChairFolding
   entities:
+  - uid: 905
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 22.555012,-8.361918
+      parent: 1
   - uid: 1250
     components:
     - type: Transform
@@ -10399,6 +10393,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.548082,-4.2549586
+      parent: 1
+  - uid: 3775
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5029907,-22.19099
       parent: 1
 - proto: ChairPilotSeat
   entities:
@@ -10779,10 +10779,10 @@ entities:
       parent: 1
 - proto: CrateEngineeringKitShipyardRcd
   entities:
-  - uid: 2133
+  - uid: 3764
     components:
     - type: Transform
-      pos: 17.5,-11.5
+      pos: 17.5,-10.5
       parent: 1
 - proto: CrateMaterialBiomass
   entities:
@@ -10793,24 +10793,24 @@ entities:
       parent: 1
 - proto: CrateMaterialsBasicFilled
   entities:
-  - uid: 2132
+  - uid: 3762
     components:
     - type: Transform
-      pos: 17.5,-10.5
+      pos: 18.5,-11.5
       parent: 1
 - proto: CrateMaterialSteel
   entities:
-  - uid: 2134
+  - uid: 3705
     components:
     - type: Transform
-      pos: 17.5,-12.5
+      pos: 18.5,-10.5
       parent: 1
 - proto: CrateMaterialTextiles
   entities:
-  - uid: 3381
+  - uid: 3763
     components:
     - type: Transform
-      pos: -6.5,-22.5
+      pos: 17.5,-11.5
       parent: 1
 - proto: CrescentMothershipComputer
   entities:
@@ -10832,11 +10832,12 @@ entities:
     components:
     - type: Transform
       anchored: False
-      pos: 16.5,-11.5
+      pos: 16.514982,-11.488932
       parent: 1
     - type: Anchorable
       currentDelay: 2
     - type: Physics
+      sleepTime: 0.116666555
       bodyType: Dynamic
   - uid: 1301
     components:
@@ -19970,10 +19971,10 @@ entities:
       parent: 1
 - proto: JerryCanWeldingFuel
   entities:
-  - uid: 2146
+  - uid: 2936
     components:
     - type: Transform
-      pos: -6.5154686,-20.99679
+      pos: -5.5498657,-23.956615
       parent: 1
 - proto: JukeboxWallmountShip
   entities:
@@ -20088,19 +20089,24 @@ entities:
     - type: Transform
       pos: -24.5,-27.5
       parent: 1
-- proto: LockerMaterialsBasicFilled
-  entities:
-  - uid: 2214
-    components:
-    - type: Transform
-      pos: -4.25,-21.5
-      parent: 1
 - proto: LockerMedicalFilled
   entities:
   - uid: 1091
     components:
     - type: Transform
       pos: -24.5,-12.5
+      parent: 1
+- proto: LockerSalvageSpecialistFilled
+  entities:
+  - uid: 2133
+    components:
+    - type: Transform
+      pos: 21.75,-6.5
+      parent: 1
+  - uid: 3381
+    components:
+    - type: Transform
+      pos: 21.25,-6.5
       parent: 1
 - proto: LockerWallColorChemistryFilled
   entities:
@@ -20393,11 +20399,6 @@ entities:
       parent: 1
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-  - uid: 3573
-    components:
-    - type: Transform
-      pos: -5.5,-24.5
-      parent: 1
 - proto: MachineMiniAnomalyGenerator
   entities:
   - uid: 2115
@@ -20569,28 +20570,6 @@ entities:
     - type: Transform
       pos: 11.5,-4.5
       parent: 1
-- proto: NFHolopadShipFlatpack
-  entities:
-  - uid: 3762
-    components:
-    - type: Transform
-      pos: -7.684183,-21.234098
-      parent: 1
-  - uid: 3763
-    components:
-    - type: Transform
-      pos: -7.684183,-21.546598
-      parent: 1
-  - uid: 3764
-    components:
-    - type: Transform
-      pos: -7.387308,-21.187223
-      parent: 1
-  - uid: 3765
-    components:
-    - type: Transform
-      pos: -7.387308,-21.609098
-      parent: 1
 - proto: NFLockerScienceFilled
   entities:
   - uid: 1061
@@ -20600,17 +20579,17 @@ entities:
       parent: 1
 - proto: NFMagnetBoxConstruction
   entities:
-  - uid: 3844
+  - uid: 3776
     components:
     - type: Transform
       pos: 18.5,-12.5
       parent: 1
 - proto: NFMagnetBoxOre
   entities:
-  - uid: 3776
+  - uid: 2214
     components:
     - type: Transform
-      pos: 18.5,-11.5
+      pos: 17.5,-12.5
       parent: 1
 - proto: NFMagnetBoxPlant
   entities:
@@ -20622,18 +20601,17 @@ entities:
       parent: 1
 - proto: NFMagnetBoxRubbish
   entities:
-  - uid: 3775
+  - uid: 2134
     components:
     - type: Transform
-      pos: 18.5,-10.5
+      pos: 18.5,-13.5
       parent: 1
 - proto: NFMagnetBoxTreasure
   entities:
-  - uid: 3845
+  - uid: 3765
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 18.5,-13.5
+      pos: 17.5,-13.5
       parent: 1
 - proto: NFPosterContrabandCloudWatchers
   entities:
@@ -20778,7 +20756,7 @@ entities:
       magnetEnabled: True
 - proto: OxygenCanister
   entities:
-  - uid: 3842
+  - uid: 2146
     components:
     - type: Transform
       pos: 18.5,-14.5
@@ -25365,6 +25343,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 29.5,-34.5
       parent: 1
+  - uid: 2935
+    components:
+    - type: Transform
+      pos: -6.5,-21.5
+      parent: 1
   - uid: 3512
     components:
     - type: Transform
@@ -28773,10 +28756,10 @@ entities:
       parent: 1
 - proto: WeldingFuelTankFull
   entities:
-  - uid: 3705
+  - uid: 3573
     components:
     - type: Transform
-      pos: -6.5,-21.5
+      pos: -5.5,-24.5
       parent: 1
 - proto: Windoor
   entities:
