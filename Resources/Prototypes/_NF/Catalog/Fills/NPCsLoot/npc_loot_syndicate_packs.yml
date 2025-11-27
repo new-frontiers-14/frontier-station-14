@@ -1,4 +1,4 @@
-#region BASE
+# region BASE
 - type: entity
   abstract: true
   parent: NFBaseNpcLootBackpack
@@ -74,6 +74,7 @@
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
 
+# wallet (for cash)
 - type: entity
   abstract: true
   parent: NFBaseNpcLootWallet
@@ -84,8 +85,81 @@
     sprite: _NF/Clothing/Wallet/leather.rsi
     state: closed-black
 
-# SYNDICATE NPC LOOT
-#region Captain
+# region Tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletSyndicate
+  id: ClothingWalletSyndicateT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 2000 to 3000
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.1
+      amount: 2
+    - id: SpaceCash2500
+      orGroup: SpaceCash
+      prob: 0.55
+      amount: 1
+    - id: SpaceCash1000
+      orGroup: SpaceCash
+      prob: 0.35
+      amount: 3
+
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT1Deckhand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: NFSpeedLoaderPistol35Empty
+      prob: 0.9
+    - id: NFSpeedLoaderPistol35Empty
+      prob: 0.6
+    - id: NFSpeedLoaderPistol35Empty
+      prob: 0.1
+    - id: NFAmmunitionBoxPistol35Overpressure
+      prob: 0.9
+    - id: NFAmmunitionBoxPistol35Overpressure
+      prob: 0.2
+
+# region Deckhand
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT1Deckhand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsPistols
+      orGroup: Weapons
+      prob: 0.5
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      orGroup: Armor
+      prob: 0.5
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+# region Captain
 - type: entity
   parent: NFBaseNpcLootPackSyndicateAlt
   id: ClothingBackpackSyndicateCaptainLootA
@@ -202,7 +276,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Second Officer
+# region Second Officer
 - type: entity
   parent: ClothingBackpackSyndicateCaptainLootA
   id: ClothingBackpackSyndicateSecondOfficerLootA
@@ -315,7 +389,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Commander
+# region Commander
 - type: entity
   parent: NFBaseNpcLootPackSyndicateAlt
   id: ClothingBackpackSyndicateCommanderLootA
@@ -430,7 +504,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Operative
+# region Operative
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
   id: ClothingBackpackSyndicateOperativeLootA
@@ -552,90 +626,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Deckhand
-- type: entity
-  parent: NFBaseNpcLootPackSyndicate
-  id: ClothingBackpackSyndicateDeckhandLootA
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: NFWeaponPistolViperExpedition
-      - id: NFMagazineHighCapacityPistol35Uranium
-      - id: NFMagazineHighCapacityPistol35Uranium
-        prob: 0.2
-      - id: SpaceCash1000
-      # Bonus Loot T1
-      - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
-      - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
-
-- type: entity
-  parent: NFBaseNpcLootPackSyndicate
-  id: ClothingBackpackSyndicateDeckhandLootB
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: NFWeaponPistolMk58Expedition
-      - id: NFMagazineHighCapacityPistol35Incendiary
-      - id: NFMagazineHighCapacityPistol35Incendiary
-        prob: 0.2
-      - id: SpaceCash1000
-      # Bonus Loot T1
-      - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
-      - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
-
-- type: entity
-  parent: NFBaseNpcLootPackSyndicate
-  id: ClothingBackpackSyndicateDeckhandLootC
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: NFMagazineHighCapacityPistol35Overpressure
-      - id: NFMagazineHighCapacityPistol35Overpressure
-      - id: SpaceCash1000
-      # Bonus Loot T1
-      - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
-      - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
-
-- type: entity
-  parent: NFBaseNpcLootPackSyndicate
-  id: ClothingBackpackSyndicateDeckhandLootD
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: SpaceCash1000
-      # Bonus Loot T1
-      - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
-      - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
-
-#region Saboteur
+# region Saboteur
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootA
   id: ClothingBackpackSyndicateSaboteurLootA
@@ -656,7 +647,7 @@
   id: ClothingBackpackSyndicateSaboteurLootD
   categories: [ HideSpawnMenu ]
 
-#region Medic
+# region Medic
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
   id: ClothingBackpackSyndicateMedicLootA
@@ -746,7 +737,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Engineer
+# region Engineer
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
   id: ClothingBackpackSyndicateEngineerLootA
@@ -857,7 +848,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Chemwarrior
+# region Chemwarrior
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
   id: ClothingBackpackSyndicateChemwarriorLootA
@@ -968,7 +959,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-#region Grenadier
+# region Grenadier
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
   id: ClothingBackpackSyndicateGrenadierLootA
