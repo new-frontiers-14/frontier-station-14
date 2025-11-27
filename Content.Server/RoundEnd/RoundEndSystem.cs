@@ -22,6 +22,8 @@ using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Cronos; // Frontier
 
 namespace Content.Server.RoundEnd
 {
@@ -61,11 +63,17 @@ namespace Content.Server.RoundEnd
         public TimeSpan AutoCallStartTime;
         private bool _autoCalledBefore = false;
 
+        // Frontier: scheduled restart times
+        public DateTime NextScheduledRestartTime;
+
+        // End Frontier
+
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
             SetAutoCallTime();
+            Subs.CVar(_cfg, NFCCVars.ScheduledRoundendTimes, SetScheduledAutoCallTime, true); // Frontier
         }
 
         private void SetAutoCallTime()
@@ -73,6 +81,45 @@ namespace Content.Server.RoundEnd
             AutoCallStartTime = _gameTiming.CurTime;
         }
 
+        // Frontier: scheduled restart times
+        private void SetScheduledAutoCallTime()
+        {
+            SetScheduledAutoCallTime(_cfg.GetCVar(NFCCVars.ScheduledRoundendTimes));
+        }
+        private void SetScheduledAutoCallTime(string scheduledRoundendTimes)
+        {
+            var nextScheduled = new List<TimeSpan>();
+            var times = scheduledRoundendTimes.Split(',');
+
+            var currentTime = DateTime.UtcNow;
+
+            // populate nextScheduled with every cron schedule's next occurrence
+            foreach (var time in times)
+            {
+                DateTime? nextTime;
+                try
+                {
+                    nextTime = CronExpression.Parse(time).GetNextOccurrence(currentTime);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                if (nextTime is not null)
+                    nextScheduled.Add(nextTime.Value - currentTime);
+            }
+
+            if (nextScheduled.Count == 0) // it's empty...
+            {
+                _cfg.SetCVar(NFCCVars.UseScheduledRoundend, false);
+                return;
+            }
+
+            nextScheduled.Sort(); // Sort the list, which should get the next occurence considering all cron expressions
+            NextScheduledRestartTime = currentTime + nextScheduled[0];
+        }
+        // End Frontier
         private void Reset()
         {
             if (_countdownTokenSource != null)
@@ -306,7 +353,7 @@ namespace Content.Server.RoundEnd
         public void DoRoundEndBehavior(RoundEndBehavior behavior,
             TimeSpan time,
             string sender = "comms-console-announcement-title-centcom",
-            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier 
+            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier
             string textAnnounce = "nf-round-end-system-shuttle-already-called-announcement") // Frontier
         {
             switch (behavior)
@@ -368,6 +415,18 @@ namespace Content.Server.RoundEnd
                 // Always reset auto-call in case of a recall.
                 SetAutoCallTime();
             }
+
+            // Frontier: scheduled restart times
+            if (_cfg.GetCVar(NFCCVars.UseScheduledRoundend) && DateTime.UtcNow > NextScheduledRestartTime)
+            {
+                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
+                {
+                    RequestRoundEnd(null, false, "nf-round-end-system-shuttle-auto-called-announcement");// Frontier
+                    _autoCalledBefore = true;
+                }
+                SetScheduledAutoCallTime();
+            }
+            // End Frontier
         }
     }
 
