@@ -36,6 +36,7 @@ namespace Content.Client.PDA
 
         private string _balance = Loc.GetString("comp-pda-ui-unknown"); // Frontier
         private string _shuttleDeed = Loc.GetString("comp-pda-ui-unknown"); // Frontier
+        private DateTime? _roundEndTime = null;
 
         private int _currentView;
 
@@ -192,6 +193,18 @@ namespace Content.Client.PDA
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+
+
+            // Frontier
+            _roundEndTime = state.RoundEndTime;
+            ShuttleDeedLabel.Visible = _roundEndTime is not null;
+            if (_roundEndTime is not null)
+            {
+                var remainingTime = _roundEndTime.Value - DateTime.UtcNow;
+                RemainingTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-remaining-time",
+                    ("time", remainingTime.ToString("hh\\:mm\\:ss"))));
+            }
+            // End Frontier
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
@@ -366,6 +379,15 @@ namespace Content.Client.PDA
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+
+            // Frontier
+            if (_roundEndTime is not null)
+            {
+                var remainingTime = _roundEndTime.Value - DateTime.UtcNow;
+                RemainingTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-remaining-time",
+                    ("time", remainingTime.ToString("hh\\:mm\\:ss"))));
+            }
+            // End Frontier
         }
     }
 }

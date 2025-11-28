@@ -132,6 +132,20 @@ namespace Content.Server.RoundEnd
                 return;
             }
         }
+
+        public DateTime? GetAutoCallTime()
+        {
+            if (_cfg.GetCVar(NFCCVars.UseScheduledRoundend))
+            {
+                return NextScheduledRestartTime;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         // End Frontier
         private void Reset()
         {
