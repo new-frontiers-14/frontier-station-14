@@ -1,3 +1,4 @@
+using System.Numerics; // Frontier
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -68,6 +69,14 @@ public sealed partial class CryoPodComponent : Component
     /// </summary>
     [ViewVariables]
     public ContainerSlot BodyContainer = default!;
+
+    // Frontier
+    /// <summary>
+    /// Tile offset to drop patients at
+    /// </summary>
+    [ViewVariables]
+    [DataField("dropOffset")]
+    public Vector2 DropOffset = new Vector2(0, -1);
 
     /// <summary>
     /// If true, the eject verb will not work on the pod and the user must use a crowbar to pry the pod open.
