@@ -10,6 +10,10 @@
   - type: NpcFactionMember
     factions:
       - BloodCultNF
+# Allows cultists to take holy damage
+  - type: Damageable
+    damageContainer: Unholy
+    damageModifierSet: Unholy
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.5
     rechargeSound:
@@ -236,6 +240,9 @@
         Base: crit
       Dead:
         Base: dead
+  - type: Damageable
+    damageContainer: Unholy
+    damageModifierSet: Unholy
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -303,6 +310,9 @@
       Dead:
         Base: dead
         BaseUnshaded: dead_unshaded
+  - type: Damageable
+    damageContainer: Unholy
+    damageModifierSet: Unholy
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -387,6 +397,9 @@
         Base: icon
       Dead:
         Base: icon
+  - type: Damageable
+    damageContainer: Unholy
+    damageModifierSet: Unholy
   - type: Fixtures
     fixtures:
       fix1:
@@ -580,6 +593,9 @@
                 ShardCrystalRed:
                   min: 1
                   max: 3
+    - type: Damageable
+      damageContainer: Unholy
+      damageModifierSet: Unholy
     - type: ContainerContainer # TODO: parent this off of a ballistic version?
       containers:
         ballistic-ammo: !type:Container
