@@ -228,16 +228,11 @@
         state: inhand-left
       - sprite: Objects/Weapons/Melee/kukri_knife.rsi
         state: inhand-right
-  - type: RandomSpawner
-    prototypes:
-    - MobSyndicateNavalSaboteurB
-    - MobSyndicateNavalSaboteurC
-    - MobSyndicateNavalSaboteurD
+  - type: ConditionalSpawner
     chance: 1
     offset: 0.0
-    rarePrototypes:
+    prototypes:
     - MobSyndicateNavalSaboteurA
-    rareChance: 0.1
 
 - type: entity
   name: victim of experimentation spawner

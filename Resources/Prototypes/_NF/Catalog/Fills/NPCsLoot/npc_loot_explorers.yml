@@ -1,0 +1,40 @@
+# region blueprints
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcExplorersBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.4
+        children:
+        - id: NFBlueprintMineralScannerEmpty
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: NFBlueprintPouchExplorers
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintEnergyPickaxe
+        - id: NFBlueprintOreBagOfHolding
+        - id: NFBlueprintConstructionBagOfHolding
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.1
+        children:
+        - id: NFBlueprintWeaponCrusherDagger
+        - id: NFBlueprintMiningDrill
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: MiningDrillDiamond
+        - id: NFBlueprintWeaponCrusher
+        - id: NFBlueprintWeaponCrusherGlaive
