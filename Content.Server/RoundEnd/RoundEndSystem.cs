@@ -75,6 +75,7 @@ namespace Content.Server.RoundEnd
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
             SetAutoCallTime();
             Subs.CVar(_cfg, NFCCVars.ScheduledRoundendTimes, SetScheduledAutoCallTime, true); // Frontier
+            Subs.CVar(_cfg, NFCCVars.UseScheduledRoundend, SetScheduledAutoCallEnabled, true); // Frontier
         }
 
         private void SetAutoCallTime()
@@ -87,8 +88,12 @@ namespace Content.Server.RoundEnd
         {
             SetScheduledAutoCallTime(_cfg.GetCVar(NFCCVars.ScheduledRoundendTimes));
         }
+
         private void SetScheduledAutoCallTime(string scheduledRoundendTimes)
         {
+            if (!_cfg.GetCVar(NFCCVars.UseScheduledRoundend))
+                return;
+
             NextScheduledRestartTime = DateTime.MaxValue;
             var delimiters = new char[] { '\n', '\r', '|' }; // I want to know why we still take carriage returns seriously
             var times = scheduledRoundendTimes.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
@@ -144,7 +149,13 @@ namespace Content.Server.RoundEnd
                 return null;
             }
         }
+
+        private void SetScheduledAutoCallEnabled(bool useScheduledRoundend)
+        {
+            SetScheduledAutoCallTime();
+        }
         // End Frontier
+
         private void Reset()
         {
             if (_countdownTokenSource != null)
