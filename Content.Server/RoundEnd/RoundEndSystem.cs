@@ -90,7 +90,7 @@ namespace Content.Server.RoundEnd
         private void SetScheduledAutoCallTime(string scheduledRoundendTimes)
         {
             NextScheduledRestartTime = DateTime.MaxValue;
-            var delimiters = new char[] { '\n', '\r' }; // I want to know why we still take carriage returns seriously
+            var delimiters = new char[] { '\n', '\r', '|' }; // I want to know why we still take carriage returns seriously
             var times = scheduledRoundendTimes.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
             var currentTime = DateTime.UtcNow;
@@ -116,7 +116,9 @@ namespace Content.Server.RoundEnd
 
                 if (nextTime is null)
                 {
-                    throw new FormatException($"Cron next occurrence unreachable: {time}");
+                    Log.Error($"Cron next occurrence unreachable: {time}");
+                    DebugTools.Assert($"Cron next occurrence unreachable: {time}");
+                    continue;
                 }
 
                 if (NextScheduledRestartTime > nextTime.Value)
