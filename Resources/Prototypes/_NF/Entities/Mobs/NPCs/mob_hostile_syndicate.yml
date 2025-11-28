@@ -109,7 +109,7 @@
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalSaboteurGearA
+        - SyndicateNavalGearT1Saboteur
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 1
       rechargeSound:
@@ -126,33 +126,6 @@
       - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-- type: entity
-  parent: MobSyndicateNavalSaboteurA
-  id: MobSyndicateNavalSaboteurB
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSaboteurGearB
-
-- type: entity
-  parent: MobSyndicateNavalSaboteurA
-  id: MobSyndicateNavalSaboteurC
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSaboteurGearC
-
-- type: entity
-  parent: MobSyndicateNavalSaboteurA
-  id: MobSyndicateNavalSaboteurD
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSaboteurGearD
-
 # region Tier 2
 
 
@@ -167,7 +140,7 @@
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalCaptainGearA
+        - SyndicateNavalGearT2Captain
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.75
       rechargeSound:
@@ -189,9 +162,6 @@
   id: MobSyndicateNavalCaptainB
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCaptainGearB
     - type: BasicEntityAmmoProvider
       proto: NFBulletPistol45Incendiary
       capacity: 1
@@ -202,9 +172,6 @@
   id: MobSyndicateNavalCaptainC
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCaptainGearC
     - type: BasicEntityAmmoProvider
       proto: NFCartridgePistol45Overpressure
       capacity: 1
@@ -215,9 +182,6 @@
   id: MobSyndicateNavalCaptainD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCaptainGearD
     - type: BasicEntityAmmoProvider
       proto: NFCartridgePistol45
       capacity: 1
@@ -233,7 +197,7 @@
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalEngineerGearA
+        - SyndicateNavalGearT2Engineer
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
       rechargeSound:
@@ -259,9 +223,6 @@
   id: MobSyndicateNavalEngineerB
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalEngineerGearB
     - type: BasicEntityAmmoProvider
       proto: NFShellShotgunIncendiary
       capacity: 1
@@ -272,9 +233,6 @@
   id: MobSyndicateNavalEngineerC
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalEngineerGearC
     - type: BasicEntityAmmoProvider
       proto: NFShellShotgunBuckshotOverpressure
       capacity: 1
@@ -285,9 +243,6 @@
   id: MobSyndicateNavalEngineerD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalEngineerGearD
     - type: BasicEntityAmmoProvider
       proto: NFShellShotgunBeanbag
       capacity: 1
@@ -303,7 +258,7 @@
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalMedicGearA
+        - SyndicateNavalGearT2Medic
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
       rechargeSound:
@@ -329,19 +284,12 @@
   parent: MobSyndicateNavalMedicA
   id: MobSyndicateNavalMedicB
   categories: [ HideSpawnMenu ]
-  components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalMedicGearB
 
 - type: entity
   parent: MobSyndicateNavalMedicA
   id: MobSyndicateNavalMedicC
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalMedicGearB
     - type: BasicEntityAmmoProvider
       proto: DartSyndicateTranquilizer
       capacity: 1
@@ -352,9 +300,6 @@
   id: MobSyndicateNavalMedicD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalMedicGearD
     - type: BasicEntityAmmoProvider
       proto: DartSyndicateTranquilizer
       capacity: 1
@@ -370,7 +315,7 @@
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalSecondOfficerGearA
+        - SyndicateNavalGearT2SecondOfficer
     - type: ProjectileBatteryAmmoProvider
       proto: NFBulletLaserLow
       fireCost: 100
@@ -396,28 +341,17 @@
   parent: MobSyndicateNavalSecondOfficerA
   id: MobSyndicateNavalSecondOfficerB
   categories: [ HideSpawnMenu ]
-  components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSecondOfficerGearB
 
 - type: entity
   parent: MobSyndicateNavalSecondOfficerA
   id: MobSyndicateNavalSecondOfficerC
   categories: [ HideSpawnMenu ]
-  components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSecondOfficerGearC
 
 - type: entity
   parent: MobSyndicateNavalSecondOfficerA
   id: MobSyndicateNavalSecondOfficerD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSecondOfficerGearD
     - type: ProjectileBatteryAmmoProvider
       proto: NFBulletLaserLow
       fireCost: 50

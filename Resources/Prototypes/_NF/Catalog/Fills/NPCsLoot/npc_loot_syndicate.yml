@@ -31,6 +31,50 @@
       - id: NFWeaponSubMachineGunAtreidesExpedition
 
 # region pistol ammo
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistol
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.4
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+      children:
+      - id: NFAmmunitionBoxPistol35
+      - id: NFAmmunitionBoxPistol45
+    # +P+
+    - !type:GroupSelector
+      weight: 0.6
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+      children:
+      - id: NFAmmunitionBoxPistol35Overpressure
+      - id: NFAmmunitionBoxPistol45Overpressure
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoPistol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistolIncendiary
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+      children:
+      - id: NFAmmunitionBoxPistol35Incendiary
+      - id: NFAmmunitionBoxPistol45Incendiary
+
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcSyndicateAmmoPistolIncendiary
@@ -40,25 +84,23 @@
     offset: 0.1
     table: !type:GroupSelector
       children:
-      # magazines
-      - !type:GroupSelector
-        weight: 0.6
-        rolls: !type:RangeNumberSelector
-          range: 1, 3
-        children:
-        - id: NFMagazinePistol35Incendiary
-        - id: NFMagazineHighCapacityPistol35Incendiary
-        - id: NFMagazineSubMachineGun35Incendiary
-        - id: NFMagazineSubMachineGunTopMounted35Incendiary
-        - id: NFSpeedLoaderPistol45Incendiary
-      # boxes
-      - !type:GroupSelector
-        weight: 0.4
-        rolls: !type:RangeNumberSelector
-          range: 1, 2
-        children:
-        - id: NFAmmunitionBoxPistol35Incendiary
-        - id: NFAmmunitionBoxPistol45Incendiary
+      - !type:NestedSelector
+          weight: 0.3
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+      - !type:NestedSelector
+          weight: 0.7
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolIncendiary
+
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistolUranium
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+      children:
+      - id: NFAmmunitionBoxPistol35Uranium
+      - id: NFAmmunitionBoxPistol45Uranium
 
 - type: entity
   parent: MarkerBasePlaceFree
@@ -69,25 +111,42 @@
     offset: 0.1
     table: !type:GroupSelector
       children:
-      # magazines
-      - !type:GroupSelector
-        weight: 0.6
-        rolls: !type:RangeNumberSelector
-          range: 1, 3
-        children:
-        - id: NFMagazinePistol35Uranium
-        - id: NFMagazineHighCapacityPistol35Uranium
-        - id: NFMagazineSubMachineGun35Uranium
-        - id: NFMagazineSubMachineGunTopMounted35Uranium
-        - id: NFSpeedLoaderPistol45Uranium
-      # boxes
-      - !type:GroupSelector
-        weight: 0.4
-        rolls: !type:RangeNumberSelector
-          range: 1, 2
-        children:
-        - id: NFAmmunitionBoxPistol35Uranium
-        - id: NFAmmunitionBoxPistol45Uranium
+      - !type:NestedSelector
+          weight: 0.1
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+      - !type:NestedSelector
+          weight: 0.3
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolIncendiary
+      - !type:NestedSelector
+          weight: 0.6
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolUranium
+
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistolEmp
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+      children:
+      - id: NFAmmunitionBoxPistol35Emp
+      - id: NFAmmunitionBoxPistol45Emp
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoPistolEmp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+          weight: 0.3
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+      - !type:NestedSelector
+          weight: 0.7
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolEmp
 
 # region shotguns
 - type: entity
@@ -109,7 +168,7 @@
 # region shotgun ammo
 - type: entity
   parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcSyndicateAmmoShotgunIncendiary
+  id: SpawnDungeonLootNpcSyndicateAmmoShotgun
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTableSpawner
@@ -117,23 +176,22 @@
     table: !type:GroupSelector
       children:
       # boxes
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+        weight: 0.1
+        rolls: !type:RangeNumberSelector
+          range: 1, 3
+      - id: NFAmmunitionBoxShellShotgunOverpressure
+        weight: 0.2
+        rolls: !type:RangeNumberSelector
+          range: 1, 3
       - id: NFAmmunitionBoxShellShotgunIncendiary
+        weight: 0.45
         rolls: !type:RangeNumberSelector
           range: 0, 4
-
-- type: entity
-  parent: MarkerBasePlaceFree
-  id: SpawnDungeonLootNpcSyndicateAmmoShotgunUranium
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: EntityTableSpawner
-    offset: 0.1
-    table: !type:GroupSelector
-      children:
-      # boxes
       - id: NFAmmunitionBoxShellShotgunUranium
+        weight: 0.25
         rolls: !type:RangeNumberSelector
-          range: 0, 4
+          range: 0, 3
 
 # region rifles
 - type: entity
