@@ -4,6 +4,8 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
+using Content.Shared._Harmony.Common.JoinQueue; // Harmony Queue
+using Content.Shared._Harmony.CCVars; // Harmony Queue
 
 namespace Content.Server.GameTicking
 {
@@ -29,6 +31,8 @@ namespace Content.Server.GameTicking
         /// </summary>
         [Dependency] private readonly SharedGameTicker _gameTicker = default!;
 
+        [Dependency] private readonly IJoinQueueManager _joinQueue = default!; // Harmony Queue
+
         private void InitializeStatusShell()
         {
             IoCManager.Resolve<IStatusHost>().OnStatusRequest += GetStatusResponse;
@@ -46,7 +50,9 @@ namespace Content.Server.GameTicking
                 jObject["round_id"] = _gameTicker.RoundId;
                 jObject["players"] = _cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount)
                     ? _playerManager.PlayerCount
-                    : _playerManager.PlayerCount - _adminManager.ActiveAdmins.Count();
+                    : _playerManager.PlayerCount - _adminManager.ActiveAdmins.Count()
+                    // Only adjust the play count if the Harmony Queue is enabled, this is to minimize the changes to the shell status code
+                    - (_cfg.GetCVar(HCCVars.EnableQueue) ? _joinQueue.PlayerInQueueCount : 0); // Harmony Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
                 jObject["run_level"] = (int) _runLevel;
