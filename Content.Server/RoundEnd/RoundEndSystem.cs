@@ -135,7 +135,7 @@ namespace Content.Server.RoundEnd
 
         public DateTime? GetAutoCallTime()
         {
-            if (_cfg.GetCVar(NFCCVars.UseScheduledRoundend))
+            if (_cfg.GetCVar(NFCCVars.UseScheduledRoundend) && !_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
             {
                 return NextScheduledRestartTime;
             }
@@ -144,8 +144,6 @@ namespace Content.Server.RoundEnd
                 return null;
             }
         }
-
-
         // End Frontier
         private void Reset()
         {

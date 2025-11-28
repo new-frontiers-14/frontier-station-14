@@ -194,7 +194,6 @@ namespace Content.Client.PDA
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
 
-
             // Frontier
             _roundEndTime = state.RoundEndTime;
             ShuttleDeedLabel.Visible = _roundEndTime is not null;
@@ -386,6 +385,10 @@ namespace Content.Client.PDA
                 var remainingTime = _roundEndTime.Value - DateTime.UtcNow;
                 RemainingTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-remaining-time",
                     ("time", remainingTime.ToString("hh\\:mm\\:ss"))));
+                if (remainingTime < TimeSpan.Zero){
+                    RemainingTimeLabel.Visible = false;
+                    _roundEndTime = null;
+                }
             }
             // End Frontier
         }
