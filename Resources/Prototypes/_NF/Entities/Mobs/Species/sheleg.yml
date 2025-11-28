@@ -82,6 +82,7 @@
     groups:
       Flammable: [ Touch ]
       Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
     reactions:
     - reagents: [ Water, SpaceCleaner, SoapReagent ]
       methods: [ Touch ]
@@ -140,8 +141,6 @@
     damage:
       types:
         Heat: -0.025
-      groups:
-        Brute: -0.025
   - type: BlockInjection
     blockHypospray: true
     blockInjectOnProjectile: true

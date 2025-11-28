@@ -275,7 +275,7 @@ public sealed class TemperatureSystem : EntitySystem
 
             var diff = Math.Abs(temperature.CurrentTemperature - heatDamageThreshold);
             var tempDamage = c / (1 + a * Math.Pow(Math.E, -heatK * diff)) - y;
-            _damageable.TryChangeDamage(uid, temperature.HeatDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
+            _damageable.TryChangeDamage(uid, temperature.HeatDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false, alwaysApplyBaseDamageModifier: true);
         }
         else if (temperature.CurrentTemperature <= coldDamageThreshold)
         {
@@ -288,7 +288,7 @@ public sealed class TemperatureSystem : EntitySystem
             var diff = Math.Abs(temperature.CurrentTemperature - coldDamageThreshold);
             var tempDamage =
                 Math.Sqrt(diff * (Math.Pow(temperature.DamageCap.Double(), 2) / coldDamageThreshold));
-            _damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
+            _damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false, alwaysApplyBaseDamageModifier : true);
         }
         else if (temperature.TakingDamage)
         {
