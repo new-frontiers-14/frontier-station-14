@@ -1,0 +1,348 @@
+#region Clutter
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClutterEngi
+  name: random clutter
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClutter
+
+#region Tools
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootToolsBasicEngineering
+  name: random tool
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Tools/wrench.rsi
+      state: icon
+    - sprite: _NF/Objects/Tools/crowbar.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringTools
+
+- type: entity # Lame but easier to keep it for now
+  parent: SpawnDungeonLootToolsBasicEngineering
+  id: SpawnDungeonLootToolsAdvancedEngineering
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootToolbox
+  name: random toolbox
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
+
+#region Parts
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootPartsEngi
+  name: random parts
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Misc/stock_parts.rsi
+      state: bluespace_matter_bin
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringParts
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootPowerCell
+  name: random power cell
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Power/power_cells.rsi
+        state: hyper
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringPowerCells
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnPoiLootPowerCell
+  name: random power cell
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Power/power_cells.rsi
+        state: hyper
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TablePoiLootEngineeringPowerCells
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootCircuitBoardEngi
+  name: random machine board
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: science
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCircuitBoards
+
+#region Clothes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClothesEngi
+  name: random clothes
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothes
+
+#region Lockers
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootLockersEngi
+  name: random locker
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringLockers
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootSuitStorageUnitsEngi
+  name: random suit storage unit
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringSuitStorageUnits
+
+#region Crates
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateEngi
+  name: random crate
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCrates
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateEmptyEngi
+  name: random crate (empty)
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesEmpty
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateRestockEngi
+  name: random crate (restock)
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesRestock
+
+#region Machines
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootLatheEngi
+  name: random machine techfab
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: engi
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringMachinesFabricators
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonVendomatsEngi
+  name: random vendomats
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringMachinesVending
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootFlatpacksEngi
+  name: random flatpack
+  suffix: "Loot (Frontier), Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringFlatpacks

@@ -1,0 +1,481 @@
+# region melee
+- type: entityTable
+  id: TableDungeonLootWeaponsMelee
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsMeleeTier1
+    - !type:NestedSelector
+      weight: 0.3
+      tableId: TableDungeonLootWeaponsMeleeTier2
+    - !type:NestedSelector
+      weight: 0.35
+      tableId: TableDungeonLootWeaponsMeleeTier3
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsMeleeTier4
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsMeleeTier5
+    - !type:NestedSelector
+      weight: 0.01
+      tableId: TableDungeonLootWeaponsMeleeUnique
+
+# region melee T1
+- type: entityTable
+  id: TableDungeonLootWeaponsMeleeTier1
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: BrokenBottle
+      - id: WhiteCane
+      - id: Cane
+      - id: Shiv
+      - id: ClaymoreDulled
+      - id: KatanaDulled
+      - id: WeaponBrassKnucklesWhoopie
+      - id: Pickaxe
+      - id: WhiteCane
+      - id: CaptainSabreHilt
+      - id: Gohei
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsMeleeTier2
+
+# region melee T2
+- type: entityTable
+  id: TableDungeonLootWeaponsMeleeTier2
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: ReinforcedShiv
+      - id: UraniumShiv
+      - id: BaseBallBat
+      - id: CavemanClub
+      - id: KitchenKnife
+      - id: Chainsaw
+      - id: FlashlightSeclite
+      - id: ClothingHandsKnuckleDusters
+      - id: PowerDrill
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsMeleeTier3
+
+# region melee T3
+- type: entityTable
+  id: TableDungeonLootWeaponsMeleeTier3
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: Shovel
+      - id: Spear
+      - id: SpearBone
+      - id: KukriKnife
+      - id: SurvivalKnife
+      - id: RitualDagger
+      - id: CombatKnife
+      - id: SurvivalKnife
+      - id: ClothingHandsKnuckleDustersQM
+      - id: ButchCleaver
+      - id: EldritchBlade
+      - id: Katana
+      - id: Machete
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsMeleeTier4
+
+# region melee T4
+- type: entityTable
+  id: TableDungeonLootWeaponsMeleeTier4
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: CaneBlade
+      - id: Cutlass
+      - id: ClothingHandsKnuckleDustersSyndicate
+      - id: Shinai
+      - id: WeaponBaguette
+      - id: PlasteelArmingSword
+      - id: SpearReinforced
+      - id: Sledgehammer
+      - id: Claymore
+      - id: ClothingHandsKnuckleDustersStun
+      - id: SpearPlasma
+      - id: SpearSharkMinnow
+      - id: CaptainSabre
+      - id: ClothingHandsGlovesNorthStar
+      - id: ToolboxSyndicate
+      - id: WeaponCrusherDagger
+      - id: WeaponCrusher
+      - id: WeaponCrusherGlaive
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsMeleeTier5
+
+# region melee T5
+- type: entityTable
+  id: TableDungeonLootWeaponsMeleeTier5
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortEnergyDaggerExpedition
+      - id: WeaponCaseShortEnergySwordExpedition
+      - id: WeaponCaseShortEnergyCutlassExpedition
+      - id: WeaponCaseShortEnergySwordDoubleExpedition
+      - id: ClothingHandsGlovesBoxingRigged
+      - id: UnholyHalberd
+      - id: SecBreachingHammer
+      - id: ThrowingKnife
+      - id: MiningDrillDiamond
+      - id: EnergyKatana
+      - id: Truncheon
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsMeleeUnique
+
+# region melee unique
+- type: entityTable
+  id: TableDungeonLootWeaponsMeleeUnique
+  table: !type:GroupSelector
+    children:
+    - id: HyperEutacticBlade
+    - id: ClothingHandsKnuckleBoneCrushers
+    - id: ArmBlade
+    - id: Kanabou
+
+# region ranged
+- type: entityTable
+  id: TableDungeonLootWeaponsRanged
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsRangedTier1
+    - !type:NestedSelector
+      weight: 0.3
+      tableId: TableDungeonLootWeaponsRangedTier2
+    - !type:NestedSelector
+      weight: 0.35
+      tableId: TableDungeonLootWeaponsRangedTier3
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsRangedTier4
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsRangedTier5
+
+# region ranged T1
+- type: entityTable
+  id: TableDungeonLootWeaponsRangedTier1
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortMk58Expedition
+      - id: WeaponCaseShortUniversalExpedition
+      - id: WeaponCaseShortPollockExpedition
+      - id: WeaponCaseShortFaithExpedition
+      - id: WeaponCaseShortArgentiExpedition
+      - id: WeaponCaseShortLuckyExpedition
+      - id: WeaponCaseShortDeckardExpedition
+      - id: WeaponCaseShortRitland45Expedition
+      - id: WeaponCaseLongBarlowsBoltExpedition
+      - id: WeaponCaseLongRepeaterExpedition
+      - id: WeaponCaseLongSniperCeremonialExpedition
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsRangedTier2
+
+# region ranged T2
+- type: entityTable
+  id: TableDungeonLootWeaponsRangedTier2
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortCobra
+      - id: WeaponCaseShortN1984Expedition
+      - id: WeaponCaseShortViper
+      - id: WeaponCaseShortFitzExpedition
+      - id: WeaponCaseShortWard45Expedition
+      - id: WeaponCaseShortRevolverPirate
+      - id: WeaponCaseLongC20r
+      - id: WeaponCaseLongJackdaw
+      - id: WeaponCaseLongGestioExpedition
+      - id: WeaponCaseLongWeaponRifleNovaliteC1Expedition
+      - id: WeaponCaseLongSVSExpedition
+      - id: WeaponCaseLongKammererExpedition
+      - id: WeaponCaseShortLaserGunExpedition
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsRangedTier3
+
+# region ranged T3
+- type: entityTable
+  id: TableDungeonLootWeaponsRangedTier3
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseLongTypewriterExpedition
+      - id: WeaponCaseLongAtreidesExpedition
+      - id: WeaponCaseLongWT550Expedition
+      - id: WeaponCaseLongDrozdExpedition
+      - id: WeaponCaseLongM90Expedition
+      - id: WeaponCaseLongLecterExpedition
+      - id: WeaponCaseShortSvalinnExpedition
+      - id: WeaponCaseLongHristovExpedition
+      - id: WeaponCaseLongMusketExpedition
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsRangedTier4
+
+# region ranged T4
+- type: entityTable
+  id: TableDungeonLootWeaponsRangedTier4
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseLongSm
+      - id: WeaponCaseLongVulcanExpedition
+      - id: WeaponCaseLongBulldog
+      - id: WeaponCaseLongEnforcerExpedition
+      - id: WeaponCaseShortAntiqueLaserExpedition
+      - id: WeaponCaseShortAdvancedLaserExpedition
+      - id: WeaponCaseLongLaserCarbineExpedition
+      - id: WeaponCaseLongXrayCannonExpedition
+      - id: WeaponCaseLongTemperatureGunExpedition
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsRangedTier5
+
+# region ranged T5
+- type: entityTable
+  id: TableDungeonLootWeaponsRangedTier5
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseLongLauncherRocketExpedition
+      - id: WeaponCaseLongLauncherChinaLake
+      - id: WeaponCaseHeavyLightMachineGunL6
+      - id: WeaponCaseLongEnergyGunExpedition
+      - id: WeaponCaseLongLaserCannonExpedition
+      - id: WeaponCaseHeavyAsmgtExpeditions
+
+# region explosives
+- type: entityTable
+  id: TableDungeonLootWeaponsExplosives
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsExplosivesTier1
+    - !type:NestedSelector
+      weight: 0.3
+      tableId: TableDungeonLootWeaponsExplosivesTier2
+    - !type:NestedSelector
+      weight: 0.35
+      tableId: TableDungeonLootWeaponsExplosivesTier3
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsExplosivesTier4
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsExplosivesTier5
+
+# region explosives T1
+- type: entityTable
+  id: TableDungeonLootWeaponsExplosivesTier1
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortFireBomb
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsExplosivesTier2
+
+# region explosives T2
+- type: entityTable
+  id: TableDungeonLootWeaponsExplosivesTier2
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortPipeBomb
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsExplosivesTier3
+
+# region explosives T3
+- type: entityTable
+  id: TableDungeonLootWeaponsExplosivesTier3
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortSeismicCharge
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsExplosivesTier4
+
+# region explosives T4
+- type: entityTable
+  id: TableDungeonLootWeaponsExplosivesTier4
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortExGrenade
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsExplosivesTier5
+
+# region explosives T5
+- type: entityTable
+  id: TableDungeonLootWeaponsExplosivesTier5
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: WeaponCaseShortC4
+
+# region ammunition
+- type: entityTable
+  id: TableDungeonLootWeaponsAmmunition
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsAmmunitionRubber
+    - !type:NestedSelector
+      weight: 0.3
+      tableId: TableDungeonLootWeaponsAmmunitionLethal
+    - !type:NestedSelector
+      weight: 0.35
+      tableId: TableDungeonLootWeaponsAmmunitionIncendiary
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsAmmunitionUranium
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootWeaponsAmmunitionPractice
+
+# region ammo lethal
+- type: entityTable
+  id: TableDungeonLootWeaponsAmmunitionLethal
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCaseShortAmmoBoxLethal45
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxLethal20
+      - id: WeaponCaseShortAmmoBoxBigLethal20
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxLethal25
+      - id: WeaponCaseShortAmmoBoxBigLethal25
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxLethal30
+      - id: WeaponCaseShortAmmoBoxBigLethal30
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxLethal35
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxLethalShotgun
+      - id: WeaponCaseShortAmmoBoxSlugShotgun
+
+# region ammo rubber
+- type: entityTable
+  id: TableDungeonLootWeaponsAmmunitionRubber
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCaseShortAmmoBoxRubber30
+    - id: WeaponCaseShortAmmoBoxRubber35
+    - id: WeaponCaseShortAmmoBoxRubber45
+    - id: WeaponCaseShortAmmoBoxRubberShotgun
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxRubber20
+      - id: WeaponCaseShortAmmoBoxBigRubber20
+    - !type:GroupSelector
+      children:
+      - id: WeaponCaseShortAmmoBoxRubber25
+      - id: WeaponCaseShortAmmoBoxBigRubber25
+
+# region ammo incendiary
+- type: entityTable
+  id: TableDungeonLootWeaponsAmmunitionIncendiary
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCaseShortAmmoBoxIncendiary20
+    - id: WeaponCaseShortAmmoBoxIncendiary30
+    - id: WeaponCaseShortAmmoBoxIncendiary35
+    - id: WeaponCaseShortAmmoBoxIncendiaryShotgun
+    - id: WeaponCaseShortAmmoBoxIncendiary45
+
+# region ammo uranium
+- type: entityTable
+  id: TableDungeonLootWeaponsAmmunitionUranium
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCaseShortAmmoBoxUranium20
+    - id: WeaponCaseShortAmmoBoxUranium30
+    - id: WeaponCaseShortAmmoBoxUranium35
+    - id: WeaponCaseShortAmmoBoxUraniumShotgun
+    - id: WeaponCaseShortAmmoBoxUranium45
+
+# region ammo practice
+- type: entityTable
+  id: TableDungeonLootWeaponsAmmunitionPractice
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCaseShortAmmoBoxPractice20
+    - id: WeaponCaseShortAmmoBoxPractice30
+    - id: WeaponCaseShortAmmoBoxPractice35
+    - id: WeaponCaseShortAmmoBoxPractice25
+    - id: WeaponCaseShortAmmoBoxPracticeShotgun
+    - id: WeaponCaseShortAmmoBoxPractice45
+
+# region combined
+- type: entityTable
+  id: TableDungeonLootWeapons
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsMelee
+    - !type:NestedSelector
+      weight: 0.4
+      tableId: TableDungeonLootWeaponsRanged
+    - !type:NestedSelector
+      weight: 0.3
+      tableId: TableDungeonLootWeaponsAmmunition
+    - !type:NestedSelector
+      weight: 0.15
+      tableId: TableDungeonLootWeaponsExplosives

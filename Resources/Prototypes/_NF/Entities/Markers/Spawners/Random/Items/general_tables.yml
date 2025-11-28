@@ -1,0 +1,875 @@
+# region Bureaucracy
+- type: entityTable
+  id: TableDungeonLootGeneralBureaucracy
+  table: !type:GroupSelector
+    children:
+    - id: FolderSpawner
+      weight: 0.2
+    - id: Paper
+      weight: 0.2
+    - id: PaperOffice
+      weight: 0.05
+    - id: ClothingEyesGlasses
+      weight: 0.05
+    - id: ClothingEyesGlassesJamjar
+      weight: 0.05
+    - id: HandLabeler
+      weight: 0.1
+    - id: NewtonCradle
+      weight: 0.1
+    - id: DrinkSpaceGlue
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralBureaucracyPens
+      weight: 0.2
+
+- type: entityTable
+  id: TableDungeonLootGeneralBureaucracyPens
+  table: !type:GroupSelector
+    children:
+    - id: Pen
+      weight: 0.4
+    - id: LuxuryPen
+      weight: 0.2
+    - id: PenCap
+      weight: 0.2
+    - id: PenHop
+      weight: 0.1
+    - id: HypopenBox
+      weight: 0.05
+    - id: PenExplodingBox
+      weight: 0.025
+    - id: EnergyDagger
+      weight: 0.025
+
+# region Flashlights
+- type: entityTable
+  id: TableDungeonLootGeneralFlashlights
+  table: !type:GroupSelector
+    children:
+    - id: Lantern
+    - id: FlashlightLantern
+    - id: Floodlight
+    - id: FlashlightSeclite
+
+# region Lighters
+- type: entityTable
+  id: TableDungeonLootGeneralLighters
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: Matchstick
+        weight: 0.6
+      - id: GorlexMatchstick
+        weight: 0.4
+    - !type:GroupSelector
+      children:
+      - id: Matchbox
+        weight: 0.9
+      - id: GorlexMatchbox
+        weight: 0.1
+    - id: CheapLighter
+    - id: Lighter
+    - id: FlippoLighter
+    - id: FlippoEngravedLighter
+
+# region Flares
+- type: entityTable
+  id: TableDungeonLootGeneralFlares
+  table: !type:GroupSelector
+    children:
+    - id: Flare
+    - id: BoxDispenserFlare
+    - !type:AllSelector
+      children:
+      - id: WeaponFlareGun
+      - id: NFAmmunitionBoxShellShotgunFlare
+    - id: NFWeaponHoloflareGun
+
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootGeneralWardrobes
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      children:
+      - id: WardrobeBlack
+        weight: 0.7
+      - id: WardrobeBlackFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeBlue
+        weight: 0.7
+      - id: WardrobeBlueFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeGreen
+        weight: 0.7
+      - id: WardrobeGreenFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeGrey
+        weight: 0.7
+      - id: WardrobeGreyFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeMixed
+        weight: 0.7
+      - id: WardrobeMixedFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobePink
+        weight: 0.7
+      - id: WardrobePinkFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeWhite
+        weight: 0.7
+      - id: WardrobeWhiteFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeYellow
+        weight: 0.7
+      - id: WardrobeYellowFilled
+        weight: 0.3
+
+# region Lockers (PPE)
+- type: entityTable
+  id: TableDungeonLootGeneralProtectiveGear
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      children:
+      - id: ClosetEmergency
+        weight: 0.7
+      - id: ClosetEmergencyFilledRandom
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: ClosetEmergencyN2
+        weight: 0.7
+      - id: ClosetEmergencyN2FilledRandom
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: ClosetFire
+        weight: 0.7
+      - id: ClosetFireFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: ClosetBomb
+        weight: 0.7
+      - id: ClosetBombFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: ClosetL3
+        weight: 0.7
+      - id: ClosetL3Filled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: ClosetRadiationSuit
+        weight: 0.7
+      - id: ClosetRadiationSuitFilled
+        weight: 0.3
+
+# region Furniture
+- type: entityTable
+  id: TableDungeonLootGeneralBedroomFurniture
+  table: !type:GroupSelector
+    children:
+    - id: Dresser
+      weight: 0.2
+    - id: LockerWoodenGeneric
+      weight: 0.2
+    - id: TableWood
+      weight: 0.1
+    - id: filingCabinetDrawer
+      weight: 0.05
+    - id: Bed
+      weight: 0.1
+    - id: DogBed
+      weight: 0.1
+    - id: Bookshelf
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralWardrobes
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralProtectiveGear
+      weight: 0.05
+
+# region Lockers (SSU)
+- type: entityTable
+  id: TableDungeonLootGeneralSuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 0.45
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: SuitStorageEVAContractor
+      - id: SuitStorageEVAPilot
+      - id: SuitStorageEVAEngineer
+      - id: SuitStorageEVAAtmosTech
+      - id: SuitStorageEVACargo
+      - id: SuitStorageEVASalvage
+      - id: SuitStorageEVAMedical
+      - id: SuitStorageEVAScientist
+      - id: SuitStorageEVAJanitor
+      - id: SuitStorageEVAServiceWorker
+      - id: SuitStorageEVAChaplain
+      - id: SuitStorageEVABoxerBlue
+      - id: SuitStorageEVAMercenary
+      - id: SuitStorageEVAPrivateSec
+      - id: SuitStorageEVAHydro
+      - id: SuitStorageEVAMail
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: SuitStoragePilot
+      - id: SuitStorageEngi
+      - id: SuitStorageAtmos
+      - id: SuitStorageSalv
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: SuitStorageMining
+      - id: SuitStorageCE
+      - id: SuitStorageQuartermaster
+
+# region Handheld Displays
+- type: entityTable
+  id: TableDungeonLootGeneralHandheldDisplays
+  table: !type:GroupSelector
+    children:
+    - id: HandheldStationMap
+    - id: HandHeldMassScanner
+    - id: HandheldCrewMonitor
+    - id: HandheldSecurityMonitor
+
+# region Crates (Empty)
+- type: entityTable
+  id: TableDungeonLootGeneralCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesEmpty
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsCratesEmpty
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesEmpty
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesEmpty
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesEmpty
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceCratesEmpty
+
+# region Crates (Filled)
+- type: entityTable
+  id: TableDungeonLootGeneralCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCrates
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsCrates
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCrates
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCrates
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCrates
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceCrates
+
+# region Crates (Materials)
+- type: entityTable # maybe split the tables
+  id: TableDungeonLootGeneralCratesMaterial
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 0.05
+      tableId: TableDungeonLootGeneralCratesEmpty
+    - id: CrateMaterialRandom
+    # Basic
+    - !type:GroupSelector
+      weight: 0.55
+      children:
+      - id: CrateMaterialGlass
+      - id: CrateMaterialSteel
+      - id: CrateMaterialPlastic
+      - id: CrateMaterialTextiles
+      - id: CrateMaterialWood
+      - id: CrateMaterialBrass
+      - !type:GroupSelector
+        children:
+        - id: CrateMaterialsBasic10Filled
+          weight: 0.3
+        - id: CrateMaterialsBasicFilled
+          weight: 0.7
+    # Valuables
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: CrateMaterialPlasteel
+      - id: CrateMaterialPlasma
+      - id: CrateMaterialUranium
+      - id: CrateMaterialGold
+      - id: CrateMaterialSilver
+    # Trash
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: CrateMaterialPaper
+      - id: CrateMaterialCardboard
+      - id: CrateMaterialMetalRods
+    # Stuff
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: WaterTankFull
+        weight: 0.15
+      - id: WeldingFuelTankFull
+        weight: 0.15
+      - id: WaterTankHighCapacity
+        weight: 0.35
+      - id: WeldingFuelTankHighCapacity
+        weight: 0.35
+
+# region Crates (Vehiccle)
+- type: entityTable
+  id: TableDungeonLootGeneralCratesVehicle
+  table: !type:GroupSelector
+    children:
+    - id: CrateFunATV
+      weight: 0.69
+    - id: CrateFunHoverbikeNF
+      weight: 0.2
+    - id: NFCrateFunSyndicateSegway
+      weight: 0.1
+    - id: CrateFunScurret
+      weight: 0.01
+
+# region Crates (Restock)
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootGeneralRestocks
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesEmpty
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestockClothes
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesRestock
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesRestock
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsCratesRestock
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesRestock
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesRestock
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocksStuff
+
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootGeneralRestockClothes
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockClothesFilled
+    - id: CrateVendingMachineRestockAutoDrobeFilled
+    - id: CrateVendingMachineRestockGamesFilled
+    - id: CrateVendingMachineRestockCuddlyCritterVendFilled
+    - id: CrateVendingMachineRestockAutoTuneVendFilled
+    - id: CrateVendingMachineRestockPottedPlantVendFilled
+    - id: CrateVendingMachineRestockPrideFilled
+    - id: CrateVendingMachineRestockSalvageEquipmentFilled
+    - id: CrateVendingMachineRestockSecTechFilled
+
+# region Barrels
+- type: entityTable
+  id: TableDungeonLootGeneralBarrels
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelExplosiveFilled
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralBarrelsEmpty
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalBarrelsChems
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceBarrelsCondiments
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceBarrelsAlcohol
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootGeneralBarrelsEmpty
+  table: !type:GroupSelector
+    children:
+    - id: MetalBarrelGrey
+    - id: MetalBarrelBlue
+    - id: MetalBarrelRed
+    - id: MetalBarrelYellow
+    - id: MetalBarrelGreen
+    - id: MetalBarrelWhite
+    - id: MetalBarrelBlack
+    - id: ChemicalBarrelExplosiveEmpty
+
+#region Machine Fabricators
+- type: entityTable
+  id: TableDungeonLootGeneralMachinesFabricators
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalMachinesFabricators
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringMachinesFabricators
+      weight: 0.45
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyMachinesFabricators
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryMachinesFabricators
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+#region Machine Frames
+- type: entityTable
+  id: TableDungeonLootGeneralFrameMachine
+  table: !type:GroupSelector
+    children:
+    - id: UnfinishedMachineFrame
+      weight: 0.35
+    - id: MachineFrame
+      weight: 0.45
+    - id: AltarFrameNF
+      weight: 0.5
+    - id: MachineFrameDestroyed
+      weight: 0.15
+
+- type: entityTable
+  id: TableDungeonLootGeneralFrameComputer
+  table: !type:GroupSelector
+    children:
+    - id: ComputerFrame
+      weight: 0.3
+    - id: ComputerBroken
+      weight: 0.7
+
+#region Vendomats
+- type: entityTable
+  id: TableDungeonLootGeneralVendomatsTools
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: VendingMachineVendomat
+      - id: VendingMachineEngivend
+      - id: VendingMachineRobotics
+      - id: VendingMachineYouTool
+      - id: VendingMachineSalvage
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: LessLethalVendingMachine
+      - id: VendingMachineFlatpackVend
+      - id: VendingMachineExpeditionaryFlatpackVend
+      - id: VendingMachineAmmo
+      - id: VendingMachineSec
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralVendomatsContraband
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootGeneralVendomatsClothes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.9
+      children:
+      - id: VendingMachineClothing
+      - id: VendingMachineWinter
+      - id: VendingMachineHydrobe
+      - id: VendingMachineTheater
+      - id: VendingMachineLawDrobe
+      - id: VendingBarDrobe
+      - id: VendingMachineChapel
+      - id: VendingMachineCargoDrobe
+      - id: VendingMachineMediDrobe
+      - id: VendingMachineChemDrobe
+      - id: VendingMachineCuraDrobe
+      - id: VendingMachineAtmosDrobe
+      - id: VendingMachineEngiDrobe
+      - id: VendingMachineChefDrobe
+      - id: VendingMachineJaniDrobe
+      - id: VendingMachineSciDrobe
+      - id: VendingMachineRoboDrobe
+      - id: VendingMachineGeneDrobe
+      - id: VendingMachineViroDrobe
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralVendomatsContraband
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootGeneralVendomatsRecreational
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.9
+      children:
+      - id: SpaceVillainArcade
+      - id: SpaceVillainArcadeFilled
+      - id: BlockGameArcade
+      - id: VendingMachineBooze
+      - id: VendingMachineCigs
+      - id: VendingMachineCoffee
+      - id: VendingMachineCola
+      - id: VendingMachineColaBlack
+      - id: VendingMachineColaRed
+      - id: VendingMachineSpaceUp
+      - id: VendingMachineSoda
+      - id: VendingMachineStarkist
+      - id: VendingMachineShamblersJuice
+      - id: VendingMachinePwrGame
+      - id: VendingMachineDrGibb
+      - id: VendingMachineSovietSoda
+      - id: VendingMachineGames
+      - id: VendingMachineHappyHonk
+      - id: VendingMachineCuddlyCritterVend
+      - id: VendingMachineAutoTuneVend
+      - id: VendingMachinePottedPlantVend
+      - id: WaterCooler
+      # No food vendomats in expeds - buy from food ships or die
+#      - id: VendingMachineChang
+#      - id: VendingMachineDonut
+#      - id: VendingMachineDiscount
+#      - id: VendingMachineSnack
+#      - id: VendingMachineSustenance
+#      - id: VendingMachineSnackBlue
+#      - id: VendingMachineSnackOrange
+#      - id: VendingMachineSnackGreen
+#      - id: VendingMachineSnackTeal
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralVendomatsContraband
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootGeneralVendomatsContraband
+  table: !type:GroupSelector
+    children:
+      - id: VendingMachineMagivend
+      - id: VendingMachineArcadia
+      - id: VendingMachineClothingPunk
+      - id: VendingMachineBountyVendPunk
+      - id: VendingMachineSyndieContraband
+
+# region Flatpacks
+- type: entityTable
+  id: TableDungeonLootGeneralFlatpacks
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalFlatpacks
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringFlatpacks
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceFlatpacks
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyFlatpacks
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsFlatpacks
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryFlatpacks
+      weight: 0.2
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: HoverbikeFlatpack
+      - id: JukeboxFlatpack
+      - id: ComputerIFFFlatpack
+
+#region Circuit Boards
+- type: entityTable
+  id: TableDungeonLootGeneralCircuitBoards
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCircuitBoards
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCircuitBoards
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCircuitBoards
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCircuitBoards
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceCircuitBoards
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyCircuitBoards
+
+# region Materials Basic
+- type: entityTable
+  id: TableDungeonLootGeneralMaterialBasicSingle
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetBrass1
+    - id: SheetGlass1
+    - id: SheetSteel1
+    - id: SheetPlasma1
+    - id: SheetPlastic1
+    - id: MaterialCloth1
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: PartRodMetal1
+      - id: SheetPaper1
+      - id: MaterialWoodPlank1
+      - id: ShardGlass
+      - id: CableHVStack1
+      - id: CableMVStack1
+      - id: CableApcStack1
+
+- type: entityTable
+  id: TableDungeonLootGeneralMaterialBasicFull
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetBrass
+    - id: SheetGlass
+    - id: SheetSteel
+    - id: SheetPlasma
+    - id: SheetPlastic
+    - id: MaterialCloth
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: PartRodMetal
+      - id: SheetPaper
+      - id: MaterialWoodPlank
+      - id: CableHVStack
+      - id: CableMVStack
+      - id: CableApcStack
+
+# region Materials Valuable
+- type: entityTable
+  id: TableDungeonLootGeneralMaterialValuableSingle
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetUranium1
+    - id: IngotGold1
+    - id: IngotSilver1
+    - id: SheetRPGlass1
+    - id: SheetRUGlass1
+    - id: SheetPlasteel1
+    - id: MaterialDurathread1
+    - id: SheetRGlass1
+    - id: SheetPGlass1
+    - id: SheetUGlass1
+    # Rare
+    - !type:GroupSelector
+      weight: 0.08
+      children:
+      - id: MaterialBananium1
+      - id: MaterialBones1
+      - id: MaterialDiamond1
+
+- type: entityTable
+  id: TableDungeonLootGeneralMaterialValuableFull
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetUranium
+    - id: IngotGold
+    - id: IngotSilver
+    - id: SheetRPGlass
+    - id: SheetRUGlass
+    - id: SheetPlasteel
+    - id: MaterialDurathread
+    - id: SheetRGlass
+    - id: SheetPGlass
+    - id: SheetUGlass
+    # Rare
+    - !type:GroupSelector
+      weight: 0.08
+      children:
+      - id: MaterialBananium
+      - id: MaterialBones
+      - id: MaterialDiamond1
+
+# region Materials Ore
+- type: entityTable
+  id: TableDungeonLootGeneralOreSingle
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: GoldOre1
+    - id: SteelOre1
+    - id: PlasmaOre1
+    - id: SilverOre1
+    - id: SpaceQuartz1
+    - id: UraniumOre1
+    - id: Coal1
+    - id: BananiumOre1
+    - id: ScrapOre1
+    - id: ScrapOreTech1
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: DiamondOre1
+      - id: BluespaceOre1
+
+- type: entityTable
+  id: TableDungeonLootGeneralOreFull
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: GoldOre
+    - id: SteelOre
+    - id: PlasmaOre
+    - id: SilverOre
+    - id: SpaceQuartz
+    - id: UraniumOre
+    - id: Coal
+    - id: BananiumOre
+    - id: ScrapOre
+    - id: ScrapOreTech
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: DiamondOre
+      - id: BluespaceOre
+
+# region Materials Cash
+- type: entityTable
+  id: TableDungeonLootGeneralSpaceCash
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: SpaceCash10
+      - id: SpaceCash100
+      - id: SpaceCash500
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: SpaceCash1000
+        weight: 0.3
+      - id: SpaceCash2500
+        weight: 0.5
+      - id: SpaceCash5000
+        weight: 0.2
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: SpaceCash10000
+        weight: 0.3
+      - id: SpaceCash20000
+        weight: 0.5
+      - id: SpaceCash30000
+        weight: 0.2
+
+# region Other
+- type: entityTable
+  id: TableDungeonLootGeneralBriefcases
+  table: !type:GroupSelector
+    children:
+    - id: BriefcaseBrown
+      weight: 0.65
+    - id: BriefcaseThiefBribingBundleFilled # 20k spesos
+      weight: 0.2
+    - id: BriefcaseSyndieSniperBundleFilled
+      weight: 0.1
+    - id: BriefcaseBrownFilled
+      weight: 0.05
+    - id: BriefcaseSyndieLobbyingBundleFilled # 200k spesos
+      weight: 0.01
+
+- type: entityTable
+  id: TableDungeonLootGeneralRestocksStuff
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachineRestockBooze
+    - id: VendingMachineRestockChefvend
+    - id: VendingMachineRestockCondimentStation
+    - id: VendingMachineRestockClothes
+    - id: VendingMachineRestockCostumes
+    - id: VendingMachineRestockDinnerware
+    - id: VendingMachineRestockEngineering
+    - id: VendingMachineRestockGames
+    - id: VendingMachineRestockMedical
+    - id: VendingMachineRestockNutriMax
+    - id: VendingMachineRestockSalvageEquipment
+    - id: VendingMachineRestockSmokes
+    - id: VendingMachineRestockSeeds
+    - id: VendingMachineRestockTankDispenser
+    - id: VendingMachineRestockVendomat
+    - id: VendingMachineRestockRobotics
+    - id: VendingMachineRestockChemVend
+    - id: VendingMachineRestockAstroVend
+    - id: VendingMachineRestockAmmo
+    - id: VendingMachineRestockLessLethalVend
+    - id: VendingMachineRestockNonLethalVend
+    - id: VendingMachineRestockAutoTuneVend
+    - id: VendingMachineRestockPottedPlantVend
+
+- type: entityTable
+  id: TableDungeonLootGeneralCanisterBroken
+  table: !type:GroupSelector
+    children:
+    - id: GasCanisterBrokenBase
+    - id: LiquidOxygenCanisterBroken
+    - id: LiquidNitrogenCanisterBroken
+    - id: LiquidCarbonDioxideCanisterBroken
+    - id: AmmoniaCanisterBroken
+    - id: FrezonCanisterBroken
+    - id: NitrogenCanisterBroken
+    - id: NitrousOxideCanisterBroken
+    - id: PlasmaCanisterBroken
+    - id: TritiumCanisterBroken
+    - id: StorageCanisterBroken
+    - id: WaterVaporCanisterBroken
+    - id: OxygenCanisterBroken
