@@ -1,0 +1,91 @@
+- type: entity
+  parent: BaseAction
+  id: ActionConjureMagiVendSpell
+  name: Conjure MagiVend
+  description: This spell summons a MagiVend that'll stay in this reality for 3 minutes.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Structures/Machines/VendingMachines/magivend.rsi
+      state: off
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: VendingMachineMagivendConjured
+        amount: 1
+      offset: 0, 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summon-magivend
+
+- type: entity
+  parent: BaseAction
+  id: ActionConjureWaterElementalSpell
+  name: Conjure Blue Curacao Elemental
+  description: This spell summons a Blue Curacao Elemental that'll stay in this reality for 3 minutes.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Mobs/Aliens/elemental.rsi
+      state: alive
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: WaterElementalConjured
+        amount: 1
+      offset: 0, 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summon-blue-curacao-elemental
+
+- type: entity
+  parent: BaseAction
+  id: ActionBloodCultDrainedOneSpell
+  name: Conjure Drained One
+  description: This spell summons a Drained One that'll stay in this reality for 3 minutes.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: _NF/Mobs/BloodCult/drainedone.rsi
+      state: drained
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: MobBloodCultDrainedOneNanoTrasen
+        amount: 1
+      offset: 0, 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summon-drained-one
+
+- type: entity
+  parent: BaseAction
+  id: ActionBloodCultShadeSpell
+  name: Conjure Shade
+  description: This spell summons a Shade that'll stay in this reality for 3 minutes.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: _NF/Mobs/BloodCult/shade.rsi
+      state: shade
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: MobBloodCultShadeNanoTrasen
+        amount: 1
+      offset: 0, 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summon-shade
