@@ -527,8 +527,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     continue;
                 }
 
+<<<<<<< HEAD
                 //var color = Color.ToSrgb(Color.Magenta); // Frontier
                 var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
+=======
+                var color = Color.ToSrgb(state.HighlightedColor);
+>>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
                 var verts = new[]
                 {
