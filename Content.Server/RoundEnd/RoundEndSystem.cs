@@ -66,7 +66,6 @@ namespace Content.Server.RoundEnd
 
         // Frontier: scheduled restart times
         public DateTime NextScheduledRestartTime;
-        private ISawmill _sawmill;
 
         // End Frontier
 
@@ -110,7 +109,7 @@ namespace Content.Server.RoundEnd
                 }
                 catch (Exception e)
                 {
-                    _sawmill.Error($"Cron format exception when parsing scheduled round end: {time}\n{e}");
+                    Log.Error($"Cron format exception when parsing scheduled round end: {time}\n{e}");
                     DebugTools.Assert($"Cron format exception when parsing scheduled round end: {time}\n{e}");
                     continue;
                 }
@@ -126,7 +125,7 @@ namespace Content.Server.RoundEnd
 
             if (NextScheduledRestartTime == DateTime.MaxValue) // no cron jobs were successfully set, unset scheduled round end (TODO: Fix this before 9999-12-31)
             {
-                _sawmill.Error("No valid scheduled roundend times found, setting nf14.scheduled_roundend.active to false");
+                Log.Error("No valid scheduled roundend times found, setting nf14.scheduled_roundend.active to false");
                 _cfg.SetCVar(NFCCVars.UseScheduledRoundend, false);
                 return;
             }
