@@ -107,3 +107,18 @@
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidScrap
+
+- type: entity
+  id: BluespaceDungeonCaveZombie
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: NamesBorer
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents: *dungeonComponents
+        protos:
+        - NFVGRoidCaveZombie

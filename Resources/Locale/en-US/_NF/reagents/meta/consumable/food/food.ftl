@@ -12,3 +12,6 @@ reagent-desc-salsa = Refreshing and finely diced, this tomato-y base holds a sha
 
 reagent-name-sourcream = sour cream
 reagent-desc-sourcream = Creamy in viscosity and texture, but with a sharp and fresh bite.
+
+reagent-name-gravy = gravy
+reagent-desc-gravy = Gloriously groovy gravy guaranteed to make your meals meatier.

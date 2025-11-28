@@ -60,12 +60,27 @@
   physicalDesc: reagent-physical-desc-creamy
   flavor: sharp
   color: "#F5F5F5"
-  recognizable: true
   metabolisms:
     Food:
       effects:
       - !type:SatiateHunger
-        factor: 0.5
+        factor: 0.3
+
+  id: Gravy # groovy
+  name: reagent-name-gravy
+  group: Foods
+  desc: reagent-desc-gravy
+  physicalDesc: reagent-physical-desc-saucey # yum
+  flavor: meaty
+  color: "#835021"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      # It's just a condiment, not the main part of the meal!
+      - !type:SatiateHunger
+        factor: 0.3
+
 
 - type: reagent
   id: Salsa
@@ -80,6 +95,7 @@
     Food:
       effects:
       - !type:SatiateHunger
-        factor: 0.5
+        factor: 0.2
       - !type:SatiateThirst
         factor: 0.5 # watery, tomato-y
+
