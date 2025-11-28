@@ -23,7 +23,8 @@ using Content.Shared.DeviceNetwork.Components;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
-using Cronos; // Frontier
+using Cronos;
+using Robust.Shared.Utility; // Frontier
 
 namespace Content.Server.RoundEnd
 {
@@ -65,6 +66,7 @@ namespace Content.Server.RoundEnd
 
         // Frontier: scheduled restart times
         public DateTime NextScheduledRestartTime;
+        private ISawmill _sawmill;
 
         // End Frontier
 
@@ -74,7 +76,6 @@ namespace Content.Server.RoundEnd
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
             SetAutoCallTime();
             Subs.CVar(_cfg, NFCCVars.ScheduledRoundendTimes, SetScheduledAutoCallTime, true); // Frontier
-            SetScheduledAutoCallTime(); // Frontier
         }
 
         private void SetAutoCallTime()
@@ -89,7 +90,7 @@ namespace Content.Server.RoundEnd
         }
         private void SetScheduledAutoCallTime(string scheduledRoundendTimes)
         {
-            var nextScheduled = new List<TimeSpan>();
+            NextScheduledRestartTime = DateTime.MaxValue;
             var delimiters = new char[] { '\n', '\r' }; // I want to know why we still take carriage returns seriously
             var times = scheduledRoundendTimes.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
@@ -98,28 +99,37 @@ namespace Content.Server.RoundEnd
             // populate nextScheduled with every cron schedule's next occurrence
             foreach (var time in times)
             {
+                if (String.IsNullOrWhiteSpace(time)) // Handle blank lines
+                    continue;
+
                 DateTime? nextTime;
                 try
                 {
-                    nextTime = CronExpression.Parse(time).GetNextOccurrence(currentTime);
+                    // Add the minimum round duration to current time when calculating next occurrences, to ensure the round is at least this long.
+                    nextTime = CronExpression.Parse(time).GetNextOccurrence(currentTime + TimeSpan.FromMinutes(_cfg.GetCVar(NFCCVars.MinimumRoundDuration)));
                 }
-                catch
+                catch (Exception e)
                 {
+                    _sawmill.Error($"Cron format exception when parsing scheduled round end: {time}\n{e}");
+                    DebugTools.Assert($"Cron format exception when parsing scheduled round end: {time}\n{e}");
                     continue;
                 }
 
-                if (nextTime is not null)
-                    nextScheduled.Add(nextTime.Value - currentTime);
+                if (nextTime is null)
+                {
+                    throw new FormatException($"Cron next occurrence unreachable: {time}");
+                }
+
+                if (NextScheduledRestartTime > nextTime.Value)
+                    NextScheduledRestartTime = nextTime.Value;
             }
 
-            if (nextScheduled.Count == 0) // it's empty...
+            if (NextScheduledRestartTime == DateTime.MaxValue) // no cron jobs were successfully set, unset scheduled round end (TODO: Fix this before 9999-12-31)
             {
+                _sawmill.Error("No valid scheduled roundend times found, setting nf14.scheduled_roundend.active to false");
                 _cfg.SetCVar(NFCCVars.UseScheduledRoundend, false);
                 return;
             }
-
-            nextScheduled.Sort(); // Sort the list, which should get the next occurence considering all cron expressions
-            NextScheduledRestartTime = currentTime + nextScheduled[0];
         }
         // End Frontier
         private void Reset()

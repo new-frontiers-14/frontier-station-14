@@ -304,10 +304,18 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.scheduled_roundend.active", false, CVar.SERVERONLY);
 
     /// <summary>
+    /// Minimum shift time, in minutes. Scheduled roundends before current time + this duration will be skipped.
+    /// </summary>
+    public static readonly CVarDef<int> MinimumRoundDuration =
+        CVarDef.Create("nf14.scheduled_roundend.minimum_duration", 0, CVar.SERVERONLY);
+
+    /// <summary>
     /// A list of when roundend should happen.
-    /// Format for this is cron entries seperated by commas.
+    /// Format for this is cron entries seperated by newlines.
     /// </summary>
     public static readonly CVarDef<string> ScheduledRoundendTimes =
         CVarDef.Create("nf14.scheduled_roundend.roundend_times", "", CVar.SERVERONLY);
+
+
 
 }
