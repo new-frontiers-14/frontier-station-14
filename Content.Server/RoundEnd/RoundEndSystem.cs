@@ -22,6 +22,9 @@ using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Cronos;
+using Robust.Shared.Utility; // Frontier
 
 namespace Content.Server.RoundEnd
 {
@@ -61,17 +64,97 @@ namespace Content.Server.RoundEnd
         public TimeSpan AutoCallStartTime;
         private bool _autoCalledBefore = false;
 
+        // Frontier: scheduled restart times
+        public DateTime NextScheduledRestartTime;
+
+        // End Frontier
+
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
             SetAutoCallTime();
+            Subs.CVar(_cfg, NFCCVars.ScheduledRoundendTimes, SetScheduledAutoCallTime, true); // Frontier
+            Subs.CVar(_cfg, NFCCVars.UseScheduledRoundend, SetScheduledAutoCallEnabled, true); // Frontier
         }
 
         private void SetAutoCallTime()
         {
             AutoCallStartTime = _gameTiming.CurTime;
         }
+
+        // Frontier: scheduled restart times
+        private void SetScheduledAutoCallTime()
+        {
+            SetScheduledAutoCallTime(_cfg.GetCVar(NFCCVars.ScheduledRoundendTimes));
+        }
+
+        private void SetScheduledAutoCallTime(string scheduledRoundendTimes)
+        {
+            if (!_cfg.GetCVar(NFCCVars.UseScheduledRoundend))
+                return;
+
+            NextScheduledRestartTime = DateTime.MaxValue;
+            var delimiters = new char[] { '\n', '\r', '|' }; // I want to know why we still take carriage returns seriously
+            var times = scheduledRoundendTimes.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            var currentTime = DateTime.UtcNow;
+
+            // populate nextScheduled with every cron schedule's next occurrence
+            foreach (var time in times)
+            {
+                if (String.IsNullOrWhiteSpace(time)) // Handle blank lines
+                    continue;
+
+                DateTime? nextTime;
+                try
+                {
+                    // Add the minimum round duration to current time when calculating next occurrences, to ensure the round is at least this long.
+                    nextTime = CronExpression.Parse(time).GetNextOccurrence(currentTime + TimeSpan.FromMinutes(_cfg.GetCVar(NFCCVars.MinimumRoundDuration)));
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"Cron format exception when parsing scheduled round end: {time}\n{e}");
+                    DebugTools.Assert($"Cron format exception when parsing scheduled round end: {time}\n{e}");
+                    continue;
+                }
+
+                if (nextTime is null)
+                {
+                    Log.Error($"Cron next occurrence unreachable: {time}");
+                    DebugTools.Assert($"Cron next occurrence unreachable: {time}");
+                    continue;
+                }
+
+                if (NextScheduledRestartTime > nextTime.Value)
+                    NextScheduledRestartTime = nextTime.Value;
+            }
+
+            if (NextScheduledRestartTime == DateTime.MaxValue) // no cron jobs were successfully set, unset scheduled round end (TODO: Fix this before 9999-12-31)
+            {
+                Log.Error("No valid scheduled roundend times found, setting nf14.scheduled_roundend.active to false");
+                _cfg.SetCVar(NFCCVars.UseScheduledRoundend, false);
+                return;
+            }
+        }
+
+        public DateTime? GetAutoCallTime()
+        {
+            if (_cfg.GetCVar(NFCCVars.UseScheduledRoundend) && !_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
+            {
+                return NextScheduledRestartTime;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void SetScheduledAutoCallEnabled(bool useScheduledRoundend)
+        {
+            SetScheduledAutoCallTime();
+        }
+        // End Frontier
 
         private void Reset()
         {
@@ -306,7 +389,7 @@ namespace Content.Server.RoundEnd
         public void DoRoundEndBehavior(RoundEndBehavior behavior,
             TimeSpan time,
             string sender = "comms-console-announcement-title-centcom",
-            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier 
+            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier
             string textAnnounce = "nf-round-end-system-shuttle-already-called-announcement") // Frontier
         {
             switch (behavior)
@@ -368,6 +451,18 @@ namespace Content.Server.RoundEnd
                 // Always reset auto-call in case of a recall.
                 SetAutoCallTime();
             }
+
+            // Frontier: scheduled restart times
+            if (_cfg.GetCVar(NFCCVars.UseScheduledRoundend) && DateTime.UtcNow > NextScheduledRestartTime)
+            {
+                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
+                {
+                    RequestRoundEnd(null, false, "nf-round-end-system-shuttle-auto-called-announcement");// Frontier
+                    _autoCalledBefore = true;
+                }
+                SetScheduledAutoCallTime();
+            }
+            // End Frontier
         }
     }
 

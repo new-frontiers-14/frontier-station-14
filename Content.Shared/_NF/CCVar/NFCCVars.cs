@@ -292,4 +292,30 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerStarterLoadout =
         CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /*
+     * Scheduled Roundend
+     */
+
+    /// <summary>
+    /// Whether or not the server should end the round using UTC defined restart times or ingame times (shuttle.auto_call_time)
+    /// </summary>
+    public static readonly CVarDef<bool> UseScheduledRoundend =
+        CVarDef.Create("nf14.scheduled_roundend.active", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Minimum shift time, in minutes. Scheduled roundends before current time + this duration will be skipped.
+    /// </summary>
+    public static readonly CVarDef<int> MinimumRoundDuration =
+        CVarDef.Create("nf14.scheduled_roundend.minimum_duration", 0, CVar.SERVERONLY);
+
+    /// <summary>
+    /// A list of when roundend should happen.
+    /// Format for this is cron entries seperated by newlines.
+    /// </summary>
+    public static readonly CVarDef<string> ScheduledRoundendTimes =
+        CVarDef.Create("nf14.scheduled_roundend.roundend_times", "", CVar.SERVERONLY);
+
+
+
 }
