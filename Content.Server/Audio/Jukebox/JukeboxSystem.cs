@@ -10,6 +10,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using JukeboxComponent = Content.Shared.Audio.Jukebox.JukeboxComponent;
 using Robust.Shared.Random; // Frontier
+using Robust.Shared.Containers; // Frontier
 
 namespace Content.Server.Audio.Jukebox;
 
@@ -70,14 +71,44 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             component.AudioStream = Audio.Stop(component.AudioStream);
 
             // Frontier: Shuffling feature.
-            if (component.PlaybackMode == JukeboxPlaybackMode.Shuffle
-                && !component.FirstPlay
-                && _protoManager.TryGetRandom<JukeboxPrototype>(_random, out var newProto)
-                && newProto is JukeboxPrototype newJukeboxProto)
+            if (component.PlaybackMode == JukeboxPlaybackMode.Shuffle && !component.FirstPlay)
             {
-                component.SelectedSongId = newJukeboxProto;
+                if (!TryComp<ContainerManagerComponent>(uid, out var containers))
+                    return;
+
+                // Build a list of music available in the jukebox
+                HashSet<ProtoId<JukeboxPrototype>> availableMusic = new();
+
+                foreach (var container in containers.Containers.Values)
+                {
+                    foreach (var ent in container.ContainedEntities)
+                    {
+                        if (!TryComp(ent, out JukeboxContainerComponent? tracklist))
+                            continue;
+
+                        foreach (var trackID in tracklist.Tracks)
+                        {
+                            availableMusic.Add(trackID);
+                        }
+                    }
+                }
+
+                // prevent repeats
+                availableMusic.Remove(component.SelectedSongId!.Value);
+
+                if (availableMusic.Count == 0)
+                {
+                    component.SelectedSongId = null;
+                    component.FirstPlay = true;
+                    Dirty(uid, component);
+                    return;
+                }
+                else
+                {
+                    component.SelectedSongId = _random.Pick(availableMusic);
+                }
+                // End Frontier
             }
-            // End Frontier
 
             if (string.IsNullOrEmpty(component.SelectedSongId) ||
                 !_protoManager.TryIndex(component.SelectedSongId, out var jukeboxProto))
