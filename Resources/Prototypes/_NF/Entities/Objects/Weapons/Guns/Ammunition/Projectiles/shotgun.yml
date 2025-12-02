@@ -99,6 +99,91 @@
         Piercing: 4
         Structural: 5
 
+# Trash pellets
+- type: entity
+  parent: NFBasePellet
+  id: PelletShotgunTrash
+  categories: [ HideSpawnMenu ]
+  name: propelled trash
+  components:
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Sprite
+    layers:
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: boritos-trash
+      scale: 0.7,0.7
+      map: [ "propelledTrash" ]
+    - sprite: Effects/fire.rsi
+      state: fire
+      scale: 0.7,0.7
+      offset: -0.07,0.0
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        blunt: 4
+  - type: RandomSprite
+    available:
+      - propelledTrash:
+          boritos-trash: ""
+          cheesiehonkers-trash: ""
+          chinese1: ""
+          chinese2: ""
+          chips-trash: ""
+          chocolatebar-trash: ""
+          cnds-trash: ""
+          energybar-trash: ""
+          mre-wrapper: ""
+          pistachio-trash: ""
+          popcorn-trash: ""
+          raisins-trash: ""
+          semki-trash: ""
+          susjerky-trash: ""
+          syndicakes-trash: ""
+          tatortot: ""
+          ramen: ""
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunEmp
+  name: pellet (.50 grapeshot)
+  parent: NFBasePellet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 4
+        Blunt: 4
+  - type: StaminaDamageOnCollide
+    damage: 4 # 15 hits to slowdown
+
+# Soap
+- type: entity
+  parent: SoapletSyndie
+  id: PelletShotgunSoaplet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 120
+
 #region PelletsSpread
 - type: entity
   id: NFBasePelletShotgunSpread
@@ -172,11 +257,44 @@
   - type: ProjectileSpread
     proto: NFPelletShotgunGrapeshot
 
+- type: entity
+  parent: [ NFBasePelletShotgunSpread, PelletShotgunTrash ]
+  id: PelletShotgunTrashSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunTrash
+
+# Soap
+- type: entity
+  parent: [ NFBasePelletShotgunSpread, PelletShotgunSoaplet ]
+  id: PelletShotgunSoapletSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunSoaplet
+
+- type: entity
+  parent: [ NFBasePelletShotgunSpread, NFPelletShotgun ]
+  id: PelletShotgunDisablerSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletDisablerTiny
+
+- type: entity
+  parent: [ NFBasePelletShotgunSpread, NFPelletShotgun ]
+  id: PelletShotgunLaserSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletLaserLow
+
 #region Slugs
 - type: entity
-  categories: [ HideSpawnMenu ]
-  id: NFShotgunSlug
   parent: NFBaseBullet
+  id: NFShotgunSlug
+  categories: [ HideSpawnMenu ]
   name: slug (.50)
   components:
   - type: Projectile
@@ -186,9 +304,9 @@
         Blunt: 5
 
 - type: entity
-  categories: [ HideSpawnMenu ]
-  id: NFShotgunSlugBeanbag
   parent: NFBaseBulletRubber
+  id: NFShotgunSlugBeanbag
+  categories: [ HideSpawnMenu ]
   name: beanbag (.50)
   components:
   - type: Projectile
@@ -199,9 +317,9 @@
     damage: 30 # 4 hits to stun
 
 - type: entity
-  categories: [ HideSpawnMenu ]
-  id: NFShotgunSlugFlare
   parent: NFPelletShotgunFlare
+  id: NFShotgunSlugFlare
+  categories: [ HideSpawnMenu ]
   name: flare (.50)
   components:
   - type: Sprite
@@ -219,10 +337,10 @@
     length: 2
 
 - type: entity
-  categories: [ HideSpawnMenu ]
-  id: NFShotgunSlugTranquilizer
   parent: NFBaseBullet
-  name: slug (.50 tranquilizer)
+  id: NFShotgunSlugTranquilizer
+  categories: [ HideSpawnMenu ]
+  name: tranquilizer slug (.50)
   components:
   - type: Sprite
     layers:
@@ -252,3 +370,93 @@
   - type: Tracer
     color: "#00ffffFF"
     length: 2
+
+# HighEx Slug
+- type: entity
+  parent: NFBaseBulletTrigger
+  id: PelletShotgunHighExSlug
+  categories: [ HideSpawnMenu ]
+  name: highex slug (.50)
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 2
+    totalIntensity: 1
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 1.3
+    color: orange
+    energy: 0.8
+
+# Flashbang
+- type: entity
+  parent: NFBaseBulletTrigger
+  id: PelletShotgunFlashbangSlug
+  categories: [ HideSpawnMenu ]
+  name: flashbang slug (.50)
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 15
+  - type: FlashOnTrigger
+    range: 3
+  - type: StaminaDamageOnCollide
+    damage: 25
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 0.3
+  - type: DeleteOnTrigger
+  - type: PointLight
+    radius: 1.3
+    color: white
+    energy: 0.8
+
+# pellet cluster
+- type: entity
+  parent: NFBaseBulletTrigger
+  id: PelletShotgunCluster
+  categories: [ HideSpawnMenu ]
+  name: pellet cluster (.50)
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+       Blunt: 5
+  - type: ProjectileGrenade
+    fillPrototype: NFPelletClusterLethal # NFPelletShotgun
+    capacity: 9
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Effects/flash_bang.ogg"
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+
+# Breaching (ex Anti-material)
+- type: entity
+  parent: NFBaseBullet
+  id: NFShotgunSlugBreaching
+  categories: [ HideSpawnMenu ]
+  name: breaching slug (.60)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+        Structural: 60
