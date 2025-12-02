@@ -1,3 +1,5 @@
+using Content.Shared.Stacks;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Interaction;
 
@@ -41,5 +43,10 @@ public abstract partial class InteractionTest
     protected const string Cap1 = "CapacitorStockPart";
     protected const string Cap4 = "QuadraticCapacitorStockPart";
     // End Frontier: maintaining removed parts
+
+    // Inflatables & Needle used to pop them
+    protected static readonly EntProtoId InflatableWall = "InflatableWall";
+    protected static readonly EntProtoId Needle = "WeaponMeleeNeedle";
+    protected static readonly ProtoId<StackPrototype> InflatableWallStack = "InflatableWall";
 }
 
