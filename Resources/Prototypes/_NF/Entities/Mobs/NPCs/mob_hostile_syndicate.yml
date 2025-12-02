@@ -400,28 +400,28 @@
   description: |-
    "Everything is a nail if you have a hammer." In this case, everything is a target because he has an SMG and an itchy trigger finger.
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalOperatorGearA
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 1.5
-      rechargeSound:
-        path: /Audio/_NF/Effects/silence.ogg
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol35Uranium
-      capacity: 7
-      count: 7
-    - type: Gun
-      showExamineText: false
-      minAngle: 10
-      maxAngle: 30
-      fireRate: 5
-      angleIncrease: 3
-      angleDecay: 6
-      selectedMode: FullAuto
-      availableModes:
-        - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalGearT3Operator
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol35Uranium
+    capacity: 7
+    count: 7
+  - type: Gun
+    showExamineText: false
+    minAngle: 10
+    maxAngle: 30
+    fireRate: 5
+    angleIncrease: 3
+    angleDecay: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
 
 - type: entity
   parent: MobSyndicateNavalOperatorA

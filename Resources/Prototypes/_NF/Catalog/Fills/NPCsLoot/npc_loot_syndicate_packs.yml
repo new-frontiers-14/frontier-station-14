@@ -287,6 +287,30 @@
 
 # region Medic
 - type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT2Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+  - type: Sprite
+    sprite: Clothing/Belt/emt.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Topicals
+    - id: SpawnDungeonClutterMedsFull
+      orGroup: Topicals
+      prob: 0.4
+    - id: SpawnDungeonClutterMedsSingle
+      orGroup: Topicals
+      prob: 0.6
+    # Items
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.7
+
+- type: entity
   parent: NFBaseNpcLootPackSyndicate
   id: ClothingBackpackSyndicateT2Medic
   categories: [ HideSpawnMenu ]
