@@ -26,6 +26,14 @@ stack-diamond-coin = diamond {$amount ->
     [1] coin
     *[other] coins
 }
+stack-capacitor = {$amount ->
+    [1] capacitor
+    *[other] capacitors
+}
+stack-matter-bin = {$amount ->
+    [1] matter bin
+    *[other] matter bins
+}
 stack-advanced-capacitor = advanced {$amount ->
     [1] capacitor
     *[other] capacitors
