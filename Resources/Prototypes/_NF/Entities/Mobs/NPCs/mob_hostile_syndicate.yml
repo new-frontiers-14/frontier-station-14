@@ -126,6 +126,37 @@
       - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
+# region Victim of Experimentation (shiv)
+- type: entity
+  name: captive
+  parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
+  - MobHumanoidHostileBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobExperimentationVictim
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: Loadout
+    prototypes:
+      - SyndicateVictimInsaneGear
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath:
+    - type: Prying
+    - type: Tool
+
 # region Tier 2
 
 
@@ -397,31 +428,30 @@
   id: MobSyndicateNavalOperatorB
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalOperatorGearB
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol35Incendiary
+    capacity: 7
+    count: 7
 
 - type: entity
   parent: MobSyndicateNavalOperatorA
   id: MobSyndicateNavalOperatorC
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalOperatorGearC
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol35Overpressure
+    capacity: 7
+    count: 7
 
 - type: entity
   parent: MobSyndicateNavalOperatorA
   id: MobSyndicateNavalOperatorD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalOperatorGearD
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol35Overpressure
-      capacity: 7
-      count: 7
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol35
+    capacity: 7
+    count: 7
 
 # region Special
 
@@ -436,66 +466,57 @@
   description: |-
    "Huh? Say it louder! I can't hear you!" Equipped with the infamous China Lake, grenadiers have immense destructive capability, and should be priority targets.
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalGrenadierGearA
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplantNF
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 5
-      rechargeSound:
-        path: /Audio/_NF/Effects/silence.ogg
-    - type: BasicEntityAmmoProvider
-      proto: NFGrenadeFrag
-      capacity: 1
-      count: 1
-    - type: Gun
-      showExamineText: false
-      fireRate: 1
-      selectedMode: SemiAuto
-      availableModes:
-        - SemiAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalGearT3Grenadier
+  - type: AutoImplant
+    implants:
+    - DeathAcidifierImplantNF
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFGrenadeFrag
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
 - type: entity
   parent: MobSyndicateNavalGrenadierA
   id: MobSyndicateNavalGrenadierB
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalGrenadierGearB
-    - type: BasicEntityAmmoProvider
-      proto: NFGrenadeBlast
-      capacity: 1
-      count: 1
+  - type: BasicEntityAmmoProvider
+    proto: NFGrenadeBlast
+    capacity: 1
+    count: 1
 
 - type: entity
   parent: MobSyndicateNavalGrenadierA
   id: MobSyndicateNavalGrenadierC
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalGrenadierGearC
-    - type: BasicEntityAmmoProvider
-      proto: NFGrenadeBaton
-      capacity: 1
-      count: 1
+  - type: BasicEntityAmmoProvider
+    proto: NFGrenadeBaton
+    capacity: 1
+    count: 1
 
 - type: entity
   parent: MobSyndicateNavalGrenadierA
   id: MobSyndicateNavalGrenadierD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalGrenadierGearD
-    - type: BasicEntityAmmoProvider
-      proto: NFGrenadeFlash
-      capacity: 2
-      count: 2
+  - type: BasicEntityAmmoProvider
+    proto: NFGrenadeFlash
+    capacity: 2
+    count: 2
 
 # region Mime (melee)
 - type: entity
@@ -504,15 +525,15 @@
   name: syndicate mime
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalMimeGear
-    - type: Vocalizer
-      hideChat: true
-      minVocalizeInterval: 120
-      maxVocalizeInterval: 240
-    - type: DatasetVocalizer
-      dataset: mimehumanoidchatter
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalGearT3Mime
+  - type: Vocalizer
+    hideChat: true
+    minVocalizeInterval: 120
+    maxVocalizeInterval: 240
+  - type: DatasetVocalizer
+    dataset: mimehumanoidchatter
 
 # region Chemwarrior
 - type: entity
@@ -524,7 +545,7 @@
   components:
   - type: Loadout
     prototypes:
-    - SyndicateNavalChemwarriorGearA
+    - SyndicateNavalGearT3ChemwarriorAlt
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 2
     rechargeSound:
@@ -548,68 +569,31 @@
   components:
   - type: Loadout
     prototypes:
-    - SyndicateNavalChemwarriorGearB
+    - SyndicateNavalGearT3Chemwarrior
   - type: BasicEntityAmmoProvider
     proto: SplatterChemDrugs
     capacity: 1
     count: 1
 
 - type: entity
-  parent: MobSyndicateNavalChemwarriorA
+  parent: MobSyndicateNavalChemwarriorB
   id: MobSyndicateNavalChemwarriorC
   categories: [ HideSpawnMenu ]
   components:
-  - type: Loadout
-    prototypes:
-    - SyndicateNavalChemwarriorGearC
   - type: BasicEntityAmmoProvider
     proto: SplatterChemMute
     capacity: 1
     count: 1
 
 - type: entity
-  parent: MobSyndicateNavalChemwarriorA
+  parent: MobSyndicateNavalChemwarriorB
   id: MobSyndicateNavalChemwarriorD
   categories: [ HideSpawnMenu ]
   components:
-  - type: Loadout
-    prototypes:
-    - SyndicateNavalChemwarriorGearD
   - type: BasicEntityAmmoProvider
     proto: SplatterChemWeh
     capacity: 1
     count: 1
-
-# region Victim of Experimentation (shiv)
-- type: entity
-  name: captive
-  parent:
-  - MobMovementSpeedModifierMelee
-  - MobStaminaFodder
-  - MobHumanoidHostileBase
-  - MobHumanoidHostileAISimpleMelee
-  id: MobExperimentationVictim
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: NameIdentifier
-    group: GenericNumber
-  - type: NpcFactionMember
-    factions:
-      - SimpleHostile
-  - type: Loadout
-    prototypes:
-      - SyndicateVictimInsaneGear
-  - type: InputMover
-  - type: MobMover
-  - type: HTN
-    rootTask:
-      task: SimpleHumanoidHostileCompound
-  - type: NFSalvageMobRestrictions
-    despawnIfOffLinkedGrid: false
-    addComponentsOnDeath: []
-    removeComponentsOnDeath:
-    - type: Prying
-    - type: Tool
 
 # region Tier 4 (Boss)
 
@@ -623,74 +607,60 @@
   name: syndicate commander
   description: A regional commander of Syndicate operations, this officer holds ultimate local command and responsibility. Armed with an assault rifle and heavily armored.
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCommanderGearA
-    - type: AutoImplant
-      implants:
-      - DeathRattleImplant
-      #- DeathAcidifierImplantNF
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 1.5
-      rechargeSound:
-        path: /Audio/_NF/Effects/silence.ogg
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgeRifle25Uranium
-      capacity: 4
-      count: 4
-    - type: Gun
-      showExamineText: false
-      fireRate: 4
-      selectedMode: SemiAuto
-      availableModes:
-      - SemiAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: Loadout
+    prototypes:
+      - SyndicateNavalGearT4Commander
+  - type: AutoImplant
+    implants:
+    - DeathRattleImplant
+    #- DeathAcidifierImplantNF
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgeRifle25Uranium
+    capacity: 4
+    count: 4
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
 
 - type: entity
   parent: MobSyndicateNavalCommanderA
   id: MobSyndicateNavalCommanderB
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCommanderGearB
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgeRifle25Incendiary
-      capacity: 4
-      count: 4
-    - type: Gun
-      showExamineText: false
-      fireRate: 4
-      selectedMode: SemiAuto
-      availableModes:
-      - SemiAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgeRifle25Incendiary
+    capacity: 4
+    count: 4
+  - type: Gun
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
 - type: entity
   parent: MobSyndicateNavalCommanderB
   id: MobSyndicateNavalCommanderC
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCommanderGearC
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgeRifle25Overpressure
-      capacity: 4
-      count: 4
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgeRifle25Overpressure
+    capacity: 4
+    count: 4
 
 - type: entity
   parent: MobSyndicateNavalCommanderB
   id: MobSyndicateNavalCommanderD
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCommanderGearD
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgeRifle25
-      capacity: 4
-      count: 4
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgeRifle25
+    capacity: 4
+    count: 4
 
 # region Void Troopers
 # Syndicate Captain, "armed" with Python
@@ -700,13 +670,13 @@
   id: MobSyndicateNavalCaptainVoid
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalCaptainVoidGear
-    - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45Uranium
-      capacity: 1
-      count: 1
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalCaptainVoidGear
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol45Uranium
+    capacity: 1
+    count: 1
 
 # Second Officer, "armed" with Advanced Laser Pistol
 - type: entity
@@ -714,9 +684,9 @@
   id: MobSyndicateNavalSecondOfficerVoid
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalSecondOfficerVoidGear
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalSecondOfficerVoidGear
 
 # Syndicate Security Operative, "armed" with Atreides SMG
 - type: entity
@@ -724,9 +694,9 @@
   id: MobSyndicateNavalOperatorVoid
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalOperatorVoidGear
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalOperatorVoidGear
 
 # Syndicate Engineer, "armed" with shotgun
 - type: entity
@@ -734,15 +704,15 @@
   id: MobSyndicateNavalEngineerVoid
   categories: [ HideSpawnMenu ]
   components:
-    - type: Damageable
-      damageModifierSet: MobMercenaryDamageModifierSet
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalEngineerVoidGear
-    - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunUranium
-      capacity: 1
-      count: 1
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalEngineerVoidGear
+  - type: BasicEntityAmmoProvider
+    proto: NFShellShotgunUranium
+    capacity: 1
+    count: 1
 
 # Syndicate Deckhand, "armed" with Viper
 - type: entity
@@ -750,11 +720,11 @@
   id: MobSyndicateNavalDeckhandVoid
   categories: [ HideSpawnMenu ]
   components:
-    - type: Damageable
-      damageModifierSet: MobMercenaryDamageModifierSet
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalDeckhandVoidGear
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalDeckhandVoidGear
 
 # Syndicate Medic, "armed" poisoned darts
 - type: entity
@@ -762,6 +732,6 @@
   id: MobSyndicateNavalMedicVoid
   categories: [ HideSpawnMenu ]
   components:
-    - type: Loadout
-      prototypes:
-        - SyndicateNavalMedicVoidGear
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalMedicVoidGear
