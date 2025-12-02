@@ -10,6 +10,7 @@ using Content.Shared._NF.Roles.Systems;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Eui;
+using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
@@ -108,17 +109,23 @@ public sealed class CryoSleepEui : BaseEui
 
     private string GetStorageName(CryoSleepWarningMessage.NetworkedWarningItem item, InventorySlotsComponent inventoryComp)
     {
-        if (item.SlotId == null)
+        if (item.Container is not null)
         {
             return Identity.Name(_entityManager.GetEntity(item.Container!.Value), _entityManager);
         }
-        else
+        else if (item.SlotId is not null)
         {
             //Lowercase this just to make the name not look weird in the popup
             var returnVal = inventoryComp.SlotData[item.SlotId].SlotDisplayName;
             //I can't execute without assigning it first
             return returnVal.ToLower();
         }
+        else if (item.HandId is not null && _entityManager.TryGetComponent(_playerEntity, out HandsComponent? handsComp))
+        {
+            return handsComp.Hands[item.HandId].Name;
+        }
+
+        return "ERROR";
     }
 
     //All of these message get methods were moved to be separate to make the code less rigid, and easier to read.
