@@ -1,4 +1,5 @@
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.StatusIcon;
@@ -44,7 +45,7 @@ namespace Content.Shared.Damage
         /// <remarks>
         ///     If this data-field is specified, this allows damageable components to be initialized with non-zero damage.
         /// </remarks>
-        [DataField(readOnly: true)] //todo remove this readonly when implementing writing to damagespecifier
+        [DataField("damageSpecifier")] //todo remove this readonly when implementing writing to damagespecifier
         public DamageSpecifier Damage = new();
 
         /// <summary>
