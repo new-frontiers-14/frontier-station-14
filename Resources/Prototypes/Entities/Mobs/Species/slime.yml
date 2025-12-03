@@ -61,11 +61,6 @@
     damage:
       types:
         Blunt: 5
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.2 # Slimes boil in space
   - type: PassiveDamage # Around 8 damage a minute healed
     allowedStates:
     - Alive
@@ -84,6 +79,11 @@
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
     bloodReagent: Slime # TODO Color slime blood based on their slime color or smth
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Heat: 0.2 # Slimes boil in space
   - type: Reactive
     groups:
       Flammable: [ Touch ]
