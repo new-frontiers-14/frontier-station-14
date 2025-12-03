@@ -7,3 +7,10 @@ auto_call_time = 720 # 12 hours
 
 [hub]
 tags = "lang:en-US,region:eu_w,rp:med,no_tag_infer"
+
+[nf14.scheduled_roundend]
+active = true
+minimum_duration = 240
+roundend_times = """
+0 2/8 * * *
+"""
