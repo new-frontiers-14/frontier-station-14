@@ -308,7 +308,7 @@
   components:
   - type: Blueprint
     providedRecipes:
-    - NFWeaponRifleAssaultJackdawExpedition
+    - NFWeaponRifleAssaultJackdaw
     - NFAmmunitionBoxBigRifle20
     - NFMagazineRifle20Empty
 
@@ -321,7 +321,7 @@
   components:
   - type: Blueprint
     providedRecipes:
-    - NFWeaponRifleAssaultLecterExpedition
+    - NFWeaponRifleAssaultLecter
     - NFAmmunitionBoxBigRifle20
     - NFMagazineRifle20Empty
 
@@ -334,7 +334,7 @@
   components:
   - type: Blueprint
     providedRecipes:
-    - NFWeaponSubMachineGunWt550Expedition
+    - NFWeaponSubMachineGunWt550
     - NFAmmunitionBoxPistol35
     - NFMagazineSubMachineGunTopMounted35Empty
 
@@ -347,7 +347,7 @@
   components:
   - type: Blueprint
     providedRecipes:
-    - NFWeaponSubMachineGunDrozdExpedition
+    - NFWeaponSubMachineGunDrozd
     - NFAmmunitionBoxPistol35
     - NFMagazineSubMachineGun35Empty
 
@@ -592,3 +592,130 @@
     - ClothingBackpackSatchelHolding
     - ClothingBackpackDuffelHolding
     - ClothingBackpackMessengerHolding
+
+# region syndicate
+- type: entity
+  parent: [NFBaseBlueprintExpeditionSyndicate, NFBaseBlueprintExpeditionMercenary]
+  id: NFBlueprintAmmoOverpressureSyndicate
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintAmmoIncendiarySyndicate
+  categories: [ HideSpawnMenu ]
+  name: incendiary ammo blueprint
+  description: A blueprint with a schematic of incendiary ammo. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxPistol35Incendiary
+    - NFAmmunitionBoxPistol45Incendiary
+    - NFAmmunitionBoxRifle20Incendiary
+    - NFAmmunitionBoxRifle30Incendiary
+    - NFAmmunitionBoxShellShotgunIncendiary
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintAmmoUraniumSyndicate
+  categories: [ HideSpawnMenu ]
+  name: uranium ammo blueprint
+  description: A blueprint with a schematic of uranium ammo. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxPistol35Uranium
+    - NFAmmunitionBoxPistol45Uranium
+    - NFAmmunitionBoxRifle20Uranium
+    - NFAmmunitionBoxRifle30Uranium
+    - NFAmmunitionBoxShellShotgunUranium
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintPistolViperSyndicate
+  categories: [ HideSpawnMenu ]
+  name: viper pistol blueprint
+  description: A blueprint with a schematic of a Viper pistol. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponPistolViper
+    - NFAmmunitionBoxPistol35
+    - NFMagazineHighCapacityPistol35Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintPistolCobraSyndicate
+  categories: [ HideSpawnMenu ]
+  name: cobra pistol blueprint
+  description: A blueprint with a schematic of a Cobra pistol. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponPistolCobra
+    - NFAmmunitionBoxPistol45
+    - NFMagazinePistol45Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintC20rSyndicate
+  categories: [ HideSpawnMenu ]
+  name: c-20r smg blueprint
+  description: A blueprint with a schematic of a C-20r SMG. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponSubMachineGunC20r
+    - NFAmmunitionBoxPistol35
+    - NFMagazineSubMachineGun35Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintAtreidesSyndicate
+  categories: [ HideSpawnMenu ]
+  name: atreides smg blueprint
+  description: A blueprint with a schematic of a Atreides SMG. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponSubMachineGunAtreides
+    - NFAmmunitionBoxPistol35
+    - NFMagazineSubMachineGun35Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintM90glSyndicate
+  categories: [ HideSpawnMenu ]
+  name: m-90gl blueprint
+  description: A blueprint with a schematic of a M-90gl assault rifle. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponRifleAssaultM90GrenadeLauncher
+    - NFAmmunitionBoxBigRifle20
+    - NFMagazineRifle20Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintSmSyndicate
+  categories: [ HideSpawnMenu ]
+  name: soland-moss blueprint
+  description: A blueprint with a schematic of a soland-moss assault rifle. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponRifleAssaultSm
+    - NFAmmunitionBoxBigRifle30
+    - NFMagazineRifle30Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintLightMachineGunL6Syndicate
+  categories: [ HideSpawnMenu ]
+  name: light machine gun L6 blueprint
+  description: A blueprint with a schematic of a light machine gun L6. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponLightMachineGunL6
+    - NFAmmunitionBoxBigRifle20
+    - NFMagazineBoxRifle20Empty

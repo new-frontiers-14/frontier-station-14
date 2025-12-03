@@ -83,8 +83,8 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
-  id: NFWeaponRifleAssaultJackdawExpedition
-  result: NFWeaponRifleAssaultJackdawExpedition
+  id: NFWeaponRifleAssaultJackdaw
+  result: NFWeaponRifleAssaultJackdaw
   materials:
     Steel: 2500
     Plasteel: 1200
@@ -92,8 +92,8 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
-  id: NFWeaponRifleAssaultLecterExpedition
-  result: NFWeaponRifleAssaultLecterExpedition
+  id: NFWeaponRifleAssaultLecter
+  result: NFWeaponRifleAssaultLecter
   materials:
     Steel: 2500
     Plasteel: 1500
@@ -101,21 +101,56 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
-  id: NFWeaponSubMachineGunWt550Expedition
-  result: NFWeaponSubMachineGunWt550Expedition
+  id: NFWeaponSubMachineGunWt550
+  result: NFWeaponSubMachineGunWt550
   materials:
     Steel: 2100
     Plasteel: 1100
     Plastic: 1200
 
 - type: latheRecipe
+  parent: NFWeaponSubMachineGunWt550
+  id: NFWeaponSubMachineGunDrozd
+  result: NFWeaponSubMachineGunDrozd
+
+- type: latheRecipe
+  parent: NFWeaponPistolMk58
+  id: NFWeaponPistolViper
+  result: NFWeaponPistolViper
+
+- type: latheRecipe
+  parent: NFWeaponPistolMk58
+  id: NFWeaponPistolCobra
+  result: NFWeaponPistolCobra
+
+- type: latheRecipe
+  parent: NFWeaponSubMachineGunWt550
+  id: NFWeaponSubMachineGunC20r
+  result: NFWeaponSubMachineGunC20r
+
+- type: latheRecipe
+  parent: NFWeaponSubMachineGunWt550
+  id: NFWeaponSubMachineGunAtreides
+  result: NFWeaponSubMachineGunAtreides
+
+- type: latheRecipe
+  parent: NFWeaponRifleAssaultLecter
+  id: NFWeaponRifleAssaultM90GrenadeLauncher
+  result: NFWeaponRifleAssaultM90GrenadeLauncher
+
+- type: latheRecipe
+  parent: NFWeaponRifleAssaultLecter
+  id: NFWeaponRifleAssaultSm
+  result: NFWeaponRifleAssaultSm
+
+- type: latheRecipe
   parent: BaseWeaponRecipeLong
-  id: NFWeaponSubMachineGunDrozdExpedition
-  result: NFWeaponSubMachineGunDrozdExpedition
+  id: NFWeaponLightMachineGunL6
+  result: NFWeaponLightMachineGunL6
   materials:
-    Steel: 2100
-    Plasteel: 1100
-    Plastic: 1200
+    Steel: 5000
+    Plasteel: 3000
+    Plastic: 1500
 
 # region Melee weapons
 - type: latheRecipe

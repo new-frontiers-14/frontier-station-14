@@ -562,3 +562,41 @@
   abstract: true
   parent: [ NFBaseBlueprintExpedition, NFBlueprintEngineering ]
   id: NFBaseBlueprintExpeditionRogueSilicon
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseBlueprintExpedition ]
+  id: NFBaseBlueprintExpeditionSyndicate
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#7f272b"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        color: "#00ff00"
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        color: "#008040"
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#7f272b"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#7f272b"
+      - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
+    - Document
+    - Paper

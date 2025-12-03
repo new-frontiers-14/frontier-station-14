@@ -148,6 +148,9 @@
     - id: SpawnDungeonLootMaterialsBasicFull
       orGroup: Items
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
 
 # region Saboteur
 - type: entity
@@ -242,6 +245,9 @@
     - id: SpawnDungeonLootMaterialsBasicFull
       orGroup: Items
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
 
 # region Engineer
 - type: entity
@@ -277,13 +283,23 @@
     - id: SpawnDungeonLootPartsEngi
       orGroup: Items
       amount: 2
-      prob: 0.1
+      prob: 0.2
     - id: SpawnDungeonLootCircuitBoardEngi
       orGroup: Items
       prob: 0.2
     - id: SpawnDungeonLootToolsAdvancedEngineering
       orGroup: Items
-      prob: 0.7
+      prob: 0.4
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.1
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.05
 
 # region Medic
 - type: entity
@@ -307,6 +323,9 @@
     - id: SpawnDungeonClutterMedipens
       orGroup: Items
       prob: 0.7
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
 
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
@@ -369,6 +388,12 @@
       orGroup: Items
       amount: 2
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.05
 
 # region Tier 3
 - type: entity
@@ -441,6 +466,12 @@
       orGroup: Items
       amount: 2
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
 
 # region Grenadier
 - type: entity
@@ -497,6 +528,12 @@
       orGroup: Items
       amount: 2
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
 
 # region Chemwarrior
 - type: entity
@@ -536,6 +573,12 @@
       orGroup: Items
       amount: 2
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
 
 - type: entity
   parent: NFBaseNpcLootPackSyndicate
@@ -571,6 +614,12 @@
       orGroup: Items
       amount: 2
       prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
 
 # region Tier 4 (Boss)
 - type: entity
@@ -637,6 +686,13 @@
     - id: ClothingUniformJumpsuitOperative
       orGroup: Armor
       prob: 0.3
+    # Items
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.3
     # BossLoot
     - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
       orGroup: BossLoot
@@ -654,3 +710,9 @@
     - id: SpawnDungeonLootNpcMercenariesBlueprints
       orGroup: BossLoot
       prob: 0.45
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: BossLoot
+      prob: 0.05
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: BossLoot
+      prob: 0.3
