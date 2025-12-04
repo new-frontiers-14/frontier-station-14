@@ -1,3 +1,33 @@
+# region fluff
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcExplorersItemsFluff
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.4
+        children:
+        - id: OreBag
+        - id: ConstructionBag
+        - id: ClothingNeckIFFCyan
+        - id: SpawnDungeonLootOresSingle
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: MineralScannerEmpty
+        - id: SpawnDungeonLootOresFull
+      # Unique
+      - !type:GroupSelector
+        weight: 0.01
+        children:
+        - id: SpawnDungeonLootNpcExplorersBlueprints
+
 # region blueprints
 - type: entity
   parent: MarkerBasePlaceFree

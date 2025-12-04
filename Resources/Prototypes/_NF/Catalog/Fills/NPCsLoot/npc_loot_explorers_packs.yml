@@ -27,17 +27,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 100 to 1500 spesos
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.2
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.6
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.2
-      amount: 3
+    - id: SpaceCashRandom500To1500
 
 - type: entity
   parent: NFBaseNpcLootPackExplorer
@@ -58,12 +48,12 @@
       orGroup: Armor
       prob: 0.3
     # Items
-    - id: SpawnDungeonLootNpcMaterialRandom
+    - id: SpawnDungeonLootNpcMaterialBasicRandomLow
       orGroup: Items
       prob: 0.7
-    - id: ClothingNeckIFFCyan
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
-      prob: 0.1
+      prob: 0.3
 
 - type: entity
   parent: NFBaseNpcLootPackExplorer
@@ -81,12 +71,12 @@
       orGroup: Armor
       prob: 0.3
     # Items
-    - id: SpawnDungeonLootNpcMaterialRandom
+    - id: SpawnDungeonLootNpcMaterialBasicRandomLow
       orGroup: Items
       prob: 0.7
-    - id: ClothingNeckIFFCyan
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
-      prob: 0.1
+      prob: 0.3
 
 # region tier 2
 - type: entity
@@ -96,18 +86,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 100 to 2000 spesos
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
+    - id: SpaceCashRandom500To2000
 
 - type: entity
   parent: NFBaseNpcLootPackExplorer
@@ -128,13 +107,12 @@
       orGroup: Armor
       prob: 0.1
     # Items
-    - id: SpawnDungeonLootNpcMaterialRandom
+    - id: SpawnDungeonLootNpcMaterialBasicRandomMedium
       orGroup: Items
       prob: 0.7
-      amount: 2
-    - id: ClothingNeckIFFCyan
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
-      prob: 0.1
+      prob: 0.3
 
 - type: entity
   parent: NFBaseNpcLootPackExplorer
@@ -158,13 +136,12 @@
       orGroup: Armor
       prob: 0.1
     # Items
-    - id: SpawnDungeonLootNpcMaterialRandom
+    - id: SpawnDungeonLootNpcMaterialBasicRandomMedium
       orGroup: Items
       prob: 0.5
-      amount: 2
-    - id: ClothingNeckIFFCyan
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
-      prob: 0.1
+      prob: 0.3
 
 # region tier 3
 - type: entity
@@ -174,18 +151,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 100 to 2500 spesos
-    - id: SpaceCash100
-      orGroup: SpaceCash
-      prob: 0.1
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 2
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 5
+    - id: SpaceCashRandom500To2500
 
 - type: entity
   parent: NFBaseNpcLootPackExplorer
@@ -209,18 +175,12 @@
       orGroup: Armor
       prob: 0.1
     # Items
-    - id: SpawnDungeonLootNpcMaterialRandom
+    - id: SpawnDungeonLootNpcMaterialBasicRandomHigh
       orGroup: Items
       prob: 0.3
-    - id: SpawnDungeonLootOresFull
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
       prob: 0.3
-    - id: ClothingNeckIFFCyan
-      orGroup: Items
-      prob: 0.1
-    - id: MineralScannerEmpty
-      orGroup: Items
-      prob: 0.1
     - id: SpawnDungeonLootNpcExplorersBlueprints
       orGroup: Items
       prob: 0.2
@@ -247,18 +207,12 @@
       onGroup: Armor
       prob: 0.1
     # Items
-    - id: SpawnDungeonLootNpcMaterialRandom
+    - id: SpawnDungeonLootNpcMaterialBasicRandomHigh
       orGroup: Items
       prob: 0.3
-    - id: SpawnDungeonLootOresFull
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
       prob: 0.3
-    - id: ClothingNeckIFFCyan
-      orGroup: Items
-      prob: 0.1
-    - id: MineralScannerEmpty
-      orGroup: Items
-      prob: 0.1
     - id: SpawnDungeonLootNpcExplorersBlueprints
       orGroup: Items
       prob: 0.2
@@ -271,18 +225,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 2500 to 5000 spesos
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.5
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.2
-      amount: 3
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.3
-      amount: 2
+    - id: SpaceCashRandom2500To5000
 
 - type: entity
   parent: NFBaseNpcLootPackExplorer
@@ -318,33 +261,20 @@
     - id: SpawnDungeonLootClutterEngi
       orGroup: Items
       prob: 0.1
-      amount: 8
-    - id: SpawnDungeonLootMaterialsBasicFull
+      amount: 4
+    - id: SpawnDungeonLootNpcMaterialBasicFullMedium
       orGroup: Items
-      prob: 0.4
-    - id: SpawnDungeonLootOresFull
+      prob: 0.35
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
       orGroup: Items
-      prob: 0.4
-    - id: ClothingNeckIFFCyan
-      orGroup: Items
-      prob: 0.1
-    - id: MineralScannerEmpty
-      orGroup: Items
-      prob: 0.1
+      prob: 0.35
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: BossLoot
+      prob: 0.2
     # Boss Loot
     - id: SpawnDungeonLootNpcExplorersBlueprints
       orGroup: BossLoot
       prob: 0.5
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
+    - id: SpawnDungeonLootNpcBossLootShared # From 10 to 5000 spesos
       orGroup: BossLoot
-      prob: 0.2
-    - id: SpawnDungeonLootNpcCoins # From 75 to ~5000 spesos
-      orGroup: BossLoot
-      prob: 0.3
-    - id: SpawnDungeonLootPartsEngi
-      orGroup: BossLoot
-      prob: 0.1
-      amount: 2
-    - id: SpawnDungeonLootFlatpacks
-      orGroup: BossLoot
-      prob: 0.1
+      prob: 0.5

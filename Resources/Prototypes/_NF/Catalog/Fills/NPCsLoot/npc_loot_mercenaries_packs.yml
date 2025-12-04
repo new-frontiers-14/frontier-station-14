@@ -90,19 +90,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 1500 to 2500
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.1
-      amount: 3
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 1
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
+    - id: SpaceCashRandom1500To2500
 
 - type: entity
   parent: NFBaseNpcLootBeltMercenary
@@ -250,19 +238,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 2000 to 3000
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.1
-      amount: 2
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.55
-      amount: 1
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.35
-      amount: 3
+    - id: SpaceCashRandom2000To3000
 
 - type: entity
   parent: NFBaseNpcLootPackMercenary
@@ -415,19 +391,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 2500 to 3500
-    - id: SpaceCash500
-      orGroup: SpaceCash
-      prob: 0.25
-      amount: 7
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.45
-      amount: 1
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.3
-      amount: 3
+    - id: SpaceCashRandom2500To3500
 
 - type: entity
   parent: NFBaseNpcLootPackMercenary
@@ -557,18 +521,8 @@
   - type: SpawnItemsOnUse
     items:
     # SpaceCash - from 1500 to 2500
-    - id: SpaceCash500
+    - id: SpaceCashRandom2500To7500
       orGroup: SpaceCash
-      prob: 0.1
-      amount: 3
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.5
-      amount: 3
-    - id: SpaceCash1000
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
     # BossLoot
     - id: SpawnDungeonLootNpcCoins # from 75 to ~5000 spesos
       orGroup: BossLoot
@@ -642,19 +596,12 @@
       orGroup: Items
       prob: 0.05
     # BossLoot
-    - id: SpawnDungeonLootNpcJewelry # From 10 to 5000 spesos
-      orGroup: BossLoot
-      prob: 0.3
     - id: SpawnDungeonLootGunT3
       orGroup: BossLoot
       prob: 0.25
-    - id: SpawnDungeonLootPartsEngi
+    - id: SpawnDungeonLootNpcBossLootShared
       orGroup: BossLoot
-      prob: 0.1
-      amount: 2
-    - id: SpawnDungeonLootFlatpacks
-      orGroup: BossLoot
-      prob: 0.1
+      prob: 0.3
     - id: SpawnDungeonLootNpcMercenariesBlueprints
       orGroup: BossLoot
       prob: 0.45

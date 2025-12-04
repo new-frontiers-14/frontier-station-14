@@ -53,3 +53,66 @@
       weight: 0.08
       children:
       - id: MaterialBananiumRandom
+
+- type: entityTable # TODO: remove after https://github.com/new-frontiers-14/frontier-station-14/pull/4087 is merged
+  id: TableDungeonLootGeneralMaterialBasicFull
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetBrass
+    - id: SheetGlass
+    - id: SheetSteel
+    - id: SheetPlasma
+    - id: SheetPlastic
+    - id: MaterialCloth
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: PartRodMetal
+      - id: SheetPaper
+      - id: MaterialWoodPlank
+      - id: CableHVStack
+      - id: CableMVStack
+      - id: CableApcStack
+
+- type: entityTable # TODO: remove after https://github.com/new-frontiers-14/frontier-station-14/pull/4087 is merged
+  id: TableDungeonLootGeneralMaterialValuableFull
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetUranium
+    - id: IngotGold
+    - id: IngotSilver
+    - id: SheetRPGlass
+    - id: SheetRUGlass
+    - id: SheetPlasteel
+    - id: MaterialDurathread
+    - id: SheetRGlass
+    - id: SheetPGlass
+    - id: SheetUGlass
+    # Rare
+    - !type:GroupSelector
+      weight: 0.08
+      children:
+      - id: MaterialBananium
+      - id: MaterialBones
+      - id: MaterialDiamond1
+
+# region boss loot
+- type: entityTable
+  id: TableDungeonLootNpcBossLootShared
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableStorageFillStashJewelry # From 10 to 5000 spesos
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableStorageFillStashCoins # From 75 to ~5000 spesos
+      weight: 0.3
+    - id: SpawnDungeonLootPartsEngi # TODO: replace with table after https://github.com/new-frontiers-14/frontier-station-14/pull/4087 is merged
+      weight: 0.1
+      rolls: !type:ConstantNumberSelector
+        value: 2
+    - id: SpawnDungeonLootFlatpacks # TODO: replace with table after https://github.com/new-frontiers-14/frontier-station-14/pull/4087 is merged
+      weight: 0.1

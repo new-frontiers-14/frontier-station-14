@@ -38,15 +38,6 @@
       tableId: TableDungeonLootNpcArgocyteSmall
 
 # region swiper
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteSwiper
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocyteSwiper # 6000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteSwiper
@@ -55,19 +46,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteSwiper
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocyteSwiper # 6000 spesos
+        weight: 0.3
 
 # region glider
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteGlider
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocyteGlider # 6000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteGlider
@@ -76,19 +62,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteGlider
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocyteGlider # 6000 spesos
+        weight: 0.3
 
 # region crawler
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteCrawler
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocyteCrawler # 6000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteCrawler
@@ -97,19 +78,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteCrawler
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocyteCrawler # 6000 spesos
+        weight: 0.3
 
 # region founder
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteFounder
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocyteFounder # 8000 spesos
-      weight: 0.4
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteFounder
@@ -118,19 +94,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteFounder
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocyteFounder # 8000 spesos
+        weight: 0.4
 
 # region molder
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteMolder
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteSmall # from 120 to 1920 spesos
-    - id: NFTreasureTrophyArgocyteMolder # 5000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteMolder
@@ -139,19 +110,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteMolder
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteSmall # from 120 to 1920 spesos
+      - id: NFTreasureTrophyArgocyteMolder # 5000 spesos
+        weight: 0.3
 
 # region pouncer
-- type: entityTable
-  id: TableDungeonLootNpcArgocytePouncer
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocytePouncer # 6000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocytePouncer
@@ -160,19 +126,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocytePouncer
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocytePouncer # 6000 spesos
+        weight: 0.3
 
 # region harvester
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteHarvester
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocyteHarvester # 7000 spesos
-      weight: 0.3
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteHarvester
@@ -181,19 +142,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteHarvester
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocyteHarvester # 7000 spesos
+        weight: 0.3
 
 # region enforcer
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteEnforcer
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
-    - id: NFTreasureTrophyArgocyteEnforcer # 6000 spesos
-      weight: 0.4
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteEnforcer
@@ -202,20 +158,14 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteEnforcer
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase # from 1200 to 6135 spesos
+      - id: NFTreasureTrophyArgocyteEnforcer # 6000 spesos
+        weight: 0.4
 
 # region leviathing
-- type: entityTable
-  id: TableDungeonLootNpcArgocyteLeviathing
-  table: !type:AllSelector
-    children:
-    - !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteBase
-      rolls: !type:RangeNumberSelector # from 2400 to 12270 spesos
-        range: 1, 2
-    - id: NFTreasureTrophyArgocyteLeviathing # 12000 spesos
-
 - type: entity
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcArgocyteLeviathing
@@ -224,5 +174,10 @@
   - type: EntityTableSpawner
     offset: 0.1
     deleteSpawnerAfterSpawn: false
-    table: !type:NestedSelector
-      tableId: TableDungeonLootNpcArgocyteLeviathing
+    table: !type:AllSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootNpcArgocyteBase
+        rolls: !type:RangeNumberSelector # from 2400 to 12270 spesos
+          range: 1, 2
+      - id: NFTreasureTrophyArgocyteLeviathing # 12000 spesos

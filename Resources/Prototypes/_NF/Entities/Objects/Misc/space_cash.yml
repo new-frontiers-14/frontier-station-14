@@ -1,3 +1,4 @@
+# region fixed stacks
 - type: entity
   parent: SpaceCash
   id: SpaceCash15000
@@ -31,7 +32,128 @@
   - type: Stack
     count: 100000
 
-# Fake fake money (ikr)
+# region random stacks
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom500To1500
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 500 to 1500
+  components:
+  - type: RandomStackCount
+    min: 500
+    max: 1500
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom500To2000
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 500 to 2000
+  components:
+  - type: RandomStackCount
+    min: 500
+    max: 2000
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom500To2500
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 500 to 2500
+  components:
+  - type: RandomStackCount
+    min: 500
+    max: 2500
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom1500To2500
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 1500 to 2500
+  components:
+  - type: RandomStackCount
+    min: 1500
+    max: 2500
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom1000To3000
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 1000 to 3000
+  components:
+  - type: RandomStackCount
+    min: 1000
+    max: 3000
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom1500To3000
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 1500 to 3000
+  components:
+  - type: RandomStackCount
+    min: 1500
+    max: 3000
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom2000To3000
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 2000 to 3000
+  components:
+  - type: RandomStackCount
+    min: 2000
+    max: 3000
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom2500To3500
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 2500 to 3500
+  components:
+  - type: RandomStackCount
+    min: 2500
+    max: 3500
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom2500To5000
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 2500 to 5000
+  components:
+  - type: RandomStackCount
+    min: 2500
+    max: 5000
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom3000To4000
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 3000 to 4000
+  components:
+  - type: RandomStackCount
+    min: 3000
+    max: 4000
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom2500To7500
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 2500 to 7500
+  components:
+  - type: RandomStackCount
+    min: 2500
+    max: 7500
+
+- type: entity
+  parent: SpaceCash
+  id: SpaceCashRandom3500To9500
+  categories: [ HideSpawnMenu ]
+  suffix: Random, 3500 to 9500
+  components:
+  - type: RandomStackCount
+    min: 3500
+    max: 9500
+
+# region Fake fake money (ikr)
 - type: entity
   parent: BaseItem
   id: SpaceCashCounterfeit
@@ -112,7 +234,7 @@
 - type: currency
   id: Spesso
   displayName: bank-currency-display-spesos-fake
-  cash: 
+  cash:
     1: SpaceCashCounterfeit
   canWithdraw: true # I guess?
 
