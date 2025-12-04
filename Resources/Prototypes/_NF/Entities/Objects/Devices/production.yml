@@ -147,9 +147,9 @@
       state: engineering
     - type: MachineBoard
       prototype: OreProcessorCivilian
-      requirements: 
+      requirements:
         MatterBin: 1
-        Manipulator: 3 
+        Manipulator: 3
       stackRequirements:
         Glass: 1
 
@@ -381,9 +381,10 @@
 
 # Wizards and cultists
 - type: entity
-  id: ScrollWizardStaffRechargerAltar
   parent: BaseMachineCircuitboard
+  id: ScrollWizardStaffRechargerAltar
   name: wizard staff altar binding scroll
+  description: An odd amalgamation of wizardry and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
   components:
     - type: Sprite
       sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
@@ -412,9 +413,10 @@
       price: 0
 
 - type: entity
-  id: ScrollCultStaffRechargerAltar
   parent: ScrollWizardStaffRechargerAltar
+  id: ScrollCultStaffRechargerAltar
   name: blood cult staff altar binding scroll
+  description: An odd amalgamation of eldritch magic and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
   components:
     - type: Sprite
       sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
