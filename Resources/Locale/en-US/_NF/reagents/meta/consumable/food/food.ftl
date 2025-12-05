@@ -9,3 +9,6 @@ reagent-desc-everyspice = A versatile flavoring, this spice has a flavor for eve
 
 reagent-name-snack-nutriment = unprocessed nutriment
 reagent-desc-snack-nutriment = All the vitamins, minerals, and carbohydrates the body needs in raw and slightly unsafe form.
+
+reagent-name-gravy = gravy
+reagent-desc-gravy = Gloriously groovy gravy guaranteed to make your meals meatier.
