@@ -1224,13 +1224,13 @@
   color: "#8147ff"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+#      metabolismRate: 0.25 Frontier: Default(0.5)<0.25
       effects:
       # heals shocks and removes shock chems
       - !type:HealthChange
         damage:
           types:
-            Shock: -1.5 # 6 per u
+            Shock: -4 # Frontier -4<-0.5 # 8 per u<5 per u
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
@@ -1247,7 +1247,7 @@
           min: 12
         damage:
           types:
-            Cold: 1 # 4 per u
+            Cold: 2 # Frontier: 2<1 # 4 per u
       - !type:AdjustTemperature
         conditions:
         - !type:ReagentThreshold
