@@ -106,7 +106,7 @@
 
 #Paramedic Voidsuit
 - type: entity
-  parent: NFClothingOuterEVASuitBase #Despite "Voidsuits are light hardsuits", since it parents of EVA Suits, it goes with the other softsuits # Frontier: remove BaseMedicalContraband, ClothingOuterEVASuitBase<NFClothingOuterEVASuitBase
+  parent: [NFClothingOuterEVASuitBase, ClothingToggleParamedicSiren] #Despite "Voidsuits are light hardsuits", since it parents of EVA Suits, it goes with the other softsuits # Frontier: remove BaseMedicalContraband, ClothingOuterEVASuitBase<NFClothingOuterEVASuitBase # Frontier: add ClothingToggleParamedicSiren
   id: ClothingOuterHardsuitVoidParamed
   name: paramedic void suit
   description: A void suit made for paramedics.
@@ -139,30 +139,32 @@
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetVoidParamed
-  - type: ItemToggle
-    onUse: false
-    soundActivate:
-      path: /Audio/Items/flashlight_on.ogg
-    soundDeactivate:
-      path: /Audio/Items/flashlight_off.ogg
-  - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Effects/Vehicle/ambulancesiren.ogg #not the best sound, but after looking through all of current freesound regarding sirens and ambulance, this was the best compromise
-      params:
-        volume: -4
-  - type: UseDelay
-    delay: 1.0
-  - type: ToggleClothing
-    action: ActionToggleParamedicSiren
-  - type: ItemTogglePointLight
-  - type: PointLight
-    enabled: false
-    radius: 2
-    energy: 2
-    color: blue
-    mask: /Textures/Effects/LightMasks/double_cone.png
-  - type: RotatingLight
-    speed: 360
+# Frontier start: Move paramedic siren components to abstract entity ClothingToggleParamedicSiren
+#  - type: ItemToggle
+#    onUse: false
+#    soundActivate:
+#      path: /Audio/Items/flashlight_on.ogg
+#    soundDeactivate:
+#      path: /Audio/Items/flashlight_off.ogg
+#  - type: ItemToggleActiveSound
+#    activeSound:
+#      path: /Audio/Effects/Vehicle/ambulancesiren.ogg #not the best sound, but after looking through all of current freesound regarding sirens and ambulance, this was the best compromise
+#      params:
+#        volume: -4
+#  - type: UseDelay
+#    delay: 1.0
+#  - type: ToggleClothing
+#    action: ActionToggleParamedicSiren
+#  - type: ItemTogglePointLight
+#  - type: PointLight
+#    enabled: false
+#    radius: 2
+#    energy: 2
+#    color: blue
+#    mask: /Textures/Effects/LightMasks/double_cone.png
+#  - type: RotatingLight
+#    speed: 360
+# Frontier end
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
