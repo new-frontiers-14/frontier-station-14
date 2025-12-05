@@ -617,10 +617,10 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange # Frontier: EvenHealthChange<HealthChange
         damage:
           groups:
-            Brute: -3.5
+            Brute: -2.5 # Frontier: -2.5<-3.5
           types:
             Asphyxiation: -2.5
       - !type:HealthChange
