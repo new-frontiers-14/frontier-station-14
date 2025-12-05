@@ -398,7 +398,7 @@
     color: "#adf1ff"
 
 - type: entity
-  parent: ClothingHeadEVAHelmetWithLightBase
+  parent: [ClothingHeadEVAHelmetBase, ClothingToggleParamedicSiren]
   id: ClothingHeadEVAHelmetParamedic
   name: paramedic EVA helmet
   categories: [ HideSpawnMenu ]
@@ -429,15 +429,6 @@
         color: "#d6e6f3"
       - state: equipped-head-visor
         color: "#8c1e50"
-  - type: ItemTogglePointLight
-  - type: PointLight
-    enabled: false
-    radius: 2
-    energy: 2
-    color: blue
-    mask: /Textures/Effects/LightMasks/double_cone.png
-  - type: RotatingLight
-    speed: 360
 
 #region science
 - type: entity
