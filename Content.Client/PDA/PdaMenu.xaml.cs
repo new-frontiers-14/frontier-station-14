@@ -196,7 +196,7 @@ namespace Content.Client.PDA
 
             // Frontier
             _roundEndTime = state.RoundEndTime;
-            ShuttleDeedLabel.Visible = _roundEndTime is not null;
+            RemainingTimeLabel.Visible = _roundEndTime is not null;
             if (_roundEndTime is not null)
             {
                 var remainingTime = _roundEndTime.Value - DateTime.UtcNow;
