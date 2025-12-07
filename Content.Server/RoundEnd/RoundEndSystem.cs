@@ -359,7 +359,7 @@ namespace Content.Server.RoundEnd
             if (ExpectedCountdownEnd is not null)
                 return ExpectedCountdownEnd;
 
-            if (_shuttle.EmergencyShuttleArrived)
+            if (_shuttle.EmergencyShuttleArrived || _gameTicker.RunLevel != GameRunLevel.InRound)
                 return null;
 
             var mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
