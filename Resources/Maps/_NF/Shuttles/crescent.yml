@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/01/2025 00:24:24
-  entityCount: 3852
+  time: 12/07/2025 23:57:14
+  entityCount: 3865
 maps: []
 grids:
 - 1
@@ -1478,6 +1478,9 @@ entities:
             2325: -12,-13
             2326: -13,-11
             2378: 2,-9
+            2530: -26,-26
+            2531: -25,-28
+            2532: -24,-27
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -1650,6 +1653,10 @@ entities:
             2409: 13,-13
             2410: 13,-14
             2411: 12,-13
+            2533: -26,-28
+            2534: -24,-26
+            2535: -25,-26
+            2536: -25,-27
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -1711,6 +1718,10 @@ entities:
             2355: 8,-22
             2356: 7,-22
             2357: 7,-23
+            2537: -24,-28
+            2538: -25,-27
+            2539: -26,-26
+            2540: -26,-27
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -1738,6 +1749,11 @@ entities:
             2359: 8,-23
             2360: 8,-22
             2361: 7,-23
+            2541: -25,-26
+            2542: -25,-27
+            2543: -24,-26
+            2544: -26,-28
+            2545: -26,-27
         - node:
             color: '#FFFFFFFF'
             id: FlowersBROne
@@ -5860,6 +5876,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -28.5,-19.5
       parent: 1
+  - uid: 3864
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-29.5
+      parent: 1
 - proto: ButtonFrameExit
   entities:
   - uid: 3524
@@ -5997,6 +6019,11 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-8.5
+      parent: 1
+  - uid: 787
+    components:
+    - type: Transform
+      pos: 0.5,-30.5
       parent: 1
   - uid: 956
     components:
@@ -7248,11 +7275,6 @@ entities:
     - type: Transform
       pos: 6.5,-31.5
       parent: 1
-  - uid: 2270
-    components:
-    - type: Transform
-      pos: 6.5,-30.5
-      parent: 1
   - uid: 2274
     components:
     - type: Transform
@@ -8127,6 +8149,11 @@ entities:
     components:
     - type: Transform
       pos: -15.5,-13.5
+      parent: 1
+  - uid: 3861
+    components:
+    - type: Transform
+      pos: 0.5,-29.5
       parent: 1
 - proto: CableHV
   entities:
@@ -20155,11 +20182,6 @@ entities:
       parent: 1
 - proto: LockerWallColorGenericGreen
   entities:
-  - uid: 787
-    components:
-    - type: Transform
-      pos: 12.5,-9.5
-      parent: 1
   - uid: 808
     components:
     - type: Transform
@@ -20169,6 +20191,11 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-9.5
+      parent: 1
+  - uid: 2270
+    components:
+    - type: Transform
+      pos: 12.5,-9.5
       parent: 1
 - proto: LockerWallColorHydroponicsFilled
   entities:
@@ -20600,6 +20627,112 @@ entities:
     - type: Transform
       pos: -28.5,-26.5
       parent: 1
+- proto: NFHolopadGrid
+  entities:
+  - uid: 3842
+    components:
+    - type: MetaData
+      name: inter ship holopad (Bridge)
+    - type: Transform
+      pos: 11.5,-5.5
+      parent: 1
+    - type: Label
+      currentLabel: Bridge
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3844
+    components:
+    - type: MetaData
+      name: inter ship holopad (Cargo)
+    - type: Transform
+      pos: 23.5,-6.5
+      parent: 1
+    - type: Label
+      currentLabel: Cargo
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3845
+    components:
+    - type: MetaData
+      name: inter ship holopad (Science)
+    - type: Transform
+      pos: 29.5,-32.5
+      parent: 1
+    - type: Label
+      currentLabel: Science
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3852
+    components:
+    - type: Transform
+      pos: -6.5,-23.5
+      parent: 1
+  - uid: 3857
+    components:
+    - type: MetaData
+      name: inter ship holopad (Tools)
+    - type: Transform
+      pos: -6.5,-23.5
+      parent: 1
+    - type: Label
+      currentLabel: Tools
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3858
+    components:
+    - type: MetaData
+      name: inter ship holopad (Medical)
+    - type: Transform
+      pos: -15.5,-10.5
+      parent: 1
+    - type: Label
+      currentLabel: Medical
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3859
+    components:
+    - type: MetaData
+      name: inter ship holopad (Kitchen)
+    - type: Transform
+      pos: -6.5,-4.5
+      parent: 1
+    - type: Label
+      currentLabel: Kitchen
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3860
+    components:
+    - type: MetaData
+      name: inter ship holopad (Janitor)
+    - type: Transform
+      pos: -24.5,-26.5
+      parent: 1
+    - type: Label
+      currentLabel: Janitor
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3862
+    components:
+    - type: MetaData
+      name: inter ship holopad (Hydroponics)
+    - type: Transform
+      pos: -12.5,-7.5
+      parent: 1
+    - type: Label
+      currentLabel: Hydroponics
+    - type: NameModifier
+      baseName: inter ship holopad
+  - uid: 3865
+    components:
+    - type: MetaData
+      name: inter ship holopad (Southern Dock)
+    - type: Transform
+      pos: 0.5,-31.5
+      parent: 1
+    - type: Label
+      currentLabel: Southern Dock
+    - type: NameModifier
+      baseName: inter ship holopad
 - proto: NFHolopadShip
   entities:
   - uid: 2189
@@ -24498,6 +24631,23 @@ entities:
         1989:
         - - Pressed
           - Toggle
+  - uid: 3863
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-29.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        1073:
+        - - Pressed
+          - DoorBolt
+        1542:
+        - - Pressed
+          - DoorBolt
+        1058:
+        - - Pressed
+          - DoorBolt
 - proto: SignBath
   entities:
   - uid: 1391
