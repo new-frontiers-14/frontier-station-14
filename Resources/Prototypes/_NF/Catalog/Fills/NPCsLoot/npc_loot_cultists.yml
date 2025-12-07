@@ -1,43 +1,32 @@
 # BASE
 - type: entity
   abstract: true
-  parent: NFBaseNpcLootBackpack
+  parent: [NFBaseNpcLootBackpack, ClothingBackpackMessengerBloodCult]
   id: CultistMessengerGiftBox
-  name: blood cultist bundle
+  name: blood cultist's bundle
+
+# wallet (for cash)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletCult
+  name: blood cultist's wallet
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/color.rsi
-    layers:
-    - state: icon-base
-      color: "#562f2f"
-    - state: icon-sling
-      color: "#776756"
-    - state: icon-clasp
-      color: "#96907c"
-  - type: Clothing
-    sprite: _NF/Clothing/Back/Messenger/color.rsi
-    clothingVisuals:
-      back:
-      - state: base-equipped-BACKPACK
-        color: "#562f2f"
-      - state: sling-equipped-BACKPACK
-        color: "#776756"
-      - state: clasp-equipped-BACKPACK
-        color: "#96907c"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: base-inhand-left
-        color: "#562f2f"
-      - state: clasp-inhand-left
-        color: "#96907c"
-      right:
-      - state: base-inhand-right
-        color: "#562f2f"
-      - state: clasp-inhand-right
-        color: "#96907c"
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-color
+    color: "#562f2f"
 
-# BLOOD CULT NPC LOOT
+# region Tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletCult
+  id: ClothingWalletCultT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2500To3500
+
 ## Zealot (Ranged) Loot
 - type: entity
   parent: CultistMessengerGiftBox
@@ -57,8 +46,6 @@
       prob: 0.7
     - id: SpaceCash1000
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -77,8 +64,6 @@
       prob: 0.7
     - id: SpawnDungeonLootPartsEngi
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -96,8 +81,6 @@
       prob: 0.7
     - id: SpaceCash1000
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -114,8 +97,6 @@
       prob: 0.7
     - id: SpawnDungeonLootPartsEngi
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 ## Generic rewards
 - type: entity
@@ -150,8 +131,6 @@
       prob: 0.7
     - id: SpawnDungeonLootToolsAdvancedEngineering
       prob: 0.3
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -187,8 +166,6 @@
       prob: 0.5
     - id: SpawnDungeonLootToolsAdvancedEngineering
       prob: 0.4
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -213,8 +190,6 @@
       prob: 0.7
     - id: SpawnDungeonLootPartsEngi
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -239,5 +214,3 @@
       prob: 0.7
     - id: SpaceCash1000
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg

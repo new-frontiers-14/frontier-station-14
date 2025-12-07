@@ -14,7 +14,7 @@
           range: 0, 3 # From 120 to 360 spesos
 
 # region boss
-- type: entity # From 240 to 480 spesos
+- type: entity # From 5240 to 5480 spesos
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootNpcAberrantFleshBoss
   categories: [ HideSpawnMenu ]
@@ -23,6 +23,7 @@
     offset: 0.1
     table: !type:AllSelector
       children:
+      - id: NFTreasureTrophyFleshHorror # 5000 spesos
       - id: MaterialBiomassRandomReduced
         rolls: !type:RangeNumberSelector
           range: 2, 4

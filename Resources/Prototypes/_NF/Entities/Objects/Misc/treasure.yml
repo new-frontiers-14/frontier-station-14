@@ -657,6 +657,32 @@
 # region xeno trophies
 - type: entity
   parent: NFBaseTreasureTrophyBag
+  id: NFTreasureTrophyFleshHorror
+  name: aberrant flesh horror spike arm
+  components:
+  - type: Sprite
+    layers:
+    - state: trophy-flesh-horror
+      offset: 0.0,-0.2
+    - state: trophy-bag-liquid
+      color: "#800000cc"
+    - state: trophy-bag
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: trophy-bag-inhand-left-liquid
+        color: "#800000cc"
+      - state: trophy-bag-inhand-left
+      right:
+      - state: trophy-bag-inhand-right-liquid
+        color: "#800000cc"
+      - state: trophy-bag-inhand-right
+  - type: Tag
+    tags: [ NFTreasureTrophyFleshHorror ]
+
+# region xeno trophies
+- type: entity
+  parent: NFBaseTreasureTrophyBag
   id: NFTreasureTrophyXenoBurrower
   name: burrower head
   components:

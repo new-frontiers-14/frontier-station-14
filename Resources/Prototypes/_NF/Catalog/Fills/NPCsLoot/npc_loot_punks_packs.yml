@@ -1,41 +1,9 @@
 # region base
 - type: entity
   abstract: true
-  parent: NFBaseNpcLootBackpack
+  parent: [NFBaseNpcLootBackpack, ClothingBackpackMessengerColorRandom]
   id: NFBaseNpcLootPackPunk
   name: punk bundle
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/color.rsi
-    layers:
-    - state: icon-base
-      color: "#EF8100"
-    - state: icon-sling
-      color: "#776756"
-    - state: icon-clasp
-      color: "#eeeeee"
-  - type: Clothing
-    sprite: _NF/Clothing/Back/Messenger/color.rsi
-    clothingVisuals:
-      back:
-      - state: base-equipped-BACKPACK
-        color: "#EF8100"
-      - state: sling-equipped-BACKPACK
-        color: "#776756"
-      - state: clasp-equipped-BACKPACK
-        color: "#eeeeee"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: base-inhand-left
-        color: "#EF8100"
-      - state: clasp-inhand-left
-        color: "#eeeeee"
-      right:
-      - state: base-inhand-right
-        color: "#EF8100"
-      - state: clasp-inhand-right
-        color: "#eeeeee"
 
 - type: entity
   abstract: true
@@ -45,7 +13,13 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed-black
+    layers:
+    - state: closed-color
+      map: [ "NpcLootWalletPunk" ]
+  - type: RandomSprite
+    available:
+    - NpcLootWalletPunk:
+        closed-color: CyberpunkNeon
 
 # region tier 1
 - type: entity
