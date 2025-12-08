@@ -6,6 +6,10 @@
   abstract: true
   components:
   - type: HarpySinger
+  - type: Flight # EE - Flight
+    isLayerAnimated: true
+    layer: "/Textures/_EE/Mobs/Customization/Harpy/harpy_wings.rsi"
+    animationKey: "Flap"
   - type: Instrument
     allowPercussion: false
     program: 52
@@ -22,7 +26,7 @@
       "Piano": {1: 0}
       "Church Organ": {19: 0}
       "Harp": {46: 0}
-    onlySetBySelf: true
+    onlySetBySelf: true # Frontier
   - type: UserInterface
     interfaces:
       enum.InstrumentUiKey.Key:
@@ -31,6 +35,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key: # Shitmed
+        type: SurgeryBui
   - type: Sprite
     scale: 0.9, 0.9
     layers:
@@ -44,6 +50,8 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: [ "underpants" ]
+      - map: [ "undershirt" ]
       - map: [ "socks" ]
       - map: [ "jumpsuit" ]
       - map: ["enum.HumanoidVisualLayers.LFoot"]
@@ -110,7 +118,7 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
-    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish', 'Bubble', 'Pop'] # Frontier: add Belch, Squish, Bubble, Pop
+    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'HarpySquish', 'Chitter', 'Chirp', 'Squeak', 'Click', 'Gnash']
   - type: Vocal
     sounds:
       Male: SoundsHarpy
@@ -124,11 +132,7 @@
           False: {visible: false}
           True: {visible: true}
   - type: MovementSpeedModifier
-#    baseWalkSpeed: 2.5 # Frontier
-#    baseSprintSpeed: 5.0 # Frontier
-    baseWeightlessAcceleration: 1.5 # Frontier
-    baseWeightlessFriction: 1.0 # Frontier
-    baseWeightlessModifier: 1.0 # Frontier
+    weightlessAcceleration: 2.5
   - type: Inventory
     speciesId: harpy
     displacements:
@@ -140,11 +144,15 @@
     femaleDisplacements: {} # Frontier: female jumpsuit displacement
   - type: HarpyVisuals
   - type: UltraVision
-#  - type: Tag # Frontier
-#    tags: # Frontier
-#    - CanPilot # Frontier
-#    - FootstepSound # Frontier
-#    - DoorBumpOpener # Frontier
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: FootPrints # DeltaV port from EE, blood splatter
+    leftBarePrint: "footprint-left-bare-lizard" # DeltaV port from EE, blood splatter
+    rightBarePrint: "footprint-right-bare-lizard" # DeltaV port from EE, blood splatter
 
 - type: entity
   save: false
@@ -178,6 +186,8 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: [ "underpants" ]
+      - map: [ "undershirt" ]
       - map: [ "socks" ]
       - map: [ "jumpsuit" ]
       - map: ["enum.HumanoidVisualLayers.LFoot"]
@@ -209,26 +219,39 @@
       - map: [ "head" ]
 
 - type: entity
+  parent: BaseAction
   id: ActionHarpyPlayMidi
-  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Play MIDI
   description: Sing your heart out! Right click yourself to set an instrument.
   components:
-  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
+  - type: Action
     checkCanInteract: false
     icon: _DV/Interface/Actions/harpy_sing.png
-  - type: InstantAction # Frontier, Wizden#27422 compliance
+  - type: InstantAction
     event: !type:OpenUiActionEvent
       key: enum.InstrumentUiKey.Key
 
 - type: entity
+  parent: BaseAction
   id: ActionSyrinxChangeVoiceMask
-  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Set name
   description: Change the name others hear to something else.
   components:
   - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
     icon: _DV/Interface/Actions/harpy_syrinx.png
     itemIconStyle: BigAction
-  - type: InstantAction # Frontier, Wizden#27422 compliance
+  - type: InstantAction
     event: !type:VoiceMaskSetNameEvent
+
+- type: entity
+  id: ActionToggleFlight
+  name: Fly
+  description: Make use of your wings to fly. Beat the flightless bird allegations.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon: { sprite: _EE/Interface/Actions/flight.rsi, state: flight_off }
+    iconOn: { sprite : _EE/Interface/Actions/flight.rsi, state: flight_on }
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ToggleFlightEvent
