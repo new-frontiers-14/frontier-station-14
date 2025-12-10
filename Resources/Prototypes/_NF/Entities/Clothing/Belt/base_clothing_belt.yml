@@ -43,3 +43,99 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+
+- type: entity
+  abstract: true
+  parent: ClothingSlotBase
+  id: NFClothingBeltStorageHolsterBase
+  components:
+  - type: ItemSlots
+    slots:
+      holster:
+        name: clothing-belt-sidearm
+        insertVerbText: clothing-belt-sidearm-insert-verb
+        ejectVerbText: clothing-belt-sidearm-eject-verb
+        whitelist:
+          tags:
+          - Sidearm
+        insertOnInteract: true
+        ejectSound:
+          path: /Audio/_DEN/Weapons/pistol_unholster.ogg
+        insertSound:
+          path: /Audio/_DEN/Weapons/pistol_holster.ogg
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      slp:
+        whitelist:
+          tags:
+          - Sidearm
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+    sprite: Clothing/Belt/belt_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      holster: !type:ContainerSlot {}
+
+- type: entity
+  abstract: true
+  parent: ClothingSlotBase
+  id: NFClothingSBeltStorageMedkitBase
+  components:
+  - type: ItemSlots
+    slots:
+      medkit:
+        name: clothing-belt-medkit
+        insertVerbText: clothing-belt-medkit-insert-verb
+        ejectVerbText: clothing-belt-medkit-eject-verb
+        whitelist:
+          tags:
+          - Medkit
+        insertOnInteract: true
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      medkit:
+        whitelist:
+          tags:
+          - Medkit
+      bottle:
+        whitelist:
+          tags:
+          - Bottle
+      hypo:
+        whitelist:
+          components:
+          - Hypospray
+      pill:
+        whitelist:
+          components:
+          - Pill
+          tags:
+          - PillCanister
+      bottle_spray:
+        whitelist:
+          tags:
+          - Spray
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+    sprite: Clothing/Belt/belt_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      medkit: !type:ContainerSlot {}
