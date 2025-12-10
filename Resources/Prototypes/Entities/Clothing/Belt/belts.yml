@@ -174,7 +174,7 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: [NFClothingBeltStorageBase, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltAssault
   name: assault belt
   description: A tactical assault belt.
@@ -196,21 +196,23 @@
         # - Handcuff
         # - BallisticAmmoProvider
         # - Ammo
-  - type: ItemMapper
-    mapLayers:
-      flashbang:
-        whitelist:
-          components:
-          - FlashOnTrigger
-      stunbaton:
-        whitelist:
-          components:
-          - Stunbaton
-      tear_gas_grenade:
-        whitelist:
-          components:
-          - SmokeOnTrigger
-    sprite: Clothing/Belt/belt_overlay.rsi
+  # Frontier: inherits ItemMapper from NFClothingBeltStorageHolsterBase
+  # - type: ItemMapper
+  #   mapLayers:
+  #     flashbang:
+  #       whitelist:
+  #         components:
+  #         - FlashOnTrigger
+  #     stunbaton:
+  #       whitelist:
+  #         components:
+  #         - Stunbaton
+  #     tear_gas_grenade:
+  #       whitelist:
+  #         components:
+  #         - SmokeOnTrigger
+  #   sprite: Clothing/Belt/belt_overlay.rsi
+  # End Frontier: inherits ItemMapper from NFClothingBeltStorageHolsterBase
   - type: Appearance
 
 - type: entity
@@ -261,7 +263,7 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: [NFClothingBeltStorageBase, NFClothingSBeltStorageMedkitBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltMedical
   name: medical belt
   description: Can hold various medical equipment.
@@ -291,39 +293,41 @@
   #       - Injector
   #       - Pill
   #       - HandLabeler
-  - type: ItemMapper
-    mapLayers:
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
-      hypo:
-        whitelist:
-          components:
-          - Hypospray
-      pill:
-        whitelist:
-          components:
-          - Pill
-          tags:
-          - PillCanister
-      bottle_spray:
-        whitelist:
-          tags:
-          - Spray
-      # spray_med:
-      #   whitelist:
-      #     tags:
-      #     - SprayMedical
-      # wrench_medical:
-      #   whitelist:
-      #     tags:
-      #     - WrenchMedical
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-    sprite: Clothing/Belt/belt_overlay.rsi
+  # Frontier: inherits ItemMapper from NFClothingSBeltStorageMedkitBase
+  # - type: ItemMapper
+  #   mapLayers:
+  #     bottle:
+  #       whitelist:
+  #         tags:
+  #         - Bottle
+  #     hypo:
+  #       whitelist:
+  #         components:
+  #         - Hypospray
+  #     pill:
+  #       whitelist:
+  #         components:
+  #         - Pill
+  #         tags:
+  #         - PillCanister
+  #     bottle_spray:
+  #       whitelist:
+  #         tags:
+  #         - Spray
+  #     # spray_med:
+  #     #   whitelist:
+  #     #     tags:
+  #     #     - SprayMedical
+  #     # wrench_medical:
+  #     #   whitelist:
+  #     #     tags:
+  #     #     - WrenchMedical
+  #     wrench:
+  #       whitelist:
+  #         tags:
+  #         - Wrench
+  #   sprite: Clothing/Belt/belt_overlay.rsi
+  # End Frontier: inherits ItemMapper from NFClothingSBeltStorageMedkitBase
   - type: Appearance
 
 - type: entity
@@ -472,7 +476,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband, NFClothingBeltStorageHolsterBase] # Frontier: BaseSecurityContraband<BaseC1Contraband, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltSecurity
   name: security belt
   description: Can hold security gear like handcuffs and flashes.
@@ -509,21 +513,23 @@
   #       - Whistle
   #       - BalloonPopper
   # End Frontier: commented out whitelist
-  - type: ItemMapper
-    mapLayers:
-      flashbang:
-        whitelist:
-          components:
-          - FlashOnTrigger
-      stunbaton:
-        whitelist:
-          components:
-          - Stunbaton
-      tear_gas_grenade:
-        whitelist:
-          components:
-          - SmokeOnTrigger
-    sprite: Clothing/Belt/belt_overlay.rsi
+  # Frontier:  inherits ItemMapper from NFClothingBeltStorageHolsterBase
+  # - type: ItemMapper
+  #   mapLayers:
+  #     flashbang:
+  #       whitelist:
+  #         components:
+  #         - FlashOnTrigger
+  #     stunbaton:
+  #       whitelist:
+  #         components:
+  #         - Stunbaton
+  #     tear_gas_grenade:
+  #       whitelist:
+  #         components:
+  #         - SmokeOnTrigger
+  #   sprite: Clothing/Belt/belt_overlay.rsi
+  # End Frontier: inherits ItemMapper from NFClothingBeltStorageHolsterBase
   - type: Appearance
 
 - type: entity
@@ -594,7 +600,7 @@
     - Kangaroo
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: [NFClothingBeltStorageBase, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltHolster
   name: shoulder holster
   description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
@@ -608,7 +614,7 @@
     # - 0,0,3,1 # Frontier: commented out
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [NFClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltSyndieHolster
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.
@@ -632,7 +638,7 @@
     price: 500
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: [NFClothingBeltStorageBase, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltSecurityWebbing
   name: security carrier
   description: Unique and versatile chest rig, can hold security gear.
@@ -643,7 +649,7 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, remove BaseSecurityCargoContraband
+  parent: [NFClothingBeltStorageBase, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, remove BaseSecurityCargoContraband, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltMercenaryWebbing # Frontier: Merc to Mercenary
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.
@@ -654,7 +660,7 @@
     sprite: Clothing/Belt/mercwebbing.rsi
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: [NFClothingBeltStorageBase, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltSalvageWebbing
   name: salvage rig
   description: Universal unloading system for work in space.
@@ -665,7 +671,7 @@
     sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC1Contraband
+  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband, NFClothingBeltStorageHolsterBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC1Contraband, add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltMilitaryWebbing
   name: chest rig
   description: A set of tactical webbing worn by boarding parties. # Frontier
@@ -680,7 +686,7 @@
     price: 500
 
 - type: entity
-  parent: ClothingBeltMilitaryWebbing
+  parent: [ClothingBeltMilitaryWebbing, NFClothingBeltStorageHolsterBase] # add NFClothingBeltStorageHolsterBase as parent
   id: ClothingBeltMilitaryWebbingMed
   name: medical chest rig
   description: A set of tactical webbing worn by medic operatives. # Frontier
