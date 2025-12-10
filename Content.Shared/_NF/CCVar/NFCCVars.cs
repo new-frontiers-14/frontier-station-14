@@ -279,11 +279,17 @@ public sealed class NFCCVars
     /// The maximum playtime, in minutes, for a new player radio message to be sent.
     /// </summary>
     public static readonly CVarDef<int> NewPlayerRadioGreetingMaxPlaytime =
-        CVarDef.Create("nf14.greeting.max_playtime", 180, CVar.REPLICATED); // Three hours
+        CVarDef.Create("nf14.greeting.max_playtime", 600, CVar.REPLICATED); // Ten hours
 
     /// <summary>
     /// The channel the radio message should be sent off on.
     /// </summary>
     public static readonly CVarDef<string> NewPlayerRadioGreetingChannel =
-        CVarDef.Create("nf14.greeting.channel", "Service", CVar.REPLICATED);
+        CVarDef.Create("nf14.greeting.channel", "Greeting", CVar.REPLICATED);
+
+    /// <summary>
+    /// A starter loadout prototype given to new players.
+    /// </summary>
+    public static readonly CVarDef<string> NewPlayerStarterLoadout =
+        CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
 }
