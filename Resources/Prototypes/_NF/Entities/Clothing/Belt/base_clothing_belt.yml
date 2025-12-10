@@ -83,6 +83,16 @@
           components:
           - SmokeOnTrigger
     sprite: Clothing/Belt/belt_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      holster: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
 
 - type: entity
   abstract: true
@@ -129,3 +139,13 @@
           tags:
           - Wrench
     sprite: Clothing/Belt/belt_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      medkit: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
