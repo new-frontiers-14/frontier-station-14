@@ -1,0 +1,803 @@
+#region Clutter
+- type: entityTable
+  id: TableDungeonLootEngineeringClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringTools
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringParts
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothes
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCircuitBoards
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringFlatpacks
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocks
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialBasicSingle
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialValuableSingle
+      weight: 0.1
+
+#region Tools
+- type: entityTable
+  id: TableDungeonLootEngineeringTools
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringPowerDrill
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringJawsOfLife
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringWelder
+      weight: 14
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringHoloprojector
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsRare
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsCommon
+      weight: 16
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralHandheldDisplays
+      weight: 6
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxes
+      weight: 10
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralLighters
+        weight: 20
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralFlashlights
+        weight: 60
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralFlares
+        weight: 20
+
+# region PowerDrill
+- type: entityTable
+  id: TableDungeonLootEngineeringPowerDrill
+  table: !type:GroupSelector
+    children:
+    - id: Screwdriver
+      weight: 0.4
+    - id: Wrench
+      weight: 0.4
+    - id: PowerDrill
+      weight: 0.2
+
+# region JawsOfLife
+- type: entityTable
+  id: TableDungeonLootEngineeringJawsOfLife
+  table: !type:GroupSelector
+    children:
+    - id: Wirecutter
+      weight: 0.4
+    - id: Crowbar
+      weight: 0.4
+    - id: JawsOfLife
+      weight: 0.2
+
+# region Welder
+- type: entityTable
+  id: TableDungeonLootEngineeringWelder
+  table: !type:GroupSelector
+    children:
+      - id: WelderMini
+        weight: 0.05
+      - id: Welder
+        weight: 0.05
+      - id: Cowelder
+        weight: 0.05
+      - id: RefuelingWelder
+        weight: 0.2
+      - id: WelderIndustrial
+        weight: 0.35
+      - id: WelderIndustrialAdvanced
+        weight: 0.2
+      - id: WelderExperimental
+        weight: 0.1
+
+# region SprayPainter
+- type: entityTable
+  id: TableDungeonLootEngineeringSprayPainter
+  table: !type:GroupSelector
+    children:
+    - id: SprayPainter
+      weight: 0.95
+    - id: SprayPainterMagic
+      weight: 0.05
+
+# region Holoprojector
+- type: entityTable
+  id: TableDungeonLootEngineeringHoloprojector
+  table: !type:GroupSelector
+    children:
+    - id: HolofanProjector
+      weight: 0.95
+    - id: HoloprojectorField
+      weight: 0.05
+
+# region ToolsRare
+- type: entityTable
+  id: TableDungeonLootEngineeringToolsRare
+  table: !type:GroupSelector
+    children:
+    - id: RPED
+    - !type:AllSelector
+      children:
+      - id: ShipyardRCD
+      - id: ShipyardRCDAmmo
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+
+# region ToolsCommon
+- type: entityTable
+  id: TableDungeonLootEngineeringToolsCommon
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: Multitool
+        weight: 0.8
+      - id: NetworkConfigurator
+        weight: 0.2
+    # Assorted devices
+    - id: trayScanner
+    - id: GasAnalyzer
+    - id: GasDepositLocator
+    - id: GeigerCounter
+    - id: AppraisalTool
+    - id: RadioHandheldNF
+    - !type:GroupSelector # TODO: maybe split and move to clothes
+      children:
+      - id: ClothingEyesGlassesMeson
+        weight: 0.5
+      - id: ClothingEyesHudDiagnostic
+        weight: 0.3
+      - id: ClothingEyesGlassesThermal
+        weight: 0.2
+
+# region Toolboxes
+- type: entityTable
+  id: TableDungeonLootEngineeringToolboxes
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty toolboxes to reduce entity spam
+    # Electrical
+    - !type:GroupSelector
+      weight: 32
+      children:
+      - id: ToolboxElectricalFilled
+        weight: 20
+      - id: ToolboxElectrical
+        weight: 80
+    # Emergency
+    - !type:GroupSelector
+      weight: 32
+      children:
+      - id: ToolboxEmergencyFilled
+        weight: 20
+      - id: ToolboxEmergency
+        weight: 80
+    # Mechanical
+    - !type:GroupSelector
+      weight: 32
+      children:
+      - id: ToolboxMechanicalFilledAllTools
+        weight: 15
+      - id: ToolboxMechanicalFilled
+        weight: 15
+      - id: ToolboxMechanical
+        weight: 70
+    # Trap
+    - !type:GroupSelector
+      weight: 4
+      children:
+      - id: NFToolboxMineCryo
+      - id: NFToolboxMineExplosive
+      - id: NFToolboxMineFire
+# Commented out: buy it from your local SyndiVend
+#    # Syndicate
+#    - !type:GroupSelector
+#      children:
+#      - id: ToolboxSyndicateFilled
+#        weight: 20
+#      - id: ToolboxSyndicate
+#        weight: 80
+
+# region Parts
+- type: entityTable
+  id: TableDungeonLootEngineeringParts
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCapacitors
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringManipulators
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringMatterBins
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringPowerCells
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCraftingComponents
+      weight: 0.30
+
+# region Capacitors
+- type: entityTable # Random stack size: 1 to 5
+  id: TableDungeonLootEngineeringCapacitors
+  table: !type:GroupSelector
+    children:
+    - id: CapacitorStockPartRandomVeryLow
+      weight: 0.1
+    - id: AdvancedCapacitorStockPartRandomVeryLow
+      weight: 0.55
+    - id: SuperCapacitorStockPartRandomVeryLow
+      weight: 0.3
+    - id: QuadraticCapacitorStockPartRandomVeryLow
+      weight: 0.05
+
+# region Manipulators
+- type: entityTable # Random stack size: 1 to 5
+  id: TableDungeonLootEngineeringManipulators
+  table: !type:GroupSelector
+    children:
+    - id: MicroManipulatorStockPartRandomVeryLow
+      weight: 0.1
+    - id: NanoManipulatorStockPartRandomVeryLow
+      weight: 0.55
+    - id: PicoManipulatorStockPartRandomVeryLow
+      weight: 0.3
+    - id: FemtoManipulatorStockPartRandomVeryLow
+      weight: 0.05
+
+# region MatterBins
+- type: entityTable # Random stack size: 1 to 5
+  id: TableDungeonLootEngineeringMatterBins
+  table: !type:GroupSelector
+    children:
+    - id: MatterBinStockPartRandomVeryLow
+      weight: 0.1
+    - id: AdvancedMatterBinStockPartRandomVeryLow
+      weight: 0.55
+    - id: SuperMatterBinStockPartRandomVeryLow
+      weight: 0.3
+    - id: BluespaceMatterBinStockPartRandomVeryLow
+      weight: 0.05
+
+# region PowerCells
+- type: entityTable
+  id: TableDungeonLootEngineeringPowerCells
+  table: !type:GroupSelector
+    children:
+    - id: PowerCellPotato
+      weight: 0.05
+    - id: PowerCellSmall
+      weight: 0.05
+    - id: PowerCellMedium
+      weight: 0.25
+    - id: PowerCellHigh
+      weight: 0.35
+    - id: PowerCellHyper
+      weight: 0.2
+    - id: PowerCellMicroreactor
+      weight: 0.09
+    - id: PowerCellAntiqueProto
+      weight: 0.01
+
+# region PowerCells (POI)
+- type: entityTable
+  id: TablePoiLootEngineeringPowerCells
+  table: !type:GroupSelector
+    children:
+    - id: PowerCellPotato
+      weight: 0.05
+    - id: PowerCellSmall
+      weight: 0.1
+    - id: PowerCellMedium
+      weight: 0.25
+    - id: PowerCellHigh
+      weight: 0.35
+    - id: PowerCellHyper
+      weight: 0.25
+
+# region CraftingComponents
+- type: entityTable
+  id: TableDungeonLootEngineeringCraftingComponents
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: RemoteSignaller
+        weight: 0.8
+      - id: RemoteSignallerAdvanced
+        weight: 0.2
+    - id: ProximitySensor
+    - id: Igniter
+    - id: VoiceTrigger
+    - id: TimerTrigger
+    - id: SignalTrigger
+    - id: SciFlash
+    - id: DrinkSpaceLube
+    - id: DrinkSpaceGlue
+
+# region Circuit Boards
+- type: entityTable # TODO: maybe split into multiple tables
+  id: TableDungeonLootEngineeringCircuitBoards
+  table: !type:GroupSelector
+    children:
+    # Lathes
+    - !type:GroupSelector
+      children:
+      - id: AutolatheMachineCircuitboard
+        weight: 0.8
+      - id: AutolatheHyperConvectionMachineCircuitboard
+        weight: 0.2
+    - !type:GroupSelector
+      children:
+      - id: ProtolatheMachineCircuitboard
+        weight: 0.8
+      - id: ProtolatheHyperConvectionMachineCircuitboard
+        weight: 0.2
+    - id: CircuitImprinterMachineCircuitboard
+    - id: EngineeringTechFabCircuitboard
+    - id: FlatpackerMachineCircuitboard
+    - id: CutterMachineCircuitboard
+    # Machines
+    - !type:GroupSelector
+      children:
+      - id: ThermomachineHeaterMachineCircuitBoard
+        weight: 0.8
+      - id: HellfireHeaterMachineCircuitBoard
+        weight: 0.2
+    - !type:GroupSelector
+      children:
+      - id: ThermomachineFreezerMachineCircuitBoard
+        weight: 0.8
+      - id: HellfireFreezerMachineCircuitBoard
+        weight: 0.2
+    - !type:GroupSelector
+      children:
+      - id: PortableGeneratorJrPacmanMachineCircuitboard
+        weight: 0.5
+      - id: PortableGeneratorPacmanMachineCircuitboard
+        weight: 0.1
+      - id: PortableGeneratorSuperPacmanMachineCircuitboard
+        weight: 0.15
+      - id: PortableGeneratorDKJrMachineCircuitboard
+        weight: 0.20
+      - id: PortableGeneratorDKMachineCircuitboard
+        weight: 0.25
+    - id: ShredderMachineCircuitboard
+    - id: SpaceHeaterMachineCircuitBoard
+    - id: PortableScrubberMachineCircuitBoard
+    - id: PortablePumpMachineCircuitBoard
+    - id: CondenserMachineCircuitBoard
+    - id: TurboItemRechargerCircuitboard
+    - id: GyroscopeMachineCircuitboard
+    - id: MiniGravityGeneratorCircuitboard
+    - id: ThrusterMachineCircuitboard
+    - id: SmallThrusterMachineCircuitboard
+    - id: StationMapCircuitboard
+    - id: MaterialSiloMachineCircuitboard
+    # Computers
+    - !type:GroupSelector
+      children:
+      - id: PowerComputerCircuitboard
+      - id: SolarControlComputerCircuitboard
+      - id: AlertsComputerCircuitboard
+      - id: ComputerIFFCircuitboard
+        weight: 0.1
+
+#region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootEngineeringClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesBags
+      weight: 40
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesHats
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesJumpsuits
+      weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesJackets
+      weight: 15
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesBoots
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesBelts
+      weight: 15
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootEngineeringEvas
+      - !type:NestedSelector
+        tableId: TableDungeonLootEngineeringHardsuits
+
+- type: entityTable
+  id: TableDungeonLootEngineeringClothesBags
+  table: !type:GroupSelector
+    children:
+    - id: ClothingBackpackDuffelEngineering
+      weight: 3
+    - id: ClothingBackpackMessengerEngineering
+      weight: 2
+    - id: ClothingBackpackEngineering
+      weight: 2
+    - id: ClothingBackpackSatchelEngineering
+      weight: 2
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchEngineering
+      - id: NFPouchUtility
+
+- type: entityTable
+  id: TableDungeonLootEngineeringClothesBelts
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty belts to reduce entity spam
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: ClothingBeltUtility
+        weight: 70
+      - id: ClothingBeltUtilityFilled
+        weight: 10
+      - id: ClothingBeltUtilityEngineering
+        weight: 20
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: ClothingBeltChiefEngineer
+        weight: 70
+      - id: ClothingBeltChiefEngineerFilledBasic
+        weight: 10
+      - id: ClothingBeltChiefEngineerFilled
+        weight: 20
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: ConstructionBag
+        weight: 95
+      - id: ConstructionBagOfHolding
+        weight: 5
+
+- type: entityTable
+  id: TableDungeonLootEngineeringClothesHats
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHatHardhatYellow
+      weight: 4
+    - id: ClothingHeadHatHardhatYellowDark
+      weight: 4
+    - id: ClothingHeadHatHardhatBlue
+      weight: 4
+    - id: ClothingHeadHatHardhatOrange
+      weight: 2
+    - id: ClothingHeadHatHardhatRed
+      weight: 2
+    - id: ClothingHeadHatHardhatWhite
+      weight: 0.5
+
+- type: entityTable
+  id: TableDungeonLootEngineeringClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: ClothingUniformJumpsuitEngineering
+      - id: ClothingUniformJumpsuitMilitaryEngineering
+      - id: ClothingUniformJumpsuitEngineeringHazard
+      - id: ClothingUniformJumpskirtEngineering
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - id: ClothingUniformJumpsuitRepairmanSyndieNF
+      - id: ClothingUniformJumpsuitChiefEngineerSyndieNF
+
+- type: entityTable
+  id: TableDungeonLootEngineeringClothesJackets
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterVestHazard
+      weight: 90
+    - id: ClothingOuterWinterEngi
+      weight: 10
+
+- type: entityTable
+  id: TableDungeonLootEngineeringClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesBootsWork
+      weight: 90
+    - id: ClothingShoesBootsWinterEngi
+      weight: 10
+
+#region EVA
+- type: entityTable
+  id: TableDungeonLootEngineeringEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitEngineer
+      weight: 50
+    - id: ClothingBackpackDuffelEVABundleEngineer
+      weight: 5
+    - id: ClothingOuterEVASuitAtmosTech
+      weight: 50
+    - id: ClothingBackpackDuffelEVABundleAtmosTech
+      weight: 5
+
+- type: entityTable
+  id: TableDungeonLootEngineeringHardsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitEngineering
+      weight: 50
+    - id: ClothingOuterHardsuitAtmos
+      weight: 50
+    - id: ClothingOuterHardsuitEngineeringWhite
+      weight: 5
+
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootEngineeringLockers
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 30
+      children:
+      - id: LockerEngineer
+        weight: 70
+      - id: LockerEngineerFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: LockerAtmospherics
+        weight: 70
+      - id: LockerAtmosphericsFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: LockerChiefEngineer
+        weight: 70
+      - id: LockerChiefEngineerFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 40
+      children:
+      - id: LockerElectricalSupplies
+        weight: 70
+      - id: LockerWeldingSupplies
+        weight: 70
+      - id: ClosetTool
+        weight: 70
+      - id: LockerEvacRepair
+        weight: 70
+      - id: LockerElectricalSuppliesFilled
+        weight: 25
+      - id: LockerWeldingSuppliesFilled
+        weight: 25
+      - id: ClosetToolFilled
+        weight: 25
+      - id: LockerEvacRepairFilled
+        weight: 25
+
+# region Lockers (SSU)
+- type: entityTable
+  id: TableDungeonLootEngineeringSuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 55
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SuitStorageEVAEngineer
+      - id: SuitStorageEngi
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SuitStorageEVAAtmosTech
+      - id: SuitStorageAtmos
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: SuitStorageNTSRA
+      - id: SuitStorageCE
+
+# region Crates
+- type: entityTable
+  id: TableDungeonLootEngineeringCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesEmpty
+      weight: 30
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesFilled
+      weight: 15
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesRestock
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesMaterial
+      weight: 40
+
+# region Crates (Empty)
+- type: entityTable
+  id: TableDungeonLootEngineeringCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CratePlasma
+    - id: CrateEngineering
+    - id: CrateElectrical
+    - id: CrateRadiation
+    - id: CrateUranium
+
+# region Crates (Filled)
+- type: entityTable
+  id: TableDungeonLootEngineeringCratesFilled
+  table: !type:GroupSelector
+    children:
+    # Cables
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: CrateEngineeringElectricalSupplies
+      - id: CrateEngineeringCableLV
+      - id: CrateEngineeringCableMV
+      - id: CrateEngineeringCableHV
+      - id: CrateEngineeringCableBulk
+    # Tools
+    - !type:GroupSelector
+      children:
+      - id: CrateTools
+      - id: CrateEngineeringToolbox
+      - id: CrateEngineeringKitShipyardRcd
+        weight: 0.2
+    # Shuttle Parts
+    - !type:GroupSelector
+      children:
+      - id: CrateEngineeringShuttle
+      - id: CrateEngineeringSolar
+      - id: CrateEngineeringThruster
+      - id: CrateEngineeringGyroscope
+      - id: CrateAirlockKit
+      - id: CrateEngineeringKitRtg
+    - id: CrateEngineeringFoamGrenade
+    - id: CrateEngineeringMiniJetpack
+    - id: CrateEngineeringSpaceHeater
+
+# region Crates (Restock)
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootEngineeringCratesRestock
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockEngineeringFilled
+    - id: CrateVendingMachineRestockVendomatFilled
+    - id: CrateVendingMachineRestockRoboticsFilled
+    - id: CrateVendingMachineRestockAstroVendFilled
+    - id: CrateVendingMachineRestockTankDispenserFilled
+
+# region Machines
+- type: entityTable
+  id: TableDungeonLootEngineeringMachinesFabricators
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: Autolathe
+        weight: 20
+      - id: EngineeringTechFab
+        weight: 40
+      - id: CircuitImprinter
+        weight: 15
+      - id: MachineFlatpacker
+        weight: 20
+      - id: MachineMaterialSilo
+        weight: 20
+      - id: CutterMachine
+        weight: 10
+      - id: Protolathe
+        weight: 5
+    # Rare
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: AutolatheHyperConvection
+        weight: 0.2
+      - id: ProtolatheHyperConvection
+        weight: 0.8
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.25
+
+# region Vendomats
+- type: entityTable
+  id: TableDungeonLootEngineeringMachinesVending
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachineAtmosDrobe
+      weight: 0.3
+    - id: VendingMachineEngiDrobe
+      weight: 0.3
+    - id: VendingMachineVendomat
+    - id: VendingMachineEngivend
+    - id: VendingMachineYouTool
+    - id: VendingMachineFlatpackVend
+      weight: 0.2
+    - id: VendingMachineRobotics
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.03
+
+# region Flatpacks
+- type: entityTable
+  id: TableDungeonLootEngineeringFlatpacks
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: AutolatheFlatpack
+    - id: ExosuitFabricatorFlatpack
+    - id: ProtolatheFlatpack
+    - id: CircuitImprinterFlatpack
+    - id: EngineeringTechFabFlatpack
+    - id: MaterialReclaimerFlatpack
+    - id: CutterMachineFlatpack
+    - id: WeaponCapacitorRechargerFlatpack
+    - id: BorgChargerFlatpack
+    - id: MachineFlatpackerFlatpack
+    - id: MachineFlatpackerFlatpack
+    - id: MaterialSiloFlatpack
+    - !type:GroupSelector # TODO: add DK flatpacks
+      children:
+      - id: PortableGeneratorJrPacmanFlatpack
+      - id: PortableGeneratorPacmanFlatpack
+      - id: PortableGeneratorSuperPacmanFlatpack
+      - id: GeneratorRTGFlatpack
+        weight: 2
+    # Rare
+    - !type:GroupSelector
+      weight: 0.08
+      children:
+      #- id: RadiationCollectorFullTankFlatpack
+      - id: TeslaCoilFlatpack
