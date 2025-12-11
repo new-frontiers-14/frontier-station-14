@@ -107,6 +107,16 @@
         - id: ClothingMaskGasSecurity
         - id: ClothingMaskGasMercenary
         - id: ClothingMaskGasSwat
+      # T4 - Epic
+      - !type:NestedSelector
+        tableId: TableDungeonLootMercenaryClothes
+        weight: 0.15
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+      # Unique
+      - !type:NestedSelector
+        tableId: TableDungeonLootMercenaryCircuitBoards
+        weight: 0.01
 
 # region blueprints
 - type: entity
