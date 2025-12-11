@@ -593,6 +593,51 @@
     - ClothingBackpackDuffelHolding
     - ClothingBackpackMessengerHolding
 
+# battery guns
+- type: entity
+  parent: NFBaseBlueprintExpeditionRogueSilicon
+  id: NFBlueprintRogueSiliconPistolLaserSvalinn
+  categories: [ HideSpawnMenu ]
+  name: svalinn laser pistol blueprint
+  description: A blueprint with a schematic of a svalinn laser pistol. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponEnergyPistolLaserSvalinn
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionRogueSilicon
+  id: NFBlueprintRogueSiliconPistolLaserAdvanced
+  categories: [ HideSpawnMenu ]
+  name: advanced laser pistol blueprint
+  description: A blueprint with a schematic of an advanced laser pistol. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponEnergyPistolLaserAdvanced
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionRogueSilicon
+  id: NFBlueprintRogueSiliconEnergyRifleCarbine
+  categories: [ HideSpawnMenu ]
+  name: laser carbine blueprint
+  description: A blueprint with a schematic of a laser carbine. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponEnergyRifleCarbine
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionRogueSilicon
+  id: NFBlueprintRogueSiliconEnergySubMachineGunDeltaV
+  categories: [ HideSpawnMenu ]
+  name: energy submachine gun blueprint
+  description: A blueprint with a schematic of an energy submachine gun. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponEnergySubMachineGunDeltaV
+
 # region syndicate
 - type: entity
   parent: [NFBaseBlueprintExpeditionSyndicate, NFBaseBlueprintExpeditionMercenary]
