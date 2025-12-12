@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: NFPresentBoxGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: NFPresentBoxNode
+          steps:
+            - material: Cardboard
+              amount: 1
+              doAfter: 4
+    - node: NFPresentBoxNode
+      entity: NFPresentBox
