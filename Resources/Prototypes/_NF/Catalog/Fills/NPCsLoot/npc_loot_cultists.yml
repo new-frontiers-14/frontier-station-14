@@ -59,6 +59,7 @@
     items:
     - id: SpaceCashRandom2500To3500
 
+# BLOOD CULT NPC LOOT
 ## Zealot (Ranged) Loot
 - type: entity
   parent: CultistMessengerGiftBox
@@ -70,32 +71,13 @@
     items:
     - id: CrossbowImprovised
     - id: ClothingBeltQuiverCrossbowFilledBolt
-    - id: SpaceCash1000
     # Bonus Loot T1
-    - id: SpaceCash500
-      prob: 0.9
     - id: SpawnDungeonLootMaterialsBasicFull
       prob: 0.7
-    - id: SpaceCash1000
-      prob: 0.7
-
-- type: entity
-  parent: ClothingBackpackBloodCultZealotLootA
-  id: ClothingBackpackBloodCultZealotLootB
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: CrossbowImprovised
-    - id: ClothingBeltQuiverCrossbowFilledUranium
-    - id: SpaceCash1000
-    # Bonus Loot T1
-    - id: SpaceCash500
-      prob: 0.9
-    - id: SpaceCash1000
-      prob: 0.7
-    - id: SpawnDungeonLootPartsEngi
-      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -105,43 +87,45 @@
   - type: SpawnItemsOnUse
     items:
     - id: ClothingBeltQuiverCrossbowFilledPlasma
-    - id: SpaceCash500
     # Bonus Loot T1
-    - id: SpaceCash500
-      prob: 0.9
     - id: SpawnDungeonLootMaterialsBasicFull
       prob: 0.7
-    - id: SpaceCash1000
-      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
-  id: ClothingBackpackBloodCultZealotLootD
+  id: ClothingBackpackBloodCultZealotLootCaster
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: SpaceCash500
     # Bonus Loot T1
-    - id: SpaceCash500
-      prob: 0.9
-    - id: SpaceCash1000
+    - id: SpawnRandomSpellScrollBloodCult
       prob: 0.7
-    - id: SpawnDungeonLootPartsEngi
+    - id: ShardCrystalRed
       prob: 0.7
 
 ## Generic rewards
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
-  id: ClothingBackpackBloodCultLootA
+  id: ClothingBackpackBloodCultLootJanitor
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: SpaceCash1000
-      prob: 0.95
-    - id: SpaceCash1000
-      prob: 0.95
+    - id: ScrollRolledCultForge
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.3
+    - id: ShardCrystalRed
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.3
     - id: Bloodpack
       prob: 0.08
     - id: Tourniquet
@@ -150,19 +134,33 @@
     - id: MaterialBones
       prob: 0.2
     # Bonus Loot T2
-    - id: SpaceCash1000
-      prob: 0.9
     - id: SpawnDungeonLootMaterialsBasicFull
-      prob: 0.7
-    - id: SpaceCash1000
-      prob: 0.7
-    - id: SpawnDungeonLootPartsEngi
-      amount: 2
-      prob: 0.7
-    - id: SpawnDungeonLootCircuitBoardEngi
       prob: 0.7
     - id: SpawnDungeonLootToolsAdvancedEngineering
       prob: 0.3
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootPriest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollRolledCultStaffRechargerAltar
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.3
+    - id: ShardCrystalRed
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.3
+    # Bonus Loot T1
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.7
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -171,10 +169,6 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: SpaceCash1000
-      prob: 0.95
-    - id: SpaceCash500
-      prob: 0.5
     - id: Bloodpack
       prob: 0.06
     - id: BruteAutoInjector
@@ -183,45 +177,12 @@
     - id: MaterialBones
       prob: 0.1
     # Bonus Loot T3
-    - id: SpaceCash1000
-      prob: 0.9
-    - id: SpaceCash500
-      prob: 0.9
-    - id: SpaceCash1000
-      prob: 0.7
     - id: SpawnDungeonLootMaterialsValuableFull
       prob: 0.7
-    - id: SpawnDungeonLootPartsEngi
-      amount: 2
-      prob: 0.7
-    - id: SpawnDungeonLootFlatpacks
-      prob: 0.5
-    - id: SpawnDungeonLootToolsAdvancedEngineering
-      prob: 0.4
-
-- type: entity
-  parent: ClothingBackpackBloodCultZealotLootA
-  id: ClothingBackpackBloodCultLootC
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: SpaceCash1000
-      prob: 0.95
-    - id: Bloodpack
-      prob: 0.04
-    - id: EmergencyMedipen
-      amount: 1
-      prob: 0.02
-    - id: MaterialBones1
-      prob: 0.1
-    # Bonus Loot T1
-    - id: SpaceCash500
-      prob: 0.9
-    - id: SpaceCash1000
-      prob: 0.7
-    - id: SpawnDungeonLootPartsEngi
-      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
 
 - type: entity
   parent: ClothingBackpackBloodCultZealotLootA
@@ -230,19 +191,15 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: SpaceCash500
-      prob: 0.95
     - id: Bloodpack
       prob: 0.02
     - id: Gauze1
       amount: 1
       prob: 0.01
-    - id: MaterialBones1
-      prob: 0.05
     # Bonus Loot T1
-    - id: SpaceCash500
-      prob: 0.9
     - id: SpawnDungeonLootMaterialsBasicFull
       prob: 0.7
-    - id: SpaceCash1000
-      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
