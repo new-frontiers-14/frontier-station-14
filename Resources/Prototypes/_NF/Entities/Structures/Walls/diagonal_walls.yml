@@ -116,3 +116,41 @@
         - WallLayer
   - type: Occluder
     enabled: false
+
+#region Indestructable Walls
+- type: entity
+  parent: BaseWallDiagonal
+  id: WallUraniumDiagonalIndestructible
+  name: uranium wall
+  suffix: diagonal, indestructible
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Structures/Walls/uranium_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: DiagonalNF
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Walls/uranium_diagonal.rsi
+    state: state0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Occluder
+    enabled: false
