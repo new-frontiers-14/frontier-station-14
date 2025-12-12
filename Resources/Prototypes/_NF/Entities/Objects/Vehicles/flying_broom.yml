@@ -1,0 +1,56 @@
+#region vehicle
+- type: entity
+  parent: [ NFVehicleHoverbikeKeys, BaseC3WizardContraband ]
+  id: NFVehicleFlyingBroomWithKey
+  name: flying broom
+  suffix: With key
+  description: A magically animated broom capable of flight.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/broom.rsi
+    layers:
+    - state: hull
+      map: [ "broom_wraps" ]
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: lights
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    noRot: true
+  - type: RandomSprite
+    available:
+    - broom_wraps:
+        hull: Sixteen
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: Vehicle
+    renderOver: North, South
+    northOffset: 0, 0
+    southOffset: 0, 0
+    eastOffset: 0, 0
+    westOffset: 0, 0
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - FlyingBroomKeys
+        startingItem: NFVehicleKeyBroom
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 2
+    color: "#FFC458"
+    mask: /Textures/Effects/LightMasks/cone.png
+    netsync: false
+    autoRot: true
