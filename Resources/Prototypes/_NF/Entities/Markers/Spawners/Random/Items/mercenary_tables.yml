@@ -1,0 +1,514 @@
+# region Clutter
+- type: entityTable # TODO: Add ammo cases, weapon cases
+  id: TableDungeonLootMercenaryClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryThings
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryShields
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothes
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCircuitBoards
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryFlatpacks
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootWeaponsRanged
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootWeaponsAmmunition
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMelee
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosives
+      weight: 0.05
+
+# region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootMercenaryClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesBags
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesHats
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesJumpsuits
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesArmor
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesBoots
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesBelts
+      weight: 0.15
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMercenaryThings
+      - !type:NestedSelector
+        tableId: TableDungeonLootMercenaryShields
+      - !type:NestedSelector
+        tableId: TableDungeonLootMercenaryEvas
+      - !type:NestedSelector
+        tableId: TableDungeonLootMercenaryHardsuits
+
+- type: entityTable
+  id: TableDungeonLootMercenaryClothesBags
+  table: !type:GroupSelector
+    children:
+    # Duffels
+    - !type:GroupSelector
+      weight: 3
+      children:
+      - id: ClothingBackpackDuffelMercenary
+      - id: ClothingBackpackDuffelPrivateSecurity
+      - id: ClothingBackpackDuffelArcadia
+        weight: 0.1
+    # Messenger bags
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMessengerMercenary
+      - id: ClothingBackpackMessengerPrivateSecurity
+      - id: ClothingBackpackMessengerArcadia
+        weight: 0.1
+    # Backpacks
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMercenary
+      - id: ClothingBackpackArcadia
+        weight: 0.1
+    # Satchels
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackSatchelMercenary
+      - id: ClothingBackpackSatchelArcadia
+        weight: 0.1
+    # Pouches
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchMercenary
+      - id: NFPouchPrivateSecurity
+
+- type: entityTable
+  id: TableDungeonLootMercenaryClothesBelts
+  table: !type:GroupSelector
+    children:
+    - id: ClothingBeltMercenaryWebbing
+    - id: ClothingBeltSecurityWebbing
+    - id: ClothingBeltMilitaryWebbingMed
+    - id: ClothingBeltMilitaryWebbing
+    - id: ClothingBeltAssault
+    - id: ClothingBeltBandolier
+    - id: ClothingBeltSecurity
+    - id: ClothingBeltHolster
+      weight: 0.05
+    - id: ClothingBeltArcadia
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootMercenaryClothesHats
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHelmetMercenaryBlack
+    - id: ClothingHeadHelmetMercenary
+    - id: ClothingHeadHatBH
+    - id: ClothingHeadBandMercenary
+    - id: ClothingHeadHatBeretMercenary
+
+- type: entityTable
+  id: TableDungeonLootMercenaryClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingUniformJumpsuitMercenary
+    - id: ClothingUniformJumpskirtMercenary
+    - id: ClothingUniformJumpsuitMilitaryTurtleneckMercenary
+    - id: ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenary
+    - id: ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryMedic
+    - id: ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryCaptain
+    - id: ClothingUniformJumpsuitMilitaryTurtleneckMercenaryCaptain
+    - id: ClothingUniformJumpsuitPrivateSec
+    - id: ClothingUniformJumpskirtPrivateSec
+
+- type: entityTable
+  id: TableDungeonLootMercenaryClothesArmor
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: ClothingOuterArmorBasic
+      - id: ClothingOuterArmorBasicSlim
+      - id: ClothingOuterCoatBHTrench
+      - id: NFClothingOuterArmorReflective
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingOuterArmorReflective
+      - id: ClothingOuterArmorBulletproof
+      - id: ClothingOuterArmorRiot
+    # Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: ClothingOuterArmorHeavy
+      - id: ClothingOuterVestWeb
+
+- type: entityTable
+  id: TableDungeonLootMercenaryShields
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: NFMetalShield
+      - id: RiotShield
+    - !type:GroupSelector
+      children:
+      - id: NFShieldReflective
+      - id: RiotLaserShield
+    - !type:GroupSelector
+      children:
+      - id: NFShieldBallistic
+      - id: RiotBulletShield
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: TelescopicShield
+      - id: EnergyShield
+
+- type: entityTable
+  id: TableDungeonLootMercenaryClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesBootsMercenary
+    - id: ClothingShoesBootsJack
+    - id: ClothingShoesBootsCombat
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingHandsMercenaryGlovesCombat
+
+- type: entityTable
+  id: TableDungeonLootMercenaryThings
+  table: !type:GroupSelector
+    children:
+    - id: Zipties
+    - id: Handcuffs
+    - id: ClothingEyesHudBountyHunter
+    - id: ClothingEyesGlassesSunglasses
+    - id: ClothingMaskBalaclavaBlack
+    - id: ClothingEyesGlassesNoir
+
+#region EVA
+- type: entityTable
+  id: TableDungeonLootMercenaryEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitMercenary
+      weight: 0.4
+    - id: ClothingOuterEVASuitPrivateSec
+      weight: 0.4
+    - id: ClothingBackpackDuffelEVABundlePrivateSec
+      weight: 0.1
+    - id: ClothingBackpackDuffelEVABundleMercenary
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootMercenaryHardsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitMercenary
+      weight: 0.15
+    - id: ClothingOuterHardsuitPrivateSecurity
+      weight: 0.3
+    - id: ClothingOuterHardsuitScaf
+      weight: 0.35
+    - id: ClothingOuterHardsuitSurplus
+      weight: 0.15
+    - id: ClothingOuterHardsuitNoble
+      weight: 0.05
+
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootMercenaryLockers
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: LockerMercenary
+        weight: 0.7
+      - id: LockerMercenaryFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClosetBomb
+        weight: 0.7
+      - id: NFClosetBombFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: ClosetL3
+        weight: 0.7
+      - id: ClosetL3Filled
+        weight: 0.3
+    - !type:NestedSelector
+      weight: 0.3
+      tableId: TableDungeonLootMercenarySuitStorageUnits
+
+# region Suit Storage
+- type: entityTable
+  id: TableDungeonLootMercenarySuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 0.3
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: SuitStorageEVAMercenary
+      - id: SuitStorageMercenary
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: SuitStorageEVAPrivateSec
+      - id: SuitStoragePrivateSecurity
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: SuitStorageScaf
+        weight: 0.5
+      - id: SuitStorageSurplus
+        weight: 0.4
+      - id: SuitStorageNoble
+        weight: 0.2
+
+# region Crates
+- type: entityTable
+  id: TableDungeonLootMercenaryCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesEmpty
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesWeapons
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesAmmo
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesArmor
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesRestock
+      weight: 0.05
+
+# region Crates (Empty)
+- type: entityTable
+  id: TableDungeonLootMercenaryCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CrateSecureMercenary
+    - id: CrateSecureMercenaryPrivateSec
+    - id: CrateAmmoGeneric
+    - id: CratePrivateSecure
+
+# region Crates (Weapons)
+- type: entityTable
+  id: TableDungeonLootMercenaryCratesWeapons
+  table: !type:GroupSelector
+    children:
+      - id: CrateArmoryShotgunExpedition
+      - id: CrateArmoryPistolsExpedition
+      - id: CrateArmoryRifleGestioExpedition
+      - id: CrateArmoryRifleNovaliteC1Expedition
+      - id: CrateArmoryEnergyGunExpedition
+      - id: CrateArmorySMGExpedition
+      - id: CrateArmoryLaserExpedition
+      - id: CrateSecurityNonlethal
+
+# region Crates (Ammo)
+- type: entityTable
+  id: TableDungeonLootMercenaryCratesAmmo
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: CrateAmmoBoxRubber20
+      - id: CrateAmmoBoxRubber25
+      - id: CrateAmmoBoxRubber30
+      - id: CrateAmmoBoxRubber35
+      - id: CrateAmmoBoxRubber45
+      - id: CrateAmmoBoxRubberShotgun
+      - id: CrateAmmoBoxLethal20
+      - id: CrateAmmoBoxLethal25
+      - id: CrateAmmoBoxLethal30
+      - id: CrateAmmoBoxLethal35
+      - id: CrateAmmoBoxLethal45
+      - id: CrateAmmoBoxLethalShotgun
+      - id: CrateAmmoBoxSlugShotgun
+    # T2 - Unommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: CrateAmmoBoxIncendiary20
+      - id: CrateAmmoBoxIncendiary30
+      - id: CrateAmmoBoxIncendiary35
+      - id: CrateAmmoBoxIncendiary45
+      - id: CrateAmmoBoxIncendiaryShotgun
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: CrateAmmoBoxUranium20
+      - id: CrateAmmoBoxUranium30
+      - id: CrateAmmoBoxUranium35
+      - id: CrateAmmoBoxEmp35
+      - id: CrateAmmoBoxUranium45
+      - id: CrateAmmoBoxUraniumShotgun
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: CrateAmmoBoxBigLethal20
+      - id: CrateAmmoBoxBigLethal25
+      - id: CrateAmmoBoxBigLethal30
+      - id: CrateAmmoBoxBigRubber20
+      - id: CrateAmmoBoxBigRubber25
+      - id: CrateAmmoBoxFlareShotgun
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: CrateAmmoBoxPractice20
+      - id: CrateAmmoBoxPractice25
+      - id: CrateAmmoBoxPractice30
+      - id: CrateAmmoBoxPractice35
+      - id: CrateAmmoBoxPractice45
+      - id: CrateAmmoBoxPracticeShotgun
+
+# region Crates (Armor)
+- type: entityTable
+  id: TableDungeonLootMercenaryCratesArmor
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: CrateSecurityArmor
+        weight: 0.4
+      - id: CrateSecurityRiot
+        weight: 0.3
+      - id: CrateSecurityBiosuit
+        weight: 0.15
+      - id: CrateSecurityHelmet
+        weight: 0.1
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: CrateSecureMercenaryHardsuit
+        weight: 0.35
+      - id: CrateSecureMercenaryPrivateSecHardsuit
+        weight: 0.35
+      - id: CrateSecureMercenaryHardsuitMagBoots
+        weight: 0.15
+      - id: CrateSecureMercenaryPrivateSecHardsuitMagBoots
+        weight: 0.15
+
+# region Crates (Restocks)
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootMercenaryCratesRestock
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockAmmoFilled
+    - id: CrateVendingMachineRestockLessLethalVendFilled
+    - id: CrateVendingMachineRestockNonLethalVendFilled
+
+# region Fabricators
+- type: entityTable
+  id: TableDungeonLootMercenaryMachinesFabricators
+  table: !type:GroupSelector
+    children:
+    - id: AmmoTechFab
+      weight: 0.5
+    - id: MercenaryTechFab
+      weight: 0.3
+    - id: MercenaryTechFabHacked
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+# region Vendomats
+- type: entityTable
+  id: TableDungeonLootMercenaryMachinesVending
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachinePickNPack
+      weight: 0.3
+    - id: VendingMachineAmmo
+      weight: 0.25
+    - id: VendingMachineBountyVend
+      weight: 0.2
+    - id: LessLethalVendingMachine
+      weight: 0.05
+    - id: VendingMachineExpeditionaryFlatpackVend
+      weight: 0.05
+    - id: VendingMachineArcadia
+      weight: 0.05
+    - id: VendingMachineSyndieContraband
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.05
+
+# region Flatpacks
+- type: entityTable
+  id: TableDungeonLootMercenaryFlatpacks
+  table: !type:GroupSelector
+    children:
+    - id: AmmoTechFabFlatpack
+      weight: 0.5
+    - id: MercenaryTechFabFlatpack
+      weight: 0.3
+    - id: MercenaryTechFabHackedFlatpack
+      weight: 0.1
+
+# region Circuit Boards
+- type: entityTable
+  id: TableDungeonLootMercenaryCircuitBoards
+  table: !type:GroupSelector
+    children:
+    - id: AmmoTechFabCircuitboard
+      weight: 0.5
+    - id: MercenaryTechFabCircuitboardNF
+      weight: 0.3
+    - id: MercenaryTechFabCircuitboardHackedNF
+      weight: 0.1
+    - id: ComputerIFFCircuitboard
+      weight: 0.1
