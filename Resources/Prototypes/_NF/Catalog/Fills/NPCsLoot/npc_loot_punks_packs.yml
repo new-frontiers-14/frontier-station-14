@@ -1,9 +1,75 @@
 # region base
 - type: entity
   abstract: true
-  parent: [NFBaseNpcLootBackpack, ClothingBackpackMessengerColorRandom]
+  parent: NFBaseNpcLootBackpack
   id: NFBaseNpcLootPackPunk
   name: punk bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      map: [ "iconMessengerBase" ]
+    - state: icon-sling
+      map: [ "iconMessengerSling" ]
+    - state: icon-clasp
+      map: [ "iconMessengerClasp" ]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        map: [ "clothingMessengerBase" ]
+      - state: sling-equipped-BACKPACK
+        map: [ "clothingMessengerSling" ]
+      - state: clasp-equipped-BACKPACK
+        map: [ "clothingMessengerClasp" ]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        map: [ "leftMessengerBase" ]
+      - state: clasp-inhand-left
+        map: [ "leftgMessengerBase" ]
+        shader: unshaded
+      right:
+      - state: base-inhand-right
+        map: [ "rightMessengerBase" ]
+      - state: clasp-inhand-right
+        map: [ "rightMessengerBase" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    # icon
+    - iconMessengerBase:
+        icon-base: Base
+      iconMessengerSling:
+        icon-sling: Sling
+      iconMessengerClasp:
+        icon-clasp: Clasp
+    # clothing
+      clothingMessengerBase:
+        base-equipped-BACKPACK: Base
+      clothingMessengerSling:
+        sling-equipped-BACKPACK: Sling
+      clothingMessengerClasp:
+        clasp-equipped-BACKPACK: Clasp
+    # left hand
+      leftMessengerBase:
+        base-inhand-left: Base
+      leftgMessengerBase:
+        clasp-inhand-left: Clasp
+    # right hand
+      rightMessengerBase:
+        base-inhand-right: Base
+      rightgMessengerBase:
+        clasp-inhand-right: Clasp
+    mappedColors:
+      Base: Cyberpunk
+      Sling: Cyberpunk
+      Clasp: CyberpunkNeon
 
 - type: entity
   abstract: true

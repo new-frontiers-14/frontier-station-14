@@ -1,9 +1,41 @@
 # BASE
 - type: entity
   abstract: true
-  parent: [NFBaseNpcLootBackpack, ClothingBackpackMessengerBloodCult]
+  parent: NFBaseNpcLootBackpack
   id: CultistMessengerGiftBox
   name: blood cultist's bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
 
 # wallet (for cash)
 - type: entity

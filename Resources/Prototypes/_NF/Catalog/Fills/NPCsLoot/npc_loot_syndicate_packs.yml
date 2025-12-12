@@ -13,9 +13,41 @@
 
 - type: entity
   abstract: true
-  parent: [NFBaseNpcLootBackpack, ClothingBackpackMessengerSyndicate]
+  parent: NFBaseNpcLootBackpack
   id: NFBaseNpcLootPackSyndicateAlt
   name: syndicate naval operative bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#424242"
+    - state: icon-sling
+      color: "#7f0101"
+    - state: icon-clasp
+      color: "#7f0101"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#424242"
+      - state: sling-equipped-BACKPACK
+        color: "#7f0101"
+      - state: clasp-equipped-BACKPACK
+        color: "#7f0101"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#424242"
+      - state: clasp-inhand-left
+        color: "#7f0101"
+      right:
+      - state: base-inhand-right
+        color: "#424242"
+      - state: clasp-inhand-right
+        color: "#7f0101"
 
 # belt (for ammo and mags)
 - type: entity
