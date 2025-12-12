@@ -1,4 +1,4 @@
-# DEPARTMENTAL (MISSING UPSTREAM)
+#region DEPARTMENTAL (MISSING UPSTREAM)
 - type: entity
   parent: NFClothingDuffel
   id: NFClothingBackpackDuffelJanitor
@@ -113,7 +113,7 @@
       - state: inhand-right-decal-medical-cross
         color: "#d6a033"
 
-# FRONTIER SPECIFIC
+#region FRONTIER SPECIFIC
 - type: entity
   parent: NFClothingDuffel
   id: ClothingBackpackDuffelMercenary
@@ -449,7 +449,7 @@
         color: "#ede984"
       - state: inhand-right-zipper
 
-# COLOR
+#region COLOR
 - type: entity
   parent: NFClothingDuffel
   id: NFClothingBackpackDuffelColorBlack
@@ -921,7 +921,170 @@
         color: "#776756"
       - state: inhand-right-zipper
 
-# RANDOMIZED
+#region wizard
+- type: entity
+  parent:
+  - BaseC3WizardContrabandUnredeemable
+  - NFClothingDuffel
+  - ContrabandClothing
+  id: NFClothingBackpackDuffelWizardBlue
+  name: blue wizard duffel
+  description: A robust duffelbag produced for a magic user favoring blue tones of color.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#41729F"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#D9790E"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#41729F"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#D9790E"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#41729F"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#D9790E"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#41729F"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#D9790E"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingBackpackDuffelWizardBlue
+  id: NFClothingBackpackDuffelWizardRed
+  name: red wizard duffel
+  description: A robust duffelbag produced for a magic user favoring red tones of color.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#FF4500"
+    - state: icon-sling
+      color: "#FF6347"
+    - state: icon-decal-straps
+      color: "#79bcff"
+    - state: icon-handle
+      color: "#FF6347"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#FF4500"
+      - state: equipped-BACKPACK-sling
+        color: "#FF6347"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#79bcff"
+      - state: equipped-BACKPACK-handle
+        color: "#FF6347"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#FF4500"
+      - state: inhand-left-sling
+        color: "#FF6347"
+      - state: inhand-left-decal-straps
+        color: "#79bcff"
+      - state: inhand-left-handle
+        color: "#FF6347"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#FF4500"
+      - state: inhand-right-sling
+        color: "#FF6347"
+      - state: inhand-right-decal-straps
+        color: "#79bcff"
+      - state: inhand-right-handle
+        color: "#FF6347"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingBackpackDuffelWizardBlue
+  id: NFClothingBackpackDuffelWizardPurple
+  name: purple wizard duffel
+  description: A robust duffelbag produced for a magic user favoring purple tones of color.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#876393"
+    - state: icon-sling
+      color: "#73517f"
+    - state: icon-decal-straps
+      color: "#6F9463"
+    - state: icon-handle
+      color: "#73517f"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#876393"
+      - state: equipped-BACKPACK-sling
+        color: "#73517f"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#6F9463"
+      - state: equipped-BACKPACK-handle
+        color: "#73517f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#876393"
+      - state: inhand-left-sling
+        color: "#73517f"
+      - state: inhand-left-decal-straps
+        color: "#6F9463"
+      - state: inhand-left-handle
+        color: "#73517f"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#876393"
+      - state: inhand-right-sling
+        color: "#73517f"
+      - state: inhand-right-decal-straps
+        color: "#6F9463"
+      - state: inhand-right-handle
+        color: "#73517f"
+      - state: inhand-right-zipper
+
+#region RANDOMIZED
 - type: entity
   parent: NFClothingDuffel
   id: NFClothingBackpackDuffelColorRandom
