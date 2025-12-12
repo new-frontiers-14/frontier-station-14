@@ -750,3 +750,41 @@
         doAfter: 0.5
   - node: NFGoblinMadeVehicleDumpster
     entity: NFGoblinMadeVehicleDumpster
+
+#region Glowshrooms
+- type: constructionGraph
+  id: NFGlowshroomStructure
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGlowshroom
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: NFGlowshroomSpores
+        name: construction-graph-component-nf-glowshroom-spores
+        icon:
+          sprite: _NF/Objects/Misc/glowshroom.rsi
+          state: seed
+        doAfter: 5
+  - node: NFGlowshroom
+    entity: NFGlowshroom
+
+- type: constructionGraph
+  id: NFGlowshroomStructureWall
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGlowshroomWall
+      steps:
+      - tag: NFGlowshroomSpores
+        name: construction-graph-component-nf-glowshroom-spores
+        icon:
+          sprite: _NF/Objects/Misc/glowshroom.rsi
+          state: seed
+        doAfter: 5
+  - node: NFGlowshroomWall
+    entity: NFGlowshroomWall
