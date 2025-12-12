@@ -275,6 +275,15 @@
 
 - type: entity
   parent: ProtolatheFlatpack
+  id: MachineMiniAnomalyGeneratorFlatpack
+  name: mini anomaly generator flatpack
+  description: A flatpack used for constructing a mini anomaly generator.
+  components:
+  - type: Flatpack
+    entity: MachineMiniAnomalyGenerator
+
+- type: entity
+  parent: ProtolatheFlatpack
   id: BlueprintLithographFlatpack
   name: blueprint lithograph flatpack
   description: A flatpack used for constructing a blueprint lithograph.
@@ -627,6 +636,17 @@
     entity: MercenaryTechFab
   - type: StaticPrice
     price: 600
+
+- type: entity
+  parent: AmmoTechFabFlatpack
+  id: MercenaryTechFabHackedFlatpack
+  name: hacked mercenary techfab flatpack
+  description: A flatpack used for constructing a hacked mercenary techfab.
+  components:
+  - type: Flatpack
+    entity: MercenaryTechFabHacked
+  - type: StaticPrice
+    price: 800
 
 #region Pirate
 
