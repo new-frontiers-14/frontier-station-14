@@ -114,7 +114,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
     }
 
     /// <summary>
-    /// If possible, takes the first player in the queue and sends him into the game
+    /// If possible, takes the first player in the queue and sends them into the game
     /// </summary>
     /// <param name="isDisconnect">Is method called on disconnect event</param>
     /// <param name="connectedTime">Session connected time for histogram metrics</param>
