@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
-using Content.Shared._Harmony.Common.JoinQueue;
+using Content.Shared._Harmony.Common.JoinQueue; // Harmony Queue
 using Content.Shared.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
