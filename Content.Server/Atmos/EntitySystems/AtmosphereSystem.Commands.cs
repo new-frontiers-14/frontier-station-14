@@ -227,7 +227,7 @@ public sealed partial class AtmosphereSystem
 
         if (enable)
         {
-            AddComp<AtmosEnabledMapComponent>(mapUid.Value);
+            EnsureComp<AtmosEnabledMapComponent>(mapUid.Value);
         }
         else
         {
