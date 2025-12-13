@@ -112,6 +112,19 @@
         damage:
           types:
             Poison: -0.5
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Ethanol # Frontier
+          min: 1 # Frontier
+        reagent: Ethylredoxrazine # Frontier
+        amount: 4 # Frontier
+      - !type:ChemCleanBloodstream # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Ethanol # Frontier
+          min: 1 # Frontier
+        cleanseRate: 3 # Frontier
 
 - type: reagent
   id: Arithrazine
