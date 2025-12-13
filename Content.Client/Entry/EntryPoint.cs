@@ -1,4 +1,4 @@
-using Content.Client._Harmony.JoinQueue;
+using Content.Client._Harmony.JoinQueue; // Harmony Queue
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
