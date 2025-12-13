@@ -19,7 +19,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-
 using Content.Server._NF.Auth; // Frontier
 using Content.Shared._Harmony.CCVars;
 
