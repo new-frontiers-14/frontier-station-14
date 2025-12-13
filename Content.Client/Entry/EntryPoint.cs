@@ -24,7 +24,7 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared._Harmony.Common.JoinQueue;
+using Content.Shared._Harmony.Common.JoinQueue; // Harmony Queue
 using Content.Shared.Ame.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
