@@ -1,6 +1,58 @@
 ﻿- type: inventoryTemplate
   id: hostilewizard
   slots:
+# region "not strippable", "hidden"
+# stripTime seems to have a hardcoded maximum value, preventing items in a slot from being completely unlootable via setting a long time
+# By placing the wallet slot above the slots we want to protect, items in those covered slots become non-interactable
+    - name: head
+      stripTime: 999999
+      slotTexture: head
+      slotFlags: HEAD
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Head
+
+    - name: shoes
+      slotTexture: shoes
+      slotFlags: FEET
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Shoes
+
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Jumpsuit
+
+    - name: gloves
+      stripTime: 999999
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+
+    - name: eyes
+      slotTexture: glasses
+      slotFlags: EYES
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Eyes
+
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Ears
+
+  # region lootable, visible
     - name: pocket1
       slotTexture: pocket
       fullTextureName: template_small
@@ -83,51 +135,11 @@
       strippingWindowPos: 2,2
       displayName: Suit
 
-# "Not strippable", "hidden"
-    - name: shoes
-      slotTexture: shoes
-      slotFlags: FEET
-      stripTime: 999999
-      uiWindowPos: 1,1
+    - name: wallet
+      stripTime: 1.5
+      stripHidden: false
       strippingWindowPos: 2,2
-      displayName: Shoes
-
-    - name: jumpsuit
-      slotTexture: uniform
-      slotFlags: INNERCLOTHING
-      stripTime: 999999
+      slotTexture: wallet
+      slotFlags: WALLET
       uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Jumpsuit
-
-    - name: gloves
-      stripTime: 999999
-      slotTexture: gloves
-      slotFlags: GLOVES
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Gloves
-
-    - name: eyes
-      slotTexture: glasses
-      slotFlags: EYES
-      stripTime: 999999
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Eyes
-
-    - name: ears
-      slotTexture: ears
-      slotFlags: EARS
-      stripTime: 999999
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Ears
-
-    - name: head
-      stripTime: 999999
-      slotTexture: head
-      slotFlags: HEAD
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Head
+      displayName: Wallet

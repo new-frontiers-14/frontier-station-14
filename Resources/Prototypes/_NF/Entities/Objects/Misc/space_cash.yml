@@ -176,6 +176,34 @@
 - type: entity
   save: false
   abstract: true
+  id: BaseSpaceCashRandom3500To5000
+  components:
+  - type: RandomStackCount
+    min: 3500
+    max: 5000
+
+- type: entity
+  parent: [ BaseSpaceCashRandom3500To5000, SpaceCash ]
+  id: SpaceCashRandom3500To5000
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  save: false
+  abstract: true
+  id: BaseSpaceCashRandom4000To5500
+  components:
+  - type: RandomStackCount
+    min: 4000
+    max: 5500
+
+- type: entity
+  parent: [ BaseSpaceCashRandom4000To5500, SpaceCash ]
+  id: SpaceCashRandom4000To5500
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  save: false
+  abstract: true
   id: BaseSpaceCashRandom2500To7500
   components:
   - type: RandomStackCount

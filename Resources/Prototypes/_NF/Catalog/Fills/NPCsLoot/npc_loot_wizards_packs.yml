@@ -1,8 +1,8 @@
 #region base
 - type: entity
   abstract: true
-  parent: PunkMessengerGiftBox
-  id: NFBlueWizardGiftBox
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackWizard
   categories: [ HideSpawnMenu ]
   name: blue wizard bundle
   components:
@@ -40,7 +40,7 @@
 
 - type: entity
   abstract: true
-  parent: NFBlueWizardGiftBox
+  parent: NFBaseNpcLootPackWizard
   id: NFRedWizardGiftBox
   categories: [ HideSpawnMenu ]
   name: red wizard bundle
@@ -79,7 +79,7 @@
 
 - type: entity
   abstract: true
-  parent: NFBlueWizardGiftBox
+  parent: NFBaseNpcLootPackWizard
   id: NFPurpleWizardGiftBox
   categories: [ HideSpawnMenu ]
   name: purple wizard bundle
@@ -116,7 +116,28 @@
       - state: clasp-inhand-right
         color: "#6F9463"
 
+# wallet (for cash)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletWizard
+  name: wizard's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-color
+    color: "#b43a9a"
+
 #region loot T1
+- type: entity
+  parent: NFBaseNpcLootWalletWizard
+  id: ClothingWalletWizardT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom3000To4000
+
 - type: entity
   abstract: true
   id: NFWizardGiftBoxApprentice
@@ -124,17 +145,6 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 2500 to 5000 spesos
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.35
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
-    - id: SpaceCash5000
-      orGroup: SpaceCash
-      prob: 0.25
     # MagicItems
     - id: SpawnRandomSpellScrollWizard
       orGroup: MagicItems
@@ -148,8 +158,8 @@
       prob: 0.05
 
 - type: entity
-  parent: [ NFWizardGiftBoxApprentice, NFBlueWizardGiftBox ]
-  id: NFBlueWizardGiftBoxApprentice
+  parent: [ NFWizardGiftBoxApprentice, NFBaseNpcLootPackWizard ]
+  id: NFBaseNpcLootPackWizardApprentice
   name: blue wizard gear bundle
   categories: [ HideSpawnMenu ]
 
@@ -167,23 +177,21 @@
 
 #region loot T2
 - type: entity
+  parent: NFBaseNpcLootWalletWizard
+  id: ClothingWalletWizardT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom3500To5000
+
+- type: entity
   abstract: true
   id: NFWizardGiftBoxAdept
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 2500 to 5000 spesos
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.35
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
-    - id: SpaceCash5000
-      orGroup: SpaceCash
-      prob: 0.25
     # MagicItems
     - id: SpawnRandomSpellScrollWizard
       orGroup: MagicItems
@@ -200,8 +208,8 @@
       prob: 0.1
 
 - type: entity
-  parent: [ NFWizardGiftBoxAdept, NFBlueWizardGiftBox ]
-  id: NFBlueWizardGiftBoxAdept
+  parent: [ NFWizardGiftBoxAdept, NFBaseNpcLootPackWizard ]
+  id: NFBaseNpcLootPackWizardAdept
   name: blue wizard gear bundle
   categories: [ HideSpawnMenu ]
 
@@ -219,23 +227,21 @@
 
 #region loot T3
 - type: entity
+  parent: NFBaseNpcLootWalletWizard
+  id: ClothingWalletWizardT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom4000To5500
+
+- type: entity
   abstract: true
   id: NFWizardGiftBoxMaster
   categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
-    # SpaceCash - from 2500 to 5000 spesos
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.35
-    - id: SpaceCash2500
-      orGroup: SpaceCash
-      prob: 0.4
-      amount: 2
-    - id: SpaceCash5000
-      orGroup: SpaceCash
-      prob: 0.25
     # MagicItems
     - id: SpawnRandomSpellScrollWizard
       orGroup: MagicItems
@@ -252,8 +258,8 @@
       prob: 0.15
 
 - type: entity
-  parent: [ NFWizardGiftBoxMaster, NFBlueWizardGiftBox ]
-  id: NFBlueWizardGiftBoxMaster
+  parent: [ NFWizardGiftBoxMaster, NFBaseNpcLootPackWizard ]
+  id: NFBaseNpcLootPackWizardMaster
   name: blue wizard gear bundle
   categories: [ HideSpawnMenu ]
 
