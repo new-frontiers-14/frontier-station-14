@@ -5,3 +5,6 @@ recipes-wood-secret-door-name = wood secret door
 
 recipes-computer-tabletop-name = computer frame (tabletop)
 recipes-computer-wallmount-name = computer frame (wallmount)
+
+recipes-glowshrooms-floor-name = glowshrooms (floor)
+recipes-glowshrooms-wallmount-name = glowshrooms (wallmount)

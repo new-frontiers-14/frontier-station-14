@@ -17,6 +17,8 @@ seeds-everyspice-name = everyspice
 seeds-everyspice-display-name = everyspice plants
 seeds-monkanana-name = monkanana
 seeds-monkanana-display-name = monkanana trees
+seeds-glowshroom-nf-name = glowshroom
+seeds-glowshroom-nf-display-name = glowshroom
 
 # Should be in seed-component
 botany-seed-jar-name = jar of {$seedName} {$seedNoun}
