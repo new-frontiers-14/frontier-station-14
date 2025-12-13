@@ -1,0 +1,666 @@
+# region BASE
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackSyndicate
+  name: syndicate naval operative bundle
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-ammo
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackSyndicateAlt
+  name: syndicate naval operative bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#424242"
+    - state: icon-sling
+      color: "#7f0101"
+    - state: icon-clasp
+      color: "#7f0101"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#424242"
+      - state: sling-equipped-BACKPACK
+        color: "#7f0101"
+      - state: clasp-equipped-BACKPACK
+        color: "#7f0101"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#424242"
+      - state: clasp-inhand-left
+        color: "#7f0101"
+      right:
+      - state: base-inhand-right
+        color: "#424242"
+      - state: clasp-inhand-right
+        color: "#7f0101"
+
+# belt (for ammo and mags)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBelt
+  id: NFBaseNpcLootBeltSyndicate
+  name: syndicate naval operative ammo pack
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBelt
+  id: NFBaseNpcLootBeltSyndicateAlt
+  name: syndicate naval operative ammo pack
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/syndieholster.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/syndieholster.rsi
+
+# wallet (for cash)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletSyndicate
+  name: syndicate naval operative wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-color
+    color: "#7f0101"
+
+# region Tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletSyndicate
+  id: ClothingWalletSyndicateT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2000To3000
+
+# region Deckhand
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT1Deckhand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistol
+      orGroup: Ammo
+      prob: 0.6
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolIncendiary
+      orGroup: Ammo
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolUranium
+      orGroup: Ammo
+      prob: 0.1
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT1Deckhand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsPistols
+      orGroup: Weapons
+      prob: 0.5
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      orGroup: Armor
+      prob: 0.5
+    # Items
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+
+# region Saboteur
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT1Saboteur
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistol
+      orGroup: Ammo
+      prob: 0.1
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolIncendiary
+      orGroup: Ammo
+      prob: 0.1
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolUranium
+      orGroup: Ammo
+      prob: 0.1
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolEmp
+      orGroup: Ammo
+      prob: 0.7
+
+- type: entity # TODO: make a something unique for the saboteur backpack
+  parent: ClothingBackpackSyndicateT1Deckhand
+  id: ClothingBackpackSyndicateT1Saboteur
+  categories: [ HideSpawnMenu ]
+
+# region Tier 2
+- type: entity
+  parent: NFBaseNpcLootWalletSyndicate
+  id: ClothingWalletSyndicateT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2500To3500
+
+# region Captain
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicateAlt
+  id: ClothingBeltSyndicateLootRangedT2Captain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistol
+      orGroup: Ammo
+      prob: 0.6
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolIncendiary
+      orGroup: Ammo
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolUranium
+      orGroup: Ammo
+      prob: 0.1
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicateAlt
+  id: ClothingBackpackSyndicateT2Captain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsPistols
+      orGroup: Weapons
+      prob: 0.5
+    # Armor
+    - id: ClothingOuterCoatSyndieCapArmored
+      orGroup: Armor
+      prob: 0.7
+    - id: ClothingUniformJumpsuitSyndieFormalNF
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+
+# region Engineer
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT2Engineer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: SpawnDungeonLootNpcSyndicateAmmoShotgun
+      orGroup: Ammo
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT2Engineer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsShotguns
+      orGroup: Weapons
+      prob: 0.5
+    # Armor
+    - id: ClothingOuterArmorBasic
+      orGroup: Armor
+      prob: 0.7
+    - id: ClothingUniformJumpsuitChiefEngineerSyndieNF
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: Items
+      amount: 2
+      prob: 0.2
+    - id: SpawnDungeonLootCircuitBoardEngi
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootToolsAdvancedEngineering
+      orGroup: Items
+      prob: 0.4
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.1
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.05
+
+# region Medic
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT2Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/emt.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Topicals
+    - id: SpawnDungeonClutterMedsFull
+      orGroup: Topicals
+      prob: 0.4
+    - id: SpawnDungeonClutterMedsSingle
+      orGroup: Topicals
+      prob: 0.6
+    # Items
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.7
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT2Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    # Armor
+    - id: ClothingOuterCoatAMG
+      orGroup: Armor
+      prob: 0.7
+    - id: ClothingUniformJumpsuitParamedicSyndieNF
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: HypoMiniLimitedEdition
+      orGroup: Items
+    - id: BruteAutoInjector
+      orGroup: Items
+    - id: AntiPoisonMedipen
+      orGroup: Items
+    - id: MedicatedSuture
+      orGroup: Items
+    - id: Stimpack
+      orGroup: Items
+
+# region Second Officer
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT2SecondOfficer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponEnergyPistolLaserAdvancedExpedition
+      orGroup: Weapons
+      prob: 0.7
+    - id: NFWeaponEnergyPistolLaserAntiqueExpedition
+      orGroup: Weapons
+      prob: 0.25
+    - id: NFWeaponEnergySubMachineGunDeltaVExpedition
+      orGroup: Weapons
+      prob: 0.05
+    # Armor
+    - id: ClothingOuterArmorBasic
+      orGroup: Armor
+      prob: 0.7
+    - id: ClothingUniformJumpsuitRecruitSyndieNF
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 4
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.05
+
+# region Tier 3
+- type: entity
+  parent: NFBaseNpcLootWalletSyndicate
+  id: ClothingWalletSyndicateT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom3000To4000
+
+# region Operative
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT3Operative
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistol
+      orGroup: Ammo
+      prob: 0.6
+      amount: 2
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolIncendiary
+      orGroup: Ammo
+      prob: 0.3
+      amount: 2
+    - id: SpawnDungeonLootNpcSyndicateAmmoPistolUranium
+      orGroup: Ammo
+      prob: 0.1
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT3Operative
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsSmgs
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    - id: ClothingOuterArmorBulletproof
+      orGroup: Armor
+      prob: 0.7
+    - id: ClothingUniformJumpsuitOperative
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 4
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
+
+# region Grenadier
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicate
+  id: ClothingBeltSyndicateLootRangedT3Grenadier
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: ExGrenade
+      orGroup: Ammo
+      prob: 0.6
+      amount: 5
+    - id: ExGrenade
+      orGroup: Ammo
+      prob: 0.3
+      amount: 3
+    - id: ExGrenade
+      orGroup: Ammo
+      prob: 0.1
+      amount: 1
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT3Grenadier
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: WeaponCaseLongLauncherChinaLake
+      orGroup: Weapons
+      prob: 0.15
+    - id: WeaponCaseLongLauncherRocketExpedition
+      orGroup: Weapons
+      prob: 0.1
+    # Armor
+    - id: ClothingOuterSuitBombSyndie
+      orGroup: Armor
+      prob: 0.6
+    - id: ClothingHeadHelmetBombSuitSyndie
+      orGroup: Armor
+      prob: 0.3
+    - id: ClothingUniformJumpsuitPyjamaSyndicateRed
+      orGroup: Armor
+      prob: 0.1
+    # Items
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 4
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
+
+# region Chemwarrior
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT3Chemwarrior
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsPistolsChemical
+      orGroup: Weapons
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterBioArmoredSyndicate
+      orGroup: Armor
+      prob: 0.6
+    - id: ClothingHeadHatHoodBioArmoredSyndicate
+      orGroup: Armor
+      prob: 0.3
+    - id: ClothingUniformJumpsuitPyjamaSyndicateRed
+      orGroup: Armor
+      prob: 0.1
+    # Items
+    - id: ClothingBackpackWaterTank
+      orGroup: Items
+      amount: 1
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 4
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicate
+  id: ClothingBackpackSyndicateT3ChemwarriorAlt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsPistolsChemical
+      orGroup: Weapons
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterWinterSyndie
+      orGroup: Armor
+      prob: 0.6
+    - id: ClothingUniformJumpsuitPyjamaSyndicateRed
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: ClothingBackpackWaterTank
+      orGroup: Items
+      amount: 1
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 4
+      prob: 0.3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      amount: 2
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.1
+
+# region Tier 4 (Boss)
+- type: entity
+  parent: NFBaseNpcLootWalletSyndicate
+  id: ClothingWalletSyndicateT4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 3500 to 9500
+    - id: SpaceCashRandom3500To9500
+      orGroup: SpaceCash
+    # BossLoot
+    - id: SpawnDungeonLootNpcCoins # from 75 to ~5000 spesos
+      orGroup: BossLoot
+      prob: 0.3
+    - id: SpawnDungeonLootNpcJewelry # from 10 to 5000 spesos
+      orGroup: BossLoot
+      prob: 0.3
+
+# region Commander
+- type: entity
+  parent: NFBaseNpcLootBeltSyndicateAlt
+  id: ClothingBeltSyndicateLootRangedT4Commander
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: SpawnDungeonLootNpcSyndicateAmmoRifleIncendiary
+      orGroup: Ammo
+      prob: 0.6
+      amount: 2
+    - id: SpawnDungeonLootNpcSyndicateAmmoRifleUranium
+      orGroup: Ammo
+      prob: 0.4
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackSyndicateAlt
+  id: ClothingBackpackSyndicateT4Commander
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcSyndicateWeaponsRifles
+      orGroup: Weapons
+      prob: 0.7
+    # Armor
+    - id: ClothingOuterArmorBulletproof
+      orGroup: Armor
+      prob: 0.7
+    - id: ClothingUniformJumpsuitOperative
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: Items
+      prob: 0.3
+    # BossLoot
+    - id: SpawnDungeonLootGunT3
+      orGroup: BossLoot
+      prob: 0.25
+    - id: SpawnDungeonLootNpcBossLootShared
+      orGroup: BossLoot
+      prob: 0.2
+    - id: SpawnDungeonLootNpcMercenariesBlueprints
+      orGroup: BossLoot
+      prob: 0.45
+    - id: SpawnDungeonLootNpcSyndicateFluffItems
+      orGroup: BossLoot
+      prob: 0.05
+    - id: SpawnDungeonLootNpcSyndicateBlueprints
+      orGroup: BossLoot
+      prob: 0.3
