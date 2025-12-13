@@ -125,6 +125,8 @@
           type: JukeboxBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -141,6 +143,21 @@
         layer:
         - MachineLayer
         density: 200
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,5
+    openOnActivate: false
+    whitelist:
+      components:
+      - JukeboxContainer
+  - type: StorageFill
+    contents:
+    - id: WizardRecord
+
 
 #region Inf. canisters
 - type: entity
