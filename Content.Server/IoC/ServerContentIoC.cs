@@ -1,6 +1,6 @@
 
 using Content.Server._NF.Auth;
-using Content.Server._Harmony.JoinQueue;
+using Content.Server._Harmony.JoinQueue; // Harmony Queue
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
