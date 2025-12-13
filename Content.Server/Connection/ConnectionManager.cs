@@ -20,7 +20,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._NF.Auth; // Frontier
-using Content.Shared._Harmony.CCVars;
+using Content.Shared._Harmony.CCVars; // Harmony Queue
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
