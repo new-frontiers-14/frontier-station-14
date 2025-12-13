@@ -62,25 +62,24 @@
   color: "#b9dcae"
   metabolisms:
     Food:
+      metabolismRate: 0.2
       effects:
       - !type:SatiateHunger
+        #factor: 0.8
+      - !type:SatiateThirst
+        conditions:
+        - !type:ReagentThreshold
+          reagent: NFSnackNutriment
+          min: 5
+        factor: -0.2
       - !type:PopupMessage
         conditions:
         - !type:ReagentThreshold
-          min: 12
+          min: 10
         type: Local
         visualType: Medium
-        messages: [ "generic-reagent-effect-nauseous" ]
-        probability: 0.3
-      - !type:ChemVomit
-        conditions:
-        - !type:ReagentThreshold
-          min: 12
-        probability: 0.1
-      - !type:Drunk
-        conditions:
-        - !type:ReagentThreshold
-          min: 12
+        messages: [ "generic-reagent-effect-satiated" ]
+        probability: 0.05
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 1.5
