@@ -1,4 +1,3 @@
-
 using Content.Server._NF.Auth;
 using Content.Server._Harmony.JoinQueue; // Harmony Queue
 using Content.Server.Administration;
