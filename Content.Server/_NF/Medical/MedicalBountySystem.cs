@@ -3,7 +3,7 @@ using System.Linq;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Medical.Components;
 using Content.Server.Administration.Logs;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
@@ -123,7 +123,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
             Solution soln = new Solution();
             var reagentQuantity = _random.Next(reagentValue.MinQuantity, reagentValue.MaxQuantity + 1);
             soln.AddReagent(reagentType, reagentQuantity);
-            if (_bloodstream.TryAddToChemicals(entity, soln, bloodstream))
+            if (_bloodstream.TryAddToChemicals(entity, soln))
                 bountyValueAccum += reagentQuantity * reagentValue.ValuePerPoint;
         }
 

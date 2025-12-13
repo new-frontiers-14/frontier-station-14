@@ -43,12 +43,12 @@ guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
 guide-entry-shipyard-adder = Adder
+guide-entry-shipyard-aegis = Aegis
 guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-baroness = Baroness
-guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
@@ -63,6 +63,7 @@ guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-courier = Courier
 guide-entry-shipyard-construct = Construct
 guide-entry-shipyard-copperhead = Copperhead
+guide-entry-shipyard-crescent = Crescent
 guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-dragoon = Dragoon
 guide-entry-shipyard-druid = Druid

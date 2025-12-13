@@ -1,15 +1,14 @@
-using Content.Shared.Storage.Components; // Frontier: Server<Shared
-using Content.Shared.Examine;
-using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Storage.Components;
 using Content.Shared.Item.ItemToggle; // DeltaV
 using Content.Shared.Whitelist;
-using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Item; // Frontier
 using Content.Shared.Verbs; // Frontier
+using Content.Shared.Examine; // Frontier
+using Content.Shared.Hands.Components; // Frontier
 
 namespace Content.Shared.Storage.EntitySystems;
 
