@@ -182,3 +182,25 @@
         Piercing: 10
   - type: ThrowingAngle
     angularVelocity: true # spins
+
+- type: entity
+  parent: BaseRecord
+  id: WizardRecord
+  name: magic record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells ethereal.
+  components:
+  - type: Sprite
+    layers:
+    - state: wizard
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-05
+      color: "lightblue"
+      scale: 0.32, 0.32
+      shader: unshaded
+  - type: JukeboxContainer
+    tracks:
+    - thewizard
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+  - type: RgbLightController
