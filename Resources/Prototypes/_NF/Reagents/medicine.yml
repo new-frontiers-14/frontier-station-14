@@ -49,7 +49,6 @@
           max: 213.0
         amount: -1.5
 
-
 - type: reagent
   id: Caffeine
   name: reagent-name-caffeine
@@ -62,15 +61,33 @@
       metabolismRate: 0.3 # rough aim for a 5 minute metabolism for a 30u cuppa
       effects:
       - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          max: 60
         walkSpeedModifier: 1.02
         sprintSpeedModifier: 1.02
-      - !type:AdjustReagent
+      - !type:MovespeedModifier
         conditions:
         - !type:ReagentThreshold
           reagent: Caffeine
           min: 60
-        reagent: Dacafenol
-        amount: 1
+        walkSpeedModifier: .90
+        sprintSpeedModifier: .90
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          min: 60
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: ["caffeine-effect-jitters", "caffeine-effect-heart-pounds"]
+        probability: 0.05
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          min: 60
 
 #impstation
 - type: reagent

@@ -20,6 +20,10 @@
         reagent: Theobromine
         amount: 0.05
       - !type:AdjustReagent # Frontier
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          max: 60
         reagent: Caffeine # Frontier
         amount: 1 # Frontier
   metamorphicSprite:
