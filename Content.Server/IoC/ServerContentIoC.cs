@@ -26,7 +26,7 @@ using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
 using Content.Server.Worldgen.Tools;
-using Content.Shared._Harmony.Common.JoinQueue;
+using Content.Shared._Harmony.Common.JoinQueue; // Harmony Queue
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
