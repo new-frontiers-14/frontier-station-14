@@ -1,0 +1,185 @@
+# region base
+- type: entity
+  abstract: true
+  parent: ClothingNeckBase
+  id: NFBaseClothingNeckHolster
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+  - type: Clothing
+  - type: ItemSlots
+    slots:
+      weapon:
+        priority: 4
+        name: clothing-neck-sidearm
+        whitelist:
+          tags:
+          - Sidearm
+      magazine:
+        priority: 3
+        name: clothing-neck-magazine
+        whitelist:
+          tags:
+          - NFMagazinePistol35
+          - NFMagazinePistol45
+          - NFMagazineHighCapacityPistol35
+          - NFSpeedLoaderPistol35
+          - NFSpeedLoaderPistol45
+          - SpeedLoaderRifleHeavy
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      icon-gun:
+        whitelist:
+          tags:
+          - Sidearm
+      icon-magazine:
+        whitelist:
+          tags:
+          - NFMagazinePistol35
+          - NFMagazinePistol45
+          - NFMagazineHighCapacityPistol35
+          - NFSpeedLoaderPistol35
+          - NFSpeedLoaderPistol45
+          - SpeedLoaderRifleHeavy
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      weapon: !type:ContainerSlot {}
+      magazine: !type:ContainerSlot {}
+
+- type: entity
+  abstract: true
+  parent: ClothingNeckBase
+  id: NFBaseClothingNeckSheath
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+  - type: Clothing
+  - type: ItemSlots
+    slots:
+      weapon:
+        priority: 4
+        name: clothing-neck-dagger
+        whitelist:
+          tags:
+          - Knife
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      icon-dagger:
+        whitelist:
+          tags:
+          - Knife
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      weapon: !type:ContainerSlot {}
+
+# region thigh holster
+- type: entity
+  parent: NFBaseClothingNeckHolster
+  id: NFBaseClothingNeckHolsterThigh
+  name: drop leg holster
+  description: A holster designed to be strapped to the thigh for easy access to a sidearm. Provides additional pouch for a magazine.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/holster_thigh.rsi
+    layers:
+    - state: icon
+      color: "#515151"
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/holster_thigh.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#515151"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#515151"
+      right:
+      - state: inhand-right
+        color: "#515151"
+  - type: ItemMapper
+    sprite: _NF/Clothing/Neck/Misc/holster_thigh.rsi
+
+- type: entity
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseClothingNeckHolsterThigh ]
+  id: NFBaseClothingNeckHolsterThighNfsd
+  name: nfsd drop leg holster
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#493926"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#493926"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#493926"
+      right:
+      - state: inhand-right
+        color: "#493926"
+
+# region thigh sheath
+- type: entity
+  parent: NFBaseClothingNeckSheath
+  id: NFBaseClothingNeckSheathThigh
+  name: drop leg sheath
+  description: A sheath designed to be strapped to the thigh for easy access to a dagger.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/holster_thigh_sheath.rsi
+    layers:
+    - state: icon
+      color: "#515151"
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/holster_thigh_sheath.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#515151"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#515151"
+      right:
+      - state: inhand-right
+        color: "#515151"
+  - type: ItemMapper
+    sprite: _NF/Clothing/Neck/Misc/holster_thigh_sheath.rsi
+
+- type: entity
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseClothingNeckSheathThigh ]
+  id: NFBaseClothingNeckSheathThighNfsd
+  name: nfsd drop leg sheath
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#493926"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#493926"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#493926"
+      right:
+      - state: inhand-right
+        color: "#493926"
