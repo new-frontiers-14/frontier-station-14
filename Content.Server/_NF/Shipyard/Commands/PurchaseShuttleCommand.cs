@@ -1,7 +1,10 @@
+using System.Linq;
 using Content.Server.Administration;
 using Content.Server._NF.Shipyard.Systems;
+using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
+using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Shipyard.Commands;
@@ -13,6 +16,8 @@ namespace Content.Server._NF.Shipyard.Commands;
 public sealed class PurchaseShuttleCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntitySystemManager _entityManager = default!;
+    [Dependency] private readonly IResourceManager _resourceManager = default!;
+
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("shipyard-commands-purchase-desc");
     public string Help => $"{Command} <station ID> <gridfile path>";
@@ -35,9 +40,19 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         switch (args.Length)
         {
             case 1:
-                return CompletionResult.FromHint(Loc.GetString("station-id"));
+            {
+                var stationSystem = _entityManager.GetEntitySystem<StationSystem>();
+                var opts = stationSystem.GetStationNames()
+                    .Select(station => new CompletionOption(station.Entity.ToString(), station.Name));
+                return CompletionResult.FromHintOptions(opts, Loc.GetString("station-id"));
+            }
             case 2:
-                return CompletionResult.FromHint(Loc.GetString("cmd-hint-savemap-path"));
+            {
+                var prefix = args[1];
+                var opts = CompletionHelper.UserFilePath(prefix, _resourceManager.UserData)
+                    .Concat(CompletionHelper.ContentFilePath(prefix, _resourceManager));
+                return CompletionResult.FromHintOptions(opts, Loc.GetString("cmd-hint-savemap-path"));
+            }
         }
 
         return CompletionResult.Empty;
