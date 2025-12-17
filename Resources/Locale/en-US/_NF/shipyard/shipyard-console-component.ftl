@@ -7,6 +7,7 @@ shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
 shipyard-console-leaving-secret = Unregistered vessel detected leaving your sector.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
+shipyard-commands-purchase-atmos-hint = atmosphere prototype
 shipyard-console-no-idcard = Insert ID card.
 shipyard-console-already-deeded = ID card already has a Deed.
 shipyard-console-invalid-station = Not a valid station.
