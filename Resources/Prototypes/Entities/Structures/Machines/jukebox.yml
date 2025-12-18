@@ -31,6 +31,8 @@
           type: JukeboxBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+        enum.StorageUiKey.Key: # Frontier
+          type: StorageBoundUserInterface # Frontier
   - type: WiresPanel
   - type: Wires
     boardName: wires-board-name-jukebox
@@ -64,3 +66,30 @@
         layer:
         - MachineLayer
         density: 200
+  # Frontier: Music Discs
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      storagebase: !type:Container
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,5
+    openOnActivate: false
+    whitelist:
+      components:
+      - JukeboxContainer
+  - type: StorageFill
+    contents:
+    - id: PirateRecord
+    - id: WesternRecord
+    - id: JazzRecord
+    - id: PunkRecord
+    - id: CorporateRecord
+    - id: DeltaRecord
+    - id: SpaceRecord
+  - type: EmptyOnMachineDeconstruct
+    containers:
+      - storagebase
+  # End Frontier: Music Discs
