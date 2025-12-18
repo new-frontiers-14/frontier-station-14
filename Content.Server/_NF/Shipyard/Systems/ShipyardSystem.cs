@@ -127,7 +127,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
-    /// <param name="atmos">An atmosphere prototype to fill the shuttle with. Will use the grid-defined atmosphere if <c>null</c>.</param>
+    /// <param name="atmos">
+    ///     An atmosphere prototype to fill the shuttle with. Will use the grid-defined atmosphere if <c>null</c>.
+    ///     Ignored unless <see cref="NFCCVars.ShipyardCustomAtmos"/> is <c>true</c>.
+    /// </param>
     public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid, ShuttleAtmospherePrototype? atmos = null)
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
@@ -149,7 +152,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return false;
         }
 
-        if (atmos != null)
+        if (_configManager.GetCVar(NFCCVars.ShipyardCustomAtmos) && atmos != null)
         {
             SetShuttleAtmosphere(shuttleGrid.Value, atmos);
         }

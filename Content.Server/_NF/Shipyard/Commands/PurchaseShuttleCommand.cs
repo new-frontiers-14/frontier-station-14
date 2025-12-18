@@ -2,8 +2,10 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared.Administration;
+using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
@@ -20,10 +22,11 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
     [Dependency] private readonly IEntitySystemManager _entityManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("shipyard-commands-purchase-desc");
-    public string Help => $"{Command} <station ID> <gridfile path> [atmosphere ID]";
+    public string Help => IsCustomAtmosEnabled ? $"{Command} <station ID> <gridfile path> [atmosphere ID]" : $"{Command} <station ID> <gridfile path>";
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (!int.TryParse(args[0], out var stationId))
@@ -34,7 +37,7 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
 
         var shuttlePath = args[1];
         ShuttleAtmospherePrototype? atmosphere = null;
-        if (args.Length > 2)
+        if (IsCustomAtmosEnabled && args.Length > 2)
         {
             if (!_prototypeManager.TryIndex(args[2], out atmosphere))
             {
@@ -68,6 +71,10 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
             }
             case 3:
             {
+                if (!IsCustomAtmosEnabled)
+                {
+                    return CompletionResult.Empty;
+                }
                 var opts = _prototypeManager.GetInstances<ShuttleAtmospherePrototype>()
                     .Select(proto => new CompletionOption(proto.Value.ID, proto.Value.Name));
                 return CompletionResult.FromHintOptions(opts, Loc.GetString("shipyard-commands-purchase-atmos-hint"));
@@ -76,4 +83,6 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
 
         return CompletionResult.Empty;
     }
+
+    private bool IsCustomAtmosEnabled => _configurationManager.GetCVar(NFCCVars.ShipyardCustomAtmos);
 }
