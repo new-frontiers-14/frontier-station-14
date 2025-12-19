@@ -39,6 +39,7 @@ using Content.Shared.Access;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Forensics.Components;
 using Robust.Server.Player;
 using Robust.Shared.Timing;
@@ -108,9 +109,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!_prototypeManager.TryIndex<VesselPrototype>(args.Vessel, out var vessel))
+        if (!_prototypeManager.TryIndex(args.Vessel, out var vessel))
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
+        ShuttleAtmospherePrototype? atmosphere = null;
+        if (args.Atmosphere != null && !_prototypeManager.TryIndex(args.Atmosphere, out atmosphere))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-invalid-atmosphere", ("atmosphere", args.Atmosphere)));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
@@ -174,7 +183,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
+        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut, atmosphere))
         {
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
@@ -280,10 +289,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             SendPurchaseMessage(shipyardConsoleUid, player, name, secretChannel, secret: true);
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
+        var atmosphereLog = atmosphere != null ? $" with atmosphere {atmosphere.ID}" : "";
         if (voucherUsed)
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(shipyardConsoleUid)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)}{atmosphereLog} with a voucher via {ToPrettyString(shipyardConsoleUid)}");
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(shipyardConsoleUid)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)}{atmosphereLog} for {vessel.Price} credits via {ToPrettyString(shipyardConsoleUid)}");
 
         // Adding the record to the shuttle records system makes them eligible to be copied.
         // Can be set on the component of the shipyard.
@@ -766,6 +776,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return (available, unavailable);
     }
 
+    private List<ProtoId<ShuttleAtmospherePrototype>>? GetAvailableAtmospheres()
+    {
+        if (!_configManager.GetCVar(NFCCVars.ShipyardCustomAtmos))
+            return null;
+        return _prototypeManager.EnumeratePrototypes<ShuttleAtmospherePrototype>()
+            .Select(proto => new ProtoId<ShuttleAtmospherePrototype>(proto.ID))
+            .ToList();
+    }
+
     private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey, bool freeListings)
     {
         var newState = new ShipyardConsoleInterfaceState(
@@ -778,7 +797,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             GetAvailableShuttles(uid, uiKey, targetId: targetId),
             uiKey.ToString(),
             freeListings,
-            CalculateSellRate(uid));
+            CalculateSellRate(uid),
+            GetAvailableAtmospheres());
 
         _ui.SetUiState(uid, uiKey, newState);
     }
