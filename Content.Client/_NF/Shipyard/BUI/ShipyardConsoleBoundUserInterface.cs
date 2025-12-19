@@ -2,8 +2,10 @@ using Content.Client._NF.Shipyard.UI;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Events;
+using Content.Shared._NF.Shipyard.Prototypes;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._NF.Shipyard.BUI;
 
@@ -43,7 +45,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         }
     }
 
-    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId)
+    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId, List<ProtoId<ShuttleAtmospherePrototype>>? atmospheres)
     {
         if (_menu == null)
             return;
@@ -52,6 +54,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         _menu.PopulateCategories(availablePrototypes, unavailablePrototypes);
         _menu.PopulateClasses(availablePrototypes, unavailablePrototypes);
         _menu.PopulateEngines(availablePrototypes, unavailablePrototypes);
+        _menu.PopulateAtmos(atmospheres);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -63,20 +66,19 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 
         Balance = cState.Balance;
         ShipSellValue = cState.ShipSellValue;
-        var castState = (ShipyardConsoleInterfaceState) state;
-        Populate(castState.ShipyardPrototypes.available, castState.ShipyardPrototypes.unavailable, castState.FreeListings, castState.IsTargetIdPresent);
-        _menu?.UpdateState(castState);
+        Populate(
+            cState.ShipyardPrototypes.available,
+            cState.ShipyardPrototypes.unavailable,
+            cState.FreeListings,
+            cState.IsTargetIdPresent,
+            cState.AtmosPrototypes
+        );
+        _menu?.UpdateState(cState);
     }
 
-    private void ApproveOrder(ButtonEventArgs args)
+    private void ApproveOrder(ShipyardConsoleMenu.OrderApprovedEventArgs args)
     {
-        if (args.Button.Parent?.Parent is not VesselRow row || row.Vessel == null)
-        {
-            return;
-        }
-
-        var vesselId = row.Vessel.ID;
-        SendMessage(new ShipyardConsolePurchaseMessage(vesselId));
+        SendMessage(new ShipyardConsolePurchaseMessage(args.Vessel, args.Atmosphere));
     }
     private void SellShip(ButtonEventArgs args)
     {
