@@ -46,6 +46,9 @@
                 <!-- Vessels get added here by code -->
             </BoxContainer>
         </ScrollContainer>
+        <GridContainer Columns="2" HorizontalExpand="True" Name="CustomAtmosContainer">
+            <OptionButton Name="Atmosphere" Prefix="{Loc 'shipyard-console-menu-atmos-label'}"></OptionButton>
+        </GridContainer>
         <GridContainer Columns="3" HorizontalExpand="True" Margin="0 8 0 2">
             <Button Name="TargetIdButton" Access="Public"/>
             <Button Name="SellShipButton"
