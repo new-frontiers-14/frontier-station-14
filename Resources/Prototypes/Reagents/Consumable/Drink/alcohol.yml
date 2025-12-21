@@ -1256,6 +1256,16 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: JackRose
@@ -2403,6 +2413,16 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: Daiquiri
