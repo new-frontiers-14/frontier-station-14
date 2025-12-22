@@ -1,4 +1,5 @@
 using System.Numerics; // Frontier: wallmount jukebox
+using System.Collections.Generic;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -9,23 +10,35 @@ namespace Content.Shared.Audio.Jukebox;
 [Access(typeof(SharedJukeboxSystem))]
 public sealed partial class JukeboxComponent : Component
 {
+    /// <summary>
+    /// The currently playing song.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public ProtoId<JukeboxPrototype>? SelectedSongId;
 
-    // Frontier: Shuffle & Repeat
     /// <summary>
-    /// Whether or not the currently selected song is the first being played.
-    /// Useful for shuffle.
+    /// The audiostream
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool FirstPlay = true;
-
-    [ViewVariables]
-    public JukeboxPlaybackMode PlaybackMode = JukeboxPlaybackMode.Single;
-    // End Frontier: Shuffle & Repeat
-
-    [DataField, AutoNetworkedField]
     public EntityUid? AudioStream;
+
+    /// <summary>
+    /// The queue of queued songs.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Queue<ProtoId<JukeboxPrototype>>? Playlist;
+
+    /// <summary>
+    /// Whether or not a played song should be removed from the queue or readded to the bottom.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool RepeatTracks;
+
+    /// <summary>
+    /// Whether or not the queue should be sampled randomly or in order.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ShuffleTracks;
 
     /// <summary>
     /// RSI state for the jukebox being on.
@@ -67,6 +80,18 @@ public sealed class JukeboxPauseMessage : BoundUserInterfaceMessage;
 public sealed class JukeboxStopMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
+public sealed class JukeboxRepeatMessage(bool repeat) : BoundUserInterfaceMessage
+{
+    public bool Repeat { get; } = repeat;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxShuffleMessage(bool shuffle) : BoundUserInterfaceMessage
+{
+    public bool Shuffle { get; } = shuffle;
+}
+
+[Serializable, NetSerializable]
 public sealed class JukeboxSelectedMessage(ProtoId<JukeboxPrototype> songId) : BoundUserInterfaceMessage
 {
     public ProtoId<JukeboxPrototype> SongId { get; } = songId;
@@ -77,22 +102,6 @@ public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMe
 {
     public float SongTime { get; } = songTime;
 }
-
-// Frontier: Shuffle & Repeat
-[Serializable, NetSerializable]
-public sealed class JukeboxSetPlaybackModeMessage(JukeboxPlaybackMode playbackMode) : BoundUserInterfaceMessage
-{
-    public JukeboxPlaybackMode PlaybackMode = playbackMode;
-}
-
-[Serializable, NetSerializable]
-public enum JukeboxPlaybackMode : byte
-{
-    Single,
-    Shuffle,
-    Repeat,
-}
-// End Frontier: Shuffle & Repeat
 
 [Serializable, NetSerializable]
 public enum JukeboxVisuals : byte
