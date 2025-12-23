@@ -49,6 +49,9 @@
       maxItemSize: Normal
       grid:
       - 0,0,7,4
+      whitelist:
+        components:
+          - Food
     - type: TileFrictionModifier
       modifier: 0.4 # makes it slide
 
@@ -84,8 +87,8 @@
           - BBQsauce
           - Ketchup
       whitelist:
-      components:
-        - Food
+        components:
+          - Food
     - type: ItemSlots
       slots:
         coldsauce_slot:
@@ -156,8 +159,8 @@
   components:
     - type: Storage
       whitelist:
-      components:
-        - Food
+        components:
+          - Food
     - type: Sprite
       noRot: true
       sprite: Objects/Specific/Kitchen/food_carts.rsi
