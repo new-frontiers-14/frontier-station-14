@@ -1,0 +1,56 @@
+- type: entity
+  name: food bag
+  id: FoodBag
+  parent: NFBaseClothingBeltStorageBag # Frontier: BaseStorageItem<NFBaseClothingBeltStorageBag
+  description: A bag for Cheffs to Keep their food off the floor.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/Equipment/food_bag.rsi
+    # Frontier: layered sprite
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: False
+      map: [ "enum.ToggleableVisuals.Layer" ]
+    # End Frontier
+  - type: Item
+    storedRotation: -90
+    size: Ginormous # Frontier
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Small
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+        - Food
+  - type: Dumpable
+  - type: MagnetPickup # Frontier
+    magnetEnabled: false # Frontier
+    magnetCanBeEnabled: false # Frontier
+  - type: NFPlantBag # Frontier
+  # Begin DeltaV Additions: toggle magnet from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false # Frontier
+    onAltUse: true # Frontier
+    onActivate: false # Frontier
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled: # Frontier: Enum changes from Wizden#35341
+        enum.ToggleableVisuals.Layer: # Frontier: Enum changes from Wizden#35341
+          True: { visible: True }
+          False: { visible: False }
