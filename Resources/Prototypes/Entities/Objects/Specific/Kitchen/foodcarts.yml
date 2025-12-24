@@ -48,10 +48,32 @@
     - type: Storage
       maxItemSize: Normal
       grid:
-      - 0,0,7,4
+      - 0,0,11,5
       whitelist:
         components:
           - Food
+      blacklist:
+        components:
+          - Produce
+          - Seed
+    - type: AntiRottingContainer
+    - type: Dumpable
+    - type: MagnetPickup
+      range: 1.5 # Ore bag has a range of 1.0
+      magnetEnabled: false
+      magnetCanBeEnabled: false
+    - type: ItemToggle
+      soundActivate: &soundActivate
+        collection: sparks
+        params:
+          variation: 0.25
+      soundDeactivate: *soundActivate
+      onUse: false
+      onAltUse: true
+      onActivate: false
+    - type: ItemToggleExamine
+      on: item-toggle-examine-magnet-on
+      off: item-toggle-examine-magnet-off
     - type: TileFrictionModifier
       modifier: 0.4 # makes it slide
 
@@ -86,9 +108,6 @@
           - Hotsauce
           - BBQsauce
           - Ketchup
-      whitelist:
-        components:
-          - Food
     - type: ItemSlots
       slots:
         coldsauce_slot:
@@ -158,9 +177,6 @@
   description: It's the Ice Cream Man! It's the Ice Cream Man!
   components:
     - type: Storage
-      whitelist:
-        components:
-          - Food
     - type: Sprite
       noRot: true
       sprite: Objects/Specific/Kitchen/food_carts.rsi
