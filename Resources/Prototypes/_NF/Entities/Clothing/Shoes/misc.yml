@@ -75,6 +75,17 @@
     event: !type:ToggleActionEvent
 
 - type: entity
+  id: ActionToggleJetpackBoots
+  parent: BaseToggleAction
+  name: Toggle Jetpack Boots
+  description: Toggles the jetpack boots on and off.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
   parent: ClothingShoesBase
   id: ClothingShoesClothwrap
   name: cloth footwraps
