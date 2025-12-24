@@ -73,6 +73,7 @@ nf-research-technology-explosive-technology = Modular Grenades
 nf-research-technology-faux-astro-tiles = Faux Astro-Tiles
 nf-research-technology-fission-generators = Bananium Power Generators
 nf-research-technology-fission-powercells = Fission Powercells
+nf-research-technology-food-bag = Food Bag
 nf-research-technology-food-filtration = Food Filtration
 nf-research-technology-food-service = Culinary Automation
 nf-research-technology-hardsuits-advanced = Advanced Hardsuits
