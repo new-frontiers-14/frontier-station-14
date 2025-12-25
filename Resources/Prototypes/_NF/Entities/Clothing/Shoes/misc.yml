@@ -48,6 +48,8 @@
       moles:
       - 0.153853429 # oxygen
       - 0.153853429 # nitrogen
+  - type: Jetpack
+    toggleAction: ActionToggleJetpackBoots
   - type: Item
     sprite: null
     size: Normal
@@ -76,7 +78,7 @@
 
 - type: entity
   id: ActionToggleJetpackBoots
-  parent: BaseToggleAction
+  parent: ActionToggleJetpack
   name: Toggle Jetpack Boots
   description: Toggles the jetpack boots on and off.
   components:
