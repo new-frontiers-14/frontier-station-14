@@ -3603,7 +3603,7 @@ entities:
     - type: Transform
       pos: -2.453125,5.5207973
       parent: 1
-- proto: GasMixerOn
+- proto: GasMixerDistroSideNitrogen
   entities:
   - uid: 80
     components:
@@ -3611,13 +3611,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,9.5
       parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.79
-      inletOneConcentration: 0.21
     - type: AtmosPipeLayers
       pipeLayer: Secondary
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 175
