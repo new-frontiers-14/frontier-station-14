@@ -53,6 +53,20 @@
         amount: 0.1
 
 - type: reagent
+  id: SourCream
+  name: reagent-name-sourcream
+  group: Foods
+  desc: reagent-desc-sourcream
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: sharp
+  color: "#F5F5F5"
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 0.3
+
+- type: reagent
   id: Gravy # groovy
   name: reagent-name-gravy
   group: Foods
@@ -67,3 +81,22 @@
       # It's just a condiment, not the main part of the meal!
       - !type:SatiateHunger
         factor: 0.3
+
+
+- type: reagent
+  id: Salsa
+  name: reagent-name-salsa
+  group: Foods
+  desc: reagent-desc-salsa
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: tangy
+  color: "#ff6347"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 0.2
+      - !type:SatiateThirst
+        factor: 0.5 # watery, tomato-y
+
