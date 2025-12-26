@@ -25,6 +25,7 @@ guide-entry-medical-doc = Director of Care
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
+guide-entry-snack-recipes = Snacks
 guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
 guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
 
