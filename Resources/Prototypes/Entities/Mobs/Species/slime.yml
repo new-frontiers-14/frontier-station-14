@@ -52,6 +52,15 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
   - type: PassiveDamage # Around 8 damage a minute healed
     allowedStates:
     - Alive
@@ -74,11 +83,12 @@
     damage:
       types:
         Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make slime boil more than blunt stretch them so i decided on this instead.
+        Heat: 0.2 # Slimes boil in space
   - type: Reactive
     groups:
       Flammable: [ Touch ]
       Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
     reactions:
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]

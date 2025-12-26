@@ -15,7 +15,7 @@ namespace Content.Shared.EntityEffects.Effects
     public sealed partial class HealthChange : EntityEffect
     {
         /// <summary>
-        /// Damage to apply every cycle. Damage Ignores resistances.
+        /// Damage to apply every cycle. Damage ignores armor resistances.
         /// </summary>
         [DataField(required: true)]
         [JsonPropertyName("damage")]
@@ -33,6 +33,10 @@ namespace Content.Shared.EntityEffects.Effects
         [DataField]
         [JsonPropertyName("ignoreResistances")]
         public bool IgnoreResistances = true;
+
+        [DataField]
+        [JsonPropertyName("alwaysApplyBaseDamageModifier")]
+        public bool AlwaysApplyBaseDamageModifier = true;
 
         protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         {
@@ -120,7 +124,8 @@ namespace Content.Shared.EntityEffects.Effects
                     args.TargetEntity,
                     damageSpec * scale,
                     IgnoreResistances,
-                    interruptsDoAfters: false);
+                    interruptsDoAfters: false,
+                    alwaysApplyBaseDamageModifier: true);
         }
     }
 }
