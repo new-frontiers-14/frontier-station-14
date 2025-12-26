@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseAction
+  id: NFActionTeslaball
+  name: Lightningball
+  description: Fires a lightningball towards the clicked location.
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+      state: tesla_projectile
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: NFTeslaGunBullet
+  - type: SpeakOnAction
+    sentence: action-speech-spell-lightningball

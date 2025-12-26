@@ -176,6 +176,9 @@ public sealed partial class ClimbSystem : VirtualController
         if (!TryComp(args.User, out ClimbingComponent? climbingComponent) || climbingComponent.IsClimbing || !climbingComponent.CanClimb)
             return;
 
+        if (!component.Vaultable) // Frontier
+            return; // Frontier
+
         // TODO VERBS ICON add a climbing icon?
         args.Verbs.Add(new AlternativeVerb
         {
@@ -189,7 +192,7 @@ public sealed partial class ClimbSystem : VirtualController
         if (args.Handled)
             return;
 
-        TryClimb(args.User, args.Dragged, uid, out _, component);
+        args.Handled = TryClimb(args.User, args.Dragged, uid, out _, component); // Frontier
     }
 
     public bool TryClimb(
