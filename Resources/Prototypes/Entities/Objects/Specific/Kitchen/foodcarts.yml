@@ -47,8 +47,33 @@
           type: StorageBoundUserInterface
     - type: Storage
       maxItemSize: Normal
-      grid:
-      - 0,0,7,4
+      grid:                                # Begining of Frontier changes
+      - 0,0,11,5 # Frontier: 0,0,7,4<0,0,11,5
+      whitelist:
+        components:   # Frontier: Added the whitelist that only accepts items with the FoodComponent
+          - Food
+      blacklist:      # Frontier: added a blacklist for other items that might have the FoodComponent but aren't cooked food
+        components:
+          - Produce
+          - Seed
+    - type: AntiRottingContainer    # Frontier: stops rot in containers
+    - type: Dumpable                # Frontier: allows dumping
+    - type: MagnetPickup            # Frontier: magnet functionality, taken from NFBaseMagnetBox in Resources\Prototypes\_NF\Entities\Structures\Storage\magnetbox.yml
+      range: 1.5 # Ore bag has a range of 1.0
+      magnetEnabled: false
+      magnetCanBeEnabled: false
+    - type: ItemToggle              # Frontier:toggle for magnet
+      soundActivate: &soundActivate
+        collection: sparks
+        params:
+          variation: 0.25
+      soundDeactivate: *soundActivate
+      onUse: false
+      onAltUse: true
+      onActivate: false
+    - type: ItemToggleExamine
+      on: item-toggle-examine-magnet-on
+      off: item-toggle-examine-magnet-off             # End Frontier
     - type: TileFrictionModifier
       modifier: 0.4 # makes it slide
 
