@@ -179,18 +179,27 @@
           min: 15
         - !type:OrganType
           type: Dwarf
+        - !type:TotalDamage # Frontier
+          max: 80 # Frontier
         damage:
           types:
-            Poison: 0.2
-      - !type:HealthChange
+            Poison: .05 # Frontier
+      - !type:EvenHealthChange # Frontier
         conditions:
         - !type:ReagentThreshold
           min: 15
         - !type:OrganType
           type: Dwarf
         damage:
-          groups:
-            Brute: -1
+          Brute: -1 # Frontier
+      - !type:EvenHealthChange # Frontier - Dwarves can be resuscitated with booze
+        conditions: # Frontier
+        - !type:OrganType # Frontier
+          type: Dwarf # Frontier
+        - !type:TotalDamage # Frontier
+          min: 80 # Frontier
+        damage: # Frontier
+          Airloss: -4 # Frontier
       - !type:ChemVomit
         probability: 0.04
         conditions:
