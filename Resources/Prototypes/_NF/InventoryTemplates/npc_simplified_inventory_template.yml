@@ -1,50 +1,9 @@
 - type: inventoryTemplate
   id: hostilehumanoidsimplified
   slots:
-    - name: pocket1
-      slotTexture: pocket
-      fullTextureName: template_small
-      slotFlags: POCKET
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 0,0
-      strippingWindowPos: 0,0
-      displayName: Pocket 1
-
-    - name: pocket2
-      slotTexture: pocket
-      fullTextureName: template_small
-      slotFlags: POCKET
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 2,3
-      strippingWindowPos: 1,0
-      displayName: Pocket 2
-
-    - name: belt
-      slotTexture: belt
-      fullTextureName: template_small
-      slotFlags: BELT
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 3,1
-      strippingWindowPos: 0,1
-      displayName: Belt
-
-    - name: back
-      slotTexture: back
-      fullTextureName: template_small
-      slotFlags: BACK
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 3,0
-      strippingWindowPos: 1,1
-      displayName: Back
-
-# Positions that shouldn't be strippable
-# "Not strippable", "hidden":
-# stripTime seems to have a hardcoded maximum value, preventing items in a slot from being completely unlootable via setting a long time
-# By placing the wallet slot above the slots we want to protect, items in those covered slots become non-interactable
+  # region "not strippable", "hidden"
+  # stripTime seems to have a hardcoded maximum value, preventing items in a slot from being completely unlootable via setting a long time
+  # By placing the wallet slot above the slots we want to protect, items in those covered slots become non-interactable
     - name: shoes
       stripTime: 999999 # "Not strippable"
       stripHidden: true
@@ -74,12 +33,54 @@
       uiWindowPos: 2,1
       displayName: ID
 
-    - name: wallet
+  # region lootable, visible
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 1.5
+      uiWindowPos: 0,0
+      strippingWindowPos: 0,0
+      displayName: Pocket 1
+      stripHidden: false
+
+    - name: pocket2
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 1.5
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,0
+      displayName: Pocket 2
+      stripHidden: false
+
+    - name: belt
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
       stripTime: 3
-      stripHidden: true
+      uiWindowPos: 3,1
+      strippingWindowPos: 0,1
+      displayName: Belt
+
+    - name: back
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 3
+      uiWindowPos: 3,0
+      strippingWindowPos: 1,1
+      displayName: Back
+
+    - name: wallet
+      stripTime: 1.5
+      stripHidden: false
       strippingWindowPos: 1,2
       slotTexture: wallet
       slotFlags: WALLET
       uiWindowPos: 2,0
-      dependsOn: jumpsuit
       displayName: Wallet

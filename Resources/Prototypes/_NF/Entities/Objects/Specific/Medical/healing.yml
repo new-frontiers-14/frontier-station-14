@@ -16,6 +16,7 @@
     lingering: true
     count: 10
 
+# region pills
 - type: entity
   parent: PillCanister
   id: NFPillCanisterMannitol
@@ -76,8 +77,85 @@
         - ReagentId: Aloxadone
           Quantity: 1
 
-# region Normal Vial Fills
+- type: weightedRandomFillSolution
+  id: NFRandomFillPartyPill
+  fills:
+  - quantity: 15
+    weight: 10
+    reagents:
+    - Stimulants
+    - THC
+  - quantity: 10
+    weight: 10
+    reagents:
+    - Ichor
+    - THC
+  - quantity: 20
+    weight: 20
+    reagents:
+    - Desoxyephedrine
+    - Ephedrine
+    - Vitamin
+    - Charcoal
+    - THC
+  - quantity: 20
+    weight: 10
+    reagents:
+    - Ipecac
+    - Laughter
+    - JuiceThatMakesYouWeh
+    - THC
+  - quantity: 5
+    weight: 2.5
+    reagents:
+    - Honk
+    - THC
+  - quantity: 10
+    weight: 30
+    reagents:
+    - Whiskey
+    - Vodka
+    - Beer
+    - Ale
+    - Rum
+    - Tequila
+    - Absinthe
+    - THC
+  - quantity: 10
+    weight: 20
+    reagents:
+    - SpaceDrugs
+    - FourteenLoko
+    - THC
 
+- type: entity
+  parent: Pill
+  id: NFPillParty
+  name: party pill
+  description: "Whatever's inside is anyone's guess. Probably good you don't know — keeps you from swallowing it just because it's Friday, yeah?"
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+  - type: RandomFillSolution
+    solution: food
+    weightedRandomId: NFRandomFillPartyPill
+  - type: Pill
+    random: true
+
+- type: entity
+  parent: PillCanister
+  id: NFPillPartyCanister
+  suffix: Party pills, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFPillParty
+      maxAmount: 10
+      orGroup: RandomPill
+
+# region Normal Vial Fills
 - type: entity
   parent: BaseChemistryEmptyVial
   suffix: Bruizine 30u
