@@ -43,11 +43,24 @@
   description: A compact and mass-produced combat pistol.
   components:
   - type: Sprite
-    sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
+    sprite: _NF/Objects/Weapons/Guns/Pistols/pollock.rsi
   - type: Clothing
-    sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
+    sprite: _NF/Objects/Weapons/Guns/Pistols/pollock.rsi
 
 - type: entity
   id: NFWeaponPistolPollockHighCapacityMag
   parent: [ NFBaseWeaponPistolChamber35HighCapacity, NFWeaponPistolPollock ]
   suffix: Frontier, High capacity mag
+
+- type: entity
+  id: NFWeaponPistolPollockGolden
+  parent: [ NFBaseWeaponPistolChamber35HighCapacity, NFBaseWeaponFrameMachinePistol ]
+  name: gollock
+  description: Pimped up pollock with modified internal mechanism offering faster firerate and stability.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Pistols/pollock_golden.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Pistols/pollock_golden.rsi
+  - type: StaticPrice
+    price: 1500
