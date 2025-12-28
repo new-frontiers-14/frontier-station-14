@@ -1,11 +1,17 @@
 using System.Linq;
 using Content.Server._NF.Shipyard.Components;
 using Content.Server.Atmos.Components;
+using Content.Server.Atmos.Monitor.Components;
+using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.Atmos.Piping.Trinary.Components;
 using Content.Server.Atmos.Piping.Trinary.EntitySystems;
+using Content.Server.Atmos.Piping.Unary.Components;
+using Content.Server.Atmos.Piping.Unary.EntitySystems;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Monitor;
+using Content.Shared.DeviceNetwork.Components;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server._NF.Shipyard.Systems;
@@ -15,6 +21,7 @@ using ShuttleGridEntity = Entity<GridAtmosphereComponent?, GasTileOverlayCompone
 public sealed partial class ShipyardSystem
 {
     [Dependency] private readonly GasMixerSystem _gasMixerSystem = default!;
+    [Dependency] private readonly AtmosMonitorSystem _atmosMonitorSystem = default!;
 
     /// <summary>
     /// Sets up the atmosphere of a shuttle from the given prototype.
@@ -35,6 +42,7 @@ public sealed partial class ShipyardSystem
 
         ReplaceShuttleAtmosphere(shuttleGrid, atmos);
         SetupShuttleDistroGasMixers(shuttleGrid, atmos);
+        SetupShuttleDistroAtmosAlarms(shuttleGrid, atmos);
     }
 
     private void ReplaceShuttleAtmosphere(
@@ -91,6 +99,81 @@ public sealed partial class ShipyardSystem
             {
                 var ratio = inletOneGasAmount / (inletOneGasAmount + inletTwoGasAmount);
                 _gasMixerSystem.SetMixerRatio(entity, ratio, mixer);
+            }
+        }
+    }
+
+    private void SetupShuttleDistroAtmosAlarms(
+        ShuttleGridEntity shuttleGrid,
+        ShuttleAtmospherePrototype atmos)
+    {
+        if (atmos.Alarms == null)
+            return;
+
+        var pressureThreshold = atmos.Alarms.PressureThreshold;
+        AtmosAlarmThresholdPrototype? thresholdPrototype;
+        if (pressureThreshold == null && _prototypeManager.TryIndex(atmos.Alarms.PressureThresholdId, out thresholdPrototype))
+        {
+            pressureThreshold = new AtmosAlarmThreshold(thresholdPrototype);
+        }
+
+        var temperatureThreshold = atmos.Alarms.TemperatureThreshold;
+        if (temperatureThreshold == null && _prototypeManager.TryIndex(atmos.Alarms.TemperatureThresholdId, out thresholdPrototype))
+        {
+            temperatureThreshold = new AtmosAlarmThreshold(thresholdPrototype);
+        }
+
+        var gasThresholds = atmos.Alarms.GasThresholds;
+        if (gasThresholds == null)
+        {
+            gasThresholds = new Dictionary<Gas, AtmosAlarmThreshold>();
+            foreach (var (gas, protoId) in atmos.Alarms.GasThresholdPrototypes)
+            {
+                if (_prototypeManager.Resolve(protoId, out var gasThresholdPrototype))
+                {
+                    gasThresholds.Add(gas, new AtmosAlarmThreshold(gasThresholdPrototype));
+                }
+            }
+        }
+
+        // Go through every air alarm on the new shuttle and set the thresholds on all atmos monitors that are linked
+        // to it.
+        // Note: The UI uses AirAlarmComponent.SensorData to get a list of known devices and decide where to copy
+        // settings to. We can't use this here because at this point, no game tick has happened yet, so no sensor data
+        // is available.
+        var enumerator = EntityQueryEnumerator<AirAlarmComponent, DeviceListComponent>();
+        while (enumerator.MoveNext(out var entity, out _, out var deviceList))
+        {
+            if (Transform(entity).GridUid != shuttleGrid.Owner)
+                continue;
+
+            foreach (var device in deviceList.Devices)
+            {
+                if (HasComp<AtmosMonitorComponent>(device))
+                {
+                    if (temperatureThreshold != null)
+                    {
+                        _atmosMonitorSystem.SetThreshold(
+                            device,
+                            AtmosMonitorThresholdType.Temperature,
+                            temperatureThreshold
+                        );
+                    }
+
+                    if (pressureThreshold != null)
+                    {
+                        _atmosMonitorSystem.SetThreshold(
+                            device,
+                            AtmosMonitorThresholdType.Pressure,
+                            pressureThreshold
+                        );
+                    }
+
+                    foreach (var (gas, threshold) in gasThresholds)
+                    {
+                        _atmosMonitorSystem.SetThreshold(device, AtmosMonitorThresholdType.Gas, threshold, gas);
+                    }
+                }
             }
         }
     }
