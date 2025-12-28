@@ -1,4 +1,6 @@
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Monitor;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Shipyard.Prototypes;
@@ -17,4 +19,29 @@ public sealed class ShuttleAtmospherePrototype : IPrototype
 
     [DataField(required: true)]
     public Dictionary<Gas, float> Atmosphere = default!;
+
+    [DataField]
+    public ShuttleAtmosphereAlarms? Alarms;
+}
+
+[DataDefinition]
+public sealed partial class ShuttleAtmosphereAlarms
+{
+    [DataField]
+    public ProtoId<AtmosAlarmThresholdPrototype>? TemperatureThresholdId;
+
+    [DataField]
+    public AtmosAlarmThreshold? TemperatureThreshold;
+
+    [DataField]
+    public ProtoId<AtmosAlarmThresholdPrototype>? PressureThresholdId;
+
+    [DataField]
+    public AtmosAlarmThreshold? PressureThreshold;
+
+    [DataField]
+    public Dictionary<Gas, ProtoId<AtmosAlarmThresholdPrototype>> GasThresholdPrototypes = new();
+
+    [DataField]
+    public Dictionary<Gas, AtmosAlarmThreshold>? GasThresholds;
 }
