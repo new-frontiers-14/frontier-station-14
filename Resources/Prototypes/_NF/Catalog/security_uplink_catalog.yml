@@ -391,6 +391,27 @@
       whitelist:
         - Sheriff
 
+- type: listing
+  id: UplinkSecuritySniper
+  name:  uplink-security-sniper-name
+  description: uplink-security-sniper-desc
+  productEntity: BriefcaseBrownNfsdSniperBundle
+  icon: { sprite: _NF/Objects/Weapons/Guns/Snipers/aspect.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 8
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - SeniorOfficer
+    - Bailiff
+    - Sheriff
+
 #region utililty
 - type: listing
   id: UplinkSecurityHolo
@@ -654,6 +675,47 @@
           - Bailiff
           - SeniorOfficer
           - Sheriff
+
+- type: listing
+  id: UplinkSecurityAmmunitionBoxRifle60
+  name:  uplink-security-60sniperbox-name
+  description: uplink-security-60sniperbox-desc
+  productEntity: NFAmmunitionBoxRifle60
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Bailiff
+    - Sheriff
+
+- type: listing
+  id: UplinkSecurityAmmunitionBoxRifle60Rubber
+  name:  uplink-security-60sniperbox-rubber-name
+  description: uplink-security-60sniperbox-rubber-desc
+  productEntity: NFAmmunitionBoxRifle60Rubber
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60-rubber }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - SeniorOfficer
+    - Bailiff
+    - Sheriff
 
 - type: listing
   id: UplinkSecurityHypo
