@@ -44,13 +44,6 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
         _menu.OnSongSelected += SelectSong;
 
-        // Frontier: Shuffle & Repeat
-        _menu.OnModeChanged += playbackMode =>
-        {
-            SendMessage(new JukeboxSetPlaybackModeMessage(playbackMode));
-        };
-        // End Frontier: Shuffle & Repeat
-
         _menu.SetTime += SetTime;
         PopulateMusic();
         Reload();
@@ -79,7 +72,6 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
     public void PopulateMusic()
     {
-        //_menu?.Populate(_protoManager.EnumeratePrototypes<JukeboxPrototype>());
         // Frontier: Music Discs
         if (!EntMan.TryGetComponent<ContainerManagerComponent>(Owner, out var containers))
             return;
@@ -100,9 +92,10 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
                 }
             }
         }
-
-        _menu?.Populate(availableMusic);
         // End Frontier: Music Discs
+
+        _menu?.UpdateAvailableTracks(availableMusic); // Frontier _protoManager.EnumeratePrototypes<JukeboxPrototype>()<availableMusic
+        _menu?.PopulateTracklist();
     }
 
     public void SelectSong(ProtoId<JukeboxPrototype> songid)
