@@ -333,6 +333,9 @@ uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
 
+uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
+uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
