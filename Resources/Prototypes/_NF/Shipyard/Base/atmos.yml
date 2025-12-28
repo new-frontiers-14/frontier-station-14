@@ -7,9 +7,19 @@
     # atmosphere, but making any sort of profit off of that seems quite tedious and not worth anyone's while.
     Oxygen: 27.225372
     Nitrogen: 102.419266
+  alarms:
+    temperatureThreshold:
+      upperBound:
+        threshold: 273.15 # 0°C
+      upperWarnAround:
+        threshold: 0.95 # ~ -14°C
 
 - type: shuttleAtmosphere
   id: PureNitrogen
   name: Pure nitrogen (100% N at 20°C)
   atmosphere:
     Nitrogen: 103.92799
+  alarms:
+    gasThresholdPrototypes:
+      Oxygen: voxOxygen
+      Nitrogen: voxNitrogen
