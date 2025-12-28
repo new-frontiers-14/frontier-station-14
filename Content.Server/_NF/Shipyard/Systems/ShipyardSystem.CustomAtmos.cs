@@ -1,5 +1,8 @@
 using System.Linq;
+using Content.Server._NF.Shipyard.Components;
 using Content.Server.Atmos.Components;
+using Content.Server.Atmos.Piping.Trinary.Components;
+using Content.Server.Atmos.Piping.Trinary.EntitySystems;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -11,6 +14,8 @@ using ShuttleGridEntity = Entity<GridAtmosphereComponent?, GasTileOverlayCompone
 
 public sealed partial class ShipyardSystem
 {
+    [Dependency] private readonly GasMixerSystem _gasMixerSystem = default!;
+
     /// <summary>
     /// Sets up the atmosphere of a shuttle from the given prototype.
     /// </summary>
@@ -29,6 +34,7 @@ public sealed partial class ShipyardSystem
         }
 
         ReplaceShuttleAtmosphere(shuttleGrid, atmos);
+        SetupShuttleDistroGasMixers(shuttleGrid, atmos);
     }
 
     private void ReplaceShuttleAtmosphere(
@@ -60,6 +66,32 @@ public sealed partial class ShipyardSystem
 
             // Replace atmosphere
             air.CopyFrom(mix);
+        }
+    }
+
+    // Assumption: There are way fewer shuttles in the game than there are top-level entities on the new grid, so
+    // it's faster to look up all distro machines and check that they're on the shuttle we're setting up than going
+    // through all entities on the shuttle and check that they have the atmos component
+
+    private void SetupShuttleDistroGasMixers(
+        ShuttleGridEntity shuttleGrid,
+        ShuttleAtmospherePrototype atmos)
+    {
+        var enumerator = EntityQueryEnumerator<GasMixerAutoSetupComponent, GasMixerComponent>();
+        while (enumerator.MoveNext(out var entity, out var setup, out var mixer))
+        {
+            if (Transform(entity).GridUid != shuttleGrid.Owner)
+                continue;
+
+            var inletOneGasAmount = atmos.Atmosphere.GetValueOrDefault(setup.InletOneGas, 0f);
+            var inletTwoGasAmount = atmos.Atmosphere.GetValueOrDefault(setup.InletTwoGas, 0f);
+            var enabled = inletOneGasAmount != 0 || inletTwoGasAmount != 0;
+            _gasMixerSystem.SetMixerEnabled(entity, enabled, mixer);
+            if (enabled)
+            {
+                var ratio = inletOneGasAmount / (inletOneGasAmount + inletTwoGasAmount);
+                _gasMixerSystem.SetMixerRatio(entity, ratio, mixer);
+            }
         }
     }
 }
