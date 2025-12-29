@@ -1,0 +1,631 @@
+#region staff altar
+- type: entity
+  parent: BaseItemRecharger # [ BaseMachine, SmallConstructibleMachine ]
+  id: StaffRechargerWizard
+  name: wizard staff altar
+  description: A magically attuned altar that can replenish arcane energies of wizard staffs.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/Wizard/recharger_altar.rsi
+    snapCardinals: true
+    layers:
+    - map: ["enum.PowerChargerVisualLayers.Base"]
+      state: "empty"
+    - map: ["enum.PowerChargerVisualLayers.Light"]
+      state: "light-off"
+      shader: "unshaded"
+  - type: Transform
+    anchored: true
+  - type: RequireProjectileTarget
+  - type: Machine
+    board: ScrollWizardStaffRechargerAltar
+  - type: Appearance
+  - type: Charger
+    chargeRate: 80
+    slotId: charger_slot
+  - type: Anchorable
+    delay: 1
+  - type: PowerChargerVisuals
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        name: staff-charger-slot-wizard-name-default
+        whitelist:
+          components:
+          - WizardStaffRechargeable
+  - type: StaticPrice
+    price: 250
+
+#region power generator
+- type: entity
+  parent: [ BaseGenerator, BaseC3WizardContraband ]
+  id: NFGeneratorWizardInfernalCore6kW
+  name: infernal core
+  suffix: 6.66kW, Anchored
+  description: An infernal core sealed in a jar, it's rage contained and harnessed through wizardry to provide power.
+  components:
+  - type: PowerSupplier # Infernal core you see
+    supplyRate: 6666
+    supplyRampRate: 666
+    supplyRampTolerance: 666
+  - type: GeneratorExhaustGas
+    gasType: WaterVapor
+    moleRatio: 0.35
+  - type: RadiationSource
+    intensity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    layers:
+    - state: infernal-core
+    - state: infernal-core-unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    size: Large
+    shape:
+    - 0,0,3,3
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _NF/Objects/Specific/Wizard/infernal_core_renerator.rsi
+    state: infernal-core
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/drop.ogg
+      params:
+        volume: 2
+  - type: Physics
+    bodyType: Static
+    canCollide: True
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+
+#region singing rock
+- type: entity
+  parent: [ BaseMachine, BaseC3WizardContraband ]
+  id: SingingRock
+  name: singing rock
+  description: A rock with charming, melodic voice.
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_rockssolid.rsi
+    layers:
+    - state: rocksolid03
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Transform
+    anchored: true
+  - type: Jukebox
+    onState: rocksolid03
+    offState: rocksolid03
+    selectState: rocksolid03
+  - type: Appearance
+  - type: ExtensionCableReceiver
+  - type: ActivatableUI
+    key: enum.JukeboxUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+        enum.JukeboxUiKey.Key:
+          type: JukeboxBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,5
+    openOnActivate: false
+    whitelist:
+      components:
+      - JukeboxContainer
+  - type: StorageFill
+    contents:
+    - id: WizardRecord
+
+
+#region Inf. canisters
+- type: entity
+  parent: [ GasCanister, BaseC3WizardContraband ]
+  id: WizardGasCanisterBottomlessOxygen
+  name: bottomless canister
+  suffix: Filled, Oxygen
+  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi
+      layers:
+        - state: oxygen
+          shader: unshaded
+        - state: canister
+    - type: GasCanister
+      gasMixture:
+        volume: 15000 # 1500[base canister volume] * 10
+        moles: # List of gasses for easy reference
+          - 18717.1051 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 293.15
+    - type: StaticPrice
+      price: 1250
+
+- type: entity
+  parent: [ GasCanister, BaseC3WizardContraband ]
+  id: WizardGasCanisterBottomlessNitrogen
+  name: bottomless canister
+  suffix: Filled, Nitrogen
+  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/canister.rsi
+      layers:
+        - state: nitrogen
+          shader: unshaded
+        - state: canister
+    - type: GasCanister
+      gasMixture:
+        volume: 15000 # 1500[base canister volume] * 10
+        moles: # List of gasses for easy reference
+          - 0 # oxygen
+          - 18717.1051 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 293.15
+    - type: StaticPrice
+      price: 1250
+
+#region small wall light
+- type: entity
+  parent: AlwaysPoweredWallLight
+  id: SmallLightCrystalGreen
+  name: crystal wall light
+  description: An always powered magical light.
+  suffix: Always Powered, Green
+  components:
+    - type: Reflect
+      reflectProb: 0.5
+      reflects:
+      - Energy
+      spread: 75
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#52ff39"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#52ff39"
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,0.5,0.1,0.255"
+          density: 190
+          mask:
+          - None
+          layer:
+          - TabletopMachineLayer
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Glass
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalGreen:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalPink
+  suffix: Always Powered, Pink
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#ff66cc"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#ff66cc"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalPink:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalRed
+  suffix: Always Powered, Red
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#fb4747"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#fb4747"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalRed:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalOrange
+  suffix: Always Powered, Orange
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#ff8227"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#ff8227"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalOrange:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalBlue
+  suffix: Always Powered, Blue
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#39a1ff"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#39a1ff"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalBlue:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalYellow
+  suffix: Always Powered, Yellow
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#ffde46"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#ffde46"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalYellow:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: SmallLightCrystalGreen
+  id: SmallLightCrystalCyan
+  suffix: Always Powered, Cyan
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/Wizard/light_small.rsi
+      state: base
+      color: "#47f8ff"
+    - type: PointLight
+      energy: 1.0
+      radius: 6
+      softness: 1.1
+      enabled: true
+      color: "#47f8ff"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardCrystalCyan:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+#region floor decor 32z32
+- type: entity
+  parent: BaseRune
+  id: WizardGlowingFloorBlue
+  name: rune of concentration
+  suffix: Decor
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/runes.rsi
+    layers:
+    - state: rune-outer-01
+      shader: unshaded
+      map: [ "rune_outer" ]
+    - state: rune-inner-02
+      shader: unshaded
+      map: [ "rune_inner" ]
+    - state: rune-center-02
+      shader: unshaded
+      map: [ "rune_center" ]
+    - state: rune-words-02
+      shader: unshaded
+      map: [ "rune_words" ]
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: WizardMagicColorsBlue
+        rune_inner:
+          rune-inner-01: WizardMagicColorsBlue
+          rune-inner-02: WizardMagicColorsBlue
+          rune-inner-03: WizardMagicColorsBlue
+          rune-inner-04: WizardMagicColorsBlue
+          rune-inner-05: WizardMagicColorsBlue
+          rune-inner-06: WizardMagicColorsBlue
+          rune-inner-07: WizardMagicColorsBlue
+        rune_center:
+          rune-center-01: WizardMagicColorsBlue
+          rune-center-02: WizardMagicColorsBlue
+          rune-center-03: WizardMagicColorsBlue
+          rune-center-04: WizardMagicColorsBlue
+          rune-center-05: WizardMagicColorsBlue
+          rune-center-06: WizardMagicColorsBlue
+          rune-center-07: WizardMagicColorsBlue
+        rune_words:
+          rune-words-01: WizardMagicColorsBlue
+          rune-words-02: WizardMagicColorsBlue
+          rune-words-03: WizardMagicColorsBlue
+          rune-words-04: WizardMagicColorsBlue
+          rune-words-05: WizardMagicColorsBlue
+          rune-words-06: WizardMagicColorsBlue
+          rune-words-07: WizardMagicColorsBlue
+
+- type: entity
+  parent: WizardGlowingFloorBlue
+  id: WizardGlowingFloorRed
+  name: rune of anger
+  components:
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: WizardMagicColorsRed
+        rune_inner:
+          rune-inner-01: WizardMagicColorsRed
+          rune-inner-02: WizardMagicColorsRed
+          rune-inner-03: WizardMagicColorsRed
+          rune-inner-04: WizardMagicColorsRed
+          rune-inner-05: WizardMagicColorsRed
+          rune-inner-06: WizardMagicColorsRed
+          rune-inner-07: WizardMagicColorsRed
+        rune_center:
+          rune-center-01: WizardMagicColorsRed
+          rune-center-02: WizardMagicColorsRed
+          rune-center-03: WizardMagicColorsRed
+          rune-center-04: WizardMagicColorsRed
+          rune-center-05: WizardMagicColorsRed
+          rune-center-06: WizardMagicColorsRed
+          rune-center-07: WizardMagicColorsRed
+        rune_words:
+          rune-words-01: WizardMagicColorsRed
+          rune-words-02: WizardMagicColorsRed
+          rune-words-03: WizardMagicColorsRed
+          rune-words-04: WizardMagicColorsRed
+          rune-words-05: WizardMagicColorsRed
+          rune-words-06: WizardMagicColorsRed
+          rune-words-07: WizardMagicColorsRed
+
+- type: entity
+  parent: WizardGlowingFloorBlue
+  id: WizardGlowingFloorPurple
+  name: rune of knowledge
+  components:
+  - type: RandomSprite
+    available:
+      - rune_outer:
+          rune-outer-01: WizardMagicColorsPurple
+        rune_inner:
+          rune-inner-01: WizardMagicColorsPurple
+          rune-inner-02: WizardMagicColorsPurple
+          rune-inner-03: WizardMagicColorsPurple
+          rune-inner-04: WizardMagicColorsPurple
+          rune-inner-05: WizardMagicColorsPurple
+          rune-inner-06: WizardMagicColorsPurple
+          rune-inner-07: WizardMagicColorsPurple
+        rune_center:
+          rune-center-01: WizardMagicColorsPurple
+          rune-center-02: WizardMagicColorsPurple
+          rune-center-03: WizardMagicColorsPurple
+          rune-center-04: WizardMagicColorsPurple
+          rune-center-05: WizardMagicColorsPurple
+          rune-center-06: WizardMagicColorsPurple
+          rune-center-07: WizardMagicColorsPurple
+        rune_words:
+          rune-words-01: WizardMagicColorsPurple
+          rune-words-02: WizardMagicColorsPurple
+          rune-words-03: WizardMagicColorsPurple
+          rune-words-04: WizardMagicColorsPurple
+          rune-words-05: WizardMagicColorsPurple
+          rune-words-06: WizardMagicColorsPurple
+          rune-words-07: WizardMagicColorsPurple
+
+#region floor decor 96x96
+- type: entity
+  parent: BaseRune
+  id: WizardGlowingRuneFloorBig
+  name: rune of transmutation
+  suffix: Decor
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/runes_96x96.rsi
+    layers:
+    - state: transmitate-circle
+      shader: unshaded
+      map: [ "rune_96x96_outer" ]
+    - state: transmitate-words
+      shader: unshaded
+      map: [ "rune_96x96_words" ]
+    - state: transmitate-center
+      shader: unshaded
+      map: [ "rune_96x96_center" ]
+    - state: transmitate-rune-1
+      shader: unshaded
+      map: [ "rune_96x96_rune1" ]
+    - state: transmitate-rune-2
+      shader: unshaded
+      map: [ "rune_96x96_rune2" ]
+    - state: transmitate-rune-3
+      shader: unshaded
+      map: [ "rune_96x96_rune3" ]
+  - type: RandomSprite
+    available:
+      - rune_96x96_outer:
+          transmitate-circle: WizardMagicColorsRed
+        rune_96x96_words:
+          transmitate-words: WizardMagicColorsRed
+        rune_96x96_center:
+          transmitate-center: WizardMagicColorsPurple
+        rune_96x96_rune1:
+          transmitate-rune-1: WizardMagicColorsBlue
+        rune_96x96_rune2:
+          transmitate-rune-2: WizardMagicColorsBlue
+        rune_96x96_rune3:
+          transmitate-rune-3: WizardMagicColorsBlue

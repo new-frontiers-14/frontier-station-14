@@ -24,3 +24,4 @@ construction-graph-component-computer-wallmount-board = any wallmount computer c
 construction-graph-component-computer-tabletop-board = any tabletop computer circuit board
 construction-graph-component-nf-pirate-toolbox = a pirate repair toolbox
 construction-graph-component-nf-weapon-charger-circuitboard = a recharger machine board
+construction-graph-component-nf-glowshroom-spores = glowshroom spores
