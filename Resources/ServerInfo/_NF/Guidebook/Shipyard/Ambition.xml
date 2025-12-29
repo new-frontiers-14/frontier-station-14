@@ -1,109 +1,139 @@
 <Document>
-  # AMBITION-CLASS ATMOSPHERICS PLATFORM
-  <Box>
-  <GuideEntityEmbed Entity="PowerDrill"/>
-  <GuideEntityEmbed Entity="JawsOfLife"/>
-  <GuideEntityEmbed Entity="ShipyardRCD"/>
-  <GuideEntityEmbed Entity="HolofanProjector"/>
+# AMBITION-CLASS ATMOSPHERICS PLATFORM
+<Box>
+<GuideEntityEmbed Entity="SignEngineering" Caption="Produce"/>
+<GuideEntityEmbed Entity="SignAtmos" Caption="Refine"/>
+<GuideEntityEmbed Entity="EngineeringTechFab"/>
+<GuideEntityEmbed Entity="Gaslock"/>
+<GuideEntityEmbed Entity="GasMiningDrill"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="ShuttleMapAmbition" Caption=""/>
+</Box>
+[color=#a4885c]Ship Size:[/color] Large
+
+[color=#a4885c]Recommended Crew:[/color] 4-8
+
+[color=#a4885c]Power Gen Type:[/color] Bananium
+
+[color=#a4885c]Base Power Draw:[/color] 81 kW
+
+[color=#a4885c]Expeditions:[/color] No
+
+[color=#a4885c]IFF Console:[/color] None
+
+[color=#a4885c]Available Roles:[/color] Contractor, Pilot, Mercenary
+
+"Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent."
+
+# Piloting
+<Box>
+<GuideEntityEmbed Entity="ComputerShuttle"/>
+</Box>
+After clicking the shuttle console, you should see a radar view of the shuttle. Here are the steps for piloting the shuttle back and forth:
+
+-First, disconnect any airlocks that are connected to the dock.
+-Then, you actually get to pilot the shuttle. The controls are fairly simple, with [color=#028ed9]"W"[/color] and [color=#028ed9]"S"[/color] being forward and backward, [color=#028ed9]"A"[/color] and [color=#028ed9]"D"[/color] being left and right, and [color=#028ed9]"Q"[/color] and [color=#028ed9]"E"[/color] being rotating left and right; and [color=#028ed9]"spacebar"[/color] being the brake and moving precicely by holding the [color=#028ed9]"spacebar"[/color] while doing other inputs.
+-For more info on Poloting please read this artical on [textlink="Piloting" link="Piloting"]
+
+# Hiring crew
+<Box>
+<GuideEntityEmbed Entity="ComputerStationRecords"/>
+<GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
+<GuideEntityEmbed Entity="IntercomCommon"/>
+</Box>
+As a Captain of a Nanotrasen vessel, you have the authority to hire, fire, demote, or promote crew members at will. There are two ways you as a Captain can go about hiring crew: you can either use the [color=#a4885c]station records computer[/color] on your ship to open crew slots (jobs available vary from ship to ship) or invite through in-game communications other players to your crew.
+
+# PREFLIGHT CHECKLIST
+
+## 1. Power supply
+
+## 1.1. Battery units
+<Box>
+<GuideEntityEmbed Entity="SMESBasic"/>
+<GuideEntityEmbed Entity="SubstationBasic"/>
+<GuideEntityEmbed Entity="APCBasic"/>
+</Box>
+
+- Check that the SMES unit is anchored to the floor.
+- Check that the substation unit is anchored to the floor.
+- Check that the APC unit's Main Breaker is toggled on.
+- Check the APC unit's current Load (W).
+
+## 1.2. D-K Jr. generator unit
+<Box>
+<GuideEntityEmbed Entity="PortableGeneratorDKJr"/>
+<GuideEntityEmbed Entity="FuelBananium"/>
+<GuideEntityEmbed Entity="SignRadiation"/>
+<GuideEntityEmbed Entity="ClothingOuterSuitRad"/>
+<GuideEntityEmbed Entity="GeigerCounter"/>
+<GuideEntityEmbed Entity="ShuttersRadiation"/>
+</Box>
+
+- Check if the D-K Jr. generator unit is anchored to the floor.
+- Check if the D-K Jr. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+- Check if the D-K Jr. generator unit is set to HV output.
+- Set Target Power for need to 42 [bold]k[/bold]W on both generators for a maximum of 82 [bold]k[/bold]W.
+- Start the D-K Jr. generator unit.
+- Close radiation shielding.
+Note: Be sure to take all necessary protective measures when working with radioactive materials and environments: use a radiation suit and keep radiation shutters closed at all times.
+-For more info on power please read this artical on [textlink="Power" link="Power"].
+
+## 2. Atmospherics
+
+## 2.1. Distribution Loop
+<Box>
+<GuideEntityEmbed Entity="GasPort"/>
+<GuideEntityEmbed Entity="OxygenCanister"/>
+<GuideEntityEmbed Entity="NitrogenCanister"/>
+<GuideEntityEmbed Entity="GasMixer"/>
+<GuideEntityEmbed Entity="GasVentPump"/>
+</Box>
+
+- Check if the Oxygen canister is anchored to connector port.
+- Check if the Nitrogen canister is anchored to connector port.
+- Check if the distribution Mixer Pump is set to normal pressure (101.3kPa).
+- Enable the Mixer Pump.
+- Anchor gas canisters to Connector Ports as needed if canisters empty.
+
+## 2.2. Waste Loop
+<Box>
+<GuideEntityEmbed Entity="AirAlarm"/>
+<GuideEntityEmbed Entity="GasValve"/>
+<GuideEntityEmbed Entity="GasFilter"/>
+<GuideEntityEmbed Entity="GasVentScrubber"/>
+</Box>
+
+- Enable waste loop pump and valve(s).
+- Enable waste loop filters.
+- Set appropriate gases for each storage chamber as needed.
+
+For more info on Atmos systems please read more in [textlink="Atmospherics" link="Atmospherics"].
+
+## 3. Other checks
+<Box>
+<GuideEntityEmbed Entity="Gyroscope"/>
+<GuideEntityEmbed Entity="GravityGeneratorMini"/>
+<GuideEntityEmbed Entity="BlastDoor"/>
+</Box>
+
+- Check that the gyroscope is anchored, powered, and enabled.
+- Check that the mini gravity generator is anchored, powered, and enabled.
+- Check that the blast doors are closed.
+
+ ## 4. Ship Functions
+
+ ## 4.1. Gas Mining
+<Box>
+  <GuideEntityEmbed Entity="Gaslock"/>
+  <GuideEntityEmbed Entity="GaslockFrame"/>
+  <GuideEntityEmbed Entity="GasMiningDrill"/>
+  <GuideEntityEmbed Entity="PortableGeneratorJrPacman"/>
   </Box>
-  <Box>
-  <GuideEntityEmbed Entity="ShuttleMapAmbition" Caption=""/>
-  </Box>
-    [color=#a4885c]Ship Size:[/color] Large
-	
-	[color=#a4885c]Recommended Crew:[/color] 4-8
-	
-	[color=#a4885c]Power Gen Type:[/color] AME
-	
-	[color=#a4885c]Expeditions:[/color] Yes
-	
-	[color=#a4885c]IFF Console:[/color] None
-	
-  "Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent."
-    
-  # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. AME generator unit.
-  <Box>
-  <GuideEntityEmbed Entity="AmeController"/>
-  <GuideEntityEmbed Entity="AmeJar"/>
-  </Box>
-  
-  - Check that the AME core is properly shielded.
-  - Check that the AME controller unit is anchored to the floor.
-  - Check the AME controller unit Fuel Status.
-  - Check the AME controller unit Injection Amount.
-  - Toggle Injection.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="OxygenCanister"/>
-  <GuideEntityEmbed Entity="NitrogenCanister"/>
-  <GuideEntityEmbed Entity="GasMixer"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the O2 output pump is set to 101kPa.
-  - Enable the O2 output pump.
-  - Check that the N2 output pump is set to 101kPa.
-  - Enable N2 output pump.
-  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
-  - Check that the gas mixer is set to 101kPa.
-  - Enable gas mixer.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasValve"/>
-  <GuideEntityEmbed Entity="GasFilter"/>
-  </Box>
-    
-  - Enable waste loop pump and valve(s).
-  - Enable waste loop filters.
-  - Set appropriate gases for each storage chamber as needed.
-  
-  ## 2.3. Mix Loop
-  <Box>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  <GuideEntityEmbed Entity="GasVentPump"/>
-  <GuideEntityEmbed Entity="GasPort"/>
-  </Box>
-  
-  - Enable mix loop pumps.
-  - Disable Auto Mode on the air alarm in the Mix Room.
-  - Set the four air vents on the air alarm to Siphoning Mode and set Pressure Bounds to NoBound.
-  - Anchor gas canisters to Connector Ports as needed.
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="BlastDoor"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Ambition-class atmospheric platforms are equipped with eight APC units that can be used to appraise the ship's total power consumption. Unmodified Ambition-class ship requires 71 kW of power to remain operational.
+  The ship comes equipped with all the necessary equipment for Offshore Gas Mining. If you would like to learn the basics please read the article about [textlink="Offshore Gas Mining" link="OffshoreGasMining"].
+
+## Sidenotes
+
+* - Ambition-class atmospheric platforms are equipped with eleven APC units that can be used to appraise the ship's total power consumption. Unmodified Ambition-class ship requires 81 kW of power to remain operational.
 
 </Document>

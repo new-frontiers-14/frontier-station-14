@@ -133,7 +133,7 @@
 
 - type: latheRecipe
   id: LanternNF
-  result: Lantern
+  result: EmptyLantern
   parent: NFBaseLightTubeRecipe
   materials:
     Steel: 100
@@ -145,7 +145,7 @@
   result: Floodlight
   parent: NFBaseLightTubeRecipe
   materials:
-    Glass: 500
+    Glass: 1000
     Plastic: 1000
     Steel: 1500
 
@@ -253,6 +253,13 @@
   materials:
     Steel: 600
 
+- type: latheRecipe
+  id: DoubleEmergencyAirTank
+  result: DoubleEmergencyAirTank
+  completetime: 4
+  materials:
+    Steel: 250
+
 # Toys
 - type: latheRecipe
   id: MysteryFigureBox
@@ -292,3 +299,28 @@
   applyMaterialDiscount: false
   materials:
     Cloth: 300
+
+# Cards/Badges
+- type: latheRecipe
+  id: NFClothingNeckCardReporter
+  result: NFClothingNeckCardReporter
+  completetime: 0.5
+  applyMaterialDiscount: false
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: NFClothingNeckCardMedic
+  result: NFClothingNeckCardMedic
+  completetime: 0.5
+  applyMaterialDiscount: false
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: NFClothingNeckCardNfsdWrit
+  result: NFClothingNeckCardNfsdWrit
+  completetime: 0.5
+  applyMaterialDiscount: false
+  materials:
+    Plastic: 50

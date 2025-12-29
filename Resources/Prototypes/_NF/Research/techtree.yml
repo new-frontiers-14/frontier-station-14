@@ -157,6 +157,7 @@
   - NFPouchMime
   - NFPouchCaptain
   - NFPouchCargo
+  - MedicalPouch
   technologyPrerequisites:
   - NFAdvancedBeltTechnology
   position: 2, 3
@@ -420,19 +421,21 @@
   - ClothingOuterHardsuitCap
   - ClothingOuterHardsuitEngineeringWhite # CE
   - ClothingOuterHardsuitLuxury
+
   technologyPrerequisites:
   - NFHardsuitsEngineering
   position: 3, 8
 
 - type: technology
-  id: NFHardsuitsExperimentalRD
-  name: nf-research-technology-hardsuits-experimental-rd
+  id: NFHardsuitsExperimentalProtection
+  name: nf-research-technology-hardsuits-experimental-protection
   entityIcon: ClothingOuterHardsuitRd
   discipline: NFScience
   tier: 1
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitRd
+  - ClothingOuterHardsuitHostileEnvironment
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFSuperParts
@@ -455,6 +458,20 @@
   position: 4, 9
 
 - type: technology
+  id: NFHardsuitsOldWar
+  name: nf-research-technology-hardsuits-old-war
+  entityIcon: ClothingOuterHardsuitSurplus
+  discipline: NFArsenalMercenary
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSurplus
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+    - NFHardsuitsArmored
+  position: 5, 10
+
+- type: technology
   id: NFHardsuitsExperimentalIndustrial
   name: nf-research-technology-hardsuits-experimental-industrial
   entityIcon: ClothingOuterHardsuitMaximPrototype
@@ -466,7 +483,7 @@
   - ClothingOuterHardsuitMaximPrototype
   prerequisiteLineType: Tree
   technologyPrerequisites:
-  - NFHardsuitsExperimentalRD
+  - NFHardsuitsExperimentalProtection
   - NFHardsuitsArmored
   position: 5, 8
 
@@ -479,6 +496,7 @@
   cost: 20000
   recipeUnlocks:
   - ClothingOuterHardsuitScaf
+  - ClothingOuterHardsuitNoble
   technologyPrerequisites:
   - NFHardsuitsArmored
   position: 5, 9
@@ -856,6 +874,7 @@
   cost: 2500
   recipeUnlocks:
   - NFHolopadShipMachineCircuitboard
+  - NFHolopadGridMachineCircuitboard
   technologyPrerequisites:
   - NFAudioVisualCommunication
   position: 0, 20
@@ -1523,28 +1542,15 @@
 # region Salvage
 
 - type: technology
-  id: NFIndustrialOreProcessor
-  name: nf-research-technology-salvage-equipment
-  entityIcon: OreProcessorIndustrial
-  discipline: NFSalvage
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - OreProcessorIndustrialMachineCircuitboard
-  position: 0, 38
-
-- type: technology
   id: NFSalvageGrapplingEquipment
   name: nf-research-technology-salvage-grappling-equipment
   entityIcon: WeaponGrapplingGun
   discipline: NFSalvage
   tier: 1
-  cost: 2500
+  cost: 1000
   recipeUnlocks:
   - WeaponGrapplingGun
-  technologyPrerequisites:
-  - NFIndustrialOreProcessor
-  position: 0, 39
+  position: 0, 38
 
 - type: technology
   id: NFExcavation
@@ -1557,8 +1563,35 @@
   - MiningDrill
   - MineralScannerEmpty
   technologyPrerequisites:
-  - NFIndustrialOreProcessor
+  - NFSalvageGrapplingEquipment
   position: 1, 38
+
+- type: technology
+  id: NFOreProcessor
+  name: nf-research-technology-ore-processing
+  entityIcon: OreProcessor
+  discipline: NFSalvage
+  tier: 1
+  cost: 2000
+  recipeUnlocks:
+  - OreProcessorMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFExcavation
+  position: 2, 37
+
+- type: technology
+  id: NFIndustrialOreProcessor
+  name: nf-research-technology-industrial-ore-processing
+  entityIcon: OreProcessorIndustrial
+  discipline: NFSalvage
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+  technologyPrerequisites:
+  - NFOreProcessor
+  position: 3, 37
 
 - type: technology
   id: NFSalvageWeapons
@@ -1573,7 +1606,7 @@
   - WeaponCrusherDagger
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFIndustrialOreProcessor
+  - NFSalvageGrapplingEquipment
   position: 1, 39
 
 - type: technology
@@ -1582,7 +1615,7 @@
   entityIcon: MiningDrillDiamond
   discipline: NFSalvage
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
   - MiningDrillDiamond
   - AdvancedMineralScannerEmpty
@@ -1596,7 +1629,7 @@
   entityIcon: WeaponCrusherGlaive
   discipline: NFSalvage
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
   - WeaponCrusherGlaive
   technologyPrerequisites:
@@ -1609,7 +1642,7 @@
   entityIcon: OreBagOfHolding
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 7500
   recipeUnlocks:
   - OreBagOfHolding
   technologyPrerequisites:
@@ -1622,7 +1655,7 @@
   entityIcon: NFWeaponPkaCannon
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 7500
   recipeUnlocks:
   - NFWeaponPkaCannon
   technologyPrerequisites:
@@ -1651,9 +1684,10 @@
   cost: 7500
   recipeUnlocks:
   - BluespaceAirTank
+  - SmallBluespaceAirTank
   technologyPrerequisites:
-  - NFBluespaceStorage
-  position: 4, 3
+  - NFAdvancedPersonalPropulsion
+  position: 3, 36
 # region Munitions
 
 - type: technology
@@ -1809,6 +1843,7 @@
   - TimerTrigger
   - FlashPayload
   - ChemicalPayload
+  - ExplosivePayload
   technologyPrerequisites:
   - NFAdvancedRiotControl
   position: 3, 41

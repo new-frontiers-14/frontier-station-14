@@ -1,12 +1,44 @@
-# Limited life times
+#region Limited life times
 - type: entity
+  abstract: true
   id: ConjuredObject10
   suffix: Conjured
-  abstract: true
   description: A magically created entity, that'll vanish from existence eventually.
   components:
   - type: TimedDespawn
     lifetime: 10
+
+- type: entity
+  abstract: true
+  parent: ConjuredObject10
+  id: ConjuredObject30
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  abstract: true
+  parent: ConjuredObject10
+  id: ConjuredObject60
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
+  abstract: true
+  parent: ConjuredObject10
+  id: ConjuredObject180
+  components:
+  - type: TimedDespawn
+    lifetime: 180
+
+- type: entity
+  abstract: true
+  parent: ConjuredObject10
+  id: ConjuredObject300
+  components:
+  - type: TimedDespawn
+    lifetime: 300
 
 # From BBBullet
 - type: entity
@@ -44,9 +76,7 @@
     lifetime: 10
   - type: SpaceGarbage
 
-
-
-# Conjured objects
+#region Objects
 - type: entity
   name: soap
   id: SoapConjured

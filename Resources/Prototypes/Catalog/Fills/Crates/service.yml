@@ -2,7 +2,7 @@
   id: CrateServiceJanitorialSupplies
   parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: janitorial supplies crate
-  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials Plus™! Contains a bucket and two caution signs, a mop, broom, two spray bottles of cleaner, soap, a plunger, and a light replacer. # Frontier: match crate contents
+  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials Plus™! Contains a bucket and two caution signs, a mop, broom, two spray bottles of cleaner, soap, a plunger, a light replacer, two wire brushes, and cleaner grenades. # Frontier: match crate contents
   components:
   - type: StorageFill
     contents:
@@ -21,6 +21,9 @@
         amount: 1
       - id: LightReplacer # Frontier
         amount: 1
+      - id: BoxCleanerGrenades
+      - id: WireBrush
+        amount: 2
 
 - type: entity
   id: CrateServiceCleanerGrenades
@@ -37,7 +40,7 @@
   id: CrateServiceReplacementLights
   parent: CrateGenericSteel
   name: replacement lights crate
-  description: May the light of Aether shine upon this station! Or at least, the light of forty two light tubes and twenty one light bulbs.
+  description: May the light of Aether shine upon this station! Or at least, the light of twelve light tubes and twelve light bulbs. # Frontier: use correct quantities
   components:
   - type: StorageFill
     contents:
@@ -221,7 +224,7 @@
   components:
     - type: StorageFill
       contents:
-      - id: DrinkCoffeeJug
+      - id: JugNanocaf # Frontier: DrinkCoffeeJug<JugNanocaf
       - id: DrinkColaBottleFull
       - id: DrinkCreamCartonXL
       - id: DrinkDrGibbJug
