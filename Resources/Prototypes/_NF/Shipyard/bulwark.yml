@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Bartholemew-Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Bulwark
+  parent: BaseVessel
+  name: DBI Bulwark
+  description: A gas mining ship with a centeral gas storage tank and supporting lattice framework
+  price: 89000 
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/bulwark.yml
+  guidebookPage: ShipyardBulwark
+  class:
+  - Atmospherics
+  - Engineering
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Bulwark
+  mapName: 'DBI Bulwark'
+  mapPath: /Maps/_NF/Shuttles/bulwark.yml
+  minPlayers: 0
+  stations:
+    Bulwark:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Bulwark {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          ContractorInterview: [ 0, 0 ]
+          PilotInterview: [ 0, 0 ]
+          MercenaryInterview: [ 0, 0 ]
