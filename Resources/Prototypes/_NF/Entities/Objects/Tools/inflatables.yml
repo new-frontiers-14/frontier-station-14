@@ -161,6 +161,16 @@
 #region partial stacks
 - type: entity
   parent: NFInflatableWallStack
+  id: NFInflatableWallStack10
+  suffix: 10
+  components:
+    - type: Sprite
+      state: item_wall
+    - type: Stack
+      count: 10
+
+- type: entity
+  parent: NFInflatableWallStack
   id: NFInflatableWallStack5
   suffix: 5
   components:
@@ -178,6 +188,16 @@
       state: item_wall
     - type: Stack
       count: 1
+
+- type: entity
+  parent: NFInflatableDoorStack
+  id: NFInflatableDoorStack10
+  suffix: 10
+  components:
+    - type: Sprite
+      state: item_door
+    - type: Stack
+      count: 10
 
 - type: entity
   parent: NFInflatableDoorStack
@@ -201,6 +221,16 @@
 
 - type: entity
   parent: NFInflatableDoorWindowStack
+  id: NFInflatableDoorWindowStack10
+  suffix: 10
+  components:
+    - type: Sprite
+      state: item_door
+    - type: Stack
+      count: 10
+
+- type: entity
+  parent: NFInflatableDoorWindowStack
   id: NFInflatableDoorWindowStack1
   suffix: 1
   components:
@@ -208,6 +238,16 @@
       state: item_door
     - type: Stack
       count: 1
+
+- type: entity
+  parent: NFInflatableWindowStack
+  id: NFInflatableWindowStack10
+  suffix: 10
+  components:
+    - type: Sprite
+      state: item_window
+    - type: Stack
+      count: 10
 
 - type: entity
   parent: NFInflatableWindowStack
@@ -238,6 +278,16 @@
       state: item-folded
     - type: Stack
       count: 1
+
+- type: entity
+  parent: NFInflatableFloorStack
+  id: NFInflatableFloorStack10
+  suffix: 10
+  components:
+    - type: Sprite
+      state: item_inflatable_floor
+    - type: Stack
+      count: 10
 
 - type: entity
   parent: NFInflatableFloorStack
