@@ -24,8 +24,8 @@ public sealed partial class AtmosphereSystem
 
         // Frontier: Toggle atmos per map
         _consoleHost.RegisterCommand("setmapatmosenabled",
-        "Sets whether atmos devices should work on a map",
-        "setmapatmosenabled <map id> <enabled>", SetMapAtmosEnabledCommand);
+            "Sets whether atmos devices should work on a map",
+            "setmapatmosenabled <map id> <enabled>", SetMapAtmosEnabledCommand);
     }
 
     private void ShutdownCommands()
