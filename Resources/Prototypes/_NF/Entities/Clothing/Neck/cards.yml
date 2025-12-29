@@ -1,0 +1,115 @@
+# region base
+- type: entity
+  abstract: true
+  parent: [ RecyclableItemPlasticTiny, Clothing ]
+  id: NFBaseClothingNeckCard
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/card.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/card.rsi
+    quickEquip: true
+    slots:
+    - neck
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Recyclable
+    - WhitelistChameleon
+
+# region reporter
+- type: entity
+  parent: NFBaseClothingNeckCard
+  id: NFClothingNeckCardReporter
+  name: reporter card
+  description: A press pass identifying the bearer as a member of the news media.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#9fed58"
+    - state: icon-unshaded
+      color: "#96A3B0"
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#9fed58"
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+        color: "#96A3B0"
+
+# region medic
+- type: entity
+  parent: NFBaseClothingNeckCard
+  id: NFClothingNeckCardMedic
+  name: medic card
+  description: An identification card for medical personnel.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+    - state: icon-unshaded
+      color: "#5b97bc"
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+        color: "#5b97bc"
+
+# region nfsd writ/permit
+- type: entity
+  parent: NFBaseClothingNeckCard
+  id: NFClothingNeckCardNfsdWrit
+  name: nfsd permit card
+  description: A permit card issued by the NFSD. Includes a slot for inserting official paperwork. Property of the NFSD; contents are not to be tampered with by the holder..
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#63492a"
+    - state: icon-unshaded
+      map: ["cardUnshadedIconDocument"]
+      color: "#59784b"
+      shader: unshaded
+    - state: icon-unshaded
+      map: ["cardUnshadedIconEmpty"]
+      color: "#784b4b"
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#63492a"
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+        color: "#59784b"
+  - type: ContainerContainer
+    containers:
+      paper_label: !type:ContainerSlot
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals: # Ideallty there'd be a visualizer that changes equipped layers, but atm those doesn't exist afaik
+      enum.PaperLabelVisuals.HasLabel:
+        cardUnshadedIconDocument:
+          True: { visible: true }
+          False: { visible: false }
+        cardUnshadedIconEmpty:
+          True: { visible: false }
+          False: { visible: true }
+  - type: PaperLabel
+    labelSlot:
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+        components:
+        - Blueprint
+  - type: ItemSlots

@@ -1,30 +1,4 @@
 #Drinks
-- type: reaction
-  id: Coffee
-  minTemp: 353 # ~80 deg C
-  requiredMixerCategories:
-  - Stir
-  reactants:
-    Water:
-      amount: 3
-    CoffeeGrounds:
-      amount: 1
-  products:
-    Coffee: 4
-
-- type: reaction
-  id: PumpkinSpiceLatte
-  reactants:
-    CafeLatte:
-      amount: 3
-    PumpkinFlesh:
-      amount: 1
-    Sugar:
-      amount: 1
-    Everyspice:
-      amount: 1
-  products:
-    PumpkinSpiceLatte: 6
 
 - type: reaction
   id: TheMadgob
@@ -37,16 +11,6 @@
       amount: 1
   products:
     TheMadgob: 5
-
-- type: reaction
-  id: HoneyIcedTea
-  reactants:
-    Honey:
-      amount: 1
-    IcedTea:
-      amount: 1
-  products:
-    HoneyIcedTea: 2
 
 - type: reaction
   id: WassailMulledAle
@@ -78,6 +42,46 @@
       amount: 1
   products:
     Eggnog: 4
+
+
+# Coffee Drinks
+
+- type: reaction
+  id: Coffee
+  minTemp: 353 # ~80 deg C
+  reactants:
+    Water:
+      amount: 15
+    CoffeeGrounds:
+      amount: 5
+  products:
+    Coffee: 20
+
+- type: reaction
+  id: PumpkinSpiceLatte
+  reactants:
+    CafeLatte:
+      amount: 3
+    PumpkinFlesh:
+      amount: 1
+    Sugar:
+      amount: 1
+    Everyspice:
+      amount: 1
+  products:
+    PumpkinSpiceLatte: 6
+
+# Tea Drinks
+
+- type: reaction
+  id: HoneyIcedTea
+  reactants:
+    Honey:
+      amount: 1
+    IcedTea:
+      amount: 1
+  products:
+    HoneyIcedTea: 2
 
 # Alcoholic Drinks
 - type: reaction
