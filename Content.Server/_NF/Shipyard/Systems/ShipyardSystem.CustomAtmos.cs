@@ -22,6 +22,7 @@ public sealed partial class ShipyardSystem
 {
     [Dependency] private readonly GasMixerSystem _gasMixerSystem = default!;
     [Dependency] private readonly AtmosMonitorSystem _atmosMonitorSystem = default!;
+    [Dependency] private readonly GasVentScrubberSystem _gasVentScrubberSystem = default!;
 
     /// <summary>
     /// Sets up the atmosphere of a shuttle from the given prototype.
@@ -107,27 +108,31 @@ public sealed partial class ShipyardSystem
         ShuttleGridEntity shuttleGrid,
         ShuttleAtmospherePrototype atmos)
     {
-        if (atmos.Alarms == null)
+        if (atmos.Alarms == null && atmos.FilterGases == null)
+        {
+            // Nothing to do
             return;
+        }
 
-        var pressureThreshold = atmos.Alarms.PressureThreshold;
+        // Prepare alarm thresholds, if set
+        var pressureThreshold = atmos.Alarms?.PressureThreshold;
         AtmosAlarmThresholdPrototype? thresholdPrototype;
-        if (pressureThreshold == null && _prototypeManager.TryIndex(atmos.Alarms.PressureThresholdId, out thresholdPrototype))
+        if (pressureThreshold == null && _prototypeManager.TryIndex(atmos.Alarms?.PressureThresholdId, out thresholdPrototype))
         {
             pressureThreshold = new AtmosAlarmThreshold(thresholdPrototype);
         }
 
-        var temperatureThreshold = atmos.Alarms.TemperatureThreshold;
-        if (temperatureThreshold == null && _prototypeManager.TryIndex(atmos.Alarms.TemperatureThresholdId, out thresholdPrototype))
+        var temperatureThreshold = atmos.Alarms?.TemperatureThreshold;
+        if (temperatureThreshold == null && _prototypeManager.TryIndex(atmos.Alarms?.TemperatureThresholdId, out thresholdPrototype))
         {
             temperatureThreshold = new AtmosAlarmThreshold(thresholdPrototype);
         }
 
-        var gasThresholds = atmos.Alarms.GasThresholds;
+        var gasThresholds = atmos.Alarms?.GasThresholds;
         if (gasThresholds == null)
         {
             gasThresholds = new Dictionary<Gas, AtmosAlarmThreshold>();
-            foreach (var (gas, protoId) in atmos.Alarms.GasThresholdPrototypes)
+            foreach (var (gas, protoId) in atmos.Alarms?.GasThresholdPrototypes ?? [])
             {
                 if (_prototypeManager.Resolve(protoId, out var gasThresholdPrototype))
                 {
@@ -142,10 +147,17 @@ public sealed partial class ShipyardSystem
         // settings to. We can't use this here because at this point, no game tick has happened yet, so no sensor data
         // is available.
         var enumerator = EntityQueryEnumerator<AirAlarmComponent, DeviceListComponent>();
-        while (enumerator.MoveNext(out var entity, out _, out var deviceList))
+        while (enumerator.MoveNext(out var entity, out var alarm, out var deviceList))
         {
             if (Transform(entity).GridUid != shuttleGrid.Owner)
                 continue;
+
+            if (atmos.FilterGases != null)
+            {
+                // Air alarms use a hard-coded gas list in automatic mode, which is very stupid and will discard our
+                // overrides
+                alarm.AutoMode = false;
+            }
 
             foreach (var device in deviceList.Devices)
             {
@@ -173,6 +185,11 @@ public sealed partial class ShipyardSystem
                     {
                         _atmosMonitorSystem.SetThreshold(device, AtmosMonitorThresholdType.Gas, threshold, gas);
                     }
+                }
+
+                if (atmos.FilterGases != null && TryComp<GasVentScrubberComponent>(device, out var comp))
+                {
+                    _gasVentScrubberSystem.SetFilterGases(device, atmos.FilterGases, comp);
                 }
             }
         }
