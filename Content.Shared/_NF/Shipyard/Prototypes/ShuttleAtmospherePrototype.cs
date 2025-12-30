@@ -22,6 +22,9 @@ public sealed class ShuttleAtmospherePrototype : IPrototype
 
     [DataField]
     public ShuttleAtmosphereAlarms? Alarms;
+
+    [DataField]
+    public List<Gas>? FilterGases;
 }
 
 [DataDefinition]
