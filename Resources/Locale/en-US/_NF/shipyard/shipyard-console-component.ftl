@@ -1,5 +1,6 @@
 ## UI
-shipyard-console-invalid-vessel = Cannot purchase vessel:
+shipyard-console-invalid-vessel = Cannot purchase vessel: {$vessel}
+shipyard-console-invalid-atmosphere = Cannot supply atmosphere: {$atmosphere}
 shipyard-console-menu-title = Shipyard Menu
 shipyard-console-menu-listing-free = Free
 shipyard-console-docking = {$owner} shuttle {$vessel} en route.
@@ -7,6 +8,7 @@ shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
 shipyard-console-leaving-secret = Unregistered vessel detected leaving your sector.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
+shipyard-commands-purchase-atmos-hint = atmosphere prototype
 shipyard-console-no-idcard = Insert ID card.
 shipyard-console-already-deeded = ID card already has a Deed.
 shipyard-console-invalid-station = Not a valid station.
@@ -34,6 +36,8 @@ shipyard-console-fallback-prevent-sale = YML-class bugs detected onboard. Please
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
 shipyard-console-menu-engine-label = Engine:{" "}
+shipyard-console-menu-atmos-label = Atmosphere:{" "}
+shipyard-console-menu-atmos-default = Standard station atmosphere
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual
