@@ -1,0 +1,50 @@
+#Special Dough
+
+- type: reaction
+  id: CreateRiceDough
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    Rice:
+      amount: 40
+    Water:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: FoodRiceDough
+
+- type: reaction
+  id: NFCreateMeatGravy
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    UncookedAnimalProteins:
+      amount: 5
+    Fat:
+      amount: 5
+    Enzyme:
+      # Not a catalyst for once. The amount is low to preserve supplies, so
+      # you don't end up in a "crap, now I can't make cheese" situation.
+      amount: 1
+  products:
+    Gravy: 10
+
+- type: reaction
+  id: NFCreateVeganGravy
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    # How do soy milk and cornmeal combine to create something meaty?
+    # Universal enzyme. It's basically magic. Don't think about it too much.
+    MilkSoy:
+      amount: 5
+    Cornmeal:
+      amount: 5
+    Enzyme:
+      # Same reasoning as above.
+      amount: 1
+  products:
+    Gravy: 10

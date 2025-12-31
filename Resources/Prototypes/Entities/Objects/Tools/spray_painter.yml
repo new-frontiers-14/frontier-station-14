@@ -2,7 +2,7 @@
   parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: SprayPainter
   name: spray painter
-  description: A spray painter for painting airlocks, pipes, and other items. # Upstream#37341
+  description: A spray painter for painting airlocks, pipes, and other items.
   components:
   - type: Sprite
     sprite: Objects/Tools/spray_painter.rsi
@@ -33,14 +33,13 @@
       external: '#9955cc' # Frontier
   - type: StaticPrice
     price: 20 # Frontier 40<20
-  - type: LimitedCharges # Upstream#37341
-    maxCharges: 15 # Upstream#37341
-    lastCharges: 15 # Upstream#37341
+  - type: LimitedCharges
+    maxCharges: 15
+    lastCharges: 15
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
 
-# Upstream#37341
 - type: entity
   parent: SprayPainter
   id: SprayPainterRecharging
@@ -76,4 +75,3 @@
       Plastic: 10
   - type: StaticPrice
     price: 30
-# End Upstream#37341

@@ -27,3 +27,60 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: NFGoblinMadeClothingHeadHatHoodTrashMantle
+  name: trashtle hood
+  description: The hood of a trash mantle.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/goblin_trashmantle_hood.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/goblin_trashmantle_hood.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: TypingIndicatorClothing
+    proto: goblin
+
+- type: entity
+  parent: ClothingHeadBase
+  id: NFGoblinMadeClothingHeadHatHoodTrashCloak
+  name: cloakash hood
+  description: The hood of a trash cloak.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/goblin_trashcloak_hood.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/goblin_trashcloak_hood.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: TypingIndicatorClothing
+    proto: goblin
+
+# mercenary armored bio suit hood
+- type: entity
+  parent: ClothingHeadHatHoodBioGeneral
+  id: ClothingHeadHatHoodBioArmoredMercenray
+  name: mercenary bio hood
+  description: A hood that protects the head and face from biological contaminants.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Bio/mercenary.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Bio/mercenary.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair

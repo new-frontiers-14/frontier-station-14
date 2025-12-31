@@ -202,7 +202,22 @@
     stateDoorOpen: sr_open
     stateDoorClosed: sr_door
 
-#FSB
+#Far Star
+
+- type: entity
+  id: ClosetFsaEva
+  name: FSA EVA suit locker
+  parent: NFLockerBaseSecure
+  description: It's a storage unit that could contain a Far Star Arms EVA suit. It may also contain other things.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: fsa
+    stateDoorOpen: fsa_open
+    stateDoorClosed: fsa_door
+
 - type: entity
   id: ClosetFsbEva
   name: FSB EVA suit locker
@@ -216,6 +231,20 @@
     stateBaseClosed: fsb
     stateDoorOpen: fsb_open
     stateDoorClosed: fsb_door
+
+- type: entity
+  id: ClosetFscEva
+  name: FSC EVA suit locker
+  parent: NFLockerBaseSecure
+  description: It's a storage unit that could contain a Far Star Commerce EVA suit. It may also contain other things.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: fsc
+    stateDoorOpen: fsc_open
+    stateDoorClosed: fsc_door
 
 # Upstream to Frontier Swap
 - type: entity

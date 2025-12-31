@@ -47,6 +47,7 @@
       - FakeMindShieldImplant
       - RadioImplant
       - RadioImplantFreelance # Frontier
+      - ChameleonControllerImplant
       deimplantFailureDamage:
         types:
           Cellular: 50
@@ -251,6 +252,14 @@
   components:
     - type: Implanter
       implant: DnaScramblerImplant
+
+- type: entity
+  id: ChameleonControllerImplanter
+  name: chameleon controller implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: ChameleonControllerImplant
 
 #Nuclear Operative/Special implanters
 

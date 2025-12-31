@@ -418,6 +418,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+        - NFPirateFirstMate
 
 - type: listing
   id: UplinkRadioImplanterFreelance
@@ -540,3 +541,19 @@
           - PirateUplink
   categories:
   - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateJetpack
+  name:  uplink-pirate-jetpack-name
+  description: uplink-pirate-jetpack-desc
+  productEntity: JetpackPirateFilled
+  icon: { sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink

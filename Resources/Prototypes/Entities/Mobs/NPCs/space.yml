@@ -34,7 +34,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      80: Dead
   - type: Stamina
     critThreshold: 150
   - type: MovementAlwaysTouching
@@ -165,15 +165,16 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepBounce
   - type: ReplacementAccent
     accent: kangaroo
   - type: Butcherable
     spawned:
     - id: FoodMeat
       amount: 1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
 
 - type: entity
   id: MobKangarooSpaceSalvage
@@ -202,7 +203,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Dead
+      45: Dead
   - type: Stamina
     critThreshold: 150
   - type: DamageStateVisuals
@@ -305,7 +306,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        100: Dead
+        45: Dead
     - type: Stamina
       critThreshold: 150
     - type: DamageStateVisuals
@@ -365,7 +366,7 @@
       interactFailureString: petting-failure-generic
     - type: PointLight
       radius: 1.1
-      energy: 1.5
+      energy: 2.7
       color: "#4faffb"
     - type: Stealth
       enabledOnDeath: false
@@ -441,6 +442,15 @@
       0: Alive
       10: Critical
       20: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 40
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 3

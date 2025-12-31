@@ -1,4 +1,13 @@
 # region Machines
+
+- type: latheRecipe
+  id: CargoTechFabCircuitboardNF
+  parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
+  result: CargoTechFabCircuitboardNF
+  materials:
+    Steel: 800
+    Glass: 900
+
 - type: latheRecipe
   id: SalvageTechFabCircuitboardNF
   parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
@@ -108,6 +117,11 @@
   result: NFHolopadShipMachineCircuitboard
 
 - type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: NFHolopadGridMachineCircuitboard
+  result: NFHolopadGridMachineCircuitboard
+
+- type: latheRecipe
   id: DeepFryerMachineCircuitboard
   parent: [ BaseSilverCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   result: DeepFryerMachineCircuitboard
@@ -117,11 +131,21 @@
   id: ImpCoffeeMachineCircuitboard
   result: ImpCoffeeMachineCircuitboard
 
+- type: latheRecipe
+  id: OreProcessorCivilianCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: OreProcessorCivilianCircuitboard
+
 # region Consoles
 - type: latheRecipe
   id: ResearchComputerCircuitboard
   parent: [BaseGoldCircuitboardRecipe, BaseResearchComputerRecipeCategory]
   result: ResearchComputerCircuitboard
+
+- type: latheRecipe
+  id: NFScreenTimerElectronics
+  parent: BaseCircuitboardRecipe
+  result: ScreenTimerElectronics
 
 # region Thrusters
 - type: latheRecipe
@@ -185,3 +209,15 @@
   id: PortableGeneratorDKJrMachineCircuitboard
   parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   result: PortableGeneratorDKJrMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
+# Battery
+- type: latheRecipe
+  id: PortableSMESMachineCircuitboard
+  parent: BaseCircuitboardRecipe
+  result: PortableSMESMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900

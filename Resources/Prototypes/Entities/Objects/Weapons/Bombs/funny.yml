@@ -12,7 +12,8 @@
       - state: icon
         map: ["base"]
     - type: Item
-      sprite: Objects/Weapons/Bombs/hot_potato.rsi
+      sprite: Objects/Specific/Hydroponics/potato.rsi
+      heldPrefix: produce
       size: Small
     - type: AmbientSound
       enabled: false
@@ -103,6 +104,11 @@
       - !type:TriggerBehavior
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Recyclable
+    - Trash
+    - BananaPeel
 
 - type: entity
   parent: BaseItem

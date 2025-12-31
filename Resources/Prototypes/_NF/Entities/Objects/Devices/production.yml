@@ -1,4 +1,22 @@
 - type: entity
+  id: CargoTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: cargo techfab machine board
+  description: A machine printed circuit board for a cargo techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: CargoTechFabNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
   id: ShredderMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: shredder machine board
@@ -119,6 +137,22 @@
     - type: BindToStation
       enabled: false # should be draggable between stations
 
+- type: entity
+  id: OreProcessorCivilianCircuitboard
+  parent: BaseMachineCircuitboard
+  name: civilian ore processor machine board
+  description: A machine printed circuit board for a civilian ore processor.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: OreProcessorCivilian
+      requirements:
+        MatterBin: 1
+        Manipulator: 3
+      stackRequirements:
+        Glass: 1
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
@@ -131,6 +165,25 @@
       state: nfsd
     - type: MachineBoard
       prototype: NfsdTechFab
+
+- type: entity
+  id: PirateTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: pirate techfab machine board
+  description: A machine printed circuit board for a pirate techfab.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
+      state: pirate
+    - type: MachineBoard
+      prototype: PirateTechFab
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
 
 # Thrusters
 - type: entity
@@ -325,6 +378,139 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
+
+# Wizards and cultists
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ScrollWizardStaffRechargerAltar
+  name: wizard staff altar binding scroll
+  description: An odd amalgamation of wizardry and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+      layers:
+      - state: crystalpaper
+        color: "#79bcff"
+      - state: crystalpaper-text-unshaded
+        color: "#293dc7"
+        shader: unshaded
+      - state: crystalpaper-sparks-unshaded
+        color: "#79bcff"
+        shader: unshaded
+    - type: MachineBoard
+      prototype: StaffRechargerWizard
+      # requirements:
+        # ShardCrystalBlue: 2
+        # CandleBlue: 2
+      # stackRequirements:
+        # CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Paper: 200
+      chemicalComposition:
+        Carbon: 10
+    - type: StaticPrice
+      price: 0
+
+- type: entity
+  parent: ScrollWizardStaffRechargerAltar
+  id: ScrollCultStaffRechargerAltar
+  name: blood cult staff altar binding scroll
+  description: An odd amalgamation of eldritch magic and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+      layers:
+      - state: crystalpaper
+        color: "#ffb2b2"
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-outer-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-inner-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-center-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-words-01
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - state: crystalpaper-text-unshaded
+        color: "#c72929"
+        shader: unshaded
+      - state: crystalpaper-sparks-unshaded
+        color: "#ff3e3e"
+        shader: unshaded
+    - type: MachineBoard
+      prototype: StaffRechargerCult
+      # requirements:
+        # ShardCrystalRed: 2
+        # CandleRed: 2
+      # stackRequirements:
+        # CableHV: 10
+
+- type: entity
+  id: ScrollCultForge
+  parent: ScrollWizardStaffRechargerAltar
+  name: cult forge binding scroll
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+      layers:
+      - state: crystalpaper
+        color: "#ffb2b2"
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-inner-03
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-center-03
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+        state: rune-words-03
+        color: "#721313"
+        scale: 0.5, 0.5
+        shader: unshaded
+      - state: crystalpaper-text-unshaded
+        color: "#c72929"
+        shader: unshaded
+      - state: crystalpaper-sparks-unshaded
+        color: "#ff3e3e"
+        shader: unshaded
+    - type: MachineBoard
+      prototype: BloodCultProp02
+      # requirements:
+        # ShardCrystalRed: 2
+        # CandleRed: 2
+      # stackRequirements:
+        # CableHV: 10
+
+- type: entity
+  id: PortableSMESMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: portable SMES machine board
+  description: A machine printed circuit board for a portable SMES.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableSMESEmpty
+      requirements:
+        Capacitor: 1
+        PowerCell: 4
+      stackRequirements:
+        CableHV: 10
 
 - type: entity
   id: BlueprintLithographMachineCircuitboard

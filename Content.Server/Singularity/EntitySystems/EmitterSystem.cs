@@ -25,7 +25,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server.Construction; // Frontier
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Singularity.EntitySystems
 {
@@ -65,7 +65,7 @@ namespace Content.Server.Singularity.EntitySystems
 
         private void OnActivate(EntityUid uid, EmitterComponent component, ActivateInWorldEvent args)
         {
-            if (args.Handled)
+            if (args.Handled || !args.Complex)
                 return;
 
             if (TryComp(uid, out LockComponent? lockComp) && lockComp.Locked)
@@ -104,7 +104,7 @@ namespace Content.Server.Singularity.EntitySystems
 
         private void OnGetVerb(EntityUid uid, EmitterComponent component, GetVerbsEvent<Verb> args)
         {
-            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+            if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null)
                 return;
 
             if (TryComp<LockComponent>(uid, out var lockComp) && lockComp.Locked)

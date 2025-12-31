@@ -46,11 +46,12 @@
         Structural: 30
     soundHit:
       collection: MetalThud
-  - type: Advertise
-    pack: mercenaryhumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
+  - type: Vocalizer
+    hideChat: true
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: mercenaryhumanoidchatter
   - type: AutoWakeUp
   - type: PointLight
     enabled: true
@@ -616,19 +617,21 @@
 
 - type: entity
   id: ActionSeismicCharge
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Throw Seismic Charge[/color]"
   description: "Hurls activated seismic charge, that explodes on contact. [color=yellow]50 second cooldown.[/color]"
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : Objects/Weapons/Bombs/seismic.rsi, state: icon }
-    event: !type:ActionGunShootEvent
     priority: 2
+    itemIconStyle: BigAction
+    useDelay: 50
+  - type: TargetAction
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction
-  - type: UseDelay
-    delay: 50
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
 
 #region space, t1
 - type: entity

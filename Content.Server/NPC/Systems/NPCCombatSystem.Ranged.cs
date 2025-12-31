@@ -6,6 +6,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Random; //Frontier
 
 namespace Content.Server.NPC.Systems;
 
@@ -123,6 +124,13 @@ public sealed partial class NPCCombatSystem
 
             var worldPos = _transform.GetWorldPosition(xform);
             var targetPos = _transform.GetWorldPosition(targetXform);
+            
+            // Frontier -- Ranged NPC miss chance
+            if (_random.Prob(comp.MissChance))
+            {
+                targetPos = targetPos + _random.NextVector2(1.0f, 2.0f);
+            }
+            // End Frontier
 
             // We'll work out the projected spot of the target and shoot there instead of where they are.
             var distance = (targetPos - worldPos).Length();
@@ -191,7 +199,7 @@ public sealed partial class NPCCombatSystem
 
             if (_mapManager.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
             {
-                targetCordinates = new EntityCoordinates(gridUid, mapGrid.WorldToLocal(targetSpot));
+                targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
             }
             else
             {
@@ -205,8 +213,7 @@ public sealed partial class NPCCombatSystem
                 return;
             }
 
-            _gun.SetTarget(gun, comp.Target); // Frontier - This ensures that the bullet won't fly over the target if it's downed
-            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, comp.Target);
         }
     }
 }

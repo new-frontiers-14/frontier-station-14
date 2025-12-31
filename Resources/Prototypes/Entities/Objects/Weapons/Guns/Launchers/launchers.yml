@@ -53,6 +53,9 @@
     # proto: GrenadeFrag # Frontier
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 10000
 
 - type: entity
   abstract: true # Frontier: create NF variant if we want this
@@ -79,6 +82,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: GunRequiresWield
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container
@@ -223,7 +227,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:
@@ -271,7 +275,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-        - type: ToggleableLightVisuals
+        - type: ToggleableVisuals
           spriteLayer: unshaded
           inhandVisuals:
             left:
@@ -346,7 +350,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:
@@ -388,7 +392,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:

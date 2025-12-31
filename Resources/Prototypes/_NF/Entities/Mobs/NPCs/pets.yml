@@ -5,6 +5,9 @@
   - type: GhostRole
   - type: IntrinsicRadioReceiver
   - type: CargoSellBlacklist
+  - type: ShipyardSellCondition # The SR can no longer sell Clippy
+    blockSale: true
+    reason: shipyard-console-cute-pets
 
 - type: entity
   id: MobCatClippy
@@ -207,6 +210,12 @@
     states:
       Alive:
         Base: slimecat
+  - type: Temperature
+    heatDamageThreshold: 423
+    coldDamageThreshold: -40
+  - type: MovementAlwaysTouching
+  - type: PressureImmunity
+  - type: Insulated
   - type: GhostRole
     name: ghost-role-information-curie-name
     description: ghost-role-information-curie-description
@@ -234,10 +243,23 @@
   - type: AutoToggleableOuterClothing
   - type: Vocal
     sounds:
-      Male: Cat
-      Female: Cat
-      Unsexed: Cat
+      Male: SlimeCat
+      Female: SlimeCat
+      Unsexed: SlimeCat
   - type: RussianAccent
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+    allowedEmotes:
+    - Hiss
+    - Meow
+    - Growl
+    - Purr
+    - Squish
+    - Bubble
+    - Pop
+  - type: TypingIndicator
+    proto: slime
 
 - type: entity
   id: MobCatClugg
@@ -401,18 +423,21 @@
 
 - type: entity
   id: ActionEldritchPush
+  parent: BaseAction
   name: "[color=yellow]Force Push[/color]"
   description: "Summon forth an eldritch hand. [color=yellow]5 minute cooldown.[/color]"
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : _NF/Effects/bloodcultprojectiles.rsi, state: hand }
-    event: !type:ActionGunShootEvent
     priority: 2
-    checkCanAccess: false
-    range: 0
     itemIconStyle: BigAction
     useDelay: 300
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
 
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity

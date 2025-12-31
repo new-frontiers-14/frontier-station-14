@@ -275,6 +275,15 @@
 
 - type: entity
   parent: ProtolatheFlatpack
+  id: MachineMiniAnomalyGeneratorFlatpack
+  name: mini anomaly generator flatpack
+  description: A flatpack used for constructing a mini anomaly generator.
+  components:
+  - type: Flatpack
+    entity: MachineMiniAnomalyGenerator
+
+- type: entity
+  parent: ProtolatheFlatpack
   id: BlueprintLithographFlatpack
   name: blueprint lithograph flatpack
   description: A flatpack used for constructing a blueprint lithograph.
@@ -291,7 +300,7 @@
   - type: Flatpack
     entity: MachineMaterialSilo
   - type: StaticPrice
-    price: 250
+    price: 150
 
 #region Service
 - type: entity
@@ -535,6 +544,18 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: CivilianOreProcessorFlatpack
+  name: civilian ore processor flatpack
+  description: A flatpack used for constructing a civilian ore processor.
+  components:
+  - type: Flatpack
+    entity: OreProcessorCivilian
+  - type: Sprite
+    layers:
+    - state: supply_lathe
+
+- type: entity
+  parent: BaseNFFlatpack
   id: ShuttleGunKineticFlatpack
   name: PTK-1500e "Matter Dematerializer" flatpack
   description: A flatpack used for constructing a PTK-1500e "Matter Dematerializer".
@@ -574,6 +595,24 @@
   - type: Flatpack
     entity: ScrapProcessor
 
+- type: entity
+  parent: OreProcessorFlatpack
+  id: CargoTechfabNFFlatpack
+  name: cargo techfab flatpack
+  description: A flatpack used for constructing a cargo techfab.
+  components:
+  - type: Flatpack
+    entity: CargoTechFabNF
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: CrateStorageRackFlatpack
+  name: crate storage rack flatpack
+  description: A storage rack prefab.
+  components:
+  - type: Flatpack
+    entity: CrateStorageRack
+
 #region Mercenary
 - type: entity
   parent: BaseNFFlatpack
@@ -597,6 +636,31 @@
     entity: MercenaryTechFab
   - type: StaticPrice
     price: 600
+
+- type: entity
+  parent: AmmoTechFabFlatpack
+  id: MercenaryTechFabHackedFlatpack
+  name: hacked mercenary techfab flatpack
+  description: A flatpack used for constructing a hacked mercenary techfab.
+  components:
+  - type: Flatpack
+    entity: MercenaryTechFabHacked
+  - type: StaticPrice
+    price: 800
+
+#region Pirate
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PirateTechFabFlatpack
+  name: pirate techfab flatpack
+  description: A flatpack used for constructing a pirate techfab.
+  components:
+  - type: Flatpack
+    entity: PirateTechFab
+  - type: Sprite
+    layers:
+    - state: pirate_lathe
 
 #region Consoles
 - type: entity
@@ -883,7 +947,7 @@
   description: A flatpack used for constructing a jukebox.
   components:
   - type: Flatpack
-    entity: Jukebox
+    entity: JukeboxEmpty
   - type: StaticPrice
     price: 250
 

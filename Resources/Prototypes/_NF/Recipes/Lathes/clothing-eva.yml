@@ -225,15 +225,14 @@
 
 # Basic hardsuits (T1 research)
 - type: latheRecipe
-  id: ClothingOuterHardsuitBasic
+  id: ClothingOuterHardsuitSpatio
   parent: NFBaseHardSuitRecipe
-  result: ClothingOuterHardsuitBasic
-  materials:
-    Glass: 300
-    Steel: 2000
-    Cloth: 300
-    Durathread: 1500
-    Silver: 1000
+  result: ClothingOuterHardsuitSpatio
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitPilot
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitPilot
 
 # Departmental hardsuits (T2 research)
 - type: latheRecipe
@@ -245,11 +244,6 @@
   id: ClothingOuterHardsuitEngineering
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitEngineering
-
-- type: latheRecipe
-  id: ClothingOuterHardsuitSpatio
-  parent: NFBaseHardSuitRecipe
-  result: ClothingOuterHardsuitSpatio
 
 - type: latheRecipe
   id: ClothingOuterHardsuitSalvage
@@ -265,11 +259,6 @@
   id: ClothingOuterHardsuitMime
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitMime
-
-- type: latheRecipe
-  id: ClothingOuterHardsuitPilot
-  parent: NFBaseHardSuitRecipe
-  result: ClothingOuterHardsuitPilot
 
 - type: latheRecipe
   id: ClothingOuterHardsuitMercenary
@@ -331,6 +320,28 @@
     Durathread: 2000
     Silver: 1000
     Gold: 2000
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitNoble
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitNoble
+  materials:
+    Glass: 500
+    Plastic: 2000
+    Plasteel: 3000
+    Durathread: 2000
+    Silver: 1000
+    Gold: 2000
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSurplus
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitSurplus
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitHostileEnvironment
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitHostileEnvironment
 
 # Magboots
 - type: latheRecipe

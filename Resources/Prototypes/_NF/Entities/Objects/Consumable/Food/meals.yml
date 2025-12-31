@@ -400,7 +400,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Flavorol
           Quantity: 10
 
@@ -426,7 +426,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -458,7 +458,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -491,7 +491,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -525,7 +525,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -558,7 +558,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -591,7 +591,7 @@
   name: fried tofu
   parent: FoodTofuSlice
   id: FoodSlicedTofuFried
-  description: This once healthy slice of tofu has been fried to cispy perfection.
+  description: This once healthy slice of tofu has been fried to crispy perfection.
   components:
   - type: Tag
     tags:
@@ -612,3 +612,91 @@
           Quantity: 3
         - ReagentId: Nutriment
           Quantity: 2
+
+- type: entity
+  name: chicken parmesan
+  parent: FoodMealBase
+  id: FoodMealChickenParmesan
+  description: The highest-rated method to taming an Australian. Just be sure to call it "chicken parm"...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - savory
+      - tomato
+      - chicken
+      - pasta
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    state: chickenparm
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 12
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMeatSausage
+  name: cooked sausage
+  description: A simple sausage. Who knows what's in this thing?
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - NFHotdog
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausagecooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 2
+  - type: Construction
+    graph: NFHotdogStove
+    node: cookeddog
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealHotdog
+  name: hotdog
+  description: Hot diggity dog!
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: hotdog
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Construction
+    graph: NFHotdog
+    node: hotteddog

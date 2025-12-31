@@ -54,8 +54,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Kitchen.Components; // Frontier
-using Content.Server._NF.Kitchen.Components; // Frontier
+using Content.Shared.Cargo; // Frontier
 using Content.Shared.NameModifier.EntitySystems; // Frontier
+using Content.Shared.Construction.Components; // Frontier
+using Content.Shared.Nutrition.Components; // Frontier
 
 namespace Content.Server.Nyanotrasen.Kitchen.EntitySystems;
 
@@ -112,6 +114,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         SubscribeLocalEvent<DeepFryerComponent, SolutionChangedEvent>(OnSolutionChange);
         SubscribeLocalEvent<DeepFryerComponent, ContainerRelayMovementEntityEvent>(OnRelayMovement);
         SubscribeLocalEvent<DeepFryerComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<DeepFryerComponent, UpgradeExamineEvent>(OnUpgradeExamine);// Frontier: deep fryier upgrade status popup
 
         SubscribeLocalEvent<DeepFryerComponent, BeforeActivatableUIOpenEvent>(OnBeforeActivatableUIOpen);
         SubscribeLocalEvent<DeepFryerComponent, DeepFryerRemoveItemMessage>(OnRemoveItem);
@@ -506,6 +509,13 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
                                        (int)(component.StoragePerPartRating * (ratingStorage - 1));
     }
 
+    // Frontier: deep fryier upgrade status popup
+    private void OnUpgradeExamine(Entity<DeepFryerComponent> entity, ref UpgradeExamineEvent args)
+    {
+        args.AddNumberUpgrade("deep-fryier-component-upgrade-storage", entity.Comp.StorageMaxEntities - entity.Comp.BaseStorageMaxEntities);
+    }
+    //End Frontier
+
     /// <summary>
     ///     Allow thrown items to land in a basket.
     /// </summary>
@@ -624,9 +634,9 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         if (!TryComp<HandsComponent>(user, out var handsComponent))
             return false;
 
-        heldItem = handsComponent.ActiveHandEntity;
+        // heldItem = handsComponent.ActiveHandEntity; // Frontier: reformat to use the hand system
 
-        if (heldItem == null ||
+        if (!_handsSystem.TryGetActiveItem(user, out heldItem) || // Frontier: reformat to use the hand system
             !TryComp<SolutionTransferComponent>(heldItem, out var solutionTransferComponent) ||
             !_solutionContainerSystem.TryGetRefillableSolution(heldItem.Value, out var solEnt, out var _) ||
             !solutionTransferComponent.CanReceive)

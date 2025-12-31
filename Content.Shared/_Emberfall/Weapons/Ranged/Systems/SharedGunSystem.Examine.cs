@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._NF.Weapons.Rarity; // Frontier
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Utility;
@@ -27,6 +28,8 @@ public abstract partial class SharedGunSystem
 
     private FormattedMessage GetGunExamine(Entity<GunComponent> ent)
     {
+        TryComp(ent.Owner, out RareWeaponComponent? rareComp); // Frontier: rare weapons
+
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine"));
 
@@ -37,6 +40,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", ent.Comp.AngleIncreaseModified.Degrees)
         ));
+        PushStatModifier(msg, rareComp?.AccuracyModifier);
 
         // Stability (AngleDecay)
         msg.PushNewline();
@@ -44,6 +48,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", ent.Comp.AngleDecayModified.Degrees)
         ));
+        PushStatModifier(msg, rareComp != null ? 1 / rareComp?.AccuracyModifier : null);
 
         // Max Angle
         msg.PushNewline();
@@ -51,6 +56,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", ent.Comp.MaxAngleModified.Degrees)
         ));
+        PushStatModifier(msg, rareComp?.AccuracyModifier);
 
         // Min Angle
         msg.PushNewline();
@@ -58,17 +64,18 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", ent.Comp.MinAngleModified.Degrees)
         ));
+        PushStatModifier(msg, rareComp?.AccuracyModifier);
 
         // Frontier: separate burst fire calculation
         // Fire Rate (converted from RPS to RPM)
         if (ent.Comp.SelectedMode != SelectiveFire.Burst)
         {
-            var fireRate = ent.Comp.FireRateModified;
             msg.PushNewline();
             msg.AddMarkupOrThrow(Loc.GetString("gun-examine-nf-fire-rate",
                 ("color", FireRateExamineColor),
-                ("value", fireRate)
+                ("value", ent.Comp.FireRateModified)
             ));
+            PushStatModifier(msg, rareComp?.FireRateModifier);
         }
         else
         {
@@ -89,10 +96,27 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", ent.Comp.ProjectileSpeedModified)
         ));
+        PushStatModifier(msg, rareComp?.ProjectileSpeedModifier);
         // End Frontier: use nf-prefixed loc strings, no rounding on values
 
         return msg;
     }
+
+    // Frontier: show stat modifications
+    private void PushStatModifier(FormattedMessage msg, float? maybeModifier)
+    {
+        // Assumption: The modification will be different *enough* from the base value
+        // that we don't need to worry about floating-point precision nonsense.
+        if (maybeModifier is { } modifier && modifier != 1.0f)
+        {
+            msg.AddText(" ");
+            msg.AddMarkupOrThrow(Loc.GetString("gun-examine-nf-stat-modifier",
+                ("difference", modifier - 1),
+                ("plus", modifier > 1 ? "+" : "")
+            ));
+        }
+    }
+    // End Frontier
 
     private bool TryGetGunCaliber(EntityUid uid, GunComponent component, [NotNullWhen(true)] out string? caliber)
     {

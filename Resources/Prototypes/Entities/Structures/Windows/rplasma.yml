@@ -54,7 +54,7 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
-    price: 65
+    price: 65 # Frontier: 132<65
 
 - type: entity
   id: PlasmaReinforcedWindowDirectional
@@ -82,6 +82,8 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
+  - type: Damageable
+    damageModifierSet: RGlass
   - type: RadiationBlocker
     resistance: 2
   - type: Destructible
@@ -148,6 +150,7 @@
         - FullTileMask
         layer:
         - GlassLayer
+        density: 2000
   - type: Airtight
     noAirWhenFullyAirBlocked: false
     airBlockedDirection:

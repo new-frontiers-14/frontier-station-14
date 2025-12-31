@@ -4029,9 +4029,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: Parallax
       parallax: FrontierStation
@@ -4039,10 +4037,12 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 2428
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1474
-    - type: InstantAction
+    - type: Action
       container: 1474
 - proto: AirAlarm
   entities:

@@ -23,7 +23,7 @@
       - Blindable
   components:
     - type: PermanentBlindness
-      blindness: 4
+      blindness: 3 # Frontier: 4->3
 
 - type: trait
   id: Narcolepsy
@@ -43,6 +43,14 @@
   components:
     - type: Unrevivable
       cloneable: true
+
+- type: trait
+  id: Monochromacy
+  name: trait-monochromacy-name
+  description: trait-monochromacy-desc
+  category: Disabilities
+  components:
+  - type: BlackAndWhiteOverlay
 
 - type: trait
   id: Muted

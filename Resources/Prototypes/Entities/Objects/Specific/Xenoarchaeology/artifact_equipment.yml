@@ -102,6 +102,7 @@
         paper_label: !type:ContainerSlot
     - type: StaticPrice
       price: 250
+    - type: NFForkLiftable #Frontier
 
 - type: entity
   parent: BaseStorageItem
@@ -124,9 +125,9 @@
     - 0,0,1,1
     whitelist:
       components:
-      - XenoArtifact # Frontier Artifact<XenoArtifact
+      - XenoArtifact
   - type: Item
-    sprite: Objects/Storage/artifact_container.rsi  
+    sprite: Objects/Storage/artifact_container.rsi
     size: Huge
   - type: MeleeWeapon
     damage:

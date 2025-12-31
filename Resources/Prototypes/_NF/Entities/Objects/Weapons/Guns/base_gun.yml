@@ -76,8 +76,8 @@
     - Back
     - suitStorage
   - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.95
+    sprintModifier: 0.95
 
 # Rifles / Shotguns
 - type: entity
@@ -94,8 +94,8 @@
     - Back
     - suitStorage
   - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.9
+    sprintModifier: 0.9
 
 # Assault Rifles
 - type: entity
@@ -112,8 +112,8 @@
     - Back
     - suitStorage
   - type: SpeedModifiedOnWield
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.925
+    sprintModifier: 0.925
 
 # Launchers
 - type: entity
@@ -130,8 +130,8 @@
     - Back
     - suitStorage
   - type: SpeedModifiedOnWield
-    walkModifier: 0.3
-    sprintModifier: 0.3
+    walkModifier: 0.65
+    sprintModifier: 0.65
 
 # Sniper Rifles / LMGs
 - type: entity
@@ -148,10 +148,9 @@
     - Back
     - suitStorage
   - type: SpeedModifiedOnWield
-    walkModifier: 0.3
-    sprintModifier: 0.3
+    walkModifier: 0.65
+    sprintModifier: 0.65
 
-#region Crossbows
 - type: entity
   id: NFBaseWeaponEncumbranceCrossbow
   abstract: true
@@ -184,3 +183,112 @@
     - Back
     - Belt
     - suitStorage
+
+#region Melee attacks
+- type: entity
+  abstract: true
+  id: NFBaseGunMeleeAttackLow
+  components:
+  - type: AltFireMelee
+    attackType: Heavy # Swing
+  - type: MeleeWeapon
+    attackRate: 1.1
+    damage:
+      types:
+        Blunt: 6
+        Structural: 4
+    angle: 30
+    wideAnimationRotation: 90
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+
+- type: entity
+  abstract: true
+  parent: NFBaseGunMeleeAttackLow
+  id: NFBaseGunMeleeAttackMedium
+  components:
+  - type: AltFireMelee
+    attackType: Heavy # Swing
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 6
+        Structural: 4
+    angle: 30
+    wideAnimationRotation: 90
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 2
+        Structural: 4
+
+- type: entity
+  abstract: true
+  parent: NFBaseGunMeleeAttackMedium
+  id: NFBaseGunMeleeAttackHigh
+  components:
+  - type: AltFireMelee
+    attackType: Heavy # Swing
+  - type: MeleeWeapon
+    attackRate: 0.95
+    damage:
+      types:
+        Blunt: 8
+        Structural: 6
+    angle: 30
+    wideAnimationRotation: 90
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 4
+        Structural: 4
+
+# melee attack for weapons with bayonets
+- type: entity
+  abstract: true
+  parent: NFBaseGunMeleeAttackHigh
+  id: NFBaseGunMeleeAttackBayonet
+  components:
+  - type: AltFireMelee
+    attackType: Light # Stab
+  - type: MeleeRequiresWield
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Slash: 12
+       Piercing: 3
+    angle: 0
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DisarmMalus
+    malus: 0.225
+
+# melee attack for toy guns
+- type: entity
+  abstract: true
+  parent: NFBaseGunMeleeAttackLow
+  id: NFBaseGunMeleeAttackToy
+  components:
+  - type: AltFireMelee
+    attackType: Light
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 0
+    angle: 0
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud

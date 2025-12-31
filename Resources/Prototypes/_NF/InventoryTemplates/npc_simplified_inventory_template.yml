@@ -7,7 +7,7 @@
       slotFlags: POCKET
       slotGroup: MainHotbar
       stripTime: 3
-      uiWindowPos: 0,3
+      uiWindowPos: 0,0
       strippingWindowPos: 0,0
       displayName: Pocket 1
 
@@ -28,7 +28,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,1
+      strippingWindowPos: 0,1
       displayName: Belt
 
     - name: back
@@ -38,32 +38,48 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,1
+      strippingWindowPos: 1,1
       displayName: Back
 
-# "Not strippable", "hidden"
+# Positions that shouldn't be strippable
+# "Not strippable", "hidden":
+# stripTime seems to have a hardcoded maximum value, preventing items in a slot from being completely unlootable via setting a long time
+# By placing the wallet slot above the slots we want to protect, items in those covered slots become non-interactable
     - name: shoes
+      stripTime: 999999 # "Not strippable"
+      stripHidden: true
+      strippingWindowPos: 1,2
       slotTexture: shoes
       slotFlags: FEET
-      stripTime: 999999
       uiWindowPos: 1,0
-      strippingWindowPos: 21,23
       displayName: Shoes
 
     - name: gloves
-      stripTime: 999999
+      stripTime: 999999 # "Not strippable"
+      stripHidden: true
+      strippingWindowPos: 1,2
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,1
-      strippingWindowPos: 22,22
       displayName: Gloves
 
     - name: id
       slotTexture: id
+      stripTime: 999999 # "Not strippable"
+      stripHidden: true
+      strippingWindowPos: 1,2
       fullTextureName: template_small
       slotFlags: IDCARD
       slotGroup: SecondHotbar
-      stripTime: 999999 # "Not strippable"
       uiWindowPos: 2,1
-      strippingWindowPos: 22,20
       displayName: ID
+
+    - name: wallet
+      stripTime: 3
+      stripHidden: true
+      strippingWindowPos: 1,2
+      slotTexture: wallet
+      slotFlags: WALLET
+      uiWindowPos: 2,0
+      dependsOn: jumpsuit
+      displayName: Wallet

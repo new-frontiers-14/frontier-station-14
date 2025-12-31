@@ -21,6 +21,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -70,8 +71,7 @@ public sealed class SuitSensorSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _gameTiming.CurTime;
-        //var sensors = EntityManager.EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent>(); // Frontier modification
-        var sensors = EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier modification
+        var sensors = EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier: Added TransformComponent
 
         while (sensors.MoveNext(out var uid, out var sensor, out var device, out var xform)) // Frontier modification
         {
@@ -420,7 +420,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
         // get health mob state
         var isAlive = false;
-        if (EntityManager.TryGetComponent(sensor.User.Value, out MobStateComponent? mobState))
+        if (TryComp(sensor.User.Value, out MobStateComponent? mobState))
             isAlive = !_mobStateSystem.IsDead(sensor.User.Value, mobState);
 
         // get mob total damage
@@ -474,7 +474,6 @@ public sealed class SuitSensorSystem : EntitySystem
 
                     coordinates = new EntityCoordinates(transform.MapUid.Value,
                         _transform.GetWorldPosition(transform, xformQuery)); // Frontier
-
                     locationName = Loc.GetString("suit-sensor-location-space"); // Frontier
                 }
                 else
@@ -483,6 +482,9 @@ public sealed class SuitSensorSystem : EntitySystem
 
                     locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
                 }
+
+                if (transform.MapUid != null && TryComp<MapComponent>(transform.MapUid.Value, out var mapComp)) // Frontier - Crew monitor map check
+                    status.MapHash = mapComp.MapId.GetHashCode(); // Frontier
 
                 status.Coordinates = GetNetCoordinates(coordinates);
                 status.LocationName = locationName; // Frontier
@@ -515,6 +517,8 @@ public sealed class SuitSensorSystem : EntitySystem
             payload.Add(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, status.TotalDamageThreshold);
         if (status.Coordinates != null)
             payload.Add(SuitSensorConstants.NET_COORDINATES, status.Coordinates);
+        if (status.MapHash != null) // Frontier - Crew monitor map check
+            payload.Add(SuitSensorConstants.NET_MAP_HASH, status.MapHash); // Frontier
         if (status.LocationName != null) // Frontier
             payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName); // Frontier
 
@@ -546,6 +550,7 @@ public sealed class SuitSensorSystem : EntitySystem
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, out int? totalDamageThreshold);
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
+        payload.TryGetValue(SuitSensorConstants.NET_MAP_HASH, out int? mapHash); // Frontier - Crew monitor map check
 
         var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments, location) // Frontier: add location
         {
@@ -553,6 +558,7 @@ public sealed class SuitSensorSystem : EntitySystem
             TotalDamage = totalDamage,
             TotalDamageThreshold = totalDamageThreshold,
             Coordinates = coords,
+            MapHash = mapHash, // Frontier - Crew monitor map check
         };
         return status;
     }

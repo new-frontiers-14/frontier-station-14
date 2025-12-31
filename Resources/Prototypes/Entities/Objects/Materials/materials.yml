@@ -339,7 +339,7 @@
       - HEAD
   - type: PointLight
     radius: 1.2
-    energy: 1.5
+    energy: 2.7
     color: "#4faffb"
     slots:
 
@@ -396,6 +396,10 @@
   - type: PhysicalComposition
     materialComposition:
       Diamond: 100
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Diamond
   - type: PirateBountyItem # Frontier
     id: MaterialDiamond # Frontier
 
@@ -747,9 +751,9 @@
     - bones_2
     - bones_3
   - type: Sprite
-    state: cotton_3
+    state: bones_3
     layers:
-    - state: cotton_3
+    - state: bones_3
       map: ["base"]
   - type: Appearance
   - type: Food
@@ -821,6 +825,9 @@
     sprite: Objects/Materials/hide.rsi
     shape:
     - 0,0,2,2
+  - type: Tag
+    tags:
+    - GoliathPlate
 
 - type: entity
   parent: MaterialGoliathHide
