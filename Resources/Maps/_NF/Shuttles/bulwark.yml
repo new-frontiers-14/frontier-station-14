@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/31/2025 11:24:25
-  entityCount: 1657
+  time: 12/31/2025 12:01:52
+  entityCount: 1658
 maps: []
 grids:
 - 1
@@ -4530,6 +4530,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,10.5
+      parent: 1
+  - uid: 1658
+    components:
+    - type: Transform
+      pos: -8.5,10.5
       parent: 1
 - proto: CrateEngineeringKitShipyardRcd
   entities:
@@ -10002,6 +10007,13 @@ entities:
         - - Middle
           - Off
         991:
+        - - Left
+          - Reverse
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        1658:
         - - Left
           - Reverse
         - - Right
