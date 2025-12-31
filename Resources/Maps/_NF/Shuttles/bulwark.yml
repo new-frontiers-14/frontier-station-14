@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/31/2025 13:18:35
-  entityCount: 1668
+  time: 12/31/2025 17:24:05
+  entityCount: 1664
 maps: []
 grids:
 - 1
@@ -435,7 +435,6 @@ entities:
       - 930
       - 931
       - 946
-      - 1419
   - uid: 6
     components:
     - type: Transform
@@ -3711,6 +3710,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,3.5
       parent: 1
+- proto: CardBoxBlack
+  entities:
+  - uid: 280
+    components:
+    - type: Transform
+      pos: 0.418725,16.716618
+      parent: 1
 - proto: Catwalk
   entities:
   - uid: 40
@@ -4398,27 +4404,27 @@ entities:
       parent: 1
 - proto: ClothingOuterHardsuitSalvage
   entities:
+  - uid: 1419
+    components:
+    - type: Transform
+      pos: 3.2580194,18.020657
+      parent: 1
   - uid: 1481
     components:
     - type: Transform
-      pos: 0.6758299,16.709274
-      parent: 1
-  - uid: 1595
-    components:
-    - type: Transform
-      pos: 0.26559734,16.709274
+      pos: 3.648717,17.981594
       parent: 1
 - proto: ClothingShoesBootsMag
   entities:
-  - uid: 1659
+  - uid: 1482
     components:
     - type: Transform
-      pos: 0.7324085,16.415833
+      pos: 3.2189493,17.6105
       parent: 1
-  - uid: 1660
+  - uid: 1567
     components:
     - type: Transform
-      pos: 0.30264091,16.37677
+      pos: 3.648717,17.59097
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -4433,14 +4439,6 @@ entities:
     components:
     - type: Transform
       pos: -11.5,17.5
-      parent: 1
-- proto: ComputerWallmountRadar
-  entities:
-  - uid: 63
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,16.5
       parent: 1
 - proto: ConstructionBag
   entities:
@@ -4680,17 +4678,6 @@ entities:
       - 674
       - 673
       - 672
-  - uid: 1567
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 1031
-      - 1568
-      - 1419
 - proto: FireAxeCabinetFilled
   entities:
   - uid: 1408
@@ -4841,36 +4828,6 @@ entities:
       - 1566
       - 1421
       - 1422
-- proto: FirelockEdge
-  entities:
-  - uid: 1031
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,0.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1567
-  - uid: 1419
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,0.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
-      - 1567
-  - uid: 1568
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,0.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1567
 - proto: Floodlight
   entities:
   - uid: 838
@@ -4892,6 +4849,38 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: FloorTileItemSteelMaint
+  entities:
+  - uid: 301
+    components:
+    - type: Transform
+      pos: -11.651539,13.715899
+      parent: 1
+  - uid: 306
+    components:
+    - type: Transform
+      pos: -11.671072,13.501056
+      parent: 1
+  - uid: 422
+    components:
+    - type: Transform
+      pos: -10.850607,13.833087
+      parent: 1
+  - uid: 1031
+    components:
+    - type: Transform
+      pos: -11.319445,13.618243
+      parent: 1
+  - uid: 1124
+    components:
+    - type: Transform
+      pos: -10.948282,13.481524
+      parent: 1
+  - uid: 1395
+    components:
+    - type: Transform
+      pos: -11.280375,13.833087
+      parent: 1
 - proto: GasDepositLocator
   entities:
   - uid: 329
@@ -8393,16 +8382,15 @@ entities:
       parent: 1
 - proto: Rack
   entities:
+  - uid: 284
+    components:
+    - type: Transform
+      pos: 3.5,17.5
+      parent: 1
   - uid: 500
     components:
     - type: Transform
       pos: 2.5,17.5
-      parent: 1
-  - uid: 1482
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,16.5
       parent: 1
   - uid: 1622
     components:
@@ -8885,38 +8873,6 @@ entities:
     components:
     - type: Transform
       pos: 0.77476025,13.685151
-      parent: 1
-- proto: ScrapCloset
-  entities:
-  - uid: 280
-    components:
-    - type: Transform
-      pos: -11.591158,13.496818
-      parent: 1
-  - uid: 284
-    components:
-    - type: Transform
-      pos: -10.594879,13.457755
-      parent: 1
-  - uid: 301
-    components:
-    - type: Transform
-      pos: -11.16139,13.867911
-      parent: 1
-  - uid: 306
-    components:
-    - type: Transform
-      pos: -11.08325,13.516349
-      parent: 1
-  - uid: 1124
-    components:
-    - type: Transform
-      pos: -10.790228,13.789786
-      parent: 1
-  - uid: 1395
-    components:
-    - type: Transform
-      pos: -11.786509,13.809318
       parent: 1
 - proto: ScrapFireExtinguisher
   entities:
@@ -9660,6 +9616,11 @@ entities:
       parent: 1
 - proto: Table
   entities:
+  - uid: 63
+    components:
+    - type: Transform
+      pos: 0.5,16.5
+      parent: 1
   - uid: 333
     components:
     - type: Transform
@@ -10221,13 +10182,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,7.5
-      parent: 1
-- proto: VendingMachineSalvage
-  entities:
-  - uid: 422
-    components:
-    - type: Transform
-      pos: 3.5,17.5
       parent: 1
 - proto: WallReinforced
   entities:
