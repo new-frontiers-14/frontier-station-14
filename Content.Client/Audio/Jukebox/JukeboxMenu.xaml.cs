@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Text;
 using Content.Shared.Audio.Jukebox;
@@ -32,6 +33,9 @@ public sealed partial class JukeboxMenu : FancyWindow
     /// </summary>
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
+
+    public event Action<bool>? OnRepeatToggled;
+    public event Action<bool>? OnShuffleToggled;
     public event Action<ProtoId<JukeboxPrototype>>? TrackQueueAction;
     public event Action<float>? SetTime;
 
@@ -50,16 +54,6 @@ public sealed partial class JukeboxMenu : FancyWindow
             PopulateTracklist();
         };
 
-        // MusicList.OnItemSelected += args =>
-        // {
-        //     var entry = MusicList[args.ItemIndex];
-
-        //     if (entry.Metadata is not string juke)
-        //         return;
-
-        //     OnSongSelected?.Invoke(juke);
-        // };
-
         PlayButton.OnPressed += args =>
         {
             OnPlayPressed?.Invoke(!_playState);
@@ -69,6 +63,17 @@ public sealed partial class JukeboxMenu : FancyWindow
         {
             OnStopPressed?.Invoke();
         };
+
+        RepeatButton.OnToggled += args =>
+        {
+            OnRepeatToggled?.Invoke(RepeatButton.Pressed);
+        };
+
+        ShuffleButton.OnToggled += args =>
+        {
+            OnShuffleToggled?.Invoke(ShuffleButton.Pressed);
+        };
+
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
         // Frontier: Shuffle & Repeat
@@ -218,6 +223,12 @@ public sealed partial class JukeboxMenu : FancyWindow
         }
 
         PlayButton.Text = Loc.GetString("jukebox-menu-buttonplay");
+    }
+
+    public void UpdateButtons(bool repeat, bool shuffle)
+    {
+        RepeatButton.Pressed = repeat;
+        ShuffleButton.Pressed = shuffle;
     }
 
     public void SetSelectedSong(string name, float length)

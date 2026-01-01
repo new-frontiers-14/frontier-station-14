@@ -34,6 +34,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, JukeboxPlayingMessage>(OnJukeboxPlay);
         SubscribeLocalEvent<JukeboxComponent, JukeboxPauseMessage>(OnJukeboxPause);
         SubscribeLocalEvent<JukeboxComponent, JukeboxStopMessage>(OnJukeboxStop);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxRepeatMessage>(OnJukeboxRepeatMessage);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxShuffleMessage>(OnJukeboxShuffleMessage);
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetTimeMessage>(OnJukeboxSetTime);
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
@@ -127,14 +129,16 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     }
     // End Frontier
 
-    private void OnJukeboxRepeat(Entity<JukeboxComponent> entity, ref JukeboxRepeatMessage args)
+    private void OnJukeboxRepeatMessage(Entity<JukeboxComponent> entity, ref JukeboxRepeatMessage args)
     {
         entity.Comp.RepeatTracks = args.Repeat;
+        Dirty(entity);
     }
 
-    private void OnJukeboxShuffle(Entity<JukeboxComponent> entity, ref JukeboxShuffleMessage args)
+    private void OnJukeboxShuffleMessage(Entity<JukeboxComponent> entity, ref JukeboxShuffleMessage args)
     {
         entity.Comp.ShuffleTracks = args.Shuffle;
+        Dirty(entity);
     }
 
     private void OnJukeboxTrackQueued(EntityUid uid, JukeboxComponent component, JukeboxQueueTrackMessage args)
