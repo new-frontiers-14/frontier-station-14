@@ -26,7 +26,13 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
+        _window.UndockAllRequest += OnUndockAllRequest;
         NfOpen(); // Frontier
+    }
+
+    private void OnUndockAllRequest(List<NetEntity> dockEntities)
+    {
+        SendMessage(new UndockAllRequestMessage(dockEntities));
     }
 
     private void OnUndockRequest(NetEntity entity)

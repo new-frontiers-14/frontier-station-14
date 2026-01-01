@@ -59,6 +59,7 @@ namespace Content.Server.Shuttles.Systems
             // in which case I would also add their subs here.
             SubscribeLocalEvent<ShuttleConsoleComponent, DockRequestMessage>(OnRequestDock);
             SubscribeLocalEvent<ShuttleConsoleComponent, UndockRequestMessage>(OnRequestUndock);
+            SubscribeLocalEvent<ShuttleConsoleComponent, UndockAllRequestMessage>(OnRequestUndockAll);
         }
 
         public void UndockDocks(EntityUid gridUid)
@@ -468,6 +469,38 @@ namespace Content.Server.Shuttles.Systems
 
             return CanDock(new MapCoordinates(worldPosA, xformA.MapID), worldRotA,
                 new MapCoordinates(worldPosB, xformB.MapID), worldRotB);
+        }
+
+        private void OnRequestUndockAll(EntityUid uid, ShuttleConsoleComponent component, UndockAllRequestMessage args)
+        {
+            if (args.DockEntities.Count == 0)
+                return;
+            
+            var undockedAny = false;
+            
+            foreach (var dockEntity in args.DockEntities)
+            {
+                if (!TryGetEntity(dockEntity, out var dockEnt) ||
+                    !TryComp(dockEnt, out DockingComponent? dockComp))
+                {
+                    continue;
+                }
+
+                var dock = (dockEnt.Value, dockComp);
+
+                if (!CanUndock(dock))
+                {
+                    continue;
+                }
+
+                Undock(dock);
+                undockedAny = true;
+            }
+            
+            if (!undockedAny)
+            {
+                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+            }
         }
     }
 }
