@@ -32,9 +32,6 @@ public sealed partial class JukeboxMenu : FancyWindow
     /// </summary>
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
-    public event Action<JukeboxPlaybackMode>? OnModeChanged; // Frontier
-    public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
-
     public event Action<ProtoId<JukeboxPrototype>>? TrackQueueAction;
     public event Action<float>? SetTime;
 
@@ -276,20 +273,4 @@ public sealed partial class JukeboxMenu : FancyWindow
             SongName.Text = "---";
         }
     }
-
-    // Frontier: Shuffle & Repeat
-    public void UpdateState(BoundUserInterfaceState state)
-    {
-        if (state is not JukeboxInterfaceState convState)
-            return;
-
-        UpdateJukeboxButtons(convState);
-    }
-
-    private void UpdateJukeboxButtons(JukeboxInterfaceState state)
-    {
-        ShuffleButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Shuffle;
-        RepeatButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Repeat;
-    }
-    // End Frontier: Shuffle & Repeat
 }

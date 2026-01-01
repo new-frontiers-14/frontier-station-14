@@ -25,8 +25,12 @@ public sealed partial class JukeboxComponent : Component
     /// <summary>
     /// The queue of queued songs.
     /// </summary>
+    /// This is a LinkedList to allow for constant time insertion/deletion (vs a List), and more efficient
+    /// moves (vs a Queue).
+    /// It is also shamelessly stolen from the lathe queue implementation.
+    /// </remarks>
     [DataField, AutoNetworkedField]
-    public Queue<ProtoId<JukeboxPrototype>>? Playlist;
+    public LinkedList<ProtoId<JukeboxPrototype>> Queue = new();
 
     /// <summary>
     /// Whether or not a played song should be removed from the queue or readded to the bottom.
@@ -102,6 +106,11 @@ public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMe
 {
     public float SongTime { get; } = songTime;
 }
+
+// Component to raise an event when a track ends
+[RegisterComponent]
+public sealed partial class JukeboxMusicComponent : Component
+{}
 
 [Serializable, NetSerializable]
 public enum JukeboxVisuals : byte
