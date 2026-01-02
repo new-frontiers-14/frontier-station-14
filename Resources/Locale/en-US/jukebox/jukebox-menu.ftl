@@ -3,8 +3,8 @@ jukebox-menu-selectedsong = Selected Song:
 jukebox-menu-buttonplay = Play
 jukebox-menu-buttonpause = Pause
 jukebox-menu-buttonstop = Stop
-
-# Frontier: Shuffle & Repeat
-jukebox-menu-buttonshuffle = Shuffle
 jukebox-menu-buttonrepeat = Repeat
-# End Frontier: Shuffle & Repeat
+jukebox-menu-buttonshuffle = Shuffle
+jukebox-menu-move-up-tooltip = Move this track ahead in the queue.
+jukebox-menu-move-down-tooltip = Move this track back in the queue.
+jukebox-menu-delete-item-tooltip = Remove this track from the queue.

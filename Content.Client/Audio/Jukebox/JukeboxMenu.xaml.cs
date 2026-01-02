@@ -197,6 +197,52 @@ public sealed partial class JukeboxMenu : FancyWindow
     }
 
 
+    /// <summary>
+    /// Populates the queue list with all queued items
+    /// </summary>
+    /// <param name="queue"></param>
+    public void PopulateQueueList(IReadOnlyCollection<ProtoId<JukeboxPrototype>> queue)
+    {
+        // Get the existing list of queue controls
+        var oldChildCount = QueueList.ChildCount;
+
+        var idx = 0;
+        foreach (var item in queue)
+        {
+            var track = _prototypeManager.Index(item);
+
+            if (idx >= oldChildCount)
+            {
+                var queuedTrackBox = new QueuedTrackControl(track, idx, idx == 0, idx == queue.Count - 1);
+                queuedTrackBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
+                queuedTrackBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
+                queuedTrackBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
+
+                QueueList.AddChild(queuedTrackBox);
+            }
+            else
+            {
+                var child = QueueList.GetChild(idx) as QueuedTrackControl;
+
+                if (child == null)
+                {
+                    DebugTools.Assert($"Jukebox menu queued track control at {idx} is not of type QueuedTrackControl"); // Something's gone terribly wrong.
+                    continue;
+                }
+
+                child.SetTrackInfo(track);
+                child.SetIndex(idx);
+                child.SetButtonStatus(idx == 0, idx == queue.Count - 1);
+            }
+            idx++;
+        }
+
+        // Shrink list if new list is shorter than old list.
+        for (var childIdx = oldChildCount - 1; idx <= childIdx; childIdx--)
+        {
+            QueueList.RemoveChild(childIdx);
+        }
+    }
 
     public void UpdateAvailableTracks(IEnumerable<JukeboxPrototype> jukeboxProtos)
     {
