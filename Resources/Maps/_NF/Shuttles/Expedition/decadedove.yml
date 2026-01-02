@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/29/2025 16:51:34
-  entityCount: 861
+  time: 01/02/2026 22:58:20
+  entityCount: 868
 maps: []
 grids:
 - 1
@@ -897,6 +897,8 @@ entities:
       - 781
       - 787
       - 788
+      - 701
+      - 616
   - uid: 871
     components:
     - type: Transform
@@ -2117,6 +2119,31 @@ entities:
     - type: Transform
       pos: -2.5,3.5
       parent: 1
+  - uid: 851
+    components:
+    - type: Transform
+      pos: -8.5,1.5
+      parent: 1
+  - uid: 852
+    components:
+    - type: Transform
+      pos: -8.5,2.5
+      parent: 1
+  - uid: 853
+    components:
+    - type: Transform
+      pos: 11.5,1.5
+      parent: 1
+  - uid: 856
+    components:
+    - type: Transform
+      pos: 0.5,-8.5
+      parent: 1
+  - uid: 857
+    components:
+    - type: Transform
+      pos: 2.5,-8.5
+      parent: 1
 - proto: CableHV
   entities:
   - uid: 465
@@ -2728,6 +2755,14 @@ entities:
     components:
     - type: Transform
       pos: 6.5,1.5
+      parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 855
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,3.5
       parent: 1
 - proto: DiceBag
   entities:
@@ -4140,6 +4175,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 780
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -4259,6 +4297,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 780
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -4520,20 +4561,6 @@ entities:
     - type: Transform
       pos: 9.5,2.5
       parent: 1
-- proto: LockerWallColorSalvageFilled
-  entities:
-  - uid: 337
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,10.5
-      parent: 1
-  - uid: 339
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,9.5
-      parent: 1
 - proto: LockerWallEVAColorSalvageFilled
   entities:
   - uid: 265
@@ -4625,6 +4652,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,-1.5
+      parent: 1
+- proto: Pickaxe
+  entities:
+  - uid: 854
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.518815,-4.236896
       parent: 1
 - proto: PlasticFlapsAirtightClear
   entities:
@@ -6508,6 +6543,26 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
+- proto: WallWeaponCapacitorRecharger
+  entities:
+  - uid: 337
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,9.5
+      parent: 1
+  - uid: 339
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,10.5
+      parent: 1
+  - uid: 496
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,2.5
+      parent: 1
 - proto: WarpPoint
   entities:
   - uid: 71
@@ -6522,11 +6577,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,1.5
-      parent: 1
-  - uid: 496
-    components:
-    - type: Transform
-      pos: 1.5,7.5
       parent: 1
 - proto: Wrench
   entities:
