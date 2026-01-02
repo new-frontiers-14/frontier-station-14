@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/28/2025 05:25:06
-  entityCount: 860
+  time: 12/29/2025 16:51:34
+  entityCount: 861
 maps: []
 grids:
 - 1
@@ -897,16 +897,6 @@ entities:
       - 781
       - 787
       - 788
-  - uid: 805
-    components:
-    - type: Transform
-      pos: 9.5,2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 603
-      - 690
-      - 785
   - uid: 871
     components:
     - type: Transform
@@ -1160,12 +1150,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,3.5
-      parent: 1
-  - uid: 555
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 8.5,2.5
       parent: 1
   - uid: 792
     components:
@@ -1522,6 +1506,11 @@ entities:
     - type: Transform
       pos: -8.5,4.5
       parent: 1
+  - uid: 805
+    components:
+    - type: Transform
+      pos: 15.5,7.5
+      parent: 1
   - uid: 844
     components:
     - type: Transform
@@ -1531,6 +1520,11 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-8.5
+      parent: 1
+  - uid: 850
+    components:
+    - type: Transform
+      pos: 15.5,3.5
       parent: 1
 - proto: Bed
   entities:
@@ -2993,7 +2987,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 775
-      - 805
       - 181
   - uid: 786
     components:
@@ -4047,7 +4040,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 805
       - 181
     - type: AtmosPipeLayers
       pipeLayer: Secondary
@@ -4247,7 +4239,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 805
       - 181
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -4523,6 +4514,11 @@ entities:
     components:
     - type: Transform
       pos: 4.5,2.5
+      parent: 1
+  - uid: 555
+    components:
+    - type: Transform
+      pos: 9.5,2.5
       parent: 1
 - proto: LockerWallColorSalvageFilled
   entities:
@@ -5741,37 +5737,37 @@ entities:
       linkedPorts:
         297:
         - - Left
-          - Forward
-        - - Right
           - Reverse
+        - - Right
+          - Forward
         - - Middle
           - Off
         296:
         - - Left
-          - Forward
-        - - Right
           - Reverse
+        - - Right
+          - Forward
         - - Middle
           - Off
         295:
         - - Left
-          - Forward
-        - - Right
           - Reverse
+        - - Right
+          - Forward
         - - Middle
           - Off
         293:
         - - Left
-          - Forward
-        - - Right
           - Reverse
+        - - Right
+          - Forward
         - - Middle
           - Off
         278:
         - - Left
-          - Forward
-        - - Right
           - Reverse
+        - - Right
+          - Forward
         - - Middle
           - Off
 - proto: VendingMachineCigs
