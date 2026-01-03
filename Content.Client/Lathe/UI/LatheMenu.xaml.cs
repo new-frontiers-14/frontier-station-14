@@ -27,17 +27,10 @@ public sealed partial class LatheMenu : DefaultWindow
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
-<<<<<<< HEAD
-    public event Action<int>? QueueDeleteAction; // Frontier
-    public event Action<int>? QueueMoveUpAction; // Frontier
-    public event Action<int>? QueueMoveDownAction; // Frontier
-    public event Action? DeleteFabricatingAction; // Frontier
-=======
     public event Action<int>? QueueDeleteAction;
     public event Action<int>? QueueMoveUpAction;
     public event Action<int>? QueueMoveDownAction;
     public event Action? DeleteFabricatingAction;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
@@ -76,12 +69,7 @@ public sealed partial class LatheMenu : DefaultWindow
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
-<<<<<<< HEAD
-        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
-        DeleteFabricating.AddStyleClass("OpenLeft"); // Frontier
-=======
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 
     public void SetEntity(EntityUid uid)
@@ -249,45 +237,11 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-<<<<<<< HEAD
-    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: IReadOnlyCollection<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
-=======
     public void PopulateQueueList(IReadOnlyCollection<LatheRecipeBatch> queue)
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     {
         QueueList.DisposeAllChildren();
 
         var idx = 1;
-<<<<<<< HEAD
-        foreach (var batch in queue) // Frontier: recipe<batch
-        {
-            // Frontier: custom boxes
-            // var recipe = _prototypeManager.Index(recipeProto);
-            // var queuedRecipeBox = new BoxContainer();
-            // queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
-
-            // // Frontier: batch handling
-            // queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe)); // Frontier: GetRecipeDisplayControl<GetQueueRecipeDisplayControl
-
-            // var queuedRecipeLabel = new Label();
-            // if (batch.ItemsRequested > 1)
-            //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
-            // else
-            //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            // // End Frontier
-            // queuedRecipeBox.AddChild(queuedRecipeLabel);
-            // QueueList.AddChild(queuedRecipeBox);
-
-            string displayText;
-            if (batch.ItemsRequested > 1)
-                displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
-            else
-                displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(_prototypeManager.Index(batch.Recipe)));
-            queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
-            queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
-            queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
-=======
         foreach (var batch in queue)
         {
             var recipe = _prototypeManager.Index(batch.Recipe);
@@ -304,9 +258,7 @@ public sealed partial class LatheMenu : DefaultWindow
             queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
             queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
 
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
             QueueList.AddChild(queuedRecipeBox);
-            // End Frontier: custom boxes
             idx++;
         }
     }

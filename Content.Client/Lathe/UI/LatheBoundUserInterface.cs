@@ -31,19 +31,10 @@ namespace Content.Client.Lathe.UI
             {
                 SendMessage(new LatheQueueRecipeMessage(recipe, amount));
             };
-<<<<<<< HEAD
-
-            // Frontier: lathe queue manipulation messages
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
             _menu.QueueDeleteAction += index => SendMessage(new LatheDeleteRequestMessage(index));
             _menu.QueueMoveUpAction += index => SendMessage(new LatheMoveRequestMessage(index, -1));
             _menu.QueueMoveDownAction += index => SendMessage(new LatheMoveRequestMessage(index, 1));
             _menu.DeleteFabricatingAction += () => SendMessage(new LatheAbortFabricationMessage());
-<<<<<<< HEAD
-            // End Frontier
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

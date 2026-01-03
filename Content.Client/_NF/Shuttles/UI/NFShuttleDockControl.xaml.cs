@@ -193,7 +193,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
                 };
 
                 var collisionCenter = verts[0] + verts[1] + verts[3] + verts[5];
-                Color otherDockColor = Color.ToSrgb(dock.RadarColor);
+                Color otherDockColor = Color.ToSrgb(dock.Color);
 
                 if (drawShipGeometry)
                 {
@@ -221,7 +221,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
 
                     if (HighlightedDock == dock.Entity)
                     {
-                        otherDockColor = Color.ToSrgb(dock.HighlightedRadarColor);
+                        otherDockColor = Color.ToSrgb(dock.HighlightedColor);
                     }
                 }
 
@@ -327,7 +327,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
             ScalePosition(Vector2.Transform(new Vector2(-0.5f, 0.5f), rotation)),
             ScalePosition(Vector2.Transform(new Vector2(0.5f, -0.5f), rotation)));
 
-        var dockColor = _viewedState?.HighlightedRadarColor ?? Color.Magenta; // Frontier - use ViewedState
+        var dockColor = _viewedState?.HighlightedColor ?? Color.Magenta; // Frontier - use ViewedState
         var connectionColor = Color.Pink;
 
         handle.DrawRect(ourDockConnection, connectionColor.WithAlpha(0.2f));

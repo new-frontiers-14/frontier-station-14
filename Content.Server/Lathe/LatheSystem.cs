@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Construction.Components; // Frontier
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
@@ -34,10 +33,11 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.Cargo.Components; // Frontier
-using Content.Server._NF.Contraband.Systems; // Frontier
-using Robust.Shared.Containers;
 using Content.Shared._NF.Lathe; // Frontier
+using Content.Server._NF.Contraband.Systems; // Frontier
+using Robust.Shared.Containers; // Frontier
 
 namespace Content.Server.Lathe
 {
@@ -86,15 +86,9 @@ namespace Content.Server.Lathe
 
             SubscribeLocalEvent<LatheComponent, LatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
             SubscribeLocalEvent<LatheComponent, LatheSyncRequestMessage>(OnLatheSyncRequestMessage);
-<<<<<<< HEAD
-            SubscribeLocalEvent<LatheComponent, LatheDeleteRequestMessage>(OnLatheDeleteRequestMessage); // Frontier
-            SubscribeLocalEvent<LatheComponent, LatheMoveRequestMessage>(OnLatheMoveRequestMessage); // Frontier
-            SubscribeLocalEvent<LatheComponent, LatheAbortFabricationMessage>(OnLatheAbortFabricationMessage); // Frontier
-=======
             SubscribeLocalEvent<LatheComponent, LatheDeleteRequestMessage>(OnLatheDeleteRequestMessage);
             SubscribeLocalEvent<LatheComponent, LatheMoveRequestMessage>(OnLatheMoveRequestMessage);
             SubscribeLocalEvent<LatheComponent, LatheAbortFabricationMessage>(OnLatheAbortFabricationMessage);
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
             SubscribeLocalEvent<LatheComponent, BeforeActivatableUIOpenEvent>((u, c, _) => UpdateUserInterfaceState(u, c));
             SubscribeLocalEvent<LatheComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
@@ -192,62 +186,32 @@ namespace Content.Server.Lathe
             return ev.Recipes.ToList();
         }
 
-<<<<<<< HEAD
-        public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, LatheComponent? component = null) // Frontier: add quantity
-=======
         public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, LatheComponent? component = null)
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
         {
             if (!Resolve(uid, ref component))
                 return false;
 
-<<<<<<< HEAD
-            // Frontier: argument check
-            if (quantity <= 0)
-                return false;
-            quantity = int.Min(quantity, MaxItemsPerRequest);
-            // Frontier: argument check
-
-            if (!CanProduce(uid, recipe, quantity, component)) // Frontier: 1<quantity
-=======
             if (quantity <= 0)
                 return false;
             quantity = int.Min(quantity, MaxItemsPerRequest);
 
             if (!CanProduce(uid, recipe, quantity, component))
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
                 return false;
 
             foreach (var (mat, amount) in recipe.Materials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-<<<<<<< HEAD
                     ? (int)(-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
-                adjustedAmount *= quantity; // Frontier
-=======
-                    ? (int)(-amount * component.MaterialUseMultiplier)
-                    : -amount;
                 adjustedAmount *= quantity;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
 
-<<<<<<< HEAD
-            // Frontier: queue up a batch
-            if (component.Queue.Count > 0 && component.Queue[^1].Recipe == recipe.ID)
-                component.Queue[^1].ItemsRequested += quantity;
-            else
-                component.Queue.Add(new LatheRecipeBatch(recipe.ID, 0, quantity));
-            // End Frontier
-            // component.Queue.Enqueue(recipe); // Frontier
-=======
             if (component.Queue.Last is { } node && node.ValueRef.Recipe == recipe.ID)
                 node.ValueRef.ItemsRequested += quantity;
             else
                 component.Queue.AddLast(new LatheRecipeBatch(recipe.ID, 0, quantity));
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
             return true;
         }
@@ -259,30 +223,17 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
-<<<<<<< HEAD
-            // Frontier: handle batches
-            var batch = component.Queue.First();
-            batch.ItemsPrinted++;
-            if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
-                component.Queue.RemoveAt(0);
-            var recipe = batch.Recipe;
-            // End Frontier
-=======
             var batch = component.Queue.First();
             batch.ItemsPrinted++;
             if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
                 component.Queue.RemoveFirst();
             var recipe = _proto.Index(batch.Recipe);
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
-            // var recipeProto = component.Queue.Dequeue();
-            // var recipe = _proto.Index(recipeProto);
-
-            var time = _reagentSpeed.ApplySpeed(uid, _proto.Index(recipe).CompleteTime) * component.TimeMultiplier;
+            var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.FinalTimeMultiplier; // Frontier: TimeMultiplier<FinalTimeMultiplier
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
-            lathe.ProductionLength = time * component.FinalTimeMultiplier; // Frontier: TimeMultiplier<FinalTimeMultiplier
+            lathe.ProductionLength = time;
             component.CurrentRecipe = recipe;
 
             var ev = new LatheStartPrintingEvent(recipe);
@@ -361,13 +312,8 @@ namespace Content.Server.Lathe
                 return;
 
             var producing = component.CurrentRecipe;
-<<<<<<< HEAD
-            if (producing == null && component.Queue.Count != 0 && component.Queue.First() is { } node) // Frontier - add extra checks since we're still using a list
-                producing = node.Recipe; // Frontier, remove .Value.
-=======
             if (producing == null && component.Queue.First is { } node)
                 producing = node.Value.Recipe;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
@@ -449,20 +395,10 @@ namespace Content.Server.Lathe
         {
             if (!args.Powered)
             {
-<<<<<<< HEAD
-                AbortProduction(uid); // Frontier
-                // RemComp<LatheProducingComponent>(uid); // Frontier
-                // UpdateRunningAppearance(uid, false); // Frontier
-            }
-            else /*if (component.CurrentRecipe != null)*/ // Frontier
-            {
-                //EnsureComp<LatheProducingComponent>(uid); // Frontier
-=======
                 AbortProduction(uid);
             }
             else
             {
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
                 TryStartProducing(uid, component);
             }
         }
@@ -559,17 +495,12 @@ namespace Content.Server.Lathe
         {
             if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
             {
-<<<<<<< HEAD
-                // Frontier: batching recipes
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
                 if (TryAddToQueue(uid, recipe, args.Quantity, component))
                 {
                     _adminLogger.Add(LogType.Action,
                         LogImpact.Low,
                         $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
                 }
-                // End Frontier
             }
             TryStartProducing(uid, component);
             UpdateUserInterfaceState(uid, component);
@@ -718,76 +649,6 @@ namespace Content.Server.Lathe
                     }
                 }
             }
-        }
-
-        public void AbortProduction(EntityUid uid, LatheComponent? component = null)
-        {
-            if (!Resolve(uid, ref component))
-                return;
-            if (component.CurrentRecipe != null)
-            {
-                // Items incremented on start, need to decrement with removal
-                if (component.Queue.Count > 0)
-                {
-                    var batch = component.Queue.First();
-                    if (batch.Recipe != component.CurrentRecipe)
-                    {
-                        var newBatch = new LatheRecipeBatch(_proto.Index(component.CurrentRecipe.GetValueOrDefault()), 0, 1);
-                        component.Queue.Insert(0, newBatch);
-                    }
-                    else if (batch.ItemsPrinted > 0)
-                    {
-                        batch.ItemsPrinted--;
-                    }
-                }
-
-                component.CurrentRecipe = null;
-            }
-            RemCompDeferred<LatheProducingComponent>(uid);
-            UpdateUserInterfaceState(uid, component);
-            UpdateRunningAppearance(uid, false);
-        }
-
-        public void OnLatheDeleteRequestMessage(EntityUid uid, LatheComponent component, ref LatheDeleteRequestMessage args)
-        {
-            if (args.Index < 0 || args.Index >= component.Queue.Count)
-                return;
-
-            var batch = component.Queue[args.Index];
-            _adminLogger.Add(LogType.Action,
-                LogImpact.Low,
-                $"{ToPrettyString(args.Actor):player} deleted a lathe job for ({batch.ItemsPrinted}/{batch.ItemsRequested}) {GetRecipeName(batch.Recipe)} at {ToPrettyString(uid):lathe}");
-
-            component.Queue.RemoveAt(args.Index);
-            UpdateUserInterfaceState(uid, component);
-        }
-
-        public void OnLatheMoveRequestMessage(EntityUid uid, LatheComponent component, ref LatheMoveRequestMessage args)
-        {
-            if (args.Change == 0 || args.Index < 0 || args.Index >= component.Queue.Count)
-                return;
-
-            var newIndex = args.Index + args.Change;
-            if (newIndex < 0 || newIndex >= component.Queue.Count)
-                return;
-
-            var temp = component.Queue[args.Index];
-            component.Queue[args.Index] = component.Queue[newIndex];
-            component.Queue[newIndex] = temp;
-            UpdateUserInterfaceState(uid, component);
-        }
-
-        public void OnLatheAbortFabricationMessage(EntityUid uid, LatheComponent component, ref LatheAbortFabricationMessage args)
-        {
-            if (component.CurrentRecipe == null)
-                return;
-
-            _adminLogger.Add(LogType.Action,
-                LogImpact.Low,
-                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(_proto.Index(component.CurrentRecipe.GetValueOrDefault()))} at {ToPrettyString(uid):lathe}");
-
-            component.CurrentRecipe = null;
-            FinishProducing(uid, component);
         }
         #endregion
         // End Frontier
