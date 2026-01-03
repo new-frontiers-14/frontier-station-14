@@ -690,6 +690,28 @@
       - id: CableMVStack
       - id: CableApcStack
 
+- type: entityTable
+  id: TableDungeonLootGeneralMaterialBasicRandom
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetBrassRandom
+    - id: SheetGlassRandom
+    - id: SheetSteelRandom
+    - id: SheetPlasmaRandom
+    - id: SheetPlasticRandom
+    - id: MaterialClothRandom
+    # Rare (either valuable or undesirable)
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: PartRodMetalRandom
+      - id: SheetPaperRandom
+      - id: MaterialWoodPlankRandom
+      - id: CableHVStackRandom
+      - id: CableMVStackRandom
+      - id: CableApcStackRandom
+
 # region Materials Valuable
 - type: entityTable
   id: TableDungeonLootGeneralMaterialValuableSingle
@@ -736,6 +758,27 @@
       - id: MaterialBananium
       - id: MaterialBones
       - id: MaterialDiamond1
+
+- type: entityTable
+  id: TableDungeonLootGeneralMaterialValuableRandom
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SheetUraniumRandom
+    - id: IngotGoldRandom
+    - id: IngotSilverRandom
+    - id: SheetRPGlassRandom
+    - id: SheetRUGlassRandom
+    - id: SheetPlasteelRandom
+    - id: MaterialDurathreadRandom
+    - id: SheetRGlassRandom
+    - id: SheetPGlassRandom
+    - id: SheetUGlassRandom
+    # Rare
+    - !type:GroupSelector
+      weight: 0.08
+      children:
+      - id: MaterialBananiumRandom
 
 # region Materials Ore
 - type: entityTable

@@ -1,0 +1,612 @@
+# region base
+# back (for gear)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackMercenary
+  name: mercenary's gear bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6e6e38"
+    - state: icon-sling
+      color: "#444444"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#444444"
+    - state: icon-zipper
+      color: "#bbbb7a"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#6e6e38"
+      - state: equipped-BACKPACK-sling
+        color: "#444444"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#49492f"
+      - state: equipped-BACKPACK-handle
+        color: "#49492f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#6e6e38"
+      - state: inhand-left-sling
+        color: "#444444"
+      - state: inhand-left-decal-straps
+        color: "#49492f"
+      - state: inhand-left-handle
+        color: "#49492f"
+      - state: inhand-left-zipper
+        color: "#bbbb7a"
+      right:
+      - state: inhand-right-base
+        color: "#6e6e38"
+      - state: inhand-right-sling
+        color: "#444444"
+      - state: inhand-right-decal-straps
+        color: "#49492f"
+      - state: inhand-right-handle
+        color: "#49492f"
+      - state: inhand-right-zipper
+        color: "#bbbb7a"
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackMercenaryAlt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a36"
+    - state: icon-sling
+      color: "#6a6a36"
+    - state: icon-clasp
+      color: "#bbbb7a"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: sling-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: clasp-equipped-BACKPACK
+        color: "#bbbb7a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#6a6a36"
+      - state: clasp-inhand-left
+        color: "#bbbb7a"
+      right:
+      - state: base-inhand-right
+        color: "#6a6a36"
+      - state: clasp-inhand-right
+        color: "#bbbb7a"
+
+# belt (for ammo and mags)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBelt
+  id: NFBaseNpcLootBeltMercenary
+  name: mercenary's ammo pack
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/mercwebbing.rsi
+    state: icon
+
+# wallet (for cash)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletMercenary
+  name: mercenary's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-color
+    color: "#6e6e38"
+
+# region tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletMercenary
+  id: ClothingWalletMercenaryT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom1500To2500
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootMeleeT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootMeleeT2
+      orGroup: Weapons
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterVestWebMercenary
+      orGroup: Armor
+      prob: 0.3
+    - id: SpawnDungeonLootShieldsMercenary
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootRangedT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcMercenariesPistols
+      orGroup: Weapons
+      prob: 0.4
+    # Armor
+    - id: ClothingOuterVestWebMercenary
+      orGroup: Armor
+      prob: 0.4
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootRangedT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Magazines
+    - id: NFMagazinePistol35Overpressure
+      orGroup: Magazines
+      prob: 0.3
+    - id: NFMagazinePistol35Empty
+      orGroup: Magazines
+      amount: 2
+      prob: 0.4
+    - id: NFMagazinePistol35Empty
+      orGroup: Magazines
+      amount: 3
+      prob: 0.3
+    # Ammo
+    - id: NFAmmunitionBoxPistol35Overpressure
+      orGroup: Ammo
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootRangedAltT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcMercenariesRifles
+      orGroup: Weapons
+      prob: 0.4
+    # Armor
+    - id: ClothingOuterVestWebMercenary
+      orGroup: Armor
+      prob: 0.4
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootRangedAltT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Magazines
+    - id: NFAmmunitionBoxRifle20Overpressure
+      orGroup: Magazines
+      prob: 0.4
+    - id: NFMagazineClipRifle20
+      orGroup: Magazines
+      prob: 0.2
+    - id: NFMagazineClipRifle20Empty
+      orGroup: Magazines
+      prob: 0.1
+    - id: NFMagazineClipRifle20Empty
+      orGroup: Magazines
+      prob: 0.3
+      amount: 2
+    # Ammo
+    - id: NFAmmunitionBoxBigRifle20Overpressure
+      orGroup: Ammo
+
+# region tier 2
+- type: entity
+  parent: NFBaseNpcLootWalletMercenary
+  id: ClothingWalletMercenaryT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2000To3000
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootMeleeT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootMeleeT3
+      orGroup: Weapons
+      prob: 0.5
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      orGroup: Armor
+      prob: 0.5
+    - id: SpawnDungeonLootShieldsMercenary
+      orGroup: Armor
+      prob: 0.5
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootRangedT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcMercenariesShotguns
+      orGroup: Weapons
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      orGroup: Armor
+      prob: 0.4
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootRangedT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: NFAmmunitionBoxShellShotgunOverpressure
+      orGroup: Ammo
+      prob: 0.6
+    - id: NFAmmunitionBoxShellShotgunOverpressure
+      orGroup: Ammo
+      prob: 0.4
+      amount: 2
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootRangedAltT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponRevolverArgentiExpedition
+      orGroup: Weapons
+      prob: 0.7
+    - id: NFWeaponRevolverArgentiExpedition
+      orGroup: Weapons
+      prob: 0.3
+      amount: 2
+    # Armor
+    - id: ClothingOuterCoatBHTrench
+      orGroup: Armor
+      prob: 0.4
+    - id: ClothingHeadHatBH
+      orGroup: Armor
+      prob: 0.4
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsBasicFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootRangedAltT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: NFSpeedLoaderPistol35Empty
+      prob: 0.9
+    - id: NFSpeedLoaderPistol35Empty
+      prob: 0.6
+    - id: NFSpeedLoaderPistol35Empty
+      prob: 0.1
+    - id: NFAmmunitionBoxPistol35Overpressure
+      prob: 0.9
+    - id: NFAmmunitionBoxPistol35Overpressure
+      prob: 0.2
+
+#region tier 3
+- type: entity
+  parent: NFBaseNpcLootWalletMercenary
+  id: ClothingWalletMercenaryT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2500To3500
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootRangedT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootNpcMercenariesEnergy
+      orGroup: Weapons
+      prob: 0.6
+    - id: SawElectric
+      orGroup: Weapons
+      prob: 0.4
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      orGroup: Armor
+      prob: 0.4
+    # Items
+    - id: SpawnDungeonLootKitsFirstAid
+      orGroup: Items
+      prob: 0.7
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonLootNpcMercenariesBlueprints
+      orGroup: Items
+      prob: 0.05
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootRangedT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/emt.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Topicals
+    - id: SpawnDungeonClutterMedsFull
+      orGroup: Topicals
+      prob: 0.4
+    - id: SpawnDungeonClutterMedsSingle
+      orGroup: Topicals
+      prob: 0.6
+    # Items
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.7
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenary
+  id: ClothingDuffelMercenaryLootRangedAltT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootGunT3
+      orGroup: Weapons
+      prob: 0.4
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      orGroup: Armor
+      prob: 0.4
+    # Items
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: SpawnDungeonLootNpcPunksSmokes
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonClutterMedipens
+      orGroup: Items
+      prob: 0.25
+    - id: SpawnDungeonLootMaterialsValuableFull
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesFluff
+      orGroup: Items
+      prob: 0.15
+    - id: SpawnDungeonLootNpcMercenariesBlueprints
+      orGroup: Items
+      prob: 0.05
+
+- type: entity
+  parent: NFBaseNpcLootBeltMercenary
+  id: ClothingBeltMercenaryLootRangedAltT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: NFMagazineRifle30Overpressure
+      prob: 0.4
+    - id: NFMagazineRifle30Overpressure
+      prob: 0.2
+    - id: NFAmmunitionBoxRifle30Overpressure
+      prob: 0.3
+    - id: Tourniquet
+      prob: 0.4
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      prob: 0.1
+
+#region tier 4 (boss)
+- type: entity
+  parent: NFBaseNpcLootWalletMercenary
+  id: ClothingWalletMercenaryBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # SpaceCash - from 1500 to 2500
+    - id: SpaceCashRandom2500To7500
+      orGroup: SpaceCash
+    # BossLoot
+    - id: SpawnDungeonLootNpcCoins # from 75 to ~5000 spesos
+      orGroup: BossLoot
+      prob: 0.3
+    - id: SpawnDungeonLootNpcJewelry # from 10 to 5000 spesos
+      orGroup: BossLoot
+      prob: 0.3
+
+- type: entity
+  parent: NFBaseNpcLootPackMercenaryAlt
+  id: ClothingDuffelMercenaryLootBoss
+  categories: [ HideSpawnMenu ]
+  name: mercenary's gear bundle
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponRifleRepeaterExpedition
+      orGroup: Weapons
+      prob: 0.9
+    # Armor
+    - id: ClothingOuterArmorBulletproof
+      prob: 0.4
+    # Items
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      orGroup: Items
+      prob: 0.4
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      orGroup: Items
+      prob: 0.3
+    - id: ClothingNeckIFFNeutral
+      orGroup: Items
+      prob: 0.2
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      orGroup: Items
+      prob: 0.1
+    - id: AmmoTechFabCircuitboard
+      orGroup: Items
+      prob: 0.1
+    - id: SpawnDungeonLootNpcMercenariesBlueprints
+      orGroup: Items
+      prob: 0.05
+    # BossLoot
+    - id: SpawnDungeonLootGunT3
+      orGroup: BossLoot
+      prob: 0.25
+    - id: SpawnDungeonLootNpcBossLootShared
+      orGroup: BossLoot
+      prob: 0.3
+    - id: SpawnDungeonLootNpcMercenariesBlueprints
+      orGroup: BossLoot
+      prob: 0.45
