@@ -1,4 +1,4 @@
-#Burgers
+#region Burgers
 
 - type: microwaveMealRecipe
   id: RecipeClurgerBurger
@@ -129,7 +129,7 @@
   recipeType:
   - Oven
 
-#Breads & Sandwiches
+#region Breads & Sandwiches
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoToast
@@ -201,7 +201,7 @@
   - Oven
   - Microwave
 
-# Dough Alternative Recipes
+#region Dough Alternative Recipes
 
 - type: microwaveMealRecipe
   id: RecipeFoodRiceDough
@@ -216,7 +216,7 @@
   recipeType:
   - Assembler
 
-# Hot Dog Haven
+#region Hot Dog Haven
 
 - type: microwaveMealRecipe
   id: RecipeFoodBakedGarlicBreadBaguette
@@ -245,7 +245,7 @@
   recipeType:
   - Oven
 
- # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+ #region Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
 
 - type: microwaveMealRecipe
   id: RecipeCuredCarp
@@ -326,7 +326,7 @@
   recipeType:
   - Oven
 
-# Birb
+#region Birb
 
 - type: microwaveMealRecipe
   id: RecipeFoodBakedWholeChicken
@@ -375,7 +375,7 @@
   recipeType:
   - Assembler
 
-# Sushi
+#region Sushi
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoSushi
@@ -425,7 +425,7 @@
   recipeType:
   - Assembler
 
-# Salad
+#region Salad
 
 - type: microwaveMealRecipe
   id: RecipeGreekSalad
@@ -476,7 +476,7 @@
   recipeType:
   - Assembler
 
-# Fryer Prep
+#region Fryer Prep
 
 - type: microwaveMealRecipe
   id: RecipeBatteredChicken
@@ -546,7 +546,7 @@
   recipeType:
   - Assembler
 
-# Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
+#region Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
   id: RecipeDonutUncookedJelly
@@ -870,7 +870,7 @@
 #   recipeType:
 #   - Assembler
 
-# Other
+#region Other
 
 - type: microwaveMealRecipe
   id: RecipeCatCrispy
@@ -1077,7 +1077,7 @@
   recipeType:
   - Oven
 
-# Pasta and Noodles
+#region Pasta and Noodles
 
 - type: microwaveMealRecipe
   id: RecipeRiceNoodleSheet
@@ -1217,7 +1217,7 @@
   recipeType:
   - Oven
 
-# Frozen desserts
+#region Frozen desserts
 
 - type: microwaveMealRecipe
   id: RecipeIceCreamSandwich
@@ -1574,11 +1574,10 @@
   recipeType:
   - Assembler
 
-# NOT ACTUAL FOOD
-
+#region not actual food
 - type: microwaveMealRecipe
   id: RecipeDriedShrooms
-  name: dried shrooms recipe
+  name: dried shrooms
   result: ShroomsDried
   time: 15
   group: Medicinal
@@ -1590,8 +1589,290 @@
   - Oven
   - Microwave
 
-# Coffee
+#region snacks
+- type: microwaveMealRecipe
+  id: RecipeSnackBoritos
+  name: boritos
+  result: FoodSnackBoritos
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    MaterialWoodPlank1: 1
+  reagents:
+    TableSalt: 5
+  recipeType:
+  - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeSnackCnDs
+  name: C&Ds
+  result: FoodSnackCnDs
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+  reagents:
+    CocoaPowder: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackCheesie
+  name: cheesie honkers
+  result: FoodSnackCheesie
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+  reagents:
+    DrGibb: 5
+    Left4Zed: 5
+    Ketchup: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackChips
+  name: chips
+  result: FoodSnackChips
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    SheetPaper1: 1
+  reagents:
+    TableSalt: 5
+    Cornoil: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackChocolate
+  name: chocolate bar
+  result: FoodSnackChocolate
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    MaterialCardboard1: 1
+  reagents:
+    CocoaPowder: 5
+    Cornoil: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackEnergy
+  name: energy bar
+  result: FoodSnackEnergy
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    MaterialCloth1: 1
+#    Crowbar: 1 # Way too much punch
+  reagents:
+    FourteenLoko: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackPistachios
+  name: Sweetie's pistachios
+  result: FoodSnackPistachios
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    SoybeanSeeds: 1
+  reagents:
+    TableSalt: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackPopcorn
+  name: popcorn
+  result: FoodSnackPopcorn
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    CornSeeds: 1
+  reagents:
+    TableSalt: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackRaisins
+  name: 4no raisins
+  result: FoodSnackRaisins
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+  reagents:
+    Raisins: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackSemki
+  name: bob's semki sunflower seeds
+  result: FoodSnackSemki
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    WatermelonSeeds: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackSus
+  name: sus jerky
+  result: FoodSnackSus
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    FoodMeatCutlet: 1
+#    MobVox: 1 # One day...
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackSyndi
+  name: syndi-cakes
+  result: FoodSnackSyndi
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    Paper: 1
+  reagents:
+    Sugar: 5
+    Cornmeal: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackRamen
+  name: cup ramen
+  result: DrinkRamen
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPaste: 1
+    DrinkDisposableCup: 1
+  reagents:
+    Cornmeal: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackHellRamen
+  name: hell ramen
+  result: DrinkHellRamen
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPaste: 1
+    DrinkDisposableCup: 1
+  reagents:
+    Cornmeal: 5
+    Blackpepper: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackChowMein
+  name: chow mein
+  result: FoodSnackChowMein
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPaste: 1
+    DrinkDisposableCup: 1
+  reagents:
+    Cornmeal: 5
+    Cornoil: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackDanDanNoodles
+  name: dan dan noodles
+  result: FoodSnackDanDanNoodles
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPaste: 1
+    DrinkDisposableCup: 1
+  reagents:
+    Cornmeal: 5
+    Cornoil: 5
+    Blackpepper: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackCookieFortune
+  name: fortune cookie
+  result: FoodSnackCookieFortune
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    Paper: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackNutribrick
+  name: nutribrick
+  result: FoodSnackNutribrick
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    MaterialCardboard1: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnackMREBrownie
+  name: brownie
+  result: FoodSnackMREBrownie
+  time: 5
+  group: Snacks
+  solids:
+    NFSnackPackage: 1
+    NFSnackPaste: 1
+    FoodMeatCutlet: 1
+    PaperRolling1: 2
+  reagents:
+    CocoaPowder: 5
+  recipeType:
+  - Assembler
+
+# Coffee
 - type: microwaveMealRecipe
   id: RoastedCoffee
   name: roasted coffee recipe
