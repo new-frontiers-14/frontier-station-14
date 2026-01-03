@@ -67,6 +67,7 @@ guide-entry-shipyard-crescent = Crescent
 guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-dove = Dove
 guide-entry-shipyard-dragoon = Dragoon
+guide-entry-shipyard-dragonfly = Dragonfly
 guide-entry-shipyard-druid = Druid
 guide-entry-shipyard-eagle = Eagle
 guide-entry-shipyard-garden = Garden
