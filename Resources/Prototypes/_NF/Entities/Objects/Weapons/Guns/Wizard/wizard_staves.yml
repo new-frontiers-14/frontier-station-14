@@ -88,6 +88,12 @@
   abstract: true
   id: WeaponMasterStaffBase
   components:
+  - type: Gun
+    projectileSpeed: 30
+    fireRate: 1.5
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2
   - type: MeleeThrowOnHit
     unanchorOnHit: true
     whitelist:
@@ -242,7 +248,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: WeaponChargedStaffWizardLightningAdept
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffWizardLightningAdept ]
   id: WeaponChargedStaffWizardLightningMaster
   name: master-wizard lightning staff
   components:
@@ -290,7 +296,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: WeaponChargedStaffWizardSoapAdept
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffWizardSoapAdept ]
   id: WeaponChargedStaffWizardSoapMaster
   name: master-wizard soap staff
   components:
@@ -338,7 +344,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: WeaponChargedStaffWizardBoltMagicAdept
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffWizardBoltMagicAdept ]
   id: WeaponChargedStaffWizardBoltMagicMaster
   name: master-wizard magic bolt staff
   components:
@@ -395,7 +401,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: WeaponChargedStaffWizardBoltFireAdept
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffWizardBoltFireAdept ]
   id: WeaponChargedStaffWizardBoltFireMaster
   name: master-wizard fire bolt staff
   components:
@@ -452,7 +458,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: WeaponChargedStaffWizardCausticAdept
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffWizardCausticAdept ]
   id: WeaponChargedStaffWizardCausticMaster
   name: master-wizard caustic beam staff
   components:
@@ -506,7 +512,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: WeaponChargedStaffWizardBrickAdept
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffWizardBrickAdept ]
   id: WeaponChargedStaffWizardBrickMaster
   name: master-wizard brick staff
   components:
@@ -554,7 +560,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffCultistBoltDarkAdept, WeaponMasterStaffBase ]
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffCultistBoltDarkAdept ]
   id: WeaponChargedStaffCultistBoltDarkMaster
   name: blood cult staff of crimson bolt
   components:
@@ -602,7 +608,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffCultistHandAdept, WeaponMasterStaffBase ]
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffCultistHandAdept ]
   id: WeaponChargedStaffCultistHandMaster
   name: blood cult staff of malicious touch
   components:
@@ -650,7 +656,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffCultistLightningAdept, WeaponMasterStaffBase ]
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffCultistLightningAdept ]
   id: WeaponChargedStaffCultistLightningMaster
   name: blood cult staff of crimson lightning
   components:
@@ -698,7 +704,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: [ WeaponChargedStaffCultistSoapAdept, WeaponMasterStaffBase ]
+  parent: [ WeaponMasterStaffBase, WeaponChargedStaffCultistSoapAdept ]
   id: WeaponChargedStaffCultistSoapMaster
   name: blood cult staff of shredding soap
   components:
