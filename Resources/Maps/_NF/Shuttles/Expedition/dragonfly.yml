@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 01/03/2026 05:08:07
-  entityCount: 1057
+  time: 01/03/2026 05:30:17
+  entityCount: 1059
 maps: []
 grids:
 - 1
@@ -577,12 +577,6 @@ entities:
     - type: NavMap
 - proto: AirAlarm
   entities:
-  - uid: 613
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,-9.5
-      parent: 1
   - uid: 978
     components:
     - type: Transform
@@ -1701,6 +1695,11 @@ entities:
     - type: Transform
       pos: 10.5,-9.5
       parent: 1
+  - uid: 613
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 1
   - uid: 636
     components:
     - type: Transform
@@ -2225,6 +2224,16 @@ entities:
     components:
     - type: Transform
       pos: 5.5,5.5
+      parent: 1
+  - uid: 1058
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 1
+  - uid: 1059
+    components:
+    - type: Transform
+      pos: 3.5,-5.5
       parent: 1
 - proto: CableHV
   entities:
@@ -3359,8 +3368,7 @@ entities:
   - uid: 515
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-10.5
+      pos: 7.5,-9.5
       parent: 1
 - proto: FaxMachineShip
   entities:
