@@ -65,6 +65,7 @@ guide-entry-shipyard-construct = Construct
 guide-entry-shipyard-copperhead = Copperhead
 guide-entry-shipyard-crescent = Crescent
 guide-entry-shipyard-crossroads = Crossroads
+guide-entry-shipyard-dove = Dove
 guide-entry-shipyard-dragoon = Dragoon
 guide-entry-shipyard-dragonfly = Dragonfly
 guide-entry-shipyard-druid = Druid
