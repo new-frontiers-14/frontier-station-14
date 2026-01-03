@@ -401,6 +401,44 @@
     price: 225
 
 - type: entity
+  name: corgium auto-injector
+  parent: NFChemicalMedipen
+  id: CorgiumAutoInjector
+  description: A rapid dose of corgium. Intended to soothe nerves and make someone the fluffiest and friendliest dog around.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#ffaa00"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#ffaa00"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: arithpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: arithpen_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 50
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 50
+        reagents:
+        - ReagentId: CorgiJuice
+          Quantity: 50
+
+- type: entity
   parent: BaseItem
   id: BorgHypoNoRefill
   abstract: true
