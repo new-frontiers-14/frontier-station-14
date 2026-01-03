@@ -296,7 +296,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     }
 
     /// <summary>
-    /// Scans the inventory of an entity about to cryo in order to contrusct a warning message of all appropriate items.
+    /// Scans the inventory of an entity about to cryo in order to construct a warning message of all appropriate items.
     /// </summary>
     /// <returns>A warning message to be used with CryoSleepEui</returns>
     private CryoSleepWarningMessage? GetWarningMessages(EntityUid entity)
@@ -313,7 +313,6 @@ public sealed partial class CryoSleepSystem : EntitySystem
             //The ID is manually checked for a shuttle deed later, and since your PDA *technically* has an uplink in it, this has to be skipped manually.
             if (slotDefinition.Name == "id")
                 continue;
-            //TODO: Check hand slots for important items
             if (_inventory.TryGetSlotEntity(entity, slotDefinition.Name, out var slotItem))
             {
                 if (ShouldItemWarnOnCryo(slotItem.Value))
