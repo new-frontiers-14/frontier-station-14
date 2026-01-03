@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/29/2025 17:28:57
-  entityCount: 1056
+  time: 01/03/2026 05:08:07
+  entityCount: 1057
 maps: []
 grids:
 - 1
@@ -609,6 +609,8 @@ entities:
       - 671
       - 676
       - 988
+      - 674
+      - 675
   - uid: 981
     components:
     - type: Transform
@@ -705,14 +707,14 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 664
-      - 665
+      - 987
+      - 649
+      - 648
       - 683
+      - 665
       - 667
       - 682
       - 669
-      - 987
-      - 986
     - type: DeviceLinkSource
       linkedPorts:
         503:
@@ -846,9 +848,6 @@ entities:
     - type: Transform
       pos: -8.5,9.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 983
   - uid: 987
     components:
     - type: Transform
@@ -1658,11 +1657,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,8.25
       parent: 1
-  - uid: 635
-    components:
-    - type: Transform
-      pos: 2.25,-3.5
-      parent: 1
   - uid: 638
     components:
     - type: Transform
@@ -1706,6 +1700,11 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-9.5
+      parent: 1
+  - uid: 636
+    components:
+    - type: Transform
+      pos: 8.5,-11.5
       parent: 1
   - uid: 868
     components:
@@ -2216,6 +2215,11 @@ entities:
     components:
     - type: Transform
       pos: 7.5,3.5
+      parent: 1
+  - uid: 989
+    components:
+    - type: Transform
+      pos: 8.5,-12.5
       parent: 1
   - uid: 1013
     components:
@@ -2973,9 +2977,9 @@ entities:
     - type: Transform
       pos: -8.5,8.5
       parent: 1
-- proto: DefibrillatorCabinet
+- proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 595
+  - uid: 635
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -3379,6 +3383,9 @@ entities:
     - type: Transform
       pos: -7.5,7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 983
   - uid: 649
     components:
     - type: Transform
@@ -3387,6 +3394,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 981
+      - 983
   - uid: 650
     components:
     - type: Transform
@@ -4549,6 +4557,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 980
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -4697,7 +4708,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 982
-      - 983
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 665
@@ -4759,6 +4769,9 @@ entities:
     - type: Transform
       pos: 10.5,-7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 980
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -5028,6 +5041,11 @@ entities:
     components:
     - type: Transform
       pos: -8.399531,9.87932
+      parent: 1
+  - uid: 595
+    components:
+    - type: Transform
+      pos: 7.270961,8.03704
       parent: 1
 - proto: LockerCaptainFilled
   entities:
@@ -6076,43 +6094,6 @@ entities:
         492:
         - - Pressed
           - Toggle
-  - uid: 636
-    components:
-    - type: Transform
-      pos: 2.25,-3.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        319:
-        - - Pressed
-          - Close
-        284:
-        - - Pressed
-          - Close
-        240:
-        - - Pressed
-          - Off
-        165:
-        - - Pressed
-          - Off
-        412:
-        - - Pressed
-          - Close
-        203:
-        - - Pressed
-          - Close
-        30:
-        - - Pressed
-          - Close
-        225:
-        - - Pressed
-          - Close
-        413:
-        - - Pressed
-          - Close
-        218:
-        - - Pressed
-          - Close
   - uid: 639
     components:
     - type: Transform
