@@ -43,4 +43,11 @@ public sealed partial class RadioChannelPrototype : IPrototype
     [DataField, ViewVariables]
     public bool ShowFrequency = false;
     // End Frontier
+    /// <summary>
+    /// ImpStation port, if a channel is read-only, radio cannot be sent through it
+    /// Intercomms still can
+    /// Supermatter throws errors without this
+    /// </summary>
+    [DataField("intercomOnly")]
+    public bool IntercomOnly = false;
 }
