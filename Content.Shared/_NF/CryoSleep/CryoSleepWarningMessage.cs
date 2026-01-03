@@ -7,8 +7,7 @@ namespace Content.Shared._NF.CryoSleep;
 /// <summary>
 /// A message for CryoSleepEui containing all the items the server found, along with some other data to build the clientside warning messages.
 /// </summary>
-[Serializable]
-[NetSerializable]
+[Serializable, NetSerializable]
 public sealed class CryoSleepWarningMessage(
     bool shuttleOnPda,
     CryoSleepWarningMessage.NetworkedWarningItem? inventoryShuttleDeed,
@@ -26,8 +25,7 @@ public sealed class CryoSleepWarningMessage(
     public readonly List<NetworkedWarningItem> ImportantItems = importantItems;
 
 
-    [Serializable]
-    [NetSerializable]
+    [Serializable, NetSerializable]
     public struct NetworkedWarningItem
     {
     public NetworkedWarningItem(string? slotId, NetEntity? container, string? handId, NetEntity item)
@@ -43,7 +41,7 @@ public sealed class CryoSleepWarningMessage(
         Container = container;
         Item = item;
     }
-        //Exactly one of these two values should be null
+        //Exactly one of these values should not be null
         public readonly string? SlotId;
         public readonly NetEntity? Container;
         public readonly string? HandId;
