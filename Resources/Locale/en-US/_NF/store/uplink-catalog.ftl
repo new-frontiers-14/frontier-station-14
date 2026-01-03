@@ -230,6 +230,12 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
+uplink-security-shock-net-launcher-name = Shock Net Launcher
+uplink-security-shock-net-launcher-desc = A launcher specially designed for launching shock nets, intended to aid in non lethal take downs
+
+uplink-security-shock-net-ammo = Shock Net Capsule
+uplink-security-shock-net-ammo-desc = One capsule for  you to load into your shock net launcher
+
 # region Pirate
 uplink-pirate-hardsuit-name = Pirate Hardsuit
 uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.

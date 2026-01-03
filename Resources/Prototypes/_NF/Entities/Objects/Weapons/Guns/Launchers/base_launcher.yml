@@ -165,3 +165,21 @@
     proto: CannonBall
     soundInsert:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponLauncherChamber
+  id: NFBaseWeaponLauncherChamberShockNet
+  components:
+    - type: Gun
+      examineCaliber: gun-examine-caliber-shock-net
+      soundGunshot:
+        path: /Audio/Weapons/bolathrow.ogg
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - ShockNet
+      proto: NFShockNet
+      capacity: 1
+      soundInsert:
+        path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

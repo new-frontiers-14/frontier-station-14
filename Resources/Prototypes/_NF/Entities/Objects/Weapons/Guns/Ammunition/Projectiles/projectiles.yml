@@ -149,6 +149,60 @@
         - Opaque
       fly-by: *flybyfixture
 
+- type: entity
+  id: NFBulletShockNet
+  name: shock net
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/shock_net.rsi
+    state: shock-net-launched
+  - type: MultiHandedItem
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 10
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Shock: 10
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 2.5
+    walkSpeed: 0.5
+    sprintSpeed: 0.5
+    staminaDamage: 50
+    canThrowTrigger: true
+    canMoveBreakout: false
+    maxEnsnares: 1
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.3
+
 # region Upstream
 - type: entity
   parent: MuzzleFlashEffect
