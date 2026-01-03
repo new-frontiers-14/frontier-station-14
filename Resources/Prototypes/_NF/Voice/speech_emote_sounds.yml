@@ -195,11 +195,23 @@
 
 - type: emoteSounds
   id: CatMistake
-  params:
-    variation: 0.125
+  sound:
+    path: /Audio/Animals/cat_meow.ogg
+    params:
+      variation: 0.125
   sounds:
     Scream:
       collection: CatMistake
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      path: /Audio/Animals/cat_meow.ogg
+      params:
+        variation: 0.125
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
 
 - type: emoteSounds
   id: Dog

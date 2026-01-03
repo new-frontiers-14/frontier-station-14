@@ -1,0 +1,20 @@
+- type: entity
+  name: random corpse
+  id: SpawnDungeonRandomHumanCorpse
+  parent: MarkerBasePlaceFree
+  suffix: "Loot (Frontier), Corpse"
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Structures/Storage/Crates/coffin.rsi
+      state: base
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootCorpse
