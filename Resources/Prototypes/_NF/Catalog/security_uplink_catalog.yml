@@ -1210,3 +1210,40 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityShockNetLauncher
+  name:  uplink-security-shock-net-launcher-name
+  description: uplink-security-shock-net-launcher-desc
+  productEntity: ShockNetLauncher
+  icon: { sprite: _NF/Objects/Weapons/Guns/Launchers/shock_net_launcher.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Bailiff
+        - SeniorOfficer
+
+- type: listing
+  id: UplinkSecurityShockNetAmmo
+  name:  uplink-security-shock-net-ammo
+  description: uplink-security-shock-net-ammo-desc
+  productEntity: NFShockNet
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/shock_net.rsi, state: shock-net-capsule }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink

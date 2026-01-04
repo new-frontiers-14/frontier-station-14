@@ -119,3 +119,19 @@
     price: 50
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: ShockNetLauncher
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamberShockNet, NFWeaponLauncherRocket ]
+  name: Shock Net Launcher
+  description: Launches a net that delivers an electrical discharge and tangles up the target
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Launchers/shock_net_launcher.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Launchers/shock_net_launcher.rsi
