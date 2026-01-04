@@ -11,11 +11,14 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
+    private readonly SharedJukeboxSystem _sharedJukeboxSystem = default!;
+
     [ViewVariables]
     private JukeboxMenu? _menu;
 
     public JukeboxBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        _sharedJukeboxSystem = EntMan.System<SharedJukeboxSystem>();
         IoCManager.InjectDependencies(this);
     }
 
@@ -91,29 +94,10 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
     public void PopulateMusic()
     {
-        // Frontier: Music Discs
-        if (!EntMan.TryGetComponent<ContainerManagerComponent>(Owner, out var containers))
+        if (!EntMan.TryGetComponent(Owner, out JukeboxComponent? jukebox))
             return;
 
-        HashSet<JukeboxPrototype> availableMusic = new();
-
-        foreach (var container in containers.Containers.Values)
-        {
-            foreach (var ent in container.ContainedEntities)
-            {
-                if (!EntMan.TryGetComponent(ent, out JukeboxContainerComponent? tracklist))
-                    continue;
-
-                foreach (var trackID in tracklist.Tracks)
-                {
-                    if (_protoManager.TryIndex<JukeboxPrototype>(trackID, out var track))
-                        availableMusic.Add(track);
-                }
-            }
-        }
-        // End Frontier: Music Discs
-
-        _menu?.UpdateAvailableTracks(availableMusic); // Frontier _protoManager.EnumeratePrototypes<JukeboxPrototype>()<availableMusic
+        _menu?.UpdateAvailableTracks(_sharedJukeboxSystem.GetAvailableTracks((Owner, jukebox)));
         _menu?.PopulateTracklist();
     }
 
