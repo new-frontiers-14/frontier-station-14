@@ -412,7 +412,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
     private readonly struct WarningItem(string? slotId, EntityUid? container, string? handId, EntityUid item)
     {
-        //Exactly one of these three values should be null
+        //Exactly one of these three values should not be null
         public readonly string? SlotId = slotId;
         public readonly EntityUid? Container = container;
         public readonly string? HandId = handId;
