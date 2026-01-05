@@ -176,6 +176,7 @@ public sealed partial class LatheMenu : DefaultWindow
                 var amount = getCraftableAmount(prototype, _materialStorage); // Frontier
                 RecipeQueueAction?.Invoke(s, amount);
                 PopulateRecipes(); // Frontier
+                PopulateRecipes(); // Frontier
             };
             RecipeList.AddChild(control);
         }
