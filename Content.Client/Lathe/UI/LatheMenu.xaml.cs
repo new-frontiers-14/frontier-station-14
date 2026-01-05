@@ -89,7 +89,7 @@ public sealed partial class LatheMenu : DefaultWindow
     }
 
     /* Start Frontier - "Max" button functionality */
-    private int getCraftableAmount(LatheRecipePrototype recipe, MaterialStorageSystem materialStorage)
+    private int GetCraftableAmount(LatheRecipePrototype recipe, MaterialStorageSystem materialStorage)
     {
         var craftableAmounts = new List<int>();
         var amtCraftable = 0;
@@ -97,10 +97,11 @@ public sealed partial class LatheMenu : DefaultWindow
         {
             foreach (var (id, qtyMaterial) in recipe.Materials)
             {
-                craftableAmounts.Add(materialStorage.GetMaterialAmount(Entity, id)/qtyMaterial);
+                craftableAmounts.Add(materialStorage.GetMaterialAmount(Entity, id) / qtyMaterial);
             }
             amtCraftable = craftableAmounts.Count > 0 ? craftableAmounts.Min() : 1; //defaults to 1 as in vanilla
-        }else if (!int.TryParse(AmountLineEdit.Text, out amtCraftable) || amtCraftable <= 0) //exact same as vanilla
+        }
+        else if (!int.TryParse(AmountLineEdit.Text, out amtCraftable) || amtCraftable <= 0) //exact same as vanilla
         {
             amtCraftable = 1;
         }
@@ -174,6 +175,7 @@ public sealed partial class LatheMenu : DefaultWindow
             {
                 var amount = getCraftableAmount(prototype, _materialStorage); // Frontier
                 RecipeQueueAction?.Invoke(s, amount);
+                PopulateRecipes(); // Frontier
             };
             RecipeList.AddChild(control);
         }
