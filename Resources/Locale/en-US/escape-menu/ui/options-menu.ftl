@@ -55,6 +55,8 @@ ui-options-auto-fill-highlights = Auto-fill the highlights with the character's 
 # Frontier: "highlighs"<"highlight"
 ui-options-highlights-color = Highlight color:
 # Frontier: "an"<"a", "text"<"sentence"
+ui-options-pointer-highlights = Use your highlight color to shade the "point" arrow
+# Wayfarer
 ui-options-highlights-color-example = This is a highlighted sentence!
 ui-options-show-held-item = Show held item next to cursor
 ui-options-show-combat-mode-indicators = Show combat mode indicators with cursor
