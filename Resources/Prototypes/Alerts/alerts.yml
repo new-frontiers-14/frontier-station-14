@@ -50,7 +50,7 @@
   id: CorgiLowOxygen
   category: Breathing
   icons:
-  - sprite: /Textures/Interface/Alerts/breathing.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/breathing.rsi
     state: corgi_not_enough_oxy
   name: alerts-low-oxygen-name
   description: alerts-low-oxygen-desc
@@ -309,17 +309,17 @@
   id: CorgiHealth
   category: Health
   icons:
-  - sprite: /Textures/Interface/Alerts/corgi_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
     state: health0
-  - sprite: /Textures/Interface/Alerts/corgi_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
     state: health1
-  - sprite: /Textures/Interface/Alerts/corgi_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
     state: health2
-  - sprite: /Textures/Interface/Alerts/corgi_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
     state: health3
-  - sprite: /Textures/Interface/Alerts/corgi_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
     state: health4
-  - sprite: /Textures/Interface/Alerts/corgi_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
     state: health5
   name: alerts-health-name
   description: alerts-health-desc
@@ -330,7 +330,7 @@
   id: CorgiCrit
   category: Health
   icons:
-  - sprite: /Textures/Interface/Alerts/corgi_critical.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_critical.rsi
     state: critical
   name: alerts-crit-name
   description: alerts-crit-desc
@@ -339,7 +339,7 @@
   id: CorgiDead
   category: Health
   icons:
-  - sprite: /Textures/Interface/Alerts/corgi_dead.rsi
+  - sprite: /Textures//_StarlightInterface/Alerts/corgi_dead.rsi
     state: dead
   name: alerts-dead-name
   description: alerts-dead-desc
@@ -467,7 +467,9 @@
   #Starlight Start
 - type: alert
   id: CorgiPulling
-  icons: [ /Textures/Interface/Alerts/Pull/corgipulling.png ]
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/pulling.rsi
+    state: corgipulling
   clickEvent: !type:StopPullingAlertEvent
   name: alerts-pulling-name
   description: alerts-pulling-desc
