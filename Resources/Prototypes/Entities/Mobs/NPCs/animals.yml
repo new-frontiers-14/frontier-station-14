@@ -2962,6 +2962,21 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  - type: Puller
+    needsHands: false
+    # Starlight Start
+    pullingAlert: CorgiPulling
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: CorgiHealth
+      Critical: CorgiCrit
+      Dead: CorgiDead
+    # Starlight End
+  - type: Blindable # Starlight - why is this not base?
 
 - type: entity
   parent: MobCorgiBase
