@@ -150,7 +150,7 @@
       fly-by: *flybyfixture
 
 - type: entity
-  id: NFBulletShockNet
+  id: NFBulletShockNetGrenade
   name: shock net
   parent: BaseItem
   categories: [ HideSpawnMenu ]
@@ -181,7 +181,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Shock: 10
+        Shock: 5
   - type: Ensnaring
     freeTime: 1.5
     breakoutTime: 6.0
@@ -202,6 +202,26 @@
         - ItemMask
         restitution: 0.3
         friction: 0.3
+
+- type: entity
+  id: NFBulletGrenadeTearGas
+  name: tear gas grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+     - state: grenade
+  - type: ExplodeOnTrigger
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
 
 # region Upstream
 - type: entity

@@ -1,16 +1,16 @@
 - type: entity
   parent: [ BaseItem, BaseC2ContrabandUnredeemable ]
-  id: NFShockNet
-  name: shock net
+  id: NFShockNetGrenade
+  name: shock net grenade
   components:
   - type: Tag
     tags:
-    - ShockNet
+    - NFCartridgeGrenade40mmShockNet
   - type: Item
     size: Small
   - type: CartridgeAmmo
-    proto: NFBulletShockNet
+    proto: NFBulletShockNetGrenade
     deleteOnSpawn: true
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/shock_net.rsi
-    state: shock-net-capsule
+    state: shock-net-grenade

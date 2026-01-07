@@ -64,6 +64,22 @@
     - NFCartridgeGrenade40mm
 
 - type: entity
+  id: GrenadeTearGas
+  name: tear gas grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: tear
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: tear
+    suffix: false
+
+- type: entity
   parent: [ NFBaseGrenade40mm, GrenadeBaton ]
   id: NFGrenadeBaton
   name: baton grenade round
@@ -124,6 +140,19 @@
     range: 5
     energyConsumption: 2700000
     disableDuration: 10
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeTearGas ]
+  id: NFGrenadeTearGas
+  name: tear gas grenade round
+  components:
+  - type: Tag
+    tags:
+    - Grenade
+    - NFCartridgeGrenade40mm
+    - NFCartridgeGrenade40mmTearGas
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeTearGas
 
 # Cannon Balls
 

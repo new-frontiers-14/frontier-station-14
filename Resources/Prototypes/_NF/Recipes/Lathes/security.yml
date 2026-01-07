@@ -610,8 +610,9 @@
     Gold: 150
 
 - type: latheRecipe
-  id: NFGrenadeFlash
-  result: NFGrenadeFlash
+  parent: BaseAmmoRecipe
+  id: NFShockNetGrenade
+  result: NFShockNetGrenade
   completetime: 3
   materials:
     Steel: 150
@@ -620,11 +621,23 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFShockNet
-  result: NFShockNet
+  id: NFGrenadeTearGas
+  result: NFGrenadeTearGas
+  completetime: 3
   materials:
-    Plastic: 400
-    Steel: 400
+    Steel: 150
+    Plastic: 100
+    Glass: 20
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFGrenadeFlash
+  result: NFGrenadeFlash
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 100
+    Glass: 20
 
 #region Shields
 - type: latheRecipe

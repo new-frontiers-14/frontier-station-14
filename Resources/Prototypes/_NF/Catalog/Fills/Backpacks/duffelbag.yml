@@ -60,15 +60,29 @@
 
 - type: entity
   parent: ClothingBackpackDuffelNfsdBrown
-  id: ClothingBackpackDuffelNfsdEmpBundle
-  name: NFSD Lake EMP bundle
-  description: "An old repainted China-Lake grenade launcher bundled with 10 rounds of EMP."
+  id: ClothingBackpackDuffelNfsdEmpAmmo
+  name: NFSD Lake EMP Ammo
+  description: "12 EMP rounds to be loaded into the NGP-40 projector"
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponLauncherGrenadeNfsd
       - id: NFGrenadeEMP
-        amount: 10
+        amount: 12
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdVariedAmmo
+  name: NFSD Lake Varied Ammo
+  description: "Variety pack of grenades to load into your NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 4
+      - id: NFGrenadeTearGas
+        amount: 4
+      - id: NFGrenadeFlash
+        amount: 4
 
 # Not a duffelbag, but stored with other uplink-related backpacks
 - type: entity
