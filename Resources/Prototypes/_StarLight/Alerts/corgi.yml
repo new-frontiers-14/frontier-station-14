@@ -1,0 +1,56 @@
+- type: alert
+  id: CorgiLowOxygen
+  category: Breathing
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/breathing.rsi
+    state: corgi_not_enough_oxy
+  name: alerts-low-oxygen-name
+  description: alerts-low-oxygen-desc
+
+- type: alert
+  id: CorgiHealth
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
+    state: health0
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
+    state: health1
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
+    state: health2
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
+    state: health3
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
+    state: health4
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_alive.rsi
+    state: health5
+  name: alerts-health-name
+  description: alerts-health-desc
+  minSeverity: 0
+  maxSeverity: 5
+
+- type: alert
+  id: CorgiCrit
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_critical.rsi
+    state: critical
+  name: alerts-crit-name
+  description: alerts-crit-desc
+
+- type: alert
+  id: CorgiDead
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/corgi_dead.rsi
+    state: dead
+  name: alerts-dead-name
+  description: alerts-dead-desc
+
+- type: alert
+  id: CorgiPulling
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/pulling.rsi
+    state: corgipulling
+  clickEvent: !type:StopPullingAlertEvent
+  name: alerts-pulling-name
+  description: alerts-pulling-desc
