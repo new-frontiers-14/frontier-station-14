@@ -330,6 +330,9 @@ uplink-pirate-pouch-captain-desc = This pouch shows your status as the captain. 
 uplink-pirate-pouch-name = Pirate's Pouch
 uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 
+uplink-pirate-cash2500-name = 2,500 Spesos
+uplink-pirate-cash2500-desc = Well plundered booty.
+
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
 

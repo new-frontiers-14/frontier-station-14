@@ -543,6 +543,22 @@
   - UplinkPirateUtility
 
 - type: listing
+  id: UplinkPirateCash2500
+  name:  uplink-pirate-cash2500-name
+  description: uplink-pirate-cash2500-desc
+  productEntity: SpaceCash2500
+  icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000 }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateJetpack
   name:  uplink-pirate-jetpack-name
   description: uplink-pirate-jetpack-desc
