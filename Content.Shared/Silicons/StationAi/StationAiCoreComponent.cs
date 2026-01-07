@@ -39,11 +39,6 @@ public sealed partial class StationAiCoreComponent : Component
     public EntProtoId? PhysicalEntityProto = "StationAiHoloLocal";
 
     public const string Container = "station_ai_mind_slot";
-    /// <summary>
-    /// Buffer for TTS words. Can be set negative. Used for supermatter yelling.
-    /// </summary>
-    [DataField]
-    public int TtsBufferBetweenWordsMs = -50;
 }
 
 /// <summary>

@@ -158,10 +158,9 @@ public sealed class LightningSystem : SharedLightningSystem
         bool canExplode = true, // imp
         EntityUid? user = null) // imp
     {
-        //To Do: add support to different priority target tablem for different lightning types
-        //To Do: Remove Hardcode LightningTargetComponent (this should be a parameter of the SharedLightningComponent)
-        //To Do: This is still pretty bad for perf but better than before and at least it doesn't re-allocate
-        // several hashsets every time
+        //TODO: add support to different priority target tablem for different lightning types
+        //TODO: Remove Hardcode LightningTargetComponent (this should be a parameter of the SharedLightningComponent)
+        //TODO: This is still pretty bad for perf but better than before and at least it doesn't re-allocate several hashsets every time
 
         var targets = _lookup.GetEntitiesInRange<LightningTargetComponent>(coordinates, range).ToList();
         _random.Shuffle(targets);

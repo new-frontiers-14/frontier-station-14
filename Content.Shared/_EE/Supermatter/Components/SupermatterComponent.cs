@@ -479,7 +479,7 @@ public static class SupermatterGasData
         { Gas.Nitrogen,      new(0f,   -1.5f, -1f, 1f) },
         { Gas.CarbonDioxide, new(0f,   0.1f,  1f,  1f) },
         { Gas.Plasma,        new(4f,   15f,   1f,  1f) },
-        { Gas.Tritium,       new(30f,  10f,   1.092f,  1f) }, //Results in an even 3.00 power display on the console
+        { Gas.Tritium,       new(30f,  10f,   1f,  1f) },
         { Gas.WaterVapor,    new(2f,   12f,   1f,  1f) },
         { Gas.Ammonia,       new(0f,   1f,    1f , 1f) },
         { Gas.NitrousOxide,  new(0f,   -5f,   -1f, 6f) },
