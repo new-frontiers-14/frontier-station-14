@@ -417,23 +417,15 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-<<<<<<< HEAD
-  - type: MechAssembly
-    finishedPrototype: VimChassis
-    requiredParts:
-      # HelmetEVA: false # Frontier
-      SuitEVA: false # Frontier: phasing separate EVA helmets out
-      BorgLeg: false
-=======
       battery-container: !type:Container
   - type: PartAssembly
     parts:
       Vim:
-      - HelmetEVA
+      # - HelmetEVA # Frontier
+      - SuitEVA # Frontier: phasing separate EVA helmets out
       - BorgLeg
       - BorgLeg
     containerId: mech-assembly-container
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
   - type: Sprite
     state: harness
     noRot: true
