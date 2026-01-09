@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 01/06/2026 23:36:32
-  entityCount: 1074
+  time: 01/09/2026 09:18:30
+  entityCount: 1075
 maps: []
 grids:
 - 2
@@ -882,6 +882,9 @@ entities:
       - 365
       - 366
       - 86
+      - 343
+      - 345
+      - 346
   - uid: 1849
     components:
     - type: Transform
@@ -931,14 +934,20 @@ entities:
       - 1641
       - 809
       - 816
+      - 1607
+      - 1606
 - proto: AirAlarmFreezer
   entities:
-  - uid: 87
+  - uid: 36
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,-9.5
       parent: 2
+    - type: DeviceList
+      devices:
+      - 454
+      - 810
 - proto: Airlock
   entities:
   - uid: 307
@@ -1443,6 +1452,13 @@ entities:
     components:
     - type: Transform
       pos: 1.4458768,-8.346859
+      parent: 2
+- proto: BoxPaperColored
+  entities:
+  - uid: 815
+    components:
+    - type: Transform
+      pos: 2.3228846,-8.512326
       parent: 2
 - proto: Bucket
   entities:
@@ -2638,14 +2654,14 @@ entities:
     - type: Transform
       pos: 7.5,-17.5
       parent: 2
-- proto: ClosetWallO2N2FilledRandom
+- proto: ClosetWallO2N2Filled
   entities:
   - uid: 47
     components:
     - type: Transform
       pos: 10.5,-19.5
       parent: 2
-  - uid: 454
+  - uid: 87
     components:
     - type: Transform
       pos: -9.5,-19.5
@@ -3034,16 +3050,25 @@ entities:
     - type: Transform
       pos: -0.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 1848
   - uid: 345
     components:
     - type: Transform
       pos: 0.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 1848
   - uid: 346
     components:
     - type: Transform
       pos: 1.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 1848
   - uid: 347
     components:
     - type: Transform
@@ -4602,13 +4627,6 @@ entities:
       - 1851
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 810
-    components:
-    - type: Transform
-      pos: 8.5,-8.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 811
     components:
     - type: Transform
@@ -4625,6 +4643,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-8.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 1851
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 1641
@@ -4679,6 +4700,18 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1850
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+- proto: GasVentPumpFreezer
+  entities:
+  - uid: 454
+    components:
+    - type: Transform
+      pos: 8.5,-8.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 36
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -4749,18 +4782,6 @@ entities:
       pipeLayer: Tertiary
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 815
-    components:
-    - type: Transform
-      pos: 8.5,-9.5
-      parent: 2
-    - type: Construction
-      step: 1
-      edge: 0
-    - type: AtmosPipeLayers
-      pipeLayer: Tertiary
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 816
     components:
     - type: Transform
@@ -4779,6 +4800,9 @@ entities:
     - type: Transform
       pos: -2.5,-6.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 1851
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
     - type: AtmosPipeColor
@@ -4833,6 +4857,23 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1850
+    - type: AtmosPipeColor
+      color: '#990000FF'
+- proto: GasVentScrubberFreezer
+  entities:
+  - uid: 810
+    components:
+    - type: Transform
+      pos: 8.5,-9.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 36
+    - type: Construction
+      step: 1
+      edge: 0
+    - type: AtmosPipeLayers
+      pipeLayer: Tertiary
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -6852,14 +6893,14 @@ entities:
   - uid: 860
     components:
     - type: Transform
-      pos: 2.4375,-8.456302
+      pos: 2.6592195,-8.288414
       parent: 2
 - proto: VendingMachineRestockChefvend
   entities:
   - uid: 203
     components:
     - type: Transform
-      pos: 2.6145833,-8.664781
+      pos: 2.7217195,-8.705371
       parent: 2
 - proto: WallShuttle
   entities:
