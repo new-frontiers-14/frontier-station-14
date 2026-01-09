@@ -12,6 +12,10 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.Mobs.Systems; // Frontier
+using Robust.Shared.Player; // Frontier
+using Robust.Shared.Enums; // Frontier
 
 namespace Content.Shared.Morgue;
 
@@ -26,6 +30,8 @@ public abstract class SharedCrematoriumSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
+    [Dependency] private readonly ISharedPlayerManager _player = default!; // Frontier
 
     public override void Initialize()
     {
@@ -120,6 +126,16 @@ public abstract class SharedCrematoriumSystem : EntitySystem
 
         if (ent.Comp2.Open || ent.Comp2.Contents.ContainedEntities.Count < 1)
             return false;
+
+        // Frontier - refuse to accept alive mobs and dead-but-connected players
+        var entity = ent.Comp2.Contents.ContainedEntities[0];
+        if (entity is not { Valid: true })
+            return false;
+        if (TryComp<MobStateComponent>(entity, out var comp) && !_mobState.IsDead(entity, comp))
+            return false;
+        if (_player.TryGetSessionByEntity(entity, out var session) && session.State.Status == SessionStatus.InGame)
+            return false;
+        // End Frontier
 
         return Cremate((ent.Owner, ent.Comp1), user);
     }

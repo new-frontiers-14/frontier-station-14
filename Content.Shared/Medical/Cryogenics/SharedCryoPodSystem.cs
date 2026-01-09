@@ -54,6 +54,10 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     private EntityQuery<FitsInDispenserComponent> _dispenserQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionContainerQuery;
 
+    // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution. TODO: Don't hardcode this
+    private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
+
+
     public override void Initialize()
     {
         base.Initialize();
@@ -63,6 +67,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         SubscribeLocalEvent<CryoPodComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<CryoPodComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs);
         SubscribeLocalEvent<CryoPodComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<CryoPodComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<CryoPodComponent, CryoPodDragFinished>(OnDragFinished);
         SubscribeLocalEvent<CryoPodComponent, CryoPodPryFinished>(OnCryoPodPryFinished);
         SubscribeLocalEvent<CryoPodComponent, DragDropTargetEvent>(HandleDragDropOn);
@@ -107,7 +112,15 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
                     out var containerSolution, out _)
                 && _bloodstreamQuery.TryComp(patient, out var bloodstream))
             {
-                var solutionToInject = _solutionContainer.SplitSolution(containerSolution.Value, cryoPod.BeakerTransferAmount);
+                // Frontier
+                // Filter out a fixed amount of each reagent from the cryo pod's beaker
+                // var solutionToInject = _solutionContainer.SplitSolution(containerSolution.Value, cryoPod.BeakerTransferAmount);
+                var solutionToInject = _solutionContainer.SplitSolutionPerReagentWithOnly(containerSolution.Value, cryoPod.BeakerTransferAmount, CryogenicsReagents);
+
+                // For every .25 units used, .5 units per second are added to the body, making cryo-pod more efficient than injections.
+                solutionToInject.ScaleSolution(cryoPod.PotencyMultiplier);
+                // End Frontier
+
                 _bloodstream.TryAddToChemicals((patient.Value, bloodstream), solutionToInject);
                 _reactive.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);
             }

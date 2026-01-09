@@ -21,160 +21,19 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private readonly GasCanisterSystem _gasCanisterSystem = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-<<<<<<< HEAD
-
-    // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution.
-    private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
-    private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
-=======
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     public override void Initialize()
     {
         base.Initialize();
 
-<<<<<<< HEAD
-        SubscribeLocalEvent<CryoPodComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<CryoPodComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs);
-        SubscribeLocalEvent<CryoPodComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<CryoPodComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
-        SubscribeLocalEvent<CryoPodComponent, CryoPodDragFinished>(OnDragFinished);
-        SubscribeLocalEvent<CryoPodComponent, CryoPodPryFinished>(OnCryoPodPryFinished);
-
-        SubscribeLocalEvent<CryoPodComponent, AtmosDeviceUpdateEvent>(OnCryoPodUpdateAtmosphere);
-        SubscribeLocalEvent<CryoPodComponent, DragDropTargetEvent>(HandleDragDropOn);
-        SubscribeLocalEvent<CryoPodComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<CryoPodComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<CryoPodComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<CryoPodComponent, GasAnalyzerScanEvent>(OnGasAnalyzed);
-        SubscribeLocalEvent<CryoPodComponent, ActivatableUIOpenAttemptEvent>(OnActivateUIAttempt);
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
         SubscribeLocalEvent<CryoPodComponent, AfterActivatableUIOpenEvent>(OnActivateUI);
         SubscribeLocalEvent<CryoPodComponent, AtmosDeviceUpdateEvent>(OnCryoPodUpdateAtmosphere);
         SubscribeLocalEvent<CryoPodComponent, GasAnalyzerScanEvent>(OnGasAnalyzed);
         SubscribeLocalEvent<CryoPodComponent, EntRemovedFromContainerMessage>(OnEjected);
     }
 
-<<<<<<< HEAD
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var curTime = _gameTiming.CurTime;
-        var bloodStreamQuery = GetEntityQuery<BloodstreamComponent>();
-        var metaDataQuery = GetEntityQuery<MetaDataComponent>();
-        var itemSlotsQuery = GetEntityQuery<ItemSlotsComponent>();
-        var fitsInDispenserQuery = GetEntityQuery<FitsInDispenserComponent>();
-        var solutionContainerManagerQuery = GetEntityQuery<SolutionContainerManagerComponent>();
-        var query = EntityQueryEnumerator<ActiveCryoPodComponent, CryoPodComponent>();
-
-        while (query.MoveNext(out var uid, out _, out var cryoPod))
-        {
-            metaDataQuery.TryGetComponent(uid, out var metaDataComponent);
-            if (curTime < cryoPod.NextInjectionTime + _metaDataSystem.GetPauseTime(uid, metaDataComponent))
-                continue;
-            cryoPod.NextInjectionTime = curTime + TimeSpan.FromSeconds(cryoPod.BeakerTransferTime);
-
-            if (!itemSlotsQuery.TryGetComponent(uid, out var itemSlotsComponent))
-            {
-                continue;
-            }
-            var container = _itemSlotsSystem.GetItemOrNull(uid, cryoPod.SolutionContainerName, itemSlotsComponent);
-            var patient = cryoPod.BodyContainer.ContainedEntity;
-            if (container != null
-                && container.Value.Valid
-                && patient != null
-                && fitsInDispenserQuery.TryGetComponent(container, out var fitsInDispenserComponent)
-                && solutionContainerManagerQuery.TryGetComponent(container,
-                    out var solutionContainerManagerComponent)
-                && _solutionContainerSystem.TryGetFitsInDispenser((container.Value, fitsInDispenserComponent, solutionContainerManagerComponent),
-                    out var containerSolution, out _))
-            {
-                if (!bloodStreamQuery.TryGetComponent(patient, out var bloodstream))
-                {
-                    continue;
-                }
-
-
-                // Frontier
-                // Filter out a fixed amount of each reagent from the cryo pod's beaker
-                // var solutionToInject = _solutionContainerSystem.SplitSolution(containerSolution.Value, cryoPod.BeakerTransferAmount);
-                var solutionToInject = _solutionContainerSystem.SplitSolutionPerReagentWithOnly(containerSolution.Value, cryoPod.BeakerTransferAmount, CryogenicsReagents);
-
-                // For every .25 units used, .5 units per second are added to the body, making cryo-pod more efficient than injections.
-                solutionToInject.ScaleSolution(cryoPod.PotencyMultiplier);
-                // End Frontier
-
-                _bloodstreamSystem.TryAddToChemicals((patient.Value, bloodstream), solutionToInject);
-                _reactiveSystem.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);
-            }
-        }
-    }
-
-    public override EntityUid? EjectBody(EntityUid uid, CryoPodComponent? cryoPodComponent)
-    {
-        if (!Resolve(uid, ref cryoPodComponent))
-            return null;
-        if (cryoPodComponent.BodyContainer.ContainedEntity is not { Valid: true } contained)
-            return null;
-        base.EjectBody(uid, cryoPodComponent);
-        _climbSystem.ForciblySetClimbing(contained, uid);
-        return contained;
-    }
-
-    #region Interaction
-
-    private void HandleDragDropOn(Entity<CryoPodComponent> entity, ref DragDropTargetEvent args)
-    {
-        if (entity.Comp.BodyContainer.ContainedEntity != null)
-            return;
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, entity.Comp.EntryDelay, new CryoPodDragFinished(), entity, target: args.Dragged, used: entity)
-        {
-            BreakOnDamage = true,
-            BreakOnMove = true,
-            NeedHand = false,
-        };
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
-        args.Handled = true;
-    }
-
-    private void OnDragFinished(Entity<CryoPodComponent> entity, ref CryoPodDragFinished args)
-    {
-        if (args.Cancelled || args.Handled || args.Args.Target == null)
-            return;
-
-        if (InsertBody(entity.Owner, args.Args.Target.Value, entity.Comp))
-        {
-            if (!TryComp(entity.Owner, out CryoPodAirComponent? cryoPodAir))
-                _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                    $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(entity.Owner)}");
-
-            _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(entity.Owner)} which contains gas: {cryoPodAir!.Air.ToPrettyString():gasMix}");
-        }
-        args.Handled = true;
-    }
-
-    private void OnActivateUIAttempt(Entity<CryoPodComponent> entity, ref ActivatableUIOpenAttemptEvent args)
-    {
-        if (args.Cancelled)
-        {
-            return;
-        }
-
-        var containedEntity = entity.Comp.BodyContainer.ContainedEntity;
-        if (containedEntity == null || containedEntity == args.User || !HasComp<ActiveCryoPodComponent>(entity))
-        {
-            args.Cancel();
-        }
-    }
-
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     private void OnActivateUI(Entity<CryoPodComponent> entity, ref AfterActivatableUIOpenEvent args)
     {
         if (!entity.Comp.BodyContainer.ContainedEntity.HasValue)

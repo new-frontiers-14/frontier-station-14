@@ -29,8 +29,9 @@ namespace Content.Shared.Stacks
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] protected readonly SharedPopupSystem Popup = default!;
         [Dependency] private readonly SharedStorageSystem _storage = default!;
+        [Dependency] private readonly SharedUserInterfaceSystem _ui = default!; // Cherry-picked from space-station-14#32938 courtesy of Ilya246
 
-        public static readonly int[] DefaultSplitAmounts = { 1, 5, 10, 20, 30, 50 };
+        public static readonly int[] DefaultSplitAmounts = { 1, 5, 10, 20, 30, 50, 100, 500, 1000, 5000, 10000 }; // Frontier: add 100, 500, 1000, 5000, 10000
 
         public override void Initialize()
         {
@@ -50,10 +51,20 @@ namespace Content.Shared.Stacks
                 .AddPath(nameof(StackComponent.Count), (_, comp) => comp.Count, SetCount);
         }
 
-        // Cherry-pick #32938 courtesy of Ilya246
-        // client shouldn't try to split stacks so do nothing on client
-        protected virtual void OnCustomSplitMessage(Entity<StackComponent> ent, ref StackCustomSplitAmountMessage message) {}
-        // End cherry-pick #32938 courtesy of Ilya246
+        // Frontier
+        // Cherry-picked from ss14#32938 courtesy of Ilya246
+        protected void OnCustomSplitMessage(Entity<StackComponent> ent, ref StackCustomSplitAmountMessage message)
+        {
+            var (uid, comp) = ent;
+
+            // digital ghosts shouldn't be allowed to split stacks
+            if (!(message.Actor is { Valid: true } user))
+                return;
+
+            var amount = message.Amount;
+            UserSplit(uid, user, amount, comp);
+        }
+        // End cherry-pick from ss14#32938 courtesy of Ilya246
 
         public override void Shutdown()
         {
@@ -448,16 +459,33 @@ namespace Content.Shared.Stacks
             if (!args.CanAccess || !args.CanInteract || args.Hands == null || stack.Count == 1)
                 return;
 
+            // Frontier: cherry-picked from ss14#32938, moved up top
+            var priority = 1;
+            if (_ui.HasUi(uid, StackCustomSplitUiKey.Key)) // Frontier: check for interface
+            {
+                AlternativeVerb custom = new()
+                {
+                    Text = Loc.GetString("comp-stack-split-custom"),
+                    Category = VerbCategory.Split,
+                    Act = () =>
+                    {
+                        _ui.OpenUi(uid, StackCustomSplitUiKey.Key, args.User);
+                    },
+                    Priority = priority--
+                };
+                args.Verbs.Add(custom);
+            }
+            // End Frontier: cherry-picked from ss14#32938, moved up top
+
             AlternativeVerb halve = new()
             {
                 Text = Loc.GetString("comp-stack-split-halve"),
                 Category = VerbCategory.Split,
                 Act = () => UserSplit(uid, args.User, stack.Count / 2, stack),
-                Priority = 1
+                Priority = priority-- // Frontier: 1<priority--
             };
             args.Verbs.Add(halve);
 
-            var priority = 0;
             foreach (var amount in DefaultSplitAmounts)
             {
                 if (amount >= stack.Count)

@@ -22,7 +22,7 @@ namespace Content.Client.GameTicking.Managers
         [Dependency] private readonly IClyde _clyde = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
 
-        private Dictionary<NetEntity, StationJobInformation> _stationJobInformationList = new();
+        private Dictionary<NetEntity, StationJobInformation> _stationJobInformationList = new(); // Frontier
 
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
@@ -33,24 +33,22 @@ namespace Content.Client.GameTicking.Managers
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
 
-<<<<<<< HEAD
-        [ViewVariables] public IReadOnlyDictionary<NetEntity, StationJobInformation> StationJobInformationList => _stationJobInformationList;
-
-        // Frontier addition
+        // Frontier
         // Replaced StationNames with a getter that uses _stationJobInformationList
+
+        [ViewVariables] public IReadOnlyDictionary<NetEntity, StationJobInformation> StationJobInformationList => _stationJobInformationList;
         [ViewVariables]
         public IReadOnlyDictionary<NetEntity, string> StationNames =>
             _stationJobInformationList.ToDictionary(
                 kvp => kvp.Key,
                 kvp => kvp.Value.StationName
             );
-=======
+
+        // [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
+        // [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
+        // End Frontier
+
         public override IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules => new List<(TimeSpan, string)>();
-
-        [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
-        [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
-
         public event Action? InfoBlobUpdated;
         public event Action? LobbyStatusUpdated;
         public event Action? LobbyLateJoinStatusUpdated;

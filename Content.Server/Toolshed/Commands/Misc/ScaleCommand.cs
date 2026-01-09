@@ -41,8 +41,6 @@ public sealed class ScaleCommand : ToolshedCommand
         }
     }
 
-<<<<<<< HEAD
-=======
     [CommandImplementation("multiplyvector")]
     public IEnumerable<EntityUid> Multiply([PipedArgument] IEnumerable<EntityUid> input, Vector2 factor)
     {
@@ -56,7 +54,6 @@ public sealed class ScaleCommand : ToolshedCommand
         }
     }
 
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     [CommandImplementation("multiplywithfixture")]
     public IEnumerable<EntityUid> MultiplyWithFixture([PipedArgument] IEnumerable<EntityUid> input, float factor)
     {

@@ -151,6 +151,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
                 handButton.Blocked = true;
             }
 <<<<<<< HEAD
+            // FRONTIER UPSTREAM MERGE TODO: address https://github.com/space-wizards/space-station-14/pull/38668
             // Frontier - borg hand placeholder
             else if (_entities.TryGetComponent(held, out HandPlaceholderVisualsComponent? placeholder))
             {
