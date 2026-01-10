@@ -23,13 +23,24 @@
 - type: entity
   parent: PosterBase
   id: ShuttleMapApothecary
-  name: "NM Apothecary"
+  name: "FSB Apothecary"
   description: "Detailed map of a Apothecary shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: apothecary
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapAegis
+  name: "FSA Aegis"
+  description: "Detailed map of a Aegis shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: aegis
 
 - type: entity
   parent: PosterBase
@@ -165,6 +176,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapDove
+  name: "DYS Dove"
+  description: "Detailed map of a Dove shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: dove
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapDragoon
   name: "FSA Dragoon"
   description: "Detailed map of a Dragoon shuttle."
@@ -173,6 +195,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: dragoon
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapDragonfly
+  name: "DYS Dragonfly"
+  description: "Detailed map of a Dragonfly shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: dragonfly
 
 - type: entity
   parent: PosterBase

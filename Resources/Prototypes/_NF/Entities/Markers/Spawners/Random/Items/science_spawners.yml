@@ -1,0 +1,152 @@
+# region Clutter
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClutterScience
+  name: random clutter
+  suffix: "Loot (Frontier), Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceClutter
+
+# region Parts
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootCircuitBoardScience
+  name: random machine board
+  suffix: "Loot (Frontier), Sciense"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: science
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceCircuitBoards
+
+# region Clothes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClothesScience
+  name: random clothes
+  suffix: "Loot (Frontier), Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/scientist.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceClothes
+
+# region Lockers
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonFurnitureScience
+  name: random furniture
+  suffix: "Loot (Frontier), Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceLockersAndSuitStorage
+
+# region Crates
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateScience
+  name: random crate
+  suffix: "Loot (Frontier), Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceCrates
+
+# region Other
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootRnDDisk
+  name: random disk
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Research/researchdisk.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceDisks
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootFlatpacksScience
+  name: random flatpack
+  suffix: "Loot (Frontier), Sciense"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootScienceFlatpacks
