@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/29/2025 17:42:25
-  entityCount: 768
+  time: 01/10/2026 19:48:08
+  entityCount: 771
 maps: []
 grids:
 - 1
@@ -726,6 +726,11 @@ entities:
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
+  - uid: 600
+    components:
+    - type: Transform
+      pos: 6.5,1.5
+      parent: 1
   - uid: 737
     components:
     - type: Transform
@@ -880,6 +885,11 @@ entities:
     components:
     - type: Transform
       pos: -7.5,-4.5
+      parent: 1
+  - uid: 770
+    components:
+    - type: Transform
+      pos: -5.5,1.5
       parent: 1
 - proto: BenchSofaCorpCorner
   entities:
@@ -2051,6 +2061,14 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 771
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-4.5
+      parent: 1
 - proto: DisposalBend
   entities:
   - uid: 650
@@ -2305,6 +2323,13 @@ entities:
     - type: Transform
       pos: -3.5167284,7.5049667
       parent: 1
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 568
+    components:
+    - type: Transform
+      pos: 4.5,8.5
+      parent: 1
 - proto: FaxMachineShip
   entities:
   - uid: 221
@@ -2353,11 +2378,6 @@ entities:
       deviceLists:
       - 267
       - 698
-  - uid: 568
-    components:
-    - type: Transform
-      pos: 5.5,-4.5
-      parent: 1
 - proto: FirelockEdge
   entities:
   - uid: 90
