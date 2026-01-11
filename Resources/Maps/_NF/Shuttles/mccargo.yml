@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/29/2025 18:29:08
-  entityCount: 954
+  time: 01/11/2026 21:26:40
+  entityCount: 953
 maps: []
 grids:
 - 1
@@ -734,7 +734,6 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 973
       - 171
       - 8
       - 974
@@ -998,17 +997,6 @@ entities:
     - type: Transform
       pos: 8.5,3.5
       parent: 1
-- proto: AirSensor
-  entities:
-  - uid: 973
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,4.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 365
 - proto: APCBasic
   entities:
   - uid: 26
@@ -1423,7 +1411,7 @@ entities:
   - uid: 409
     components:
     - type: Transform
-      pos: -1.4989933,3.6164613
+      pos: 1.2166945,4.6349597
       parent: 1
 - proto: Bucket
   entities:
@@ -2438,7 +2426,7 @@ entities:
   - uid: 31
     components:
     - type: Transform
-      pos: 1.5168028,4.5823884
+      pos: 1.6698195,4.6818347
       parent: 1
 - proto: ClothingBeltChefFilled
   entities:
@@ -2545,6 +2533,13 @@ entities:
     components:
     - type: Transform
       pos: 9.5,9.5
+      parent: 1
+- proto: CrateMaterialsBasicFilled
+  entities:
+  - uid: 145
+    components:
+    - type: Transform
+      pos: -1.5,3.5
       parent: 1
 - proto: CrateServiceBoozeDispenser
   entities:
@@ -4779,7 +4774,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -2.5,8.5
+      pos: -2.5,7.5
       parent: 1
 - proto: MaterialReclaimer
   entities:
@@ -5155,12 +5150,6 @@ entities:
     - type: Transform
       pos: 2.5,4.5
       parent: 1
-  - uid: 145
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,3.5
-      parent: 1
   - uid: 179
     components:
     - type: Transform
@@ -5378,6 +5367,14 @@ entities:
     components:
     - type: Transform
       pos: -0.4597435,-6.4566507
+      parent: 1
+- proto: Screwdriver
+  entities:
+  - uid: 90
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.3863797,3.5724597
       parent: 1
 - proto: SeedExtractor
   entities:
@@ -5830,14 +5827,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 9.5,-6.5
-      parent: 1
-- proto: SignDirectionalHydro
-  entities:
-  - uid: 90
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,3.5
       parent: 1
 - proto: SignDirectionalWash
   entities:
