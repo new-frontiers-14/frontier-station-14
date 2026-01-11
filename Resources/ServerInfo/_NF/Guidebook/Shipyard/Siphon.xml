@@ -1,0 +1,78 @@
+<Document>
+  # SIPHON-CLASS GAS MINER
+  <Box>
+  <GuideEntityEmbed Entity="GasMiningDrill"/>
+  <GuideEntityEmbed Entity="GaslockFrame"/>
+  <GuideEntityEmbed Entity="GasAnalyzer"/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Small
+
+	[color=#a4885c]Recommended Crew:[/color] 2-3
+
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+
+	[color=#a4885c]Expeditions:[/color] No
+
+	[color=#a4885c]IFF Console:[/color] None
+
+  "Small gas extraction and transport vessel"
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+
+  ## 1.2. P.A.C.M.A.N. generator unit
+  <Box>
+    <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+    <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+
+  - Check that P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check that P.A.C.M.A.N. generator unit is fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
+  - Check that P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power to 16 [bold]kW[/bold] on the generator unit.
+  - Start P.A.C.M.A.N. generator unit.
+
+  ## 2. Atmospherics
+
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister"/>
+    <GuideEntityEmbed Entity="NitrogenCanister"/>
+    <GuideEntityEmbed Entity="GasPort"/>
+    <GuideEntityEmbed Entity="GasFilterFlipped"/>
+    <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+
+  - Check if the O2 canister and N2 canister are anchored to their connector ports.
+  - Check if the gas mixer has its mixing ratio and output pressure set correctly.
+  - Check that the gas mixer is set to the appropriate ratios for the shuttle's inhabitants.
+  - Enable the gas mixer.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Check that the blast doors are closed.
+
+  ## Sidenotes
+
+  * - Siphon-Class vessels come equipped with emergency back-up solar collectors. Consult a certified engineering professional for troubleshooting.
+
+</Document>

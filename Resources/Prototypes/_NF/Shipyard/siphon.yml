@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Cheakraze
+# Discord: checkraze
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Siphon
+  parent: BaseVessel
+  name: NC Siphon
+  description: A small gas extraction and transport vessel
+  price: 28200 # 25395 0.11 28188.45
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/siphon.yml
+  guidebookPage: ShipyardSiphon
+  class:
+  - Atmospherics
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Siphon
+  mapName: 'NC Siphon'
+  mapPath: /Maps/_NF/Shuttles/siphon.yml
+  minPlayers: 0
+  stations:
+    Siphon:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Siphon {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
