@@ -37,6 +37,13 @@
       interfaces:
         enum.SurveillanceCameraSetupUiKey.Camera:
           type: SurveillanceCameraSetupBoundUi
+# Frontier - Add on/off toggle
+    - type: ItemToggle
+      activated: true
+    - type: ItemToggleExamine
+      on: item-toggle-examine-camera-on
+      off: item-toggle-examine-camera-off
+# End Frontier
   placement:
     mode: SnapgridCenter
 
