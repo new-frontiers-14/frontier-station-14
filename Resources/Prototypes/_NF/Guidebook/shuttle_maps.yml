@@ -495,6 +495,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapStellaris
+  name: "NT Stasis"
+  description: "Detailed map of a Stellaris shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: stellaris
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapSurveyor
   name: "FSB Surveyor"
   description: "Detailed map of a Surveyor shuttle."
@@ -525,6 +536,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: vagabond
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapMcDelivery
+  name: "WSE Nook"
+  description: "Detailed map of a McDelivery shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: mcdelivery
 
 - type: entity
   parent: PosterBase
