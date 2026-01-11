@@ -24,74 +24,24 @@
 
 "A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable."
 
-## 1. Power supply
+# Expeditions
 
-## 1.1. Battery units
-<Box>
-<GuideEntityEmbed Entity="SMESBasic"/>
-<GuideEntityEmbed Entity="SubstationBasic"/>
-<GuideEntityEmbed Entity="APCBasic"/>
-</Box>
+[textlink="Expeditions" link="Expeditions"/]
 
-- Check that the SMES unit is anchored to the floor.
-- Check that the substation unit is anchored to the floor.
-- Check that the APC unit's Main Breaker is toggled on.
-- Check the APC unit's current Load (W).
+# Piloting
 
-## 1.2. AME generator unit.
-<Box>
-<GuideEntityEmbed Entity="AmeController"/>
-<GuideEntityEmbed Entity="AmeJar"/>
-<GuideEntityEmbed Entity="ComputerPowerMonitoring"/>
-</Box>
+[textlink="Piloting" link="Piloting"/]
 
-- Check that the AME core is properly shielded.
-- Check that the AME controller unit is anchored to the floor.
-- Check the AME controller unit 'Fueling Status' readout.
-- Check the AME controller unit 'Injection Amount' setting.
-- Enable AME injection.
-- Check power monitoring console to validate AME output level and confirm that battery draw is negligible with the AME active. In stock configuration the ship should consume approximately 54kW at idle.
+[textlink="Sector Topology" link="SectorTopology"/]
 
-## 2. Atmospherics
+# Hiring crew
 
-## 2.1. Distribution Loop
-<Box>
-<GuideEntityEmbed Entity="GasPort"/>
-<GuideEntityEmbed Entity="OxygenCanister"/>
-<GuideEntityEmbed Entity="NitrogenCanister"/>
-<GuideEntityEmbed Entity="GasMixer"/>
-<GuideEntityEmbed Entity="GasVentPump"/>
-</Box>
+[textlink="Hiring" link="Hiring"/]
 
-- Check if the Oxygen canister is anchored to connector port.
-- Check if the Nitrogen canister is anchored to connector port.
-- Check if the distribution Mixer Pump is set to normal pressure (101.3kPa).
-- Enable the Mixer Pump.
-- Anchor gas canisters to Connector Ports as needed if canisters empty.
+As a Captain of a Nanotrasen vessel, you have the authority to hire, fire, demote, or promote crew members at will.
 
-## 2.2. Waste Loop
-<Box>
-<GuideEntityEmbed Entity="AirAlarm"/>
-<GuideEntityEmbed Entity="GasValve"/>
-<GuideEntityEmbed Entity="GasFilter"/>
-<GuideEntityEmbed Entity="GasVentScrubber"/>
-</Box>
+# PREFLIGHT CHECKLIST
 
-- Enable waste loop pump and valve(s).
-- Enable waste loop filters.
-- Set appropriate gases for each storage chamber as needed.
-
-For more info on Atmos systems please read more in [textlink="Atmospherics" link="Atmospherics"].
-
-## 3. Other checks
-<Box>
-<GuideEntityEmbed Entity="Gyroscope"/>
-<GuideEntityEmbed Entity="GravityGeneratorMini"/>
-<GuideEntityEmbed Entity="BlastDoor"/>
-</Box>
-
-- Check that the gyroscope is anchored, powered, and enabled.
-- Check that the mini gravity generator is anchored, powered, and enabled.
-- Check that the blast doors are closed.
+[textlink="Preflight Checklist" link="PreflightChecklist"/]
 
 </Document>
