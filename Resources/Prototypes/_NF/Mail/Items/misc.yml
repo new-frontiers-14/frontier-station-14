@@ -286,3 +286,23 @@
   - type: PneumaticCannon
     throwItems: false # must be false to get the TOOMP
     baseProjectileSpeed: 25.0 # zoom
+
+- type: entity
+  name: plushie cannon
+  parent: WeaponImprovisedPneumaticCannon
+  id: WeaponPlushieCannon
+  description: Embossed on the barrel are the words "FRONT TOWARD FRIEND".
+  components:
+  - type: Storage
+    areaInsert: true
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+        - NFPlushie
+  - type: Gun
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
