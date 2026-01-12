@@ -101,7 +101,7 @@ stack-fuel-grade-uranium = fuel-grade uranium
 stack-fuel-grade-bananium = fuel-grade bananium
 stack-skrungle = skrungle
 nf-stack-chitin-xeno = xeno chitin
-nf-stack-chitin-argocyte = xeno chitin
+nf-stack-chitin-argocyte = argocyte chitin
 
 stack-dark-grass-floor = dark grass floor
 stack-light-grass-floor = light grass floor
