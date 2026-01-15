@@ -4,12 +4,8 @@
   id: BaseMobResomi
   abstract: true
   components:
-  - type: JumpAbility
-    jumpDistance: 10
-    jumpSound: /Audio/_Starlight/Effects/Jump/resomi.ogg
-  - type: ActionGrant
-    actions:
-    - ActionGravityJump
+  - type: Jump
+    action: JumpResomi
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
@@ -45,6 +41,13 @@
       - HeadSide
     undergarmentTop: UndergarmentTopTanktopResomi
     undergarmentBottom: UndergarmentBottomBoxersResomi
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Scratch
+    understands:
+    - GalacticCommon
+    - Scratch
   - type: Fixtures
     fixtures:
       fix1:

@@ -1,0 +1,87 @@
+- type: entity
+  id: BaseEntityBrainImplant
+  abstract: true
+  parent: [ BaseItem, BaseImplant ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+  - type: Organ
+  - type: BrainImplant
+  - type: FlavorProfile
+    flavors:
+      - people
+
+- type: entity
+  id: BrainImplantTranslator
+  name: Universal Translator Implant
+  description: Translates from your language to galactic common right in your brain!
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_translator
+  - type: FunctionalOrgan
+    comps:
+    - type: IntrinsicTranslator
+      spoken:
+      - GalacticCommon
+      understood:
+      - GalacticCommon
+
+- type: entity
+  id: BrainImplantCommsExpedition
+  name: Expedition Radio Implant
+  description: A handy implant for the salvager of the modern age.
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_comms_exped
+  - type: FunctionalOrgan
+    comps:
+    - type: TelecomExempt
+    - type: ActiveRadio
+      channels:
+      - Expedition
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - Expedition
+
+- type: entity
+  id: BrainImplantComms
+  name: Radio Implant
+  description: A headset, right in your brain!
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_comms
+  - type: EncryptionKeyHolder
+    keySlots: 4
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: FunctionalOrgan
+    comps:
+    - type: ActiveRadio
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+    - type: EncryptionKeyHolder
+      keySlots: 4
+      canBeExamined: false
+    
+
+- type: entity
+  id: BrainImplantNexus
+  name: Nexus Uplink
+  description: A weird piece of Avali tech... Gives you access to the Nexus!
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_nexus
+  - type: Tag
+    tags:
+    - Nexus
+  - type: CollectiveMindIdentity
+    prototypeId: Nexus
+  - type: TaggedOrgan
+    addTags:
+      - Nexus

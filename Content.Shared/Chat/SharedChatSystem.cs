@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Text.RegularExpressions;
+using Content.Shared.CollectiveMind;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
@@ -22,6 +23,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const char EmotesAltPrefix = '*';
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
+    public const char CollectiveMindPrefix = '+';
     public const char DefaultChannelKey = 'h';
 
     public static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
@@ -36,6 +38,7 @@ public abstract class SharedChatSystem : EntitySystem
     /// Cache of the keycodes for faster lookup.
     /// </summary>
     private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
+    private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!;
 
     public override void Initialize()
     {
@@ -43,17 +46,26 @@ public abstract class SharedChatSystem : EntitySystem
         DebugTools.Assert(_prototypeManager.HasIndex(CommonChannel));
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
+        CacheCollectiveMinds();
     }
 
     protected virtual void OnPrototypeReload(PrototypesReloadedEventArgs obj)
     {
         if (obj.WasModified<RadioChannelPrototype>())
             CacheRadios();
+        if (obj.WasModified<CollectiveMindPrototype>())
+            CacheCollectiveMinds();
     }
 
     private void CacheRadios()
     {
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
+            .ToFrozenDictionary(x => x.KeyCode);
+    }
+
+    private void CacheCollectiveMinds()
+    {
+        _mindKeyCodes = _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>()
             .ToFrozenDictionary(x => x.KeyCode);
     }
 
@@ -174,6 +186,43 @@ public abstract class SharedChatSystem : EntitySystem
         return true;
     }
 
+    public bool TryProccessCollectiveMindMessage(
+        EntityUid source,
+        string input,
+        out string output,
+        out CollectiveMindPrototype? channel,
+        bool quiet = false)
+    {
+        output = input.Trim();
+        channel = null;
+
+        if (input.Length == 0)
+            return false;
+
+        if (!input.StartsWith(CollectiveMindPrefix))
+            return false;
+
+        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
+        {
+            output = SanitizeMessageCapital(input[1..].TrimStart());
+            if (!quiet)
+                _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
+            return true;
+        }
+
+        var channelKey = input[1];
+        channelKey = char.ToLower(channelKey);
+        output = SanitizeMessageCapital(input[2..].TrimStart());
+
+        if (_mindKeyCodes.TryGetValue(channelKey, out channel) || quiet)
+            return true;
+
+        var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
+        _popup.PopupEntity(msg, source, source);
+
+        return false;
+    }
+
     public string SanitizeMessageCapital(string message)
     {
         if (string.IsNullOrEmpty(message))
@@ -286,4 +335,16 @@ public abstract class SharedChatSystem : EntitySystem
         tagStart += tag.Length + 2;
         return rawmsg.Substring(tagStart, tagEnd - tagStart);
     }
+}
+
+/// <summary>
+///     InGame IC chat is for chat that is specifically ingame (not lobby) but is also in character, i.e. speaking.
+/// </summary>
+// ReSharper disable once InconsistentNaming
+public enum InGameICChatType : byte
+{
+    Speak,
+    Emote,
+    Whisper,
+    CollectiveMind
 }

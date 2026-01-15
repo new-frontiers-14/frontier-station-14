@@ -21,6 +21,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction FocusOOC = "FocusOOCWindow";
         public static readonly BoundKeyFunction FocusAdminChat = "FocusAdminChatWindow";
         public static readonly BoundKeyFunction FocusDeadChat = "FocusDeadChatWindow";
+        public static readonly BoundKeyFunction FocusCollectiveMindChat = "FocusCollectiveMindChatWindow";
         public static readonly BoundKeyFunction FocusConsoleChat = "FocusConsoleChatWindow";
         public static readonly BoundKeyFunction CycleChatChannelForward = "CycleChatChannelForward";
         public static readonly BoundKeyFunction CycleChatChannelBackward = "CycleChatChannelBackward";
@@ -28,6 +29,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenCharacterMenu = "OpenCharacterMenu";
         public static readonly BoundKeyFunction OpenEmotesMenu = "OpenEmotesMenu";
         public static readonly BoundKeyFunction OpenCraftingMenu = "OpenCraftingMenu";
+        public static readonly BoundKeyFunction OpenLanguageMenu = "OpenLanguageMenu";
         public static readonly BoundKeyFunction OpenGuidebook = "OpenGuidebook";
         public static readonly BoundKeyFunction OpenInventoryMenu = "OpenInventoryMenu";
         public static readonly BoundKeyFunction SmartEquipBackpack = "SmartEquipBackpack";
@@ -131,5 +133,8 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction MappingRemoveDecal = "MappingRemoveDecal";
         public static readonly BoundKeyFunction MappingCancelEraseDecal = "MappingCancelEraseDecal";
         public static readonly BoundKeyFunction MappingOpenContextMenu = "MappingOpenContextMenu";
+
+        // 🌟Starlight🌟
+        public static readonly BoundKeyFunction Jump = "Jump";
     }
 }

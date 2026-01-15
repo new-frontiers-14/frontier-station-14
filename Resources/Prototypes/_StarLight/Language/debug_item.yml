@@ -1,0 +1,14 @@
+- type: entity
+  id: DebugLanguageChatter
+  name: debug-language-chatter-name
+  description: debug-language-chatter-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: DebugLanguageChatter
+    intervalSeconds: 1
+    messageLocId: debug-language-chatter-message

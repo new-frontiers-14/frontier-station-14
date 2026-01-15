@@ -1,0 +1,49 @@
+using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
+
+namespace Content.Shared.CollectiveMind;
+
+[Prototype("collectiveMind")]
+[Serializable, NetSerializable]
+public sealed partial class CollectiveMindPrototype : IPrototype
+{
+    [IdDataField, ViewVariables]
+    public string ID { get; } = default!;
+    
+    [DataField("name")]
+    public string Name { get; private set; } = string.Empty;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string LocalizedName => Loc.GetString(Name);
+
+    [DataField("keycode")]
+    public char KeyCode { get; private set; } = '\0';
+
+    [DataField("color")]
+    public Color Color { get; private set; } = Color.Lime;
+    
+    [DataField("requiredComponents")]
+    public List<string> RequiredComponents { get; set; } = new();
+    
+    [DataField("requiredTags")]
+    public List<ProtoId<TagPrototype>> RequiredTags { get; set; } = new();
+
+    /// <summary>
+    /// Will show the name of the one who spoke (like admin)
+    /// </summary>
+    [DataField]
+    public bool ShowNames = false;
+
+    /// <summary>
+    /// When true, you can hear the collectivemind but unable to speak unless valid WhitelistComponents & WhitelistTags.
+    /// </summary>
+    [DataField]
+    public bool CanSpeak = false;
+
+    [DataField]
+    public List<string> CanSpeakComponents { get; set; } = new();
+    
+    [DataField]
+    public List<ProtoId<TagPrototype>> CanSpeakTags { get; set; } = new();
+}

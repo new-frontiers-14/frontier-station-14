@@ -1,4 +1,6 @@
 using System.Numerics;
+using System.Text;
+using System.Text.RegularExpressions;
 using Content.Client.Chat.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -27,6 +29,8 @@ namespace Content.Client.Chat.UI
             Whisper,
             Looc
         }
+
+        private static readonly Regex IconTagRegex = new(@"\[icon[^\]]*\]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         ///     The total time a speech bubble stays on screen.
@@ -200,6 +204,27 @@ namespace Content.Client.Chat.UI
             return FormatSpeech(SharedChatSystem.GetStringInsideTag(message, tag), fontColor);
         }
 
+        protected static string ExtractIconTags(string markup)
+        {
+            if (string.IsNullOrWhiteSpace(markup))
+                return string.Empty;
+
+            var matches = IconTagRegex.Matches(markup);
+            if (matches.Count == 0)
+                return string.Empty;
+
+            var builder = new StringBuilder();
+            foreach (Match match in matches)
+            {
+                if (builder.Length > 0)
+                    builder.Append(' ');
+
+                builder.Append(match.Value);
+            }
+
+            return builder.ToString();
+        }
+
     }
 
     public sealed class TextSpeechBubble : SpeechBubble
@@ -246,7 +271,14 @@ namespace Content.Client.Chat.UI
                     MaxWidth = SpeechMaxWidth
                 };
 
-                label.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
+                var headerMarkup = SharedChatSystem.GetStringInsideTag(message, "BubbleHeader");
+                var headerIcons = ExtractIconTags(headerMarkup);
+                var contentMarkup = SharedChatSystem.GetStringInsideTag(message, "BubbleContent");
+
+                if (!string.IsNullOrWhiteSpace(headerIcons))
+                    contentMarkup = $"{headerIcons} {contentMarkup}";
+
+                label.SetMessage(FormatSpeech(contentMarkup, fontColor));
 
                 var unfanciedPanel = new PanelContainer
                 {
