@@ -32,6 +32,7 @@
       - SadTromboneImplant
       - LightImplant
       - BikeHornImplant
+      - WehImplant  # Frontier
       - TrackingImplant
       - StorageImplant
       - FreedomImplant
@@ -184,6 +185,14 @@
   components:
     - type: Implanter
       implant: BikeHornImplant
+
+- type: entity
+  id: WehImplanter
+  name: weh implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: WehImplant
 
 #Security implanters
 
