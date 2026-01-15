@@ -10,6 +10,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI
@@ -21,18 +22,22 @@ namespace Content.Client.Lobby.UI
     public sealed partial class CharacterSetupGui : Control
     {
         [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-        [Dependency] private readonly IEntityManager _entManager = default!;
-        [Dependency] private readonly IPrototypeManager _protomanager = default!;
+        [Dependency] private readonly IPrototypeManager _protoManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
         private readonly Button _createNewCharacterButton;
+        private readonly HumanoidProfileEditor _humanoidProfileEditor;
+
+        public int? SelectedCharacterSlot;
 
         public event Action<int>? SelectCharacter;
         public event Action<int>? DeleteCharacter;
 
-        public CharacterSetupGui(HumanoidProfileEditor profileEditor)
+        public CharacterSetupGui(HumanoidProfileEditor profileEditor, JobPriorityEditor jobPriorityEditor)
         {
+            _humanoidProfileEditor = profileEditor;
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
@@ -59,17 +64,23 @@ namespace Content.Client.Lobby.UI
             };
 
             CharEditor.AddChild(profileEditor);
+            JobPriorityEditor.AddChild(jobPriorityEditor);
             RulesButton.OnPressed += _ => new RulesAndInfoWindow().Open();
 
             StatsButton.OnPressed += _ => new PlaytimeStatsWindow().OpenCentered();
 
             _cfg.OnValueChanged(CCVars.SeeOwnNotes, p => AdminRemarksButton.Visible = p, true);
+
+            JobPrioritiesButton.OnPressed += args =>
+            {
+                jobPriorityEditor.LoadJobPriorities();
+                CharEditor.Visible = false;
+                JobPriorityEditor.Visible = true;
+                ReloadCharacterPickers(selectJobPriorities: true);
+            };
         }
 
-        /// <summary>
-        /// Disposes and reloads all character picker buttons from the preferences data.
-        /// </summary>
-        public void ReloadCharacterPickers()
+        public void ReloadCharacterPickers(bool selectJobPriorities = false)
         {
             _createNewCharacterButton.Orphan();
             Characters.DisposeAllChildren();
@@ -77,37 +88,62 @@ namespace Content.Client.Lobby.UI
             var numberOfFullSlots = 0;
             var characterButtonsGroup = new ButtonGroup();
 
+            JobPrioritiesButton.Group = characterButtonsGroup;
+
             if (!_preferencesManager.ServerDataLoaded)
             {
                 return;
             }
 
+            CharEditor.Visible = !selectJobPriorities;
+            JobPriorityEditor.Visible = selectJobPriorities;
+
             _createNewCharacterButton.ToolTip =
                 Loc.GetString("character-setup-gui-create-new-character-button-tooltip",
                     ("maxCharacters", _preferencesManager.Settings!.MaxCharacterSlots));
 
-            var selectedSlot = _preferencesManager.Preferences?.SelectedCharacterIndex;
+            if (!selectJobPriorities && !SelectedCharacterSlot.HasValue)
+            {
+                SelectedCharacterSlot = _preferencesManager.Preferences?.SelectedCharacterIndex;
+            }
 
+            var first = !SelectedCharacterSlot.HasValue;
             foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
+                if (character is not HumanoidCharacterProfile humanoid)
+                    continue;
+                var isSelected = !selectJobPriorities
+                                 && (SelectedCharacterSlot.HasValue ? slot == SelectedCharacterSlot : first);
                 numberOfFullSlots++;
-                var characterPickerButton = new CharacterPickerButton(_entManager,
-                    _protomanager,
+                var characterPickerButton = new CharacterPickerButton(
+                    _preferencesManager,
+                    _protoManager,
+                    _playerManager,
                     characterButtonsGroup,
-                    character,
-                    slot == selectedSlot);
+                    humanoid,
+                    isSelected);
+
+                if (isSelected && _humanoidProfileEditor.Profile == null)
+                    _humanoidProfileEditor.SetProfile(slot);
 
                 Characters.AddChild(characterPickerButton);
 
                 characterPickerButton.OnPressed += args =>
                 {
+                    SelectedCharacterSlot = slot;
                     SelectCharacter?.Invoke(slot);
+                    CharEditor.Visible = true;
+                    JobPriorityEditor.Visible = false;
+                    _humanoidProfileEditor.SetProfile(slot);
                 };
 
                 characterPickerButton.OnDeletePressed += () =>
                 {
                     DeleteCharacter?.Invoke(slot);
                 };
+
+                if (first)
+                    first = false;
             }
 
             _createNewCharacterButton.Disabled = numberOfFullSlots >= _preferencesManager.Settings.MaxCharacterSlots;

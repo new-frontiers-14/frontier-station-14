@@ -1,5 +1,7 @@
 reagent-physical-desc-soapy = soapy
 reagent-physical-desc-ferrous = ferrous
+reagent-physical-desc-avali = non-ferrous
+reagent-physical-desc-resomi = non-ferrous
 reagent-physical-desc-nothing = nothing
 reagent-physical-desc-acrid = acrid
 reagent-physical-desc-thick-and-grainy = thick and grainy

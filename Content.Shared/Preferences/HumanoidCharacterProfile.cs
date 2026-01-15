@@ -65,6 +65,15 @@ namespace Content.Shared.Preferences
         [DataField]
         public string Name { get; set; } = "John Doe";
 
+        [DataField]
+        public string Voice { get; set; } = string.Empty;
+
+        [DataField]
+        public string SiliconVoice { get; set; } = string.Empty;
+
+        [DataField]
+        public List<string> Cybernetics { get; set; } = new();
+
         /// <summary>
         /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.
         /// </summary>
@@ -78,6 +87,9 @@ namespace Content.Shared.Preferences
         public ProtoId<SpeciesPrototype> Species { get; set; } = SharedHumanoidAppearanceSystem.DefaultSpecies;
 
         [DataField]
+        public string CustomSpecieName { get; set; } = string.Empty;
+
+        [DataField]
         public int Age { get; set; } = 18;
 
         [DataField]
@@ -88,6 +100,9 @@ namespace Content.Shared.Preferences
 
         [DataField] // Frontier: Bank balance
         public int BankBalance { get; private set; } = DefaultBalance; // Frontier: Bank balance
+
+        [DataField]
+        public bool Enabled { get; set; } = true;
 
         /// <summary>
         /// <see cref="Appearance"/>
@@ -130,8 +145,11 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile(
             string name,
+            string voice,
+            string siliconVoice,
             string flavortext,
             string species,
+            string customSpecieName,
             int age,
             Sex sex,
             Gender gender,
@@ -142,11 +160,16 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
-            Dictionary<string, RoleLoadout> loadouts)
+            Dictionary<string, RoleLoadout> loadouts,
+            List<string> cybernetics,
+            bool enabled)
         {
             Name = name;
+            Voice = voice;
+            SiliconVoice = siliconVoice;
             FlavorText = flavortext;
             Species = species;
+            CustomSpecieName = customSpecieName;
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -158,6 +181,8 @@ namespace Content.Shared.Preferences
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
+            Cybernetics = cybernetics;
+            Enabled = enabled;
         }
 
         /// <summary>Copy constructor but with overridable references (to prevent useless copies)</summary>
@@ -167,16 +192,20 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts)
-            : this(other.Name, other.FlavorText, other.Species, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
-                jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts)
+            : this(other.Name, other.Voice, other.SiliconVoice, other.FlavorText, other.Species, other.CustomSpecieName, other.Age,
+                other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
+                jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts, other.Cybernetics, other.Enabled)
         {
         }
 
         /// <summary>Copy constructor</summary>
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
+                other.Voice,
+                other.SiliconVoice,
                 other.FlavorText,
                 other.Species,
+                other.CustomSpecieName,
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -187,7 +216,9 @@ namespace Content.Shared.Preferences
                 other.PreferenceUnavailable,
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
-                new Dictionary<string, RoleLoadout>(other.Loadouts))
+                new Dictionary<string, RoleLoadout>(other.Loadouts),
+                new List<string>(other.Cybernetics),
+                other.Enabled)
         {
         }
 
@@ -274,6 +305,16 @@ namespace Content.Shared.Preferences
             return new(this) { Name = name };
         }
 
+        public HumanoidCharacterProfile WithVoice(string voice)
+        {
+            return new(this) { Voice = voice };
+        }
+
+        public HumanoidCharacterProfile WithSiliconVoice(string voice)
+        {
+            return new(this) { SiliconVoice = voice };
+        }
+
         public HumanoidCharacterProfile WithFlavorText(string flavorText)
         {
             return new(this) { FlavorText = flavorText };
@@ -306,10 +347,24 @@ namespace Content.Shared.Preferences
             return new(this) { Species = species };
         }
 
+        public HumanoidCharacterProfile WithCustomSpecieName(string customSpecieName)
+        {
+            return new(this) { CustomSpecieName = customSpecieName };
+        }
 
         public HumanoidCharacterProfile WithCharacterAppearance(HumanoidCharacterAppearance appearance)
         {
             return new(this) { Appearance = appearance };
+        }
+
+        public HumanoidCharacterProfile WithCybernetics(List<string> cybernetics)
+        {
+            return new(this) { Cybernetics = cybernetics };
+        }
+
+        public HumanoidCharacterProfile WithEnabled(bool enabled)
+        {
+            return new(this) { Enabled = enabled };
         }
 
         public HumanoidCharacterProfile WithSpawnPriorityPreference(SpawnPriorityPreference spawnPriority)
@@ -479,12 +534,17 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
+            if (CustomSpecieName != other.CustomSpecieName) return false;
             if (BankBalance != other.BankBalance) return false; // Frontier
+            if (Voice != other.Voice) return false;
+            if (SiliconVoice != other.SiliconVoice) return false;
+            if (Enabled != other.Enabled) return false;
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
+            if (!Cybernetics.SequenceEqual(other.Cybernetics)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
             return Appearance.MemberwiseEquals(other.Appearance);

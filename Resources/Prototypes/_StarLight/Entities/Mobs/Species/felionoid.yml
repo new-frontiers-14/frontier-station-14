@@ -1,0 +1,121 @@
+- type: entity
+  save: false
+  name: Urist Felionoid
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobFelionoid
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Thirst
+  - type: HumanoidAppearance
+    species: Felionoid
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+    state: felionoid
+  - type: Body
+    prototype: Felionoid
+    requiredLegs: 2
+  - type: Inventory
+    speciesId: felionoid
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: hand
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: shoes
+  - type: Speech
+    speechVerb: Felionoid
+    allowedEmotes: [ "Mew", "Hisses", "Meow", "Growl", "Purr", "Trill" ]
+  - type: Vocal
+    sounds:
+      Male: MaleFelionoid
+      Female: FemaleFelionoid
+      Unsexed: MaleFelionoid
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 3
+
+- type: entity
+  save: false
+  parent: BaseSpeciesDummy
+  id: MobFelionoidDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Felionoid
+  - type: Body
+    prototype: Felionoid
+  - type: Inventory
+    speciesId: felionoid
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: hand
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: shoes

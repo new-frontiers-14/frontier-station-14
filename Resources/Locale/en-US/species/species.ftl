@@ -1,4 +1,4 @@
-﻿## Species Names
+## Species Names
 
 species-name-human = Human
 species-name-dwarf = Dwarf
@@ -9,6 +9,12 @@ species-name-arachnid = Arachnid
 species-name-moth = Moth Person
 species-name-skeleton = Skeleton
 species-name-vox = Vox
+species-name-resomi = Resomi
+species-name-felionoid = Felionoid
+species-name-cyclorite = Cyclorite
+species-name-abductor = Abductor
+species-name-avali = Avali
+species-name-shadekin = Shadekin
 species-name-gingerbread = delicious baked good
 
 ## Misc species things

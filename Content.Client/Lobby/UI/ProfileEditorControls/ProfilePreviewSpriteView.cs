@@ -1,0 +1,99 @@
+using Content.Shared.Humanoid;
+using Content.Shared.Preferences;
+using Content.Shared.Roles;
+using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+
+namespace Content.Client.Lobby.UI.ProfileEditorControls;
+
+/// <summary>
+/// This class provides a control that gives you a sprite view of an entity with an applied
+/// <see cref="HumanoidCharacterProfile"/>. It handles the loading and spawning of a profile and also extracts
+/// information about the profile such as the profile's name, loadout override name, and preferred job if available.
+/// </summary>
+public sealed partial class ProfilePreviewSpriteView : SpriteView
+{
+    private IClientPreferencesManager _preferencesManager = default!;
+    private IPrototypeManager _prototypeManager = default!;
+    private ISharedPlayerManager _playerManager = default!;
+    private MetaDataSystem _metaDataSystem = default!;
+
+    public string? ProfileName { get; private set; }
+    public string? JobName { get; private set; }
+    public string? LoadoutName { get; private set; }
+    public string? FullDescription { get; private set; }
+
+    public EntityUid PreviewDummy { get; private set; } = EntityUid.Invalid;
+
+    public void Initialize(IClientPreferencesManager prefMan,
+        IPrototypeManager protoMan,
+        ISharedPlayerManager playerMan)
+    {
+        _preferencesManager = prefMan;
+        _prototypeManager = protoMan;
+        _playerManager = playerMan;
+        _metaDataSystem = EntMan.System<MetaDataSystem>();
+
+        Stretch = StretchMode.None; // Starlight
+    }
+
+    public void LoadPreview(ICharacterProfile profile, JobPrototype? jobOverride = null, bool showClothes = true)
+    {
+        EntMan.DeleteEntity(PreviewDummy);
+        PreviewDummy = EntityUid.Invalid;
+
+        switch (profile)
+        {
+            case HumanoidCharacterProfile humanoid:
+                LoadHumanoidEntity(humanoid, jobOverride, showClothes);
+                break;
+            default:
+                throw new ArgumentException("Only humanoid profiles are implemented in ProfilePreviewSpriteView");
+        }
+
+        FullDescription = ConstructFullDescription();
+
+        SetEntity(PreviewDummy);
+        InvalidateMeasure();
+        _metaDataSystem.SetEntityName(PreviewDummy, profile.Name);
+    }
+
+    public void ReloadProfilePreview(ICharacterProfile profile)
+    {
+        switch (profile)
+        {
+            case HumanoidCharacterProfile humanoid:
+                ReloadHumanoidEntity(humanoid);
+                break;
+            default:
+                throw new ArgumentException("Only humanoid profiles are implemented in ProfilePreviewSpriteView");
+        }
+    }
+
+    private string ConstructFullDescription()
+    {
+        var descriptionLines = new List<string>();
+
+        if (ProfileName != null)
+            descriptionLines.Add(ProfileName);
+
+        if (LoadoutName != null)
+            descriptionLines.Add($"\"{LoadoutName}\"");
+
+        if (JobName != null)
+            descriptionLines.Add(JobName);
+
+        return string.Join("\n", descriptionLines);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (!disposing)
+            return;
+
+        EntMan.DeleteEntity(PreviewDummy);
+        PreviewDummy = EntityUid.Invalid;
+    }
+}

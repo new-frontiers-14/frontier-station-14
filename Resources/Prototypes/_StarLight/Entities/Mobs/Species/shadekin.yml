@@ -1,0 +1,50 @@
+- type: entity
+  save: false
+  name: Urist McShadow
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies]
+  id: BaseMobShadekin
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Thirst
+  - type: HumanoidAppearance
+    species: Shadekin
+  - type: Shadekin
+    thresholds:
+      0.8: Low
+      5: Annoying
+      10: High
+      15: Extreme
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+    state: full
+  - type: Body
+    prototype: Shadekin
+    requiredLegs: 2
+  - type: Speech
+    allowedEmotes: [ "Marr", "Wurble", "Hisses", "Growl", "Purr" ]
+  - type: Vocal
+    sounds:
+      Male: MaleShadekin
+      Female: FemaleShadekin
+      Unsexed: MaleShadekin
+  - type: TypingIndicator
+    proto: alien
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+
+- type: entity
+  save: false
+  parent: BaseSpeciesDummy
+  id: MobShadekinDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy shadekin meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Shadekin

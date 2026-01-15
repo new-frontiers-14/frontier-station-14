@@ -11,6 +11,7 @@
   - type: Tag
     tags:
     - SurgeryTool
+  - type: SurgeryTool
 
 # Cautery
 
@@ -32,6 +33,8 @@
         Heat: 5
     soundHit:
       path: /Audio/Effects/lightburn.ogg
+  - type: SurgeryTool
+  - type: Cautery
 
 # Drill
 
@@ -57,6 +60,8 @@
       path: /Audio/Items/drill_hit.ogg
   - type: StaticPrice
     price: 40
+  - type: SurgeryTool
+  - type: SurgicalDrill
 
 # Scalpel
 
@@ -90,6 +95,8 @@
         Slash: 8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: SurgeryTool
+  - type: Scalpel
 
 - type: entity
   name: shiv
@@ -142,6 +149,8 @@
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     storedRotation: 90
+  - type: SurgeryTool
+  - type: Retractor
 
 - type: entity
   name: hemostat
@@ -154,6 +163,8 @@
   - type: Item
     heldPrefix: hemostat
     storedRotation: 90
+  - type: SurgeryTool
+  - type: Hemostat
 
   # - type: entity
   #   name: bone setter
@@ -183,6 +194,8 @@
   - type: Tool
     qualities:
       - Sawing
+  - type: SurgeryTool
+  - type: BoneSaw
 # No melee for regular saw because have you ever seen someone use a band saw as a weapon? It's dumb.
 
 - type: entity
@@ -238,3 +251,39 @@
     attackRate: 1.5
   - type: Tool
     speedModifier: 2.0
+
+# Bone setter
+
+- type: entity
+  name: bone setter
+  id: BoneSetter
+  parent: Retractor
+  description: A surgical tool used for setting bones.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: setter
+  - type: Item
+    heldPrefix: setter
+    storedRotation: 90
+  - type: BoneSetter
+  - type: SurgeryTool
+
+# Bone gel
+
+- type: entity
+  name: bottle of bone gel
+  id: BoneGel
+  parent: BoneGelBase
+  description: A container for bone gel that often needs to be refilled from a specialized machine.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+  - type: SolutionContainerManager
+    solutions:
+      container:
+        maxVol: 30
+        reagents:
+        - ReagentId: BoneGel
+          Quantity: 30

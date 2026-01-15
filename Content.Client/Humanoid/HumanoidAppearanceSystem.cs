@@ -7,6 +7,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
+using System.Numerics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -52,6 +53,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var sprite = entity.Comp2;
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
+        sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
@@ -234,9 +236,23 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Gender = profile.Gender;
         humanoid.Age = profile.Age;
         humanoid.Species = profile.Species;
+        humanoid.CustomSpecieName = profile.CustomSpecieName;
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        humanoid.Width = profile.Appearance.Width;
+        humanoid.Height = profile.Appearance.Height;
+        humanoid.Voice = string.IsNullOrWhiteSpace(profile.Voice) ? HumanoidAppearanceComponent.DefaultSexVoice.GetValueOrDefault(profile.Sex) : profile.Voice;
 
+        UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
+    }
+
+    public void AddCustomBaseLayers(EntityUid uid, Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> layers,
+        HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!Resolve(uid, ref humanoid))
+            return;
+
+        humanoid.CustomBaseLayers = layers;
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
 

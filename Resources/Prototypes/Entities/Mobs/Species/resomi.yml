@@ -1,0 +1,456 @@
+- type: entity
+  name: Urist McRaptor
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobResomi
+  abstract: true
+  components:
+  - type: JumpAbility
+    jumpDistance: 10
+    jumpSound: /Audio/_Starlight/Effects/Jump/resomi.ogg
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump
+  - type: DamageVisuals
+    thresholds: [ 10, 30, 50, 70]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    - "enum.HumanoidVisualLayers.RHand"
+    - "enum.HumanoidVisualLayers.LHand"
+    - "enum.HumanoidVisualLayers.RFoot"
+    - "enum.HumanoidVisualLayers.LFoot"
+    damageOverlayGroups:
+      Brute:
+        sprite: _Starlight/Mobs/Effects/Resomi/brute_damage.rsi
+        color: "#C048C2"
+      Burn:
+        sprite: _Starlight/Mobs/Effects/Resomi/burn_damage.rsi
+  - type: Bloodstream
+    bloodReagent: ResomiBlood
+  - type: FireVisuals
+    sprite: _Starlight/Mobs/Effects/onfire.rsi
+    normalState: Resomi_minor_burning
+    alternateState: Resomi_burning
+  - type: HumanoidAppearance
+    species: Resomi
+    hideLayersOnEquip:
+      - Special
+      - Head
+      - Hair
+      - HeadTop
+      - HeadSide
+    undergarmentTop: UndergarmentTopTanktopResomi
+    undergarmentBottom: UndergarmentBottomBoxersResomi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Hunger
+  - type: Puller
+    needsHands: false
+  - type: Thirst
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: full
+  - type: Body
+    prototype: Resomi
+    requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatChicken
+      amount: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      85: Critical
+      170: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      51: 0.7
+      68: 0.5
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+  - type: Temperature
+    heatDamageThreshold: 317
+    coldDamageThreshold: 230
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold : 0.1
+    heatDamage:
+      types:
+        Heat : 1.5
+  - type: Hands
+    handDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+          state: inHand
+  - type: Inventory
+    speciesId: resomi
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: jumpsuit
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: head
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: hands
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      misc:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: suitStorage
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: belt
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: jumpsuit
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: head
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: hands
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      misc:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: suitStorage
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: belt
+  - type: Sprite
+    netsync: false
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - shader: StencilClear
+      sprite: Mobs/Species/Human/parts.rsi
+      state: l_leg
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: _Starlight/Objects/Misc/handcuffs.rsi
+      state: body-overlay-resomi
+      visible: false
+    - map: [ "id" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "clownedon" ]
+      sprite: "_Starlight/Effects/creampie.rsi"
+      state: "creampie_resomi"
+      visible: false
+  - type: Vocal
+    sounds:
+      Male: UnisexResomi
+      Female: UnisexResomi
+      Unsexed: UnisexResomi
+  - type: Speech
+    speechVerb: Resomi
+    speechSounds: UnisexResomi
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
+  - type: TypingIndicator
+    proto: resomi
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Resomi
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobResomiDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy resomi meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Resomi
+    hideLayersOnEquip:
+      - Special
+      - Head
+      - Hair
+      - HeadTop
+      - HeadSide
+  - type: Inventory
+    speciesId: resomi
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      misc:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: suitStorage
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: belt
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      misc:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: suitStorage
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
+            state: belt

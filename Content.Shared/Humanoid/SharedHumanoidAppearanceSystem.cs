@@ -152,6 +152,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.SkinColor = sourceHumanoid.SkinColor;
         targetHumanoid.EyeColor = sourceHumanoid.EyeColor;
         targetHumanoid.Age = sourceHumanoid.Age;
+        targetHumanoid.CustomSpecieName = sourceHumanoid.CustomSpecieName;
+        targetHumanoid.Width = sourceHumanoid.Width;
+        targetHumanoid.Height = sourceHumanoid.Height;
+        targetHumanoid.Voice = sourceHumanoid.Voice;
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
@@ -381,6 +385,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        humanoid.CustomSpecieName = profile.CustomSpecieName;
+        humanoid.Width = profile.Appearance.Width;
+        humanoid.Height = profile.Appearance.Height;
+        humanoid.Voice = string.IsNullOrWhiteSpace(profile.Voice)
+            ? HumanoidAppearanceComponent.DefaultSexVoice.GetValueOrDefault(profile.Sex)
+            : profile.Voice;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);
 

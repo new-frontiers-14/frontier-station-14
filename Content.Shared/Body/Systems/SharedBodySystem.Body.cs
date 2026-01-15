@@ -191,6 +191,9 @@ public partial class SharedBodySystem
         foreach (var (organSlotId, organProto) in organs)
         {
             var slot = CreateOrganSlot((ent, ent), organSlotId);
+            if (string.IsNullOrWhiteSpace(organProto) || organProto == "null")
+                continue;
+
             SpawnInContainerOrDrop(organProto, ent, GetOrganContainerId(organSlotId));
 
             if (slot is null)

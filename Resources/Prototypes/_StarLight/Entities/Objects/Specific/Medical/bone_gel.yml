@@ -1,0 +1,31 @@
+# Bone gel base definition needed for surgeries.
+- type: entity
+  id: BoneGelBase
+  parent: BaseToolSurgery
+  abstract: true
+  components:
+  - type: BoneGel
+  - type: Tag
+    tags:
+    - BoneGel
+  - type: SolutionContainerManager
+    solutions:
+      container:
+        maxVol: 30
+  - type: MixableSolution
+    solution: container
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: DrawableSolution
+    solution: container
+  - type: RefillableSolution
+    solution: container
+  - type: DrainableSolution
+    solution: container
+  - type: ExaminableSolution
+    solution: container
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: DnaSubstanceTrace

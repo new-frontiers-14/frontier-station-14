@@ -83,6 +83,14 @@ namespace Content.Server.Database
                 .HasForeignKey(e => e.ProfileLoadoutGroupId)
                 .IsRequired();
 
+            modelBuilder.Entity<JobPriorityEntry>()
+                .HasIndex(j => j.PreferenceId);
+
+            modelBuilder.Entity<JobPriorityEntry>()
+                .HasIndex(j => j.PreferenceId, "IX_job_one_high_priority_pref")
+                .IsUnique()
+                .HasFilter("priority = 3");
+
             modelBuilder.Entity<Job>()
                 .HasIndex(j => j.ProfileId);
 
@@ -394,6 +402,7 @@ namespace Content.Server.Database
         public string AdminOOCColor { get; set; } = null!;
         public List<string> ConstructionFavorites { get; set; } = new();
         public List<Profile> Profiles { get; } = new();
+        public List<JobPriorityEntry> JobPriorities { get; set; } = new();
     }
 
     public class Profile
@@ -402,24 +411,32 @@ namespace Content.Server.Database
         public int Slot { get; set; }
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
+        public string Voice { get; set; } = string.Empty;
+        public string SiliconVoice { get; set; } = string.Empty;
         public int Age { get; set; }
         public int BankBalance { get; set; }
         public string Sex { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
+        public string CustomSpecieName { get; set; } = string.Empty;
         [Column(TypeName = "jsonb")] public JsonDocument? Markings { get; set; } = null!;
+        [Column(TypeName = "jsonb")] public JsonDocument? Cybernetics { get; set; } = null!;
         public string HairName { get; set; } = null!;
         public string HairColor { get; set; } = null!;
         public string FacialHairName { get; set; } = null!;
         public string FacialHairColor { get; set; } = null!;
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+        public float Width { get; set; } = 1f;
+        public float Height { get; set; } = 1f;
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
+
+        public bool Enabled { get; set; } = true;
 
         [Column("pref_unavailable")] public DbPreferenceUnavailableMode PreferenceUnavailable { get; set; }
 
@@ -432,6 +449,16 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public Profile Profile { get; set; } = null!;
         public int ProfileId { get; set; }
+
+        public string JobName { get; set; } = null!;
+        public DbJobPriority Priority { get; set; }
+    }
+
+    public class JobPriorityEntry
+    {
+        public int Id { get; set; }
+        public Preference Preference { get; set; } = null!;
+        public int PreferenceId { get; set; }
 
         public string JobName { get; set; } = null!;
         public DbJobPriority Priority { get; set; }

@@ -16,6 +16,12 @@ reagent-desc-hemocyanin-blood = Contains copper as opposed to iron which gives i
 reagent-name-ammonia-blood = anaerobic blood
 reagent-desc-ammonia-blood = Nothing else in the entire galaxy smells quite so appalling.
 
+reagent-name-avali-blood = diluted ammonia blood
+reagent-desc-avali-blood = Smells like piss.
+
+reagent-name-resomi-blood = diluted ammonia blood
+reagent-desc-resomi-blood = Smells like piss.
+
 reagent-name-zombie-blood = zombie blood
 reagent-desc-zombie-blood = Would not advise eating. Can be used to create an inoculation against the infection.
 

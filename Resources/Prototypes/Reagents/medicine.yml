@@ -280,6 +280,13 @@
     Medicine:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: false
+        - !type:OrganType
+          type: Resomi
+          shouldHave: false
         damage:
           types:
             Asphyxiation: -1
@@ -292,6 +299,26 @@
           types:
             Asphyxiation: 3
             Cold: 1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: true
+        damage:
+          types:
+            Poison: 1.5
+            Asphyxiation: 1
+            Bloodloss: 1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Resomi
+          shouldHave: true
+        damage:
+          types:
+            Poison: 1.5
+            Asphyxiation: 1
+            Bloodloss: 1
 
 - type: reagent
   id: DexalinPlus
@@ -305,6 +332,13 @@
     Medicine:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: false
+        - !type:OrganType
+          type: Resomi
+          shouldHave: false
         damage:
           types:
             Asphyxiation: -3.5
@@ -324,6 +358,26 @@
           types:
             Asphyxiation: 5
             Cold: 3
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: true
+        damage:
+          types:
+            Poison: 2.5
+            Asphyxiation: 1.5
+            Bloodloss: 1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Resomi
+          shouldHave: true
+        damage:
+          types:
+            Poison: 2.5
+            Asphyxiation: 1.5
+            Bloodloss: 1
 
 # this ones a doozy
 - type: reagent
@@ -707,8 +761,50 @@
       effects:
         - !type:SatiateThirst
           factor: 6
-        - !type:ModifyBloodLevel
-          amount: 6
+    Medicine:
+      metabolismRate: 0.5
+      effects:
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: false
+        - !type:OrganType
+          type: Resomi
+          shouldHave: false
+        amount: 6
+      - !type:ModifyBleedAmount
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: true
+        amount: 2
+      - !type:ModifyBleedAmount
+        conditions:
+        - !type:OrganType
+          type: Resomi
+          shouldHave: true
+        amount: 2
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: true
+        damage:
+          types:
+            Poison: 12
+            Caustic: 2
+            Slash: 1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Resomi
+          shouldHave: true
+        damage:
+          types:
+            Poison: 12
+            Caustic: 2
+            Slash: 1
 
 - type: reagent
   id: Siderlac

@@ -1,0 +1,170 @@
+- type: species
+  id: Resomi
+  name: species-name-resomi
+  roundStart: true
+  prototype: MobResomi
+  sprites: MobResomiSprites
+  defaultSkinTone: "#faf7f7"
+  markingLimits: MobResomiMarkingLimits
+  maleFirstNames: names_resomi_first
+  femaleFirstNames: names_resomi_first
+  lastNames: names_resomi_packs
+  naming: FirstLast
+  dollPrototype: MobResomiDummy
+  skinColoration: Hues
+  minAge: 23
+  youngAge: 103
+  oldAge: 257
+  maxAge: 430
+  customName: true
+  standardSize: 150
+  standardWeight: 40
+  standardDensity: 17
+
+- type: speciesBaseSprites
+  id: MobResomiSprites
+  sprites:
+    Head: MobResomiHead
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Hair: MobResomiHair
+    Chest: MobResomiTorso
+    Eyes: MobResomiEyes
+    LArm: MobResomiLArm
+    RArm: MobResomiRArm
+    LHand: MobResomiLHand
+    RHand: MobResomiRHand
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    LLeg: MobResomiLLeg
+    RLeg: MobResomiRLeg
+    LFoot: MobResomiLFoot
+    RFoot: MobResomiRFoot
+    Special: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobResomiMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Special:
+      points: 10
+      required: false
+    Hair:
+      points: 1
+      required: false
+    Tail:
+      points: 2
+      required: true
+      defaultMarkings: [ ResomiTail, ResomiTailFeathers ]
+    Legs:
+      points: 6
+      required: false
+    Arms:
+      points: 6
+      required: false
+    Head:
+      points: 4
+      required: false
+    HeadTop:
+      points: 4
+      required: false
+    HeadSide:
+      points: 2
+      required: false
+    Chest:
+      points: 4
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobResomiEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Customization/eyes.rsi
+    state: resomi
+
+- type: humanoidBaseSprite
+  id: MobResomiHair
+
+- type: humanoidBaseSprite
+  id: MobResomiHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobResomiHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobResomiHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobResomiTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobResomiTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobResomiTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobResomiLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobResomiLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobResomiLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobResomiLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobResomiRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobResomiRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobResomiRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobResomiRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
+    state: r_foot

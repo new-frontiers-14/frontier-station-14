@@ -45,7 +45,10 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
+    private JobPriorityEditor? _jobPriorityEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
+
+    public event Action? OnAnyCharacterOrJobChange;
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
@@ -93,6 +96,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _profileEditor.RefreshAntags();
             _profileEditor.RefreshJobs();
         }
+
+        _jobPriorityEditor?.RefreshJobs();
     }
 
     private void OnProtoReload(PrototypesReloadedEventArgs obj)
@@ -207,13 +212,31 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         if (EditedProfile == null || EditedSlot == null)
             return;
 
-        var selected = _preferencesManager.Preferences?.SelectedCharacterIndex;
+        var fixedProfile = EditedProfile.Clone();
+        if (_preferencesManager.Preferences!.TryGetHumanoidInSlot(EditedSlot.Value, out var humanoid))
+            fixedProfile = new HumanoidCharacterProfile(EditedProfile) { Enabled = humanoid.Enabled };
 
-        if (selected == null)
+        _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
+        OnAnyCharacterOrJobChange?.Invoke();
+        _profileEditor?.SetProfile(EditedSlot.Value);
+        ReloadCharacterSetup();
+    }
+
+    private void SaveJobPriorities()
+    {
+        if (_jobPriorityEditor == null)
             return;
 
-        _preferencesManager.UpdateCharacter(EditedProfile, EditedSlot.Value);
-        ReloadCharacterSetup();
+        SaveJobPriorities(_jobPriorityEditor.SelectedJobPriorities);
+    }
+
+    private void SaveJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+    {
+        _preferencesManager.UpdateJobPriorities(newJobPriorities);
+        OnAnyCharacterOrJobChange?.Invoke();
+        _jobPriorityEditor?.LoadJobPriorities();
+        var (characterGui, _) = EnsureGui();
+        characterGui.ReloadCharacterPickers(selectJobPriorities: true);
     }
 
     private void CloseProfileEditor()
@@ -230,7 +253,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         }
     }
 
-    private void OpenSavePanel()
+    private void OpenSavePanel(Action saveAction)
     {
         if (_savePanel is { IsOpen: true })
             return;
@@ -239,7 +262,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         _savePanel.SaveButton.OnPressed += _ =>
         {
-            SaveProfile();
+            saveAction();
 
             _savePanel.Close();
 
@@ -277,17 +300,26 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _requirements,
             _markings);
 
+        _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements);
+        _jobPriorityEditor.Save += SaveJobPriorities;
+
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
-        _characterSetup = new CharacterSetupGui(_profileEditor);
+        _characterSetup = new CharacterSetupGui(_profileEditor, _jobPriorityEditor);
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
             // Open the save panel if we have unsaved changes.
-            if (_profileEditor.Profile != null && _profileEditor.IsDirty)
+            if (_profileEditor.Visible && _profileEditor.Profile != null && _profileEditor.IsDirty)
             {
-                OpenSavePanel();
+                OpenSavePanel(SaveProfile);
 
+                return;
+            }
+
+            if (_jobPriorityEditor.Visible && _jobPriorityEditor.IsDirty())
+            {
+                OpenSavePanel(SaveJobPriorities);
                 return;
             }
 
@@ -300,6 +332,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _characterSetup.SelectCharacter += args =>
         {
             _preferencesManager.SelectCharacter(args);
+            _profileEditor.SetProfile(args);
+            if (_characterSetup != null)
+                _characterSetup.SelectedCharacterSlot = args;
             ReloadCharacterSetup();
         };
 

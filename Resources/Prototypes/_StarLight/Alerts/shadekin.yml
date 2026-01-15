@@ -1,0 +1,60 @@
+- type: alert
+  id: Shadekin
+  icons:
+    - sprite: error.rsi
+      state: error
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: dark
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: low
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: normal
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: high
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: dangerous
+  minSeverity: 0
+  maxSeverity: 5
+  name: alerts-shadekin-name
+  description: alerts-shadekin-desc
+
+- type: alert
+  id: ShadekinEnergy
+  icons:
+    - sprite: /Textures/_Starlight/Mobs/Species/Shadekin/organs.rsi
+      state: core
+  alertViewEntity: AlertShadekinEnergySpriteView
+  name: alerts-shadekin-energy-name
+  description: alerts-shadekin-energy-desc
+
+- type: entity
+  id: AlertShadekinEnergySpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GenericCounterAlert
+    centerGlyph: false
+  - type: Sprite
+    sprite: /Textures/Interface/Alerts/essence_counter.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+    - map: [ "1" ]
+      offset: 0.25, 0
+    - map: [ "10" ]
+      offset: 0.125, 0
+    - map: [ "100" ]
+
+- type: alert
+  id: ShadekinPortalAlert
+  icons:
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: noportal
+  name: alerts-shadekin-noportal-name
+  description: alerts-shadekin-noportal-desc
+
+- type: alert
+  id: ShadekinRejuvenateAlert
+  icons:
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: rejuvenate
+  name: alerts-shadekin-rejuvenate-name
+  description: alerts-shadekin-rejuvenate-desc

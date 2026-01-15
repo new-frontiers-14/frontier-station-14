@@ -1,0 +1,101 @@
+- type: entity
+  save: false
+  name: Urist McAvali
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobAvali
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Thirst
+  - type: HumanoidAppearance
+    species: Avali
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: full
+  - type: Body
+    prototype: Avali
+    requiredLegs: 2
+  - type: Inventory
+    speciesId: avali
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: shoes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: head
+      hand:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: hand
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: back
+  - type: Vocal
+    sounds:
+      Male: MaleAvali
+      Female: FemaleAvali
+      Unsexed: MaleAvali
+  - type: Speech
+    speechVerb: Parrot
+    allowedEmotes: [ "Chirp", "Hisses", "Purr", "Growl", "Trill", "Scree", "Call", "Squawk" ]
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 6.25
+  - type: Bloodstream
+    bloodReagent: AvaliBlood
+
+- type: entity
+  save: false
+  parent: BaseSpeciesDummy
+  id: MobAvaliDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy avali meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Avali
+  - type: Inventory
+    speciesId: avali
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: shoes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: head
+      hand:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: hand
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+            state: back

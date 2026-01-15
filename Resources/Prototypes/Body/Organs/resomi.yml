@@ -1,0 +1,90 @@
+- type: entity
+  id: OrganResomiEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Resomi
+  description: "Resomi eyes have great nightvision for hunting prey in maintenance tunnels."
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobResomiEyes
+  - type: FunctionalOrgan
+    comps:
+    - type: NightVision
+
+- type: entity
+  id: OrganResomiHeart
+  parent: OrganHumanHeart
+  suffix: Resomi
+  description: "The heart of a resomi."
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Resomi]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
+    state: heart-on
+
+- type: entity
+  id: OrganResomiLiver
+  parent: OrganHumanLiver
+  name: liver
+  suffix: Resomi
+  description: "The liver of a resomi."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
+    state: liver
+
+- type: entity
+  id: OrganResomiKidneys
+  parent: OrganHumanKidneys
+  name: kidney
+  suffix: Resomi
+  description: "The kidneys of a resomi."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+
+- type: entity
+  id: OrganResomiLungs
+  parent: OrganHumanLungs
+  name: lungs
+  suffix: Resomi
+  description: "The lungs of a resomi."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
+    layers:
+      - state: lung-l
+      - state: lung-r
+
+- type: entity
+  id: OrganResomiBrain
+  parent: OrganHumanBrain
+  name: brain
+  suffix: Resomi
+  description: "The brain of a Resomi. Where Resomi think of evil thoughts."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
+    state: brain
+
+- type: entity
+  id: OrganResomiStomach
+  parent: OrganHumanStomach
+  name: stomach
+  suffix: Resomi
+  description: "The dual chamber stomach of a resomi."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
+    state: stomach

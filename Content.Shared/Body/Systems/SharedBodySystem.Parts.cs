@@ -792,5 +792,57 @@ public partial class SharedBodySystem
         return false;
     }
 
+    public bool TryGetFreePartSlot(
+        EntityUid partId,
+        [NotNullWhen(true)] out string? freeSlotId,
+        BodyPartComponent? part = null)
+    {
+        freeSlotId = null;
+
+        if (!Resolve(partId, ref part, logMissing: false))
+            return false;
+
+        foreach (var (slotId, _) in part.Children)
+        {
+            var containerId = GetPartSlotContainerId(slotId);
+
+            if (!Containers.TryGetContainer(partId, containerId, out var container))
+                continue;
+
+            if (container.ContainedEntities.Count == 0)
+            {
+                freeSlotId = slotId;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public IEnumerable<string> TryGetFreePartSlots(EntityUid partId, BodyPartComponent? part = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false))
+            yield break;
+
+        foreach (var (slotId, _) in part.Children)
+        {
+            var containerId = GetPartSlotContainerId(slotId);
+
+            if (!Containers.TryGetContainer(partId, containerId, out var container))
+                continue;
+
+            if (container.ContainedEntities.Count == 0)
+                yield return slotId;
+        }
+    }
+
+    public void SetPartType(EntityUid partId, BodyPartType type, BodyPartComponent? part = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false))
+            return;
+
+        part.PartType = type;
+    }
+
     #endregion
 }

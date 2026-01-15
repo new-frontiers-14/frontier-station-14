@@ -78,10 +78,22 @@ public sealed partial class SpeciesPrototype : IPrototype
     public EntProtoId DollPrototype { get; private set; } = default!;
 
     /// <summary>
+    /// Allow custom species name for this species.
+    /// </summary>
+    [DataField]
+    public bool CustomName { get; private set; } = false;
+
+    /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>
     [DataField(required: true)]
     public HumanoidSkinColor SkinColoration { get; private set; }
+
+    /// <summary>
+    /// Method of eye coloration used by the species.
+    /// </summary>
+    [DataField]
+    public HumanoidEyeColor EyeColoration { get; private set; } = HumanoidEyeColor.Standard;
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> MaleFirstNames { get; private set; } = "NamesFirstMale";
@@ -122,6 +134,66 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MaxAge = 120;
+
+    /// <summary>
+    /// Minimum width multiplier for this species.
+    /// </summary>
+    [DataField]
+    public float MinWidth = 0.9f;
+
+    /// <summary>
+    /// Maximum width multiplier for this species.
+    /// </summary>
+    [DataField]
+    public float MaxWidth = 1.1f;
+
+    /// <summary>
+    /// Default width multiplier for this species.
+    /// </summary>
+    [DataField]
+    public float DefaultWidth = 1f;
+
+    /// <summary>
+    /// Minimum height multiplier for this species.
+    /// </summary>
+    [DataField]
+    public float MinHeight = 0.9f;
+
+    /// <summary>
+    /// Maximum height multiplier for this species.
+    /// </summary>
+    [DataField]
+    public float MaxHeight = 1.15f;
+
+    /// <summary>
+    /// Default height multiplier for this species.
+    /// </summary>
+    [DataField]
+    public float DefaultHeight = 1f;
+
+    /// <summary>
+    /// Standard height in CM if 1x tall.
+    /// </summary>
+    [DataField]
+    public int StandardSize = 170;
+
+    /// <summary>
+    /// Standard weight in KG if 1x tall and 1x wide.
+    /// </summary>
+    [DataField]
+    public int StandardWeight = 70;
+
+    /// <summary>
+    /// Weight density scalar.
+    /// </summary>
+    [DataField]
+    public int StandardDensity = 110;
+
+    /// <summary>
+    /// Roundstart cybernetics points for this species.
+    /// </summary>
+    [DataField]
+    public int RoundstartCyberwareCapacity = 3;
 
     /// <summary>
     ///     Frontier: Forced marking color for this species, used for overwrites to force marking to use a single color, eg for Sheleg hair.

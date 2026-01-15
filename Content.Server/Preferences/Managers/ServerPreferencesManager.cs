@@ -7,6 +7,7 @@ using Content.Shared._NF.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -47,6 +48,8 @@ namespace Content.Server.Preferences.Managers
             _netManager.RegisterNetMessage<MsgUpdateCharacter>(HandleUpdateCharacterMessage);
             _netManager.RegisterNetMessage<MsgDeleteCharacter>(HandleDeleteCharacterMessage);
             _netManager.RegisterNetMessage<MsgUpdateConstructionFavorites>(HandleUpdateConstructionFavoritesMessage);
+            _netManager.RegisterNetMessage<MsgSetCharacterEnable>(HandleSetCharacterEnableMessage);
+            _netManager.RegisterNetMessage<MsgUpdateJobPriorities>(HandleUpdateJobPrioritiesMessage);
             _sawmill = _log.GetSawmill("prefs");
         }
 
@@ -74,7 +77,7 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -137,7 +140,7 @@ namespace Content.Server.Preferences.Managers
                 [slot] = profile
             };
 
-            prefsData.Prefs = new PlayerPreferences(profiles, slot, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            prefsData.Prefs = new PlayerPreferences(profiles, slot, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
@@ -152,11 +155,30 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, favorites);
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, favorites, curPrefs.JobPriorities);
 
             var session = _playerManager.GetSessionById(userId);
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveConstructionFavoritesAsync(userId, favorites);
+        }
+
+        public async Task SetJobPriorities(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        {
+            if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
+            {
+                _sawmill.Warning("prefs", $"User {userId} tried to modify preferences before they loaded.");
+                return;
+            }
+
+            var curPrefs = prefsData.Prefs!;
+            var session = _playerManager.GetSessionById(userId);
+
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, jobPriorities);
+
+            if (ShouldStorePrefs(session.Channel.AuthType))
+            {
+                await _db.SaveJobPrioritiesAsync(userId, jobPriorities);
+            }
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)
@@ -196,7 +218,7 @@ namespace Content.Server.Preferences.Managers
             var arr = new Dictionary<int, ICharacterProfile>(curPrefs.Characters);
             arr.Remove(slot);
 
-            prefsData.Prefs = new PlayerPreferences(arr, nextSlot ?? curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            prefsData.Prefs = new PlayerPreferences(arr, nextSlot ?? curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -209,6 +231,46 @@ namespace Content.Server.Preferences.Managers
                     await _db.SaveCharacterSlotAsync(userId, null, slot);
                 }
             }
+        }
+
+        private async void HandleSetCharacterEnableMessage(MsgSetCharacterEnable message)
+        {
+            var slot = message.CharacterIndex;
+            var val = message.EnabledValue;
+
+            var userId = message.MsgChannel.UserId;
+
+            if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
+            {
+                _sawmill.Warning("prefs", $"User {userId} tried to modify preferences before they loaded.");
+                return;
+            }
+
+            var curPrefs = prefsData.Prefs!;
+            var session = _playerManager.GetSessionById(userId);
+
+            if (!curPrefs.Characters.TryGetValue(slot, out var characterProfile))
+                return;
+            if (characterProfile is not HumanoidCharacterProfile profile)
+                return;
+
+            profile.Enabled = val;
+            var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+            {
+                [slot] = new HumanoidCharacterProfile(profile),
+            };
+
+            prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor,
+                curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
+
+            if (ShouldStorePrefs(session.Channel.AuthType))
+                await _db.SaveCharacterSlotAsync(userId, profile, slot);
+        }
+
+        private async void HandleUpdateJobPrioritiesMessage(MsgUpdateJobPriorities message)
+        {
+            var userId = message.MsgChannel.UserId;
+            await SetJobPriorities(userId, message.JobPriorities);
         }
 
         private async void HandleUpdateConstructionFavoritesMessage(MsgUpdateConstructionFavorites message)
@@ -237,7 +299,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, validatedList);
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, validatedList, curPrefs.JobPriorities);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -256,7 +318,7 @@ namespace Content.Server.Preferences.Managers
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
                         new[] { new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random()) },
-                        0, Color.Transparent, [])
+                        0, Color.Transparent, [], new Dictionary<ProtoId<JobPrototype>, JobPriority>())
                 };
 
                 _cachedPlayerPrefs[session.UserId] = prefsData;
@@ -412,7 +474,7 @@ namespace Content.Server.Preferences.Managers
             return new PlayerPreferences(prefs.Characters.Select(p =>
             {
                 return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection));
-            }), prefs.SelectedCharacterIndex, prefs.AdminOOCColor, prefs.ConstructionFavorites);
+            }), prefs.SelectedCharacterIndex, prefs.AdminOOCColor, prefs.ConstructionFavorites, prefs.JobPriorities);
         }
 
         public IEnumerable<KeyValuePair<NetUserId, ICharacterProfile>> GetSelectedProfilesForPlayers(

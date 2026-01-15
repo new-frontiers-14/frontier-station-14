@@ -81,6 +81,7 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
+  - type: SurgeryTarget
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -184,6 +185,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
   - type: Puller
   - type: Speech
     speechSounds: Alto

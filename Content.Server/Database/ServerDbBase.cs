@@ -11,6 +11,7 @@ using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Ghost.Roles;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -50,6 +51,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
+                .Include(p => p.JobPriorities)
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -71,7 +73,14 @@ namespace Content.Server.Database
             foreach (var favorite in prefs.ConstructionFavorites)
                 constructionFavorites.Add(new ProtoId<ConstructionPrototype>(favorite));
 
-            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites);
+            var jobPriorities = prefs.JobPriorities.Count == 0
+                ? new Dictionary<ProtoId<JobPrototype>, JobPriority>
+                {
+                    { SharedGameTicker.FallbackOverflowJob, JobPriority.High }
+                }
+                : prefs.JobPriorities.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
+
+            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites, jobPriorities);
         }
 
         public async Task SaveSelectedCharacterIndexAsync(NetUserId userId, int index)
@@ -126,6 +135,29 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
+        public async Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+        {
+            await using var db = await GetDb();
+
+            var playerPreference = db.DbContext.Preference
+                .Include(p => p.JobPriorities)
+                .Single(p => p.UserId == userId.UserId);
+
+            var newPrios = new List<JobPriorityEntry>();
+            foreach (var (job, priority) in newJobPriorities)
+            {
+                var newPrio = new JobPriorityEntry
+                {
+                    JobName = job,
+                    Priority = (DbJobPriority) priority,
+                };
+                newPrios.Add(newPrio);
+            }
+            playerPreference.JobPriorities = newPrios;
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
         private static async Task DeleteCharacterSlot(ServerDbContext db, NetUserId userId, int slot)
         {
             var profile = await db.Profile.Include(p => p.Preference)
@@ -144,6 +176,14 @@ namespace Content.Server.Database
         {
             await using var db = await GetDb();
 
+            var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+                { { SharedGameTicker.FallbackOverflowJob, JobPriority.High } };
+
+            var dbPriorities = priorities
+                .Where(j => j.Value != JobPriority.Never)
+                .Select(j => new JobPriorityEntry { JobName = j.Key, Priority = (DbJobPriority) j.Value })
+                .ToList();
+
             var profile = ConvertProfiles((HumanoidCharacterProfile) defaultProfile, 0);
             var prefs = new Preference
             {
@@ -151,6 +191,7 @@ namespace Content.Server.Database
                 SelectedCharacterSlot = 0,
                 AdminOOCColor = Color.Red.ToHex(),
                 ConstructionFavorites = [],
+                JobPriorities = dbPriorities,
             };
 
             prefs.Profiles.Add(profile);
@@ -159,7 +200,7 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
 
-            return new PlayerPreferences(new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) }, 0, Color.FromHex(prefs.AdminOOCColor), []);
+            return new PlayerPreferences(new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) }, 0, Color.FromHex(prefs.AdminOOCColor), [], priorities);
         }
 
         public async Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot)
@@ -238,6 +279,9 @@ namespace Content.Server.Database
                 }
             }
 
+            var cyberneticsRaw = profile.Cybernetics?.Deserialize<List<string>>();
+            var cybernetics = cyberneticsRaw ?? new List<string>();
+
             var loadouts = new Dictionary<string, RoleLoadout>();
 
             foreach (var role in profile.Loadouts)
@@ -264,8 +308,11 @@ namespace Content.Server.Database
 
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
+                profile.Voice,
+                profile.SiliconVoice,
                 profile.FlavorText,
                 profile.Species,
+                profile.CustomSpecieName,
                 profile.Age,
                 sex,
                 gender,
@@ -278,14 +325,18 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    profile.Width,
+                    profile.Height
                 ),
                 spawnPriority,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
                 antags.ToHashSet(),
                 traits.ToHashSet(),
-                loadouts
+                loadouts,
+                cybernetics,
+                profile.Enabled
             );
         }
 
@@ -299,10 +350,14 @@ namespace Content.Server.Database
                 markingStrings.Add(marking.ToString());
             }
             var markings = JsonSerializer.SerializeToDocument(markingStrings);
+            var cybernetics = JsonSerializer.SerializeToDocument(humanoid.Cybernetics);
 
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
+            profile.Voice = humanoid.Voice;
+            profile.SiliconVoice = humanoid.SiliconVoice;
             profile.Species = humanoid.Species;
+            profile.CustomSpecieName = humanoid.CustomSpecieName;
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
@@ -313,10 +368,14 @@ namespace Content.Server.Database
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
+            profile.Width = appearance.Width;
+            profile.Height = appearance.Height;
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
+            profile.Cybernetics = cybernetics;
             profile.Slot = slot;
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
+            profile.Enabled = humanoid.Enabled;
 
             profile.Jobs.Clear();
             profile.Jobs.AddRange(

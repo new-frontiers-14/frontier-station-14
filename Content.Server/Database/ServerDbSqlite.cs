@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Immutable;
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
@@ -50,6 +52,8 @@ namespace Content.Server.Database
             if (synchronous)
             {
                 prefsCtx.Database.Migrate();
+                EnsureJobPriorityTable(prefsCtx);
+                EnsureProfileColumns(prefsCtx);
                 _dbReadyTask = Task.CompletedTask;
                 prefsCtx.Dispose();
             }
@@ -58,11 +62,149 @@ namespace Content.Server.Database
                 _dbReadyTask = Task.Run(() =>
                 {
                     prefsCtx.Database.Migrate();
+                    EnsureJobPriorityTable(prefsCtx);
+                    EnsureProfileColumns(prefsCtx);
                     prefsCtx.Dispose();
                 });
             }
 
             cfg.OnValueChanged(CCVars.DatabaseSqliteDelay, v => _msDelay = v, true);
+        }
+
+        private static void EnsureJobPriorityTable(SqliteServerDbContext ctx)
+        {
+            // Safety net for existing DBs that predate the job priority migration.
+            ctx.Database.ExecuteSqlRaw(
+                """
+                CREATE TABLE IF NOT EXISTS job_priority_entry (
+                    job_priority_entry_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    preference_id INTEGER NOT NULL,
+                    job_name TEXT NOT NULL,
+                    priority INTEGER NOT NULL,
+                    FOREIGN KEY(preference_id) REFERENCES preference(preference_id) ON DELETE CASCADE
+                );
+                """
+            );
+
+            ctx.Database.ExecuteSqlRaw(
+                """
+                CREATE INDEX IF NOT EXISTS IX_job_priority_entry_preference_id
+                ON job_priority_entry(preference_id);
+                """
+            );
+
+            ctx.Database.ExecuteSqlRaw(
+                """
+                CREATE UNIQUE INDEX IF NOT EXISTS IX_job_one_high_priority_pref
+                ON job_priority_entry(preference_id)
+                WHERE priority = 3;
+                """
+            );
+        }
+
+        private static void EnsureProfileColumns(SqliteServerDbContext ctx)
+        {
+            // SQLite doesn't support IF NOT EXISTS for ADD COLUMN in older versions.
+            // Avoid noisy errors by checking columns before attempting ALTER TABLE.
+            var columns = GetProfileColumns(ctx);
+
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "custom_specie_name",
+                "ALTER TABLE profile ADD COLUMN custom_specie_name TEXT NOT NULL DEFAULT '';"
+            );
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "voice",
+                "ALTER TABLE profile ADD COLUMN voice TEXT NOT NULL DEFAULT '';"
+            );
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "silicon_voice",
+                "ALTER TABLE profile ADD COLUMN silicon_voice TEXT NOT NULL DEFAULT '';"
+            );
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "cybernetics",
+                "ALTER TABLE profile ADD COLUMN cybernetics TEXT NULL;"
+            );
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "width",
+                "ALTER TABLE profile ADD COLUMN width REAL NOT NULL DEFAULT 1;"
+            );
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "height",
+                "ALTER TABLE profile ADD COLUMN height REAL NOT NULL DEFAULT 1;"
+            );
+            TryAddColumnIfMissing(
+                ctx,
+                columns,
+                "enabled",
+                "ALTER TABLE profile ADD COLUMN enabled INTEGER NOT NULL DEFAULT 1;"
+            );
+        }
+
+        private static HashSet<string> GetProfileColumns(SqliteServerDbContext ctx)
+        {
+            var columns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var connection = ctx.Database.GetDbConnection();
+            var shouldClose = connection.State != ConnectionState.Open;
+
+            if (shouldClose)
+                connection.Open();
+
+            try
+            {
+                using var command = connection.CreateCommand();
+                command.CommandText = "PRAGMA table_info(profile);";
+                using var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (reader["name"] is string name && !string.IsNullOrWhiteSpace(name))
+                        columns.Add(name);
+                }
+            }
+            finally
+            {
+                if (shouldClose)
+                    connection.Close();
+            }
+
+            return columns;
+        }
+
+        private static void TryAddColumnIfMissing(
+            SqliteServerDbContext ctx,
+            HashSet<string> columns,
+            string columnName,
+            string sql)
+        {
+            if (columns.Contains(columnName))
+                return;
+
+            TryAddColumn(ctx, sql);
+            columns.Add(columnName);
+        }
+
+        private static void TryAddColumn(SqliteServerDbContext ctx, string sql)
+        {
+            try
+            {
+                ctx.Database.ExecuteSqlRaw(sql);
+            }
+            catch
+            {
+                // Ignore "duplicate column name" errors for existing DBs.
+            }
         }
 
         #region Ban
