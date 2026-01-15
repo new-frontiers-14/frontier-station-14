@@ -2,6 +2,9 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server._WF.Shuttles.Components;
+using Content.Server._WF.Shuttles.Systems;
+using Content.Server.Chat.Managers; // Wayfarer
 using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -25,6 +28,10 @@ public sealed class MoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    // Wayfarer: Shuttle autopilot
+    [Dependency] private readonly AutopilotSystem _autopilot = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    // End Wayfarer
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
@@ -158,6 +165,21 @@ public sealed class MoverController : SharedMoverController
     {
         if (!TryComp<PilotComponent>(uid, out var pilot) || pilot.Console == null)
             return;
+
+        // Wayfarer: Disengage autopilot if player gives any navigational input
+        if (
+            state &&
+            pilot.Console != null &&
+            TryComp<TransformComponent>(pilot.Console.Value, out var consoleXform) &&
+            consoleXform.GridUid != null &&
+            TryComp<AutopilotComponent>(consoleXform.GridUid.Value, out var autopilot) &&
+            autopilot.Enabled
+        )
+        {
+            _autopilot.DisableAutopilot(consoleXform.GridUid.Value);
+            _autopilot.SendShuttleMessage(consoleXform.GridUid.Value, "Releasing manual control to pilot");
+        }
+        // End Wayfarer
 
         ResetSubtick(pilot);
 

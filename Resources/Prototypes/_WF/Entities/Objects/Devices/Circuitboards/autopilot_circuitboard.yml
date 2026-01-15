@@ -1,0 +1,13 @@
+- type: entity
+  id: AutopilotServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: autopilot server machine board
+  description: A machine printed circuit board for an autopilot server.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: AutopilotServer
+    stackRequirements:
+      Steel: 1
+      Cable: 2
