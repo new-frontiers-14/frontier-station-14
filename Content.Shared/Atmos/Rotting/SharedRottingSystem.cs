@@ -123,11 +123,16 @@ public abstract class SharedRottingSystem : EntitySystem
         if (TryComp<MobStateComponent>(uid, out var mobState) && !_mobState.IsDead(uid, mobState))
             return false;
 
-        if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
-            HasComp<AntiRottingContainerComponent>(container.Owner))
+        // Frontier: prevent rot if *any* container has AntiRottingContainer
+        //if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
+        //    HasComp<AntiRottingContainerComponent>(container.Owner))
+        //    return false;
+        foreach (var container in _container.GetContainingContainers(uid))
         {
-            return false;
+            if (HasComp<AntiRottingContainerComponent>(container.Owner))
+                return false;
         }
+        // End Frontier
 
         var ev = new IsRottingEvent();
         RaiseLocalEvent(uid, ref ev);
