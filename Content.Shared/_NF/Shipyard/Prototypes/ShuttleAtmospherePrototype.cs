@@ -5,8 +5,17 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Shipyard.Prototypes;
 
+public abstract class AtmosphereDefinition
+{
+    [DataField]
+    public float Temperature = Atmospherics.T20C;
+
+    [DataField(required: true)]
+    public Dictionary<Gas, float> Atmosphere = default!;
+}
+
 [Prototype]
-public sealed class ShuttleAtmospherePrototype : IPrototype
+public sealed class ShuttleAtmospherePrototype : AtmosphereDefinition, IPrototype
 {
     [IdDataField]
     public string ID { get; } = default!;
@@ -14,11 +23,12 @@ public sealed class ShuttleAtmospherePrototype : IPrototype
     [DataField(required: true)]
     public string Name = string.Empty;
 
+    /// <summary>
+    /// A set of atmosphere overrides for individual AtmosFixMarker tiles.
+    /// See Content.Server.Atmos.EntitySystems.AtmosphereSystem.FixGridAtmosCommand for a list of valid keys.
+    /// </summary>
     [DataField]
-    public float Temperature = Atmospherics.T20C;
-
-    [DataField(required: true)]
-    public Dictionary<Gas, float> Atmosphere = default!;
+    public Dictionary<int, ShuttleAtmosphereFixMarkerOverride> AtmosFixOverrides = [];
 
     [DataField]
     public ShuttleAtmosphereAlarms? Alarms;
@@ -26,6 +36,9 @@ public sealed class ShuttleAtmospherePrototype : IPrototype
     [DataField]
     public List<Gas>? FilterGases;
 }
+
+[DataDefinition]
+public sealed partial class ShuttleAtmosphereFixMarkerOverride : AtmosphereDefinition;
 
 [DataDefinition]
 public sealed partial class ShuttleAtmosphereAlarms

@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._NF.Shipyard.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Monitor.Components;
@@ -52,10 +51,12 @@ public sealed partial class ShipyardSystem
     {
         var mapGrid = shuttleGrid.Comp3!;
 
-        var mix = new GasMixture(Atmospherics.CellVolume) { Temperature = atmos.Temperature };
-        foreach (var (gas, moles) in atmos.Atmosphere)
+        var defaultAtmosMix = MakeGasMixFromDefinition(atmos);
+
+        var overrides = new Dictionary<int, GasMixture>();
+        foreach (var (marker, definition) in atmos.AtmosFixOverrides)
         {
-            mix.SetMoles(gas, moles);
+            overrides[marker] = MakeGasMixFromDefinition(definition);
         }
 
         var query = GetEntityQuery<AtmosFixMarkerComponent>();
@@ -69,13 +70,32 @@ public sealed partial class ShipyardSystem
             if (_atmosphere.GetTileMixture(shuttleGrid, null, position, true) is not { Immutable: false } air)
                 continue;
 
-            // Skip any tiles with an AtmosFixMarker; they already have the correct atmosphere from FixGridAtmosCommand
-            if (_map.GetAnchoredEntities((shuttleGrid.Owner, mapGrid), position).Any(query.HasComp))
-                continue;
+            var targetMixture = defaultAtmosMix;
+
+            // Check whether we need to override any AtmosFixMarker on this tile
+            foreach (var entity in _map.GetAnchoredEntities((shuttleGrid.Owner, mapGrid), position))
+            {
+                if (query.TryComp(entity, out var marker))
+                {
+                    targetMixture = overrides.GetValueOrDefault(marker.Mode, defaultAtmosMix);
+                    break;
+                }
+            }
 
             // Replace atmosphere
-            air.CopyFrom(mix);
+            air.CopyFrom(targetMixture);
         }
+    }
+
+    private static GasMixture MakeGasMixFromDefinition(AtmosphereDefinition atmos)
+    {
+        var mix = new GasMixture(Atmospherics.CellVolume) { Temperature = atmos.Temperature };
+        foreach (var (gas, moles) in atmos.Atmosphere)
+        {
+            mix.SetMoles(gas, moles);
+        }
+
+        return mix;
     }
 
     // Assumption: There are way fewer shuttles in the game than there are top-level entities on the new grid, so
