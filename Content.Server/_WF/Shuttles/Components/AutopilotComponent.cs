@@ -39,14 +39,21 @@ public sealed partial class AutopilotComponent : Component
     public float SlowdownDistance = 300f;
 
     /// <summary>
-    /// Minimum distance to consider an obstacle (in meters).
+    /// Maximum range to scan for obstacles and begin avoidance maneuvers (in meters).
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ObstacleAvoidanceDistance = 75f;
+    public float ScanRange = 200f;
 
     /// <summary>
-    /// Maximum range to scan for obstacles (in meters).
+    /// Set of obstacle entity UIDs that have already been reported to the pilot.
+    /// Used to avoid spamming duplicate obstacle warnings.
+    /// </summary>
+    [ViewVariables]
+    public HashSet<EntityUid> ReportedObstacles = new();
+
+    /// <summary>
+    /// If true, sends debug messages about obstacle detection to pilots.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ScanRange = 125f;
+    public bool DebugObstacles = false;
 }

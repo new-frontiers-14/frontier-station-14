@@ -2,6 +2,8 @@
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
 using Content.Server._NF.Station.Components;
+using Content.Server._WF.Shuttles.Components; // Wayfarer: Autopilot
+using Content.Server._WF.Shuttles.Systems; // Wayfarer: Autopilot
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Shipyard.Components;
@@ -13,6 +15,18 @@ namespace Content.Server.Shuttles.Systems;
 public sealed partial class ShuttleSystem
 {
     [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = null!;
+    [Dependency] private readonly AutopilotSystem _autopilot = default!; // Wayfarer: Autopilot
+    public TimeSpan BrakeDelay = TimeSpan.FromSeconds(10);
+    public TimeSpan NextBrakeCheck = TimeSpan.Zero;
+
+    // Cache for shuttle consoles to avoid repeated spatial queries
+    private readonly Dictionary<EntityUid, HashSet<Entity<ShuttleConsoleComponent>>> _shuttleConsoleCache = new();
+    private TimeSpan _nextConsoleCacheRefresh = TimeSpan.Zero;
+    private readonly TimeSpan _consoleCacheRefreshInterval = TimeSpan.FromSeconds(30);
+
     private const float SpaceFrictionStrength = 0.0075f;
     private const float DampenDampingStrength = 0.25f;
     private const float AnchorDampingStrength = 2.5f;
@@ -67,6 +81,16 @@ public sealed partial class ShuttleSystem
         {
             return;
         }
+
+        // Wayfarer start: Disengage autopilot if pilot manually changes mode
+        if (args.Mode != InertiaDampeningMode.Query &&
+            TryComp<AutopilotComponent>(transform.GridUid.Value, out var autopilot) &&
+            autopilot.Enabled)
+        {
+            _autopilot.DisableAutopilot(transform.GridUid.Value);
+            _autopilot.SendShuttleMessage(transform.GridUid.Value, "Autopilot disengaged - manual mode change");
+        }
+        // Wayfarer end
 
         if (SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, args.Mode) && args.Mode != InertiaDampeningMode.Query)
             component.DampeningMode = args.Mode;
