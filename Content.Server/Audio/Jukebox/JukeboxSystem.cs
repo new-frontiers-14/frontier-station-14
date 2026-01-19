@@ -76,8 +76,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             ent.Comp.AudioStream = Audio.PlayPvs(jukeboxProto.Path, ent.Owner, AudioParams.Default.WithMaxDistance(10f))?.Entity;
 
             // Frontier: wallmount jukebox
-            if (TryComp<TransformComponent>(component.AudioStream, out var xform))
-                _transform.SetLocalPosition(component.AudioStream.Value, component.AudioOffset, xform);
+            if (TryComp<TransformComponent>(ent.Comp.AudioStream, out var xform))
+                _transform.SetLocalPosition(ent.Comp.AudioStream.Value, ent.Comp.AudioOffset, xform);
             // End Frontier
 
             if (ent.Comp.AudioStream != null)
@@ -118,15 +118,12 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         Stop(entity);
     }
 
-    // Frontier: Modified Stop() function for the Shuffling & Replay features.
+
     private void Stop(Entity<JukeboxComponent> entity)
     {
-        //Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped); // No longer needed since we're removing the AudioStream.
-        entity.Comp.AudioStream = Audio.Stop(entity.Comp.AudioStream);
-        entity.Comp.FirstPlay = true;
+        Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped);
         Dirty(entity);
     }
-    // End Frontier
 
     private void OnJukeboxRepeatMessage(Entity<JukeboxComponent> entity, ref JukeboxRepeatMessage args)
     {
@@ -219,15 +216,6 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                     TryUpdateVisualState((uid, comp));
                 }
             }
-
-            // Frontier: Replay feature. Please pitch in if you have better ideas. This is a pretty bad implementation.
-            if (comp.PlaybackMode != JukeboxPlaybackMode.Single && comp.AudioStream != null &&
-                GetAudioState(comp.AudioStream) == AudioState.Stopped)
-            {
-                var msg = new JukeboxPlayingMessage();
-                OnJukeboxPlay(uid, comp, ref msg);
-            }
-            // End Frontier
         }
     }
 

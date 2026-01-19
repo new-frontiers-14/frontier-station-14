@@ -21,6 +21,7 @@ namespace Content.Client.Audio.Jukebox;
 public sealed partial class JukeboxMenu : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private AudioSystem _audioSystem;
 
     /// <summary>
@@ -38,7 +39,11 @@ public sealed partial class JukeboxMenu : FancyWindow
     public event Action<bool>? OnShuffleToggled;
     public event Action<ProtoId<JukeboxPrototype>>? TrackQueueAction;
     public event Action<float>? SetTime;
+    public event Action<int>? QueueDeleteAction;
+    public event Action<int>? QueueMoveUpAction;
+    public event Action<int>? QueueMoveDownAction;
 
+    private List<JukeboxPrototype> availableTracks = new();
     private EntityUid? _audio;
 
     private float _lockTimer;
@@ -76,19 +81,6 @@ public sealed partial class JukeboxMenu : FancyWindow
 
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
-        // Frontier: Shuffle & Repeat
-        ShuffleButton.OnToggled += args =>
-        {
-            RepeatButton.Pressed = false;
-            OnModeChanged?.Invoke(ShuffleButton.Pressed ? JukeboxPlaybackMode.Shuffle : JukeboxPlaybackMode.Single);
-        };
-        RepeatButton.OnToggled += args =>
-        {
-            ShuffleButton.Pressed = false;
-            OnModeChanged?.Invoke(RepeatButton.Pressed ? JukeboxPlaybackMode.Repeat : JukeboxPlaybackMode.Single);
-        };
-        // End Frontier: Shuffle & Repeat
-
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
     }
 
@@ -107,38 +99,6 @@ public sealed partial class JukeboxMenu : FancyWindow
         SetTime?.Invoke(PlaybackSlider.Value);
         _lockTimer = 0.5f;
     }
-
-    /// <summary>
-    /// Re-populates the list of jukebox prototypes available.
-    /// </summary>
-    // public void Populate(IEnumerable<JukeboxPrototype> jukeboxProtos)
-    // {
-    //     MusicList.Clear();
-
-    //     var jukeboxProtoList = jukeboxProtos.ToList(); // Frontier: Sort the jukebox list
-    //     jukeboxProtoList.Sort((p1, p2) => p1.Name.CompareTo(p2.Name)); // Frontier
-
-    //     foreach (var entry in jukeboxProtoList) // Frontier: jukeboxProtoList<jukeboxProtos
-    //     {
-    //         MusicList.AddItem(entry.Name, metadata: entry.ID);
-    //     }
-    // }
-    // public void Populate()
-    // {
-    //     MusicList.Clear();
-
-    //     foreach (var entry in availableTracks)
-    //     {
-    //         if (SearchBar.Text.Trim().Length != 0)
-    //         {
-    //             if (entry.Name.ToLowerInvariant().Contains(SearchBar.Text.Trim().ToLowerInvariant()))
-    //                 MusicList.AddItem(entry.Name, metadata: entry.ID);
-    //         } else {
-    //             MusicList.AddItem(entry.Name, metadata: entry.ID);
-    //         }
-    //     }
-    // }
-
 
     public void PopulateTracklist()
     {
@@ -253,7 +213,6 @@ public sealed partial class JukeboxMenu : FancyWindow
             availableTracks.Add(entry);
         }
     }
-
 
     public void SetPlayPauseButton(bool playing, bool force = false)
     {
