@@ -14,6 +14,7 @@ namespace Content.Client.Shuttles.UI
         private readonly ButtonGroup _buttonGroup = new();
         public event Action<NetEntity?, InertiaDampeningMode>? OnInertiaDampeningModeChanged;
         public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
+        public event Action<NetEntity?, bool>? OnIFFSirenChanged;
         public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
         public event Action<NetEntity?, bool>? OnSetHideTarget;
 
@@ -41,6 +42,9 @@ namespace Content.Client.Shuttles.UI
             ServiceFlagServices.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Services);
             ServiceFlagTrade.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Trade);
             ServiceFlagSocial.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Social);
+
+            SirenToggle.OnToggled += OnSirenTogglePressed;
+            SirenToggle.Pressed = NavRadar.ActivateSiren;
 
             TargetX.OnTextChanged += _ => _targetCoordsModified = true;
             TargetY.OnTextChanged += _ => _targetCoordsModified = true;
@@ -129,7 +133,11 @@ namespace Content.Client.Shuttles.UI
             ServiceFlagTrade.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Trade);
             ServiceFlagSocial.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Social);
         }
-
+        private void OnSirenTogglePressed(Button.ButtonToggledEventArgs args)
+        {
+            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+            OnIFFSirenChanged?.Invoke(shuttle, args.Pressed);
+        }
         private void NfAddShuttleDesignation(EntityUid? shuttle)
         {
             if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))

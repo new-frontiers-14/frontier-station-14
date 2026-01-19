@@ -42,6 +42,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFF { get; set; } = true;
     public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
+    public bool ActivateSiren { get; set; } = false;
     public bool RotateWithEntity { get; set; } = true;
 
     /// <summary>

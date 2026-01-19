@@ -15,6 +15,7 @@ namespace Content.Client.Shuttles.BUI
             _window ??= new ShuttleConsoleWindow();
             _window.OnInertiaDampeningModeChanged += OnInertiaDampeningModeChanged;
             _window.OnServiceFlagsChanged += OnServiceFlagsChanged;
+            _window.OnIFFSirenChanged += OnIFFSirenChanged;
             _window.OnSetTargetCoordinates += OnSetTargetCoordinates;
             _window.OnSetHideTarget += OnSetHideTarget;
             _window.RequestTrackEntity += OnTrackEntity;
@@ -34,6 +35,15 @@ namespace Content.Client.Shuttles.BUI
             {
                 ShuttleEntityUid = entityUid,
                 ServiceFlags = flags,
+            });
+        }
+
+        private void OnIFFSirenChanged(NetEntity? entityUid, bool activate)
+        {
+            SendMessage(new SetIFFSirenRequest
+            {
+                ShuttleEntityUid = entityUid,
+                SirenState = activate,
             });
         }
 
