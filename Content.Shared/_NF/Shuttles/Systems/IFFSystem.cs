@@ -46,6 +46,7 @@ public sealed partial class IFFSystem : EntitySystem
                 iffFlashComp.CurDuration = curColorSequence[index].Duration;
                 iffFlashComp.ChangeIndexAt = curTime + curColorSequence[index].Duration;
                 iffFlashComp.NextColor = curColorSequence[(index + 1) % curColorSequence.Count].Color;
+                iffFlashComp.CurrentIFFColorIndex = index;
             }
 
             var difColor = iffFlashComp.NextColor.RGBA - iffFlashComp.CurColor.RGBA;
