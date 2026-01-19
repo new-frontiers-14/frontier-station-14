@@ -27,6 +27,7 @@ shuttle-console-strafing = Strafing mode
 shuttle-console-nav-settings = Settings
 shuttle-console-iff-toggle = Show IFF
 shuttle-console-dock-toggle = Show docks
+shuttle-console-iff-siren-toggle = Activate IFF Siren
 shuttle-console-iffshuttles-toggle = Show shuttles
 
 # MAP

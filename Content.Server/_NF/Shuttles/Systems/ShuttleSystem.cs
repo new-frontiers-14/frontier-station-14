@@ -7,12 +7,16 @@ using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared._NF.Shuttles.Components;
+using Content.Shared._NF.Shuttles.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
     [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
+    [Dependency] private readonly IFFSystem _iffSystem = default!;
+
     private const float SpaceFrictionStrength = 0.0075f;
     private const float DampenDampingStrength = 0.25f;
     private const float AnchorDampingStrength = 2.5f;
@@ -20,6 +24,7 @@ public sealed partial class ShuttleSystem
     {
         SubscribeLocalEvent<ShuttleConsoleComponent, SetInertiaDampeningRequest>(OnSetInertiaDampening);
         SubscribeLocalEvent<ShuttleConsoleComponent, SetServiceFlagsRequest>(NfSetServiceFlags);
+        SubscribeLocalEvent<ShuttleConsoleComponent, SetIFFSirenRequest>(NfSetIFFSiren);
         SubscribeLocalEvent<ShuttleConsoleComponent, SetTargetCoordinatesRequest>(NfSetTargetCoordinates);
         SubscribeLocalEvent<ShuttleConsoleComponent, SetHideTargetRequest>(NfSetHideTarget);
     }
@@ -162,6 +167,31 @@ public sealed partial class ShuttleSystem
         Dirty(gridUid, iffComponent);
     }
 
+    public void NfSetIFFSiren(EntityUid uid, ShuttleConsoleComponent component, SetIFFSirenRequest args)
+    {
+        var transform = Transform(uid);
+        // Get the grid entity from the console transform
+        if (!transform.GridUid.HasValue)
+            return;
+
+        var gridUid = transform.GridUid.Value;
+
+        // Set the IFF siren state on the IFFComponent.
+        if (!EntityManager.TryGetComponent<IFFFlashingColorsComponent>(gridUid, out var iffComponent) ||
+            iffComponent.AllowedIFFFlashingSequences.Count <= 0)
+            return;
+
+        var newSequenceId = iffComponent.AllowedIFFFlashingSequences[0];
+        if (args.SirenState)
+        {
+            _iffSystem.InitalizeIFFFlashSequence(gridUid, iffComponent, newSequenceId);
+        }
+        else
+        {
+            _iffSystem.StopIFFFlashSequnce(gridUid, iffComponent);
+        }
+        _console.RefreshShuttleConsoles(gridUid);
+    }
     public void NfSetTargetCoordinates(EntityUid uid, ShuttleConsoleComponent component, SetTargetCoordinatesRequest args)
     {
         if (!TryComp<RadarConsoleComponent>(uid, out var radarConsole))
