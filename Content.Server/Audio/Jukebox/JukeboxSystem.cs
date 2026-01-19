@@ -11,8 +11,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using JukeboxComponent = Content.Shared.Audio.Jukebox.JukeboxComponent;
-using Robust.Shared.Random; // Frontier
-using Robust.Shared.Containers; // Frontier
+using Robust.Shared.Containers;
+using System.Linq; // Frontier
 
 namespace Content.Server.Audio.Jukebox;
 
@@ -21,7 +21,6 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!; // Frontier
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!; // Frontier
     [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
@@ -40,6 +39,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
 
         SubscribeLocalEvent<JukeboxComponent, PowerChangedEvent>(OnPowerChanged);
+
+        SubscribeLocalEvent<JukeboxComponent, EntRemovedFromContainerMessage>(OnRecordRemoved); // Frontier
 
         SubscribeLocalEvent<JukeboxMusicComponent, ComponentShutdown>(OnAudioShutdown);
     }
@@ -66,6 +67,18 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         else
         {
             ent.Comp.AudioStream = Audio.Stop(ent.Comp.AudioStream);
+
+            if (string.IsNullOrEmpty(ent.Comp.SelectedSongId) && ent.Comp.Queue.Count > 0)
+            {
+                var nextIndex = 0;
+                if (ent.Comp.ShuffleTracks)
+                {
+                    nextIndex = _random.Next(ent.Comp.Queue.Count);
+                }
+
+                ent.Comp.SelectedSongId = ent.Comp.Queue[nextIndex];
+                ent.Comp.Queue.RemoveAt(nextIndex);
+            }
 
             if (string.IsNullOrEmpty(ent.Comp.SelectedSongId) ||
                 !_protoManager.TryIndex(ent.Comp.SelectedSongId, out var jukeboxProto))
@@ -194,6 +207,34 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             }
         }
 
+        Dirty(ent);
+    }
+
+
+    public void OnRecordRemoved(Entity<JukeboxComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        var availableTracks = GetAvailableTracks(ent);
+
+        // Purge any unavailable tracks from the queue
+        HashSet<ProtoId<JukeboxPrototype>> availableTrackIds = [];
+
+        foreach (var track in availableTracks)
+        {
+            availableTrackIds.Add(track.ID);
+        }
+
+        // Traverse the list backwards, so we can remove elements without incurring the wrath of the compiler
+        for (var i = ent.Comp.Queue.Count - 1; i >= 0; i--)
+        {
+            if (!availableTrackIds.Contains(ent.Comp.Queue[i]))
+                ent.Comp.Queue.RemoveAt(i);
+        }
+
+        if (!availableTracks.Contains(_protoManager.Index(ent.Comp.SelectedSongId)))
+        {
+            ent.Comp.SelectedSongId = null;
+            ent.Comp.AudioStream = Audio.Stop(ent.Comp.AudioStream);
+        }
         Dirty(ent);
     }
 

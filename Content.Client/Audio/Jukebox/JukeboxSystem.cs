@@ -2,6 +2,7 @@ using Content.Shared.Audio.Jukebox;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Containers;
 
 namespace Content.Client.Audio.Jukebox;
 
@@ -20,6 +21,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, AppearanceChangeEvent>(OnAppearanceChange);
         SubscribeLocalEvent<JukeboxComponent, AnimationCompletedEvent>(OnAnimationCompleted);
         SubscribeLocalEvent<JukeboxComponent, AfterAutoHandleStateEvent>(OnJukeboxAfterState);
+        SubscribeLocalEvent<JukeboxComponent, EntInsertedIntoContainerMessage>(OnRecordInserted); // Frontier
 
         _protoManager.PrototypesReloaded += OnProtoReload;
     }
@@ -51,9 +53,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent.Owner, JukeboxUiKey.Key, out var bui))
             return;
 
+        bui.PopulateMusic(); // Frontier
         bui.Reload();
     }
 
+    // Frontier
+    public void OnRecordInserted(Entity<JukeboxComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent.Owner, JukeboxUiKey.Key, out var bui))
+            return;
+
+        bui.PopulateMusic();
+    }
+    // End Frontier
     private void OnAnimationCompleted(EntityUid uid, JukeboxComponent component, AnimationCompletedEvent args)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
