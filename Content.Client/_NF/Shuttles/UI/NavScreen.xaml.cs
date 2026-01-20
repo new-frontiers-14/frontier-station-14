@@ -44,7 +44,6 @@ namespace Content.Client.Shuttles.UI
             ServiceFlagSocial.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Social);
 
             SirenToggle.OnToggled += OnSirenTogglePressed;
-            SirenToggle.Pressed = NavRadar.ActivateSiren;
 
             TargetX.OnTextChanged += _ => _targetCoordsModified = true;
             TargetY.OnTextChanged += _ => _targetCoordsModified = true;
@@ -74,6 +73,7 @@ namespace Content.Client.Shuttles.UI
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
                 ToggleServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
+                SetSirenToggle(NavRadar.SirenFlags);
             }
 
             TargetShow.Pressed = !state.HideTarget;
@@ -132,6 +132,22 @@ namespace Content.Client.Shuttles.UI
             ServiceFlagServices.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Services);
             ServiceFlagTrade.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Trade);
             ServiceFlagSocial.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Social);
+        }
+
+        private void SetSirenToggle(IFFSirenFlags iffSirenFlags)
+        {
+            switch (iffSirenFlags)
+            {
+                case IFFSirenFlags.Missing:
+                    SirenToggle.Disabled = true;
+                    break;
+                case IFFSirenFlags.Inactive:
+                    SirenToggle.Pressed = false;
+                    break;
+                case IFFSirenFlags.Active:
+                    SirenToggle.Pressed = true;
+                    break;
+            }
         }
         private void OnSirenTogglePressed(Button.ButtonToggledEventArgs args)
         {

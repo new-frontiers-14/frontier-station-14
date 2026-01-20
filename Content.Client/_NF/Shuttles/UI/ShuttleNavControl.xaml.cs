@@ -43,6 +43,7 @@ public sealed partial class ShuttleNavControl
 
     public InertiaDampeningMode DampeningMode { get; set; }
     public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
+    public IFFSirenFlags SirenFlags { get; set; } = IFFSirenFlags.Missing;
 
     /// <summary>
     /// Updates the radar UI with the latest navigation state and sets additional NF-specific state.
@@ -66,6 +67,7 @@ public sealed partial class ShuttleNavControl
 
         DampeningMode = state.DampeningMode;
         ServiceFlags = state.ServiceFlags;
+        SirenFlags = state.SirenFlags;
     }
 
     /// <summary>

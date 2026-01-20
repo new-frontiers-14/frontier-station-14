@@ -83,3 +83,14 @@ public enum ServiceFlags : byte
     Trade = 2,
     Social = 4,
 }
+
+/// <summary>
+/// Frontier: IFF Siren flags.
+/// </summary>
+[Flags]
+public enum IFFSirenFlags : byte
+{
+    Missing = 0,
+    Inactive = 1,
+    Active = 2,
+}

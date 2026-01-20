@@ -147,6 +147,27 @@ public sealed partial class ShuttleSystem
     }
 
     /// <summary>
+    /// Get the current iff siren mode for this grid.
+    /// </summary>
+    public IFFSirenFlags NfGetIFFSirenState(EntityUid uid)
+    {
+        var transform = Transform(uid);
+        // Get the grid entity from the console transform
+        if (!transform.GridUid.HasValue)
+            return IFFSirenFlags.Missing;
+
+        var gridUid = transform.GridUid.Value;
+
+        if (!EntityManager.TryGetComponent<IFFFlashingColorsComponent>(gridUid, out var iffFlashComp))
+            return IFFSirenFlags.Missing;
+
+        if (!iffFlashComp.IsActive)
+            return IFFSirenFlags.Inactive;
+
+        return IFFSirenFlags.Active;
+    }
+
+    /// <summary>
     /// Set the service flags for this grid.
     /// </summary>
     public void NfSetServiceFlags(EntityUid uid, ShuttleConsoleComponent component, SetServiceFlagsRequest args)
@@ -177,14 +198,23 @@ public sealed partial class ShuttleSystem
         var gridUid = transform.GridUid.Value;
 
         // Set the IFF siren state on the IFFComponent.
-        if (!EntityManager.TryGetComponent<IFFFlashingColorsComponent>(gridUid, out var iffComponent) ||
-            iffComponent.AllowedIFFFlashingSequences.Count <= 0)
+        if (!EntityManager.TryGetComponent<IFFFlashingColorsComponent>(gridUid, out var iffComponent))
             return;
 
-        var newSequenceId = iffComponent.AllowedIFFFlashingSequences[0];
+        var curId = iffComponent.CurrentIFFFlashingSequence?.ID;
+
+        if (curId is null)
+        {
+            if (iffComponent.AllowedIFFFlashingSequences.Count <= 0)
+            {
+                return;
+            }
+            curId = iffComponent.AllowedIFFFlashingSequences[0];
+
+        }
         if (args.SirenState)
         {
-            _iffSystem.InitalizeIFFFlashSequence(gridUid, iffComponent, newSequenceId);
+            _iffSystem.InitalizeIFFFlashSequence(gridUid, iffComponent, curId);
         }
         else
         {
