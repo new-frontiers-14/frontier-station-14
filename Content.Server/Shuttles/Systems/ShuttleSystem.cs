@@ -31,9 +31,6 @@ using Robust.Shared.Timing;
 using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Server.GameTicking; // Frontier
 using Content.Shared.Maps;
-using Content.Shared._NF.Shuttles.Components;
-using Content.Shared.Shuttles.Components;
-using System.Numerics;
 
 namespace Content.Server.Shuttles.Systems;
 
