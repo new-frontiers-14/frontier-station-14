@@ -22,7 +22,7 @@ public sealed partial class JukeboxPrototype : IPrototype
     /// Name of the artist to use in UI.
     /// </summary>
     [DataField(required: true)]
-    public string Artist = string.Empty;
+    public string Artist = string.Empty; // wizden#42210
 
     [DataField(required: true)]
     public SoundPathSpecifier Path = default!;

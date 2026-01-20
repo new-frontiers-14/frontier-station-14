@@ -1,4 +1,3 @@
-using System;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
@@ -9,9 +8,9 @@ using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
+using Robust.Shared.Random; // wizden#42210
 using JukeboxComponent = Content.Shared.Audio.Jukebox.JukeboxComponent;
-using Robust.Shared.Containers;
+using Robust.Shared.Containers; // Frontier
 using System.Linq; // Frontier
 
 namespace Content.Server.Audio.Jukebox;
@@ -21,19 +20,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!; // Frontier
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!; // wizden#42210
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<JukeboxComponent, JukeboxQueueTrackMessage>(OnJukeboxQueueTrackMessage);
-        SubscribeLocalEvent<JukeboxComponent, JukeboxDeleteRequestMessage>(OnJukeboxDeleteRequestMessage);
-        SubscribeLocalEvent<JukeboxComponent, JukeboxMoveRequestMessage>(OnJukeboxMoveRequestMessage);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxQueueTrackMessage>(OnJukeboxQueueTrackMessage); // wizden#42210
+        SubscribeLocalEvent<JukeboxComponent, JukeboxDeleteRequestMessage>(OnJukeboxDeleteRequestMessage); // wizden#42210
+        SubscribeLocalEvent<JukeboxComponent, JukeboxMoveRequestMessage>(OnJukeboxMoveRequestMessage); // wizden#42210
         SubscribeLocalEvent<JukeboxComponent, JukeboxPlayingMessage>(OnJukeboxPlay);
         SubscribeLocalEvent<JukeboxComponent, JukeboxPauseMessage>(OnJukeboxPause);
         SubscribeLocalEvent<JukeboxComponent, JukeboxStopMessage>(OnJukeboxStop);
-        SubscribeLocalEvent<JukeboxComponent, JukeboxRepeatMessage>(OnJukeboxRepeatMessage);
-        SubscribeLocalEvent<JukeboxComponent, JukeboxShuffleMessage>(OnJukeboxShuffleMessage);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxRepeatMessage>(OnJukeboxRepeatMessage); // wizden#42210
+        SubscribeLocalEvent<JukeboxComponent, JukeboxShuffleMessage>(OnJukeboxShuffleMessage); // wizden#42210
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetTimeMessage>(OnJukeboxSetTime);
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
@@ -42,9 +41,10 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         SubscribeLocalEvent<JukeboxComponent, EntRemovedFromContainerMessage>(OnRecordRemoved); // Frontier
 
-        SubscribeLocalEvent<JukeboxMusicComponent, ComponentShutdown>(OnAudioShutdown);
+        SubscribeLocalEvent<JukeboxMusicComponent, ComponentShutdown>(OnAudioShutdown); // wizden#42210
     }
 
+    // wizden#42210
     private void OnComponentInit(Entity<JukeboxComponent> ent, ref ComponentInit args)
     {
         if (HasComp<ApcPowerReceiverComponent>(ent.Owner))
@@ -209,8 +209,9 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         Dirty(ent);
     }
+    // End wizden#42210
 
-
+    // Frontier
     public void OnRecordRemoved(Entity<JukeboxComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         var availableTracks = GetAvailableTracks(ent);
@@ -237,7 +238,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         }
         Dirty(ent);
     }
-
+    // End Frontier
 
     public override void Update(float frameTime)
     {
@@ -254,12 +255,13 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                     comp.SelectAccumulator = 0f;
                     comp.Selecting = false;
 
-                    TryUpdateVisualState((uid, comp));
+                    TryUpdateVisualState((uid, comp)); // wizden#42210
                 }
             }
         }
     }
 
+    // wizden#42210
     private void OnAudioShutdown(Entity<JukeboxMusicComponent> ent, ref ComponentShutdown args)
     {
         var query = EntityQueryEnumerator<JukeboxComponent>();
@@ -298,21 +300,22 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     {
         ent.Comp.AudioStream = Audio.Stop(ent.Comp.AudioStream);
     }
+    // End wizden#42210
 
     private void DirectSetVisualState(EntityUid uid, JukeboxVisualState state)
     {
         _appearanceSystem.SetData(uid, JukeboxVisuals.VisualState, state);
     }
 
-    private void TryUpdateVisualState(Entity<JukeboxComponent> ent)
+    private void TryUpdateVisualState(Entity<JukeboxComponent> ent) // wizden#42210
     {
         var finalState = JukeboxVisualState.On;
 
-        if (!this.IsPowered(ent.Owner, EntityManager))
+        if (!this.IsPowered(ent.Owner, EntityManager)) // wizden#42210
         {
             finalState = JukeboxVisualState.Off;
         }
 
-        _appearanceSystem.SetData(ent.Owner, JukeboxVisuals.VisualState, finalState);
+        _appearanceSystem.SetData(ent.Owner, JukeboxVisuals.VisualState, finalState); // wizden#42210
     }
 }

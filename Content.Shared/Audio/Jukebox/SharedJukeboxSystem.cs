@@ -7,8 +7,9 @@ namespace Content.Shared.Audio.Jukebox;
 public abstract class SharedJukeboxSystem : EntitySystem
 {
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly IPrototypeManager _protoManager = default!;
+    [Dependency] protected readonly IPrototypeManager _protoManager = default!; // wizden#42210
 
+    // wizden#42210
     public IEnumerable<JukeboxPrototype> GetAvailableTracks(Entity<JukeboxComponent> entity)
     {
         // Frontier: Music Discs
@@ -34,4 +35,5 @@ public abstract class SharedJukeboxSystem : EntitySystem
         // End Frontier: Music Discs
         return availableMusic; // Frontier _protoManager.EnumeratePrototypes<JukeboxPrototype>()<availableMusic
     }
+    // End wizden#42210
 }

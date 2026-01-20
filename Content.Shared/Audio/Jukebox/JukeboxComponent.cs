@@ -1,5 +1,4 @@
 using System.Numerics; // Frontier: wallmount jukebox
-using System.Collections.Generic;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -20,25 +19,25 @@ public sealed partial class JukeboxComponent : Component
     /// The audiostream
     /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid? AudioStream;
+    public EntityUid? AudioStream; // wizden#42210
 
     /// <summary>
     /// The queue of queued songs. (which is actually a list)
     /// </summary>
     [DataField, AutoNetworkedField]
-    public List<ProtoId<JukeboxPrototype>> Queue = new();
+    public List<ProtoId<JukeboxPrototype>> Queue = new(); // wizden#42210
 
     /// <summary>
     /// Whether or not a played song should be removed from the queue or readded to the bottom.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool RepeatTracks;
+    public bool RepeatTracks; // wizden#42210
 
     /// <summary>
     /// Whether or not the queue should be sampled randomly or in order.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool ShuffleTracks;
+    public bool ShuffleTracks; // wizden#42210
 
     /// <summary>
     /// RSI state for the jukebox being on.
@@ -72,7 +71,7 @@ public sealed partial class JukeboxComponent : Component
 
 // Component to raise an event when a track ends
 [RegisterComponent]
-public sealed partial class JukeboxMusicComponent : Component
+public sealed partial class JukeboxMusicComponent : Component // wizden#42210
 {}
 
 [Serializable, NetSerializable]

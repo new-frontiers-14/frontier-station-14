@@ -2,14 +2,13 @@ using Content.Shared.Audio.Jukebox;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Containers;
+using Robust.Shared.Containers; // Frontier
 
 namespace Content.Client.Audio.Jukebox;
 
 
 public sealed class JukeboxSystem : SharedJukeboxSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
