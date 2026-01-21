@@ -45,6 +45,8 @@ namespace Content.Client.Shuttles.UI
 
             SirenToggle.OnToggled += OnSirenTogglePressed;
 
+            SirenAlert.FontColorOverride = Color.Red;
+
             TargetX.OnTextChanged += _ => _targetCoordsModified = true;
             TargetY.OnTextChanged += _ => _targetCoordsModified = true;
             TargetSet.OnPressed += _ => SetTargetCoords();
@@ -73,7 +75,7 @@ namespace Content.Client.Shuttles.UI
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
                 ToggleServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
-                SetSirenToggle(NavRadar.SirenFlags);
+                SetSirenToggle(NavRadar.SirenFlags, true, false);
             }
 
             TargetShow.Pressed = !state.HideTarget;
@@ -134,26 +136,40 @@ namespace Content.Client.Shuttles.UI
             ServiceFlagSocial.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Social);
         }
 
-        private void SetSirenToggle(IFFSirenFlags iffSirenFlags)
+        private void SetSirenToggle(IFFSirenFlags iffSirenFlags, bool updateButtons = false, bool updateValues = true)
         {
-            switch (iffSirenFlags)
+            if (updateButtons)
             {
-                case IFFSirenFlags.Missing:
-                    SirenToggle.Disabled = true;
-                    break;
-                case IFFSirenFlags.Inactive:
-                    SirenToggle.Pressed = false;
-                    break;
-                case IFFSirenFlags.Active:
-                    SirenToggle.Pressed = true;
-                    break;
+                SirenAlert.Visible = false;
+                switch (iffSirenFlags)
+                {
+                    case IFFSirenFlags.Missing:
+                        SirenToggle.Disabled = true;
+                        break;
+                    case IFFSirenFlags.Inactive:
+                        SirenToggle.Pressed = false;
+                        break;
+                    case IFFSirenFlags.Active:
+                        SirenToggle.Pressed = true;
+                        SirenAlert.Visible = true;
+                        break;
+                }
+            }
+
+            if (updateValues)
+            {
+                _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+                OnIFFSirenChanged?.Invoke(shuttle, SirenToggle.Pressed);
             }
         }
         private void OnSirenTogglePressed(Button.ButtonToggledEventArgs args)
         {
-            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
-            OnIFFSirenChanged?.Invoke(shuttle, args.Pressed);
+            if (args.Pressed)
+                SetSirenToggle(IFFSirenFlags.Active);
+            else
+                SetSirenToggle(IFFSirenFlags.Inactive);
         }
+
         private void NfAddShuttleDesignation(EntityUid? shuttle)
         {
             if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))

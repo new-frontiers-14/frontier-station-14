@@ -13,6 +13,7 @@ shuttle-console-service-flag-Trade-label = Shopping
 shuttle-console-service-flag-Social-label = Social
 
 shuttle-console-iff-siren-toggle = Activate IFF Siren
+shuttle-console-iff-siren-alert = IFF SIREN ACTIVE!!!
 
 shuttle-console-service-flag-Services-shortform = ♫
 shuttle-console-service-flag-Trade-shortform = $
