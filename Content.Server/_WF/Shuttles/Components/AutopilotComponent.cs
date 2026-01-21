@@ -56,4 +56,10 @@ public sealed partial class AutopilotComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool DebugObstacles = false;
+
+    /// <summary>
+    /// The name of the destination, displayed in chat messages.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public string? DestinationName;
 }

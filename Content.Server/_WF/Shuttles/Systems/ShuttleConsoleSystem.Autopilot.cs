@@ -103,7 +103,8 @@ public sealed partial class ShuttleConsoleSystem
         )
         {
             var targetCoords = _transform.GetMapCoordinates(targetXform);
-            EnableAutopilot(user, shuttleUid, targetCoords);
+            var destinationName = radarConsoleComponent.TargetEntityName ?? "Unknown Target";
+            EnableAutopilot(user, shuttleUid, targetCoords, destinationName);
             return;
         }
 
@@ -112,17 +113,18 @@ public sealed partial class ShuttleConsoleSystem
         if (manualTarget != null && TryComp<TransformComponent>(consoleUid, out var consoleXform))
         {
             var targetCoords = new MapCoordinates(manualTarget.Value, consoleXform.MapID);
-            EnableAutopilot(user, shuttleUid, targetCoords);
+            EnableAutopilot(user, shuttleUid, targetCoords, "Manual Destination");
             return;
         }
 
         _popup.PopupEntity(Loc.GetString("shuttle-console-autopilot-no-target"), user, user);
     }
 
-    private void EnableAutopilot(EntityUid user, EntityUid shuttleUid, MapCoordinates targetCoords)
+    private void EnableAutopilot(EntityUid user, EntityUid shuttleUid, MapCoordinates targetCoords, string destinationName)
     {
-        _autopilot.EnableAutopilot(shuttleUid, targetCoords);
-        _popup.PopupEntity(Loc.GetString("shuttle-console-autopilot-enabled"), user, user);
+        _autopilot.EnableAutopilot(shuttleUid, targetCoords, destinationName);
+        _popup.PopupEntity(Loc.GetString("shuttle-console-autopilot-enabled", ("destination", destinationName)), user, user);
+        _autopilot.SendShuttleMessage(shuttleUid, $"Autopilot engaged: Destination: {destinationName}");
     }
 
     /// <summary>
