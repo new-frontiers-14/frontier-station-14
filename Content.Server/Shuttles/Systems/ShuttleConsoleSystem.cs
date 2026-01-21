@@ -65,6 +65,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
+            subs.Event<BoundUIOpenedEvent>(OnConsoleUIOpen); // Wayfarer: refresh state on UI open
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
@@ -143,6 +144,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             UpdateState(uid, ref dockState);
         }
     }
+
+    // Wayfarer: Refresh state when UI is opened to ensure autopilot button state is correct
+    private void OnConsoleUIOpen(EntityUid uid, ShuttleConsoleComponent component, BoundUIOpenedEvent args)
+    {
+        DockingInterfaceState? dockState = null;
+        UpdateState(uid, ref dockState);
+    }
+    // End Wayfarer
 
     /// <summary>
     /// Stop piloting if the window is closed.
@@ -424,6 +433,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
             return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertial dampening, target
 
+        var autopilotState = WfGetAutopilotState(entity); // Wayfarer
+
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
@@ -433,7 +444,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             _shuttle.NfGetServiceFlags(entity), // Frontier
             entity.Comp1.Target, // Frontier
             GetNetEntity(entity.Comp1.TargetEntity), // Frontier
-            entity.Comp1.HideTarget); // Frontier
+            entity.Comp1.HideTarget, // Frontier
+            autopilotState.Enabled, // Wayfarer
+            autopilotState.HasServer); // Wayfarer
     }
 
     /// <summary>

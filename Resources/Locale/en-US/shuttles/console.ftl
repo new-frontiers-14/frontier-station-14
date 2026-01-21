@@ -60,6 +60,7 @@ shuttle-console-undock-fail = Undocking failed
 shuttle-console-dock-fail = Docking failed
 
 # Wayfarer: AUTOPILOT
+shuttle-console-autopilot = Autopilot
 shuttle-console-autopilot-enable = Enable Autopilot
 shuttle-console-autopilot-disable = Disable Autopilot
 shuttle-console-autopilot-enabled = Autopilot: Engaged - Destination: {$destination}

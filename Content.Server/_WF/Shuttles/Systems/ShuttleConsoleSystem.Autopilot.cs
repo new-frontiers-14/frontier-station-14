@@ -3,10 +3,9 @@ using Content.Server._WF.Shuttles.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
+using Content.Shared._WF.Shuttles.Events;
 using Content.Shared.Shuttles.Components;
-using Content.Shared.Verbs;
 using Robust.Shared.Map;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -16,12 +15,12 @@ public sealed partial class ShuttleConsoleSystem
 
     private void InitializeAutopilot()
     {
-        SubscribeLocalEvent<ShuttleConsoleComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAutopilotVerb);
+        SubscribeLocalEvent<ShuttleConsoleComponent, ToggleAutopilotRequest>(OnToggleAutopilotRequest);
     }
 
-    private void OnGetAutopilotVerb(EntityUid uid, ShuttleConsoleComponent component, GetVerbsEvent<AlternativeVerb> args)
+    private void OnToggleAutopilotRequest(EntityUid uid, ShuttleConsoleComponent component, ToggleAutopilotRequest args)
     {
-        if (!args.CanInteract || !args.CanAccess)
+        if (args.Actor is not { Valid: true } user)
             return;
 
         // Get the shuttle this console controls
@@ -42,24 +41,7 @@ public sealed partial class ShuttleConsoleSystem
         if (shuttleGridUid == null)
             return;
 
-        // Check if an autopilot server is installed on the shuttle grid
-        var hasAutopilotServer = HasAutopilotServer(shuttleGridUid.Value);
-        if (!hasAutopilotServer)
-            return; // Don't show the verb if no autopilot server is present
-
-        // Check if autopilot component exists and is enabled
-        var hasAutopilot = TryComp<AutopilotComponent>(shuttleGridUid.Value, out var autopilotComp);
-        var isEnabled = hasAutopilot && autopilotComp!.Enabled;
-
-        AlternativeVerb verb = new()
-        {
-            Act = () => ToggleAutopilot(args.User, uid, shuttleGridUid.Value),
-            Text = isEnabled ? Loc.GetString("shuttle-console-autopilot-disable") : Loc.GetString("shuttle-console-autopilot-enable"),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
-            Priority = 1,
-        };
-
-        args.Verbs.Add(verb);
+        ToggleAutopilot(user, uid, shuttleGridUid.Value);
     }
 
     private void ToggleAutopilot(EntityUid user, EntityUid consoleUid, EntityUid shuttleUid)
@@ -77,15 +59,12 @@ public sealed partial class ShuttleConsoleSystem
             return;
         }
 
-        // Check if autopilot is currently enabled
+        // Check if autopilot is already enabled - if so, do nothing
+        // (autopilot is disabled by selecting another mode, not by clicking the button again)
         var hasAutopilot = TryComp<AutopilotComponent>(shuttleUid, out var autopilotComp);
         var isEnabled = hasAutopilot && autopilotComp!.Enabled;
         if (isEnabled)
-        {
-            _autopilot.DisableAutopilot(shuttleUid);
-            _popup.PopupEntity(Loc.GetString("shuttle-console-autopilot-disabled"), user, user);
             return;
-        }
 
         // Try to get the target from the radar console
         if (!TryComp<RadarConsoleComponent>(consoleUid, out var radarConsoleComponent))
@@ -125,6 +104,21 @@ public sealed partial class ShuttleConsoleSystem
         _autopilot.EnableAutopilot(shuttleUid, targetCoords, destinationName);
         _popup.PopupEntity(Loc.GetString("shuttle-console-autopilot-enabled", ("destination", destinationName)), user, user);
         _autopilot.SendShuttleMessage(shuttleUid, $"Autopilot engaged: Destination: {destinationName}");
+    }
+
+    /// <summary>
+    /// Gets the autopilot state for a shuttle from a console entity.
+    /// </summary>
+    public (bool HasServer, bool Enabled) WfGetAutopilotState(EntityUid consoleUid)
+    {
+        if (!TryComp<TransformComponent>(consoleUid, out var xform) || xform.GridUid == null)
+            return (false, false);
+
+        var gridUid = xform.GridUid.Value;
+        var hasServer = HasAutopilotServer(gridUid);
+        var isEnabled = TryComp<AutopilotComponent>(gridUid, out var autopilot) && autopilot.Enabled;
+
+        return (hasServer, isEnabled);
     }
 
     /// <summary>
