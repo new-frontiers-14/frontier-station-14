@@ -55,6 +55,10 @@
                                Text="0.0"
                                HorizontalExpand="True"
                                Align="Right"/>
+                        <!-- Frontier: Siren iff indicator-->
+                        <controls:Label Name="SirenAlert"
+                            Text="{controls:Loc 'shuttle-console-iff-siren-alert'}"
+                            Align="Right"/>
                     </controls:GridContainer>
                     <controls1:StripeBack
                         MinSize="48 48">
@@ -81,9 +85,6 @@
                             Text="{controls:Loc 'shuttle-console-iff-siren-toggle'}"
                             TextAlign="Center"
                             ToggleMode="True"/>
-                    <controls:Label Name="SirenAlert"
-                            Text="{controls:Loc 'shuttle-console-iff-siren-alert'}"
-                            Align="Center"/>
                     <!-- Frontier - Inertia dampener controls-->
                     <controls:BoxContainer Name="DampenerModeButtons"
                                   Orientation="Horizontal"
