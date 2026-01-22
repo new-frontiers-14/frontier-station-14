@@ -294,7 +294,6 @@ namespace Content.Client.Construction
             _ghosts.Add(comp.GhostId, ghost.Value);
 
             var sprite = Comp<SpriteComponent>(ghost.Value);
-            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
             if (targetProto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
             {
@@ -309,30 +308,19 @@ namespace Content.Client.Construction
                 var targetSprite = EnsureComp<SpriteComponent>(dummy);
                 EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
 
-                var ghostSpriteIdx = 0; // Frontier: Fix intercom construction
-                for (var i = 0; i < targetSprite.AllLayers.Count(); i++)
+                _sprite.CopySprite((dummy, targetSprite), (ghost.Value, sprite));
+
+                for (var i = 0; i < sprite.AllLayers.Count(); i++)
                 {
-                    if (!targetSprite[i].Visible || !targetSprite[i].RsiState.IsValid)
-                        continue;
-
-                    var rsi = targetSprite[i].Rsi ?? targetSprite.BaseRSI;
-                    if (rsi is null || !rsi.TryGetState(targetSprite[i].RsiState, out var state) ||
-                        state.StateId.Name is null)
-                        continue;
-
-                    // Frontier Begin - Fix Intercom construction... i<ghostSpriteIdx
-                    _sprite.AddBlankLayer((ghost.Value, sprite), ghostSpriteIdx);
-                    _sprite.LayerSetSprite((ghost.Value, sprite), ghostSpriteIdx, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
-                    sprite.LayerSetShader(ghostSpriteIdx, "unshaded");
-                    _sprite.LayerSetVisible((ghost.Value, sprite), ghostSpriteIdx, true);
-                    ghostSpriteIdx++;
-                    // Frontier End
+                    sprite.LayerSetShader(i, "unshaded");
                 }
 
                 Del(dummy);
             }
             else
                 return false;
+
+            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
             if (prototype.CanBuildInImpassable)
                 EnsureComp<WallMountComponent>(ghost.Value).Arc = new(Math.Tau);
