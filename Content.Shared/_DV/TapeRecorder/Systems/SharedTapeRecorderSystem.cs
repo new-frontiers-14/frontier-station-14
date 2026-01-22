@@ -8,6 +8,8 @@ using Content.Shared.Labels.Components;
 using Content.Shared.Toggleable;
 using Content.Shared.UserInterface;
 using Content.Shared.Whitelist;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
@@ -41,6 +43,7 @@ public abstract class SharedTapeRecorderSystem : EntitySystem
         SubscribeLocalEvent<TapeRecorderComponent, ExaminedEvent>(OnRecorderExamined);
         SubscribeLocalEvent<TapeRecorderComponent, ChangeModeTapeRecorderMessage>(OnChangeModeMessage);
         SubscribeLocalEvent<TapeRecorderComponent, AfterActivatableUIOpenEvent>(OnUIOpened);
+        SubscribeLocalEvent<TapeRecorderComponent, SignalReceivedEvent>(OnSignalReceived);
 
         SubscribeLocalEvent<TapeCassetteComponent, ExaminedEvent>(OnTapeExamined);
         SubscribeLocalEvent<TapeCassetteComponent, DamageChangedEvent>(OnDamagedChanged);
@@ -408,6 +411,26 @@ public abstract class SharedTapeRecorderSystem : EntitySystem
             cooldown);
 
         _ui.SetUiState(uid, TapeRecorderUIKey.Key, state);
+    }
+
+    private void OnSignalReceived(Entity<TapeRecorderComponent> ent, ref SignalReceivedEvent args)
+    {
+        if (args.Port == ent.Comp.PausePort)
+        {
+            SetMode(ent, TapeRecorderMode.Stopped);
+        }
+        else if (args.Port == ent.Comp.RecordPort)
+        {
+            SetMode(ent, TapeRecorderMode.Recording);
+        }
+        else if (args.Port == ent.Comp.PlaybackPort)
+        {
+            SetMode(ent, TapeRecorderMode.Playing);
+        }
+        else if (args.Port == ent.Comp.RewindPort)
+        {
+            SetMode(ent, TapeRecorderMode.Rewinding);
+        }
     }
 }
 
