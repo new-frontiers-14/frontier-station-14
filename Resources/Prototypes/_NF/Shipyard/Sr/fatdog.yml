@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Bartholemew-Dingleberry
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: Bartholemew-Dingleberry
+# Discord: bartholomew_dingleberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: FatDog
+  parent: BaseVessel
+  name: DBI FatDog
+  description: A Rotund Security vessel capable of housing and transporting 2 criminals. 
+  price: 25500 #Appraises at ~22920. Markup of ~9%.
+  category: Small
+  group: Sr
+  access: Brig
+  shuttlePath: /Maps/_NF/Shuttles/Sr/fatdog.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: FatDog
+  mapName: 'DBI FatDog'
+  mapPath: /Maps/_NF/Shuttles/Sr/fatdog.yml
+  minPlayers: 0
+  stations:
+    FatDog:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'FatDog {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
