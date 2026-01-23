@@ -9,16 +9,16 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: FatDog
+  id: BullDog
   parent: BaseVessel
-  name: DBI FatDog
-  description: A Rotund Security vessel capable of housing and transporting 2 criminals. 
+  name: DBI BullDog
+  description: A Rotund Security vessel capable of housing and transporting the roudiest of criminals! 
   price: 21000 #Appraises at 19016. Markup of ~9%.
   category: Small
   group: Sr
   access: Brig # Oddball, matches guard ID, specific enough to exclude cadets
   mapchecker_group_override: Security # Treat this as a security vessel for mapchecker purposes
-  shuttlePath: /Maps/_NF/Shuttles/Sr/fatdog.yml
+  shuttlePath: /Maps/_NF/Shuttles/Sr/bulldog.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -26,16 +26,16 @@
   - Plasma
 
 - type: gameMap
-  id: FatDog
-  mapName: 'DBI FatDog'
-  mapPath: /Maps/_NF/Shuttles/Sr/fatdog.yml
+  id: BullDog
+  mapName: 'DBI BullDog'
+  mapPath: /Maps/_NF/Shuttles/Sr/bulldog.yml
   minPlayers: 0
   stations:
-    FatDog:
+    BullDog:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'FatDog {1}'
+          mapNameTemplate: 'BullDog {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
