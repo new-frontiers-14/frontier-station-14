@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 01/23/2026 08:16:28
-  entityCount: 282
+  time: 01/23/2026 08:37:26
+  entityCount: 294
 maps: []
 grids:
 - 1
@@ -256,6 +256,22 @@ entities:
             91: 0,0
             92: -6,0
         - node:
+            color: '#FFFFFFFF'
+            id: WarnLineE
+          decals:
+            193: -8,2
+            194: -6,2
+            195: -5,4
+            196: -1,4
+            197: 0,2
+            198: 2,2
+            201: -8,2
+            202: -6,2
+            203: 0,2
+            204: 2,2
+            211: -5,4
+            212: -1,4
+        - node:
             color: '#4A653EFF'
             id: WarnLineGreyscaleE
           decals:
@@ -317,6 +333,39 @@ entities:
             id: WarnLineGreyscaleW
           decals:
             168: -7,5
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineN
+          decals:
+            200: -3,7
+            214: -3,7
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineS
+          decals:
+            182: -8,2
+            183: -6,2
+            184: -5,4
+            185: -1,4
+            186: 0,2
+            187: -6,2
+            188: -8,2
+            189: -5,4
+            190: -1,4
+            191: 0,2
+            192: 2,2
+            205: -8,2
+            206: -6,2
+            207: 0,2
+            208: 2,2
+            209: -1,4
+            210: -5,4
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineW
+          decals:
+            199: -3,7
+            213: -3,7
     - type: GridAtmosphere
       version: 2
       data:
@@ -451,6 +500,72 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,5.5
+      parent: 1
+- proto: AtmosDeviceFanDirectional
+  entities:
+  - uid: 283
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,2.5
+      parent: 1
+  - uid: 284
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,2.5
+      parent: 1
+- proto: AtmosFixBlockerMarker
+  entities:
+  - uid: 285
+    components:
+    - type: Transform
+      pos: -7.5,0.5
+      parent: 1
+  - uid: 286
+    components:
+    - type: Transform
+      pos: -7.5,-0.5
+      parent: 1
+  - uid: 287
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+  - uid: 288
+    components:
+    - type: Transform
+      pos: 2.5,0.5
+      parent: 1
+  - uid: 289
+    components:
+    - type: Transform
+      pos: 0.5,8.5
+      parent: 1
+  - uid: 290
+    components:
+    - type: Transform
+      pos: -5.5,8.5
+      parent: 1
+  - uid: 291
+    components:
+    - type: Transform
+      pos: -4.5,10.5
+      parent: 1
+  - uid: 292
+    components:
+    - type: Transform
+      pos: -0.5,10.5
+      parent: 1
+  - uid: 293
+    components:
+    - type: Transform
+      pos: -7.5,7.5
+      parent: 1
+  - uid: 294
+    components:
+    - type: Transform
+      pos: 2.5,7.5
       parent: 1
 - proto: Bed
   entities:
@@ -838,6 +953,9 @@ entities:
     - type: Transform
       pos: -5.5,5.5
       parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
