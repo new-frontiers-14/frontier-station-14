@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 01/24/2026 13:49:01
-  entityCount: 314
+  time: 01/24/2026 15:02:09
+  entityCount: 316
 maps: []
 grids:
 - 1
@@ -33,7 +33,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: BullDog
+      name: Hound
     - type: Transform
       pos: -0.7139284,-1.342839
       parent: invalid
@@ -76,6 +76,18 @@ entities:
         version: 2
         nodes:
         - node:
+            zIndex: 5
+            color: '#00A5FFFF'
+            id: BotGreyscale
+          decals:
+            256: -6,6
+        - node:
+            zIndex: 5
+            color: '#FF0000FF'
+            id: BotGreyscale
+          decals:
+            255: -7,5
+        - node:
             color: '#9C2020FF'
             id: BrickEndOverlayN
           decals:
@@ -100,15 +112,17 @@ entities:
             85: -3,4
             86: -3,5
         - node:
-            color: '#4A653EFF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: MiniTileEndOverlayN
           decals:
-            152: 0,5
+            258: 0,5
         - node:
-            color: '#4A653EFF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: MiniTileEndOverlayS
           decals:
-            151: 0,4
+            259: 0,4
         - node:
             color: '#496EA0FF'
             id: MiniTileWhiteEndN
@@ -136,25 +150,27 @@ entities:
           decals:
             216: -3,8
         - node:
+            zIndex: 5
             color: '#AE6716FF'
             id: MiniTileWhiteEndS
           decals:
-            165: -6,4
+            254: -6,4
         - node:
             color: '#496EA0FF'
             id: WarnCornerGreyscaleNE
           decals:
             219: -2,10
         - node:
-            color: '#4A653EFF'
-            id: WarnCornerGreyscaleNE
-          decals:
-            155: 1,6
-        - node:
             color: '#9C2020FF'
             id: WarnCornerGreyscaleNE
           decals:
             130: -2,6
+        - node:
+            zIndex: 5
+            color: '#DE3A3AFF'
+            id: WarnCornerGreyscaleNE
+          decals:
+            262: 1,6
         - node:
             color: '#496EA0FF'
             id: WarnCornerGreyscaleNW
@@ -165,11 +181,6 @@ entities:
             id: WarnCornerGreyscaleNW
           decals:
             215: -4,6
-        - node:
-            color: '#AE6716FF'
-            id: WarnCornerGreyscaleNW
-          decals:
-            169: -7,6
         - node:
             color: '#9C2020FF'
             id: WarnCornerSmallGreyscaleNE
@@ -186,25 +197,16 @@ entities:
           decals:
             226: -4,10
         - node:
-            color: '#AE6716FF'
-            id: WarnCornerSmallGreyscaleSE
-          decals:
-            170: -7,6
-        - node:
             color: '#496EA0FF'
             id: WarnCornerSmallGreyscaleSW
           decals:
             227: -2,10
         - node:
-            color: '#4A653EFF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: WarnCornerSmallGreyscaleSW
           decals:
-            156: 1,6
-        - node:
-            color: '#AE6716FF'
-            id: WarnEndGreyscaleE
-          decals:
-            171: -6,6
+            263: 1,6
         - node:
             color: '#496EA0FF'
             id: WarnEndGreyscaleS
@@ -212,20 +214,17 @@ entities:
             173: -2,8
             174: -4,8
         - node:
-            color: '#4A653EFF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: WarnEndGreyscaleS
           decals:
-            153: 1,4
+            260: 1,4
         - node:
-            color: '#AE6716FF'
-            id: WarnEndGreyscaleS
-          decals:
-            166: -7,4
-        - node:
-            color: '#4A653EFF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: WarnEndGreyscaleW
           decals:
-            157: 0,6
+            261: 0,6
         - node:
             color: '#FFFFFFFF'
             id: WarnLineE
@@ -249,11 +248,6 @@ entities:
             220: -2,9
             221: -4,9
         - node:
-            color: '#4A653EFF'
-            id: WarnLineGreyscaleE
-          decals:
-            148: 1,5
-        - node:
             color: '#9C2020FF'
             id: WarnLineGreyscaleE
           decals:
@@ -261,10 +255,11 @@ entities:
             64: -2,4
             65: -2,5
         - node:
-            color: '#AE6716FF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: WarnLineGreyscaleE
           decals:
-            167: -7,5
+            264: 1,5
         - node:
             color: '#496EA0FF'
             id: WarnLineGreyscaleN
@@ -298,11 +293,6 @@ entities:
             222: -4,9
             223: -2,9
         - node:
-            color: '#4A653EFF'
-            id: WarnLineGreyscaleW
-          decals:
-            154: 1,5
-        - node:
             color: '#9C2020FF'
             id: WarnLineGreyscaleW
           decals:
@@ -310,10 +300,11 @@ entities:
             101: -4,4
             140: -4,3
         - node:
-            color: '#AE6716FF'
+            zIndex: 5
+            color: '#DE3A3AFF'
             id: WarnLineGreyscaleW
           decals:
-            168: -7,5
+            265: 1,5
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -413,7 +404,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: BullDog
+      id: Hound
 - proto: AirAlarm
   entities:
   - uid: 158
@@ -883,6 +874,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.7776206,5.6031113
+      parent: 1
+- proto: ClosetWallO2Filled
+  entities:
+  - uid: 315
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-0.5
       parent: 1
 - proto: ComfyChair
   entities:
@@ -1871,6 +1870,12 @@ entities:
     components:
     - type: Transform
       pos: -6.5,2.5
+      parent: 1
+  - uid: 316
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,0.5
       parent: 1
 - proto: PoweredStrobeOrange
   entities:

@@ -9,16 +9,16 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: BullDog
+  id: Hound
   parent: BaseVessel
-  name: CBC BullDog
+  name: CBC Hound
   description: A Rotund Security vessel capable of housing and transporting the roudiest of criminals! 
   price: 21000 #Appraises at 19016. Markup of ~9%.
   category: Small
   group: Sr
   access: Brig # Oddball, matches guard ID, specific enough to exclude cadets
   mapchecker_group_override: Security # Treat this as a security vessel for mapchecker purposes
-  shuttlePath: /Maps/_NF/Shuttles/Sr/bulldog.yml
+  shuttlePath: /Maps/_NF/Shuttles/Sr/hound.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -26,16 +26,16 @@
   - Plasma
 
 - type: gameMap
-  id: BullDog
-  mapName: 'CBC BullDog'
-  mapPath: /Maps/_NF/Shuttles/Sr/bulldog.yml
+  id: Hound
+  mapName: 'CBC Hound'
+  mapPath: /Maps/_NF/Shuttles/Sr/hound.yml
   minPlayers: 0
   stations:
-    BullDog:
+    Hound:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'BullDog {1}'
+          mapNameTemplate: 'Hound {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
