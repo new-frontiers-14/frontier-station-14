@@ -1,0 +1,281 @@
+#region packs
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootPackExplorer
+  name: explorer's bundle
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/salvage.rsi
+    state: icon
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletExplorer
+  name: explorer's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-color
+    color: "#786243"
+
+# region tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom500To1500
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerMeleeT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: Pickaxe
+      orGroup: Weapons
+      prob: 0.7
+    - id: SpawnDungeonLootMeleeT1
+      orGroup: Weapons
+      prob: 0.3
+    # Armor
+    - id: ClothingOuterEVASuitSalvage
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootNpcMaterialBasicRandomLow
+      orGroup: Items
+      prob: 0.7
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.3
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerRangedT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponPka
+      orGroup: Weapons
+      prob: 0.4
+    # Armor
+    - id: ClothingOuterEVASuitSalvage
+      orGroup: Armor
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootNpcMaterialBasicRandomLow
+      orGroup: Items
+      prob: 0.7
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.3
+
+# region tier 2
+- type: entity
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom500To2000
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerMeleeT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnDungeonLootMeleeT2
+      orGroup: Weapons
+      prob: 0.3
+    # Armor
+    - id: ClothingOuterEVASuitSalvage
+      orGroup: Armor
+      prob: 0.2
+    - id: ClothingOuterHardsuitSpatio
+      orGroup: Armor
+      prob: 0.1
+    # Items
+    - id: SpawnDungeonLootNpcMaterialBasicRandomMedium
+      orGroup: Items
+      prob: 0.7
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.3
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerRangedT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponPka
+      orGroup: Weapons
+      prob: 0.4
+    - id: NFWeaponPkaCannon
+      orGroup: Weapons
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterEVASuitSalvage
+      orGroup: Armor
+      prob: 0.2
+    - id: ClothingOuterHardsuitSpatio
+      orGroup: Armor
+      prob: 0.1
+    # Items
+    - id: SpawnDungeonLootNpcMaterialBasicRandomMedium
+      orGroup: Items
+      prob: 0.5
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.3
+
+# region tier 3
+- type: entity
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom500To2500
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerMeleeT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: MiningDrill
+      orGroup: Weapons
+      prob: 0.5
+    - id: SpawnDungeonLootMeleeT2
+      orGroup: Weapons
+      prob: 0.25
+    # Armor
+    - id: ClothingOuterHardsuitSpatio
+      orGroup: Armor
+      prob: 0.3
+    - id: ClothingOuterHardsuitSalvage
+      orGroup: Armor
+      prob: 0.1
+    # Items
+    - id: SpawnDungeonLootNpcMaterialBasicRandomHigh
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: Items
+      prob: 0.2
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerRangedT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponPka
+      orGroup: Weapons
+      prob: 0.4
+    - id: NFWeaponPkaCannon
+      orGroup: Weapons
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterHardsuitSpatio
+      orGroup: Armor
+      prob: 0.3
+    - id: ClothingOuterHardsuitLuxury
+      onGroup: Armor
+      prob: 0.1
+    # Items
+    - id: SpawnDungeonLootNpcMaterialBasicRandomHigh
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: Items
+      prob: 0.2
+
+# region tier 4 (boss)
+- type: entity
+  parent: NFBaseNpcLootWalletExplorer
+  id: ClothingWalletExplorerBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2500To5000
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ClothingBackpackExplorerBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFEnergyPickaxe
+      orGroup: Weapons
+      prob: 0.4
+    - id: NFWeaponPkaCannon
+      orGroup: Weapons
+      prob: 0.3
+    - id: Pickaxe
+      orGroup: Weapons
+      prob: 0.2
+    - id: NFWeaponPka
+      orGroup: Weapons
+      prob: 0.15
+    # Armor
+    - id: ClothingOuterHardsuitSalvage
+      orGroup: Armor
+      prob: 0.25
+    - id: ClothingOuterHardsuitLuxury
+      onGroup: Armor
+      prob: 0.15
+    - id: ClothingOuterHardsuitMaximPrototype
+      orGroup: Armor
+      prob: 0.05
+    # Items
+    - id: SpawnDungeonLootClutterEngi
+      orGroup: Items
+      prob: 0.1
+      amount: 4
+    - id: SpawnDungeonLootNpcMaterialBasicFullMedium
+      orGroup: Items
+      prob: 0.35
+    - id: SpawnDungeonLootNpcExplorersItemsFluff
+      orGroup: Items
+      prob: 0.35
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: BossLoot
+      prob: 0.2
+    # Boss Loot
+    - id: SpawnDungeonLootNpcExplorersBlueprints
+      orGroup: BossLoot
+      prob: 0.5
+    - id: SpawnDungeonLootNpcBossLootShared # From 10 to 5000 spesos
+      orGroup: BossLoot
+      prob: 0.5

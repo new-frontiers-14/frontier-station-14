@@ -1,0 +1,192 @@
+# Starter: anything you can get from loadouts, vendomats or print from techfabs at rouind start
+# (todo) Adavanced: advanced tools, advanced meds, T3 weapons, middle tier suits
+# (todo) Endgame: best suits, best meds, T4-T5 weapons
+
+# region armor (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackArmorStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: ClothingHeadHelmetMercenaryBlack
+      - id: ClothingEyesHudBountyHunter
+      - id: ClothingMaskGasSecurity
+      - id: ClothingOuterVestWebMercenaryBlack
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingShoesBootsJack
+      - id: ClothingOuterEVASuitMercenary
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackArmorPunkStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: ClothingEyesHudBountyHunter
+      - id: ClothingMaskPunkHalf
+      - id: ClothingOuterArmorPunkRandomized
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingBeltPunkRandomized
+      - id: ClothingShoesBootsPunkRandomized
+      - id: ClothingOuterEVASuitMercenary
+
+# region rifle (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackWeaponRifleStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: NFWeaponRifleAssaultNovaliteC1
+      - id: NFMagazineClipRifle20
+      - id: NFMagazineClipRifle20
+      - id: NFMagazineClipRifle20
+      - id: NFMagazineClipRifle20
+      - id: NFAmmunitionBoxRifle20
+      - id: NFAmmunitionBoxRifle20
+
+# region shotgun (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackWeaponShotgunStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: NFWeaponShotgunSawn
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+
+# region smg (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackWeaponSmgStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: NFWeaponPistolPollockHighCapacityMag
+      - id: NFMagazineHighCapacityPistol35
+      - id: NFMagazineHighCapacityPistol35
+      - id: NFMagazineHighCapacityPistol35
+      - id: NFMagazineHighCapacityPistol35
+      - id: NFAmmunitionBoxPistol35
+      - id: NFAmmunitionBoxPistol35
+      - id: NFAmmunitionBoxPistol35
+      - id: NFMetalShield
+
+# region sidearms (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackWeaponSidearmsStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: NFWeaponEnergyPistolLaser
+      - id: SurvivalKnife
+
+# region tools (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackToolsStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: NFTobaccoPouch
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: Crowbar
+      - id: Screwdriver
+      - id: Wrench
+      - id: Wirecutter
+      - id: Pickaxe
+      - id: trayScanner
+
+# region medicine (starter)
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnExpeditionTesterPackMedicineStarter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: EmergencyMedipen
+      - id: EmergencyMedipen
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+      - id: Gauze
+
+# region packs (starter)
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ExpeditionTesterPackRifleStarter
+  categories: [ DoNotMap ]
+  name: expedition testing pack
+  suffix: Starter, Rifle
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnExpeditionTesterPackWeaponRifleStarter
+    - id: SpawnExpeditionTesterPackWeaponSidearmsStarter
+    # Armor
+    - id: SpawnExpeditionTesterPackArmorStarter
+    # Medicine
+    - id: SpawnExpeditionTesterPackMedicineStarter
+    # Tools
+    - id: SpawnExpeditionTesterPackToolsStarter
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ExpeditionTesterPackShotgunStarter
+  categories: [ DoNotMap ]
+  name: expedition testing pack
+  suffix: Starter, Shotgun
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnExpeditionTesterPackWeaponShotgunStarter
+    - id: SpawnExpeditionTesterPackWeaponSidearmsStarter
+    # Armor
+    - id: SpawnExpeditionTesterPackArmorStarter
+    # Medicine
+    - id: SpawnExpeditionTesterPackMedicineStarter
+    # Tools
+    - id: SpawnExpeditionTesterPackToolsStarter
+
+- type: entity
+  parent: NFBaseNpcLootPackExplorer
+  id: ExpeditionTesterPackSmgStarter
+  categories: [ DoNotMap ]
+  name: expedition testing pack
+  suffix: Starter, SMG
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: SpawnExpeditionTesterPackWeaponSmgStarter
+    - id: SpawnExpeditionTesterPackWeaponSidearmsStarter
+    # Armor
+    - id: SpawnExpeditionTesterPackArmorPunkStarter
+    # Medicine
+    - id: SpawnExpeditionTesterPackMedicineStarter
+    # Tools
+    - id: SpawnExpeditionTesterPackToolsStarter

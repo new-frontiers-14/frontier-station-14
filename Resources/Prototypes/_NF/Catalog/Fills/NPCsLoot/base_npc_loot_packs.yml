@@ -1,0 +1,35 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: NFBaseNpcLootBackpack
+  suffix: NPC Loot
+  description: A bundle containing items of dubious purpose or value.
+  components:
+  - type: Item
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    slots: [back]
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootBelt
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots: [belt]
+
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: NFBaseNpcLootWallet
+  components:
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: false
+    slots: [wallet]

@@ -1,0 +1,160 @@
+# region treasure
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcRogueSiliconTreasure
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:GroupSelector
+        weight: 0.2
+        children:
+        - id: TreasureHardDiskDrive # 275 spesos
+        - id: TreasureCDDrive # 300 spesos
+        - id: TreasureFlopDiskDrive # 350 spesos
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: TreasureDatadiskEncrypted # 500 spesos
+        - id: TreasureCPUSupercharged # 750 spesos
+      - !type:GroupSelector
+        weight: 0.5
+        children:
+        - id: TreasureSsd # 900 spesos
+        - id: TreasureSelfRepairModule # 1350 spesos
+
+# region borg module
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcRogueSiliconBorgModule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - id: BorgModuleJetpack
+      - id: BorgModuleCustodial
+      - id: BorgModuleCable
+      - id: BorgModuleFireExtinguisher
+      - id: BorgModuleAppraisal
+      - id: BorgModuleTraversal
+      - id: BorgModuleTopicals
+      - id: BorgModuleDiagnosis
+      - id: BorgModuleArtifact
+      - id: BorgModuleAnomaly
+      - id: BorgModuleService
+      - id: BorgModuleNFService
+      - id: BorgModuleBureaucracy
+      - id: BorgModuleChef
+      - id: BorgModuleMusique
+      - id: BorgModuleGardening
+      - id: BorgModuleHarvesting
+      - id: BorgModuleClowning
+      - !type:GroupSelector
+        children:
+        - id: BorgModuleRescue
+          weight: 0.9
+        - id: BorgModuleAdvancedParamedic
+          weight: 0.1
+      - !type:GroupSelector
+        children:
+        - id: BorgModuleChemical
+          weight: 0.9
+        - id: BorgModuleAdvancedChemical
+          weight: 0.1
+      - !type:GroupSelector
+        children:
+        - id: BorgModuleCleaning
+          weight: 0.9
+        - id: BorgModuleAdvancedCleaning
+          weight: 0.1
+      - !type:GroupSelector
+        children:
+        - id: BorgModuleConstruction
+          weight: 0.9
+        - id: BorgModuleRCDShipyard
+          weight: 0.1
+      - !type:GroupSelector
+        children:
+        - id: BorgModuleTool
+          weight: 0.9
+        - id: BorgModuleAdvancedTool
+          weight: 0.1
+      - !type:GroupSelector
+        children:
+        - id: BorgModuleMining
+          weight: 0.9
+        - id: BorgModuleAdvancedMining
+          weight: 0.1
+      - !type:GroupSelector
+        weight: 0.005
+        children:
+        - id: BorgModuleOperative
+        - id: BorgModuleMartyr
+        - id: BorgModuleSyndicateWeapon
+        - id: BorgModuleEsword
+        - id: BorgModuleL6C
+
+# region blueprints
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcRogueSiliconBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.4
+        children:
+        - id: NFBlueprintRogueSiliconAdvancedCapacitor
+        - id: NFBlueprintRogueSiliconAdvancedMatterBin
+        - id: NFBlueprintRogueSiliconAdvancedManipulator
+        - id: NFBlueprintRogueSiliconPowerCellHigh
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: NFBlueprintRogueSiliconAdvancedTools
+        - id: NFBlueprintRogueSiliconSuperCapacitor
+        - id: NFBlueprintRogueSiliconSuperMatterBin
+        - id: NFBlueprintRogueSiliconSuperManipulator
+        - id: NFBlueprintRogueSiliconPowerCellHyper
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintRogueSiliconRPED
+        - id: NFBlueprintRogueSiliconShipyardRCD
+        - id: NFBlueprintOreBagOfHolding
+        - id: NFBlueprintConstructionBagOfHolding
+        # - id: NFBlueprintRogueSiliconPistolLaserSvalinn # TODO: restore the blueprint when the weapon is fixed
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.1
+        children:
+        - id: NFBlueprintRogueSiliconRipley
+        - id: NFBlueprintRogueSiliconMechEquipmentFork
+        - id: NFBlueprintRogueSiliconMechEquipmentGrabber
+        - id: NFBlueprintRogueSiliconEnergyRifleCarbine
+        - id: NFBlueprintRogueSiliconPistolLaserAdvanced
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: NFBlueprintRogueSiliconHonker
+        - id: NFBlueprintRogueSiliconBluespaceBags
+        - id: NFBlueprintRogueSiliconEnergySubMachineGunDeltaV
+      # Unique
+      - !type:GroupSelector
+        weight: 0.01
+        children:
+        - id: NFBlueprintRogueSiliconBluespaceCapacitor
+        - id: NFBlueprintRogueSiliconBluespaceMatterBin
+        - id: NFBlueprintRogueSiliconBluespaceManipulator
+        - id: NFBlueprintRogueSiliconPowerCellMicroreactor

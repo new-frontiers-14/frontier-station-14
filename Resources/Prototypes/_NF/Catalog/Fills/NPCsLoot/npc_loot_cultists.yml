@@ -1,0 +1,205 @@
+# BASE
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: CultistMessengerGiftBox
+  name: blood cultist's bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
+
+# wallet (for cash)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootWallet
+  id: NFBaseNpcLootWalletCult
+  name: blood cultist's wallet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-color
+    color: "#562f2f"
+
+# region Tier 1
+- type: entity
+  parent: NFBaseNpcLootWalletCult
+  id: ClothingWalletCultT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCashRandom2500To3500
+
+# BLOOD CULT NPC LOOT
+## Zealot (Ranged) Loot
+- type: entity
+  parent: CultistMessengerGiftBox
+  id: ClothingBackpackBloodCultZealotLootA
+  name: cultist gear bundle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledBolt
+    # Bonus Loot T1
+    - id: SpawnDungeonLootMaterialsBasicFull
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingBeltQuiverCrossbowFilledPlasma
+    # Bonus Loot T1
+    - id: SpawnDungeonLootMaterialsBasicFull
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootCaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Bonus Loot T1
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.7
+
+## Generic rewards
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootJanitor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollRolledCultForge
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.3
+    - id: ShardCrystalRed
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.3
+    - id: Bloodpack
+      prob: 0.08
+    - id: Tourniquet
+      amount: 1
+      prob: 0.05
+    - id: MaterialBones
+      prob: 0.2
+    # Bonus Loot T2
+    - id: SpawnDungeonLootMaterialsBasicFull
+      prob: 0.7
+    - id: SpawnDungeonLootToolsAdvancedEngineering
+      prob: 0.3
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootPriest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollRolledCultStaffRechargerAltar
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.3
+    - id: ShardCrystalRed
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.3
+    # Bonus Loot T1
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.7
+    - id: ShardCrystalRed
+      prob: 0.7
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootB
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: Bloodpack
+      prob: 0.06
+    - id: BruteAutoInjector
+      amount: 1
+      prob: 0.02
+    - id: MaterialBones
+      prob: 0.1
+    # Bonus Loot T3
+    - id: SpawnDungeonLootMaterialsValuableFull
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootD
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: Bloodpack
+      prob: 0.02
+    - id: Gauze1
+      amount: 1
+      prob: 0.01
+    # Bonus Loot T1
+    - id: SpawnDungeonLootMaterialsBasicFull
+      prob: 0.7
+    - id: SpawnRandomSpellScrollBloodCult
+      prob: 0.05
+    - id: ShardCrystalRed
+      prob: 0.05

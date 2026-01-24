@@ -1,0 +1,646 @@
+#region base
+- type: entity
+  abstract: true
+  parent: [ MobMovementSpeedModifierRanged, MobStaminaFodder, MobNonHumanHostileBase ]
+  id: BaseMobArgocyteExpeditions
+  name: argocyte
+  description: |-
+   A distant relative of Xenos, Argocytes are known throughout the sector for their ability to eat and digest almost anything, from organic matter to reinforced plastitanium vault walls. Just like Xenos, this species is well-acclimated to hostile environments: neither the vacuum of space nor the extreme heat and pressure of a planet consumed by plasma fire can kill these creatures.
+  components:
+  - type: HTN
+    rootTask:
+      task: XenoCompound # Will use this one for now, untill upstream makes custom AI for argocytes
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Sprite
+    sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+  - type: Bloodstream
+    bloodReagent: FluorosulfuricAcid
+    bloodMaxVolume: 75
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds # Base value to fall back to
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      24: 0.7
+      32: 0.5
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 5
+        Structural: 20
+  - type: Body
+    prototype: Animal
+  - type: TypingIndicator
+    proto: alien
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: LargeMob
+  - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
+    molsPerSecondPerUnitMass: 0.0005
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSmall
+      amount: 1
+
+# Stalkers morphotype
+# region slurva
+- type: entity
+  parent: [MobMovementSpeedModifierSpecial, BaseMobArgocyteExpeditions]
+  id: MobArgocyteSlurvaExpeditions
+  name: slurva
+  description: The first lifecycle stage of the Stalker morphotype. A pathetic creature, incapable of doing much. It is better to kill it now before it has a chance to mature.
+  components:
+  - type: Sprite
+    layers:
+    - state: slurva
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slurva
+      Dead:
+        Base: slurva_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      16: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 0.7
+      13: 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 3
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSmall
+      amount: 1
+
+# region skitter
+- type: entity
+  parent: [MobMovementSpeedModifierSpecial, BaseMobArgocyteExpeditions]
+  id: MobArgocyteSkitterExpeditions
+  name: skitter
+  description: The second lifecycle stage of the Stalker morphotype. Still small, these creatures tend to travel in small packs for safety.
+  components:
+  - type: Sprite
+    layers:
+    - state: skitter
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: skitter
+      Dead:
+        Base: skitter_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      24: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      15: 0.7
+      20: 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 6
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSmall
+      amount: 1
+
+# region swiper
+- type: entity
+  parent: [MobMovementSpeedModifierMelee, BaseMobArgocyteExpeditions]
+  id: MobArgocyteSwiperExpeditions
+  name: swiper
+  description: The third lifecycle stage of the Stalker morphotype. Roaming scavengers, usually out on reconnaisance or gathering materials.
+  components:
+  - type: Sprite
+    layers:
+    - state: swiper
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: swiper
+      Dead:
+        Base: swiper_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      32: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      19: 0.7
+      26: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 8
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSwiper
+      amount: 1
+
+# region glider
+- type: entity
+  parent: [MobMovementSpeedModifierMelee, BaseMobArgocyteExpeditions]
+  id: MobArgocyteGliderExpeditions
+  name: glider
+  description: The fourth lifecycle stage of the Stalker morphotype. Born and bred hunters, these stalk and prey upon smaller wildlife.
+  components:
+  - type: Sprite
+    layers:
+    - state: glider
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: glider
+      Dead:
+        Base: glider_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      24: 0.7
+      32: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 10
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteGlider
+      amount: 1
+
+# region crawler
+- type: entity
+  parent: [MobMovementSpeedModifierSpecial, BaseMobArgocyteExpeditions]
+  id: MobArgocyteCrawlerExpeditions
+  name: crawler
+  description: The fifth lifecycle stage of the Stalker morphotype. These deadly pack animals ambush and maul unsuspecting travelers.
+  components:
+  - type: Sprite
+    layers:
+    - state: crawler
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: crawler
+      Dead:
+        Base: crawler_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      48: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      28: 0.7
+      38: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 12
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteCrawler
+      amount: 1
+
+# region founder
+- type: entity
+  parent: [MobMovementSpeedModifierMelee, BaseMobArgocyteExpeditions]
+  id: MobArgocyteFounderExpeditions
+  name: founder
+  description: The last known lifecycle stage of the Stalker morphotype. Most often seen in mature hives preparing for an expansion.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+    layers:
+    - state: founder
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: founder
+      Dead:
+        Base: founder_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      72: 0.7
+      96: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 14
+        Structural: 25
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteFounder
+      amount: 1
+
+# Guardian morphotype
+# region barrier
+- type: entity
+  parent: [MobMovementSpeedModifierMelee, BaseMobArgocyteExpeditions]
+  id: MobArgocyteBarrierExpeditions
+  name: barrier
+  description: The first lifecycle stage of the Guardian morphotype. Equally as pathetic as the "Slurva". Not yet fully formed, its protective plates are still soft.
+  components:
+  - type: Sprite
+    layers:
+    - state: barrier
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: barrier
+      Dead:
+        Base: barrier_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      28: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      17: 0.7
+      22: 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSmall
+      amount: 1
+
+# region molder
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteMolderExpeditions
+  name: molder
+  description: The second lifecycle stage of the Guardian morphotype. Usually seen building and repairing structures in the hive.
+  components:
+  - type: Sprite
+    layers:
+    - state: molder
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: molder
+      Dead:
+        Base: molder_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      64: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      38: 0.7
+      50: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteMolder
+      amount: 1
+
+# region pouncer
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocytePouncerExpeditions
+  name: pouncer
+  description: The third lifecycle stage of the Guardian morphotype. Provides rapid response for minor threats to the hive.
+  components:
+  - type: Sprite
+    layers:
+    - state: pouncer
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pouncer
+      Dead:
+        Base: pouncer_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocytePouncer
+      amount: 1
+
+# region harvester
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteHarvesterExpeditions
+  name: harvester
+  description: A mutation that develops in the third lifecycle stage of the Guardian morphotype. "Harvesters" use their highly caustic saliva to break down and process materials for the hive.
+  components:
+  - type: Sprite
+    layers:
+    - state: harvester
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: harvester
+      Dead:
+        Base: harvester_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      72: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      44: 0.7
+      58: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Caustic: 8
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteHarvester
+      amount: 1
+
+# region enforcer
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteEnforcerExpeditions
+  name: enforcer
+  description: The fourth lifecycle stage of the Guardian morphotype. The main guards of the hive, these fend off would-be attackers.
+  components:
+  - type: Sprite
+    layers:
+      - state: enforcer
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: enforcer
+      Dead:
+        Base: enforcer_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      66: 0.7
+      90: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 14
+        Structural: 20
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteEnforcer
+      amount: 1
+
+# region leviathing (boss)
+- type: entity
+  parent: [MobHostileBossBase, BaseMobArgocyteExpeditions]
+  id: MobArgocyteLeviathingExpeditions
+  name: leviathing
+  description: The final known lifecycle stage of the Guardian morphotype. These hulking beasts lead attacks on the hive's enemies.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+    layers:
+      - state: leviathing
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: leviathing
+      Dead:
+        Base: leviathing_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 395
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobArgocyteSwarm:
+            min: 1
+            max: 2
+          SpawnDungeonLootNpcArgocyteLeviathing:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      240: 0.7
+      320: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20
+        Structural: 50
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteLeviathing
+      amount: 1
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-leviathing-dungeon-name
+    description: ghost-role-information-leviathing-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: ActionGrant
+    actions:
+    - ActionLeviathingSpawn
+
+- type: entity
+  id: ActionLeviathingSpawn
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Spawn Argocyte[/color]"
+  description: "Spawn an argocyte that will follow you. [color=yellow]60 second cooldown.[/color]"
+  components:
+  - type: Action
+    icon: { sprite : Mobs/Aliens/Argocyte/argocyte_common.rsi, state: pouncer }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 60
+    sound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: SpawnMobArgocyteLeviathingSpawned
+
+# region leviathing spawns
+- type: entity
+  abstract: true
+  id: MobArgocyteLeviathingSpawned
+  components:
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootNpcArgocyteSmall
+      amount: 1
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - NFSalvageMobRestrictions
+  - type: HTN
+    rootTask:
+       task: KillerTomatoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+
+- type: entity
+  parent: [MobArgocyteLeviathingSpawned, MobArgocyteMolderExpeditions]
+  id: MobArgocyteMolderLeviathingSpawned
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [MobArgocyteLeviathingSpawned, MobArgocytePouncerExpeditions]
+  id: MobArgocytePouncerLeviathingSpawned
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [MobArgocyteLeviathingSpawned, MobArgocyteGliderExpeditions]
+  id: MobArgocyteGliderLeviathingSpawned
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [MobArgocyteLeviathingSpawned, MobArgocyteHarvesterExpeditions]
+  id: MobArgocyteHarvesterLeviathingSpawned
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [MobArgocyteLeviathingSpawned, MobArgocyteCrawlerExpeditions]
+  id: MobArgocyteCrawlerLeviathingSpawned
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobArgocyteLeviathingSpawned
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: MobArgocyteMolderLeviathingSpawned
+      - id: MobArgocytePouncerLeviathingSpawned
+      - id: MobArgocyteGliderLeviathingSpawned
+      - id: MobArgocyteHarvesterLeviathingSpawned
+      - id: MobArgocyteCrawlerLeviathingSpawned

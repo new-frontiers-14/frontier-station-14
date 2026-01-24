@@ -1,0 +1,408 @@
+# region pistols
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateWeaponsPistols
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - id: WeaponCaseShortRitland45Expedition
+        weight: 0.2
+      - id: WeaponCaseShortViper
+        weight: 0.3
+      - id: WeaponCaseShortCobra
+        weight: 0.3
+      - id: WeaponCaseShortN1984Expedition
+        weight: 0.2
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateWeaponsPistolsChemical
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - id: WeaponSprayNozzle
+        weight: 0.4
+      - id: WeaponWaterBlasterSuper
+        weight: 0.3
+      - id: WeaponWaterBlaster
+        weight: 0.2
+      - id: WeaponWaterPistol
+        weight: 0.1
+
+# region smgs
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateWeaponsSmgs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - id: WeaponCaseLongTypewriterExpedition
+      - id: WeaponCaseLongC20r
+      - id: WeaponCaseLongAtreidesExpedition
+
+# region pistol ammo
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistol
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.4
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+      children:
+      - id: NFAmmunitionBoxPistol35
+      - id: NFAmmunitionBoxPistol45
+    # +P+
+    - !type:GroupSelector
+      weight: 0.6
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+      children:
+      - id: NFAmmunitionBoxPistol35Overpressure
+      - id: NFAmmunitionBoxPistol45Overpressure
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoPistol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistolIncendiary
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+      children:
+      - id: NFAmmunitionBoxPistol35Incendiary
+      - id: NFAmmunitionBoxPistol45Incendiary
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoPistolIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+          weight: 0.3
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+      - !type:NestedSelector
+          weight: 0.7
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolIncendiary
+
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistolUranium
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+      children:
+      - id: NFAmmunitionBoxPistol35Uranium
+      - id: NFAmmunitionBoxPistol45Uranium
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoPistolUranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+          weight: 0.1
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+      - !type:NestedSelector
+          weight: 0.3
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolIncendiary
+      - !type:NestedSelector
+          weight: 0.6
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolUranium
+
+- type: entityTable
+  id: TableDungeonLootNpcSyndicateAmmoPistolEmp
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+      children:
+      - id: NFAmmunitionBoxPistol35Emp
+      - id: NFAmmunitionBoxPistol45Emp
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoPistolEmp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+          weight: 0.3
+          tableId: TableDungeonLootNpcSyndicateAmmoPistol
+      - !type:NestedSelector
+          weight: 0.7
+          tableId: TableDungeonLootNpcSyndicateAmmoPistolEmp
+
+# region shotguns
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateWeaponsShotguns
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - id: WeaponCaseLongKammererExpedition
+        weight: 0.3
+      - id: WeaponCaseLongEnforcerExpedition
+        weight: 0.55
+      - id: WeaponCaseLongBulldog
+        weight: 0.15
+
+# region shotgun ammo
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoShotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # boxes
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+        weight: 0.1
+        rolls: !type:RangeNumberSelector
+          range: 1, 3
+      - id: NFAmmunitionBoxShellShotgunOverpressure
+        weight: 0.2
+        rolls: !type:RangeNumberSelector
+          range: 1, 3
+      - id: NFAmmunitionBoxShellShotgunIncendiary
+        weight: 0.45
+        rolls: !type:RangeNumberSelector
+          range: 0, 4
+      - id: NFAmmunitionBoxShellShotgunUranium
+        weight: 0.25
+        rolls: !type:RangeNumberSelector
+          range: 0, 3
+
+# region rifles
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateWeaponsRifles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - id: WeaponCaseLongM90Expedition
+        weight: 0.2
+      - id: WeaponCaseLongVulcanExpedition
+        weight: 0.3
+      - id: WeaponCaseLongSm
+        weight: 0.4
+      - id: WeaponCaseHeavyLightMachineGunL6
+        weight: 0.1
+
+# region rifle ammo
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoRifleIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # boxes
+      - !type:GroupSelector
+        weight: 0.4
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: NFAmmunitionBoxRifle20Incendiary
+        - id: NFAmmunitionBoxRifle25Incendiary
+        - id: NFAmmunitionBoxRifle30Incendiary
+      # big boxes
+      - !type:GroupSelector
+        weight: 0.1
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: NFAmmunitionBoxBigRifle20Incendiary
+        - id: NFAmmunitionBoxBigRifle25Incendiary
+        - id: NFAmmunitionBoxBigRifle30Incendiary
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateAmmoRifleUranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # boxes
+      - !type:GroupSelector
+        weight: 0.4
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: NFAmmunitionBoxRifle20Uranium
+        - id: NFAmmunitionBoxRifle25Uranium
+        - id: NFAmmunitionBoxRifle30Uranium
+      # big boxes
+      - !type:GroupSelector
+        weight: 0.1
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: NFAmmunitionBoxBigRifle20Uranium
+        - id: NFAmmunitionBoxBigRifle25Uranium
+        - id: NFAmmunitionBoxBigRifle30Uranium
+
+# region fluff
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateFluffItems
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.4
+        children:
+        - id: ClothingEyesGlassesOutlawGlasses
+        - id: BalloonSyn
+        - id: TowelColorSyndicate
+        - id: SyndicateBusinessCard
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - !type:AllSelector
+          weight: 0.4
+          children:
+          - id: SyndicateFlippo
+          - id: CigPackSyndicate
+        - !type:AllSelector
+          weight: 0.4
+          children:
+          - id: ClothingHeadPyjamaSyndicateRed
+          - id: ClothingUniformJumpsuitPyjamaSyndicateRed
+          - id: ClothingShoesSlippers
+          - id: PlushieNuke
+        - !type:AllSelector
+          weight: 0.4
+          children:
+          - id: ClothingHeadPyjamaSyndicateBlack
+          - id: ClothingUniformJumpsuitPyjamaSyndicateBlack
+          - id: ClothingShoesSlippers
+          - id: PlushieSharkBlue
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: HappyHonkNukieSnacks
+        - id: DefibrillatorSyndicate
+        - id: ClothingEyesHudSyndicateAgent
+        - id: ClothingEyesHudSyndicate
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.1
+        children:
+        - id: Telecrystal1
+        - id: MedkitCombatFilled
+        - id: CardBoxSyndicate
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: Telecrystal5
+        - id: SyndicateSpongeWrapped
+      # Unique
+      - !type:GroupSelector
+        weight: 0.01
+        children:
+        - !type:AllSelector # Elite pink pyjamas
+          children:
+          - id: ClothingHeadPyjamaSyndicatePink
+          - id: ClothingUniformJumpsuitPyjamaSyndicatePink
+          - id: ClothingShoesSlippers
+          - id: PlushieCarp
+        - id: BorgModuleSyndicateWeapon
+
+# region blueprints
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcSyndicateBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.4
+        children:
+        - id: NFBlueprintPistolViperSyndicate
+        - id: NFBlueprintPistolCobraSyndicate
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: NFBlueprintAmmoOverpressureSyndicate
+        - id: NFBlueprintM90glSyndicate
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintSmSyndicate
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.1
+        children:
+        - id: NFBlueprintAtreidesSyndicate
+        - id: NFBlueprintAmmoIncendiarySyndicate
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: NFBlueprintC20rSyndicate
+        - id: NFBlueprintAmmoUraniumSyndicate
+      # Unique
+      - !type:GroupSelector
+        weight: 0.01
+        children:
+        - id: NFBlueprintLightMachineGunL6Syndicate
