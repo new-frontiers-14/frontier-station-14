@@ -190,11 +190,21 @@
   id: ShuttleMapCrescent
   name: "NC Crescent"
   description: "Detailed map of a Crescent shuttle."
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: crescent
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapCrossroads
+  name: "PHI Crossroads"
+  description: "Detailed map of a Crossroads shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: crossroads
 
 - type: entity
   parent: PosterBase
