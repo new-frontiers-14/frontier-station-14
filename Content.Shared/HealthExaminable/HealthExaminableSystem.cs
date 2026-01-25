@@ -14,7 +14,7 @@ public sealed class HealthExaminableSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
+        Logger.Info("REEEEEEEEEEEEEE");
         SubscribeLocalEvent<HealthExaminableComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
     }
 
