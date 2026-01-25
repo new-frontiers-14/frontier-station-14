@@ -212,7 +212,7 @@ uplink-security-hoverbike-desc = Flatpack containing NFSD issued turbine with bi
 uplink-security-trackingdart-bundle-name = Tracking Dart Bundle
 uplink-security-trackingdart-bundle-desc = A bundle containing a Lake type launcher, 3 tracking darts and 3 pinpointers.
 
-uplink-security-emp-grenade-ammo-name = EMP Grenades Ammo
+uplink-security-emp-grenade-ammo-name = EMP Grenade Ammos
 uplink-security-emp-grenade-ammo-desc = 12 EMP grenades for the NGP-40 projector.
 
 uplink-security-grenade-ammo-name = Varied Grenade Ammos
