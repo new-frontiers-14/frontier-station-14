@@ -1,4 +1,4 @@
-﻿using Content.Server.Explosion.Components;
+using Content.Server.Explosion.Components;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Implants;
 using Content.Shared.Interaction.Events;
@@ -19,6 +19,12 @@ public sealed partial class TriggerSystem
 
     private void OnMobStateChanged(EntityUid uid, TriggerOnMobstateChangeComponent component, MobStateChangedEvent args)
     {
+        //Frontier: trigger only on escalation of MobState
+        if (component.PreventDeescalation && args.OldMobState > args.NewMobState)
+        {
+            return;
+        }
+
         if (!component.MobState.Contains(args.NewMobState))
             return;
 
