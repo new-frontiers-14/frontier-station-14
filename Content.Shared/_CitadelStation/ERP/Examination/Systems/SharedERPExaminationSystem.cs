@@ -1,4 +1,4 @@
-// Copyright 2025 - 2025, Guardsman and the Expedition 14 contributors
+// Copyright 2025 - 2025, GnKonkort and the Expedition 14 contributors
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Verbs;
