@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 01/27/2026 05:45:38
-  entityCount: 319
+  time: 01/27/2026 06:05:46
+  entityCount: 321
 maps: []
 grids:
 - 1
@@ -851,6 +851,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,1.5
       parent: 1
+- proto: DrinkAbsintheGlass
+  entities:
+  - uid: 321
+    components:
+    - type: Transform
+      pos: -1.5445747,1.5605526
+      parent: 1
 - proto: EmergencyLight
   entities:
   - uid: 87
@@ -862,8 +869,8 @@ entities:
   - uid: 88
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,10.5
+      rot: 3.141592653589793 rad
+      pos: -4.5,8.5
       parent: 1
   - uid: 89
     components:
@@ -876,17 +883,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,1.5
-      parent: 1
-  - uid: 91
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,10.5
-      parent: 1
-  - uid: 92
-    components:
-    - type: Transform
-      pos: 0.5,6.5
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -1713,6 +1709,12 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
+  - uid: 91
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,10.5
+      parent: 1
   - uid: 196
     components:
     - type: Transform
@@ -1722,8 +1724,8 @@ entities:
   - uid: 197
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,8.5
+      rot: 1.5707963267948966 rad
+      pos: -3.5,10.5
       parent: 1
   - uid: 198
     components:
@@ -1744,6 +1746,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,2.5
+      parent: 1
+- proto: PoweredStrobeRed
+  entities:
+  - uid: 92
+    components:
+    - type: Transform
+      pos: 0.5,6.5
       parent: 1
 - proto: Railing
   entities:
@@ -2135,6 +2144,12 @@ entities:
         228:
         - - Pressed
           - Toggle
+        92:
+        - - Pressed
+          - Toggle
+        198:
+        - - Pressed
+          - Toggle
   - uid: 256
     components:
     - type: Transform
@@ -2331,6 +2346,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-0.5
+      parent: 1
+- proto: ToolboxMechanicalFilledAllTools
+  entities:
+  - uid: 320
+    components:
+    - type: Transform
+      pos: -5.989951,5.9106493
       parent: 1
 - proto: WallShuttle
   entities:
