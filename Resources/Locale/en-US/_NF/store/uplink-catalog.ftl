@@ -116,6 +116,12 @@ uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifl
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
+uplink-security-smgmagazine-name = .35 +P SMG Magazines
+uplink-security-smgmagazine-name = A box containing 3 filled .35 pistol (overpressure) SMG magazines.
+
+uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
+uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
+
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
 
