@@ -64,6 +64,7 @@ nf-research-technology-bluespace-gas-tanks = Bluespace Gas Tanks
 nf-research-technology-bounty-hunting = Peacekeeping Basics
 nf-research-technology-clowning-utilities = Clowning Utilities
 nf-research-technology-combat-propulsion = Combat Personal Propulsion
+nf-research-technology-Cooking-bag = Cooking Bag
 nf-research-technology-critter-mechs = HAMTR
 nf-research-technology-deep-fryer = Deep Frying
 nf-research-technology-deterrence = Deterrence Technologies
