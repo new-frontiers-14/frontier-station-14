@@ -1,3 +1,4 @@
+#region prices
 - type: entity
   id: VendPriceFoodBase200
   abstract: true
@@ -11,3 +12,57 @@
   components:
   - type: StaticPrice
     vendPrice: 100
+
+#region packaging
+- type: entity
+  abstract: true
+  parent: FoodPacketTrash
+  id: NFBaseSnackPackage
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/snack_blank_packet.rsi
+    state: packet
+  - type: Item
+    sprite:  _NF/Objects/Consumable/Food/snack_blank_packet.rsi
+    heldPrefix: packet
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 50
+  - type: NFIngredient
+  - type: StaticPrice
+    price: 8
+
+- type: entity
+  parent: NFBaseSnackPackage
+  id: NFSnackPackage
+  name: blank snack packet
+  description: An empty unmarked package for a snack.
+
+#region paste
+- type: entity
+  abstract: true
+  parent: FoodBase
+  id: NFBaseSnackPaste
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/snack_paste.rsi
+    layers:
+    - state: paste
+    - state: paste-unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Consumable/Food/snack_paste.rsi
+    heldPrefix: paste
+    size: Tiny
+  - type: StaticPrice
+    price: 1
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  parent: NFBaseSnackPaste
+  id: NFSnackPaste
+  name: ONV compound 14e
+  description: I should probably stop thinking about what the hell this thing even is.
