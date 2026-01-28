@@ -1,6 +1,5 @@
 flavor-base-basic = basic
 flavor-base-earthy = earthy
-
 flavor-complex-avocado = like avocado
 flavor-complex-cucumber = crisp and refreshing
 flavor-complex-honeycomb = like waxy honey
@@ -23,3 +22,5 @@ flavor-complex-silence = like silence
 flavor-complex-creative = like mad creativity
 flavor-complex-texas = like texan ingenuity
 flavor-complex-nanocaf = like bitter coffee
+flavor-complex-pomegranate = like pomegranates
+flavor-complex-granatapfel = like granatapfel

@@ -103,7 +103,7 @@
   completetime: 5
   materials:
     Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
-    
+
 - type: latheRecipe
   id: NFBioGenFoodMeatBacon
   result: FoodMeatBacon
@@ -111,7 +111,7 @@
   applyMaterialDiscount: false
   completetime: 5
   materials:
-    Biomass: 35 
+    Biomass: 35
 
 #region Cubes
 
@@ -905,6 +905,14 @@
   result: WatermelonSeeds
   icon:
     sprite: Objects/Specific/Hydroponics/watermelon.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenPomegranateSeeds
+  parent: BioGenSeedsRecipe
+  result: PomegranateSeeds
+  icon:
+    sprite: _NF/Objects/Specific/Hydroponics/pomegranate.rsi
     state: seed
 
 # region Medical Seeds
