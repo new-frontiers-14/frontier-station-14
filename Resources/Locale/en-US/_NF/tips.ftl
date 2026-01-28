@@ -123,8 +123,4 @@ nf-tips-dataset-121 = As a pirate, you can get bounties to earn doubloons! Think
 nf-tips-dataset-122 = As a pirate, remember your code! Keep your crews at 4 max, look after Clarrrpy, and pillage with dignity.
 nf-tips-dataset-123 = If you want to stop somebody from escaping after uncuffing them, turn on combat mode while uncuffing - this will shove them down.
 nf-tips-dataset-124 = Make sure to clean your illegal implanters with soap or a damp rag after you use them! Detectives can scan used implanters for incriminating DNA evidence, but not if they've been wiped clean.
-nf-tips-dataset-125 = Consider that running from Pirates isn't always the best option! Fleeing counts as escalation, and you might be safer staying put and hearing them out.
-nf-tips-dataset-126 = Pirates follow a strict code of honor. If you surrender, they can only take 25% of your loot at maximum - and will normally take much less.
-nf-tips-dataset-127 = As a pirate, consider your options when engaging with your targets. Shockshot goes a long way to help stop a situation escalating to lethal force!
-nf-tips-dataset-128 = As a pirate, be mindful of escalating to lethal force around players who might be inexperienced! You can never take back a shot fired, and they might be fleeing because they don't know any better.
-nf-tips-dataset-129 = as a pirate, be sure to announce your presence! Holocalls and talking through a cockpit window go a long way to help encounters with contractors go smoother.
+
