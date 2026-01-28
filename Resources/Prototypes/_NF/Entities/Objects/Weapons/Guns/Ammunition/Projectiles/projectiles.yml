@@ -149,6 +149,38 @@
         - Opaque
       fly-by: *flybyfixture
 
+- type: entity
+  id: NFBulletCannonBallRubber
+  categories: [ HideSpawnMenu ]
+  parent: NFPelletCannonBallRubber
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletCannonBallRubber
+    count: 8
+    spread: 15
+
+- type: entity
+  id: NFPelletCannonBallRubber
+  name: rubber shot
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
+    layers:
+    - state: rubbershot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1.5
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 13 # 104 stamina damage if all pellets connect
+  - type: Tracer
+    color: "#206EEFFF"
+    length: 1.5
+
 # region Upstream
 - type: entity
   parent: MuzzleFlashEffect
