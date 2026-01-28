@@ -8,7 +8,7 @@
   - type: Projectile
     damage:
       types:
-        Heat: 2
+        Heat: 5
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -17,7 +17,7 @@
   - type: Ammo
     muzzleFlash: null
   - type: IgniteOnCollide
-    fireStacks: 2
+    fireStacks: 1
 
 - type: entity
   parent: BaseBulletTrigger
@@ -28,8 +28,8 @@
   - type: Projectile
     damage:
       types:
-        Bloodloss: 3
-        Asphyxiation: 3
+        Blunt: 7.5
+        Piercing: 7.5
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -48,7 +48,7 @@
     damage:
       types:
         Bloodloss: 2
-        Slash: 4
+        Slash: 10
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -68,7 +68,7 @@
     damage:
       types:
         Asphyxiation: 2
-        Blunt: 5
+        Blunt: 10
   - type: Sprite
     noRot: false
     sprite: _NF/Effects/bloodcultprojectiles.rsi
@@ -111,7 +111,7 @@
   - type: Projectile
     damage:
       types:
-        Cold: 5
+        Cold: 12
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -160,7 +160,7 @@
   id: BloodCultLaser
   damage:
     types:
-      Slash: 8
+      Slash: 15
   muzzleFlash:
     sprite: _NF/Effects/bloodcultbeams.rsi
     state: red_lightning
@@ -175,7 +175,7 @@
   id: WizardHitscanLightning
   damage:
     types:
-      Shock: 10
+      Shock: 15
   muzzleFlash:
     sprite: _NF/Effects/wizardbeams.rsi
     state: lightning-muzzle-01
@@ -190,7 +190,7 @@
   id: CausticBeam
   damage:
     types:
-      Caustic: 8
+      Caustic: 10
   muzzleFlash:
     sprite: _NF/Effects/wizardbeams.rsi
     state: green-beam-01
