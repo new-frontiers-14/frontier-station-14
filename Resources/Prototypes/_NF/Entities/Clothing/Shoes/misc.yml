@@ -27,6 +27,37 @@
           False: {state: icon}
 
 - type: entity
+  parent: [ClothingShoesBase, BaseJetpack]
+  id: NFClothingShoesBootsJetpack
+  name: rocket boots
+  description: a Jetpack strapped to your Legs to save you from the cumbersome size of larger jetpacks!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ] # Frontier: Enum changes from Wizden#35341
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 0.75
+      temperature: 293.15
+  - type: Item
+    sprite: null
+    size: Normal
+  - type: Tag
+    tags: [ ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
+
+- type: entity
   id: ActionToggleMoonBoots
   parent: BaseToggleAction
   name: Toggle Moon Boots
