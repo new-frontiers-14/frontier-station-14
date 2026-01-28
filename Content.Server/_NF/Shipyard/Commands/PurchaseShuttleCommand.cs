@@ -3,6 +3,7 @@ using Content.Server._NF.Shipyard.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Utility;
+using Content.Server._NF.GC.Components;
 
 namespace Content.Server._NF.Shipyard.Commands;
 
@@ -12,7 +13,8 @@ namespace Content.Server._NF.Shipyard.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entityManager = default!;
+    [Dependency] private readonly IEntitySystemManager _sysManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("shipyard-commands-purchase-desc");
     public string Help => $"{Command} <station ID> <gridfile path>";
@@ -25,9 +27,12 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         }
 
         var shuttlePath = args[1];
-        var system = _entityManager.GetEntitySystem<ShipyardSystem>();
+        var system = _sysManager.GetEntitySystem<ShipyardSystem>();
         var station = new EntityUid(stationId);
-        system.TryPurchaseShuttle(station, new ResPath(shuttlePath), out _);
+        if (system.TryPurchaseShuttle(station, new ResPath(shuttlePath), out var shuttleUid))
+        {
+            _entityManager.EnsureComponent<DeletionCensusExemptComponent>(shuttleUid.Value); // Ensure ship doesn't get deleted, though chunks should be.
+        }
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

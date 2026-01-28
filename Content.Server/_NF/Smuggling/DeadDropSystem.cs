@@ -27,6 +27,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server._NF.Station.Systems;
 using Robust.Shared.EntitySerialization.Systems;
+using Content.Server._NF.GC.Components;
 
 namespace Content.Server._NF.Smuggling;
 
@@ -457,6 +458,9 @@ public sealed class DeadDropSystem : EntitySystem
         //setup the radar properties
         _shuttle.SetIFFColor(grid, component.Color);
         _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
+
+        //ensure the drop pod isn't deleted
+        EnsureComp<DeletionCensusExemptComponent>(grid);
 
         //this is where we set up all the information that FTL is going to need, including a new null entity as a destination target because FTL needs it for reasons?
         //dont ask me im just fulfilling FTL requirements.
