@@ -212,8 +212,11 @@ uplink-security-hoverbike-desc = Flatpack containing NFSD issued turbine with bi
 uplink-security-trackingdart-bundle-name = Tracking Dart Bundle
 uplink-security-trackingdart-bundle-desc = A bundle containing a Lake type launcher, 3 tracking darts and 3 pinpointers.
 
-uplink-security-emp-bundle-name = EMP Bundle
-uplink-security-emp-bundle-desc = A bundle containing a Lake type launcher and 12 EMP grenades.
+uplink-security-emp-grenade-ammo-name = EMP Grenade Ammos
+uplink-security-emp-grenade-ammo-desc = 12 EMP grenades for the NGP-40 projector.
+
+uplink-security-grenade-ammo-name = Varied Grenade Ammos
+uplink-security-grenade-ammo-desc = Shock Net Grenades, Tear Gas Greandes, and Flash grenades all for the NGP-40 projector.
 
 uplink-security-emp-ammo-name = EMP Projectile Ammo
 uplink-security-emp-ammo-desc = A box containing 4 EMP projectile grenades.
@@ -229,6 +232,9 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
+
+uplink-security-lake-name = NGP-40 projector
+uplink-security-lake-desc = Single shot grenade launcher able to lob both grenades and darts!
 
 # region Pirate
 uplink-pirate-hardsuit-name = Pirate Hardsuit

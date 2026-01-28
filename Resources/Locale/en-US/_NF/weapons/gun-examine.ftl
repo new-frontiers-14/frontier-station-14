@@ -43,6 +43,7 @@ gun-examine-caliber-40mm-grenade-dart = 40mm grenades / tracking darts
 gun-examine-caliber-rocket = rocket-propelled grenades
 gun-examine-caliber-cannon-ball = cannon balls
 gun-examine-caliber-mail-capsule = mail capsules
+gun-examine-caliber-shock-net = shock net grenade
 
 # Manufacturers (alphabetical please)
 weapon-details-manufacturer-custom-made = Custom Made
