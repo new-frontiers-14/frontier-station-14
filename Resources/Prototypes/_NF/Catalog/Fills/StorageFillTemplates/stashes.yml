@@ -22,7 +22,7 @@
   table: !type:GroupSelector
     children:
     # Diamonds: 500 spesos for one
-    - id: TreasureCoinDiamond 
+    - id: TreasureCoinDiamond
     - id: TreasureCoinDiamond3
     - id: TreasureCoinDiamond5
     - id: TreasureCoinDiamond10
@@ -129,7 +129,7 @@
     children:
     # T1
     - !type:GroupSelector
-      weight: 95
+      weight: 93
       children:
       - !type:AllSelector
         children:
@@ -168,6 +168,14 @@
         - id: WeaponCaseShortViper
         - id: WeaponCaseShortAmmoBoxLethal35
       - id: WeaponCaseShortLaserGunExpedition
+    # T3
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortPollockGoldenExpedition
+        - id: WeaponCaseShortAmmoBoxLethal45
 
 #region tables: clutter
 - type: entityTable # Max Inv. footprint: 8
