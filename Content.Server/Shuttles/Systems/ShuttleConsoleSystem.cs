@@ -289,7 +289,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: inertia dampening
+            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), InertiaDampeningMode.Dampen, ServiceFlags.None, IFFSirenFlags.Missing, null, NetEntity.Invalid, true); // Frontier: inertia dampening
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -404,7 +404,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertia dampening, target
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, IFFSirenFlags.Missing, null, NetEntity.Invalid, true); // Frontier: add inertia dampening, target
 
         return GetNavState(
             entity,
@@ -420,7 +420,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertial dampening, target
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, IFFSirenFlags.Missing, null, NetEntity.Invalid, true); // Frontier: add inertial dampening, target
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
@@ -429,6 +429,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             docks,
             _shuttle.NfGetInertiaDampeningMode(entity), // Frontier
             _shuttle.NfGetServiceFlags(entity), // Frontier
+            _shuttle.NfGetIFFSirenState(entity), // Frontier
             entity.Comp1.Target, // Frontier
             GetNetEntity(entity.Comp1.TargetEntity), // Frontier
             entity.Comp1.HideTarget); // Frontier

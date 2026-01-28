@@ -11,6 +11,7 @@ namespace Content.Client.Shuttles.UI
     {
         public event Action<NetEntity?, InertiaDampeningMode>? OnInertiaDampeningModeChanged;
         public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
+        public event Action<NetEntity?, bool>? OnIFFSirenChanged;
         public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
         public event Action<NetEntity?, bool>? OnSetHideTarget;
 
@@ -23,6 +24,10 @@ namespace Content.Client.Shuttles.UI
             NavContainer.OnServiceFlagsChanged += (entity, flags) =>
             {
                 OnServiceFlagsChanged?.Invoke(entity, flags);
+            };
+            NavContainer.OnIFFSirenChanged += (entity, state) =>
+            {
+                OnIFFSirenChanged?.Invoke(entity, state);
             };
             NavContainer.OnSetTargetCoordinates += (entity, position) =>
             {

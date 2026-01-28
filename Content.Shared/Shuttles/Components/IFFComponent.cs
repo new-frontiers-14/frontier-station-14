@@ -62,6 +62,13 @@ public enum IFFFlags : byte
     /// </summary>
     IsPlayerShuttle = 4,
 
+    /// <summary>
+    ///  Frontier - Should this shuttle show an IFF outline and label that indicate an active Siren.
+    /// </summary>
+    Siren = 8
+
+
+
     // TODO: Need one that hides its outline, just replace it with a bunch of triangles or lines or something.
 }
 
@@ -75,4 +82,15 @@ public enum ServiceFlags : byte
     Services = 1,
     Trade = 2,
     Social = 4,
+}
+
+/// <summary>
+/// Frontier: IFF Siren flags.
+/// </summary>
+[Flags]
+public enum IFFSirenFlags : byte
+{
+    Missing = 0,
+    Inactive = 1,
+    Active = 2,
 }
