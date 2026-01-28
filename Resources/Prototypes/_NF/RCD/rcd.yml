@@ -1,0 +1,224 @@
+# Duplicates from the normal RCD ones, to fit into the new "pirate" category
+- type: rcd
+  id: PiratePlating
+  name: rcd-component-plating
+  category: PirateWallsAndFlooring
+  sprite: /Textures/Interface/Radial/RCD/plating.png
+  mode: ConstructTile
+  prototype: Plating
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: PirateCatwalk
+  category: PirateWallsAndFlooring
+  sprite: /Textures/Interface/Radial/RCD/catwalk.png
+  mode: ConstructObject
+  prototype: Catwalk
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - MustBuildOnSubfloor
+    - IsCatwalk
+  rotation: Fixed
+  fx: EffectRCDConstruct1
+
+# Flooring
+- type: rcd
+  id: FloorDark
+  name: rcd-component-floor-dark-steel
+  category: PirateWallsAndFlooring
+  sprite: /Textures/_NF/Interface/Radial/RCD/dark_metal_tile.png
+  mode: ConstructTile
+  prototype: FloorDark
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: FloorWood
+  name: rcd-component-floor-wood
+  category: PirateWallsAndFlooring
+  sprite: /Textures/_NF/Interface/Radial/RCD/wood_tile.png
+  mode: ConstructTile
+  prototype: FloorWood
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+# Walls
+- type: rcd
+  id: WallMining
+  category: PirateWallsAndFlooring
+  sprite: /Textures/_NF/Interface/Radial/RCD/mining.png
+  mode: ConstructObject
+  prototype: WallMining
+  cost: 4
+  delay: 2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: WallMiningDiagonal
+  category: PirateWallsAndFlooring
+  sprite: /Textures/_NF/Interface/Radial/RCD/mining_diagonal.png
+  mode: ConstructObject
+  prototype: WallMiningDiagonal
+  cost: 4
+  delay: 2
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ClockworkGrille
+  category: PirateWindowsAndGrilles
+  sprite: /Textures/_NF/Interface/Radial/RCD/clockwork_grille.png
+  mode: ConstructObject
+  prototype: ClockworkGrille
+  cost: 4
+  delay: 2
+  collisionMask: Impassable
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ClockworkGrilleDiagonal
+  category: PirateWindowsAndGrilles
+  sprite: /Textures/_NF/Interface/Radial/RCD/clockwork_grille_diagonal.png
+  mode: ConstructObject
+  prototype: ClockworkGrilleDiagonal
+  cost: 4
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+# Windows
+- type: rcd
+  id: MiningWindow
+  category: PirateWindowsAndGrilles
+  sprite: /Textures/_NF/Interface/Radial/RCD/mining_window.png
+  mode: ConstructObject
+  prototype: MiningWindow
+  cost: 4
+  delay: 3
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: Fixed
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: MiningWindowDiagonal
+  category: PirateWindowsAndGrilles
+  sprite: /Textures/_NF/Interface/Radial/RCD/mining_window_diagonal.png
+  mode: ConstructObject
+  prototype: MiningWindowDiagonal
+  cost: 4
+  delay: 3
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: User
+  fx: EffectRCDConstruct3
+
+# Airlocks
+- type: rcd
+  id: AirlockHatchPirateLocked
+  category: PirateAirlocks
+  sprite: /Textures/_NF/Interface/Radial/RCD/hatch.png
+  mode: ConstructObject
+  prototype: AirlockHatchPirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockMiningPirateLocked
+  category: PirateAirlocks
+  sprite: /Textures/_NF/Interface/Radial/RCD/mining_airlock.png
+  mode: ConstructObject
+  prototype: AirlockMiningPirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockMiningGlassPirateLocked
+  category: PirateAirlocks
+  sprite: /Textures/_NF/Interface/Radial/RCD/mining_glass_airlock.png
+  mode: ConstructObject
+  prototype: AirlockMiningGlassPirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockShuttleSyndicatePirateLocked
+  category: PirateAirlocks
+  sprite: /Textures/_NF/Interface/Radial/RCD/external_syndicate_airlock.png
+  mode: ConstructObject
+  prototype: AirlockShuttleSyndicatePirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockGlassShuttleSyndicatePirateLocked
+  category: PirateAirlocks
+  sprite: /Textures/_NF/Interface/Radial/RCD/external_glass_syndicate_airlock.png
+  mode: ConstructObject
+  prototype: AirlockGlassShuttleSyndicatePirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+
+# Lighting
+- type: rcd
+  id: PoweredlightRed
+  category: Lighting
+  sprite: /Textures/_NF/Interface/Radial/RCD/red_tube_light.png
+  mode: ConstructObject
+  prototype: PoweredlightRed
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: PoweredlightUltraviolet
+  category: Lighting
+  sprite: /Textures/_NF/Interface/Radial/RCD/ultraviolet_tube_light.png
+  mode: ConstructObject
+  prototype: PoweredlightUltraviolet
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  rotation: User
+  fx: EffectRCDConstruct1

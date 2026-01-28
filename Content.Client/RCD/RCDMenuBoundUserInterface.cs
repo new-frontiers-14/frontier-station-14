@@ -24,6 +24,11 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["Airlocks"] = ("rcd-component-airlocks", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/airlocks.png"))),
             ["Electrical"] = ("rcd-component-electrical", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/multicoil.png"))),
             ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
+            /// Frontier - Pirate RCD
+            ["PirateWallsAndFlooring"] = ("rcd-component-pirate-walls-and-flooring", new SpriteSpecifier.Texture(new ResPath("/Textures/_NF/Interface/Radial/RCD/walls_and_flooring.png"))),
+            ["PirateWindowsAndGrilles"] = ("rcd-component-pirate-windows-and-grilles", new SpriteSpecifier.Texture(new ResPath("/Textures/_NF/Interface/Radial/RCD/windows_and_grilles.png"))),
+            ["PirateAirlocks"] = ("rcd-component-pirate-airlocks", new SpriteSpecifier.Texture(new ResPath("/Textures/_NF/Interface/Radial/RCD/airlocks.png"))),
+            /// End Frontier
         };
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;

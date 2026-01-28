@@ -557,3 +557,19 @@
       whitelist:
         tags:
           - PirateUplink
+
+- type: listing
+  id: UplinkPiratePirateShipyardRCD
+  name: uplink-pirate-shipyard-rcd-name
+  description: uplink-pirate-shipyard-rcd-desc
+  productEntity: BoxPirateShipyardRCD
+  icon: { sprite: _NF/Objects/Tools/pirate_shipyard_rcd.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
