@@ -1,9 +1,18 @@
+# Author Info
+# GitHub:
+# Discord:
+
+# Maintainer Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Shuttle Notes:
 - type: vessel
   id: Empress
   parent: BaseVessel
   name: NSF Empress
   description: A large patrol vessel capable of carrying up to 4 smaller faster attack ships. The flagship vessel of the NFSD.
-  price: 170000 #Appraisal value is 150000
+  price: 160000 #Appraisal value is 143000
   category: Large
   group: Security
   access: Bailiff
@@ -29,4 +38,5 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs: {} # Removed the chef since we dont have a real loadout for it
+          availableJobs: # Removed the chef since we dont have a real loadout for it
+            Prisoner: [ 0, 0 ]
