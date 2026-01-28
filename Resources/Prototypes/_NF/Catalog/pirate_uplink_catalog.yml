@@ -508,6 +508,25 @@
   - UplinkPirateUtility
 
 - type: listing
+  id: UplinkPiratePmag
+  name: uplink-pirate-pmag-name
+  description: uplink-pirate-pmag-desc
+  productEntity: Pmag
+  icon: { sprite: _NF/Objects/Tools/pmag.rsi, state: icon}
+  cost:
+    Doubloon: 4
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
   id: UplinkNFPouchPirateCaptain
   name: uplink-pirate-pouch-captain-name
   description: uplink-pirate-pouch-captain-desc
