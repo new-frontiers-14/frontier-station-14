@@ -1,4 +1,14 @@
-﻿using Robust.Shared.Audio;
+﻿// SPDX-FileCopyrightText: 2022 keronshb <54602815+keronshb@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 VMSolidus <evilexecutive@gmail.com>
+// SPDX-FileCopyrightText: 2025 corresp0nd <46357632+corresp0nd@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 taydeo <td12233a@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Robust.Shared.Audio;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Beam.Components;
@@ -44,6 +54,16 @@ public abstract partial class SharedBeamComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("sound")]
     public SoundSpecifier? Sound;
+
+    /// <summary>
+    /// Allow the sprite to be randomized.
+    /// </summary>
+    /// <remarks>
+    /// Ported from funky for the supermatter
+    /// </remarks>
+    [ViewVariables]
+    [DataField("allowSpriteOverwrite")]
+    public bool AllowSpriteOverwrite = true;
 }
 
 /// <summary>
@@ -68,12 +88,28 @@ public sealed class BeamControllerCreatedEvent : EntityEventArgs
 public sealed class CreateBeamSuccessEvent : EntityEventArgs
 {
     public readonly EntityUid User;
-    public readonly EntityUid Target;
+
+    /// <summary>
+    /// The entity the beam targeted.
+    /// Ported from imp - This may be null if the beam targeted a map coordinate.
+    /// </summary>
+    public readonly EntityUid? Target;
+
+    /// <summary>
+    /// The coordinates the beam targeted. This may be null if the beam targeted an entity.
+    /// </summary>
+    public readonly MapCoordinates? Coordinates;
 
     public CreateBeamSuccessEvent(EntityUid user, EntityUid target)
     {
         User = user;
         Target = target;
+    }
+
+    public CreateBeamSuccessEvent(EntityUid user, MapCoordinates coordinates)
+    {
+        User = user;
+        Coordinates = coordinates;
     }
 }
 
