@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.GameStates;
+using Content.Shared.Chemistry.Reagent; // Frontier
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Chemistry.Components;
@@ -27,7 +28,15 @@ public sealed partial class SolutionRegenerationComponent : Component
     /// The reagent(s) to be regenerated in the solution.
     /// </summary>
     [DataField(required: true)]
+    [Access(typeof(SolutionRegenerationSystem), Other = AccessPermissions.ReadExecute)]
     public Solution Generated = default!;
+
+    /// <summary>
+    /// Frontier: Levels of reagents to stop creating more of each at (optional).
+    /// Use if you want to ensure an even mix of reagents
+    /// </summary>
+    [DataField]
+    public List<ReagentQuantity>? UpperLimits = default!;
 
     /// <summary>
     /// How long it takes to regenerate once.
@@ -40,5 +49,7 @@ public sealed partial class SolutionRegenerationComponent : Component
     /// </summary>
     [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField, AutoNetworkedField]
+    [Access(typeof(SolutionRegenerationSystem), Other = AccessPermissions.ReadWrite)]
+
     public TimeSpan NextRegenTime;
 }

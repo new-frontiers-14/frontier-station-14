@@ -109,6 +109,65 @@
     containers:
       - scanner-body
   - type: CryoPod
+  # Begin Frontier
+    chemSmartInjectConditions:
+      Cryoxadone:
+        - !type:Temperature
+          max: 213.0
+        - !type:NFSpecificDamage
+          groupThresholds:
+            Airloss:
+              min: 0.01
+      Aloxadone:
+        - !type:Temperature
+          max: 213.0
+        - !type:NFSpecificDamage
+          groupThresholds:
+            Burn:
+              min: 0.01
+      Traumoxadone:
+        - !type:Temperature
+          max: 213.0
+        - !type:NFSpecificDamage
+          groupThresholds:
+            Brute:
+              min: 0.01
+      Stelloxadone:
+        - !type:Temperature
+          max: 213.0
+        - !type:NFSpecificDamage
+          groupThresholds:
+            Toxin:
+              min: 0.01
+      Doxarubixadone:
+        - !type:Temperature
+          max: 213.0
+        - !type:NFSpecificDamage
+          typeThresholds:
+            Cellular:
+              min: 0.01
+      Necrosol:
+        - !type:Temperature
+          max: 213.0
+        - !type:NFSpecificDamage
+          groupThresholds:
+            Brute:
+              min: 0.01
+            Burn:
+              min: 0.01
+          typeThresholds:
+            Poison:
+              min: 0.01
+      Opporozidone:
+        - !type:Temperature
+          max: 150.0
+        - !type:MobStateCondition
+          mobstate: Dead
+        - !type:NFFreshTime
+          threshold:
+            maxFreshTimeLeft: 1200  # I'm not sure how to both specify "eject with 2 minutes of freshness" and "only use oppo until there's 0 rot left"
+                                    # This is a hardcode to the 20 minutes of bodies on frontier
+  # End Frontier
   - type: CryoPodAir
   - type: ContainerTemperatureDamageThresholds
     coldDamageThreshold: 10
