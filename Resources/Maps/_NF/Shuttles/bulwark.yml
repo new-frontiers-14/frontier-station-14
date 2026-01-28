@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 01/28/2026 07:28:26
-  entityCount: 1833
+  time: 01/28/2026 09:56:36
+  entityCount: 1837
 maps: []
 grids:
 - 1
@@ -2792,6 +2792,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,14.5
+      parent: 1
+  - uid: 1537
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,8.5
       parent: 1
 - proto: ButtonFrameJanitor
   entities:
@@ -9941,12 +9947,6 @@ entities:
       parent: 1
 - proto: RandomPosterAny
   entities:
-  - uid: 1537
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -6.5,8.5
-      parent: 1
   - uid: 1538
     components:
     - type: Transform
@@ -10876,6 +10876,19 @@ entities:
         281:
         - - Pressed
           - Toggle
+  - uid: 1836
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,8.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        1834:
+        - - Pressed
+          - Toggle
+        - - Pressed
+          - AutoClose
 - proto: SignalButtonBridge
   entities:
   - uid: 1036
@@ -10913,6 +10926,13 @@ entities:
         688:
         - - Pressed
           - Toggle
+- proto: SignEngineering
+  entities:
+  - uid: 1837
+    components:
+    - type: Transform
+      pos: -14.5,14.5
+      parent: 1
 - proto: SignMagneticsMed
   entities:
   - uid: 110
@@ -11454,6 +11474,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,0.5
+      parent: 1
+  - uid: 1835
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,9.5
       parent: 1
 - proto: WallReinforced
   entities:
@@ -12429,6 +12455,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,0.5
+      parent: 1
+  - uid: 1834
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,8.5
       parent: 1
 - proto: Window
   entities:
