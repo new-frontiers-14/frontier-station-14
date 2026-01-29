@@ -235,7 +235,10 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
 
         var cont = new LoadoutContainer(proto, !enabled, reason);
 
-        cont.Text = loadoutSystem.GetName(proto);
+        // Frontier: allow overriding loadout names
+        // cont.Text = loadoutSystem.GetName(proto);
+        cont.Text = string.IsNullOrEmpty(proto.Name) ? loadoutSystem.GetName(proto) : proto.Name;
+        // End Frontier
 
         cont.Select.Pressed = pressed;
 

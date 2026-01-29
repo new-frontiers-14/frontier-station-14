@@ -1,0 +1,243 @@
+#region Teapot
+- type: entity
+  id: DrinkTeapotEndless
+  parent: [ DrinkTeapot, BaseC3WizardContraband ]
+  name: the teapot of infinite tea
+  description: An elegant teapot that quickly replenishes tea inside.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/teapot.rsi # placeholder
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Tea
+          Quantity: 100
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Tea
+        Quantity: 5
+  - type: SolutionPurge
+    solution: drink
+    preserve:
+    - Tea
+    quantity: 10
+
+#region Smoking Pipes
+- type: entity
+  parent: BaseCigar
+  id: SmokingPipeWizardThc
+  name: wizard's corn cob pipe
+  suffix: Cannabis
+  description: The leaves appear to be fused with the pipe bowl. It has a distinct smell of cannabis.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/cobpipe.rsi
+    state: unlit-icon
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/cobpipe.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/cobpipe.rsi
+  - type: BurnStateVisuals
+    unlitIcon: unlit-icon
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 0.3
+        reagents:
+        - ReagentId: THC
+          Quantity: 0.3
+  - type: SolutionRegeneration
+    solution: smokable
+    generated:
+      reagents:
+      - ReagentId: THC
+        Quantity: 0.3
+  - type: SolutionPurge
+    solution: smokable
+    preserve:
+    - THC
+    quantity: 0.3
+
+- type: entity
+  parent: BaseCigar
+  id: SmokingPipeWizardNicotine
+  name: wizard's pipe
+  suffix: Tabacco
+  description: The leaves appear to be fused with the pipe bowl. It has a distinct smell of tobacco.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Smokeables/Pipes/pipe.rsi
+    state: unlit-icon
+  - type: Clothing
+    sprite: Objects/Consumable/Smokeables/Pipes/pipe.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+    sprite: Objects/Consumable/Smokeables/Pipes/pipe.rsi
+  - type: BurnStateVisuals
+    unlitIcon: unlit-icon
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 0.3
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 0.3
+  - type: SolutionRegeneration
+    solution: smokable
+    generated:
+      reagents:
+      - ReagentId: Nicotine
+        Quantity: 0.3
+  - type: SolutionPurge
+    solution: smokable
+    preserve:
+    - Nicotine
+    quantity: 0.3
+
+#region The Shaker
+- type: entity
+  id: DrinkShakerShaking
+  parent: [ DrinkShaker, BaseC3WizardContraband ]
+  name: The Shaker
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/shaker.rsi # placeholder
+    state: icon
+  - type: Item
+    sprite: Objects/Consumable/Drinks/shaker.rsi # placeholder
+  - type: Jittering
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: SpamEmitSound
+    minInterval: 0
+    maxInterval: 5
+    sound:
+      collection: MaleScreams
+      params:
+        variation: 0.125
+
+#region Gas tank
+- type: entity
+  id: GasTankWizardBottomless
+  parent: [ GasTankRoundBase, BaseC3WizardContraband ]
+  name: bottomless gas tank
+  description: An unusual looking gas tank that can hold more volume that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/wizard.rsi
+    layers:
+    - state: icon-gas-portal
+      shader: unshaded
+    - state: icon
+  - type: Item
+    sprite: _NF/Objects/Tanks/wizard.rsi
+  - type: GasTank
+    air:
+      volume: 9000
+      temperature: 293.15
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/wizard.rsi
+
+#region Wings
+- type: entity
+  parent: [ BaseJetpack, BaseC3WizardContraband ]
+  id: FairyDragonWings
+  name: fairy dragon wings
+  suffix: Filled
+  description: A jetpack fashioned to look like fairy wings. They even make a faint buzzing sound when you fly. Too bad that vacuum doesn't transmit sounds.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/fairy_wings.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Wizard/fairy_wings.rsi
+    slots:
+    - Back
+    - Belt
+    - suitStorage
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/fairy_wings.rsi
+  - type: Jetpack
+    moleUsage: 0.00020
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 50
+      temperature: 293.15
+      moles:
+        - 10.25689525 # oxygen
+        - 10.25689525 # nitrogen
+
+#region Wallet
+- type: entity
+  id: ClothingWalletInfiniteGreed
+  parent: [ ClothingWalletLeatherBrown, BaseC3WizardContraband ]
+  name: the wallet of boundless greed
+  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    layers:
+    - state: closed-wizard
+      map: ["closeLayer"]
+    - state: open-wizard
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      offset: 0.0,-0.15
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      offset: 0.0,-0.15
+      visible: false
+    - state: closed-coin
+      offset: 0.0,-0.15
+      map: ["closed-coin"]
+      visible: false
+    - state: wizard-unshaded
+      shader: unshaded
+  - type: Dumpable
+  - type: MagnetPickup
+    magnetEnabled: true
+
+# region neck tie
+- type: entity
+  parent: ClothingNeckTieRed
+  id: NFClothingNeckTieMetronome
+  name: metronome tie
+  description: Surprisingly heavy for what appears to be just a piece of cloth. It sways and flails wildly with every step.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Ties/metronome_tie.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Ties/metronome_tie.rsi
+  - type: WaddleWhenWorn # DeltaV - upstream removed waddling
+    tumbleIntensity: 10 # DeltaV - smaller than clown shoes
+    waddlingAlert: Waddling # Fixes to prevent waddling without wearing.

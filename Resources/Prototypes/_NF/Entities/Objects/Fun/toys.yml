@@ -52,6 +52,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_engineer
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: engineer
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: engineer-equipped-HELMET
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieEngineer

@@ -1,0 +1,253 @@
+# region Clutter
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClutterKitchen
+  name: random clutter
+  suffix: "Loot (Frontier), Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/desk_bell.rsi
+        state: normal
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceClutter
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnPoiLootClutterKitchen
+  name: random clutter
+  suffix: "Loot (Frontier), Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/desk_bell.rsi
+        state: normal
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TablePoiLootServiceClutter
+
+# region Tools
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootCutlery
+  name: random cutlery
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/bowl.rsi
+        state: bowl
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceTools
+
+- type: entity
+  id: SpawnDungeonLootMugs
+  parent: MarkerBasePlaceFree
+  name: random mug
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Drinks/mug_moebius.rsi
+        state: icon-0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceMugsFlasks
+
+# region Clothes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClothesKitchen
+  name: random clothes
+  suffix: "Loot (Frontier), Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Head/Hats/chefhat.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceClothes
+
+# region Furniture/Lockers
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonFurnitureKitchen
+  name: random furniture
+  suffix: "Loot (Frontier), Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: freezer
+      - sprite: Structures/Storage/closet.rsi
+        state: freezer_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceLockers
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateService
+  name: random crate
+  suffix: "Loot (Frontier), Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/hydroponics.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceCrates
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateRestockService
+  name: random crate (restock)
+  suffix: "Loot (Frontier), Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesRestock
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateEmptyService
+  name: random crate (empty)
+  suffix: "Loot (Frontier), Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesEmpty
+
+# region Machines
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootKitchenTabletop
+  name: random machine techfab
+  suffix: "Loot (Frontier), Kitchen, Tabletop"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/microwave.rsi
+        state: mw
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceMachines
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootFlatpacksService
+  name: random flatpack
+  suffix: "Loot (Frontier), Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceMachinesFlatpacks
+
+# region Other
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootFood
+  name: random food
+  suffix: "Loot (Frontier), Spoiled"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/burger.rsi
+        state: plain
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootServiceFoodSpoiled

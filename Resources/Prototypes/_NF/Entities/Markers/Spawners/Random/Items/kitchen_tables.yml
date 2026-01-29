@@ -1,0 +1,484 @@
+# region Clutter
+- type: entityTable
+  id: TableDungeonLootServiceClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceTools
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothes
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceMachinesFlatpacks
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCircuitBoards
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceFoodSpoiled
+      weight: 0.275
+
+# region Clutter (POI)
+- type: entityTable
+  id: TablePoiLootServiceClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceTools
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothes
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceFoodSpoiled
+      weight: 0.25
+
+# region Tools
+- type: entityTable
+  id: TableDungeonLootServiceTools
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCutlery
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceTableware
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceMugsFlasks
+      weight: 0.3
+
+# region MugsFlasks
+- type: entityTable
+  id: TableDungeonLootServiceMugsFlasks
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceMugs
+      weight: 0.9
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceFlasks
+      weight: 0.1
+
+# region Cutlery
+- type: entityTable
+  id: TableDungeonLootServiceCutlery
+  table: !type:GroupSelector
+    children:
+    - id: Fork
+    - id: Spoon
+    - id: ForkPlastic
+    - id: SpoonPlastic
+    - id: KnifePlastic
+    - id: KitchenKnife
+      weight: 0.1
+    - id: ButchCleaver
+      weight: 0.1
+    - id: RollingPin
+      weight: 0.1
+    - id: FoodKebabSkewer
+      weight: 0.1
+
+# region Tableware
+- type: entityTable
+  id: TableDungeonLootServiceTableware
+  table: !type:GroupSelector
+    children:
+    - id: FoodPlateTin
+    - id: FoodPlateSmall
+    - id: FoodPlate
+    - id: FoodPlateTrash
+    - id: FoodPlateSmallTrash
+    - id: CandyBowl
+    - id: FoodBowlBig
+    - id: FoodBowlFancy
+    - id: FoodBowlBigTrash
+    - id: FoodPlatePlastic
+    - id: FoodPlateSmallPlastic
+    - id: FoodShakerPepper
+    - id: FoodShakerSalt
+    - id: NFAshtray
+
+# region Mugs
+- type: entityTable
+  id: TableDungeonLootServiceMugs
+  table: !type:GroupSelector
+    children:
+    - id: DrinkMugOne
+    - id: DrinkMugBlack
+    - id: DrinkMugDog
+    - id: DrinkMugBlue
+    - id: DrinkMugGreen
+    - id: DrinkMugHeart
+    - id: DrinkMugMetal
+    - id: DrinkMugMoebius
+    - id: DrinkMug
+    - id: DrinkMugRainbow
+    - id: DrinkMugRed
+    - id: DrinkGlassCoupeShaped
+    - id: DrinkGlass
+    - id: DrinkShotGlass
+
+# region Flasks
+- type: entityTable
+  id: TableDungeonLootServiceFlasks
+  table: !type:GroupSelector
+    children:
+    - id: DrinkFlaskBar
+    - id: DrinkFlaskOld
+    - id: DrinkLithiumFlask
+    - id: DrinkShinyFlask
+    - id: DrinkVacuumFlask
+
+# region Clothes
+- type: entityTable
+  id: TableDungeonLootServiceClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothesBags
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothesHats
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothesJumpsuits
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothesJackets
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceClothesBelts
+      weight: 0.15
+
+- type: entityTable
+  id: TableDungeonLootServiceClothesBags
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 3
+      children:
+      - id: NFClothingDuffel
+      - id: NFClothingBackpackDuffelColorBlue
+      - id: NFClothingBackpackDuffelColorBlack
+      - id: NFClothingBackpackDuffelColorOrange
+      - id: NFClothingBackpackDuffelColorPurple
+      - id: NFClothingBackpackDuffelColorWhite
+      - id: NFClothingBackpackDuffelColorGreen
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMessenger
+      - id: ClothingBackpackMessengerContractor
+      - id: ClothingBackpackMessengerColorBlack
+      - id: ClothingBackpackMessengerColorBlue
+      - id: ClothingBackpackMessengerColorBrown
+      - id: ClothingBackpackMessengerColorOrange
+      - id: ClothingBackpackMessengerColorPurple
+      - id: ClothingBackpackMessengerColorWhite
+    - id: NFClothingBackpack
+      weight: 2
+    - id: ClothingBackpackSatchel
+      weight: 2
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchContractor
+      - id: NFPouchUtility
+
+- type: entityTable
+  id: TableDungeonLootServiceClothesBelts
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty belts to reduce entity spam
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: ClothingBeltChef
+        weight: 0.8
+      - id: ClothingBeltChefFilled
+        weight: 0.2
+
+- type: entityTable
+  id: TableDungeonLootServiceClothesHats
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHatChef
+      weight: 0.7
+    - id: ClothingHeadHatBowlerHat
+      weight: 0.15
+    - id: ClothingHeadHatTophat
+      weight: 0.15
+
+- type: entityTable
+  id: TableDungeonLootServiceClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingUniformJumpsuitChef
+      weight: 0.45
+    - id: ClothingUniformJumpskirtChef
+      weight: 0.3
+    - id: ClothingUniformJumpsuitBartender
+      weight: 0.1
+    - id: ClothingUniformJumpskirtBartender
+      weight: 0.1
+    - id: ClothingUniformJumpsuitBartenderPurple
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootServiceClothesJackets
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterApronChef
+      weight: 0.45
+    - id: ClothingOuterJacketChef
+      weight: 0.3
+    - id: ClothingOuterWinterChef
+      weight: 0.1
+    - id: ClothingOuterApronBar
+      weight: 0.1
+    - id: ClothingOuterVest
+      weight: 0.05
+
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootServiceLockers
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: FoodCartHot
+      - id: FoodCartCold
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: LockerFreezerBase
+        weight: 0.7
+      - id: NFClosetChefFilled
+        weight: 0.15
+      - id: LockerFreezerSushi
+        weight: 0.15
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: CrateFreezer
+        weight: 0.7
+      - id: CrateMaterialBiomass50
+        weight: 0.15
+      - id: CrateMaterialBiomass
+        weight: 0.15
+
+# region Crates
+- type: entityTable
+  id: TableDungeonLootServiceCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesEmpty
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesFilled
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootServiceCratesRestock
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesMaterial
+      weight: 0.4
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootServiceBarrelsCondiments
+        weight: 0.45
+      - !type:NestedSelector
+        tableId: TableDungeonLootServiceBarrelsAlcohol
+        weight: 0.45
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalBarrelsChems
+        weight: 0.1
+
+# region Crates (Empty)
+- type: entityTable
+  id: TableDungeonLootServiceCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CrateTrashCartJani
+    - id: CrateTrashCart
+    - id: CrateHydroponics
+    - id: CrateHydroSecure
+    - id: CratePlastic
+    - id: CratePlasticBiodegradable
+
+# region Crates (Filled)
+- type: entityTable
+  id: TableDungeonLootServiceCratesFilled
+  table: !type:GroupSelector
+    children:
+    - id: CrateServiceReplacementLights
+    - id: CrateServiceReplacementColoredLights
+    - id: CrateFunArtSupplies
+    - id: CrateServiceJanitorialSupplies
+    - id: JanitorialTrolley
+    - id: FoodCartHot
+    - id: FoodCartCold
+    - id: CrateFoodDinnerware
+    - id: CrateServiceCustomSmokable
+    - id: CrateServiceSmokeables
+    - id: CrateMousetrapBoxes
+    - id: CrateFoodBarSupply
+    - id: CrateServiceBoozeDispenser
+    - id: CrateServiceKitCleanades
+    # Edible food
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: CrateFoodCooking
+    # Full kitchen kit
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: CrateServiceKitKitchen
+      - id: CrateServiceKitHydroponics
+
+# region Crates (Restock)
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootServiceCratesRestock
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockBoozeFilled
+    - id: CrateVendingMachineRestockChefvendFilled
+    - id: CrateVendingMachineRestockCondimentStationFilled
+    - id: CrateVendingMachineRestockDinnerwareFilled
+    - id: CrateVendingMachineRestockSmokesFilled
+    - id: CrateVendingMachineRestockHappyHonkFilled
+
+# region Barrels
+- type: entityTable
+  id: TableDungeonLootServiceBarrelsCondiments
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelOil
+    - id: ChemicalBarrelMustard
+    - id: ChemicalBarrelKetchup
+    - id: ChemicalBarrelMayo
+    - id: ChemicalBarrelCornoil
+    - id: ChemicalBarrelOliveoil
+
+# region Barrels (Alcohol)
+- type: entityTable
+  id: TableDungeonLootServiceBarrelsAlcohol
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelAbsinthe
+    - id: ChemicalBarrelAle
+    - id: ChemicalBarrelBeer
+    - id: ChemicalBarrelCoffeeLiqueur
+    - id: ChemicalBarrelCognac
+    - id: ChemicalBarrelGin
+    - id: ChemicalBarrelMead
+    - id: ChemicalBarrelRum
+    - id: ChemicalBarrelTequila
+    - id: ChemicalBarrelVermouth
+    - id: ChemicalBarrelVodka
+    - id: ChemicalBarrelWhiskey
+    - id: ChemicalBarrelWine
+
+# region Machines
+- type: entityTable # Tabletop machines
+  id: TableDungeonLootServiceMachines
+  table: !type:GroupSelector
+    children:
+    - id: KitchenMicrowave
+    - id: KitchenAssembler
+    - id: KitchenElectricGrill
+    - id: KitchenReagentGrinder
+    - id: VendingMachineCondiments
+    - id: BoozeDispenserEmpty
+    - id: SodaDispenserEmpty
+    - id: SyndicateMicrowave
+      weight: 0.025
+
+# region CircuitBoards
+- type: entityTable # Tabletop machines
+  id: TableDungeonLootServiceCircuitBoards
+  table: !type:GroupSelector
+    children:
+    - id: SeedExtractorMachineCircuitboard
+    - id: ChemMasterMachineCircuitboard
+    - id: SurveillanceWirelessCameraMovableCircuitboard
+    - id: ComputerTelevisionCircuitboard
+    - id: BoozeDispenserMachineCircuitboard
+    - id: SodaDispenserMachineCircuitboard
+    - id: SurveillanceWirelessCameraMonitorCircuitboard
+    - id: ServiceTechFabCircuitboard
+    - id: CutterMachineCircuitboard
+    - id: UniformPrinterMachineCircuitboard
+    - !type:GroupSelector
+      weight: 0.025
+      children:
+      - id: MicrowaveMachineCircuitboard
+      - id: ReagentGrinderMachineCircuitboard
+      - id: BiogeneratorMachineCircuitboard
+      - id: ElectricRangeMachineCircuitboard
+      - id: KitchenAssemblerMachineCircuitboard
+      - id: DeepFryerMachineCircuitboard
+
+# region Flatpacks
+- type: entityTable
+  id: TableDungeonLootServiceMachinesFlatpacks
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: UniformPrinterFlatpack
+      - id: ServiceTechFabFlatpack
+      - id: MaterialReclaimerFlatpack
+      - id: CutterMachineFlatpack
+      - id: MinimoogInstrumentFlatpack
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: KitchenElectricGrillFlatpack
+      - id: KitchenMicrowaveFlatpack
+      - id: KitchenReagentGrinderFlatpack
+      - id: JukeboxFlatpack
+      - id: ComputerWithdrawBankATMFlatpack
+      - id: DawInstrumentFlatpack
+    # Rare
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: VendingMachineBoozeFlatpack
+      - id: VendingMachineCigsFlatpack
+      - id: VendingMachineChefvendFlatpack
+      - id: VendingMachineSeedsUnlockedFlatpack
+      - id: VendingMachineNutriFlatpack
+      - id: VendingMachineDinnerwareFlatpack
+      - id: HydroponicsTrayEmptyFlatpack
+
+# region Food (Rotten)
+- type: entityTable
+  id: TableDungeonLootServiceFoodSpoiled
+  table: !type:GroupSelector
+    children:
+    - id: FoodMeatRotten
+    - id: FoodBurgerBaconRotten
+    - id: FoodBurgerBigBiteRotten
+    - id: FoodBurgerCheeseRotten
+    - id: FoodBurgerEmpoweredRotten
+    - id: FoodBurgerPlainRotten
+    - id: FoodRiceEggMoldy
+    - id: FoodSoupMeatballMoldy
+    - id: FoodNoodlesMoldy
+    - id: FoodNoodlesMeatballMoldy
+    - id: FoodSaladCaesarMoldy
+    - id: FoodBreadMoldySlice
+    - id: FoodBreadMoldy
+    - id: FoodPizzaMoldySlice

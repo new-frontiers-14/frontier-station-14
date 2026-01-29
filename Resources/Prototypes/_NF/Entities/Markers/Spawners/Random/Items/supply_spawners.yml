@@ -1,0 +1,214 @@
+# region Clutter
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClutterSalvage
+  name: random clutter
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyClutter
+
+# region Tools
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootToolsSalvage
+  name: random tool
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyTools
+
+# region Parts
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootCircuitBoardSalvage
+  name: random machine board
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: supply
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyCircuitBoards
+
+# region Clothes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClothesSalvage
+  name: random clothes
+  suffix: "Loot (Frontier), Salvage"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyClothes
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootHardsuitsSalvage
+  name: random hardsuits
+  suffix: "Loot (Frontier), Salvage"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyHardsuits
+
+# region Lockers
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootLockersSalvage
+  name: random locker
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: mining
+      - sprite: Structures/Storage/closet.rsi
+        state: mining_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyLockers
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootSuitStorageUnitsSalvage
+  name: random suit storage unit
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplySuitStorageUnits
+
+# region Machines
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootLatheSalvage
+  name: random machine techfab
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: cargo
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyMachinesFabricators
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonVendomatsSalvage
+  name: random vendomats
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyMachinesVending
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootFlatpacksSuppl
+  name: random flatpack
+  suffix: "Loot (Frontier), Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyFlatpacks
