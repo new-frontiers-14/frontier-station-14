@@ -180,6 +180,11 @@ marking-VulpTailFluffy = Vulpkanin Fluffy
 marking-VulpTailDalmatianWag-dalmatian_wag = Dalmatian Tail
 marking-VulpTailDalmatianWag = Vulpkanin Dalmatian (Wag)
 
+marking-VulpFoxTailWag = Fluffy Fox Tail (Wag)
+marking-VulpFoxTailWag-tail_fox_wag_stripes_third = Fluffy Fox Tail (Inner)
+marking-VulpFoxTailWag-tail_fox_wag_stripes_second = Fluffy Fox Tail (Outer)
+marking-VulpFoxTailWag-tail_fox_wag_stripes_prime = Fluffy Fox Tail (Tip)
+
 
 marking-VulpBellyCrest-belly_crest = Belly
 marking-VulpBellyCrest = Vulpkanin Belly Crest
