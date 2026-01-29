@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Bartholemew-Dingleberry
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: Bartholemew-Dingleberry
+# Discord: bartholomew_dingleberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Hound
+  parent: BaseVessel
+  name: CBC Hound
+  description: A Rotund Security vessel capable of housing and transporting the roudiest of criminals! 
+  price: 25000 #Appraises at ~19016 
+  category: Small
+  group: Sr
+  access: Brig # Oddball, matches guard ID, specific enough to exclude cadets
+  mapchecker_group_override: Security # Treat this as a security vessel for mapchecker purposes
+  shuttlePath: /Maps/_NF/Shuttles/Sr/hound.yml
+  guidebookPage: ShipyardHound
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Hound
+  mapName: 'CBC Hound'
+  mapPath: /Maps/_NF/Shuttles/Sr/hound.yml
+  minPlayers: 0
+  stations:
+    Hound:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Hound {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
