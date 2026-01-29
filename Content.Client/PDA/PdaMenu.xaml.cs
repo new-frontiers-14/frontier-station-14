@@ -194,14 +194,22 @@ namespace Content.Client.PDA
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
 
             // Frontier
-            _roundEndTime = state.RoundEndTime;
-            RemainingTimeLabel.Visible = _roundEndTime is not null;
-            if (_roundEndTime is not null)
+            if (state.RoundEndTime is not null)
             {
+                // Synchronise ticking of the seconds place of the shift time and the roundend time
+                _roundEndTime = TimeSpan.FromSeconds(Math.Floor(state.RoundEndTime.Value.TotalSeconds))
+                                        .Add(TimeSpan.FromMilliseconds(_gameTicker.RoundStartTimeSpan.Milliseconds));
+
                 var remainingTime = _roundEndTime.Value.Subtract(_gameTiming.CurTime);
                 RemainingTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-remaining-time",
                     ("time", remainingTime.ToString("hh\\:mm\\:ss"))));
             }
+            else
+            {
+                _roundEndTime = null;
+            }
+
+            RemainingTimeLabel.Visible = _roundEndTime is not null;
             // End Frontier
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
