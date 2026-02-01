@@ -24,7 +24,8 @@ public abstract class SharedEmpSystem : EntitySystem
     /// <param name="range">The range of the EMP pulse.</param>
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
-    public virtual void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration)
+    /// <param name="immuneGrids"> Frontier: list of grids that shouldn't be affected by the pulse.
+    public virtual void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null)
     {
     }
 

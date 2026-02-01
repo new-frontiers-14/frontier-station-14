@@ -150,19 +150,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
                 handButton.SetEntity(virt.BlockingEntity);
                 handButton.Blocked = true;
             }
-<<<<<<< HEAD
-            // FRONTIER UPSTREAM MERGE TODO: address https://github.com/space-wizards/space-station-14/pull/38668
-            // Frontier - borg hand placeholder
-            else if (_entities.TryGetComponent(held, out HandPlaceholderVisualsComponent? placeholder))
-            {
-                handButton.SetEntity(placeholder.Dummy);
-                handButton.Blocked = true;
-            }
-            // End Frontier - borg hand placeholder
-            else
-=======
             else if (held != null)
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
             {
                 handButton.SetEntity(held);
                 handButton.Blocked = false;

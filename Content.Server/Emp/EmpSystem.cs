@@ -1,54 +1,36 @@
-<<<<<<< HEAD
-using Content.Server.Entry;
-using Content.Server.Explosion.EntitySystems;
-using Content.Server.Power.Components;
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
 using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
-<<<<<<< HEAD
-using Content.Shared.Examine;
-using Content.Shared.Tiles; // Frontier
-using Robust.Server.GameObjects;
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 using Robust.Shared.Map;
+using Content.Server.Examine; // Frontier: examine verb
+using Content.Server.Power.Components; // Frontier
+using Content.Shared.Tiles; // Frontier
+using Content.Shared.Trigger.Components.Effects; // Frontier
+using Content.Shared.Verbs; // Frontier: examine verb
 using Content.Shared._NF.Emp.Components; // Frontier
 using Robust.Server.GameStates; // Frontier: EMP Blast PVS
 using Robust.Shared.Configuration; // Frontier: EMP Blast PVS
-using Robust.Shared; // Frontier: EMP Blast PVS
-using Content.Shared.Verbs; // Frontier: examine verb
 using Robust.Shared.Utility; // Frontier: examine verb
-using Content.Server.Examine; // Frontier: examine verb
+using Robust.Shared; // Frontier: EMP Blast PVS
 
 namespace Content.Server.Emp;
 
 public sealed class EmpSystem : SharedEmpSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-<<<<<<< HEAD
-    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier: EMP Blast PVS
     [Dependency] private readonly ExamineSystem _examine = default!; // Frontier: examine verb
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
     public const string EmpPulseEffectPrototype = "EffectEmpBlast"; // Frontier: EffectEmpPulse
 
     public override void Initialize()
     {
         base.Initialize();
-<<<<<<< HEAD
-        SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
         SubscribeLocalEvent<EmpOnTriggerComponent, GetVerbsEvent<ExamineVerb>>(OnEmpTriggerExamine); // Frontier
         SubscribeLocalEvent<EmpDescriptionComponent, GetVerbsEvent<ExamineVerb>>(OnEmpDescriptorExamine); // Frontier
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
@@ -56,19 +38,7 @@ public sealed class EmpSystem : SharedEmpSystem
         //SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive); // Frontier: Upstream - #28984
     }
 
-<<<<<<< HEAD
-    /// <summary>
-    ///   Triggers an EMP pulse at the given location, by first raising an <see cref="EmpAttemptEvent"/>, then a raising <see cref="EmpPulseEvent"/> on all entities in range.
-    /// </summary>
-    /// <param name="coordinates">The location to trigger the EMP pulse at.</param>
-    /// <param name="range">The range of the EMP pulse.</param>
-    /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
-    /// <param name="duration">The duration of the EMP effects.</param>
-    /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the pulse.</param>
-    public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null)
-=======
-    public override void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration)
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
+    public override void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null) // Frontier: Add immuneGrids
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
@@ -138,8 +108,7 @@ public sealed class EmpSystem : SharedEmpSystem
 
         if (ev.Affected)
             Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
-<<<<<<< HEAD
-        }
+
         if (ev.Disabled)
         {
             // Frontier: Upstream - #28984 start
@@ -159,14 +128,6 @@ public sealed class EmpSystem : SharedEmpSystem
             }
             // Frontier: Upstream - #28984 end
         }
-=======
-
-        if (!ev.Disabled)
-            return;
-
-        var disabled = EnsureComp<EmpDisabledComponent>(uid);
-        disabled.DisabledUntil = Timing.CurTime + TimeSpan.FromSeconds(duration);
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     }
 
     public override void Update(float frameTime)
@@ -190,19 +151,13 @@ public sealed class EmpSystem : SharedEmpSystem
         }
     }
 
-<<<<<<< HEAD
-    private void OnExamine(EntityUid uid, EmpDisabledComponent component, ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString("emp-disabled-comp-on-examine"));
-    }
-
     // Frontier: examine EMP trigger objects
     private void OnEmpTriggerExamine(EntityUid uid, EmpOnTriggerComponent component, GetVerbsEvent<ExamineVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var msg = GetEmpDescription(component.Range, component.EnergyConsumption, component.DisableDuration);
+        var msg = GetEmpDescription(component.Range, component.EnergyConsumption, (float)component.DisableDuration.TotalSeconds);
 
         _examine.AddDetailedExamineVerb(args, component, msg,
             Loc.GetString("emp-examinable-verb-text"), "/Textures/Interface/VerbIcons/smite.svg.192dpi.png",
@@ -237,14 +192,6 @@ public sealed class EmpSystem : SharedEmpSystem
     }
     // End Frontier
 
-    private void HandleEmpTrigger(EntityUid uid, EmpOnTriggerComponent comp, TriggerEvent args)
-    {
-        EmpPulse(_transform.GetMapCoordinates(uid), comp.Range, comp.EnergyConsumption, comp.DisableDuration);
-        args.Handled = true;
-    }
-
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
     private void OnRadioSendAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioSendAttemptEvent args)
     {
         args.Cancelled = true;

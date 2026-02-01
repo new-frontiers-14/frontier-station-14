@@ -42,15 +42,9 @@ namespace Content.Server.Singularity.EntitySystems
             SubscribeLocalEvent<EmitterComponent, PowerConsumerReceivedChanged>(ReceivedChanged);
             SubscribeLocalEvent<EmitterComponent, PowerChangedEvent>(OnApcChanged);
             SubscribeLocalEvent<EmitterComponent, ActivateInWorldEvent>(OnActivate);
-<<<<<<< HEAD
-            SubscribeLocalEvent<EmitterComponent, GetVerbsEvent<Verb>>(OnGetVerb);
-            SubscribeLocalEvent<EmitterComponent, ExaminedEvent>(OnExamined);
-            SubscribeLocalEvent<EmitterComponent, RefreshPartsEvent>(OnRefreshParts);
-            SubscribeLocalEvent<EmitterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-=======
->>>>>>> 9f36a3b4ea321ca0cb8d0fa0f2a585b14d136d78
-            SubscribeLocalEvent<EmitterComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
             SubscribeLocalEvent<EmitterComponent, SignalReceivedEvent>(OnSignalReceived);
+            SubscribeLocalEvent<EmitterComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
+            SubscribeLocalEvent<EmitterComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
         }
 
         private void OnAnchorStateChanged(EntityUid uid, EmitterComponent component, ref AnchorStateChangedEvent args)
@@ -137,6 +131,7 @@ namespace Content.Server.Singularity.EntitySystems
             }
         }
 
+        // Frontier
         private void OnRefreshParts(EntityUid uid, EmitterComponent component, RefreshPartsEvent args)
         {
             var fireRateRating = args.PartRatings[component.MachinePartFireRate];
@@ -150,6 +145,7 @@ namespace Content.Server.Singularity.EntitySystems
         {
             args.AddPercentageUpgrade("emitter-component-upgrade-fire-rate", (float) (component.BaseFireInterval.TotalSeconds / component.FireInterval.TotalSeconds));
         }
+        // End Frontier
 
         public void SwitchOff(EntityUid uid, EmitterComponent component)
         {
