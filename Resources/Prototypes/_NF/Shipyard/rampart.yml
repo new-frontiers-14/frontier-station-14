@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Bartholemew Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: Bartholemew Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Rampart
+  parent: BaseVessel
+  name: DBI Rampart
+  description: The Rampart is intended for researching even the most dangerous of artifacts and anomolies, guarenteeing safety with minimal repairs needed per catastrophic explosion! with a west cargo wing and a east research wing and centeral research chamber the Dung Beetle Incorporated's Rampart is sure to suffice!
+  price: 52000 # 47203 10%= 4720.3 
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/rampart.yml
+  guidebookPage: ShipyardRampart
+  class:
+  - Science
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Rampart
+  mapName: 'DBI Rampart'
+  mapPath: /Maps/_NF/Shuttles/rampart.yml
+  minPlayers: 0
+  stations:
+    Rampart:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Rampart {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
