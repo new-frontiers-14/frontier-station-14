@@ -1,0 +1,266 @@
+- type: entity
+  parent: BaseItem
+  id: BaseRecord
+  name: vinyl record
+  description: For storing analogue data, everyone knows that circles are unparalleled.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/records.rsi
+    state: baserecord
+    scale: 0.5, 0.5
+  - type: Item
+    shape:
+    - 0,0,1,1
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: BaseRecord
+  id: WesternRecord
+  name: dusty record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like gunpowder and horses.
+  components:
+  - type: Sprite
+    state: dusty
+  - type: JukeboxContainer
+    tracks:
+    - sinner
+    - rattlesnakerailroad
+    - meanwhilebackatthesaloon
+    - murderonthebayou
+    - lateraligator
+    - SpaceAsshowl
+
+- type: entity
+  parent: BaseRecord
+  id: PirateRecord
+  name: salty record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like a cool sea breeze.
+  components:
+  - type: Sprite
+    state: pirate
+  - type: JukeboxContainer
+    tracks:
+    - dreadpirateroberts
+    - threesheetstothewind
+
+- type: entity
+  parent: BaseRecord
+  id: JazzRecord
+  name: vintage record
+  components:
+  - type: Sprite
+    state: jazz
+  - type: JukeboxContainer
+    tracks:
+    - bringinthehorns
+    - caffeinated
+    - LoneDigger
+    - lifeisgreat
+    - PTMinute
+    - retrofunky
+    - FlipFlap
+
+- type: entity
+  parent: BaseRecord
+  id: PunkRecord
+  name: futuristic record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells like illegal stimulants.
+  components:
+  - type: Sprite
+    state: punk
+  - type: JukeboxContainer
+    tracks:
+    - skubstep
+    - ADiffReal
+    - sensless
+    - JukeShiba
+    - dustsucker
+    - victory
+    - DosHighUmb
+
+- type: entity
+  parent: BaseRecord
+  id: CorporateRecord
+  name: management approved record, vol. 1
+  components:
+  - type: Sprite
+    state: corpo
+  - type: JukeboxContainer
+    tracks:
+    - singuloose
+    - Tintin
+    - Thunderdome
+    - sunset
+    - frontierarrivals
+
+- type: entity
+  parent: BaseRecord
+  id: DeltaRecord
+  name: management approved record, vol. 2
+  components:
+  - type: Sprite
+    state: delta
+  - type: JukeboxContainer
+    tracks:
+    - AmieSuperpos
+    - DeckTheHalls
+    - DrozAlone
+    - DrozLeisure
+    - GhirScratch
+    - IanMarhaba
+    - KCHaxors
+    - AutEqu
+    - AggAss
+    - SunbeamEvery
+    - SunbeamLaser
+    - SunbeamPhoron
+
+- type: entity
+  parent: BaseRecord
+  id: SpaceRecord
+  name: space record
+  components:
+  - type: Sprite
+    state: space
+  - type: JukeboxContainer
+    tracks:
+    - Constellations
+    - Drifting
+    - starlight
+    - NymphsForest
+    - frontierarrivals
+
+- type: entity
+  parent: BaseRecord
+  id: GoldenRecord
+  name: golden record
+  description: For storing analogue data, everyone knows that circles are unparalleled. Hang on, this one's got an image on it.
+  components:
+  - type: Sprite
+    state: golden
+  - type: JukeboxContainer
+    tracks:
+    - frontierarrivals
+    - PTMinute
+  - type: StaticPrice
+    price: 5000
+    vendPrice: 10000 # in case it ends up in a vending machine, somehow
+
+- type: entity
+  parent: [ BaseRecord, BaseC3SyndicateContraband ]
+  id: SyndieRecord
+  name: blood-red record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells metallic.
+  components:
+  - type: Sprite
+    state: blood
+  - type: JukeboxContainer
+    tracks:
+    - skubstep
+    - DosHighUmb
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.15
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    ignoreResistances: true
+    damage:
+      types:
+        Slash: 5
+        Piercing: 10
+  - type: ThrowingAngle
+    angularVelocity: true # spins
+
+- type: entity
+  parent: BaseRecord
+  id: WizardRecord
+  name: magic record
+  description: For storing analogue data, everyone knows that circles are unparalleled. This one smells ethereal.
+  components:
+  - type: Sprite
+    layers:
+    - state: wizard
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-05
+      color: "lightblue"
+      scale: 0.32, 0.32
+      shader: unshaded
+  - type: JukeboxContainer
+    tracks:
+    - thewizard
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+  - type: RgbLightController
+
+- type: entity
+  parent: BaseRecord
+  id: NanotrasenRecord
+  name: classics record
+  description: For storing analogue data, everyone knows that circles are unparalleled. Contains all of the classics. Not for resale. # Default Jukebox Inventory. For mapping. Short term solution to a long term problem.
+  components:
+  - type: Sprite
+    state: corpo
+  - type: StaticPrice
+    price: 0
+  - type: JukeboxContainer
+    tracks:
+    #western
+    - sinner
+    - rattlesnakerailroad
+    - meanwhilebackatthesaloon
+    - murderonthebayou
+    - lateraligator
+    - SpaceAsshowl
+    #Jazz
+    - bringinthehorns
+    - caffeinated
+    - LoneDigger # Still no idea how this one happened
+    - lifeisgreat
+    - PTMinute
+    - retrofunky
+    - FlipFlap
+    #Punk
+    - skubstep
+    - ADiffReal
+    - sensless
+    - JukeShiba
+    - dustsucker
+    - victory
+    - DosHighUmb
+    # CorporateRecord
+    - singuloose
+    - Tintin
+    - Thunderdome
+    - sunset
+    - frontierarrivals
+    # DeltaRecord
+    - AmieSuperpos
+    - DeckTheHalls
+    - DrozAlone
+    - DrozLeisure
+    - GhirScratch
+    - IanMarhaba
+    - KCHaxors
+    - AutEqu
+    - AggAss
+    - SunbeamEvery
+    - SunbeamLaser
+    - SunbeamPhoron
+    # Space
+    - Constellations
+    - Drifting
+    - starlight
+    - NymphsForest
+    - frontierarrivals

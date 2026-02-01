@@ -112,6 +112,19 @@
         damage:
           types:
             Poison: -0.5
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Ethanol # Frontier
+          min: 1 # Frontier
+        reagent: Ethylredoxrazine # Frontier
+        amount: 4 # Frontier
+      - !type:ChemCleanBloodstream # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Ethanol # Frontier
+          min: 1 # Frontier
+        cleanseRate: 3 # Frontier
 
 - type: reagent
   id: Arithrazine
@@ -216,6 +229,12 @@
              Cellular: -4 # Frontier: -2<-4
             groups: # Frontier
                 Brute: 1 # Frontier
+        # Frontier: Prevent the brute damage from exsanguinating patients
+        - !type:ModifyBleedAmount # Frontier
+          conditions: # Frontier
+          - !type:Temperature # Frontier
+            max: 213.0 # Frontier
+          amount: -0.5 # Frontier
 
 - type: reagent
   id: Dermaline
@@ -611,10 +630,11 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:EvenHealthChange # Frontier: Changed brute healing to EvenHealthChange
+        damage:
+          Brute: -2.5 # Frontier: -2.5<-3.5
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -3.5
           types:
             Asphyxiation: -2.5
       - !type:HealthChange
@@ -1218,13 +1238,13 @@
   color: "#8147ff"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+#      metabolismRate: 0.25 Frontier: Default(0.5)<0.25
       effects:
       # heals shocks and removes shock chems
       - !type:HealthChange
         damage:
           types:
-            Shock: -1.5 # 6 per u
+            Shock: -4 # Frontier -1.5<-4 # 6 per u
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
@@ -1241,7 +1261,7 @@
           min: 12
         damage:
           types:
-            Cold: 1 # 4 per u
+            Cold: 2 # Frontier: 1<2 # 4 per u
       - !type:AdjustTemperature
         conditions:
         - !type:ReagentThreshold

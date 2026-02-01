@@ -12,3 +12,18 @@
       stackRequirements:
         Cable: 4
         Glass: 2
+
+- type: entity
+  id: NFHolopadGridMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: inter ship holopad circuit board
+  description: A machine printed circuit board for an inter ship holopad.
+  components:
+    - type: MachineBoard
+      prototype: NFHolopadGrid
+      # mirroring the base holopad reqs
+      requirements:
+        Capacitor: 4
+      stackRequirements:
+        Cable: 4
+        Glass: 2

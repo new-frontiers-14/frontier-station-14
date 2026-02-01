@@ -1,0 +1,787 @@
+# region base
+- type: entity
+  id: MobPassiveRegenZombie
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+    damageCap: 9999
+    damage:
+      groups:
+        Brute: -0.4
+        Burn: -0.2
+        Airloss: -1
+
+- type: entity
+  abstract: true
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobStaminaBoss
+  - MobNonHumanHostileBase
+  - MobPassiveRegenZombie
+  - MobHumanoidHostileAISimpleMelee
+  id: NFMobZombieBase
+  name: zombie
+  suffix: AI, Hostile, No Infection
+  description: |-
+   Your NT Employee Guide to the Galaxy says: "A zombie is a mythological undead corporeal revenant created through the reanimation of a corpse." This one is very real.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Zombies/zombie_human.rsi
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: NpcFactionMember
+    factions:
+    - Zombie
+  - type: Damageable
+    damageModifierSet: Zombie
+  - type: MeleeWeapon
+    attackRate: 0.8
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 1
+        Slash: 3
+        Poison: 6
+        Structural: 45
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 20
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: NFZombieBiteToxin # ~3-4 bites - slow down, ~8-9 bites - poison damage
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 1
+    solution: melee
+  - type: Butcherable
+    spawned:
+    - id: NFSpawnZombieLoot
+      amount: 1
+  - type: Bloodstream
+    bloodReagent: ZombieBlood
+    bloodMaxVolume: 250
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
+  - type: ReplacementAccent
+    accent: zombie
+  - type: SpamEmitSound
+    minInterval: 3
+    maxInterval: 9
+    sound:
+      collection: ZombieScreams
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Vocalizer
+    hideChat: true
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: spacepunkhumanoidchatter
+  - type: AutoWakeUp
+  - type: StinkyTrait
+
+# region loot
+- type: entityTable
+  id: TableZombieLoot
+  table: !type:AllSelector
+    children:
+    - id: FoodMeatRotten
+      rolls: !type:RangeNumberSelector
+        range: 0, 2
+    # Cash
+    - !type:GroupSelector
+      children:
+      - id: SpaceCash100
+        weight: 0.05
+      - id: SpaceCash500
+        rolls: !type:ConstantNumberSelector
+          value: 3
+        weight: 0.2
+      - id: SpaceCash1000
+        rolls: !type:ConstantNumberSelector
+          value: 2
+        weight: 0.25
+      - id: SpaceCash2500
+        weight: 0.5
+    # Things
+    - !type:AllSelector
+      children:
+      - id: TreasureSampleTube
+        rolls: !type:RangeNumberSelector
+          range: 0, 2
+      - id: ScrapTube
+        rolls: !type:RangeNumberSelector
+          range: -1, 1
+      - !type:NestedSelector
+        tableId: SalvageTreasureUncommon
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+    # Meds
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: -1, 1
+      children:
+      - id: PillCharcoal
+      - id: PillHyronalin
+      - id: PillTricordrazine
+      - id: Gauze1
+      - id: Brutepack1
+      - id: ChemistryBottleMysteryLiquid
+        weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: NFSpawnZombieLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.15
+    table: !type:NestedSelector
+      tableId: TableZombieLoot
+      prob: 1.00
+
+# region common zombie
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieSuit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-virology-bio
+      map: ["zombieRandomSuit"]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-virology-bio: ""
+        suit-torn-security-bio: ""
+        suit-torn-security: ""
+      zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieJumpsuit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-engineer
+      map: ["zombieRandomSuit"]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-engineer: ""
+        suit-torn-pilot: ""
+        suit-torn-science: ""
+        suit-torn-medic: ""
+      zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+
+# region radioactive
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieSuitRadiation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-radiation
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RadiationSource
+    intensity: 0.3
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    softness: 0.5
+    color: LightGreen
+    castShadows: false
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+
+# region exploding
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieExploding
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-cargo
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+  - type: SingularityDistortion
+    intensity: 500
+    falloffPower: 5
+  - type: RepulseAttract
+    speed: -15 #Anything above this pushes things too far away from the Wizard
+    range: 5
+    whitelist:
+      components:
+      - MobMover
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          NFZombieExplosion:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: NFZombieExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 9
+    intensitySlope: 2.5
+    maxIntensity: 2
+    canCreateVacuum: false
+
+# region flaming
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieSuitFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-fire
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/onfire.rsi
+      state: Generic_mob_burning
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 0
+  - type: IgniteOnMeleeHit
+    fireStacks: 1
+  - type: IgnitionSource
+    temperature: 800
+    ignited: true
+  - type: PointLight
+    color: "#E25822"
+    radius: 2
+    energy: 1
+    softness: 1
+    castShadows: false
+
+# region cold
+- type: entity
+  parent: NFMobZombieBase
+  id: NFMobZombieSuitAtmos
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+      color: "#00eeff"
+    - state: suit-torn-atmos-winter
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+  - type: MeleeWeapon
+    damage:
+      types:
+        Cold: 4
+        Slash: 6
+        Structural: 45
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Fresium
+        Quantity: 1
+  - type: PointLight
+    radius: 2
+    energy: 1
+    softness: 0.5
+    color: cyan
+    castShadows: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 15
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemCold
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/Toys/sitcom_laugh.ogg
+
+# region clown
+- type: entity
+  parent: [ MobHumanoidHostileAIComplex, NFMobZombieBase ]
+  id: NFMobZombieClown
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie
+    - state: suit-torn-clown
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+  - type: Butcherable
+    spawned:
+    - id: NFSpawnZombieLoot
+      amount: 1
+    - id: ClothingShoesClownModKetchup
+      amount: 1
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: squeezeBottleUseSounds
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 15
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: FoodPieBananaCream
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/Toys/sitcom_laugh.ogg
+  - type: SpamEmitSound
+    minInterval: 3
+    maxInterval: 9
+    sound:
+      collection: ZombieClownScreams
+      params:
+        variation: 0.125
+
+# region fast
+- type: entity
+  parent: [MobMovementSpeedModifierMelee, NFMobZombieBase]
+  id: NFMobZombieFast
+  #categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: zombie-fast
+    - state: suit-torn-engineer
+      map: ["zombieRandomSuit"]
+    - state: zombie-fast-claws
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieRandomSuit:
+        suit-torn-security: ""
+        suit-torn-engineer: ""
+        suit-torn-pilot: ""
+        suit-torn-science: ""
+        suit-torn-medic: ""
+      zombieChestBloodSplatterRandom:
+        Chest_Brute_30: LiquidsBiologicalHumanBlood
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_30: LiquidsBiologicalHumanBlood
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+
+# region boss
+- type: entity
+  parent: [ MobHostileBossBase, NFMobZombieBase, MobHumanoidHostileAISimpleMelee ]
+  id: NFMobZombieOdysseus
+  categories: [ HideSpawnMenu ]
+  name: zombie trapped in odysseus mech
+  description: |-
+   A fast, lightly armored medical exosuit: so advanced it practically pilots itself! It appears a zombie is trapped inside the suit.
+  components:
+  - type: Damageable
+    damageModifierSet: MobRogueSiliconDamageModifierSet
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: odysseus
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Chest_Brute_30
+      color: "#80000099"
+      map: [ "zombieChestBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: Head_Brute_30
+      color: "#80000099"
+      map: [ "zombieHeadBloodSplatterRandom" ]
+    - sprite: Mobs/Effects/brute_damage.rsi
+      state: LLeg_Brute_30
+      color: "#80000099"
+      map: [ "zombieLegLBloodSplatterRandom" ]
+  - type: RandomSprite
+    available:
+    - zombieChestBloodSplatterRandom:
+        Chest_Brute_30: LiquidsBiologicalHumanBlood
+        Chest_Brute_50: LiquidsBiologicalHumanBlood
+        Chest_Brute_70: LiquidsBiologicalHumanBlood
+        Chest_Brute_100: LiquidsBiologicalHumanBlood
+      zombieHeadBloodSplatterRandom:
+        Head_Brute_30: LiquidsBiologicalHumanBlood
+        Head_Brute_50: LiquidsBiologicalHumanBlood
+        Head_Brute_70: LiquidsBiologicalHumanBlood
+        Head_Brute_100: LiquidsBiologicalHumanBlood
+      zombieLegLBloodSplatterRandom:
+        LLeg_Brute_30: LiquidsBiologicalHumanBlood
+        LLeg_Brute_50: LiquidsBiologicalHumanBlood
+        LLeg_Brute_70: LiquidsBiologicalHumanBlood
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: odysseus
+      Critical:
+        Base: odysseus-broken
+      Dead:
+        Base: odysseus-broken
+  - type: Bloodstream
+    bloodReagent: WeldingFuel
+    bloodMaxVolume: 100
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - NFZombiePileLoophole
+    chance: 1
+    intervalSeconds: 240 # 4 min
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      160: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 155
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          NFSpawnMobZombie:
+            min: 1
+            max: 1
+          NFSpawnZombiePile:
+            min: 1
+            max: 1
+          RipleyChassis:
+            min: 1
+            max: 1
+          RipleyCentralElectronics:
+            min: 1
+            max: 1
+          RipleyPeripheralsElectronics:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+        Structural: 60
+    soundHit:
+      collection: MetalThud
+  - type: PointLight
+    radius: 5
+    energy: 2
+
+# region pile
+- type: entity
+  parent: AberrantFleshDigestiveSack
+  id: NFZombiePile
+  name: body bags pile
+  description: A stacked pile of reinforced body bags. Some of them are moving!
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - NFSpawnMobZombieRandom
+    chance: 1
+    intervalSeconds: 300 # 5 min
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 3
+  - type: Sprite
+    sprite: _NF/Mobs/Zombies/zombie_human.rsi
+    layers:
+    - state: spawner
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Zombie
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeatRotten:
+            min: 1
+            max: 3
+
+# timedspawners making timedspawners makes the iterator sad, so we use a loophole
+- type: entity
+  id: NFZombiePileLoophole
+  categories: [ HideSpawnMenu ]
+  description: If you see this, make a bug report.
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Zombies/zombie_human.rsi
+    layers:
+    - state: spawner
+  - type: TimedDespawn
+    lifetime: 0
+  - type: SpawnOnDespawn
+    prototype: NFZombiePile

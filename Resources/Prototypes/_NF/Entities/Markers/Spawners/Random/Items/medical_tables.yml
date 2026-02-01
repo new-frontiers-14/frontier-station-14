@@ -1,0 +1,1204 @@
+# region Clutter
+- type: entityTable
+  id: TableDungeonLootMedicalClutter
+  table: !type:GroupSelector
+    children:
+    # General Clutter and Tools
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsSurgery
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalClothes
+        weight: 0.35
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalCircuitBoards
+        weight: 0.025
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalFirstAidKits
+        weight: 0.25
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalFlatpacks
+        weight: 0.025
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralRestocks
+        weight: 0.05
+    # Chems
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsLabGlassware
+        weight: 0.6
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalGlasswareFilled
+        weight: 0.4
+    # Region Meds
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsMedipens
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsHyposprays
+        weight: 0.1
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsTopicalsFull
+        weight: 0.1
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsTopicalsSingle
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsImplanters
+        weight: 0.2
+    # Unsorted
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: BoxFolderWhite
+      - id: BoxBodyBag
+      - id: BoxPillCanister
+      - id: BoxNitrileGloves
+      - id: ClothingEyesHudMedical
+      - id: HandheldHealthAnalyzer
+      - id: ClothingEyesGlassesChemical
+      - id: DiseaseSwab
+      - id: PillCanisterRandom
+
+# region Clutter (POI)
+- type: entityTable
+  id: TablePoiLootMedicalClutter
+  table: !type:GroupSelector
+    children:
+    # General Clutter and Tools
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsSurgery
+        weight: 0.4
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalClothes
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalFirstAidKits
+        weight: 0.25
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralRestocks
+        weight: 0.05
+    # Chems
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsLabGlassware
+        weight: 0.6
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalGlasswareFilled
+        weight: 0.4
+    # Region Meds
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsMedipens
+        weight: 0.35
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsHyposprays
+        weight: 0.15
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsTopicalsFull
+        weight: 0.15
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalToolsTopicalsSingle
+        weight: 0.35
+    # Unsorted
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: BoxFolderWhite
+      - id: BoxBodyBag
+      - id: BoxPillCanister
+      - id: BoxNitrileGloves
+      - id: ClothingEyesHudMedical
+      - id: HandheldHealthAnalyzer
+      - id: ClothingEyesGlassesChemical
+      - id: DiseaseSwab
+      - id: PillCanisterRandom
+
+# region Medkits
+- type: entityTable
+  id: TableDungeonLootMedicalFirstAidKits
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - !type:GroupSelector
+        children:
+        - id: Medkit
+          weight: 0.4
+        - id: MedkitFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitBrute
+          weight: 0.4
+        - id: MedkitBruteFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitBurn
+          weight: 0.4
+        - id: MedkitBurnFilled
+          weight: 0.6
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:GroupSelector
+        children:
+        - id: MedkitToxin
+          weight: 0.4
+        - id: MedkitToxinFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitRadiation
+          weight: 0.4
+        - id: MedkitRadiationFilled
+          weight: 0.6
+    # Rare (either good or undesirable)
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - !type:GroupSelector
+        children:
+        - id: MedkitAdvanced
+          weight: 0.4
+        - id: MedkitAdvancedFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitCombat
+          weight: 0.4
+        - id: MedkitCombatFilled
+          weight: 0.6
+      - !type:GroupSelector
+        children:
+        - id: MedkitO2
+          weight: 0.4
+        - id: MedkitOxygenFilled
+          weight: 0.6
+
+# region Surgery tools
+- type: entityTable
+  id: TableDungeonLootMedicalToolsSurgery
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsSurgeryImprovised
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsSurgeryCommon
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsSurgeryAdvanced
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsSurgeryKit
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootMedicalToolsSurgeryImprovised
+  table: !type:GroupSelector
+    children:
+    - id: ScalpelShiv
+    - id: WelderMini
+    - id: SawImprov
+    - id: NFWeaponShotgunHandmade
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootMedicalToolsSurgeryCommon
+  table: !type:GroupSelector
+    children:
+    - id: Scalpel
+    - id: Cautery
+    - id: Drill
+    - id: Hemostat
+    - id: Retractor
+    - !type:GroupSelector
+      children:
+      - id: Saw
+        weight: 0.4
+      - id: SawElectric
+        weight: 0.6
+
+- type: entityTable
+  id: TableDungeonLootMedicalToolsSurgeryAdvanced
+  table: !type:GroupSelector
+    children:
+    - id: Cautery
+    - id: Drill
+    - id: Hemostat
+    - id: Retractor
+    - !type:GroupSelector
+      children:
+      - id: ScalpelAdvanced
+      - id: ScalpelLaser
+    - !type:GroupSelector
+      children:
+      - id: SawElectric
+        weight: 0.4
+      - id: SawAdvanced
+        weight: 0.6
+
+- type: entityTable
+  id: TableDungeonLootMedicalToolsSurgeryKit
+  table: !type:GroupSelector
+    children:
+    - id: ClothingBackpackDuffelSurgeryFilled
+      weight: 0.35
+    - id: ClothingBackpackDuffelSurgeryAdvancedFilled
+      weight: 0.5
+    - id: ClothingBackpackDuffelSyndicateFilledMedical
+      weight: 0.1
+    - id: ClothingBackpackDuffelSurgeryImpovFilled
+      weight: 0.05
+
+# region Glassware
+- type: entityTable
+  id: TableDungeonLootMedicalToolsLabGlassware
+  table: !type:GroupSelector
+    children:
+    # Beakers
+    - !type:GroupSelector
+      children:
+      - id: Beaker
+        weight: 0.2
+      - id: LargeBeaker
+        weight: 0.5
+      - id: CryostasisBeaker
+        weight: 0.25
+      - id: BluespaceBeaker
+        weight: 0.05
+      - id: BoxBeaker
+        weight: 0.01
+    # Vials
+    - !type:GroupSelector
+      children:
+      - id: BaseChemistryEmptyVial
+        weight: 0.9
+      - id: VialBluespace
+        weight: 0.1
+      - id: BoxVial
+        weight: 0.01
+    # Jugs
+    - !type:GroupSelector
+      children:
+      - id: Jug
+        weight: 0.4
+      - id: ReinforcedJug
+        weight: 0.55
+      - id: JugBluespace
+        weight: 0.05
+    # Droppers
+    - !type:GroupSelector
+      children:
+      - id: Dropper
+        weight: 0.6
+      - id: ServiceSelectiveDropper
+        weight: 0.4
+    # Syringes
+    - !type:GroupSelector
+      children:
+      - id: MiniSyringe
+        weight: 0.2
+      - id: Syringe
+        weight: 0.5
+      - id: SyringeCryostasis
+        weight: 0.25
+      - id: SyringeBluespace
+        weight: 0.05
+      - id: BoxSyringe
+        weight: 0.01
+    # Bottles
+    - !type:GroupSelector
+      children:
+      - id: ChemistryEmptyBottle01
+      - id: ChemistryEmptyBottle02
+      - id: ChemistryEmptyBottle03
+      - id: ChemistryEmptyBottle04
+      - id: BoxBottle
+        weight: 0.01
+
+# region Filled Glassware
+- type: entityTable
+  id: TableDungeonLootMedicalGlasswareFilled
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsSyringesFilled
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsJugsFilled
+      weight: 0.5
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalToolsBottlesFilled
+      weight: 0.3
+
+# region Syringes
+- type: entityTable
+  id: TableDungeonLootMedicalToolsSyringesFilled
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: SyringeBicaridine
+      - id: SyringeDermaline
+      - id: SyringeEphedrine
+      - id: SyringeEthylredoxrazine
+      - id: SyringeInaprovaline
+      - id: SyringeSaline
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: SyringeHyronalin
+      - id: SyringeIpecac
+      - id: SyringeOpporozidone
+      - id: SyringePhalanximine
+      - id: SyringeSigynate
+    # Rare
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: SyringeAmbuzol
+      - id: SyringeCognizine
+      - id: SyringeStimulants
+      - id: SyringeTranexamicAcid
+
+# region Jugs
+- type: entityTable
+  id: TableDungeonLootMedicalToolsJugsFilled
+  table: !type:GroupSelector
+    children:
+    - id: JugAluminium
+    - id: JugCarbon
+    - id: JugChlorine
+    - id: JugFluorine
+    - id: JugIodine
+    - id: JugPhosphorus
+    - id: JugSulfur
+    - id: JugSilicon
+    - id: JugOxygen
+    - id: JugNitrogen
+    - id: JugHydrogen
+    - id: JugLithium
+    - id: JugSodium
+    - id: JugPotassium
+    - id: JugRadium
+    - id: JugSugar
+    - id: JugEthanol
+    - id: JugIron
+    - id: JugCopper
+    - id: JugGold
+    - id: JugMercury
+    - id: JugSilver
+    - id: JugWeldingFuel
+
+# region Bottles
+- type: entityTable
+  id: TableDungeonLootMedicalToolsBottlesFilled
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: ChemistryBottleMysteryLiquid
+      - id: ChemistryBottleAluminium
+      - id: ChemistryBottleCarbon
+      - id: ChemistryBottleCopper
+      - id: ChemistryBottleEpinephrine
+      - id: ChemistryBottleEthanol
+      - id: ChemistryBottleEZNutrient
+      - id: ChemistryBottleHydrogen
+      - id: ChemistryBottleIron
+      - id: ChemistryBottleLead
+      - id: ChemistryBottleLeft4Zed
+      - id: ChemistryBottleNitrogen
+      - id: ChemistryBottleOxygen
+      - id: ChemistryBottleRobustHarvest
+      - id: ChemistryBottleSilicon
+      - id: ChemistryBottleSodium
+      - id: ChemistryBottleSugar
+      - id: ChemistryBottleSulfur
+      - id: ChemistryBottleUnstableMutagen
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ChemistryBottleIodine
+      - id: ChemistryBottleMercury
+      - id: ChemistryBottleChlorine
+      - id: ChemistryBottleFluorine
+      - id: ChemistryBottleEphedrine
+      - id: ChemistryBottleNecrosol
+      - id: ChemistryBottleLithium
+      - id: ChemistryBottleMuteToxin
+      - id: ChemistryBottlePhosphorus
+      - id: ChemistryBottlePotassium
+      - id: ChemistryBottleRadium
+      - id: ChemistryBottleToxin
+    # Rare
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: ChemistryBottleCognizine
+      - id: ChemistryBottleOmnizine
+      - id: ChemistryBottlePax
+      - id: ChemistryBottleNocturine
+
+# region Medipens
+- type: entityTable
+  id: TableDungeonLootMedicalToolsMedipens
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: ChemicalMedipen # Used
+      - id: BlankMediPen # Empty
+      - id: EmergencyMedipen
+      - id: SpaceMedipen
+      - id: AntiPoisonMedipen
+      - id: BruteAutoInjector
+      - id: BurnAutoInjector
+      - id: RadAutoInjector
+      - id: AirlossAutoInjector
+      - id: CrisisAutoInjector
+      - id: HemostasisAutoInjector
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: BruizAutoInjector
+      - id: PunctAutoInjector
+      - id: LacerAutoInjector
+      - id: PyraAutoInjector
+      - id: EphedrineAutoInjector
+      - id: PolyAutoInjector
+    # Rare (either good or undesirable)
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: CombatMedipen
+      - id: Stimpack
+      - id: StimpackMini
+      - id: WehMedipen
+      - id: EthylredoxrazineAutoInjector
+      - id: StimulantAutoInjector
+
+# region Hyposprays
+- type: entityTable
+  id: TableDungeonLootMedicalToolsHyposprays
+  table: !type:GroupSelector
+    children:
+    - id: HypoMini
+      weight: 0.54
+    - id: HypoBrigmedic
+      weight: 0.3
+    - id: HypoMiniLimitedEdition
+      weight: 0.1
+    - id: Hypospray
+      weight: 0.05
+    - id: SyndiHypo
+      weight: 0.01
+
+# region Topicals
+- type: entityTable
+  id: TableDungeonLootMedicalToolsTopicalsFull
+  table: !type:GroupSelector
+    children:
+    - id: Tourniquet
+    - id: Bloodpack
+    - !type:GroupSelector
+      children:
+      - id: Brutepack
+        weight: 0.85
+      - id: MedicatedSuture
+        weight: 0.15
+    - !type:GroupSelector
+      children:
+      - id: Gauze
+        weight: 0.85
+      - id: MedicatedSuture
+        weight: 0.15
+    - !type:GroupSelector
+      children:
+      - id: Ointment
+        weight: 0.8
+      - id: RegenerativeMesh
+        weight: 0.1
+      - id: AloeCream
+        weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootMedicalToolsTopicalsSingle
+  table: !type:GroupSelector
+    children:
+    - id: Tourniquet
+      weight: 0.05
+    - id: Bloodpack1
+    - id: Brutepack1
+    - id: Ointment1
+    - id: Gauze1
+
+# region Implanters
+- type: entityTable
+  id: TableDungeonLootMedicalToolsImplanters
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: Implanter
+      - id: MedicalTrackingImplanter
+      - id: LightImplanter
+      - id: SadTromboneImplanter
+      - id: BikeHornImplanter
+      - id: WehImplanter
+      - id: TrackingImplanter
+      - id: MindShieldImplanter
+    # Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: MimePowersImplanter
+      - id: BibleUserImplanter
+      - id: DeathAcidifierImplanter
+      - id: MicroBombImplanter
+      - id: FakeMindShieldImplanter
+      - id: DeathRattleImplanter
+      - id: EmpImplanter
+    # Rare
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: DnaScramblerImplanter
+      - id: FreedomImplanter
+      - id: StorageImplanter
+      - id: ScramImplanter
+      - id: RadioImplanter # Syndicate radio
+      - id: MacroBombImplanter
+    # Legendary
+    - !type:GroupSelector
+      weight: 0.001
+      children:
+      #- id: ChameleonControllerImplanter
+      - id: UplinkImplanter
+
+# region Patient Transportation
+- type: entityTable
+  id: TableDungeonLootMedicalToolsPatientTransport
+  table: !type:GroupSelector
+    children:
+    - id: EmergencyRollerBedSpawnFolded
+    - id: RollerBedSpawnFolded
+    - id: CheapRollerBedSpawnFolded
+    - id: VehicleWheelchairFolded
+    - id: BodyBag
+    - id: BodyBagFolded
+    - id: CrateCoffin
+    # T5: Memes
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: Stunprod
+        weight: 0.8
+      - id: Stunbaton
+        weight: 0.15
+      - id: ClothingHandsKnuckleDustersStun
+        weight: 0.05
+
+# region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootMedicalClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesBags
+      weight: 40
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesHats
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesJumpsuits
+      weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesJackets
+      weight: 15
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesBoots
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalClothesBelts
+      weight: 15
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalEvas
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalHardsuits
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesBags
+  table: !type:GroupSelector
+    children:
+    # Duffels
+    - !type:GroupSelector
+      weight: 3
+      children:
+      - id: ClothingBackpackDuffelMedical
+      - id: ClothingBackpackDuffelVirology
+      - id: ClothingBackpackDuffelGenetics
+      - id: ClothingBackpackDuffelTrauma
+      - id: ClothingBackpackDuffelChemistry
+        weight: 0.1
+    # Messenger bags
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMessengerMedical
+      - id: ClothingBackpackMessengerVirology
+      - id: ClothingBackpackMessengerGenetics
+      - id: ClothingBackpackMessengerChemistry
+        weight: 0.1
+    # Backpacks
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackMedical
+      - id: ClothingBackpackVirology
+      - id: ClothingBackpackGenetics
+      - id: ClothingBackpackChemistry
+        weight: 0.1
+    # Satchels
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: ClothingBackpackSatchelMedical
+      - id: ClothingBackpackSatchelVirology
+      - id: ClothingBackpackSatchelGenetics
+      - id: ClothingBackpackSatchelChemistry
+        weight: 0.1
+    # Pouches
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchFirstAid
+        weight: 0.4
+      - id: NFPouchFirstAidAlt
+        weight: 0.4
+      - id: MedicalPouch # Ugly
+        weight: 0.2
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesBelts
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty belts to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingBeltMedical
+        weight: 0.7
+      - id: ClothingBeltMedicalFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingBeltMedicalEMT
+        weight: 0.7
+      - id: ClothingBeltMedicalEMTFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: MedicalBag
+      - id: ChemBag
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesHats
+  table: !type:GroupSelector
+    children:
+    # Surgical
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: ClothingHeadHatSurgcapPurple
+      - id: ClothingHeadHatSurgcapGreen
+      - id: ClothingHeadHatSurgcapBlue
+    # Bio hoods
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingHeadHatHoodBioCmo
+      - id: ClothingHeadHatHoodBioGeneral
+      - id: ClothingHeadHatHoodBioVirology
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    # Scrubs
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: UniformScrubsColorPurple
+      - id: UniformScrubsColorBlue
+      - id: UniformScrubsColorGreen
+    # Jumpsuits
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingUniformJumpsuitMedicalDoctor
+      - id: ClothingUniformJumpsuitMilitaryMedicalDoctor
+      - id: ClothingUniformJumpsuitParamedicNT
+      - id: ClothingUniformJumpsuitParamedic
+      - id: ClothingUniformJumpsuitMilitaryParamedic
+      - id: ClothingUniformJumpsuitChemistry
+      - id: ClothingUniformJumpsuitMilitaryChemistry
+      - id: ClothingUniformJumpsuitVirology
+      - id: ClothingUniformJumpsuitMilitaryVirology
+      - id: ClothingUniformJumpsuitGenetics
+      - id: ClothingUniformJumpsuitMilitaryGenetics
+      - id: ClothingUniformJumpsuitSeniorPhysician
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesJackets
+  table: !type:GroupSelector
+    children:
+    # Lab coats
+    - !type:GroupSelector
+      weight: 0.65
+      children:
+      - id: ClothingOuterCoatLab
+      - id: ClothingOuterCoatLabChem
+      - id: ClothingOuterCoatLabGene
+      - id: ClothingOuterCoatLabSeniorPhysician
+      - id: ClothingOuterCoatLabViro
+      - id: ClothingOuterCoatAMG
+        weight: 0.05
+    # Bio suits
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: ClothingOuterBioCmo
+      - id: ClothingOuterBioGeneral
+      - id: ClothingOuterBioVirology
+    - id: ClothingOuterHospitalGown
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootMedicalClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesColorBlack
+    - id: ClothingShoesColorWhite
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingShoesLeather
+
+#region EVA
+- type: entityTable
+  id: TableDungeonLootMedicalEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitMedic
+    - id: ClothingOuterEVASuitParamedic
+
+- type: entityTable
+  id: TableDungeonLootMedicalHardsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitVoidParamed
+      weight: 0.5
+    - id: ClothingOuterEVASuitFsb
+      weight: 0.4
+    - id: ClothingOuterHardsuitMedical
+      weight: 0.1
+
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootMedicalLockers
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalLockersMedicine
+      weight: 0.45
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalLockersBiohazard
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalLockersWardrobes
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalSuitStorageUnits
+      weight: 0.1
+
+# region Lockers (Medicine)
+- type: entityTable
+  id: TableDungeonLootMedicalLockersMedicine
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: LockerMedical
+        weight: 0.7
+      - id: LockerMedicalFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: LockerParamedic
+        weight: 0.7
+      - id: LockerParamedicFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: LockerMedicine
+        weight: 0.7
+      - id: LockerMedicineFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: LockerChiefMedicalOfficer
+        weight: 0.7
+      - id: LockerChiefMedicalOfficerFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: LockerChemistry
+        weight: 0.7
+      - id: LockerChemistryFilled
+        weight: 0.3
+
+# region Lockers (PPE)
+- type: entityTable
+  id: TableDungeonLootMedicalLockersBiohazard
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      children:
+      - id: ClosetL3
+        weight: 0.7
+      - id: ClosetL3Filled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: ClosetL3Virology
+        weight: 0.7
+      - id: ClosetL3VirologyFilled
+        weight: 0.3
+
+# region Lockers (Wardrobes)
+- type: entityTable
+  id: TableDungeonLootMedicalLockersWardrobes
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      children:
+      - id: WardrobeVirology
+        weight: 0.7
+      - id: WardrobeVirologyFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeGenetics
+        weight: 0.7
+      - id: WardrobeGeneticsFilled
+        weight: 0.3
+    - !type:GroupSelector
+      children:
+      - id: WardrobeChemistry
+        weight: 0.7
+      - id: WardrobeChemistryFilled
+        weight: 0.3
+
+# region Lockers (SSU)
+- type: entityTable
+  id: TableDungeonLootMedicalSuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 0.6
+    - !type:GroupSelector
+      weight: 0.35
+      children:
+      - id: SuitStorageEVAMedical
+      - id: SuitStorageParamedicAlt
+      - id: SuitStorageParamedic
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: SuitStorageCMO
+
+# region Crates
+- type: entityTable
+  id: TableDungeonLootMedicalCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesEmpty
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesFilled
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootMedicalCratesRestock
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesMaterial
+      weight: 0.2
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: ChemicalBarrelExplosiveFilled
+        weight: 0.1
+      - !type:NestedSelector
+        tableId: TableDungeonLootGeneralBarrelsEmpty
+        weight: 0.2
+      - !type:NestedSelector
+        tableId: TableDungeonLootMedicalBarrelsChems
+        weight: 0.7
+
+- type: entityTable
+  id: TableDungeonLootMedicalCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CrateMedical
+    - id: CrateSurgery
+    - id: CrateChemistrySecure
+
+- type: entityTable
+  id: TableDungeonLootMedicalCratesFilled
+  table: !type:GroupSelector
+    children:
+    # Chemistry
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: CrateChemistryD
+      - id: CrateChemistryP
+      - id: CrateChemistryS
+    # Medicine
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: CrateMedicalSupplies
+      - id: CrateMedicalSecureMedicine
+      - id: CrateMedicalSecureMedicinePierce
+      - id: CrateMedicalSecureDoctor
+    # General
+    - !type:GroupSelector
+      weight: 0.4
+      children:
+      - id: CrateBodyBags
+      - id: CrateMedicalRollerBeds
+      - id: CrateMedicalSurgery
+      - id: CrateMedicalScrubs
+      - id: CrateVirologyBiosuit
+      - id: CrateEvaKitParamedic
+      - id: CrateChemistryVials
+      - id: CrateChemistrySecureKitChemist
+      - id: CrateEvaKitCmo
+        weight: 0.01
+    # Unique
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: CrateServiceKitMedbay
+      - id: CrateServiceKitChemLab
+      - id: CrateServiceKitMedbayCryo
+
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootMedicalCratesRestock
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockMedicalFilled
+    - id: CrateVendingMachineRestockChemVendFilled
+
+# region Barrels
+- type: entityTable
+  id: TableDungeonLootMedicalBarrelsChems
+  table: !type:GroupSelector
+    children:
+    - id: ChemicalBarrelExplosiveFilled
+    - id: ChemicalBarrelCarbon
+    - id: ChemicalBarrelIodine
+    - id: ChemicalBarrelFluorine
+    - id: ChemicalBarrelChlorine
+    - id: ChemicalBarrelAluminium
+    - id: ChemicalBarrelPhosphorus
+    - id: ChemicalBarrelSulfur
+    - id: ChemicalBarrelSilicon
+    - id: ChemicalBarrelHydrogen
+    - id: ChemicalBarrelLithium
+    - id: ChemicalBarrelSodium
+    - id: ChemicalBarrelPotassium
+    - id: ChemicalBarrelRadium
+    - id: ChemicalBarrelIron
+    - id: ChemicalBarrelCopper
+    - id: ChemicalBarrelGold
+    - id: ChemicalBarrelMercury
+    - id: ChemicalBarrelSilver
+    - id: ChemicalBarrelEthanol
+    - id: ChemicalBarrelSugar
+    - id: ChemicalBarrelNitrogen
+    - id: ChemicalBarrelOxygen
+    - id: ChemicalBarrelSpaceLube
+    - id: ChemicalBarrelSpaceCleaner
+    - id: ChemicalBarrelDiethylamine
+
+#region Machines
+- type: entityTable
+  id: TableDungeonLootMedicalMachinesFabricators
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 90
+      children:
+      - id: Autolathe
+        weight: 20
+      - id: MedicalTechFab
+        weight: 40
+      - id: ExosuitFabricator
+        weight: 15
+      - id: ServiceTechFab
+        weight: 20
+      - id: Biogenerator
+        weight: 20
+      - id: CutterMachine
+        weight: 10
+      - id: Protolathe
+        weight: 5
+    # Rare
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: AutolatheHyperConvection
+        weight: 80
+      - id: ProtolatheHyperConvection
+        weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 5
+
+#region Vendomats
+- type: entityTable
+  id: TableDungeonLootMedicalMachinesVending
+  table: !type:GroupSelector
+    children:
+    # Drobes
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: VendingMachineMediDrobe
+      - id: VendingMachineChemDrobe
+      - id: VendingMachineRoboDrobe
+      - id: VendingMachineGeneDrobe
+      - id: VendingMachineViroDrobe
+    # Meds
+    - !type:GroupSelector
+      weight: 0.6
+      children:
+      - id: VendingMachineVendomat
+      - id: VendingMachineRobotics
+      - id: VendingMachineMedical
+      - id: VendingMachineCiviMedPlus
+    # Frame
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFrameMachine
+      weight: 0.1
+
+#region Flatpacks
+- type: entityTable
+  id: TableDungeonLootMedicalFlatpacks
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.8
+      children:
+      - id: MedicalTechFabFlatpack
+      - id: StasisBedFlatpack
+      - id: ChemMasterFlatpack
+      - id: MachineElectrolysisUnitFlatpack
+      - id: BaseGasCondenserFlatpack
+      - id: MachineCentrifugeFlatpack
+      - id: ChemistryHotplateFlatpack
+      - id: KitchenReagentGrinderFlatpack
+      - id: ComputerCrewMonitoringFlatpack
+    # Rare
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: VendingMachineMedicalFlatpack
+      - id: VendingMachineWallMedicalFlatpack
+      - id: VendingMachineChemicalsFlatpack
+
+#region Circuit Boards
+- type: entityTable
+  id: TableDungeonLootMedicalCircuitBoards
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.8
+      children:
+      # Computers
+      - id: MedicalRecordsComputerCircuitboard
+      # Lathes
+      - id: MedicalTechFabCircuitboard
+      # Machines
+      - id: ChemMasterMachineCircuitboard
+      - id: CentrifugeMachineCircuitboard
+      - id: ChemDispenserMachineCircuitboard
+      - id: CryoPodMachineCircuitboard
+      - id: ElectrolysisUnitMachineCircuitboard
+      - id: HotplateMachineCircuitboard
+      - id: StasisBedMachineCircuitboard
+    # Rare
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      # Computers
+      - id: BodyScannerComputerCircuitboard
+      - id: ComputerIFFCircuitboard
+      - id: CloningConsoleComputerCircuitboard
+      # Machines
+      - id: CloningPodMachineCircuitboard
+      - id: MedicalScannerMachineCircuitboard
+      - id: VaccinatorMachineCircuitboard
+      - id: DiagnoserMachineCircuitboard

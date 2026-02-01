@@ -16,6 +16,7 @@ using Content.Shared.Interaction;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Physics; // Frontier
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Standing;
@@ -24,6 +25,7 @@ using Content.Shared.Tools.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Map; // Frontier
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
@@ -57,6 +59,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution. TODO: Don't hardcode this
     private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
 
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier
 
     public override void Initialize()
     {
@@ -303,7 +307,37 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (cryoPodComponent.BodyContainer.ContainedEntity is not { Valid: true } contained)
             return null;
 
-        _container.Remove(contained, cryoPodComponent.BodyContainer);
+        // _container.Remove(contained, cryoPodComponent.BodyContainer); // Frontier
+        // Frontier - smart drop spot
+        var dropCoords = new EntityCoordinates(uid, cryoPodComponent.DropOffset);
+
+        if (_interaction.InRangeUnobstructed(uid, dropCoords, collisionMask: CollisionGroup.MobMask))
+        {
+            _container.Remove(contained, cryoPodComponent.BodyContainer);
+            _transform.SetWorldPosition(contained, _transform.ToWorldPosition(dropCoords));
+        }
+        else
+        {
+            var foundFallbackSpot = false;
+            foreach (var dir in new[] { Direction.South, Direction.North, Direction.East, Direction.West })
+            {
+                var fallbackCandidate = new EntityCoordinates(uid, dir.ToIntVec());
+                if (_interaction.InRangeUnobstructed(uid, fallbackCandidate, collisionMask: CollisionGroup.MobMask))
+                {
+                    _container.Remove(contained, cryoPodComponent.BodyContainer);
+                    _transform.SetWorldPosition(contained, _transform.ToWorldPosition(fallbackCandidate));
+                    foundFallbackSpot = true;
+                    break;
+                }
+            }
+
+            if (!foundFallbackSpot)
+            {
+                _container.Remove(contained, cryoPodComponent.BodyContainer);
+                _climb.ForciblySetClimbing(contained, uid);
+            }
+        }
+        // End Frontier - smart drop spot
         // InsideCryoPodComponent is removed automatically in its EntGotRemovedFromContainerMessage listener
         // RemComp<InsideCryoPodComponent>(contained);
 
@@ -313,7 +347,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         else
             _standingState.Stand(contained);
 
-        _climb.ForciblySetClimbing(contained, uid);
+        // _climb.ForciblySetClimbing(contained, uid); // Frontier
         UpdateAppearance(uid, cryoPodComponent);
         return contained;
     }

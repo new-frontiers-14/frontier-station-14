@@ -1,3 +1,5 @@
+
+#region skeleton bike
 - type: entity
   parent: BaseKey
   id: VehicleKeySkeletonMotorcycle
@@ -12,6 +14,7 @@
       sprite: Objects/Vehicles/motorbike.rsi
       state: keys
 
+#region hoverbike
 - type: entity
   parent: BaseKey
   id: VehicleKeyHoverbikeNF
@@ -28,7 +31,25 @@
   - type: StaticPrice
     price: 50
 
-# Upstream definitions
+#region broom
+- type: entity
+  parent: VehicleKeyHoverbikeNF
+  id: NFVehicleKeyBroom
+  name: flying broom keys
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/broom.rsi
+    state: keys
+  - type: Tag
+    tags:
+    - VehicleKey
+    - FlyingBroomKeys
+
+#region tag
+- type: Tag
+  id: FlyingBroomKeys
+
+#region Upstream definitions
 - type: entity
   parent: VehicleKeyATV
   id: VehicleKeySkeleton
