@@ -35,7 +35,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.Cargo.Components; // Frontier
-using Content.Shared._NF.Lathe; // Frontier
 using Content.Server._NF.Contraband.Systems; // Frontier
 using Robust.Shared.Containers; // Frontier
 
@@ -315,7 +314,7 @@ namespace Content.Server.Lathe
             if (producing == null && component.Queue.First is { } node)
                 producing = node.Value.Recipe;
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
+            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
