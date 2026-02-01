@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Explosion.Components;
+namespace Content.Shared._NF.Trigger.Components;
 
 /// <summary>
 /// Triggers an object when used for a successful/unsuccessful popup interaction.

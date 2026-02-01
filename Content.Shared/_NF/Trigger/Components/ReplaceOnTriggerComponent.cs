@@ -1,7 +1,7 @@
-using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Trigger.Systems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.Explosion.Components;
+namespace Content.Shared._NF.Trigger.Components;
 
 /// <summary>
 /// Replaces an entity with a given prototype when triggered.

@@ -6,6 +6,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Cargo.Components; // Frontier
+using Content.Server._NF.Cargo.Components; // Frontier
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Prototypes;
