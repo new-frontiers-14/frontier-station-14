@@ -9,13 +9,14 @@ using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
 using Content.Server._NF.Salvage.Expeditions; // Frontier
-using Content.Server.Station.Components; // Frontier
+using Content.Shared.Ghost; // Frontier
 using Content.Shared.Procedural; // Frontier
 using Content.Shared.Salvage; // Frontier
-using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Station.Components; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
-using Content.Shared.Shuttles.Components; // Frontier
 using Robust.Shared.Configuration; // Frontier
+using Robust.Shared.Map; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 using System.Numerics; // Frontier
 
 namespace Content.Server.Salvage;
@@ -167,7 +168,7 @@ public sealed partial class SalvageSystem
 
             // Frontier: disable cooldown when still in FTL
             if (!TryComp<StationDataComponent>(uid, out var stationData)
-                || !HasComp<FTLComponent>(_station.GetLargestGrid(stationData)))
+                || !HasComp<FTLComponent>(_station.GetLargestGrid((uid, stationData))))
             {
                 comp.Cooldown = false;
             }

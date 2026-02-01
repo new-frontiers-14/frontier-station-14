@@ -33,11 +33,11 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Components;
-using Content.Server._NF.Salvage.Expeditions; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Content.Server.Station.Systems; // Frontier
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
+using Content.Server._NF.Salvage.Expeditions; // Frontier
+using Content.Shared.Station.Components; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -248,7 +248,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var stationData = _entManager.GetComponent<StationDataComponent>(Station);
 
         // Get ship bounding box relative to largest grid coords
-        var shuttleUid = _station.GetLargestGrid(stationData);
+        var shuttleUid = _station.GetLargestGrid((Station, stationData));
         Box2 shuttleBox = new Box2();
 
         if (shuttleUid is { Valid: true } vesselUid &&
@@ -496,7 +496,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 }
 
                 var uid = _entManager.SpawnEntity(shaggy, _map.GridTileToLocal(mapUid, grid, tile));
-                _entManager.AddComponent<SalvageStructureComponent>(uid);
+                // _entManager.AddComponent<SalvageStructureComponent>(uid); // FRONTIER UPSTREAM MERGE TODO: figure out if we needed this
                 structureComp.Structures.Add(uid);
                 break;
             }
