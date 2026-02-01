@@ -21,12 +21,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared._NF.Medical.SuitSensors; // Frontier
+using Robust.Shared.Map.Components; // Frontier
 
 namespace Content.Shared.Medical.SuitSensors;
 
 public abstract class SharedSuitSensorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationSystem _stationSystem = default!;
+    // [Dependency] private readonly SharedStationSystem _stationSystem = default!; // Frontier
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -46,7 +48,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SuitSensorComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
+        // SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn); // Frontier
         SubscribeLocalEvent<SuitSensorComponent, ClothingGotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<SuitSensorComponent, ClothingGotUnequippedEvent>(OnUnequipped);
         SubscribeLocalEvent<SuitSensorComponent, ExaminedEvent>(OnExamine);
@@ -58,6 +60,8 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         _sensorQuery = GetEntityQuery<SuitSensorComponent>();
     }
 
+    // Frontier: Disable station assignments for sensors
+    /*
     /// <summary>
     /// Checks whether the sensor is assigned to a station or not
     /// and tries to assign an unassigned sensor to a station if it's currently on a grid.
@@ -72,11 +76,13 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         Dirty(sensor);
         return sensor.Comp.StationId.HasValue;
     }
+    */
+    // End Frontier
 
     private void OnMapInit(Entity<SuitSensorComponent> ent, ref MapInitEvent args)
     {
         // Fallback
-        ent.Comp.StationId ??= _stationSystem.GetOwningStation(ent.Owner);
+        // ent.Comp.StationId ??= _stationSystem.GetOwningStation(ent.Owner); // Frontier
 
         // generate random mode
         if (ent.Comp.RandomMode)
@@ -96,6 +102,8 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         Dirty(ent);
     }
 
+    // Frontier: Disable station assignments for sensors
+    /*
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent ev)
     {
         // If the player spawns in arrivals then the grid underneath them may not be appropriate.
@@ -120,10 +128,18 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             RecursiveSensor(child, stationUid);
         }
     }
+    */
+    // End Frontier
 
     private void OnEquipped(Entity<SuitSensorComponent> ent, ref ClothingGotEquippedEvent args)
     {
+        // Frontier: opt out of suit sensor registration
+        if (TryComp<DisableSuitSensorsComponent>(args.Wearer, out var disableSuitSensor) && disableSuitSensor.RemoveRegistration)
+            return;
+        // End Frontier
+
         ent.Comp.User = args.Wearer;
+
         Dirty(ent);
     }
 
@@ -190,6 +206,11 @@ public abstract class SharedSuitSensorSystem : EntitySystem
     {
         if (args.Container.ID != ent.Comp.ActivationContainer)
             return;
+
+        // Frontier: opt out of suit sensor registration
+        if (TryComp<DisableSuitSensorsComponent>(args.Container.Owner, out var disableSuitSensor) && disableSuitSensor.RemoveRegistration)
+            return;
+        // End Frontier
 
         ent.Comp.User = args.Container.Owner;
         Dirty(ent);
@@ -326,14 +347,17 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         var transform = ent.Comp2;
 
         // check if sensor is enabled and worn by user
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) || transform.GridUid == null)
+        // Frontier: sensors work off grids
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User)) // || transform.GridUid == null
             return null;
+        // End Frontier
 
         // try to get mobs id from ID slot
         var userName = Loc.GetString("suit-sensor-component-unknown-name");
         var userJob = Loc.GetString("suit-sensor-component-unknown-job");
         var userJobIcon = "JobIconNoId";
         var userJobDepartments = new List<string>();
+        var userLocationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
 
         if (_idCardSystem.TryFindIdCard(sensor.User.Value, out var card))
         {
@@ -363,7 +387,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             totalDamageThreshold = critThreshold.Value.Int();
 
         // finally, form suit sensor status
-        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments);
+        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments, userLocationName); // Frontier: add userLocationName
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:
@@ -380,24 +404,44 @@ public abstract class SharedSuitSensorSystem : EntitySystem
                 status.TotalDamageThreshold = totalDamageThreshold;
                 EntityCoordinates coordinates;
                 var xformQuery = GetEntityQuery<TransformComponent>();
+                var locationName = ""; // Frontier
 
                 if (transform.GridUid != null)
                 {
                     coordinates = new EntityCoordinates(transform.GridUid.Value,
                         Vector2.Transform(_transform.GetWorldPosition(transform, xformQuery),
                             _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)));
+
+                    // FRONTIER UPSTREAM MERGE TODO: figure out how to deal with this server comp in shared
+                    /*
+                    // Frontier: check if sensor is on expedition
+                    if (TryComp<SalvageExpeditionComponent>(transform.MapUid, out var salvageComp))
+                        locationName = Loc.GetString("suit-sensor-location-expedition");
+                    else if (TryComp(transform.GridUid, out MetaDataComponent? meta))
+                        locationName = meta.EntityName;
+                    else
+                        locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
+                    // End Frontier
+                    */
+
                 }
                 else if (transform.MapUid != null)
                 {
                     coordinates = new EntityCoordinates(transform.MapUid.Value,
                         _transform.GetWorldPosition(transform, xformQuery));
+                    locationName = Loc.GetString("suit-sensor-location-space"); // Frontier
                 }
                 else
                 {
                     coordinates = EntityCoordinates.Invalid;
+                    locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
                 }
 
+                if (transform.MapUid != null && TryComp<MapComponent>(transform.MapUid.Value, out var mapComp)) // Frontier - Crew monitor map check
+                    status.MapHash = mapComp.MapId.GetHashCode(); // Frontier
+
                 status.Coordinates = GetNetCoordinates(coordinates);
+                status.LocationName = locationName; // Frontier
                 break;
         }
 
@@ -427,6 +471,10 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             payload.Add(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, status.TotalDamageThreshold);
         if (status.Coordinates != null)
             payload.Add(SuitSensorConstants.NET_COORDINATES, status.Coordinates);
+        if (status.MapHash != null) // Frontier - Crew monitor map check
+            payload.Add(SuitSensorConstants.NET_MAP_HASH, status.MapHash); // Frontier
+        if (status.LocationName != null) // Frontier
+            payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName); // Frontier
 
         return payload;
     }
@@ -450,18 +498,21 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_IS_ALIVE, out bool? isAlive)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_OWNER_UID, out NetEntity ownerUid)) return null;
+        if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATION_NAME, out string? location)) return null; // Frontier
 
         // try get total damage and cords (optionals)
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, out int? totalDamageThreshold);
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
+        payload.TryGetValue(SuitSensorConstants.NET_MAP_HASH, out int? mapHash); // Frontier - Crew monitor map check
 
-        var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments)
+        var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments, location) // Frontier: add location
         {
             IsAlive = isAlive.Value,
             TotalDamage = totalDamage,
             TotalDamageThreshold = totalDamageThreshold,
             Coordinates = coords,
+            MapHash = mapHash, // Frontier - Crew monitor map check
         };
         return status;
     }
