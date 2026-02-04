@@ -246,6 +246,9 @@ uplink-pirate-crate-captain-desc = A chest filled with the necessary goodies for
 uplink-pirate-crate-name = Pirate Chest
 uplink-pirate-crate-desc = A chest filled with the necessary goodies for a pirate.
 
+uplink-pirate-wooden-keg-rum-name = A Keg of Rum
+uplink-pirate-wooden-keg-rum-desc = A Keg filled with all the rum a Pirate needs, be sure to drink yourself dead to celebrate!
+
 uplink-pirate-magboots-name = Pirate Magboots
 uplink-pirate-magboots-desc = Pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
 
