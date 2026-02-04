@@ -374,6 +374,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapStronghold
+  name: "DBI Stronghold"
+  description: "Detailed map of a Stronghold shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: stronghold    
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapLiquidator
   name: "NC Liquidator"
   description: "Detailed map of a Liquidator shuttle."
@@ -459,17 +470,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: pulsar
-
-- type: entity
-  parent: PosterBase
-  id: ShuttleMapRampart
-  name: "DBI Rampart"
-  description: "Detailed map of a Rampart shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: rampart    
 
 - type: entity
   parent: PosterBase

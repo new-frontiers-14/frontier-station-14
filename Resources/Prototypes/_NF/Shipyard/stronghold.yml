@@ -9,31 +9,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Rampart
+  id: Stronghold
   parent: BaseVessel
-  name: DBI Rampart
-  description: The Rampart is intended for researching even the most dangerous of artifacts and anomolies, guarenteeing safety with minimal repairs needed per catastrophic explosion! with a west cargo wing and a east research wing and centeral research chamber the Dung Beetle Incorporated's Rampart is sure to suffice!
-  price: 52000 # 47203 10%= 4720.3 
-  category: Medium
+  name: DBI Stronghold
+  description: A science Vessel with a Robust Research chamber.
+  price: 53000 # 48123 10%= 4812.3
+  category: Large
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/rampart.yml
-  guidebookPage: ShipyardRampart
+  shuttlePath: /Maps/_NF/Shuttles/stronghold.yml
+  guidebookPage: ShipyardStronghold
   class:
   - Science
   engine:
-  - Plasma
+  - Uranium
 
 - type: gameMap
-  id: Rampart
-  mapName: 'DBI Rampart'
-  mapPath: /Maps/_NF/Shuttles/rampart.yml
+  id: Stronghold
+  mapName: 'DBI Stronghold'
+  mapPath: /Maps/_NF/Shuttles/stronghold.yml
   minPlayers: 0
   stations:
-    Rampart:
+    Stronghold:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Rampart {1}'
+          mapNameTemplate: 'Stronghold {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
