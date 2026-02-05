@@ -13,8 +13,7 @@
     shape:
     - 0,0,1,1
   - type: StaticPrice
-    price: 500
-    vendPrice: 1000
+    price: 100
 
 - type: entity
   parent: BaseRecord
@@ -204,3 +203,64 @@
     radius: 1.5
     energy: 2
   - type: RgbLightController
+
+- type: entity
+  parent: BaseRecord
+  id: NanotrasenRecord
+  name: classics record
+  description: For storing analogue data, everyone knows that circles are unparalleled. Contains all of the classics. Not for resale. # Default Jukebox Inventory. For mapping. Short term solution to a long term problem.
+  components:
+  - type: Sprite
+    state: corpo
+  - type: StaticPrice
+    price: 0
+  - type: JukeboxContainer
+    tracks:
+    #western
+    - sinner
+    - rattlesnakerailroad
+    - meanwhilebackatthesaloon
+    - murderonthebayou
+    - lateraligator
+    - SpaceAsshowl
+    #Jazz
+    - bringinthehorns
+    - caffeinated
+    - LoneDigger # Still no idea how this one happened
+    - lifeisgreat
+    - PTMinute
+    - retrofunky
+    - FlipFlap
+    #Punk
+    - skubstep
+    - ADiffReal
+    - sensless
+    - JukeShiba
+    - dustsucker
+    - victory
+    - DosHighUmb
+    # CorporateRecord
+    - singuloose
+    - Tintin
+    - Thunderdome
+    - sunset
+    - frontierarrivals
+    # DeltaRecord
+    - AmieSuperpos
+    - DeckTheHalls
+    - DrozAlone
+    - DrozLeisure
+    - GhirScratch
+    - IanMarhaba
+    - KCHaxors
+    - AutEqu
+    - AggAss
+    - SunbeamEvery
+    - SunbeamLaser
+    - SunbeamPhoron
+    # Space
+    - Constellations
+    - Drifting
+    - starlight
+    - NymphsForest
+    - frontierarrivals

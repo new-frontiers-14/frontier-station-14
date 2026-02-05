@@ -20,10 +20,10 @@
         reagent: Theobromine
         amount: 0.05
       - !type:AdjustReagent # Frontier
-        conditions:
-        - !type:ReagentThreshold
-          reagent: Caffeine
-          max: 60
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
         reagent: Caffeine # Frontier
         amount: 1 # Frontier
   metamorphicSprite:
@@ -116,6 +116,16 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: GreenTea
@@ -172,6 +182,16 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: IcedGreenTea
@@ -210,6 +230,13 @@
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: JuiceBerryPoison
@@ -394,6 +421,16 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: Tea
@@ -412,6 +449,13 @@
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/teaglass.rsi
     state: icon_empty
@@ -540,6 +584,13 @@
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: Pilk
@@ -596,6 +647,21 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.3
+  metabolisms: # Frontier
+    Drink: # Frontier
+      effects: # Frontier
+      - !type:SatiateThirst # Frontier
+        factor: 2 # Frontier
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: Mopwata

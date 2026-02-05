@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Mackazonia98
+# Discord: Cap'n Clutch
+
+# Shuttle Notes:
+# Engineering ship with atmos flavoring. Fast and focused for saving other ships from disaster
+- type: vessel
+  id: Firefighter
+  parent: BaseVessel
+  name: AC Firefighter
+  description: "An engineering vessel designed for rapid repairs and delivering relief from searing shuttle fires."
+  price: 44000 #39885~, 1.12 44671
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/firefighter.yml
+  guidebookPage: ShipyardFirefighter
+  class:
+  - Engineering
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Firefighter
+  mapName: 'AC Firefighter'
+  mapPath: /Maps/_NF/Shuttles/firefighter.yml
+  minPlayers: 0
+  stations:
+    Firefighter:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Firefighter {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
