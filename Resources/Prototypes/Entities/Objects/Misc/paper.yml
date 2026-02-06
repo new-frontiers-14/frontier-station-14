@@ -418,6 +418,7 @@
   - type: ContainerContainer
     containers:
       letter_slot: !type:ContainerSlot
+      cash_slot: !type:ContainerSlot    # frontier: added another slot for coins/spesos
   - type: ItemSlots
     slots:
       letter_slot:
@@ -425,10 +426,16 @@
         insertSound: /Audio/Effects/packetrip.ogg
         ejectSound: /Audio/Effects/packetrip.ogg
         whitelist:
-          components:
-            - Cash
           tags:
             - Paper
+      cash_slot:              # frontier: added another slot for coins/spesos, and moved the letters to the letter slot, to allow a letter and money to exist all at the same time!
+        name: envelope-cash-slot
+        insertSound: /Audio/Effects/packetrip.ogg
+        ejectSound: /Audio/Effects/packetrip.ogg
+        whitelist:
+          components:
+            - NFCoin
+            - Cash
   - type: ActivatableUI
     key: enum.PaperUiKey.Key
     requiresComplex: false
