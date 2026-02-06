@@ -34,9 +34,6 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ] # Frontier: Enum changes from Wizden#35341
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
   - type: GasTank
@@ -54,7 +51,6 @@
     visuals:
       enum.ToggleableVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
-          True: {state: icon-on}
           False: {state: icon}
 
 - type: entity
