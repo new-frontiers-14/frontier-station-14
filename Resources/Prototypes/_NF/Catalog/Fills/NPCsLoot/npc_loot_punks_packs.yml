@@ -82,10 +82,15 @@
     layers:
     - state: closed-color
       map: [ "NpcLootWalletPunk" ]
+    - state: closed-color-decal-01
+      map: [ "NpcLootWalletDecalPunk" ]
+      shader: unshaded
   - type: RandomSprite
     available:
     - NpcLootWalletPunk:
         closed-color: CyberpunkNeon
+      NpcLootWalletDecalPunk:
+        closed-color-decal-01: CyberpunkNeon
 
 # region tier 1
 - type: entity

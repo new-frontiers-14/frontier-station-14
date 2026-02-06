@@ -83,8 +83,11 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed-color
-    color: "#7f0101"
+    layers:
+    - state: closed-color
+      color: "#7f0101"
+    - state: closed-color-decal-01
+      color: "#ffce5b"
 
 # region Tier 1
 - type: entity

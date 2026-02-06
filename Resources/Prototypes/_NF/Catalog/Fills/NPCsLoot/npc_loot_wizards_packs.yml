@@ -112,7 +112,7 @@
         color: "#6F9463"
       right:
       - state: base-inhand-right
-        color: "#41729F"
+        color: "#876393"
       - state: clasp-inhand-right
         color: "#6F9463"
 
@@ -125,8 +125,11 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed-color
-    color: "#b43a9a"
+    layers:
+    - state: closed-color
+      color: "#876393"
+    - state: closed-color-decal-01
+      color: "#6F9463"
 
 #region loot T1
 - type: entity
