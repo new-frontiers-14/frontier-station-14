@@ -148,6 +148,22 @@
     - HideContextMenu
     - Flashlight
 
+- type: entity 
+  parent: BaseSubdermalImplant
+  id: WehImplant
+  name: weh implant
+  description: This implant lets the user weh anywhere at any time.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionActivateWehImplant
+    - type: TriggerImplantAction
+    - type: EmitSoundOnTrigger
+      sound:
+        collection: Weh
+        params:
+          variation: 0.125
+
 - type: entity
   parent: BaseSubdermalImplant
   id: DissonantWhispersImplant
