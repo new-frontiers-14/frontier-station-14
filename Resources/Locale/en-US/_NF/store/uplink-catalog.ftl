@@ -53,6 +53,9 @@ uplink-security-lecter-desc = Standard issue fully automatic rifle. Uses .20 rif
 uplink-security-vulcan-name = Vulcan
 uplink-security-vulcan-desc = Heavy duty, select fire battle rifle. Uses .30 rifle.
 
+uplink-security-drozd-name= Drozd
+uplink-security-drozd-desc = A fully automatic SMG. Uses .35 auto.
+
 uplink-security-lasercarbine-name = Laser Rifle
 uplink-security-lasercarbine-desc = Standard issue laser carbine. Has an internal battery, but requires using a security charging dock. Fires through glass.
 
