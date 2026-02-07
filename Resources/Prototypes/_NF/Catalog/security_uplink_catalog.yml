@@ -715,6 +715,26 @@
           - Sheriff
 
 - type: listing
+  id: UplinkSecurityMagazineSubMachineGunRubber
+  name:  uplink-security-smgmagazine-rubber-name
+  description: uplink-security-smgmagazine-rubber-desc
+  productEntity: NFBoxMagazinePistolSubMachineGun35Rubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityEmpAmmo
   name: uplink-security-emp-grenade-ammo-name
   description: uplink-security-emp-grenade-ammo-desc
@@ -745,17 +765,6 @@
       whitelist:
         tags:
           - SecurityUplink
-          
-- type: listing
-  id: UplinkSecurityMagazineSubMachineGunRubber
-  name:  uplink-security-smgmagazine-rubber-name
-  description: uplink-security-smgmagazine-rubber-desc
-  productEntity: NFBoxMagazinePistolSubMachineGun35Rubber
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazin
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityHypo
