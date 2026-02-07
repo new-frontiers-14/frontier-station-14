@@ -25,6 +25,10 @@ public sealed partial class LoadoutWindow : FancyWindow
 
     private List<LoadoutGroupContainer> _groups = new();
 
+    // Frontier
+    private string _searchText = string.Empty;
+    // End Frontier
+
     public HumanoidCharacterProfile Profile;
 
     // CCvar.
@@ -60,10 +64,15 @@ public sealed partial class LoadoutWindow : FancyWindow
             RoleNameEdit.OnTextChanged += args => OnNameChanged?.Invoke(args.Text);
         }
 
+        // Frontier
+        SearchBar.OnTextChanged += OnSearchTextChanged;
+        // End Frontier
+
         // Hide if no groups
         if (proto.Groups.Count == 0)
         {
             LoadoutGroupsContainer.Visible = false;
+            SearchContainer.Visible = false; // Frontier
             SetSize = Vector2.Zero;
         }
         else
@@ -91,10 +100,9 @@ public sealed partial class LoadoutWindow : FancyWindow
                 };
             }
         }
-        //Frontier - we inject our label here but it needs recalculating every time a new item is selected,
-        //so we add a new method and call it there too.
+        // Frontier: cost recalculated here and in RefreshLoadouts because loadout selection changes.
         CalculateLoadoutCost(loadout, collection);
-        // Frontier - update bank balance label text - value should not change.
+        // Frontier: bank balance is static for the session, only set once.
         Balance.Margin = new Thickness(5, 2, 5, 5);
         Balance.Text = Loc.GetString("frontier-loadout-balance", ("balance", BankSystemExtensions.ToSpesoString(Profile.BankBalance)));
     }
@@ -107,7 +115,24 @@ public sealed partial class LoadoutWindow : FancyWindow
         }
 
         CalculateLoadoutCost(loadout, collection); //Frontier
+        ApplySearchFilter(); // Frontier: RefreshLoadouts rebuilds children, reapply filter
     }
+
+    // Frontier
+    private void OnSearchTextChanged(LineEdit.LineEditEventArgs args)
+    {
+        _searchText = args.Text;
+        ApplySearchFilter();
+    }
+
+    private void ApplySearchFilter()
+    {
+        foreach (var group in _groups)
+        {
+            group.FilterLoadouts(_searchText);
+        }
+    }
+    // End Frontier
 
     /// <summary>
     /// Frontier function to calculate and update the label.
