@@ -261,6 +261,19 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
 
         return text != null && text.Contains(searchText, StringComparison.OrdinalIgnoreCase);
     }
+
+    /// <summary>
+    /// Used by LoadoutWindow to disable tab buttons for groups emptied by search filtering.
+    /// </summary>
+    public bool HasVisibleLoadouts()
+    {
+        foreach (var child in LoadoutsContainer.Children)
+        {
+            if (child.Visible)
+                return true;
+        }
+        return false;
+    }
     // End Frontier
 
     /// <summary>
