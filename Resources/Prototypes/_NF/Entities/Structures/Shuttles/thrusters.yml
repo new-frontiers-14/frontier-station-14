@@ -307,3 +307,35 @@
       visible: false
   - type: Machine
     board: SmallGyroscopeNfsdMachineCircuitboard
+
+- type: entity
+  id: OnyxThruster
+  parent: Thruster
+  name: Onyx thruster
+  description: An overclocked thruster developed by Onyx Incorporated that allows a shuttle to move at high speed. It uses proprietary technology and does not benefit from part upgrades.
+  components:
+  - type: Thruster
+    baseThrust: 250
+    thrust: 487.5
+    thrustPerPartLevel: [487.5, 487.5, 487.5, 487.5]
+    damage:
+      types:
+        Heat: 40
+  - type: ApcPowerReceiver
+    powerLoad: 6000
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thruster.rsi
+    layers:
+    - state: base_onyx
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+  - type: StaticPrice
+    price: 5000

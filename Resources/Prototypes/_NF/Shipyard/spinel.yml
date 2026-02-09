@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: Goofyclark (https://github.com/Goofyclark)
+# Discord: g00fyguy
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Spinel
+  parent: BaseVessel
+  name: ONYX Spinel
+  description: A luxury racing vessel created by Onyx Incorporated
+  price: 60000 # appraises at 52080, 15% markup
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/spinel.yml
+  guidebookPage: ShipyardSpinel
+  class:
+  - Civilian
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Spinel
+  mapName: 'ONYX Spinel'
+  mapPath: /Maps/_NF/Shuttles/spinel.yml
+  minPlayers: 0
+  stations:
+    Spinel:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Spinel {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          ContractorInterview: [ 0, 0 ]
+          PilotInterview: [ 0, 0 ]
+          MercenaryInterview: [ 0, 0 ]

@@ -102,6 +102,7 @@ guide-entry-shipyard-pulsar = Pulsar
 guide-entry-shipyard-retort = Retort
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-sparrow = Sparrow
+guide-entry-shipyard-spinel = Spinel
 guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
