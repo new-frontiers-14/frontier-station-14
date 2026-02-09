@@ -110,6 +110,7 @@ guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-stellaris = Stellaris
 guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-tide = Tide
+guide-entry-shipyard-tyne = Tyne
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
 
