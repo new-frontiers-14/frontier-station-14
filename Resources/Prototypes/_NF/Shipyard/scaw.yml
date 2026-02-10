@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: Bartholemew Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: Bartholemew Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Scaw
+  parent: BaseVessel
+  name: CBC Scaw
+  description: A salvage shuttle with enough solar panels to last out in the farthest edges of the frontier without refueling! adorned with the Clean Bee Company's pristine design.
+  price: 33000 # 29659 10%= 2965.9
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/scaw.yml
+  guidebookPage: ShipyardScaw
+  class:
+  - Salvage
+  engine:
+  - Plasma
+  - Solar
+
+- type: gameMap
+  id: Scaw
+  mapName: 'CBC Scaw'
+  mapPath: /Maps/_NF/Shuttles/scaw.yml
+  minPlayers: 0
+  stations:
+    Scaw:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Scaw {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
