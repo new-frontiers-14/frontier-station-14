@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 02/04/2026 17:51:12
-  entityCount: 863
+  time: 02/10/2026 04:34:14
+  entityCount: 864
 maps: []
 grids:
 - 1
@@ -2074,6 +2074,11 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 1
+  - uid: 317
+    components:
+    - type: Transform
+      pos: -5.5,9.5
+      parent: 1
   - uid: 340
     components:
     - type: Transform
@@ -2123,6 +2128,11 @@ entities:
     components:
     - type: Transform
       pos: -8.5,3.5
+      parent: 1
+  - uid: 734
+    components:
+    - type: Transform
+      pos: -5.5,10.5
       parent: 1
   - uid: 736
     components:
@@ -2448,16 +2458,6 @@ entities:
       parent: 1
 - proto: CableMV
   entities:
-  - uid: 316
-    components:
-    - type: Transform
-      pos: 13.5,8.5
-      parent: 1
-  - uid: 317
-    components:
-    - type: Transform
-      pos: 12.5,8.5
-      parent: 1
   - uid: 318
     components:
     - type: Transform
@@ -3150,6 +3150,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,5.5
+      parent: 1
+- proto: CrateMaterialsBasicFilled
+  entities:
+  - uid: 864
+    components:
+    - type: Transform
+      pos: 11.5,10.5
       parent: 1
 - proto: CurtainsPurpleOpen
   entities:
@@ -5011,6 +5018,9 @@ entities:
         758:
         - - Pressed
           - Toggle
+        490:
+        - - Pressed
+          - Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 693
@@ -5277,6 +5287,14 @@ entities:
       parent: 1
 - proto: StorageCanister
   entities:
+  - uid: 316
+    components:
+    - type: Transform
+      anchored: True
+      pos: 0.5,12.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 347
     components:
     - type: Transform
@@ -5286,11 +5304,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,10.5
-      parent: 1
-  - uid: 734
-    components:
-    - type: Transform
-      pos: 15.5,9.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
