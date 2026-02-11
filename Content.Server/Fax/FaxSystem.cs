@@ -33,6 +33,7 @@ using Content.Server._NF.Lathe; // Frontier
 using Content.Shared.Research.Components; // Frontier
 using Content.Shared.Research.Prototypes; // Frontier
 using Content.Shared.Tag; // Frontier
+using Content.Shared._NF.Paper; // Frontier: paper bundles
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Fax;
@@ -57,6 +58,7 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!; // Frontier
     [Dependency] private readonly BlueprintLatheSystem _blueprint = default!; // Frontier
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!; // Frontier: paper bundles
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -487,6 +489,49 @@ public sealed class FaxSystem : EntitySystem
         if (sendEntity == null)
             return;
 
+        // Frontier: handle paper bundles - copy each page as a separate printout
+        if (TryComp<PaperBundleComponent>(sendEntity, out var bundle))
+        {
+            var bundleContainer = _containerSystem.GetContainer(sendEntity.Value, bundle.ContainerId);
+            foreach (var pageUid in bundleContainer.ContainedEntities)
+            {
+                if (!TryComp<PaperComponent>(pageUid, out var pagePaper))
+                    continue;
+
+                TryComp(pageUid, out MetaDataComponent? pageMeta);
+                TryComp<LabelComponent>(pageUid, out var pageLabel);
+                TryComp<NameModifierComponent>(pageUid, out var pageNameMod);
+
+                HashSet<ProtoId<LatheRecipePrototype>>? pageBlueprintRecipes = null;
+                if (TryComp<BlueprintComponent>(pageUid, out var pageBlueprint))
+                    pageBlueprintRecipes = pageBlueprint.ProvidedRecipes;
+
+                var pagePrintout = new FaxPrintout(pagePaper.Content,
+                    pageNameMod?.BaseName ?? pageMeta?.EntityName ?? Loc.GetString("fax-machine-printed-paper-name"),
+                    pageLabel?.CurrentLabel,
+                    pageMeta?.EntityPrototype?.ID ?? component.PrintPaperId,
+                    pagePaper.StampState,
+                    pagePaper.StampedBy,
+                    pagePaper.EditingDisabled,
+                    _tag.HasTag(pageUid, NFPaperStampProtectedTag),
+                    pageBlueprintRecipes);
+
+                component.PrintingQueue.Enqueue(pagePrintout);
+            }
+
+            component.SendTimeoutRemaining += component.SendTimeout;
+            UpdateUserInterface(uid, component);
+
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):actor} " +
+                $"added copy job to \"{component.FaxName}\" {ToPrettyString(uid):tool} " +
+                $"of paper bundle {ToPrettyString(sendEntity):subject} ({bundleContainer.ContainedEntities.Count} pages)");
+
+            return;
+        }
+        // End Frontier: handle paper bundles
+
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
             !TryComp<PaperComponent>(sendEntity, out var paper))
             return;
@@ -554,6 +599,58 @@ public sealed class FaxSystem : EntitySystem
 
         if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
             return;
+
+        // Frontier: handle paper bundles - send each page as a separate fax
+        if (TryComp<PaperBundleComponent>(sendEntity, out var bundle))
+        {
+            var bundleContainer = _containerSystem.GetContainer(sendEntity.Value, bundle.ContainerId);
+            foreach (var pageUid in bundleContainer.ContainedEntities)
+            {
+                if (!TryComp<PaperComponent>(pageUid, out var pagePaper))
+                    continue;
+
+                TryComp(pageUid, out MetaDataComponent? pageMeta);
+                TryComp<LabelComponent>(pageUid, out var pageLabel);
+                TryComp<NameModifierComponent>(pageUid, out var pageNameMod);
+
+                var pagePayload = new NetworkPayload()
+                {
+                    { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
+                    { FaxConstants.FaxPaperNameData, pageNameMod?.BaseName ?? pageMeta?.EntityName ?? Loc.GetString("fax-machine-printed-paper-name") },
+                    { FaxConstants.FaxPaperLabelData, pageLabel?.CurrentLabel },
+                    { FaxConstants.FaxPaperContentData, pagePaper.Content },
+                    { FaxConstants.FaxPaperLockedData, pagePaper.EditingDisabled },
+                    { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(pageUid, NFPaperStampProtectedTag) },
+                };
+
+                if (TryComp<BlueprintComponent>(pageUid, out var pageBlueprint))
+                    pagePayload[FaxConstants.FaxBlueprintRecipes] = pageBlueprint.ProvidedRecipes;
+
+                if (pageMeta?.EntityPrototype != null)
+                    pagePayload[FaxConstants.FaxPaperPrototypeData] = pageMeta.EntityPrototype.ID;
+
+                if (pagePaper.StampState != null)
+                {
+                    pagePayload[FaxConstants.FaxPaperStampStateData] = pagePaper.StampState;
+                    pagePayload[FaxConstants.FaxPaperStampedByData] = pagePaper.StampedBy;
+                }
+
+                _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, pagePayload);
+            }
+
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):actor} " +
+                $"sent fax from \"{component.FaxName}\" {ToPrettyString(uid):tool} " +
+                $"to \"{faxName}\" ({component.DestinationFaxAddress}) " +
+                $"of paper bundle {ToPrettyString(sendEntity):subject} ({bundleContainer.ContainedEntities.Count} pages)");
+
+            component.SendTimeoutRemaining += component.SendTimeout;
+            _audioSystem.PlayPvs(component.SendSound, uid);
+            UpdateUserInterface(uid, component);
+            return;
+        }
+        // End Frontier: handle paper bundles
 
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
            !TryComp<PaperComponent>(sendEntity, out var paper))

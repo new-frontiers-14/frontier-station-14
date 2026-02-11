@@ -1,0 +1,78 @@
+- type: entity
+  parent: BaseItem
+  id: Stapler
+  name: stapler
+  description: A standard issue office stapler. Load a paper, then use on another to staple them together.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: labeler0 # TODO: replace with dedicated stapler sprite
+  - type: Item
+    size: Tiny
+  - type: Stapler
+  - type: ContainerContainer
+    containers:
+      stapler_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      stapler_slot:
+        name: stapler-paper-slot
+        whitelist:
+          tags:
+          - Document
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+
+- type: entity
+  parent: BaseItem
+  id: PaperBundle
+  categories: [ HideSpawnMenu ]
+  name: paper bundle
+  description: Several papers stapled together.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper # TODO: replace with dedicated paper bundle sprite
+  - type: Item
+    size: Tiny
+  - type: PaperBundle
+  - type: ContainerContainer
+    containers:
+      bundle_papers: !type:Container
+  - type: FaxableObject
+  - type: Tag
+    tags:
+    - Document
+  - type: ActivatableUI
+    key: enum.PaperBundleUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperBundleUiKey.Key:
+        type: PaperBundleBoundUserInterface
+  - type: Appearance
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    damage:
+      types:
+        Heat: 1
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 5
