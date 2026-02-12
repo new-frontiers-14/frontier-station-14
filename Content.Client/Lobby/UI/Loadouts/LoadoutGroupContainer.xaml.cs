@@ -259,7 +259,11 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         if (string.IsNullOrEmpty(searchText))
             return true;
 
-        return text != null && text.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+        if (text == null)
+            return false;
+
+        var containsSearch = text.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+        return containsSearch;
     }
 
     /// <summary>
