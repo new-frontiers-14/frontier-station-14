@@ -1,8 +1,10 @@
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Paper;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(StaplerSystem))]
 public sealed partial class StaplerComponent : Component
 {
@@ -17,4 +19,10 @@ public sealed partial class StaplerComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier StapleSound = new SoundPathSpecifier("/Audio/Effects/packetrip.ogg");
+
+    /// <summary>
+    /// The prototype ID to spawn when creating a new paper bundle.
+    /// </summary>
+    [DataField]
+    public EntProtoId BundlePrototype = "PaperBundle";
 }

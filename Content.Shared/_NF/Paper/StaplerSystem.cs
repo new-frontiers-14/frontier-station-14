@@ -70,8 +70,9 @@ public sealed class StaplerSystem : EntitySystem
 
             if (_net.IsServer)
             {
-                var bundleUid = Spawn("PaperBundle", Transform(target).Coordinates);
-                var bundleContainer = _container.EnsureContainer<Container>(bundleUid, "bundle_papers");
+                var bundleUid = Spawn(stapler.BundlePrototype, Transform(target).Coordinates);
+                var bundle = Comp<PaperBundleComponent>(bundleUid);
+                var bundleContainer = _container.GetContainer(bundleUid, bundle.ContainerId);
                 _container.Insert(loadedPaper, bundleContainer);
                 _container.Insert(target, bundleContainer);
             }

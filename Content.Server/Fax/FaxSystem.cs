@@ -495,28 +495,8 @@ public sealed class FaxSystem : EntitySystem
             var bundleContainer = _containerSystem.GetContainer(sendEntity.Value, bundle.ContainerId);
             foreach (var pageUid in bundleContainer.ContainedEntities)
             {
-                if (!TryComp<PaperComponent>(pageUid, out var pagePaper))
-                    continue;
-
-                TryComp(pageUid, out MetaDataComponent? pageMeta);
-                TryComp<LabelComponent>(pageUid, out var pageLabel);
-                TryComp<NameModifierComponent>(pageUid, out var pageNameMod);
-
-                HashSet<ProtoId<LatheRecipePrototype>>? pageBlueprintRecipes = null;
-                if (TryComp<BlueprintComponent>(pageUid, out var pageBlueprint))
-                    pageBlueprintRecipes = pageBlueprint.ProvidedRecipes;
-
-                var pagePrintout = new FaxPrintout(pagePaper.Content,
-                    pageNameMod?.BaseName ?? pageMeta?.EntityName ?? Loc.GetString("fax-machine-printed-paper-name"),
-                    pageLabel?.CurrentLabel,
-                    pageMeta?.EntityPrototype?.ID ?? component.PrintPaperId,
-                    pagePaper.StampState,
-                    pagePaper.StampedBy,
-                    pagePaper.EditingDisabled,
-                    _tag.HasTag(pageUid, NFPaperStampProtectedTag),
-                    pageBlueprintRecipes);
-
-                component.PrintingQueue.Enqueue(pagePrintout);
+                if (BuildPagePrintout(pageUid, component.PrintPaperId) is { } pagePrintout)
+                    component.PrintingQueue.Enqueue(pagePrintout);
             }
 
             component.SendTimeoutRemaining += component.SendTimeout;
@@ -606,33 +586,29 @@ public sealed class FaxSystem : EntitySystem
             var bundleContainer = _containerSystem.GetContainer(sendEntity.Value, bundle.ContainerId);
             foreach (var pageUid in bundleContainer.ContainedEntities)
             {
-                if (!TryComp<PaperComponent>(pageUid, out var pagePaper))
+                if (BuildPagePrintout(pageUid, component.PrintPaperId) is not { } page)
                     continue;
-
-                TryComp(pageUid, out MetaDataComponent? pageMeta);
-                TryComp<LabelComponent>(pageUid, out var pageLabel);
-                TryComp<NameModifierComponent>(pageUid, out var pageNameMod);
 
                 var pagePayload = new NetworkPayload()
                 {
                     { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
-                    { FaxConstants.FaxPaperNameData, pageNameMod?.BaseName ?? pageMeta?.EntityName ?? Loc.GetString("fax-machine-printed-paper-name") },
-                    { FaxConstants.FaxPaperLabelData, pageLabel?.CurrentLabel },
-                    { FaxConstants.FaxPaperContentData, pagePaper.Content },
-                    { FaxConstants.FaxPaperLockedData, pagePaper.EditingDisabled },
-                    { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(pageUid, NFPaperStampProtectedTag) },
+                    { FaxConstants.FaxPaperNameData, page.Name },
+                    { FaxConstants.FaxPaperLabelData, page.Label },
+                    { FaxConstants.FaxPaperContentData, page.Content },
+                    { FaxConstants.FaxPaperLockedData, page.Locked },
+                    { FaxConstants.FaxPaperStampProtectedData, page.StampProtected },
                 };
 
-                if (TryComp<BlueprintComponent>(pageUid, out var pageBlueprint))
-                    pagePayload[FaxConstants.FaxBlueprintRecipes] = pageBlueprint.ProvidedRecipes;
+                if (page.BlueprintRecipes.Count > 0)
+                    pagePayload[FaxConstants.FaxBlueprintRecipes] = page.BlueprintRecipes;
 
-                if (pageMeta?.EntityPrototype != null)
-                    pagePayload[FaxConstants.FaxPaperPrototypeData] = pageMeta.EntityPrototype.ID;
+                if (page.PrototypeId.Length > 0)
+                    pagePayload[FaxConstants.FaxPaperPrototypeData] = page.PrototypeId;
 
-                if (pagePaper.StampState != null)
+                if (page.StampState != null)
                 {
-                    pagePayload[FaxConstants.FaxPaperStampStateData] = pagePaper.StampState;
-                    pagePayload[FaxConstants.FaxPaperStampedByData] = pagePaper.StampedBy;
+                    pagePayload[FaxConstants.FaxPaperStampStateData] = page.StampState;
+                    pagePayload[FaxConstants.FaxPaperStampedByData] = page.StampedBy;
                 }
 
                 _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, pagePayload);
@@ -800,6 +776,37 @@ public sealed class FaxSystem : EntitySystem
         }
 
         Del(itemToFax);
+    }
+    // End Frontier
+
+    // Frontier: helper for extracting per-page fax data from bundle pages
+    /// <summary>
+    /// Builds a <see cref="FaxPrintout"/> from a single paper entity's components.
+    /// Returns null if the entity doesn't have a <see cref="PaperComponent"/>.
+    /// </summary>
+    private FaxPrintout? BuildPagePrintout(EntityUid pageUid, string defaultPaperId)
+    {
+        if (!TryComp<PaperComponent>(pageUid, out var paper))
+            return null;
+
+        TryComp(pageUid, out MetaDataComponent? meta);
+        TryComp<LabelComponent>(pageUid, out var label);
+        TryComp<NameModifierComponent>(pageUid, out var nameMod);
+
+        HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes = null;
+        if (TryComp<BlueprintComponent>(pageUid, out var blueprint))
+            blueprintRecipes = blueprint.ProvidedRecipes;
+
+        return new FaxPrintout(
+            paper.Content,
+            nameMod?.BaseName ?? meta?.EntityName ?? Loc.GetString("fax-machine-printed-paper-name"),
+            label?.CurrentLabel,
+            meta?.EntityPrototype?.ID ?? defaultPaperId,
+            paper.StampState,
+            paper.StampedBy,
+            paper.EditingDisabled,
+            _tag.HasTag(pageUid, NFPaperStampProtectedTag),
+            blueprintRecipes);
     }
     // End Frontier
 }

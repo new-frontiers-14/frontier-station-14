@@ -1,10 +1,11 @@
 using Content.Shared.Paper;
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using static Content.Shared.Paper.PaperComponent;
 
 namespace Content.Shared._NF.Paper;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(PaperBundleSystem))]
 public sealed partial class PaperBundleComponent : Component
 {
