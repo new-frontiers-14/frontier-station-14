@@ -9,15 +9,15 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Scaw
+  id: Scow
   parent: BaseVessel
-  name: CBC Scaw
+  name: CBC Scow
   description: A salvage shuttle with enough solar panels to last out in the farthest edges of the frontier without refueling! adorned with the Clean Bee Company's pristine design.
   price: 33000 # 29659 10%= 2965.9
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/scaw.yml
-  guidebookPage: ShipyardScaw
+  shuttlePath: /Maps/_NF/Shuttles/scow.yml
+  guidebookPage: ShipyardScow
   class:
   - Salvage
   engine:
@@ -25,16 +25,16 @@
   - Solar
 
 - type: gameMap
-  id: Scaw
-  mapName: 'CBC Scaw'
-  mapPath: /Maps/_NF/Shuttles/scaw.yml
+  id: Scow
+  mapName: 'CBC Scow'
+  mapPath: /Maps/_NF/Shuttles/scow.yml
   minPlayers: 0
   stations:
-    Scaw:
+    Scow:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Scaw {1}'
+          mapNameTemplate: 'Scow {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
