@@ -2936,6 +2936,14 @@
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+  # Starlight Start
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip' ]
+  - type: Vocal
+    sounds:
+      Male: DogEmoteSounds
+      Female: DogEmoteSounds
+      Unsexed: DogEmoteSounds
+  # Starlight End
   - type: Fixtures
     fixtures:
       fix1:
@@ -3001,6 +3009,7 @@
   - type: Tag
     tags:
     - VimPilot
+    - DogEmotes # Starlight
 
 - type: entity
   name: corrupted corgi
@@ -3936,6 +3945,7 @@
     - VimPilot
     - CanPilot
     - DoorBumpOpener
+    - DogEmotes # Starlight
   - type: StatusIcon # marks them as crew
     bounds: -0.5,-0.5,0.5,0.5
   - type: NpcFactionMember
