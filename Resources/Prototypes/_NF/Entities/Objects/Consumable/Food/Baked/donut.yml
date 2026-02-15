@@ -44,3 +44,71 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodDonutJellyPlain
+
+# Donut Bases
+
+- type: entity
+  name: FoodDonutPlainBase
+  parent: FoodDonutBase
+  id: FoodDonutPlainBase
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Flavorol
+          Quantity: 2
+
+- type: entity
+  name: FoodDonutPlainToppedBase
+  parent: FoodDonutPlainBase
+  id: FoodDonutPlainToppedBase
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Flavorol
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 2
+
+- type: entity
+  name: FoodDonutJellyBase
+  parent: FoodDonutPlainBase
+  id: FoodDonutJellyBase
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+
+- type: entity
+  name: FoodDonutJellyToppedBase
+  parent: FoodDonutJellyBase
+  id: FoodDonutJellyToppedBase
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Flavorol
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
