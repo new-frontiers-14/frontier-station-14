@@ -40,6 +40,7 @@ public sealed class PaperBundleSystem : EntitySystem
         SubscribeLocalEvent<PaperBundleComponent, BeforeActivatableUIOpenEvent>(BeforeUIOpen);
         SubscribeLocalEvent<PaperBundleComponent, PaperBundleInputTextMessage>(OnInputTextMessage);
         SubscribeLocalEvent<PaperBundleComponent, EntInsertedIntoContainerMessage>(OnContainerInserted);
+        SubscribeLocalEvent<PaperBundleComponent, EntRemovedFromContainerMessage>(OnContainerRemoved);
     }
 
     private void OnComponentInit(Entity<PaperBundleComponent> ent, ref ComponentInit args)
@@ -48,6 +49,14 @@ public sealed class PaperBundleSystem : EntitySystem
     }
 
     private void OnContainerInserted(Entity<PaperBundleComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (args.Container.ID != ent.Comp.ContainerId)
+            return;
+
+        UpdateBundleAppearance(ent);
+    }
+
+    private void OnContainerRemoved(Entity<PaperBundleComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         if (args.Container.ID != ent.Comp.ContainerId)
             return;
@@ -153,7 +162,7 @@ public sealed class PaperBundleSystem : EntitySystem
         if (!TryComp<PaperComponent>(pageUid, out var paper))
             return;
 
-        if (args.Text.Length > paper.ContentSize)
+        if (paper.EditingDisabled || args.Text.Length > paper.ContentSize)
             return;
 
         _paperSystem.SetContent((pageUid, paper), args.Text);
@@ -189,7 +198,7 @@ public sealed class PaperBundleSystem : EntitySystem
             pages.Add(new BundlePageData(
                 GetNetEntity(paperUid),
                 paper.Content,
-                paper.StampedBy,
+                new List<StampDisplayInfo>(paper.StampedBy),
                 mode,
                 paper.ContentSize));
         }

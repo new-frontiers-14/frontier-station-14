@@ -28,6 +28,7 @@ public sealed partial class PaperBundleWindow : BaseWindow
     private static readonly Color DefaultTextColor = new(25, 25, 25);
 
     private const int DragMarginSize = 16;
+    private const int StampPaddingLines = 6;
 
     /// <summary>
     /// Reference to the paper content texture so we can modify it in Draw().
@@ -184,7 +185,7 @@ public sealed partial class PaperBundleWindow : BaseWindow
         // Pad for stamps so they don't overlap text
         if (page.StampedBy.Count > 0)
         {
-            for (var i = 0; i < 6; i++)
+            for (var i = 0; i < StampPaddingLines; i++)
                 msg.AddMarkupPermissive("\r\n");
         }
 
@@ -243,9 +244,6 @@ public sealed partial class PaperBundleWindow : BaseWindow
         var pageUid = _entMan.GetEntity(page.PageEntity);
         if (!_entMan.TryGetComponent<PaperVisualsComponent>(pageUid, out var visuals))
             return;
-
-        // Randomize stamp placement based on entity UID
-        StampDisplay.PlacementSeed = (int)pageUid;
 
         // Background
         PaperBackground.ModulateSelfOverride = visuals.BackgroundModulate;

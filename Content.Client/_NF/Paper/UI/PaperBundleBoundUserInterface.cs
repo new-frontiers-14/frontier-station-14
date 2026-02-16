@@ -34,5 +34,4 @@ public sealed class PaperBundleBoundUserInterface : BoundUserInterface
     {
         SendMessage(new PaperBundleInputTextMessage(pageEntity, text));
     }
-
 }

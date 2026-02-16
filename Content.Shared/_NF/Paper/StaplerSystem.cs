@@ -3,6 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Robust.Shared.Audio.Systems;
@@ -45,6 +46,9 @@ public sealed class StaplerSystem : EntitySystem
             return false;
 
         if (TryComp<UseDelayComponent>(used, out var useDelay) && _useDelay.IsDelayed((used, useDelay)))
+            return false;
+
+        if (TryComp<PaperComponent>(target, out var targetPaper) && targetPaper.DestroyOnFax)
             return false;
 
         if (slot.Item == null)

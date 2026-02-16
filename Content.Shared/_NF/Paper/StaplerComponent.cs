@@ -11,7 +11,7 @@ public sealed partial class StaplerComponent : Component
     /// <summary>
     /// The ID of the item slot used to hold a paper in the stapler.
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public string SlotId = "stapler_slot";
 
     /// <summary>

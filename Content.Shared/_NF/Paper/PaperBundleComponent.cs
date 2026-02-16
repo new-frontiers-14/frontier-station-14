@@ -6,7 +6,7 @@ using static Content.Shared.Paper.PaperComponent;
 namespace Content.Shared._NF.Paper;
 
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(PaperBundleSystem))]
+[Access(typeof(PaperBundleSystem), typeof(StaplerSystem))]
 public sealed partial class PaperBundleComponent : Component
 {
     /// <summary>
@@ -53,27 +53,14 @@ public sealed partial class PaperBundleComponent : Component
 
 }
 
-[DataDefinition, Serializable, NetSerializable]
-public sealed partial class BundlePageData
+[Serializable, NetSerializable]
+public sealed class BundlePageData
 {
-    [DataField]
     public NetEntity PageEntity;
-
-    [DataField]
     public string Text = "";
-
-    [DataField]
     public List<StampDisplayInfo> StampedBy = new();
-
-    [DataField]
     public PaperAction Mode = PaperAction.Read;
-
-    [DataField]
     public int ContentSize = 10000;
-
-    public BundlePageData()
-    {
-    }
 
     public BundlePageData(NetEntity pageEntity, string text, List<StampDisplayInfo> stampedBy, PaperAction mode, int contentSize)
     {
