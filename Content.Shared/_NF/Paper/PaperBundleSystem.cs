@@ -8,6 +8,7 @@ using Content.Shared.Tag;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Paper.PaperComponent;
@@ -19,6 +20,7 @@ public sealed class PaperBundleSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -37,11 +39,20 @@ public sealed class PaperBundleSystem : EntitySystem
         SubscribeLocalEvent<PaperBundleComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PaperBundleComponent, BeforeActivatableUIOpenEvent>(BeforeUIOpen);
         SubscribeLocalEvent<PaperBundleComponent, PaperBundleInputTextMessage>(OnInputTextMessage);
+        SubscribeLocalEvent<PaperBundleComponent, EntInsertedIntoContainerMessage>(OnContainerInserted);
     }
 
     private void OnComponentInit(Entity<PaperBundleComponent> ent, ref ComponentInit args)
     {
         _container.EnsureContainer<Container>(ent, ent.Comp.ContainerId);
+    }
+
+    private void OnContainerInserted(Entity<PaperBundleComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (args.Container.ID != ent.Comp.ContainerId)
+            return;
+
+        UpdateBundleAppearance(ent);
     }
 
     private void OnExamined(Entity<PaperBundleComponent> ent, ref ExaminedEvent args)
@@ -121,6 +132,7 @@ public sealed class PaperBundleSystem : EntitySystem
 
             // Refresh UI state so stamp is visible
             UpdateBundleUiState(target);
+            UpdateBundleAppearance(target);
         }
     }
 
@@ -152,6 +164,7 @@ public sealed class PaperBundleSystem : EntitySystem
 
         // Refresh the BUI state so changes are visible
         UpdateBundleUiState(ent);
+        UpdateBundleAppearance(ent);
     }
 
     /// <summary>
@@ -182,5 +195,29 @@ public sealed class PaperBundleSystem : EntitySystem
         }
 
         _ui.SetUiState(ent.Owner, PaperBundleUiKey.Key, new PaperBundleBoundUserInterfaceState(pages));
+    }
+
+    /// <summary>
+    /// Checks all pages in the bundle and sets appearance data indicating
+    /// whether any page has written content or stamps.
+    /// </summary>
+    private void UpdateBundleAppearance(Entity<PaperBundleComponent> ent)
+    {
+        var bundleContainer = _container.GetContainer(ent, ent.Comp.ContainerId);
+        var hasContent = false;
+
+        foreach (var paperUid in bundleContainer.ContainedEntities)
+        {
+            if (!TryComp<PaperComponent>(paperUid, out var paper))
+                continue;
+
+            if (!string.IsNullOrEmpty(paper.Content) || paper.StampedBy.Count > 0)
+            {
+                hasContent = true;
+                break;
+            }
+        }
+
+        _appearance.SetData(ent, PaperBundleVisuals.HasContent, hasContent);
     }
 }

@@ -5,8 +5,8 @@
   description: A standard issue office stapler. Load a paper, then use on another to staple them together.
   components:
   - type: Sprite
-    sprite: Objects/Misc/bureaucracy.rsi
-    state: labeler0 # TODO: replace with dedicated stapler sprite
+    sprite: _NF/Objects/Misc/stapler.rsi
+    state: stapler
   - type: Item
     size: Tiny
   - type: Stapler
@@ -36,9 +36,10 @@
   description: Several papers stapled together.
   components:
   - type: Sprite
-    sprite: Objects/Misc/bureaucracy.rsi
+    sprite: _NF/Objects/Misc/paper_bundle.rsi
     layers:
-    - state: paper # TODO: replace with dedicated paper bundle sprite
+    - state: paper_bundle
+      map: ["enum.PaperBundleVisualLayers.Base"]
   - type: Item
     size: Tiny
   - type: PaperBundle
@@ -57,6 +58,12 @@
       enum.PaperBundleUiKey.Key:
         type: PaperBundleBoundUserInterface
   - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperBundleVisuals.HasContent:
+        enum.PaperBundleVisualLayers.Base:
+          True: { state: paper_bundle_writing }
+          False: { state: paper_bundle }
   - type: Flammable
     fireSpread: true
     alwaysCombustible: true
