@@ -1,0 +1,131 @@
+# Everyone
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingLongcoatArashiLabs
+  name: arashi labs longcoat
+  description: A double-breasted longcoat sporting the colors of a company called Arashi Laboratories, a biotech corporation claiming to hail from the long rim, wherever that is. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/arashi-laboratories.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/arashi-laboratories.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingLongcoatNanoTrasen
+  name: nanotrasen longcoat
+  description: A double-breasted longcoat sporting the the colors of NanoTrasen, the general-purpose spacefaring corporation that you (hopefully) work for! Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/nanotrasen.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/nanotrasen.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingLongcoatBlack
+  name: black longcoat
+  description: A matte black double-breasted longcoat with gold-tinted brass buttons. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/black.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/black.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingLongcoatBrown
+  name: brown longcoat
+  description: A matte brown double-breasted longcoat with stylish onyx buttons. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/brown.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/brown.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat # Frontier: Renamed and removed contraband tag
+  id: ClothingLongcoatQM
+  name: quartermaster's longcoat
+  description: A saturated brown double-breasted longcoat with mossy trim, specifically designed for those with a passion for spreadsheets. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/logstics-officer.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/logstics-officer.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat # Frontier: Renamed and removed contraband tag
+  id: ClothingLongcoatRD
+  name: research director's longcoat
+  description: A pure white double-breasted longcoat with a purple stripe, specifically designed for those dedicated to science. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/mystagogue.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/mystagogue.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingLongcoatCaptain
+  name: captain's longcoat
+  description: A navy blue double-breasted longcoat with gold embelleshments, fit for the station's best. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/captain.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/captain.rsi
+
+- type: entity
+  parent: [ClothingOuterWinterCoat, BaseC1Contraband] # Frontier: Changed contraband tag, name, and description
+  id: ClothingLongcoatFormal
+  name: armored formal longcoat
+  description: A black double-breasted longcoat with silver buttons and cuffs, reinforced with light armor plates. Offers minor protection.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/armored-formal.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/armored-formal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.8
+        Caustic: 0.9
+
+- type: entity
+  parent: ClothingOuterWinterCoat # Frontier: Removed contraband tag, changed name, description, added poison resist
+  id: ClothingLongcoatMedic
+  name: medic's sterile longcoat
+  description: A black double-breasted longcoat with silver buttons, blue bands, and sterile fabric cuffs. Cut-resistant fibers provide some measure of protection against infectious bites.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/medic.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/medic.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.8
+
+- type: entity
+  parent: [ClothingOuterWinterCoat, BaseC1Contraband] # Frontier: Changed contraband tag, changed name, description, and armor values
+  id: ClothingLongcoatRegal
+  name: armored regal longcoat
+  description: A black double-breasted longcoat with gold buttons and trim, reinforced with finely crafted plastitanium weave. A true mark of luxury.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/armored-regal.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/armored-regal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.8
+        Caustic: 0.9
