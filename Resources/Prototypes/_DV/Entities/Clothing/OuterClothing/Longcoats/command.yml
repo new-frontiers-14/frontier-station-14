@@ -2,7 +2,7 @@
   parent: [ClothingOuterWinterCoat, BaseCommandContraband]
   id: ClothingLongcoatCMO
   name: chief medical officer's longcoat
-  description: A double-breasted longcoat with a green cross, specifically designed for the chief medical officer. Cut-resistant fibers provide some measure of protection against infectious bites.
+  description: A double-breasted longcoat with a green cross, specifically designed for the chief medical officer. Cut-resistant fibers provide some measure of protection against infectious bites. # Frontier: Description altered to hint at poison resistance
   components:
   - type: Sprite
     sprite: _Floof/Clothing/OuterClothing/Longcoats/chief-medical-officer.rsi
@@ -14,7 +14,7 @@
         Slash: 0.9
         Heat: 0.9
         Caustic: 0.75
-        Poison: 0.8
+        Poison: 0.8 # Frontier: Added poison resist, previously had none
 
 - type: entity
   parent: ClothingOuterWinterCoat
