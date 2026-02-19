@@ -1,4 +1,3 @@
-
 - type: construction
   id: WebNest
   graph: NFWebStructures
@@ -9,6 +8,22 @@
   placementMode: SnapgridCenter
   canRotate: false
   canBuildInImpassable: false
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SpiderWeb
+  graph: NFWebStructures
+  startNode: start
+  targetNode: web
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true # Tarantulas can put webs on top of walls, so why not Arachnids?
   entityWhitelist:
     tags:
     - SpiderCraft
