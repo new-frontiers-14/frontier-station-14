@@ -28,6 +28,7 @@ using Content.Shared.EntityEffects.EffectConditions;
 using Content.Shared.EntityEffects.Effects.PlantMetabolism;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using Content.Shared.Flash;
 using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
@@ -136,6 +137,7 @@ public sealed class EntityEffectSystem : EntitySystem
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateChemicals>>(OnExecutePlantMutateChemicals);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateConsumeGasses>>(OnExecutePlantMutateConsumeGasses);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateExudeGasses>>(OnExecutePlantMutateExudeGasses);
+        SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateConvertGases>>(OnExecutePlantMutateConvertGases);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateHarvest>>(OnExecutePlantMutateHarvest);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantSpeciesChange>>(OnExecutePlantSpeciesChange);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PolymorphEffect>>(OnExecutePolymorph);
@@ -955,6 +957,34 @@ public sealed class EntityEffectSystem : EntitySystem
             gasses.Add(gas, amount);
         }
     }
+
+    // Begin Frontier
+    private void OnExecutePlantMutateConvertGases(ref ExecuteEntityEffectEvent<PlantMutateConvertGases> args)
+    {
+        var plantholder = Comp<PlantHolderComponent>(args.Args.TargetEntity);
+
+        if (plantholder.Seed == null)
+            return;
+
+        var gases = plantholder.Seed.ConvertGases;
+
+        // Add a random amount of a random gas to this gas dictionary
+        FixedPoint2 amount = _random.NextFloat(args.Effect.MinConvertAmount, args.Effect.MaxConvertAmount);
+        FixedPoint2 scalefactor = _random.NextFloat(args.Effect.MinScaleFactor, args.Effect.MaxScaleFactor);
+        // Gas gas = _random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList()); // Frontier
+
+        // 2 gases from the list, without replacement (don't want to e.g. convert oxygen to oxygen)
+        var gaslistCopy = _plantGasList.ToList();
+        _random.Shuffle(gaslistCopy);
+
+        Gas inputgas = gaslistCopy[0];
+        Gas outputgas = gaslistCopy[1];
+        if (!gases.ContainsKey(inputgas))
+        {
+            gases.Add(inputgas, (outputgas, amount, scalefactor));
+        }
+    }
+    // End Frontier
 
     private void OnExecutePlantMutateHarvest(ref ExecuteEntityEffectEvent<PlantMutateHarvest> args)
     {
