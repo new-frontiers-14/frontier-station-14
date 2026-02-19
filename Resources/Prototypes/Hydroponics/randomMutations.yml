@@ -172,14 +172,18 @@
       baseOdds: 0.072
       persists: false
       effect: !type:PlantMutateChemicals
-    - name: ChangeExudeGasses
+    - name: ChangeConvertGases
       baseOdds: 0.0145
       persists: false
-      effect: !type:PlantMutateExudeGasses
-    - name: ChangeConsumeGasses
-      baseOdds: 0.0036
-      persists: false
-      effect: !type:PlantMutateConsumeGasses
+      effect: !type:PlantMutateConvertGases
+    # - name: ChangeExudeGasses # Frontier - Gas Conversion
+    #   baseOdds: 0.0145
+    #   persists: false
+    #   effect: !type:PlantMutateExudeGasses
+    # - name: ChangeConsumeGasses
+    #   baseOdds: 0.0036
+    #   persists: false
+    #   effect: !type:PlantMutateConsumeGasses
     - name: ChangeHarvest
       baseOdds: 0.036
       persists: false

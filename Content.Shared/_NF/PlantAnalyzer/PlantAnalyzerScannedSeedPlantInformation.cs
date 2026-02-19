@@ -1,4 +1,6 @@
 using Robust.Shared.Serialization;
+using Content.Shared.Atmos;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared._NF.PlantAnalyzer;
 
@@ -16,6 +18,7 @@ public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfac
     public AnalyzerHarvestType HarvestType;
     public GasFlags ExudeGases;
     public GasFlags ConsumeGases;
+    public Dictionary<Gas, (Gas, FixedPoint2, FixedPoint2)>? ConvertGasesData;
     public float Endurance;
     public int SeedYield;
     public float Lifespan;
@@ -56,6 +59,7 @@ public enum MutationFlags : byte
     Seedless = 2,
     Ligneous = 4,
     CanScream = 8,
+    Slippery = 16,
 }
 
 [Flags]
