@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 02/19/2026 11:01:10
-  entityCount: 1053
+  time: 02/19/2026 11:24:19
+  entityCount: 1064
 maps: []
 grids:
 - 1
@@ -2373,6 +2373,20 @@ entities:
     - type: Transform
       pos: 11.5,12.5
       parent: 1
+  - uid: 1056
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,7
+      parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 1058
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,6.5
+      parent: 1
 - proto: ButtonFrameGrey
   entities:
   - uid: 209
@@ -4035,6 +4049,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,10.5
       parent: 1
+- proto: CheckerBoard
+  entities:
+  - uid: 1064
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -7.453814,7.5514994
+      parent: 1
+- proto: ChessBoard
+  entities:
+  - uid: 1063
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.511488,7.56452
+      parent: 1
 - proto: CigPackBlack
   entities:
   - uid: 523
@@ -4213,13 +4243,6 @@ entities:
     - type: Transform
       pos: 15.5,11.5
       parent: 1
-- proto: CrateFunBoardGames
-  entities:
-  - uid: 550
-    components:
-    - type: Transform
-      pos: -5.5,6.5
-      parent: 1
 - proto: CrateMaterialsBasicFilled
   entities:
   - uid: 551
@@ -4242,6 +4265,18 @@ entities:
     components:
     - type: Transform
       pos: 12.5,7.5
+      parent: 1
+  - uid: 1060
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,6.5
+      parent: 1
+  - uid: 1061
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,7.5
       parent: 1
 - proto: DisposalJunctionFlipped
   entities:
@@ -4355,8 +4390,19 @@ entities:
     - type: Transform
       pos: 6.5,8.5
       parent: 1
+  - uid: 1062
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,6.5
+      parent: 1
 - proto: DisposalUnit
   entities:
+  - uid: 528
+    components:
+    - type: Transform
+      pos: -5.5,6.5
+      parent: 1
   - uid: 572
     components:
     - type: Transform
@@ -5606,10 +5652,10 @@ entities:
       parent: 1
 - proto: HolofanProjector
   entities:
-  - uid: 529
+  - uid: 550
     components:
     - type: Transform
-      pos: 2.4890356,6.7762394
+      pos: 4.484358,7.021767
       parent: 1
 - proto: ImpCoffeeMachine
   entities:
@@ -5715,10 +5761,10 @@ entities:
       parent: 1
 - proto: MonkeyCubeBox
   entities:
-  - uid: 528
+  - uid: 529
     components:
     - type: Transform
-      pos: 4.520664,6.8543644
+      pos: 4.523428,6.553017
       parent: 1
 - proto: NFClosetBombFilled
   entities:
@@ -5974,6 +6020,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,12.5
+      parent: 1
+  - uid: 1057
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,6.5
+      parent: 1
+  - uid: 1059
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,6.5
       parent: 1
 - proto: PoweredWarmSmallLight
   entities:
@@ -6485,7 +6543,71 @@ entities:
         189:
         - - Pressed
           - Toggle
-        769:
+  - uid: 1054
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,7
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        198:
+        - - Pressed
+          - Toggle
+        197:
+        - - Pressed
+          - Toggle
+        196:
+        - - Pressed
+          - Toggle
+        190:
+        - - Pressed
+          - Toggle
+        191:
+        - - Pressed
+          - Toggle
+        192:
+        - - Pressed
+          - Toggle
+        195:
+        - - Pressed
+          - Toggle
+        194:
+        - - Pressed
+          - Toggle
+        193:
+        - - Pressed
+          - Toggle
+        201:
+        - - Pressed
+          - Toggle
+        200:
+        - - Pressed
+          - Toggle
+        199:
+        - - Pressed
+          - Toggle
+        1059:
+        - - Pressed
+          - Toggle
+        1057:
+        - - Pressed
+          - Toggle
+  - uid: 1055
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,6.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        185:
+        - - Pressed
+          - Toggle
+        187:
+        - - Pressed
+          - Toggle
+        186:
         - - Pressed
           - Toggle
 - proto: SignalSwitch
