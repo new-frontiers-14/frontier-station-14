@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: highkickz
+# Discord: highkickz
+
+# Maintainer Info
+# GitHub: highkickz
+# Discord: highkickz
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Backpacker
+  parent: BaseVessel
+  name: NT Backpacker
+  description: A small shuttle for all your out-of-space family adventure
+  price: 18000 # 15898 0.05 16692.9
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/backpacker.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Backpacker
+  mapName: 'Backpacker'
+  mapPath: /Maps/_NF/Shuttles/backpacker.yml
+  minPlayers: 0
+  stations:
+    Adder:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Backpacker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
