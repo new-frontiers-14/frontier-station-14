@@ -3,6 +3,7 @@ borg-slot-banana-pie-empty = Comedy
 borg-slot-book-bag-empty = Book bag
 borg-slot-bucket-empty = Bucket
 borg-slot-cash-empty = Cash
+borg-slot-cleanade-empty = Cleanade
 borg-slot-compressed-matter-empty = Compressed matter
 borg-slot-construction-bag-empty = Construction bag
 borg-slot-cookware-empty = Cookware
