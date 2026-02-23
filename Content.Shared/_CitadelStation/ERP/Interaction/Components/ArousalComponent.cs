@@ -27,7 +27,7 @@ public sealed partial class ERPArousalComponent : Component {
     public TimeSpan MoanCoolDown = TimeSpan.FromSeconds(15);
     [DataField]
     [AutoNetworkedField]
-    public FixedPoint2 MoanThreshold = 0.1f;
+    public FixedPoint2 MoanThreshold = 0.8f;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoNetworkedField, AutoPausedField]
