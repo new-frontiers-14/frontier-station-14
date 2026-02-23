@@ -25,7 +25,6 @@ public abstract class SharedRottingSystem : EntitySystem
         SubscribeLocalEvent<PerishableComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<PerishableComponent, ExaminedEvent>(OnPerishableExamined);
 
-        SubscribeLocalEvent<RottingComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<RottingComponent, MobStateChangedEvent>(OnRottingMobStateChanged);
         SubscribeLocalEvent<RottingComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<RottingComponent, ExaminedEvent>(OnExamined);
@@ -60,14 +59,6 @@ public abstract class SharedRottingSystem : EntitySystem
         var isMob = HasComp<MobStateComponent>(perishable);
         var description = "perishable-" + stage + (!isMob ? "-nonmob" : string.Empty);
         args.PushMarkup(Loc.GetString(description, ("target", Identity.Entity(perishable, EntityManager))));
-    }
-
-    private void OnShutdown(EntityUid uid, RottingComponent component, ComponentShutdown args)
-    {
-        if (TryComp<PerishableComponent>(uid, out var perishable))
-        {
-            perishable.RotNextUpdate = TimeSpan.Zero;
-        }
     }
 
     private void OnRottingMobStateChanged(EntityUid uid, RottingComponent component, MobStateChangedEvent args)
@@ -123,11 +114,16 @@ public abstract class SharedRottingSystem : EntitySystem
         if (TryComp<MobStateComponent>(uid, out var mobState) && !_mobState.IsDead(uid, mobState))
             return false;
 
-        if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
-            HasComp<AntiRottingContainerComponent>(container.Owner))
+        // Frontier: prevent rot if *any* container has AntiRottingContainer
+        //if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
+        //    HasComp<AntiRottingContainerComponent>(container.Owner))
+        //    return false;
+        foreach (var container in _container.GetContainingContainers(uid))
         {
-            return false;
+            if (HasComp<AntiRottingContainerComponent>(container.Owner))
+                return false;
         }
+        // End Frontier
 
         var ev = new IsRottingEvent();
         RaiseLocalEvent(uid, ref ev);

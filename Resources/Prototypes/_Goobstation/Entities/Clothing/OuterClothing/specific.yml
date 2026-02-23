@@ -1,0 +1,49 @@
+- type: entity
+  parent: [ClothingNeckBase, RecyclableItemClothDevice] # Frontier - bodycams should take up a neckslot
+  id: ClothingNeckBodyCamera # Frontier - match neck clothing pathing
+  name: nopro camera
+  description: A body mounted camera. It's watching you.
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: SurveillanceCameraEntertainment
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      # nameSet: true # Frontier - allows setting camera name
+      networkSet: true
+      id: NoPro Camera
+      setupAvailableNetworks:
+      - SurveillanceCameraEntertainment
+    - type: Eye
+    - type: SurveillanceCameraMicrophone
+      blacklist:
+        components:
+          - SurveillanceCamera
+          - SurveillanceCameraMonitor
+          - RadioSpeaker
+    - type: ActiveListener
+      range: 6
+    - type: StationAiVision
+      range: 4
+    - type: Sprite
+      sprite: _Goobstation/Clothing/OuterClothing/Misc/nopro.rsi
+    - type: Clothing
+      sprite: _Goobstation/Clothing/OuterClothing/Misc/nopro.rsi
+      quickEquip: true
+    - type: UserInterface # Frontier - allows setting camera name
+      interfaces:
+        enum.SurveillanceCameraSetupUiKey.Camera:
+          type: SurveillanceCameraSetupBoundUi
+    - type: ItemToggle # Frontier - Allow turning body cams on or off
+      activated: true
+    - type: ItemToggleExamine
+      on: item-toggle-examine-camera-on
+      off: item-toggle-examine-camera-off
+
+- type: entity
+  id: ClothingNeckBodyCameraOff
+  parent: ClothingNeckBodyCamera
+  suffix: Deactivated
+  components:
+    - type: ItemToggle
+      activated: false
