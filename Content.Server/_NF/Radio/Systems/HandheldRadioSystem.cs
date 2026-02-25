@@ -6,7 +6,6 @@ using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
-using Content.Shared._NF.Radio.Systems;
 using Content.Shared._NF.Radio;
 using Content.Shared.Chat;
 using Content.Shared.Hands.Components;
@@ -19,7 +18,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Radio.Systems;
 
-public sealed partial class HandheldRadioSystem : SharedHandheldRadioSystem
+public sealed partial class HandheldRadioSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
