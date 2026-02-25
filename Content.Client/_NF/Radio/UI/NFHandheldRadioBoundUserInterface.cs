@@ -32,9 +32,9 @@ public sealed class NFHandheldRadioBoundUserInterface : BoundUserInterface
         _menu.OnFrequencyChanged += frequency =>
         {
             if (int.TryParse(frequency.Trim(), out var intFreq) && intFreq > 0)
-                SendMessage(new Content.Shared._NC.Radio.SelectHandheldRadioFrequencyMessage(intFreq));
+                SendMessage(new SelectHandheldRadioFrequencyMessage(intFreq));
             else
-                SendMessage(new Content.Shared._NC.Radio.SelectHandheldRadioFrequencyMessage(-1)); // Query the current frequency
+                SendMessage(new SelectHandheldRadioFrequencyMessage(-1)); // Query the current frequency
         };
 
         _menu.OnClose += Close;
