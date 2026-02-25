@@ -46,11 +46,13 @@
                 <!-- Vessels get added here by code -->
             </BoxContainer>
         </ScrollContainer>
-        <GridContainer Columns="3" HorizontalExpand="True" Margin="0 8 0 2">
-            <Button Name="TargetIdButton" Access="Public"/>
-            <Button Name="SellShipButton"
-                Text="Sell"
-                Disabled="True" />
+        <BoxContainer Orientation="Vertical" Margin="0 8 0 2">
+            <BoxContainer HorizontalExpand="True">
+                <Button Name="TargetIdButton" Access="Public"/>
+                <Control HorizontalExpand="True"/>
+                <controls:ConfirmButton Name="SellShipButton"
+                    Text="Sell" />
+            </BoxContainer>
             <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True">
                 <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}"/>
                 <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}"/>
@@ -59,6 +61,6 @@
                 <Label Text="{Loc 'shipyard-console-deed-label'}"/>
                 <Label Name="DeedTitle" Text=""/>
             </BoxContainer>
-        </GridContainer>
+        </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

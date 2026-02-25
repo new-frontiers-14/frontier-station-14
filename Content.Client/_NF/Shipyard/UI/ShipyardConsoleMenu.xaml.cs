@@ -41,7 +41,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Categories.OnItemSelected += OnCategoryItemSelected;
         Classes.OnItemSelected += OnClassItemSelected;
         Engines.OnItemSelected += OnEngineItemSelected;
-        SellShipButton.OnPressed += (args) => { OnSellShip?.Invoke(args); };
+        SellShipButton.OnConfirming += OnStartConfirmingPurchaseOrSell;
+        SellShipButton.OnPressed += (args) => { _currentlyConfirmingButton = null; OnSellShip?.Invoke(args); };
     }
 
 
@@ -147,7 +148,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 Guidebook = { Disabled = prototype.GuidebookPage is null, TooltipDelay = 0.2f, ToolTip = prototype.Description },
                 Price = { Text = priceText },
             };
-            vesselEntry.Purchase.OnConfirming += OnStartConfirmingPurchase;
+            vesselEntry.Purchase.OnConfirming += OnStartConfirmingPurchaseOrSell;
             vesselEntry.Purchase.OnPressed += (args) => { _currentlyConfirmingButton = null; OnOrderApproved?.Invoke(args); };
             Vessels.AddChild(vesselEntry);
         }
@@ -156,7 +157,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     /// Confirming handler: ensures that only one button is confirming at a time.
     /// </summary>
-    private void OnStartConfirmingPurchase(ButtonEventArgs args)
+    private void OnStartConfirmingPurchaseOrSell(ButtonEventArgs args)
     {
         if (args.Button is not ConfirmButton confirmButton)
             return;
