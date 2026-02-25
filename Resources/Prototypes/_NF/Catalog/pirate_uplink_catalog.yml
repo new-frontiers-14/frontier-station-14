@@ -72,6 +72,22 @@
         - NFPirateCaptain
 
 - type: listing
+  id: UplinkPirateWoodenKegRum
+  name:  uplink-pirate-wooden-keg-rum-name
+  description: uplink-pirate-wooden-keg-rum-desc
+  productEntity: WoodenKegRum
+  icon: { sprite: _DV/Objects/Storage/keg.rsi, state: base }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateCrateFilled
   name:  uplink-pirate-crate-name
   description: uplink-pirate-crate-desc

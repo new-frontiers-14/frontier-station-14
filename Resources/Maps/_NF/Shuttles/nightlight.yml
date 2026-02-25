@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/13/2025 04:26:10
-  entityCount: 646
+  time: 01/10/2026 21:39:36
+  entityCount: 649
 maps: []
 grids:
 - 1
@@ -1236,7 +1236,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -5.5,8.25
+      pos: -5.5,7.5
       parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -1911,31 +1911,12 @@ entities:
     - type: Transform
       pos: 2.5859096,3.7957337
       parent: 1
-- proto: DVSmartFridge
-  entities:
-  - uid: 580
-    components:
-    - type: Transform
-      pos: 1.5,5.5
-      parent: 1
 - proto: EmergencyLight
   entities:
   - uid: 9
     components:
     - type: Transform
       pos: 0.5,4.5
-      parent: 1
-  - uid: 79
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,6.5
-      parent: 1
-  - uid: 449
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,6.5
       parent: 1
   - uid: 524
     components:
@@ -1965,6 +1946,12 @@ entities:
     components:
     - type: Transform
       pos: -3.5,8.5
+      parent: 1
+  - uid: 647
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,9.5
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -3329,12 +3316,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,9.5
       parent: 1
-  - uid: 351
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,7.5
-      parent: 1
   - uid: 435
     components:
     - type: Transform
@@ -3867,6 +3848,29 @@ entities:
       parent: 1
 - proto: PoweredlightUltraviolet
   entities:
+  - uid: 79
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,6.5
+      parent: 1
+    - type: PoweredLight
+      on: False
+  - uid: 351
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 1
+    - type: PoweredLight
+      on: False
+  - uid: 449
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,6.5
+      parent: 1
+    - type: PoweredLight
+      on: False
   - uid: 522
     components:
     - type: Transform
@@ -3930,6 +3934,14 @@ entities:
     components:
     - type: Transform
       pos: 3.5,9.5
+      parent: 1
+- proto: ServiceSelectiveDropper
+  entities:
+  - uid: 649
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.9600166,4.5579853
       parent: 1
 - proto: ServiceTechFab
   entities:
@@ -4234,12 +4246,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,11.5
       parent: 1
-  - uid: 339
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,7.5
-      parent: 1
   - uid: 422
     components:
     - type: Transform
@@ -4465,6 +4471,21 @@ entities:
         480:
         - - Pressed
           - Toggle
+        351:
+        - - Pressed
+          - Toggle
+        79:
+        - - Pressed
+          - Toggle
+        449:
+        - - Pressed
+          - Toggle
+        614:
+        - - Pressed
+          - Toggle
+        636:
+        - - Pressed
+          - Toggle
   - uid: 629
     components:
     - type: Transform
@@ -4497,7 +4518,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -5.5,8.25
+      pos: -5.5,7.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -4579,6 +4600,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,7.5
       parent: 1
+- proto: SmartFridge
+  entities:
+  - uid: 580
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 1
 - proto: SMESBasic
   entities:
   - uid: 560
@@ -4600,6 +4628,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-0.5
+      parent: 1
+- proto: SpawnRandomDrinkMug
+  entities:
+  - uid: 648
+    components:
+    - type: Transform
+      pos: -1.0419658,10.423191
       parent: 1
 - proto: StoolBar
   entities:
@@ -5006,6 +5041,11 @@ entities:
     components:
     - type: Transform
       pos: -7.5,2.5
+      parent: 1
+  - uid: 339
+    components:
+    - type: Transform
+      pos: -5.5,7.5
       parent: 1
   - uid: 433
     components:
