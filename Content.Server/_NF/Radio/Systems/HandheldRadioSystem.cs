@@ -91,7 +91,7 @@ public sealed partial class HandheldRadioSystem : EntitySystem
 
     protected void OnRadioReceiveSpeak(Entity<HandheldRadioComponent> entity, ref InventoryRelayedEvent<SpeakHandheldRadioEvent> args)
     {
-        if (entity.Comp.SpeakerMode == HandheldRadioMode.Off)
+        if (entity.Comp.MicrophoneMode == HandheldRadioMode.Off)
             return;
 
         var channel = _protoMan.Index<RadioChannelPrototype>(entity.Comp.Channel)!;
