@@ -390,8 +390,8 @@ namespace Content.Server.Administration.Managers
 
             _admins.Add(session, reg);
 
-            if (session.ContentData()!.Stealthed)
-                reg.Data.Stealth = true;
+            //if (session.ContentData()!.Stealthed)
+            //    reg.Data.Stealth = true;
 
             if (reg.Data.Active)
             {
