@@ -71,6 +71,51 @@
       Sling: Cyberpunk
       Clasp: CyberpunkNeon
 
+# belt (for ammo and mags)
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBelt
+  id: NFBaseNpcLootBeltPunk
+  name: punk's ammo pack
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/punk.rsi
+    layers:
+    - state: icon_belt_01
+      map: [ "belt_main" ]
+    - state: icon_decor_base_belt_01
+      map: [ "belt_decor" ]
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/punk.rsi
+    clothingVisuals:
+      belt:
+      - state: base_belt_01
+        map: [ "clothing_belt_main" ]
+      - state: decor_base_belt_01
+        map: [ "clothing_belt_decor" ]
+      - state: mask_null
+        map: [ "clothing_belt_overlay" ]
+  - type: RandomSprite
+    available:
+      - belt_main:
+          icon_belt_01: Base
+        clothing_belt_main:
+          base_belt_01: Base
+        belt_decor:
+          icon_decor_base_belt_01: Decor
+        clothing_belt_decor:
+          decor_base_belt_01: Decor
+        clothing_belt_overlay:
+          decor_base_belt_02: CyberpunkDark
+          decor_base_belt_03: CyberpunkDark
+          decor_base_belt_04: CyberpunkDark
+          decor_base_belt_05: CyberpunkDark
+          mask_null: ""
+    mappedColors:
+      Base: CyberpunkDark
+      Decor: CyberpunkDark
+
+# wallet (for cash)
 - type: entity
   abstract: true
   parent: NFBaseNpcLootWallet
@@ -155,6 +200,29 @@
       orGroup: Items
       prob: 0.3
 
+- type: entity
+  parent: NFBaseNpcLootBeltPunk
+  id: ClothingBeltPunkLootRangedT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Magazines
+    - id: NFMagazinePistol35Overpressure
+      orGroup: Magazines
+      prob: 0.3
+    - id: NFMagazinePistol35Empty
+      orGroup: Magazines
+      amount: 2
+      prob: 0.4
+    - id: NFMagazinePistol35Empty
+      orGroup: Magazines
+      amount: 3
+      prob: 0.3
+    # Ammo
+    - id: NFAmmunitionBoxPistol35Overpressure
+      orGroup: Ammo
+
 # region tier 2
 - type: entity
   parent: NFBaseNpcLootWalletPunk
@@ -222,6 +290,22 @@
     - id: SpawnDungeonLootNpcPunksFluffItems
       orGroup: Items
       prob: 0.3
+
+- type: entity
+  parent: NFBaseNpcLootBeltPunk
+  id: ClothingBeltPunkLootRangedT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Ammo
+    - id: NFAmmunitionBoxShellShotgunOverpressure
+      orGroup: Ammo
+      prob: 0.6
+    - id: NFAmmunitionBoxShellShotgunOverpressure
+      orGroup: Ammo
+      prob: 0.4
+      amount: 2
 
 # region tier 3
 - type: entity
@@ -302,6 +386,30 @@
     - id: SpawnDungeonLootNpcPunksFluffItems
       orGroup: Items
       prob: 0.3
+
+- type: entity
+  parent: NFBaseNpcLootBeltPunk
+  id: ClothingBeltPunkLootRangedT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Magazines
+    - id: NFMagazineSubMachineGun35Overpressure
+      orGroup: Magazines
+      prob: 0.3
+    - id: NFMagazineSubMachineGun35Empty
+      orGroup: Magazines
+      amount: 2
+      prob: 0.4
+    - id: NFMagazineSubMachineGun35Empty
+      orGroup: Magazines
+      amount: 3
+      prob: 0.3
+    # Ammo
+    - id: NFAmmunitionBoxPistol35Overpressure
+      amount: 2
+      orGroup: Ammo
 
 # region tier 4 (boss)
 - type: entity
