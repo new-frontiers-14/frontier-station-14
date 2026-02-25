@@ -1,7 +1,8 @@
 using Content.Server._NF.Radio.Systems;
+using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
-using Content.Shared.Inventory;
 using Content.Shared.Radio;
+using Content.Shared._NF.Radio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._NF.Radio.Components;
@@ -23,4 +24,21 @@ public sealed partial class HandheldRadioComponent : Component
     /// </summary>
     [DataField]
     public int Frequency = 1459; // Common channel frequency
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("listenRange")]
+    public int ListenRange = 4;
+
+    [DataField("microphoneMode")]
+    public HandheldRadioMode MicrophoneMode = HandheldRadioMode.Off;
+
+    [DataField("speakerMode")]
+    public HandheldRadioMode SpeakerMode = HandheldRadioMode.Off;
+
+    /// <summary>
+    /// The output chat type when a message is played from the speaker in intercom mode.
+    /// In other words, how loud the intercom speaker is.
+    /// </summary>
+    [DataField]
+    public InGameICChatType OutputChatType = InGameICChatType.Whisper;
 }

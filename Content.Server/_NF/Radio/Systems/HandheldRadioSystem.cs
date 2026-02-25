@@ -1,13 +1,14 @@
 using Content.Server._NF.Radio.Components;
-using Content.Server.Administration.Components;
 using Content.Server.Chat.Systems;
+using Content.Server.Interaction;
 using Content.Server.Radio;
 using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Speech;
+using Content.Server.Speech.Components;
 using Content.Shared._NF.Radio.Systems;
-using Content.Shared.Access.Components;
+using Content.Shared._NF.Radio;
 using Content.Shared.Chat;
-using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -15,17 +16,19 @@ using Content.Shared.Radio;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using System.ComponentModel;
 
 namespace Content.Server._NF.Radio.Systems;
 
-public sealed class HandheldRadioSystem : SharedHandheldRadioSystem
+public sealed partial class HandheldRadioSystem : SharedHandheldRadioSystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly InteractionSystem _interaction = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -36,29 +39,36 @@ public sealed class HandheldRadioSystem : SharedHandheldRadioSystem
         SubscribeLocalEvent<EntitySpokeEvent>(OnSpeak);
         SubscribeLocalEvent<HandheldRadioComponent, InventoryRelayedEvent<SpeakHandheldRadioEvent>>(OnRadioReceiveSpeak);
         SubscribeLocalEvent<HandheldRadioComponent, RadioReceiveEvent>(OnReceiveRadio);
+
+        SubscribeLocalEvent<HandheldRadioComponent, ListenEvent>(OnListen);
+        SubscribeLocalEvent<HandheldRadioComponent, ListenAttemptEvent>(OnAttemptListen);
+
+        InitializeInteract();
     }
 
     private void OnRadioAdded(EntityUid uid, HandheldRadioComponent component, ComponentInit args)
     {
-        //var channel = _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel)!;
+        EnsureComp<ActiveListenerComponent>(uid).Range = component.ListenRange;
+
         var radioComp = EnsureComp<ActiveRadioComponent>(uid);
         radioComp.Channels.Add(component.Channel);
-        //EnsureComp<ActiveRadioComponent>(uid).Channels.Add(component.Channel);
     }
 
     private void OnRadioRemoved(EntityUid uid, HandheldRadioComponent component, ComponentShutdown args)
     {
         RemCompDeferred<ActiveRadioComponent>(uid);
+        RemCompDeferred<ActiveListenerComponent>(uid);
     }
 
     protected void OnSpeak(EntitySpokeEvent ev)
     {
-        Log.Debug("Entity {entity} spoke!", ev.Source.ToString());
-
         var evt = new SpeakHandheldRadioEvent
         {
             SpeakEvent = ev
         };
+
+        // Relay the speaking event to every inventory slot + hands.
+        // So that any radio microphones in private mode/intercom mode can hear the player
 
         if (TryComp<InventoryComponent>(ev.Source, out var inventoryComp))
         {
@@ -82,6 +92,9 @@ public sealed class HandheldRadioSystem : SharedHandheldRadioSystem
 
     protected void OnRadioReceiveSpeak(Entity<HandheldRadioComponent> entity, ref InventoryRelayedEvent<SpeakHandheldRadioEvent> args)
     {
+        if (entity.Comp.SpeakerMode == HandheldRadioMode.Off)
+            return;
+
         var channel = _protoMan.Index<RadioChannelPrototype>(entity.Comp.Channel)!;
 
         // Don't send the radio message if they're not speaking into the channel
@@ -97,8 +110,10 @@ public sealed class HandheldRadioSystem : SharedHandheldRadioSystem
 
     protected void OnReceiveRadio(EntityUid uid, HandheldRadioComponent component, ref RadioReceiveEvent args)
     {
-        var channel = _protoMan.Index<RadioChannelPrototype>(component.Channel)!;
+        if (component.SpeakerMode == HandheldRadioMode.Off)
+            return;
 
+        var channel = _protoMan.Index<RadioChannelPrototype>(component.Channel)!;
         if (channel != args.Channel)
             return;
 
@@ -110,31 +125,56 @@ public sealed class HandheldRadioSystem : SharedHandheldRadioSystem
             return;
         }
 
-        //if (component.Frequency != args.RadioSource)
-
-        //var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
-        //RaiseLocalEvent(args.MessageSource, nameEv);
-
-        //var name = Loc.GetString("speech-name-relay",
-        //    ("speaker", Name(uid)),
-        //    ("originalName", nameEv.VoiceName));
-
-        // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        //_chat.TrySendInGameICMessage(uid, args.Message, component.OutputChatType, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false); // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck, InGameICChatType.Whisper<component.OutputChatType
-
-        // TODO: change this when a code refactor is done
-        // this is currently done this way because receiving radio messages on an entity otherwise requires that entity
-        // to have an ActiveRadioComponent
-
-        var parent = Transform(uid).ParentUid;
-
-        if (parent.IsValid())
+        switch (component.SpeakerMode)
         {
-            var relayEvent = new HeadsetRadioReceiveRelayEvent(args);
-            RaiseLocalEvent(parent, ref relayEvent);
-        }
+            case HandheldRadioMode.Private:
+                var parent = Transform(uid).ParentUid;
 
-        if (TryComp(parent, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+                if (parent.IsValid())
+                {
+                    var relayEvent = new HeadsetRadioReceiveRelayEvent(args);
+                    RaiseLocalEvent(parent, ref relayEvent);
+                }
+
+                if (TryComp(parent, out ActorComponent? actor))
+                    _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+                break;
+
+            case HandheldRadioMode.Intercom:
+                if (uid == args.RadioSource)
+                    return;
+
+                var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
+                RaiseLocalEvent(args.MessageSource, nameEv);
+
+                var name = Loc.GetString("speech-name-relay",
+                    ("speaker", Name(uid)),
+                    ("originalName", nameEv.VoiceName));
+
+                _chat.TrySendInGameICMessage(uid, args.Message, component.OutputChatType, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false);
+                break;
+        }
+    }
+
+    protected void OnListen(EntityUid uid, HandheldRadioComponent component, ListenEvent args)
+    {
+        if (component.MicrophoneMode != HandheldRadioMode.Intercom)
+            return;
+
+        if (HasComp<HandheldRadioComponent>(args.Source))
+            return; // no feedback loops please.
+
+        var channel = _protoMan.Index<RadioChannelPrototype>(component.Channel)!;
+        //if (_recentlySent.Add((args.Message, args.Source, channel)))
+        _radio.SendRadioMessage(args.Source, args.Message, channel, uid, frequency: component.Frequency);
+    }
+
+    protected void OnAttemptListen(EntityUid uid, HandheldRadioComponent component, ListenAttemptEvent args)
+    {
+        //if (component.PowerRequired && !this.IsPowered(uid, EntityManager)
+        //    || component.UnobstructedRequired && !_interaction.InRangeUnobstructed(args.Source, uid, 0))
+        //{
+        //    args.Cancel();
+        //}
     }
 }
