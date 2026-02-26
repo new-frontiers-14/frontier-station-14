@@ -422,17 +422,20 @@ namespace Content.Server.Kitchen.EntitySystems
                 //if the inserted item is a storage holder, attempt to dump the container in the microwave instead of inserting it as-is
                 if (TryComp<StorageComponent>(args.Used, out var storage))
                 {
-                    foreach (var (bagitem, location) in storage.StoredItems)
-                        if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize)) // item too big
+                    foreach (var (bagObject, location) in storage.StoredItems)
+                        if (TryComp<ItemComponent>(bagObject, out var bagItem))// check if thing you're trying to put in isn't an item
                         {
-                            continue; //skip item, attempt next item
-                        }
-                        else
-                        {
-                            if (ent.Comp.Storage.Count >= ent.Comp.Capacity // container is full
-                            || !_container.Insert(bagitem, ent.Comp.Storage)) //fail to insert
+                            if (_item.GetSizePrototype(bagItem.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize))// item from bag too big to insert
                             {
-                                break; //stop attempting to insert
+                                continue; //skip item to big, attempt next item
+                            }
+                            else
+                            {
+                                if (ent.Comp.Storage.Count >= ent.Comp.Capacity // container is full
+                                || !_container.Insert(bagObject, ent.Comp.Storage)) //fail to insert
+                                {
+                                    break; //stop attempting to insert further items from the same container
+                                }
                             }
                         }
                     return; //do not attempt to insert the container itself
