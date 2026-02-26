@@ -29,6 +29,8 @@ using Content.Shared.Kitchen;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
+using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -416,6 +418,27 @@ namespace Content.Server.Kitchen.EntitySystems
 
             if (TryComp<ItemComponent>(args.Used, out var item))
             {
+                //Frontier: bag dump to microwave start
+                //if the inserted item is a storage holder, attempt to dump the container in the microwave instead of inserting it as-is
+                if (TryComp<StorageComponent>(args.Used, out var storage))
+                {
+                    foreach (var (bagitem, location) in storage.StoredItems)
+                        if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize) // item too big
+                        {
+                            continue; //skip item, attempt next item
+                        }
+                        else
+                        {
+                            if (ent.Comp.Storage.Count >= ent.Comp.Capacity // container is full
+                            || !_container.Insert(bagitem, ent.Comp.Storage)) //fail to insert
+                            {
+                                break; //stop attempting to insert
+                            }
+                        }
+                    return; //do not attempt to insert the container itself
+                }
+                //Frontier: bag dump to microwave end
+
                 // check if size of an item you're trying to put in is too big
                 if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize))
                 {
