@@ -34,6 +34,7 @@ shipyard-console-fallback-prevent-sale = YML-class bugs detected onboard. Please
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
 shipyard-console-menu-engine-label = Engine:{" "}
+shipyard-console-menu-sortby-label = Sort By:{" "}
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual
@@ -82,3 +83,6 @@ shipyard-console-engine-Welding = Welding Fuel
 shipyard-console-engine-Plasma = Plasma
 shipyard-console-engine-Uranium = Uranium
 shipyard-console-engine-Bananium = Bananium
+
+shipyard-console-sortby-Name = Name
+shipyard-console-sortby-Price = Price
