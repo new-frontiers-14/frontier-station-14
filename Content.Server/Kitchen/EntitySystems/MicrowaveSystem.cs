@@ -423,7 +423,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (TryComp<StorageComponent>(args.Used, out var storage))
                 {
                     foreach (var (bagitem, location) in storage.StoredItems)
-                        if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize) // item too big
+                        if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize)) // item too big
                         {
                             continue; //skip item, attempt next item
                         }
