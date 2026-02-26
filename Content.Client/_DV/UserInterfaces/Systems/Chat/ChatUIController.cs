@@ -1,15 +1,8 @@
-using System.Linq;
-using System.Text.RegularExpressions;
 using Content.Client.CharacterInfo;
-using Content.Shared.CCVar;
-using Content.Shared._DV.CCVars;
-using Content.Shared.Dataset;
 using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Robust.Shared.Prototypes;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
-using static Content.Client.CharacterInfo.CharacterInfoSystem;
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
