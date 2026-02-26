@@ -437,7 +437,7 @@ namespace Content.Server.Kitchen.EntitySystems
                         }
                     return; //do not attempt to insert the container itself
                 }
-                //Frontier: bag dump to microwave end
+                //End Frontier
 
                 // check if size of an item you're trying to put in is too big
                 if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize))
