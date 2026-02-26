@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 02/18/2026 19:30:29
-  entityCount: 320
+  time: 02/26/2026 03:20:10
+  entityCount: 322
 maps: []
 grids:
 - 1
@@ -40,7 +40,6 @@ entities:
     - type: MetaData
       name: Hound
     - type: Transform
-      pos: 19.286072,8.657161
       parent: invalid
     - type: MapGrid
       chunks:
@@ -586,6 +585,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,9
       parent: 1
+  - uid: 321
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,0.5
+      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 36
@@ -892,13 +897,6 @@ entities:
     components:
     - type: Transform
       pos: -5.104472,6.8503656
-      parent: 1
-- proto: DrinkMugMetal
-  entities:
-  - uid: 214
-    components:
-    - type: Transform
-      pos: -2.6830711,1.7739115
       parent: 1
 - proto: DrinkMugRed
   entities:
@@ -2149,6 +2147,26 @@ entities:
         281:
         - - Pressed
           - Toggle
+  - uid: 322
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,0.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        221:
+        - - Pressed
+          - Toggle
+        220:
+        - - Pressed
+          - Toggle
+        219:
+        - - Pressed
+          - Toggle
+        218:
+        - - Pressed
+          - Toggle
 - proto: SignSecurity
   entities:
   - uid: 257
@@ -2178,6 +2196,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,0.5
+      parent: 1
+- proto: SpawnRandomDrinkMug
+  entities:
+  - uid: 214
+    components:
+    - type: Transform
+      pos: -2.591667,1.6571892
       parent: 1
 - proto: SubstationWallBasic
   entities:
