@@ -21,13 +21,21 @@ public sealed partial class HandheldRadioComponent : Component
 
     /// <summary>
     // The radio frequency on which the message will be transmitted
+    // If null, then it will use the frequency of whatever channel its set to
     /// </summary>
     [DataField]
-    public int Frequency = 1459; // Common channel frequency
+    public int? Frequency = null;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("listenRange")]
     public int ListenRange = 4;
+
+    /// <summary>
+    /// Whether or not the speaker must have an
+    /// unobstructed path to the radio to speak
+    /// </summary>
+    [DataField("unobstructedRequired")]
+    public bool UnobstructedRequired = true;
 
     [DataField("microphoneMode")]
     public HandheldRadioMode MicrophoneMode = HandheldRadioMode.Off;

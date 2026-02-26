@@ -12,6 +12,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -36,13 +37,27 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         SubscribeLocalEvent<HandheldRadioComponent, ComponentShutdown>(OnRadioRemoved);
 
         SubscribeLocalEvent<EntitySpokeEvent>(OnSpeak);
-        SubscribeLocalEvent<HandheldRadioComponent, InventoryRelayedEvent<SpeakHandheldRadioEvent>>(OnRadioReceiveSpeak);
+        SubscribeLocalEvent<HandheldRadioComponent, InventoryRelayedEvent<SpeakHandheldRadioEvent>>(OnPlayerSpeakIntoRadio);
         SubscribeLocalEvent<HandheldRadioComponent, RadioReceiveEvent>(OnReceiveRadio);
 
         SubscribeLocalEvent<HandheldRadioComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<HandheldRadioComponent, ListenAttemptEvent>(OnAttemptListen);
 
+        SubscribeLocalEvent<HandheldRadioComponent, MapInitEvent>(OnMapInit);
+
         InitializeInteract();
+    }
+
+    private void OnMapInit(Entity<HandheldRadioComponent> ent, ref MapInitEvent args)
+    {
+        // Set initial frequency
+        //
+        // This is done so that if the radio channel frequency is changed,
+        // we don't have to go around and change the frequency in prototypes
+        if (_protoMan.TryIndex<RadioChannelPrototype>(ent.Comp.Channel, out var channel))
+        {
+            ent.Comp.Frequency = channel.Frequency;
+        }
     }
 
     private void OnRadioAdded(EntityUid uid, HandheldRadioComponent component, ComponentInit args)
@@ -59,7 +74,11 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         RemCompDeferred<ActiveListenerComponent>(uid);
     }
 
-    protected void OnSpeak(EntitySpokeEvent ev)
+    /// <summary>
+    /// Called anytime an entity speaks. This function relays the speaking event to hands + inventory slots,
+    /// so that the handheld radio can pick it up.
+    /// </summary>
+    private void OnSpeak(EntitySpokeEvent ev)
     {
         var evt = new SpeakHandheldRadioEvent
         {
@@ -89,7 +108,12 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         }
     }
 
-    protected void OnRadioReceiveSpeak(Entity<HandheldRadioComponent> entity, ref InventoryRelayedEvent<SpeakHandheldRadioEvent> args)
+    /// <summary>
+    /// Called by "OnSpeak" when:
+    /// - The entity speaks into the handheld radio channel.
+    /// - The entity is holding the handheld radio in its inventory or hands
+    /// </summary>
+    private void OnPlayerSpeakIntoRadio(Entity<HandheldRadioComponent> entity, ref InventoryRelayedEvent<SpeakHandheldRadioEvent> args)
     {
         if (entity.Comp.MicrophoneMode == HandheldRadioMode.Off)
             return;
@@ -107,7 +131,10 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         _radio.SendRadioMessage(args.Args.SpeakEvent.Source, args.Args.SpeakEvent.Message, channel, entity, frequency: entity.Comp.Frequency);
     }
 
-    protected void OnReceiveRadio(EntityUid uid, HandheldRadioComponent component, ref RadioReceiveEvent args)
+    /// <summary>
+    /// Called when anyone speaks on the radio
+    /// </summary>
+    private void OnReceiveRadio(EntityUid uid, HandheldRadioComponent component, ref RadioReceiveEvent args)
     {
         if (component.SpeakerMode == HandheldRadioMode.Off)
             return;
@@ -155,11 +182,14 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         }
     }
 
-    protected void OnListen(EntityUid uid, HandheldRadioComponent component, ListenEvent args)
+    /// <summary>
+    /// Called when anyone is speaking around the handheld radio within ListenRange.
+    /// 
+    /// This may not be called if the radio isn't in intercom mode or if the handheld
+    /// radio requires an unobstructed path to whomever is speaking
+    /// </summary>
+    private void OnListen(EntityUid uid, HandheldRadioComponent component, ListenEvent args)
     {
-        if (component.MicrophoneMode != HandheldRadioMode.Intercom)
-            return;
-
         if (HasComp<HandheldRadioComponent>(args.Source))
             return; // no feedback loops please.
 
@@ -168,12 +198,14 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         _radio.SendRadioMessage(args.Source, args.Message, channel, uid, frequency: component.Frequency);
     }
 
-    protected void OnAttemptListen(EntityUid uid, HandheldRadioComponent component, ListenAttemptEvent args)
+    private void OnAttemptListen(EntityUid uid, HandheldRadioComponent component, ListenAttemptEvent args)
     {
-        //if (component.PowerRequired && !this.IsPowered(uid, EntityManager)
-        //    || component.UnobstructedRequired && !_interaction.InRangeUnobstructed(args.Source, uid, 0))
-        //{
-        //    args.Cancel();
-        //}
+        if (component.MicrophoneMode != HandheldRadioMode.Intercom)
+            return;
+
+        if (component.UnobstructedRequired && !_interaction.InRangeUnobstructed(args.Source, uid, 0))
+        {
+            args.Cancel();
+        }
     }
 }

@@ -35,7 +35,7 @@ public sealed partial class HandheldRadioSystem
 
         using (args.PushGroup(nameof(RadioMicrophoneComponent)))
         {
-            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", component.Frequency)));
+            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", component.Frequency!.Value)));
             args.PushMarkup(Loc.GetString("handheld-radio-component-chennel-examine",
                 ("channel", proto.LocalizedName)));
         }
@@ -51,7 +51,6 @@ public sealed partial class HandheldRadioSystem
         if (!args.Actor.Valid)
             return;
 
-        //SetMicrophoneEnabled(microphone, args.Actor, args.Enabled, true);
         radio.Comp.MicrophoneMode = args.Mode;
         UpdateHandheldRadioUi(radio);
     }
@@ -61,7 +60,6 @@ public sealed partial class HandheldRadioSystem
         if (!args.Actor.Valid)
             return;
 
-        //SetSpeakerEnabled(microphone, args.Actor, args.Enabled, true);
         radio.Comp.SpeakerMode = args.Mode;
         UpdateHandheldRadioUi(radio);
     }
@@ -74,13 +72,14 @@ public sealed partial class HandheldRadioSystem
         // Update frequency if valid and within range.
         if (args.Frequency >= MinRadioFrequency && args.Frequency <= MaxRadioFrequency)
             radio.Comp.Frequency = args.Frequency;
+
         // Update UI with current frequency.
         UpdateHandheldRadioUi(radio);
     }
 
     private void UpdateHandheldRadioUi(Entity<HandheldRadioComponent> radio)
     {
-        var frequency = radio.Comp.Frequency;
+        var frequency = radio.Comp.Frequency!.Value;
         var micState = radio.Comp.MicrophoneMode;
         var speakerState = radio.Comp.SpeakerMode;
 
