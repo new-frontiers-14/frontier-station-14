@@ -9,14 +9,7 @@ handheld-radio-component-chennel-examine = The current channel is {$channel}.
 handheld-radio-component-toggle = Toggle Mic
 
 handheld-radio-button-label-speaker = Speaker
-handheld-radio-button-text-speaker-off = Off
-handheld-radio-button-text-speaker-on = On
-handheld-radio-button-text-speaker-intercom = Intercom
-
 handheld-radio-button-label-mic = Microphone
-handheld-radio-button-text-mic-off = Off
-handheld-radio-button-text-mic-on = On
-handheld-radio-button-text-mic-intercom = Intercom
 
 # Nuclear-14-Start
 handheld-radio-menu-title = Handheld radio

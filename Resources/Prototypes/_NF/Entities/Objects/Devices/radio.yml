@@ -5,8 +5,9 @@
   id: RadioHandheldNF
   components:
   - type: HandheldRadio
-    broadcastChannel: Handheld
-    frequency: 1330
+    channel: Handheld
+  - type: ActiveListener
+  - type: ActiveRadio
   - type: Sprite
     sprite: _NF/Objects/Devices/communication.rsi
     layers:

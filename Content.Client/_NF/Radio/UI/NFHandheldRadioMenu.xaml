@@ -1,8 +1,8 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       Title="{Loc 'handheld-radio-menu-title'}"
-                      MinSize="250 230"
-                      SetSize="250 230">
+                      MinSize="290 230"
+                      SetSize="290 230">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True"
@@ -20,19 +20,17 @@
             Align="Center"
             Modulate="#FFFFFF"
             VAlign="Center"
-            Text="{Loc 'handheld-radio-button-label-mic'}"/>
+            Text="{Loc 'nf-handheld-radio-button-label-mic'}"/>
         <GridContainer
             Name="MicrophoneButtonVbox"
-            HSeparationOverride="1"
-            VSeparationOverride="1"
-            HorizontalExpand="True"
             Columns="3"
             Margin="0"
+            HSeparationOverride="1"
+            VSeparationOverride="1"
             Access="Public">
-
-            <Button Name="MicButtonOff" ToggleMode="True" Text="{Loc 'handheld-radio-button-text-mic-off'}" StyleClasses="OpenRight" MinWidth="70"/>
-            <Button Name="MicButtonOn" ToggleMode="True" Text="{Loc 'handheld-radio-button-text-mic-on'}" StyleClasses="OpenRight" MinWidth="70"/>
-            <Button Name="MicButtonIntercom" ToggleMode="True" Text="{Loc 'handheld-radio-button-text-mic-intercom'}" StyleClasses="OpenRight" MinWidth="70"/>
+            <Button Name="MicButtonOff" ToggleMode="True" Text="{Loc 'nf-handheld-radio-button-text-mic-off'}" StyleClasses="OpenRight" HorizontalExpand="True" MinWidth="90"/>
+            <Button Name="MicButtonOn" ToggleMode="True" Text="{Loc 'nf-handheld-radio-button-text-mic-on'}" StyleClasses="OpenBoth" HorizontalExpand="True" MinWidth="90"/>
+            <Button Name="MicButtonIntercom" ToggleMode="True" Text="{Loc 'nf-handheld-radio-button-text-mic-intercom'}" StyleClasses="OpenLeft" HorizontalExpand="True" MinWidth="90"/>
         </GridContainer>
 
         <!-- Speaker buttons -->
@@ -42,19 +40,18 @@
             Align="Center"
             Modulate="#FFFFFF"
             VAlign="Center"
-            Text="{Loc 'handheld-radio-button-label-speaker'}"/>
+            Text="{Loc 'nf-handheld-radio-button-label-speaker'}"/>
         <GridContainer
             Name="SpeakerButtonVbox"
-            HSeparationOverride="1"
-            VSeparationOverride="1"
-            HorizontalExpand="True"
             Columns="3"
             Margin="0"
+            HSeparationOverride="1"
+            VSeparationOverride="1"
             Access="Public">
 
-            <Button Name="SpeakerButtonOff" ToggleMode="True" Text="{Loc 'handheld-radio-button-text-speaker-off'}" StyleClasses="OpenRight" MinWidth="70"/>
-            <Button Name="SpeakerButtonOn" ToggleMode="True" Text="{Loc 'handheld-radio-button-text-speaker-on'}" StyleClasses="OpenRight" MinWidth="70"/>
-            <Button Name="SpeakerButtonIntercom" ToggleMode="True" Text="{Loc 'handheld-radio-button-text-speaker-intercom'}" StyleClasses="OpenRight" MinWidth="70"/>
+            <Button Name="SpeakerButtonOff" ToggleMode="True" Text="{Loc 'nf-handheld-radio-button-text-speaker-off'}" StyleClasses="OpenRight" HorizontalExpand="True" MinWidth="90"/>
+            <Button Name="SpeakerButtonOn" ToggleMode="True" Text="{Loc 'nf-handheld-radio-button-text-speaker-on'}" StyleClasses="OpenBoth" HorizontalExpand="True" MinWidth="90"/>
+            <Button Name="SpeakerButtonIntercom" ToggleMode="True" Text="{Loc 'nf-handheld-radio-button-text-speaker-intercom'}" StyleClasses="OpenLeft" HorizontalExpand="True" MinWidth="90"/>
         </GridContainer>
 
         <BoxContainer Orientation="Vertical">

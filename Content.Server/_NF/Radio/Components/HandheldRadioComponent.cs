@@ -23,17 +23,24 @@ public sealed partial class HandheldRadioComponent : Component
     // The radio frequency on which the message will be transmitted
     /// </summary>
     [DataField]
-    public int Frequency = 1459; // Common channel frequency
+    public int Frequency = 1330;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("listenRange")]
     public int ListenRange = 4;
 
+    /// <summary>
+    /// Whether or not the speaker must have an
+    /// unobstructed path to the radio to speak
+    /// </summary>
+    [DataField("unobstructedRequired")]
+    public bool UnobstructedRequired = true;
+
     [DataField("microphoneMode")]
-    public HandheldRadioMode MicrophoneMode = HandheldRadioMode.Off;
+    public HandheldRadioMode MicrophoneMode = HandheldRadioMode.Private;
 
     [DataField("speakerMode")]
-    public HandheldRadioMode SpeakerMode = HandheldRadioMode.Off;
+    public HandheldRadioMode SpeakerMode = HandheldRadioMode.Private;
 
     /// <summary>
     /// The output chat type when a message is played from the speaker in intercom mode.
