@@ -1,6 +1,7 @@
 using Content.Server._NF.Radio.Components;
 using Content.Server.Radio.Components;
 using Content.Shared._NF.Radio;
+using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Radio;
 using Content.Shared.UserInterface;
@@ -35,9 +36,20 @@ public sealed partial class HandheldRadioSystem
 
         using (args.PushGroup(nameof(RadioMicrophoneComponent)))
         {
-            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", component.Frequency!.Value)));
-            args.PushMarkup(Loc.GetString("handheld-radio-component-chennel-examine",
-                ("channel", proto.LocalizedName)));
+            // It's set to broadcast on frequency {$frequency}.
+            args.PushMarkup(Loc.GetString("nf-handheld-radio-component-on-examine", ("frequency", component.Frequency!.Value)));
+
+            // The radio is set to channel ([color={$color}]{$channel}[/color]).
+            args.PushMarkup(Loc.GetString("nf-handheld-radio-component-on-examine-channel",
+                ("channel", proto.LocalizedName),
+                ("color", proto.Color)));
+
+            // Hold the radio and speak into it with :[color={$color}]{$prefix}[/color]
+            var msg = Loc.GetString("nf-handheld-radio-component-channel-speak",
+                ("prefix", proto.KeyCode),
+                ("color", proto.Color));
+
+            args.PushMarkup(msg);
         }
     }
 

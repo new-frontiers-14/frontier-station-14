@@ -38,10 +38,10 @@ public sealed partial class HandheldRadioComponent : Component
     public bool UnobstructedRequired = true;
 
     [DataField("microphoneMode")]
-    public HandheldRadioMode MicrophoneMode = HandheldRadioMode.Off;
+    public HandheldRadioMode MicrophoneMode = HandheldRadioMode.Private;
 
     [DataField("speakerMode")]
-    public HandheldRadioMode SpeakerMode = HandheldRadioMode.Off;
+    public HandheldRadioMode SpeakerMode = HandheldRadioMode.Private;
 
     /// <summary>
     /// The output chat type when a message is played from the speaker in intercom mode.

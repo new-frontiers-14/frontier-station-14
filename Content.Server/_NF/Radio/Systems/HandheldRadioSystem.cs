@@ -43,29 +43,24 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         SubscribeLocalEvent<HandheldRadioComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<HandheldRadioComponent, ListenAttemptEvent>(OnAttemptListen);
 
-        SubscribeLocalEvent<HandheldRadioComponent, MapInitEvent>(OnMapInit);
-
         InitializeInteract();
-    }
-
-    private void OnMapInit(Entity<HandheldRadioComponent> ent, ref MapInitEvent args)
-    {
-        // Set initial frequency
-        //
-        // This is done so that if the radio channel frequency is changed,
-        // we don't have to go around and change the frequency in prototypes
-        if (_protoMan.TryIndex<RadioChannelPrototype>(ent.Comp.Channel, out var channel))
-        {
-            ent.Comp.Frequency = channel.Frequency;
-        }
     }
 
     private void OnRadioAdded(EntityUid uid, HandheldRadioComponent component, ComponentInit args)
     {
+        // Set initial frequency to the channel frequency, if it's null
+        //
+        // This is done so that if the radio channel frequency is changed,
+        // we don't have to go around and change the frequency in prototypes
+        if (component.Frequency == null && _protoMan.TryIndex<RadioChannelPrototype>(component.Channel, out var channel))
+        {
+            component.Frequency = channel.Frequency;
+        }
+
         EnsureComp<ActiveListenerComponent>(uid).Range = component.ListenRange;
 
         var radioComp = EnsureComp<ActiveRadioComponent>(uid);
-        radioComp.Channels.Add(component.Channel);
+        radioComp.Channels = new HashSet<String> { component.Channel };
     }
 
     private void OnRadioRemoved(EntityUid uid, HandheldRadioComponent component, ComponentShutdown args)
@@ -201,7 +196,10 @@ public sealed partial class HandheldRadioSystem : EntitySystem
     private void OnAttemptListen(EntityUid uid, HandheldRadioComponent component, ListenAttemptEvent args)
     {
         if (component.MicrophoneMode != HandheldRadioMode.Intercom)
+        {
+            args.Cancel();
             return;
+        }
 
         if (component.UnobstructedRequired && !_interaction.InRangeUnobstructed(args.Source, uid, 0))
         {
