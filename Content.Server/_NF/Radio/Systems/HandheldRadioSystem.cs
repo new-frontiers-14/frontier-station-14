@@ -1,4 +1,5 @@
 using Content.Server._NF.Radio.Components;
+using Content.Server.Actions;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Radio;
@@ -33,8 +34,7 @@ public sealed partial class HandheldRadioSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<HandheldRadioComponent, ComponentInit>(OnRadioAdded);
-        SubscribeLocalEvent<HandheldRadioComponent, ComponentShutdown>(OnRadioRemoved);
+        SubscribeLocalEvent<HandheldRadioComponent, MapInitEvent>(OnMapInit);
 
         SubscribeLocalEvent<EntitySpokeEvent>(OnSpeak);
         SubscribeLocalEvent<HandheldRadioComponent, InventoryRelayedEvent<SpeakHandheldRadioEvent>>(OnPlayerSpeakIntoRadio);
@@ -46,18 +46,12 @@ public sealed partial class HandheldRadioSystem : EntitySystem
         InitializeInteract();
     }
 
-    private void OnRadioAdded(EntityUid uid, HandheldRadioComponent component, ComponentInit args)
+    private void OnMapInit(EntityUid uid, HandheldRadioComponent component, MapInitEvent args)
     {
         EnsureComp<ActiveListenerComponent>(uid).Range = component.ListenRange;
 
         var radioComp = EnsureComp<ActiveRadioComponent>(uid);
         radioComp.Channels = new HashSet<String> { component.Channel };
-    }
-
-    private void OnRadioRemoved(EntityUid uid, HandheldRadioComponent component, ComponentShutdown args)
-    {
-        RemCompDeferred<ActiveRadioComponent>(uid);
-        RemCompDeferred<ActiveListenerComponent>(uid);
     }
 
     /// <summary>
