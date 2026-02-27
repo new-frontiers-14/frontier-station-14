@@ -67,7 +67,7 @@ public sealed class RadioSystem : EntitySystem
 
         // Frontier: add support for handheld radio frequency
         if (TryComp<HandheldRadioComponent>(source, out var radio))
-            return radio.Frequency!.Value;
+            return radio.Frequency;
         // End Frontier
 
         return channel.Frequency;

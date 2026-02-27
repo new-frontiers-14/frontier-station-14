@@ -48,15 +48,6 @@ public sealed partial class HandheldRadioSystem : EntitySystem
 
     private void OnRadioAdded(EntityUid uid, HandheldRadioComponent component, ComponentInit args)
     {
-        // Set initial frequency to the channel frequency, if it's null
-        //
-        // This is done so that if the radio channel frequency is changed,
-        // we don't have to go around and change the frequency in prototypes
-        if (component.Frequency == null && _protoMan.TryIndex<RadioChannelPrototype>(component.Channel, out var channel))
-        {
-            component.Frequency = channel.Frequency;
-        }
-
         EnsureComp<ActiveListenerComponent>(uid).Range = component.ListenRange;
 
         var radioComp = EnsureComp<ActiveRadioComponent>(uid);

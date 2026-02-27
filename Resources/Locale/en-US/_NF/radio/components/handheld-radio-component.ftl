@@ -5,6 +5,9 @@ nf-handheld-radio-component-channel-speak = Hold the radio and speak into it wit
 
 # UI labels
 nf-handheld-radio-button-label-speaker = Speaker
+nf-handheld-radio-button-label-mic = Microphone
+
+nf-handheld-radio-button-label-speaker = Speaker
 nf-handheld-radio-button-text-speaker-off = Off
 nf-handheld-radio-button-text-speaker-on = On
 nf-handheld-radio-button-text-speaker-intercom = Intercom

@@ -37,7 +37,7 @@ public sealed partial class HandheldRadioSystem
         using (args.PushGroup(nameof(RadioMicrophoneComponent)))
         {
             // It's set to broadcast on frequency {$frequency}.
-            args.PushMarkup(Loc.GetString("nf-handheld-radio-component-on-examine", ("frequency", component.Frequency!.Value)));
+            args.PushMarkup(Loc.GetString("nf-handheld-radio-component-on-examine", ("frequency", component.Frequency)));
 
             // The radio is set to channel ([color={$color}]{$channel}[/color]).
             args.PushMarkup(Loc.GetString("nf-handheld-radio-component-on-examine-channel",
@@ -91,7 +91,7 @@ public sealed partial class HandheldRadioSystem
 
     private void UpdateHandheldRadioUi(Entity<HandheldRadioComponent> radio)
     {
-        var frequency = radio.Comp.Frequency!.Value;
+        var frequency = radio.Comp.Frequency;
         var micState = radio.Comp.MicrophoneMode;
         var speakerState = radio.Comp.SpeakerMode;
 

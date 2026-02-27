@@ -21,10 +21,9 @@ public sealed partial class HandheldRadioComponent : Component
 
     /// <summary>
     // The radio frequency on which the message will be transmitted
-    // If null, then it will use the frequency of whatever channel its set to
     /// </summary>
     [DataField]
-    public int? Frequency = null;
+    public int Frequency = 1330;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("listenRange")]
