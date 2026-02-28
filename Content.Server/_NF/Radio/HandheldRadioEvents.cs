@@ -5,8 +5,8 @@ using Robust.Shared.Serialization;
 namespace Content.Server._NF.Radio;
 
 /// <summary>
-///     This event will be broadcast right before displaying an entities typing indicator.
-///     If _overrideIndicator is not null after the event is finished it will be used.
+///     Event relayed to hands + inventory when an entity speaks
+///     Used for the handheld radio to listen to the player speaking
 /// </summary>
 [ByRefEvent]
 public sealed class SpeakHandheldRadioEvent : IInventoryRelayEvent
