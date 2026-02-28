@@ -1,0 +1,23 @@
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, ClothingOuterWinterCoat, BaseCentcommContraband]
+  id: ClothingOuterArmoredWinterCoatCentComm
+  name: central command armored winter coat
+  description: A tough, utilitarian coat designed for the wardens of Central Command. Reinforced kevlar plating and high quality fur allow the user to look stylish while staying protected.
+  components:
+  - type: Sprite
+    sprite: _DV/Clothing/OuterClothing/WinterCoats/cc_warden_winter_coat.rsi
+  - type: Clothing
+    sprite: _DV/Clothing/OuterClothing/WinterCoats/cc_warden_winter_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.4
+        Heat: 0.6
+        Caustic: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Tag
+    tags:
+    - WhitelistChameleon
