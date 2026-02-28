@@ -24,7 +24,7 @@
     - id: PaperWrittenMedicalFormServiceInvoice
     - id: PaperWrittenMedicalFormReceiptInvoice
     - id: PaperWrittenMedicalFormRelease
-    - id: PaperWrittenDoCNarcoticRestrictedChemPermit
+    - id: PaperWrittenDoCNarcoticRestrictedChemLicense
     - id: PaperWrittenDoCResponderContract
     - id: PaperWrittenDoCStaffContract
     - id: Paper
@@ -36,16 +36,17 @@
     vendPrice: 500
 
 # Forms
-- type: entity # Creator : Herbtheon / Maren Kessler
-  id: PaperWrittenDoCNarcoticRestrictedChemPermit
-  name: narcotic & restricted chemical permit
+- type: entity # Based on form made by Herbtheon / Maren Kessler
+  id: PaperWrittenDoCNarcoticRestrictedChemLicense
+  name: narcotic & restricted chemical license
+  
   categories: [ HideSpawnMenu ]
   parent: Paper
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#5b97bc]◥[bold]N[/bold]◣ [bold]New Frontier Medical Dispatch[/bold][/color]
+      [color=#5b97bc]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Narcotic & Restricted Chemical License[/head]
 
       [bold]Vessel Captain:[/bold]
