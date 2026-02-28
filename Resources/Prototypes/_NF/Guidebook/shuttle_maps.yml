@@ -329,6 +329,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapHound
+  name: "CBC Hound"
+  description: "Detailed map of a Hound shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: hound
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapInvestigator
   name: "NR Investigator"
   description: "Detailed map of a Investigator shuttle."
@@ -381,6 +392,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stringer
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapStronghold
+  name: "DBI Stronghold"
+  description: "Detailed map of a Stronghold shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: stronghold    
 
 - type: entity
   parent: PosterBase
