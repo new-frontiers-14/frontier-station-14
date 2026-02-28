@@ -210,6 +210,11 @@
     price: 300 # Frontier - 2000<300
   - type: PirateBountyItem # Frontier
     id: Gyroscope # Frontier
+  - type: DeviceLinkSink # Frontier: makes gyroscopes able to recieve signals
+    ports:
+      - On # Frontier
+      - Off # Frontier
+      - Toggle # Frontier
 
 - type: entity
   id: GyroscopeUnanchored
