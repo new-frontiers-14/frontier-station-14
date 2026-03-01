@@ -10,7 +10,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/deathsquad.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitAncient
   name: ancient jumpsuit
   description: A terribly ragged and frayed grey jumpsuit. It looks like it hasn't been washed in over a decade.
@@ -58,7 +58,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/bartender_purple.rsi
 
 - type: entity
-  parent: ClothingUniformBase # Frontier: remove BaseCommandContraband
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Frontier: remove BaseCommandContraband # Imp: Foldable
   id: ClothingUniformJumpsuitCaptain
   name: captain's jumpsuit
   description: It's a blue jumpsuit with some gold markings denoting the rank of "Captain".
@@ -113,7 +113,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitChaplain
   name: chaplain's jumpsuit
   description: It's a black jumpsuit, often worn by religious folk.
@@ -275,7 +275,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/cmo_turtle.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitDetective
   name: detective hard-worn suit # Frontier - Added detective to name
   description: Someone who wears this means business.
@@ -286,7 +286,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/detective.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitDetectiveGrey
   name: detective noir suit # Frontier - Added detective to name
   description: A hard-boiled private investigator's grey suit, complete with tie clip.
@@ -353,7 +353,7 @@
       - state: overlay-inhand-right
 
 - type: entity
-  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Imp: Foldable
   id: ClothingUniformJumpsuitHoSAlt
   name: head of security's turtleneck
   description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
@@ -463,7 +463,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/mime.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitParamedic
   name: paramedic jumpsuit
   description: It's got a plus on it, that's a good thing right?
@@ -525,7 +525,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingUniformBase # Frontier: remove BaseCommandContraband
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Frontier: remove BaseCommandContraband # Imp: Foldable
   id: ClothingUniformJumpsuitQM
   name: quartermaster's jumpsuit
   description: 'What can brown do for you?'
@@ -580,7 +580,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/scientist.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitScientistFormal
   name: scientist's formal jumpsuit
   description: A uniform for sophisticated scientists, best worn with its matching tie.
@@ -885,7 +885,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitNinja
   name: ninja jumpsuit
   description: Comfortable ninja suit, for convenience when relaxing and when you need to practice.
@@ -918,7 +918,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/atmos_casual.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitPsychologist
   name: psychologist suit
   description: I don't lose things. I place things in locations which later elude me.
@@ -1167,7 +1167,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/syndieformal.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitFlannel
   name: flannel jumpsuit
   description: Smells like someones been grillin'.
@@ -1178,7 +1178,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/flannel.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitSeniorEngineer
   name: senior engineer jumpsuit
   description: A sign of skill and prestige within the engineering department.
@@ -1189,7 +1189,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/senior_engineer.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitSeniorResearcher
   name: senior researcher jumpsuit
   description: A sign of skill and prestige within the science department.
@@ -1200,7 +1200,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/senior_researcher.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase] # Imp: Foldable
   id: ClothingUniformJumpsuitSeniorPhysician
   name: senior physician jumpsuit
   description: A sign of skill and prestige within the medical department.
@@ -1211,7 +1211,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/senior_physician.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Imp: Foldable
   id: ClothingUniformJumpsuitSeniorOfficer
   name: senior officer jumpsuit
   description: A sign of skill and prestige within the security department.
