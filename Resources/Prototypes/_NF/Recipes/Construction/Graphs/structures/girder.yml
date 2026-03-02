@@ -29,9 +29,9 @@
       edges:
         - to: asteroidrock
           completed:
-            - !type:GivePrototype
-              prototype: FloorTileItemAstroAsteroidSand
+            - material: FloorTileItemAstroAsteroidSand
               amount: 2
+              doAfter: 2
           steps:
             - tool: Welding
               doAfter: 10
