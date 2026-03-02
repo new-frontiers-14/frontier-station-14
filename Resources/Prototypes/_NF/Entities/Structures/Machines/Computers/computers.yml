@@ -580,3 +580,43 @@
   components:
   - type: NFDroneConsole
     id: Trade
+
+#region Library
+- type: entity
+  parent: BaseComputer
+  id: BaseComputerLibrary
+  name: library console
+  description: Facilitates the uploading and downloading of books.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: library
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: Computer
+    board: BaseComputerLibraryComputerCircuitboard
+  - type: LibraryConsole
+    bookSlot:
+      whitelist:
+        tags:
+          - Book
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      bookConsole_Book: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.LibraryConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.LibraryConsoleUiKey.Key:
+        type: LibraryConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface

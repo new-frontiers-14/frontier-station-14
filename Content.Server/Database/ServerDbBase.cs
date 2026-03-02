@@ -1879,6 +1879,56 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #endregion
 
+        #region Library
+
+        public async Task AddLibraryBookAsync(
+            int serverId, 
+            string title, 
+            string author, 
+            string content, 
+            string date, 
+            string authorCKey)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.LibraryBooks.Add(new LibraryBook
+            {
+                ServerId = serverId,
+                Title = title,
+                Author = author,
+                Content = content,
+                Date = date,
+                AuthorCKey = authorCKey,
+            });
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<LibraryBook>> GetLibraryBooksAsync(int serverId)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.LibraryBooks
+                .Where(b => b.ServerId == serverId)
+                .ToListAsync();
+        }
+
+        public async Task<bool> DeleteLibraryBookAsync(int bookId)
+        {
+            await using var db = await GetDb();
+
+            var book = await db.DbContext.LibraryBooks
+                .SingleOrDefaultAsync(b => b.Id == bookId);
+
+            if (book == null)
+                return false;
+
+            db.DbContext.LibraryBooks.Remove(book);
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        #endregion Library
+
         public abstract Task SendNotification(DatabaseNotification notification);
 
         // SQLite returns DateTime as Kind=Unspecified, Npgsql actually knows for sure it's Kind=Utc.
