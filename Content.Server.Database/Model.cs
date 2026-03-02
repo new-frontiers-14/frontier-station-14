@@ -46,6 +46,8 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        //Frontier
+        public DbSet<LibraryBook> LibraryBooks { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1331,5 +1333,33 @@ namespace Content.Server.Database
         /// The score IPIntel returned
         /// </summary>
         public float Score { get; set; }
+    }
+
+    [Table("library_book")]
+    public sealed class LibraryBook
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("library_book_id")]
+        public int Id { get; set; }
+
+        [ForeignKey("Server")]
+        [Column("server_id")]
+        public int ServerId { get; set; }
+        public Server Server { get; set; } = default!;
+
+        [Column("title")]
+        public string Title { get; set; } = string.Empty;
+
+        [Column("author")]
+        public string Author { get; set; } = string.Empty;
+
+        [Column("content")]
+        public string Content { get; set; } = string.Empty;
+        //Date entry was added
+        [Column("date")]
+        public string Date { get; set; } = string.Empty;
+
+        [Column("author_ckey")]
+        public string AuthorCKey { get; set; } = string.Empty;
     }
 }
