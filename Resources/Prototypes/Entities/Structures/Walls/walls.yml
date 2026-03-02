@@ -101,6 +101,8 @@
     sprite: Structures/Walls/brick.rsi
   - type: Icon
     sprite: Structures/Walls/brick.rsi
+  - type: Paintable # Frontier
+    group: Walls
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -244,6 +246,8 @@
     sprite: Structures/Walls/cult.rsi
   - type: Icon
     sprite: Structures/Walls/cult.rsi
+  - type: Paintable # Frontier
+    group: Walls
   - type: Destructible
     thresholds:
     - trigger:
@@ -301,6 +305,8 @@
     sprite: Structures/Walls/diamond.rsi
   - type: Icon
     sprite: Structures/Walls/diamond.rsi
+  - type: Paintable # Frontier
+    group: Walls
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -384,6 +390,8 @@
     sprite: Structures/Walls/ice.rsi
   - type: Icon
     sprite: Structures/Walls/ice.rsi
+  - type: Paintable # Frontier
+    group: Walls
   - type: Destructible
     thresholds:
     - trigger:
@@ -528,6 +536,8 @@
   components:
     - type: Sprite # Frontier
       color: "#ffffff" # Frontier
+    - type: Paintable # Frontier
+      group: ReinforcedWalls
     - type: Destructible
       thresholds:
         - trigger:
@@ -607,6 +617,8 @@
   - type: Icon
     sprite: _NF/Structures/Walls/solid.rsi # Frontier
     state: rgeneric
+  - type: Paintable # Frontier
+    group: ReinforcedWalls
   - type: Construction
     graph: Girder
     node: reinforcedWall
@@ -681,6 +693,8 @@
   - type: Icon
     sprite: Structures/Walls/solid_rust.rsi
     state: rgeneric
+  - type: Paintable # Frontier
+    group: ReinforcedWalls
   - type: Construction
     graph: Girder
     node: reinforcedWallRust
@@ -768,6 +782,8 @@
     sprite: Structures/Walls/riveted.rsi
   - type: Icon
     sprite: Structures/Walls/riveted.rsi
+  - type: Paintable # Frontier
+    group: ReinforcedWalls
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -803,6 +819,8 @@
     sprite: Structures/Walls/sandstone.rsi
   - type: Icon
     sprite: Structures/Walls/sandstone.rsi
+  - type: Paintable # Frontier
+    group: StoneWalls
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -977,6 +995,8 @@
   - type: Icon
     sprite: Structures/Walls/shuttle.rsi
     state: full
+  - type: Paintable # Frontier
+    group: ReinforcedWalls
   - type: Construction
     graph: Girder
     node: shuttleWall
@@ -1020,6 +1040,8 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Walls/solid.rsi # Frontier
+  - type: Paintable # Frontier
+    group: Walls
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
@@ -1101,6 +1123,8 @@
   - type: Icon
     sprite: Structures/Walls/solid_rust.rsi
     state: full
+  - type: Paintable # Frontier
+    group: Walls
   - type: Construction
     graph: Girder
     node: wallrust
@@ -1164,6 +1188,8 @@
     sprite: Structures/Walls/xeno.rsi
   - type: Icon
     sprite: Structures/Walls/xeno.rsi
+  - type: Paintable # Frontier
+    group: Walls
   - type: IconSmooth
     key: chitin
     base: solid
@@ -1185,6 +1211,8 @@
   - type: Icon
     sprite: Structures/Walls/xeno.rsi
     state: rgeneric
+  - type: Paintable # Frontier
+    group: ReinforcedWalls
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -1398,6 +1426,8 @@
     sprite: Structures/Walls/necropolis.rsi
   - type: Icon
     sprite: Structures/Walls/necropolis.rsi
+  - type: Paintable # Frontier
+    group: StoneWalls
   - type: Destructible
     thresholds:
     - trigger:
@@ -1419,6 +1449,8 @@
     sprite: Structures/Walls/mining.rsi
   - type: Icon
     sprite: Structures/Walls/mining.rsi
+  - type: Paintable # Frontier
+    group: ReinforcedWalls
   - type: Destructible
     thresholds:
     - trigger:
@@ -1591,6 +1623,8 @@
     sprite: Structures/Walls/cobblebrick.rsi
   - type: Icon
     sprite: Structures/Walls/cobblebrick.rsi
+  - type: Paintable # Frontier
+    group: StoneWalls
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -1619,6 +1653,8 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Paintable # Frontier
+    group: StoneWalls
 
 - type: entity
   parent: WallCobblebrick
@@ -1633,6 +1669,8 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Paintable # Frontier
+    group: StoneWalls
 
 - type: entity
   parent: WallCobblebrick
@@ -1646,6 +1684,8 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Paintable # Frontier
+    group: StoneWalls
 
 - type: entity
   parent: WallCobblebrick
@@ -1659,6 +1699,8 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Paintable # Frontier
+    group: StoneWalls
 
 - type: entity
   parent: WallCobblebrick
@@ -1672,6 +1714,8 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Paintable # Frontier
+    group: StoneWalls
 
 - type: entity
   parent: WallCobblebrick
@@ -1685,3 +1729,5 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Paintable # Frontier
+    group: StoneWalls
