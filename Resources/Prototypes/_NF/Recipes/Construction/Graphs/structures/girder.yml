@@ -1,0 +1,52 @@
+- type: constructionGraph
+  id: NFGirder
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: girder
+          completed:
+            - !type:SnapToGrid {} # Frontier: use default ctor
+              # southRotation: true # Frontier
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+              
+        - to: reinforcedGirder
+          completed:
+            - !type:SnapToGrid
+              southRotation: false
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 1
+
+    - node: girder
+      entity: AsteroidRock
+      edges:
+        - to: asteroidrock
+          completed:
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 2
+          steps:
+            - tool: Welding
+              doAfter: 10
+
+    - node: reinforcedGirder
+      entity: WallAsteroidCobblebrick
+      edges:
+        - to: asteroidcobblebrick
+          completed:
+            - material: FloorTileItemAstroAsteroidSand
+              amount: 2
+              doAfter: 2
+            - material: Plasteel
+              amount: 2
+              doAfter: 2              
+          steps:
+            - tool: Welding
+              doAfter: 10

@@ -91,3 +91,27 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: AsteroidRock
+  graph: NFGirder
+  startNode: start
+  targetNode: asteroidrock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SolidAsteroidCobbleBrick
+  graph: NFGirder
+  startNode: start
+  targetNode: asteroidcobblebrick
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
