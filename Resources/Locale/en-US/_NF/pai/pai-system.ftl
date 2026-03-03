@@ -4,7 +4,7 @@ mentorpai-system-still-searching = Still searching for a mentoring pAI.
 mentorpai-system-searching = Now searching for a mentoring pAI...
 
 mentorpai-system-role-name = Personal Mentoring AI
-mentorpai-system-role-description = Be someone's electronic guide!
+mentorpai-system-role-description = Guide a Greenhorn as their best electronic pal!
                               (Memories *not* included.)
 
 mentorpai-system-wipe-device-verb-text = Remove pAI
