@@ -176,10 +176,10 @@ namespace Content.Server.Construction
 
                 switch (step)
                 {
-                    case MaterialConstructionGraphStep materialStep:
+                    case StackInvolvingConstructionGraphStep stackInvolvingStep:
                         foreach (var entity in EnumerateNearby(user))
                         {
-                            if (!materialStep.EntityValid(entity, out var stack))
+                            if (!stackInvolvingStep.EntityValid(entity, out var stack))
                                 continue;
 
                             if (used.Contains(entity))
@@ -187,17 +187,17 @@ namespace Content.Server.Construction
 
                             // TODO allow taking from several stacks.
                             // Also update crafting steps to check if it works.
-                            var splitStack = _stackSystem.Split(entity, materialStep.Amount, user.ToCoordinates(0, 0), stack);
+                            var splitStack = _stackSystem.Split(entity, stackInvolvingStep.Amount, user.ToCoordinates(0, 0), stack);
 
                             if (splitStack == null)
                                 continue;
 
-                            if (string.IsNullOrEmpty(materialStep.Store))
+                            if (string.IsNullOrEmpty(stackInvolvingStep.Store))
                             {
                                 if (!_container.Insert(splitStack.Value, container))
                                     continue;
                             }
-                            else if (!_container.Insert(splitStack.Value, GetContainer(materialStep.Store)))
+                            else if (!_container.Insert(splitStack.Value, GetContainer(stackInvolvingStep.Store)))
                                 continue;
 
                             handled = true;
