@@ -79,6 +79,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
             string.IsNullOrWhiteSpace(args.Content))
         {
             _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            _popup.PopupEntity(Loc.GetString("library-console-upload-missing-fields"), args.Actor, args.Actor);
             return;
         }
 
