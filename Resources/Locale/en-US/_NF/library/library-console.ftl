@@ -12,6 +12,7 @@ library-console-content-label = Content: (insert a book to print to)
 library-console-content-placeholder = Insert a book into the console...
 library-console-upload-book-button = Upload Book
 
+library-console-upload-duplicate = This book's content is already in the library.
 library-console-browse-empty = No books in the library yet.
 library-console-search-placeholder = Search by title or author...
 library-console-download-book-button = Download to Inserted Book
