@@ -151,19 +151,20 @@
               amount: 2
               doAfter: 1
 
-        - to: asteroidrockfascade
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          conditions:
-            - !type:EntityAnchored {}
-          steps:
-            - material: FloorTileItemAstroAsteroidSand
-              amount: 2
-              doAfter: 1             
-            - material: Steel
-              amount: 2
-              doAfter: 1          
+        # - to: asteroidrockfascade
+        #   completed:
+        #     - !type:SnapToGrid
+        #       southRotation: true
+        #   conditions:
+        #     - !type:EntityAnchored {}
+        #   steps:
+        #     - material: FloorTileItemAstroAsteroidSand
+        #       amount: 2
+        #       doAfter: 1             
+        #     - material: Steel
+        #       amount: 2
+        #       doAfter: 1          
+        
         # End Frontier: interior shuttle wall
 
     - node: wall
@@ -230,35 +231,35 @@
             - tool: Prying
               doAfter: 10
 
-    - node: asteroidrockfascade
-      entity: AsteroidRockFascade
-      edges:
-        - to: girder
-          completed:
-            - !type:GivePrototype
-              prototype: FloorTileItemAstroAsteroidSand
-              amount: 2     
-              prototype: SheetSteel1
-              amount: 2                                       
-          steps:
-            - tool: Welding
-              doAfter: 10
+    # - node: asteroidrockfascade
+    #   entity: AsteroidRockFascade
+    #   edges:
+    #     - to: girder
+    #       completed:
+    #         - !type:GivePrototype
+    #           prototype: FloorTileItemAstroAsteroidSand
+    #           amount: 2     
+    #           prototype: SheetSteel1
+    #           amount: 2                                       
+    #       steps:
+    #         - tool: Welding
+    #           doAfter: 10
 
-    - node: asteroidcobblebrick
-      entity: WallAsteroidCobblebrick
-      edges:
-        - to: reinforcedgirder                
-          completed:
-            - !type:GivePrototype
-              prototype: FloorTileItemAstroAsteroidSand
-              amount: 2     
-              prototype: SheetSteel1
-              amount: 2
-              prototype: SheetPlasteel1
-              amount: 2                         
-          steps:
-            - tool: Welding
-              doAfter: 10  
+    # - node: asteroidcobblebrick
+    #   entity: WallAsteroidCobblebrick
+    #   edges:
+    #     - to: reinforcedgirder                
+    #       completed:
+    #         - !type:GivePrototype
+    #           prototype: FloorTileItemAstroAsteroidSand
+    #           amount: 2     
+    #           prototype: SheetSteel1
+    #           amount: 2
+    #           prototype: SheetPlasteel1
+    #           amount: 2                         
+          # steps:
+          #   - tool: Welding
+          #     doAfter: 10  
 
     - node: plasmaWall
       entity: WallPlasma
@@ -328,22 +329,22 @@
               amount: 2
               doAfter: 1
 
-        - to: asteroidcobblebrick
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          conditions:
-            - !type:EntityAnchored { }
-          steps:
-            - material: FloorTileItemAstroAsteroidSand
-              amount: 2
-              doAfter: 1             
-            - material: Steel
-              amount: 2
-              doAfter: 1          
-            - material: Plasteel
-              amount: 2
-              doAfter: 1              
+        # - to: asteroidcobblebrick
+        #   completed:
+        #     - !type:SnapToGrid
+        #       southRotation: true
+        #   conditions:
+        #     - !type:EntityAnchored { }
+        #   steps:
+        #     - material: FloorTileItemAstroAsteroidSand
+        #       amount: 2
+        #       doAfter: 1             
+        #     - material: Steel
+        #       amount: 2
+        #       doAfter: 1          
+        #     - material: Plasteel
+        #       amount: 2
+        #       doAfter: 1              
 
         - to: shuttleWall
           completed:
