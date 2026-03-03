@@ -27,6 +27,10 @@
             </BoxContainer>
             <!-- Tab 1: Browse -->
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="4">
+                <LineEdit Name="SearchEdit"
+                          PlaceHolder="{Loc 'library-console-search-placeholder'}"
+                          HorizontalExpand="True"
+                          Margin="0 0 0 4" />
                 <Label Name="BrowseEmptyLabel"
                        Text="{Loc 'library-console-browse-empty'}"
                        HorizontalAlignment="Center"
