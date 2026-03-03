@@ -298,6 +298,15 @@
       board: [ DoorElectronicsPirate ]
 
 - type: entity
+  parent: AirlockMining
+  id: AirlockMiningPirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
   parent: AirlockShuttleSyndicate
   id: AirlockShuttleSyndicatePirateLocked
   suffix: Pirate, Locked
