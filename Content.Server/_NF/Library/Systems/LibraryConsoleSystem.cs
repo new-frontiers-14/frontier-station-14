@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._NF.Library.Components;
 using Content.Server.Database;
+using Content.Server.Popups;
 using Content.Shared._NF.Library.BUI;
 using Content.Shared._NF.Library.Events;
 using Content.Shared.Containers.ItemSlots;
@@ -11,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Localization;
 
 namespace Content.Server._NF.Library.Systems;
 
@@ -26,6 +28,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
     private const string BookSlotId = "bookConsole_Book";
 
@@ -86,12 +89,25 @@ public sealed class LibraryConsoleSystem : EntitySystem
         var date = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
         _audio.PlayPvs(ent.Comp.PrintSound, ent.Owner);
-        _ = AddBookAsync(ent, title, author, content, date, ckey);
+        _ = AddBookAsync(ent, args.Actor, title, author, content, date, ckey);
     }
 
-    private async Task AddBookAsync(Entity<LibraryConsoleComponent> ent, string title, string author, string content, string date, string ckey)
+    private async Task AddBookAsync(Entity<LibraryConsoleComponent> ent, EntityUid actor, string title, string author, string content, string date, string ckey)
     {
         var server = await _serverDbEntry.ServerEntity;
+
+        // Reject uploads whose content already exists in the library.
+        var existingBooks = await _dbManager.GetLibraryBooksAsync(server.Id);
+        if (existingBooks.Any(b => string.Equals(b.Content, content, StringComparison.Ordinal)))
+        {
+            if (EntityManager.EntityExists(ent))
+            {
+                _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+                _popup.PopupEntity(Loc.GetString("library-console-upload-duplicate"), actor, actor);
+            }
+            return;
+        }
+
         await _dbManager.AddLibraryBookAsync(server.Id, title, author, content, date, ckey);
 
         // Refresh the UI so the browse tab shows the newly uploaded book.
