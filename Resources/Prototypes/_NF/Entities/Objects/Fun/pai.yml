@@ -1,0 +1,38 @@
+- type: entity
+  parent: PersonalAI
+  id: PersonalMentorAI
+  name: personal mentoring ai device
+  description: Your electronic pal conceived to guide you!
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/pai.rsi
+    layers:
+    - state: pai-base
+    - state: pai-off-overlay
+      shader: unshaded
+      map: ["screen"]
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+  - type: ToggleableGhostRole
+    examineTextMindPresent: mentorpai-system-pai-installed
+    examineTextMindSearching: mentorpai-system-still-searching
+    examineTextNoMind: mentorpai-system-off
+    beginSearchingText: mentorpai-system-searching
+    roleName: mentorpai-system-role-name
+    roleDescription: mentorpai-system-role-description
+    roleRules: ghost-role-information-mentorpai-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
+    wipeVerbText: mentorpai-system-wipe-device-verb-text
+    wipeVerbPopup: mentorpai-system-wiped-device
+    stopSearchVerbText: mentorpai-system-stop-searching-verb-text
+    stopSearchVerbPopup: mentorpai-system-stopped-searching
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Greeting
+  - type: IntrinsicRadioTransmitter # Mentoring pAI's can use the Greeting channel
+    channels:
+    - Greeting
+
