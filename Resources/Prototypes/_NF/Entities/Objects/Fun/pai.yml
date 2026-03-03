@@ -5,15 +5,15 @@
   description: Your electronic pal conceived to guide you!
   components:
   - type: Sprite
-    sprite: Objects/Fun/pai.rsi
+    sprite: _NF/Objects/Fun/pai.rsi
     layers:
-    - state: pai-base
-    - state: pai-off-overlay
+    - state: mentorpai-base
+    - state: mentorpai-off-overlay
       shader: unshaded
       map: ["screen"]
-  - type: Appearance
-  - type: StaticPrice
-    price: 0
+  - type: PAI
+    brickPopup: mentorpai-system-brick-popup
+    scramblePopup: mentorpai-system-scramble-popup
   - type: ToggleableGhostRole
     examineTextMindPresent: mentorpai-system-pai-installed
     examineTextMindSearching: mentorpai-system-still-searching
@@ -35,4 +35,11 @@
   - type: IntrinsicRadioTransmitter # Mentoring pAI's can use the Greeting channel
     channels:
     - Greeting
-
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        screen:
+          Off: { state: mentorpai-off-overlay }
+          Searching: { state: mentorpai-searching-overlay }
+          On: { state: mentorpai-on-overlay }
