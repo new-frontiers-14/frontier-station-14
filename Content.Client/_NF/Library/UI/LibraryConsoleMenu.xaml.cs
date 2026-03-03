@@ -19,6 +19,7 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
     private string _bookContent = string.Empty;
     private int _selectedBookIndex = -1;
     private readonly List<int> _bookIds = new();
+    private readonly List<LibraryBookData> _allBooks = new();
 
     public LibraryConsoleMenu()
     {
@@ -46,6 +47,8 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
             _selectedBookIndex = -1;
             UpdateDownloadButtonState();
         };
+
+        SearchEdit.OnTextChanged += _ => FilterBookList();
     }
 
     public void SetEnabled(bool enabled)
@@ -74,11 +77,30 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
     /// </summary>
     public void PopulateBookList(List<LibraryBookData>? books)
     {
+        _allBooks.Clear();
+        if (books != null)
+            _allBooks.AddRange(books);
+        FilterBookList();
+    }
+
+    /// <summary>
+    /// Rebuilds the visible book list, filtering by the current search text against title and author.
+    /// </summary>
+    private void FilterBookList()
+    {
         BookList.Clear();
         _bookIds.Clear();
         _selectedBookIndex = -1;
 
-        if (books == null || books.Count == 0)
+        var query = SearchEdit.Text.Trim();
+
+        var filtered = string.IsNullOrEmpty(query)
+            ? _allBooks
+            : _allBooks.FindAll(b =>
+                b.Title.Contains(query, System.StringComparison.OrdinalIgnoreCase) ||
+                b.Author.Contains(query, System.StringComparison.OrdinalIgnoreCase));
+
+        if (filtered.Count == 0)
         {
             BrowseEmptyLabel.Visible = true;
             UpdateDownloadButtonState();
@@ -86,7 +108,7 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
         }
 
         BrowseEmptyLabel.Visible = false;
-        foreach (var book in books)
+        foreach (var book in filtered)
         {
             BookList.AddItem($"{book.Title}  —  {book.Author}");
             _bookIds.Add(book.Id);
