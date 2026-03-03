@@ -7,13 +7,29 @@
         - to: girder
           completed:
             - !type:SnapToGrid {} # Frontier: use default ctor
-              # southRotation: true # Frontier
+              # southRotation: true # Frontier                 
           steps:
             - material: Steel
               amount: 2
               doAfter: 1
-              
-        - to: reinforcedGirder
+          
+    - node: girder
+      entity: Girder
+      edges:          
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+        - to: reinforcedgirder
           completed:
             - !type:SnapToGrid
               southRotation: false
@@ -22,31 +38,68 @@
           steps:
             - material: Plasteel
               amount: 2
-              doAfter: 1
+              doAfter: 1    
 
-    - node: girder
-      entity: AsteroidRock
-      edges:
         - to: asteroidrock
           completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
             - material: FloorTileItemAstroAsteroidSand
               amount: 2
-              doAfter: 2
-          steps:
-            - tool: Welding
-              doAfter: 10
+              doAfter: 1             
+            - material: Steel
+              amount: 2
+              doAfter: 1
 
-    - node: reinforcedGirder
-      entity: WallAsteroidCobblebrick
+    - node: reinforcedgirder
+      entity: ReinforcedGirder
       edges:
         - to: asteroidcobblebrick
           completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
             - material: FloorTileItemAstroAsteroidSand
               amount: 2
-              doAfter: 2
+              doAfter: 1             
+            - material: Steel
+              amount: 2
+              doAfter: 1          
             - material: Plasteel
               amount: 2
-              doAfter: 2              
+              doAfter: 1
+
+    - node: asteroidrock
+      entity: AsteroidRockFascade
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 2     
+              prototype: SheetSteel1
+              amount: 2                                       
           steps:
             - tool: Welding
               doAfter: 10
+
+    - node: asteroidcobblebrick
+      entity: WallAsteroidCobblebrick
+      edges:
+        - to: reinforcedGirder                     
+          completed:
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 2     
+              prototype: SheetSteel1
+              amount: 2
+              prototype: SheetPlasteel1
+              amount: 2                         
+          steps:
+            - tool: Welding
+              doAfter: 10           
