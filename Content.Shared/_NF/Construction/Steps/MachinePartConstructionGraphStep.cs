@@ -5,7 +5,7 @@ using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Content.Shared.Construction.Steps
+namespace Content.Shared.Construction.Steps // NOTE: currently exists under base namespace.
 {
     [DataDefinition]
     public sealed partial class MachinePartConstructionGraphStep : StackInvolvingConstructionGraphStep

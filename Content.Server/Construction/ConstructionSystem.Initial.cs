@@ -176,10 +176,10 @@ namespace Content.Server.Construction
 
                 switch (step)
                 {
-                    case StackInvolvingConstructionGraphStep stackInvolvingStep:
+                    case StackInvolvingConstructionGraphStep stackInvolvingStep: //Frontier: MaterialConstructionGraphStep<StackInvolvingConstructionGraphStep
                         foreach (var entity in EnumerateNearby(user))
                         {
-                            if (!stackInvolvingStep.EntityValid(entity, out var stack))
+                            if (!stackInvolvingStep.EntityValid(entity, out var stack)) //Frontier: materialStep<stackInvolvingStep
                                 continue;
 
                             if (used.Contains(entity))
@@ -187,17 +187,17 @@ namespace Content.Server.Construction
 
                             // TODO allow taking from several stacks.
                             // Also update crafting steps to check if it works.
-                            var splitStack = _stackSystem.Split(entity, stackInvolvingStep.Amount, user.ToCoordinates(0, 0), stack);
+                            var splitStack = _stackSystem.Split(entity, stackInvolvingStep.Amount, user.ToCoordinates(0, 0), stack); //Frontier: materialStep<stackInvolvingStep
 
                             if (splitStack == null)
                                 continue;
 
-                            if (string.IsNullOrEmpty(stackInvolvingStep.Store))
+                            if (string.IsNullOrEmpty(stackInvolvingStep.Store)) //Frontier: materialStep<stackInvolvingStep
                             {
                                 if (!_container.Insert(splitStack.Value, container))
                                     continue;
                             }
-                            else if (!_container.Insert(splitStack.Value, GetContainer(stackInvolvingStep.Store)))
+                            else if (!_container.Insert(splitStack.Value, GetContainer(stackInvolvingStep.Store))) //Frontier: materialStep<stackInvolvingStep
                                 continue;
 
                             handled = true;

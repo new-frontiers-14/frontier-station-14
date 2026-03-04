@@ -6,12 +6,15 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Construction.Steps
 {
     [DataDefinition]
-    public sealed partial class MaterialConstructionGraphStep : StackInvolvingConstructionGraphStep
+    public sealed partial class MaterialConstructionGraphStep : StackInvolvingConstructionGraphStep //Frontier: EntityInsertConstructionGraphStep<StackInvolvingConstructionGraphStep
     {
         // TODO: Make this use the material system.
         // TODO TODO: Make the material system not shit.
         [DataField("material", required:true)]
         public ProtoId<StackPrototype> MaterialPrototypeId { get; private set; }
+
+        //Frontier: moved to the abstract StackInvolvingConstructionGraphStep class
+        //[DataField] public int Amount { get; private set; } = 1;
 
         public override void DoExamine(ExaminedEvent examinedEvent)
         {
@@ -26,7 +29,7 @@ namespace Content.Shared.Construction.Steps
             return entityManager.TryGetComponent(uid, out StackComponent? stack) && stack.StackTypeId == MaterialPrototypeId && stack.Count >= Amount;
         }
 
-        public override bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack)
+        public override bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack) //Frontier: added override
         {
             if (IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) && otherStack.StackTypeId == MaterialPrototypeId && otherStack.Count >= Amount)
                 stack = otherStack;
