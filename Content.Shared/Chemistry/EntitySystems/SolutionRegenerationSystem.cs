@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.Reagent; // Frontier
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
@@ -58,10 +59,29 @@ public sealed class SolutionRegenerationSystem : EntitySystem
             if (amount <= FixedPoint2.Zero)
                 continue;
 
+            // Frontier
+            var toGenerate = regen.Generated;
+            if (regen.UpperLimits != null)
+            {
+                var limitedList = new List<ReagentQuantity>();
+                toGenerate = toGenerate.Clone();
+                foreach (var limitQuantity in regen.UpperLimits)
+                {
+                    var currentAmount = solution.GetReagentQuantity(limitQuantity.Reagent);
+                    var remainingToGenerate = limitQuantity.Quantity - currentAmount;
+                    var regenAmount = regen.Generated.GetReagentQuantity(limitQuantity.Reagent);
+                    var finalAmount = FixedPoint2.Min(remainingToGenerate, regenAmount);
+                    if (finalAmount > FixedPoint2.Zero)
+                        limitedList.Add(new ReagentQuantity(limitQuantity.Reagent, FixedPoint2.Min(remainingToGenerate, regenAmount)));
+                }
+                toGenerate.SetContents(limitedList);
+            }
+
             // Don't bother cloning and splitting if adding the whole thing
-            var generated = amount == regen.Generated.Volume
-                ? regen.Generated
-                : regen.Generated.Clone().SplitSolution(amount);
+            var generated = amount == toGenerate.Volume
+                ? toGenerate
+                : toGenerate.Clone().SplitSolution(amount);
+            // End Frontier
 
             _solutionContainer.TryAddSolution(regen.SolutionRef.Value, generated);
         }
