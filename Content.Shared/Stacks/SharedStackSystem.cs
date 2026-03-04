@@ -3,8 +3,10 @@ using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Nutrition;
 using Content.Shared.Popups;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics.Systems;
@@ -27,6 +29,9 @@ namespace Content.Shared.Stacks
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] protected readonly SharedPopupSystem Popup = default!;
         [Dependency] private readonly SharedStorageSystem _storage = default!;
+        [Dependency] private readonly SharedUserInterfaceSystem _ui = default!; // Cherry-picked from space-station-14#32938 courtesy of Ilya246
+
+        public static readonly int[] DefaultSplitAmounts = { 1, 5, 10, 20, 30, 50, 100, 500, 1000, 5000, 10000 }; // Frontier: add 100, 500, 1000, 5000, 10000
 
         public override void Initialize()
         {
@@ -38,15 +43,28 @@ namespace Content.Shared.Stacks
             SubscribeLocalEvent<StackComponent, ExaminedEvent>(OnStackExamined);
             SubscribeLocalEvent<StackComponent, InteractUsingEvent>(OnStackInteractUsing);
             SubscribeLocalEvent<StackComponent, StackCustomSplitAmountMessage>(OnCustomSplitMessage); // cherry-pick #32938
+            SubscribeLocalEvent<StackComponent, BeforeIngestedEvent>(OnBeforeEaten);
+            SubscribeLocalEvent<StackComponent, IngestedEvent>(OnEaten);
+            SubscribeLocalEvent<StackComponent, GetVerbsEvent<AlternativeVerb>>(OnStackAlternativeInteract);
 
             _vvm.GetTypeHandler<StackComponent>()
                 .AddPath(nameof(StackComponent.Count), (_, comp) => comp.Count, SetCount);
         }
 
-        // Cherry-pick #32938 courtesy of Ilya246
-        // client shouldn't try to split stacks so do nothing on client
-        protected virtual void OnCustomSplitMessage(Entity<StackComponent> ent, ref StackCustomSplitAmountMessage message) {}
-        // End cherry-pick #32938 courtesy of Ilya246
+        // Frontier
+        // Cherry-picked from ss14#32938 courtesy of Ilya246
+        protected void OnCustomSplitMessage(Entity<StackComponent> ent, ref StackCustomSplitAmountMessage message)
+        {
+            var (uid, comp) = ent;
+
+            // digital ghosts shouldn't be allowed to split stacks
+            if (!(message.Actor is { Valid: true } user))
+                return;
+
+            var amount = message.Amount;
+            UserSplit(uid, user, amount, comp);
+        }
+        // End cherry-pick from ss14#32938 courtesy of Ilya246
 
         public override void Shutdown()
         {
@@ -355,10 +373,6 @@ namespace Content.Shared.Stacks
 
         private void OnStackStarted(EntityUid uid, StackComponent component, ComponentStartup args)
         {
-            // on client, lingering stacks that start at 0 need to be darkened
-            // on server this does nothing
-            SetCount(uid, component.Count, component);
-
             if (!TryComp(uid, out AppearanceComponent? appearance))
                 return;
 
@@ -369,7 +383,7 @@ namespace Content.Shared.Stacks
 
         private void OnStackGetState(EntityUid uid, StackComponent component, ref ComponentGetState args)
         {
-            args.State = new StackComponentState(component.Count, component.MaxCountOverride, component.Lingering);
+            args.State = new StackComponentState(component.Count, component.MaxCountOverride);
         }
 
         private void OnStackHandleState(EntityUid uid, StackComponent component, ref ComponentHandleState args)
@@ -378,7 +392,6 @@ namespace Content.Shared.Stacks
                 return;
 
             component.MaxCountOverride = cast.MaxCount;
-            component.Lingering = cast.Lingering;
             // This will change the count and call events.
             SetCount(uid, cast.Count, component);
         }
@@ -394,6 +407,117 @@ namespace Content.Shared.Stacks
                     ("markupCountColor", "lightgray")
                 )
             );
+        }
+
+        private void OnBeforeEaten(Entity<StackComponent> eaten, ref BeforeIngestedEvent args)
+        {
+            if (args.Cancelled)
+                return;
+
+            if (args.Solution is not { } sol)
+                return;
+
+            // If the entity is empty and is a lingering entity we can't eat from it.
+            if (eaten.Comp.Count <= 0)
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            /*
+            Edible stacked items is near completely evil so we must choose one of the following:
+            - Option 1: Eat the entire solution each bite and reduce the stack by 1.
+            - Option 2: Multiply the solution eaten by the stack size.
+            - Option 3: Divide the solution consumed by stack size.
+            The easiest and safest option is and always will be Option 1 otherwise we risk reagent deletion or duplication.
+            That is why we cancel if we cannot set the minimum to the entire volume of the solution.
+            */
+            if(args.TryNewMinimum(sol.Volume))
+                return;
+
+            args.Cancelled = true;
+        }
+
+        private void OnEaten(Entity<StackComponent> eaten, ref IngestedEvent args)
+        {
+            if (!Use(eaten, 1))
+                return;
+
+            // We haven't eaten the whole stack yet or are unable to eat it completely.
+            if (eaten.Comp.Count > 0)
+            {
+                args.Refresh = true;
+                return;
+            }
+
+            // Here to tell the food system to do destroy stuff.
+            args.Destroy = true;
+        }
+
+        private void OnStackAlternativeInteract(EntityUid uid, StackComponent stack, GetVerbsEvent<AlternativeVerb> args)
+        {
+            if (!args.CanAccess || !args.CanInteract || args.Hands == null || stack.Count == 1)
+                return;
+
+            // Frontier: cherry-picked from ss14#32938, moved up top
+            var priority = 1;
+            if (_ui.HasUi(uid, StackCustomSplitUiKey.Key)) // Frontier: check for interface
+            {
+                AlternativeVerb custom = new()
+                {
+                    Text = Loc.GetString("comp-stack-split-custom"),
+                    Category = VerbCategory.Split,
+                    Act = () =>
+                    {
+                        _ui.OpenUi(uid, StackCustomSplitUiKey.Key, args.User);
+                    },
+                    Priority = priority--
+                };
+                args.Verbs.Add(custom);
+            }
+            // End Frontier: cherry-picked from ss14#32938, moved up top
+
+            AlternativeVerb halve = new()
+            {
+                Text = Loc.GetString("comp-stack-split-halve"),
+                Category = VerbCategory.Split,
+                Act = () => UserSplit(uid, args.User, stack.Count / 2, stack),
+                Priority = priority-- // Frontier: 1<priority--
+            };
+            args.Verbs.Add(halve);
+
+            foreach (var amount in DefaultSplitAmounts)
+            {
+                if (amount >= stack.Count)
+                    continue;
+
+                AlternativeVerb verb = new()
+                {
+                    Text = amount.ToString(),
+                    Category = VerbCategory.Split,
+                    Act = () => UserSplit(uid, args.User, amount, stack),
+                    // we want to sort by size, not alphabetically by the verb text.
+                    Priority = priority
+                };
+
+                priority--;
+
+                args.Verbs.Add(verb);
+            }
+        }
+
+        /// <remarks>
+        ///     OnStackAlternativeInteract() was moved to shared in order to faciliate prediction of stack splitting verbs.
+        ///     However, prediction of interacitons with spawned entities is non-functional (or so i'm told)
+        ///     So, UserSplit() and Split() should remain on the server for the time being.
+        ///     This empty virtual method allows for UserSplit() to be called on the server from the client.
+        ///     When prediction is improved, those two methods should be moved to shared, in order to predict the splitting itself (not just the verbs)
+        /// </remarks>
+        protected virtual void UserSplit(EntityUid uid, EntityUid userUid, int amount,
+            StackComponent? stack = null,
+            TransformComponent? userTransform = null)
+        {
+
         }
     }
 

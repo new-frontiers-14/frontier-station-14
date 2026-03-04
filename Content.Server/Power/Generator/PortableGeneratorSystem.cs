@@ -45,8 +45,6 @@ public sealed class PortableGeneratorSystem : SharedPortableGeneratorSystem
         SubscribeLocalEvent<PortableGeneratorComponent, PortableGeneratorStopMessage>(GeneratorStopMessage);
         SubscribeLocalEvent<PortableGeneratorComponent, PortableGeneratorSwitchOutputMessage>(GeneratorSwitchOutputMessage);
 
-        SubscribeLocalEvent<FuelGeneratorComponent, SwitchPowerCheckEvent>(OnSwitchPowerCheck);
-
         SubscribeLocalEvent<PortableGeneratorComponent, MapInitEvent>(GeneratorMapInit); // Frontier
     }
 
@@ -212,12 +210,6 @@ public sealed class PortableGeneratorSystem : SharedPortableGeneratorSystem
 
             args.Verbs.Add(verb);
         }
-    }
-
-    private void OnSwitchPowerCheck(EntityUid uid, FuelGeneratorComponent comp, ref SwitchPowerCheckEvent args)
-    {
-        if (comp.On)
-            args.DisableMessage = Loc.GetString("fuel-generator-verb-disable-on");
     }
 
     public override void Update(float frameTime)

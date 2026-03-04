@@ -12,6 +12,7 @@
   - type: Tag
     tags:
     - Sheet
+    - ConstructionMaterial
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -110,6 +111,7 @@
   - type: Tag
     tags:
     - Sheet
+    - ConstructionMaterial
   - type: NFFuel # Frontier
 
 - type: entity
@@ -134,16 +136,6 @@
     count: 1
 
 - type: entity
-  parent: SheetPlasma
-  id: SheetPlasmaLingering0
-  name: plasma
-  suffix: 0, Lingering
-  components:
-  - type: Stack
-    lingering: true
-    count: 0
-
-- type: entity
   parent: SheetOtherBase
   id: SheetPlastic
   name: plastic
@@ -153,6 +145,7 @@
     tags:
     - Plastic
     - Sheet
+    - ConstructionMaterial
   - type: Material
   - type: PhysicalComposition
     materialComposition:

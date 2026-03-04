@@ -15,15 +15,10 @@ namespace Content.Server.Stack
     public sealed class StackSystem : SharedStackSystem
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SharedUserInterfaceSystem _ui = default!; // Cherry-picked from space-station-14#32938 courtesy of Ilya246
-
-        public static readonly int[] DefaultSplitAmounts = { 1, 5, 10, 20, 50, 100, 500, 1000, 5000, 10000 };
 
         public override void Initialize()
         {
             base.Initialize();
-
-            SubscribeLocalEvent<StackComponent, GetVerbsEvent<AlternativeVerb>>(OnStackAlternativeInteract);
         }
 
         public override void SetCount(EntityUid uid, int amount, StackComponent? component = null)
@@ -34,7 +29,7 @@ namespace Content.Server.Stack
             base.SetCount(uid, amount, component);
 
             // Queue delete stack if count reaches zero.
-            if (component.Count <= 0 && !component.Lingering)
+            if (component.Count <= 0)
                 QueueDel(uid);
         }
 
@@ -166,73 +161,7 @@ namespace Content.Server.Stack
             return amounts;
         }
 
-        private void OnStackAlternativeInteract(EntityUid uid, StackComponent stack, GetVerbsEvent<AlternativeVerb> args)
-        {
-            if (!args.CanAccess || !args.CanInteract || args.Hands == null || stack.Count == 1)
-                return;
-
-            // Frontier: cherry-picked from ss14#32938, moved up top
-            var priority = 1;
-            if (_ui.HasUi(uid, StackCustomSplitUiKey.Key)) // Frontier: check for interface
-            {
-                AlternativeVerb custom = new()
-                {
-                    Text = Loc.GetString("comp-stack-split-custom"),
-                    Category = VerbCategory.Split,
-                    Act = () =>
-                    {
-                        _ui.OpenUi(uid, StackCustomSplitUiKey.Key, args.User);
-                    },
-                    Priority = priority--
-                };
-                args.Verbs.Add(custom);
-            }
-            // End Frontier: cherry-picked from ss14#32938, moved up top
-
-            AlternativeVerb halve = new()
-            {
-                Text = Loc.GetString("comp-stack-split-halve"),
-                Category = VerbCategory.Split,
-                Act = () => UserSplit(uid, args.User, stack.Count / 2, stack),
-                Priority = priority-- // Frontier: 1<priority--
-            };
-            args.Verbs.Add(halve);
-
-            foreach (var amount in DefaultSplitAmounts)
-            {
-                if (amount >= stack.Count)
-                    continue;
-
-                AlternativeVerb verb = new()
-                {
-                    Text = amount.ToString(),
-                    Category = VerbCategory.Split,
-                    Act = () => UserSplit(uid, args.User, amount, stack),
-                    // we want to sort by size, not alphabetically by the verb text.
-                    Priority = priority
-                };
-
-                priority--;
-
-                args.Verbs.Add(verb);
-            }
-        }
-
-        // Cherry-picked from ss14#32938 courtesy of Ilya246
-        protected override void OnCustomSplitMessage(Entity<StackComponent> ent, ref StackCustomSplitAmountMessage message)
-        {
-            var (uid, comp) = ent;
-
-            // digital ghosts shouldn't be allowed to split stacks
-            if (!(message.Actor is { Valid: true } user))
-                return;
-
-            var amount = message.Amount;
-            UserSplit(uid, user, amount, comp);
-        }
-        // End cherry-pick from ss14#32938 courtesy of Ilya246
-
-        private void UserSplit(EntityUid uid, EntityUid userUid, int amount,
+        protected override void UserSplit(EntityUid uid, EntityUid userUid, int amount,
             StackComponent? stack = null,
             TransformComponent? userTransform = null)
         {
