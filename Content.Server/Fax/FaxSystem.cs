@@ -33,6 +33,7 @@ using Content.Server._NF.Lathe; // Frontier
 using Content.Shared.Research.Components; // Frontier
 using Content.Shared.Research.Prototypes; // Frontier
 using Content.Shared.Tag; // Frontier
+using Content.Shared._NF.Paper; // Frontier: paper bundles
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Fax;
@@ -57,6 +58,7 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!; // Frontier
     [Dependency] private readonly BlueprintLatheSystem _blueprint = default!; // Frontier
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!; // Frontier: paper bundles
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -487,6 +489,29 @@ public sealed class FaxSystem : EntitySystem
         if (sendEntity == null)
             return;
 
+        // Frontier: handle paper bundles - copy each page as a separate printout
+        if (TryComp<PaperBundleComponent>(sendEntity, out var bundle))
+        {
+            var bundleContainer = _containerSystem.GetContainer(sendEntity.Value, bundle.ContainerId);
+            foreach (var pageUid in bundleContainer.ContainedEntities)
+            {
+                if (BuildPagePrintout(pageUid, component.PrintPaperId) is { } pagePrintout)
+                    component.PrintingQueue.Enqueue(pagePrintout);
+            }
+
+            component.SendTimeoutRemaining += component.SendTimeout;
+            UpdateUserInterface(uid, component);
+
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):actor} " +
+                $"added copy job to \"{component.FaxName}\" {ToPrettyString(uid):tool} " +
+                $"of paper bundle {ToPrettyString(sendEntity):subject} ({bundleContainer.ContainedEntities.Count} pages)");
+
+            return;
+        }
+        // End Frontier: handle paper bundles
+
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
             !TryComp<PaperComponent>(sendEntity, out var paper))
             return;
@@ -554,6 +579,54 @@ public sealed class FaxSystem : EntitySystem
 
         if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
             return;
+
+        // Frontier: handle paper bundles - send each page as a separate fax
+        if (TryComp<PaperBundleComponent>(sendEntity, out var bundle))
+        {
+            var bundleContainer = _containerSystem.GetContainer(sendEntity.Value, bundle.ContainerId);
+            foreach (var pageUid in bundleContainer.ContainedEntities)
+            {
+                if (BuildPagePrintout(pageUid, component.PrintPaperId) is not { } page)
+                    continue;
+
+                var pagePayload = new NetworkPayload()
+                {
+                    { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
+                    { FaxConstants.FaxPaperNameData, page.Name },
+                    { FaxConstants.FaxPaperLabelData, page.Label },
+                    { FaxConstants.FaxPaperContentData, page.Content },
+                    { FaxConstants.FaxPaperLockedData, page.Locked },
+                    { FaxConstants.FaxPaperStampProtectedData, page.StampProtected },
+                };
+
+                if (page.BlueprintRecipes.Count > 0)
+                    pagePayload[FaxConstants.FaxBlueprintRecipes] = page.BlueprintRecipes;
+
+                if (page.PrototypeId.Length > 0)
+                    pagePayload[FaxConstants.FaxPaperPrototypeData] = page.PrototypeId;
+
+                if (page.StampState != null)
+                {
+                    pagePayload[FaxConstants.FaxPaperStampStateData] = page.StampState;
+                    pagePayload[FaxConstants.FaxPaperStampedByData] = page.StampedBy;
+                }
+
+                _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, pagePayload);
+            }
+
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):actor} " +
+                $"sent fax from \"{component.FaxName}\" {ToPrettyString(uid):tool} " +
+                $"to \"{faxName}\" ({component.DestinationFaxAddress}) " +
+                $"of paper bundle {ToPrettyString(sendEntity):subject} ({bundleContainer.ContainedEntities.Count} pages)");
+
+            component.SendTimeoutRemaining += component.SendTimeout;
+            _audioSystem.PlayPvs(component.SendSound, uid);
+            UpdateUserInterface(uid, component);
+            return;
+        }
+        // End Frontier: handle paper bundles
 
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
            !TryComp<PaperComponent>(sendEntity, out var paper))
@@ -703,6 +776,37 @@ public sealed class FaxSystem : EntitySystem
         }
 
         Del(itemToFax);
+    }
+    // End Frontier
+
+    // Frontier: helper for extracting per-page fax data from bundle pages
+    /// <summary>
+    /// Builds a <see cref="FaxPrintout"/> from a single paper entity's components.
+    /// Returns null if the entity doesn't have a <see cref="PaperComponent"/>.
+    /// </summary>
+    private FaxPrintout? BuildPagePrintout(EntityUid pageUid, string defaultPaperId)
+    {
+        if (!TryComp<PaperComponent>(pageUid, out var paper))
+            return null;
+
+        TryComp(pageUid, out MetaDataComponent? meta);
+        TryComp<LabelComponent>(pageUid, out var label);
+        TryComp<NameModifierComponent>(pageUid, out var nameMod);
+
+        HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes = null;
+        if (TryComp<BlueprintComponent>(pageUid, out var blueprint))
+            blueprintRecipes = blueprint.ProvidedRecipes;
+
+        return new FaxPrintout(
+            paper.Content,
+            nameMod?.BaseName ?? meta?.EntityName ?? Loc.GetString("fax-machine-printed-paper-name"),
+            label?.CurrentLabel,
+            meta?.EntityPrototype?.ID ?? defaultPaperId,
+            paper.StampState,
+            paper.StampedBy,
+            paper.EditingDisabled,
+            _tag.HasTag(pageUid, NFPaperStampProtectedTag),
+            blueprintRecipes);
     }
     // End Frontier
 }
