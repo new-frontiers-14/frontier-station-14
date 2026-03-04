@@ -134,7 +134,7 @@
               amount: 2
               doAfter: 2
 
-        # Frontier: interior shuttle wall
+        # Frontier: interior shuttle wall and asteroid fascade wall
 
         - to: shuttleInteriorWall
           completed:
@@ -301,8 +301,9 @@
             - material: Plasteel
               amount: 2
               doAfter: 1
-              
-        - to: asteroidcobblebrick
+
+        # Frontier     
+        - to: asteroidcobblebrick 
           completed:
             - !type:SnapToGrid
               southRotation: true
@@ -317,6 +318,7 @@
             - material: Plasteel
               amount: 2
               doAfter: 1   
+        # Frontier end
 
         - to: shuttleWall
           completed:
@@ -597,6 +599,7 @@
             - tool: Screwing
               doAfter: 1
 
+    # Frontier: asteroid Fascade walls
     - node: asteroidrock
       entity: AsteroidRockFascade
       edges:
@@ -612,6 +615,7 @@
             - tool: Welding
               doAfter: 10
 
+    # Frontier: asteroid brick walls
     - node: asteroidcobblebrick
       entity: WallAsteroidCobblebrick
       edges:
@@ -623,5 +627,3 @@
           steps:
             - tool: Welding
               doAfter: 2           
-
-    # End Frontier: interior shuttle walls
