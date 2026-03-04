@@ -6,7 +6,8 @@
   abstract: true
   description: Goes great with robust coffee.
   components:
-  - type: Food
+  - type: Food 
+    transferAmount: 3 # Frontier
   - type: Tag
     tags:
     - Donut
@@ -27,7 +28,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodDonutBase
+  parent: FoodDonutPlainBase # Frontier
   id: FoodDonutFruitBase
   components:
   - type: Tag
@@ -47,7 +48,7 @@
 
 - type: entity
   name: plain donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainBase # Frontier
   id: FoodDonutPlain
   components:
   - type: FlavorProfile
@@ -58,7 +59,7 @@
 
 - type: entity
   name: plain jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyBase # Frontier
   id: FoodDonutJellyPlain
   components:
   - type: FlavorProfile
@@ -66,21 +67,21 @@
       - jelly
   - type: Sprite
     state: jelly-plain
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 
 # Donuts
 
 - type: entity
   name: donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutHomer
   components:
   - type: FlavorProfile
@@ -93,7 +94,7 @@
 
 - type: entity
   name: chaos donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutChaos
   description: Like life, it never quite tastes the same.
   components:
@@ -105,11 +106,22 @@
       - tingly
   - type: Sprite
     state: chaos
+  - type: SolutionContainerManager # Frontier
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Flavorol
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 10
 # Tastes like donut, chaos.
 
 - type: entity
   name: meat donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutMeat
   description: Tastes as gross as it looks.
   components:
@@ -126,7 +138,7 @@
 
 - type: entity
   name: pink donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutPink
   description: Goes great with a soy latte.
   components:
@@ -140,7 +152,7 @@
 
 - type: entity
   name: spaceman's donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutSpaceman
   description: Goes great with a cold beaker of malk.
   components:
@@ -150,7 +162,7 @@
 
 - type: entity
   name: apple donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutApple
   description: Goes great with a shot of cinnamon schnapps.
   components:
@@ -164,7 +176,7 @@
 
 - type: entity
   name: caramel donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutCaramel
   description: Goes great with a mug of hot coco.
   components:
@@ -174,7 +186,7 @@
 
 - type: entity
   name: chocolate donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutChocolate
   description: Goes great with a glass of warm milk.
   components:
@@ -186,17 +198,21 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 17 # Frontier
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 7
+        - ReagentId: Flavorol
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 2
         - ReagentId: Theobromine
           Quantity: 1
 # Tastes like donut, bitterness.
 
 - type: entity
   name: blue pumpkin donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutBluePumpkin
   description: Goes great with a mug of soothing drunken blue pumpkin.
   components:
@@ -210,7 +226,7 @@
 
 - type: entity
   name: bungo donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutBungo
   description: Goes great with a mason jar of hippie's delight.
   components:
@@ -224,7 +240,7 @@
 
 - type: entity
   name: matcha donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonut
   description: The L-theanine in this donut is relaxing, yet not euphoric. Goes great with a cup of tea.
   components:
@@ -237,7 +253,7 @@
 
 - type: entity
   name: sweet pea donut
-  parent: FoodDonutBase
+  parent: FoodDonutPlainToppedBase # Frontier
   id: FoodDonutSweetpea
   description: Goes great with a bottle of Bastion Burbon!
   components:
@@ -249,7 +265,7 @@
 
 - type: entity
   name: jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellyHomer
   description: You jelly?
   components:
@@ -257,19 +273,19 @@
     state: jelly-homer
   - type: Item
     heldPrefix: pink
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 
 - type: entity
   name: pink jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellyPink
   description: Goes great with a soy latte.
   components:
@@ -277,77 +293,77 @@
     state: jelly-pink
   - type: Item
     heldPrefix: pink
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 
 - type: entity
   name: spaceman's jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellySpaceman
   description: Goes great with a cold beaker of malk.
   components:
   - type: Sprite
     state: jelly-purple
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 # Tastes like jelly-donut, violets.
 
 - type: entity
   name: apple jelly-donut
-  parent: FoodDonutFruitBase
+  parent: [FoodDonutFruitBase, FoodDonutJellyToppedBase] # Frontier: added FoodDonutJellyToppedBase as base
   id: FoodDonutJellyApple
   description: Goes great with a shot of cinnamon schnapps.
   components:
   - type: Sprite
     state: jelly-green
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 
 # Tastes like jelly-donut, green apples.
 
 - type: entity
   name: caramel jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellyCaramel
   description: Goes great with a mug of hot coco.
   components:
   - type: Sprite
     state: jelly-beige
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 # Tastes like jelly-donut, buttery sweetness.
 
 - type: entity
   name: chocolate jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellyChocolate
   description: Goes great with a glass of warm milk.
   components:
@@ -356,19 +372,23 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 21 # Frontier: 5<21
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
+        - ReagentId: Nutriment 
+          Quantity: 10 # Frontier: 3<10
         - ReagentId: Theobromine
           Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 1
+        - ReagentId: Flavorol # Frontier: added it
+          Quantity: 5
+#        - ReagentId: Vitamin 
+#          Quantity: 1 # Frontier: 1<10
+        - ReagentId: Sugar # Frontier: added it
+          Quantity: 5
 # Tastes like jelly-donut, bitterness.
 
 - type: entity
   name: blue pumpkin jelly-donut
-  parent: FoodDonutFruitBase
+  parent: [FoodDonutFruitBase, FoodDonutJellyToppedBase] # Frontier: added FoodDonutJellyToppedBase as base
   id: FoodDonutJellyBluePumpkin
   description: Goes great with a mug of soothing drunken blue pumpkin.
   components:
@@ -378,91 +398,93 @@
       - bluepumpkin
   - type: Sprite
     state: jelly-blue
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 # Tastes like jelly-donut, blue pumpkin.
 
 - type: entity
   name: bungo jelly-donut
-  parent: FoodDonutFruitBase
+  parent: [FoodDonutFruitBase, FoodDonutJellyToppedBase] # Frontier: added FoodDonutJellyToppedBase as base
   id: FoodDonutJellyBungo
   description: Goes great with a mason jar of hippie's delight.
   components:
   - type: Sprite
     state: jelly-yellow
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 # Tastes like jelly-donut, tropical sweetness.
 
 - type: entity
   name: matcha jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJelly
   description: The L-theanine in this jelly-donut is relaxing, yet not euphoric. Goes great with a cup of tea.
   components:
   - type: Sprite
     state: jelly-olive
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 # Tastes like jelly-donut, matcha.
 
 - type: entity
   name: sweet pea jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellySweetpea
   description: Goes great with a bottle of Bastion Burbon!
   components:
   - type: Sprite
     state: jelly-laugh
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
+#  - type: SolutionContainerManager # Frontier: parent handles the contained reagents
+#    solutions:
+#      food:
+#        maxVol: 5
+#        reagents:
+#        - ReagentId: Nutriment
+#          Quantity: 3
+#        - ReagentId: Vitamin
+#          Quantity: 1
 # Tastes like jelly-donut, fizzy tutti frutti.
 
 - type: entity
   name: slugcat jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutJellyToppedBase # Frontier
   id: FoodDonutJellySlugcat
   description: No holes in this donut in case a suspicious looking pole shows up.
   components:
   - type: Sprite
     state: jelly-slug
-  - type: SolutionContainerManager
+  - type: SolutionContainerManager 
     solutions:
       food:
-        maxVol: 5
+        maxVol: 40 # Frontier:5<40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 15 # Frontier:3<15
         - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 15 # Frontier:1<15
+        - ReagentId: Flavorol
+          Quantity: 5 # Frontier
 # Tastes like jelly-donut, fizzy tutti frutti.
 
 # Poison donut
