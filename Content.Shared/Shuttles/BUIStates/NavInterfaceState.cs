@@ -45,6 +45,10 @@ public sealed class NavInterfaceState
     /// Service Flags
     /// </summary>
     public ServiceFlags ServiceFlags { get; set; }
+    /// <summary>
+    /// IFF Siren
+    /// </summary>
+    public IFFSirenFlags SirenFlags { get; set; }
 
     /// <summary>
     /// A settable target to show on radar
@@ -68,6 +72,7 @@ public sealed class NavInterfaceState
         Dictionary<NetEntity, List<DockingPortState>> docks,
         InertiaDampeningMode dampeningMode, // Frontier
         ServiceFlags serviceFlags, // Frontier
+        IFFSirenFlags sirenFlags, // Frontier
         Vector2? target, // Frontier
         NetEntity? targetEntity, // Frontier
         bool hideTarget) // Frontier
@@ -78,6 +83,7 @@ public sealed class NavInterfaceState
         Docks = docks;
         DampeningMode = dampeningMode; // Frontier
         ServiceFlags = serviceFlags; // Frontier
+        SirenFlags = sirenFlags; // Frontier
         Target = target; // Frontier
         TargetEntity = targetEntity; // Frontier
         HideTarget = hideTarget; // Frontier
