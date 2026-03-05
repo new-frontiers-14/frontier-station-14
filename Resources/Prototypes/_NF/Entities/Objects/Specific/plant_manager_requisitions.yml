@@ -1,0 +1,25 @@
+# Plant Manager requisitions – radio-style store (like NFSD uplink radio).
+# Activate in hand to open the store; use currency on it to add Speso balance.
+- type: entity
+  parent: [ BaseItem, StorePresetPlantManager ]
+  id: PlantManagerRequisitionsRadio
+  name: plant manager requisitions radio
+  description: Engineering requisitions. Activate to open the store; insert Speso to add credit.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Tag
+    tags:
+    - PlantManagerStore
