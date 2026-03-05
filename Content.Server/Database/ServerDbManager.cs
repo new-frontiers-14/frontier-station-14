@@ -345,6 +345,10 @@ namespace Content.Server.Database
         Task<IPIntelCache?> GetIPIntelCache(IPAddress ip);
         Task<bool> CleanIPIntelCache(TimeSpan range);
 
+        Task AddLibraryBookAsync(int serverId, string title, string author, string content, string date, string authorCKey);
+        Task<List<LibraryBook>> GetLibraryBooksAsync(int serverId);
+        Task<bool> DeleteLibraryBookAsync(int bookId);
+
         #endregion
 
         #region DB Notifications
@@ -1073,6 +1077,24 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
+        }
+
+        public Task AddLibraryBookAsync(int serverId, string title, string author, string content, string date, string authorCKey)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddLibraryBookAsync(serverId, title, author, content, date, authorCKey));
+        }
+
+        public Task<List<LibraryBook>> GetLibraryBooksAsync(int serverId)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetLibraryBooksAsync(serverId));
+        }
+
+        public Task<bool> DeleteLibraryBookAsync(int bookId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteLibraryBookAsync(bookId));
         }
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
