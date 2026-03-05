@@ -1,0 +1,390 @@
+# Plant Manager (Edison) requisitions catalogue. All prices in Spesos.
+# Listings only appear in stores with tag PlantManagerStore.
+#region tools
+- type: listing
+  id: PlantManagerScrewdriver
+  name: store-plantmanager-screwdriver-name
+  description: store-plantmanager-screwdriver-desc
+  productEntity: Screwdriver
+  icon: { sprite: Objects/Tools/screwdriver.rsi, state: icon }
+  cost:
+    Speso: 80
+  categories:
+    - PlantManagerTools
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerWrench
+  name: store-plantmanager-wrench-name
+  description: store-plantmanager-wrench-desc
+  productEntity: Wrench
+  icon: { sprite: Objects/Tools/wrench.rsi, state: icon }
+  cost:
+    Speso: 80
+  categories:
+    - PlantManagerTools
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerWelder
+  name: store-plantmanager-welder-name
+  description: store-plantmanager-welder-desc
+  productEntity: Welder
+  icon: { sprite: Objects/Tools/welders.rsi, state: icon }
+  cost:
+    Speso: 150
+  categories:
+    - PlantManagerTools
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerMultitool
+  name: store-plantmanager-multitool-name
+  description: store-plantmanager-multitool-desc
+  productEntity: Multitool
+  icon: { sprite: Objects/Tools/multitool.rsi, state: icon }
+  cost:
+    Speso: 200
+  categories:
+    - PlantManagerTools
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerWelderIndustrial
+  name: store-plantmanager-welder-industrial-name
+  description: store-plantmanager-welder-industrial-desc
+  productEntity: WelderIndustrial
+  icon: { sprite: Objects/Tools/welder_industrial.rsi, state: icon }
+  cost:
+    Speso: 450
+  categories:
+    - PlantManagerTools
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerCrowbar
+  name: store-plantmanager-crowbar-name
+  description: store-plantmanager-crowbar-desc
+  productEntity: Crowbar
+  icon: { sprite: Objects/Tools/crowbar.rsi, state: icon }
+  cost:
+    Speso: 75
+  categories:
+    - PlantManagerTools
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+#region cables
+- type: listing
+  id: PlantManagerCableApc
+  name: store-plantmanager-cable-apc-name
+  description: store-plantmanager-cable-apc-desc
+  productEntity: CableApcStack
+  icon: { sprite: Objects/Tools/cable-coils.rsi, state: coillv-30 }
+  cost:
+    Speso: 120
+  categories:
+    - PlantManagerCables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerCableMV
+  name: store-plantmanager-cable-mv-name
+  description: store-plantmanager-cable-mv-desc
+  productEntity: CableMVStack
+  icon: { sprite: Objects/Tools/cable-coils.rsi, state: coilmv-30 }
+  cost:
+    Speso: 180
+  categories:
+    - PlantManagerCables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerCableHV
+  name: store-plantmanager-cable-hv-name
+  description: store-plantmanager-cable-hv-desc
+  productEntity: CableHVStack
+  icon: { sprite: Objects/Tools/cable-coils.rsi, state: coilhv-30 }
+  cost:
+    Speso: 250
+  categories:
+    - PlantManagerCables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerCableBulk
+  name: store-plantmanager-cable-bulk-name
+  description: store-plantmanager-cable-bulk-desc
+  productEntity: CrateEngineeringCableBulk
+  icon: { sprite: Structures/Storage/Crates/crate.rsi, state: engineering }
+  cost:
+    Speso: 1200
+  categories:
+    - PlantManagerCables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+#region power
+- type: listing
+  id: PlantManagerPowerCellSmall
+  name: store-plantmanager-powercell-small-name
+  description: store-plantmanager-powercell-small-desc
+  productEntity: PowerCellSmall
+  icon: { sprite: Objects/Power/powercells.rsi, state: cell-small }
+  cost:
+    Speso: 200
+  categories:
+    - PlantManagerPower
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerPowerCellMedium
+  name: store-plantmanager-powercell-medium-name
+  description: store-plantmanager-powercell-medium-desc
+  productEntity: PowerCellMedium
+  icon: { sprite: Objects/Power/powercells.rsi, state: cell-med }
+  cost:
+    Speso: 400
+  categories:
+    - PlantManagerPower
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerPowerCellHigh
+  name: store-plantmanager-powercell-high-name
+  description: store-plantmanager-powercell-high-desc
+  productEntity: PowerCellHigh
+  icon: { sprite: Objects/Power/powercells.rsi, state: cell-high }
+  cost:
+    Speso: 800
+  categories:
+    - PlantManagerPower
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerPowerCellHyper
+  name: store-plantmanager-powercell-hyper-name
+  description: store-plantmanager-powercell-hyper-desc
+  productEntity: PowerCellHyper
+  icon: { sprite: Objects/Power/powercells.rsi, state: cell-hyper }
+  cost:
+    Speso: 1600
+  categories:
+    - PlantManagerPower
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+#region safety
+- type: listing
+  id: PlantManagerMeson
+  name: store-plantmanager-meson-name
+  description: store-plantmanager-meson-desc
+  productEntity: ClothingEyesGlassesMeson
+  icon: { sprite: Clothing/Eyes/glasses.rsi, state: icon-meson }
+  cost:
+    Speso: 250
+  categories:
+    - PlantManagerSafety
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerHardhat
+  name: store-plantmanager-hardhat-name
+  description: store-plantmanager-hardhat-desc
+  productEntity: ClothingHeadHatHardhatYellow
+  icon: { sprite: Clothing/Head/Hardhats/hardhat.rsi, state: icon }
+  cost:
+    Speso: 150
+  categories:
+    - PlantManagerSafety
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerWeldingGoggles
+  name: store-plantmanager-welding-goggles-name
+  description: store-plantmanager-welding-goggles-desc
+  productEntity: ClothingHeadHatWelding
+  icon: { sprite: Clothing/Head/Welding/welding.rsi, state: icon }
+  cost:
+    Speso: 180
+  categories:
+    - PlantManagerSafety
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerHazardVest
+  name: store-plantmanager-hazard-vest-name
+  description: store-plantmanager-hazard-vest-desc
+  productEntity: ClothingOuterVestHazard
+  icon: { sprite: Clothing/OuterClothing/Vests/hazard.rsi, state: icon }
+  cost:
+    Speso: 220
+  categories:
+    - PlantManagerSafety
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerInsulatedGloves
+  name: store-plantmanager-insulated-gloves-name
+  description: store-plantmanager-insulated-gloves-desc
+  productEntity: ClothingHandsGlovesColorYellow
+  icon: { sprite: Clothing/Hands/Gloves/color.rsi, state: icon-yellow }
+  cost:
+    Speso: 100
+  categories:
+    - PlantManagerSafety
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+#region bundles
+- type: listing
+  id: PlantManagerToolboxElectrical
+  name: store-plantmanager-toolbox-electrical-name
+  description: store-plantmanager-toolbox-electrical-desc
+  productEntity: ToolboxElectricalFilled
+  icon: { sprite: Objects/Storage/toolbox.rsi, state: icon-electrical }
+  cost:
+    Speso: 600
+  categories:
+    - PlantManagerBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerToolboxMechanical
+  name: store-plantmanager-toolbox-mechanical-name
+  description: store-plantmanager-toolbox-mechanical-desc
+  productEntity: ToolboxMechanicalFilled
+  icon: { sprite: Objects/Storage/toolbox.rsi, state: icon-mechanical }
+  cost:
+    Speso: 600
+  categories:
+    - PlantManagerBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerCrateGear
+  name: store-plantmanager-crate-gear-name
+  description: store-plantmanager-crate-gear-desc
+  productEntity: CrateEngineeringGear
+  icon: { sprite: Structures/Storage/Crates/crate.rsi, state: engineering }
+  cost:
+    Speso: 1800
+  categories:
+    - PlantManagerBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerCrateToolbox
+  name: store-plantmanager-crate-toolbox-name
+  description: store-plantmanager-crate-toolbox-desc
+  productEntity: CrateEngineeringToolbox
+  icon: { sprite: Structures/Storage/Crates/crate.rsi, state: engineering }
+  cost:
+    Speso: 2200
+  categories:
+    - PlantManagerBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerMetalFoamGrenade
+  name: store-plantmanager-foam-grenade-name
+  description: store-plantmanager-foam-grenade-desc
+  productEntity: MetalFoamGrenade
+  icon: { sprite: Objects/Weapons/Guns/Grenades/grenade.rsi, state: icon }
+  cost:
+    Speso: 350
+  categories:
+    - PlantManagerBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
