@@ -3,9 +3,6 @@ appraisal-program-name = AppraiseAll Plus
 appraisal-label-name = Item
 appraisal-label-price = Appraised Price
 
-# Plant Manager requisitions (Edison)
-plant-manager-requisitions-program-name = Requisitions
-
 # Ledger cartridge
 ledger-program-name = SpesoFlow Lite
 ledger-header = Sector Ledger
