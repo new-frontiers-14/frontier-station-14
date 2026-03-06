@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 02/07/2026 10:19:31
-  entityCount: 6317
+  time: 03/04/2026 02:42:29
+  entityCount: 6315
 maps: []
 grids:
 - 1
@@ -3606,7 +3606,6 @@ entities:
             3536: -7,-8
             3537: -7,-7
             3538: -6,-7
-            3539: -5,-7
             3540: -4,-7
             3541: -4,-6
             3542: -5,-6
@@ -4156,6 +4155,12 @@ entities:
             4086: 14,19
             4087: 15,19
             4088: 13,19
+        - node:
+            cleanable: True
+            color: '#FFFFFF7F'
+            id: Dirt
+          decals:
+            4590: -5,-7
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -4815,11 +4820,6 @@ entities:
             id: ThreeQuarterTileOverlayGreyscale270
           decals:
             743: 60,-1
-        - node:
-            color: '#4D65B4FF'
-            id: WarnBoxGreyscale
-          decals:
-            4565: -5,-7
         - node:
             color: '#4D65B4FF'
             id: WarnCornerGreyscaleNE
@@ -31832,10 +31832,9 @@ entities:
       parent: 1
 - proto: Mirror
   entities:
-  - uid: 3446
+  - uid: 3438
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 11.5,29.5
       parent: 1
 - proto: MonkeyCubeWrapped
@@ -32065,10 +32064,10 @@ entities:
       parent: 1
 - proto: ParcelDropoffPOI
   entities:
-  - uid: 6306
+  - uid: 1644
     components:
     - type: Transform
-      pos: -4.5,-6.5
+      pos: -1.5,-2.5
       parent: 1
 - proto: PartRodMetal1
   entities:
@@ -35014,12 +35013,6 @@ entities:
         3033:
         - - Pressed
           - Toggle
-  - uid: 3438
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 10.5,26.5
-      parent: 1
   - uid: 3439
     components:
     - type: Transform
@@ -42970,12 +42963,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-1.5
-      parent: 1
-  - uid: 1644
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-2.5
       parent: 1
   - uid: 2112
     components:
