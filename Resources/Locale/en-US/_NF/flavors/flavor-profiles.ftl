@@ -23,3 +23,6 @@ flavor-complex-silence = like silence
 flavor-complex-creative = like mad creativity
 flavor-complex-texas = like texan ingenuity
 flavor-complex-nanocaf = like bitter coffee
+flavor-complex-nanocoldbrew = like iced bitter coffee
+flavor-complex-nanodepresso = like early mourning
+flavor-complex-coftea = like indecision
