@@ -6,7 +6,3 @@ bank-currency-display-spesos = {$amount ->
     [one] Speso
     *[other] Spesos
 }
-store-currency-display-spesos = {$amount ->
-    [one] Speso
-    *[other] Spesos
-}
