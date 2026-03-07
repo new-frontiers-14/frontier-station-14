@@ -610,8 +610,10 @@
               prototype: FloorTileItemAstroAsteroidSand
               amount: 1
           steps:
+            - tool: Prying
+              doAfter: 2
             - tool: Welding
-              doAfter: 10
+              doAfter: 8
 
     # Frontier: asteroid brick walls
     - node: asteroidcobblebrick
@@ -626,5 +628,7 @@
               prototype: FloorTileItemAstroAsteroidSand
               amount: 1
           steps:
+            - tool: Prying
+              doAfter: 4
             - tool: Welding
-              doAfter: 2
+              doAfter: 16
