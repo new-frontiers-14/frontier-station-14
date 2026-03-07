@@ -1,7 +1,7 @@
 - type: entity
   id: MiningWindow
   name: mining window
-  parent: WindowRCDResistant
+  parent: Window  # Frontier: WindowRCDResistant<Window
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -54,6 +54,7 @@
 - type: entity
   parent: ShuttleWindow
   id: MiningWindowDiagonal
+  name: mining window # Frontier - Add a name
   suffix: diagonal
   placement:
     mode: SnapgridCenter

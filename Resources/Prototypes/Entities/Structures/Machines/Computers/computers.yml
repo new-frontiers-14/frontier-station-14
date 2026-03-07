@@ -888,7 +888,7 @@
   id: ComputerCargoOrders
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: add BaseStructureDisableToolUse, BaseStructureIndestructible
   name: cargo request computer
-  description: Used to purchase supplies in from central command. # Frontier
+  description: Used to order supplies and approve requests.
   components:
   - type: Sprite
     layers:
@@ -1281,8 +1281,8 @@
 - type: entity
   id: ComputerSalvageExpedition
   parent: BaseComputerAiAccess
-  name: expedition console # Frontier: salvage expeditions computer<expedition console
-  description: Used to go on expeditions, if you're tough enough. # Frontier: "accept salvage missions"<"go on expeditions"
+  name: salvage expeditions computer
+  description: Used to accept salvage missions, if you're tough enough.
   components:
     - type: Sprite
       layers:
