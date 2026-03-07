@@ -1,0 +1,46 @@
+# Author Info
+# GitHub: Bartholemew Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: Bartholemew Dingleberry (https://github.com/Bartholemew-Dingleberry)
+# Discord: bartholomew_dingleberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Stronghold
+  parent: BaseVessel
+  name: DBI Stronghold
+  description: A science Vessel with a Robust Research chamber.
+  price: 62000 # 56428 10%= 5642.8
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/stronghold.yml
+  guidebookPage: ShipyardStronghold
+  class:
+  - Science
+  - Salvage
+  engine:
+  - Solar
+  - Uranium
+
+- type: gameMap
+  id: Stronghold
+  mapName: 'DBI Stronghold'
+  mapPath: /Maps/_NF/Shuttles/stronghold.yml
+  minPlayers: 0
+  stations:
+    Stronghold:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Stronghold {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
