@@ -24,3 +24,6 @@ flavor-complex-texas = like texan ingenuity
 flavor-complex-nanocaf = like bitter coffee
 flavor-complex-pomegranate = like pomegranates
 flavor-complex-granatapfel = like granatapfel
+flavor-complex-nanocoldbrew = like iced bitter coffee
+flavor-complex-nanodepresso = like early mourning
+flavor-complex-coftea = like indecision
