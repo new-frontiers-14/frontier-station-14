@@ -1605,13 +1605,23 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 500 # Frontier: 100<500
       behaviors:
       - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+        acts: ["Destruction"]
+    - trigger: # Frontier
+        !type:DamageTrigger # Frontier
+        damage: 350 # Frontier
+      behaviors: # Frontier
+      - !type:ChangeConstructionNodeBehavior # Frontier
+        node: girder # Frontier
+      - !type:DoActsBehavior # Frontier
+        acts: ["Destruction"] # Frontier
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: StaticPrice # Frontier
+    price: 115 # Frontier
 
 - type: entity
   parent: WallCobblebrick
@@ -1652,6 +1662,9 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Construction # Frontier
+    graph: Girder # Frontier
+    node: asteroidcobblebrick # Frontier
 
 - type: entity
   parent: WallCobblebrick
