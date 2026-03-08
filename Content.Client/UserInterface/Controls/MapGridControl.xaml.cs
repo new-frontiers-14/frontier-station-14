@@ -75,8 +75,9 @@ public partial class MapGridControl : LayoutContainer
     protected int ScaledMinimapRadius => (int) (UIDisplayRadius * UIScale);
     protected float MinimapScale => WorldRange != 0 ? (ScaledMinimapRadius / WorldRange) * MapScalingFactor : 0f;
 
+    // Frontier
     /// <summary>
-    /// Determines if the map is scaled to match the longest axis of the control.
+    /// Determines if the map's range is scaled to match the longest axis of the control.
     /// 
     /// If true, the map's range will stay the same no matter what size the control is.
     /// If false, the map's range will expand/contract as the control's size changes.
@@ -95,6 +96,7 @@ public partial class MapGridControl : LayoutContainer
     /// When RescaleMap is true, this will always be equal to or less than world range
     /// </summary>
     public Vector2 ScaledWorldRange => (WorldRangeVector * PixelSize) / ((float)SizeFull * (RescaleMap ? MapScalingFactor : 1.0f));
+    // End Frontier
 
     public event Action<float>? WorldRangeChanged;
 
