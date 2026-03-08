@@ -76,11 +76,25 @@ public partial class MapGridControl : LayoutContainer
     protected float MinimapScale => WorldRange != 0 ? (ScaledMinimapRadius / WorldRange) * MapScalingFactor : 0f;
 
     /// <summary>
-    /// Determines if the map is scaled based on SizeFull
+    /// Determines if the map is scaled to match the longest axis of the control.
+    /// 
+    /// If true, the map's range will stay the same no matter what size the control is.
+    /// If false, the map's range will expand/contract as the control's size changes.
     /// </summary>
-    public bool ScaleMapToSizeFull = true;
+    public bool RescaleMap = true;
 
-    protected float MapScalingFactor => ScaleMapToSizeFull ? Math.Max(PixelSize.X, PixelSize.Y) / (float)SizeFull : 1.0f;
+    /// <summary>
+    /// Scaling factor for resizing the map. This scale is based on the longest axis of the control, so the map doesn't get stretched/squished as the control's aspect ratio changes.
+    /// </summary>
+    protected float MapScalingFactor => RescaleMap ? Math.Max(PixelSize.X, PixelSize.Y) / (float)SizeFull : 1.0f;
+
+    /// <summary>
+    /// The world range after map scaling is applied. Used for the rendering clipping AABB.
+    /// 
+    /// When RescaleMap is false, this will grow/shrink past MaxWorldRange.
+    /// When RescaleMap is true, this will always be equal to or less than world range
+    /// </summary>
+    public Vector2 ScaledWorldRange => (WorldRangeVector * PixelSize) / ((float)SizeFull * (RescaleMap ? MapScalingFactor : 1.0f));
 
     public event Action<float>? WorldRangeChanged;
 
@@ -140,7 +154,7 @@ public partial class MapGridControl : LayoutContainer
         Recentering = false;
         var newOffset = new Vector2(args.Relative.X, -args.Relative.Y) / MidPoint * WorldRange;
 
-        if (!ScaleMapToSizeFull)
+        if (!RescaleMap)
         {
             newOffset *= PixelSize / (float)SizeFull;
         }

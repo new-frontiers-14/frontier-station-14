@@ -84,7 +84,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         _font = new VectorFont(cache.GetResource<FontResource>("/EngineFonts/NotoSans/NotoSans-Regular.ttf"), 10);
 
-        ScaleMapToSizeFull = false;
+        RescaleMap = false;
     }
 
     public void SetMap(MapId mapId, Vector2 offset, bool recentering = false)
