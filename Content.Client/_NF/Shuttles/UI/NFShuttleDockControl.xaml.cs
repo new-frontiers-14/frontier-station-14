@@ -64,6 +64,8 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
         MinSize = new Vector2(SizeFull, SizeFull);
+
+        RescaleMap = false;
     }
 
     public void SetViewedDock(DockingPortState? dockState)
