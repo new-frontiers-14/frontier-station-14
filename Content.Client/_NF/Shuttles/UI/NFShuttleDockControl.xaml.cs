@@ -65,6 +65,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
         _xformSystem = EntManager.System<SharedTransformSystem>();
         MinSize = new Vector2(SizeFull, SizeFull);
 
+        // let the map range grow/shrink with the control size instead of scaling up to match the range
         RescaleMap = false;
     }
 
