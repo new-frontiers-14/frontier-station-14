@@ -75,7 +75,12 @@ public partial class MapGridControl : LayoutContainer
     protected int ScaledMinimapRadius => (int) (UIDisplayRadius * UIScale);
     protected float MinimapScale => WorldRange != 0 ? (ScaledMinimapRadius / WorldRange) * MapScalingFactor : 0f;
 
-    protected float MapScalingFactor => Math.Max(PixelSize.X, PixelSize.Y) / (float)SizeFull;
+    /// <summary>
+    /// Determines if the map is scaled based on SizeFull
+    /// </summary>
+    public bool ScaleMapToSizeFull = true;
+
+    protected float MapScalingFactor => ScaleMapToSizeFull ? Math.Max(PixelSize.X, PixelSize.Y) / (float)SizeFull : 1.0f;
 
     public event Action<float>? WorldRangeChanged;
 
@@ -85,7 +90,6 @@ public partial class MapGridControl : LayoutContainer
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        //SetSize = new Vector2(SizeFull, SizeFull);
         RectClipContent = true;
         MouseFilter = MouseFilterMode.Stop;
         ActualRadarRange = WorldRange;
@@ -134,7 +138,14 @@ public partial class MapGridControl : LayoutContainer
             return;
 
         Recentering = false;
-        Offset -= new Vector2(args.Relative.X, -args.Relative.Y) / MidPoint * WorldRange;
+        var newOffset = new Vector2(args.Relative.X, -args.Relative.Y) / MidPoint * WorldRange;
+
+        if (!ScaleMapToSizeFull)
+        {
+            newOffset *= PixelSize / (float)SizeFull;
+        }
+
+        Offset -= newOffset;
     }
 
     protected override void MouseWheel(GUIMouseWheelEventArgs args)
