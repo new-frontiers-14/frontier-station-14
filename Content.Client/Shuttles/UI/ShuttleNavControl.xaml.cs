@@ -172,7 +172,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
-        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
 
         // Frontier: north line drawing
         var rot = ourEntRot + _rotation.Value;
@@ -565,7 +565,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private Vector2 InverseScalePosition(Vector2 value)
     {
-        return (value - MidPointVector) / MinimapScale;
+        return (value - MidPoint) / MinimapScale;
     }
 
     public sealed class BlipData

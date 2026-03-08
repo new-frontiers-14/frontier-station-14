@@ -218,7 +218,7 @@ public partial class NavMapControl : MapGridControl
             var localPosition = args.PointerLocation.Position - GlobalPixelPosition;
 
             // Convert to a world position
-            var unscaledPosition = (localPosition - MidPointVector) / MinimapScale;
+            var unscaledPosition = (localPosition - MidPoint) / MinimapScale;
             var worldPosition = Vector2.Transform(new Vector2(unscaledPosition.X, -unscaledPosition.Y) + offset, _transformSystem.GetWorldMatrix(_xform));
 
             // Find closest tracked entity in range

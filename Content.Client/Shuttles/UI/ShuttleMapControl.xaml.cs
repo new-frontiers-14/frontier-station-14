@@ -472,7 +472,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         }
 
         // Draw the coordinates
-        var mapOffset = MidPointVector;
+        var mapOffset = new Vector2(MidPoint.X, MidPoint.Y);
 
         if (mousePos.Window != WindowId.Invalid &&
             controlLocalBounds.Contains(mouseLocalPos.Floored()))
