@@ -19,6 +19,10 @@ seeds-monkanana-name = monkanana
 seeds-monkanana-display-name = monkanana trees
 seeds-glowshroom-nf-name = glowshroom
 seeds-glowshroom-nf-display-name = glowshroom
+seeds-pomegranate-name = pomegranate
+seeds-pomegranate-display-name = pomegranate tree
+seeds-granatapfel-name = granatapfel
+seeds-granatapfel-display-name = granatapfel tree
 
 # Should be in seed-component
 botany-seed-jar-name = jar of {$seedName} {$seedNoun}
