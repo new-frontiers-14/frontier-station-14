@@ -11,8 +11,9 @@ public enum ERPStatus
     Completer = 3
 };
 [RegisterComponent, Access(typeof(ERPExaminationSystem))]
+//[RegisterComponent]
 public sealed partial class ERPExaminableComponent : Component
 {
-    [DataField(required: true)]
-    public ERPStatus ERPAccessLevel = ERPStatus.Prohibited;
+    [DataField(required: false)]
+    public ERPStatus ERPAccessLevel = ERPStatus.Partial;
 }

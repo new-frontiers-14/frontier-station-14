@@ -30,6 +30,12 @@
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
   - type: Speech # Frontier
     allowedEmotes: ['Belch'] # Frontier
+  - type: ERPExaminable # Citadel
+    ERPAccessLevel: Prohibited
+  - type: UserInterface
+    interfaces:
+      enum.ERPInteractionMenuInterface.Key:
+        type: ERPInteractionMenuBoundUserInterface
 
 - type: entity
   parent: BaseSpeciesDummy

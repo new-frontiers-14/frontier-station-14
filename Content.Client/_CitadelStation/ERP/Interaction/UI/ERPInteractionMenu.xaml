@@ -1,0 +1,24 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+            Title="I guess it works?"
+            Resizable="False">
+    <BoxContainer Orientation="Horizontal" SeparationOverride="4" MinWidth="150">
+        <TextureRect Name="Doll"
+                     Stretch="KeepCentered"
+                     Margin="0 0 0 35"
+                     TexturePath="/Textures/_CitadelStation/Interface/Misc/doll.png"
+                     Access="Public">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextureButton Name="ChangeViewButton" Access="Public" TexturePath="/Textures/Interface/VerbIcons/rotate_ccw.svg.192dpi.png" VerticalExpand="False"/>
+            </BoxContainer>
+        </TextureRect>
+        <BoxContainer Orientation="Vertical" SeparationOverride="4" MinWidth="150">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4" MinWidth="150">
+                <Button Name="MouthButton" Text="Mouth" Access="Public"/>
+                <Button Name="HandButton" Text="Hand" Access="Public"/>
+                <Button Name="GroinButton" Text="Groin" Access="Public"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

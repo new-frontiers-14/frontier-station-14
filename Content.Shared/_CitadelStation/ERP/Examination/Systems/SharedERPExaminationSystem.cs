@@ -5,6 +5,8 @@ using Content.Shared.Verbs;
 using Content.Shared._CitadelStation.ERP.Examination.Components;
 using Robust.Shared.Utility;
 using Content.Shared.Examine;
+using Content.Shared._CitadelStation.ERP.Interaction.UI.Messages;
+using Content.Shared.Popups;
 
 namespace Content.Shared._CitadelStation.ERP.Examination.Systems;
 
@@ -12,12 +14,42 @@ namespace Content.Shared._CitadelStation.ERP.Examination.Systems;
 public sealed class ERPExaminationSystem : EntitySystem {
 
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         Logger.Debug("AAAAA");
         SubscribeLocalEvent<ERPExaminableComponent, GetVerbsEvent<ExamineVerb>>(AddExamineVerb);
+        SubscribeLocalEvent<ERPExaminableComponent, GetVerbsEvent<AlternativeVerb>>(AddERPInteraction);
+    }
+
+    private void AddERPInteraction(Entity<ERPExaminableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        var detailsRange = _examineSystem.IsInDetailsRange(args.User, ent.Owner);
+
+        var @event = args;
+
+        if (ent.Comp.ERPAccessLevel == ERPStatus.Prohibited) {
+            //_popup.PopupEntity(Loc.GetString("erp-interaction-prohibited-popup"), ent.Owner, @event.User);
+            // Dont show interaction menu, if it is prohibited to interact
+            return;
+        }
+
+        var verb = new AlternativeVerb()
+        {
+            Text = Loc.GetString("erp-action-tooltip"),
+            Act = () =>
+            {
+                _ui.OpenUi(ent.Owner, ERPInteractionMenuInterface.Key, @event.User);
+            },
+            Priority = 1,
+            Disabled = !detailsRange,
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png"))
+        };
+
+        args.Verbs.Add(verb);
     }
 
     private void AddExamineVerb(EntityUid uid, ERPExaminableComponent component, GetVerbsEvent<ExamineVerb> ev)
