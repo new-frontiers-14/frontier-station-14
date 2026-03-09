@@ -218,7 +218,7 @@ public partial class NavMapControl : MapGridControl
             var localPosition = args.PointerLocation.Position - GlobalPixelPosition;
 
             // Convert to a world position
-            // Frontier: Replaced MidPointVector with MidPoint
+            // Frontier: MidpointVector<Midpoint
             var unscaledPosition = (localPosition - MidPoint) / MinimapScale;
             // End Frontier
             var worldPosition = Vector2.Transform(new Vector2(unscaledPosition.X, -unscaledPosition.Y) + offset, _transformSystem.GetWorldMatrix(_xform));
