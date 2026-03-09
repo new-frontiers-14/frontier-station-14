@@ -116,7 +116,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         // End Frontier
 
         Matrix3x2.Invert(selectedDockToWorld, out var worldToSelectedDock);
-        // Frontier: Midpoint replaces Midpoint vector
+        // Frontier: MidpointVector<Midpoint
         var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
         // End Frontier
 
@@ -126,7 +126,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _mapManager.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
 
         // offset the dotted-line position to the bounds.
-        // Frontier: Midpoint replaces Midpoint vector
+        // Frontier: MidpointVector<Midpoint
         Vector2? viewedDockPos = _viewedState != null ? MidPoint : null;
         // End Frontier
 

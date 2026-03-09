@@ -172,7 +172,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
-        // Frontier: MidPoint replaces MidPointVector
+        // Frontier: MidpointVector<Midpoint
         var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
         // End Frontier
 
@@ -569,7 +569,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private Vector2 InverseScalePosition(Vector2 value)
     {
-        // Frontier: MidPoint replaces MidPointVector
+        // Frontier: MidpointVector<Midpoint
         return (value - MidPoint) / MinimapScale;
         // End Frontier
     }

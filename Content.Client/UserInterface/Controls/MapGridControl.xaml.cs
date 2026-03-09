@@ -188,7 +188,7 @@ public partial class MapGridControl : LayoutContainer
     /// </summary>
     protected Vector2 ScalePosition(Vector2 value)
     {
-        // Frontier: MidPoint replaces MidPointVector
+        // Frontier: MidpointVector<Midpoint
         return ScalePosition(value, MinimapScale, MidPoint);
         // End Frontier
     }
@@ -203,7 +203,7 @@ public partial class MapGridControl : LayoutContainer
     /// </summary>
     protected Vector2 InverseMapPosition(Vector2 value)
     {
-        // Frontier: MidPoint replaces MidPointVector
+        // Frontier: MidpointVector<Midpoint
         var inversePos = (value - new Vector2(MidPoint.X, MidPoint.Y)) / MinimapScale;
         // End Frontier
 
@@ -256,7 +256,7 @@ public partial class MapGridControl : LayoutContainer
         {
             var angle = Angle.FromDegrees(45 + i * 360f / lineCount);
             var distance = Width / 2f;
-            // Frontier: MidPoint replaces MidPointVector
+            // Frontier: MidpointVector<Midpoint
             var start = MidPoint + angle.RotateVec(new Vector2(0f, 2.5f * distance / 4f));
             var end = MidPoint + angle.RotateVec(new Vector2(0f, 4f * distance / 4f));
             // End Frontier
@@ -265,7 +265,7 @@ public partial class MapGridControl : LayoutContainer
 
         var signalText = Loc.GetString("shuttle-console-no-signal");
         var dimensions = handle.GetDimensions(_largerFont, signalText, 1f);
-        // Frontier: MidPoint replaces MidPointVector
+        // Frontier: MidpointVector<Midpoint
         var position = MidPoint - dimensions / 2f;
         // End Frontier
         handle.DrawString(_largerFont, position, Loc.GetString("shuttle-console-no-signal"), greyColor);
