@@ -1,21 +1,13 @@
 - type: entity
   name: Cooking Bag
   id: NFCookingBag
-  parent: NFBaseClothingBeltStorageBag # Frontier: BaseStorageItem<NFBaseClothingBeltStorageBag
+  parent: NFBaseClothingBeltStorageBag
   description: A bag for Cheffs to Keep their food off the floor.
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/Equipment/cooking_bag.rsi
-    # Frontier: layered sprite
-    layers:
-    - state: icon
-    - state: icon-on
-      visible: False
-      map: [ "enum.ToggleableVisuals.Layer" ]
-    # End Frontier
   - type: Item
-    storedRotation: -90
-    size: Ginormous # Frontier
+    size: Ginormous
   - type: Clothing
     quickEquip: false
     slots:
@@ -35,10 +27,3 @@
         - Seed
   - type: AntiRottingContainer
   - type: Dumpable
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled: # Frontier: Enum changes from Wizden#35341
-        enum.ToggleableVisuals.Layer: # Frontier: Enum changes from Wizden#35341
-          True: { visible: True }
-          False: { visible: False }
