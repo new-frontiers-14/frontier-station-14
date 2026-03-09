@@ -84,7 +84,10 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         _font = new VectorFont(cache.GetResource<FontResource>("/EngineFonts/NotoSans/NotoSans-Regular.ttf"), 10);
 
+        // Frontier: don't rescale the map when the window gets bigger/smaller,
+        // increase world range instead 
         RescaleMap = false;
+        // End Frontier
     }
 
     public void SetMap(MapId mapId, Vector2 offset, bool recentering = false)
@@ -474,7 +477,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         }
 
         // Draw the coordinates
+        // Frontier
         var mapOffset = new Vector2(MidPoint.X, MidPoint.Y);
+        // End Frontier
 
         if (mousePos.Window != WindowId.Invalid &&
             controlLocalBounds.Contains(mouseLocalPos.Floored()))
