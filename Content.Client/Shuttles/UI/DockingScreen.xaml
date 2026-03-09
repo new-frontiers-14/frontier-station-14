@@ -11,6 +11,7 @@
                        HorizontalExpand="True"
                        Margin="5 4 10 5"/>
     <!-- Frontier: use NF variant -->
+    <!-- Frontier: add scrollbox so we can resize the docking screen without it cutting off elements -->
     <controls:ScrollContainer HScrollEnabled="False" VerticalExpand="True" MinWidth="256" MaxWidth="256" Margin="5 0 5 5">
         <controls:BoxContainer Name="RightDisplayDock"
                                VerticalAlignment="Top"
@@ -23,5 +24,6 @@
             <controls:BoxContainer Name="DockPorts" Orientation="Vertical"/>
         </controls:BoxContainer>
     </controls:ScrollContainer>
+    <!-- End Frontier -->
 
 </controls:BoxContainer>
