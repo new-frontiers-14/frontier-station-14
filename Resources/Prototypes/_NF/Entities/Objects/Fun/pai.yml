@@ -1,35 +1,36 @@
 - type: entity
   parent: PersonalAI
-  id: PersonalMentorAI
-  name: personal mentoring ai device
+  id: GreenhornPAI
+  name: Greenhorn personal ai device
   description: Your electronic pal conceived to guide you!
-               Activate it to request the download of an ai.
-               Searching a candidate might take some time.
+               Activate it in hand to request the download of an AI.
+               Please be patient, as AI's are not always available.
+               Good luck and enjoy your personal Greenhorn AI
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/pai.rsi
     layers:
-    - state: mentorpai-base
-    - state: mentorpai-off-overlay
+    - state: greenhornpai-base
+    - state: greenhornpai-off-overlay
       shader: unshaded
       map: ["screen"]
   - type: PAI
-    brickPopup: mentorpai-system-brick-popup
-    scramblePopup: mentorpai-system-scramble-popup
+    brickPopup: greenhornpai-system-brick-popup
+    scramblePopup: greenhornpai-system-scramble-popup
   - type: ToggleableGhostRole
-    examineTextMindPresent: mentorpai-system-pai-installed
-    examineTextMindSearching: mentorpai-system-still-searching
-    examineTextNoMind: mentorpai-system-off
-    beginSearchingText: mentorpai-system-searching
-    roleName: mentorpai-system-role-name
-    roleDescription: mentorpai-system-role-description
-    roleRules: ghost-role-information-mentorpai-rules
+    examineTextMindPresent: greenhornpai-system-pai-installed
+    examineTextMindSearching: greenhornpai-system-still-searching
+    examineTextNoMind: greenhornpai-system-off
+    beginSearchingText: greenhornpai-system-searching
+    roleName: greenhornpai-system-role-name
+    roleDescription: greenhornpai-system-role-description
+    roleRules: ghost-role-information-greenhornpai-rules
     mindRoles:
     - MindRoleGhostRoleFamiliar
-    wipeVerbText: mentorpai-system-wipe-device-verb-text
-    wipeVerbPopup: mentorpai-system-wiped-device
-    stopSearchVerbText: mentorpai-system-stop-searching-verb-text
-    stopSearchVerbPopup: mentorpai-system-stopped-searching
+    wipeVerbText: greenhornpai-system-wipe-device-verb-text
+    wipeVerbPopup: greenhornpai-system-wiped-device
+    stopSearchVerbText: greenhornpai-system-stop-searching-verb-text
+    stopSearchVerbPopup: greenhornpai-system-stopped-searching
     whitelisted: true
   - type: ActiveRadio
     channels:
@@ -43,6 +44,6 @@
     visuals:
       enum.ToggleableGhostRoleVisuals.Status:
         screen:
-          Off: { state: mentorpai-off-overlay }
-          Searching: { state: mentorpai-searching-overlay }
-          On: { state: mentorpai-on-overlay }
+          Off: { state: greenhornpai-off-overlay }
+          Searching: { state: greenhornpai-searching-overlay }
+          On: { state: greenhornpai-on-overlay }
