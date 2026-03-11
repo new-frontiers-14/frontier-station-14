@@ -242,7 +242,8 @@ public sealed class PaperSystem : EntitySystem
         {
             Reapply = stamp.Reapply, // Frontier
             StampedName = stamp.StampedName,
-            StampedColor = stamp.StampedColor
+            StampedColor = stamp.StampedColor,
+            StampLargeIcon = stamp.StampLargeIcon // imp - Stamp Icons
         };
     }
 
