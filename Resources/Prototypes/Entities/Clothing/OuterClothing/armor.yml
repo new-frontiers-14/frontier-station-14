@@ -278,6 +278,9 @@
       outerClothing-vox:
       - state: equipped-OUTERCLOTHING-light-vox
         shader: unshaded
+      outerClothing-dog:
+      - state: equipped-OUTERCLOTHING-light-dog
+        shader: unshaded
   - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight
@@ -317,6 +320,10 @@
     autoRechargeRate: 2
   - type: Item
     size: Normal
+#starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
