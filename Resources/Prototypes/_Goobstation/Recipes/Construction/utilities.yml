@@ -6,10 +6,8 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: _Goobstation/Structures/Piping/inlinegasfilter.rsi
-    state: gasFilter
-
+  conditions:
+    - !type:NoUnstackableInTile
 
 - type: construction
   id: HeatExchangerInline
@@ -19,9 +17,7 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: _Goobstation/Structures/Piping/inlineradiator.rsi
-    state: heInlineStraight
+
 
 - type: construction
   id: HeatExchangerInlineBend
@@ -31,6 +27,4 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: _Goobstation/Structures/Piping/inlineradiator.rsi
-    state: heInlineBend
+
