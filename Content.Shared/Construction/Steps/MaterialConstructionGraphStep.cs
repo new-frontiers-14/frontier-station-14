@@ -24,6 +24,7 @@ namespace Content.Shared.Construction.Steps
             examinedEvent.PushMarkup(Loc.GetString("construction-insert-material-entity", ("amount", Amount), ("materialName", materialName)));
         }
 
+        //Frontier
         public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
         {
             if (!entityManager.TryGetComponent(uid, out StackComponent? stack) || stack.StackTypeId != MaterialPrototypeId)
@@ -32,7 +33,6 @@ namespace Content.Shared.Construction.Steps
             return base.EntityValid(uid, entityManager, compFactory);
         }
 
-        //Frontier
         public override bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack) //Frontier: added override
         {
             if (!IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) || otherStack.StackTypeId != MaterialPrototypeId)
