@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Examine;
 using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Construction.Steps
 {
@@ -26,18 +26,24 @@ namespace Content.Shared.Construction.Steps
 
         public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
         {
-            return entityManager.TryGetComponent(uid, out StackComponent? stack) && stack.StackTypeId == MaterialPrototypeId && stack.Count >= Amount;
+            if (!entityManager.TryGetComponent(uid, out StackComponent? stack) || stack.StackTypeId != MaterialPrototypeId)
+                return false;
+
+            return base.EntityValid(uid, entityManager, compFactory);
         }
 
+        //Frontier
         public override bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack) //Frontier: added override
         {
-            if (IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) && otherStack.StackTypeId == MaterialPrototypeId && otherStack.Count >= Amount)
-                stack = otherStack;
-            else
+            if (!IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) || otherStack.StackTypeId != MaterialPrototypeId)
+            {
                 stack = null;
+                return false;
+            }
 
-            return stack != null;
+            return base.EntityValid(entity, out stack);
         }
+        //End Frontier
 
         public override ConstructionGuideEntry GenerateGuideEntry()
         {

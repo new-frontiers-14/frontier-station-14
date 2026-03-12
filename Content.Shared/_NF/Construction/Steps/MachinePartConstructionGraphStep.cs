@@ -23,24 +23,20 @@ namespace Content.Shared.Construction.Steps // NOTE: currently exists under base
 
         public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
         {
-            if(!entityManager.TryGetComponent(uid, out MachinePartComponent? part) || part.PartType != PartPrototypeId)
+            if (!entityManager.TryGetComponent(uid, out MachinePartComponent? part) || part.PartType != PartPrototypeId)
                 return false;
-            return entityManager.TryGetComponent(uid, out StackComponent? stack) && stack.Count >= Amount;
+            return base.EntityValid(uid, entityManager, compFactory);
         }
 
         public override bool EntityValid(EntityUid uid, [NotNullWhen(true)] out StackComponent? stack)
         {
-            if (!IoCManager.Resolve<IEntityManager>().TryGetComponent(uid, out MachinePartComponent? part) || part.PartType != PartPrototypeId) {
+            if (!IoCManager.Resolve<IEntityManager>().TryGetComponent(uid, out MachinePartComponent? part) || part.PartType != PartPrototypeId)
+            {
                 stack = null;
                 return false;
             }
 
-            if (IoCManager.Resolve<IEntityManager>().TryGetComponent(uid, out StackComponent? otherStack) && otherStack.Count >= Amount)
-                stack = otherStack;
-            else
-                stack = null;
-
-            return stack != null;
+            return base.EntityValid(uid, out stack);
         }
 
         public override ConstructionGuideEntry GenerateGuideEntry()
