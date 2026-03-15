@@ -111,10 +111,14 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         var selectedDockToOurGrid = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, Angle.Zero);
         var selectedDockToWorld = Matrix3x2.Multiply(selectedDockToOurGrid, ourGridToWorld);
 
-        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-WorldRangeVector, WorldRangeVector));
+        // Frontier: use ScaledWorldRange since we allow the world range to change with RescaleMap
+        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-ScaledWorldRange, ScaledWorldRange));
+        // End Frontier
 
         Matrix3x2.Invert(selectedDockToWorld, out var worldToSelectedDock);
-        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        // Frontier: MidpointVector<Midpoint
+        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
+        // End Frontier
 
         // Draw nearby grids
         var controlBounds = PixelSizeBox;
@@ -122,7 +126,9 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _mapManager.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
 
         // offset the dotted-line position to the bounds.
-        Vector2? viewedDockPos = _viewedState != null ? MidPointVector : null;
+        // Frontier: MidpointVector<Midpoint
+        Vector2? viewedDockPos = _viewedState != null ? MidPoint : null;
+        // End Frontier
 
         if (viewedDockPos != null)
         {

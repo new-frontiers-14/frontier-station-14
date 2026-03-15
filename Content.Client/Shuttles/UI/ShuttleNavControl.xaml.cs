@@ -172,7 +172,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
-        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        // Frontier: MidpointVector<Midpoint
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
+        // End Frontier
 
         // Frontier: north line drawing
         var rot = ourEntRot + _rotation.Value;
@@ -204,7 +206,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
 
-        var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
+        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
+        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
+        // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
 
         _grids.Clear();
@@ -565,7 +569,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private Vector2 InverseScalePosition(Vector2 value)
     {
-        return (value - MidPointVector) / MinimapScale;
+        // Frontier: MidpointVector<Midpoint
+        return (value - MidPoint) / MinimapScale;
+        // End Frontier
     }
 
     public sealed class BlipData

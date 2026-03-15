@@ -2,27 +2,28 @@
                HorizontalExpand="True"
                xmlns:controls="https://spacestation14.io"
                xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
-               xmlns:ui="clr-namespace:Content.Client._NF.Shuttles.UI"> <!-- Frontier: move UI over to _NF namespace -->
+               xmlns:ui="clr-namespace:Content.Client._NF.Shuttles.UI">
+    <!-- Frontier: move UI over to _NF namespace -->
     <ui:NFShuttleDockControl Name="DockingControl"
                        MouseFilter="Stop"
                        VerticalAlignment="Stretch"
                        VerticalExpand="True"
                        HorizontalExpand="True"
-                       Margin="5 4 10 5"/> <!-- Frontier: use NF variant -->
-    <controls:BoxContainer Name="RightDisplayDock"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Right"
-                           MinWidth="256"
-                           MaxWidth="256"
-                           Align="Center"
-                           Margin="5 0 5 5"
-                           Orientation="Vertical">
-        <controls1:StripeBack MinSize="48 48">
-            <controls:Label Name="DockingPortsLabel" Text="{controls:Loc 'shuttle-console-docks-label'}" HorizontalAlignment="Center"/>
-        </controls1:StripeBack>
-        <controls:ScrollContainer VerticalExpand="True" HScrollEnabled="False"
-                                  ReturnMeasure="True">
+                       Margin="5 4 10 5"/>
+    <!-- Frontier: use NF variant -->
+    <!-- Frontier: add scrollbox so we can resize the docking screen without it cutting off elements -->
+    <controls:ScrollContainer HScrollEnabled="False" VerticalExpand="True" MinWidth="256" MaxWidth="256" Margin="5 0 5 5">
+        <controls:BoxContainer Name="RightDisplayDock"
+                               VerticalAlignment="Top"
+                               HorizontalExpand="True"
+                               Align="Center"
+                               Orientation="Vertical">
+            <controls1:StripeBack MinSize="48 48">
+                <controls:Label Name="DockingPortsLabel" Text="{controls:Loc 'shuttle-console-docks-label'}" HorizontalAlignment="Center"/>
+            </controls1:StripeBack>
             <controls:BoxContainer Name="DockPorts" Orientation="Vertical"/>
-        </controls:ScrollContainer>
-    </controls:BoxContainer>
+        </controls:BoxContainer>
+    </controls:ScrollContainer>
+    <!-- End Frontier -->
+
 </controls:BoxContainer>
