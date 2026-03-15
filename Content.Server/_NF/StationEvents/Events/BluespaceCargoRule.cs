@@ -1,15 +1,16 @@
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Physics;
+using Content.Shared.Station.Components;
+using Content.Shared._NF.CCVar;
+using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Random;
-using Robust.Shared.Configuration;
-using Content.Server.Atmos.EntitySystems;
-using Content.Shared.GameTicking.Components;
-using Content.Shared._NF.CCVar;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -35,7 +36,7 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
         if (!TryComp<StationDataComponent>(chosenStation, out var stationData))
             return;
 
-        var grid = StationSystem.GetLargestGrid(stationData);
+        var grid = StationSystem.GetLargestGrid((chosenStation.Value, stationData));
 
         if (grid is null)
             return;

@@ -6,7 +6,7 @@
   - type: RandomTimerTrigger
     min: 2
     max: 8
-  - type: OnUseTimerTrigger # todo: make it activate through welder/lighter/fire instead
+  - type: TimerTrigger # todo: make it activate through welder/lighter/fire instead
     delay: 5
     examinable: false
     initialBeepDelay: 0
@@ -82,5 +82,5 @@
       - ReagentId: Napalm
         Quantity: 8
   - type: DeleteOnTrigger
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound: /Audio/Items/smoke_grenade_smoke.ogg
