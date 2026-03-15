@@ -394,6 +394,23 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         UpdateChemicals(soln);
         return splitSol;
     }
+
+    /// <summary>
+    /// Splits a solution removing individually specified quantities for each reagent.
+    /// Intended use-case is for injections matching a patient's metabolism rate
+    /// </summary>
+    /// <param name="soln">The container to split the solution from.</param>
+    /// <param name="reagents">List of string, number tuples for each reagent ID and specific dose</param>
+    /// <returns></returns>
+    public Solution SplitSolutionPerReagentWithSpecificDoses(Entity<SolutionComponent> soln, params (string, FixedPoint2)[] reagents)
+    {
+        var (uid, comp) = soln;
+        var solution = comp.Solution;
+
+        var splitSol = solution.SplitSolutionPerReagentWithSpecificDoses(reagents);
+        UpdateChemicals(soln);
+        return splitSol;
+    }
     // End Frontier
 
     public Solution SplitStackSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity, int stackCount)

@@ -857,6 +857,71 @@ namespace Content.Shared.Chemistry.Components
 
             return newSolution;
         }
+
+        /// <summary>
+        /// Splits a solution, taking the specified amount of each reagent specified in reagents from the solution.
+        /// If any reagent in the solution has less volume than specified, it will all be transferred into the new solution.
+        /// This method is written with intent to match the target's metabolism rate per-reagent.
+        /// </summary>
+        /// <param name="reagentDoses">A list of tuples with each reagent and how much to transfer of each.</param>
+        /// <returns>A new solution containing the reagents taken from the original solution.</returns>
+        public Solution SplitSolutionPerReagentWithSpecificDoses(params (string, FixedPoint2)[] reagentDoses)
+        {
+            var origVol = Volume;
+            Solution newSolution = new Solution(Contents.Count) { Temperature = Temperature };
+
+            for (var i = Contents.Count - 1; i >= 0; i--) // iterate backwards because of remove swap.
+            {
+                var (reagent, quantity) = Contents[i];
+
+                var dosageEntry = reagentDoses
+                    .Where(x => x.Item1 == reagent.Prototype);
+
+                DebugTools.Assert(dosageEntry.Count() <= 1, $"Duplicate dosage entries specified in list: {reagentDoses}");
+                // Each reagent to split must be in the set given.
+                if (dosageEntry.Count() == 0)
+                    continue;
+                var dosage = dosageEntry.First().Item2;
+                if (dosage <= 0)
+                    continue;
+
+                // If the reagent has more than enough volume to remove, no need to remove it from the list.
+                if (quantity > dosage)
+                {
+                    Contents[i] = new ReagentQuantity(reagent, quantity - dosage);
+                    newSolution.Contents.Add(new ReagentQuantity(reagent, dosage));
+                    Volume -= dosage;
+                }
+                else
+                {
+                    Contents.RemoveSwap(i);
+                    //Only add positive quantities to our new solution.
+                    if (quantity > 0)
+                    {
+                        newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
+                        Volume -= quantity;
+                    }
+                }
+            }
+
+            // If old solution is empty, invalidate old solution and transfer all volume to new.
+            if (Volume <= 0)
+            {
+                RemoveAllSolution();
+                newSolution.Volume = origVol;
+            }
+            else
+            {
+                newSolution.Volume = origVol - Volume;
+                _heatCapacityDirty = true;
+            }
+            newSolution._heatCapacityDirty = true;
+
+            ValidateSolution();
+            newSolution.ValidateSolution();
+
+            return newSolution;
+        }
         // End Frontier
 
         /// <summary>
