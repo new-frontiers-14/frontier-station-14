@@ -58,6 +58,20 @@
   - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
 
 - type: entity
+  id: CrateEngineeringSingularityCollectorBulkEmptyTanks
+  parent: CrateEngineeringSecureEngineering
+  name: bulk radiation collector crate (empty tanks)
+  description: A collection of six radiation collectors and six empty plasma tanks for singularity engines. Fill the tanks on-site.
+  components:
+  - type: StorageFill
+    contents:
+      - id: RadiationCollectorFlatpack
+        amount: 6
+      - id: PlasmaTank
+        amount: 6
+  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
+
+- type: entity
   id: CrateEngineeringSingularityContainmentBulk
   parent: CrateEngineeringSecureEngineering
   name: bulk containment field generator crate

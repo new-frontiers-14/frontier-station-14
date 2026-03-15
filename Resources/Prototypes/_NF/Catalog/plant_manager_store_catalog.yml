@@ -1,0 +1,187 @@
+# Plant Manager (Edison) requisitions catalogue. Singularity and Tesla engine parts only. All prices in Spesos.
+# Listings only appear in stores with tag PlantManagerStore.
+
+#region generators
+- type: listing
+  id: PlantManagerSingularityGeneratorFlatpack
+  productEntity: SingularityGeneratorFlatpack
+  cost:
+    Speso: 50000
+  categories:
+    - PlantManagerGenerators
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerTeslaGeneratorFlatpack
+  productEntity: TeslaGeneratorFlatpack
+  cost:
+    Speso: 50000
+  categories:
+    - PlantManagerGenerators
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+#region containment
+- type: listing
+  id: PlantManagerContainmentCrate
+  productEntity: CrateEngineeringSingularityContainmentBulk
+  cost:
+    Speso: 50000
+  categories:
+    - PlantManagerContainment
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerContainmentFlatpack
+  productEntity: ContainmentFieldGeneratorFlatpack
+  cost:
+    Speso: 6250
+  categories:
+    - PlantManagerContainment
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerEmitterFlatpack
+  productEntity: EmitterFlatpack
+  cost:
+    Speso: 6250
+  categories:
+    - PlantManagerContainment
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerEmitterBulkCrate
+  productEntity: CrateEngineeringEmitterBulk
+  cost:
+    Speso: 50000
+  categories:
+    - PlantManagerContainment
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerGroundingRodFlatpack
+  productEntity: TeslaGroundingRodFlatpack
+  cost:
+    Speso: 6250
+  categories:
+    - PlantManagerContainment
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerGroundingRodBulkCrate
+  productEntity: CrateEngineeringTeslaGroundingRodBulk
+  cost:
+    Speso: 25000
+  categories:
+    - PlantManagerContainment
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+#region conversion
+- type: listing
+  id: PlantManagerRadiationCollectorFlatpack
+  productEntity: RadiationCollectorFlatpack
+  cost:
+    Speso: 4500
+  categories:
+    - PlantManagerConversion
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerRadiationCollectorBulkCrate
+  productEntity: CrateEngineeringSingularityCollectorBulk
+  cost:
+    Speso: 30000
+  categories:
+    - PlantManagerConversion
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerRadiationCollectorBulkCrateEmptyTanks
+  productEntity: CrateEngineeringSingularityCollectorBulkEmptyTanks
+  cost:
+    Speso: 30000
+  categories:
+    - PlantManagerConversion
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerTeslaCoilFlatpack
+  productEntity: TeslaCoilFlatpack
+  cost:
+    Speso: 5000
+  categories:
+    - PlantManagerConversion
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerTeslaCoilBulkCrate
+  productEntity: CrateEngineeringTeslaCoilBulk
+  cost:
+    Speso: 30000
+  categories:
+    - PlantManagerConversion
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
+
+- type: listing
+  id: PlantManagerPlasmaTank
+  productEntity: PlasmaTank
+  cost:
+    Speso: 500
+  categories:
+    - PlantManagerConversion
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PlantManagerStore
