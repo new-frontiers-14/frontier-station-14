@@ -313,7 +313,7 @@ namespace Content.Server.Construction
 
                     // Material steps, which use stacks, are handled specially. Instead of inserting the whole item,
                     // we split the stack in two and insert the split stack.
-                    if (insertStep is MaterialConstructionGraphStep materialInsertStep)
+                    if (insertStep is StackInvolvingConstructionGraphStep materialInsertStep) //Frontier: MaterialConstructionGraphStep<StackInvolvingConstructionGraphStep
                     {
                         if (_stackSystem.Split(insert, materialInsertStep.Amount, Transform(interactUsing.User).Coordinates) is not {} stack)
                             return HandleResult.False;

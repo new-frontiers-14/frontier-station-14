@@ -1,19 +1,20 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Examine;
 using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Construction.Steps
 {
     [DataDefinition]
-    public sealed partial class MaterialConstructionGraphStep : EntityInsertConstructionGraphStep
+    public sealed partial class MaterialConstructionGraphStep : StackInvolvingConstructionGraphStep //Frontier: EntityInsertConstructionGraphStep<StackInvolvingConstructionGraphStep
     {
         // TODO: Make this use the material system.
         // TODO TODO: Make the material system not shit.
         [DataField("material", required:true)]
         public ProtoId<StackPrototype> MaterialPrototypeId { get; private set; }
 
-        [DataField] public int Amount { get; private set; } = 1;
+        //Frontier: moved to the abstract StackInvolvingConstructionGraphStep class
+        //[DataField] public int Amount { get; private set; } = 1;
 
         public override void DoExamine(ExaminedEvent examinedEvent)
         {
@@ -23,20 +24,26 @@ namespace Content.Shared.Construction.Steps
             examinedEvent.PushMarkup(Loc.GetString("construction-insert-material-entity", ("amount", Amount), ("materialName", materialName)));
         }
 
+        //Frontier
         public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
         {
-            return entityManager.TryGetComponent(uid, out StackComponent? stack) && stack.StackTypeId == MaterialPrototypeId && stack.Count >= Amount;
+            if (!entityManager.TryGetComponent(uid, out StackComponent? stack) || stack.StackTypeId != MaterialPrototypeId)
+                return false;
+
+            return base.EntityValid(uid, entityManager, compFactory);
         }
 
-        public bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack)
+        public override bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack) //Frontier: added override
         {
-            if (IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) && otherStack.StackTypeId == MaterialPrototypeId && otherStack.Count >= Amount)
-                stack = otherStack;
-            else
+            if (!IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) || otherStack.StackTypeId != MaterialPrototypeId)
+            {
                 stack = null;
+                return false;
+            }
 
-            return stack != null;
+            return base.EntityValid(entity, out stack);
         }
+        //End Frontier
 
         public override ConstructionGuideEntry GenerateGuideEntry()
         {
