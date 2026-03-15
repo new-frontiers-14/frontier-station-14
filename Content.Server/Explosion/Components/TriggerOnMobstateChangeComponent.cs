@@ -1,4 +1,4 @@
-﻿using Content.Shared.Mobs;
+using Content.Shared.Mobs;
 
 namespace Content.Server.Explosion.Components;
 
@@ -21,4 +21,11 @@ public sealed partial class TriggerOnMobstateChangeComponent : Component
     [ViewVariables]
     [DataField("preventSuicide")]
     public bool PreventSuicide = false;
+
+    /// <summary>
+    /// Frontier: If true, prevent execution on mobstate deescalation
+    /// </summary>
+    [ViewVariables]
+    [DataField("preventDeescalation")]
+    public bool PreventDeescalation = false;
 }
