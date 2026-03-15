@@ -15,13 +15,14 @@
     anchored: true
   - type: Physics
     bodyType: Static
+  - type: Climbable # Frontier
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.1,0.45,0.1"
-        density: 550
+        density: 350 # Frontier 550<350
         mask:
         - MachineMask
         layer:

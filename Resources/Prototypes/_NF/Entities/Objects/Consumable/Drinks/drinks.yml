@@ -31,6 +31,56 @@
     sprite: _NF/Objects/Consumable/Drinks/themadgob.rsi
     state: icon
 
+# Nanocaf Drinks
+
+- type: entity
+  parent: DrinkGlass
+  id: NanoColdBrew
+  suffix: coldbrew
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: NanoColdBrew
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: Nanodepresso
+  suffix: depresso
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: NanoDepresso
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: NanoCoftea
+  suffix: coftea
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: NanoCoftea
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+
 # Alcohol drinks
 - type: entity
   parent: DrinkGlass
