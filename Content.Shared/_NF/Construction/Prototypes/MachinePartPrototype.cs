@@ -26,9 +26,11 @@ public sealed partial class MachinePartPrototype : IPrototype
     [DataField("stockPartPrototype", required: true)]
     public EntProtoId StockPartPrototype = string.Empty;
 
+    //Frontier
     /// <summary>
     ///     An icon that will be used to represent this part type.
     /// </summary>
     [DataField]
     public SpriteSpecifier? Icon { get; private set; }
+    //End Frontier
 }
