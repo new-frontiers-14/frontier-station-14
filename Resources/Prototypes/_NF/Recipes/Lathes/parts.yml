@@ -21,6 +21,18 @@
     Plasma: 75
     Gold: 75
 
+- type: latheRecipe
+  abstract: true
+  id: NFBaseBluespacePartRecipe
+  parent: NFBaseSuperPartRecipe
+  completetime: 4
+  materials:
+    Plasteel: 150
+    Plastic: 150
+    Uranium: 75
+    Gold: 75
+    Bluespace: 100
+
 # Recipes
 
 # Rating 1 - Removed from upstream
@@ -66,3 +78,19 @@
   id: PicoManipulatorStockPart
   parent: NFBaseSuperPartRecipe
   result: PicoManipulatorStockPart
+
+# Rating 4
+- type: latheRecipe
+  id: QuadraticCapacitorStockPart
+  parent: NFBaseBluespacePartRecipe
+  result: QuadraticCapacitorStockPart
+
+- type: latheRecipe
+  id: BluespaceMatterBinStockPart
+  parent: NFBaseBluespacePartRecipe
+  result: BluespaceMatterBinStockPart
+
+- type: latheRecipe
+  id: FemtoManipulatorStockPart
+  parent: NFBaseBluespacePartRecipe
+  result: FemtoManipulatorStockPart
