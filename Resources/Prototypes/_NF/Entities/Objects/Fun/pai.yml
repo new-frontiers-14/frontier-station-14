@@ -1,0 +1,49 @@
+- type: entity
+  parent: PersonalAI
+  id: GreenhornPAI
+  name: Greenhorn personal ai device
+  description: Your electronic pal conceived to guide you!
+               Activate it in hand to request the download of an AI.
+               Please be patient, as AI's are not always available.
+               Good luck and enjoy your personal Greenhorn AI
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/pai.rsi
+    layers:
+    - state: greenhornpai-base
+    - state: greenhornpai-off-overlay
+      shader: unshaded
+      map: ["screen"]
+  - type: PAI
+    brickPopup: greenhornpai-system-brick-popup
+    scramblePopup: greenhornpai-system-scramble-popup
+  - type: ToggleableGhostRole
+    examineTextMindPresent: greenhornpai-system-pai-installed
+    examineTextMindSearching: greenhornpai-system-still-searching
+    examineTextNoMind: greenhornpai-system-off
+    beginSearchingText: greenhornpai-system-searching
+    roleName: greenhornpai-system-role-name
+    roleDescription: greenhornpai-system-role-description
+    roleRules: ghost-role-information-greenhornpai-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
+    wipeVerbText: greenhornpai-system-wipe-device-verb-text
+    wipeVerbPopup: greenhornpai-system-wiped-device
+    stopSearchVerbText: greenhornpai-system-stop-searching-verb-text
+    stopSearchVerbPopup: greenhornpai-system-stopped-searching
+    whitelisted: true
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Greeting
+  - type: IntrinsicRadioTransmitter # Mentoring pAI's can use the Greeting channel
+    channels:
+    - Greeting
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        screen:
+          Off: { state: greenhornpai-off-overlay }
+          Searching: { state: greenhornpai-searching-overlay }
+          On: { state: greenhornpai-on-overlay }

@@ -92,3 +92,9 @@ nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's 
 
 nf-ghost-role-information-buddy-name = Buddy
 nf-ghost-role-information-buddy-description = You were constructed from a Build-A-Buddy kit. Become someone's best friend today!
+
+ghost-role-information-greenhornpai-rules = You are a [color=fuchsia][bold]{greenhornpai-system-role-name}[/bold][/color]. Guide your master the best you can.
+                                        You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+                                        You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+                                        You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
