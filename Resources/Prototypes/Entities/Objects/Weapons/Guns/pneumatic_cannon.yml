@@ -34,6 +34,21 @@
     maxItemSize: Normal
     grid:
     - 0,0,1,1
+    # Frontier: blacklist due to balance issues
+    blacklist:
+      tags:
+      - CrossbowBolt
+      - CrossbowBoltBroadhead
+      - CrossbowBoltGlassShard
+      - CrossbowBoltPlasmaGlassShard
+      - CrossbowBoltUraniumGlassShard
+      - CrossbowBoltSyringe
+      - CrossbowBoltPlasteel
+      - CrossbowBoltExplosive
+      - CrossbowBoltEMP
+      - CrossbowBoltIncendiary
+      - CrossbowBoltShrapnel
+    # Frontier End
   - type: Appearance
   - type: ItemMapper
     containerWhitelist: [gas_tank]
@@ -103,7 +118,7 @@
     containers:
       storagebase: !type:Container
         ents: []
-        
+
 - type: entity
   name: syringe gun
   parent: BaseStorageItem
