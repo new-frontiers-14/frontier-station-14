@@ -54,6 +54,7 @@ guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
+guide-entry-shipyard-broom = Broom
 guide-entry-shipyard-bulker = Bulker
 guide-entry-shipyard-caladrius = Caladrius
 guide-entry-shipyard-camper = Camper
