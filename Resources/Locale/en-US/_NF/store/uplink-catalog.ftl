@@ -342,6 +342,9 @@ uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
 
+uplink-pirate-id-chip-name = Bootleg Cyborg Chip
+uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.

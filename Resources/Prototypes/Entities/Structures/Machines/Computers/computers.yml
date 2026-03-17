@@ -600,6 +600,9 @@
       whitelist:
         components:
         - IdCard
+      blacklist: # DeltaV - don't let ID chips be used for free AA (without an agent ID)
+        tags:
+        - IdChip
     targetIdSlot:
       name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
