@@ -434,7 +434,7 @@
       path: /Audio/Items/smoke_grenade_prime.ogg
 
 - type: entity
-  parent: [ BaseC1Contraband, SmokeGrenade ] # Frontier: BaseCivilianContraband<BaseC1Contraband
+  parent: [ BaseClearContraband, SmokeGrenade ] # Frontier: BaseCivilianContraband<BaseClearContraband
   id: CleanerGrenade
   name: cleanade
   description: Special grenade for janitors, releasing large cloud of space cleaner foam.
@@ -469,7 +469,7 @@
         Quantity: 20
 
 - type: entity
-  parent: SmokeGrenade # Frontier: removed BaseEngineeringContraband
+  parent: [ BaseClearContraband, SmokeGrenade ] # Frontier: BaseEngineeringContraband<BaseClearContraband
   id: MetalFoamGrenade
   name: metal foam grenade
   description: An emergency tool used for patching hull breaches with special quick-set metal foam. Almost as good as real floors!
