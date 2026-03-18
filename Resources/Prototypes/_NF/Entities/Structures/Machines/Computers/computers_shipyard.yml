@@ -2,7 +2,7 @@
   name: shipyard console
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerShipyardBase
-  description: Used to purchase and sell shuttles
+  description: Used to purchase and sell shuttles.
   abstract: true
   components:
   - type: Sprite
@@ -55,7 +55,7 @@
   id: ComputerShipyardSecurity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
   name: security shipyard console
-  description: Used to enlist into Nanotrasen Security Forces
+  description: Used to enlist into Nanotrasen Security Forces.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -140,7 +140,7 @@
   id: ComputerShipyardBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: black market shipyard console
-  description: Used to buy ill-gotten vesssels for nefarious purposes.
+  description: Used to buy ill-gotten vessels for nefarious purposes.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.BlackMarket
@@ -245,7 +245,7 @@
   id: ComputerShipyardMedical
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: medical shipyard console
-  description: Used to purchase and sell medical shuttles
+  description: Used to purchase and sell medical shuttles.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Medical
