@@ -143,6 +143,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapCamper
+  name: "SSF Camper"
+  description: "Detailed map of a Camper shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: camper
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapCeres
   name: "BB Ceres"
   description: "Detailed map of a Ceres shuttle."
@@ -457,7 +468,7 @@
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: stronghold    
+    state: stronghold
 
 - type: entity
   parent: PosterBase
