@@ -41,3 +41,57 @@
   - type: Blueprint
     providedRecipes:
     - NFEnergyPickaxe
+
+# Ammo types
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintUraniumAmmo
+  name: restricted ammunition blueprint (Uranium)
+  description: A blueprint with the schematics for ammunition tipped with enriched-uranium. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxRifle20Uranium
+    - NFAmmunitionBoxRifle25Uranium
+    - NFAmmunitionBoxRifle30Uranium
+    - NFAmmunitionBoxPistol35Uranium
+    - NFAmmunitionBoxPistol45Uranium
+    - NFAmmunitionBoxShellShotgun50Uranium
+  
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintIncendiaryAmmo
+  name: restricted ammunition blueprint (Incendiary)
+  description: A blueprint with the schematics for ammunition with spark-ignition payloads. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxRifle20Incendiary
+    - NFAmmunitionBoxRifle25Incendiary
+    - NFAmmunitionBoxRifle30Incendiary
+    - NFAmmunitionBoxPistol35Incendiary
+    - NFAmmunitionBoxPistol45Incendiary
+    - NFAmmunitionBoxShellShotgun50Incendiary
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintEmpAmmo
+  name: restricted ammunition blueprint (EMP)
+  description: A blueprint with the schematics for high-tech small arms ammunition that discharges electromagnetic pulses on impact. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxPistol35Emp
+    - NFAmmunitionBoxPistol45Emp
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSalvage
+  id: NFBlueprintHighCaliberAmmo
+  name: restricted ammunition blueprint (.60 cal)
+  description: A blueprint with the schematics for high-caliber ammunition. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFAmmunitionBoxRifle60
+    - NFAmmunitionBoxRifle60Rubber
