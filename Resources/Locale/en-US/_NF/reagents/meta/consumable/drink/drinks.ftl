@@ -33,3 +33,12 @@ reagent-desc-the-madgob = The Peaq of goblin drink mixing!
 
 reagent-name-nanocaf = nanocaf
 reagent-desc-nanocaf = If you've never had coffee before this will be the best coffee you've ever had.
+
+reagent-name-nanocoldbrew = coldbrew
+reagent-desc-nanocoldbrew = Perfect for when the day is hot and your standards are low.
+
+reagent-name-nanodepresso = depresso
+reagent-desc-nanodepresso = Like an espresso if it just didn't really try and let its opportunities slip it by. A drink for you.
+
+reagent-name-coftea = coftea
+reagent-desc-coftea = Invented by someone who thought the tea button was the coffee button. Or the other way around.
