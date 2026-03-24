@@ -15,6 +15,15 @@
         amount: 6
         doAfter: 3
 
+    - to: web
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: WebSilk
+        amount: 1
+        doAfter: 6
+
   # Deconstruction is down here
   - node: nest
     entity: WebNest
@@ -27,3 +36,6 @@
       steps:
       - tool: Cutting
         doAfter: 2
+
+  - node: web
+    entity: SpiderWeb

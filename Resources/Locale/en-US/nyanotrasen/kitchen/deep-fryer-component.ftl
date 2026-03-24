@@ -34,23 +34,23 @@ deep-fryer-button-remove-all-items-tooltip = Remove all of the items from the de
 
 ## DeepFriedComponent
 
-deep-fried-crispy-item = crispy {$entity}
+deep-fried-crispy-item = crispy {$baseName}
 deep-fried-crispy-item-examine = It's covered in a crispy, oily texture.
 
-deep-fried-fried-item = deep-fried {$entity}
+deep-fried-fried-item = deep-fried {$baseName}
 deep-fried-fried-item-examine = It's covered in a thick, crispy layer.
 
-deep-fried-burned-item = burned {$entity}
+deep-fried-burned-item = burned {$baseName}
 deep-fried-burned-item-examine = It's blackened with char.
 
 # Frontier: deep fryier upgrade status popup
 deep-fryier-component-upgrade-storage = Storage
 
 # Frontier: cauldron definitions
-deep-fried-spooky-item = spooky {$entity}
+deep-fried-spooky-item = spooky {$baseName}
 deep-fried-spooky-item-examine = It's slick with oil and translucent.
 
-deep-fried-spectral-item = spectral {$entity}
+deep-fried-spectral-item = spectral {$baseName}
 deep-fried-spectral-item-examine = It's oily, transparent, and unnaturally light.
 # Set reuses burned item from above
 # End Frontier

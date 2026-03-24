@@ -90,6 +90,65 @@
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
 
+- type: entity
+  name: pirate shipyard RCD
+  parent: ShipyardRCD
+  id: PirateShipyardRCD
+  description: An advanced construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
+  components:
+  - type: RCD
+    isShipyardRCD: true
+    availablePrototypes:
+    # Walls and flooring
+    - WallMining
+    - WallMiningDiagonal
+    - FloorWood
+    - FloorDark
+    - PiratePlating
+    - PirateCatwalk
+    # Windows and grilles
+    - MiningWindow
+    - MiningWindowDiagonal
+    - ClockworkGrille
+    - ClockworkGrilleDiagonal
+    # Airlocks
+    - AirlockHatchPirateLocked
+    - AirlockMiningPirateLocked
+    - AirlockMiningGlassPirateLocked
+    - AirlockShuttleSyndicatePirateLocked
+    - AirlockGlassShuttleSyndicatePirateLocked
+    # Lighting
+    - PoweredlightRed
+    - PoweredlightUltraviolet
+    - TubeLight
+    - BulbLight
+    # Electrical
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    # Deconstruct
+    - Deconstruct
+  - type: Sprite
+    sprite: _NF/Objects/Tools/pirate_shipyard_rcd.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Tools/pirate_shipyard_rcd.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: GridAccess
+  - type: RandomMetadata
+    nameSegments: [NamesPirateShipyardRCD]
+
+- type: entity
+  id: PirateShipyardRCDEmpty
+  parent: PirateShipyardRCD
+  suffix: Empty
+  components:
+    - type: LimitedCharges
+      lastCharges: -1
+
 #Other
 - type: entity
   name: the people's shovel
