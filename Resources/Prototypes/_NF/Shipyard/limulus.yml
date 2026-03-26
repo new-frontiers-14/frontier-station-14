@@ -1,0 +1,46 @@
+# Author Info
+# GitHub: Shodhans
+# Discord: ???
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Limulus
+  parent: BaseVessel
+  name: NT Limulus
+  description: A large warehouse shuttle with enough space for your construction projects.
+  price: 62000 # 47022 0.3 61128.6 
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/limulus.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+  - Engineering
+  engine:
+  - Uranium
+  - Solar
+
+- type: gameMap
+  id: Limulus
+  mapName: 'NT Limulus'
+  mapPath: /Maps/_NF/Shuttles/limulus.yml
+  minPlayers: 0
+  stations: 
+    Limulus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Limulus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
