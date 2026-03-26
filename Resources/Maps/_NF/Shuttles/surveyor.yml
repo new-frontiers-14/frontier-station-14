@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/12/2025 19:57:11
-  entityCount: 293
+  time: 01/02/2026 22:17:38
+  entityCount: 295
 maps: []
 grids:
 - 1
@@ -920,6 +920,11 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
+  - uid: 294
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 112
@@ -941,6 +946,11 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-1.5
+      parent: 1
+  - uid: 295
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
       parent: 1
 - proto: CarpetPurple
   entities:
@@ -2233,12 +2243,13 @@ entities:
     - type: Transform
       pos: 6.5,2.5
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
   - uid: 90
     components:
     - type: Transform
-      pos: 1.5,-4.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,-5.5
       parent: 1
 - proto: TableCounterMetal
   entities:

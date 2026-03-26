@@ -1,29 +1,4 @@
 # Drinks
-- type: reagent
-  id: PumpkinSpiceLatte
-  name: reagent-name-pumpkin-spice-latte
-  parent: BaseDrink
-  desc: reagent-desc-pumpkin-spice-latte
-  physicalDesc: reagent-physical-desc-aromatic
-  flavor: basic
-  color: "#a45c08"
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 2
-      - !type:AdjustReagent
-        reagent: Theobromine
-        amount: 0.05
-      - !type:AdjustReagent
-        reagent: Sugar
-        amount: 0.2
-  metamorphicSprite:
-    sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 2
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
 
 - type: reagent
   id: CucumberWater
@@ -58,6 +33,16 @@
       effects:
       - !type:SatiateThirst
         factor: 0.6
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          max: 60
+        reagent: Caffeine
+        amount: 1
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
     state: icon
@@ -273,4 +258,88 @@
     state: icon_empty
   metamorphicMaxFillLevels: 8
   metamorphicFillBaseName: fill
+  metamorphicChangeColor: false
+
+# Nanocaf drinks
+
+- type: reagent
+  parent: BaseDrink
+  id: NFBaseDrinkNanocaf
+  abstract: true
+  recognizable: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        time: 2.0
+        type: Remove
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/genericcoffeecup.rsi
+    state: icon
+
+- type: reagent
+  id: Nanocaf
+  name: reagent-name-nanocaf
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-nanocaf
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanocaf
+  color: "#664c00"
+
+- type: reagent
+  id: NanoColdBrew
+  name: reagent-name-nanocoldbrew
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-nanocoldbrew
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanocoldbrew
+  color: "#8e6d4c"
+
+- type: reagent
+  id: NanoDepresso
+  name: reagent-name-nanodepresso
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-nanodepresso
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanodepresso
+  color: "#6d6d6d"
+
+- type: reagent
+  id: NanoCoftea
+  name: reagent-name-coftea
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-coftea
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanocoftea
+  color: "#353E2E"
+
+  # Coffee drinks
+
+- type: reagent
+  id: PumpkinSpiceLatte
+  name: reagent-name-pumpkin-spice-latte
+  parent: BaseDrink
+  desc: reagent-desc-pumpkin-spice-latte
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: basic
+  color: "#a45c08"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.2
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
   metamorphicChangeColor: false

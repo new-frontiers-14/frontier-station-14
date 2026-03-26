@@ -134,7 +134,7 @@
     Runs off solid plasma sheets and is rated for up to 25 kW.
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorPacman
-  suffix: Plasma, 15 kW
+  suffix: Plasma, 20 kW #Fronter 20>15
   components:
     - type: Sprite
       layers:
@@ -158,9 +158,9 @@
       board: PortableGeneratorPacmanMachineCircuitboard
     - type: FuelGenerator
       minTargetPower: 1000
-      maxTargetPower: 25000
-      targetPower: 15000
-      optimalPower: 15000
+      maxTargetPower: 30000 #Frontier 25000<30000
+      targetPower: 20000 #Frontier 15000<20000
+      optimalPower: 20000 #Frontier 15000<20000
       # 45 minutes at max output
       optimalBurnRate: 0.011111
       # a decent curve
@@ -193,6 +193,7 @@
     # Frontier: magnet pickup, fuel adapter
     - type: MaterialStorageMagnetPickup
       range: 0.30
+      magnetEnabled: true # Frontier
     - type: FuelGradeAdapter
       conversions:
       - input: Plasma
@@ -267,6 +268,7 @@
     # Frontier: magnet pickup, fuel adapter
     - type: MaterialStorageMagnetPickup
       range: 0.30
+      magnetEnabled: true # Frontier
     - type: FuelGradeAdapter
       conversions:
       - input: Uranium

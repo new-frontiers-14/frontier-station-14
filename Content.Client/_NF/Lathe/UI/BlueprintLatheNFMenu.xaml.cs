@@ -147,7 +147,9 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
         if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
             quantity = 1;
 
-        var sortedRecipesToShow = recipesToShow.OrderBy(x => _lathe.GetRecipeName(x.recipe));
+        var sortedRecipesToShow = recipesToShow
+            .DistinctBy(x => x.recipe.ID)
+            .OrderBy(x => _lathe.GetRecipeName(x.recipe));
         if (!_entityManager.TryGetComponent(Entity, out BlueprintLatheComponent? lathe))
             return;
 

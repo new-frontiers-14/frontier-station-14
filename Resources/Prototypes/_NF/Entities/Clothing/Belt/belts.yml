@@ -1,13 +1,24 @@
 - type: entity
-  id: ClothingBeltArcadia
+  id: ClothingWebbingArcadia
   name: arcadia webbing
   parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
-  description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
+  description: Webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Belt/arcadia.rsi
+    sprite: _NF/Clothing/Belt/arcadia_webbing.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Belt/arcadia.rsi
+    sprite: _NF/Clothing/Belt/arcadia_webbing.rsi
+
+- type: entity
+  id: ClothingBeltArcadia
+  name: arcadia belt
+  parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  description: A belt created by Arcadia Industries. Seems very capable of fitting many items.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/arcadia_belt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/arcadia_belt.rsi
 
 - type: entity
   parent: NFClothingBeltStorageBase

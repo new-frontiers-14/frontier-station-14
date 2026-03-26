@@ -36,6 +36,7 @@ lathe-recipe-NFSheetPaperFromWood-name = paper (wood)
 lathe-recipe-NFSheetPaperFromCardboard-name = paper (cardboard)
 
 # Inflatables
+lathe-recipe-NFInflatableFloorStack1-name = inflatable floor
 lathe-recipe-NFInflatableWallStack1-name = inflatable wall
 lathe-recipe-NFInflatableWindowStack1-name = inflatable window
 lathe-recipe-NFInflatableDoorStack1-name = inflatable door

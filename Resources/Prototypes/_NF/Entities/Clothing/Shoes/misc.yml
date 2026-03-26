@@ -27,6 +27,29 @@
           False: {state: icon}
 
 - type: entity
+  parent: [ClothingShoesBase, BaseJetpack]
+  id: NFClothingShoesBootsJetpack
+  name: rocket boots
+  description: A jetpack strapped to a pair of fur boots to allow you to fly in space with style and flourish!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 0.75
+  - type: Item
+    size: Normal
+    sprite: null
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          False: {state: icon}
+
+- type: entity
   id: ActionToggleMoonBoots
   parent: BaseToggleAction
   name: Toggle Moon Boots

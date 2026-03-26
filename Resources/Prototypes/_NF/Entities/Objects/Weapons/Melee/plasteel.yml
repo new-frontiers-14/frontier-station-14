@@ -1,0 +1,117 @@
+- type: entity
+  name: plasteel mace
+  parent: [BaseC1Contraband, Truncheon]
+  id: PlasteelMace
+  description: It's a lightweight stick with a spikey bit. It would probably be better if it was a heavy stick with a spikey bit.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_mace.rsi
+    state: icon
+  - type: MeleeWeapon
+    autoAttack: true
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 10
+        Structural: 10
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_mace.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+
+- type: entity
+  name: plasteel epee
+  parent: [BaseC1Contraband, BaseSword]
+  id: PlasteelEpee
+  description: You find yourself wondering if anyone else remembers Nidhogg.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_epee.rsi
+    layers:
+    - state: icon
+    - state: icon1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 2
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 15
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_epee.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+  - type: Tag
+    tags:
+    - Sheathable
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 1
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: icon
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 1
+    equippedFillBaseName: -fill-
+    equippedMaxFillLevels: 1
+
+- type: entity
+  name: plasteel axe
+  parent: [BaseC1Contraband, Truncheon]
+  id: PlasteelAxe
+  description: Probably no good at doing axe things but it's a much better conversation starter than a knife.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_axe.rsi
+    state: icon
+  - type: Sharp
+  - type: Execution
+  - type: MeleeWeapon  
+    autoAttack: true
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Slash: 15
+  - type: Prying
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_axe.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+
+- type: entity
+  name: plasteel spear
+  parent: [BaseC1Contraband, SpearReinforced]
+  id: PlasteelSpear
+  description: It features a blade that can be coated in deadly poison. Or coffee. Or anything really. It's very coatable. Somehow worse than glass tied to a stick.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/plasteel_spear.rsi
+    state: spear
+  - type: MeleeWeapon
+    autoAttack: true
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/plasteel_spear.rsi

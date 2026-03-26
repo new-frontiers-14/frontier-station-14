@@ -56,6 +56,7 @@ public sealed partial class PlayerPanel : FancyWindow
         LogsButton.OnPressed += _ => OnLogs?.Invoke();
         DeleteButton.OnPressed += _ => OnDelete?.Invoke();
         RejuvenateButton.OnPressed += _ => OnRejuvenate?.Invoke();
+        JobWhitelistsButton.OnPressed += _ => OnOpenJobWhitelists?.Invoke(TargetPlayer); // DeltaV
     }
 
     public void SetUsername(string player)

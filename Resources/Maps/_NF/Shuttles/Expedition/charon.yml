@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/06/2025 17:59:55
+  time: 01/17/2026 04:49:55
   entityCount: 1182
 maps: []
 grids:
@@ -625,7 +625,7 @@ entities:
             2: 2
             0: 19520
           -4,-2:
-            0: 2
+            1: 2
             2: 1088
           -4,-4:
             2: 18432
@@ -666,7 +666,7 @@ entities:
             2: 4
           1,-2:
             2: 544
-            0: 4
+            1: 4
           -1,-5:
             1: 3840
           -2,-5:
@@ -1155,6 +1155,16 @@ entities:
     components:
     - type: Transform
       pos: -6.5,12.5
+      parent: 1
+  - uid: 977
+    components:
+    - type: Transform
+      pos: -14.5,-7.5
+      parent: 1
+  - uid: 978
+    components:
+    - type: Transform
+      pos: 6.5,-7.5
       parent: 1
   - uid: 1006
     components:
@@ -2215,11 +2225,6 @@ entities:
     - type: Transform
       pos: -7.5,-0.5
       parent: 1
-  - uid: 506
-    components:
-    - type: Transform
-      pos: -7.5,0.5
-      parent: 1
 - proto: CableMV
   entities:
   - uid: 149
@@ -2632,6 +2637,13 @@ entities:
     components:
     - type: Transform
       pos: 1.3028102,-1.328778
+      parent: 1
+- proto: CargoTechFabNF
+  entities:
+  - uid: 945
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
       parent: 1
 - proto: CarpetPurple
   entities:
@@ -3593,13 +3605,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -12.5,9.5
       parent: 1
-- proto: CircuitImprinter
-  entities:
-  - uid: 591
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 1
 - proto: ClosetWallFireFilledRandom
   entities:
   - uid: 417
@@ -3608,30 +3613,30 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,5.5
       parent: 1
-- proto: ClosetWallO2N2FilledRandom
+- proto: ClosetWallO2N2Filled
   entities:
-  - uid: 135
+  - uid: 140
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,10.5
       parent: 1
-  - uid: 140
+  - uid: 450
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -12.5,-7.5
+      pos: -13.5,4.5
       parent: 1
+  - uid: 452
+    components:
+    - type: Transform
+      pos: 5.5,4.5
+      parent: 1
+- proto: ClosetWallO2N2FilledRandom
+  entities:
   - uid: 1129
     components:
     - type: Transform
       pos: -7.5,4.5
-      parent: 1
-  - uid: 1134
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-8.5
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -3648,14 +3653,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -13.5,11.5
-      parent: 1
-- proto: ComputerTabletopRadar
-  entities:
-  - uid: 945
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -9.5,-2.5
       parent: 1
 - proto: ComputerTabletopSalvageExpedition
   entities:
@@ -3694,6 +3691,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,10.5
+      parent: 1
+- proto: ComputerWallmountRadar
+  entities:
+  - uid: 135
+    components:
+    - type: Transform
+      pos: -2.5,-4.5
       parent: 1
 - proto: ComputerWallmountWithdrawBankATM
   entities:
@@ -3965,13 +3969,6 @@ entities:
       parent: 1
     - type: Battery
       startingCharge: 30000
-- proto: EngineeringTechFab
-  entities:
-  - uid: 978
-    components:
-    - type: Transform
-      pos: 3.5,-7.5
-      parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 446
@@ -3979,16 +3976,11 @@ entities:
     - type: Transform
       pos: -6.5,7.5
       parent: 1
-  - uid: 450
-    components:
-    - type: Transform
-      pos: -12.5,-8.5
-      parent: 1
-  - uid: 458
+  - uid: 1134
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.5,-7.5
+      pos: -12.5,-7.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -5781,13 +5773,6 @@ entities:
     - type: Transform
       pos: -2.5,11.5
       parent: 1
-- proto: LockerSalvageSpecialistFilled
-  entities:
-  - uid: 593
-    components:
-    - type: Transform
-      pos: -9.5,-1.5
-      parent: 1
 - proto: LockerWallColorCaptain
   entities:
   - uid: 111
@@ -5810,20 +5795,32 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,6.5
       parent: 1
-- proto: LockerWallColorGenericBlack
-  entities:
-  - uid: 452
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -10.5,-14.5
-      parent: 1
 - proto: LockerWallColorGenericBlue
   entities:
   - uid: 136
     components:
     - type: Transform
       pos: -6.5,11.5
+      parent: 1
+- proto: LockerWallEVAColorCargoFilled
+  entities:
+  - uid: 506
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-8.5
+      parent: 1
+  - uid: 593
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -12.5,-8.5
+      parent: 1
+  - uid: 679
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,-14.5
       parent: 1
 - proto: LockerWallMaterialsFuelAmeJarFilled
   entities:
@@ -5835,10 +5832,10 @@ entities:
       parent: 1
 - proto: MercenaryTechFab
   entities:
-  - uid: 1180
+  - uid: 597
     components:
     - type: Transform
-      pos: 3.5,-8.5
+      pos: -9.5,-0.5
       parent: 1
 - proto: MicroManipulatorStockPart
   entities:
@@ -6440,13 +6437,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,13.5
       parent: 1
-- proto: SalvageTechfabNF
-  entities:
-  - uid: 977
-    components:
-    - type: Transform
-      pos: -11.5,-8.5
-      parent: 1
 - proto: Screwdriver
   entities:
   - uid: 1035
@@ -6921,17 +6911,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -13.5,-9.5
       parent: 1
+- proto: SpawnMechEMU
+  entities:
+  - uid: 1180
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-7.5
+      parent: 1
 - proto: SpawnPointLatejoin
   entities:
-  - uid: 1065
+  - uid: 591
     components:
     - type: Transform
-      pos: -5.5,6.5
-      parent: 1
-  - uid: 1069
-    components:
-    - type: Transform
-      pos: -3.5,6.5
+      pos: -11.5,9.5
       parent: 1
   - uid: 1070
     components:
@@ -6961,13 +6954,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-2.5
-      parent: 1
-- proto: SuitStorageSalv
-  entities:
-  - uid: 597
-    components:
-    - type: Transform
-      pos: -9.5,-0.5
       parent: 1
 - proto: SurveillanceCameraAssembly
   entities:
@@ -7034,6 +7020,16 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
+  - uid: 1065
+    components:
+    - type: Transform
+      pos: -9.5,-1.5
+      parent: 1
+  - uid: 1069
+    components:
+    - type: Transform
+      pos: -9.5,-2.5
+      parent: 1
   - uid: 1178
     components:
     - type: Transform
@@ -7065,12 +7061,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -13.5,11.5
-      parent: 1
-  - uid: 679
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -9.5,-2.5
       parent: 1
   - uid: 693
     components:
@@ -8384,6 +8374,14 @@ entities:
     components:
     - type: Transform
       pos: -2.5,6.5
+      parent: 1
+- proto: WallWeaponCapacitorRecharger
+  entities:
+  - uid: 458
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-7.5
       parent: 1
 - proto: WarpPoint
   entities:

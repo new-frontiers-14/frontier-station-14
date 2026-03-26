@@ -1,5 +1,5 @@
 - type: entity
-  name: Wet floor sign box
+  name: wet floor sign box
   parent: BoxCardboard
   id: BoxWetFloorSign
   description: A box of wet floor signs. Happy janitor noises.
@@ -21,7 +21,7 @@
 #      - state: wet_floor_sign
 
 - type: entity
-  name: Paper box
+  name: paper box
   parent: BoxCardboard
   id: BoxPaper
   description: A box full of papers.
@@ -45,7 +45,7 @@
     price: 10
 
 - type: entity
-  name: Office paper box
+  name: office paper box
   parent: BoxPaper
   id: BoxPaperOffice
   description: A box full of papers.
@@ -56,7 +56,7 @@
         amount: 10
 
 - type: entity
-  name: Captains thoughts paper box
+  name: captains thoughts paper box
   parent: BoxPaper
   id: BoxPaperCaptainsThoughts
   description: A box full of papers.
@@ -86,7 +86,7 @@
         - id: PaperColoredPurple
     - type: StaticPrice
       vendPrice: 600
-          
+
 - type: entity
   name: mystery spacemen minifigure bulk box
   parent: BoxCardboard
@@ -111,7 +111,7 @@
     vendPrice: 1200
 
 - type: entity
-  name: Thruster upgrade kit
+  name: thruster upgrade kit
   parent: BoxCardboard
   id: BoxT3SuperCapacitor
   description: A box of super capacitors.
@@ -260,3 +260,21 @@
   - type: Tag
     tags:
       - DroneUsable
+
+- type: entity
+  name: pirate shipyard RCD box
+  parent: BoxCardboard
+  id: BoxPirateShipyardRCD
+  description: A box containing a brand new pirate shipyard RCD. With two extra compressed matter cartrides included for free!
+  components:
+  - type: Storage
+    maxItemSize: Normal
+  - type: StorageFill
+    contents:
+      - id: PirateShipyardRCD
+        amount: 1
+      - id: ShipyardRCDAmmo
+        amount: 2
+  - type: Sprite
+    layers:
+      - state: box

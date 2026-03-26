@@ -52,6 +52,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_engineer
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: engineer
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: engineer-equipped-HELMET
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieEngineer
@@ -68,6 +80,15 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieConstruction
+
+- type: entity
+  parent: [PlushieLizard, BaseHandheldInstrument]
+  id: NFPlushieLizardMusician #Weh!
+  name: squeaky lizard plushie
+  components:
+  - type: Instrument
+    program: 1
+    bank: 101
 
 - type: entity
   parent: PlushieLizard
@@ -932,6 +953,9 @@
     sound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_2.ogg
   - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_NF/Voice/Goblin/goblin_scream_1.ogg

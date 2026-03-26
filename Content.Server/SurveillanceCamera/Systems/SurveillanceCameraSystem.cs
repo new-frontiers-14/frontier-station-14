@@ -6,6 +6,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Power;
 using Content.Shared.SurveillanceCamera;
 using Content.Shared.Verbs;
@@ -64,6 +65,8 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         SubscribeLocalEvent<SurveillanceCameraComponent, SurveillanceCameraSetupSetName>(OnSetName);
         SubscribeLocalEvent<SurveillanceCameraComponent, SurveillanceCameraSetupSetNetwork>(OnSetNetwork);
         SubscribeLocalEvent<SurveillanceCameraComponent, GetVerbsEvent<AlternativeVerb>>(AddVerbs);
+        SubscribeLocalEvent<SurveillanceCameraComponent, MapInitEvent>(OnMapInit); // Frontier - togglable body cameras
+        SubscribeLocalEvent<SurveillanceCameraComponent, ItemToggledEvent>(OnToggled); // Frontier - togglable body cameras
 
         //SubscribeLocalEvent<SurveillanceCameraComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
         //SubscribeLocalEvent<SurveillanceCameraComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved); // Frontier: Upstream - #28984
@@ -161,6 +164,21 @@ public sealed class SurveillanceCameraSystem : EntitySystem
     {
         Deactivate(camera, component);
     }
+
+    // Frontier - Toggleable body cameras
+    private void OnMapInit(Entity<SurveillanceCameraComponent> ent, ref MapInitEvent args)
+    {
+        if (!TryComp<ItemToggleComponent>(ent, out var toggle))
+            return;
+
+        SetActive(ent, toggle.Activated, ent.Comp);
+    }
+
+    private void OnToggled(Entity<SurveillanceCameraComponent> ent, ref ItemToggledEvent args)
+    {
+        SetActive(ent, args.Activated, ent.Comp);
+    }
+    // End Frontier
 
     private void OnSetName(EntityUid uid, SurveillanceCameraComponent component, SurveillanceCameraSetupSetName args)
     {
