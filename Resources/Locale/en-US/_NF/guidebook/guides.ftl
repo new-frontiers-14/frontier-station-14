@@ -89,6 +89,7 @@ guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern-mk2 = Lantern Mk2
 guide-entry-shipyard-stringer = Stringer
 guide-entry-shipyard-stronghold = Stronghold
+guide-entry-shipyard-limulus = Limulus
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-lyrae = Lyrae
