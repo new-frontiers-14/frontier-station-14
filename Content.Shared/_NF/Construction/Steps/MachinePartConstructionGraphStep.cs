@@ -5,13 +5,39 @@ using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 
+/* Mostly duplicated code from "Content/Shared/Construction/Steps/MaterialConstructionGraphStep.cs" but checking
+ * for machine part type instead of material.
+ * Done so to left upstream code mostly untouched for easier future maintenance.
+ */
+
 namespace Content.Shared.Construction.Steps // NOTE: currently exists under base namespace.
 {
     [DataDefinition]
-    public sealed partial class MachinePartConstructionGraphStep : BaseStackConstructionGraphStep
+    public sealed partial class MachinePartConstructionGraphStep : EntityInsertConstructionGraphStep
     {
         [DataField("part", required:true)]
         public ProtoId<MachinePartPrototype> PartPrototypeId { get; private set; }
+        [DataField] public int Amount { get; private set; } = 1;
+
+        public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
+        {
+            if (!entityManager.TryGetComponent(uid, out StackComponent? stack) || stack.Count < Amount)
+                return false;
+
+            return entityManager.TryGetComponent(uid, out MachinePartComponent? part) && part.PartType == PartPrototypeId;
+        }
+
+        public bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack)
+        {
+            stack = null;
+            if (IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out MachinePartComponent? part) && part.PartType != PartPrototypeId
+                && IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) && otherStack.Count >= Amount)
+            {
+                stack = otherStack;
+            }
+
+            return stack != null;
+        }
 
         public override void DoExamine(ExaminedEvent examinedEvent)
         {
@@ -19,24 +45,6 @@ namespace Content.Shared.Construction.Steps // NOTE: currently exists under base
             var partName = Loc.GetString(part.ID, ("amount", Amount));
 
             examinedEvent.PushMarkup(Loc.GetString("construction-insert-material-entity", ("amount", Amount), ("materialName", partName)));
-        }
-
-        public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
-        {
-            if (!entityManager.TryGetComponent(uid, out MachinePartComponent? part) || part.PartType != PartPrototypeId)
-                return false;
-            return base.EntityValid(uid, entityManager, compFactory);
-        }
-
-        public override bool EntityValid(EntityUid uid, [NotNullWhen(true)] out StackComponent? stack)
-        {
-            if (!IoCManager.Resolve<IEntityManager>().TryGetComponent(uid, out MachinePartComponent? part) || part.PartType != PartPrototypeId)
-            {
-                stack = null;
-                return false;
-            }
-
-            return base.EntityValid(uid, out stack);
         }
 
         public override ConstructionGuideEntry GenerateGuideEntry()

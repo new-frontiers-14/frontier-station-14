@@ -176,10 +176,10 @@ namespace Content.Server.Construction
 
                 switch (step)
                 {
-                    case BaseStackConstructionGraphStep stackStep: //Frontier: MaterialConstructionGraphStep<BaseStackConstructionGraphStep
+                    case MaterialConstructionGraphStep materialStep:
                         foreach (var entity in EnumerateNearby(user))
                         {
-                            if (!stackStep.EntityValid(entity, out var stack)) //Frontier: materialStep<stackStep
+                            if (!materialStep.EntityValid(entity, out var stack))
                                 continue;
 
                             if (used.Contains(entity))
@@ -187,17 +187,17 @@ namespace Content.Server.Construction
 
                             // TODO allow taking from several stacks.
                             // Also update crafting steps to check if it works.
-                            var splitStack = _stackSystem.Split(entity, stackStep.Amount, user.ToCoordinates(0, 0), stack); //Frontier: materialStep<stackStep
+                            var splitStack = _stackSystem.Split(entity, materialStep.Amount, user.ToCoordinates(0, 0), stack);
 
                             if (splitStack == null)
                                 continue;
 
-                            if (string.IsNullOrEmpty(stackStep.Store)) //Frontier: materialStep<stackStep
+                            if (string.IsNullOrEmpty(materialStep.Store))
                             {
                                 if (!_container.Insert(splitStack.Value, container))
                                     continue;
                             }
-                            else if (!_container.Insert(splitStack.Value, GetContainer(stackStep.Store))) //Frontier: materialStep<stackStep
+                            else if (!_container.Insert(splitStack.Value, GetContainer(materialStep.Store)))
                                 continue;
 
                             handled = true;
@@ -205,6 +205,38 @@ namespace Content.Server.Construction
                         }
 
                         break;
+
+                    //Frontier : duplicated code to handle initial construction using machine part stacks instead of material ones
+                    case MachinePartConstructionGraphStep machinePartStep:
+                        foreach (var entity in EnumerateNearby(user))
+                        {
+                            if (!machinePartStep.EntityValid(entity, out var stack))
+                                continue;
+
+                            if (used.Contains(entity))
+                                continue;
+
+                            // TODO allow taking from several stacks.
+                            // Also update crafting steps to check if it works.
+                            var splitStack = _stackSystem.Split(entity, machinePartStep.Amount, user.ToCoordinates(0, 0), stack);
+
+                            if (splitStack == null)
+                                continue;
+
+                            if (string.IsNullOrEmpty(machinePartStep.Store))
+                            {
+                                if (!_container.Insert(splitStack.Value, container))
+                                    continue;
+                            }
+                            else if (!_container.Insert(splitStack.Value, GetContainer(machinePartStep.Store)))
+                                continue;
+
+                            handled = true;
+                            break;
+                        }
+
+                        break;
+                    //End Frontier
 
                     case ArbitraryInsertConstructionGraphStep arbitraryStep:
                         foreach (var entity in new HashSet<EntityUid>(EnumerateNearby(user)))

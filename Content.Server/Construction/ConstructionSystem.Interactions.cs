@@ -313,13 +313,23 @@ namespace Content.Server.Construction
 
                     // Material steps, which use stacks, are handled specially. Instead of inserting the whole item,
                     // we split the stack in two and insert the split stack.
-                    if (insertStep is BaseStackConstructionGraphStep materialInsertStep) //Frontier: MaterialConstructionGraphStep<BaseStackConstructionGraphStep
+                    if (insertStep is MaterialConstructionGraphStep materialInsertStep)
                     {
                         if (_stackSystem.Split(insert, materialInsertStep.Amount, Transform(interactUsing.User).Coordinates) is not {} stack)
                             return HandleResult.False;
 
                         insert = stack;
                     }
+
+                    //Frontier : duplicated code to handle machine part stacks separately, so we can check part type instead of material
+                    if (insertStep is MachinePartConstructionGraphStep partInsertStep)
+                    {
+                        if (_stackSystem.Split(insert, partInsertStep.Amount, Transform(interactUsing.User).Coordinates) is not { } stack)
+                            return HandleResult.False;
+
+                        insert = stack;
+                    }
+                    //End Frontier
 
                     // Container-storage handling.
                     if (!string.IsNullOrEmpty(insertStep.Store))
