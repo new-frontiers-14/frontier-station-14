@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Content.Shared.Construction.Steps // NOTE: currently exists under base namespace.
 {
     [DataDefinition]
-    public sealed partial class MachinePartConstructionGraphStep : StackInvolvingConstructionGraphStep
+    public sealed partial class MachinePartConstructionGraphStep : BaseStackConstructionGraphStep
     {
         [DataField("part", required:true)]
         public ProtoId<MachinePartPrototype> PartPrototypeId { get; private set; }

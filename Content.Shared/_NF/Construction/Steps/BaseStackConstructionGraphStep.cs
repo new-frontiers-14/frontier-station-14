@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Construction.Steps // NOTE: currently exists under base namespace.
 {
-    public abstract partial class StackInvolvingConstructionGraphStep : EntityInsertConstructionGraphStep
+    public abstract partial class BaseStackConstructionGraphStep : EntityInsertConstructionGraphStep
     {
 
         [DataField] public int Amount { get; private set; } = 1;

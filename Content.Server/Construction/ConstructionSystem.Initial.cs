@@ -176,10 +176,10 @@ namespace Content.Server.Construction
 
                 switch (step)
                 {
-                    case StackInvolvingConstructionGraphStep stackInvolvingStep: //Frontier: MaterialConstructionGraphStep<StackInvolvingConstructionGraphStep
+                    case BaseStackConstructionGraphStep stackStep: //Frontier: MaterialConstructionGraphStep<BaseStackConstructionGraphStep
                         foreach (var entity in EnumerateNearby(user))
                         {
-                            if (!stackInvolvingStep.EntityValid(entity, out var stack)) //Frontier: materialStep<stackInvolvingStep
+                            if (!stackStep.EntityValid(entity, out var stack)) //Frontier: materialStep<stackStep
                                 continue;
 
                             if (used.Contains(entity))
@@ -187,17 +187,17 @@ namespace Content.Server.Construction
 
                             // TODO allow taking from several stacks.
                             // Also update crafting steps to check if it works.
-                            var splitStack = _stackSystem.Split(entity, stackInvolvingStep.Amount, user.ToCoordinates(0, 0), stack); //Frontier: materialStep<stackInvolvingStep
+                            var splitStack = _stackSystem.Split(entity, stackStep.Amount, user.ToCoordinates(0, 0), stack); //Frontier: materialStep<stackStep
 
                             if (splitStack == null)
                                 continue;
 
-                            if (string.IsNullOrEmpty(stackInvolvingStep.Store)) //Frontier: materialStep<stackInvolvingStep
+                            if (string.IsNullOrEmpty(stackStep.Store)) //Frontier: materialStep<stackStep
                             {
                                 if (!_container.Insert(splitStack.Value, container))
                                     continue;
                             }
-                            else if (!_container.Insert(splitStack.Value, GetContainer(stackInvolvingStep.Store))) //Frontier: materialStep<stackInvolvingStep
+                            else if (!_container.Insert(splitStack.Value, GetContainer(stackStep.Store))) //Frontier: materialStep<stackStep
                                 continue;
 
                             handled = true;

@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Content.Shared.Construction.Steps
 {
     [DataDefinition]
-    public sealed partial class MaterialConstructionGraphStep : StackInvolvingConstructionGraphStep //Frontier: EntityInsertConstructionGraphStep<StackInvolvingConstructionGraphStep
+    public sealed partial class MaterialConstructionGraphStep : BaseStackConstructionGraphStep //Frontier: EntityInsertConstructionGraphStep<BaseStackConstructionGraphStep
     {
         // TODO: Make this use the material system.
         // TODO TODO: Make the material system not shit.
