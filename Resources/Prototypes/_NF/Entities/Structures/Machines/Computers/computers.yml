@@ -103,6 +103,33 @@
     mod: 0.50
 
 - type: entity
+  parent: ComputerPalletConsoleNFLowMarket
+  id: ComputerPalletConsoleNFBlackMarket
+  name: hijacked sale computer
+  description: Used to sell goods loaded onto cargo pallets. This one's buyer location looks like it's been tampered with.
+  suffix: Black Market
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_scrap
+    - map: ["computerLayerKeyboard"]
+      state: scrap_keyboard
+    - map: ["computerLayerScreen"]
+      state: transfer
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: WhitelistedMarketModifier
+    mod: 1.50
+    description: whitelisted-market-modifier-desc-contraband
+    whitelist:
+      tags:
+      - BlackMarketBonus
+
+- type: entity
   name: contraband exchange computer
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerContrabandPalletConsole

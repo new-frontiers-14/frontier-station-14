@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: TheSecondLord
+# Discord: @livelaughlord
+
+# Maintainer Info
+# GitHub: TheSecondLord
+# Discord: @livelaughlord
+
+# Notes:
+# Far away, derelict depot that provides bonuses to sold contraband
+- type: pointOfInterest
+  id: CraterDepot
+  parent: BasePOI
+  name: 'Crater Depot'
+  minimumDistance: 7000
+  maximumDistance: 8000
+  spawnGroup: Required
+  gridPath: /Maps/_NF/POI/craterdepot.yml
+  addComponents:
+  - type: IFF
+    color: "#37C837"
+
+- type: gameMap
+  id: CraterDepot
+  mapName: 'Crater Depot'
+  mapPath: /Maps/_NF/POI/craterdepot.yml
+  minPlayers: 0
+  stations:
+    CraterDepot:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Crater Depot'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt
