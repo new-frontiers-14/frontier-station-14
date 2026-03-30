@@ -98,4 +98,22 @@
     nameLocId: pirate-borg-id-chip-owner-name-job-title-text
     fullNameLocId: pirate-borg-id-chip-owner-full-name-job-title-text
 
+# Xorg Chips - Frontier
+
+- type: entity
+  parent: BaseIdChip
+  id: IdChipXenoborg
+  suffix: Xenoborg
+  description: Resembles an identification chip. It pulses and shifts, as if it was alive, yet it's cold and clearly has no organic material. Seems to pulse faster near silicons, almost yearning to be slotted into one.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Specific/Robotics/xenoborg_id_chip.rsi
+  - type: Access
+    tags:
+    - Xenoborg
+  - type: IdCard
+    fullName: Xenoborg
+    nameLocId: xenoborg-id-chip-owner-name-job-title-text
+    fullNameLocId: xenoborg-id-chip-owner-full-name-job-title-text
+
 # Frontier end
