@@ -31,17 +31,12 @@
   components:
   - type: NPCRetaliation
     attackMemoryLength: 90
-  - type: Advertise
-    pack: goblinbanechatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
   - type: Bloodstream
     bloodReagent: Bleach
     chemicalMaxVolume: 100
   - type: NpcFactionMember
     factions:
-    - GoblinbaneFaction
+    - NanoTrasen
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg
@@ -111,15 +106,6 @@
     radius: 1.4
     energy: 1.2
     color: "#ff0000"
-  # Ghost role stuff
-  - type: GhostRole
-    allowMovement: true
-    name: ghost-role-information-goblinbane-name
-    description: ghost-role-information-goblinbane-description
-    rules: ghost-role-information-goblinbane-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   # Radar console (helps locating goblins and such)
   - type: UserInterface
     interfaces:
@@ -135,17 +121,6 @@
     hideCoords: true
   - type: ComplexInteraction
   # Abilities
-  - type: Devourer
-    foodPreference: Humanoid
-    shouldStoreDevoured: true
-    chemical: Ichor
-    healRate: 15.0
-    whitelist:
-      components:
-      - Goblin
-      - Door
-      tags:
-      - Wall
   - type: ActionGun
     action: ActionSpawnCleanlinessDimensionPortal
     gunProto: CleanlinessDimensionPortalGun
@@ -253,12 +228,3 @@
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10
-  # Ghost role stuff
-  - type: GhostRole
-    allowMovement: true
-    name: ghost-role-information-goblinbane-ghost-name
-    description: ghost-role-information-goblinbane-description
-    rules: ghost-role-information-goblinbane-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable

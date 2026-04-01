@@ -1,0 +1,117 @@
+- type: entity
+  parent: BaseMobHuman
+  name: Urist McGoblinbane
+  id: MobGoblinbaneBase
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: Goblinbane
+  - type: Hunger
+  - type: Thirst
+  - type: Speech
+    speechSounds: Alto
+  - type: Bloodstream
+    bloodReagent: Bleach
+    chemicalMaxVolume: 100
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive_unshaded
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Stamina
+    critThreshold: 400
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobMemeGoblinbaneGhost:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 12
+        Structural: 20
+    animation: WeaponArcBite
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 4
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    color: "#ff0000"
+  # Radar console (helps locating goblins and such)
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction
+  # Abilities
+  - type: ActionGun
+    action: ActionSpawnCleanlinessDimensionPortal
+    gunProto: CleanlinessDimensionPortalGun
+  - type: Rummager # DeltaV Code
+
+- type: entity
+  save: false
+  name: Urist McGoblinbane
+  parent: MobHumanDummy
+  id: MobGoblinbaneDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy goblinbane meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Goblinbane

@@ -7,14 +7,9 @@
   components:
   - type: HTN
     rootTask:
-       task: MeleeFollowerCompound
-  - type: NPCImprintingOnSpawnBehaviour
-    whitelist:
-      components:
-      - Devourer
-  - type: NpcFactionMember
+       task: MoproachCompound
     factions:
-    - GoblinbaneProvokedFaction
+    - NanoTrasen
   - type: Bloodstream
     bloodReagent: Mopwata
     chemicalMaxVolume: 100
@@ -80,14 +75,10 @@
   components:
   - type: HTN
     rootTask:
-       task: RangedFollowerCompound
-  - type: NPCImprintingOnSpawnBehaviour
-    whitelist:
-      components:
-      - Devourer
+       task: MoproachCompound
   - type: NpcFactionMember
     factions:
-    - GoblinbaneProvokedFaction
+    - NanoTrasen
   - type: Bloodstream
     bloodReagent: SpaceCleaner
     chemicalMaxVolume: 50
@@ -155,14 +146,10 @@
   components:
   - type: HTN
     rootTask:
-       task: MeleeFollowerCompound
-  - type: NPCImprintingOnSpawnBehaviour
-    whitelist:
-      components:
-      - Devourer
+       task: MoproachCompound
   - type: NpcFactionMember
     factions:
-    - GoblinbaneProvokedFaction
+    - NanoTrasen
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Meme/goblinbane.rsi
@@ -225,7 +212,7 @@
   components:
   - type: NpcFactionMember
     factions:
-    - GoblinbaneProvokedFaction
+    - NanoTrasen
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -275,7 +262,7 @@
   id: CleanlinessDimensionPortal
   name: cleanliness dimension portal
   parent: MopBucketDimnsionPortal
-  description: A portal to the dimension of utter cleanliness. No goblins allowed.
+  description: A portal to the dimension of utter cleanliness.
   components:
   - type: TimedSpawner
     prototypes:
