@@ -82,6 +82,31 @@
   equipment:
     belt: ClothingBeltSalvageWebbingFilledNF
 
+- type: loadout
+  id: ContractorTrashBagBlue
+  price: 500
+  equipment:
+    belt: TrashBagBlue
+  groupBy: "TrashBag"
+
+- type: loadout
+  id: ContractorTrashBag
+  price: 500
+  equipment:
+    belt: TrashBag
+  groupBy: "TrashBag"
+
+- type: loadout
+  id: ContractorTrashBagBlueFilledTrash
+  name: trash bag (filled, trash)
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFIsGoblin
+  price: 1500
+  equipment:
+    belt: NFTrashBagBlueFilledTrash
+  groupBy: "TrashBag"
+
 #T1
 - type: loadout
   id: ContractorBoxFolderClipboard
