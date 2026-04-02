@@ -126,11 +126,20 @@
     gunProto: CleanlinessDimensionPortalGun
 
 - type: entity
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   id: ActionSpawnCleanlinessDimensionPortal
   name: "[color=orange]Open Cleanliness Portal[/color]"
   description: "A portal to the dimension of utter cleanliness. No goblins allowed. The ability has [color=yellow]60 second cooldown.[/color]"
   components:
+  - type: Action
+    icon: { sprite : _NF/Mobs/Meme/goblinbane.rsi, state: bucket_portal }
+    itemIconStyle: BigAction
+    priority: 2
+    useDelay: 60
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
 

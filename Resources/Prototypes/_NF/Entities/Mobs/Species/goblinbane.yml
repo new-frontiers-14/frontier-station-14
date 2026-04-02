@@ -40,6 +40,11 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: alive_unshaded
       shader: unshaded
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
   - type: DamageStateVisuals
     states:
       Alive:
@@ -115,3 +120,12 @@
   components:
   - type: HumanoidAppearance
     species: Goblinbane
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive_unshaded
+      shader: unshaded
