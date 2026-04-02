@@ -1307,6 +1307,9 @@
   id: ClothingHandsGlovesColorYellow
   parent: NFBaseBootRecipe
   result: ClothingHandsGlovesColorYellow
+  categories:
+  - ClothesNF
+  - Tools
 
 # region Boots
 - type: latheRecipe
@@ -1396,15 +1399,12 @@
   result: ClothingEyesEyepatch
 
 - type: latheRecipe
-  id: ClothingEyesGlassesMeson
-  categories:
-  - Clothing
+  parent: NFBaseWearableDeviceRecipe
+  id: NFClothingEyesGlassesMeson
   result: ClothingEyesGlassesMeson
-  completetime: 2
-  materials:
-    Steel: 200
-    Plastic: 300
-    Glass: 500
+  categories:
+  - ClothesNF
+  - Tools
 
 # region Wallets
 - type: latheRecipe
