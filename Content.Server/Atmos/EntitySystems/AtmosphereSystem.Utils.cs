@@ -5,6 +5,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
 using Content.Shared.Shuttles.Components; // Frontier
+using Content.Shared._NF.Atmos.Components; // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
@@ -127,7 +128,7 @@ public partial class AtmosphereSystem
         if (!TryComp<MapComponent>(mapUid, out var mapComp))
             return false;
 
-        return AllowMapGasExtraction || HasComp<FTLMapComponent>(mapUid) || mapComp.MapId == _gameTicker.DefaultMap;
+        return AllowMapGasExtraction || mapComp.MapId == _gameTicker.DefaultMap || HasComp<AtmosEnabledMapComponent>(mapUid);
     }
     // End Frontier: disable atmos off maps
 }

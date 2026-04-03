@@ -1435,6 +1435,10 @@
     - mining
     - miningB
   - type: Appearance
+  - type: RCDDeconstructable # Frontier
+    cost: 6 # Frontier
+    delay: 8 # Frontier
+    fx: EffectRCDDeconstruct8 # Frontier
 
 - type: entity
   parent: WallDiagonalBase
@@ -1477,7 +1481,9 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: RCDDeconstructable # Frontier
-    deconstructable: false # Frontier
+    cost: 6 # Frontier
+    delay: 8 # Frontier
+    fx: EffectRCDDeconstruct8 # Frontier
 
 
 # Vault Walls

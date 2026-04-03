@@ -82,6 +82,15 @@
       CottonBurger: NFPlushieConstruction
 
 - type: entity
+  parent: [PlushieLizard, BaseHandheldInstrument]
+  id: NFPlushieLizardMusician #Weh!
+  name: squeaky lizard plushie
+  components:
+  - type: Instrument
+    program: 1
+    bank: 101
+
+- type: entity
   parent: PlushieLizard
   id: NFPlushieCmo #Weh!
   name: chief medical officer plushie
@@ -944,6 +953,9 @@
     sound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_2.ogg
   - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_NF/Voice/Goblin/goblin_scream_1.ogg

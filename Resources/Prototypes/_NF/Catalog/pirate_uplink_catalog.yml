@@ -1,7 +1,7 @@
 - type: listing
-  id: UplinkPirateHardsuit
-  name:  uplink-pirate-hardsuit-name
-  description: uplink-pirate-hardsuit-desc
+  id: UplinkPirateEVASuit
+  name:  uplink-pirate-EVA-name
+  description: uplink-pirate-EVA-desc
   productEntity: ClothingOuterEVASuitPirate
   icon: { sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi, state: icon }
   cost:
@@ -70,6 +70,22 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateWoodenKegRum
+  name:  uplink-pirate-wooden-keg-rum-name
+  description: uplink-pirate-wooden-keg-rum-desc
+  productEntity: WoodenKegRum
+  icon: { sprite: _DV/Objects/Storage/keg.rsi, state: base }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
 
 - type: listing
   id: UplinkPirateCrateFilled
@@ -557,3 +573,19 @@
       whitelist:
         tags:
           - PirateUplink
+
+- type: listing
+  id: UplinkPiratePirateShipyardRCD
+  name: uplink-pirate-shipyard-rcd-name
+  description: uplink-pirate-shipyard-rcd-desc
+  productEntity: BoxPirateShipyardRCD
+  icon: { sprite: _NF/Objects/Tools/pirate_shipyard_rcd.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility

@@ -1,0 +1,126 @@
+#  defaultSkinTone: "#486a1b"
+- type: species
+  id: Goblinbane
+  name: species-name-goblinbane
+  roundStart: true
+  prototype: MobGoblinbane
+  sprites: MobGoblinbaneSprites
+  markingLimits: MobHumanMarkingLimits
+  dollPrototype: MobGoblinbaneDummy
+  skinColoration: TintedHues #Possible values: TintedHues, Hues, HumanToned
+  maleFirstNames: NamesGoblinbane
+  femaleFirstNames: NamesGoblinbane
+  naming: First
+  sexes:
+  - Unsexed
+
+- type: speciesBaseSprites
+  id: MobGoblinbaneSprites
+  sprites:
+    Head: MobGoblinbaneHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobGoblinbaneTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobGoblinbaneEyes
+    LArm: MobGoblinbaneLArm
+    RArm: MobGoblinbaneRArm
+    LHand: MobGoblinbaneLHand
+    RHand: MobGoblinbaneRHand
+    LLeg: MobGoblinbaneLLeg
+    RLeg: MobGoblinbaneRLeg
+    LFoot: MobGoblinbaneLFoot
+    RFoot: MobGoblinbaneRFoot
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneEyes
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneHead
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneHeadMale
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneHeadFemale
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneTorso
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneTorsoMale
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneTorsoFemale
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneLLeg
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneLHand
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneLArm
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneLFoot
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneRLeg
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneRHand
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneRArm
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobGoblinbaneRFoot
+  baseSprite:
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    state: r_foot
