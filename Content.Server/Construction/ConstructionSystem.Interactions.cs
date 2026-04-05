@@ -321,6 +321,16 @@ namespace Content.Server.Construction
                         insert = stack;
                     }
 
+                    //Frontier : duplicated code to handle machine part stacks separately, so we can check part type instead of material
+                    if (insertStep is MachinePartConstructionGraphStep partInsertStep)
+                    {
+                        if (_stackSystem.Split(insert, partInsertStep.Amount, Transform(interactUsing.User).Coordinates) is not { } stack)
+                            return HandleResult.False;
+
+                        insert = stack;
+                    }
+                    //End Frontier
+
                     // Container-storage handling.
                     if (!string.IsNullOrEmpty(insertStep.Store))
                     {

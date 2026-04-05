@@ -97,16 +97,14 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                 _damageableSystem.TryChangeDamage(uid, amt,
                     ignoreResistances: false, interruptsDoAfters: false);
 
-                // Apply dizziness as a symptom of bloodloss.
-                // The effect is applied in a way that it will never be cleared without being healthy.
-                // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
-                _drunkSystem.TryApplyDrunkenness(
-                    uid,
-                    (float)bloodstream.AdjustedUpdateInterval.TotalSeconds * 2,
-                    applySlur: false);
+                // Frontier: bloodloss uses desaturation instead of drunkenness
+                // _drunkSystem.TryApplyDrunkenness(
+                //     uid,
+                //     (float)bloodstream.AdjustedUpdateInterval.TotalSeconds * 2,
+                //     applySlur: false);
                 _stutteringSystem.DoStutter(uid, bloodstream.AdjustedUpdateInterval * 2, refresh: false);
 
-                // storing the drunk and stutter time so we can remove it independently from other effects additions
+                // Frontier: stutter time tracking only (no drunkenness)
                 bloodstream.StatusTime += bloodstream.AdjustedUpdateInterval * 2;
                 DirtyField(uid, bloodstream, nameof(BloodstreamComponent.StatusTime));
             }
@@ -118,8 +116,8 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                     bloodstream.BloodlossHealDamage * bloodPercentage,
                     ignoreResistances: true, interruptsDoAfters: false);
 
-                // Remove the drunk effect when healthy. Should only remove the amount of drunk and stutter added by low blood level
-                _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
+                // Frontier: bloodloss uses desaturation instead of drunkenness
+                // _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
                 _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime.TotalSeconds);
                 // Reset the drunk and stutter time to zero
                 bloodstream.StatusTime = TimeSpan.Zero;
