@@ -160,6 +160,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             (SecurityStatus.Permitted, SecurityStatus.Wanted) => "broke-permit", // Permit conditions violated
             (SecurityStatus.Permitted, SecurityStatus.None) => "withdrew-permit", // Withdrew permit eg. a second sheriff with different policy stripping existing ones
             (SecurityStatus.Permitted, _) => "lost-permit", // Any other case from permitted
+            // Frontier end
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
             // person is no longer sus

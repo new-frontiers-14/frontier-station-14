@@ -18,5 +18,5 @@ public enum SecurityStatus : byte
     Detained,
     Paroled,
     Discharged,
-    Permitted
+    Permitted // Frontier
 }
