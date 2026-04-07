@@ -10,6 +10,18 @@
   - type: InstantAction
     event: !type:ActivateImplantEvent
 
+- type: entity
+  parent: BaseImplantAction
+  id: ActionOpenDistressImplant
+  name: Configure Distress Implant
+  description: Open the distress implant settings.
+  components:
+  - type: Action
+    icon: { sprite: Objects/Devices/communication.rsi, state: radio }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:DistressImplantOpenMenuEvent
+
 - type: entity 
   parent: BaseImplantAction
   id: ActionActivateWehImplant

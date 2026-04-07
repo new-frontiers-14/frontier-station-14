@@ -3,3 +3,4 @@ implanter-label-light = light
 implanter-label-medical-tracking = medical tracker
 implanter-label-sad-trombone = sad trombone
 implanter-label-storage = storage
+implanter-label-distress = distress

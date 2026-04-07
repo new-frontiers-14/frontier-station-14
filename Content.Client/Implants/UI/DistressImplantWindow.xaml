@@ -1,0 +1,17 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="Distress Implant"
+               MinSize="260 120"
+               SetSize="360 140">
+    <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="6">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Text="Channel" MinSize="60 0" VerticalAlignment="Center" />
+            <OptionButton Name="ChannelSelector" HorizontalExpand="True" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Text="Message" MinSize="60 0" VerticalAlignment="Center" />
+            <LineEdit Name="MessageEdit" HorizontalExpand="True" />
+        </BoxContainer>
+        <Button Name="SaveButton" Text="Save" HorizontalAlignment="Right" />
+    </BoxContainer>
+</controls:FancyWindow>

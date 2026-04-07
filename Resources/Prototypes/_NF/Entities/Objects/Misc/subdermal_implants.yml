@@ -28,6 +28,24 @@
 
 - type: entity
   parent: BaseSubdermalImplant
+  id: DistressImplant
+  name: distress implant
+  description: This implant announces when the user enters critical condition. Its message and output channel can be configured.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionOpenDistressImplant
+      whitelist:
+        components:
+        - MobState
+    - type: SwanSongImplant
+    - type: UserInterface
+      interfaces:
+        enum.DistressImplantUiKey.Key:
+          type: DistressImplantBoundUserInterface
+
+- type: entity
+  parent: BaseSubdermalImplant
   id: FreelanceTrackingImplant
   name: freelance tracking implant
   description: This implant has a tracking device monitor for the Freelance radio channel.
