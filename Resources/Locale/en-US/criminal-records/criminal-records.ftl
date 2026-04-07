@@ -61,7 +61,7 @@ criminal-records-console-unspecified-reason = <unspecified reason>
 
 ## Frontier - Permitted
 criminal-records-console-permitted-reason = Permit Type
-criminal-records-status-permitted = Permitted
+criminal-records-status-permitted = Authorized
 criminal-records-console-permitted = {$officer} set permit type(s) "{$reason}" for {$name} ({$job})
 criminal-records-console-broke-permit = {$officer} stripped {$name} ({$job}) of their permits due to violated conditions: {$reason}
 criminal-records-console-withdrew-permit = {$officer} has withdrawn the permits of {$name} ({$job})
