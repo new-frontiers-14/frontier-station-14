@@ -1,8 +1,8 @@
 - type: entity
   id: PowerTransmissionPoint
   parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
-  name: FrontierCoin™ mining rig
-  description: A gargantuan machine for performing complex, power hungry calculations to generate shareholder value.
+  name: power transmission point
+  description: A gargantuan machine for offsite power transmission using quantum entanglement.
   placement:
     mode: SnapgridCenter
   components:
@@ -32,18 +32,18 @@
     noRot: true
     drawdepth: Mobs
     layers:
-      - state: gpu
-      # - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
-      #   state: base-unlit
-      #   shader: unshaded
-      #   map: ["unlit"]
-      #   visible: false
-      #   offset: 0, 2
-      # - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
-      #   state: base-foreground
-      #   offset: 0, 2
+      - state: base
+      - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
+        state: base-unlit
+        shader: unshaded
+        map: ["unlit"]
+        visible: false
+        offset: 0, 2
+      - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
+        state: base-foreground
+        offset: 0, 2
       - sprite: _NF/Structures/Power/TransmissionPoint/32x32.rsi
-        state: panel-gpu-unlit
+        state: panel-unlit
         map: ["panel"]
         visible: false
         offset: 0, -2
