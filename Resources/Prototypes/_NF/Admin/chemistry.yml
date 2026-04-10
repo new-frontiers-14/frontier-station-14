@@ -1,0 +1,40 @@
+- type: entity
+  parent: BluespaceBeaker
+  id: MagicBeakerCryomedicine
+  name: Magic beaker
+  description: A beaker that automatically refills with various chemicals. This one is set to produce cryomedicines.
+  suffix: Cryomedicine
+  components:
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Cryoxadone
+        Quantity: 0.5
+      - ReagentId: Aloxadone
+        Quantity: 0.5
+      - ReagentId: Traumoxadone
+        Quantity: 0.5
+      - ReagentId: Stelloxadone
+        Quantity: 0.5
+      - ReagentId: Doxarubixadone
+        Quantity: 0.5
+      - ReagentId: Necrosol
+        Quantity: 0.5
+      - ReagentId: Opporozidone
+        Quantity: 0.5
+    upperLimits:
+    - ReagentId: Cryoxadone
+      Quantity: 10
+    - ReagentId: Aloxadone
+      Quantity: 10
+    - ReagentId: Traumoxadone
+      Quantity: 10
+    - ReagentId: Stelloxadone
+      Quantity: 10
+    - ReagentId: Doxarubixadone
+      Quantity: 10
+    - ReagentId: Necrosol
+      Quantity: 10
+    - ReagentId: Opporozidone
+      Quantity: 10

@@ -1,5 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body.Components; // Frontier
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
@@ -16,6 +17,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq; // Frontier
 
 namespace Content.Server.Body.Systems
 {
@@ -28,6 +30,7 @@ namespace Content.Server.Body.Systems
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private readonly BodySystem _body = default!; // Frontier
 
         private EntityQuery<OrganComponent> _organQuery;
         private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
@@ -228,6 +231,40 @@ namespace Content.Server.Body.Systems
             }
 
             _solutionContainerSystem.UpdateChemicals(soln.Value);
+        }
+
+        /// <summary>
+        /// Frontier: Given a mob with a bodycomponent and a ReagentPrototype, return how quickly the mob metabolizes per cycle
+        /// </summary>
+        /// <param name="uid">Mob to check the rate of</param>
+        /// <param name="reagent">Reagent to check the rate of</param>
+        /// <returns></returns>
+        public FixedPoint2 GetMetabolismRateForReagent(Entity<BodyComponent?> ent, ReagentPrototype reagent)
+        {
+            var metabolizerOrgans = _body.GetBodyOrganEntityComps<MetabolizerComponent>(ent);
+
+            var proto = reagent;
+
+            var totalDosage = FixedPoint2.Zero;
+            foreach (var organ in metabolizerOrgans)
+            {
+                var metabolizer = organ.Comp1;
+                if (proto.Metabolisms == null)
+                    continue;
+                if (metabolizer.MetabolismGroups == null)
+                    continue;
+                var dosage = proto.Metabolisms
+                    // Only for the metabolisms that are in the target
+                    .Where(metabolism => metabolizer.MetabolismGroups.Any(group => group.Id == metabolism.Key))
+                    // Sum up the total metabolism
+                    .Aggregate(FixedPoint2.Zero,
+                        (sum, entry) =>
+                            sum + entry.Value.MetabolismRate
+                                * metabolizer.MetabolismGroups.First(group => group.Id == entry.Key).MetabolismRateModifier);
+                totalDosage += dosage;
+            }
+
+            return totalDosage;
         }
     }
 }

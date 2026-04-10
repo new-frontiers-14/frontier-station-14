@@ -1,6 +1,9 @@
 using System.Numerics; // Frontier
+using Content.Shared.Chemistry.Reagent; // Frontier
+using Content.Shared.EntityEffects; // Frontier
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -36,6 +39,7 @@ public sealed partial class CryoPodComponent : Component
 
     /// <summary>
     /// How many units of each reagent to transfer per tick from the beaker to the mob?
+    /// Frontier: Value is ignored when "MatchPatientMetabolism" is true
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("beakerTransferAmount")]
@@ -70,13 +74,35 @@ public sealed partial class CryoPodComponent : Component
     [ViewVariables]
     public ContainerSlot BodyContainer = default!;
 
-    // Frontier
     /// <summary>
-    /// Tile offset to drop patients at
+    /// Frontier: Tile offset to drop patients at
     /// </summary>
-    [ViewVariables]
+    [ViewVariables(VVAccess.ReadWrite)]
     [DataField("dropOffset")]
     public Vector2 DropOffset = new Vector2(0, -1);
+
+    /// <summary>
+    /// Frontier: When true, the pod will dose all chems provided to it.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("allowAllChems")]
+    public bool AllowAllChems = false;
+
+    /// <summary>
+    /// Frontier:
+    ///     true: Reagents are dosed to match the rate the patient metabolizes them. BeakerTransferAmount is ignored
+    ///     false: Reagents are dosed at a flat rate (useful for weh juice or corgium hijinks). BeakerTransferAmount is used
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("matchPatientMetabolism")]
+    public bool MatchPatientMetabolism = true;
+
+    /// <summary>
+    /// Frontier: Table of medicines the pod accepts and EntityConditions for when to apply each
+    /// </summary>
+    [ViewVariables]
+    [DataField("chemSmartInjectConditions")]
+    public Dictionary<ProtoId<ReagentPrototype>, EntityEffectCondition[]?>? ChemSmartInjectConditions = default!;
 
     /// <summary>
     /// If true, the eject verb will not work on the pod and the user must use a crowbar to pry the pod open.

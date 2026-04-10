@@ -14,13 +14,16 @@ using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent; // Frontier
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Emag.Systems;
+using Content.Shared.EntityEffects; // Frontier
 using Content.Shared.Examine;
+using Content.Shared.FixedPoint; // Frontier
 using Content.Shared.Interaction;
 using Content.Shared.Medical.Cryogenics;
 using Content.Shared.MedicalScanner;
@@ -33,6 +36,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility; // Frontier
 
 namespace Content.Server.Medical;
 
@@ -52,11 +56,11 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private readonly EntityManager _entManager = default!; // Frontier
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
+    [Dependency] private readonly MetabolizerSystem _metabolizer = default!; // Frontier
 
-    // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution.
-    private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
-
     public override void Initialize()
     {
         base.Initialize();
@@ -85,6 +89,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
 
         var curTime = _gameTiming.CurTime;
         var bloodStreamQuery = GetEntityQuery<BloodstreamComponent>();
+        var bodyQuery = GetEntityQuery<BodyComponent>(); // Frontier
         var metaDataQuery = GetEntityQuery<MetaDataComponent>();
         var itemSlotsQuery = GetEntityQuery<ItemSlotsComponent>();
         var fitsInDispenserQuery = GetEntityQuery<FitsInDispenserComponent>();
@@ -113,16 +118,65 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
                 && _solutionContainerSystem.TryGetFitsInDispenser((container.Value, fitsInDispenserComponent, solutionContainerManagerComponent),
                     out var containerSolution, out _))
             {
+                // Frontier
                 if (!bloodStreamQuery.TryGetComponent(patient, out var bloodstream))
-                {
                     continue;
+                if (!bodyQuery.TryGetComponent(patient, out var body))
+                    continue;
+
+                var chemsToInject = new List<(string, FixedPoint2)>();
+                if (cryoPod.ChemSmartInjectConditions != null)
+                {
+                    var conditionArgs = new EntityEffectBaseArgs(patient.Value, _entManager);
+                    if (!cryoPod.AllowAllChems)
+                    {
+                        foreach (var (reagent, conditions) in cryoPod.ChemSmartInjectConditions)
+                        {
+                            if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Id, out var proto))
+                                DebugTools.Assert($"Bad ChemSmartInjectCondition reagent '{reagent.Id}'");
+                            var dosage = cryoPod.MatchPatientMetabolism ?
+                                _metabolizer.GetMetabolismRateForReagent((patient.Value, body), proto) / cryoPod.PotencyMultiplier :
+                                cryoPod.BeakerTransferAmount;
+                            if (conditions != null)
+                            {
+                                var allConditionsOK = true;
+                                foreach (var cond in conditions)
+                                {
+                                    if (!cond.Condition(conditionArgs))
+                                    {
+                                        allConditionsOK = false;
+                                        break;
+                                    }
+                                }
+                                if (allConditionsOK)
+                                {
+                                    // All conditions satisfied - inject it
+                                    chemsToInject.Add((reagent.Id, dosage));
+                                }
+                            }
+                            else
+                            {
+                                // The reagent has no conditions - always inject it
+                                chemsToInject.Add((reagent.Id, dosage));
+                            }
+                        }
+                    }
+                    else // cryoPod.AllowAllChems
+                    {
+                        foreach (var reagent in containerSolution.Value.Comp.Solution)
+                        {
+                            if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Reagent.Prototype, out var proto))
+                                continue;
+                            var dosage = cryoPod.MatchPatientMetabolism ?
+                                _metabolizer.GetMetabolismRateForReagent((patient.Value, body), proto) / cryoPod.PotencyMultiplier :
+                                cryoPod.BeakerTransferAmount;
+                            chemsToInject.Add((reagent.Reagent.Prototype, dosage));
+                        }
+                    }
                 }
 
-
-                // Frontier
                 // Filter out a fixed amount of each reagent from the cryo pod's beaker
-                // var solutionToInject = _solutionContainerSystem.SplitSolution(containerSolution.Value, cryoPod.BeakerTransferAmount);
-                var solutionToInject = _solutionContainerSystem.SplitSolutionPerReagentWithOnly(containerSolution.Value, cryoPod.BeakerTransferAmount, CryogenicsReagents);
+                var solutionToInject = _solutionContainerSystem.SplitSolutionPerReagentWithSpecificDoses(containerSolution.Value, chemsToInject.ToArray());
 
                 // For every .25 units used, .5 units per second are added to the body, making cryo-pod more efficient than injections.
                 solutionToInject.ScaleSolution(cryoPod.PotencyMultiplier);
