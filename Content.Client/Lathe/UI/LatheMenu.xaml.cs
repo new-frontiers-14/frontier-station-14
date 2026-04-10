@@ -24,7 +24,6 @@ public sealed partial class LatheMenu : DefaultWindow
     private readonly SpriteSystem _spriteSystem;
     private readonly LatheSystem _lathe;
     private readonly MaterialStorageSystem _materialStorage;
-
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
     public event Action<int>? QueueDeleteAction; // Frontier
@@ -58,6 +57,13 @@ public sealed partial class LatheMenu : DefaultWindow
             PopulateRecipes();
         };
 
+        /* Frontier */
+        UseMaxButton.OnToggled += _ =>
+        {
+            ToggleAmountLineEditEditable();
+        };
+        /* End Frontier */
+
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
@@ -81,6 +87,41 @@ public sealed partial class LatheMenu : DefaultWindow
 
         MaterialsList.SetOwner(Entity);
     }
+
+    /* Start Frontier - "Max" button functionality */
+    private int GetCraftableAmount(LatheRecipePrototype recipe, MaterialStorageSystem materialStorage)
+    {
+        var craftableAmounts = new List<int>();
+        var amtCraftable = 0;
+        if (UseMaxButton.Pressed)
+        {
+            foreach (var (id, qtyMaterial) in recipe.Materials)
+            {
+                craftableAmounts.Add(materialStorage.GetMaterialAmount(Entity, id) / qtyMaterial);
+            }
+            amtCraftable = craftableAmounts.Count > 0 ? craftableAmounts.Min() : 1; //defaults to 1 as in vanilla
+        }
+        else if (!int.TryParse(AmountLineEdit.Text, out amtCraftable) || amtCraftable <= 0) //exact same as vanilla
+        {
+            amtCraftable = 1;
+        }
+        return amtCraftable;
+    }
+
+    private void ToggleAmountLineEditEditable()
+    {
+        if (UseMaxButton.Pressed)
+        {
+            AmountLineEdit.Editable = false;
+            AmountLineEdit.Text = "Disabled";
+        }
+        else
+        {
+            AmountLineEdit.Editable = true;
+            AmountLineEdit.Text = "1";
+        }
+    }
+    /* End Frontier */
 
     /// <summary>
     /// Populates the list of all the recipes
@@ -132,9 +173,10 @@ public sealed partial class LatheMenu : DefaultWindow
             var control = new RecipeControl(_lathe, prototype, () => GenerateTooltipText(prototype), canProduce, GetRecipeDisplayControl(prototype));
             control.OnButtonPressed += s =>
             {
-                if (!int.TryParse(AmountLineEdit.Text, out var amount) || amount <= 0)
-                    amount = 1;
+                var amount = getCraftableAmount(prototype, _materialStorage); // Frontier
                 RecipeQueueAction?.Invoke(s, amount);
+                PopulateRecipes(); // Frontier
+                PopulateRecipes(); // Frontier
             };
             RecipeList.AddChild(control);
         }
