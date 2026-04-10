@@ -206,6 +206,38 @@ namespace Content.Server.Construction
 
                         break;
 
+                    //Frontier : duplicated code to handle initial construction using machine part stacks instead of material ones
+                    case MachinePartConstructionGraphStep machinePartStep:
+                        foreach (var entity in EnumerateNearby(user))
+                        {
+                            if (!machinePartStep.EntityValid(entity, out var stack))
+                                continue;
+
+                            if (used.Contains(entity))
+                                continue;
+
+                            // TODO allow taking from several stacks.
+                            // Also update crafting steps to check if it works.
+                            var splitStack = _stackSystem.Split(entity, machinePartStep.Amount, user.ToCoordinates(0, 0), stack);
+
+                            if (splitStack == null)
+                                continue;
+
+                            if (string.IsNullOrEmpty(machinePartStep.Store))
+                            {
+                                if (!_container.Insert(splitStack.Value, container))
+                                    continue;
+                            }
+                            else if (!_container.Insert(splitStack.Value, GetContainer(machinePartStep.Store)))
+                                continue;
+
+                            handled = true;
+                            break;
+                        }
+
+                        break;
+                    //End Frontier
+
                     case ArbitraryInsertConstructionGraphStep arbitraryStep:
                         foreach (var entity in new HashSet<EntityUid>(EnumerateNearby(user)))
                         {
