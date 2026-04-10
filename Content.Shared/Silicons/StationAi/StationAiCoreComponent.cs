@@ -42,7 +42,7 @@ public sealed partial class StationAiCoreComponent : Component
 }
 
 /// <summary>
-/// This event is raised on a station AI 'eye' that is being replaced with a new one 
+/// This event is raised on a station AI 'eye' that is being replaced with a new one
 /// </summary>
 /// <param name="NewRemoteEntity">The entity UID of the replacement entity</param>
 [ByRefEvent]

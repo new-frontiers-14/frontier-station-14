@@ -1,3 +1,21 @@
+// SPDX-FileCopyrightText: 2022 TemporalOroboros <TemporalOroboros@gmail.com>
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Tadeo <td12233a@gmail.com>
+// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Tay <td12233a@gmail.com>
+// SPDX-FileCopyrightText: 2025 VMSolidus <evilexecutive@gmail.com>
+// SPDX-FileCopyrightText: 2025 corresp0nd <46357632+corresp0nd@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 taydeo <td12233a@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Numerics;
 using Content.Server.Singularity.Components;
 using Content.Shared.Atmos.Components;
@@ -151,7 +169,13 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     public void GravPulse(EntityUid uid, float maxRange, float minRange, in Matrix3x2 baseMatrixDeltaV, TransformComponent? xform = null)
     {
         if (Resolve(uid, ref xform))
+        {
             GravPulse(xform.Coordinates, maxRange, minRange, in baseMatrixDeltaV);
+
+            // Supermatter pulse edit from imp
+            var ev = new GravPulseEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
     }
 
     /// <summary>
@@ -166,7 +190,13 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     public void GravPulse(EntityUid uid, float maxRange, float minRange, float baseRadialDeltaV = 0.0f, float baseTangentialDeltaV = 0.0f, TransformComponent? xform = null)
     {
         if (Resolve(uid, ref xform))
+        {
             GravPulse(xform.Coordinates, maxRange, minRange, baseRadialDeltaV, baseTangentialDeltaV);
+
+            // Supermatter pulse edit from imp
+            var ev = new GravPulseEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
     }
 
     /// <summary>
@@ -274,3 +304,9 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
 
     #endregion Getters/Setters
 }
+
+/// <summary>
+/// Raised after each gravity pulse, supermatter
+/// </summary>
+[ByRefEvent]
+public readonly record struct GravPulseEvent();
