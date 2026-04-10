@@ -16,6 +16,7 @@ using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
 using Content.Shared.Ghost; // Frontier
+using Content.Shared._NF.Paper; // Frontier: stapler
 
 namespace Content.Shared.Paper;
 
@@ -32,6 +33,7 @@ public sealed class PaperSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!; // Frontier
+    [Dependency] private readonly StaplerSystem _stapler = default!; // Frontier: stapler
 
     private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
     private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
@@ -147,6 +149,17 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnInteractUsing(Entity<PaperComponent> entity, ref InteractUsingEvent args)
     {
+        if (args.Handled)
+            return;
+
+        // Frontier: allow stapler to handle interaction on paper
+        if (_stapler.TryStaplePaper(entity, args.Used, args.User))
+        {
+            args.Handled = true;
+            return;
+        }
+        // End Frontier
+
         // only allow editing if there are no stamps or when using a cyberpen
         var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, WriteIgnoreStampsTag)
                        || _tagSystem.HasTag(args.Used, NFWriteIgnoreUnprotectedStampsTag) && !_tagSystem.HasTag(entity, NFPaperStampProtectedTag); // Frontier: protected stamps
