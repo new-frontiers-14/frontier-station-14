@@ -399,11 +399,17 @@
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
+      head-cat:
+      - state: equipped-head-light-cat
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
       - state: equipped-head-unshaded
+        shader: unshaded
+      head-cat:
+      - state: equipped-head-cat
+      - state: equipped-head-unshaded-cat
         shader: unshaded
       head-vox:
       - state: equipped-head-vox
@@ -423,6 +429,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - CatWearable # Frontier
     - WhitelistChameleon
 
 #Chief Medical Officer's Hardsuit
