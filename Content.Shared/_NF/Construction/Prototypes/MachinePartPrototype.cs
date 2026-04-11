@@ -1,5 +1,5 @@
-using Content.Shared.Stacks; // Frontier: stack types
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Construction.Prototypes; // NOTE: currently exists under base namespace.
 
@@ -25,4 +25,12 @@ public sealed partial class MachinePartPrototype : IPrototype
     /// </summary>
     [DataField("stockPartPrototype", required: true)]
     public EntProtoId StockPartPrototype = string.Empty;
+
+    //Frontier
+    /// <summary>
+    ///     An icon that will be used to represent this part type.
+    /// </summary>
+    [DataField]
+    public SpriteSpecifier? Icon { get; private set; }
+    //End Frontier
 }
