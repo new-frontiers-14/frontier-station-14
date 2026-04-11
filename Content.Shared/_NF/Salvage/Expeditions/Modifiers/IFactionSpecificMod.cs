@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Salvage.Expeditions.Modifiers;
 
-public interface IFactionSpecificMod : ISalvageMod
+public interface IFactionSpecificMod : IBiomeSpecificMod
 {
     /// <summary>
     /// Whitelist for factions this mod can appear with. If null then any faction is allowed.

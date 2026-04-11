@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
 [Prototype]
-public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpecificMod, IFactionSpecificMod
+public sealed partial class SalvageDungeonModPrototype : IPrototype, IFactionSpecificMod
 {
     [IdDataField] public string ID { get; private set; } = default!;
 

@@ -63,7 +63,8 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
         // Frontier - Moved so faction gets priority over dungeon. GetBiomeMod -> GetFactionMod
-        var dungeon = GetFactionMod<SalvageDungeonModPrototype>(biome.ID, faction.ID, rand, ref modifierBudget);
+        var dungeon = GetDungeonMod<SalvageDungeonModPrototype>(biome.ID, faction.ID, rand, ref modifierBudget);
+        //var dungeon = _proto.Index<SalvageDungeonModPrototype>("NFLavaMercenary");
 
         var mods = new List<string>();
 
@@ -108,17 +109,36 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     }
 
     // Frontier - Faction specific dungeons
-    public T GetFactionMod<T>(string biome, string faction, System.Random rand, ref float rating) where T : class, IPrototype, IBiomeSpecificMod, IFactionSpecificMod
+    public T GetDungeonMod<T>(string biome, string faction, System.Random rand, ref float rating) where T : class, IPrototype, IFactionSpecificMod
     {
         var mods = _proto.EnumeratePrototypes<T>().ToList();
         mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         rand.Shuffle(mods);
 
-        foreach (var mod in mods)
+        // Separate dungeon mods which include the current faction into a primary list.
+        var matchingMods = mods.Where(x => x.Factions != null && x.Factions.Contains(faction));
+
+        // Separate dungeon mods with no specified factions into a secondary list.
+        // Anything else (i.e. dungeons with a faction list that did not include this faction) is discarded.
+        var otherMods = mods.Where(x => x.Factions == null);
+
+        // Pick from the list of matching factions first
+        foreach (var mod in matchingMods)
+        {
+            // Still have to check for cost and biome. If a dungeon has the correct faction but is not allowed to generate in this biome,
+            // it will fall back onto faction-unspecified selection to find a dungeon that is.
+            if (mod.Cost > rating || mod.Biomes != null && !mod.Biomes.Contains(biome))
+                continue;
+
+            rating -= mod.Cost;
+
+            return mod;
+        }
+
+        foreach (var mod in otherMods)
         {
             if (mod.Cost > rating ||
-                mod.Biomes != null && !mod.Biomes.Contains(biome) ||
-                mod.Factions != null && !mod.Factions.Contains(faction))
+                mod.Biomes != null && !mod.Biomes.Contains(biome))
                 continue;
 
             rating -= mod.Cost;
