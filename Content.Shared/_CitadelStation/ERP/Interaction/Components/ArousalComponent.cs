@@ -37,4 +37,12 @@ public sealed partial class ERPArousalComponent : Component {
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan UpdateFrequency = TimeSpan.FromSeconds(1);
 
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan NextInteraction = TimeSpan.Zero;
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan NextInteractionCooldown = TimeSpan.FromSeconds(1.5f);
+
 };

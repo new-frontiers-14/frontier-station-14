@@ -39,7 +39,7 @@ public abstract class SharedArousalSystem : EntitySystem {
     }
 
     public virtual void UpdateEntity(Entity<ERPArousalComponent> ent) {
-        _sawmill.Debug($"Updating {Name(ent)}");
+        //_sawmill.Debug($"Updating {Name(ent.Owner)}");
         if (ent.Comp.ArousalBaseline - ent.Comp.CurrentArousal != 0.0f) {
             if (ent.Comp.ArousalBaseline - ent.Comp.CurrentArousal <= FixedPoint2.Epsilon) {
                 ent.Comp.CurrentArousal = ent.Comp.ArousalBaseline;

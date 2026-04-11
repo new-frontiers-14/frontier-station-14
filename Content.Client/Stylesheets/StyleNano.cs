@@ -93,6 +93,9 @@ namespace Content.Client.Stylesheets
         public const string StyleClassPopupMessageLarge = "PopupMessageLarge";
         public const string StyleClassPopupMessageLargeCaution = "PopupMessageLargeCaution";
 
+        // Expedition 14
+
+        public const string StyleClassErpMenuPanelContainer = "ErpMenuContainer";
         public static readonly Color PanelDark = Color.FromHex("#1E201E");
 
         public static readonly Color NanoGold = Color.FromHex("#A88B5E");
@@ -593,6 +596,15 @@ namespace Content.Client.Stylesheets
                 Modulate = Color.FromHex("#202023"),
             };
             insetBack.SetPatchMargin(StyleBox.Margin.All, 10);
+
+            // Expedition 14
+            // Erp menu panel container default background
+            var erpMenuPanelBackground = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/_CitadelStation/Interface/Misc/doll.png"),
+                Modulate = Color.FromHex("#ffffffff"),
+            };
+
 
             // Default paper background:
             var paperBackground = new StyleBoxTexture
@@ -1836,6 +1848,10 @@ namespace Content.Client.Stylesheets
                 Element<PanelContainer>()
                     .Class(StyleClassInset)
                     .Prop(PanelContainer.StylePropertyPanel, insetBack),
+                // Expedition 14 ERP interaction menu default background
+                Element<PanelContainer>()
+                    .Class(StyleClassErpMenuPanelContainer)
+                    .Prop(PanelContainer.StylePropertyPanel, erpMenuPanelBackground),
             }).ToList());
         }
     }

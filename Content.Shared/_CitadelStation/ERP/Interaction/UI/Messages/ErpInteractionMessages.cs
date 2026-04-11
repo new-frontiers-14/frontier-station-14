@@ -22,6 +22,36 @@ public enum ERPInteractionMenuInteractorOptions
 }
 
 [Serializable, NetSerializable]
+public enum ERPInteractionMenuInteractorModes
+{
+    Gentle,
+    Rough,
+    Violent
+}
+
+[Serializable, NetSerializable]
+public enum ERPInteractionMenuBodyParts
+{
+    Head,
+    LArm,
+    Chest,
+    RArm,
+    LForearm,
+    Abdomen,
+    RForearm,
+    LHand,
+    Groin,
+    RHand
+}
+
+[Serializable, NetSerializable]
+public sealed class ERPActionUserInterfaceMessage : BoundUserInterfaceMessage {
+    public ERPInteractionMenuInteractorOptions Interactor;
+    public ERPInteractionMenuInteractorModes Mode;
+    public ERPInteractionMenuBodyParts Bodypart;
+}
+
+[Serializable, NetSerializable]
 public sealed class ERPInteractionMenuChooseInteractorOption(ERPInteractionMenuInteractorOptions bodyPart) : BoundUserInterfaceMessage
 {
     public readonly ERPInteractionMenuInteractorOptions BodyPart = bodyPart;
