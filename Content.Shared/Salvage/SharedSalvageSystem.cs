@@ -1,4 +1,4 @@
-using System.Linq;
+using Content.Shared._NF.Salvage.Expeditions.Modifiers;
 using Content.Shared.CCVar;
 using Content.Shared.Dataset;
 using Content.Shared.Procedural;
@@ -12,6 +12,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.Salvage;
 
@@ -45,7 +46,9 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
-        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
+        // Frontier - Moved so faction gets priority over dungeon
+        // var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
+
         // Frontier: restrict factions per difficulty
         // var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
         var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>()
@@ -59,6 +62,8 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // End Frontier: difficulties per faction
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
+        // Frontier - Moved so faction gets priority over dungeon. GetBiomeMod -> GetFactionMod
+        var dungeon = GetFactionMod<SalvageDungeonModPrototype>(biome.ID, faction.ID, rand, ref modifierBudget);
 
         var mods = new List<string>();
 
@@ -101,6 +106,29 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
+
+    // Frontier - Faction specific dungeons
+    public T GetFactionMod<T>(string biome, string faction, System.Random rand, ref float rating) where T : class, IPrototype, IBiomeSpecificMod, IFactionSpecificMod
+    {
+        var mods = _proto.EnumeratePrototypes<T>().ToList();
+        mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        rand.Shuffle(mods);
+
+        foreach (var mod in mods)
+        {
+            if (mod.Cost > rating ||
+                mod.Biomes != null && !mod.Biomes.Contains(biome) ||
+                mod.Factions != null && !mod.Factions.Contains(faction))
+                continue;
+
+            rating -= mod.Cost;
+
+            return mod;
+        }
+
+        throw new InvalidOperationException();
+    }
+    // Frontier end
 
     public T GetMod<T>(System.Random rand, ref float rating) where T : class, IPrototype, ISalvageMod
     {
