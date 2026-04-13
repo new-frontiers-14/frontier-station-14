@@ -1,0 +1,30 @@
+- type: entity
+  name: cooking bag
+  id: NFCookingBag
+  parent: NFBaseClothingBeltStorageBag
+  description: A bag for Cheffs to Keep their food off the floor.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Kitchen/Equipment/cooking_bag.rsi
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,11,3
+    maxItemSize: Normal
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+        - Food
+    blacklist:
+      components:
+        - BadFood
+        - Produce
+        - Seed
+  - type: AntiRottingContainer
+  - type: Dumpable
