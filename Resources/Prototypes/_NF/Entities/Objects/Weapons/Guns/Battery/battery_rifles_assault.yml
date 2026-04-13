@@ -22,7 +22,7 @@
   parent: [ NFBaseWeaponEnergyRifleAssaultFireModes, NFBaseWeaponFrameEnergyRifleAssault ]
   name: laser repeater
   description: |-
-    An experimental energy weapon with an unstable micro-TEG built into it. Upon firing, it uses the excess heat to discharge a second bolt.
+    A burst-fire laser rifle with a stripped down micro-TEG, allowing it to fire quickly at the expense of accuracy.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/laser-repeater.rsi
@@ -42,9 +42,9 @@
   - type: Gun
     examineCaliber: gun-examine-energybolt-high
     minAngle: 2.2
-    maxAngle: 11
-    angleIncrease: 1.0
-    angleDecay: 3.0
+    maxAngle: 13
+    angleIncrease: 1.4
+    angleDecay: 2.4
     burstFireRate: 5
     shotsPerBurst: 2
     burstCooldown: 0.8
@@ -54,11 +54,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserMedium
+    proto: NFBulletLaserRepeater
     fireCost: 80
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: NFBulletLaserMedium
+    - proto: NFBulletLaserRepeater
       fireCost: 80
     - proto: NFBulletDisabler
       fireCost: 80
@@ -66,10 +66,10 @@
     manufacturer: Children of the Atom
   - type: GenericVisualizer
     visuals:
-      enum.EnergyGunFireModeVisuals.State:
+      enum.BatteryWeaponFireModeVisuals.State:
         Firemode:
-          Disabler: { state: disable }
-          Lethal: { state: lethal }
+          NFBulletDisabler: { state: disable }
+          NFBulletLaserRepeater: { state: lethal }
 
 - type: entity
   id: NFWeaponEnergyLightMachineGunTurbo
