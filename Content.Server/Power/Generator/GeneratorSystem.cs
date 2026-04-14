@@ -13,6 +13,7 @@ using Content.Shared.Radiation.Components; // Frontier
 using Content.Shared.Audio; // Frontier
 using Content.Shared.Materials; // Frontier
 using Content.Server._NF.Power.Components; // Frontier
+using Content.Server.Storage.Components; // Frontier
 
 namespace Content.Server.Power.Generator;
 
@@ -70,6 +71,13 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     private void SolidEmpty(EntityUid uid, SolidFuelGeneratorAdapterComponent component, GeneratorEmpty args)
     {
         _materialStorage.EjectAllMaterial(uid);
+
+        // Frontier
+        if (TryComp<MaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        {
+            magnet.MagnetEnabled = false;
+        }
+        // end Frontier
     }
 
     private void ChemicalEmpty(Entity<ChemicalFuelGeneratorAdapterComponent> entity, ref GeneratorEmpty args)
