@@ -518,12 +518,12 @@
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
-          max: 293.15
+          max: 260.15 # Frontier 293.15<260.15
         amount: 100000 # thermal energy, not temperature!
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
-          min: 293.15
+          min: 360.15 # Frontier 293.15<360.15
         amount: -10000
       - !type:PopupMessage
         type: Local
