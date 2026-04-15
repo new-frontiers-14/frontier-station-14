@@ -66,9 +66,37 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             {
                 EntityUid spawned;
 
+                Vector2? biasDirection = null;
+                // If there is a bias target, see if one exists with a matching ID
+                if (group.SpawnBiasTarget is not null)
+                {
+                    var query = EntityQueryEnumerator<BiasTargetComponent>();
+
+                    while (query.MoveNext(out var ent, out var biasComp))
+                    {
+                        if (biasComp.id == group.SpawnBiasTarget)
+                        {
+                            // We don't care where it is, only its direction
+                            biasDirection = Vector2.Normalize(_transform.GetMapCoordinates(ent).Position);
+                            break;
+                        }
+                    }
+                }
+
                 if (group.MinimumDistance > 0f)
                 {
-                    spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                    if (biasDirection is not null)
+                    {
+                        // The spawning region describes a circle with a diameter equal to the width between the minimum and maximum distance.
+                        // We construct this by placing the centre of the circle with a vector in the direction of the bias target with a magnitude equal to the average of the two
+                        // and adding a random vector with a maximum magnitude half of the difference between the two.
+                        var spawnCentre = biasDirection.Value * ((group.MaximumDistance + group.MinimumDistance) / 2);
+                        spawnCoords = spawnCoords.WithPosition(spawnCentre + _random.NextVector2((group.MaximumDistance - group.MinimumDistance) / 2));
+                    }
+                    else
+                    {
+                        spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                    }
                 }
 
                 switch (group)
