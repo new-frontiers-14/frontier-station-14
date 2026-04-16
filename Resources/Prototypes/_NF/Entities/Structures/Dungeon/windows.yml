@@ -42,7 +42,7 @@
   parent:
   - WindowMurkyDungeon
   - Window
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -58,7 +58,7 @@
   parent:
   - WindowMurkyDungeon
   - ReinforcedWindow
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -73,7 +73,7 @@
   parent:
   - WindowMurkyDungeon
   - MiningWindow
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -104,7 +104,7 @@
   parent:
   - WindowMurkyDungeon
   - PlasmaWindow
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -119,7 +119,7 @@
   parent:
   - WindowMurkyDungeon
   - ReinforcedPlasmaWindow
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -134,7 +134,7 @@
   parent:
   - WindowMurkyDungeon
   - ReinforcedUraniumWindow
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -143,13 +143,26 @@
   - type: Icon
     sprite: _NF/Structures/Windows/reinforced_uranium_window.rsi
 
+- type: entity
+  id: PlastitaniumWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - PlastitaniumWindow
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/plastitanium_window.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/plastitanium_window.rsi
+
 # Directional
 - type: entity
   id: WindowDirectionalDungeon
   parent:
   - WindowDirectionalMurkyDungeon
   - WindowDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -165,7 +178,7 @@
   parent:
   - WindowDirectionalMurkyDungeon
   - WindowFrostedDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
@@ -180,7 +193,7 @@
   parent:
   - WindowDirectionalMurkyDungeon
   - WindowReinforcedDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
@@ -195,7 +208,7 @@
   parent:
   - WindowDirectionalMurkyDungeon
   - PlasmaWindowDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
@@ -210,7 +223,7 @@
   parent:
   - WindowDirectionalMurkyDungeon
   - PlasmaReinforcedWindowDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
@@ -225,7 +238,7 @@
   parent:
   - WindowDirectionalMurkyDungeon
   - UraniumWindowDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
@@ -240,7 +253,7 @@
   parent:
   - WindowDirectionalMurkyDungeon
   - UraniumReinforcedWindowDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # kinda need these for mapping dungeons
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi

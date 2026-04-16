@@ -198,6 +198,30 @@
   - type: AccessReader
     access: [["Security"]]
 
+- type: entity
+  id: SuitStorageEVASyndicateLesser
+  parent: SuitStorageBase
+  suffix: Syndicate EVA, Suit & Tank Only
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterEVASuitSyndicate
+        - id: ClothingHeadHelmetSyndicate
+
+- type: entity
+  id: SuitStorageEVACarp
+  parent: SuitStorageBase
+  suffix: Carp Hardsuit
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterSuitCarp
+        - id: PlushieCarp
+        - id: ClothingMaskGasSyndicate
+        - id: JetpackBlackFilled
+
 #HARDSUITS
 #Quartermaster hardsuit
 - type: entity
