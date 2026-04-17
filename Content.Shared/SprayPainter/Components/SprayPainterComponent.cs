@@ -118,6 +118,7 @@ public sealed partial class SprayPainterComponent : Component
     /// </summary>
     [DataField]
     public List<string> HiddenStyles = new();
+    // Frontier end
 }
 
 /// <summary>

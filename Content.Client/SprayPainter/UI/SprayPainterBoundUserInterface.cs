@@ -4,8 +4,7 @@ using Content.Shared.SprayPainter.Components;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Toolshed.Commands.Generic;
-using System.Linq;
+using System.Linq; // Frontier
 
 namespace Content.Client.SprayPainter.UI;
 
