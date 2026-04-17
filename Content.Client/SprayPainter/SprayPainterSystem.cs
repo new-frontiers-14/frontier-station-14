@@ -79,12 +79,14 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
         Decals.Clear();
         foreach (var decalPrototype in Proto.EnumeratePrototypes<DecalPrototype>().OrderBy(x => x.ID))
         {
-            if (!decalPrototype.Tags.Contains("station")
-                && !decalPrototype.Tags.Contains("markings")
-                || decalPrototype.Tags.Contains("dirty"))
-                continue;
+            // Frontier - Painting styles/decals filtered on painter comp so this isn't needed
+            //if (!decalPrototype.Tags.Contains("station")
+            //    && !decalPrototype.Tags.Contains("markings")
+            //    || decalPrototype.Tags.Contains("dirty"))
+            //    continue;
 
-            Decals.Add(new SprayPainterDecalEntry(decalPrototype.ID, decalPrototype.Sprite));
+            // Frontier - Pass the tags to the UI system for decal filtering
+            Decals.Add(new SprayPainterDecalEntry(decalPrototype.ID, decalPrototype.Sprite, decalPrototype.Tags));
         }
     }
 
@@ -126,4 +128,5 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
 /// <summary>
 /// A spray paintable decal, mapped by ID.
 /// </summary>
-public sealed record SprayPainterDecalEntry(string Name, SpriteSpecifier Sprite);
+// Frontier - Pass the tags to the UI system for decal filtering
+public sealed record SprayPainterDecalEntry(string Name, SpriteSpecifier Sprite, List<string> Tags);
