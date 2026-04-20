@@ -741,7 +741,71 @@
   productEntity: ClothingBackpackDuffelNfsdEmpAmmo
   icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityFlashAmmo
+  name: uplink-security-flash-grenade-ammo-name
+  description: uplink-security-flash-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdFlashAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityGasAmmo
+  name: uplink-security-gas-grenade-ammo-name
+  description: uplink-security-gas-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdGasAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityGasAmmo
+  name: uplink-security-gas-grenade-ammo-name
+  description: uplink-security-gas-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdGasAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityNetAmmo
+  name: uplink-security-net-grenade-ammo-name
+  description: uplink-security-net-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdNetAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityAmmo
   conditions:
@@ -757,7 +821,7 @@
   productEntity: ClothingBackpackDuffelNfsdVariedAmmo
   icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityAmmo
   conditions:
