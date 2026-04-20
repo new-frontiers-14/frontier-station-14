@@ -19,7 +19,7 @@
 # Frontier
 - type: entity
   id: NFWeaponEnergyRifleAssaultLaserRepeater
-  parent: [ NFBaseWeaponEnergyRifleAssaultFireModes, NFBaseWeaponFrameEnergyRifleAssault ]
+  parent: [ NFBaseWeaponEnergyRifleAssaultLaserRepeater, NFBaseWeaponFrameEnergyRifleAssaultChildrenOfTheAtom ]
   name: laser repeater
   description: |-
     A burst-fire laser rifle with a stripped down micro-TEG, allowing it to fire quickly at the expense of accuracy.
@@ -40,7 +40,6 @@
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Battery/laser-repeater.rsi
   - type: Gun
-    examineCaliber: gun-examine-energybolt-low-disabler-pistol
     minAngle: 2.2
     maxAngle: 13
     angleIncrease: 1.4
@@ -51,19 +50,6 @@
     selectedMode: Burst
     availableModes:
     - Burst
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserRepeater
-    fireCost: 80
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: NFBulletLaserRepeater
-      fireCost: 80
-    - proto: NFBulletDisabler
-      fireCost: 80
-  - type: NFWeaponDetails
-    manufacturer: Children of the Atom
   - type: StaticPrice
     price: 650
   - type: GenericVisualizer
