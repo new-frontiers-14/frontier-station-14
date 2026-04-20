@@ -58,11 +58,17 @@
   name: clown duffel bag
   description: A large duffel bag for holding extra honk goods.
   components:
-    - type: Sprite
-      sprite: Clothing/Back/Duffels/clown.rsi
-    - type: Storage
-      storageOpenSound:
-        collection: BikeHorn
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/clown.rsi
+  - type: Storage
+    storageOpenSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
+    storageInsertSound:
+      collection: FootstepClown
+      params:
+        variation: 0.125
 
 - type: entity
   parent: [NFClothingDuffel, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband, ClothingBackpackDuffel<NFClothingDuffel
