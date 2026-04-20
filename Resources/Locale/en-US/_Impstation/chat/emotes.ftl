@@ -10,4 +10,4 @@ chat-emote-msg-bubble = bubbles.
 chat-emote-msg-pop = pops!
 chat-emote-msg-crack = cracks {POSS-ADJ($entity)} knuckles.
 chat-emote-msg-reptilian-hiss = hisses.
-chat-emote-msg-coo = Coo
+chat-emote-msg-coo = coos.
