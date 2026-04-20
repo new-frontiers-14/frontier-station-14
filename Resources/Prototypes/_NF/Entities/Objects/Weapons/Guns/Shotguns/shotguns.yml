@@ -83,7 +83,7 @@
 
 - type: entity
   id: NFWeaponShotgunSawn
-  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
   name: sawn-off shotgun
   description: |-
     Groovy!
@@ -102,6 +102,9 @@
     capacity: 2
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-custom-made
+  - type: Tag
+    tags:
+    - Sidearm
 
 - type: entity
   id: NFWeaponShotgunSawnEmpty
