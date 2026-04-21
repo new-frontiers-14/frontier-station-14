@@ -31,6 +31,17 @@
       tableId: TableDungeonLootGeneralMaterialValuableSingle
       weight: 0.1
 
+- type: entityTable
+  id: TableDungeonLootEngineeringClutterWithMines
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClutter
+      weight: 0.95
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolboxesMines
+      weight: 0.05
+
 #region Tools
 - type: entityTable
   id: TableDungeonLootEngineeringTools
@@ -209,13 +220,6 @@
         weight: 15
       - id: ToolboxMechanical
         weight: 70
-    # Trap
-    - !type:GroupSelector
-      weight: 4
-      children:
-      - id: NFToolboxMineCryo
-      - id: NFToolboxMineExplosive
-      - id: NFToolboxMineFire
 # Commented out: buy it from your local SyndiVend
 #    # Syndicate
 #    - !type:GroupSelector
@@ -224,6 +228,18 @@
 #        weight: 20
 #      - id: ToolboxSyndicate
 #        weight: 80
+
+- type: entityTable
+  id: TableDungeonLootEngineeringToolboxesMines
+  table: !type:GroupSelector
+    children:
+    # Trap
+    - !type:GroupSelector
+      weight: 4
+      children:
+      - id: NFToolboxMineCryo
+      - id: NFToolboxMineExplosive
+      - id: NFToolboxMineFire
 
 # region Parts
 - type: entityTable
