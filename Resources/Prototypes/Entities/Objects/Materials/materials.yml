@@ -57,6 +57,13 @@
           Quantity: 6
   - type: Item
     heldPrefix: cardboard
+  - type: FloorTile
+    outputs:
+    - Plating
+  - type: SpawnAfterInteract #Nuke after convert to FloorTile
+    prototype: CarpetCard
+    doAfter: 0.5
+    removeOnInteract: true
 
 - type: entity
   parent: MaterialCardboard
@@ -125,7 +132,7 @@
     - state: cloth_3
       map: ["base"]
   - type: Appearance
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: FlavorProfile
     flavors:
@@ -143,6 +150,7 @@
       - DroneUsable
       - Gauze
       - RawMaterial
+      - ConstructionMaterial
   - type: Construction
     graph: WebObjects # not sure if I should either keep this here or just make another prototype. Will keep it here just in case.
     node: cloth
@@ -196,7 +204,7 @@
   - type: Construction
     graph: Durathread
     node: MaterialDurathread
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -210,6 +218,7 @@
       - ClothMade
       - DroneUsable
       - RawMaterial
+      - ConstructionMaterial
   - type: Item
     heldPrefix: durathread
 
@@ -261,6 +270,7 @@
     - Wooden
     - DroneUsable
     - RawMaterial
+    - ConstructionMaterial
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager
@@ -430,7 +440,7 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: FlavorProfile
     flavors:
@@ -491,7 +501,7 @@
     - state: pyrotton_3
       map: ["base"]
   - type: Appearance
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -553,7 +563,7 @@
   - type: FlavorProfile
     flavors:
       - banana
-  - type: Food
+  - type: Edible
     trash:
     - TrashBananiumPeel
   - type: BadFood
@@ -607,7 +617,7 @@
   - type: Stack
     count: 50
     stackType: WebSilk
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: FlavorProfile
     flavors:
@@ -756,7 +766,7 @@
     - state: bones_3
       map: ["base"]
   - type: Appearance
-  - type: Food
+  - type: Edible
   - type: BadFood
   # - type: SolutionContainerManager # Frontier: no eating bones
   #   solutions: # Frontier

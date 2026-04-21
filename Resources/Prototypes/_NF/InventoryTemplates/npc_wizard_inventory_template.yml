@@ -1,6 +1,58 @@
 ﻿- type: inventoryTemplate
   id: hostilewizard
   slots:
+# region "hidden", "not strippable"
+# The following slots are not intended to be lootable
+    - name: shoes
+      slotTexture: shoes
+      slotFlags: FEET
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Shoes
+
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Jumpsuit
+
+    - name: gloves
+      stripTime: 999999
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+
+    - name: head
+      stripTime: 999999
+      slotTexture: head
+      slotFlags: HEAD
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Head
+
+    - name: eyes
+      slotTexture: glasses
+      slotFlags: EYES
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Eyes
+
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Ears
+
+# region "strippable"
+# Slots that are intended to be lootable
     - name: pocket1
       slotTexture: pocket
       fullTextureName: template_small
@@ -82,52 +134,3 @@
       uiWindowPos: 1,1
       strippingWindowPos: 2,2
       displayName: Suit
-
-# "Not strippable", "hidden"
-    - name: shoes
-      slotTexture: shoes
-      slotFlags: FEET
-      stripTime: 999999
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Shoes
-
-    - name: jumpsuit
-      slotTexture: uniform
-      slotFlags: INNERCLOTHING
-      stripTime: 999999
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Jumpsuit
-
-    - name: gloves
-      stripTime: 999999
-      slotTexture: gloves
-      slotFlags: GLOVES
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Gloves
-
-    - name: eyes
-      slotTexture: glasses
-      slotFlags: EYES
-      stripTime: 999999
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Eyes
-
-    - name: ears
-      slotTexture: ears
-      slotFlags: EARS
-      stripTime: 999999
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Ears
-
-    - name: head
-      stripTime: 999999
-      slotTexture: head
-      slotFlags: HEAD
-      uiWindowPos: 1,1
-      strippingWindowPos: 2,2
-      displayName: Head

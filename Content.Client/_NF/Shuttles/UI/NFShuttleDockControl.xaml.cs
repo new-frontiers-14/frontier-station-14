@@ -63,7 +63,9 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
         _dockSystem = EntManager.System<DockingSystem>();
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
-        MinSize = new Vector2(SizeFull, SizeFull);
+
+        // let the map range grow/shrink with the control size instead of scaling up to match the range
+        RescaleMap = false;
     }
 
     public void SetViewedDock(DockingPortState? dockState)
@@ -113,10 +115,10 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
         var selectedDockToOurGrid = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, Angle.Zero);
         var selectedDockToWorld = Matrix3x2.Multiply(selectedDockToOurGrid, ourGridToWorld);
 
-        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-WorldRangeVector, WorldRangeVector));
+        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-ScaledWorldRange, ScaledWorldRange));
 
         Matrix3x2.Invert(selectedDockToWorld, out var worldToSelectedDock);
-        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
 
         // Draw nearby grids
         var controlBounds = PixelSizeBox;
@@ -124,7 +126,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
         _mapManager.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
 
         // offset the dotted-line position to the bounds.
-        Vector2? viewedDockPos = _viewedState != null ? MidPointVector : null;
+        Vector2? viewedDockPos = _viewedState != null ? MidPoint : null;
 
         if (viewedDockPos != null)
         {
@@ -193,7 +195,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
                 };
 
                 var collisionCenter = verts[0] + verts[1] + verts[3] + verts[5];
-                Color otherDockColor = Color.ToSrgb(dock.RadarColor);
+                Color otherDockColor = Color.ToSrgb(dock.Color);
 
                 if (drawShipGeometry)
                 {
@@ -221,7 +223,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
 
                     if (HighlightedDock == dock.Entity)
                     {
-                        otherDockColor = Color.ToSrgb(dock.HighlightedRadarColor);
+                        otherDockColor = Color.ToSrgb(dock.HighlightedColor);
                     }
                 }
 
@@ -327,7 +329,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
             ScalePosition(Vector2.Transform(new Vector2(-0.5f, 0.5f), rotation)),
             ScalePosition(Vector2.Transform(new Vector2(0.5f, -0.5f), rotation)));
 
-        var dockColor = _viewedState?.HighlightedRadarColor ?? Color.Magenta; // Frontier - use ViewedState
+        var dockColor = _viewedState?.HighlightedColor ?? Color.Magenta; // Frontier - use ViewedState
         var connectionColor = Color.Pink;
 
         handle.DrawRect(ourDockConnection, connectionColor.WithAlpha(0.2f));

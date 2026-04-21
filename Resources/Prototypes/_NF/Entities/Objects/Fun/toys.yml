@@ -82,6 +82,17 @@
       CottonBurger: NFPlushieConstruction
 
 - type: entity
+  parent: [PlushieLizard, BaseHandheldInstrument]
+  id: NFPlushieLizardMusician #Weh!
+  name: squeaky lizard plushie
+  components:
+  - type: Instrument
+    program: 1
+    bank: 101
+  - type: StaticPrice
+    price: 400
+
+- type: entity
   parent: PlushieLizard
   id: NFPlushieCmo #Weh!
   name: chief medical officer plushie
@@ -542,6 +553,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
     state: plushie_yarrmoth
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
+    heldPrefix:
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: yarr-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieYarrMoth
@@ -555,6 +578,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: corgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: corgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: corgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieCorgi
@@ -567,6 +602,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: girlycorgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: girlycorgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: girlycorgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieGirlyCorgi
@@ -579,6 +626,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: robotcorgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: robotcorgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: robotcorgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieRobotCorgi
