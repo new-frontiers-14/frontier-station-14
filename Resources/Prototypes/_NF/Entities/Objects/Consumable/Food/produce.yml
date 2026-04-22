@@ -529,6 +529,7 @@
               sound:
                 path: /Audio/_NF/Effects/explosions/light-pop.ogg
             - !type:TriggerBehavior
+              keyOut: granatapfel-trigger
             - !type:DoActsBehavior
               acts: ["Destruction"]
     - type: ChemicalAmmo
@@ -536,6 +537,7 @@
     - type: ProjectileGrenade
       fillPrototype: SeedsGranatapfel
       capacity: 10
+      triggerKey: granatapfel-trigger
     - type: ContainerContainer
       containers:
         cluster-payload: !type:Container
