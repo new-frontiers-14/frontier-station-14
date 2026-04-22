@@ -33,7 +33,7 @@ public sealed partial class TracerComponent : Component
 }
 
 [Serializable, NetSerializable, DataRecord]
-public struct TracerData(List<Vector2> positionHistory, TimeSpan endTime)
+public partial struct TracerData(List<Vector2> positionHistory, TimeSpan endTime)
 {
     /// <summary>
     /// The history of positions this tracer has moved through
