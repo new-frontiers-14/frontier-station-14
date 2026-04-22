@@ -1,18 +1,65 @@
 - type: entity
+  abstract: true
+  id: MobSpaceLeviathanSegmentBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1
+        density: 137992
+        mask:
+        - FlyingMobMask
+        layer:
+        - Opaque
+        - BulletImpassable
+        - Impassable
+  - type: DamageOnCollide
+    inverted: true # fuck you wrath components!
+    damage:
+      types:
+        Structural: 5000
+        Blunt: 10
+    ignoreWhitelist:
+      components:
+      - ContainmentField
+  - type: Sprite
+    sprite: _Goobstation/Mobs/SpaceWhale/leviathan.rsi
+    noRot: false
+    layers:
+    - state: head
+    - state: overlay
+      shader: unshaded
+    drawdepth: Overdoors
+  - type: Tag
+    tags:
+    - SpaceWhaleSegment
+    - StunImmune
+  - type: PreventCollide
+    whitelist:
+      tags:
+      - SpaceWhaleSegment
+  - type: ForcePvsOverride
+
+- type: entity
   id: SpaceLeviathan
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  parent: [MobSpaceLeviathanSegmentBase, SimpleSpaceMobBase, FlyingMobBase, MobCombat]
   name: space whale
   description: When the space becomes too quiet, there is no hope, there is no escape, but there is this.
-  suffix: keeps tiles, no despawn
   components:
   - type: TailedEntity
     amount: 65
-    speed: 13
     spacing: 1
     prototype: SpaceWhaleSegment
   - type: MovementSpeedModifier
-    baseSprintSpeed: 11
+    baseSprintSpeed: 40
     baseWalkSpeed: 11
+    baseWeightlessFriction: 4
+    weightlessFriction: 4
+    weightlessFrictionNoInput: 4
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 50
   - type: RadarBlip
     scale: 3
     shape: hexagon
@@ -28,30 +75,6 @@
   - type: NpcFactionMember
     factions:
     - Dragon #goida, also the carpsuit buff
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 2
-        density: 137992
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: MeleeWeapon
-    altDisarm: false
-    attackRate: 0.3
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Blunt: 50
-        Slash: 45
-        Structural: 800 #lol
   - type: Speech
     speechVerb: LargeMob
   - type: InteractionPopup
@@ -59,11 +82,7 @@
     interactFailureString: petting-failure-leviathan
     interactFailureSound:
       path: /Audio/Effects/bite.ogg
-  - type: Sprite
-    sprite: _Goobstation/Mobs/SpaceWhale/leviathan.rsi
-    state: head
-    noRot: false
-  - type: NightVision # Goobstation - Nigthvision
+  - type: NightVision
     color: "#808080"
     activateSound: null
     deactivateSound: null
@@ -87,33 +106,62 @@
         damage: 4000
       behaviors:
       - !type:GibBehavior
-#        gibContents:
-  - type: DamageOnCollide
-    inverted: true # fuck you wrath components!
+  - type: ContentEye
+    maxZoom: 1.5,1.5
+    targetZoom: 1.5,1.5
+  - type: SolutionContainerManager
+  - type: InjectableSolution
+    solution: chemicals
+  - type: Bloodstream
+    maxBleedAmount: 5
+    bloodRefreshAmount: 300
+    bleedReductionAmount: 2
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 5000
+    bloodlossDamage:
+      types:
+        Bloodloss: 0
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: MeleeWeapon
+    range: 3
+    canWideSwing: false
+    altDisarm: false
+    attackRate: 0.3
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Structural: 5000
-        Blunt: 10
-
+        Blunt: 50
+        Slash: 45
+        Structural: 800 #lol
+  - type: NoRotateOnMove
 
 - type: entity
+  parent: [MobSpaceLeviathanSegmentBase, FlyingMobBase]
   id: SpaceWhaleSegment
-  parent: FlyingMobBase
-  suffix: do not spawn
+  categories: [ HideSpawnMenu ]
   components:
   - type: RadarBlip
     scale: 2
     shape: diamond
     visibleFromOtherGrids: true
   - type: Sprite
-    sprite: _Goobstation/Mobs/SpaceWhale/leviathan.rsi
-    state: segment
-    noRot: false
+    layers:
+    - state: segment
   - type: Tag
     tags:
     - HideContextMenu
+    - SpaceWhaleSegment
   - type: Physics
-    canCollide: false
+    bodyType: Dynamic
 
 - type: entity
   id: SpaceLeviathanDespawn
@@ -122,3 +170,16 @@
   components:
   - type: TimedDespawn
     lifetime: 190 # to further prevent shitters from abusing it if something came up
+
+- type: entity
+  id: SpaceLeviathanMobCaller
+  name: mob caller (space leviathan)
+  categories: [HideSpawnMenu]
+  components:
+  - type: MobCaller
+    spawnProto: SpaceLeviathanDespawn
+    maxAlive: 1
+    needAnchored: false
+    needPower: false
+    minDistance: 100
+    spawnSpacing: 30

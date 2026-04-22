@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Goobstation.Server.MobCaller;
+
 namespace Content.Goobstation.Server.SpaceWhale;
 
 /// <summary>
@@ -6,5 +10,9 @@ namespace Content.Goobstation.Server.SpaceWhale;
 [RegisterComponent]
 public sealed partial class SpaceWhaleTargetComponent : Component
 {
-    [DataField] public EntityUid Entity { get; set; }
+    [DataField]
+    public EntityUid? MobCaller;
+
+    [DataField]
+    public EntProtoId<MobCallerComponent> MobCallerProto = "SpaceLeviathanMobCaller";
 }
