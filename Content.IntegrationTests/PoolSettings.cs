@@ -46,13 +46,6 @@ public sealed class PoolSettings : PairSettings
     /// </summary>
     public string Map { get; init; } = PoolManager.TestMap;
 
-    /// <summary>
-    /// Frontier: the preset to run the game in.
-    /// Set to secret for upstream tests to mimic upstream behaviour.
-    /// If you need to check adventure game rule things, set this to nfadventure or nfpirate.
-    /// </summary>
-    public string GameLobbyDefaultPreset { get; set; } = "secret";
-
     public override bool CanFastRecycle(PairSettings nextSettings)
     {
         if (!base.CanFastRecycle(nextSettings))
@@ -64,7 +57,6 @@ public sealed class PoolSettings : PairSettings
         // Check that certain settings match.
         return DummyTicker == next.DummyTicker
                && Map == next.Map
-               && InLobby == next.InLobby
-               && GameLobbyDefaultPreset == nextSettings.GameLobbyDefaultPreset; // Frontier: swappable presets
+               && InLobby == next.InLobby;
     }
 }
