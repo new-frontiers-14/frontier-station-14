@@ -1018,6 +1018,28 @@
     entries:
       CottonBurger: GoblinPlushie
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieHarpy
+  name: harpy plushie
+  description: A small feathered friend. Try giving her a hug!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    state: plushie_harpy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieHarpy
+
 #region toy guns
 - type: entity
   name: toy rocket launcher
