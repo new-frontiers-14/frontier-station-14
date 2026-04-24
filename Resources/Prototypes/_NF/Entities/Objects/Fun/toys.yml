@@ -1040,6 +1040,28 @@
     entries:
       CottonBurger: PlushieHarpy
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieYarrpy
+  name: yarrpy plushie
+  description: Now you can bring your favorite First Mate everywhere!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    state: plushie_yarrpy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieYarrpy
+
 #region toy guns
 - type: entity
   name: toy rocket launcher
