@@ -1,26 +1,22 @@
 using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
-using Robust.Shared.Audio;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
 using Content.Server._NF.Salvage.Expeditions; // Frontier
-using Content.Server.Station.Components; // Frontier
+using Content.Shared.Ghost; // Frontier
 using Content.Shared.Procedural; // Frontier
 using Content.Shared.Salvage; // Frontier
-using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Station.Components; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
-using Content.Shared.Shuttles.Components; // Frontier
-using Robust.Shared.Configuration;
-using Content.Shared.Ghost;
+using Robust.Shared.Configuration; // Frontier
+using Robust.Shared.Map; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 using System.Numerics; // Frontier
 
 namespace Content.Server.Salvage;
@@ -38,7 +34,7 @@ public sealed partial class SalvageSystem
     private const double SalvageJobTime = 0.002;
     private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with order
 
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!; // Frontier
 
     private float _cooldown;
     private float _failedCooldown; // Frontier
@@ -58,16 +54,17 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentGetState>(OnExpeditionGetState);
         SubscribeLocalEvent<SalvageExpeditionComponent, EntityTerminatingEvent>(OnMapTerminating); // Frontier
 
-        SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
+        SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine); // Frontier
 
-        _cooldown = _cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown);
-        Subs.CVar(_cfgManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange);
-        _failedCooldown = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown); // Frontier
-        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange); // Frontier
-        TravelTime = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionTravelTime); // Frontier
-        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionTravelTime, SetTravelTime); // Frontier
-        ProximityCheck = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionProximityCheck); // Frontier
-        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionProximityCheck, SetProximityCheck); // Frontier
+        _cooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionCooldown);
+        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange);
+
+        _failedCooldown = _configurationManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown); // Frontier
+        Subs.CVar(_configurationManager, NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange); // Frontier
+        TravelTime = _configurationManager.GetCVar(NFCCVars.SalvageExpeditionTravelTime); // Frontier
+        Subs.CVar(_configurationManager, NFCCVars.SalvageExpeditionTravelTime, SetTravelTime); // Frontier
+        ProximityCheck = _configurationManager.GetCVar(NFCCVars.SalvageExpeditionProximityCheck); // Frontier
+        Subs.CVar(_configurationManager, NFCCVars.SalvageExpeditionProximityCheck, SetProximityCheck); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -173,7 +170,7 @@ public sealed partial class SalvageSystem
 
             // Frontier: disable cooldown when still in FTL
             if (!TryComp<StationDataComponent>(uid, out var stationData)
-                || !HasComp<FTLComponent>(_station.GetLargestGrid(stationData)))
+                || !HasComp<FTLComponent>(_station.GetLargestGrid((uid, stationData))))
             {
                 comp.Cooldown = false;
             }
@@ -280,12 +277,12 @@ public sealed partial class SalvageSystem
         _salvageQueue.EnqueueJob(job);
     }
 
+    // Frontier: Restore salvage structure examine, exped job handling, ghost reparenting
     private void OnStructureExamine(EntityUid uid, SalvageStructureComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("salvage-expedition-structure-examine"));
     }
 
-    // Frontier: exped job handling, ghost reparenting
     // Handle exped spawn job failures gracefully - reset the console
     private void OnExpeditionSpawnComplete(EntityUid uid, SalvageExpeditionDataComponent component, ExpeditionSpawnCompleteEvent ev)
     {
