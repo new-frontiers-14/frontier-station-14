@@ -46,7 +46,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!TryComp<FoodSequenceStartPointComponent>(args.Start, out var start))
             return;
 
-        if (!_proto.TryIndex(args.Proto, out var elementProto))
+        if (!_proto.Resolve(args.Proto, out var elementProto))
             return;
 
         if (!ent.Comp.OnlyFinal || elementProto.Final || start.FoodLayers.Count == start.MaxLayers)
@@ -119,7 +119,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!element.Comp1.Entries.TryGetValue(start.Comp.Key, out var elementProto))
             return false;
 
-        if (!_proto.TryIndex(elementProto, out var elementIndexed))
+        if (!_proto.Resolve(elementProto, out var elementIndexed))
             return false;
 
         //if we run out of space, we can still put in one last, final finishing element.
@@ -186,7 +186,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         var nameCounter = 1;
         foreach (var proto in existedContentNames)
         {
-            if (!_proto.TryIndex(proto, out var protoIndexed))
+            if (!_proto.Resolve(proto, out var protoIndexed))
                 continue;
 
             if (protoIndexed.Name is null)
@@ -215,7 +215,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!Resolve(element, ref element.Comp, false))
             return;
 
-        startFood.RequiresSpecialDigestion |= elementFood.RequiresSpecialDigestion; // Frontier: merge special digestion
+        //start.Comp.RequiresSpecialDigestion |= element.Comp.RequiresSpecialDigestion; // Frontier: merge special digestion
 
         if (!_solutionContainer.TryGetSolution(start.Owner, start.Comp.Solution, out var startSolutionEntity, out var startSolution))
             return;
