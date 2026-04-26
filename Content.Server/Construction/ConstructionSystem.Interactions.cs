@@ -276,8 +276,8 @@ namespace Content.Server.Construction
                     if(!insertStep.EntityValid(insert, EntityManager, Factory))
                         return HandleResult.False;
 
-                    // Unremovable items can't be inserted, unless they are a lingering stack
-                    if(HasComp<UnremoveableComponent>(insert) && (!TryComp<StackComponent>(insert, out var comp) || !comp.Lingering))
+                    // Unremovable items can't be inserted
+                    if(HasComp<UnremoveableComponent>(insert))
                         return HandleResult.False;
 
                     // If we're only testing whether this step would be handled by the given event, then we're done.
@@ -320,6 +320,16 @@ namespace Content.Server.Construction
 
                         insert = stack;
                     }
+
+                    //Frontier : duplicated code to handle machine part stacks separately, so we can check part type instead of material
+                    if (insertStep is MachinePartConstructionGraphStep partInsertStep)
+                    {
+                        if (_stackSystem.Split(insert, partInsertStep.Amount, Transform(interactUsing.User).Coordinates) is not { } stack)
+                            return HandleResult.False;
+
+                        insert = stack;
+                    }
+                    //End Frontier
 
                     // Container-storage handling.
                     if (!string.IsNullOrEmpty(insertStep.Store))

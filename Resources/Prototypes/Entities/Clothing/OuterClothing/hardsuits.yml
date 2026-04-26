@@ -399,7 +399,7 @@
   parent: ClothingOuterHardsuitBase # Removed BaseCommandContraband
   id: ClothingOuterHardsuitMedical
   name: chief medical officer's hardsuit
-  description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
+  description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement. Cut-resistant alloys provide substantial resistance against infectious bites. # Frontier: Added "cut resistant alloys" to the description.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
@@ -408,10 +408,15 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: Armor # Frontier: Goal of changing armor values of CMO suit is for it to act as an upgrade to the Merc Bio-Suit, specialized for fighting zombies
     modifiers:
       coefficients:
+        Blunt: 0.9 # Frontier: Added
+        Slash: 0.75 # Frontier: Added
+        Piercing: 0.95 # Frontier: Added
+        Heat: 0.9 # Frontier: Added
         Caustic: 0.1
+        Poison: 0.5 # Frontier: Added
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.4
   - type: ClothingSpeedModifier
@@ -590,7 +595,7 @@
   parent: [ClothingOuterHardsuitSyndie, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
   id: ClothingOuterHardsuitSyndieMedic
   name: blood-red medic hardsuit
-  description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
+  description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations. Cut-resistant alloys provide substantial protection against infectious bites. # Frontier: "Cut-resistant alloys..." added to description.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
@@ -602,6 +607,16 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  - type: Armor # Frontier: Added armor component seperate from parent, to add the poison resistance. Other values still match parent.
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+        Poison: 0.5 # Frontier: Added as upgrade over Merc Bio-suit, zombies on Frontier deal direct poison instead of infection chance
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -976,7 +991,7 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
-  - type: StaminaResistance
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Armor
     modifiers:
