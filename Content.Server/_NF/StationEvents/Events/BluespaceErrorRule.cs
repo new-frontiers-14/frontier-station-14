@@ -19,6 +19,7 @@ using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
+using System.Runtime.Intrinsics;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -72,14 +73,20 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 {
                     var query = EntityQueryEnumerator<BiasTargetComponent>();
 
+                    List<Vector2> targets = new();
+
                     while (query.MoveNext(out var ent, out var biasComp))
                     {
                         if (biasComp.id == group.SpawnBiasTarget)
                         {
-                            // We don't care where it is, only its direction
-                            biasDirection = Vector2.Normalize(_transform.GetMapCoordinates(ent).Position);
-                            break;
+                            targets.Add(_transform.GetMapCoordinates(ent).Position);
                         }
+                    }
+
+                    if (targets.Count > 0)
+                    {
+                        // Pick a random one from the list of possible targets. We don't care where it is, only its direction.
+                        biasDirection = Vector2.Normalize(_random.Pick<Vector2>(targets));
                     }
                 }
 
