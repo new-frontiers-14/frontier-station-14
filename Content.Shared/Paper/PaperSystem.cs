@@ -52,6 +52,7 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<PaperComponent, BeforeActivatableUIOpenEvent>(BeforeUIOpen);
         SubscribeLocalEvent<PaperComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PaperComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<PaperComponent, InteractHandEvent>(OnInteractHand); // imp - Pet Stamps
         SubscribeLocalEvent<PaperComponent, PaperInputTextMessage>(OnInputTextMessage);
         SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb); // Frontier - Sign verb hook
 
@@ -144,6 +145,32 @@ public sealed class PaperSystem : EntitySystem
             }
         }
     }
+
+    //imp - Pet Stamps
+    /// <summary>
+    ///     Handles entities with a stamp component being able to stamp papers with their hands.
+    /// </summary>
+    private void OnInteractHand(Entity<PaperComponent> entity, ref InteractHandEvent args)
+    {
+        if (TryComp<StampComponent>(args.User, out var stampComp)
+        && TryStamp(entity, GetStampInfo(stampComp), stampComp.StampState))
+        {
+            // successfully stamped, play popup
+            var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other-isstamp",
+                    ("user", args.User),
+                    ("target", args.Target));
+
+            _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+            var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self-isstamp",
+                    ("target", args.Target));
+            _popupSystem.PopupClient(stampPaperSelfMessage, args.User, args.User);
+
+            _audio.PlayPredicted(stampComp.Sound, entity, args.User);
+
+            UpdateUserInterface(entity);
+        }
+    }
+    //imp end - Pet Stamps
 
     private void OnInteractUsing(Entity<PaperComponent> entity, ref InteractUsingEvent args)
     {

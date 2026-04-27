@@ -19,3 +19,7 @@ paper-ui-fill-level = {$currentLength}/{$maxLength}
 paper-ui-save-button = Save ({$keybind})
 
 paper-tamper-proof-modified-message = This page was written using tamper-proof ink.
+
+### IMP - Pet Stamps
+paper-component-action-stamp-paper-other-isstamp = {CAPITALIZE(THE($user))} stamps {THE($target)}.
+paper-component-action-stamp-paper-self-isstamp = You stamp {THE($target)}.
