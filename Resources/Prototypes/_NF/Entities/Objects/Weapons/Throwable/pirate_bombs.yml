@@ -35,6 +35,8 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ExplodeOnTrigger
+    keysIn:
+      - timer
   - type: Explosive # Weak explosion with rad damage spread over a large radius.
     explosionType: Radioactive
     totalIntensity: 40
@@ -53,6 +55,8 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ExplodeOnTrigger
+    keysIn:
+      - timer
   - type: Explosive # Weak explosion in a very small radius. Doesn't break underplating.
     explosionType: DemolitionCharge
     totalIntensity: 50
@@ -72,6 +76,8 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: SmokeOnTrigger
+    keysIn:
+      - timer
     duration: 10
     spreadAmount: 10
     smokePrototype: Smoke
@@ -81,6 +87,11 @@
         Quantity: 8
       - ReagentId: Napalm
         Quantity: 8
-  - type: DeleteOnTrigger
   - type: EmitSoundOnTrigger
+    keysIn:
+      - timer
     sound: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: DeleteOnTrigger
+    keysIn:
+      - timer
