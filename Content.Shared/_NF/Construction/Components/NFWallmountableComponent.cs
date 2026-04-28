@@ -32,7 +32,7 @@ public sealed partial class NFWallmountableComponent : Component
 }
 
 /// <summary>
-/// Raised when an entity tries to install an entity with SRWallMountableComponent on a wall.
+/// Raised when an entity tries to install an entity with NFWallMountableComponent on a wall.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed partial class NFWallmountDoAfterEvent : SimpleDoAfterEvent;
