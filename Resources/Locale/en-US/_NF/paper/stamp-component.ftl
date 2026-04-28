@@ -12,3 +12,11 @@ stamp-component-stamped-name-plant-manager = Plant Manager
 stamp-component-stamped-name-sr = Station Representative
 stamp-component-stamped-name-stc = Station Traffic Controller
 stamp-component-stamped-name-honk = Honk
+
+## CATS!!!
+stamp-component-stamped-name-cappy = Cappy
+stamp-component-stamped-name-cat = Cat
+stamp-component-stamped-name-clarpy = Clarpy
+stamp-component-stamped-name-clippy = Clippy
+stamp-component-stamped-name-clugg = Clugg
+stamp-component-stamped-name-curie = Curie
