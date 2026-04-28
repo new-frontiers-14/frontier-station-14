@@ -1,5 +1,10 @@
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  abstract: true
+  parent: [DrinkBottlePlasticBaseFull, DrinkVisualsOpenable]
+  id : BaseCondimentJug
+
+- type: entity
+  parent: BaseCondimentJug
   id: DrinkAstrotameJug
   name: astrotame jug
   description: The sweetness of a thousand sugars but none of the calories. Put it in your coffee.
@@ -11,12 +16,11 @@
         reagents:
         - ReagentId: Astrotame
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-astrotame
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkBbqSauceJug
   name: bbq sauce jug
   description: Finally, ketchup for grownups.
@@ -28,12 +32,11 @@
         reagents:
         - ReagentId: BbqSauce
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-bbq-sauce
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkColdsauceJug
   name: coldsauce jug
   description: Something to make every meal a little cooler.
@@ -45,12 +48,11 @@
         reagents:
         - ReagentId: Coldsauce
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-coldsauce
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkHorseradishSauceJug
   name: horseradish sauce jug
   description: Now with 50% more horse.
@@ -62,12 +64,11 @@
         reagents:
         - ReagentId: HorseradishSauce
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-horseradish-sauce
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkHotsauceJug
   name: hotsauce jug
   description: The antithesis of no more tears shampoo.
@@ -79,12 +80,11 @@
         reagents:
         - ReagentId: Hotsauce
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-hotsauce
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkKetchupJug
   name: ketchup jug
   description: Someone filled a tomato with sugar until it burst. Delicious.
@@ -96,12 +96,11 @@
         reagents:
         - ReagentId: Ketchup
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-ketchup
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkMustardJug
   name: mustard jug
   description: All of the implications of real mustard with none of the flavor.
@@ -113,12 +112,11 @@
         reagents:
         - ReagentId: Mustard
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-mustard
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkSoysauceJug
   name: soy sauce jug
   description: You can only dream of putting some of this on a bowl of rice.
@@ -130,12 +128,11 @@
         reagents:
         - ReagentId: Soysauce
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-soysauce
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: DrinkMayoJug
   name: mayonnaise jug
   description: When this jug is emptied it will fall to you to fill it. Will you have the strength. Will you have the resolve.
@@ -147,13 +144,12 @@
         reagents:
         - ReagentId: Mayo
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-mayo
 
 # imp coffee machine
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: JugCaramexinin
   name: caramexinin jug
   suffix: For Drinks, Full
@@ -166,12 +162,11 @@
         reagents:
         - ReagentId: Caramexinin
           Quantity: 80
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-caramexinin
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: JugNanocaf
   name: nanocaf jug
   suffix: For Drinks, Full
@@ -184,12 +179,11 @@
         reagents:
         - ReagentId: Nanocaf
           Quantity: 300
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-nanocaf
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: BaseCondimentJug
   id: JugWater
   name: water powder jug
   suffix: For Drinks, Full
@@ -202,6 +196,5 @@
         reagents:
         - ReagentId: Water
           Quantity: 300
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-water

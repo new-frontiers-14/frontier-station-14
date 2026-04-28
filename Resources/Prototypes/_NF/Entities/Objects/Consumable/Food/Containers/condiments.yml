@@ -1,26 +1,19 @@
 - type: entity
-  parent: BaseFoodCondiment
+  parent: BaseFoodCondimentBottle
   id: BaseFoodCondimentSqueezeBottle
   abstract: true
   name: squeeze bottle
   description: A thin plastic container used to store condiments.
   components:
-  - type: Drink
-    solution: food
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 50
-  - type: RefillableSolution
-    solution: food
-  - type: Spillable
-    solution: food
   - type: SolutionTransfer
     playTransferSound: true
     canChangeTransferAmount: true
     minTransferAmount: 5
     maxTransferAmount: 50
-  - type: Appearance
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
@@ -88,18 +81,11 @@
     fillBaseName: squeeze-bottle-clear
 
 - type: entity
-  parent: [DrinkBottleVisualsNoInHand, DrinkBottleVisualsAll, DrinkBottleGlassBaseFull] # TODO: make inhand fill sprites (and I guess inhand sprites)
+  parent: BaseFoodCondimentBottle # TODO: make inhand fill sprites (and I guess inhand sprites)
   id: FoodCondimentBottleSoysauce
   name: soy sauce bottle
   description: Used to season dishes to umami perfection. With extra sodium!
   components:
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon_empty"}
   - type: Item
     size: Small
   - type: SolutionContainerManager
@@ -117,8 +103,6 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/soysauce.rsi
     state: icon
-  - type: Openable
-    closeable: true
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: fill-
