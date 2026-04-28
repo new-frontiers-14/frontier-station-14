@@ -1038,7 +1038,12 @@
       path: /Audio/_DV/Voice/Harpy/caw1.ogg
   - type: Item
     sprite: _NF/Objects/Fun/Plushies/harpy.rsi
-    heldPrefix:
+    heldPrefix: plushie_harpy
+    inhandVisuals:
+      left:
+      - state: harpyplushie-inhand-left
+      right:
+      - state: harpyplushie-inhand-right
   - type: Clothing
     sprite: _NF/Objects/Fun/Plushies/harpy.rsi
     slots:
@@ -1071,10 +1076,15 @@
     sound:
       path: /Audio/_DV/Voice/Harpy/caw1.ogg
   - type: Item
-    sprite: _NF/Objects/Fun/Plushies/yarrpy.rsi
-    heldPrefix:
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    heldPrefix: plushie_yarrpy
+    inhandVisuals:
+      left:
+      - state: yarrpyplushie-inhand-left
+      right:
+      - state: yarrpyplushie-inhand-right
   - type: Clothing
-    sprite: _NF/Objects/Fun/Plushies/yarrpy.rsi
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
     slots:
     - HEAD
     quickEquip: false
