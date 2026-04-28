@@ -888,7 +888,7 @@
   id: ComputerCargoOrders
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: add BaseStructureDisableToolUse, BaseStructureIndestructible
   name: cargo request computer
-  description: Used to purchase supplies in from central command. # Frontier
+  description: Used to order supplies and approve requests.
   components:
   - type: Sprite
     layers:
@@ -1281,8 +1281,8 @@
 - type: entity
   id: ComputerSalvageExpedition
   parent: BaseComputerAiAccess
-  name: expedition console # Frontier: salvage expeditions computer<expedition console
-  description: Used to go on expeditions, if you're tough enough. # Frontier: "accept salvage missions"<"go on expeditions"
+  name: salvage expeditions computer
+  description: Used to accept salvage missions, if you're tough enough.
   components:
     - type: Sprite
       layers:
@@ -1410,6 +1410,21 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+
+- type: entity
+  parent: ComputerSurveillanceWirelessCameraMonitor
+  id: ComputerSurveillanceWirelessXenoborgCameraMonitor
+  name: xenoborg camera monitor
+  description: A wireless xenoborg camera monitor. You're watching them. Maybe.
+  components:
+  - type: Computer
+    board: XenoborgCameraMonitorCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Mothership
+    transmitFrequencyId: Mothership
+  - type: WirelessNetworkConnection
+    range: 2000
 
 - type: entity
   id: ComputerPalletConsole
@@ -1580,6 +1595,39 @@
     access: [["ResearchDirector"]]
   - type: Lock
     unlockOnClick: false
+
+- type: entity
+  parent: ComputerRoboticsControl
+  id: ComputerXenoborgsControl
+  name: xenoborgs control console
+  description: Used to remotely monitor all xenoborgs.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: xenorobot
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: RoboticsConsole
+    allowBorgControl: false
+    radioChannel: Xenoborg
+  - type: ActiveRadio
+    channels:
+    - Xenoborg
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Mothership
+    transmitFrequencyId: Xenoborg
+  - type: Computer
+    board: ComputerXenoborgsControlCircuitboard
+  - type: AccessReader # only used for dangerous things
+    access: [["Xenoborg"]]
 
 - type: entity
   id: StationAiUploadComputer

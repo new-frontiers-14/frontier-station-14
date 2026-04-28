@@ -92,6 +92,10 @@
       - state: base-colorA-inhand-right
         color: "#666865"
       - state: base-colorB-inhand-right
+  # Frontier: whitelist empty medipen in medical bag
+  - type: Tag
+    tags:
+    - NFEmptyMedipen
 
 - type: entity
   parent: ChemicalMedipen
@@ -399,6 +403,74 @@
           Quantity: 5
   - type: StaticPrice #to sell in the booze-o-mat
     price: 225
+
+- type: entity
+  name: ambuzol auto-injector
+  parent: NFChemicalMedipen
+  id: AmbuzolAutoInjector
+  description: Ambuzol prepared as a preventative measure for mercenaries encountering zombies in combat.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#86caf7"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#86caf7"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    layers:
+    - state: ambuzolpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: ambuzolpen_empty
+  - type: Hypospray
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ambuzol
+          Quantity: 20
+
+- type: entity
+  name: ambuzol plus auto-injector
+  parent: NFChemicalMedipen
+  id: AmbuzolPlusAutoInjector
+  description: When preventative Ambuzol is not enough, Ambuzol Plus will clean up what's left.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#1274b5"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#1274b5"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    layers:
+    - state: ambuzolpluspen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: ambuzolpluspen_empty
+  - type: Hypospray
+    transferAmount: 15
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: AmbuzolPlus
+          Quantity: 15
 
 - type: entity
   parent: BaseItem

@@ -55,6 +55,8 @@ anomaly-sync-examine-connected = It is [color=darkgreen]attached[/color] to an a
 anomaly-sync-examine-not-connected = It is [color=darkred]not attached[/color] to an anomaly.
 anomaly-sync-connect-verb-text = Attach anomaly
 anomaly-sync-connect-verb-message = Attach a nearby anomaly to {THE($machine)}.
+anomaly-sync-disconnect-verb-text = Detach anomaly
+anomaly-sync-disconnect-verb-message = Detach the connected anomaly from {THE($machine)}.
 
 anomaly-generator-ui-title = Anomaly Generator
 # Frontier: Plasma<Anomalite
@@ -81,7 +83,7 @@ anomaly-behavior-unknown = [color=red]ERROR. Cannot be read.[/color]
 
 # Frontier: caps
 anomaly-behavior-title = Behavior Deviation Analysis:
-anomaly-behavior-point =[color=gold]Anomaly produces {$mod}% of the points[/color]
+anomaly-behavior-point = [color=gold]Anomaly produces {$mod}% of the points[/color]
 
 anomaly-behavior-safe = [color=forestgreen]The anomaly is extremely stable. Extremely rare pulsations.[/color]
 anomaly-behavior-slow = [color=forestgreen]The frequency of pulsations is much less frequent.[/color]

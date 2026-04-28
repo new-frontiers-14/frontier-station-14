@@ -19,6 +19,7 @@
     - id: PaperWrittenNfsdContrabandAmnesty
     - id: PaperWrittenNfsdContrabandTurnover
     - id: PaperWrittenNfsdContrabandPermit
+    - id: PaperWrittenNFSDWritOfTheFrontier
     - id: Paper
       prob: 0.5
     - id: Paper
@@ -328,9 +329,9 @@
       [bold]Vessel IFF:[/bold]
       [bold]Shift Time:[/bold]
 
-      [bold]Issuing Frontier Command:[/bold]
-          [bullet]XXXXXXXX, Station Representative
-          [bullet]XXXXXXXX, Sheriff
+      [head=3][bold]Issuing Frontier Authority[/bold][/head]
+      [bold]Commanding Officer Name:[/bold]
+      [bold]Commanding Officer Rank:[/bold]
 
       This document authorizes the above vessel and its captain to assist and [bold]cooperate with the NFSD and Frontier authorities[/bold] in neutralizing [bold]hostile bluespace threats[/bold] to Frontier. These include, but are not limited to:
           [bullet] Cultist vessels
@@ -348,4 +349,57 @@
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both the permitted Captain and the issuing Commanding Officer, as well as their stamp when one is available at their rank.[/color]
+      
+- type: entity # Based on form made by Red
+  id: PaperWrittenNFSDWritOfTheFrontier
+  name: writ of the frontier
+  parent: Paper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Paper
+    content: |2 
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Writ of The Frontier[/head]
+      
+      [head=3]Contraband Holder[/head]
+          [bold]Name:[/bold] 
+          [bold]Species:[/bold] 
+          [bold]Vessel IFF:[/bold] 
+      
+      [bold]Holder Crew:[/bold]
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
+
+      [bold]Payout per FUC:[/bold] [color=#ff0000]$2,000[/color]
+      [bold]Shift Time:[/bold] 
+
+      This document is a contract between the above Contraband Holder and Frontier Command.
+
+      Any crimes of contraband possession for the Contraband Holder will be waived so long as all class 3 contraband items, and any class 2 contraband items not subject to a Class 2 Contraband Permit are turned in within reasonable time (subject to the clause below), and not used for malicious purposes. Noncompliance with this document results in voiding any standing Class 2 Contraband Permits.
+
+      If the Contraband Holder is not paid in full at the above rate for any contraband turned in, they may remain in possession of the contraband without penalty at their discretion.
+
+      This Permit allows the Holder and crew, as listed above, to possess and use class 2 contraband.
+      Non-compliance with a Contraband Amnesty agreement voids this Permit.
+      Refer to §6.1.4 of Space Law for a full definition of class 2 contraband.
+
+      This document authorizes the above vessel and its captain to assist and cooperate with the NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
+         [bullet] Cultist vessels
+         [bullet] Syndicate vessels
+         [bullet] Wizard Federation vessels
+         [bullet] Arcadia Industries vessels
+
+      This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
+
+      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
+
+      The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
+
+      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
+
+
+
+      [color=#AAAAAA]This Permit is void without the signature of the Holder and the signature and stamp of the Sheriff[/color]
