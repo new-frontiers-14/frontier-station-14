@@ -1603,7 +1603,24 @@
   recipeType:
   - Oven
 
-#region Goblin
+# Fries
+
+- type: microwaveMealRecipe
+  id: Poutine
+  name: poutine recipe
+  result: FoodMealPoutine
+  time: 5
+  group: Savory
+  solids:
+    FoodMealFries: 1
+    FoodCheeseCurds: 1
+  reagents:
+    Gravy: 10
+  recipeType:
+  - Assembler
+
+# region Goblin
+
 - type: microwaveMealRecipe
   id: RecipeGoblinSpaceTickGoulash
   name: space tick goulash recipe
@@ -1868,6 +1885,21 @@
   - Oven
 
 - type: microwaveMealRecipe
+  id: RecipeGoblinGlowskeySublimate
+  name: glowskey sublimate recipe
+  result: FoodGoblinGlowskeySublimate
+  time: 15
+  group: Goblin
+  reagents:
+    Enzyme: 10
+    Sugar: 5
+    Water: 50
+  solids:
+    NFFoodGlowshroom: 2
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
   id: RecipeGoblinGlowskey
   name: glowskey recipe
   result: DrinkGoblinGlowskeyCarton
@@ -1880,19 +1912,34 @@
     FoodGoblinGlowskeySublimate: 1
   recipeType:
   - Assembler
-# Fries
 
 - type: microwaveMealRecipe
-  id: Poutine
-  name: poutine recipe
-  result: FoodMealPoutine
-  time: 5
-  group: Savory
-  solids:
-    FoodMealFries: 1
-    FoodCheeseCurds: 1
+  id: RecipeGoblinCigaretteSalad
+  name: cigarette salad recipe
+  result: FoodGoblinCigaretteSalad
+  time: 3
+  group: Goblin
   reagents:
-    Gravy: 10
+    Cream: 5
+    Soysauce: 5
+  solids:
+    NFAshtray: 1
+    CigaretteSpent: 4
   recipeType:
   - Assembler
-  
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinChiliCashCarne
+  name: chili cash carne recipe
+  result: FoodGoblinChiliCashCarne
+  time: 5
+  group: Goblin
+  solids:
+    FoodBowlBig: 1
+    NFFoodMeatCutletCooked: 2
+    FoodOnionSlice: 1
+    FoodChiliPepper: 1
+    SpaceCash500: 1
+  recipeType:
+  - Oven
+# endregion Goblin

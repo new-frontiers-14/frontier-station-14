@@ -296,4 +296,42 @@
     softness: 0.5
     color: "#AFDDAF"
     castShadows: false
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealEasy, FoodBowlBase]
+  id: FoodGoblinCigaretteSalad
+  name: cigarette salad
+  description: A scientific proof that sour cream with soy sauce can make anything edible.
+  components:
+  - type: GoblinMade
+  - type: Edible
+    trash:
+    - NFAshtray
+  - type: FlavorProfile
+    flavors:
+    - salty
+    - bitter
+    - creamy
+  - type: Sprite
+    sprite: _NF/Objects/Misc/ashtray.rsi
+    layers:
+    - state: icon-0
+    - sprite: _NF/Objects/Consumable/Food/bowl.rsi
+      state: goblin-cigarette-salad
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
+  id: FoodGoblinChiliCashCarne
+  name: chili cash carne
+  description: If you want to spend 500 spesos - this is the way.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - spicy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: goblin-chili-cash
 # endregion Meals
