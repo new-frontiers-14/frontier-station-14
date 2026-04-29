@@ -1,141 +1,58 @@
 
-# region Meat
+# region Base
+# Standardised sizes of goblin food for ease of adjusting the values
 - type: entity
-  parent: FoodMeatBase
-  id: NFFoodMeatRottenCooked
-  name: rotten meat steak
-  description: A cooked slab of rotten meat. It smells.
+  abstract: true
+  id: NFBaseFoodGoblinMealEasy # Easy recipes, low volumes of reagents; used FoodSnackBase as a baseline
   components:
-  - type: Tag
-    tags:
-    - Cooked
-    - Meat
-    - Steak
-    - Trash
-    - Recyclable
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/meat.rsi
-    layers:
-    - state: rotten-cooked
-    - sprite: _NF/Effects/flies.rsi
-      state: flies
   - type: SolutionContainerManager
     solutions:
       food:
+        maxVol: 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: GastroToxin
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Goblinol
+          Quantity: 2
+
+- type: entity
+  abstract: true
+  id: NFBaseFoodGoblinMealFine # Slightly more complex recipes, medium volumes of reagents; used FoodMealBase as a baseline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Goblinol
+          Quantity: 5
+
+- type: entity
+  abstract: true
+  id: NFBaseFoodGoblinMealLavish # Complex recipes (or use rare ingredients), higher volumes of reagents; eyeballed the values
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
           Quantity: 4
         - ReagentId: Goblinol
-          Quantity: 2
-  - type: SliceableFood
-    count: 3
-    slice: NFFoodMeatCutletCooked
-  - type: Construction
-    graph: NFRottenMeatSteak
-    node: NFFoodMeatRottenCooked
-  - type: FoodSequenceElement
-    entries:
-      Burger: NFMeatRottenSteak
-      Taco: NFMeatRottenSteak
-  - type: Item
-    sprite: Objects/Consumable/Food/meat.rsi
-    inhandVisuals:
-      left:
-      - state: plain-cooked-inhand-left
-      right:
-      - state: plain-cooked-inhand-right
+          Quantity: 10
+# endregion Base
 
+# region Meals
 - type: entity
-  parent: FoodMeatBase
-  id: NFFoodMeatCutletRotten
-  name: rotten cutlet
-  description: Slightly more than halfway to becoming fertilizer for your garden.
-  components:
-  - type: GoblinMade
-  - type: Tag
-    tags:
-    - Raw
-    - Cutlet
-    - Meat
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/meat.rsi
-    layers:
-    - state: cutlet-rotten
-    - sprite: _NF/Effects/flies.rsi
-      state: flies
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 2
-        - ReagentId: GastroToxin
-          Quantity: 2
-        - ReagentId: Fat
-          Quantity: 2
-  - type: Construction
-    graph: NFCutletRotten
-    node: start
-    defaultTarget: NFFoodMeatCutletCooked
-  - type: Item
-    sprite: Objects/Consumable/Food/meat.rsi
-    inhandVisuals:
-      left:
-      - state: generic-pink-inhand-left
-        color: "#c7782e"
-      right:
-      - state: generic-pink-inhand-right
-        color: "#c7782e"
-
-- type: entity
-  parent: FoodMeatBase
-  id: NFFoodMeatCutletCooked
-  name: cooked rotten cutlet
-  description: A cooked rotten meat cutlet. Needs some seasoning.
-  components:
-  - type: GoblinMade
-  - type: Tag
-    tags:
-    - Cooked
-    - Cutlet
-    - Meat
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/meat.rsi
-    layers:
-    - state: cutlet-rotten-cooked
-    - sprite: _NF/Effects/flies.rsi
-      state: flies
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: GastroToxin
-          Quantity: 1
-        - ReagentId: Goblinol
-          Quantity: 1
-  - type: Construction
-    graph: NFCutletRotten
-    node: NFFoodMeatCutletCooked
-  - type: FoodSequenceElement
-    entries:
-      Burger: NFMeatCutletRotten
-      Taco: NFMeatCutletRotten
-  - type: Item
-    sprite: Objects/Consumable/Food/meat.rsi
-    inhandVisuals:
-      left:
-      - state: generic-pink-inhand-left
-        color: "#5B3614"
-      right:
-      - state: generic-pink-inhand-right
-        color: "#5B3614"
-
-- type: entity
-  parent: FoodMeatCooked
+  parent: [NFBaseFoodGoblinMealEasy, FoodMeatCooked]
   id: FoodMeatRatCooked
   name: grilled rat
   description: A cooked rat.
@@ -145,16 +62,6 @@
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     layers:
     - state: rat-meat-cooked
-  - type: SolutionContainerManager # steak values but traded 1u of nutriment and 1u of protein for 2u of goblinol
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 9
-        - ReagentId: Protein
-          Quantity: 4
-        - ReagentId: Goblinol
-          Quantity: 2
   - type: Construction
     graph: GrilledRat
     node: FoodMeatRatCooked
@@ -162,15 +69,9 @@
     entries:
       Burger: GrilledRat
       Taco: GrilledRat
-# endregion Meat
 
-# region Base Meals
-
-# endregion Base Meals
-
-# region Meals
 - type: entity
-  parent: FoodBowlBase
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
   id: FoodGoblinSpaceTickGoulash
   name: space tick goulash
   description: It glows at the input and output.
@@ -188,23 +89,12 @@
     - state: goblin-tick-stew
     - state: goblin-tick-stew-glow
       shader: unshaded
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Goblinol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
 
 - type: entity
-  parent: FoodBowlBase
+  parent: [NFBaseFoodGoblinMealLavish, FoodBowlBase]
   id: FoodGoblinSpiderShakshouka
   name: spider shakshouka
   description: Crunchy.
@@ -219,15 +109,6 @@
     layers:
     - state: bowl
     - state: goblin-shakshouka
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents: # Higher values because spider egg can't be sourced reliably
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Goblinol
-          Quantity: 15
   - type: PointLight
     radius: 1.5
     energy: 2
@@ -240,7 +121,7 @@
   parent: FoodMealOmelette
   id: FoodGoblinSwampBroth
   name: swamp broth
-  description: Tastes like home, smells like sewer.
+  description: Smells like sewer, tastes like home, .
   components:
   - type: GoblinMade
   - type: Edible
@@ -276,7 +157,7 @@
     - Meat
 
 - type: entity
-  parent: FoodMealBase
+  parent: [NFBaseFoodGoblinMealEasy, FoodMealBase]
   id: FoodGoblinMeatSausageFermented
   name: cooked 'fermented' sausage
   description: "The rotten meat or as we chefs call it 'the fermentation process' has made it smell worse, but taste better! Probably."
@@ -297,21 +178,12 @@
       color: "#6d382a"
     - sprite: _NF/Effects/flies.rsi
       state: flies
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Goblinol
-          Quantity: 2
   - type: Construction
     graph: NFSausageFermentedCooking
     node: CookedFermentedSausage
 
 - type: entity
-  parent: FoodMealHotdog
+  parent: [NFBaseFoodGoblinMealFine, FoodMealHotdog]
   id: FoodGoblinMealHotdog
   name: hotdog with 'fermented'sausage
   components:
@@ -327,21 +199,12 @@
     - state: hotdog
     - sprite: _NF/Effects/flies.rsi
       state: flies
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 18
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Goblinol
-          Quantity: 5
   - type: Construction
     graph: NFHotdog
     node: HotdogWithFermentedSausage
 
 - type: entity
-  parent: FoodMealBase
+  parent: [NFBaseFoodGoblinMealFine, FoodMealBase]
   id: FoodGoblinMealCornedRat
   name: corned rat and cabbage
   description: This is what you do when you find a fat rat in your corn and cabbage barn.
@@ -354,23 +217,12 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meals.rsi
     state: goblin-cornedrat
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Goblinol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
 
 - type: entity
-  parent: FoodBowlBase
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
   id: FoodGoblinRatStew
   name: rat stew
   description: If rat doesn't sink, you've cooked it right.
@@ -386,19 +238,6 @@
     layers:
     - state: bowl
     - state: goblin-rat-stew
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 10
-        - ReagentId: FungalBeer
-          Quantity: 7
-        - ReagentId: Goblinol
-          Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -432,7 +271,7 @@
           Quantity: 13
 
 - type: entity
-  parent: FoodBowlBase
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
   id: FoodGoblinGlowshroomSalad
   name: glowshroom salad
   description: You can find it at night without turning on the lights.
@@ -451,17 +290,6 @@
     - state: goblin-glowshroom-salad
     - state: goblin-glowshroom-salad-glow
       shader: unshaded
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents: # Slightly higher values because glowshrooms need to be obtained first
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Goblinol
-          Quantity: 5
   - type: PointLight
     radius: 1.5
     energy: 0.5
