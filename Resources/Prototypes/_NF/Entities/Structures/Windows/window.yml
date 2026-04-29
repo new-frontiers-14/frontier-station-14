@@ -1,3 +1,4 @@
+#region Invisible wall
 - type: entity
   name: Invisible Wall
   suffix: Ship
@@ -49,3 +50,79 @@
   - type: Tag
     tags:
     - Wall
+
+#region Indestructible base window
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: WindowIndestructible
+  categories: [ HideSpawnMenu ]
+  description: Don't smudge up the glass down there.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmack
+  - type: WallMount
+    arc: 360 # interact despite grilles
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Structures/Windows/window.rsi
+  - type: Icon
+    sprite: _NF/Structures/Windows/window.rsi
+    state: full
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer # Blocks lasers, but not LoS
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+  - type: RCDDeconstructable
+    deconstructable: false
+  - type: Airtight
+  - type: IconSmooth
+    key: walls
+    base: window
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: StaticPrice
+    price: 100
+  - type: BlockWeather
+
+#region Indestructible rplasma window
+- type: entity
+  parent: WindowIndestructible
+  id: ReinforcedPlasmaWindowIndestructible
+  name: reinforced plasma window
+  suffix: Indestructible
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi
+  - type: Icon
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi
+  - type: RadiationBlocker
+    resistance: 4
+  - type: IconSmooth
+    base: rpwindow
+  - type: StaticPrice
+    price: 65

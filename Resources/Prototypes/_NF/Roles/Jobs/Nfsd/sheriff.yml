@@ -38,10 +38,11 @@
   - AllAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -59,3 +60,17 @@
     - DoorRemoteNfsd
     - BaseSecurityUplinkRadioSheriff
     - RubberStampSheriff
+
+- type: chameleonOutfit
+  id: SheriffChameleonOutfit
+  job: Sheriff
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdCampaignFilled
+    mask: ClothingMaskGasSheriff
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterCoatNfsdFormalSheriff
+    neck: ClothingNeckNfsdBadgeSheriff
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdCream
+    shoes: ClothingShoesBootsNfsdBrown

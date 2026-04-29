@@ -1,0 +1,50 @@
+- type: entity
+  parent: SprayPainter
+  id: SprayPainterMagic
+  name: magic spray painter
+  description: A prototype self-charging spray painter. May require refilling. Smells like plasma.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/magic_spraypainter.rsi
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Fun/magic_spraypainter.rsi
+    heldPrefix: icon
+  - type: LimitedCharges
+    maxCharges: 25
+  - type: AutoRecharge
+    rechargeDuration: 2
+  - type: SprayPainter
+    colorPalette:
+      waste: '#990000'
+      distro: '#0055cc'
+      air: '#03fcd3'
+      mix: '#947507'
+      external: '#9955cc'
+      oxygen: '#0335FCFF'
+      nitrogen: '#ba0000'
+      carbon dioxide: '#525252'
+      water vapor: '#969696'
+      plasma: '#FF00FF'
+      tritium: '#7DC855'
+      frezon: '#87CEEB'
+      ammonia: '#800080'
+      nitrous oxide: '#FF4040'
+      red: '#FF1212FF'
+      yellow: '#B3A234FF'
+      bright yellow: '#FFFF00'
+      orange: '#FFA500'
+      brown: '#947507FF'
+      dark brown: '#8B4513'
+      coral: '#FF7F50'
+      green: '#3AB334FF'
+      dark green: '#006400'
+      cyan: '#03FCD3FF'
+      blue: '#0335FCFF'
+      steelblue: '#4682B4'
+      purple: '#800080'
+      dark purple: '#4B0082'
+      pink: '#FFC0CB'
+      violet: '#EE82EE'
+      white: '#FFFFFFFF'
+      black: '#333333FF'

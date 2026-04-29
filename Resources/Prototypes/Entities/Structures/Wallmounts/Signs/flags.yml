@@ -3,10 +3,7 @@
   id: BaseFlag
   abstract: true
   components:
-  - type: WallMount
-    arc: 360
   - type: Sprite
-    drawdepth: WallMountedItems
     sprite: Structures/Wallmounts/flags.rsi
     # Begin DeltaV additions - Craftable Pride Flags
   - type: StaticPrice
@@ -42,6 +39,11 @@
   components:
   - type: Sprite
     state: blank_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: BlankFlag
+    # End Frontier additions
 
 - type: entity
   parent: BaseFlag
@@ -51,6 +53,11 @@
   components:
   - type: Sprite
     state: NT_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: NTFlag
+    # End Frontier additions
 
 - type: entity
   parent: BaseFlag
@@ -60,7 +67,12 @@
   components:
   - type: Sprite
     state: syndie_flag
-    
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: SyndieFlag
+    # End Frontier additions
+
 - type: entity
   parent: BaseFlag
   id: LGBTQFlag
@@ -81,3 +93,8 @@
   components:
   - type: Sprite
     state: pirate_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: PirateFlag
+    # End Frontier additions

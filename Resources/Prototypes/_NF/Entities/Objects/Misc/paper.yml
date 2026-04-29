@@ -114,3 +114,129 @@
   components:
   - type: Paper
     stampState: paper_stamp-syndicate
+
+- type: entity
+  parent: Paper
+  id: PaperColoredRed
+  suffix: Red
+  description: 'A piece of red paper.'
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper
+          color: "#F4B5B5"
+        - state: paper_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+          color: "#F4B5B5"
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      backgroundModulate: "#F4B5B5"
+
+- type: entity
+  parent: Paper
+  id: PaperColoredOrange
+  suffix: Orange
+  description: 'A piece of orange paper.'
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper
+          color: "#F9C7A1"
+        - state: paper_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+          color: "#F9C7A1"
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      backgroundModulate: "#F9C7A1"
+
+- type: entity
+  parent: Paper
+  id: PaperColoredYellow
+  suffix: Yellow
+  description: 'A piece of yellow paper.'
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper
+          color: "#FFF4B5"
+        - state: paper_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+          color: "#FFF4B5"
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      backgroundModulate: "#FFF4B5"
+
+- type: entity
+  parent: Paper
+  id: PaperColoredGreen
+  suffix: Green
+  description: 'A piece of green paper.'
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper
+          color: "#BAE6BA"
+        - state: paper_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+          color: "#BAE6BA"
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      backgroundModulate: "#BAE6BA"
+
+- type: entity
+  parent: Paper
+  id: PaperColoredBlue
+  suffix: Blue
+  description: 'A piece of blue paper.'
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper
+          color: "#B7DCFA"
+        - state: paper_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+          color: "#B7DCFA"
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      backgroundModulate: "#B7DCFA"
+
+- type: entity
+  parent: Paper
+  id: PaperColoredPurple
+  suffix: Purple
+  description: 'A piece of purple paper.'
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper
+          color: "#DFB7FA"
+        - state: paper_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+          color: "#DFB7FA"
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      backgroundModulate: "#DFB7FA"

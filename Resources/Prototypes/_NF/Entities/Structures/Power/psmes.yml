@@ -1,0 +1,78 @@
+- type: entity
+  parent: BaseSMES
+  id: PortableSMESEmpty
+  suffix: Empty
+  name: portable SMES
+  description: A "portable" SMES. Charges through HV cable, steps down to LV cable.
+  components:
+  - type: AmbientSound
+    volume: -9
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Sprite
+    sprite: _NF/Structures/Power/psmes.rsi
+    snapCardinals: true
+    layers:
+      - state: psmes
+      - map: ["enum.SmesVisualLayers.Charge"]
+        state: "smes-og1" # -og0 does not exist
+        shader: unshaded
+        visible: false
+      - map: ["enum.SmesVisualLayers.Input"]
+        state: "smes-oc0"
+        shader: unshaded
+      - map: ["enum.SmesVisualLayers.Output"]
+        state: "smes-op1"
+        shader: unshaded
+      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        state: psmes-open
+  - type: Battery
+    maxCharge: 8000000
+    startingCharge: 0
+  - type: PowerNetworkBattery
+    maxSupply: 15000
+    maxChargeRate: 40000 #about a 4 minute recharge time. 
+    supplyRampTolerance: 5000
+    supplyRampRate: 500
+    efficiency: 0.8 # take a loss when dumping in the juice.
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: BatteryDischarger
+    voltage: Apc
+  - type: PowerProvider
+    voltage: Apc
+  - type: Apc
+    voltage: Apc
+  - type: ExtensionCableProvider
+  - type: Machine
+    board: PortableSMESMachineCircuitboard
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.30,-0.30,0.30,0.30"
+        # Wheels go vroom
+        density: 155
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: UpgradeBattery
+    maxChargeMultiplier: 1.5
+
+- type: entity
+  parent: PortableSMESEmpty
+  id: PortableSMES
+  suffix: Portable, 8MJ
+  components:
+  - type: Battery
+    startingCharge: 8000000

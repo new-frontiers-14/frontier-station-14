@@ -1,0 +1,286 @@
+# Okay so my general thought is this:
+# 1. Generate the large mass
+# 2. Generate smaller masses offset
+# 3. Generate N normal dungeons around the larger mass, preferably near the border
+# 4. Generate large paths / small paths around the place
+# 5. Spawn ores + fill the rest and the normal stuff
+
+# If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
+
+- type: dungeonConfig
+  id: NFVGRoidCaveZombie
+  layers:
+    - !type:PrototypeDunGen
+      proto: NFVGRoidBlobCave
+    - !type:PrototypeDunGen
+      proto: NFVGRoidExteriorCaveVirologyLabZombies
+    - !type:PrototypeDunGen
+      proto: NFVGRoidSmallPathsCave
+    - !type:EntityTableDunGen
+      minCount: 7
+      maxCount: 12
+      table:
+        id: NFVGRoidInteriorRoomMarker
+    - !type:BiomeDunGen
+      biomeTemplate: NFVGRoidCaves
+      tileMask:
+      - FloorCaveDrought
+    # "WarpPoint"
+    - !type:OreDunGen
+      tileMask:
+      - FloorCaveDrought
+      entity: WarpPointDungeon
+      count: 1
+      minGroupSize: 1
+      maxGroupSize: 1
+    # "Ores"
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: NFRockElementalSpawner
+      count: 100
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Ores
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockTin
+      count: 50
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockCoal
+      count: 50
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockQuartz
+      count: 50
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockSalt
+      count: 50
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockGold
+      count: 40
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockSilver
+      count: 40
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockPlasma
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockUranium
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: NFWallCobblebrick
+      count: 100
+      minGroupSize: 6
+      maxGroupSize: 16
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockArtifactFragment
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 3
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockDiamond
+      count: 15
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: NFWallRockBluespace
+      count: 10
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Mobs
+    - !type:OreDunGen
+      tileMask:
+      - FloorCaveDrought
+      entity: NFSpawnMobZombie
+      count: 5
+      minGroupSize: 1
+      maxGroupSize: 1
+
+# Configs
+- type: dungeonConfig
+  id: NFVGRoidExteriorCaveVirologyLabZombies
+  reserveTiles: true
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFVGRoidExteriorDungeonsVirologyLabZombies
+  - !type:SplineDungeonConnectorDunGen
+    tile: PlatingAsteroid
+    widenTile: FloorCaveDrought
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorDungeonsVirologyLabZombies
+  reserveTiles: true
+  minCount: 2
+  maxCount: 3
+  layers:
+  - !type:ExteriorDunGen
+    proto: NFVirologyLab
+  - !type:EntityTableDunGen
+    minCount: 25
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
+  - !type:EntityTableDunGen
+    minCount: 30
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
+  - !type:MobsDunGen
+    minCount: 10
+    maxCount: 15
+    contents: SpawnMobZombieRandomCommon
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobZombieRandomSpecial # Special
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    contents: SpawnMobZombieOdysseusTable # Boss
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    contents: SpawnMobZombiePileTable # Infinite Spawner (Timed)
+
+- type: entityTable
+  id: SpawnMobZombieRandomCommon
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieSuit
+      amount: 1
+      weight: 0.4
+    - id: NFVGRoidSpawnZombieJumpsuit
+      amount: 1
+      weight: 0.25
+    - id: NFVGRoidSpawnZombieRadiation
+      amount: 1
+      weight: 0.16
+    - id: NFVGRoidSpawnZombieClown
+      amount: 1
+      weight: 0.05
+    - id: NFVGRoidSpawnZombieFast
+      amount: 1
+      weight: 0.05
+
+- type: entityTable
+  id: SpawnMobZombieRandomSpecial
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieRadiation
+      amount: 1
+      weight: 0.3
+    - id: NFVGRoidSpawnZombieClown
+      amount: 1
+      weight: 0.1
+    - id: NFVGRoidSpawnZombieFast
+      amount: 1
+      weight: 0.2
+    - id: NFVGRoidSpawnZombieExploding
+      amount: 1
+      weight: 0.15
+    - id: NFVGRoidSpawnZombieSuitFire
+      amount: 1
+      weight: 0.15
+    - id: NFVGRoidSpawnZombieSuitAtmos
+      amount: 1
+      weight: 0.1
+
+- type: entityTable
+  id: SpawnMobZombiePileTable
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombiePile
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobZombieRadiationTable
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieRadiation
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobZombieClownTable
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieClown
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobZombieFastTable
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieFast
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobZombieOdysseusTable
+  table: !type:GroupSelector
+    children:
+    - id: NFVGRoidSpawnZombieOdysseus
+      amount: 1

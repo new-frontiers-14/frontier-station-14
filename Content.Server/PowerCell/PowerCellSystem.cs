@@ -12,6 +12,7 @@ using Content.Server.UserInterface;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Popups;
 using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
+using Content.Server._NF.Power.Components; // Frontier
 
 namespace Content.Server.PowerCell;
 
@@ -27,6 +28,7 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearanceSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly RiggableSystem _riggableSystem = default!;
+    [Dependency] private readonly PowerReceiverSystem _powerSystem = default!; // Frontier
 
     public override void Initialize()
     {
@@ -143,6 +145,15 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     /// <param name="user">Popup to this user with the relevant detail if specified.</param>
     public bool HasCharge(EntityUid uid, float charge, PowerCellSlotComponent? component = null, EntityUid? user = null)
     {
+        // Frontier start - Mixed Power Recievers
+        if (HasComp<MixedPowerReceiverComponent>(uid) &&
+            TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+            _powerSystem.IsPowered(uid, apcPowerComp))
+        {
+            return true;
+        }
+        // Frontier end - Mixed Power Recievers
+
         if (!TryGetBatteryFromSlot(uid, out var battery, component))
         {
             if (user != null)
@@ -167,6 +178,17 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     /// </summary>
     public bool TryUseCharge(EntityUid uid, float charge, PowerCellSlotComponent? component = null, EntityUid? user = null)
     {
+
+        // Frontier start - Mixed Power Recievers
+        if (HasComp<MixedPowerReceiverComponent>(uid) &&
+            TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+            _powerSystem.IsPowered(uid, apcPowerComp))
+        {
+            return true;
+        }
+        // Frontier end - Mixed Power Recievers
+
+
         if (!TryGetBatteryFromSlot(uid, out var batteryEnt, out var battery, component))
         {
             if (user != null)

@@ -8,7 +8,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: adder
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -20,19 +19,39 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: ambition
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapAnchor
+  name: "KC Anchor"
+  description: "Detailed map of a Anchor shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: anchor
 
 - type: entity
   parent: PosterBase
   id: ShuttleMapApothecary
-  name: "NM Apothecary"
+  name: "FSB Apothecary"
   description: "Detailed map of a Apothecary shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: apothecary
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapAegis
+  name: "FSA Aegis"
+  description: "Detailed map of a Aegis shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: aegis
 
 - type: entity
   parent: PosterBase
@@ -44,19 +63,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: barge
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapBazaar
-  name: "SLI Bazaar"
-  description: "Detailed map of a Bazaar shuttle."
+  id: ShuttleMapBaroness
+  name: "BB Baroness"
+  description: "Detailed map of a Baroness shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: bazaar
-    scale: 1.2, 1.2
+    state: baroness
 
 - type: entity
   parent: PosterBase
@@ -68,7 +85,28 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: bocadillo
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapBodkin
+  name: "BB Bodkin"
+  description: "Detailed map of a Bodkin shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: bodkin
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapBookworm
+  name: "BB Bookworm"
+  description: "Detailed map of a Bookworm shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: bookworm
 
 - type: entity
   parent: PosterBase
@@ -80,7 +118,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: brigand
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapBroom
+  name: "LVHI Broom"
+  description: "Detailed map of a Broom shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: broom
 
 - type: entity
   parent: PosterBase
@@ -92,7 +140,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: bulker
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -104,7 +151,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: caladrius
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -116,19 +162,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: ceres
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
   id: ShuttleMapCharon
-  name: "ITS Apothecary"
+  name: "ITS Charon"
   description: "Detailed map of a Charon shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: charon
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -140,7 +184,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: chisel
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -152,7 +195,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: comet
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -164,7 +206,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: construct
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -176,7 +217,71 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: copperhead
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapCourier
+  name: "FSB Courier"
+  description: "Detailed map of a Courier shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: courier
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapCrescent
+  name: "NC Crescent"
+  description: "Detailed map of a Crescent shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: crescent
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapCrossroads
+  name: "PHI Crossroads"
+  description: "Detailed map of a Crossroads shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: crossroads
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapDove
+  name: "DYS Dove"
+  description: "Detailed map of a Dove shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: dove
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapDragoon
+  name: "FSA Dragoon"
+  description: "Detailed map of a Dragoon shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: dragoon
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapDragonfly
+  name: "DYS Dragonfly"
+  description: "Detailed map of a Dragonfly shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: dragonfly
 
 - type: entity
   parent: PosterBase
@@ -188,7 +293,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: druid
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -200,7 +304,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: eagle
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapFirefighter
+  name: "AC Firefighter"
+  description: "Detailed map of a Firefighter shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: firefighter
 
 - type: entity
   parent: PosterBase
@@ -212,7 +326,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: garden
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -224,7 +337,28 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: gasbender
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapGaslight
+  name: "FSC Gaslight"
+  description: "Detailed map of a Gaslight shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: gaslight
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapHammer
+  name: "BB Hammer"
+  description: "Detailed map of a Hammer shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: hammer
 
 - type: entity
   parent: PosterBase
@@ -236,7 +370,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: harbormaster
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -248,7 +381,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: hauler
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -260,7 +392,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: honker
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapHound
+  name: "CBC Hound"
+  description: "Detailed map of a Hound shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: hound
 
 - type: entity
   parent: PosterBase
@@ -272,19 +414,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: investigator
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
   id: ShuttleMapIzakaya
-  name: "SSS Izakaya"
+  name: "SSF Izakaya"
   description: "Detailed map of an Izakaya shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: izakaya
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -296,7 +436,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: kestrel
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -308,19 +447,39 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: kilderkin
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapLegman
-  name: "NC Legman"
-  description: "Detailed map of a Legman shuttle."
+  id: ShuttleMapStringer
+  name: "LVHI Stringer"
+  description: "Detailed map of a Stringer shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: legman
-    scale: 1.2, 1.2
+    state: stringer
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapStronghold
+  name: "DBI Stronghold"
+  description: "Detailed map of a Stronghold shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: stronghold
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapLanternMk2
+  name: "LVHI Lantern Mk2"
+  description: "Detailed map of a Lantern Mk2 shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: lantern-mk2
 
 - type: entity
   parent: PosterBase
@@ -332,7 +491,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: liquidator
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -344,7 +502,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: loader
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapLyrae
+  name: "BB Lyrae"
+  description: "Detailed map of a Lyrae shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: lyrae
 
 - type: entity
   parent: PosterBase
@@ -356,7 +524,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: nightlight
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -368,7 +535,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: pathfinder
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -380,7 +546,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: phoenix
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -392,7 +557,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: placebo
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -404,8 +568,7 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: prospector
-    scale: 1.2, 1.2    
- 
+
 - type: entity
   parent: PosterBase
   id: ShuttleMapPulsar
@@ -416,7 +579,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: pulsar
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -428,7 +590,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: retort
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -440,7 +601,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: searchlight
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -452,7 +612,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: skipper
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -464,7 +623,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: spirit
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -476,7 +634,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stasis
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapStellaris
+  name: "NT Stasis"
+  description: "Detailed map of a Stellaris shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: stellaris
 
 - type: entity
   parent: PosterBase
@@ -488,7 +656,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: surveyor
-    scale: 1.2, 1.2
 
 - type: entity
   parent: PosterBase
@@ -500,7 +667,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: tide
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapTyne
+  name: "BB Tyne"
+  description: "Detailed map of a Tyne shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: tyne
 
 - type: entity
   parent: PosterBase
@@ -512,7 +689,28 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: vagabond
-    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapMcCargo
+  name: "DC McCargo"
+  description: "Detailed map of a McCargo shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: mccargo
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapMcDelivery
+  name: "WSE Nook"
+  description: "Detailed map of a McDelivery shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: mcdelivery
 
 - type: entity
   parent: PosterBase
@@ -524,4 +722,3 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: nook
-    scale: 1.2, 1.2

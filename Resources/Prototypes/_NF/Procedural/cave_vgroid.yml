@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorCave
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: PlatingAsteroid
-      WidenTile: FloorCaveDrought
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsCave
   - !type:SplineDungeonConnectorDunGen
+    tile: PlatingAsteroid
+    widenTile: FloorCaveDrought
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsCave
@@ -211,42 +209,58 @@
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 30
     maxCount: 40
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 25
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerCommon
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerValuable
+    perDungeon: true
   - !type:EntityTableDunGen
     minCount: 15
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobExplorerEVAT2
-      amount: 1
+    contents: SpawnMobExplorerEVAT2Table
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
-    - id: SpawnMobExplorerBoss # Boss
+    contents: SpawnMobExplorerBossTable # Boss
+
+- type: entityTable
+  id: SpawnMobExplorerEVAT2Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorerEVAT2
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobExplorerBossTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorerBoss
       amount: 1
 
 #- type: dungeonConfig

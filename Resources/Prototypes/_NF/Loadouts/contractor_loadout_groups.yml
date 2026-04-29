@@ -37,6 +37,8 @@
   - ContractorClothingUniformJumpskirtColorOrange
   - ContractorClothingUniformJumpsuitColorRed
   - ContractorClothingUniformJumpskirtColorRed
+  - ContractorClothingUniformJumpsuitColorMaroon
+  - ContractorClothingUniformJumpskirtColorMaroon
   - ContractorClothingUniformJumpsuitColorPurple
   - ContractorClothingUniformJumpskirtColorPurple
   - ContractorClothingUniformJumpsuitColorLightBrown
@@ -51,6 +53,8 @@
   - ContractorClothingUniformJumpskirtColorDarkGreen
   - ContractorClothingUniformJumpsuitColorTeal
   - ContractorClothingUniformJumpskirtColorTeal
+  - ContractorClothingUniformColorRainbow
+  - ContractorClothingUniformJumpskirtColorRainbow
   - ContractorClothingUniformJumpsuitHawaiBlack
   - ContractorClothingUniformJumpsuitHawaiBlue
   - ContractorClothingUniformJumpsuitHawaiRed
@@ -136,7 +140,6 @@
   - ContractorClothingUniformJumpskirtResearchDirector
   - ContractorClothingUniformJumpsuitSeniorEngineer
   - ContractorClothingUniformJumpskirtSeniorEngineer
-  - ContractorClothingUniformJumpsuitChiefEngineerNT
   - ContractorClothingUniformJumpsuitChiefEngineer
   - ContractorClothingUniformJumpskirtChiefEngineer
   - ContractorClothingUniformJumpsuitChiefEngineerTurtle
@@ -307,8 +310,9 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - ContractorClothingOuterHardsuitBasic
   - ContractorClothingOuterHardsuitVoidParamed
+  - ContractorClothingOuterCoatRobesGoblin # Goblin specific item
+  - ContractorClothingOuterEVASuitGoblin # Goblin specific item
   - ContractorClothingOuterHoodieGrey
   - ContractorClothingOuterVestHazard
   - ContractorClothingOuterApron
@@ -353,6 +357,14 @@
   - ContractorClothingOuterWinterRD
 #  - ContractorClothingOuterWinterCMO # Temp removed for MOM. Will return if replaced.
   - ContractorClothingOuterWinterCE
+  - ContractorClothingLongcoatBlack
+  - ContractorClothingLongcoatBrown
+  - ContractorClothingLongcoatNanoTrasen
+  - ContractorClothingLongcoatArashiLabs
+  - ContractorClothingLongcoatQM
+  - ContractorClothingLongcoatRD
+  - ContractorClothingLongcoatCE
+  - ContractorClothingLongcoatCaptain
 #  - ContractorClothingOuterCoatLabCmo # Temp removed for MOM. Will return if replaced.
   - ContractorClothingOuterCoatLabSeniorPhysician
   - ContractorClothingOuterCoatRD
@@ -377,6 +389,7 @@
   - ContractorClothingOuterCoatJacketLettermanMagenta # Punkish (Static visuals)
   - ContractorClothingOuterCoatBomberPinkSleeves # Punkish (Static visuals)
   - ContractorClothingOuterCoatBomberRandomized # Punkish (Randomized visuals)
+  - ContractorClothingOuterCoatRandomized # Punkish (Randomized visuals)
   - ContractorClothingOuterCoatAcidRaincoat # Punkish (Static visuals)
   - ContractorClothingOuterCoatAcidRaincoatBlue # Punkish (Static visuals)
   - ContractorClothingOuterCoatAcidRaincoatGreen # Punkish (Static visuals)
@@ -415,6 +428,9 @@
   - ContractorClothingBeltHolster
   - ContractorClothingBeltChaplainSash
   - ContractorClothingBeltChaplainSashFilled
+  - ContractorTrashBagBlue
+  - ContractorTrashBag
+  - ContractorTrashBagBlueFilledTrash
   - ContractorBooksBag
   - ContractorChemBag
   - ContractorOreBag
@@ -630,7 +646,7 @@
   - ContractorClothingNeckTieRed
   - ContractorClothingNeckTieSci
   - ContractorClothingNeckLawyerbadge
-  - ContractorClothingNeckHeadphones
+  - ContractorClothingMultipleHeadphones
   - ContractorClothingNeckCrucifix
   - ContractorClothingNeckBellCollar
   - ContractorCDDogtags
@@ -652,24 +668,6 @@
   - ContractorClothingNeckCloakGay
   - ContractorClothingNeckCloakLesbian
   - ContractorBedsheetRainbow
-  - ClothingNeckLGBTPin
-  - ClothingNeckAllyPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckAroacePin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckPluralPin
-  - ClothingNeckOmnisexualPin
-  - ClothingNeckGenderqueerPin
-  - ClothingNeckGenderfluidPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
-  - ClothingNeckGoldAutismPin
   - ContractorClothingNeckIFFNeutral
   - ContractorClothingNeckIFFGreen
   - ContractorClothingNeckIFFRed
@@ -695,6 +693,7 @@
   id: ContractorPDA
   name: loadout-group-contractor-pda
   loadouts:
+  - ContractorContractorPDA
   - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
@@ -729,7 +728,7 @@
   - ContractorClownPDA
   - ContractorMimePDA
   fallbacks:
-  - ContractorClearNFPDA
+  - ContractorContractorPDA
 
 - type: loadoutGroup
   id: ContractorGlasses
@@ -786,11 +785,13 @@
   - ContractorWristwatchGold
   - ContractorSilverRing
   - ContractorGoldRing
+  - ContractorUrnMortuary
   - ContractorBasketball
   - ContractorFootball
   - ContractorBeachBall
   - ContractorCrayonBox
   - ContractorSoapNT
+  - ContractorClothingHeadHatHairflower
   - PlushieLizard
   - ContractorPlushieSharkGrey
   - ContractorPlushieSharkBlue
@@ -803,6 +804,25 @@
   - ContractorMysterySpaceBladeBox
   - ContractorHoloGraffitiProjector # Punkish (might be annoying)
   - ContractorCrayonMagic
+  - ContractorSprayPainterMagic
+  - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAsexualPin
+  - ClothingNeckAroacePin
+  - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
+  - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
     # Bureaucracy
   - ContractorBoxFolderMedicalDoctor
   - ContractorBrbSign
@@ -851,6 +871,7 @@
   - ContractorHandheldCrewMonitor
   - ContractorHypoMini
   - ContractorBible
+  - ContractorBodycam
 
 - type: loadoutGroup
   id: ContractorFace
@@ -909,6 +930,9 @@
   loadouts:
   - ContractorClothingWalletLeatherBrown
   - ContractorClothingWalletLeatherBlack
+  - ContractorClothingWalletLeatherRed
+  - ContractorClothingWalletLeatherBlue
+  - ContractorClothingWalletLeatherGreen
   fallbacks:
   - ContractorClothingWalletLeatherBrown
 
@@ -932,6 +956,7 @@
   - ContractorMedicalTrackingImplanter
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
+  - ContractorWehImplanter
   - ContractorSadTromboneImplanter
   - ContractorMimePowersImplanter
   - ContractorBibleUserImplanter

@@ -19,7 +19,7 @@
   - GeneralAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -28,3 +28,15 @@
   id: PlantTechnicianGear
   equipment:
     pocket2: HolofanProjector
+
+- type: chameleonOutfit
+  id: PlantTechnicianChameleonOutfit
+  job: PlantTechnician
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterWinterEngi
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMag

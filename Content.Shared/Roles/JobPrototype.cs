@@ -64,6 +64,14 @@ namespace Content.Shared.Roles
         [DataField("joinNotifyCrew")]
         public bool JoinNotifyCrew { get; private set; } = false;
 
+        // Frontier: new player greetings
+        /// <summary>
+        /// When true, new players joining this role will have a radio message sent off (if enabled through cvars).
+        /// </summary>
+        [DataField]
+        public bool NewPlayerMessage { get; private set; } = true;
+        // End Frontier: new player greetings
+
         /// <summary>
         ///     When true - the player will recieve a message about importancy of their job.
         /// </summary>

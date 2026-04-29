@@ -12,7 +12,7 @@ public sealed partial class PaperComponent : Component
     public string Content { get; set; } = "";
 
     [DataField("contentSize")]
-    public int ContentSize { get; set; } = 6000;
+    public int ContentSize { get; set; } = 10000;
 
     [DataField("stampedBy"), AutoNetworkedField]
     public List<StampDisplayInfo> StampedBy { get; set; } = new();
@@ -32,7 +32,7 @@ public sealed partial class PaperComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("PaperScribbles", AudioParams.Default.WithVariation(0.1f));
 
-    // Frontier: 
+    // Frontier:
     /// <summary>
     /// Sound played after writing to the paper.
     /// </summary>

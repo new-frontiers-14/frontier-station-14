@@ -89,12 +89,11 @@
   - type: Blueprint
     providedRecipes: []
 
-# region Generic
 - type: entity
   parent: NFBaseBlueprint
   id: NFBaseBlueprintFaxable
   name: blueprint
-  description: A blueprint with schematics on it. It can be inserted into an autolathe or sent via fax.
+  description: A blueprint with schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   abstract: true
   components:
   - type: FaxableObject
@@ -126,12 +125,50 @@
         color: "#636363"
       - state: inhand-right-text
 
+# region General
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintGeneral
+  name: blueprint
+  description: A blueprint with schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#3355ff"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#3355ff"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#3355ff"
+      - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintAdvanced
+    - Document
+    - Paper
+
 # region Engineering
 - type: entity
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintEngineering
   name: engineering blueprint
-  description: A blueprint with engineering schematics on it. It can be inserted into an engineering techfab or sent via fax.
+  description: A blueprint with engineering schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -161,6 +198,7 @@
   - type: Tag
     tags:
     - NFBlueprintEngineeringTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
@@ -169,7 +207,7 @@
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintSalvage
   name: salvage blueprint
-  description: A blueprint with salvage schematics on it. It can be inserted into a salvage techfab or sent via fax.
+  description: A blueprint with salvage schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -199,6 +237,7 @@
   - type: Tag
     tags:
     - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
@@ -207,7 +246,7 @@
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintScience
   name: science blueprint
-  description: A blueprint with science schematics on it. It can be inserted into a protolathe or sent via fax.
+  description: A blueprint with science schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -237,6 +276,7 @@
   - type: Tag
     tags:
     - NFBlueprintProtolathe
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
@@ -245,7 +285,7 @@
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintService
   name: service blueprint
-  description: A blueprint with service schematics on it. It can be inserted into a service techfab or sent via fax.
+  description: A blueprint with service schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -275,6 +315,7 @@
   - type: Tag
     tags:
     - NFBlueprintServiceTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
@@ -283,7 +324,7 @@
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintMedical
   name: medical blueprint
-  description: A blueprint with medical schematics on it. It can be inserted into a medical techfab or sent via fax.
+  description: A blueprint with medical schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -313,6 +354,7 @@
   - type: Tag
     tags:
     - NFBlueprintMedicalTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
@@ -321,7 +363,7 @@
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintArsenalMercenary
   name: combat blueprint
-  description: A blueprint with combat schematics on it. It can be inserted into an NFSD or mercenary techfab or sent via fax.
+  description: A blueprint with combat schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -351,6 +393,7 @@
   - type: Tag
     tags:
     - NFBlueprintMercenaryTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
@@ -358,7 +401,7 @@
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintArsenalNfsd
   name: restricted combat blueprint
-  description: A blueprint with combat schematics on it. It can be inserted into an NFSD techfab or sent via fax.
+  description: A blueprint with combat schematics on it. It can be inserted into a protolathe or techfab, or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
@@ -388,14 +431,15 @@
   - type: Tag
     tags:
     - NFBlueprintNfsdTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
 # region Expedition
 - type: entity
-  parent: [ BaseC3Contraband, NFBaseBlueprint ]
-  id: NFBaseBlueprintExpedition
   abstract: true
+  parent: [ BaseC3Contraband, NFBlueprintGeneral ]
+  id: NFBaseBlueprintExpedition
   components:
   - type: Paper
     stampState: paper_stamp-rd
@@ -408,16 +452,27 @@
     price: 1000
 
 - type: entity
-  parent: NFBaseBlueprintExpedition
-  id: NFBaseBlueprintExpeditionSalvage
   abstract: true
+  parent: [ NFBaseBlueprintExpedition, NFBlueprintSalvage ]
+  id: NFBaseBlueprintExpeditionSalvage
+
+- type: entity
+  abstract: true
+  parent: [ NFBaseBlueprintExpedition, NFBlueprintArsenalMercenary ]
+  id: NFBaseBlueprintExpeditionArmory
+
+- type: entity
+  abstract: true
+  parent: NFBaseBlueprintExpedition
+  id: NFBaseBlueprintExpeditionPunk
   components:
   - type: Sprite
     layers:
       - state: icon-base
-        color: "#a6671a"
+        map: [ "blueprintIconBase" ]
       - state: icon-text
-        color: "#db7372"
+        shader: unshaded
+        map: [ "blueprintIconText" ]
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
@@ -431,31 +486,52 @@
     inhandVisuals:
       left:
       - state: inhand-left-base
-        color: "#a6671a"
+        map: [ "blueprintInHandLBase" ]
       - state: inhand-left-text
-        color: "#db7372"
+        shader: unshaded
+        map: [ "blueprintInHandLText" ]
       right:
       - state: inhand-right-base
-        color: "#a6671a"
+        map: [ "blueprintInHandRBase" ]
       - state: inhand-right-text
-        color: "#db7372"
+        shader: unshaded
+        map: [ "blueprintInHandRText" ]
+  - type: RandomSprite
+    available:
+      - blueprintIconBase:
+          icon-base: Base
+        blueprintIconText:
+          icon-text: Text
+        blueprintInHandLBase:
+          inhand-left-base: Base
+        blueprintInHandLText:
+          inhand-left-text: Text
+        blueprintInHandRBase:
+          inhand-right-base: Base
+        blueprintInHandRText:
+          inhand-right-text: Text
+    mappedColors:
+      Base: CyberpunkDark
+      Text: CyberpunkNeon
   - type: Tag
     tags:
+    - NFBlueprintServiceTechfab
+    - NFBlueprintMercenaryTechfab
     - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper
 
 - type: entity
-  parent: NFBaseBlueprintExpedition
-  id: NFBaseBlueprintExpeditionArmory
   abstract: true
+  parent: NFBaseBlueprintExpedition
+  id: NFBaseBlueprintExpeditionMercenary
   components:
   - type: Sprite
     layers:
       - state: icon-base
-        color: "#d21a1a"
+        color: "#7b7b3f"
       - state: icon-text
-        color: "#db7372"
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
@@ -469,17 +545,58 @@
     inhandVisuals:
       left:
       - state: inhand-left-base
-        color: "#d21a1a"
+        color: "#7b7b3f"
       - state: inhand-left-text
-        color: "#db7372"
       right:
       - state: inhand-right-base
-        color: "#d21a1a"
+        color: "#7b7b3f"
       - state: inhand-right-text
-        color: "#db7372"
   - type: Tag
     tags:
-    - NFBlueprintMercenaryTechfab
-    - NFBlueprintNfsdTechfab
+    - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
+    - Document
+    - Paper
+
+- type: entity
+  abstract: true
+  parent: [ NFBaseBlueprintExpedition, NFBlueprintEngineering ]
+  id: NFBaseBlueprintExpeditionRogueSilicon
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseBlueprintExpedition ]
+  id: NFBaseBlueprintExpeditionSyndicate
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#7f272b"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        color: "#00ff00"
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        color: "#008040"
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#7f272b"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#7f272b"
+      - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintSalvageTechfab
+    - NFBlueprintAdvanced
     - Document
     - Paper

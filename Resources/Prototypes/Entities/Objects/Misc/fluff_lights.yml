@@ -21,8 +21,8 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        startValue: 0.1 # Wizden#37444
-        endValue: 2.0 # Wizden#37444
+        startValue: 0.1
+        endValue: 2.0
         isLooped: true
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -45,7 +45,9 @@
     radius: 3
     energy: 2
     netsync: false
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
   - type: Appearance
   - type: Physics
     canCollide: false
@@ -98,11 +100,13 @@
 - type: entity
   name: desk lamp
   id: LampGold
-  parent: BaseLamp
+  parent: [BaseLamp, MixedPowerMachine] # Frontier: Add MixedPowerMachine
   description: A light emitting device that would look great on a desk.
   components:
+  - type: Anchorable # Frontier: Add Anchorable
   - type: Sprite
     sprite: Objects/Misc/Lights/lampgreen.rsi
+    offset: "0.0,0.4" # Frontier: Add sprite offset so it anchors somewhere sensible
     layers:
       - state: lampgreen
         map: [ "base" ]
@@ -138,13 +142,13 @@
     sprite: Objects/Misc/Lights/lampint.rsi
     layers:
       - state: lamp-int
-        map: [ "enum.FlashVisuals.BaseLayer" ]
+        map: [ "enum.FlashVisualLayers.BaseLayer" ]
       - state: lamp-int-on
         shader: unshaded
         visible: false
         map: [ "light" ]
       - state: flashing
-        map: [ "enum.FlashVisuals.LightLayer" ]
+        map: [ "enum.FlashVisualLayers.LightLayer" ]
         visible: false
   - type: Item
     sprite: Objects/Misc/Lights/lampint.rsi
@@ -157,6 +161,10 @@
     energy: 0.5
     color: "#FFFFEE"
   - type: Flash
+    flashOnMelee: false
+    flashOnUse: false
+  - type: UseDelay
+    delay: 1
   - type: LimitedCharges
     maxCharges: 3
   - type: AutoRecharge
@@ -174,17 +182,17 @@
   - type: GenericVisualizer
     visuals:
       enum.FlashVisuals.Burnt:
-        enum.FlashVisuals.BaseLayer:
+        enum.FlashVisualLayers.BaseLayer:
           True: {state: burnt}
       enum.FlashVisuals.Flashing:
-        enum.FlashVisuals.LightLayer:
+        enum.FlashVisualLayers.LightLayer:
           True: {visible: true}
           False: {visible: false}
 
 - type: entity
   name: floodlight
   id: Floodlight
-  parent: BaseLamp
+  parent: [BaseLamp, MixedPowerMachine] # Frontier: Add MixedPowerMachine
   description: A pole with powerful mounted lights on it.
   components:
   - type: Item

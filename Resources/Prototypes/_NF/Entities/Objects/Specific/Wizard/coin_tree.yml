@@ -1,0 +1,69 @@
+#region weighted coin table
+- type: entityTable
+  id: TableTreeCoin
+  table: !type:GroupSelector
+    children:
+    - id: TreasureCoinIron
+      weight: 30
+    - id: TreasureCoinIron3
+      weight: 25
+    - id: TreasureCoinSilver
+      weight: 20
+    - id: TreasureCoinSilver3
+      weight: 5
+    - id: TreasureCoinGold
+      weight: 10
+    - id: TreasureCoinGold3
+      weight: 5
+    - id: TreasureCoinAdamantine
+      weight: 5
+
+#region coin spawner
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnTreeCoin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableTreeCoin
+      prob: 1.00
+
+#region tree
+- type: entity
+  parent: BaseStructureDynamic
+  id: PottedPlantCoinTree
+  name: potted coin tree
+  description: Source of mad riches.
+  components:
+  - type: Sprite
+    offset: "0.0,0.3"
+    sprite: _NF/Objects/Specific/Wizard/coin_tree.rsi
+    state: coin-tree
+    noRot: true
+  - type: Pullable
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 350
+        layer:
+        - TableLayer
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnTreeCoin
+    chance: 0.75
+    intervalSeconds: 120
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2

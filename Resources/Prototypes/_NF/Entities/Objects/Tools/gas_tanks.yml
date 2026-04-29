@@ -37,3 +37,37 @@
     sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi
   - type: Clothing
     sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi
+
+- type: entity
+  parent: GasTankBase
+  id: BluespaceAirTank
+  name: bluespace air tank
+  description: A bluespace expanded gas tank. Holds 20L of gas
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/bluespace_air_tank.rsi
+  - type: Item
+    sprite: _NF/Objects/Tanks/bluespace_air_tank.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/bluespace_air_tank.rsi
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 20
+      temperature: 293.15
+
+- type: entity
+  parent: DoubleEmergencyAirTank
+  id: SmallBluespaceAirTank
+  name: pocket bluespace air tank
+  description: A pocket sized bluespace gas tank. Holds 10L of gas
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/bluespace_pocket_tank.rsi
+  - type: Item
+    sprite: _NF/Objects/Tanks/bluespace_pocket_tank.rsi
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 10
+      temperature: 293.15

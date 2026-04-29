@@ -26,10 +26,14 @@ namespace Content.Shared.Lathe
         // Otherwise the material arbitrage test and/or LatheSystem.GetAllBaseRecipes needs to be updated
 
         /// <summary>
-        /// The lathe's construction queue
+        /// The lathe's construction queue.
         /// </summary>
+        /// <remarks>
+        /// This is a LinkedList to allow for constant time insertion/deletion (vs a List), and more efficient
+        /// moves (vs a Queue).
+        /// </remarks>
         [DataField]
-        public List<LatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
+        public LinkedList<LatheRecipeBatch> Queue = new();
 
         /// <summary>
         /// The sound that plays when the lathe is producing an item, if any
@@ -64,7 +68,7 @@ namespace Content.Shared.Lathe
         /// The recipe the lathe is currently producing
         /// </summary>
         [ViewVariables]
-        public LatheRecipePrototype? CurrentRecipe;
+        public ProtoId<LatheRecipePrototype>? CurrentRecipe;
 
         #region MachineUpgrading
         /// <summary>
@@ -91,9 +95,9 @@ namespace Content.Shared.Lathe
         [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
         public float FinalMaterialUseMultiplier = 1;
 
-        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f; // Frontier: restored for machine parts
-
         //Frontier Upgrade Code Restore
+        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f;
+
         /// <summary>
         /// The machine part that reduces how long it takes to print a recipe.
         /// </summary>
@@ -112,15 +116,12 @@ namespace Content.Shared.Lathe
         [DataField]
         public ProtoId<MachinePartPrototype> MachinePartMaterialUse = "MatterBin";
 
-        // Frontier: restored for machine part upgrades
         /// <summary>
         /// The value that is used to calculate the modifier <see cref="MaterialUseMultiplier"/>
         /// </summary>
         [DataField]
         public float PartRatingMaterialUseMultiplier = DefaultPartRatingMaterialUseMultiplier;
-        // End Frontier
 
-        // Frontier: restored for machine part upgrades
         /// <summary>
         /// If not null, finite and non-negative, modifies values on spawned items
         /// </summary>
@@ -146,26 +147,24 @@ namespace Content.Shared.Lathe
         }
     }
 
-    // Frontier: batch lathe recipes
     [Serializable]
-    public sealed partial class LatheRecipeBatch : EntityEventArgs
+    public sealed partial class LatheRecipeBatch
     {
-        public LatheRecipePrototype Recipe;
+        public ProtoId<LatheRecipePrototype> Recipe;
         public int ItemsPrinted;
         public int ItemsRequested;
 
-        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested)
+        public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
         {
             Recipe = recipe;
             ItemsPrinted = itemsPrinted;
             ItemsRequested = itemsRequested;
         }
     }
-    // End Frontier
 
     /// <summary>
     /// Event raised on a lathe when it starts producing a recipe.
     /// </summary>
     [ByRefEvent]
-    public readonly record struct LatheStartPrintingEvent(LatheRecipePrototype Recipe);
+    public readonly record struct LatheStartPrintingEvent(ProtoId<LatheRecipePrototype> Recipe);
 }

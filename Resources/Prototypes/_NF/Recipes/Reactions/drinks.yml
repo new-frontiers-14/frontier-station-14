@@ -1,15 +1,61 @@
+#Drinks
+
+- type: reaction
+  id: TheMadgob
+  reactants:
+    DoctorsDelight:
+      amount: 1
+    PumpkinFlesh:
+      amount: 3
+    JuiceThatMakesYouWeh:
+      amount: 1
+  products:
+    TheMadgob: 5
+
+- type: reaction
+  id: WassailMulledAle
+  minTemp: 350
+  reactants:
+    Ale:
+      amount: 1
+    Sugar:
+      amount: 1
+    JuiceApple:
+      amount: 1
+    Everyspice:
+      amount: 1
+  products:
+    WassailMulledAle : 4
+
+- type: reaction
+  id: Eggnog
+  requiredMixerCategories:
+  - Shake # close enough to meringue?
+  reactants:
+    Sugar:
+      amount: 1
+    Cream:
+      amount: 1
+    Egg:
+      amount: 1
+    Rum:
+      amount: 1
+  products:
+    Eggnog: 4
+
+
+# Coffee Drinks
+
 - type: reaction
   id: Coffee
   minTemp: 353 # ~80 deg C
-  requiredMixerCategories:
-  - Stir
   reactants:
     Water:
-      amount: 3
+      amount: 15
     CoffeeGrounds:
-      amount: 1
+      amount: 5
   products:
-    Coffee: 4
+    Coffee: 20
 
 - type: reaction
   id: PumpkinSpiceLatte
@@ -25,6 +71,51 @@
   products:
     PumpkinSpiceLatte: 6
 
+# Nanocaf Drinks
+
+- type: reaction
+  id: NanoColdBrew
+  reactants:
+    Nanocaf:
+      amount: 2
+    Ice:
+      amount: 1
+  products:
+    NanoColdBrew: 3
+
+- type: reaction
+  id: NanoDepresso
+  reactants:
+    Nanocaf:
+      amount: 2
+    Water:
+      amount: 1
+  products:
+    NanoDepresso: 3
+
+- type: reaction
+  id: NanoCoftea
+  reactants:
+    Nanocaf:
+      amount: 1
+    GreenTea:
+      amount: 1
+  products:
+    NanoCoftea: 2
+
+# Tea Drinks
+
+- type: reaction
+  id: HoneyIcedTea
+  reactants:
+    Honey:
+      amount: 1
+    IcedTea:
+      amount: 1
+  products:
+    HoneyIcedTea: 2
+
+# Alcoholic Drinks
 - type: reaction
   id: GinAndSonic
   requiredMixerCategories:
@@ -92,42 +183,13 @@
     BeesKnees: 5
 
 - type: reaction
-  id: HoneyIcedTea
+  id: Grenadine
   reactants:
-    Honey:
-      amount: 1
-    IcedTea:
-      amount: 1
-  products:
-    HoneyIcedTea: 2
-
-- type: reaction
-  id: WassailMulledAle
-  minTemp: 350
-  reactants:
-    Ale:
+    JuiceLemon:
       amount: 1
     Sugar:
-      amount: 1
-    JuiceApple:
-      amount: 1
-    Everyspice:
-      amount: 1
+      amount: 2
+    JuicePomegranate:
+      amount: 2
   products:
-    WassailMulledAle : 4
-
-- type: reaction
-  id: Eggnog
-  requiredMixerCategories:
-  - Shake # close enough to meringue?
-  reactants:
-    Sugar:
-      amount: 1
-    Cream:
-      amount: 1
-    Egg:
-      amount: 1
-    Rum:
-      amount: 1
-  products:
-    Eggnog: 4
+    Grenadine: 5

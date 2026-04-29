@@ -23,6 +23,7 @@
   # AudioVisualCommunication
   - TelecomServerCircuitboard
   - NFHolopadShipMachineCircuitboard
+  - NFHolopadGridMachineCircuitboard
   - SurveillanceCameraRouterCircuitboard
   - SurveillanceCameraMonitorCircuitboard
   - SurveillanceWirelessCameraMonitorCircuitboard
@@ -35,6 +36,8 @@
   # RoboticCleanliness
   - BorgModuleAdvancedCleaning
   - PortablePumpMachineCircuitBoard
+  # IndustrialCutter
+  - CutterMachineCircuitboard
   # FauxAstroTiles
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
@@ -77,7 +80,9 @@
   - PortableGeneratorJrPacmanMachineCircuitboard
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
+  - SolarAssemblyFlatpack
   - EmitterCircuitboard
+  - PowerComputerCircuitboard
   # AtmosphericTech
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
@@ -103,6 +108,8 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - AlertsComputerCircuitboard
+  - AtmosMonitoringComputerCircuitboard
   # AdvancedToolsTechnology
   - WelderExperimental
   - PowerDrill
@@ -125,7 +132,7 @@
   # HardsuitsAdvanced
   - ClothingOuterHardsuitEngineeringWhite
   # PortableParticleEmission
-  # - NFWeaponParticleDecelerator # placeholder for Edison
+  - NFWeaponParticleDecelerator
   # MatterEnergyConversion
   - BorgModuleRCD
   # MagnetsTech
@@ -146,6 +153,7 @@
   - CryostasisBeaker
   - SyringeCryostasis
   # MechanizedTreatment
+  - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
   # RoboticCleanliness
   - PortablePumpMachineCircuitBoard
@@ -160,12 +168,16 @@
   # MiscellaneousItemsOrganization
   - NFPouchFirstAid
   - NFPouchFirstAidAlt
+  - MedicalPouch
   # ChemicalDispensary
   - ChemMasterMachineCircuitboard
   - ChemDispenserMachineCircuitboard
   # IndustrialMedicine
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
+  - ElectrolysisUnitMachineCircuitboard
+  - CentrifugeMachineCircuitboard
+  - DefibrillatorCompact
   # SyringeGun
   - LauncherSyringe
   - MiniSyringe
@@ -185,6 +197,8 @@
   # HardsuitsArmored
   - ClothingOuterHardsuitMercenary
   - ClothingOuterHardsuitPrivateSecurity
+  # HardsuitsOldWar
+  - ClothingOuterHardsuitSurplus
   # ArsenalStyle
   - ClothingEyesPunkInfoShades
   - ClothingOuterArmorPunkRandomized
@@ -205,6 +219,7 @@
   - ClothingOuterCoatBomberRandomized
   # HardsuitsArmoredAdvanced
   - ClothingOuterHardsuitScaf
+  - ClothingOuterHardsuitNoble
   # MiscellaneousItemsOrganization
   - NFPouchMercenary
   - NFPouchPrivateSecurity
@@ -214,6 +229,7 @@
   - JetpackSecurity
   # AdvancedPersonalPropulsion
   - JetpackVoid
+  - NFClothingShoesBootsJetpack
   # HardsuitsExperimentalIndustrial
   - ClothingOuterHardsuitMaximPrototype
 
@@ -228,8 +244,6 @@
   # NFBasicShuttleArmament
   - NFGrenadeFlash
   - NFGrenadeEMP
-  # PersonalPropulsion
-  - JetpackNfsd
 
 # region Salvage
 - type: latheRecipePack
@@ -251,10 +265,15 @@
   - JetpackCaptain
   # AdvancedPersonalPropulsion
   - JetpackVoid
+  - NFClothingShoesBootsJetpack
+  # BluespaceGasTanks
+  - BluespaceAirTank
+  - SmallBluespaceAirTank
   # SalvageEquipment
   - MiningDrill
   - WeaponGrapplingGun
   - MineralScannerEmpty
+  - OreProcessorMachineCircuitboard
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
   # SpaceScanning
@@ -314,8 +333,9 @@
   - DeviceDesynchronizer
   # MagnetsTechAdvanced
   - ClothingShoesBootsMagAdv
-  # HardsuitsExperimentalRD
+  # HardsuitsExperimentalProtection
   - ClothingOuterHardsuitRd
+  - ClothingOuterHardsuitHostileEnvironment
   # IndustrialEngineering
   - ProtolatheHyperConvectionMachineCircuitboard
   # AdvancedToolsTechnology
@@ -346,6 +366,8 @@
   # MeatManipulation
   - FatExtractorMachineCircuitboard
   - BiogeneratorMachineCircuitboard
+  # IndustrialCutter
+  - CutterMachineCircuitboard
   # FauxAstroTiles
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
@@ -373,6 +395,8 @@
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
+  - ImpCoffeeMachineCircuitboard
+  - NFCookingBag
   # MiscellaneousItemsOrganization
   - NFPouchUtility
   - NFPouchEngineering
@@ -475,6 +499,7 @@
   - TimerTrigger
   - FlashPayload
   - ChemicalPayload
+  - ExplosivePayload
   # NFBasicShuttleArmament
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
@@ -514,6 +539,7 @@
   # PortableFission
   - PowerCellMicroreactor
   # HardsuitsBasic
-  - ClothingOuterHardsuitBasic
+  - ClothingOuterHardsuitSpatio
+  - ClothingOuterHardsuitPilot
   # HardsuitsAdvanced
   - ClothingOuterHardsuitCap

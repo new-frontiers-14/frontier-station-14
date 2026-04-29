@@ -1,8 +1,7 @@
-using Content.Server.Body.Components;
 using Content.Server.Medical.Components;
 using Content.Server.PowerCell;
 using Content.Server.Temperature.Components;
-using Content.Shared.Traits.Assorted;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -14,10 +13,12 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Server._NF.Medical; // Frontier
 using Content.Server._NF.Traits.Assorted; // Frontier
 
 namespace Content.Server.Medical;
@@ -218,6 +219,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             unclonable = true;
         // End Frontier: add unclonable
 
+        var printable = HasComp<HealthAnalyzerPrinterComponent>(healthAnalyzer); // Frontier
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
@@ -225,7 +228,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             scanMode,
             bleeding,
             unrevivable,
-            unclonable // Frontier
+            unclonable, // Frontier
+            printable // Frontier
         ));
     }
 }

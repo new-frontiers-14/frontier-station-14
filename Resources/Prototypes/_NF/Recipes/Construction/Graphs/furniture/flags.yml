@@ -1,0 +1,42 @@
+- type: constructionGraph
+  id: NF_Flags
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: BlankFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: NTFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: SyndieFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: PirateFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+  - node: BlankFlag
+    entity: BlankFlag
+  - node: NTFlag
+    entity: NTFlag
+  - node: SyndieFlag
+    entity: SyndieFlag
+  - node: PirateFlag
+    entity: PirateFlag

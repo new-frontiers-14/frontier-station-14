@@ -14,6 +14,7 @@ using Content.Shared.Storage.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Nutrition.EntitySystems;
 

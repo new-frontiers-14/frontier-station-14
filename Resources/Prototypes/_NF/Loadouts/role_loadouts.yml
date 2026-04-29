@@ -151,7 +151,7 @@
   - StcForcedOuterClothing
   - StcShoes
   - ContractorFace
-  - ContractorGlasses
+  - StcGlasses
   - ContractorBelt
   - StcEars
   - ContractorBoxSurvival
@@ -174,8 +174,8 @@
   - StationRepForcedOuterClothing
   - ContractorShoes
   - ContractorFace
-  - ContractorGlasses
-  - ContractorBelt
+  - StationRepGlasses
+  - StationRepBelt
   - StationRepEars
   - ContractorBoxSurvival
   - StationRepPDA
@@ -218,7 +218,7 @@
   - DocJumpsuit
   - DocGloves
   - DocBackpack
-  - ContractorOuterClothing
+  - DocOuterClothing
   - DocForcedOuterClothing
   - DocShoes
   - ContractorFace
@@ -577,13 +577,15 @@
 - type: roleLoadout
   id: JobPrisoner
   groups:
-#  - PrisonerHead
-#  - PrisonerNeck
+  - PrisonerHead
+  - PrisonerNeck
   - PrisonerJumpsuit
 #  - PrisonerGloves
 #  - PrisonerBackpack
   - PrisonerForcedOuterClothing
-#  - PrisonerShoes
+  - PrisonerGlasses
+  - PrisonerHandItems
+  - PrisonerShoes
   - PrisonerFace
   - PrisonerSurvival
   - PrisonerPDA

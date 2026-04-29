@@ -465,3 +465,36 @@
     maxFillLevels: 9
     fillBaseName: fillGeneric
 # endregion
+
+# region Wildcards
+- type: entity
+  parent: NFBaseLockerGridInvWallColor
+  id: LockerWallColorPilot
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  name: pilot wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#496ea0"
+    - state: fillGeneric-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#496ea0"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#ea6400"
+    - state: door-decal-engi-01
+      map: [ decal2 ]
+      color: "#ea6400"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: fillGeneric
+# endregion

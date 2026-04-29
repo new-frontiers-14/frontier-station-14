@@ -257,3 +257,50 @@
 
 
       [color=#AAAAAA]This Form is only acknowledged with the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
+
+
+- type: entity
+  id: PaperWrittenMedicalMedtekPatientRecord
+  parent: Paper
+  name: Patient Record
+  categories: [ HideSpawnMenu ]
+  description: A printed medical patient record.
+  components:
+  - type: Tag
+    tags:
+    - Document
+    - Trash
+    - Paper
+  - type: StaticPrice
+    price: 0
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper_receipt
+    - state: paper_receipt_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
+    headerImagePath: "/Textures/_NF/Interface/Paper/paper_heading_medtek_report.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 6.0
+    backgroundImageTile: true
+    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
+    contentMargin: 12.0, 0.0, 12.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 256.0, 0.0
+  - type: Paper
+    content: |
+      [head=3]Patient[/head]
+      [bold]Name:[/bold] {patient.name}
+      [bold]Species:[/bold] {patient.species}
+
+      [head=3]Responder[/head]
+      [bold]Name:[/bold] {responder.name}
+      [bold]Shift Time:[/bold] {roundTime}
+
+      [head=3]Injuries[/head]
+      {damageList}

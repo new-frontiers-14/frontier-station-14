@@ -2,15 +2,14 @@ using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.Components;
-using Content.Server.Speech;
-using Content.Server.Speech.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Radio;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Radio.Components;
 using Content.Shared.UserInterface; // Nuclear-14
@@ -141,12 +140,12 @@ public sealed class RadioDeviceSystem : EntitySystem
         SetMicrophoneEnabled(uid, null, false, true, component);
     }
 
-    public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null)
+    public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null, bool force = false) // Frontier: add force
     {
         if (!Resolve(uid, ref component, false))
             return;
 
-        if (component.PowerRequired && !this.IsPowered(uid, EntityManager))
+        if (!force && component.PowerRequired && !this.IsPowered(uid, EntityManager)) // Frontier: add force
             return;
 
         component.Enabled = enabled;
@@ -434,7 +433,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         }
         if (ent.StartMicrophoneOnMapInit)
         {
-            SetMicrophoneEnabled(uid, null, true);
+            SetMicrophoneEnabled(uid, null, true, force: true);
             ent.MicrophoneEnabled = true;
             _appearance.SetData(uid, RadioDeviceVisuals.Broadcasting, true);
         }

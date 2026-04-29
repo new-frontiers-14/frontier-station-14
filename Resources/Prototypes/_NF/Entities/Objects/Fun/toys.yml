@@ -1,5 +1,4 @@
-## Plushies
-
+#region Plushies
 - type: entity
   parent: BasePlushie
   id: PlushieJester #Weh!
@@ -7,7 +6,7 @@
   description: A dubious little creature getting up to mischief.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_jester
   - type: EmitSoundOnUse
     sound:
@@ -38,7 +37,7 @@
   description: You need food and it just wont stop making rainbow weed.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_botanist
   - type: FoodSequenceElement
     entries:
@@ -51,8 +50,20 @@
   description: The poor thing is just sitting there with nothing to do! Give it a hug!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_engineer
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: engineer
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: engineer-equipped-HELMET
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieEngineer
@@ -64,11 +75,22 @@
   description: Oh no, its neck is torn. A shame it had to end this way.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_construction
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieConstruction
+
+- type: entity
+  parent: [PlushieLizard, BaseHandheldInstrument]
+  id: NFPlushieLizardMusician #Weh!
+  name: squeaky lizard plushie
+  components:
+  - type: Instrument
+    program: 1
+    bank: 101
+  - type: StaticPrice
+    price: 400
 
 - type: entity
   parent: PlushieLizard
@@ -77,7 +99,7 @@
   description: Just a weh away.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_cmo
   - type: FoodSequenceElement
     entries:
@@ -93,6 +115,7 @@
     sprite: _NF/Objects/Fun/sharkminnow.rsi
     state: sharkminnowplush
   - type: Item
+    sprite: _NF/Objects/Fun/sharkminnow.rsi
     heldPrefix: sharkminnowplush
     inhandVisuals:
       left:
@@ -110,7 +133,7 @@
   description: The silent cleaner, the one that you dont hear say "Weh"!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_janitor
   - type: EmitSoundOnUse
     sound:
@@ -134,7 +157,7 @@
     - Soap
   - type: Slippery
     slipData:
-      paralyzeTime: 0.7
+      knockdownTime: 0.7
       launchForwardsMultiplier: 0.5
   - type: StepTrigger
     intersectRatio: 0.2
@@ -271,7 +294,7 @@
   description: A stuffed toy that resembles a gnome!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
     state: gnome
   - type: FoodSequenceElement
     entries:
@@ -284,7 +307,7 @@
   description: A stuffed toy that resembles... a creature.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
     state: loveable
   - type: FoodSequenceElement
     entries:
@@ -297,7 +320,7 @@
   description: A stuffed toy that resembles a deer!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
     state: deer
   - type: FoodSequenceElement
     entries:
@@ -310,7 +333,7 @@
   description: A stuffed toy that resembles an IPC!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/ipc.rsi
     state: ipc
   - type: FoodSequenceElement
     entries:
@@ -323,7 +346,7 @@
   description: A stuffed toy that resembles a grey!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
     state: grey
   - type: FoodSequenceElement
     entries:
@@ -336,7 +359,7 @@
   description: A stuffed toy that resembles an abductor!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/abductor.rsi
     state: abductor
   - type: FoodSequenceElement
     entries:
@@ -349,7 +372,7 @@
   description: A stuffed toy that resembles an abductor agent!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/abductor.rsi
     state: abductor_agent
   - type: FoodSequenceElement
     entries:
@@ -502,7 +525,7 @@
   id: PlushieVulp
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/vulp.rsi
     state: plushie_vulp
   - type: FoodSequenceElement
     entries:
@@ -515,7 +538,7 @@
   description: Smells minty and reminds you of unopened mail. You should check your mail!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/vulp.rsi
     state: plushie_mailvulp
   - type: FoodSequenceElement
     entries:
@@ -528,8 +551,20 @@
   description: It's dastardly and has a dashing cloak. It chitters when you squeeze it!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
     state: plushie_yarrmoth
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
+    heldPrefix:
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: yarr-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieYarrMoth
@@ -543,6 +578,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: corgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: corgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: corgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieCorgi
@@ -555,6 +602,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: girlycorgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: girlycorgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: girlycorgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieGirlyCorgi
@@ -567,6 +626,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: robotcorgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: robotcorgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: robotcorgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieRobotCorgi
@@ -907,6 +978,48 @@
       CottonBurger: PlushieMoffbar
 
 - type: entity
+  parent: BasePlushie
+  id: PlushieGoblin
+  name: goblin plushie
+  description: Just a little guy. With a tiny-little shiv! "Bung me all yah dimmocks, cake!"
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/goblin.rsi
+    layers:
+    - state: plushie_goblin
+    - state: plushie_goblin_shiv
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          plushie_goblin_shiv: GlassColors
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_NF/Voice/Goblin/goblin_cackle_1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_NF/Voice/Goblin/goblin_gasp_1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_NF/Voice/Goblin/goblin_cackle_2.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_NF/Voice/Goblin/goblin_scream_1.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_NF/Voice/Goblin/goblin_cackle_3.ogg
+  - type: StinkyTrait
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: GoblinPlushie
+
+#region toy guns
+- type: entity
   name: toy rocket launcher
   parent: [BaseClearContraband, BasePlushie, NFWeaponLauncherRocket]
   id: WeaponLauncherRocketToy
@@ -977,7 +1090,7 @@
   description: Looks almost like the real thing! Ages 8 and up.
   components:
   - type: Sprite
-    sprite: Objects/Fun/toys.rsi
+    sprite: Objects/Fun/capgun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -992,12 +1105,12 @@
   description: Looks almost like the real thing! Ages 8 and up.
   components:
   - type: Sprite
-    sprite: Objects/Fun/toys.rsi
+    sprite: Objects/Fun/capgun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
-    sprite: Objects/Fun/toys.rsi
+    sprite: Objects/Fun/capgun.rsi
     heldPrefix: capgun
   - type: Contraband
     hideValues: true
@@ -1016,5 +1129,5 @@
   description: A well regarded individual!
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
     state: plushie_dave

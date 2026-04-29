@@ -347,12 +347,36 @@
 
 - type: entity
   abstract: true
+  id: StorageFillEVASuitFsa
+  description: Contains a standard issue Far Star Arms (FSA) EVA suit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterEVASuitFsa
+    - id: JetpackMiniFilled
+    - id: ClothingShoesBootsMagSecurity
+    - id: DoubleEmergencyTankO2N2EqualFilled
+
+- type: entity
+  abstract: true
   id: StorageFillEVASuitFsb
   description: Contains a standard issue Far Star Biotech (FSB) EVA suit.
   components:
   - type: StorageFill
     contents:
     - id: ClothingOuterEVASuitFsb
+    - id: JetpackMiniFilled
+    - id: ClothingShoesBootsMag
+    - id: DoubleEmergencyTankO2N2EqualFilled
+
+- type: entity
+  abstract: true
+  id: StorageFillEVASuitFsc
+  description: Contains a standard issue Far Star Commerce (FSC) EVA suit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterEVASuitFsc
     - id: JetpackMiniFilled
     - id: ClothingShoesBootsMag
     - id: DoubleEmergencyTankO2N2EqualFilled

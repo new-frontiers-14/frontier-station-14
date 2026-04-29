@@ -10,7 +10,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Vector2 = System.Numerics.Vector2;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -86,7 +85,11 @@ public partial class BaseShuttleControl : MapGridControl
 
         var minDistance = MathF.Pow(EquatorialMultiplier, EquatorialMultiplier * 1.5f);
         var maxDistance = MathF.Pow(2f, EquatorialMultiplier * 6f);
-        var cornerDistance = MathF.Sqrt(WorldRange * WorldRange + WorldRange * WorldRange);
+
+        // Frontier
+        // Distance from center of the map to the corner. We don't want to draw circles bigger than this.
+        float cornerDistance = ScaledWorldRange.Length();
+        // End Frontier
 
         var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
 
@@ -110,7 +113,9 @@ public partial class BaseShuttleControl : MapGridControl
         {
             Angle angle = (Math.PI / gridLinesRadial) * i;
             // TODO: Handle distance properly.
-            var aExtent = angle.ToVec() * ScaledMinimapRadius * 1.42f;
+            // Frontier
+            var aExtent = angle.ToVec() * PixelSize.Length;
+            // End Frontier
             var lineColor = Color.MediumSpringGreen.WithAlpha(0.02f);
             handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
         }
@@ -120,7 +125,7 @@ public partial class BaseShuttleControl : MapGridControl
     protected void DrawNorthLine(DrawingHandleScreen handle, Angle angle)
     {
         var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
-        var aExtent = (angle - Math.Tau / 4).ToVec() * ScaledMinimapRadius * 1.42f;
+        var aExtent = (angle - Math.Tau / 4).ToVec() * PixelSize.Length;
         var lineColor = Color.Red.WithAlpha(0.1f);
         handle.DrawLine(origin, origin + aExtent, lineColor);
     }

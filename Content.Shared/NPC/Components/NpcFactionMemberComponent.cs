@@ -6,7 +6,7 @@ using Content.Shared.Mech.EntitySystems; // Frontier
 
 namespace Content.Shared.NPC.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(NpcFactionSystem), typeof(SharedMechSystem))] // Frontier - Added MechSystem
+[RegisterComponent, NetworkedComponent, Access(typeof(NpcFactionSystem))]
 public sealed partial class NpcFactionMemberComponent : Component
 {
     /// <summary>

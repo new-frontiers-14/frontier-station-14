@@ -42,8 +42,7 @@
       path: /Audio/Items/newton_cradle.ogg
   - type: ExplodeOnTrigger
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
-    useVerbInstead: true
+  - type: TimerTrigger
     beepInterval: .25
     beepSound:
       path: /Audio/Effects/beep_landmine.ogg
@@ -219,8 +218,8 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       map: [ "ied_wiring3" ]
       state: ied_wiring3
-    - sprite: Objects/Fun/toys.rsi
-      state: plushie_atmosian
+    - sprite: Objects/Fun/Plushies/nukie.rsi
+      state: icon
       map: [ "ied_sprite_toy" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_display
@@ -230,29 +229,30 @@
       state: ied_light
   - type: RandomSprite
     available:
-      - ied_sprite_toy:
-          carpplush: ""
-          magicplush: ""
-          narplush: ""
-          nuketoy: ""
-          plushie_atmosian: ""
-          plushie_arachnid: ""
-          plushie_diona: ""
-          plushie_h: ""
-          plushie_hampter: ""
-          plushie_lizard: ""
-          plushie_vox: ""
-          plushie_nuke: ""
-          plushie_moth: ""
-          plushie_xeno: ""
-          plushie_slime: ""
-          plushie_rouny: ""
-          plushie_human: ""
-          plushie_lizard_inversed: ""
-          plushie_ratvar: ""
-          plushie_spacelizard: ""
-          plushie_lamp: ""
-        ied_wiring1:
+      # TODO: Restore this after you add every individual plushie RSI to the layers above and figure out layering
+      # - ied_sprite_toy:
+      #     carpplush: ""
+      #     magicplush: ""
+      #     narplush: ""
+      #     nuketoy: ""
+      #     plushie_atmosian: ""
+      #     plushie_arachnid: ""
+      #     plushie_diona: ""
+      #     plushie_h: ""
+      #     plushie_hampter: ""
+      #     plushie_lizard: ""
+      #     plushie_vox: ""
+      #     plushie_nuke: ""
+      #     plushie_moth: ""
+      #     plushie_xeno: ""
+      #     plushie_slime: ""
+      #     plushie_rouny: ""
+      #     plushie_human: ""
+      #     plushie_lizard_inversed: ""
+      #     plushie_ratvar: ""
+      #     plushie_spacelizard: ""
+      #     plushie_lamp: ""
+      - ied_wiring1:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
           ied_wiring3: Rainbow
@@ -343,7 +343,7 @@
   parent: NFConcealedMineExplosive
   id: NFTrashMineExplosive
   name: discarded wrapper
-  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  description: A discarded packaging from an item that a generous person could describe as a food item.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -544,8 +544,8 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       map: [ "ied_wiring3" ]
       state: ied_wiring3
-    - sprite: Objects/Fun/toys.rsi
-      state: plushie_atmosian
+    - sprite: Objects/Fun/Plushies/lizard.rsi
+      state: icon
       map: [ "ied_sprite_toy" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_display
@@ -586,7 +586,7 @@
   parent: [ NFConcealedMineCryo, NFTrashMineExplosive ]
   id: NFTrashMineCryo
   name: discarded wrapper
-  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  description: A discarded packaging from an item that a generous person could describe as a food item.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -711,8 +711,8 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       map: [ "ied_wiring3" ]
       state: ied_wiring3
-    - sprite: Objects/Fun/toys.rsi
-      state: plushie_atmosian
+    - sprite: Objects/Fun/Plushies/atmosian.rsi
+      state: icon
       map: [ "ied_sprite_toy" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_display
@@ -753,7 +753,7 @@
   parent: [ NFConcealedMineFire, NFTrashMineExplosive ]
   id: NFTrashMineFire
   name: discarded wrapper
-  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  description: A discarded packaging from an item that a generous person could describe as a food item.
   components:
   - type: Sprite
     drawdepth: SmallObjects

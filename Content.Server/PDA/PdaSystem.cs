@@ -11,6 +11,8 @@ using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Implants;
+using Content.Shared.Inventory;
 using Content.Shared.Light;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.PDA;
@@ -24,6 +26,7 @@ using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Server._NF.Shipyard.Systems; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Server.RoundEnd; // Frontier
 
 namespace Content.Server.PDA
 {
@@ -40,6 +43,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!; // Frontier
 
         public override void Initialize()
         {
@@ -61,6 +65,14 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
             SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed, after: new[] { typeof(IdCardSystem) });
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+            SubscribeLocalEvent<PdaComponent, InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent>>(ChameleonControllerOutfitItemSelected);
+        }
+
+        private void ChameleonControllerOutfitItemSelected(Entity<PdaComponent> ent, ref InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent> args)
+        {
+            // Relay it to your ID so it can update as well.
+            if (ent.Comp.ContainedId != null)
+                RaiseLocalEvent(ent.Comp.ContainedId.Value, args);
         }
 
         private void OnEntityRenamed(ref EntityRenamedEvent ev)
@@ -222,6 +234,7 @@ namespace Content.Server.PDA
                 },
                 balance, // Frontier
                 ownedShipName, // Frontier
+                _roundEndSystem.GetAutoCallTime(), // Frontier
                 pda.StationName,
                 showUplink,
                 hasInstrument,

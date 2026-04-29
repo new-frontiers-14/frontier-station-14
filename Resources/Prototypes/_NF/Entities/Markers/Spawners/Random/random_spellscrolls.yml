@@ -1,0 +1,130 @@
+#region wizard
+- type: entityTable
+  id: TableRandomSpellScrollsWizard
+  table: !type:GroupSelector
+    children:
+    # rune traps
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SpellScrollRolledRuneFlash
+      - id: SpellScrollRolledRuneIgnite
+      - id: SpellScrollRolledRuneStun
+      - id: SpellScrollRolledRuneExplosion
+    # projectile spells
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: SpellScrollRolledFireball
+      - id: SpellScrollRolledLightningball
+    # movement spells
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: SpellScrollRolledBlink
+      #- id: SpellScrollRolledVoidApplause
+      #- id: SpellScrollRolledEtherealJaunt
+    # summoning spells
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SpellScrollRolledElementalWater
+      - id: SpellScrollRolledMagiVend
+    # utility spells
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SpellScrollRolledSmoke
+      - id: SpellScrollRolledWall
+      - id: SpellScrollRolledRepulse
+      - id: SpellScrollRolledKnock
+      #- id: SpellScrollRolledRecall
+    # not spell scrolls
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: ScrollRolledWizardStaffRechargerAltar
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnRandomSpellScrollWizard
+  name: random spell scroll
+  suffix: Wizard
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+        state: scroll-rolled
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: green
+        scale: 0.7, 0.7
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomSpellScrollsWizard
+      prob: 1.00
+
+#region blood cult
+- type: entityTable
+  id: TableRandomSpellScrollsBloodCult
+  table: !type:GroupSelector
+    children:
+    # rune traps
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SpellScrollRolledRuneFlash
+      - id: SpellScrollRolledRuneIgnite
+      - id: SpellScrollRolledRuneStun
+      - id: SpellScrollRolledRuneExplosion
+    # projectile spells
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: SpellScrollRolledFireball
+      - id: SpellScrollRolledLightningball
+    # movement spells
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: SpellScrollRolledBlink
+      #- id: SpellScrollRolledVoidApplause
+      #- id: SpellScrollRolledEtherealJaunt
+    # summoning spells
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SpellScrollRolledElementalWater
+      - id: SpellScrollRolledMagiVend
+      - id: SpellScrollCultDrainedOne
+      - id: SpellScrollCultShade
+    # utility spells
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SpellScrollRolledSmoke
+      - id: SpellScrollRolledWall
+      - id: SpellScrollRolledRepulse
+      - id: SpellScrollRolledKnock
+      #- id: SpellScrollRolledRecall
+    # not spell scrolls
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: ScrollRolledCultStaffRechargerAltar
+      - id: ScrollRolledCultForge
+
+- type: entity
+  parent: SpawnRandomSpellScrollWizard
+  id: SpawnRandomSpellScrollBloodCult
+  name: random spell scroll
+  suffix: Blood Cult
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomSpellScrollsBloodCult
+      prob: 1.00

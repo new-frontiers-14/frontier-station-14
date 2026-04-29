@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Body.Systems;
 using Content.Server.Mech.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -13,19 +14,21 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
-using Content.Shared.Verbs;
-using Content.Shared.Wires;
-using Content.Server.Body.Systems;
 using Content.Shared.Tools.Systems;
+using Content.Shared.Verbs;
+using Content.Shared.Whitelist;
+using Content.Shared.Wires;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using Content.Shared.Whitelist;
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier
 using Content.Shared.Mobs; // Frontier
+using Content.Shared.NPC.Systems; // Frontier
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Mech.Systems;
 
@@ -42,6 +45,9 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!; // Frontier
+
+    private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -94,7 +100,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        if (_toolSystem.HasQuality(args.Used, "Prying") && component.BatterySlot.ContainedEntity != null)
+        if (_toolSystem.HasQuality(args.Used, PryingQuality) && component.BatterySlot.ContainedEntity != null)
         {
             var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.BatteryRemovalDelay,
                 new RemoveBatteryEvent(), uid, target: uid, used: args.Target)
@@ -154,6 +160,11 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         // End Frontier: mechs with fixed equipment
 
+        // Frontier: snails and other simple mobs shouldn't manipulate mech equipment
+        if (!_actionBlocker.CanComplexInteract(args.Actor))
+            return;
+        // End Frontier
+
         var equip = GetEntity(args.Equipment);
 
         if (!Exists(equip) || Deleted(equip))
@@ -197,13 +208,19 @@ public sealed partial class MechSystem : SharedMechSystem
                     _doAfter.TryStartDoAfter(doAfterEventArgs);
                 }
             };
-            var openUiVerb = new AlternativeVerb //can't hijack someone else's mech
-            {
-                Act = () => ToggleMechUi(uid, component, args.User),
-                Text = Loc.GetString("mech-ui-open-verb")
-            };
             args.Verbs.Add(enterVerb);
-            args.Verbs.Add(openUiVerb);
+
+            // Frontier: snails and other simple mobs shouldn't access mech UI
+            if (args.CanComplexInteract)
+            {
+                var openUiVerb = new AlternativeVerb //can't hijack someone else's mech
+                {
+                    Act = () => ToggleMechUi(uid, component, args.User),
+                    Text = Loc.GetString("mech-ui-open-verb")
+                };
+                args.Verbs.Add(openUiVerb);
+            }
+            // End Frontier
         }
         else if (!IsEmpty(component))
         {
@@ -245,12 +262,14 @@ public sealed partial class MechSystem : SharedMechSystem
 
         // Frontier - Make AI Attack mechs based on user.
         if (TryComp<MobStateComponent>(args.User, out var _))
-            EnsureComp<MobStateComponent>(uid);
+        {
+            component.MobStateAdded = !EnsureComp<MobStateComponent>(uid, out _);
+            component.MobThresholdsAdded = !EnsureComp<MobThresholdsComponent>(uid, out _);
+        }
         if (TryComp<NpcFactionMemberComponent>(args.User, out var faction))
         {
-            var factionMech = EnsureComp<NpcFactionMemberComponent>(uid);
-            if (faction.Factions != null)
-                factionMech.Factions = faction.Factions;
+            component.NpcFactionAdded = !EnsureComp<NpcFactionMemberComponent>(uid, out var factionMech);
+            _npcFaction.AddFactions((uid, factionMech), faction.Factions);
         }
         // End Frontier
 
@@ -266,6 +285,24 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         TryEject(uid, component);
+
+        // Frontier: revert state
+        if (component.MobStateAdded)
+        {
+            RemComp<MobStateComponent>(uid);
+            component.MobStateAdded = false;
+        }
+        if (component.MobThresholdsAdded)
+        {
+            RemComp<MobThresholdsComponent>(uid);
+            component.MobThresholdsAdded = false;
+        }
+        if (component.NpcFactionAdded)
+        {
+            RemComp<NpcFactionMemberComponent>(uid);
+            component.NpcFactionAdded = false;
+        }
+        // End Frontier: revert state
 
         args.Handled = true;
     }
@@ -304,6 +341,11 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
     {
+        // Frontier: snails and other simple mobs shouldn't manipulate mech equipment
+        if (!_actionBlocker.CanComplexInteract(args.Actor))
+            return;
+        // End Frontier
+
         var ev = new MechEquipmentUiMessageRelayEvent(args);
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         var argEquip = GetEntity(args.Equipment);

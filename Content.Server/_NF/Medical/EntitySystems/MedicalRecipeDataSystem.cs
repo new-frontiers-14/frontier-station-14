@@ -1,10 +1,10 @@
 using System.Linq;
 using Content.Client.Chemistry.EntitySystems;
-using Content.Server.Medical.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Kitchen;
+using Content.Shared.Medical.Healing;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;

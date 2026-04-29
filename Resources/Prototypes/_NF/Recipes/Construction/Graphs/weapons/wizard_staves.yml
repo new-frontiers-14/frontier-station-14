@@ -1,0 +1,371 @@
+#region blue curacao staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardElementalAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardElementalAdept
+      steps:
+      - tag: CrystalBlue
+        name: construction-graph-tag-blue-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardElementalAdept
+    entity: WeaponChargedStaffWizardElementalAdept
+    edges:
+    - to: WeaponChargedStaffWizardElementalMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardElementalMaster
+    entity: WeaponChargedStaffWizardElementalMaster
+
+#region ice staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardIceAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardIceAdept
+      steps:
+      - tag: CrystalCyan
+        name: construction-graph-tag-cyan-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardIceAdept
+    entity: WeaponChargedStaffWizardIceAdept
+    edges:
+    - to: WeaponChargedStaffWizardIceMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardIceMaster
+    entity: WeaponChargedStaffWizardIceMaster
+
+#region lightning staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardLightningAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardLightningAdept
+      steps:
+      - tag: CrystalYellow
+        name: construction-graph-tag-yellow-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardLightningAdept
+    entity: WeaponChargedStaffWizardLightningAdept
+    edges:
+    - to: WeaponChargedStaffWizardLightningMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardLightningMaster
+    entity: WeaponChargedStaffWizardLightningMaster
+
+#region soap wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardSoapAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardSoapAdept
+      steps:
+      - tag: CrystalBlack
+        name: construction-graph-tag-black-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardSoapAdept
+    entity: WeaponChargedStaffWizardSoapAdept
+    edges:
+    - to: WeaponChargedStaffWizardSoapMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardSoapMaster
+    entity: WeaponChargedStaffWizardSoapMaster
+
+#region magic bolt staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardBoltMagicAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardBoltMagicAdept
+      steps:
+      - tag: CrystalPink
+        name: construction-graph-tag-pink-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBoltMagicAdept
+    entity: WeaponChargedStaffWizardBoltMagicAdept
+    edges:
+    - to: WeaponChargedStaffWizardBoltMagicMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBoltMagicMaster
+    entity: WeaponChargedStaffWizardBoltMagicMaster
+
+#region fire bolt staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardBoltFireAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardBoltFireAdept
+      steps:
+      - tag: CrystalOrange
+        name: construction-graph-tag-orange-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBoltFireAdept
+    entity: WeaponChargedStaffWizardBoltFireAdept
+    edges:
+    - to: WeaponChargedStaffWizardBoltFireMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBoltFireMaster
+    entity: WeaponChargedStaffWizardBoltFireMaster
+
+#region caustic beam staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardCausticAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardCausticAdept
+      steps:
+      - tag: CrystalGreen
+        name: construction-graph-tag-green-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardCausticAdept
+    entity: WeaponChargedStaffWizardCausticAdept
+    edges:
+    - to: WeaponChargedStaffWizardCausticMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardCausticMaster
+    entity: WeaponChargedStaffWizardCausticMaster
+
+#region brick wizard staff
+- type: constructionGraph
+  id: WeaponChargedStaffWizardBrickAdeptActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffWizardBrickAdept
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBrickAdept
+    entity: WeaponChargedStaffWizardBrickAdept
+    edges:
+    - to: WeaponChargedStaffWizardBrickMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffWizardBrickMaster
+    entity: WeaponChargedStaffWizardBrickMaster
+
+#region crimson bolt staff
+- type: constructionGraph
+  id: WeaponChargedStaffCultistBoltDarkActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffCultistBoltDarkAdept
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+  - node: WeaponChargedStaffCultistBoltDarkAdept
+    entity: WeaponChargedStaffCultistBoltDarkAdept
+    edges:
+    - to: WeaponChargedStaffCultistBoltDarkMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffCultistBoltDarkMaster
+    entity: WeaponChargedStaffCultistBoltDarkMaster
+
+#region malicious touch staff
+- type: constructionGraph
+  id: WeaponInertStaffCultistHandActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffCultistHandAdept
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+  - node: WeaponChargedStaffCultistHandAdept
+    entity: WeaponChargedStaffCultistHandAdept
+    edges:
+    - to: WeaponChargedStaffCultistHandMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffCultistHandMaster
+    entity: WeaponChargedStaffCultistHandMaster
+
+#region crimson lightning staff
+- type: constructionGraph
+  id: WeaponInertStaffCultistLightningActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffCultistLightningAdept
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+  - node: WeaponChargedStaffCultistLightningAdept
+    entity: WeaponChargedStaffCultistLightningAdept
+    edges:
+    - to: WeaponChargedStaffCultistLightningMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffCultistLightningMaster
+    entity: WeaponChargedStaffCultistLightningMaster
+
+#region shredding soap staff
+- type: constructionGraph
+  id: WeaponChargedStaffCultistSoapActivation
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponChargedStaffCultistSoapAdept
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+  - node: WeaponChargedStaffCultistSoapAdept
+    entity: WeaponChargedStaffCultistSoapAdept
+    edges:
+    - to: WeaponChargedStaffCultistSoapMaster
+      steps:
+      - component: AnomalyCore
+        name: construction-graph-component-anomaly-core
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 10
+  - node: WeaponChargedStaffCultistSoapMaster
+    entity: WeaponChargedStaffCultistSoapMaster

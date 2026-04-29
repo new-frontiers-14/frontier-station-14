@@ -9,6 +9,16 @@
   group: market
 
 - type: cargoProduct
+  id: ServiceCleanerGrenades
+  icon:
+    sprite: Objects/Weapons/Grenades/janitor.rsi
+    state: icon
+  product: CrateServiceCleanerGrenades
+  cost: 400
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
   id: ServiceLightsReplacement
   icon:
     sprite: Objects/Power/light_bulb.rsi
@@ -134,24 +144,22 @@
   group: market
 
 - type: cargoProduct
-  id: ServiceSodaDispenser
-  abstract: true # Frontier
+  id: ServiceSodaDispenser  
   icon:
     sprite: Objects/Consumable/Drinks/generic_jug.rsi
     state: icon
   product: CrateServiceSodaDispenser
-  cost: 850
+  cost: 4000 # Frontier 750<4000
   category: cargoproduct-category-name-service
   group: market
 
 - type: cargoProduct
-  id: ServiceBoozeDispenser
-  abstract: true # Frontier
+  id: ServiceBoozeDispenser  
   icon:
     sprite: Objects/Consumable/Drinks/generic_jug.rsi
     state: icon
   product: CrateServiceBoozeDispenser
-  cost: 750
+  cost: 4000 # Frontier 750<4000
   category: cargoproduct-category-name-service
   group: market
 

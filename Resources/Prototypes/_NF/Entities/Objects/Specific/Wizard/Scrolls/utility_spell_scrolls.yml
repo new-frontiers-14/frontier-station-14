@@ -1,0 +1,483 @@
+#region smoke scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledSmoke
+  name: scroll of smoke
+  description: |-
+    A scroll with inscribed incantation for the spell that summons smoke around the caster.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "gray"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollSmoke
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollSmoke
+  categories: [ HideSpawnMenu ]
+  name: smoke scroll
+  description: |-
+    A scroll with inscribed incantation for the spell that summons smoke around the caster.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-03
+      color: "gray"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-03
+      color: "gray"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-03
+      color: "gray"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "gray"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionSmoke: 1
+
+#region force wall scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledWall
+  name: scroll of force wall
+  description: |-
+    A scroll with inscribed incantation for the spell that creates a magical barrier.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "blue"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollWall
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollWall
+  categories: [ HideSpawnMenu ]
+  name: scroll of force wall
+  description: |-
+    A scroll with inscribed incantation for the spell that creates a magical barrier.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-04
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-04
+      color: "blue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-04
+      color: "blue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "blue"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionForceWall: 1
+
+#region repulse scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRepulse
+  name: scroll of repulse
+  description: |-
+    A scroll with inscribed incantation for the spell that pushes entities away from the caster.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "yellow"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRepulse
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRepulse
+  categories: [ HideSpawnMenu ]
+  name: scroll of repulse
+  description: |-
+    A scroll with inscribed incantation for the spell that pushes entities away from the caster.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "yellow"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionRepulse: 1
+
+#region knock scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledKnock
+  name: scroll of knock
+  description: |-
+    A scroll with inscribed incantation for the spell that opens nearby doors.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollKnock
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollKnock
+  categories: [ HideSpawnMenu ]
+  name: scroll of knock
+  description: |-
+    A scroll with inscribed incantation for the spell that opens nearby doors.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionKnock: 1
+
+#region recall scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRecall
+  name: scroll of recall
+  description: |-
+    A scroll with inscribed incantation for the spell that marks a held item to later summon into caster's hand.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "pink"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRecall
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRecall
+  categories: [ HideSpawnMenu ]
+  name: scroll of recall
+  description: |-
+    A scroll with inscribed incantation for the spell that marks a held item to later summon into caster's hand.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "pink"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionItemRecall: 1
+
+#region ethereal jaunt scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledEtherealJaunt
+  name: scroll of ethereal jaunt
+  description: |-
+    A scroll with inscribed incantation for the spell that allows caster to melt into the Ethereal Plane for a quick getaway
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "green"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollEtherealJaunt
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollEtherealJaunt
+  categories: [ HideSpawnMenu ]
+  name: scroll of ethereal jaunt
+  description: |-
+    A scroll with inscribed incantation for the spell that allows caster to melt into the Ethereal Plane for a quick getaway
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "green"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionPolymorphJaunt: 3
+
+#region animate scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledAnimate
+  name: scroll of animation
+  description: |-
+    A scroll with inscribed incantation for the spell that can bring an inanimate object to life.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "purple"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollAnimate
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollAnimate
+  categories: [ HideSpawnMenu ]
+  name: scroll of animation
+  description: |-
+    A scroll with inscribed incantation for the spell that can bring an inanimate object to life.
+    The scroll will vanish within a minute, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "blue"
+    - state: scroll-unrolled-text-0
+      color: "black"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "purple"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionAnimateSpell: 1

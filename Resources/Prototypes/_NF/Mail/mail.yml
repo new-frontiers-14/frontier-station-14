@@ -154,11 +154,11 @@
   components:
   - type: Mail
     contents:
-    - id: ClothingOuterWizard
-    - id: ClothingHeadHatWizard
+    - id: ClothingOuterFakeWizard
+    - id: ClothingHeadHatFakeWizard
     - id: ClothingShoesWizard
     - id: RubberStampWizard
-    - id: WizardStaffMeleeBase
+    - id: FakeWizardStaff
       orGroup: Staff
       prob: 0.6
     - id: PonderingOrb
@@ -267,13 +267,7 @@
       prob: 0.19
     - id: CigPackMixed
       orGroup: Cigs
-      prob: 0.09 # Pool shared with CigPackMixedMedical, CigPackMixedNasty
-    - id: CigPackMixedMedical
-      orGroup: Cigs
-      prob: 0.05
-    - id: CigPackMixedNasty
-      orGroup: Cigs
-      prob: 0.05
+      prob: 0.19
       # Rare
     - id: CigPackSyndicate
       orGroup: Cigs
@@ -538,6 +532,9 @@
     - id: PlushieMoffbar
       prob: 0.5
       orGroup: Plushie
+    - id: NFPlushieLizardMusician
+      prob: 0.5
+      orGroup: Plushie
       # Rare loot, drops should be special.
     - id: PlushieJanitor
       prob: 0.05
@@ -549,6 +546,9 @@
       prob: 0.05
       orGroup: Plushie
     - id: PlushieYarrMoth
+      prob: 0.05
+      orGroup: Plushie
+    - id: PlushieGoblin
       prob: 0.05
       orGroup: Plushie
 
@@ -1027,7 +1027,7 @@
     - id: FoodBakedCannoli
       amount: 2
       orGroup: Food
-    - id: FoodDonutJellySlugcat
+    - id: FoodDonutJellyScurret
       amount: 2
       orGroup: Food
     - id: FoodMealMint # unlucky
@@ -1248,6 +1248,16 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseMailLarge
+  id: MailNFPlushieCannon
+  suffix: plushie cannon
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponPlushieCannon
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMailLarge
   id: MailNFRGBBGun
   suffix: RGBB gun
   components:
@@ -1304,6 +1314,9 @@
       orGroup: Instrument
     # Uncommon
     - id: PhoneInstrument
+      orGroup: Instrument
+      prob: 0.1
+    - id: NFPlushieLizardMusician
       orGroup: Instrument
       prob: 0.1
     # Rare
@@ -2011,6 +2024,17 @@
       maxAmount: 2
     - id: Handcuffs
       maxAmount: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMail
+  id: MailLizardWallet
+  suffix: lizard wallet
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingWalletLeatherLizard
+        orGroup: Clothes
 
 # TODO: make this more interesting
 - type: entity

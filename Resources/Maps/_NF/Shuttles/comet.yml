@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 255.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 07/13/2025 17:35:33
+  entityCount: 688
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   2: FloorDark
@@ -72,6 +83,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -414,8 +426,8 @@ entities:
             925: 2,6
             926: 2,6
         - node:
-            angle: -1.5707963267948966 rad
             cleanable: True
+            angle: -1.5707963267948966 rad
             color: '#FFFFFFFF'
             id: DirtHeavyMonotile
           decals:
@@ -3391,6 +3403,14 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
+- proto: ImpCoffeeMachine
+  entities:
+  - uid: 631
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-3.5
+      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 202
@@ -3500,6 +3520,13 @@ entities:
     - type: Transform
       pos: 2.5,0.5
       parent: 1
+- proto: NFMagnetBoxOre
+  entities:
+  - uid: 255
+    components:
+    - type: Transform
+      pos: 0.5,11.5
+      parent: 1
 - proto: NFPosterContrabandEmsCoords
   entities:
   - uid: 640
@@ -3535,13 +3562,6 @@ entities:
     components:
     - type: Transform
       pos: -0.4436021,6.509482
-      parent: 1
-- proto: OreBox
-  entities:
-  - uid: 255
-    components:
-    - type: Transform
-      pos: 0.5,11.5
       parent: 1
 - proto: OreProcessor
   entities:
@@ -3612,19 +3632,19 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 22000
-- proto: PosterLegitSafetyMothPiping
-  entities:
-  - uid: 363
-    components:
-    - type: Transform
-      pos: -0.5,-7.5
-      parent: 1
 - proto: PosterLegitSafetyMothFires
   entities:
   - uid: 158
     components:
     - type: Transform
       pos: 2.5,-11.5
+      parent: 1
+- proto: PosterLegitSafetyMothPiping
+  entities:
+  - uid: 363
+    components:
+    - type: Transform
+      pos: -0.5,-7.5
       parent: 1
 - proto: PosterLegitVacation
   entities:
@@ -4075,9 +4095,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-5.5
       parent: 1
-- proto: ShelfWallFreezerWhite
+- proto: ShelfWallFreezerDark
   entities:
-  - uid: 678
+  - uid: 167
     components:
     - type: Transform
       pos: -2.5,-2.5
@@ -4252,43 +4272,62 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         367:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         368:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         15:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         16:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         14:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         11:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         12:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         261:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         262:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         33:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         338:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         354:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         402:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         4:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         2:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         3:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         344:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         366:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 316
     components:
     - type: Transform
@@ -4298,41 +4337,59 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         172:
-        - Pressed: Off
+        - - Pressed
+          - Off
         456:
-        - Pressed: On
+        - - Pressed
+          - On
         347:
-        - Pressed: Close
+        - - Pressed
+          - Close
         346:
-        - Pressed: Close
+        - - Pressed
+          - Close
         345:
-        - Pressed: Close
+        - - Pressed
+          - Close
         173:
-        - Pressed: Off
+        - - Pressed
+          - Off
         63:
-        - Pressed: Close
+        - - Pressed
+          - Close
         443:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
         648:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
         637:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
         377:
-        - Pressed: Close
+        - - Pressed
+          - Close
         44:
-        - Pressed: Off
+        - - Pressed
+          - Off
         348:
-        - Pressed: Close
+        - - Pressed
+          - Close
         349:
-        - Pressed: Close
+        - - Pressed
+          - Close
         350:
-        - Pressed: Close
+        - - Pressed
+          - Close
         45:
-        - Pressed: Off
+        - - Pressed
+          - Off
         441:
-        - Pressed: On
+        - - Pressed
+          - On
         528:
-        - Pressed: On
+        - - Pressed
+          - On
   - uid: 341
     components:
     - type: Transform
@@ -4342,49 +4399,71 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         39:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         189:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         108:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         327:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         326:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         317:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         222:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         329:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         328:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         235:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         131:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         333:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         332:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         337:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         334:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         335:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         336:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         331:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         330:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         323:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         324:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         325:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 342
     components:
     - type: Transform
@@ -4394,33 +4473,47 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         456:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         347:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         346:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         345:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         173:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         172:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         44:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         348:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         349:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         350:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         45:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         441:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         529:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         528:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 343
     components:
     - type: Transform
@@ -4430,33 +4523,47 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         456:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         172:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         347:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         346:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         345:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         173:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         44:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         348:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         349:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         350:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         45:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         441:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         528:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         529:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 404
     components:
     - type: Transform
@@ -4466,13 +4573,17 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         63:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         70:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         377:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         62:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 653
     components:
     - type: Transform
@@ -4482,15 +4593,20 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         735:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         734:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         733:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         732:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         731:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignCargoDock
   entities:
   - uid: 634
@@ -4539,14 +4655,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-10.5
-      parent: 1
-- proto: SodaDispenser
-  entities:
-  - uid: 167
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-3.5
       parent: 1
 - proto: SolidSecretDoor
   entities:
@@ -4801,45 +4909,75 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         401:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         407:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         254:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         253:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         267:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         242:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         241:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         269:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         376:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         400:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
   - uid: 660
     components:
     - type: Transform
@@ -4848,13 +4986,19 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         74:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         352:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 169

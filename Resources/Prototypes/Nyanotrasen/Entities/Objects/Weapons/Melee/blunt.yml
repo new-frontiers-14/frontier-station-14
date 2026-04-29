@@ -1,6 +1,6 @@
 - type: entity
   name: kanabou
-  parent: [BaseItem, BaseC2Contraband] # Frontier: added BaseC2Contraband
+  parent: [BaseC2Contraband, BaseItem] # Frontier: added BaseC2Contraband
   id: Kanabou
   description: The classic oni weapon, for those that forgo subtlety.
   components:
@@ -15,7 +15,12 @@
     damage:
       types:
         Blunt: 16
+    soundHit:
+      path: /Audio/Nyanotrasen/Weapons/club.ogg
     bluntStaminaDamageFactor: 1.60 # 25.6 stamina damage
+#  - type: MeleeStaminaCost
+#    swing: 10
+#    wieldCoefficient: 0.35 #if wielded you will only consume 3.5 stam its a weapon after all
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -44,7 +49,9 @@
       types:
         Blunt: 4
     soundHit:
-      collection: WoodDestroyHeavy
+      collection: WoodDestroy
+#  - type: MeleeStaminaCost
+#    swing: 5
   - type: StaminaDamageOnHit
     damage: 10
   - type: Item

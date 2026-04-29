@@ -70,4 +70,29 @@
       key_slots:
       - EncryptionKeyCommon
       - EncryptionKeyNfsd
-      - EncryptionKeyTraffic # Frontier
+      - EncryptionKeyTraffic
+
+- type: entity
+  id: IntercomGreetingAlwaysOn
+  parent: [BaseStructureIndestructible, Intercom]
+  suffix: Greeting, Always On
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeyGreeting
+  - type: RadioSpeaker
+    outputChatType: Speak
+  - type: RadioMicrophone
+  - type: EncryptionKeyHolder
+    keySlots: 1
+  - type: Intercom
+    startSpeakerOnMapInit: true
+    startMicrophoneOnMapInit: true
+  - type: AccessReader
+    access: [["NuclearOperative"]] # unchangeable, the trade crate gambit
+  - type: ActivatableUIRequiresAccess
+  - type: ApcPowerReceiver
+    needsPower: false # magic - FIXME: radio microphone has order initialization issues

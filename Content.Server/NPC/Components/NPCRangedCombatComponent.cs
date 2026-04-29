@@ -61,4 +61,12 @@ public sealed partial class NPCRangedCombatComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? SoundTargetInLOS;
+
+    // Frontier
+    /// <summary>
+    /// The chance that a shot will miss the projected path.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float MissChance = 0.25f;
+    // End Frontier
 }

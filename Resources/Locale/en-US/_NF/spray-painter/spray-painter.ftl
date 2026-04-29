@@ -41,3 +41,5 @@ spray-painter-style-cratesecure-nfsd2 = NFSD (stripe)
 spray-painter-style-canisters-liquid-oxygen = Oxygen (liquid)
 spray-painter-style-canisters-liquid-nitrogen = Nitrogen (liquid)
 spray-painter-style-canisters-liquid-carbon-dioxide = Carbon dioxide (liquid)
+spray-painter-style-canisters-respiron = Respiron
+spray-painter-style-canisters-helium = Helium

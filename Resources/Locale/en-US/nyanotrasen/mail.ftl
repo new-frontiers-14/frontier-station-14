@@ -15,6 +15,8 @@ mail-penalty-fragile = INTEGRITY COMPROMISED. STATION BANK ACCOUNT PENALIZED BY 
 mail-penalty-expired = DELIVERY PAST DUE. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
 mail-item-name-unaddressed = mail
 mail-item-name-addressed = mail ({$recipient})
+# Frontier: Wizden#38234 compliance
+ent-BaseMail = mail
 
 # Frontier: reworded description, does not need to be a container.
 command-mailto-description = Queue an item to be delivered to a recipient. Example usage: `mailto 1234 5678 false false`. If the target entity is a container, its contents will be transferred to an actual mail parcel.

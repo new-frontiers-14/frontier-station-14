@@ -1,0 +1,247 @@
+#region flash rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneFlash
+  name: scroll of flash rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that flashes if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "yellow"
+    - state: scroll-rolled-seal
+      color: "gray"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneFlash
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneFlash
+  categories: [ HideSpawnMenu ]
+  name: scroll of flash rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that flashes if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "yellow"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "lightblue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-04
+      color: "lightblue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-06
+      color: "lightblue"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "gray"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionFlashRune: 1
+
+#region ignite rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneIgnite
+  name: scroll of ignite rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that ignites if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "yellow"
+    - state: scroll-rolled-seal
+      color: '#FF0000'
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneIgnite
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneIgnite
+  categories: [ HideSpawnMenu ]
+  name: scroll of ignite rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that ignites if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "yellow"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-06
+      color: '#FF000055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-06
+      color: '#FF000055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-06
+      color: '#FF000055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: '#FF0000'
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionIgniteRune: 1
+
+#region stun rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneStun
+  name: scroll of stun rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that stuns if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "yellow"
+    - state: scroll-rolled-seal
+      color: '#FFFF00'
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneStun
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneStun
+  categories: [ HideSpawnMenu ]
+  name: scroll of stun rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that stuns if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "yellow"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-04
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-03
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: '#FFFF00'
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionStunRune: 1
+
+#region explosion rune scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledRuneExplosion
+  name: scroll of explosion rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that explodes if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "yellow"
+    - state: scroll-rolled-seal
+      color: "blue"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollRuneExplosion
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollRuneExplosion
+  categories: [ HideSpawnMenu ]
+  name: scroll of explosion rune
+  description: |-
+    A scroll with inscribed incantation for the spell that summons a rune that explodes if stepped on.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "yellow"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: '#FFFF0055'
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "blue"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionExplosionRune: 1

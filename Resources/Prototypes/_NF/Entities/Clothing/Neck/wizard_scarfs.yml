@@ -1,0 +1,278 @@
+#region blue wizard
+- type: entity
+  parent: [ BaseC3WizardContrabandUnredeemable, ClothingNeckBase, ContrabandClothing ]
+  id: ClothingNeckScarfWizardBlue
+  name: blue wizard stole
+  description: A scarf imbued with minor enchantments to protect the wearer from cold and minor magical effects.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/wizard_stole_color.rsi
+    layers:
+      - state: icon
+        color: "#A396B0"
+      - state: icon-unshaded
+        shader: unshaded
+        color: "#96A3B0"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#A396B0"
+      - state: inhand-left-unshaded
+        shader: unshaded
+        color: "#96A3B0"
+      right:
+      - state: inhand-right
+        color: "#A396B0"
+      - state: inhand-right-unshaded
+        shader: unshaded
+        color: "#96A3B0"
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/wizard_stole_color.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#A396B0"
+        map: [ "wizard_stole_base" ]
+      - state: equipped-NECK-unshaded-01
+        map: [ "wizard_stole_runes" ]
+        shader: unshaded
+        color: "#96A3B0"
+  - type: RandomSprite
+    available:
+      - wizard_stole_base:
+          equipped-NECK: WizardMagicColorsBlue
+        wizard_stole_runes:
+          equipped-NECK-unshaded-01: WizardMagicColorsBlue
+          equipped-NECK-unshaded-02: WizardMagicColorsBlue
+          equipped-NECK-unshaded-03: WizardMagicColorsBlue
+
+#region red wizard
+- type: entity
+  parent: ClothingNeckScarfWizardBlue
+  id: ClothingNeckScarfWizardRed
+  name: red wizard stole
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        color: "#7A003D"
+      - state: icon-unshaded
+        shader: unshaded
+        color: "#7A3D00"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#7A003D"
+      - state: inhand-left-unshaded
+        shader: unshaded
+        color: "#7A3D00"
+      right:
+      - state: inhand-right
+        color: "#7A003D"
+      - state: inhand-right-unshaded
+        shader: unshaded
+        color: "#7A3D00"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#7A003D"
+        map: [ "wizard_stole_base" ]
+      - state: equipped-NECK-unshaded-01
+        map: [ "wizard_stole_runes" ]
+        shader: unshaded
+        color: "#7A3D00"
+  - type: RandomSprite
+    available:
+      - wizard_stole_base:
+          equipped-NECK: WizardMagicColorsRed
+        wizard_stole_runes:
+          equipped-NECK-unshaded-01: WizardMagicColorsRed
+          equipped-NECK-unshaded-02: WizardMagicColorsRed
+          equipped-NECK-unshaded-03: WizardMagicColorsRed
+
+#region purple wizard
+- type: entity
+  parent: ClothingNeckScarfWizardBlue
+  id: ClothingNeckScarfWizardPurple
+  name: purple wizard stole
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        color: "#8376AB"
+      - state: icon-unshaded
+        shader: unshaded
+        color: "#AB769E"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#8376AB"
+      - state: inhand-left-unshaded
+        shader: unshaded
+        color: "#AB769E"
+      right:
+      - state: inhand-right
+        color: "#8376AB"
+      - state: inhand-right-unshaded
+        shader: unshaded
+        color: "#AB769E"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#8376AB"
+        map: [ "wizard_stole_base" ]
+      - state: equipped-NECK-unshaded-01
+        map: [ "wizard_stole_runes" ]
+        shader: unshaded
+        color: "#AB769E"
+  - type: RandomSprite
+    available:
+      - wizard_stole_base:
+          equipped-NECK: WizardMagicColorsPurple
+        wizard_stole_runes:
+          equipped-NECK-unshaded-01: WizardMagicColorsPurple
+          equipped-NECK-unshaded-02: WizardMagicColorsPurple
+          equipped-NECK-unshaded-03: WizardMagicColorsPurple
+
+#region blood cult
+- type: entity
+  parent: [ BaseC3CultContrabandUnredeemable, ClothingNeckScarfWizardBlue ]
+  id: ClothingNeckScarfBloodCult
+  name: blood cult stole
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        color: "#422424"
+      - state: icon-unshaded
+        shader: unshaded
+        color: "#6e3c3c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#422424"
+      - state: inhand-left-unshaded
+        shader: unshaded
+        color: "#6e3c3c"
+      right:
+      - state: inhand-right
+        color: "#422424"
+      - state: inhand-right-unshaded
+        shader: unshaded
+        color: "#6e3c3c"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#422424"
+        map: [ "wizard_stole_base" ]
+      - state: equipped-NECK-unshaded-01
+        map: [ "wizard_stole_runes" ]
+        shader: unshaded
+        color: "#6e3c3c"
+  - type: RandomSprite
+    available:
+      - wizard_stole_base:
+          equipped-NECK: BloodCultMagicColors
+        wizard_stole_runes:
+          equipped-NECK-unshaded-01: BloodCultMagicColors
+          equipped-NECK-unshaded-02: BloodCultMagicColors
+          equipped-NECK-unshaded-03: BloodCultMagicColors
+
+#region scarf of warmth
+- type: entity
+  parent: [ ClothingNeckScarfWizardPurple, BaseC3WizardContraband ]
+  id: ClothingNeckScarfWizardWarmth
+  name: wizard scarf of warmth
+  description: You don't feel neither cold nor warm wearing it. Wonder if it keeps you safe from plasmafires?
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        color: "#4593a5"
+      - state: icon-unshaded
+        shader: unshaded
+        color: "#A65746"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#4593a5"
+      - state: inhand-left-unshaded
+        shader: unshaded
+        color: "#A65746"
+      right:
+      - state: inhand-right
+        color: "#4593a5"
+      - state: inhand-right-unshaded
+        shader: unshaded
+        color: "#A65746"
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        color: "#4593a5"
+        map: [ "wizard_stole_base" ]
+      - state: equipped-NECK-unshaded-01
+        map: [ "wizard_stole_runes" ]
+        shader: unshaded
+        color: "#A65746"
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.1
+  - type: RandomSprite
+    available:
+      - wizard_stole_base:
+          equipped-NECK: WizardMagicColorsPurple
+        wizard_stole_runes:
+          equipped-NECK-unshaded-01: WizardMagicColorsPurple
+          equipped-NECK-unshaded-02: WizardMagicColorsPurple
+          equipped-NECK-unshaded-03: WizardMagicColorsPurple
+
+#region cloak of holding
+- type: entity
+  parent: [ ClothingNeckBase, BaseC3WizardContraband ]
+  id: ClothingNeckCloakWizardHolding
+  name: wizard's portal cloak of holding
+  description: What happens when your wizardry instructor forbids portal conjuring, yet you do it anyway and attempt to conceal it under your cloak when they are back to check on you?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Item
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Cloaks/wizard_cloak_holding.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    - 5,0,7,2
+    - 0,5,7,5
+    - 6,4,7,5
+    - 9,2,10,3
+    - 9,5,9,5
+    maxItemSize: Small
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface

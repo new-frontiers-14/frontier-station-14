@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/29/2025 15:41:54
-  entityCount: 818
+  time: 07/17/2025 15:49:20
+  entityCount: 823
 maps: []
 grids:
 - 70
@@ -1034,6 +1034,11 @@ entities:
     - type: Transform
       pos: 5.5,-7.5
       parent: 70
+  - uid: 98
+    components:
+    - type: Transform
+      pos: 4.5,7.5
+      parent: 70
   - uid: 111
     components:
     - type: Transform
@@ -1072,7 +1077,7 @@ entities:
   - uid: 234
     components:
     - type: Transform
-      pos: 4.5,7.5
+      pos: -5.5,7.5
       parent: 70
   - uid: 261
     components:
@@ -1103,11 +1108,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-11.5
-      parent: 70
-  - uid: 346
-    components:
-    - type: Transform
-      pos: -5.5,7.5
       parent: 70
   - uid: 373
     components:
@@ -1355,6 +1355,14 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-4.5
+      parent: 70
+- proto: BarSpoon
+  entities:
+  - uid: 674
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.503344,-5.858896
       parent: 70
 - proto: Bed
   entities:
@@ -2694,6 +2702,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,0.5
       parent: 70
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 819
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-12.5
+      parent: 70
 - proto: DisposalBend
   entities:
   - uid: 321
@@ -3009,6 +3025,15 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 794
+- proto: FloorDrain
+  entities:
+  - uid: 821
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 70
+    - type: Fixtures
+      fixtures: {}
 - proto: GasMixerOn
   entities:
   - uid: 240
@@ -4083,7 +4108,15 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-9.5
       parent: 70
-- proto: JukeboxShip
+- proto: ImpCoffeeMachine
+  entities:
+  - uid: 820
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-7.5
+      parent: 70
+- proto: Jukebox
   entities:
   - uid: 159
     components:
@@ -4098,6 +4131,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-11.5
       parent: 70
+  - uid: 822
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-11.5
+      parent: 70
 - proto: LockerWallColorGenericGreen
   entities:
   - uid: 587
@@ -4105,6 +4144,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-13.5
+      parent: 70
+  - uid: 823
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-13.5
       parent: 70
 - proto: LockerWallEVAColorCargoFilled
   entities:
@@ -4206,7 +4251,7 @@ entities:
       pos: -1.5,-19.5
       parent: 70
     - type: FuelGenerator
-      targetPower: 34000
+      targetPower: 36000
 - proto: PosterLegitSafetyMothFires
   entities:
   - uid: 667
@@ -4903,6 +4948,12 @@ entities:
         180:
         - - Pressed
           - Toggle
+        291:
+        - - Pressed
+          - Toggle
+        523:
+        - - Pressed
+          - Toggle
   - uid: 365
     components:
     - type: Transform
@@ -4964,6 +5015,12 @@ entities:
         - - Pressed
           - Toggle
         47:
+        - - Pressed
+          - Toggle
+        32:
+        - - Pressed
+          - Toggle
+        346:
         - - Pressed
           - Toggle
   - uid: 380
@@ -5196,14 +5253,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-17.5
-      parent: 70
-- proto: SodaDispenser
-  entities:
-  - uid: 674
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-7.5
       parent: 70
 - proto: SolarPanel
   entities:
@@ -5513,6 +5562,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-7.5
       parent: 70
+  - uid: 49
+    components:
+    - type: Transform
+      pos: -5.5,-5.5
+      parent: 70
   - uid: 139
     components:
     - type: Transform
@@ -5562,6 +5616,11 @@ entities:
       parent: 70
 - proto: Thruster
   entities:
+  - uid: 32
+    components:
+    - type: Transform
+      pos: -5.5,7.5
+      parent: 70
   - uid: 47
     components:
     - type: Transform
@@ -5579,6 +5638,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-21.5
+      parent: 70
+  - uid: 346
+    components:
+    - type: Transform
+      pos: 4.5,7.5
       parent: 70
   - uid: 352
     components:
@@ -5724,13 +5788,6 @@ entities:
           - Reverse
         - - Middle
           - Off
-- proto: VendingMachineBooze
-  entities:
-  - uid: 49
-    components:
-    - type: Transform
-      pos: -5.5,-5.5
-      parent: 70
 - proto: WallmountTelevision
   entities:
   - uid: 516
@@ -6017,11 +6074,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-9.5
       parent: 70
-  - uid: 32
-    components:
-    - type: Transform
-      pos: -5.5,7.5
-      parent: 70
   - uid: 48
     components:
     - type: Transform
@@ -6032,12 +6084,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-18.5
-      parent: 70
-  - uid: 98
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,7.5
       parent: 70
   - uid: 150
     components:

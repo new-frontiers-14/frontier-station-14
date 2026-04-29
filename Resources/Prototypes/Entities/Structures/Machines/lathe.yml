@@ -126,23 +126,37 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
-    - ToolsStatic
-    - PartsStatic
-    - AtmosStatic
-    - CablesStatic
-    - CargoStatic
-    - MaterialsStatic
-    - BasicChemistryStatic
-    - RollerBedsStatic
-    - LightsStatic
-    - ServiceStatic
-    - PowerCellsStatic
-    - ElectronicsStatic
-    - NFSalvageStatic # Frontier
-    - NFLights # Frontier
+    # - ToolsStatic # Frontier
+    # - PartsStatic # Frontier
+    # - AtmosStatic # Frontier
+    # - CablesStatic # Frontier
+    # - PaperworkStatic # Frontier
+    # - CargoStatic # Frontier
+    # - MaterialsStatic # Frontier
+    # - BasicChemistryStatic # Frontier
+    # - RollerBedsStatic # Frontier
+    # - LightsStatic # Frontier
+    # - ServiceStatic # Frontier
+    # - PowerCellsStatic # Frontier
+    # - ElectronicsStatic # Frontier
+    - NFLightsStatic # Frontier
+    - NFBasicToolsStatic # Frontier
+    - NFBasicStorageStatic # Frontier
+    - NFBasicPartsStatic # Frontier
+    - NFBasicElectronicsStatic # Frontier
+    - NFBasicEvaStatic # Frontier
+    - NFBasicEVAToolsStatic # Frontier
+    - NFMaterialElectronicsStatic # Frontier
+    - NFEngineeringStructureBoardsStatic # Frontier
+    - NFServiceToolsStatic # Frontier
     - NFServiceStatic # Frontier
     - ReportingStatic # DeltaV
     - NFPaperAndPaperAccessories # Frontier
+    - NFChemistryBasicStatic # Frontier
+    - NFMedicalMobilityStatic # Frontier
+    - NFServiceKitchenStatic # Frontier
+    - NFEvaSuitCommon # Frontier
+
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
@@ -174,7 +188,7 @@
 
 - type: entity
   id: Protolathe
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, NFBlueprintReceiverBase] # Frontier: Add BlueprintRecieverBase as parent
   name: protolathe
   description: Converts raw materials into advanced items.
   components:
@@ -206,8 +220,8 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
-    - ChemistryStatic
-    - SurgeryStatic
+    - NFChemistryBasicStatic # Frontier
+    - NFSurgeryBasicStatic # Frontier
     dynamicPacks:
     - AdvancedTools
     - ScienceEquipment
@@ -229,6 +243,7 @@
     - NFService # Frontier
     - NFScience # Frontier
     - NFPouches # Frontier
+    - NFProtolathe # Frontier
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
@@ -241,6 +256,7 @@
     whitelist:
       tags:
       - NFBlueprintProtolathe
+      - NFBlueprintAdvanced
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -304,6 +320,7 @@
     - NFEngineeringBoards # Frontier
     - NFMedicalBoards # Frontier
     - NFServiceBoards # Frontier
+    - NFEngineeringBoardsCircuitImprinter # Frontier
   - type: EmagLatheRecipes
     emagDynamicPacks: [] # Frontier: empty list
     # - SecurityBoards # Frontier
@@ -485,6 +502,7 @@
       runningState: icon
       staticPacks:
       - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
+      - NFMercenaryMagazineStatic
     - type: MaterialStorage
       whitelist:
         tags:
@@ -496,6 +514,7 @@
       whitelist: # Frontier
         tags: # Frontier
         - NFBlueprintMercenaryTechfab # Frontier
+        - NFBlueprintAdvanced # Frontier
 
 - type: entity
   id: MedicalTechFab
@@ -521,14 +540,32 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - TopicalsStatic
-    - ChemistryStatic
-    - MedicalStatic
-    - RollerBedsStatic
-    - MedicalClothingStatic
-    - EmptyMedkitsStatic
-    - SurgeryStatic
+    #- TopicalsStatic # Frontier
+    #- ChemistryStatic # Frontier
+    #- MedicalStatic # Frontier
+    #- RollerBedsStatic # Frontier
+    #- MedicalClothingStatic # Frontier
+    #- EmptyMedkitsStatic # Frontier
+    #- SurgeryStatic # Frontier
+    - NFLightsStatic # Frontier
+    - NFBasicToolsStatic # Frontier
+    - NFBasicStorageStatic # Frontier
+    - NFBasicPartsStatic # Frontier
+    - NFBasicElectronicsStatic # Frontier
+    - NFBasicEvaStatic # Frontier
+    - NFBasicEVAToolsStatic # Frontier
+    - ReportingStatic # DeltaV
+    - NFPaperAndPaperAccessories # Frontier
+    - NFMedicalBoards # Frontier
     - NFMedicalStatic # Frontier
+    - NFMedicalClothingStatic # Frontier
+    - NFChemistryBasicStatic # Frontier
+    - NFMedicalMobilityStatic # Frontier
+    - NFEmptyMedkitsStatic # Frontier
+    - NFSurgeryBasicStatic # Frontier
+    - NFSurgeryMedicalToolsStatic #Frontier
+    - NFTopicalsStatic # Frontier
+    - NFMedicalArchetypeStatic # Frontier
     # dynamicPacks: # Frontier
     # - Chemistry # Frontier
   - type: Machine
@@ -542,6 +579,7 @@
     whitelist: # Frontier
       tags: # Frontier
       - NFBlueprintMedicalTechfab # Frontier
+      - NFBlueprintAdvanced # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -583,6 +621,7 @@
     - NFUniformSpecial # Frontier
     - NFUniformCloaks # Frontier
     - NFWallets # Frontier
+    - NFUniformChaplainStatic # Frontier
     dynamicPacks: # Frontier
     - NFPouches # Frontier
   - type: EmagLatheRecipes
@@ -595,7 +634,7 @@
         - Sheet
         - RawMaterial
         - Ingot
-  - type: OreSiloClient # Frontier
+  - type: OreSiloClient
 
 - type: entity
   id: Biogenerator
@@ -801,4 +840,4 @@
         - RawMaterial
         - Plastic
         - Ingot # Frontier
-  - type: OreSiloClient # Frontier
+  - type: OreSiloClient

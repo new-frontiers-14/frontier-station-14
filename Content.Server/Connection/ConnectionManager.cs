@@ -20,6 +20,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._NF.Auth; // Frontier
+using Content.Shared._Harmony.CCVars; // Harmony Queue
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -31,6 +32,10 @@ namespace Content.Server.Connection
     {
         void Initialize();
         void PostInit();
+
+        // Harmony Queue Start
+        Task<bool> HasPrivilegedJoin(NetUserId userId);
+        // Harmony Queue End
 
         /// <summary>
         /// Temporarily allow a user to bypass regular connection requirements.
@@ -64,7 +69,10 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly MiniAuthManager _authManager = default!; //Frontier
+
+        private GameTicker? _ticker;
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
@@ -245,8 +253,9 @@ namespace Content.Server.Connection
             var adminData = await _db.GetAdminDataForAsync(e.UserId);
             // New Frontiers - Session Respector - Checks that a player was connected before applying panic bunker/baby jail/no whitelist on low pop checks
             // This code is licensed under AGPLv3. See AGPLv3.txt
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
+            _ticker ??= _entityManager.SystemOrNull<GameTicker>();
+            var wasInGame = _ticker != null &&
+                            _ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
 
             if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
@@ -309,6 +318,10 @@ namespace Content.Server.Connection
 
             // Frontier: wasInGame previously calculated here.
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
+            // Harmony Queue Start
+            var isQueueEnabled = _cfg.GetCVar(HCCVars.EnableQueue);
+            // Harmony Queue End
+
             var softPlayerCount = _plyMgr.PlayerCount;
 
             if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
@@ -316,13 +329,17 @@ namespace Content.Server.Connection
                 softPlayerCount -= _adminManager.ActiveAdmins.Count();
             }
 
-            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
+            // Harmony Queue Start
+            // Harmony Note: I could have cleaned up this boolean check but I dont want to modify the wizden code more than just adding one more boolean
+            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isQueueEnabled)
             {
+            // Harmony Queue End
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
+            // Frontier: allow users who joined before panic bunker was enforced to reconnect
             // Checks for whitelist IF it's enabled AND the user isn't an admin. Admins are always allowed.
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame && adminData is null) // Frontier: allow users who joined before panic bunker was enforced to reconnect
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame && adminData is null)
             {
                 if (_whitelists is null)
                 {
@@ -350,7 +367,7 @@ namespace Content.Server.Connection
                     break;
                 }
             }
-            // End of modified code
+            // End Frontier
 
             // ALWAYS keep this at the end, to preserve the API limit.
             if (_cfg.GetCVar(CCVars.GameIPIntelEnabled) && adminData == null)
@@ -401,5 +418,16 @@ namespace Content.Server.Connection
             await _db.AssignUserIdAsync(name, assigned);
             return assigned;
         }
+
+        // Harmony Queue Start
+        public async Task<bool> HasPrivilegedJoin(NetUserId userId)
+        {
+            var isAdmin = await _db.GetAdminDataForAsync(userId) != null;
+            var ticker = IoCManager.Resolve<IEntityManager>().System<GameTicker>();
+            var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+                            status == PlayerGameStatus.JoinedGame;
+            return isAdmin || wasInGame;
+        }
+        // Harmony Queue End
     }
 }

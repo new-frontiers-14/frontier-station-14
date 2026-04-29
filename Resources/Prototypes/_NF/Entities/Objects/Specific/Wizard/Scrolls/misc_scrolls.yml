@@ -1,0 +1,65 @@
+#region staff altar scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: ScrollRolledWizardStaffRechargerAltar
+  name: wizard staff altar binding scroll
+  description: A rolled wizard staff altar binding scroll.
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#667566"
+    - state: scroll-rolled-ribbon
+      color: "blue"
+    - state: scroll-rolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollWizardStaffRechargerAltar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+#region cult staff altar scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: ScrollRolledCultStaffRechargerAltar
+  name: blood cult staff altar binding scroll
+  description: A rolled blood cult staff altar binding scroll.
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#ffb2b2"
+    - state: scroll-rolled-ribbon
+      color: "#721313"
+    - state: scroll-rolled-seal
+      color: "red"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollCultStaffRechargerAltar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+#region cult forge scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: ScrollRolledCultForge
+  name: blood cult forge binding scroll
+  description: A rolled blood cult forge binding scroll.
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#ffb2b2"
+    - state: scroll-rolled-ribbon
+      color: "#721313"
+    - state: scroll-rolled-seal
+      color: "orange"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollCultForge
+    sound:
+      path: /Audio/Effects/unwrap.ogg

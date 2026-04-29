@@ -12,19 +12,6 @@
       prob: 0.01
 
 - type: entity
-  id: CrateFoodPizzaLarge
-  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
-  categories: [ HideSpawnMenu ] # Frontier
-  components:
-  - type: StorageFill
-    contents:
-    - id: FoodBoxPizzaFilled
-      amount: 15
-    - id: FoodBoxPizzaCotton
-    - id: LidSalami
-      prob: 0.04
-
-- type: entity
   id: CrateFoodMRE
   parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: MRE crate
@@ -88,12 +75,12 @@
       amount: 1
     - id: DrinkGlass
       amount: 4
+    - id: FoodPlateMuffinTin
+      amount: 4
     - id: FoodPlateTin
       amount: 4
-    - id: Fork
-      amount: 2
-    - id: Spoon
-      amount: 2
+    - id: BoxUtensil
+      amount: 1
 
 - type: entity
   id: CrateFoodBarSupply
@@ -127,22 +114,22 @@
   parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: StorageFill
-      contents:
-      - id: DrinkColaCan
-        amount: 4
-      - id: DrinkGrapeCan
-        amount: 2
-      - id: DrinkRootBeerCan
-        amount: 2
-      - id: DrinkIcedTeaCan
-        amount: 2
-      - id: DrinkLemonLimeCan
-        amount: 4
-      - id: DrinkLemonLimeCranberryCan
-        amount: 4
-      - id: DrinkFourteenLokoCan
-        amount: 2
+  - type: StorageFill
+    contents:
+    - id: DrinkColaCan
+      amount: 4
+    - id: DrinkGrapeCan
+      amount: 2
+    - id: DrinkRootBeerCan
+      amount: 2
+    - id: DrinkIcedTeaCan
+      amount: 2
+    - id: DrinkLemonLimeCan
+      amount: 2
+    - id: DrinkLemonLimeCranberryCan
+      amount: 2
+    - id: DrinkFourteenLokoCan
+      amount: 2
 
 - type: entity
   id: CrateFoodGetMore

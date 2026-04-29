@@ -1,0 +1,64 @@
+- type: entity
+  parent: [ BaseC3WizardContrabandUnredeemable, ClothingOuterStorageToggleableBase, RecyclableItemClothArmor, ContrabandClothing ]
+  id: ClothingOuterRobeTacticalWizardBlue
+  name: blue wizard tactical robes
+  description: The perfect synthesis of tradition with modern materials and warfare practices.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_blue.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_blue.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodTacticalWizardBlue
+  - type: Armor # placeholder stats, will be changed to something else
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.4
+        Heat: 0.9
+        Cold: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.40
+
+- type: entity
+  parent: ClothingOuterRobeTacticalWizardBlue
+  id: ClothingOuterRobeTacticalWizardRed
+  name: red wizard tactical robes
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_red.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_red.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodTacticalWizardRed
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.4
+        Heat: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.40
+
+- type: entity
+  parent: ClothingOuterRobeTacticalWizardBlue
+  id: ClothingOuterRobeTacticalWizardPurple
+  name: purple wizard tactical robes
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_purple.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_purple.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodTacticalWizardPurple
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.4
+        Heat: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.40

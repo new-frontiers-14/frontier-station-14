@@ -79,6 +79,7 @@
     - id: SheetGlass
     - id: SheetPlastic
     - id: MaterialWoodPlank
+    - id: MaterialCloth
 
 - type: entity # Stacks of 10
   abstract: true
@@ -90,3 +91,24 @@
     - id: SheetGlass10
     - id: SheetPlastic10
     - id: MaterialWoodPlank10
+    - id: MaterialCloth10
+
+- type: entity # Full stacks
+  abstract: true
+  id: StorageFillMaterials
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetSteel
+    - id: SheetGlass
+    - id: SheetPlastic
+
+- type: entity # Stacks of 10
+  abstract: true
+  id: StorageFillMaterials10
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetSteel10
+    - id: SheetGlass10
+    - id: SheetPlastic10

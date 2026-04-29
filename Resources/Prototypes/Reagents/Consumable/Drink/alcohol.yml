@@ -12,17 +12,38 @@
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/absintheglass.rsi
     state: icon_empty
-  metamorphicMaxFillLevels: 5
+  metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
     Drink:
       effects:
-      - !type:SatiateThirst
-        factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.3
+    Narcotic: # The green fairy
+      metabolismRate : 0.01
+      effects:
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        type: Add
+        time: 5
+        refresh: false
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - absinthe-effect-hear-voice
+        - absinthe-effect-feel-tulips
+        probability: 0.02
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
 
 - type: reagent
   id: Ale
@@ -158,18 +179,27 @@
           min: 15
         - !type:OrganType
           type: Dwarf
+        - !type:TotalDamage # Frontier
+          max: 80 # Frontier
         damage:
           types:
-            Poison: 0.2
-      - !type:HealthChange
+            Poison: .05 # Frontier
+      - !type:EvenHealthChange # Frontier
         conditions:
         - !type:ReagentThreshold
           min: 15
         - !type:OrganType
           type: Dwarf
         damage:
-          groups:
-            Brute: -1
+          Brute: -1 # Frontier
+      - !type:EvenHealthChange # Frontier - Dwarves can be resuscitated with booze
+        conditions: # Frontier
+        - !type:OrganType # Frontier
+          type: Dwarf # Frontier
+        - !type:TotalDamage # Frontier
+          min: 80 # Frontier
+        damage: # Frontier
+          Airloss: -4 # Frontier
       - !type:ChemVomit
         probability: 0.04
         conditions:
@@ -1235,6 +1265,16 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: JackRose
@@ -2000,9 +2040,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.25
 
@@ -2031,9 +2071,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.15
 
@@ -2062,9 +2102,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.15
 
@@ -2093,9 +2133,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.25
 
@@ -2124,9 +2164,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.15
 
@@ -2155,9 +2195,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.25
 
@@ -2382,6 +2422,16 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier
 
 - type: reagent
   id: Daiquiri

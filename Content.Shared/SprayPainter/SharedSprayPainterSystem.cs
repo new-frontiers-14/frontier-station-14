@@ -1,5 +1,3 @@
-// Rewritten in Upstream#37341
-
 using Content.Shared.Administration.Logs;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
@@ -318,5 +316,3 @@ public abstract class SharedSprayPainterSystem : EntitySystem
 
     #endregion
 }
-
-// End Rewritten in Upstream#37341

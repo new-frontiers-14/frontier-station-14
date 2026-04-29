@@ -96,12 +96,16 @@ ui-options-vp-integer-scaling-tooltip = If this option is enabled, the viewport 
                                         at specific resolutions. While this results in crisp textures, it also often
                                         means that black bars appear at the top/bottom of the screen or that part
                                         of the viewport is not visible.
+ui-options-filter-label = Scaling filter:
+ui-options-filter-nearest = Nearest (no smoothing)
+ui-options-filter-bilinear = Bilinear (smoothed)
 ui-options-vp-vertical-fit = Vertical viewport fitting
 ui-options-vp-vertical-fit-tooltip = When enabled, the main viewport will ignore the horizontal axis entirely when
                                      fitting to your screen. If your screen is smaller than the viewport, then this
                                      will cause the viewport to be cut off on the horizontal axis.
 ui-options-vp-low-res = Low-resolution viewport
 ui-options-parallax-low-quality = Low-quality Parallax (background)
+ui-options-ambient-occlusion = Show Ambient Occlusion
 ui-options-fps-counter = Show FPS counter
 ui-options-vp-width = Viewport width:
 ui-options-hud-layout = HUD layout:
@@ -139,6 +143,7 @@ ui-options-function-move-left = Move Left
 ui-options-function-move-down = Move Down
 ui-options-function-move-right = Move Right
 ui-options-function-walk = Walk
+ui-options-function-toggle-knockdown = Toggle Crawling
 
 ui-options-function-camera-rotate-left = Rotate left
 ui-options-function-camera-rotate-right = Rotate right
@@ -157,8 +162,8 @@ ui-options-function-activate-item-in-world = Activate item in world
 ui-options-function-alt-activate-item-in-world = Alternative activate item in world
 ui-options-function-drop = Drop item
 ui-options-function-examine-entity = Examine
-# Frontier: add (next)
-ui-options-function-swap-hands = Swap hands (next)
+ui-options-function-swap-hands = Swap hands
+ui-options-function-swap-hands-reverse = Swap hands (other direction)
 ui-options-function-move-stored-item = Move stored item
 ui-options-function-rotate-stored-item = Rotate stored item
 ui-options-function-save-item-location = Save item location
@@ -235,16 +240,16 @@ ui-options-function-hotbar7 = Hotbar slot 7
 ui-options-function-hotbar8 = Hotbar slot 8
 ui-options-function-hotbar9 = Hotbar slot 9
 ui-options-function-hotbar0 = Hotbar slot 0
-ui-options-function-hotbarshift1 = Hotbar slot Shift+1
-ui-options-function-hotbarshift2 = Hotbar slot Shift+2
-ui-options-function-hotbarshift3 = Hotbar slot Shift+3
-ui-options-function-hotbarshift4 = Hotbar slot Shift+4
-ui-options-function-hotbarshift5 = Hotbar slot Shift+5
-ui-options-function-hotbarshift6 = Hotbar slot Shift+6
-ui-options-function-hotbarshift7 = Hotbar slot Shift+7
-ui-options-function-hotbarshift8 = Hotbar slot Shift+8
-ui-options-function-hotbarshift9 = Hotbar slot Shift+9
-ui-options-function-hotbarshift0 = Hotbar slot Shift+0
+ui-options-function-hotbar-shift1 = Hotbar slot Shift+1
+ui-options-function-hotbar-shift2 = Hotbar slot Shift+2
+ui-options-function-hotbar-shift3 = Hotbar slot Shift+3
+ui-options-function-hotbar-shift4 = Hotbar slot Shift+4
+ui-options-function-hotbar-shift5 = Hotbar slot Shift+5
+ui-options-function-hotbar-shift6 = Hotbar slot Shift+6
+ui-options-function-hotbar-shift7 = Hotbar slot Shift+7
+ui-options-function-hotbar-shift8 = Hotbar slot Shift+8
+ui-options-function-hotbar-shift9 = Hotbar slot Shift+9
+ui-options-function-hotbar-shift0 = Hotbar slot Shift+0
 ui-options-function-loadout1 = Hotbar Loadout 1
 ui-options-function-loadout2 = Hotbar Loadout 2
 ui-options-function-loadout3 = Hotbar Loadout 3

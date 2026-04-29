@@ -278,7 +278,7 @@
   productEntity: NFWeaponEnergyRifleCarbine
   icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 8
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -299,7 +299,7 @@
   productEntity: NFWeaponEnergyRifleSniperCannon
   icon: { sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 14
+    FrontierUplinkCoin: 10
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -318,7 +318,7 @@
   productEntity: NFWeaponEnergySubMachineGunDisabler
   icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
   cost:
-    FrontierUplinkCoin: 6
+    FrontierUplinkCoin: 4
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -330,6 +330,26 @@
       whitelist:
         - Bailiff
         - SeniorOfficer
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityDrozd
+  name:  uplink-security-drozd-name
+  description: uplink-security-drozd-desc
+  productEntity: NFWeaponSubMachineGunDrozd
+  icon: { sprite: Objects/Weapons/Guns/SMGs/drozd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
         - Sheriff
 
 - type: listing
@@ -349,7 +369,6 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff
         - Sheriff
 
 - type: listing
@@ -359,7 +378,7 @@
   productEntity: NFWeaponEnergySubMachineGunDeltaV
   icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 8
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -578,10 +597,10 @@
         - Sheriff
 
 - type: listing
-  id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
-  name:  uplink-security-wt550magazine-name
-  description: uplink-security-wt550magazine-desc
-  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
+  id: UplinkSecurityMagazineSubMachineGun35Overpressure
+  name:  uplink-security-smgmagazine-name
+  description: uplink-security-smgmagazine-desc
+  productEntity: NFBoxMagazinePistolSubMachineGun35Overpressure
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     FrontierUplinkCoin: 1
@@ -595,6 +614,25 @@
     - !type:BuyerJobCondition
       whitelist:
         - Bailiff
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
+  name:  uplink-security-wt550magazine-name
+  description: uplink-security-wt550magazine-desc
+  productEntity: NFBoxMagazineTopMountedSubMachineGun35Overpressure
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
         - Sheriff
 
 - type: listing
@@ -654,6 +692,26 @@
           - Bailiff
           - SeniorOfficer
           - Sheriff
+
+- type: listing
+  id: UplinkSecurityMagazineSubMachineGunRubber
+  name:  uplink-security-smgmagazine-rubber-name
+  description: uplink-security-smgmagazine-rubber-desc
+  productEntity: NFBoxMagazinePistolSubMachineGun35Rubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHypo
@@ -791,7 +849,7 @@
   productEntity: SecBreachingHammer
   icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 4
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -1056,7 +1114,7 @@
   productEntity: HoverbikeNfsdFlatpack
   icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: vehicle }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 10
   categories:
     - UplinkSecurityUtility
   conditions:

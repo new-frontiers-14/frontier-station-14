@@ -1,0 +1,58 @@
+#region rolled scroll
+- type: entity
+  abstract: true
+  parent: [ BaseItem, RecyclableItemPaper ]
+  id: SpellScrollRolled
+  suffix: Folded
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    size: Small
+    shape:
+    - 0,0,1,0
+    inhandVisuals:
+      left:
+      - state: scroll-rolled-inhand-left
+      right:
+      - state: scroll-rolled-inhand-right
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollBase
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: StaticPrice
+    price: 500
+
+#region unrolled scroll
+- type: entity
+  abstract: true
+  parent: [ BaseItem, ConjuredObject60, RecyclableItemPaper ]
+  id: SpellScrollBase
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+    inhandVisuals:
+      left:
+      - state: scroll-unrolled-inhand-left
+      - state: scroll-unrolled-glow-inhand-left
+        color: "#89CFF0"
+        shader: unshaded
+      right:
+      - state: scroll-unrolled-inhand-right
+      - state: scroll-unrolled-glow-inhand-right
+        color: "#89CFF0"
+        shader: unshaded
+  - type: Tag
+    tags:
+    - Sidearm
+    - Spellbook

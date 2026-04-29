@@ -13,7 +13,6 @@
     sprite: _NF/Objects/Tanks/Jetpacks/nfsd.rsi
   - type: Tag
     tags:
-      - HideContextMenu
       - EmagImmune
 
 #Filled security
@@ -31,5 +30,40 @@
     sprite: _NF/Objects/Tanks/Jetpacks/nfsd.rsi
   - type: Tag
     tags:
-      - HideContextMenu
       - EmagImmune
+
+#Empty pirate
+- type: entity
+  id: JetpackPirate
+  parent: [BaseJetpack, BaseC3PirateContraband]
+  name: pirate jetpack
+  suffix: Empty
+  components:
+  - type: Item
+    sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi
+  - type: Tag
+    tags:
+      - DemagImmune
+  - type: Jetpack
+    radarBlip: false
+
+#Filled pirate
+- type: entity
+  id: JetpackPirateFilled
+  parent: JetpackPirate
+  name: pirate jetpack
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+        - 1.025689525 # oxygen
+        - 1.025689525 # nitrogen

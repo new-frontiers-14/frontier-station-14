@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Construction;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
 using Content.Server.Power.EntitySystems;
@@ -13,6 +12,7 @@ using Content.Shared.Power;
 using Content.Shared.ReagentSpeed;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Construction.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -520,5 +520,25 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     {
         ent.Comp.ProvidedRecipes = recipes;
         Dirty(ent, ent.Comp);
+    }
+
+    /// <summary>
+    /// Adds a given recipe to a blueprint.
+    /// </remarks>
+    public void AddBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
+    {
+        var inserted = ent.Comp.ProvidedRecipes.Add(recipe);
+        if (inserted && dirty)
+            Dirty(ent, ent.Comp);
+    }
+
+    /// <summary>
+    /// Removes a given recipe from a blueprint.
+    /// </remarks>
+    public void RemoveBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
+    {
+        var removed = ent.Comp.ProvidedRecipes.Remove(recipe);
+        if (removed && dirty)
+            Dirty(ent, ent.Comp);
     }
 }

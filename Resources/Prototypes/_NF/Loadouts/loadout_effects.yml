@@ -33,14 +33,6 @@
     inverted: true
 
 - type: loadoutEffectGroup
-  id: NFHeadwearCapable
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Sheleg
-    inverted: true
-
-- type: loadoutEffectGroup
   id: NFCoatCapable
   effects:
   - !type:SpeciesLoadoutEffect
@@ -77,3 +69,17 @@
     blacklist:
     - JobPlantManager
     - JobPlantTechnician
+
+- type: loadoutEffectGroup
+  id: NFNotStationRep
+  effects:
+  - !type:RoleBlacklistLoadoutEffect
+    blacklist:
+    - JobStationRepresentative
+
+- type: loadoutEffectGroup
+  id: NFIsGoblin
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Goblin

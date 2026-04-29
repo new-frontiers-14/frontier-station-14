@@ -57,6 +57,19 @@
         amount: 2
 #     - id: SMGSuppressor
 
+# Frontier TODO: Balance this and readd
+#- type: entity
+#  parent: ClothingBackpackDuffelSyndicateBundle
+#  id: ClothingBackpackDuffelSyndicateFilledRifle
+#  name: Estoc DMR bundle
+#  description: "For medium-range sharpshooting, the Estoc DMR. Bundled with three magazines."
+#  components:
+#  - type: StorageFill
+#    contents:
+#    - id: WeaponRifleEstoc
+#    - id: MagazineRifle
+#      amount: 2
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledRevolver
@@ -116,7 +129,7 @@
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoFilled
   name: ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW."
   components:
   - type: StorageFill
     contents:
@@ -124,6 +137,8 @@
         amount: 4
       - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
         amount: 4
+      - id: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
+        amount: 3
       - id: NFMagazineShotgunDrumSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
         amount: 1
       - id: NFMagazineBoxRifle20 # Frontier: MagazineLightRifleBox<NFMagazineBoxRifle20
@@ -211,7 +226,7 @@
         - id: ClothingEyesChameleon
         - id: ClothingHeadsetChameleon
         - id: ClothingShoesChameleon
-        - id: BarberScissors
+        - id: ChameleonControllerImplanter
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -324,3 +339,36 @@
         amount: 2
       - id: SyndieTrickyBomb
         amount: 2
+
+- type: entity
+  parent: [ ClothingBackpackDuffelBundle, BaseC3Contraband ] # Frontier BaseMajorContraband<BaseC3Contraband
+  id: ClothingBackpackDuffelAcolyteBundle
+  name: acolyte armor bundle
+  description: "Contains the Acolyte Armor, the must have of any cult leader."
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorCult
+    - id: ClothingHeadHelmetCult
+    - id: ClothingShoesCult
+    - id: BedsheetCult
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledStarterKit
+  name: basic operative bundle
+  description: "Contains a weapon, medical supplies, breaching tools, spare ammo, and some simple utilities."
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r<NFWeaponSubMachineGunC20r
+      - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
+        amount: 2 # Frontier: 3<2
+      - id: NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
+      - id: SyndicateJawsOfLife
+      - id: C4
+        amount: 2
+      - id: MedkitCombatFilled
+      - id: EmpImplanter
+      - id: ClothingShoesBootsMagSyndie
+      - id: AgentIDCard
