@@ -60,7 +60,7 @@
         - ReagentId: Blood
           Quantity: 1000
 
-#region Wall for POI
+#region Walls
 - type: entity
   parent: BaseWall
   id: NFWallCultIndestructible
@@ -112,7 +112,7 @@
     key: walls
     base: cult
 
-#region Window for POI
+#region Windows
 - type: entity
   parent: BaseStructure
   id: WindowCultIndestructibleInvisible
@@ -152,35 +152,6 @@
         - GlassLayer
   - type: Airtight
   - type: BlockWeather
-
-- type: entity
-  parent: WindowCultIndestructibleInvisible
-  id: WindowCultInvisible
-  suffix: invisible
-  components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: _NF/Structures/Specific/BloodCult/glowingfloor.rsi
-    layers:
-    - state: wallglow
-  - type: Icon
-    sprite: _NF/Structures/Specific/BloodCult/glowingfloor.rsi
-    state: wallglow
-  - type: Destructible
-    damageContainer: StructuralInorganic
-    damageModifierSet: RGlass
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 220
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WindowShatter
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: ExaminableDamage
-    messages: WindowMessages
 
 #region Blood Cult Airlock
 - type: entity
