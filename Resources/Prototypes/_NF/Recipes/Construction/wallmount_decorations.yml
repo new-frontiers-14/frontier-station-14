@@ -27,3 +27,56 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
+
+# region trophy frames
+- type: construction
+  id: NFStructureWallTrophyFrameWood
+  graph: NFStructureWallTrophyFrame
+  startNode: start
+  targetNode: NFStructureWallTrophyFrameWood
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: NFStructureWallTrophyFrameBrass
+  graph: NFStructureWallTrophyFrame
+  startNode: start
+  targetNode: NFStructureWallTrophyFrameBrass
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: NFStructureWallTrophyFrameSilver
+  graph: NFStructureWallTrophyFrame
+  startNode: start
+  targetNode: NFStructureWallTrophyFrameSilver
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: NFStructureWallTrophyFrameGold
+  graph: NFStructureWallTrophyFrame
+  startNode: start
+  targetNode: NFStructureWallTrophyFrameGold
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition

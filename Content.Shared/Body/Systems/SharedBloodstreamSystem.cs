@@ -6,7 +6,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
-using Content.Shared.Drunk;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids;
@@ -16,7 +15,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Rejuvenate;
-using Content.Shared.Speech.EntitySystems;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -27,17 +26,18 @@ namespace Content.Shared.Body.Systems;
 
 public abstract class SharedBloodstreamSystem : EntitySystem
 {
+    public static readonly EntProtoId Bloodloss = "StatusEffectBloodloss";
+
     [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainer = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedDrunkSystem _drunkSystem = default!;
-    [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
 
     public override void Initialize()
     {
@@ -81,10 +81,14 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             // as well as stop their bleeding to a certain extent.
             if (bloodstream.BleedAmount > 0)
             {
+                var ev = new BleedModifierEvent(bloodstream.BleedAmount, bloodstream.BleedReductionAmount);
+                RaiseLocalEvent(uid, ref ev);
+
                 // Blood is removed from the bloodstream at a 1-1 rate with the bleed amount
-                TryModifyBloodLevel((uid, bloodstream), -bloodstream.BleedAmount);
+                TryModifyBloodLevel((uid, bloodstream), -ev.BleedAmount);
+
                 // Bleed rate is reduced by the bleed reduction amount in the bloodstream component.
-                TryModifyBleedAmount((uid, bloodstream), -bloodstream.BleedReductionAmount);
+                TryModifyBleedAmount((uid, bloodstream), -ev.BleedReductionAmount);
             }
 
             // deal bloodloss damage if their blood level is below a threshold.
@@ -97,16 +101,10 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                 _damageableSystem.TryChangeDamage(uid, amt,
                     ignoreResistances: false, interruptsDoAfters: false);
 
-                // Frontier: bloodloss uses desaturation instead of drunkenness
-                // _drunkSystem.TryApplyDrunkenness(
-                //     uid,
-                //     (float)bloodstream.AdjustedUpdateInterval.TotalSeconds * 2,
-                //     applySlur: false);
-                _stutteringSystem.DoStutter(uid, bloodstream.AdjustedUpdateInterval * 2, refresh: false);
-
-                // Frontier: stutter time tracking only (no drunkenness)
-                bloodstream.StatusTime += bloodstream.AdjustedUpdateInterval * 2;
-                DirtyField(uid, bloodstream, nameof(BloodstreamComponent.StatusTime));
+                // Apply dizziness as a symptom of bloodloss.
+                // The effect is applied in a way that it will never be cleared without being healthy.
+                // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
+                _status.TrySetStatusEffectDuration(uid, Bloodloss);
             }
             else if (!_mobStateSystem.IsDead(uid))
             {
@@ -116,12 +114,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                     bloodstream.BloodlossHealDamage * bloodPercentage,
                     ignoreResistances: true, interruptsDoAfters: false);
 
-                // Frontier: bloodloss uses desaturation instead of drunkenness
-                // _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
-                _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime.TotalSeconds);
-                // Reset the drunk and stutter time to zero
-                bloodstream.StatusTime = TimeSpan.Zero;
-                DirtyField(uid, bloodstream, nameof(BloodstreamComponent.StatusTime));
+                _status.TryRemoveStatusEffect(uid, Bloodloss);
             }
         }
     }
