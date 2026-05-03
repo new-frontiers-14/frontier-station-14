@@ -53,9 +53,14 @@
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
+- type: IntrinsicRadioTransmitter # Frontier: Comms for pAIs
+    channels: # Frontier: Comms for pAIs
+    - Common # Frontier: Comms for pAIs
+    - Binary # Frontier: Comms for pAIs
   - type: ActiveRadio
     channels:
     - Common
+    - Binary # Frontier: Comms for pAIs
   - type: DoAfter
   - type: Actions
   - type: Store
@@ -121,9 +126,13 @@
     - MindRoleGhostRoleFamiliar
   - type: IntrinsicRadioTransmitter
     channels:
+    - Common # Frontier: Comms for pAIs
+    - Binary # Frontier: Comms for pAIs
     - Syndicate
   - type: ActiveRadio
     channels:
+    - Common # Frontier: Comms for pAIs
+    - Binary # Frontier: Comms for pAIs
     - Syndicate
   - type: Appearance
   - type: GenericVisualizer
