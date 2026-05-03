@@ -1,0 +1,31 @@
+# region materials
+- type: entityTable
+  id: TableDungeonLootNpcMaterialRandom
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialBasicRandom
+      weight: 0.7
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialValuableRandom
+      weight: 0.3
+
+# region boss loot
+- type: entityTable
+  id: TableDungeonLootNpcBossLootShared
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableStorageFillStashJewelry # From 10 to 5000 spesos
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableStorageFillStashCoins # From 75 to ~5000 spesos
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringParts
+      weight: 0.1
+      rolls: !type:ConstantNumberSelector
+        value: 2
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralFlatpacks
+      weight: 0.1

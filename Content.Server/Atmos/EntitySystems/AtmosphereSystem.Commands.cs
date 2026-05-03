@@ -227,11 +227,11 @@ public sealed partial class AtmosphereSystem
 
         if (enable)
         {
-            EnsureComp<AtmosEnabledMapComponent>(mapUid.Value);
+            RemComp<AtmosDisabledMapComponent>(mapUid.Value);
         }
         else
         {
-            RemComp<AtmosEnabledMapComponent>(mapUid.Value);
+            EnsureComp<AtmosDisabledMapComponent>(mapUid.Value);
         }
     }
     // End Frontier: Toggle atmos per map
