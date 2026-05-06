@@ -989,12 +989,32 @@
     - state: plushie_goblin
     - state: plushie_goblin_shiv
       map: [ "enum.DamageStateVisualLayers.Base" ]
-  - type: Item
+  - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/goblin.rsi
     layers:
-    - state: goblin-inhand-left
-    - state: plushie_goblin_shiv-inhand-left
-    heldPrefix: goblin
+    - state: plushie_goblin
+    - state: plushie_goblin_shiv
+      map: [ "plushieGoblinShiv" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: goblin-inhand-left
+      - state: plushie_goblin_shiv-inhand-left # added sprite
+        map: [ "plushieGoblinShivInhandLeft" ]
+      right:
+      - state: goblin-inhand-right
+      - state: plushie_goblin_shiv-inhand-right # added sprite
+        map: [ "plushieGoblinShivInhandRight" ]
+  - type: RandomSprite
+    available:
+      - plushieGoblinShiv:
+          plushie_goblin_shiv: ShivColors
+        plushieGoblinShivInhandLeft:
+          plushie_goblin_shiv: ShivColors
+        plushieGoblinShivInhandRight:
+          plushie_goblin_shiv: ShivColors
+    mappedColors:
+      ShivColors: GlassColors
   - type: Clothing
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     slots:
