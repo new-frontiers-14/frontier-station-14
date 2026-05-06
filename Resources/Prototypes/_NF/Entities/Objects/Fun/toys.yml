@@ -993,22 +993,12 @@
     inhandVisuals:
       left:
       - state: goblin-inhand-left
-      - state: plushie_goblin_shiv-inhand-left # added sprite
+      - state: plushie_goblin_shiv-inhand-left
         map: [ "plushieGoblinShivInhandLeft" ]
       right:
       - state: goblin-inhand-right
-      - state: plushie_goblin_shiv-inhand-right # added sprite
+      - state: plushie_goblin_shiv-inhand-right
         map: [ "plushieGoblinShivInhandRight" ]
-  - type: RandomSprite
-    available:
-      - plushieGoblinShiv:
-          plushie_goblin_shiv: ShivColors
-        plushieGoblinShivInhandLeft:
-          plushie_goblin_shiv: ShivColors
-        plushieGoblinShivInhandRight:
-          plushie_goblin_shiv: ShivColors
-    mappedColors:
-      ShivColors: GlassColors
   - type: Clothing
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     slots:
@@ -1018,6 +1008,20 @@
         head:
         - state: goblin-HELMET
           offset: "0, 0.03"
+        - state: plushie_goblin_shiv-HELMET
+          map: [ "plushieGoblinShivHelmet" ]
+  - type: RandomSprite
+    available:
+      - plushieGoblinShiv:
+          plushie_goblin_shiv: ShivColors
+        plushieGoblinShivInhandLeft:
+          plushie_goblin_shiv-inhand-left: ShivColors
+        plushieGoblinShivInhandRight:
+          plushie_goblin_shiv-inhand-right: ShivColors
+        plushieGoblinShivHelmet:
+          plushie_goblin_shiv-HELMET: ShivColors
+    mappedColors:
+      ShivColors: GlassColors
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_1.ogg
