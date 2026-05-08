@@ -110,14 +110,13 @@
   - type: Item
     sprite: _NF/Objects/Storage/Cases/documentcaseshort.rsi
   - type: Storage
-    maxItemSize: Normal
-    grid:
-    - 0,0,3,0 # fits a 4x1 blueprint
     whitelist:
       tags:
       - BlueprintAutolathe
       - Document
       - Paper
+      components:
+      - WeaponCaseInsertable
 
 - type: entity
   name: weapon case
