@@ -16,7 +16,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed class ToggleableClothingSystem : EntitySystem
+public sealed partial class ToggleableClothingSystem : EntitySystem // DeltaV - Made Partial
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _netMan = default!;
@@ -140,10 +140,12 @@ public sealed class ToggleableClothingSystem : EntitySystem
             || toggleCom.Container == null)
             return;
 
+        var parent = Transform(uid).ParentUid; // DeltaV - Allow hats under toggleable helms 
         if (!_inventorySystem.TryUnequip(Transform(uid).ParentUid, toggleCom.Slot, force: true))
             return;
 
         _containerSystem.Insert(uid, toggleCom.Container);
+        TryEquipUnderClothing(parent, component); // DeltaV - Allow hats under toggleable helms 
         args.Handled = true;
     }
 
@@ -156,11 +158,17 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
+        var wasAttachedUnequipped = false; // DeltaV - Allow hats under toggleable helms
+
         // If the attached clothing is not currently in the container, this just assumes that it is currently equipped.
         // This should maybe double check that the entity currently in the slot is actually the attached clothing, but
         // if its not, then something else has gone wrong already...
         if (component.Container != null && component.Container.ContainedEntity == null && component.ClothingUid != null)
-            _inventorySystem.TryUnequip(args.Equipee, component.Slot, force: true, triggerHandContact: true);
+            wasAttachedUnequipped = _inventorySystem.TryUnequip(args.Equipee, component.Slot, force: true, triggerHandContact: true); // DeltaV - Allow hats under toggleable helms
+
+        // DeltaV - If the toggleable helm was uneqipped, try to equip whats in the under clothing container
+        if (wasAttachedUnequipped && !TryEquipUnderClothing(args.Equipee, component))
+            TryDropUnderClothing(component);
     }
 
     private void OnRemoveToggleable(EntityUid uid, ToggleableClothingComponent component, ComponentRemove args)
@@ -240,15 +248,30 @@ public sealed class ToggleableClothingSystem : EntitySystem
             return;
 
         var parent = Transform(target).ParentUid;
+
+        // Begin DeltaV - Allow hats under toggleable helms!
+        var wasAttachedUnequipped = false; // We want to track if the toggleable item was unequipped, assume false for now.
+
         if (component.Container.ContainedEntity == null)
-            _inventorySystem.TryUnequip(user, parent, component.Slot, force: true);
-        else if (_inventorySystem.TryGetSlotEntity(parent, component.Slot, out var existing))
-        {
-            _popupSystem.PopupClient(Loc.GetString("toggleable-clothing-remove-first", ("entity", existing)),
-                user, user);
-        }
+            wasAttachedUnequipped = _inventorySystem.TryUnequip(user, parent, component.Slot, force: true);
+
         else
+        {
+            if (_inventorySystem.TryGetSlotEntity(parent, component.Slot, out var existing)
+                && !TryStoreUnderClothing(existing.Value, component))
+            {
+                _popupSystem.PopupClient(Loc.GetString("toggleable-clothing-remove-first", ("entity", existing)),
+                    user, user);
+                return;
+            }
+
             _inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true);
+        }
+
+        // If the toggleable clothing was uneqipped, try to equip whats in the under clothing container
+        if (wasAttachedUnequipped && !TryEquipUnderClothing(user, parent, component))
+            TryDropUnderClothing(component);
+        // END DeltaV
     }
 
     private void OnGetActions(EntityUid uid, ToggleableClothingComponent component, GetItemActionsEvent args)
@@ -264,6 +287,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
     private void OnInit(EntityUid uid, ToggleableClothingComponent component, ComponentInit args)
     {
         component.Container = _containerSystem.EnsureContainer<ContainerSlot>(uid, component.ContainerId);
+        component.UnderClothingContainer = _containerSystem.EnsureContainer<ContainerSlot>(uid, component.UnderClothingContainerId); // Wayfarer - Allow hats under toggleable helms!
     }
 
     /// <summary>

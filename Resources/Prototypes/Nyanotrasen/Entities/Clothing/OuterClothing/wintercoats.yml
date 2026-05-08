@@ -39,6 +39,13 @@
   name: mail carrier's winter coat
   description: It'll keep away the cold but not the dogs.
   components:
+    - type: ToggleableClothing # DeltaV - fixing the fact that it has no hood
+      clothingPrototype: ClothingHeadHatHoodWinterMailCarrier 
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
+        toggleable-under-clothing: !type:ContainerSlot {}
+        storagebase: !type:Container
     - type: Sprite
       sprite: Nyanotrasen/Clothing/OuterClothing/WinterCoats/mail_winter_coat.rsi
     - type: Clothing
