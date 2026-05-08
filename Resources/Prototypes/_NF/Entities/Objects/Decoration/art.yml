@@ -1,0 +1,116 @@
+- type: entity
+  parent: BaseItem
+  id: NFPoster
+  name: poster
+  description: A rolled up poster. You won't be sure what the design is until you put it up on the wall.
+  components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/posters.rsi
+    state: rolled_legit
+  - type: Item
+    sprite: _NF/Objects/Decoration/posters.rsi
+  - type: NFWallmountable
+    spawn: RandomPosterAny
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: NFPoster
+  id: NFPosterCorporate
+  name: nanotrasen poster
+  description: A rolled up Nanotrasen-approved poster. You won't be sure what the design is until you put it up on the wall.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/posters.rsi
+    state: rolled_blue
+  - type: NFWallmountable
+    spawn: RandomPosterLegit
+
+- type: entity
+  parent: NFPoster
+  id: NFPosterContraband
+  name: contraband poster
+  description: A rolled up contraband poster.  You won't be sure what the design is until you put it up on the wall.
+  components:
+  - type: Sprite
+    state: rolled_contraband
+  - type: NFWallmountable
+    spawn: RandomPosterContraband
+
+- type: entity
+  parent: BaseItem
+  id: NFPainting
+  name: painting
+  description: A masterpiece hidden under cloth.  You aren't sure what the painting is until you put it up on the wall.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/paintings.rsi
+    state: painting
+  - type: NFWallmountable
+    spawn: RandomPainting
+  - type: MultiHandedItem
+  - type: Item
+    size: Ginormous
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: DamageExaminable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+  - type: MeleeWeapon
+    attackRate: 0.5
+    soundHit:
+      collection: MetalThud
+    damage:
+      types:
+        Blunt: 10
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+  - type: DamageOnHit
+    damage:
+      types:
+        Blunt: 4
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 20
+  - type: EmitSoundOnLand
+    sound:
+      collection: MetalThud
+      params:
+        variation: 0.25
