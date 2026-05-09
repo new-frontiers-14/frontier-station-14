@@ -734,6 +734,146 @@
     offset: "0, -0.6"
     color: "#EEEEFF"
 
+- type: entity
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  id: VendingMachinePosterPrinter
+  name: PosterPress
+  description: Print and post! Or post and print?
+  suffix: Frontier posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterFrontierVendInventory
+    offState: off-frontier
+    brokenState: broken-frontier
+    normalState: normal-unshaded-frontier
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: PosterPressVendAds
+  - type: SpeakOnUIClosed
+    pack: PosterPressVendGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/postervend.rsi
+    layers:
+    - state: "off-frontier"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-frontier"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#EEEEFF"
+
+- type: entity
+  parent: [VendingMachinePosterPrinter, BaseStructureDisableAnchoring]
+  id: VendingMachinePosterPrinterPOI
+  suffix: POI, Frontier posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterFrontierPOIInventory
+
+- type: entity
+  parent: VendingMachinePosterPrinter
+  id: VendingMachinePosterPrinterNanotrasen
+  suffix: Nanotrasen posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterNanotrasenVendInventory
+    offState: off-nanotrasen
+    brokenState: broken-nanotrasen
+    normalState: normal-unshaded-nanotrasen
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    layers:
+    - state: "off-nanotrasen"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-nanotrasen"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: [VendingMachinePosterPrinterNanotrasen, BaseStructureDisableAnchoring]
+  id: VendingMachinePosterPrinterNanotrasenPOI
+  suffix: POI, Nanotrasen posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterNanotrasenVendPOIInventory
+
+- type: entity
+  parent: VendingMachinePosterPrinter
+  id: VendingMachinePosterPrinterSyndicate
+  suffix: Contraband posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterSyndicateVendInventory
+    offState: off-syndicate
+    brokenState: broken-syndicate
+    normalState: normal-unshaded-syndicate
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    layers:
+    - state: "off-syndicate"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-syndicate"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#ff8a8a"
+
+- type: entity
+  parent: [VendingMachinePosterPrinterSyndicate, BaseStructureDisableAnchoring]
+  id: VendingMachinePosterPrinterSyndicatePOI
+  suffix: POI, Contraband posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterSyndicateVendPOIInventory
+
+- type: entity
+  parent: VendingMachinePosterPrinter
+  id: VendingMachinePaintingPrinter
+  name: ArtPress
+  suffix: Paintings
+  components:
+  - type: VendingMachine
+    pack: PaintingPrinterVendInventory
+    offState: off-painting
+    brokenState: broken-painting
+    normalState: normal-unshaded-painting
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    layers:
+    - state: "off-painting"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-painting"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: [VendingMachinePaintingPrinter, BaseStructureDisableAnchoring]
+  id: VendingMachinePaintingPrinterPOI
+  suffix: POI, Paintings
+  components:
+  - type: VendingMachine
+    pack: PaintingPrinterVendPOIInventory
+
 #region POI versions of upstream machines
 
 - type: entity
