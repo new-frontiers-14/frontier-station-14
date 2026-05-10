@@ -29,8 +29,8 @@ using Content.Shared.Kitchen;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
-using Content.Shared.Storage;
-using Content.Shared.Storage.Components;
+using Content.Shared.Storage; // Frontier
+using Content.Shared.Storage.Components; // Frontier
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
