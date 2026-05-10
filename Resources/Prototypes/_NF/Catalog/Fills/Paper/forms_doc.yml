@@ -1,0 +1,200 @@
+# MD Forms
+# Sources: https://discord.com/channels/1123826877245694004/1182366744266932224/1182366744266932224
+#          https://docs.google.com/document/d/1jDX9numj-VHKBJ2FiiEo1GIlHESffOUIHIIXaqhEnls/edit?pli=1#heading=h.ru93r8n0fb7m
+# Heavily referencing forms_medical.yml as a basis
+
+# Filled Folder
+- type: entity
+  id: BoxFolderDoc
+  parent: BoxFolderBase
+  name: director of care form folder
+  description: A folder filled with paperwork templates for the Director of Care.
+  suffix: Forms
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: folder-doc
+    - state: folder-base
+  - type: StorageFill
+    contents:
+    - id: PaperWrittenMedicalFormPatientInfo
+    - id: PaperWrittenMedicalFormPrescription
+    - id: PaperWrittenMedicalFormHealthInsurance
+    - id: PaperWrittenMedicalFormServiceInvoice
+    - id: PaperWrittenMedicalFormReceiptInvoice
+    - id: PaperWrittenMedicalFormRelease
+    - id: PaperWrittenDoCNarcoticRestrictedChemLicense
+    - id: PaperWrittenDoCResponderContract
+    - id: PaperWrittenDoCStaffContract
+    - id: Paper
+      prob: 0.5
+    - id: Paper
+      prob: 0.5
+  - type: StaticPrice
+    price: 100
+    vendPrice: 500
+
+# Forms
+- type: entity # Based on form made by Herbtheon / Maren Kessler
+  id: PaperWrittenDoCNarcoticRestrictedChemLicense
+  name: narcotic & restricted chemical license
+  
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#5b97bc]◥[bold]N[/bold]◣ [bold]New Frontier Medical Dispatch[/bold][/color]
+      [color=#5b97bc]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Narcotic & Restricted Chemical License[/head]
+
+      [bold]Vessel Captain:[/bold]
+      [bold]Vessel IFF:[/bold]
+      [bold]Shift Time:[/bold]
+      [bold]Licensed Crew:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+
+      [bold]Permitted Use:[/bold]
+         [ ] - C1 Contraband Chemicals
+         [ ] - C2 Contraband Chemicals
+
+      [color=#AAAAAA]Fill in the blank, [ ] with an ✓.[/color]
+
+      This License authorizes the above Holder and listed crew to manufacture, store, prescribe, and distribute C1 and/or C2 contraband chemicals in accordance with the Space Law §5.3.1 of Contraband Chemicals.
+
+      This includes, but is not limited to:
+
+      [bold]C1 Chemicals (permitted with licensed chemist receipt):[/bold]
+      [bullet/] Mind-altering chemicals and substances (e.g., space mirage, laughter, cannabis variants)  
+      [bullet/] Medically-restricted therapeutic chemicals (e.g., narcolepsy medications, etc.)
+      [bold]C2 Chemicals (permitted only to licensed chemists):[/bold]
+      [bullet/] Toxins (toxin, bungotoxin, amatoxin[bullet/] Industrial or corrosive acids (ferrochromatic acid, polytrinic acid)  
+      [bullet/] Debilitating agents (pax, chloral hydrate, synaptizine)  
+      [bullet/] Pyrotechnic reagents and incendiaries (phlogiston, napalm, fluorosurfactant, smoke/EMP precursors[bullet/] Combat stimulants (ephedrine, desoxyephedrine)
+
+      [italic]Possession of any C3 chemical remains strictly prohibited and is not covered under this License.[/italic]
+
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+
+      [bold]Conditions of License Use:[/bold]
+      [bullet/] All distribution must be [bold]medically justified[/bold] and documented with prescriptions or chemical release forms.
+      [bullet/] All sales, transfers, and disposals must be [bold]fully logged[/bold] and provided upon request to the NFSD or the Director of Care.
+      [bullet/] The Holder is responsible for ensuring that recipients provide the required paperwork acknowledging receipt and quantity.
+      [bullet/] Excessive, negligent, or unauthorized distribution of controlled chemicals may result in [bold]immediate revocation[/bold] of this License, confiscation of inventory, and suspension of future permit eligibility.
+
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+
+      [color=#AAAAAA]This License is void without signatures from both Parties and an official Frontier Command stamp (Sheriff, Station Representative, or Director of Care).[/color]
+
+- type: entity # Creator : Semper (Iselle, Vincent, Khress)
+  id: PaperWrittenDoCResponderContract
+  name: MD responder contract
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#5b97bc]◥[bold]N[/bold]◣ [bold]New Frontier Medical Dispatch[/bold][/color]
+      [color=#5b97bc]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Responder Contract[/head]
+      
+      [bold]Name:[/bold]
+      [bold]IFF:[/bold]
+      [bold]Crew:[/bold]
+         [bullet/]
+         [bullet/]
+         [bullet/]
+      [bold]Shift Time:[/bold]
+
+      [bold]Position Responsibilities:[/bold]
+         [bullet/] Be attentive to medical comms for alerts and the crew monitor in the event of comms failure. 
+         [bullet/] Respond to the critically wounded and dead across the sector
+         [bullet/] Provide medical care as needed for less urgent cases
+         [bullet/] Bring medical bounty pods back to MD to contribute to the budget
+
+      [bold]Hourly Wage:[/bold]
+      [bold]Pay per Response:[/bold]
+
+      When paid for responses, the contractee is expected to retain patient release forms or MedTek printouts with the patient's signature. If the patient is unable to sign, exceptions can be discussed and cleared with command. 
+
+      This Contract authorizes the above Holder and listed crew to manufacture, store, prescribe, and distribute C1 and/or C2 contraband chemicals in accordance with the Space Law §5.3.1 of Contraband Chemicals.
+
+      This includes, but is not limited to:
+
+      [bold]C1 Chemicals (permitted with licensed chemist receipt):[/bold]
+      [bullet/] Mind-altering chemicals and substances (e.g., space mirage, laughter, cannabis variants)  
+      [bullet/] Medically-restricted therapeutic chemicals (e.g., narcolepsy medications, etc.)
+      [bold]C2 Chemicals (permitted only to licensed chemists):[/bold]
+      [bullet/] Toxins (toxin, bungotoxin, amatoxin[bullet/] Industrial or corrosive acids (ferrochromatic acid, polytrinic acid)  
+      [bullet/] Debilitating agents (pax, chloral hydrate, synaptizine)  
+      [bullet/] Pyrotechnic reagents and incendiaries (phlogiston, napalm, fluorosurfactant, smoke/EMP precursors[bullet/] Combat stimulants (ephedrine, desoxyephedrine)
+
+      [italic]Possession of any C3 chemical remains strictly prohibited and is not covered under this License.[/italic]
+
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+
+      [bold]Conditions of License Use:[/bold]
+      [bullet/] All distribution must be [bold]medically justified[/bold] and documented with prescriptions or chemical release forms.
+      [bullet/] All sales, transfers, and disposals must be [bold]fully logged[/bold] and provided upon request to the NFSD or the Director of Care.
+      [bullet/] The Holder is responsible for ensuring that recipients provide the required paperwork acknowledging receipt and quantity.
+      [bullet/] Excessive, negligent, or unauthorised distribution of controlled chemicals may result in [bold]immediate revocation[/bold] of this License, confiscation of inventory, and suspension of future permit eligibility.
+
+      [bold]Issued by:[/bold]
+      ( ) Director of Care ( ) Sheriff ( ) Station Representative
+
+      [color=#AAAAAA]This Contract is void without the signatures of both Parties and a stamp of Frontier Command (Director of Care, Sheriff, or Station Representative).[/color]
+      
+- type: entity # Creator : Semper (Iselle, Vincent, Khress)
+  id: PaperWrittenDoCStaffContract
+  name: MD staff contract
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#5b97bc]◥[bold]N[/bold]◣ [bold]New Frontier Medical Dispatch[/bold][/color]
+      [color=#5b97bc]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Dispatch Staff Contract[/head]
+ 
+      [bold]Name:[/bold]
+      [bold]IFF:[/bold]
+      [bold]Position:[/bold]
+
+      [bold]Shift Time:[/bold]
+
+      [bold]Position Responsibilities:[/bold]
+      [bullet/] Produce medicines via Botany/Chemistry to supply Medical Dispatch and Medical Responders. 
+      [bullet/] Assist with medical care at the clinic on a walk-in basis as needed
+      [bullet/] Additional responsibilities per DoC request
+
+      [bold]Hourly Wage:[/bold]
+
+      This Contract authorizes the above Holder and listed crew to manufacture, store, prescribe, and distribute C1 and/or C2 contraband chemicals in accordance with the Space Law §5.3.1 of Contraband Chemicals.
+
+      This includes, but is not limited to:
+
+      [bold]C1 Chemicals (permitted with licensed chemist receipt):[/bold]
+      [bullet/] Mind-altering chemicals and substances (e.g., space mirage, laughter, cannabis variants)  
+      [bullet/] Medically-restricted therapeutic chemicals (e.g., narcolepsy medications, etc.)
+      [bold]C2 Chemicals (permitted only to licensed chemists):[/bold]
+      [bullet/] Toxins (toxin, bungotoxin, amatoxin[bullet/] Industrial or corrosive acids (ferrochromatic acid, polytrinic acid)  
+      [bullet/] Debilitating agents (pax, chloral hydrate, synaptizine)  
+      [bullet/] Pyrotechnic reagents and incendiaries (phlogiston, napalm, fluorosurfactant, smoke/EMP precursors[bullet/] Combat stimulants (ephedrine, desoxyephedrine)
+
+      [italic]Possession of any C3 chemical remains strictly prohibited and is not covered under this License.[/italic]
+
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+
+      [bold]Conditions of License Use:[/bold]
+      [bullet/] All distribution must be [bold]medically justified[/bold] and documented with prescriptions or chemical release forms.
+      [bullet/] All sales, transfers, and disposals must be [bold]fully logged[/bold] and provided upon request to the NFSD or the Director of Care.
+      [bullet/] The Holder is responsible for ensuring that recipients provide the required paperwork acknowledging receipt and quantity.
+      [bullet/] Excessive, negligent, or unauthorised distribution of controlled chemicals may result in [bold]immediate revocation[/bold] of this License, confiscation of inventory, and suspension of future permit eligibility.
+
+      [bold]Issued by:[/bold]
+      ( ) Director of Care ( ) Sheriff ( ) Station Representative
+
+      [color=#AAAAAA]This Contract is void without the signatures of both Parties and a stamp of Frontier Command (Director of Care, Sheriff, or Station Representative).[/color]
