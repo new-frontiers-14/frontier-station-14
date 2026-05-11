@@ -93,6 +93,32 @@
   - type: NFSalvageMobRestrictions
     addComponentsOnDeath:
     - type: Unrevivable
+    - type: Strippable
+    - type: InventorySlots
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+         type: StrippableBoundUserInterface
+    removeComponentsOnDeath:
+    - type: Insulated
+    - type: Reflect
+    - type: MovementIgnoreGravity
+    - type: Tool
+    - type: Prying
+    - type: CanMoveInAir
+    - type: Tag
+    - type: Access
+    - type: Timer
+    - type: TimedSpawner
+    - type: Jittering
+
+- type: entity
+  abstract: true
+  id: NFBaseMobRestrictionsNoInventory
+  components:
+  - type: NFSalvageMobRestrictions
+    addComponentsOnDeath:
+    - type: Unrevivable
     removeComponentsOnDeath:
     - type: Insulated
     - type: Reflect
@@ -354,7 +380,6 @@
   components:
   - type: Inventory
     templateId: hostilehumanoid # Supports loadouts
-  - type: InventorySlots
 
 - type: entity # Slots for loot containers: pockets, belt, back
   id: MobHumanoidInvetorySimplified
@@ -362,7 +387,6 @@
   components:
   - type: Inventory
     templateId: hostilehumanoidsimplified # Does not support loadouts
-  - type: InventorySlots
 #endregion
 
 #region AI packages
@@ -494,7 +518,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
   - BaseC3MobCreature
-  - NFBaseMobRestrictions
+  - NFBaseMobRestrictionsNoInventory
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
@@ -561,7 +585,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAISimpleMelee
   - BaseC3MobCreature
-  - NFBaseMobRestrictions
+  - NFBaseMobRestrictionsNoInventory
   id: NFMobSimpleHostileBase
   components:
   - type: NPCRetaliation
