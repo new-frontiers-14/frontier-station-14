@@ -94,7 +94,6 @@
     addComponentsOnDeath:
     - type: Unrevivable
     - type: Strippable
-    - type: InventorySlots
     - type: UserInterface
       interfaces:
         enum.StrippingUiKey.Key:
@@ -380,6 +379,7 @@
   components:
   - type: Inventory
     templateId: hostilehumanoid # Supports loadouts
+  - type: InventorySlots
 
 - type: entity # Slots for loot containers: pockets, belt, back
   id: MobHumanoidInvetorySimplified
@@ -387,6 +387,7 @@
   components:
   - type: Inventory
     templateId: hostilehumanoidsimplified # Does not support loadouts
+  - type: InventorySlots
 #endregion
 
 #region AI packages
@@ -446,7 +447,7 @@
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
   save: false
-  suffix: AI, Hostile
+  suffix: Frontier, AI, Hostile
   abstract: true
   parent:
   - NFMobAtmos
@@ -504,7 +505,7 @@
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
   save: false
-  suffix: AI, Hostile
+  suffix: Frontier, AI, Hostile
   abstract: true
   parent:
   - BaseMob
@@ -573,10 +574,18 @@
     - CannotSuicide
   - type: FTLKnockdownImmune
 
+# NonHuman NPC base, limited equipment, immune to vacuum/low pressure
+- type: entity
+  save: false
+  abstract: true
+  parent: [NFBaseMobRestrictions, MobHumanoidInvetorySimplified, MobNonHumanHostileBase]
+  id: MobNonHumanHostileInvetorySimplifiedBase
+  suffix: Frontier, AI, Hostile
+
 # A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
   save: false
-  suffix: Frontier, Hostile
+  suffix: Frontier, AI, Hostile
   abstract: true
   parent:
   - MobFlammable
