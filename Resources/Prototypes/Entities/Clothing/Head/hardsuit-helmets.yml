@@ -196,6 +196,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
+#Goliath Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitGoliath
@@ -249,6 +250,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
+#Maxim Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitMaxim
@@ -399,11 +401,17 @@
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
+      head-cat:
+      - state: equipped-head-light-cat
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
       - state: equipped-head-unshaded
+        shader: unshaded
+      head-cat:
+      - state: equipped-head-cat
+      - state: equipped-head-unshaded-cat
         shader: unshaded
       head-vox:
       - state: equipped-head-vox
@@ -424,6 +432,7 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: CatWearable # Frontier
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -884,6 +893,10 @@
       head:
       - state: equipped-head
       - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
         shader: unshaded
   - type: PointLight
     color: orange

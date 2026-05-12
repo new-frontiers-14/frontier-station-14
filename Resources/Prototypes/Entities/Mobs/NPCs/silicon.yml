@@ -15,7 +15,6 @@
     bodyType: KinematicController # Same for all inheritors
   - type: StatusEffects
     allowed:
-    - Stutter
     - Electrocution
   - type: Repairable
     doAfterDelay: 8
@@ -124,6 +123,7 @@
   - type: Construction
     graph: FireBot
     node: bot
+  - type: Anchorable # Frontier
   - type: HTN
     rootTask:
       task: FirebotCompound

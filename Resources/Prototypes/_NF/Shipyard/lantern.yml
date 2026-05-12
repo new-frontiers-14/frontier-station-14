@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: LanternMk2
+  parent: BaseVessel
+  name: LVHI Lantern Mk2
+  description: The Lantern Mk2 is a small-sized modification of and old chapel-vessel design equipped with everything chaplain might need in their never ending battle for salvation of NT personnel souls. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 33000 # $30035 0.1 33039
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/lanternmk2.yml
+  guidebookPage: ShipyardLanternMk2
+  class:
+  - Civilian
+  engine:
+  - Plasma
+  - Solar
+
+- type: gameMap
+  id: LanternMk2
+  mapName: 'Lantern Mk2'
+  mapPath: /Maps/_NF/Shuttles/lanternmk2.yml
+  minPlayers: 0
+  stations:
+    LanternMk2:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lantern Mk2 {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
