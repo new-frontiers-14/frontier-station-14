@@ -63,6 +63,7 @@
           False: {state: icon}
   - type: StaticPrice
     price: 100
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: BaseAction
@@ -80,6 +81,7 @@
     useDelay: 1.0
   - type: InstantAction
     event: !type:ToggleJetpackEvent
+  - type: CatWearable # Frontier
 
 #Empty blue
 - type: entity
@@ -140,6 +142,7 @@
   # End Frontier: emaggable jetpacks
 #  - type: StaticPrice # Frontier
 #    price: 1000 # Frontier
+  - type: CatWearable # Frontier
 
 # Filled black
 - type: entity
@@ -181,6 +184,7 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
+  - type: CatWearable # Frontier
 
 # Filled captain
 - type: entity
@@ -225,6 +229,7 @@
         volume: 1.5
     - type: StaticPrice
       price: 95
+    - type: CatWearable # Frontier
 
 # Filled mini
 - type: entity
@@ -258,6 +263,11 @@
     sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
     sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+    # DeltaV modifications - Covered by modifications on parent
+    #slots:
+    #  - Back
+    # End DeltaV modifications
+  - type: CatWearable # Frontier
 
 #Filled security
 - type: entity
@@ -293,6 +303,7 @@
       - Back
       - suitStorage
       - Belt
+  - type: CatWearable # Frontier
 
 # Filled void
 - type: entity
@@ -310,6 +321,7 @@
       moles:
         - 1.025689525 # oxygen
         - 1.025689525 # nitrogen
+  - type: CatWearable # Frontier
 
 # Infinite jetpack
 - type: entity
