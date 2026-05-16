@@ -141,6 +141,16 @@
     - id: NFAmmunitionBoxPistol35
       amount: 4
 
+- type: entity # Lethal
+  abstract: true
+  id: StorageFillAmmoBoxBigLethal35
+  suffix: .35 pistol, Lethal, x2 boxes
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFAmmunitionBoxBigPistol35
+      amount: 2
+
 - type: entity # Rubber
   abstract: true
   id: StorageFillAmmoBoxRubber35
@@ -246,6 +256,16 @@
 - type: entity # Lethal
   abstract: true
   id: StorageFillAmmoBoxLethalShotgun
+  suffix: Shotgun, Lethal, x2 boxes
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFAmmunitionBoxShellShotgunBuckshot
+      amount: 2
+
+- type: entity # Lethal
+  abstract: true
+  id: StorageFillAmmoBoxBigLethalShotgun
   suffix: Shotgun, Lethal, x2 boxes
   components:
   - type: StorageFill
