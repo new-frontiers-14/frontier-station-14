@@ -1,14 +1,61 @@
 ﻿#region Bullets
 - type: entity
   parent: BaseBulletTrigger
-  id: BulletFireBolt
+  id: NFBulletMagicIceBoltMob
+  categories: [ HideSpawnMenu ]
+  name : ice bolt
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Cold: 6
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: ice
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  parent: NFBulletMagicIceBoltMob
+  id: NFBulletMagicIceBoltStaffAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Cold: 16
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  parent: NFBulletMagicIceBoltMob
+  id: NFBulletMagicIceBoltStaffMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Cold: 24
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: NFBulletMagicFireBoltMob
   categories: [ HideSpawnMenu ]
   name: fire bolt
   components:
   - type: Projectile
     damage:
       types:
-        Heat: 2
+        Heat: 4
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -20,8 +67,32 @@
     fireStacks: 2
 
 - type: entity
+  parent: NFBulletMagicFireBoltMob
+  id: NFBulletMagicFireBoltStaffAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 16
+  - type: IgniteOnCollide
+    fireStacks: 0.5
+
+- type: entity
+  parent: NFBulletMagicFireBoltMob
+  id: NFBulletMagicFireBoltStaffMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 22
+  - type: IgniteOnCollide
+    fireStacks: 1
+
+- type: entity # low values because the damage bypasses armor
   parent: BaseBulletTrigger
-  id: BulletMagicBolt
+  id: NFBulletMagicBoltMob
   categories: [ HideSpawnMenu ]
   name: magic bolt
   components:
@@ -38,9 +109,31 @@
   - type: Ammo
     muzzleFlash: null
 
+- type: entity # low values because the damage bypasses armor
+  parent: NFBulletMagicBoltMob
+  id: NFBulletMagicBoltStaffAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Bloodloss: 4
+        Asphyxiation: 4
+
+- type: entity # low values because the damage bypasses armor
+  parent: NFBulletMagicBoltMob
+  id: NFBulletMagicBoltStaffMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Bloodloss: 7.5
+        Asphyxiation: 7.5
+
 - type: entity
   parent: BaseBulletTrigger
-  id: BulletBloodCultDarkBolt
+  id: NFBulletMagicBloodCultDarkBoltMob
   categories: [ HideSpawnMenu ]
   name: blood bolt
   components:
@@ -59,8 +152,30 @@
     muzzleFlash: null
 
 - type: entity
+  parent: NFBulletMagicBloodCultDarkBoltMob
+  id: NFBulletMagicBloodCultDarkBoltStaffAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Bloodloss: 4
+        Slash: 12
+
+- type: entity
+  parent: NFBulletMagicBloodCultDarkBoltMob
+  id: NFBulletMagicBloodCultDarkBoltStaffMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Bloodloss: 6
+        Slash: 18
+
+- type: entity
   parent: BaseBulletTrigger
-  id: BulletBloodCultHand
+  id: NFBulletMagicBloodCultHandMob
   categories: [ HideSpawnMenu ]
   name: blood hand
   components:
@@ -76,6 +191,28 @@
     - state: hand
   - type: Ammo
     muzzleFlash: null
+
+- type: entity
+  parent: NFBulletMagicBloodCultHandMob
+  id: NFBulletMagicBloodCultHandStaffAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 4
+        Blunt: 12
+
+- type: entity
+  parent: NFBulletMagicBloodCultHandMob
+  id: NFBulletMagicBloodCultHandStaffMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 6
+        Blunt: 18
 
 - type: entity # For t-rex
   parent: BaseBullet
@@ -98,27 +235,6 @@
     layers:
     - state: icon
       color: "#0099ff"
-      shader: unshaded
-  - type: Ammo
-    muzzleFlash: null
-
-- type: entity
-  parent: BaseBulletTrigger
-  id: BulletIceGlobe
-  categories: [ HideSpawnMenu ]
-  name : ice globe
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Cold: 5
-    soundHit:
-      collection: WeakHit
-    forceSound: true
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    layers:
-    - state: ice
       shader: unshaded
   - type: Ammo
     muzzleFlash: null
@@ -155,24 +271,9 @@
   - type: Ammo
     muzzleFlash: null
 
-#region Hitscan
+# region Hitscan
 - type: hitscan
-  id: BloodCultLaser
-  damage:
-    types:
-      Slash: 8
-  muzzleFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  travelFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  impactFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-
-- type: hitscan
-  id: WizardHitscanLightning
+  id: NFHitscanMagicLightningMob
   damage:
     types:
       Shock: 10
@@ -187,7 +288,37 @@
     state: lightning-hit-01
 
 - type: hitscan
-  id: CausticBeam
+  id: NFHitscanMagicLightningStaffAdept
+  damage:
+    types:
+      Shock: 16
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-muzzle-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-hit-01
+
+- type: hitscan
+  id: NFHitscanMagicLightningStaffMaster
+  damage:
+    types:
+      Shock: 22
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-muzzle-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-hit-01
+
+- type: hitscan
+  id: NFHitscanMagicCausticBeamMob
   damage:
     types:
       Caustic: 8
@@ -200,3 +331,78 @@
   impactFlash:
     sprite: _NF/Effects/wizardbeams.rsi
     state: green-beam-01
+
+- type: hitscan
+  id: NFHitscanMagicCausticBeamStaffAdept
+  damage:
+    types:
+      Caustic: 14
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+
+- type: hitscan
+  id: NFHitscanMagicCausticBeamStaffMaster
+  damage:
+    types:
+      Caustic: 20
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+
+- type: hitscan
+  id: NFHitscanMagicBloodCultLightningMob
+  damage:
+    types:
+      Slash: 8
+  muzzleFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+
+- type: hitscan
+  id: NFHitscanMagicBloodCultLightningStaffAdept
+  damage:
+    types:
+      Slash: 16
+  muzzleFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+
+- type: hitscan
+  id: NFHitscanMagicBloodCultLightningStaffMaster
+  damage:
+    types:
+      Slash: 24
+  muzzleFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
