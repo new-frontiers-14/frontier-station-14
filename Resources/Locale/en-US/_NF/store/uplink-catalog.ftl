@@ -116,6 +116,12 @@ uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifl
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
+uplink-security-smgmagazine-name = .35 +P SMG Magazines
+uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpressure) SMG magazines.
+
+uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
+uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
+
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
 
@@ -231,8 +237,8 @@ uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
 # region Pirate
-uplink-pirate-hardsuit-name = Pirate Hardsuit
-uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-pirate-EVA-name = Pirate EVA Suit
+uplink-pirate-EVA-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
 
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
@@ -245,6 +251,9 @@ uplink-pirate-crate-captain-desc = A chest filled with the necessary goodies for
 
 uplink-pirate-crate-name = Pirate Chest
 uplink-pirate-crate-desc = A chest filled with the necessary goodies for a pirate.
+
+uplink-pirate-wooden-keg-rum-name = A Keg of Rum
+uplink-pirate-wooden-keg-rum-desc = A Keg filled with all the rum a Pirate needs, be sure to drink yourself dead to celebrate!
 
 uplink-pirate-magboots-name = Pirate Magboots
 uplink-pirate-magboots-desc = Pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
@@ -332,6 +341,9 @@ uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
+
+uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
+uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle

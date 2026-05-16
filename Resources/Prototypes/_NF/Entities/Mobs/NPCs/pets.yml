@@ -87,6 +87,12 @@
   - type: ActiveRadio
     channels:
     - Freelance
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 0
+  - type: StaminaDamageOnHit
+    damage: 18
   - type: NpcFactionMember
     factions:
     - Cat # Shouldn't be innately hostile to NT-aligned mobs
@@ -130,7 +136,7 @@
   - type: AutoImplant
     implants:
     - MindShieldImplant
-    - TrackingImplant
+    - NFSDTrackingImplant
     - LightImplant
   - type: FlashImmunity
   - type: IntrinsicRadioTransmitter
@@ -189,7 +195,7 @@
     nameSegments: null
   - type: AutoImplant
     implants:
-    - TrackingImplant
+    - NFSDTrackingImplant
   - type: NpcFactionMember
     factions:
     - Cat

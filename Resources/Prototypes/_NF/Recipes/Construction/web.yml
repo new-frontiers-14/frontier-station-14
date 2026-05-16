@@ -1,9 +1,24 @@
-
 - type: construction
   id: WebNest
   graph: NFWebStructures
   startNode: start
   targetNode: nest
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SpiderWeb
+  graph: NFWebStructures
+  startNode: start
+  targetNode: web
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter

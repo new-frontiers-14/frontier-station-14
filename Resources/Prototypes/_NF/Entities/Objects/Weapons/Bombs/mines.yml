@@ -42,8 +42,7 @@
       path: /Audio/Items/newton_cradle.ogg
   - type: ExplodeOnTrigger
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
-    useVerbInstead: true
+  - type: TimerTrigger
     beepInterval: .25
     beepSound:
       path: /Audio/Effects/beep_landmine.ogg
@@ -344,7 +343,7 @@
   parent: NFConcealedMineExplosive
   id: NFTrashMineExplosive
   name: discarded wrapper
-  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  description: A discarded packaging from an item that a generous person could describe as a food item.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -587,7 +586,7 @@
   parent: [ NFConcealedMineCryo, NFTrashMineExplosive ]
   id: NFTrashMineCryo
   name: discarded wrapper
-  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  description: A discarded packaging from an item that a generous person could describe as a food item.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -754,7 +753,7 @@
   parent: [ NFConcealedMineFire, NFTrashMineExplosive ]
   id: NFTrashMineFire
   name: discarded wrapper
-  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  description: A discarded packaging from an item that a generous person could describe as a food item.
   components:
   - type: Sprite
     drawdepth: SmallObjects
