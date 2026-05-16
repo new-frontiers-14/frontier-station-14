@@ -133,3 +133,5 @@ guide-entry-frontier-rule-13 = 13. Command
 
 # Unlisted entries
 guide-blood-cult-crushers = Crusher Corruption Rite
+nf-guide-blood-cult-staves = Blood Cult Staff Activation Guide
+nf-guide-wizard-federation-staves = Wizard Staff Activation Guide
