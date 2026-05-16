@@ -1018,6 +1018,74 @@
     entries:
       CottonBurger: GoblinPlushie
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieHarpy
+  name: harpy plushie
+  description: A small feathered friend. Try giving her a hug!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    state: plushie_harpy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    heldPrefix: harpyplushie
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: harpyplushie-equipped-HELMET
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieHarpy
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieYarrpy
+  name: yarrpy plushie
+  description: Now you can bring your favorite First Mate everywhere!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    state: plushie_yarrpy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    heldPrefix: yarrpyplushie
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: yarrpyplushie-equipped-HELMET
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieYarrpy
+
 #region toy guns
 - type: entity
   name: toy rocket launcher

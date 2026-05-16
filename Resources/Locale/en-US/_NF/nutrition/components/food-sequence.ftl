@@ -33,3 +33,5 @@ food-sequence-cotton-burger-content-plushie-rpg = rocket
 food-sequence-cotton-burger-content-plushie-goblin = goblin
 food-sequence-burger-content-pomegranate = pomegranate
 food-sequence-burger-content-granatapfel = granatapfel
+food-sequence-cotton-burger-content-plushie-harpy = harpy
+food-sequence-cotton-burger-content-plushie-yarrpy = yarrpy
