@@ -143,8 +143,6 @@ public sealed partial class ShuttleSystem
         var mapUid = _mapSystem.CreateMap(out var mapId);
         var ftlMap = AddComp<FTLMapComponent>(mapUid);
 
-        EnsureComp<AtmosEnabledMapComponent>(mapUid); // Frontier
-
         _metadata.SetEntityName(mapUid, "FTL");
         Log.Debug($"Setup hyperspace map at {mapUid}");
         DebugTools.Assert(!_mapSystem.IsPaused(mapId));
