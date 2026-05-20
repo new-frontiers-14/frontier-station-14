@@ -1,0 +1,31 @@
+- type: vessel
+  id: Glutton
+  parent: BaseVesselAntag
+  name: Glutton
+  description: A small armored Syndicate service shuttle, perfect for feeding your hungry operatives!
+  price: 35000
+  category: Small
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/glutton.yml
+  guidebookPage: Null
+  class:
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Glutton
+  mapName: 'Glutton'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/glutton.yml
+  minPlayers: 0
+  stations:
+    Glutton:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Glutton {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

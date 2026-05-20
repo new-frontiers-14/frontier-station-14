@@ -77,6 +77,7 @@ guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-gaslight = Gaslight
 guide-entry-shipyard-geode = Geode
+guide-entry-shipyard-glutton = Glutton
 guide-entry-shipyard-hammer = Hammer
 guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
