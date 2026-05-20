@@ -1,17 +1,11 @@
-# Base spoiled food
+#region base
 - type: entity
-  name: moldy food
+  abstract: true
   parent: FoodInjectableBase
   id: FoodSpoiledMoldy
+  name: moldy food
   description: "It's probably still edible, just need to scrape this thing off. And this one too. And this one."
-  categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    layers:
-    - sprite: Objects/Consumable/Food/meat.rsi
-      state: plain
-    - sprite: _NF/Objects/Misc/mold.rsi
-      state: mold
   - type: FlavorProfile
     flavors:
     - bitter
@@ -27,21 +21,17 @@
         - ReagentId: Vitamin
           Quantity: 1
         - ReagentId: Mold
-          Quantity: 10
+          Quantity: 6
+        - ReagentId: Toxin # Added toxin because as it turns out the mold is bad only for humans - species with animal organs were able to eat it just fine
+          Quantity: 4
 
 - type: entity
-  name: rotten food
+  abstract: true
   parent: FoodInjectableBase
   id: FoodSpoiledRotten
+  name: rotten food
   description: "It's probably still edible, just need to scrape this thing off. And this one too. And this one."
-  categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    layers:
-    - sprite: Objects/Consumable/Food/meat.rsi
-      state: plain
-    - sprite: Objects/Misc/flies.rsi
-      state: flies
   - type: FlavorProfile
     flavors:
     - bitter
@@ -55,146 +45,68 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: GastroToxin
-          Quantity: 10
+        - ReagentId: Toxin # GastroToxin<Toxin replaced gastrotoxin with toxin because goblins no longer can be poisoned by gastrotoxin, lowered the quantity due to toxin being more potent than gastrotoxin
+          Quantity: 4
 
-# Spoiled food variations for expeditions for visual diversity
+#region rotten food
 - type: entity
-  name: rotten burger
-  parent:
-  - FoodBurgerBase
-  - FoodSpoiledRotten
+  parent: [ FoodSpoiledRotten, FoodBurgerBase ]
   id: FoodBurgerBaconRotten
   components:
   - type: Sprite
     layers:
     - sprite: Objects/Consumable/Food/burger.rsi
       state: bacon
-    - sprite: Objects/Misc/flies.rsi
+    - sprite: _NF/Effects/flies.rsi
       state: flies
-      scale: 1.2, 1.2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: GastroToxin
-          Quantity: 10
 
 - type: entity
-  name: rotten burger
-  parent:
-  - FoodBurgerBase
-  - FoodSpoiledRotten
+  parent: [ FoodSpoiledRotten, FoodBurgerBase ]
   id: FoodBurgerBigBiteRotten
   components:
   - type: Sprite
     layers:
     - sprite: Objects/Consumable/Food/burger.rsi
       state: bigbite
-    - sprite: Objects/Misc/flies.rsi
+    - sprite: _NF/Effects/flies.rsi
       state: flies
-      scale: 1.2, 1.2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: GastroToxin
-          Quantity: 10
 
 - type: entity
-  name: rotten burger
-  parent:
-  - FoodBurgerBase
-  - FoodSpoiledRotten
+  parent: [ FoodSpoiledRotten, FoodBurgerBase ]
   id: FoodBurgerCheeseRotten
   components:
   - type: Sprite
     layers:
     - sprite: Objects/Consumable/Food/burger.rsi
       state: cheese
-    - sprite: Objects/Misc/flies.rsi
+    - sprite: _NF/Effects/flies.rsi
       state: flies
-      scale: 1.2, 1.2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: GastroToxin
-          Quantity: 10
 
 - type: entity
-  name: rotten burger
-  parent:
-  - FoodBurgerBase
-  - FoodSpoiledRotten
+  parent: [ FoodSpoiledRotten, FoodBurgerBase ]
   id: FoodBurgerEmpoweredRotten
   components:
   - type: Sprite
     layers:
     - sprite: Objects/Consumable/Food/burger.rsi
       state: empowered
-    - sprite: Objects/Misc/flies.rsi
+    - sprite: _NF/Effects/flies.rsi
       state: flies
-      scale: 1.2, 1.2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: GastroToxin
-          Quantity: 10
 
 - type: entity
-  name: rotten burger
-  parent:
-  - FoodBurgerBase
-  - FoodSpoiledRotten
+  parent: [ FoodSpoiledRotten, FoodBurgerBase ]
   id: FoodBurgerPlainRotten
   components:
   - type: Sprite
     layers:
     - sprite: Objects/Consumable/Food/burger.rsi
       state: plain
-    - sprite: Objects/Misc/flies.rsi
+    - sprite: _NF/Effects/flies.rsi
       state: flies
-      scale: 1.2, 1.2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: GastroToxin
-          Quantity: 10
 
-# Moldy food
+#region moldy food
 - type: entity
-  name: moldy food
-  parent:
-  - FoodRiceEgg
-  - FoodSpoiledMoldy
+  parent: [ FoodSpoiledMoldy, FoodBowlBase ]
   id: FoodRiceEggMoldy
   components:
   - type: Sprite
@@ -205,28 +117,9 @@
       state: rice-egg
     - sprite: _NF/Objects/Misc/mold.rsi
       state: mold
-  - type: FlavorProfile
-    flavors:
-    - bitter
-    - terrible
-    - mushroom
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mold
-          Quantity: 10
 
 - type: entity
-  name: moldy food
-  parent:
-  - FoodSoupMeatball
-  - FoodSpoiledMoldy
+  parent: [ FoodSpoiledMoldy, FoodBowlBase ]
   id: FoodSoupMeatballMoldy
   components:
   - type: Sprite
@@ -237,28 +130,9 @@
       state: meatball
     - sprite: _NF/Objects/Misc/mold.rsi
       state: mold
-  - type: FlavorProfile
-    flavors:
-    - bitter
-    - terrible
-    - mushroom
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mold
-          Quantity: 10
 
 - type: entity
-  name: moldy food
-  parent:
-  - FoodNoodles
-  - FoodSpoiledMoldy
+  parent: [ FoodSpoiledMoldy, FoodNoodlesBase ]
   id: FoodNoodlesMoldy
   components:
   - type: Sprite
@@ -269,28 +143,9 @@
       state: tomato
     - sprite: _NF/Objects/Misc/mold.rsi
       state: mold
-  - type: FlavorProfile
-    flavors:
-    - bitter
-    - terrible
-    - mushroom
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mold
-          Quantity: 10
 
 - type: entity
-  name: moldy food
-  parent:
-  - FoodNoodlesMeatball
-  - FoodSpoiledMoldy
+  parent: [ FoodSpoiledMoldy, FoodNoodlesBase ]
   id: FoodNoodlesMeatballMoldy
   components:
   - type: Sprite
@@ -301,28 +156,9 @@
       state: meatball
     - sprite: _NF/Objects/Misc/mold.rsi
       state: mold
-  - type: FlavorProfile
-    flavors:
-    - bitter
-    - terrible
-    - mushroom
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mold
-          Quantity: 10
 
 - type: entity
-  name: moldy food
-  parent:
-  - FoodSaladCaesar
-  - FoodSpoiledMoldy
+  parent: [ FoodSpoiledMoldy, FoodBowlBase ]
   id: FoodSaladCaesarMoldy
   components:
   - type: Sprite
@@ -333,19 +169,3 @@
       state: caesar
     - sprite: _NF/Objects/Misc/mold.rsi
       state: mold
-  - type: FlavorProfile
-    flavors:
-    - bitter
-    - terrible
-    - mushroom
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mold
-          Quantity: 10

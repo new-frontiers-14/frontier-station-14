@@ -1,0 +1,45 @@
+- type: reagent
+  parent: BaseAlcohol
+  id: NFBaseAlcoholGoblin
+  group: Drinks
+  abstract: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType # For non-goblins - it's just ethanol
+          type: Goblin
+          shouldHave: false
+        reagent: Ethanol
+        amount: 0.06
+      - !type:Drunk
+        conditions:
+        - !type:OrganType # For goblins - they just get drunk without being poisoned
+          type: Goblin
+        boozePower: 2
+
+- type: reagent
+  parent: BaseAlcohol
+  id: NFBaseAlcoholGoblinStrong
+  group: Drinks
+  abstract: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType # For non-goblins - it's just ethanol
+          type: Goblin
+          shouldHave: false
+        reagent: Ethanol
+        amount: 0.2
+      - !type:Drunk
+        conditions:
+        - !type:OrganType # For goblins - they just get drunk without being poisoned
+          type: Goblin
+        boozePower: 4

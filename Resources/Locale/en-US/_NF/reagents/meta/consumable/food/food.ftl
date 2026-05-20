@@ -9,3 +9,6 @@ reagent-desc-everyspice = A versatile flavoring, this spice has a flavor for eve
 
 reagent-name-gravy = gravy
 reagent-desc-gravy = Gloriously groovy gravy guaranteed to make your meals meatier.
+
+reagent-name-goblinol = goblinol
+reagent-desc-goblinol = All the vitamins, minerals, and carbohydrates the body can live without. Unless you're a goblin, in which case it's a delicacy.

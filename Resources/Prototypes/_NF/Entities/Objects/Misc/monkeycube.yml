@@ -135,3 +135,31 @@
   - type: Sprite
     sprite: _NF/Objects/Misc/monkeycube.rsi
     state: wrapper_cow
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: mouse cube
+  suffix: Wrapped
+  id: NFMouseCubeWrapped
+  description: Unwrap this to get a mouse cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MouseCube
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_mouse
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: rat cube
+  suffix: Wrapped
+  id: NFRatCubeWrapped
+  description: Unwrap this to get a rat cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: NFRatCube
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_rat

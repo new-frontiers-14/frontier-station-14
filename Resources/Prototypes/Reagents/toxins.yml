@@ -89,6 +89,12 @@
     Poison:
       effects:
         - !type:HealthChange
+      # Frontier: goblin metabolism - immunity to gastrotoxin
+          conditions:
+          - !type:OrganType
+            type: Goblin
+            shouldHave: false
+      # Frontier: goblin metabolism
           damage:
             types:
               Poison: 2
@@ -96,6 +102,11 @@
           conditions:
           - !type:ReagentThreshold
             min: 2
+      # Frontier: goblin metabolism - immunity to gastrotoxin
+          - !type:OrganType
+            type: Goblin
+            shouldHave: false
+      # Frontier: goblin metabolism
           probability: 0.2
 
 - type: reagent
@@ -429,9 +440,23 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
+      # Frontier: goblin metabolism - immunity to amatoxin
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      # Frontier: goblin metabolism
         damage:
           types:
             Poison: 3
+      # Frontier: goblin metabolism - side effects for goblins
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        reagent: THC
+        amount: 0.25
+      # Frontier: goblin metabolism
 
 - type: reagent
   id: VentCrud
@@ -445,9 +470,23 @@
     Poison:
       effects:
         - !type:HealthChange
+      # Frontier: goblin metabolism - immunity to vent crud
+          conditions:
+          - !type:OrganType
+            type: Goblin
+            shouldHave: false
+      # Frontier: goblin metabolism
           damage:
             types:
               Poison: 2
+      # Frontier: goblin metabolism - side effects for goblins
+        - !type:AdjustReagent
+          conditions:
+          - !type:OrganType
+            type: Goblin
+          reagent: THC
+          amount: 0.25
+      # Frontier: goblin metabolism
 
 - type: reagent
   id: Romerol
@@ -625,9 +664,23 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
+      # Frontier: goblin metabolism - immunity to amatoxin
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      # Frontier: goblin metabolism
         damage:
           types:
             Poison: 1.8
+      # Frontier: goblin metabolism - side effects for goblins
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        reagent: THC
+        amount: 0.2
+      # Frontier: goblin metabolism
 
 - type: reagent
   id: Vestine

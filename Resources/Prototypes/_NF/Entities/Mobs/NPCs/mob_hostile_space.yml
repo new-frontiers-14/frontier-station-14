@@ -66,3 +66,23 @@
     thresholds:
       0: Alive
       12: Dead
+  - type: Item
+    size: Tiny
+    #heldPrefix: 0
+  - type: Edible
+  - type: BadFood
+  - type: FlavorProfile
+    flavors:
+    - spices
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 1

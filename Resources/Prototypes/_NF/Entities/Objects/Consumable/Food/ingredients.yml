@@ -330,3 +330,95 @@
   - type: Construction
     graph: Cutlet
     node: casing
+
+- type: entity
+  parent: FoodMeatBase
+  id: FoodGoblinSausageFermentedRaw
+  name: raw fermented sausage
+  description: "A simple 'fermented' sausage. Who knows what's in this thing?"
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    layers:
+    - state: sausageraw
+      color: "#6d382a"
+    - sprite: Objects/Misc/flies.rsi
+      state: flies
+      scale: 1, 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: GastroToxin
+          Quantity: 2
+  - type: Construction
+    graph: NFSausageFermentedCooking
+    node: start
+
+- type: entity
+  parent: FoodMeatBase
+  id: FoodGoblinMushroomSauceSublimate
+  name: mushroom sauce sublimate
+  description: A sublimated mushroom sauce. Edible as is, but why?
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - earthy
+    - salty
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    layers:
+    - state: sublimate
+      color: "#9e6a1b"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 4
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Amatoxin
+          Quantity: 1
+        - ReagentId: Goblinol
+          Quantity: 1
+
+- type: entity
+  parent: FoodGoblinMushroomSauceSublimate
+  id: FoodGoblinFungalBeerSublimate
+  name: fungal beer sublimate
+  description: A sublimated fungal beer. Edible as is, but why?
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    layers:
+    - state: sublimate
+      color: "#725828"
+
+- type: entity
+  parent: FoodGoblinMushroomSauceSublimate
+  id: FoodGoblinMushroomTeaSublimate
+  name: mushroom tea sublimate
+  description: A sublimated mushroom tea. Edible as is, but why?
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    layers:
+    - state: sublimate
+      color: "#d3a774"
+
+- type: entity
+  parent: FoodGoblinMushroomSauceSublimate
+  id: FoodGoblinGlowskeySublimate
+  name: glowskey sublimate
+  description: A sublimated mushroom tea. Edible as is, but why?
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    layers:
+    - state: sublimate
+      color: "#afddaf"

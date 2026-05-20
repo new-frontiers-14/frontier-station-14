@@ -1,13 +1,37 @@
 # Raw
 - type: entity
-  parent: FoodMeatRotten
+  parent: FoodMeatBase
   id: FoodMeatGoblin
   name: raw goblin meat
   description: Just look at that marbling! Wait, is that microplastic?
   components:
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+    - Trash
+    - Recyclable
   - type: Sprite
     state: rotten
     color: lime
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: GastroToxin
+          Quantity: 4
+        - ReagentId: Fat
+          Quantity: 4
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: rotten-inhand-left
+        color: lime
+      right:
+      - state: rotten-inhand-right
+        color: lime
 
 - type: entity
   parent: FoodFrozenBase
@@ -402,3 +426,139 @@
     tags:
     - Cooked
     - Meat
+
+# region Rotten Meat
+- type: entity
+  parent: FoodMeatBase
+  id: NFFoodMeatRottenCooked
+  name: rotten meat steak
+  description: A cooked slab of rotten meat. It smells.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+    - Steak
+    - Trash
+    - Recyclable
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: rotten-cooked
+    - sprite: _NF/Effects/flies.rsi
+      state: flies
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: GastroToxin
+          Quantity: 4
+        - ReagentId: Goblinol
+          Quantity: 2
+  - type: SliceableFood
+    count: 3
+    slice: NFFoodMeatCutletCooked
+  - type: Construction
+    graph: NFRottenMeatSteak
+    node: NFFoodMeatRottenCooked
+  - type: FoodSequenceElement
+    entries:
+      Burger: NFMeatRottenSteak
+      Taco: NFMeatRottenSteak
+  - type: Item
+    sprite: Objects/Consumable/Food/meat.rsi
+    inhandVisuals:
+      left:
+      - state: plain-cooked-inhand-left
+      right:
+      - state: plain-cooked-inhand-right
+
+- type: entity
+  parent: FoodMeatBase
+  id: NFFoodMeatCutletRotten
+  name: rotten cutlet
+  description: Slightly more than halfway to becoming fertilizer for your garden.
+  components:
+  - type: GoblinMade
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: cutlet-rotten
+    - sprite: _NF/Effects/flies.rsi
+      state: flies
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 2
+        - ReagentId: GastroToxin
+          Quantity: 2
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: NFCutletRotten
+    node: start
+    defaultTarget: NFFoodMeatCutletCooked
+  - type: Item
+    sprite: Objects/Consumable/Food/meat.rsi
+    inhandVisuals:
+      left:
+      - state: generic-pink-inhand-left
+        color: "#c7782e"
+      right:
+      - state: generic-pink-inhand-right
+        color: "#c7782e"
+
+- type: entity
+  parent: FoodMeatBase
+  id: NFFoodMeatCutletCooked
+  name: cooked rotten cutlet
+  description: A cooked rotten meat cutlet. Needs some seasoning.
+  components:
+  - type: GoblinMade
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: cutlet-rotten-cooked
+    - sprite: _NF/Effects/flies.rsi
+      state: flies
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: GastroToxin
+          Quantity: 1
+        - ReagentId: Goblinol
+          Quantity: 1
+  - type: Construction
+    graph: NFCutletRotten
+    node: NFFoodMeatCutletCooked
+  - type: FoodSequenceElement
+    entries:
+      Burger: NFMeatCutletRotten
+      Taco: NFMeatCutletRotten
+  - type: Item
+    sprite: Objects/Consumable/Food/meat.rsi
+    inhandVisuals:
+      left:
+      - state: generic-pink-inhand-left
+        color: "#5B3614"
+      right:
+      - state: generic-pink-inhand-right
+        color: "#5B3614"
+# endregion Rotten Meat

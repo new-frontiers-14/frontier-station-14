@@ -1,0 +1,337 @@
+
+# region Base
+# Standardised sizes of goblin food for ease of adjusting the values
+- type: entity
+  abstract: true
+  id: NFBaseFoodGoblinMealEasy # Easy recipes, low volumes of reagents; used FoodSnackBase as a baseline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Goblinol
+          Quantity: 2
+
+- type: entity
+  abstract: true
+  id: NFBaseFoodGoblinMealFine # Slightly more complex recipes, medium volumes of reagents; used FoodMealBase as a baseline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Goblinol
+          Quantity: 5
+
+- type: entity
+  abstract: true
+  id: NFBaseFoodGoblinMealLavish # Complex recipes (or use rare ingredients), higher volumes of reagents; eyeballed the values
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Goblinol
+          Quantity: 10
+# endregion Base
+
+# region Meals
+- type: entity
+  parent: [NFBaseFoodGoblinMealEasy, FoodMeatCooked]
+  id: FoodMeatRatCooked
+  name: grilled rat
+  description: A cooked rat.
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: rat-meat-cooked
+  - type: Construction
+    graph: GrilledRat
+    node: FoodMeatRatCooked
+  - type: FoodSequenceElement
+    entries:
+      Burger: GrilledRat
+      Taco: GrilledRat
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
+  id: FoodGoblinSpaceTickGoulash
+  name: space tick goulash
+  description: It glows at the input and output.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - oily
+    - meaty
+    - spices
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: goblin-tick-stew
+    - state: goblin-tick-stew-glow
+      shader: unshaded
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealLavish, FoodBowlBase]
+  id: FoodGoblinSpiderShakshouka
+  name: spider shakshouka
+  description: Crunchy.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - egg
+    - spices
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: goblin-shakshouka
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    color: "#4faffb"
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodMealOmelette
+  id: FoodGoblinSwampBroth
+  name: swamp broth
+  description: Smells like sewer, tastes like home, .
+  components:
+  - type: GoblinMade
+  - type: Edible
+    trash:
+    - Bucket
+    utensil: Spoon
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - sublime
+      - tangy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    layers:
+    - sprite: Objects/Tools/bucket.rsi
+      state: icon
+    - state: goblin-swamp-broth
+  - type: SolutionContainerManager # higher values due to how long it takes to print all the animals
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: FungalBeer
+          Quantity: 5
+        - ReagentId: Goblinol
+          Quantity: 15
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealEasy, FoodMealBase]
+  id: FoodGoblinMeatSausageFermented
+  name: cooked 'fermented' sausage
+  description: "The rotten meat or as we chefs call it 'the fermentation process' has made it smell worse, but taste better! Probably."
+  components:
+  - type: GoblinMade
+  - type: Tag
+    tags:
+    - Cooked
+    - NFHotdogFermentedSausage
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - tangy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: sausagecooked
+      color: "#6d382a"
+    - sprite: _NF/Effects/flies.rsi
+      state: flies
+  - type: Construction
+    graph: NFSausageFermentedCooking
+    node: CookedFermentedSausage
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodMealHotdog]
+  id: FoodGoblinMealHotdog
+  name: hotdog with 'fermented'sausage
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - bread
+    - tangy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: hotdog
+    - sprite: _NF/Effects/flies.rsi
+      state: flies
+  - type: Construction
+    graph: NFHotdog
+    node: HotdogWithFermentedSausage
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodMealBase]
+  id: FoodGoblinMealCornedRat
+  name: corned rat and cabbage
+  description: This is what you do when you find a fat rat in your corn and cabbage barn.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - cabbage
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    state: goblin-cornedrat
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
+  id: FoodGoblinRatStew
+  name: rat stew
+  description: If rat doesn't sink, you've cooked it right.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - vegetables
+    - sadness
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: goblin-rat-stew
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodGoblinJellySpaceshroom
+  name: spaceshroom jelly
+  description: A galaxy in a bowl.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - spaceshroom
+    - jelly
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    state: goblin-spaceshroom-jelly
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents: # Higher values because you can't grow spaceshrooms - obtainable only through luck
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Amatoxin
+          Quantity: 4
+        - ReagentId: SpaceDrugs
+          Quantity: 4
+        - ReagentId: Goblinol
+          Quantity: 13
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
+  id: FoodGoblinGlowshroomSalad
+  name: glowshroom salad
+  description: You can find it at night without turning on the lights.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - onion
+    - cabbage
+    - mushrooms
+    - spicy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: goblin-glowshroom-salad
+    - state: goblin-glowshroom-salad-glow
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    softness: 0.5
+    color: "#AFDDAF"
+    castShadows: false
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealEasy, FoodBowlBase]
+  id: FoodGoblinCigaretteSalad
+  name: cigarette salad
+  description: A scientific proof that sour cream with soy sauce can make anything edible.
+  components:
+  - type: GoblinMade
+  - type: Edible
+    trash:
+    - NFAshtray
+  - type: FlavorProfile
+    flavors:
+    - salty
+    - bitter
+    - creamy
+  - type: Sprite
+    sprite: _NF/Objects/Misc/ashtray.rsi
+    layers:
+    - state: icon-0
+    - sprite: _NF/Objects/Consumable/Food/bowl.rsi
+      state: goblin-cigarette-salad
+
+- type: entity
+  parent: [NFBaseFoodGoblinMealFine, FoodBowlBase]
+  id: FoodGoblinChiliCashCarne
+  name: chili cash carne
+  description: If you want to spend 500 spesos - this is the way.
+  components:
+  - type: GoblinMade
+  - type: FlavorProfile
+    flavors:
+    - spicy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: goblin-chili-cash
+# endregion Meals

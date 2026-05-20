@@ -1,0 +1,47 @@
+#region rotten steak
+- type: constructionGraph
+  id: NFRottenMeatSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFFoodMeatRottenCooked
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: NFFoodMeatRottenCooked
+    entity: NFFoodMeatRottenCooked
+
+#region rotten cutlet
+- type: constructionGraph
+  id: NFCutletRotten
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFFoodMeatCutletCooked
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: NFFoodMeatCutletCooked
+    entity: NFFoodMeatCutletCooked
+
+#region rat
+- type: constructionGraph
+  id: GrilledRat
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: FoodMeatRatCooked
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: FoodMeatRatCooked
+    entity: FoodMeatRatCooked

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e | erhardsteinhauer (github): edited sprites for dead and structire-wall states, made structure-2, structure-3 and inhand sprites;",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e | erhardsteinhauer (github): edited sprites for dead and structire-wall states, made skewer, -cooked, structure-2, structure-3 and inhand sprites; added -unshaded sprites",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,12 @@
     "states": [
         {
             "name": "produce"
+        },
+        {
+            "name": "produce-unshaded"
+        },
+        {
+            "name": "produce-cooked"
         },
         {
             "name": "seed"
@@ -57,7 +63,15 @@
             "directions": 4
         },
         {
+            "name": "inhand-left-unshaded",
+            "directions": 4
+        },
+        {
             "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-unshaded",
             "directions": 4
         },
         {
@@ -67,6 +81,12 @@
         {
             "name": "seed-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "skewer"
+        },
+        {
+            "name": "skewer-cooked"
         }
     ]
 }
