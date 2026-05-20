@@ -13,3 +13,9 @@ store-category-pirateweapons = Weapons
 store-category-pirateutility = Utility
 store-category-pirateammo = Ammunition
 store-category-pirateexplosives = Explosives
+
+# Plant Manager (Edison requisitions - engine parts and crates)
+store-preset-name-plant-manager = Plant Manager Requisitions
+store-category-plantmanager-generators = Generation
+store-category-plantmanager-containment = Containment
+store-category-plantmanager-conversion = Conversion

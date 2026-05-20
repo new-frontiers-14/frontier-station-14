@@ -1,0 +1,24 @@
+# Plant Manager requisitions – clipboard-style store.
+# Activate in hand to open the store; use currency on it to add Speso balance.
+- type: entity
+  parent: [ BaseItem, StorePresetPlantManager ]
+  id: PlantManagerRequisitionDigipad
+  name: Plant Manager Requisitions Digipad
+  description: The power of Bluespace in the palm of your hand. Fueled by Spesos.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/qm_clipboard.rsi
+    layers:
+    - state: qm_clipboard
+  - type: Item
+    sprite: Objects/Misc/qm_clipboard.rsi
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Tag
+    tags:
+    - PlantManagerStore
