@@ -12,6 +12,8 @@ guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 guide-entry-frontier-definitions = Definitions
 guide-entry-preflightchecklist = Preflight Checklist
+guide-entry-station-representative = Station Representative
+guide-entry-station-traffic-controller = Station Traffic controller
 
 # Engineering entries
 guide-entry-offshore-gas-mining = Offshore Gas Mining
