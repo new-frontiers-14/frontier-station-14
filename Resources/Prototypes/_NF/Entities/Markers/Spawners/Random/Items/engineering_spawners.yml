@@ -93,6 +93,23 @@
     table: !type:NestedSelector
       tableId: TableDungeonLootEngineeringToolboxes
 
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootEngineeringRipleyDisassembled
+  name: disassmebled Ripley APLU
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: ripley
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringRipleyDisassembled
+
 #region Parts
 - type: entity
   parent: MarkerBasePlaceFree

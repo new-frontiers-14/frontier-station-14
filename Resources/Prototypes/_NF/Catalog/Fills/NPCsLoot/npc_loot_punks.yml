@@ -1,0 +1,229 @@
+# region Substances
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSubstances
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableStorageFillStashBooze
+        weight: 0.3
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+      - !type:NestedSelector
+        tableId: TableStorageFillStashTobacco
+        weight: 0.15
+      - !type:GroupSelector
+        weight: 0.55
+        children:
+        - !type:NestedSelector
+          tableId: TableDungeonLootMedicalToolsHyposprays
+          weight: 0.1
+        - !type:NestedSelector
+          tableId: TableDungeonLootMedicalToolsBottlesFilled
+          weight: 0.05
+        - !type:NestedSelector
+          tableId: TableDungeonLootMedicalToolsMedipens
+          weight: 0.20
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+        - !type:NestedSelector
+          tableId: TableDungeonLootMedicalToolsSyringesFilled
+          weight: 0.05
+          rolls: !type:RangeNumberSelector
+            range: 1, 4
+        - id: GroundCannabisRandomVeryLow
+          weight: 0.40
+        - id: NFPillPartyCanister
+          weight: 0.25
+
+# region booze
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBooze
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableStorageFillStashBooze
+
+# region smokes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksSmokes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableStorageFillStashTobacco
+
+# region items
+# outer clothing
+- type: entityTable
+  id: TableDungeonLootNpcPunksOuterClothes
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterCoatBomberRandomized
+      weight: 0.4
+    - id: ClothingOuterCoatLettermanRandomized
+      weight: 0.3
+    - id: ClothingOuterCoatRandomized
+      weight: 0.2
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: ClothingOuterCoatAcidRaincoat
+      - id: ClothingOuterCoatAcidRaincoatBlue
+      - id: ClothingOuterCoatAcidRaincoatGreen
+      - id: ClothingOuterCoatAcidRaincoatMagenta
+      - id: ClothingOuterCoatAcidRaincoatYellow
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: ClothingOuterCoatBomberPunkRed
+      - id: ClothingOuterCoatJacketLeather
+      - id: ClothingOuterCoatJacketBiker
+      - id: ClothingOuterCoatJacketJamrock
+      - id: ClothingOuterCoatBomberAerostatic
+      - id: ClothingOuterCoatJacketLettermanBlue
+      - id: ClothingOuterCoatJacketLettermanBrown
+      - id: ClothingOuterCoatJacketLettermanRed
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksOuterClothes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksOuterClothes
+
+# armor
+- type: entityTable
+  id: TableDungeonLootNpcPunksArmor
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterArmorPunkRed
+      weight: 0.2
+    - id: ClothingOuterArmorPunkOrange
+      weight: 0.2
+    - id: ClothingOuterArmorPunkGreen
+      weight: 0.2
+    - id: ClothingOuterArmorPunkRandomized
+      weight: 0.35
+    - id: ClothingOuterArmorElitePunkRandomized
+      weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksArmor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:NestedSelector
+      tableId: TableDungeonLootNpcPunksArmor
+
+# region fluff items
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksFluffItems
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: HoloGraffitiProjectorEmpty
+        - id: HoloGraffitiProjector
+        - id: FlashlightUmbrella
+        - id: DawInstrument
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - !type:NestedSelector
+          tableId: TableDungeonLootNpcPunksOuterClothes
+        - id: ClothingUniformRandomPunkCroptop
+        - id: ClothingUniformRandomPunkCroptopShorts
+        - id: ClothingUniformRandomPunkTanktop
+        - id: ClothingUniformRandomPunkTanktopShorts
+        - id: ClothingUniformRandomPunkPantsOnly
+        - id: ClothingUniformRandomPunkShortsOnly
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.35
+        children:
+        - !type:NestedSelector
+          tableId: TableDungeonLootNpcPunksArmor
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: ClothingMaskBalaclavaRandom
+        - id: ClothingMaskPunkHalf
+        - id: ClothingEyesPunkInfoShades
+        - id: ClothingEyesPunkGoggles
+        - id: ClothingBeltPunkRandomized
+        - id: ClothingShoesBootsPunkRandomized
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: NFClothingBackpackDuffelColorRandom
+        - id: ClothingBackpackMessengerColorRandom
+        - id: NFPouchPunk
+      # Unique
+      - !type:GroupSelector
+        weight: 0.01
+        children:
+        - id: VendingMachineClothingPunkFlatpack
+        - id: VendingMachineBountyVendPunkFlatpack
+
+# region blueprints
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootNpcPunksBlueprints
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.1
+    table: !type:GroupSelector
+      children:
+      # T1 - Common
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintClothesPunk
+        - id: NFBlueprintArmorPunk
+      # T2 - Uncommon
+      - !type:GroupSelector
+        weight: 0.3
+        children:
+        - id: NFBlueprintPouchPunk
+      # T3 - Rare
+      - !type:GroupSelector
+        weight: 0.35
+        children:
+        - id: NFBlueprintArmorHeavyPunk
+        - id: NFBlueprintWeaponsMeleePunk
+      # T4 - Epic
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: NFBlueprintWearablePunk
+      # T5 - Legendary
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: NFBlueprintPortableRecharger
