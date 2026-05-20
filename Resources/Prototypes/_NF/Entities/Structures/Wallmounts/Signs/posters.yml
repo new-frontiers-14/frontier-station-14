@@ -79,6 +79,36 @@
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster8_legit
 
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitVroidWantedMerc
+  name: "Wanted! Mercenary Captain"
+  description: "Mercenary Captain - Wanted for Criminal Association and multiple Bluespace Violations. A small, barely legible line of text at the bottom outlines multiple clauses that may render you ineligible for receiving payment for proof-of-kill submissions to NT."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster9_legit
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitVroidWantedExplorer
+  name: "Wanted! Explorer Captain"
+  description: "Explorer Captain - Wanted for Illegal Resources Extraction and Environmental Damage. A small, barely legible line of text at the bottom outlines multiple clauses that may render you ineligible for receiving payment for proof-of-kill submissions to NT."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster10_legit
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitVroidWantedQueen
+  name: "Wanted! Xeno Queen"
+  description: "Xeno Queen - Wanted for Bioterrorism and Creation of Multiple Xeno Hives . A small, barely legible line of text at the bottom outlines multiple clauses that may render you ineligible for receiving payment for proof-of-kill submissions to NT."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster11_legit
+
 # Contraband posters
 - type: entity
   parent: PosterBase
@@ -394,4 +424,34 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
-    state: nf_poster31_contraband      
+    state: nf_poster31_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandVroidWantedMercPuncture
+  name: "Shot-up Wanted Poster"
+  description: "The poster is riddled with bullet holes. You can make out the Mercenary Captain's potrait judging you."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster32_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandVroidWantedExplorerBurn
+  name: "Toasty Wanted Poster"
+  description: "The poster bottom is burned by intense heat. You can make out the Explorer Captain's potrait staring at you."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster33_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandVroidWantedQueenSlash
+  name: "Torn Wanted Poster"
+  description: "The poster is torn to shred. You can make out the Xeno Queen's potrait eyeing you."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster34_contraband
