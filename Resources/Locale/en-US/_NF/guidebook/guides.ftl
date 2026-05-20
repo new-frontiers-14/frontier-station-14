@@ -72,6 +72,7 @@ guide-entry-shipyard-dragoon = Dragoon
 guide-entry-shipyard-dragonfly = Dragonfly
 guide-entry-shipyard-druid = Druid
 guide-entry-shipyard-eagle = Eagle
+guide-entry-shipyard-firameq = Firameq
 guide-entry-shipyard-firefighter = Firefighter
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
