@@ -6,10 +6,10 @@ using Robust.Shared.Utility;
 namespace Content.Shared._NF.Shipyard.Prototypes;
 
 [Prototype]
-public sealed class VesselPrototype : IPrototype, IInheritingPrototype
+public sealed partial class VesselPrototype : IPrototype, IInheritingPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<VesselPrototype>))]
     public string[]? Parents { get; private set; }
