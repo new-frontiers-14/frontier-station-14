@@ -1,0 +1,168 @@
+# SPDX-FileCopyrightText: 2026 2DSiggy <siggymaxwell@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipBase
+  name: poker chips
+  description: Not worth real money but good for representing it in lieu of it.
+  components:
+    - type: Item
+      shape:
+      - 0,0,0,0
+    - type: Stack
+      stackType: PokerChipStack
+      baseLayer: base
+      count: 1
+      layerStates:
+      - pokerchip
+      - pokerchip_5
+      - pokerchip_10
+      - pokerchip_25
+      - pokerchip_50
+      - pokerchip_100
+      - pokerchip_250
+      - pokerchip_500
+      - pokerchip_1000
+      layerFunction: Threshold
+    - type: StackLayerThreshold
+      thresholds: [5, 10, 25, 50, 100, 250, 500, 1000]
+    - type: Sprite
+      sprite: _Funkystation/Objects/Misc/pokerchips.rsi
+      state: pokerchip
+      layers:
+      - state: pokerchip
+        map: [ "base" ]
+    - type: Physics
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures:
+        fix1:
+          density: 30
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.35,-0.2,0.25,0.1"
+          mask:
+          - ItemMask
+    - type: Appearance
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip5
+  name: poker chips
+  suffix: 5
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 5
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip10
+  name: poker chips
+  suffix: 10
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 10
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip25
+  name: poker chips
+  suffix: 25
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 25
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip50
+  name: poker chips
+  suffix: 50
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 50
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip100
+  name: poker chips
+  suffix: 100
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 100
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip250
+  name: poker chips
+  suffix: 250
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 250
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip500
+  name: poker chips
+  suffix: 500
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 500
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip1000
+  name: poker chips
+  suffix: 1000
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 1000
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip10000
+  name: poker chips
+  suffix: 10000
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 10000
+
+- type: entity
+  parent: PokerChipBase
+  id: PokerChip100000
+  name: poker chips
+  suffix: 100000
+  components:
+  - type: Sprite
+    state: pokerchip
+  - type: Stack
+    stackType: PokerChipStack
+    count: 100000
