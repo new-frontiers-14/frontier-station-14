@@ -25,6 +25,17 @@
       tableId: TableDungeonLootGeneralOreFull
       weight: 0.1
 
+- type: entityTable
+  id: TableDungeonLootSupplyClutterWithMines
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootSupplyClutter
+      weight: 0.98
+    - !type:NestedSelector
+      tableId: NFTableRandomConcealedMine
+      weight: 0.01
+
 # region Tools
 - type: entityTable
   id: TableDungeonLootSupplyTools
