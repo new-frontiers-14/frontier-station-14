@@ -1606,8 +1606,9 @@
   cost: 2500
   recipeUnlocks:
   - NFWeaponPka
-  - WeaponCrusher
-  - WeaponCrusherDagger
+  - NFWeaponCrusherAxe
+  - NFWeaponCrusherGlaive
+  - NFWeaponCrusherDagger
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFSalvageGrapplingEquipment
@@ -1627,18 +1628,20 @@
   - NFExcavation
   position: 2, 38
 
-- type: technology
-  id: NFAdvancedSalvageWeapons
-  name: nf-research-technology-advanced-salvage-weapons
-  entityIcon: WeaponCrusherGlaive
-  discipline: NFSalvage
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - WeaponCrusherGlaive
-  technologyPrerequisites:
-  - NFSalvageWeapons
-  position: 2, 39
+#- type: technology
+  #id: NFAdvancedSalvageWeapons
+  #name: nf-research-technology-advanced-salvage-weapons
+  #entityIcon: WeaponCrusherGlaive
+  #discipline: NFSalvage
+  #tier: 1
+  #cost: 5000
+  #recipeUnlocks:
+  #- NFWeaponCrusherAxe
+  #- NFWeaponCrusherGlaive
+  #- NFWeaponCrusherDagger
+  #technologyPrerequisites:
+  #- NFSalvageWeapons
+  #position: 2, 39
 
 - type: technology
   id: NFBluespaceOreStorage
@@ -1655,15 +1658,18 @@
 
 - type: technology
   id: NFImprovedSalvageWeapons
-  name: nf-research-technology-salvage-weapons-improved
+  name: nf-research-technology-advanced-salvage-weapons # nf-research-technology-salvage-weapons-improved
   entityIcon: NFWeaponPkaCannon
   discipline: NFSalvage
   tier: 1
   cost: 7500
   recipeUnlocks:
   - NFWeaponPkaCannon
+  - NFWeaponCrusherAxeAdvanced
+  - NFWeaponCrusherDaggerAdvanced
+  - NFWeaponCrusherGlaiveAdvanced
   technologyPrerequisites:
-  - NFAdvancedSalvageWeapons
+  - NFSalvageWeapons # NFAdvancedSalvageWeapons<NFSalvageWeapons
   position: 3, 39
 
 - type: technology

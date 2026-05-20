@@ -76,12 +76,24 @@
   id: TableDungeonLootSupplyCrushers
   table: !type:GroupSelector
     children:
-    - id: WeaponCrusherDagger
-      weight: 0.4
-    - id: WeaponCrusher
-      weight: 0.35
-    - id: WeaponCrusherGlaive
-      weight: 0.25
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: NFWeaponCrusherDagger
+        weight: 0.4
+      - id: NFWeaponCrusherAxe
+        weight: 0.35
+      - id: NFWeaponCrusherGlaive
+        weight: 0.25
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: NFWeaponCrusherDaggerAdvanced
+        weight: 0.4
+      - id: NFWeaponCrusherAxeAdvanced
+        weight: 0.35
+      - id: NFWeaponCrusherGlaiveAdvanced
+        weight: 0.25
 
 - type: entityTable
   id: TableDungeonLootSupplyPka

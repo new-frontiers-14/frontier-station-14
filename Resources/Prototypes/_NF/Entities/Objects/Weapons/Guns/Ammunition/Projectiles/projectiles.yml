@@ -220,6 +220,19 @@
   - type: MiningGatheringSoft # Frontier
 
 - type: entity
+  parent: BulletChargeGlaive
+  id: NFBulletChargeGlaiveBloodCult
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MiningGatheringSoft
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+      shader: unshaded
+
+- type: entity
   parent: AnomalousParticleDelta
   id: NFAnomalousParticleDelta
   categories: [ HideSpawnMenu ]

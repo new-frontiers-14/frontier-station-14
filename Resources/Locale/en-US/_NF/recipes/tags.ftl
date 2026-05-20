@@ -14,3 +14,4 @@ construction-graph-tag-mothroach-hide = a mothroach hide
 construction-graph-tag-syringe = a syringe
 construction-graph-tag-hotdog = hotdog
 construction-graph-tag-nf-bloodpack = a bloodpack
+construction-graph-tag-nf-blood-cult-scroll-shade-binding = a blood cult shade binding scroll

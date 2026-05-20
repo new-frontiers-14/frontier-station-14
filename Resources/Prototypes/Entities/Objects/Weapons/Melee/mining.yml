@@ -110,6 +110,7 @@
 # Very high burst damage if you land a mark, while also providing a small amount of healing.
 - type: entity
   parent: [BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
+  categories: [ HideSpawnMenu ] # Frontier
   id: WeaponCrusher
   components:
   - type: Tag
@@ -171,6 +172,7 @@
 # No mark ability in exchange for wideswing, autoattack, and being one-handed
 - type: entity
   parent: [ BaseKnife, BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
+  categories: [ HideSpawnMenu ] # Frontier
   id: WeaponCrusherDagger
   name: crusher dagger
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
@@ -216,6 +218,7 @@
 # Less mark damage in exchange for more healing. Also has a better ratio of blunt to slash damage, but less structural.
 - type: entity
   parent: [ WeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
+  categories: [ HideSpawnMenu ] # Frontier
   id: WeaponCrusherGlaive
   name: crusher glaive
   description: An early design of the proto-kinetic accelerator, in glaive form. Provides better healing in exchange for less charged damage.
