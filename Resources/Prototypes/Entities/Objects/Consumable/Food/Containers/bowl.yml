@@ -22,10 +22,11 @@
       visible: false
   - type: MixableSolution
     solution: food
-  - type: Drink
+  - type: Edible
+    edible: drink
     solution: food
-    useSound:
-      path: /Audio/Items/drink.ogg
+    destroyOnEmpty: false
+    utensil: Spoon
   - type: DamageOnLand
     damage:
       types:
