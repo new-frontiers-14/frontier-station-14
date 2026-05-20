@@ -1,3 +1,4 @@
+using Content.Client._NF.Markers; // Frontier
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 
@@ -6,6 +7,7 @@ namespace Content.Client.Markers;
 public sealed class MarkerSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly MarkerLayersSystem _markerLayers = default!; // Frontier
 
     private bool _markersVisible;
 
@@ -16,6 +18,7 @@ public sealed class MarkerSystem : EntitySystem
         {
             _markersVisible = value;
             UpdateMarkers();
+            _markerLayers.OverlaysVisible = value; // Frontier
         }
     }
 
