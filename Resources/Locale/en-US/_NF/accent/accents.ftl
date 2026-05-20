@@ -25,6 +25,15 @@ accent-words-mistake-cat-5 = Y' cant ah'ehye bug.
 accent-words-mistake-cat-6 = li h' nilgh'ri ngahnah.
 accent-words-mistake-cat-7 = ymg' mgep l' ah'n'gha ya.
 
+# Mercenary cat accent
+accent-words-mercenary-cat-1 = Hmm...
+accent-words-mercenary-cat-2 = ...
+accent-words-mercenary-cat-3 = Mrrrow.
+accent-words-mercenary-cat-4 = Hhsss!
+accent-words-mercenary-cat-5 = Hrr...
+accent-words-mercenary-cat-6 = Mow?
+accent-words-mercenary-cat-7 = Moauu.
+
 # Fox
 accent-words-fox-1 = Yip!
 accent-words-fox-2 = Yap!

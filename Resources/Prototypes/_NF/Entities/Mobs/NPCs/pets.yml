@@ -445,6 +445,192 @@
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
 
+- type: entity
+  id: MobCatMercenary
+  parent: [NFMobPet, MobCatGhost]
+  name: Cranky
+  description: Just a cat that's good at what it does.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mercenarycat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mercenarycat
+      Critical:
+        Base: mercenarycat
+      Dead:
+        Base: mercenarycat
+  - type: GhostRole
+    name: ghost-role-information-mercenary-cat-name
+    description: ghost-role-information-mercenary-cat-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatMercenary
+    mindRoles: [ MindRoleGhostRoleNeutral ]
+  - type: Loadout
+    prototypes: [ MobMercenaryCatGear ]
+  - type: RandomMetadata
+    nameSegments: null
+  - type: ReplacementAccent
+    accent: mercenaryCat
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+    - LightImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Common
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 0
+  - type: StaminaDamageOnHit
+    damage: 18
+  - type: NpcFactionMember
+    factions:
+    - Cat
+    - PetsNT
+  - type: ActionGun
+    action: ActionHairbola
+    gunProto: HairbolaGun
+  - type: ActionGrant
+    actions:
+    - ActionPolymorphMercenaryBox
+
+- type: entity
+  parent: MobCatGhost
+  id: MobCatMercenaryCamouflaged
+  categories: [ HideSpawnMenu ]
+  name: cardboard box
+  description: Just a cardboard box.
+  suffix: Cranky
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mercenarycat_camouflage
+  - type: RandomMetadata
+    nameSegments: null
+  - type: ReplacementAccent
+    accent: mercenaryCat
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Common
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    animation: WeaponArcClaw # Can't bite, so claws
+    damage:
+      types:
+        Piercing: 0
+  - type: StaminaDamageOnHit
+    damage: 0
+  - type: Inventory
+    templateId: empty
+  - type: NpcFactionMember
+    factions:
+    - Cat
+    - PetsNT
+    - NanoTrasen
+    # NPCs from hostile factions become friendly, as they're "fooled" by the camouflage
+    - NFSyndicate
+    - WizFedFaction
+    - BloodCultNF
+    - NFPirate
+    - ExplorersExpeditionNF
+    - ArtifactConstruct
+    - StreetGangNF
+    - DinosaursNF
+    - MercenariesExpeditionNF
+    - SiliconsExpeditionNF
+    - AberrantFleshExpeditionNF
+    - ContrabandDetection
+    - Zombie
+    - Dragon
+    - Xenoborg
+    - SimpleHostile
+    - Xeno
+
+- type: entity
+  id: HairbolaGun
+  name: hairbola gun
+  description: Shoots hairbolas.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 290
+    rechargeSound:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_hiss1.ogg
+  - type: BasicEntityAmmoProvider
+    proto: Hairbola
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_hiss2.ogg
+    soundEmpty: null
+    projectileSpeed: 20
+
+- type: entity
+  parent: BaseAction
+  id: ActionHairbola
+  name: "[color=yellow]Hairbola[/color]"
+  description: "Cough up a hairbola - bola made out of hair. [color=yellow]5 minute cooldown.[/color]"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite : _NF/Objects/Weapons/Throwable/hairbola.rsi, state: icon }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 300
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: polymorph
+  id: CatMercenaryBox
+  configuration:
+    entity: MobCatMercenaryCamouflaged
+    transferName: true
+    transferDamage: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 90
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Effects/chime.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Effects/chime.ogg
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: ActionPolymorphMercenaryBox
+  name: "[color=purple]Camouflage![/color]"
+  description: Hide in a cardboard box. This might fool hostiles. [color=yellow]Camouflage lasts for 90 seconds.[/color]"
+  components:
+  - type: Action
+    useDelay: 20
+    icon:
+      sprite: _NF/Objects/Specific/Mail/mail_large.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: CatMercenaryBox
+
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
   id: MobKoboldYipyip
