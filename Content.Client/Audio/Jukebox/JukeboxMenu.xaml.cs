@@ -9,6 +9,7 @@ using Robust.Shared.Audio.Components;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility; // wizden#42210
 using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
 
 namespace Content.Client.Audio.Jukebox;
@@ -17,6 +18,7 @@ namespace Content.Client.Audio.Jukebox;
 public sealed partial class JukeboxMenu : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // wizden#42210
     private AudioSystem _audioSystem;
 
     /// <summary>
@@ -29,10 +31,16 @@ public sealed partial class JukeboxMenu : FancyWindow
     /// </summary>
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
-    public event Action<JukeboxPlaybackMode>? OnModeChanged; // Frontier
-    public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
-    public event Action<float>? SetTime;
 
+    public event Action<bool>? OnRepeatToggled; // wizden#42210
+    public event Action<bool>? OnShuffleToggled; // wizden#42210
+    public event Action<ProtoId<JukeboxPrototype>>? TrackQueueAction; // wizden#42210
+    public event Action<float>? SetTime;
+    public event Action<int>? QueueDeleteAction; // wizden#42210
+    public event Action<int>? QueueMoveUpAction; // wizden#42210
+    public event Action<int>? QueueMoveDownAction; // wizden#42210
+
+    private List<JukeboxPrototype> _availableTracks = new(); // wizden#42210
     private EntityUid? _audio;
 
     private float _lockTimer;
@@ -43,14 +51,9 @@ public sealed partial class JukeboxMenu : FancyWindow
         IoCManager.InjectDependencies(this);
         _audioSystem = _entManager.System<AudioSystem>();
 
-        MusicList.OnItemSelected += args =>
+        SearchBar.OnTextChanged += _ => // wizden#42210
         {
-            var entry = MusicList[args.ItemIndex];
-
-            if (entry.Metadata is not string juke)
-                return;
-
-            OnSongSelected?.Invoke(juke);
+            PopulateTracklist(); // wizden#42210
         };
 
         PlayButton.OnPressed += args =>
@@ -62,20 +65,18 @@ public sealed partial class JukeboxMenu : FancyWindow
         {
             OnStopPressed?.Invoke();
         };
-        PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
-        // Frontier: Shuffle & Repeat
-        ShuffleButton.OnToggled += args =>
+        RepeatButton.OnToggled += args => // wizden#42210
         {
-            RepeatButton.Pressed = false;
-            OnModeChanged?.Invoke(ShuffleButton.Pressed ? JukeboxPlaybackMode.Shuffle : JukeboxPlaybackMode.Single);
+            OnRepeatToggled?.Invoke(RepeatButton.Pressed); // wizden#42210
         };
-        RepeatButton.OnToggled += args =>
+
+        ShuffleButton.OnToggled += args => // wizden#42210
         {
-            ShuffleButton.Pressed = false;
-            OnModeChanged?.Invoke(RepeatButton.Pressed ? JukeboxPlaybackMode.Repeat : JukeboxPlaybackMode.Single);
+            OnShuffleToggled?.Invoke(ShuffleButton.Pressed); // wizden#42210
         };
-        // End Frontier: Shuffle & Repeat
+
+        PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
     }
@@ -96,19 +97,119 @@ public sealed partial class JukeboxMenu : FancyWindow
         _lockTimer = 0.5f;
     }
 
-    /// <summary>
-    /// Re-populates the list of jukebox prototypes available.
-    /// </summary>
-    public void Populate(IEnumerable<JukeboxPrototype> jukeboxProtos)
+    // wizden#42210
+    public void PopulateTracklist()
     {
-        MusicList.Clear();
-
-        var jukeboxProtoList = jukeboxProtos.ToList(); // Frontier: Sort the jukebox list
-        jukeboxProtoList.Sort((p1, p2) => p1.Name.CompareTo(p2.Name)); // Frontier
-
-        foreach (var entry in jukeboxProtoList) // Frontier: jukeboxProtoList<jukeboxProtos
+        var tracksToShow = new List<JukeboxPrototype>();
+        foreach (var track in _availableTracks)
         {
-            MusicList.AddItem(entry.Name, metadata: entry.ID);
+            if (SearchBar.Text.Trim().Length != 0)
+            {
+                if (track.Name.ToLowerInvariant().Contains(SearchBar.Text.Trim().ToLowerInvariant()) || track.Artist.ToLowerInvariant().Contains(SearchBar.Text.Trim().ToLowerInvariant()))
+                    tracksToShow.Add(track);
+            }
+            else
+            {
+                tracksToShow.Add(track);
+            }
+        }
+
+        // Sort tracks by artist then track name
+        var sortedTracksToShow = tracksToShow.OrderBy(track => track.Artist).ThenBy(track => track.Name);
+
+        // Get the existing list of queue controls
+        var oldChildCount = TrackList.ChildCount;
+
+        int idx = 0;
+        foreach (var prototype in sortedTracksToShow)
+        {
+            if (idx >= oldChildCount)
+            {
+                var control = new TrackListingControl(prototype);
+                control.OnButtonPressed += s =>
+                {
+                    TrackQueueAction?.Invoke(s);
+                };
+                TrackList.AddChild(control);
+            }
+            else
+            {
+                var child = TrackList.GetChild(idx) as TrackListingControl;
+
+                if (child == null)
+                {
+                    DebugTools.Assert($"Jukebox track listing control at {idx} is not of type TrackListingControl"); // Something's gone terribly wrong.
+                    continue;
+                }
+
+                child.SetTrackInfo(prototype);
+            }
+            idx++;
+        }
+
+        // Shrink list if new list is shorter than old list.
+        for (var childIdx = oldChildCount - 1; idx <= childIdx; childIdx--)
+        {
+            TrackList.RemoveChild(childIdx);
+        }
+    }
+
+
+    /// <summary>
+    /// Populates the queue list with all queued items
+    /// </summary>
+    /// <param name="queue"></param>
+    public void PopulateQueueList(IReadOnlyCollection<ProtoId<JukeboxPrototype>> queue)
+    {
+        // Get the existing list of queue controls
+        var oldChildCount = QueueList.ChildCount;
+
+        var idx = 0;
+        foreach (var item in queue)
+        {
+            var track = _prototypeManager.Index(item);
+
+            if (idx >= oldChildCount)
+            {
+                var queuedTrackBox = new QueuedTrackControl(track, idx, idx == 0, idx == queue.Count - 1);
+                queuedTrackBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
+                queuedTrackBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
+                queuedTrackBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
+
+                QueueList.AddChild(queuedTrackBox);
+            }
+            else
+            {
+                var child = QueueList.GetChild(idx) as QueuedTrackControl;
+
+                if (child == null)
+                {
+                    DebugTools.Assert($"Jukebox menu queued track control at {idx} is not of type QueuedTrackControl"); // Something's gone terribly wrong.
+                    continue;
+                }
+
+                child.SetTrackInfo(track);
+                child.SetIndex(idx);
+                child.SetButtonStatus(idx == 0, idx == queue.Count - 1);
+            }
+            idx++;
+        }
+
+        // Shrink list if new list is shorter than old list.
+        for (var childIdx = oldChildCount - 1; idx <= childIdx; childIdx--)
+        {
+            QueueList.RemoveChild(childIdx);
+        }
+    }
+    // End wizden#42210
+
+    public void UpdateAvailableTracks(IEnumerable<JukeboxPrototype> jukeboxProtos)
+    {
+        _availableTracks = new();
+
+        foreach (var entry in jukeboxProtos)
+        {
+            _availableTracks.Add(entry);
         }
     }
 
@@ -128,9 +229,41 @@ public sealed partial class JukeboxMenu : FancyWindow
         PlayButton.Text = Loc.GetString("jukebox-menu-buttonplay");
     }
 
-    public void SetSelectedSong(string name, float length)
+    // wizden#42210
+    public void UpdateButtons(bool repeat, bool shuffle)
     {
-        SetSelectedSongText(name);
+        RepeatButton.Pressed = repeat;
+        ShuffleButton.Pressed = shuffle;
+    }
+
+    public void SetSelectedSong(JukeboxPrototype? prototype, float length)
+    {
+        if (prototype is null)
+        {
+            CurrentlyPlaying.RemoveAllChildren();
+        }
+        else
+        {
+            if (CurrentlyPlaying.ChildCount != 0)
+            {
+                var child = CurrentlyPlaying.GetChild(0) as TrackListingControl;
+
+                if (child is null)
+                {
+                    DebugTools.Assert("Jukebox menu currently playing control is not of type TrackListingControl"); // Something's gone terribly wrong.
+                }
+                else
+                {
+                    child.SetTrackInfo(prototype);
+                }
+
+            }
+            else
+            {
+                var control = new TrackListingControl(prototype);
+                CurrentlyPlaying.AddChild(control);
+            }
+        } // End wizden#42210
         PlaybackSlider.MaxValue = length;
         PlaybackSlider.SetValueWithoutEvent(0);
     }
@@ -169,32 +302,4 @@ public sealed partial class JukeboxMenu : FancyWindow
 
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio, audio));
     }
-
-    public void SetSelectedSongText(string? text)
-    {
-        if (!string.IsNullOrEmpty(text))
-        {
-            SongName.Text = text;
-        }
-        else
-        {
-            SongName.Text = "---";
-        }
-    }
-
-    // Frontier: Shuffle & Repeat
-    public void UpdateState(BoundUserInterfaceState state)
-    {
-        if (state is not JukeboxInterfaceState convState)
-            return;
-
-        UpdateJukeboxButtons(convState);
-    }
-
-    private void UpdateJukeboxButtons(JukeboxInterfaceState state)
-    {
-        ShuffleButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Shuffle;
-        RepeatButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Repeat;
-    }
-    // End Frontier: Shuffle & Repeat
 }
