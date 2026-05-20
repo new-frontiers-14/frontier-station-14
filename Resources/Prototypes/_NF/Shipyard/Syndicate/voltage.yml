@@ -1,0 +1,31 @@
+- type: vessel
+  id: Voltage
+  parent: BaseVesselAntag
+  name: Voltage
+  description: A small armored Syndicate smuggling shuttle, perfect for fueling NT inevitable demise!
+  price: 35000
+  category: Medium
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/voltage.yml
+  guidebookPage: Null
+  class:
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Voltage
+  mapName: 'Voltage'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/voltage.yml
+  minPlayers: 0
+  stations:
+    Voltage:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Voltage {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
