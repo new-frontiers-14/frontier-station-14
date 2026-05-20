@@ -48,6 +48,7 @@ guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-anchor = Anchor
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-backpacker = Backpacker
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-baroness = Baroness
 guide-entry-shipyard-bocadillo = Bocadillo
