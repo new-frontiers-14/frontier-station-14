@@ -61,6 +61,7 @@ guide-entry-shipyard-camper = Camper
 guide-entry-shipyard-ceres = Ceres
 guide-entry-shipyard-charon = Charon
 guide-entry-shipyard-chisel = Chisel
+guide-entry-shipyard-coffeehouse = Coffeehouse
 guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-courier = Courier
 guide-entry-shipyard-construct = Construct
