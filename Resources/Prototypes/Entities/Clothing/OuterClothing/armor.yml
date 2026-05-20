@@ -67,6 +67,11 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -90,6 +95,12 @@
     reflects:
       - Energy
     reflectingInHands: false
+# Starlight Begin
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# Starlight End
 
 #Detective's vest
 - type: entity
@@ -267,6 +278,9 @@
       outerClothing-vox:
       - state: equipped-OUTERCLOTHING-light-vox
         shader: unshaded
+      outerClothing-dog:
+      - state: equipped-OUTERCLOTHING-light-dog
+        shader: unshaded
   - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight
@@ -306,6 +320,10 @@
     autoRechargeRate: 2
   - type: Item
     size: Normal
+#starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -328,6 +346,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseC3CultContraband, AllowSuitStorageClothing, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3CultContraband, added ContrabandClothing as parent

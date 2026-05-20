@@ -48,6 +48,7 @@
     tags:
     - CannotSuicide
     - VimPilot
+    - DogEmotes # Starlight
   - type: StealTarget
     stealGroup: AnimalIan
 
@@ -310,6 +311,13 @@
   id: MobMcGriff
   description: This dog can tell something smells around here, and that something is CRIME!
   components:
+  # Starlight-start
+  - type: Vocal
+    sounds:
+      Male: DogEmoteSounds
+      Female: DogEmoteSounds
+      Unsexed: DogEmoteSounds
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/mcgriff.rsi
@@ -372,10 +380,12 @@
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl' ] # Starlight
   - type: Tag
     tags:
     - CannotSuicide
     - VimPilot
+    - DogEmotes # Starlight
   - type: StealTarget
     stealGroup: AnimalMcGriff
   - type: MessyDrinker
@@ -420,6 +430,14 @@
   id: MobWalter
   description: He likes chems and treats. Walter.
   components:
+  # Starlight-start
+  - type: Vocal
+    sounds:
+      Male: DogEmoteSounds
+      Female: DogEmoteSounds
+      Unsexed: DogEmoteSounds
+  - type: Emoting
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/walter.rsi
@@ -470,11 +488,13 @@
     tags:
     - CannotSuicide
     - VimPilot
+    - DogEmotes # Starlight
   - type: StealTarget
     stealGroup: AnimalWalter
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl' ] # Starlight
   - type: MessyDrinker
 
 - type: entity
