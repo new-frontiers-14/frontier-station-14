@@ -134,7 +134,7 @@
               amount: 2
               doAfter: 2
 
-        # Frontier: interior shuttle wall
+        # Frontier: interior shuttle wall and asteroid fascade wall
         - to: shuttleInteriorWall
           completed:
             - !type:SnapToGrid
@@ -150,7 +150,23 @@
             - material: Steel
               amount: 2
               doAfter: 1
-        # End Frontier: interior shuttle wall
+
+        - to: asteroidrock
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: FloorTileAstroAsteroidSand
+              amount: 1
+              doAfter: 1
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+        # End Frontier: interior shuttle wall and asteroid fascade wall
 
     - node: wall
       entity: WallSolid
@@ -283,6 +299,24 @@
             - material: Plasteel
               amount: 2
               doAfter: 1
+
+        # Frontier
+        - to: asteroidcobblebrick
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: FloorTileAstroAsteroidSand
+              amount: 1
+              doAfter: 1
+            - material: Plasteel
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+        # Frontier end
 
         - to: shuttleWall
           completed:
@@ -562,4 +596,39 @@
               doAfter: 10
             - tool: Screwing
               doAfter: 1
-    # End Frontier: interior shuttle walls
+
+    # Frontier: asteroid Fascade walls
+    - node: asteroidrock
+      entity: AsteroidRockFacade
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 8
+
+    # Frontier: asteroid brick walls
+    - node: asteroidcobblebrick
+      entity: WallAsteroidCobblebrick
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 4
+            - tool: Welding
+              doAfter: 16

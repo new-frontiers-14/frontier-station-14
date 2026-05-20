@@ -91,3 +91,31 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: recipes-asteroid-rock-wall-name
+  description: recipes-asteroid-rock-wall-desc
+  id: AsteroidRockFacade
+  graph: Girder
+  startNode: start
+  targetNode: asteroidrock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: recipes-asteroid-cobble-brick-wall-name
+  description: recipes-asteroid-cobble-brick-wall-desc
+  id: WallAsteroidCobblebrick
+  graph: Girder
+  startNode: start
+  targetNode: asteroidcobblebrick
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
