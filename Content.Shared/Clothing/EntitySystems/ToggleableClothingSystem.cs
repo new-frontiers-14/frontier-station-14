@@ -16,7 +16,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed class ToggleableClothingSystem : EntitySystem
+public sealed partial class ToggleableClothingSystem : EntitySystem // Wayfarer - Made Partial
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _netMan = default!;
@@ -140,10 +140,13 @@ public sealed class ToggleableClothingSystem : EntitySystem
             || toggleCom.Container == null)
             return;
 
-        if (!_inventorySystem.TryUnequip(Transform(uid).ParentUid, toggleCom.Slot, force: true))
+        var parent = Transform(uid).ParentUid; // Wayfarer - Allow hats under toggleable clothing 
+        if (!_inventorySystem.TryUnequip(parent, toggleCom.Slot, force: true))
             return;
 
         _containerSystem.Insert(uid, toggleCom.Container);
+
+        TryEquipUnderClothing(parent, component); // Wayfarer - Allow hats under toggleable clothing 
         args.Handled = true;
     }
 
@@ -159,8 +162,13 @@ public sealed class ToggleableClothingSystem : EntitySystem
         // If the attached clothing is not currently in the container, this just assumes that it is currently equipped.
         // This should maybe double check that the entity currently in the slot is actually the attached clothing, but
         // if its not, then something else has gone wrong already...
+        var wasAttachedUnequipped = false; // Wayfarer - Allow hats under toggleable clothing 
         if (component.Container != null && component.Container.ContainedEntity == null && component.ClothingUid != null)
-            _inventorySystem.TryUnequip(args.Equipee, component.Slot, force: true, triggerHandContact: true);
+            wasAttachedUnequipped = _inventorySystem.TryUnequip(args.Equipee, component.Slot, force: true, triggerHandContact: true);
+
+        // Wayfarer - If the toggleable clothing was uneqipped, try to equip whats in the under clothing container
+        if (wasAttachedUnequipped && !TryEquipUnderClothing(args.Equipee, component))
+            TryDropUnderClothing(component);
     }
 
     private void OnRemoveToggleable(EntityUid uid, ToggleableClothingComponent component, ComponentRemove args)
@@ -213,7 +221,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (!TryComp(component.AttachedUid, out ToggleableClothingComponent? toggleComp))
             return;
 
-        if (LifeStage(component.AttachedUid) > EntityLifeStage.MapInitialized)
+        if (toggleComp.LifeStage > ComponentLifeStage.Running)
             return;
 
         // As unequipped gets called in the middle of container removal, we cannot call a container-insert without causing issues.
@@ -240,15 +248,29 @@ public sealed class ToggleableClothingSystem : EntitySystem
             return;
 
         var parent = Transform(target).ParentUid;
+        // Begin Wayfarer - Allow hats under toggleable clothing!
+        var wasAttachedUnequipped = false; // We want to track if the toggleable item was unequipped, assume false for now.
+
         if (component.Container.ContainedEntity == null)
-            _inventorySystem.TryUnequip(user, parent, component.Slot, force: true);
-        else if (_inventorySystem.TryGetSlotEntity(parent, component.Slot, out var existing))
-        {
-            _popupSystem.PopupClient(Loc.GetString("toggleable-clothing-remove-first", ("entity", existing)),
-                user, user);
-        }
+            wasAttachedUnequipped = _inventorySystem.TryUnequip(user, parent, component.Slot, force: true);
+
         else
+        {
+            if (_inventorySystem.TryGetSlotEntity(parent, component.Slot, out var existing)
+                && !TryStoreUnderClothing(existing.Value, component))
+            {
+                _popupSystem.PopupClient(Loc.GetString("toggleable-clothing-remove-first", ("entity", existing)),
+                    user, user);
+                return;
+            }
+
             _inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true);
+        }
+
+        // If the toggleable clothing was uneqipped, try to equip whats in the under clothing container
+        if (wasAttachedUnequipped && !TryEquipUnderClothing(user, parent, component))
+            TryDropUnderClothing(component);
+        // END Wayfarer
     }
 
     private void OnGetActions(EntityUid uid, ToggleableClothingComponent component, GetItemActionsEvent args)
@@ -264,6 +286,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
     private void OnInit(EntityUid uid, ToggleableClothingComponent component, ComponentInit args)
     {
         component.Container = _containerSystem.EnsureContainer<ContainerSlot>(uid, component.ContainerId);
+        component.UnderClothingContainer = _containerSystem.EnsureContainer<ContainerSlot>(uid, component.UnderClothingContainerId); // Wayfarer - Allow hats under toggleable clothing!
     }
 
     /// <summary>
