@@ -1,0 +1,121 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseIdChip
+  name: identification chip
+  description: A programmable ID chip that controls cyborg's accesses. Configure it using an ID card computer.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Specific/Robotics/id_chip.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Tiny
+  - type: Access
+    enabled: false # no taking a borgs AA and using it directly
+  - type: IdCard
+    fullName: NanoTrasen Cyborg
+    nameLocId: borg-id-chip-owner-name-job-title-text
+    fullNameLocId: borg-id-chip-owner-full-name-job-title-text
+  - type: Tag
+    tags:
+    - IdChip
+
+# Crew ID Chips
+
+- type: entity
+  parent: BaseIdChip
+  id: IdChipBasic
+  suffix: Basic
+  components:
+  - type: Access
+    tags:
+    - Maintenance
+    - External # Frontier - no need for Research or Robotics, but we want external
+
+- type: entity
+  parent: BaseIdChip
+  id: IdChipAA
+  suffix: All Access
+  description: A cyborg chip with elevated access levels, for bleeding-edge silicon models. # Frontier
+  components:
+  - type: Sprite # Frontier
+    sprite: _DV/Objects/Specific/Robotics/aa_id_chip.rsi # Frontier
+  - type: Access
+    groups:
+    - AllAccess
+
+# Syndicate ID Chips
+
+# like an agent ID but not chameleon
+- type: entity
+  parent: BaseIdChip
+  id: IdChipSyndie
+  name: syndicate identification chip
+  suffix: Syndie, Copying
+  description: A sinister looking ID chip for nefarious cyborgs. # description
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Specific/Robotics/syndie_id_chip.rsi
+  - type: Access
+    tags:
+    - SyndicateAgent
+    - NuclearOperative
+  # Frontier begin
+  - type: IdCard
+    fullName: Syndicate Cyborg
+    nameLocId: syndicate-borg-id-chip-owner-name-job-title-text
+    fullNameLocId: syndicate-borg-id-chip-owner-full-name-job-title-text
+  # Frontier end
+  - type: AgentIDCard
+  - type: ActivatableUI
+    key: enum.AgentIDCardUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.AgentIDCardUiKey.Key:
+        type: AgentIDCardBoundUserInterface
+
+# Pirate Chips - Frontier
+
+- type: entity
+  parent: BaseIdChip
+  id: IdChipPirate
+  name: bootleg identification chip
+  suffix: Pirate
+  description: An identification circuit printed on... wood? Seems like a jerry-rigged solution, but does the job.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Specific/Robotics/pirate_id_chip.rsi
+  - type: Access
+    tags:
+    - Maintenance
+    - External 
+    - Pirate
+  - type: IdCard
+    fullName: Freelancer Cyborg
+    nameLocId: pirate-borg-id-chip-owner-name-job-title-text
+    fullNameLocId: pirate-borg-id-chip-owner-full-name-job-title-text
+
+# Xorg Chips - Frontier
+
+- type: entity
+  parent: BaseIdChip
+  id: IdChipXenoborg
+  name: xenoborg identification chip
+  suffix: Xenoborg
+  description: Resembles an identification chip. It pulses and shifts, as if it was alive, yet it's cold and clearly has no organic material. Seems to pulse faster near silicons, almost yearning to be slotted into one.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Specific/Robotics/xenoborg_id_chip.rsi
+  - type: Access
+    tags:
+    - Xenoborg
+  - type: IdCard
+    fullName: Xenoborg
+    nameLocId: xenoborg-id-chip-owner-name-job-title-text
+    fullNameLocId: xenoborg-id-chip-owner-full-name-job-title-text
+
+# Frontier end
