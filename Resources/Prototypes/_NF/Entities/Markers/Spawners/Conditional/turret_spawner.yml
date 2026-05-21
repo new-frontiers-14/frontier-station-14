@@ -15,6 +15,42 @@
     - NFWeaponTurretLaserSyndicate
 
 - type: entity
+  id: NFSpawnMobWeaponTurretLaserSyndicateMedium
+  parent: MarkerBase
+  name: syndicate laser turret spawner
+  suffix: Hostile, Frontier, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+      state: base
+  - type: RandomSpawner
+    prototypes:
+    - WeaponTurretSyndicateBroken
+    rarePrototypes:
+    - NFWeaponTurretLaserSyndicate
+    rareChance: 0.5
+
+- type: entity
+  id: NFSpawnMobWeaponTurretLaserSyndicateLow
+  parent: MarkerBase
+  name: syndicate laser turret spawner
+  suffix: Hostile, Frontier, 25
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+      state: base
+  - type: RandomSpawner
+    prototypes:
+    - WeaponTurretSyndicateBroken
+    rarePrototypes:
+    - NFWeaponTurretLaserSyndicate
+    rareChance: 0.25
+
+- type: entity
   id: SpawnMobWeaponTurretSyndicate
   parent: MarkerBase
   name: syndicate ballistic turret spawner
@@ -28,6 +64,42 @@
   - type: ConditionalSpawner
     prototypes:
     - WeaponTurretSyndicate
+
+- type: entity
+  id: SpawnMobWeaponTurretSyndicateMedium
+  parent: MarkerBase
+  name: syndicate ballistic turret spawner
+  suffix: Hostile, Frontier, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: RandomSpawner
+    prototypes:
+    - WeaponTurretSyndicateBroken
+    rarePrototypes:
+    - WeaponTurretSyndicate
+    rareChance: 0.50
+
+- type: entity
+  id: SpawnMobWeaponTurretSyndicateLow
+  parent: MarkerBase
+  name: syndicate ballistic turret spawner
+  suffix: Hostile, Frontier, 25
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: RandomSpawner
+    prototypes:
+    - WeaponTurretSyndicateBroken
+    rarePrototypes:
+    - WeaponTurretSyndicate
+    rareChance: 0.25
 
 # NT
 - type: entity

@@ -1,0 +1,81 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootSuitStorageUnitsSyndie
+  name: random suit storage unit
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSyndicateSuitStorageUnits
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonVendomatsSyndie
+  name: random vendomat
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/syndiedrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootGeneralVendomatsSyndicate
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateSyndie
+  name: random crate
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/syndicate.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootCratesSyndicate
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateSyndieSecure
+  name: random secure crate
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/syndicate.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootCratesSyndicateSecure
