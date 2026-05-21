@@ -296,71 +296,76 @@
   components:
   - type: EntityTableSpawner
     offset: 0.1
-    table: !type:GroupSelector
+    table: !type:NestedSelector
+      tableId: SpawnDungeonLootNpcSyndicateFluffItemsTable
+
+- type: entityTable
+  id: SpawnDungeonLootNpcSyndicateFluffItemsTable
+  table: !type:GroupSelector
+    children:
+    # T1 - Common
+    - !type:GroupSelector
+      weight: 0.4
       children:
-      # T1 - Common
-      - !type:GroupSelector
+      - id: ClothingEyesGlassesOutlawGlasses
+      - id: BalloonSyn
+      - id: TowelColorSyndicate
+      - id: SyndicateBusinessCard
+    # T2 - Uncommon
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - !type:AllSelector
         weight: 0.4
         children:
-        - id: ClothingEyesGlassesOutlawGlasses
-        - id: BalloonSyn
-        - id: TowelColorSyndicate
-        - id: SyndicateBusinessCard
-      # T2 - Uncommon
-      - !type:GroupSelector
-        weight: 0.3
+        - id: SyndicateFlippo
+        - id: CigPackSyndicate
+      - !type:AllSelector
+        weight: 0.4
         children:
-        - !type:AllSelector
-          weight: 0.4
-          children:
-          - id: SyndicateFlippo
-          - id: CigPackSyndicate
-        - !type:AllSelector
-          weight: 0.4
-          children:
-          - id: ClothingHeadPyjamaSyndicateRed
-          - id: ClothingUniformJumpsuitPyjamaSyndicateRed
-          - id: ClothingShoesSlippers
-          - id: PlushieNuke
-        - !type:AllSelector
-          weight: 0.4
-          children:
-          - id: ClothingHeadPyjamaSyndicateBlack
-          - id: ClothingUniformJumpsuitPyjamaSyndicateBlack
-          - id: ClothingShoesSlippers
-          - id: PlushieSharkBlue
-      # T3 - Rare
-      - !type:GroupSelector
-        weight: 0.15
+        - id: ClothingHeadPyjamaSyndicateRed
+        - id: ClothingUniformJumpsuitPyjamaSyndicateRed
+        - id: ClothingShoesSlippers
+        - id: PlushieNuke
+      - !type:AllSelector
+        weight: 0.4
         children:
-        - id: HappyHonkNukieSnacks
-        - id: DefibrillatorSyndicate
-        - id: ClothingEyesHudSyndicateAgent
-        - id: ClothingEyesHudSyndicate
-      # T4 - Epic
-      - !type:GroupSelector
-        weight: 0.1
+        - id: ClothingHeadPyjamaSyndicateBlack
+        - id: ClothingUniformJumpsuitPyjamaSyndicateBlack
+        - id: ClothingShoesSlippers
+        - id: PlushieSharkBlue
+    # T3 - Rare
+    - !type:GroupSelector
+      weight: 0.15
+      children:
+      - id: HappyHonkNukieSnacks
+      - id: DefibrillatorSyndicate
+      - id: ClothingEyesHudSyndicateAgent
+      - id: ClothingEyesHudSyndicate
+    # T4 - Epic
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: Telecrystal1
+      - id: MedkitCombatFilled
+      - id: CardBoxSyndicate
+    # T5 - Legendary
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: Telecrystal5
+      - id: SyndicateSpongeWrapped
+    # Unique
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - !type:AllSelector # Elite pink pyjamas
         children:
-        - id: Telecrystal1
-        - id: MedkitCombatFilled
-        - id: CardBoxSyndicate
-      # T5 - Legendary
-      - !type:GroupSelector
-        weight: 0.05
-        children:
-        - id: Telecrystal5
-        - id: SyndicateSpongeWrapped
-      # Unique
-      - !type:GroupSelector
-        weight: 0.01
-        children:
-        - !type:AllSelector # Elite pink pyjamas
-          children:
-          - id: ClothingHeadPyjamaSyndicatePink
-          - id: ClothingUniformJumpsuitPyjamaSyndicatePink
-          - id: ClothingShoesSlippers
-          - id: PlushieCarp
-        - id: BorgModuleSyndicateWeapon
+        - id: ClothingHeadPyjamaSyndicatePink
+        - id: ClothingUniformJumpsuitPyjamaSyndicatePink
+        - id: ClothingShoesSlippers
+        - id: PlushieCarp
+      - id: BorgModuleSyndicateWeapon
 
 # region blueprints
 - type: entity

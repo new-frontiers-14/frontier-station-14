@@ -408,3 +408,198 @@
     - id: ClothingMaskGasSecurity
     - id: JetpackMiniFilled
     - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicatePlushies
+  name: syndicate plushie crate
+  description: Contains a collection of sinister plushies.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PlushieNuke
+      amount: 2
+    - id: PlushieNuke
+      amount: 2
+      prob: 0.5
+    - id: PlushieNuke
+      prob: 0.5
+    - id: PlushieThrongler
+      prob: 0.02
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateToys
+  name: syndicate toy crate
+  description: Contains an assortment of harmless syndicate toys.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: SyndicateToysCrateTable
+
+- type: entityTable
+  id: SyndicateToysCrateTable
+  table: !type:AllSelector
+    children:
+    # Figurines
+    - !type:NestedSelector
+      prob: 0.5
+      rolls: !type:RangeNumberSelector
+        range: 1, 4
+      tableId: SyndicateFigurinesTable
+    # Foam Projectile Weapons
+    - !type:NestedSelector
+      prob: 0.4
+      rolls: !type:RangeNumberSelector
+          range: 1, 2
+      tableId: FoamWeaponsTable
+    # Toys
+    - !type:NestedSelector
+      rolls: !type:RangeNumberSelector
+          range: 1, 2
+      tableId: SyndicateToysTable
+    # Honk Shoo
+    - id: BedsheetSyndie
+      prob: 0.1
+
+- type: entityTable
+  id: SyndicateFigurinesTable
+  table: !type:GroupSelector
+    children:
+    - id: ToyFigurineNukie
+    - id: ToyFigurineNukieElite
+    - id: ToyFigurineNukieCommander
+    - id: ToyFigurineFootsoldier
+    - id: ToyMauler
+    - id: ToyDeathRipley
+    - id: ToyFigurineGreytider
+      weight: 0.05
+  
+- type: entityTable
+  id: FoamWeaponsTable
+  table: !type:GroupSelector
+    children:
+    - !type:AllSelector
+      weight: 0.6
+      children:
+      - !type:GroupSelector
+        children:
+        - id: FoamCrossbow
+        - id: NFWeaponRifleFoam
+      - id: NFBoxDonkSoftBox
+    - !type:AllSelector
+      weight: 0.1
+      children:
+      - id: WeaponLauncherRocketToy
+      - id: BulletFoamRPG
+    - id: GrenadeFoamDart
+      weight: 0.3
+  
+- type: entityTable
+  id: SyndicateToysTable
+  table: !type:GroupSelector
+    children:
+    - id: ToySword
+      weight: 2.5
+    - id: FoamBlade
+      weight: 0.5
+    - id: ToyNuke
+    - id: SyndieTrickyBomb
+    - id: SpaceBladeContra
+    - id: SoapSyndie
+      weight: 0.5
+    - id: BalloonSyn
+      weight: 0.1
+    - id: BalloonCommander
+      weight: 0.01
+    - !type:GroupSelector
+      children:
+      - id: NFRevolverCapGun
+      - id: NFRevolverCapGunFake # """harmless"""
+        weight: 0.01
+
+- type: entity
+  parent: CrateSyndicateSecure
+  id: CrateSyndicateRandom
+  name: syndicate storage crate
+  description: Contains miscellaneous syndicate gear, locked away for safekeeping.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        rolls: !type:RangeNumberSelector
+            range: 1, 3
+        tableId: SpawnDungeonLootNpcSyndicateFluffItemsTable
+
+- type: entity
+  parent: CrateSyndicateSecure
+  id: CrateSyndicatePistols
+  name: syndicate pistols crate
+  description: Contains two syndicate pistols with four mags. Requires syndicate access to open.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponPistolViper
+      amount: 2
+    - id: NFMagazinePistol35
+      amount: 4
+
+- type: entity
+  parent: CrateSyndicateSecure
+  id: CrateSyndicateRevolvers
+  name: syndicate revolvers crate
+  description: Contains two syndicate revolvers with four speed loaders. Requires syndicate access to open.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRevolverRitland45
+      amount: 2
+    - id: NFSpeedLoaderPistol45
+      amount: 4
+
+- type: entity
+  parent: CrateSyndicateSecure
+  id: CrateSyndicateMuskets
+  name: syndicate musket crate
+  description: Contains two syndicate muskets and a box of ammo. Requires syndicate access to open.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleMusket
+      amount: 2
+    - id: NFAmmunitionBoxRifle60
+
+- type: entity
+  parent: CrateSyndicateSecure
+  id: CrateSyndicateTrapped   # Disguised variant of the secure crate that blows up if you try to break it open
+  name: syndicate storage crate
+  description: Contains miscellaneous syndicate gear, locked away for safekeeping.
+  components:
+  - type: AmbientSound
+    volume: -14
+    range: 2
+    enabled: true
+    sound:
+      path: /Audio/Items/newton_cradle.ogg
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 30
+    totalIntensity: 35
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30 # Weaker than the 75 health of a normal secure crate
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak

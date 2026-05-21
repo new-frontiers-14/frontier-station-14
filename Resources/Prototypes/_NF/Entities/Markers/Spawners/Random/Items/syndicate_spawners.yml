@@ -39,3 +39,43 @@
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
       tableId: TableDungeonLootGeneralVendomatsSyndicate
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateSyndie
+  name: random crate
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/syndicate.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootCratesSyndicate
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateSyndieSecure
+  name: random secure crate
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/syndicate.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootCratesSyndicateSecure

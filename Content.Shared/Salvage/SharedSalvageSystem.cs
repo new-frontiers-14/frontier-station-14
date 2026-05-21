@@ -65,7 +65,6 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var faction = factionProtos[rand.Next(factionProtos.Count)];
         // Frontier - Moved so faction gets priority over dungeon. GetBiomeMod -> GetFactionMod
         var dungeon = GetDungeonMod<SalvageDungeonModPrototype>(biome.ID, faction.ID, rand, ref modifierBudget);
-        //var dungeon = _proto.Index<SalvageDungeonModPrototype>("NFLavaMercenary");
 
         var mods = new List<string>();
 

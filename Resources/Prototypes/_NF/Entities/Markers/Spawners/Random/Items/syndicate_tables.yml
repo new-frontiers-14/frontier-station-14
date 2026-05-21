@@ -27,3 +27,41 @@
       id: VendingMachineChemicalsSyndicate
     - weight: 5
       id: VendingMachineSyndieContraband
+
+- type: entityTable
+  id: TableDungeonLootCratesSyndicate
+  table: !type:GroupSelector
+    children:
+    - weight: 5 # Empty
+      id: CrateSyndicate
+    - weight: 5 # Empty
+      id: CrateSyndicateSecure
+    - weight: 10 # Fake, 20% chance total to be either empty or a trap
+      id: CrateSyndicateTrapped
+    - weight: 25
+      id: CrateSyndicatePlushies
+    - weight: 25
+      id: CrateSyndicateToys
+    - weight: 15
+      id: CrateSyndicateRandom
+    - weight: 5
+      id: CrateSyndicateMuskets
+    - weight: 5
+      id: CrateSyndicateRevolvers
+    - weight: 5
+      id: CrateSyndicatePistols
+
+- type: entityTable
+  id: TableDungeonLootCratesSyndicateSecure # Similar to above, but only secure crates
+  table: !type:GroupSelector
+    children:
+    - weight: 10 # Still has a chance to be trapped
+      id: CrateSyndicateTrapped
+    - weight: 45
+      id: CrateSyndicateRandom
+    - weight: 15
+      id: CrateSyndicateMuskets
+    - weight: 15
+      id: CrateSyndicateRevolvers
+    - weight: 15
+      id: CrateSyndicatePistols

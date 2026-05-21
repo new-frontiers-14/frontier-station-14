@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 04/13/2026 20:03:20
-  entityCount: 1890
+  time: 05/21/2026 15:39:20
+  entityCount: 1896
 maps:
 - 588
 grids:
@@ -6679,6 +6679,11 @@ entities:
     - type: Transform
       pos: 14.60781,25.466684
       parent: 588
+  - uid: 1893
+    components:
+    - type: Transform
+      pos: 46.324875,42.3564
+      parent: 588
 - proto: ClothingUniformJumpsuitOperative
   entities:
   - uid: 172
@@ -6690,6 +6695,11 @@ entities:
     components:
     - type: Transform
       pos: 14.498435,25.60731
+      parent: 588
+  - uid: 1894
+    components:
+    - type: Transform
+      pos: 46.606125,42.497025
       parent: 588
 - proto: ClothingUniformJumpsuitPyjamaSyndicateBlack
   entities:
@@ -6873,9 +6883,9 @@ entities:
     - type: Transform
       pos: 41.5,16.5
       parent: 588
-- proto: CrateSyndicate
+- proto: CrateSyndicateSecure
   entities:
-  - uid: 1781
+  - uid: 106
     components:
     - type: Transform
       pos: 26.5,1.5
@@ -7410,13 +7420,15 @@ entities:
     - type: Transform
       pos: 25.5,21.5
       parent: 588
-- proto: GrilleDungeon
+- proto: Grille
   entities:
   - uid: 120
     components:
     - type: Transform
       pos: 20.5,12.5
       parent: 588
+- proto: GrilleDungeon
+  entities:
   - uid: 376
     components:
     - type: Transform
@@ -8085,7 +8097,7 @@ entities:
     - type: Transform
       pos: 9.597015,36.58398
       parent: 588
-- proto: PlasmaReinforcedWindowDirectionalDungeon
+- proto: PlasmaReinforcedWindowDirectional
   entities:
   - uid: 29
     components:
@@ -8539,7 +8551,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 34.5,1.5
       parent: 588
-- proto: WindoorSecurePlasmaSyndicateLockedDungeon
+- proto: PlasmaWindoorSecureSyndicateLocked
   entities:
   - uid: 1070
     components:
@@ -8584,7 +8596,7 @@ entities:
     - type: Transform
       pos: 3.5,34.5
       parent: 588
-- proto: PlastitaniumWindowDungeon
+- proto: PlastitaniumWindow
   entities:
   - uid: 599
     components:
@@ -9586,6 +9598,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 26.5,21.5
       parent: 588
+  - uid: 1892
+    components:
+    - type: Transform
+      pos: 46.5,42.5
+      parent: 588
 - proto: Railing
   entities:
   - uid: 33
@@ -10142,7 +10159,7 @@ entities:
     - type: Transform
       pos: 57.5,9.5
       parent: 588
-- proto: ReinforcedPlasmaWindowDungeon
+- proto: ReinforcedPlasmaWindow
   entities:
   - uid: 62
     components:
@@ -10987,11 +11004,6 @@ entities:
     - type: Transform
       pos: 12.5,6.5
       parent: 588
-  - uid: 709
-    components:
-    - type: Transform
-      pos: 9.5,0.5
-      parent: 588
   - uid: 1620
     components:
     - type: Transform
@@ -11038,21 +11050,6 @@ entities:
       parent: 588
 - proto: SpawnDungeonLootCrateGeneral
   entities:
-  - uid: 106
-    components:
-    - type: Transform
-      pos: 13.5,6.5
-      parent: 588
-  - uid: 269
-    components:
-    - type: Transform
-      pos: 8.5,6.5
-      parent: 588
-  - uid: 325
-    components:
-    - type: Transform
-      pos: 16.5,24.5
-      parent: 588
   - uid: 1890
     components:
     - type: Transform
@@ -11104,6 +11101,45 @@ entities:
     components:
     - type: Transform
       pos: 21.5,40.5
+      parent: 588
+- proto: SpawnDungeonLootCrateSyndie
+  entities:
+  - uid: 325
+    components:
+    - type: Transform
+      pos: 13.5,6.5
+      parent: 588
+  - uid: 709
+    components:
+    - type: Transform
+      pos: 8.5,6.5
+      parent: 588
+  - uid: 1781
+    components:
+    - type: Transform
+      pos: 16.5,24.5
+      parent: 588
+  - uid: 1887
+    components:
+    - type: Transform
+      pos: 2.5,32.5
+      parent: 588
+  - uid: 1888
+    components:
+    - type: Transform
+      pos: 6.5,40.5
+      parent: 588
+- proto: SpawnDungeonLootCrateSyndieSecure
+  entities:
+  - uid: 269
+    components:
+    - type: Transform
+      pos: 9.5,0.5
+      parent: 588
+  - uid: 1889
+    components:
+    - type: Transform
+      pos: 42.5,45.5
       parent: 588
 - proto: SpawnDungeonLootFlatpacks
   entities:
@@ -13297,7 +13333,7 @@ entities:
     - type: Transform
       pos: 1.5,26.5
       parent: 588
-- proto: WindoorSecurePlasmaDungeon
+- proto: WindoorSecurePlasma
   entities:
   - uid: 45
     components:
