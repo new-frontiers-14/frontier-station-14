@@ -1,0 +1,13 @@
+- type: entity
+  id: LargeThrusterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: large thruster machine board
+  description: A large circuitboard for a 2x2 machine frame.
+  components:
+  - type: MachineBoard
+    prototype: ThrusterLarge
+    frameSize: 2x2
+    requirements:
+      Capacitor: 6 # Wayfarer: 4<6
+    stackRequirements:
+      Steel: 20
