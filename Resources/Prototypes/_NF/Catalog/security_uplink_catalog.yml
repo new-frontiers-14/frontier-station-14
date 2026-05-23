@@ -843,6 +843,26 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityCCSword
+  name:  uplink-security-centcommsword-name
+  description: uplink-security-centcommsword-desc
+  productEntity: ClothingBeltCCSheathFilled
+  icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 50
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Bailiff
+
+- type: listing
   id: UplinkSecurityHammer
   name:  uplink-security-hammer-name
   description: uplink-security-hammer-desc

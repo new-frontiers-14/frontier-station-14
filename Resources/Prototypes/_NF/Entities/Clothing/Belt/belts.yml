@@ -113,3 +113,49 @@
     sprite: _NF/Clothing/Belt/martial_black.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/martial_black.rsi
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCentcommContraband]
+  id: ClothingBeltCCSheath
+  name: ornate sabre sheath
+  description: An especially ornate sheath designed to hold a central command officer's blade.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/ccsheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/ccsheath.rsi
+    #- type: Item # Frontier
+    #size: Ginormous # Frontier
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CCSabre
+          - CaptainSabre
+          - Sheathable
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CCSabre
+          - CaptainSabre
+          - Sheathable
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltCCSheathFilled
+  parent: ClothingBeltCCSheath
+  suffix: Filled, CCSabre
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CCOfficerSabre

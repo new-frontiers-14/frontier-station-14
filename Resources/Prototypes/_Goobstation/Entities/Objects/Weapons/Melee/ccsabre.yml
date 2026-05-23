@@ -1,0 +1,32 @@
+- type: entity
+  name: central command officer's sabre # Frontier rename
+  parent: [ BaseSword, BaseCentcommContraband ]
+  id: CCOfficerSabre # Frontier rename
+  description: A ceremonial weapon belonging to a high ranking central command official.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi
+  - type: MeleeWeapon
+    # heavyStaminaCost: 2.5 # goob edit # Frontier commented out
+    attackRate: 1.6
+    damage:
+      types:
+        Slash: 20 #Frontier change from 30 to 17 to match captain's sabre. 
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: .1 # Frontier change from .6 to .1 to match captain's sabre 
+    spread: 90
+  - type: Item
+    sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi
+  - type: Tag
+    tags:
+    - CaptainSabre
+    - Sheathable # Frontier tag
+    #- CCSabre # Frontier: Optional tag, comment out CaptainSabre and Sheathable and uncomment this if you want it to not fit in the red sheaths
+  - type: DisarmMalus
+  - type: Clothing # Frontier edit to add same clothing as captain sabre
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
