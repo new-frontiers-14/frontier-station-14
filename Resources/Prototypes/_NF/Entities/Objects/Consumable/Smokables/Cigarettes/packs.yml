@@ -8,3 +8,31 @@
     sprite: _NF/Objects/Consumable/Smokeables/Cigarettes/Packs/mccargo.rsi
   - type: Item
     sprite: _NF/Objects/Consumable/Smokeables/Cigarettes/Packs/mccargo.rsi
+
+- type: entity
+  id: CigPackFoolsSilver
+  parent: CigPackBase
+  name: Fool's Silver packet
+  description: For all ages across the sector.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Cigarettes/Packs/foolssilver.rsi
+  - type: Item
+    sprite: _NF/Objects/Consumable/Smokeables/Cigarettes/Packs/foolssilver.rsi
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        rolls: !type:ConstantNumberSelector
+          value: 10
+        tableId: RandomFoolsSmokeTable
+
+- type: entityTable
+  id: RandomFoolsSmokeTable
+  table: !type:GroupSelector
+    children:
+    - id: CigaretteSparkler
+      weight: 1
+    - id: CigaretteBubble
+      weight: 1
+    - id: CigaretteBluespace
+      weight: 1
