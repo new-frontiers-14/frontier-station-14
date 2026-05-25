@@ -45,6 +45,20 @@
         reagents:
         - ReagentId: SpaceGlue
           Quantity: 30
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+>>>>>>> 3aeecd0139 (Add inhand sprites to Cartons and Cups, give new inhands to Cans. (#39814))
   - type: Tag
     tags:
       - DrinkSpaceGlue
@@ -65,6 +79,17 @@
         reagents:
         - ReagentId: SpaceLube
           Quantity: 30
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
   - type: Lube
 
 # Find your nearest clown and give them a gift :o)
