@@ -1,14 +1,16 @@
 # Bowls
 
 - type: entity
-  name: bowl
   parent: ReagentContainerBase
   id: FoodBowlBig
+  name: bowl
   description: A simple bowl, used for soups and salads.
   components:
   - type: GoblinPreciousTrash # Frontier
   - type: Item
-    storedRotation: -90
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-3
   - type: SolutionContainerManager
     solutions:
       food:
@@ -23,7 +25,7 @@
   - type: MixableSolution
     solution: food
   - type: Edible
-    edible: drink
+    edible: Drink
     solution: food
     destroyOnEmpty: false
     utensil: Spoon
@@ -70,11 +72,15 @@
   - type: NFCookware # Frontier
 
 - type: entity
-  name: broken bowl
   parent: BaseItem
   id: FoodBowlBigTrash
+  name: broken bowl
   description: A simple bowl, broken and useless.
   components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-3
   - type: Sprite
     sprite: Objects/Consumable/Food/bowl.rsi
     state: bowl-trash

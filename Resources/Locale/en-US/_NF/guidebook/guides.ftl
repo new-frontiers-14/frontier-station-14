@@ -130,3 +130,6 @@ guide-entry-frontier-rule-10 = 10. Crimes
 guide-entry-frontier-rule-11 = 11. Silicons
 guide-entry-frontier-rule-12 = 12. Security
 guide-entry-frontier-rule-13 = 13. Command
+# Unlisted entries
+nf-guide-blood-cult-staves = Blood Cult Staff Activation Guide
+nf-guide-wizard-federation-staves = Wizard Staff Activation Guide
