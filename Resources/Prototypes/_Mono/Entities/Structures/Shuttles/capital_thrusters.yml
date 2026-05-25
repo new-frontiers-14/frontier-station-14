@@ -65,3 +65,15 @@
     increment: 90
   - type: StaticPrice
     price: 1500
+  # Wayfarer: linkable thrusters
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  # Wayfarer End
