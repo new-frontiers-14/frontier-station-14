@@ -466,7 +466,12 @@
   description: Prime meat from maintenance!
   components:
   - type: Sprite
-    state: plain
+    sprite: _NF/Objects/Consumable/Food/meat.rsi # Frontier: added the line
+    state: rat-meat # Frontier: plain<rat-meat
+  - type: Construction # Frontier: added the line
+    graph: GrilledRat # Frontier: added the line
+    node: start # Frontier: added the line
+    defaultTarget: FoodMeatRatCooked # Frontier: added the line
   - type: SolutionContainerManager
     solutions:
       food:
@@ -479,6 +484,7 @@
     count: 3
     slice: FoodMeatCutlet
   - type: Item
+    sprite: Objects/Consumable/Food/meat.rsi # Frontier: added the line
     inhandVisuals:
       left:
       - state: plain-inhand-left
@@ -556,6 +562,13 @@
       - state: rotten-inhand-left
       right:
       - state: rotten-inhand-right
+  - type: SliceableFood # Frontier
+    count: 3 # Frontier
+    slice: NFFoodMeatCutletRotten # Frontier
+  - type: Construction # Frontier
+    graph: NFRottenMeatSteak # Frontier
+    node: start # Frontier
+    defaultTarget: NFFoodMeatRottenCooked # Frontier
 
 - type: entity
   name: raw spider meat

@@ -1,4 +1,4 @@
-# Drinks
+#region Drinks
 
 - type: reagent
   id: CucumberWater
@@ -106,7 +106,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
 
-# Alcoholic Drinks
+#region Alcoholic Drinks
 - type: reagent
   id: GinAndSonic
   name: reagent-name-gin-and-sonic
@@ -260,7 +260,7 @@
   metamorphicFillBaseName: fill
   metamorphicChangeColor: false
 
-# Nanocaf drinks
+#region Nanocaf drinks
 
 - type: reagent
   parent: BaseDrink
@@ -316,7 +316,7 @@
   flavor: nanocoftea
   color: "#353E2E"
 
-  # Coffee drinks
+#region Coffee drinks
 
 - type: reagent
   id: PumpkinSpiceLatte
@@ -341,5 +341,157 @@
     sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+#region Goblin drinks
+- type: reagent
+  parent: NFBaseAlcoholGoblin
+  id: FungalBeer
+  name: reagent-name-fungal-beer
+  desc: reagent-desc-fungal-beer
+  physicalDesc: reagent-physical-desc-bubbly
+  flavor: earthy
+  color: "#7c602d"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/beerstein.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: true
+  fizziness: 0.6
+
+- type: reagent
+  id: MushroomCreamSauce
+  name: reagent-name-mushroom-cream-sauce
+  group: Drinks
+  desc: reagent-desc-mushroom-cream-sauce
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: mushroom
+  color: "#816e43"
+  metabolisms:
+    Drink:
+      effects: # combines effects from goblinol (partially) and amatoxin (nerfed): don't want to add amatoxin and goblinol as reagents to the cream carton
+      - !type:SatiateThirst
+        factor: 1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+        damage:
+          types:
+            Poison: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        reagent: THC
+        amount: 0.25
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: GoblinAccent
+        probability: 0.005
+        type: Add
+        time: 30
+        refresh: true
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      - !type:Emote
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+        emote: Cough
+        showInChat: true
+        probability: 0.025
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+        - !type:ReagentThreshold
+          min: 25
+        damage:
+          types:
+            Poison: -0.2
+
+- type: reagent
+  parent: BaseDrink
+  id: MushroomTea
+  name: reagent-name-mushroom-tea
+  desc: reagent-desc-mushroom-tea
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: mushroom
+  color: "#d3a774"
+  metabolisms:
+    Drink:
+      effects:
+      # common effects
+      - !type:SatiateThirst
+        factor: 0.6
+      # goblin effects
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        reagent: THC
+        amount: 0.15
+      - !type:Emote
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        emote: Laugh
+        showInChat: true
+        probability: 0.05
+      - !type:PopupMessage
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        type: Local
+        messages:
+        - shroom-mix-effect-nf-procrastination-visions-01
+        - shroom-mix-effect-nf-procrastination-visions-02
+        - shroom-mix-effect-nf-procrastination-visions-03
+        - shroom-mix-effect-nf-procrastination-visions-04
+        - shroom-mix-effect-nf-procrastination-visions-05
+        - shroom-mix-effect-nf-procrastination-visions-06
+        - shroom-mix-effect-nf-procrastination-visions-07
+        - shroom-mix-effect-nf-procrastination-visions-08
+        probability: 0.025
+      # non-goblin effects
+      - !type:PopupMessage
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+        type: Local
+        messages:
+        - generic-reagent-effect-tingling-fingers
+        - generic-reagent-effect-tingling-face
+        probability: 0.05
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/mushroom-tea.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
+  parent: NFBaseAlcoholGoblinStrong
+  id: Glowskey
+  name: reagent-name-glowskey
+  desc: reagent-desc-glowskey
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: whiskey
+  color: "#afddaf"
+  recognizable: true
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/glowskey.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false

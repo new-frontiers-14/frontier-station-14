@@ -27,6 +27,7 @@ guide-entry-medical-doc = Director of Care
 guide-entry-medicalrecipes = Medical Recipes
 guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
 guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
+guide-entry-goblin-recipes = Goblin Recipes
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh

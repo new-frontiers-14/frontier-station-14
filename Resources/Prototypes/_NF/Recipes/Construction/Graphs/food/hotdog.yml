@@ -9,9 +9,16 @@
       steps:
       - tag: NFHotdog
         name: construction-graph-tag-hotdog
+    - to: HotdogWithFermentedSausage
+      steps:
+      - tag: NFHotdogFermentedSausage
+        name: construction-graph-tag-hotdog
 
   - node: hotteddog
     entity: FoodMealHotdog
+
+  - node: HotdogWithFermentedSausage
+    entity: FoodGoblinMealHotdog
 
 - type: constructionGraph
   id: NFHotdogStove
@@ -28,3 +35,19 @@
 
   - node: cookeddog
     entity: FoodMeatSausage
+
+# Goblin meal hotdog is made with fermented sausage
+- type: constructionGraph
+  id: NFSausageFermentedCooking
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CookedFermentedSausage
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: CookedFermentedSausage
+    entity: FoodGoblinMeatSausageFermented

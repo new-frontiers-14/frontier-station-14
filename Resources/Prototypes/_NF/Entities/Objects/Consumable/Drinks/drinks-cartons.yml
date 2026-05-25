@@ -1,0 +1,69 @@
+# region Goblin drinks
+- type: entity
+  parent: DrinkCartonSmallBaseFull
+  id: DrinkGoblinMushroomSauceCarton
+  name: goblin mushroom cream sauce
+  description: A carton of exquisite mushroom cream sauce. The expiration date is painted over with a marker.
+  suffix: Full
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: MushroomCreamSauce
+          Quantity: 50
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/carton_mushroom_sauce.rsi
+
+- type: entity
+  parent: DrinkCartonSmallBaseFull
+  id: DrinkGoblinFungalBeerCarton
+  name: goblin fungal beer
+  description: A carton of fuzzy fungal beer. Keep the dwarves away from this one.
+  suffix: Full
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: FungalBeer
+          Quantity: 50
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/carton_fungal_beer.rsi
+
+- type: entity
+  parent: DrinkCartonSmallBaseFull
+  id: DrinkGoblinMushroomTeaCarton
+  name: goblin mushroom tea
+  description: A carton of mushroom tea. Soothing and earthy, with a hint of bitterness. The drink inside is also tastes nice I guess.
+  suffix: Full
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: MushroomTea
+          Quantity: 50
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/carton_mushroom_tea.rsi
+
+- type: entity
+  parent: DrinkCartonSmallBaseFull
+  id: DrinkGoblinGlowskeyCarton
+  name: goblin glowskey
+  description: A carton of glowskey. The lead-lined interior of the carton prevents you from confirming through use of Geiger counter whether it contains glowskey.
+  suffix: Full
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Glowskey
+          Quantity: 50
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/carton_glowskey.rsi
+# endregion Goblin drinks

@@ -1,4 +1,4 @@
-#Burgers
+#region Burgers
 
 - type: microwaveMealRecipe
   id: RecipeClurgerBurger
@@ -129,7 +129,7 @@
   recipeType:
   - Oven
 
-#Breads & Sandwiches
+#region Breads & Sandwiches
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoToast
@@ -201,7 +201,7 @@
   - Oven
   - Microwave
 
-# Dough Alternative Recipes
+#region Dough Alternative Recipes
 
 - type: microwaveMealRecipe
   id: RecipeFoodRiceDough
@@ -216,7 +216,7 @@
   recipeType:
   - Assembler
 
-# Hot Dog Haven
+#region Hot Dog Haven
 
 - type: microwaveMealRecipe
   id: RecipeFoodBakedGarlicBreadBaguette
@@ -245,7 +245,7 @@
   recipeType:
   - Oven
 
- # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+ #region Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
 
 - type: microwaveMealRecipe
   id: RecipeCuredCarp
@@ -326,7 +326,7 @@
   recipeType:
   - Oven
 
-# Birb
+#region Birb
 
 - type: microwaveMealRecipe
   id: RecipeFoodBakedWholeChicken
@@ -375,7 +375,7 @@
   recipeType:
   - Assembler
 
-# Sushi
+#region Sushi
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoSushi
@@ -425,7 +425,7 @@
   recipeType:
   - Assembler
 
-# Salad
+#region Salad
 
 - type: microwaveMealRecipe
   id: RecipeGreekSalad
@@ -476,7 +476,7 @@
   recipeType:
   - Assembler
 
-# Fryer Prep
+#region Fryer Prep
 
 - type: microwaveMealRecipe
   id: RecipeBatteredChicken
@@ -546,7 +546,7 @@
   recipeType:
   - Assembler
 
-# Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
+#region Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
   id: RecipeDonutUncookedJelly
@@ -870,7 +870,7 @@
 #   recipeType:
 #   - Assembler
 
-# Other
+#region Other
 
 - type: microwaveMealRecipe
   id: RecipeCatCrispy
@@ -1077,7 +1077,7 @@
   recipeType:
   - Oven
 
-# Pasta and Noodles
+#region Pasta and Noodles
 
 - type: microwaveMealRecipe
   id: RecipeRiceNoodleSheet
@@ -1217,7 +1217,7 @@
   recipeType:
   - Oven
 
-# Frozen desserts
+#region Frozen desserts
 
 - type: microwaveMealRecipe
   id: RecipeIceCreamSandwich
@@ -1574,7 +1574,7 @@
   recipeType:
   - Assembler
 
-# NOT ACTUAL FOOD
+#region NOT ACTUAL FOOD
 
 - type: microwaveMealRecipe
   id: RecipeDriedShrooms
@@ -1590,7 +1590,7 @@
   - Oven
   - Microwave
 
-# Coffee
+#region Coffee
 
 - type: microwaveMealRecipe
   id: RoastedCoffee
@@ -1618,4 +1618,328 @@
     Gravy: 10
   recipeType:
   - Assembler
-  
+
+# region Goblin
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinSpaceTickGoulash
+  name: space tick goulash recipe
+  result: FoodGoblinSpaceTickGoulash
+  time: 5
+  group: Goblin
+  reagents:
+    OilOlive: 15
+  solids:
+    FoodBowlBig: 1
+    NFMobTick: 1
+    FoodPotatoSlice: 1
+    FoodGarlic: 1
+    FoodOnion: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinSpiderShakshouka
+  name: spider shakshouka recipe
+  result: FoodGoblinSpiderShakshouka
+  time: 5
+  group: Goblin
+  reagents:
+    OilOlive: 10
+  solids:
+    FoodBowlBig: 1
+    EggSpider: 1
+    FoodGarlic: 1
+    FoodFlyAmanita: 1
+    FoodChiliPepper: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinSwampBroth
+  name: swamp broth recipe
+  result: FoodGoblinSwampBroth
+  time: 25
+  group: Goblin
+  reagents:
+    FungalBeer: 50
+  solids:
+    Bucket: 1
+    NFMobRat: 1
+    MobLizard: 1
+    MobFrog: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinSausageRawTrashBag
+  name: raw fermented sausage recipe
+  result: FoodGoblinSausageFermentedRaw
+  resultCount: 6
+  time: 10
+  group: Goblin
+  solids:
+    FoodSausageCasing: 2
+    FoodMeatRotten: 2
+    FoodOnionSlice: 2
+    FoodGarlic: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinSausageFermentedCooked
+  name: cooked fermented sausage recipe
+  result: FoodGoblinMeatSausageFermented
+  time: 10
+  group: Goblin
+  solids:
+    FoodGoblinSausageFermentedRaw: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinFungalBeerSublimate
+  name: fungal beer sublimate recipe
+  result: FoodGoblinFungalBeerSublimate
+  time: 20
+  group: Goblin
+  reagents:
+    Enzyme: 10
+    Sugar: 5
+  solids:
+    FoodMushroom: 2
+    FoodFlyAmanita: 1
+    FuelPlasma1: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinFungalBeer
+  name: fungal beer recipe
+  result: DrinkGoblinFungalBeerCarton # DrinkGoblinFungalBeer
+  time: 4
+  group: Goblin
+  reagents:
+    Water: 50
+  solids:
+    MaterialCardboard1: 1
+    FoodGoblinFungalBeerSublimate: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinCornedRat
+  name: corned rat and cabbage recipe
+  result: FoodGoblinMealCornedRat
+  time: 10
+  group: Goblin
+  reagents:
+    TableSalt: 10
+  solids:
+    FoodBowlBig: 1
+    FoodMeatRat: 1
+    FoodCorn: 1
+    FoodCarrot: 1
+    FoodCabbage: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinRatStew
+  name: rat stew recipe
+  result: FoodGoblinRatStew
+  time: 10
+  group: Goblin
+  reagents:
+    FungalBeer: 10
+  solids:
+    FoodBowlBig: 1
+    FoodMeatRat: 1
+    FoodMushroom: 1
+    FoodCarrot: 1
+    FoodPotato: 1
+    FoodEggplant: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinJellySpaceshroom
+  name: spaceshroom jelly recipe
+  result: FoodGoblinJellySpaceshroom
+  time: 10
+  group: Goblin
+  reagents:
+    Water: 10
+    Vodka: 10
+  solids:
+    FoodSpaceshroom: 1
+  recipeType: Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinMushroomSauceSublimate
+  name: mushroom cream sauce sublimate recipe
+  result: FoodGoblinMushroomSauceSublimate
+  time: 15
+  group: Goblin
+  solids:
+    FoodFlyAmanita: 1
+    FoodMushroom: 2
+    FoodOnionSlice: 2
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinMushroomSauce
+  name: mushroom cream sauce recipe
+  result: DrinkGoblinMushroomSauceCarton
+  time: 3
+  group: Goblin
+  reagents:
+    Cream: 20
+  solids:
+    MaterialCardboard1: 1
+    FoodGoblinMushroomSauceSublimate: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinGlowshroomSalad
+  name: glowshroom salad recipe
+  result: FoodGoblinGlowshroomSalad
+  time: 3
+  group: Goblin
+  reagents:
+    Cream: 10
+  solids:
+    FoodBowlBig: 1
+    NFFoodGoblinGlowshroomCooked: 1
+    FoodCorn: 1
+    FoodCabbage: 1
+    FoodOnionRedSlice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinMushroomTeaSublimate
+  name: mushroom tea sublimate recipe
+  result: FoodGoblinMushroomTeaSublimate
+  time: 15
+  group: Goblin
+  reagents:
+    Sugar: 5
+    Blackpepper: 5
+    JuiceLemon: 5
+  solids:
+    FoodFlyAmanita: 1
+    FoodMushroom: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinMushroomTea
+  name: mushroom tea recipe
+  result: DrinkGoblinMushroomTeaCarton
+  time: 3
+  group: Goblin
+  reagents:
+    Water: 50
+  solids:
+    MaterialCardboard1: 1
+    FoodGoblinMushroomTeaSublimate: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinGlowshroom
+  name: grilled glowshroom recipe
+  result: NFFoodGoblinGlowshroomCooked
+  time: 5
+  group: Goblin
+  reagents:
+    TableSalt: 5
+  solids:
+    NFFoodGlowshroom: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinGlowskeySublimate
+  name: glowskey sublimate recipe
+  result: FoodGoblinGlowskeySublimate
+  time: 15
+  group: Goblin
+  reagents:
+    Enzyme: 10
+    Sugar: 5
+    Water: 50
+  solids:
+    NFFoodGlowshroom: 2
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinGlowskeySublimate
+  name: glowskey sublimate recipe
+  result: FoodGoblinGlowskeySublimate
+  time: 15
+  group: Goblin
+  reagents:
+    Enzyme: 10
+    Sugar: 5
+    Water: 50
+  solids:
+    NFFoodGlowshroom: 2
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinGlowskey
+  name: glowskey recipe
+  result: DrinkGoblinGlowskeyCarton
+  time: 3
+  group: Goblin
+  reagents:
+    Water: 50
+  solids:
+    MaterialCardboard1: 1
+    FoodGoblinGlowskeySublimate: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinCigaretteSalad
+  name: cigarette salad recipe
+  result: FoodGoblinCigaretteSalad
+  time: 3
+  group: Goblin
+  reagents:
+    Cream: 5
+    Soysauce: 5
+  solids:
+    NFAshtray: 1
+    CigaretteSpent: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeGoblinChiliCashCarne
+  name: chili cash carne recipe
+  result: FoodGoblinChiliCashCarne
+  time: 5
+  group: Goblin
+  solids:
+    FoodBowlBig: 1
+    NFFoodMeatCutletCooked: 2
+    FoodOnionSlice: 1
+    FoodChiliPepper: 1
+    SpaceCash500: 1
+  recipeType:
+  - Oven
+# endregion Goblin

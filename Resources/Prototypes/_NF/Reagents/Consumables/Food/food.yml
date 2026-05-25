@@ -67,3 +67,89 @@
       # It's just a condiment, not the main part of the meal!
       - !type:SatiateHunger
         factor: 0.3
+
+- type: reagent # TODO: think of more unique effects
+  id: Goblinol
+  name: reagent-name-goblinol
+  group: Foods
+  desc: reagent-desc-goblinol
+  physicalDesc: reagent-physical-desc-mucus-like
+  flavor: richbroth
+  color: "#607741"
+  metabolisms:
+    Food:
+      metabolismRate: 0.1
+      effects:
+      # Effects for goblins: more or less flavorol analogue
+      - !type:MovespeedModifier
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+        walkSpeedModifier: 1.15
+        sprintSpeedModifier: 1.15
+      - !type:SatiateHunger
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+        - !type:ReagentThreshold
+          min: 10
+        damage:
+          types:
+            Poison: -0.3
+            Cold: -0.1
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+        amount: .5
+      # Effects for non-goblins: makes them thirstier, adds temporary stutter and goblin accent, makes them cough and displays some messages
+      - !type:SatiateThirst
+        factor: -0.5
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: GoblinAccent
+        probability: 0.025
+        type: Add
+        time: 30
+        refresh: true
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      - !type:Emote
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+        emote: Cough
+        showInChat: true
+        probability: 0.1
+      - !type:PopupMessage
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+        type: Local
+        messages:
+        - generic-reagent-effect-parched
+        - generic-reagent-effect-tearing-up
+        - generic-reagent-effect-nauseous
+        probability: 0.025
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: -1
+  - !type:PlantAdjustHealth
+    amount: -0.5
+  pricePerUnit: 10

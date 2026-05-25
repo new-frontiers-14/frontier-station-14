@@ -661,8 +661,70 @@
   - sprite: _NF/Objects/Fun/Plushies/harpy.rsi
     state: plushie_yarrpy
 
-# Pomegranate
+# Rotten meat cutlet
+- type: foodSequenceElement
+  id: NFMeatCutletRotten
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cutlet-rotten-cooked
+  tags:
+  - Cooked
+  - Cutlet
+  - Meat
+  - Trash
+  - Recyclable
 
+# Rotten meat steak
+- type: foodSequenceElement
+  id: NFMeatRottenSteak
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: rotten-cooked
+  tags:
+  - Cooked
+  - Meat
+
+# Grilled rat
+- type: foodSequenceElement
+  id: GrilledRat
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: rat-meat-cooked
+  tags:
+  - Cooked
+  - Meat
+
+# Glowshroom
+- type: foodSequenceElement
+  id: Glowshroom
+  sprites:
+  - sprite: _NF/Objects/Misc/glowshroom.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: GlowshroomSkewer
+  sprites:
+  - sprite: _NF/Objects/Misc/glowshroom.rsi
+    state: skewer
+
+# Glowshroom Cooked
+- type: foodSequenceElement
+  id: GlowshroomCooked
+  sprites:
+  - sprite: _NF/Objects/Misc/glowshroom.rsi
+    state: produce-cooked
+  tags:
+  - Cooked
+
+- type: foodSequenceElement
+  id: GlowshroomCookedSkewer
+  sprites:
+  - sprite: _NF/Objects/Misc/glowshroom.rsi
+    state: skewer-cooked
+  tags:
+  - Cooked
+
+# Pomegranate
 - type: foodSequenceElement
   id: Pomegranate
   name: food-sequence-content-pomegranate
@@ -674,7 +736,6 @@
   - Vegetable
 
 # Granatapfel
-
 - type: foodSequenceElement
   id: Granatapfel
   name: food-sequence-content-granatapfel

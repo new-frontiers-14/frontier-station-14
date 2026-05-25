@@ -42,3 +42,15 @@ reagent-desc-nanodepresso = Like an espresso if it just didn't really try and le
 
 reagent-name-coftea = coftea
 reagent-desc-coftea = Invented by someone who thought the tea button was the coffee button. Or the other way around.
+
+reagent-name-fungal-beer = fungal beer
+reagent-desc-fungal-beer = Fermented mushrooms. What could possibly go wrong?
+
+reagent-name-mushroom-cream-sauce = mushroom cream sauce
+reagent-desc-mushroom-cream-sauce = A creamy sauce made from fermented mushrooms.
+
+reagent-name-mushroom-tea = mushroom tea
+reagent-desc-mushroom-tea = A warm, earthy, murky spore-laced concoction.
+
+reagent-name-glowskey = glowskey
+reagent-desc-glowskey = Softly glowing strong liquor made from glowshrooms. To complete the drinking experience put a geiger counter next to it.

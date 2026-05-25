@@ -121,7 +121,20 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/glowshroom.rsi
-    state: produce
+    layers:
+    - state: produce
+    - state: produce-unshaded # instead of PointLight
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: FlavorProfile
     flavors:
     - mushroom
@@ -143,3 +156,54 @@
   - type: BadFood
   - type: Produce
     seedId: nfglowshroom
+  - type: FoodSequenceElement
+    entries:
+      Skewer: GlowshroomSkewer
+      Burger: Glowshroom
+      Taco: Glowshroom
+
+#region cooked
+- type: entity
+  parent: FoodProduceBase
+  id: NFFoodGoblinGlowshroomCooked
+  name: grilled glowshroom
+  description: It's cooked. Still glows though.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: Tag
+    tags:
+    - Mushroom
+    - Cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Goblinol
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Misc/glowshroom.rsi
+    layers:
+    - state: produce-cooked
+    - state: produce-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a8703c"
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+        color: "#a8703c"
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: FoodSequenceElement
+    entries:
+      Skewer: GlowshroomCookedSkewer
+      Burger: GlowshroomCooked
+      Taco: GlowshroomCooked

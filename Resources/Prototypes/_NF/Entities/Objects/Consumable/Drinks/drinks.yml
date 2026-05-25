@@ -1,4 +1,4 @@
-# Drinks
+#region Drinks
 - type: entity
   parent: DrinkGlass
   id: DrinkPumpkinSpiceLatte
@@ -31,7 +31,7 @@
     sprite: _NF/Objects/Consumable/Drinks/themadgob.rsi
     state: icon
 
-# Nanocaf Drinks
+#region Nanocaf Drinks
 
 - type: entity
   parent: DrinkGlass
@@ -81,7 +81,7 @@
     sprite: Objects/Consumable/Drinks/coffee.rsi
     state: icon
 
-# Alcohol drinks
+#region Alcohol drinks
 - type: entity
   parent: DrinkGlass
   id: DrinkGinAndSonic
@@ -162,7 +162,7 @@
     sprite: _NF/Objects/Consumable/Drinks/beesknees.rsi
     state: icon
 
-# condiment cup
+#region condiment cup
 - type: entity
   parent: DrinkWaterCup
   id: CondimentCup
@@ -180,7 +180,7 @@
         maxVol: 10
   - type: NFIngredient
 
-# imp coffee cup
+#region imp coffee cup
 - type: entity
   parent: DrinkBase
   id: DrinkDisposableCup
@@ -225,7 +225,7 @@
       right:
       - state: inhand-right
 
-# mystery liquid bottle
+#region mystery liquid bottle
 - type: entity
   parent: BaseChemistryBottleFilled
   id: ChemistryBottleMysteryLiquid
@@ -236,3 +236,55 @@
     weightedRandomId: RandomFillStrangePill
   - type: PressurizedSolution
     solution: drink
+
+#region goblin drinks
+- type: entity
+  parent: DrinkGlass
+  id: DrinkGoblinFungalBeer
+  suffix: fungal beer
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: FungalBeer
+          Quantity: 30
+  - type: Tag
+    tags:
+    - Beer
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkGoblinMushroomTea
+  suffix: mushroom tea
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: MushroomTea
+          Quantity: 30
+  - type: Icon
+    sprite: _NF/Objects/Consumable/Drinks/mushroom-tea.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkGoblinGlowskey
+  suffix: glowskey
+  components:
+  - type: GoblinMade
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Glowskey
+          Quantity: 30
+  - type: Icon
+    sprite: _NF/Objects/Consumable/Drinks/glowskey.rsi
+    state: icon
