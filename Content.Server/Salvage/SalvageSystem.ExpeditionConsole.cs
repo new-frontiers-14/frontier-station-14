@@ -3,17 +3,17 @@ using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
-using Content.Shared.Popups; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Robust.Shared.Map.Components; // Frontier
-using Robust.Shared.Physics.Components; // Frontier
-using Content.Shared.NPC; // Frontier
-using Content.Server._NF.Salvage; // Frontier
-using Content.Shared.NPC.Components; // Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Salvage; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.NPC; // Frontier
+using Content.Shared.Popups; // Frontier
+using Content.Shared.Station.Components; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Robust.Shared.Map.Components; // Frontier
+using Robust.Shared.Physics.Components; // Frontier
 using Robust.Shared.Physics; // Frontier
 
 namespace Content.Server.Salvage;
@@ -48,7 +48,7 @@ public sealed partial class SalvageSystem
                 activeExpeditionCount++;
         }
 
-        if (activeExpeditionCount >= _cfgManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
+        if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
             PlayDenySound((uid, component));
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
