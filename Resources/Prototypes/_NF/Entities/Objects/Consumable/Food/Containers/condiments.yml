@@ -1,10 +1,21 @@
 - type: entity
-  parent: BaseFoodCondimentBottle
-  id: BaseFoodCondimentSqueezeBottle
+  parent: BaseFoodCondiment           # not parenting to BaseFoodCondimentBottle because these aren't
+  id: BaseFoodCondimentSqueezeBottle  # openable, spillable and not all are handling fill visuals
   abstract: true
   name: squeeze bottle
   description: A thin plastic container used to store condiments.
   components:
+  - type: Edible
+    edible: Drink
+    solution: food
+    destroyOnEmpty: false
+    utensil: None
+  - type: Solution
+    solution:
+      maxVol: 50 # ~ 400 to 450ml
+  - type: RefillableSolution
+    solution: food
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       food:
