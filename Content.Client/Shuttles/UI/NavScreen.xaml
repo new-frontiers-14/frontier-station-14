@@ -3,191 +3,191 @@
               xmlns:controls="https://spacestation14.io"
               xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
               xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls">
-                <ui:ShuttleNavControl Name="NavRadar"
-                                 MouseFilter="Stop"
-                                 VerticalAlignment="Stretch"
-                                 VerticalExpand="True"
-                                 HorizontalExpand="True"
-                                 Margin="5 4 10 5"/>
-                <!-- Nav controls -->
-                <controls:BoxContainer Name="RightDisplayNav"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Right"
-                      VerticalExpand="True"
-                      MinWidth="256"
-                      MaxWidth="256"
-                      Margin="5 0 5 5"
-                      Orientation="Vertical">
-                    <controls1:StripeBack
-                        MinSize="48 48">
-                        <controls:Label Name="NavDisplayLabel" Text="{controls:Loc 'shuttle-console-display-label'}"
-                               VerticalExpand="True"
-                               HorizontalAlignment="Center"/>
-                    </controls1:StripeBack>
-                    <controls:GridContainer Columns="2"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Top"
-                                   HorizontalExpand="True"
-                                   Margin="3"
-                                   Name="ReadonlyDisplay">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-designation'}"/>
-                        <controls:Label Name="ShuttleDesignation"
-                               Text="{controls:Loc 'shuttle-console-designation-unknown'}"
-                               HorizontalExpand="True"
-                               Align="Right"/>
-                        <controls:Label Text="{controls:Loc 'shuttle-console-position'}"/>
-                        <controls:Label Name="GridPosition"
-                               Text="0.0, 0.0"
-                               HorizontalExpand="True"
-                               Align="Right"/>
-                        <controls:Label Text="{controls:Loc 'shuttle-console-orientation'}"/>
-                        <controls:Label Name="GridOrientation"
-                               Text="0.0"
-                               HorizontalExpand="True"
-                               Align="Right"/>
-                        <controls:Label Text="{controls:Loc 'shuttle-console-linear-velocity'}"/>
-                        <controls:Label Name="GridLinearVelocity"
-                               Text="0.0, 0.0"
-                               HorizontalExpand="True"
-                               Align="Right"/>
-                        <controls:Label Text="{controls:Loc 'shuttle-console-angular-velocity'}"/>
-                        <controls:Label Name="GridAngularVelocity"
-                               Text="0.0"
-                               HorizontalExpand="True"
-                               Align="Right"/>
-                    </controls:GridContainer>
-                    <controls1:StripeBack
-                        MinSize="48 48">
-                        <controls:Label Name="NavSettingsLabel" Text="{controls:Loc 'shuttle-console-nav-settings'}"
-                               VerticalExpand="True"
-                               HorizontalAlignment="Center"/>
-                    </controls1:StripeBack>
-                    <controls:Button Name="IFFToggle"
-                            Text="{controls:Loc 'shuttle-console-iff-toggle'}"
-                            TextAlign="Center"
-                            ToggleMode="True"/>
-                    <!-- Frontier: hide player shuttles -->
-                    <controls:Button Name="IFFShuttleToggle"
-                             Text="{controls:Loc 'shuttle-console-iffshuttles-toggle'}"
-                             TextAlign="Center"
-                             ToggleMode="True"/>
-                    <!-- End Frontier: hide player shuttles -->
-                    <controls:Button Name="DockToggle"
-                            Text="{controls:Loc 'shuttle-console-dock-toggle'}"
-                            TextAlign="Center"
-                            ToggleMode="True"/>
-                    <!-- Frontier - Inertia dampener controls-->
-                    <controls:BoxContainer Name="DampenerModeButtons"
-                                  Orientation="Horizontal"
-                                  HorizontalAlignment="Stretch"
-                                  HorizontalExpand="True"
-                                  Align="Center"
-                                  Margin="0 0 0 3">
-                        <controls:Button Name="DampenerOff"
-                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
-                                         TextAlign="Center"
-                                         ToggleMode="True"
-                                         MinWidth="85"
-                                         StyleClasses="OpenRight"
-                                         Margin="0"/>
-                        <controls:Button Name="DampenerOn"
-                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
-                                         TextAlign="Center"
-                                         ToggleMode="True"
-                                         MinWidth="85"
-                                         StyleClasses="OpenBoth"
-                                         Margin="0"/>
-                        <controls:Button Name="AnchorOn"
-                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-anchor'}"
-                                         TextAlign="Center"
-                                         ToggleMode="True"
-                                         MinWidth="85"
-                                         StyleClasses="OpenLeft"
-                                         Margin="0"/>
-                    </controls:BoxContainer>
-                    <!-- End Frontier - Inertia dampener controls-->
+    <ui:ShuttleNavControl Name="NavRadar"
+                     MouseFilter="Stop"
+                     VerticalAlignment="Stretch"
+                     VerticalExpand="True"
+                     HorizontalExpand="True"
+                     Margin="5 4 10 5"/>
+    <!-- Nav controls -->
+    <controls:ScrollContainer HScrollEnabled="False" VerticalExpand="True" MinWidth="256" MaxWidth="256" Margin="5 5 0 5">
+        <controls:BoxContainer Name="RightDisplayNav"
+              VerticalAlignment="Top"
+              HorizontalExpand="True"
+              VerticalExpand="True"
+              Orientation="Vertical">
+            <controls1:StripeBack
+                MinSize="48 48">
+                <controls:Label Name="NavDisplayLabel" Text="{controls:Loc 'shuttle-console-display-label'}"
+                       VerticalExpand="True"
+                       HorizontalAlignment="Center"/>
+            </controls1:StripeBack>
+            <controls:GridContainer Columns="2"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Top"
+                           HorizontalExpand="True"
+                           Margin="3"
+                           Name="ReadonlyDisplay">
+                <controls:Label Text="{controls:Loc 'shuttle-console-designation'}"/>
+                <controls:Label Name="ShuttleDesignation"
+                       Text="{controls:Loc 'shuttle-console-designation-unknown'}"
+                       HorizontalExpand="True"
+                       Align="Right"/>
+                <controls:Label Text="{controls:Loc 'shuttle-console-position'}"/>
+                <controls:Label Name="GridPosition"
+                       Text="0.0, 0.0"
+                       HorizontalExpand="True"
+                       Align="Right"/>
+                <controls:Label Text="{controls:Loc 'shuttle-console-orientation'}"/>
+                <controls:Label Name="GridOrientation"
+                       Text="0.0"
+                       HorizontalExpand="True"
+                       Align="Right"/>
+                <controls:Label Text="{controls:Loc 'shuttle-console-linear-velocity'}"/>
+                <controls:Label Name="GridLinearVelocity"
+                       Text="0.0, 0.0"
+                       HorizontalExpand="True"
+                       Align="Right"/>
+                <controls:Label Text="{controls:Loc 'shuttle-console-angular-velocity'}"/>
+                <controls:Label Name="GridAngularVelocity"
+                       Text="0.0"
+                       HorizontalExpand="True"
+                       Align="Right"/>
+            </controls:GridContainer>
+            <controls1:StripeBack
+                MinSize="48 48">
+                <controls:Label Name="NavSettingsLabel" Text="{controls:Loc 'shuttle-console-nav-settings'}"
+                       VerticalExpand="True"
+                       HorizontalAlignment="Center"/>
+            </controls1:StripeBack>
+            <controls:Button Name="IFFToggle"
+                    Text="{controls:Loc 'shuttle-console-iff-toggle'}"
+                    TextAlign="Center"
+                    ToggleMode="True"/>
+            <!-- Frontier: hide player shuttles -->
+            <controls:Button Name="IFFShuttleToggle"
+                     Text="{controls:Loc 'shuttle-console-iffshuttles-toggle'}"
+                     TextAlign="Center"
+                     ToggleMode="True"/>
+            <!-- End Frontier: hide player shuttles -->
+            <controls:Button Name="DockToggle"
+                    Text="{controls:Loc 'shuttle-console-dock-toggle'}"
+                    TextAlign="Center"
+                    ToggleMode="True"/>
+            <!-- Frontier - Inertia dampener controls-->
+            <controls:BoxContainer Name="DampenerModeButtons"
+                          Orientation="Horizontal"
+                          HorizontalAlignment="Stretch"
+                          HorizontalExpand="True"
+                          Align="Center"
+                          Margin="0 0 0 3">
+                <controls:Button Name="DampenerOff"
+                                 Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
+                                 TextAlign="Center"
+                                 ToggleMode="True"
+                                 MinWidth="85"
+                                 StyleClasses="OpenRight"
+                                 Margin="0"/>
+                <controls:Button Name="DampenerOn"
+                                 Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
+                                 TextAlign="Center"
+                                 ToggleMode="True"
+                                 MinWidth="85"
+                                 StyleClasses="OpenBoth"
+                                 Margin="0"/>
+                <controls:Button Name="AnchorOn"
+                                 Text="{controls:Loc 'shuttle-console-inertia-dampener-anchor'}"
+                                 TextAlign="Center"
+                                 ToggleMode="True"
+                                 MinWidth="85"
+                                 StyleClasses="OpenLeft"
+                                 Margin="0"/>
+            </controls:BoxContainer>
+            <!-- End Frontier - Inertia dampener controls-->
 
-                    <!-- Frontier - settable target -->
-                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="TargetCoordsBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-target'}"/>
-                        <controls:BoxContainer Orientation="Horizontal"
-                                               HorizontalExpand="True"
-                                               Align="Center"
-                                               Margin="0 0 0 3">
-                            <controls:LineEdit Name="TargetX" Access="Public" HorizontalExpand="True"/>
-                            <controls:LineEdit Name="TargetY" Access="Public" HorizontalExpand="True"/>
-                            <controls:Button Name="TargetSet"
-                                             Text="{controls:Loc 'shuttle-console-set-target'}"
-                                             TextAlign="Center"
-                                             MinWidth="20"
-                                             ToolTip="{controls:Loc 'shuttle-console-set-target-description'}"
-                                             StyleClasses="OpenRight"
-                                             Margin="0"/>
-                            <controls:Button Name="TargetShow"
-                                             Text="{controls:Loc 'shuttle-console-hide-target'}"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="20"
-                                             ToolTip="{controls:Loc 'shuttle-console-hide-target-description'}"
-                                             StyleClasses="OpenLeft"
-                                             Margin="0"/>
-                        </controls:BoxContainer>
-                    </controls:BoxContainer>
-                    <!-- End Frontier - settable target -->
-
-                    <!-- Frontier - IFF search -->
-                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"/>
-                        <controls:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"/>
-                    </controls:BoxContainer>
-                    <!-- End Frontier - IFF search -->
-
-                    <!-- Frontier - Maximum IFF Distance -->
-                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumIFFDistanceBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"/>
-                        <controls:SliderIntInput Name="MaximumIFFDistanceValue"
-                                                 Access="Public"
-                                                 MinValue="0"
-                                                 MaxValue="3000"
-                                                 Value="3000"
-                                                 HorizontalExpand="True"/>
-                    </controls:BoxContainer>
-                    <!-- End Frontier - Maximum IFF Distance -->
-
-                    <!-- Frontier - Service Flags -->
-                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="ServiceFlagsBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-service-flags'}"/>
-                        <controls:BoxContainer Orientation="Horizontal"
-                                               HorizontalExpand="True"
-                                               Align="Center"
-                                               Margin="0 0 0 3">
-                            <controls:Button Name="ServiceFlagServices"
-                                             Text="{controls:Loc 'shuttle-console-service-flag-Services-label'}"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-Services-description'}"
-                                             StyleClasses="OpenRight"
-                                             Margin="0"/>
-                            <controls:Button Name="ServiceFlagTrade"
-                                             Text="{controls:Loc 'shuttle-console-service-flag-Trade-label'}"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-Trade-description'}"
-                                             StyleClasses="OpenBoth"
-                                             Margin="0"/>
-                            <controls:Button Name="ServiceFlagSocial"
-                                             Text="{controls:Loc 'shuttle-console-service-flag-Social-label'}"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-Social-description'}"
-                                             StyleClasses="OpenLeft"
-                                             Margin="0"/>
-                        </controls:BoxContainer>
-                    </controls:BoxContainer>
-                    <!-- End Frontier - Service Flags -->
-
-                    </controls:BoxContainer>
+            <!-- Frontier - settable target -->
+            <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="TargetCoordsBox">
+                <controls:Label Text="{controls:Loc 'shuttle-console-target'}"/>
+                <controls:BoxContainer Orientation="Horizontal"
+                                       HorizontalExpand="True"
+                                       Align="Center"
+                                       Margin="0 0 0 3">
+                    <controls:LineEdit Name="TargetX" Access="Public" HorizontalExpand="True"/>
+                    <controls:LineEdit Name="TargetY" Access="Public" HorizontalExpand="True"/>
+                    <controls:Button Name="TargetSet"
+                                     Text="{controls:Loc 'shuttle-console-set-target'}"
+                                     TextAlign="Center"
+                                     MinWidth="20"
+                                     ToolTip="{controls:Loc 'shuttle-console-set-target-description'}"
+                                     StyleClasses="OpenRight"
+                                     Margin="0"/>
+                    <controls:Button Name="TargetShow"
+                                     Text="{controls:Loc 'shuttle-console-hide-target'}"
+                                     TextAlign="Center"
+                                     ToggleMode="True"
+                                     MinWidth="20"
+                                     ToolTip="{controls:Loc 'shuttle-console-hide-target-description'}"
+                                     StyleClasses="OpenLeft"
+                                     Margin="0"/>
                 </controls:BoxContainer>
+            </controls:BoxContainer>
+            <!-- End Frontier - settable target -->
+
+            <!-- Frontier - IFF search -->
+            <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
+                <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"/>
+                <controls:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"/>
+            </controls:BoxContainer>
+            <!-- End Frontier - IFF search -->
+
+            <!-- Frontier - Maximum IFF Distance -->
+            <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumIFFDistanceBox">
+                <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"/>
+                <controls:SliderIntInput Name="MaximumIFFDistanceValue"
+                                         Access="Public"
+                                         MinValue="0"
+                                         MaxValue="3000"
+                                         Value="3000"
+                                         HorizontalExpand="True"/>
+            </controls:BoxContainer>
+            <!-- End Frontier - Maximum IFF Distance -->
+
+            <!-- Frontier - Service Flags -->
+            <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="ServiceFlagsBox">
+                <controls:Label Text="{controls:Loc 'shuttle-console-service-flags'}"/>
+                <controls:BoxContainer Orientation="Horizontal"
+                                       HorizontalExpand="True"
+                                       Align="Center"
+                                       Margin="0 0 0 3">
+                    <controls:Button Name="ServiceFlagServices"
+                                     Text="{controls:Loc 'shuttle-console-service-flag-Services-label'}"
+                                     TextAlign="Center"
+                                     ToggleMode="True"
+                                     MinWidth="30"
+                                     ToolTip="{controls:Loc 'shuttle-console-service-flag-Services-description'}"
+                                     StyleClasses="OpenRight"
+                                     Margin="0"/>
+                    <controls:Button Name="ServiceFlagTrade"
+                                     Text="{controls:Loc 'shuttle-console-service-flag-Trade-label'}"
+                                     TextAlign="Center"
+                                     ToggleMode="True"
+                                     MinWidth="30"
+                                     ToolTip="{controls:Loc 'shuttle-console-service-flag-Trade-description'}"
+                                     StyleClasses="OpenBoth"
+                                     Margin="0"/>
+                    <controls:Button Name="ServiceFlagSocial"
+                                     Text="{controls:Loc 'shuttle-console-service-flag-Social-label'}"
+                                     TextAlign="Center"
+                                     ToggleMode="True"
+                                     MinWidth="30"
+                                     ToolTip="{controls:Loc 'shuttle-console-service-flag-Social-description'}"
+                                     StyleClasses="OpenLeft"
+                                     Margin="0"/>
+                </controls:BoxContainer>
+            </controls:BoxContainer>
+            <!-- End Frontier - Service Flags -->
+
+        </controls:BoxContainer>
+    </controls:ScrollContainer>
+
+</controls:BoxContainer>

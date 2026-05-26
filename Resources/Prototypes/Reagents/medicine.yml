@@ -12,9 +12,9 @@
       - !type:GenericStatusEffect
         key: Stutter
         component: ScrambledAccent
-      - !type:Drunk
-        slurSpeech: false
-        boozePower: 20
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSlurred
+        time: 20.0
 
 - type: reagent
   id: Dylovene
@@ -104,8 +104,8 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:GenericStatusEffect
-        key: Drunk
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrunk
         time: 6.0
         type: Remove
       - !type:HealthChange
@@ -518,12 +518,12 @@
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
-          max: 293.15
+          max: 260.15 # Frontier 293.15<260.15
         amount: 100000 # thermal energy, not temperature!
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
-          min: 293.15
+          min: 360.15 # Frontier 293.15<360.15
         amount: -10000
       - !type:PopupMessage
         type: Local
@@ -657,11 +657,23 @@
   color: "#86caf7"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Frontier
       effects:
         - !type:CureZombieInfection
           conditions:
             - !type:ReagentThreshold
               min: 10
+        # Frontier begin
+        - !type:AdjustReagent
+            reagent: NFZombieBiteToxin
+            amount: -0.2
+        - !type:AdjustReagent
+          reagent: NorepinephricAcid
+          amount: 0.9
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
+        # Frontier end
 
 - type: reagent
   id: AmbuzolPlus
@@ -679,6 +691,30 @@
           conditions:
             - !type:ReagentThreshold
               min: 5
+        # Frontier begin
+        - !type:HealthChange
+          damage:
+            types:
+              Poison: -1.5
+        - !type:AdjustReagent
+          reagent: NFZombieBiteToxin
+          amount: -1
+        - !type:PopupMessage          
+          type: Local
+          visualType: Medium
+          messages: [ "generic-reagent-effect-nauseous" ]
+          probability: 0.08
+          conditions:
+          - !type:ReagentThreshold
+            min: 10
+        - !type:Emote
+          emote: Cough
+          probability: 0.1
+          conditions:
+          - !type:ReagentThreshold
+            min: 5
+        
+        # Frontier end
 
 - type: reagent
   id: PulpedBananaPeel
@@ -1244,7 +1280,7 @@
       - !type:HealthChange
         damage:
           types:
-            Shock: -4 # Frontier -4<-0.5 # 8 per u<5 per u
+            Shock: -4 # Frontier -1.5<-4 # 6 per u
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
@@ -1261,7 +1297,7 @@
           min: 12
         damage:
           types:
-            Cold: 2 # Frontier: 2<1 # 4 per u
+            Cold: 2 # Frontier: 1<2 # 4 per u
       - !type:AdjustTemperature
         conditions:
         - !type:ReagentThreshold
@@ -1395,8 +1431,8 @@
         key: Jitter
         time: 2.0
         type: Remove
-      - !type:GenericStatusEffect
-        key: Drunk
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrunk
         time: 6.0
         type: Remove
       - !type:PopupMessage # we dont have sanity/mood so this will have to do
