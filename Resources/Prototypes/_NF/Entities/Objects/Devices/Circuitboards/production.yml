@@ -1,0 +1,21 @@
+- type: entity
+  id: CauldronDeepFryerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: spooky cauldron machine board
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: KitchenDeepFryerCauldron
+      requirements:
+        Capacitor: 1
+        MatterBin: 1 
+        PlushieGhost: 1
+      stackRequirements:
+        Steel: 4
+        Glass: 2
+        Cable: 5
+    - type: Construction
+      deconstructionTarget: null
+      graph: FryerBoard
+      node: spookyfryer
