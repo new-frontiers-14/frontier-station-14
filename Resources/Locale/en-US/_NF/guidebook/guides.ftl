@@ -26,7 +26,7 @@ guide-entry-medical-doc = Director of Care
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
 guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
-guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
+guide-entry-weapons-color-codes-ammo = Ammunition Color Codes
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
@@ -54,6 +54,7 @@ guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
+guide-entry-shipyard-broom = Broom
 guide-entry-shipyard-bulker = Bulker
 guide-entry-shipyard-caladrius = Caladrius
 guide-entry-shipyard-camper = Camper
@@ -80,12 +81,14 @@ guide-entry-shipyard-hammer = Hammer
 guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-honker = Honker
+guide-entry-shipyard-hound = Hound
 guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-izakaya = Izakaya
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
-guide-entry-shipyard-lantern = Lantern
+guide-entry-shipyard-lantern-mk2 = Lantern Mk2
 guide-entry-shipyard-stringer = Stringer
+guide-entry-shipyard-stronghold = Stronghold
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-lyrae = Lyrae
@@ -108,6 +111,7 @@ guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-stellaris = Stellaris
 guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-tide = Tide
+guide-entry-shipyard-tyne = Tyne
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
 
@@ -126,3 +130,6 @@ guide-entry-frontier-rule-10 = 10. Crimes
 guide-entry-frontier-rule-11 = 11. Silicons
 guide-entry-frontier-rule-12 = 12. Security
 guide-entry-frontier-rule-13 = 13. Command
+# Unlisted entries
+nf-guide-blood-cult-staves = Blood Cult Staff Activation Guide
+nf-guide-wizard-federation-staves = Wizard Staff Activation Guide

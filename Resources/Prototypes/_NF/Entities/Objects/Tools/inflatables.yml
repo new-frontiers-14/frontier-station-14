@@ -20,6 +20,9 @@
       removeOnInteract: true
     - type: PhysicalComposition
     - type: ConstructionMaterials
+    - type: StackPrice
+      price: 25
+      vendPrice: 1000
 
 - type: entity
   id: NFInflatableDoorStack
@@ -29,7 +32,7 @@
   components:
     - type: Stack
       stackType: NFInflatableDoor
-      count: 4
+      count: 10
     - type: Sprite
       sprite: _NF/Objects/Misc/inflatable_door.rsi
       state: item_door
@@ -42,6 +45,9 @@
       removeOnInteract: true
     - type: PhysicalComposition
     - type: ConstructionMaterials
+    - type: StackPrice
+      price: 25
+      vendPrice: 1000
 
 - type: entity
   id: NFInflatableDockStack
@@ -51,7 +57,7 @@
   components:
     - type: Stack
       stackType: NFInflatableDock
-      count: 2
+      count: 10
     - type: Sprite
       sprite: _NF/Objects/Misc/inflatable_dock.rsi
       state: item_door
@@ -86,6 +92,9 @@
       removeOnInteract: true
     - type: PhysicalComposition
     - type: ConstructionMaterials
+    - type: StackPrice
+      price: 25
+      vendPrice: 1000
 
 - type: entity
   id: NFInflatableDoorWindowStack
@@ -108,6 +117,9 @@
       removeOnInteract: true
     - type: PhysicalComposition
     - type: ConstructionMaterials
+    - type: StackPrice
+      price: 25
+      vendPrice: 1000
 
 - type: entity
   id: NFInflatableCrateStack
@@ -157,6 +169,9 @@
     damage:
       types:
         Blunt: 0
+  - type: StackPrice
+    price: 25
+    vendPrice: 3000
 
 #region partial stacks
 - type: entity
@@ -181,6 +196,16 @@
 
 - type: entity
   parent: NFInflatableDoorStack
+  id: NFInflatableDoorStack5
+  suffix: 5
+  components:
+    - type: Sprite
+      state: item_door
+    - type: Stack
+      count: 5
+
+- type: entity
+  parent: NFInflatableDoorStack
   id: NFInflatableDoorStack1
   suffix: 1
   components:
@@ -198,6 +223,9 @@
       state: item_door
     - type: Stack
       count: 1
+    - type: StackPrice
+      price: 25
+      vendPrice: 100
 
 - type: entity
   parent: NFInflatableDoorWindowStack
@@ -238,6 +266,19 @@
       state: item-folded
     - type: Stack
       count: 1
+    - type: StackPrice
+      price: 25
+      vendPrice: 100
+
+- type: entity
+  parent: NFInflatableFloorStack
+  id: NFInflatableFloorStack10
+  suffix: 10
+  components:
+    - type: Sprite
+      state: item_inflatable_floor
+    - type: Stack
+      count: 10
 
 - type: entity
   parent: NFInflatableFloorStack
