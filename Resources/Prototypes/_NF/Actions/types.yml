@@ -10,7 +10,7 @@
   - type: InstantAction
     event: !type:ActivateImplantEvent
 
-- type: entity 
+- type: entity
   parent: BaseImplantAction
   id: ActionActivateWehImplant
   name: Weh
@@ -19,3 +19,18 @@
   - type: Action
     icon: { sprite: Objects/Fun/Plushies/lizard.rsi, state: icon }
     useDelay: 1
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionTogglePreSapienceAccent
+  #TODO: Spellcheck and see if the names could be better.
+  name: Toggle Cogni
+  description: Toggle your origional, presapience accent.
+  - components:
+      - type: Action
+        #icon: *sprite here*
+        #iconOn: *sprite here*
+        useDelay: 1
+      - type: InstantAction
+        event: !type:ToggleCognizineEffect
+
