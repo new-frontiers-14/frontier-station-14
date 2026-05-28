@@ -77,6 +77,9 @@
     autoDrain: false
   - type: StaticPrice
     price: 30 # Frontier: 100<30
+  - type: ActivatableUI
+    key: enum.DisposalUnitUiKey.Key
+    verbOnly: true # Not strictly needed, but we want E to toggle lid
   - type: UserInterface
     interfaces:
       enum.DisposalUnitUiKey.Key:

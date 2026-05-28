@@ -33,14 +33,6 @@
     inverted: true
 
 - type: loadoutEffectGroup
-  id: NFHeadwearCapable
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Sheleg
-    inverted: true
-
-- type: loadoutEffectGroup
   id: NFCoatCapable
   effects:
   - !type:SpeciesLoadoutEffect
@@ -84,3 +76,10 @@
   - !type:RoleBlacklistLoadoutEffect
     blacklist:
     - JobStationRepresentative
+
+- type: loadoutEffectGroup
+  id: NFIsGoblin
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Goblin
