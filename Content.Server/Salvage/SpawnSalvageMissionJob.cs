@@ -38,6 +38,7 @@ using Content.Server.Station.Systems; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
 using Content.Server._NF.Salvage.Expeditions; // Frontier
 using Content.Shared.Station.Components; // Frontier
+using Content.Shared._NF.Atmos.Components; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -150,6 +151,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             mapUid,
             _entManager.System<SharedSalvageSystem>().GetFTLName(_prototypeManager.Index(SalvageSystem.PlanetNames), _missionParams.Seed));
         _entManager.AddComponent<FTLBeaconComponent>(mapUid);
+        _entManager.EnsureComponent<AtmosDisabledMapComponent>(mapUid); // Frontier: disable atmos devices on exped map
 
         // Saving the mission mapUid to a CD is made optional, in case one is somehow made in a process without a CD entity
         if (CoordinatesDisk.HasValue)
