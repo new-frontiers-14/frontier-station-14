@@ -55,7 +55,7 @@ public sealed partial class ExpireIdCardComponent : Component
     /// What radio channel do we broadcast our expire message on?
     /// </summary>
     [DataField]
-    public ProtoId<RadioChannelPrototype> RadioChannel = "Nfsd"; // Frontier
+    public ProtoId<RadioChannelPrototype> RadioChannel; // Frontier - define in the yml instead of defaulting.
 
     /// <summary>
     /// Decides if we want to call a radio or not, off by default.
