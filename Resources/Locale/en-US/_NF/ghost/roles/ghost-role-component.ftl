@@ -22,6 +22,9 @@ ghost-role-information-cult-cat-rules = You are a [color={role-type-free-agent-c
                                         - [color=red]DO NOT[/color] damage player shuttles or their contents.
                                         - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
 
+ghost-role-information-mercenary-cat-name = Harold
+ghost-role-information-mercenary-cat-description = Just a cat that's good at what it does.
+
 ghost-role-information-cappy-name = Cappy
 ghost-role-information-cappy-description = Stop resisting! Certified in lethal-force and defensive tactics.
 

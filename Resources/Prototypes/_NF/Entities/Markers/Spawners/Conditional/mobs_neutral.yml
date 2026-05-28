@@ -50,6 +50,20 @@
     prototypes:
       - MobCatCappy
 
+- type: entity
+  name: Cranky Spawner
+  id: SpawnMobCatMercenary
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Mobs/Pets/cat.rsi
+        state: mercenarycat
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatMercenary
+
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
   name: Yip Yip Spawner
