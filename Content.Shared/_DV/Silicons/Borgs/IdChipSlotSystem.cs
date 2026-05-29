@@ -11,7 +11,8 @@ using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Shared.Containers;
 using Robust.Shared.Audio.Systems; // Frontier
-using Robust.Shared.Timing; // Frontier
+using Robust.Shared.Timing;
+using Content.Shared._NF.Whitelist.Components; // Frontier
 
 namespace Content.Shared._DV.Silicons.Borgs;
 
@@ -58,9 +59,12 @@ public sealed class IdChipSlotSystem : EntitySystem
             return;
 
         // ignore non-chip items
-        var chip = args.Used;
-        if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, chip))
-            return;
+        // Frontier start
+        //var chip = args.Used;
+        //if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, chip))
+        //    return;
+        if (!TryComp<NFIDChipComponent>(args.Used, out var whitelistComponent)) return; // check for whitelist comp instead of messing with tags
+        // Frontier end
 
         args.Handled = true;
 
@@ -70,12 +74,12 @@ public sealed class IdChipSlotSystem : EntitySystem
             return;
         }
 
-        if (_container.Insert(chip, ent.Comp.Container))
+        if (_container.Insert(args.Used, ent.Comp.Container))
         {
             _audio.PlayPredicted(ent.Comp.InsertSound, ent, args.User); // Frontier - play sound on insert            
         }
         _adminLog.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(user):player} installed id chip {ToPrettyString(chip)} into borg {ToPrettyString(ent)}");
+            $"{ToPrettyString(user):player} installed id chip {ToPrettyString(args.Used)} into borg {ToPrettyString(ent)}"); // Frontier chip<args.Used - since we don't use tags
     }
 
     private void OnGetAdditionalAccess(Entity<IdChipSlotComponent> ent, ref GetAdditionalAccessEvent args)
