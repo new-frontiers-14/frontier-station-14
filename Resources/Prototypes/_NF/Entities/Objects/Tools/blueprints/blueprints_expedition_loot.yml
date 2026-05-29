@@ -746,6 +746,19 @@
 
 - type: entity
   parent: NFBaseBlueprintExpeditionSyndicate
+  id: NFBlueprintEstocSyndicate
+  categories: [ HideSpawnMenu ]
+  name: estoc blueprint
+  description: A blueprint with a schematic of an Estoc assault rifle. It can be inserted into a protolathe or techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponRifleAssaultEstoc
+    - NFAmmunitionBoxBigRifle20
+    - NFMagazineRifle20Empty
+
+- type: entity
+  parent: NFBaseBlueprintExpeditionSyndicate
   id: NFBlueprintSmSyndicate
   categories: [ HideSpawnMenu ]
   name: soland-moss blueprint
