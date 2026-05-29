@@ -10,6 +10,7 @@ using Content.Shared.Silicons.Borgs;
 using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Shared.Containers;
+using Robust.Shared.Audio.Systems; // Frontier
 
 namespace Content.Shared._DV.Silicons.Borgs;
 
@@ -26,6 +27,8 @@ public sealed class IdChipSlotSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedWiresSystem _wires = default!;
+
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
 
     public override void Initialize()
     {
@@ -66,7 +69,10 @@ public sealed class IdChipSlotSystem : EntitySystem
             return;
         }
 
-        _container.Insert(chip, ent.Comp.Container);
+        if (_container.Insert(chip, ent.Comp.Container))
+        {
+            _audio.PlayPredicted(ent.Comp.InsertSound, ent, args.User); // Frontier - play sound on insert
+        }
         _adminLog.Add(LogType.Action, LogImpact.Low,
             $"{ToPrettyString(user):player} installed id chip {ToPrettyString(chip)} into borg {ToPrettyString(ent)}");
     }
@@ -102,6 +108,7 @@ public sealed class IdChipSlotSystem : EntitySystem
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(args.Actor):player} removed id chip {ToPrettyString(chip)} from borg {ToPrettyString(ent)}");
+        _audio.PlayPvs(_audio.ResolveSound(ent.Comp.SwipeSound), ent); // Frontier - play sound on remove
         _container.Remove(chip, ent.Comp.Container);
         _hands.TryPickupAnyHand(args.Actor, chip);
     }
