@@ -11,6 +11,7 @@ using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Shared.Containers;
 using Robust.Shared.Audio.Systems; // Frontier
+using Robust.Shared.Timing; // Frontier
 
 namespace Content.Shared._DV.Silicons.Borgs;
 
@@ -71,7 +72,7 @@ public sealed class IdChipSlotSystem : EntitySystem
 
         if (_container.Insert(chip, ent.Comp.Container))
         {
-            _audio.PlayPredicted(ent.Comp.InsertSound, ent, args.User); // Frontier - play sound on insert
+            _audio.PlayPredicted(ent.Comp.InsertSound, ent, args.User); // Frontier - play sound on insert            
         }
         _adminLog.Add(LogType.Action, LogImpact.Low,
             $"{ToPrettyString(user):player} installed id chip {ToPrettyString(chip)} into borg {ToPrettyString(ent)}");
@@ -90,6 +91,7 @@ public sealed class IdChipSlotSystem : EntitySystem
 
         // enable its access so the borg can use it
         _access.SetAccessEnabled(args.Entity, true);
+        Timer.Spawn(0, () => RaiseLocalEvent(ent.Owner, new BorgUiNeedsUpdateEvent())); // Frontier - Request UI update
     }
 
     private void OnChipRemoved(Entity<IdChipSlotComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -113,3 +115,5 @@ public sealed class IdChipSlotSystem : EntitySystem
         _hands.TryPickupAnyHand(args.Actor, chip);
     }
 }
+
+public readonly record struct BorgUiNeedsUpdateEvent(EntityUid Uid); // Frontier - UI update payload
