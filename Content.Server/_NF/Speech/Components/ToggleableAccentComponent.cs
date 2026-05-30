@@ -22,4 +22,16 @@ public sealed partial class ToggleableAccentComponent : Component
 
     [DataField(customTypeSerializer: typeof(ComponentNameSerializer))]
     public string AccentComponentName;
+
+
+    //TODO: Evaluate if this is needed
+    //Probably would be nice to have tbh
+    /// <summary>
+    /// What should happen to the accent if this component were removed
+    /// </summary>
+    public enum OnRemovalBehavior
+    {
+        ADD, //If the component is removed, the accent will be added
+        REMOVE //If the component is removed, the accent will be removed
+    }
 }

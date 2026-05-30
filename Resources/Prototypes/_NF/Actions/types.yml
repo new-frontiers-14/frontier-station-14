@@ -20,17 +20,31 @@
     icon: { sprite: Objects/Fun/Plushies/lizard.rsi, state: icon }
     useDelay: 1
 
+#TODO: Make this abstract?
 - type: entity
   parent: BaseMentalAction
-  id: ActionTogglePreSapienceAccent
+  id: ActionToggleAccent
   #TODO: Spellcheck and see if the names could be better.
-  name: Toggle Cogni
-  description: Toggle your origional, presapience accent.
+  name: Toggle Accent
+  description: Toggle your accent.
   - components:
       - type: Action
         #icon: *sprite here*
         #iconOn: *sprite here*
         useDelay: 1
       - type: InstantAction
-        event: !type:ToggleCognizineEffect
+        event: !type:ToggleAccentActionEvent
+
+- type: entity
+  parent: ActionToggleAccent
+  id: ActionToggleCogniAccent
+  name: Toggle Cogni
+  description: Toggle your pre-sapiance accent
+
+#Do we need this?
+- type: entity
+  parent: ActionToggleAccent
+  id: ActionToggleAccentLocalizable
+  name: Toggle $accent accent
+  description: Toggle you $accent accent on or off.
 
