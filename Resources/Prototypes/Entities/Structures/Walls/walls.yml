@@ -10,7 +10,7 @@
     - Wall
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: RangedDamageSound
@@ -1636,13 +1636,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500 # Frontier: 100<500
+        damage: 250 # Frontier: 100<250
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
     - trigger: # Frontier
         !type:DamageTrigger # Frontier
-        damage: 350 # Frontier
+        damage: 150 # Frontier
       behaviors: # Frontier
       - !type:ChangeConstructionNodeBehavior # Frontier
         node: girder # Frontier
