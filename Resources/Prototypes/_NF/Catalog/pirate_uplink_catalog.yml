@@ -605,3 +605,19 @@
           - PirateUplink
   categories:
   - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateCauldron
+  name: uplink-pirate-spooky-cauldron-flatpack-name
+  description: uplink-pirate-spooky-cauldron-flatpack-description
+  productEntity: KitchenDeepFryerCauldronFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: pirate_lathe }
+  cost:
+    Doubloon: 4
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
