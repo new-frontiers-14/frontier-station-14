@@ -14,19 +14,16 @@
     - type: Rotatable
     - type: InteractionOutline
     - type: Storage
-      maxItemSize: Huge
+      maxItemSize: Ginormous
       grid:
-      - 0,0,19,7
+      - 0,0,17,7
       quickInsert: true
       whitelist:
         components:
-        - Delivery
-        sizes:
-        - Huge #this is here to allow ONLY packages onboard
-        requireAll: true
+        - Mail
+        - WrappedParcel
       blacklist:
-        sizes: #disallow anything that isnt huge
-        - Large
+        sizes:
         - Normal
         - Small
         - Tiny
