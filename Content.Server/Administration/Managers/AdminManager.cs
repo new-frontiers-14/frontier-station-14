@@ -389,8 +389,13 @@ namespace Content.Server.Administration.Managers
             };
 
             _admins.Add(session, reg);
+            var contentdata = session.ContentData();
+            if (contentdata == null)
+            {
+                return;
+            }
 
-            if (session.ContentData()!.Stealthed)
+            if (contentdata.Stealthed)
                 reg.Data.Stealth = true;
 
             if (reg.Data.Active)
