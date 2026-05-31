@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: booleandata (https://github.com/booleandata)
+# Discord: boolean_9386
+
+# Maintainer Info
+# GitHub: booleandata (https://github.com/booleandata)
+# Discord: boolean_9386
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Balena
+  parent: BaseVessel
+  name: PT Balena
+  description: A full service super-yacht with a bar, hot tub, and conversation pit.
+  price: 58000 # 17518 0.06 18569.08
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Balena.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Balena
+  mapName: 'PT Balena'
+  mapPath: /Maps/_NF/Shuttles/Balena.yml
+  minPlayers: 0
+  stations:
+    Balena:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Balena {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
