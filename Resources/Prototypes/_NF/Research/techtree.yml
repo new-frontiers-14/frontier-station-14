@@ -1880,8 +1880,8 @@
   position: 3, 43
 
 - type: technology
-  id: NFBulkPistolAmmo
-  name: nf-research-technology-pistol-ammo-bulk
+  id: NFBulkAmmo
+  name: nf-research-technology-ammo-bulk
   entityIcon: NFAmmunitionBoxBigPistol35
   discipline: NFArsenalMercenary
   tier: 1
@@ -1891,6 +1891,12 @@
   - NFAmmunitionBoxBigPistol35Overpressure
   - NFAmmunitionBoxBigPistol45
   - NFAmmunitionBoxBigPistol45Overpressure
+  - NFAmmunitionBoxBigRifle20
+  - NFAmmunitionBoxBigRifle20Overpressure
+  - NFAmmunitionBoxBigRifle30
+  - NFAmmunitionBoxBigRifle30Overpressure
+  - NFAmmunitionBoxBigShotgunBuckshot
+  - NFAmmunitionBoxBigShotgunOverpressure
   technologyPrerequisites:
   - NFImprovedRifleAmmo
   position: 3, 44
@@ -1915,21 +1921,3 @@
   - NFImprovedSalvageWeapons
   - NFExplosiveTechnology
   position: 4, 40
-
-- type: technology
-  id: NFBulkRifleAmmo
-  name: nf-research-technology-rifle-ammo-bulk
-  entityIcon: NFAmmunitionBoxBigRifle20
-  discipline: NFArsenalMercenary
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - NFAmmunitionBoxBigRifle20
-  - NFAmmunitionBoxBigRifle20Overpressure
-  - NFAmmunitionBoxBigRifle30
-  - NFAmmunitionBoxBigRifle30Overpressure
-  - NFAmmunitionBoxBigShotgunBuckshot
-  - NFAmmunitionBoxBigShotgunOverpressure
-  technologyPrerequisites:
-  - NFBulkPistolAmmo
-  position: 4, 44
