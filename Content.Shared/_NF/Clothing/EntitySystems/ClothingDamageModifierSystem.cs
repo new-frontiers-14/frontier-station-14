@@ -46,13 +46,22 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
             if (!source.AppliesTo(args.Context))
                 continue;
 
-            var flat = source.GetFlatBonus(args.Context);
-            if (flat != null)
-                args.Damage += flat;
-
             var mod = source.GetModifierSet(args.Context);
             if (mod != null)
                 args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, mod);
+        }
+
+        foreach (var sourceUid in comp.Sources)
+        {
+            if (!TryComp<ClothingDamageModifierComponent>(sourceUid, out var source))
+                continue;
+
+            if (!source.AppliesTo(args.Context))
+                continue;
+
+            var flat = source.GetFlatBonus(args.Context);
+            if (flat != null)
+                args.Damage += flat;
         }
 
     }
