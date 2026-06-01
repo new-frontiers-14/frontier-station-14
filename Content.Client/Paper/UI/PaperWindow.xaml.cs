@@ -325,27 +325,6 @@ namespace Content.Client.Paper.UI
             BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0;
 
             // Begin RMC14
-            if (isEditing)
-            {
-                // Reset margin to original when editing (no tag buttons visible)
-                PaperContent.Margin = _originalContentMargin;
-
-                // Initialize the text input field with server content if it's currently empty
-                // This allows editing existing documents while preserving any text the user has already typed
-                var shouldCopy = Input.TextLength == 0 && state.Text.Length > 0;
-                if (shouldCopy)
-                {
-                    // We can get repeated messages with state.Mode == Write if another
-                    // player opens the UI for reading. In this case, don't update the
-                    // text input, as this player is currently writing new text and we
-                    // don't want to lose any text they already input.
-                    Input.TextRope = Rope.Leaf.Empty;
-                    Input.CursorPosition = new TextEdit.CursorPos();
-                    Input.InsertAtCursor(state.Text);
-                }
-                return;
-            }
-
             // Reset form, signature, and check counters before processing to ensure consistent indexing
             // This is crucial because the tag handlers maintain state between renders
             FormTagHandler.SetFormText(state.Text);
