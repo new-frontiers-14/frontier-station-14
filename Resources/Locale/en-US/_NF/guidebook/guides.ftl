@@ -26,7 +26,7 @@ guide-entry-medical-doc = Director of Care
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
 guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
-guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
+guide-entry-weapons-color-codes-ammo = Ammunition Color Codes
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
@@ -48,6 +48,7 @@ guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-anchor = Anchor
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-balena = Balena
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-baroness = Baroness
 guide-entry-shipyard-bocadillo = Bocadillo
