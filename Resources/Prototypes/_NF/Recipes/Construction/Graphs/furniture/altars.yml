@@ -352,6 +352,21 @@
         store: altar_cloth
         amount: 3
         doAfter: 2
+# Lamp Altar
+    - to: AltarLampNode
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - component: Lantern
+        name: construction-graph-component-lantern
+        store: altar_component
+        icon:
+          sprite: Objects/Tools/lantern.rsi
+          state: lantern
+      - material: Cloth
+        store: altar_cloth
+        amount: 3
+        doAfter: 2
 # Dismantle
     - to: start
       conditions:
@@ -581,6 +596,20 @@
 
   - node: AltarMailNode
     entity: AltarMail
+    edges:
+    - to: AltarFrameNode
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 3
+
+  - node: AltarLampNode
+    entity: AltarLamp
     edges:
     - to: AltarFrameNode
       conditions:
