@@ -319,14 +319,14 @@ public sealed class PaperSystem : EntitySystem
         if (CanStamp(stampInfo, entity.Comp)) // Frontier: !entity.Comp.StampedBy.Contains(stampInfo) < CanStamp(stampInfo, entity.Comp)
         {
             entity.Comp.StampedBy.Add(stampInfo);
-            // Begin RMC
+            // Begin RMC14
             // Clean unfilled form and signature tags when stamping to finalize the document
             var cleanedContent = CleanUnfilledTags(entity.Comp.Content);
             if (cleanedContent != entity.Comp.Content)
             {
                 SetContent(entity, cleanedContent);
             }
-            // End RMC
+            // End RMC14
             Dirty(entity);
             if (entity.Comp.StampState == null && TryComp<AppearanceComponent>(entity, out var appearance))
             {
@@ -497,7 +497,7 @@ public sealed class PaperSystem : EntitySystem
         _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.StampedBy, entity.Comp.Mode));
     }
 
-    // Begin RMC
+    // Begin RMC14
     private void OnSignatureRequest(Entity<PaperComponent> entity, ref PaperSignatureRequestMessage args)
     {
         var signature = GetPlayerSignature(args.Actor);
@@ -599,7 +599,7 @@ public sealed class PaperSystem : EntitySystem
                   .Replace("[signature]", string.Empty)
                   .Replace("[check]", "☐");
     }
-    // End RMC
+    // End RMC14
 }
 
 /// <summary>
