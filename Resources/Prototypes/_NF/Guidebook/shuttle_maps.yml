@@ -55,6 +55,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapBalena
+  name: "PT Balena"
+  description: "Detailed map of a Balena shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: balena
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapBarge
   name: "NC Barge"
   description: "Detailed map of a Barge shuttle."
@@ -151,6 +162,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: caladrius
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapCamper
+  name: "SSF Camper"
+  description: "Detailed map of a Camper shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: camper
 
 - type: entity
   parent: PosterBase
