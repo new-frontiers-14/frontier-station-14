@@ -68,6 +68,24 @@ public sealed class ToggleableAccentSystem : EntitySystem
         comp.IsAccentActive = false;
     }
 
+    /// <summary>
+    /// Make an accent toggleable
+    /// </summary>
+    /// <param name="accentHolder">The entity to have the accent applied to</param>
+    /// <param name="accentCompName">The (already created) accent component</param>
+    /// <param name="startActive">If the accent should start enabled or disabled</param>
+    /// <param name="replacementAccentId">If the accent is a ReplacementAccent, the id of the accent to use</param>
+    /// <param name="removalBehavior">What should happen if the ToggleableAccentComponent was removed</param>
+    public void MakeAccentToggleable(EntityUid accentHolder,
+        string accentCompName,
+        bool startActive,
+        string? replacementAccentId = null,
+        ToggleableAccentComponent.OnRemovalBehavior removalBehavior = ToggleableAccentComponent.OnRemovalBehavior.DEFAULT)
+    {
+        //TODO: Validate that you're passing an accent instead of doing something *really* stupid
+
+    }
+
 
 
 }

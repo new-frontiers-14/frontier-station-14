@@ -763,8 +763,25 @@ public sealed class EntityEffectSystem : EntitySystem
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
         // This also works on entities that already have a mind
         // We call this before the mind check to allow things like player-controlled mice to be able to benefit from the effect
-        RemComp<ReplacementAccentComponent>(uid);
-        RemComp<MonkeyAccentComponent>(uid);
+
+        //Start Frontier: Instead of removing ReplacementAccentComponent and MonkeyAccentComponent, store them in a
+        //ToggleableAccentComponent to allow people to decide if they want to have the ability to speak coherently or not
+
+        if (TryComp<ReplacementAccentComponent>(uid, out var replacementAccentComp))
+        {
+            var accentId = replacementAccentComp.Accent;
+
+
+        }
+        else if (TryComp<MonkeyAccentComponent>(uid, out var monkeyAccentComp))
+        {
+
+        }
+
+        //Frontier: Below lines made obsolete
+        //RemComp<ReplacementAccentComponent>(uid);
+        //RemComp<MonkeyAccentComponent>(uid);
+        //End Frontier
 
         // Stops from adding a ghost role to things like people who already have a mind
         if (TryComp<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
