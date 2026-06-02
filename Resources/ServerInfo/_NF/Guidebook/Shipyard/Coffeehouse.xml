@@ -2,9 +2,11 @@
   # COFFEEHOUSE-CLASS RESTAURANT SHUTTLE
   <Box>
   <GuideEntityEmbed Entity="NFPosterContrabandSsfLogo" Caption=""/>
-  <GuideEntityEmbed Entity="ImpCoffeeMachine" Caption="Brew"/>
-  <GuideEntityEmbed Entity="FoodCoffeeBeansRoastedLight" Caption="Some"/>
-  <GuideEntityEmbed Entity="DrinkCafeLatte" Caption="Coffee"/>
+  <GuideEntityEmbed Entity="ImpCoffeeMachine" Caption=""/>
+  <GuideEntityEmbed Entity="FoodCoffeeBeansRoastedLight" Caption="Coffee"/>
+  <GuideEntityEmbed Entity="LeavesTea" Caption="Tea"/>
+  <GuideEntityEmbed Entity="FoodCocoaBeans" Caption="Chocolate"/>
+  <GuideEntityEmbed Entity="ImpCoffeeMachine" Caption=""/>
   <GuideEntityEmbed Entity="NFPosterContrabandSsfLogo" Caption=""/>
   </Box>
   <Box>
@@ -18,18 +20,22 @@
 
   # Shuttle Brief
 
-  "A small-sized café ship equipped with a small kitchen and botany, ready to brew the best coffee in the galaxy."
+  "A small-sized café ship equipped with a small kitchen and botany, ready to brew the best coffee, tea, and chocolate in the galaxy."
 
   [italic]Brought to you by Settler's Spacecraft Firm.[/italic]
 
   # Ship Functions
+  ## Ship Buttons
   <Box>
   <GuideEntityEmbed Entity="ButtonFrameCautionSecurity" Caption="Bolt Exterior Airlocks"/>
   <GuideEntityEmbed Entity="ButtonFrameCaution" Caption="Power Down Thrusters"/>
+  </Box>
+  <Box>
   <GuideEntityEmbed Entity="ButtonFrameGrey" Caption="Toggle Shutters"/>
+  <GuideEntityEmbed Entity="ButtonFrameJanitor" Caption="Toggle Conveyor Belt"/>
   </Box>
 
-  # Entertainment
+  # Food and Drinks
 
   [bold][color=#a4885c]________________________________________________________________________[/color]
 
@@ -111,7 +117,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Mix it with water, 3:1 ratio of water to coffee grounds for maximum coffee extraction without diluting it.
+      Mix it with water, 1:5 ratio of coffee grounds to water for maximum coffee extraction without diluting it.
       </Box>
     </ColorBox>
 
@@ -147,7 +153,18 @@
       </Box>
     </ColorBox>
   </Table>
-  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  [bold][color=#a4885c]__________[/color]
+
+  ## Other Brews
+  
+  Other brews with similar method to brewing coffee.
+  
+  [color=#a4885c]Tea:[/color] 1:5 ratio of tea to water.
+
+  [color=#a4885c]Hot Cocoa:[/color] 1:1 ratio of cocoa powder to water
+
+  [bold][color=#a4885c]__________[/color]
 
   ## Related Guides
 <Table Columns="3">
@@ -187,24 +204,85 @@
   [bold][color=#a4885c]________________________________________________________________________[/color]
 
   # Piloting
+  ### Piloting Equipment Specifications:
+  [color=#a4885c]Thrusters:[/color] [bold]6 Standard[/bold] [color=#999999](2 Forward, 2 Backward, 1 Left, 1 Right.)[/color]
 
-  - [textlink="Piloting" link="Piloting"/]
+  [color=#a4885c]Gyroscopes:[/color] [bold]1 Standard[/bold]
 
-  - [textlink="Sector Topology" link="SectorTopology"/]
+  [color=#a4885c]This shuttle is equipped with a thruster/gyroscope switch, check the ship functions section.[/color]
+
+  [bold][color=#a4885c]__________[/color]
+  
+  ## Related Guides
+
+<Table Columns="2">
+    <ColorBox Color="#a88b5e">
+      <Box VerticalAlignment="Center">
+      Piloting
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#a88b5e">
+      <Box VerticalAlignment="Center">
+      Sector
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
+      [textlink="Piloting Basics" link="Piloting"/]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
+      [textlink="Sector Topology" link="SectorTopology"/]
+      </Box>
+    </ColorBox>
+  </Table>
 
   [bold][color=#a4885c]________________________________________________________________________[/color]
 
   # Hiring crew
 
-  - [textlink="Hiring" link="Hiring"/]
+  - [textlink="For details on the process of Hiring, click here." link="Hiring"/]
 
-  - As a Captain of a Nanotrasen vessel, you have the authority to hire, fire, demote, or promote crew members at will.
+  [color=#a4885c] As a Captain of a Nanotrasen vessel, you have the authority to hire, fire, demote, or promote crew members at will. [/color]
+  
+  ### Recommended Positions:
+  [color=#a4885c]Barista:[/color] Brew and serves drinks for customers.
+
+  [color=#a4885c]Botanist:[/color] Grows and harvests ingredients for drinks, such as coffee beans and tea leaves.
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # Fuel and Power
+
+<Table Columns="2">
+    <ColorBox Color="#a88b5e">
+      <Box VerticalAlignment="Center">
+      Optimal [bold]Target Power[/bold] (kW)
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#a88b5e">
+      <Box VerticalAlignment="Center">
+      Fuel Mileage
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
+      20 [bold]kW[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
+      [bold]45[/bold] Minutes Per [bold]30[/bold] [color=#E03FD8]Plasma[/color] Fuel
+      </Box>
+    </ColorBox>
+  </Table>
 
   [bold][color=#a4885c]________________________________________________________________________[/color]
 
   # PREFLIGHT CHECKLIST
-
-  - Optimal [bold]Target Power[/bold] (kW) for the Coffeehouse is [color=#a4885c]17 [bold]kW[/bold][/color].
 
   - [textlink="Preflight Checklist" link="PreflightChecklist"/]
 </Document>
