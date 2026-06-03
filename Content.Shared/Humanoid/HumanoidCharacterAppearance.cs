@@ -34,7 +34,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     // Frontier - size editor
     [DataField]
-    public float Size { get; set; } = 1;
+    public float Size { get; set; } = -1;
     // End Frontier - size editor
 
     public HumanoidCharacterAppearance(string hairStyleId,
