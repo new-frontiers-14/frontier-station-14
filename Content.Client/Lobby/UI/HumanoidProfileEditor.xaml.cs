@@ -1643,7 +1643,9 @@ namespace Content.Client.Lobby.UI
             if (size < speciesProto.MinSize || size > speciesProto.MaxSize)
                 size = speciesProto.DefaultSize;
 
-            SizePicker.Value = size;
+            // Force the size picker to update
+            SizePicker.SetValueWithoutEvent(size);
+            OnSizePickerOnValueChanged(size);
         }
         // End Frontier - size editor
 

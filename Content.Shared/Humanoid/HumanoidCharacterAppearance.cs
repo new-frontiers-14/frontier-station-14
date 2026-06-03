@@ -235,7 +235,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             markingSet.EnsureSexes(sex, markingManager);
 
             // Frontier - size editor - reset to default if out of range
-            if (appearance.Size < speciesProto.MinSize || appearance.Size > speciesProto.MaxSize)
+            size = appearance.Size;
+            if (size < speciesProto.MinSize || size > speciesProto.MaxSize)
                 size = speciesProto.DefaultSize;
             // End Frontier
         }
