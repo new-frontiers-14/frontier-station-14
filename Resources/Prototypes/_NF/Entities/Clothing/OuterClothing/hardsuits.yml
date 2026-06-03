@@ -471,6 +471,42 @@
         Heat: 1.25
   
 
+# Pirate Aurecorsa Hardsuit
+- type: entity
+  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing]
+  id: ClothingOuterHardsuitPirateAurecorsa
+  name: aurecorsa pirate hardsuit
+  description: An ornamental hardsuit befitting an admiral, its design "appropriated" from cutting-edge megacorporate technology and redecorated in the style of a freelancer. Equipped with kinetic amplifiers and micro-actuators in the arms, it delivers more punishing close-quarters strikes while sacrificing armor for greater agility and fluid movement.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_aurecorsa.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_aurecorsa.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateAurecorsa
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.85
+        Radiation: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.9
+  - type: ClothingDamageModifier
+    affects:
+      - Melee
+    damageModifierSet:
+      coefficients:
+        Blunt: 1.25
+        Slash: 1.25
+        Heat: 1.25
+  
+
 #Wizard Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent
