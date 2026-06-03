@@ -91,12 +91,12 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        if (component.BonusDamage == null && component.DamageModifierSet == null)
+        if (component.BonusDamage == null && component.DamageModifierSet == null && component.StaminaFlatBonus == null && component.StaminaMultiplier == null)
             return;
 
         var examineMarkup = new FormattedMessage();
         GetCombatStyleDetails(examineMarkup, component);
-        GetDamageDetails(examineMarkup, component.BonusDamage, component.DamageModifierSet);
+        GetDamageDetails(examineMarkup, component.BonusDamage, component.DamageModifierSet, component.StaminaFlatBonus, component.StaminaMultiplier);
 
         _examine.AddDetailedExamineVerb(args, component, examineMarkup, Loc.GetString("clothing-damage-examinable-verb-text"), "/Textures/Interface/VerbIcons/knife.svg.192dpi.png", Loc.GetString("clothing-damage-examinable-verb-message"));
     }
@@ -122,9 +122,9 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
         msg.AddMarkupOrThrow(Loc.GetString("clothing-damage-modifiers-present-for-contexts", ("contexts", contextsText)));
     }
 
-    private void GetDamageDetails(FormattedMessage msg, DamageSpecifier? bonus, DamageModifierSet? modifiers)
+    private void GetDamageDetails(FormattedMessage msg, DamageSpecifier? bonus, DamageModifierSet? modifiers, float? staminaFlatBonus, float? staminaMultiplier)
     {
-        if (bonus == null && modifiers == null)
+        if (bonus == null && modifiers == null && staminaFlatBonus == null && staminaMultiplier == null)
         {
             msg.AddMarkupOrThrow(Loc.GetString($"clothing-damage-no-changes"));
         }
@@ -169,6 +169,44 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
                 {
                     msg.PushNewline();
                     msg.AddMarkupOrThrow(Loc.GetString($"clothing-damage-coefficient-decrease", ("type", type), ("amount", MathF.Round(((float)amount - 1f) * 100, 1))));
+                }
+            }
+        }
+
+        if (staminaFlatBonus != null)
+        {
+            if (staminaFlatBonus != 0f)
+            {
+                if (staminaFlatBonus > 0)
+                {
+                    msg.PushNewline();
+                    msg.AddMarkupOrThrow(Loc.GetString($"clothing-damage-stamina-flat-increase", ("amount", MathF.Round((float)staminaFlatBonus, 1))));
+                }
+                else
+                {
+                    msg.PushNewline();
+                    msg.AddMarkupOrThrow(Loc.GetString($"clothing-damage-stamina-flat-decrease", ("amount", MathF.Abs(MathF.Round((float)staminaFlatBonus, 1)))));
+                }
+            }
+        }
+        if (staminaMultiplier != null)
+        {
+            if (staminaFlatBonus != null)
+            {
+                msg.PushNewline();
+            }
+
+            if (staminaMultiplier != 1f)
+            {
+                if (staminaMultiplier > 1)
+                {
+                    msg.PushNewline();
+                    msg.AddMarkupOrThrow(Loc.GetString($"clothing-damage-stamina-coefficient-increase", ("amount", MathF.Round(((float)staminaMultiplier - 1f) * 100, 1))));
+                }
+                if (staminaMultiplier < 1 && staminaMultiplier != 0)
+                {
+                    msg.PushNewline();
+                    msg.AddMarkupOrThrow(Loc.GetString($"clothing-damage-stamina-coefficient-decrease", ("amount", MathF.Round(((float)staminaMultiplier - 1f) * 100, 1))));
                 }
             }
         }
