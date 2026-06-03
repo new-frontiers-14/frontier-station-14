@@ -46,7 +46,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly SharedIdentitySystem _identity = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!; // Frontier
+    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!; // Frontier
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
@@ -396,13 +396,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (!Resolve(uid, ref humanoid) || scale <= 0f)
             return;
 
-        EnsureComp<ScaleVisualsComponent>(uid);
-
-        var appearanceComponent = EnsureComp<AppearanceComponent>(uid);
-        if (!_appearance.TryGetData<Vector2>(uid, ScaleVisuals.Scale, out var oldScale, appearanceComponent))
-            oldScale = Vector2.One;
-
-        _appearance.SetData(uid, ScaleVisuals.Scale, oldScale * scale, appearanceComponent);
+        var component = EnsureComp<ScaleVisualsComponent>(uid);
+        var oldScale = component.Scale;
+        var scaleReciprocal = 1 / oldScale.Y;
+        // Use the height's reciprocal so that we can assume Y = 1 for scaling,
+        // while retaining the proportions of X;
+        // i.e. for Dwarves ([1, 0.8]) and Sheleg ([1.5, 1.2])
+        _scaleVisuals.SetSpriteScale(uid, oldScale * scaleReciprocal * scale);
 
         if (density != null && TryComp(uid, out FixturesComponent? manager))
         {
