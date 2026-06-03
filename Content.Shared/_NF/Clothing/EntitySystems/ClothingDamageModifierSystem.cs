@@ -16,6 +16,7 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
         SubscribeLocalEvent<ClothingDamageModifierComponent, ClothingGotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<ClothingDamageModifierComponent, ClothingGotUnequippedEvent>(OnUnequipped);
         SubscribeLocalEvent<WearerDamageModifierComponent, ApplyClothingDamageModifierEvent>(OnApplyDamageModifiers);
+        SubscribeLocalEvent<WearerDamageModifierComponent, ApplyClothingStaminaModifierEvent>(OnApplyStaminaModifiers);
         SubscribeLocalEvent<ClothingDamageModifierComponent, GetVerbsEvent<ExamineVerb>>(OnClothingVerbExamine);
     }
 
@@ -55,6 +56,34 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
                 args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, mod);
         }
 
+    }
+
+    private void OnApplyStaminaModifiers(EntityUid uid, WearerDamageModifierComponent comp, ref ApplyClothingStaminaModifierEvent args)
+    {
+        if (comp.Sources.Count == 0)
+            return;
+
+        foreach (var sourceUid in comp.Sources)
+        {
+            if (!TryComp<ClothingDamageModifierComponent>(sourceUid, out var source))
+                continue;
+
+            if (!source.AppliesTo(args.Context))
+                continue;
+
+            args.StaminaDamage *= source.StaminaMultiplier ?? 1f;
+        }
+
+        foreach (var sourceUid in comp.Sources)
+        {
+            if (!TryComp<ClothingDamageModifierComponent>(sourceUid, out var source))
+                continue;
+
+            if (!source.AppliesTo(args.Context))
+                continue;
+
+            args.StaminaDamage += source.StaminaFlatBonus ?? 0f;
+        }
     }
 
     private void OnClothingVerbExamine(EntityUid uid, ClothingDamageModifierComponent component, ref GetVerbsEvent<ExamineVerb> args)
