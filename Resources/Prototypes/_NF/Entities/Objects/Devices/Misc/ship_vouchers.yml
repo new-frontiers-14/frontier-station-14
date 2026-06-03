@@ -61,6 +61,26 @@
     accessGroups: # Frontier
     - GeneralNfsdAccess # Frontier
 
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherNfsdBrigmed
+  name: NFSD brigmedic ship voucher
+  description: Allows for one free brigmedic or small generic NFSD ship purchase. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: nfsd
+    - state: voucherbrigmed
+  - type: Item
+    heldPrefix: nfsd
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Security
+    access:
+    - Brigmedic
+    accessGroups:
+    - GeneralNfsdAccess
+
 # Frontier vouchers
 - type: entity
   parent: BaseShipVoucher
