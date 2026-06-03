@@ -131,10 +131,27 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     /// <summary>
     ///     Frontier: The species' default value for scaling.
-    ///     TO-DO: Split this into 3 values; one default, one for upper bound and one for lower bound
     /// </summary>
     [DataField]
-    public float Size { get; private set; } = 1f;
+    public float DefaultSize { get; private set; } = 1f;
+
+    /// <summary>
+    ///     Frontier: The species' upper bound for scaling.
+    /// </summary>
+    [DataField]
+    public float MaxSize { get; private set; } = 1.2f;
+
+    /// <summary>
+    ///     Frontier: The species' upper bound for scaling.
+    /// </summary>
+    [DataField]
+    public float MinSize { get; private set; } = 0.8f;
+
+    /// <summary>
+    ///     Frontier: Density override for a species. Optional; leave null for no change
+    /// </summary>
+    [DataField]
+    public float? Density { get; private set; } = null;
 }
 
 public enum SpeciesNaming : byte

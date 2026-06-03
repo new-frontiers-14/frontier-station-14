@@ -15,7 +15,7 @@ namespace Content.Server.Database.Migrations.Postgres
                 table: "profile",
                 type: "real",
                 nullable: false,
-                defaultValue: 1f);
+                defaultValue: -1f);
         }
 
         /// <inheritdoc />

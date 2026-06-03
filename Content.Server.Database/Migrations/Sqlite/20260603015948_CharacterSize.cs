@@ -15,7 +15,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                 table: "profile",
                 type: "REAL",
                 nullable: false,
-                defaultValue: 1f);
+                defaultValue: -1f);
         }
 
         /// <inheritdoc />

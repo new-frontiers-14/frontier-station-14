@@ -123,7 +123,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             skinColor,
             new (),
-            speciesPrototype.Size // Frontier - size editor
+            speciesPrototype.DefaultSize // Frontier - size editor
         );
     }
 
@@ -161,7 +161,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
         var newEyeColor = random.Pick(RealisticEyeColors);
 
-        var skinType = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species).SkinColoration;
+        var speciesProto = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species); // Frontier
+        var skinType = speciesProto.SkinColoration; // Frontier
 
         var newSkinColor = new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1);
         switch (skinType)
@@ -179,7 +180,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 break;
         }
 
-        var newSize = random.NextFloat(0.8f, 1.2f); // Frontier - size editor - TODO: Don't hard-code this
+        var newSize = random.NextFloat(speciesProto.MinSize * 1.1f, speciesProto.MaxSize * 0.9f); // Frontier - size editor - random range shrunk slightly to avoid randomized extremes (extremes should be player opt-in where possible)
 
         return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newSize);
 
@@ -203,7 +204,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
 
-        var size = Math.Clamp(appearance.Size, 0.8f, 1.2f); // Frontier - size editor - TODO: Don't hard-code this
+        var size = -1f; // Frontier - size editor - failsafe that ensures default reinterpretation even if saved; should be overwritten in the species check
 
         var proto = IoCManager.Resolve<IPrototypeManager>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
@@ -232,6 +233,11 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
             markingSet.EnsureSpecies(species, skinColor, markingManager);
             markingSet.EnsureSexes(sex, markingManager);
+
+            // Frontier - size editor - reset to default if out of range
+            if (appearance.Size < speciesProto.MinSize || appearance.Size > speciesProto.MaxSize)
+                size = speciesProto.DefaultSize;
+            // End Frontier
         }
 
         return new HumanoidCharacterAppearance(

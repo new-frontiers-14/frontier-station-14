@@ -1126,8 +1126,8 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
-            size = Math.Clamp(size, 0.8f, 1.2f); // TODO: Don't hard-code this
-            SizeEdit.Text = size.ToString("N2");
+            size = Math.Clamp(size, SizePicker.MinValue, SizePicker.MaxValue);
+            SizeEdit.Text = size.ToString("N2"); // Purely visual; round the displayed value to 2 decimal places
             Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSize(size));
             SetDirty();
         }
@@ -1287,6 +1287,7 @@ namespace Content.Client.Lobby.UI
             UpdateSexControls(); // update sex for new species
             UpdateSpeciesGuidebookIcon();
             ReloadPreview();
+            UpdateSizePicker(); // Frontier
         }
 
         private void SetName(string newName)
@@ -1625,6 +1626,7 @@ namespace Content.Client.Lobby.UI
             EyeColorPicker.SetData(Profile.Appearance.EyeColor);
         }
 
+        // Frontier - size editor
         private void UpdateSizePicker()
         {
             if (Profile == null)
@@ -1632,8 +1634,18 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            SizePicker.Value = Profile.Appearance.Size;
+            var speciesProto = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+            var size = Profile.Appearance.Size;
+
+            SizePicker.MinValue = speciesProto.MinSize;
+            SizePicker.MaxValue = speciesProto.MaxSize;
+
+            if (size < speciesProto.MinSize || size > speciesProto.MaxSize)
+                size = speciesProto.DefaultSize;
+
+            SizePicker.Value = size;
         }
+        // End Frontier - size editor
 
         private void UpdateSaveButton()
         {
