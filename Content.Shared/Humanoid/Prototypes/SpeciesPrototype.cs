@@ -128,6 +128,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public Color ForcedMarkingColor { get; private set; } = new();
+
+    /// <summary>
+    ///     Frontier: The species' default value for scaling.
+    ///     TO-DO: Split this into 3 values; one default, one for upper bound and one for lower bound
+    /// </summary>
+    [DataField]
+    public float Size { get; private set; } = 1f;
 }
 
 public enum SpeciesNaming : byte

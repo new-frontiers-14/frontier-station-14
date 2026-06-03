@@ -247,6 +247,33 @@ namespace Content.Client.Lobby.UI
 
             #endregion
 
+            // Frontier - size editor
+            #region Size
+
+            SizePicker.OnValueChanged += newSize =>
+            {
+                OnSizePickerOnValueChanged(newSize.Value);
+            };
+
+            SizeEdit.OnTextChanged += args =>
+            {
+                if (!float.TryParse(args.Text, out var newSize))
+                    return;
+
+                SizePicker.SetValueWithoutEvent(newSize);
+            };
+
+            SizeEdit.OnFocusExit += args =>
+            {
+                if (!float.TryParse(args.Text, out var newSize))
+                    return;
+
+                OnSizePickerOnValueChanged(newSize);
+            };
+
+            #endregion
+            // End Frontier - size editor
+
             #region Hair
 
             HairStylePicker.OnMarkingSelect += newStyle =>
@@ -777,6 +804,7 @@ namespace Content.Client.Lobby.UI
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
+            UpdateSizePicker(); // Frontier
 
             RefreshAntags();
             RefreshJobs();
@@ -1092,6 +1120,19 @@ namespace Content.Client.Lobby.UI
             ReloadProfilePreview();
         }
 
+        // Frontier - size editor
+        private void OnSizePickerOnValueChanged(float size)
+        {
+            if (Profile is null)
+                return;
+
+            size = Math.Clamp(size, 0.8f, 1.2f); // TODO: Don't hard-code this
+            SizeEdit.Text = (Math.Truncate(size * 100) / 100).ToString();
+            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSize(size));
+            SetDirty();
+        }
+        // End Frontier - size editor
+
         private void OnSkinColorOnValueChanged()
         {
             if (Profile is null) return;
@@ -1101,75 +1142,75 @@ namespace Content.Client.Lobby.UI
             switch (skin)
             {
                 case HumanoidSkinColor.HumanToned:
-                {
-                    if (!Skin.Visible)
                     {
-                        Skin.Visible = true;
-                        RgbSkinColorContainer.Visible = false;
+                        if (!Skin.Visible)
+                        {
+                            Skin.Visible = true;
+                            RgbSkinColorContainer.Visible = false;
+                        }
+
+                        var color = SkinColor.HumanSkinTone((int) Skin.Value);
+
+                        Markings.CurrentSkinColor = color;
+                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));//
+                        break;
                     }
-
-                    var color = SkinColor.HumanSkinTone((int) Skin.Value);
-
-                    Markings.CurrentSkinColor = color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));//
-                    break;
-                }
                 case HumanoidSkinColor.Hues:
-                {
-                    if (!RgbSkinColorContainer.Visible)
                     {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
-                    }
+                        if (!RgbSkinColorContainer.Visible)
+                        {
+                            Skin.Visible = false;
+                            RgbSkinColorContainer.Visible = true;
+                        }
 
-                    Markings.CurrentSkinColor = _rgbSkinColorSelector.Color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(_rgbSkinColorSelector.Color));
-                    break;
-                }
+                        Markings.CurrentSkinColor = _rgbSkinColorSelector.Color;
+                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(_rgbSkinColorSelector.Color));
+                        break;
+                    }
                 case HumanoidSkinColor.TintedHues:
-                {
-                    if (!RgbSkinColorContainer.Visible)
                     {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
+                        if (!RgbSkinColorContainer.Visible)
+                        {
+                            Skin.Visible = false;
+                            RgbSkinColorContainer.Visible = true;
+                        }
+
+                        var color = SkinColor.TintedHues(_rgbSkinColorSelector.Color);
+
+                        Markings.CurrentSkinColor = color;
+                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                        break;
                     }
-
-                    var color = SkinColor.TintedHues(_rgbSkinColorSelector.Color);
-
-                    Markings.CurrentSkinColor = color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                    break;
-                }
                 case HumanoidSkinColor.VoxFeathers:
-                {
-                    if (!RgbSkinColorContainer.Visible)
                     {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
+                        if (!RgbSkinColorContainer.Visible)
+                        {
+                            Skin.Visible = false;
+                            RgbSkinColorContainer.Visible = true;
+                        }
+
+                        var color = SkinColor.ClosestVoxColor(_rgbSkinColorSelector.Color);
+
+                        Markings.CurrentSkinColor = color;
+                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                        break;
                     }
-
-                    var color = SkinColor.ClosestVoxColor(_rgbSkinColorSelector.Color);
-
-                    Markings.CurrentSkinColor = color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                    break;
-                }
                 // Frontier: Sheleg
                 case HumanoidSkinColor.ShelegToned:
-                {
-                    if (!Skin.Visible)
                     {
-                        Skin.Visible = true;
-                        RgbSkinColorContainer.Visible = false;
+                        if (!Skin.Visible)
+                        {
+                            Skin.Visible = true;
+                            RgbSkinColorContainer.Visible = false;
+                        }
+
+                        var color = SkinColor.ShelegSkinTone((int)Skin.Value);
+
+                        Markings.CurrentSkinColor = color;
+                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                        break;
                     }
-
-                    var color = SkinColor.ShelegSkinTone((int)Skin.Value);
-
-                    Markings.CurrentSkinColor = color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                    break;
-                }
-                // End Frontier
+                    // End Frontier
             }
 
             ReloadProfilePreview();
@@ -1582,6 +1623,16 @@ namespace Content.Client.Lobby.UI
 
             Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
             EyeColorPicker.SetData(Profile.Appearance.EyeColor);
+        }
+
+        private void UpdateSizePicker()
+        {
+            if (Profile == null)
+            {
+                return;
+            }
+
+            SizePicker.Value = Profile.Appearance.Size;
         }
 
         private void UpdateSaveButton()

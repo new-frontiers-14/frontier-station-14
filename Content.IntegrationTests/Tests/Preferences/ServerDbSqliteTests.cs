@@ -52,7 +52,8 @@ namespace Content.IntegrationTests.Tests.Preferences
                     Color.Aquamarine,
                     Color.Azure,
                     Color.Beige,
-                    new ())
+                    new (),
+                    1f)
             }.WithBankBalance(27000); // Frontier - accessor issue
         }
 

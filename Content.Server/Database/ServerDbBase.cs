@@ -278,7 +278,8 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    profile.Size // Frontier
                 ),
                 spawnPriority,
                 jobs,
@@ -313,6 +314,7 @@ namespace Content.Server.Database
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
+            profile.Size = appearance.Size; // Frontier
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
             profile.Slot = slot;

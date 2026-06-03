@@ -404,6 +404,7 @@ namespace Content.Server.Database
         public string FlavorText { get; set; } = null!;
         public int Age { get; set; }
         public int BankBalance { get; set; } // Frontier
+        public float Size { get; set; } // Frontier
         public string Sex { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;

@@ -32,13 +32,19 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
 
+    // Frontier - size editor
+    [DataField]
+    public float Size { get; set; } = 1;
+    // End Frontier - size editor
+
     public HumanoidCharacterAppearance(string hairStyleId,
         Color hairColor,
         string facialHairStyleId,
         Color facialHairColor,
         Color eyeColor,
         Color skinColor,
-        List<Marking> markings)
+        List<Marking> markings,
+        float size) // Frontier - size editor
     {
         HairStyleId = hairStyleId;
         HairColor = ClampColor(hairColor);
@@ -47,49 +53,55 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         EyeColor = ClampColor(eyeColor);
         SkinColor = ClampColor(skinColor);
         Markings = markings;
+        Size = size; // Frontier - size editor
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings))
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Size)
     {
 
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Size);
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Size);
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Size);
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Size);
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Size);
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Size);
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Size);
     }
-
+    // Frontier - size editor
+    public HumanoidCharacterAppearance WithSize(float newSize)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newSize);
+    }
+    // End Frontier
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
@@ -110,7 +122,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             Color.Black,
             skinColor,
-            new ()
+            new (),
+            speciesPrototype.Size // Frontier - size editor
         );
     }
 
@@ -166,7 +179,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 break;
         }
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new ());
+        var newSize = random.NextFloat(0.8f, 1.2f); // Frontier - size editor - TODO: Don't hard-code this
+
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newSize);
 
         float RandomizeColor(float channel)
         {
@@ -187,6 +202,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var hairColor = ClampColor(appearance.HairColor);
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
+
+        var size = Math.Clamp(appearance.Size, 0.8f, 1.2f); // Frontier - size editor - TODO: Don't hard-code this
 
         var proto = IoCManager.Resolve<IPrototypeManager>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
@@ -224,7 +241,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             facialHairColor,
             eyeColor,
             skinColor,
-            markingSet.GetForwardEnumerator().ToList());
+            markingSet.GetForwardEnumerator().ToList(),
+            size); // Frontier - size editor
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
@@ -237,6 +255,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        if (Size != other.Size) return false; // Frontier - size editor
         return true;
     }
 
