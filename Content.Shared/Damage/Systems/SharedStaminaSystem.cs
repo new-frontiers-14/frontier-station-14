@@ -237,7 +237,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             if (TryComp<WearerDamageModifierComponent>(origin, out _))
             {
                 var ev2 = new ApplyClothingStaminaModifierEvent(origin, context, damage);
-                RaiseLocalEvent(uid, ref ev2);
+                RaiseLocalEvent(origin, ref ev2);
                 damage = ev2.StaminaDamage;
             }
         }
