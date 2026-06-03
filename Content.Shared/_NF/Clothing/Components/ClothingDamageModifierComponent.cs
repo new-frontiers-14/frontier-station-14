@@ -24,6 +24,18 @@ public sealed partial class ClothingDamageModifierComponent : Component
     public DamageModifierSet? DamageModifierSet;
 
     /// <summary>
+    /// A flat bonus added to stamina damage dealt in relevant contexts.
+    /// </summary>
+    [DataField]
+    public float? StaminaFlatBonus;
+
+    /// <summary>
+    /// A multiplicative modifier applied to stamina damage in relevant contexts.
+    /// </summary>
+    [DataField]
+    public float? StaminaMultiplier;
+
+    /// <summary>
     /// Helper function to check whether the damage should be applied in a given context.
     /// </summary>
     public bool AppliesTo(DamageContext context) => Affects.Contains(context);
