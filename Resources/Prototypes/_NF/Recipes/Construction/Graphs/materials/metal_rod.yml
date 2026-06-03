@@ -1,0 +1,18 @@
+- type: constructionGraph
+  id: Anomalite
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: Anomalite
+      steps:
+        - component: AnomalyCore
+          name: construction-graph-component-anomaly-core
+          icon:
+            sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+            state: core
+        - material: ArtifactFragment
+          amount: 10
+
+  - node: Anomalite
+    entity: MaterialAnomalite1
