@@ -220,7 +220,7 @@ namespace Content.Server.Database
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
-            var balance = profile.BankBalance;
+            var balance = profile.BankBalance; // Frontier
 
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             var markingsRaw = profile.Markings?.Deserialize<List<string>>();
@@ -269,7 +269,7 @@ namespace Content.Server.Database
                 profile.Age,
                 sex,
                 gender,
-                balance,
+                balance, // Frontier
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
@@ -306,7 +306,7 @@ namespace Content.Server.Database
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
-            profile.BankBalance = humanoid.BankBalance;
+            profile.BankBalance = humanoid.BankBalance; // Frontier
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
