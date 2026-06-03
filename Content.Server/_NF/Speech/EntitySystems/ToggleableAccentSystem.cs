@@ -1,5 +1,5 @@
 using Content.Server._NF.Speech.Components;
-using Content.Server._NF.Speech.Events;
+using Content.Shared._NF.Speech.Events;
 using Content.Server.Speech.Components;
 using Linguini.Syntax.Ast;
 
