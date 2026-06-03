@@ -5,6 +5,11 @@ clothing-damage-coefficient-increase = - [color=#FFB347]{$type}[/color] damage a
 clothing-damage-coefficient-decrease = - [color=teal]{$type}[/color] damage diminished by [color=lightblue]{$amount}%[/color].
 clothing-damage-flat-increase = - [color=#FFB347]{$type}[/color] damage increased by [color=lightblue]{$amount}[/color].
 clothing-damage-flat-decrease = - [color=teal]{$type}[/color] damage reduced by [color=lightblue]{$amount}[/color].
+
+clothing-damage-stamina-flat-increase = - [color=lightyellow]Stamina[/color] damage increased by [color=lightblue]{$amount}[/color].
+clothing-damage-stamina-flat-decrease = - [color=lightyellow]Stamina[/color] damage reduced by [color=lightblue]{$amount}[/color].
+clothing-damage-stamina-coefficient-increase = - [color=lightyellow]Stamina[/color] damage amplified by [color=lightblue]{$amount}%[/color].
+clothing-damage-stamina-coefficient-decrease = - [color=lightyellow]Stamina[/color] damage diminished by [color=lightblue]{$amount}%[/color].
 clothing-damage-no-changes = This equipment doesn't modify your damage in any specific way. You don't know why you would be reading this.
 
 damage-context-melee = [color=#DC143C]melee[/color]
