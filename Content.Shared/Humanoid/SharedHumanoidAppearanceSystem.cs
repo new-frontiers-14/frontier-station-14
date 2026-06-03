@@ -20,6 +20,8 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
+using Content.Shared.Sprite; // Frontier
+using Robust.Shared.GameObjects; // Frontier
 
 namespace Content.Shared.Humanoid;
 
@@ -41,6 +43,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -377,6 +380,32 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     }
 
     /// <summary>
+    ///     Frontier - Set a humanoid mob's scale. This does not affect density.
+    /// </summary>
+    /// <param name="uid">The humanoid mob's UID.</param>
+    /// <param name="scale">The scale to set the mob to.</param>
+    /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
+    /// <param name="humanoid">Humanoid component of the entity</param>
+    public void SetScale(EntityUid uid, float scale, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!Resolve(uid, ref humanoid) || scale <= 0f)
+            return;
+
+        EnsureComp<ScaleVisualsComponent>(uid);
+
+        var appearanceComponent = EnsureComp<AppearanceComponent>(uid);
+        if (!_appearance.TryGetData<Vector2>(uid, ScaleVisuals.Scale, out var oldScale, appearanceComponent))
+            oldScale = Vector2.One;
+
+        _appearance.SetData(uid, ScaleVisuals.Scale, oldScale * scale, appearanceComponent);
+
+        if (sync)
+        {
+            Dirty(uid, humanoid);
+        }
+    }
+
+    /// <summary>
     ///     Loads a humanoid character profile directly onto this humanoid mob.
     /// </summary>
     /// <param name="uid">The mob's entity UID.</param>
@@ -394,6 +423,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
+        SetScale(uid, profile.Appearance.Size, false, humanoid); // Frontier
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);
