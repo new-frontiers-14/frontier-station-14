@@ -1127,7 +1127,7 @@ namespace Content.Client.Lobby.UI
                 return;
 
             size = Math.Clamp(size, 0.8f, 1.2f); // TODO: Don't hard-code this
-            SizeEdit.Text = (Math.Truncate(size * 100) / 100).ToString();
+            SizeEdit.Text = size.ToString("N2");
             Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSize(size));
             SetDirty();
         }
