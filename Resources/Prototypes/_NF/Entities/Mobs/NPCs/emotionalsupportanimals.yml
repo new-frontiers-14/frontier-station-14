@@ -215,13 +215,6 @@
   Parent: [BaseEmotionalGhost, MobPossum]
   id: MobPossumGhost
   components:
-  - type: ReplacementAccent
-    accent: possum
-  - type: Vocal
-    sounds:
-      Male: Possum
-      Female: Possum
-      Unsexed: Possum
   - type: RandomMetadata
     nameSegments: [NamesPossum]
   - type: Inventory
@@ -232,13 +225,6 @@
   Parent: [BaseEmotionalGhost, MobRaccoon]
   id: MobRaccoonGhost
   components:
-  - type: ReplacementAccent
-    accent: raccoon
-  - type: Vocal
-    sounds:
-      Male: Raccoon
-      Female: Raccoon
-      Unsexed: Raccoon
   - type: RandomMetadata
     nameSegments: [NamesRaccoon]
   - type: Inventory
@@ -246,17 +232,10 @@
 
 - type: entity
   suffix: Ghost
-  Parent: [BaseEmotionalGhost, MobHampster]
-  id: MobHampsterGhost
+  Parent: [BaseEmotionalGhost, MobHamster]
+  id: MobHamsterGhost
   components:
-  - type: ReplacementAccent
-    accent: hampster
-  - type: Vocal
-    sounds:
-      Male: Hampster
-      Female: Hampster
-      Unsexed: Hampster
   - type: RandomMetadata
-    nameSegments: [NamesHampster]
+    nameSegments: [NamesHamster]
   - type: Inventory
-    specidesId: hampster
+    specidesId: hamster
