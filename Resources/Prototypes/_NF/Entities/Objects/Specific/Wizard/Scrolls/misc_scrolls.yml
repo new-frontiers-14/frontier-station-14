@@ -63,3 +63,76 @@
     - id: ScrollCultForge
     sound:
       path: /Audio/Effects/unwrap.ogg
+
+#region cult crafting scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: ScrollRolledCultShade
+  name: blood cult shade binding scroll
+  description: A rolled blood cult shade binding scroll.
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled-paper
+      color: "#f07171"
+    - state: scroll-rolled-ribbon
+      color: "#a80606"
+    - state: scroll-rolled-seal
+      color: "purple"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ScrollCultShadeBinding
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: [ BaseItem, RecyclableItemPaper ]
+  id: ScrollCultShadeBinding
+  name: blood cult shade binding scroll
+  components:
+  - type: Tag
+    tags:
+    - ScrollCultShadeBinding
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+    layers:
+    - state: crystalpaper
+      color: "#ffb2b2"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-06
+      color: "#7a0085"
+      scale: 0.5, 0.5
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-06
+      color: "#7a0085"
+      scale: 0.5, 0.5
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-06
+      color: "#7a0085"
+      scale: 0.5, 0.5
+      shader: unshaded
+    - state: crystalpaper-text-unshaded
+      color: "#c72929"
+      shader: unshaded
+    - state: crystalpaper-sparks-unshaded
+      color: "#c72929"
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+    inhandVisuals:
+      left:
+      - state: scroll-unrolled-inhand-left
+      - state: scroll-unrolled-glow-inhand-left
+        color: "#7a0085"
+        shader: unshaded
+      right:
+      - state: scroll-unrolled-inhand-right
+      - state: scroll-unrolled-glow-inhand-right
+        color: "#7a0085"
+        shader: unshaded

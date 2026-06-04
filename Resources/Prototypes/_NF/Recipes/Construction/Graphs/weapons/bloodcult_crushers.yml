@@ -1,0 +1,87 @@
+
+- type: constructionGraph
+  id: NFWeaponCrusherAxeCorrupted
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFWeaponCrusherAxeBloodCult
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+      - tag: ScrollCultShadeBinding
+        name: construction-graph-tag-nf-blood-cult-scroll-shade-binding
+        icon:
+          sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+          state: crystalpaper
+        doAfter: 5
+  - node: NFWeaponCrusherAxeBloodCult
+    entity: NFWeaponCrusherAxeBloodCult
+
+- type: constructionGraph
+  id: NFWeaponCrusherGlaiveCorrupted
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFWeaponCrusherGlaiveBloodCult
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+      - tag: ScrollCultShadeBinding
+        name: construction-graph-tag-nf-blood-cult-scroll-shade-binding
+        icon:
+          sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+          state: crystalpaper
+        doAfter: 5
+  - node: NFWeaponCrusherGlaiveBloodCult
+    entity: NFWeaponCrusherGlaiveBloodCult
+
+- type: constructionGraph
+  id: NFWeaponCrusherDaggerCorrupted
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFWeaponCrusherDaggerBloodCult
+      steps:
+      - tag: CrystalRed
+        name: construction-graph-tag-red-crystal-shard
+        icon:
+          sprite: Objects/Materials/Shards/crystal.rsi
+          state: shard1
+        doAfter: 5
+      - tag: Bloodpack
+        name: construction-graph-tag-nf-bloodpack
+        icon:
+          sprite: Objects/Specific/Medical/medical.rsi
+          state: bloodpack
+        doAfter: 5
+      - tag: ScrollCultShadeBinding
+        name: construction-graph-tag-nf-blood-cult-scroll-shade-binding
+        icon:
+          sprite: _NF/Objects/Specific/Wizard/crystal_paper.rsi
+          state: crystalpaper
+        doAfter: 5
+  - node: NFWeaponCrusherDaggerBloodCult
+    entity: NFWeaponCrusherDaggerBloodCult

@@ -19,6 +19,31 @@
     - OffshoreGasMining
 
 - type: entity
+  parent: BaseGuidebook
+  id: BookBloodCultRituals
+  name: "Tome of Sanguine Rites: The Corruption of Crushers"
+  description: A considered and properly ordered rite for the deliberate corruption of a Nanotracen-manufactured crusher.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper_blood
+    - state: cover_old
+      color: "#481018"
+    - state: decor_spine
+      color: "#4e2532"
+    - state: icon_glow
+      color: "#950000"
+      shader: unshaded
+    - state: icon_eye
+      color: "#911210"
+    - state: icon_corner
+      color: "#663544"
+    - state: overlay_blood
+  - type: GuideHelp
+    guides:
+    - BloodCultCrushersGuide
+    
+- type: entity
   parent: [ BaseGuidebook, BaseC3CultContraband ]
   id: BookBloodCultStavesGuide
   name: "Tome of Sanguine Rites: Unlocking The Power Of A Staff"
