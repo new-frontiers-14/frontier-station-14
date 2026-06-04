@@ -209,3 +209,54 @@
     nameSegments: [NamesFox]
   - type: Inventory
     speciesId: fox
+
+- type: entity
+  suffix: Ghost
+  Parent: [BaseEmotionalGhost, MobPossum]
+  id: MobPossumGhost
+  components:
+  - type: ReplacementAccent
+    accent: possum
+  - type: Vocal
+    sounds:
+      Male: Possum
+      Female: Possum
+      Unsexed: Possum
+  - type: RandomMetadata
+    nameSegments: [NamesPossum]
+  - type: Inventory
+    specidesId: possum
+
+- type: entity
+  suffix: Ghost
+  Parent: [BaseEmotionalGhost, MobRaccoon]
+  id: MobRaccoonGhost
+  components:
+  - type: ReplacementAccent
+    accent: raccoon
+  - type: Vocal
+    sounds:
+      Male: Raccoon
+      Female: Raccoon
+      Unsexed: Raccoon
+  - type: RandomMetadata
+    nameSegments: [NamesRaccoon]
+  - type: Inventory
+    specidesId: raccoon
+
+- type: entity
+  suffix: Ghost
+  Parent: [BaseEmotionalGhost, MobHampster]
+  id: MobHampsterGhost
+  components:
+  - type: ReplacementAccent
+    accent: hampster
+  - type: Vocal
+    sounds:
+      Male: Hampster
+      Female: Hampster
+      Unsexed: Hampster
+  - type: RandomMetadata
+    nameSegments: [NamesHampster]
+  - type: Inventory
+    specidesId: hampster
