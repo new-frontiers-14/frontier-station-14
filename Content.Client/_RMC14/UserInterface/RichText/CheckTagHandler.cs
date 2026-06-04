@@ -1,4 +1,3 @@
-// RMC14: Entire File Ported from RMC
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Robust.Client.UserInterface.RichText;
