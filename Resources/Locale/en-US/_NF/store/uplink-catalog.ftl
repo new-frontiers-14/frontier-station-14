@@ -246,6 +246,9 @@ uplink-pirate-EVA-desc = A heavy space suit that provides some basic protection 
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
 
+uplink-pirate-hardsuit-rogue-name = Rogue Hardsuit
+uplink-pirate-hardsuit-rogue-desc = Lightly armoured hardsuit designed to give you the speed you need to plunder in, and get out.
+
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
 
