@@ -148,10 +148,10 @@ public sealed partial class SpeciesPrototype : IPrototype
     public float MinSize { get; private set; } = 0.8f;
 
     /// <summary>
-    ///     Frontier: Density override for a species. Optional; leave null for no change
+    ///     Frontier: Density coefficient for a species.
     /// </summary>
     [DataField]
-    public float? Density { get; private set; } = null;
+    public float DensityCoefficient { get; private set; } = 1;
 }
 
 public enum SpeciesNaming : byte

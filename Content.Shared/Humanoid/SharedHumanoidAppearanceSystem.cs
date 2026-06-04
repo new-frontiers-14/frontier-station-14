@@ -25,6 +25,7 @@ using Robust.Shared.GameObjects; // Frontier
 using Robust.Shared.Physics; // Frontier
 using Robust.Shared.Physics.Collision.Shapes; // Frontier
 using Robust.Shared.Physics.Systems; // Frontier
+using Robust.Shared.Physics.Components; // Frontier
 
 namespace Content.Shared.Humanoid;
 
@@ -391,7 +392,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="density">Optional: The density to set the mob to. Set as null to leave unchanged.</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetScale(EntityUid uid, float scale, float? density, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetScale(EntityUid uid, float scale, float? densityCoefficient, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid) || scale <= 0f)
             return;
@@ -404,24 +405,20 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         // i.e. for Dwarves ([1, 0.8]) and Sheleg ([1.5, 1.2])
         _scaleVisuals.SetSpriteScale(uid, oldScale * scaleReciprocal * scale);
 
-        if (density != null && TryComp(uid, out FixturesComponent? manager))
+        if (densityCoefficient != null
+        && TryComp(uid, out FixturesComponent? fixturesComp)
+        && TryComp(uid, out PhysicsComponent? physicsComp))
         {
-            foreach (var (id, fixture) in manager.Fixtures)
+            _physics.ScaleFixtures(uid, scale / oldScale.Y);
+
+            foreach (var (id, fixture) in fixturesComp.Fixtures)
             {
                 if (!fixture.Hard || fixture.Density <= 1f)
                     continue; // This will skip the flammable fixture and any other fixture that is not supposed to contribute to mass
 
-                switch (fixture.Shape)
-                {
-                    case PhysShapeCircle circle:
-                        _physics.SetPositionRadius(uid, id, fixture, circle, circle.Position * scale, circle.Radius * scale, manager);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                _physics.SetDensity(uid, id, fixture, (float)density);
+                _physics.SetDensity(uid, id, fixture, fixture.Density * (float)densityCoefficient);
             }
+            _physics.ResetMassData(uid, fixturesComp, physicsComp);
         }
 
         if (sync)
@@ -435,7 +432,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// </summary>
     /// <param name="uid">The humanoid mob's UID.</param>
     /// <param name="scale">The scale to set the mob to.</param>
-    /// <param name="species">The species to take density from.</param>
+    /// <param name="species">The species to take bounds and density from.</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
     public void SetScale(EntityUid uid, float scale, string species, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
@@ -446,7 +443,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (scale < speciesProto.MinSize || scale > speciesProto.MaxSize)
             scale = speciesProto.DefaultSize;
 
-        float? density = speciesProto.Density;
+        float? density = (scale / speciesProto.DefaultSize) * speciesProto.DensityCoefficient;
 
         SetScale(uid, scale, density, sync, humanoid);
     }
