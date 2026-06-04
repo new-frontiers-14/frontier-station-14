@@ -5,6 +5,9 @@
   - node: start
     edges:
     - to: Anomalite
+      completed:
+          - !type:SetStackCount
+            amount: 3
       steps:
         - component: AnomalyCore
           name: construction-graph-component-anomaly-core
@@ -15,4 +18,4 @@
           amount: 10
 
   - node: Anomalite
-    entity: MaterialAnomalite1
+    entity: MaterialAnomalite
