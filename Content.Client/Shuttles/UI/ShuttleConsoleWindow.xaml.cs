@@ -71,12 +71,12 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         {
             UndockRequest?.Invoke(entity);
         };
-
+    // Frontier
         DockContainer.UndockAllRequest += dockEntities =>
         {
             UndockAllRequest?.Invoke(dockEntities);
         };
-
+    // End Frontier
         NfInitialize(); // Frontier Initialization for the ShuttleConsoleWindow
     }
 
