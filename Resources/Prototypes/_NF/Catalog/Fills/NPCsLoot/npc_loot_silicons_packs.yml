@@ -1,0 +1,201 @@
+# region base
+- type: entity
+  abstract: true
+  parent: NFBaseNpcLootBackpack
+  id: RogueSiliconGiftBox
+  name: rogue unit's bundle
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/bundles.rsi
+    state: engi-base
+    scale: 0.7, 0.7
+  - type: Clothing
+    sprite: _NF/Objects/Tools/bundles.rsi
+    clothingVisuals:
+      back:
+      - state: mask_null
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+# region tier 0 (asteroid)
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT0
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap
+    - id: ScrapOreRandomVeryLow
+      orGroup: Scrap
+      prob: 0.8
+    - id: ScrapOreTechRandomVeryLow
+      orGroup: Scrap
+      prob: 0.2
+    # Items
+    - id: SpawnDungeonLootNpcMaterialRandom
+      orGroup: Items
+      prob: 0.4
+    - id: SpawnDungeonLootNpcRogueSiliconTreasure
+      orGroup: Items
+      prob: 0.5
+
+# region tier 1
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap
+    - id: ScrapOreRandomLow
+      orGroup: Scrap
+      prob: 0.7
+    - id: ScrapOreTechRandomLow
+      orGroup: Scrap
+      prob: 0.3
+    # Items
+    - id: SpawnDungeonLootNpcMaterialRandom
+      orGroup: Items
+      prob: 0.4
+    - id: SpawnDungeonLootNpcRogueSiliconTreasure
+      orGroup: Items
+      prob: 0.5
+      amount: 2
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      orGroup: Items
+      prob: 0.1
+    # Blueprints
+    - id: SpawnDungeonLootNpcRogueSiliconBlueprints
+      orGroup: Blueprints
+      prob: 0.05
+
+# region tier 2
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap
+    - id: ScrapOreRandomReduced
+      orGroup: Scrap
+      prob: 0.6
+    - id: ScrapOreTechRandomReduced
+      orGroup: Scrap
+      prob: 0.4
+    # Items
+    - id: SpawnDungeonLootNpcMaterialRandom
+      orGroup: Items
+      prob: 0.4
+    - id: SpawnDungeonLootNpcRogueSiliconTreasure
+      orGroup: Items
+      prob: 0.5
+      amount: 3
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      orGroup: Items
+      prob: 0.15
+    # Blueprints
+    - id: SpawnDungeonLootNpcRogueSiliconBlueprints
+      orGroup: Blueprints
+      prob: 0.1
+
+# region tier 3
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap
+    - id: ScrapOreRandom
+      orGroup: Scrap
+      prob: 0.5
+    - id: ScrapOreTechRandom
+      orGroup: Scrap
+      prob: 0.5
+    # Items
+    - id: SpawnDungeonLootNpcMaterialRandom
+      orGroup: Items
+      prob: 0.3
+    - id: SpawnDungeonLootNpcRogueSiliconTreasure
+      orGroup: Items
+      prob: 0.5
+      amount: 4
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      orGroup: Items
+      prob: 0.2
+    # Blueprints
+    - id: SpawnDungeonLootNpcRogueSiliconBlueprints
+      orGroup: Blueprints
+      prob: 0.2
+
+# region tier 4 (boss)
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Weapons
+    - id: NFWeaponEnergyLightMachineGunTurbo
+      orGroup: Weapons
+      prob: 0.4
+    - id: SpawnDungeonLootGunT5
+      orGroup: Weapons
+      prob: 0.3
+    - id: SpawnDungeonLootMeleeT5
+      orGroup: Weapons
+      prob: 0.3
+    # Scrap
+    - id: ScrapOreRandom
+      #orGroup: Scrap
+      prob: 0.5
+      amount: 4
+    - id: ScrapOreTechRandom
+      #orGroup: Scrap
+      prob: 0.5
+      amount: 4
+    # Items
+    - id: SpawnDungeonLootNpcMaterialRandom
+      #orGroup: Items
+      prob: 0.4
+      amount: 4
+    - id: SpawnDungeonLootNpcRogueSiliconTreasure
+      #orGroup: Items
+      prob: 0.6
+      amount: 4
+    - id: SpawnDungeonLootFlatpacks
+      #orGroup: Items
+      prob: 0.1
+    - id: SpawnDungeonLootPartsEngi
+      #orGroup: Items
+      amount: 3
+      prob: 0.25
+    - id: SpawnDungeonLootNpcRogueSiliconBorgModule
+      #orGroup: Items
+      amount: 3
+      prob: 0.25
+    # Blueprints
+    - id: SpawnDungeonLootNpcRogueSiliconBlueprints
+      orGroup: Blueprints
+      prob: 0.3
+    # BossLoot
+    - id: SpawnDungeonLootNpcRogueSiliconBlueprints
+      orGroup: BossLoot
+      prob: 0.45
+    - id: SpawnDungeonLootPowerCell
+      orGroup: BossLoot
+      prob: 0.05
+    - id: SpawnDungeonLootPartsEngi
+      orGroup: BossLoot
+      amount: 3
+      prob: 0.25
+    - id: SpawnDungeonLootFlatpacks
+      orGroup: BossLoot
+      prob: 0.1
