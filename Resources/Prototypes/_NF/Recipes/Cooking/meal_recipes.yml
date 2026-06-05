@@ -889,6 +889,93 @@
   - Assembler
 
 - type: microwaveMealRecipe
+  id: RecipeOmelette
+  name: omelette recipe
+  result: FoodMealOmelette
+  time: 15
+  group: Breakfast
+  solids:
+    FoodButter: 1
+  reagents:
+    Egg: 12
+    TableSalt: 5
+    Blackpepper: 5
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeOmurice
+  name: omurice recipe
+  result: FoodMealOmurice
+  time: 15
+  group: Breakfast
+  solids:
+    FoodButter: 1
+  reagents:
+    Ketchup: 12
+    Egg: 12
+    TableSalt: 5
+    Blackpepper: 5
+    Rice: 15
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeCheeseOmelette
+  name: cheese omelette recipe
+  result: FoodMealCheeseOmelette
+  time: 15
+  group: Breakfast
+  solids:
+    FoodButter: 1
+    FoodCheeseSlice: 1
+  reagents:
+    Egg: 12
+    TableSalt: 5
+    Blackpepper: 5
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeEggBoiled
+  name: boiled egg recipe
+  result: FoodEggBoiled
+  time: 5
+  solids:
+    FoodEgg: 1
+  reagents:
+    Water: 10
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeFriedegg
+  name: fried egg recipe
+  result: FoodMealFriedegg
+  time: 5
+  solids:
+    FoodEgg: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeEggsbenedict
+  name: eggs benedict recipe
+  result: FoodMealEggsbenedict
+  time: 10
+  group: Breakfast
+  solids:
+    FoodBreadPlainSlice: 1
+    FoodEggBoiled: 1
+    FoodMeatCutletCooked: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
   id: RecipeDragonOmelette
   name: dragon omelette recipe
   result: FoodMealDragonOmelette
