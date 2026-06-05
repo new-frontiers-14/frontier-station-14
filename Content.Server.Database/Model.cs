@@ -371,6 +371,8 @@ namespace Content.Server.Database
                 .OwnsOne(p => p.HWId)
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
+
+            ModelNF.OnModelCreating(modelBuilder); // Frontier
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -404,7 +406,6 @@ namespace Content.Server.Database
         public string FlavorText { get; set; } = null!;
         public int Age { get; set; }
         public int BankBalance { get; set; } // Frontier
-        public float Size { get; set; } // Frontier
         public string Sex { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
@@ -426,6 +427,8 @@ namespace Content.Server.Database
 
         public int PreferenceId { get; set; }
         public Preference Preference { get; set; } = null!;
+
+        public NFProfile NFProfile { get; set; } = null!; // Frontier
     }
 
     public class Job

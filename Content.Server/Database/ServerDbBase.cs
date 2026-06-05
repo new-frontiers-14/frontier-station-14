@@ -54,6 +54,7 @@ namespace Content.Server.Database
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
+                .Include(p => p.Profiles).ThenInclude(h => h.NFProfile) // Frontier - NFProfile
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
@@ -109,6 +110,7 @@ namespace Content.Server.Database
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
+                .Include(p => p.NFProfile) // Frontier - NFProfile
                 .AsSplitQuery()
                 .SingleOrDefault(h => h.Slot == slot);
 
@@ -279,7 +281,7 @@ namespace Content.Server.Database
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
                     markings,
-                    profile.Size // Frontier
+                    profile.NFProfile.Size // Frontier - size editor
                 ),
                 spawnPriority,
                 jobs,
@@ -314,11 +316,15 @@ namespace Content.Server.Database
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
-            profile.Size = appearance.Size; // Frontier
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
             profile.Slot = slot;
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
+
+            // Frontier - NFProfile
+            profile.NFProfile ??= new NFProfile();
+            profile.NFProfile.Size = appearance.Size;
+            // End NFProfile
 
             profile.Jobs.Clear();
             profile.Jobs.AddRange(
