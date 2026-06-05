@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: luna235-ss14 (https://github.com/luna235-ss14)
+# Discord: lancer.18
+# Maintainer Info
+# GitHub: luna235-ss14 (https://github.com/luna235-ss14)
+# Discord: lancer.18
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: magnum
+  parent: BaseVessel
+  name: PMC Magnum
+  description: The Magnum class ship is a logistics and personnel carrier. Originally a cargo ship, it has seen extensive use as a personnel carrier and strike platform. It has since been decommissioned and replaced by newer, sleeker ships, but is common on the military surplus market. It is still in frequent use by private ventures and explorers, this particular variant has been refitted and modernized by the private military contractor Magnum.
+  price: 60000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/magnum.yml
+  guidebookPage: null
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: magnum
+  mapName: 'magnum'
+  mapPath: /Maps/_NF/Shuttles/Expedition/magnum.yml
+  minPlayers: 0
+  stations:
+    magnum:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Magnum {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
