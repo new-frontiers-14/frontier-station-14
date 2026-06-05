@@ -149,6 +149,9 @@ uplink-security-armingsword-desc = Ancient design meets modern materials.
 uplink-security-captainsword-name = Captain's Sabre
 uplink-security-captainsword-desc = A sword normally reserved for captains, admiralty, and other high command. Has a small chance to reflect incoming projectiles.
 
+uplink-security-navyofficersabre-name = Navy Officer's Sabre
+uplink-security-navyofficersabre-desc = A ceremonial weapon belonging to a high ranking naval officer. Has a small chance to reflect incoming projectiles.
+
 uplink-security-pulsepistol-name = Pulse Pistol
 uplink-security-pulsepistol-desc = A high powered laser pistol normally reserved for elite ERT units. Has an internal battery, but requires using a security charging dock.
 
