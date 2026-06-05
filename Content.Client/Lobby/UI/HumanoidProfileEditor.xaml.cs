@@ -35,6 +35,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Client.Lobby.UI
 {
@@ -56,6 +57,7 @@ namespace Content.Client.Lobby.UI
         // CCvar.
         private int _maxNameLength;
         private bool _allowFlavorText;
+        private bool _allowSizePicker; // Frontier
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -137,6 +139,7 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+            _allowSizePicker = _cfgManager.GetCVar(NFCCVars.SizePicker); // Frontier
 
             ImportButton.OnPressed += args =>
             {
@@ -270,6 +273,8 @@ namespace Content.Client.Lobby.UI
 
                 OnSizePickerOnValueChanged(newSize);
             };
+
+            RefreshSizePicker();
 
             #endregion
             // End Frontier - size editor
@@ -516,6 +521,17 @@ namespace Content.Client.Lobby.UI
                 _flavorTextEdit = null;
                 _flavorText = null;
             }
+        }
+
+        /// <summary>
+        /// Frontier: Refreshes the size editor status.
+        /// </summary>
+        public void RefreshSizePicker()
+        {
+            if (SizeEditorContainer == null)
+                return; // this should literally never happen
+
+            SizeEditorContainer.Visible = _allowSizePicker;
         }
 
         /// <summary>
@@ -812,6 +828,7 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshFlavorText();
+            RefreshSizePicker(); // Frontier
             ReloadPreview();
 
             if (Profile != null)

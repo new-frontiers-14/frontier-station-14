@@ -26,6 +26,7 @@ using Robust.Shared.Physics; // Frontier
 using Robust.Shared.Physics.Collision.Shapes; // Frontier
 using Robust.Shared.Physics.Systems; // Frontier
 using Robust.Shared.Physics.Components; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Shared.Humanoid;
 
@@ -394,6 +395,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="humanoid">Humanoid component of the entity</param>
     public void SetScale(EntityUid uid, float scale, float? densityCoefficient, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
     {
+        if (!_cfgManager.GetCVar(NFCCVars.SizePicker))
+            return;
+
         if (!Resolve(uid, ref humanoid) || scale <= 0f)
             return;
 
@@ -437,6 +441,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="humanoid">Humanoid component of the entity</param>
     public void SetScale(EntityUid uid, float scale, string species, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
     {
+        if (!_cfgManager.GetCVar(NFCCVars.SizePicker))
+            return;
+
         if (!_proto.TryIndex<SpeciesPrototype>(species, out var speciesProto))
             return;
 

@@ -292,4 +292,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerStarterLoadout =
         CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /*
+     * In-Character
+     */
+
+    /// <summary>
+    /// Allows custom character resizing.
+    /// </summary>
+    public static readonly CVarDef<bool> SizePicker =
+        CVarDef.Create("ic.size_picker", true, CVar.SERVER | CVar.REPLICATED);
 }
