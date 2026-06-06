@@ -180,7 +180,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 break;
         }
 
-        var newSize = random.NextFloat(speciesProto.MinSize * 1.1f, speciesProto.MaxSize * 0.9f); // Frontier - size editor - random range shrunk slightly to avoid randomized extremes (extremes should be player opt-in where possible)
+        // Frontier - size editor
+        // Randomize the height within a certain range of the species' default
+        // Whichever bound it is closer to, the difference is halved and used for both ends of the random range
+        // Done to keep it centered around the default, while still allowing some deviation, and also avoiding extremes
+        // e.g. a randomized human should not be able to reach >1.1, despite the player-reachable max being set at 1.2
+        var newSizeRange = Math.Min(speciesProto.MaxSize - speciesProto.DefaultSize, speciesProto.DefaultSize - speciesProto.MinSize) / 2;
+        var newSize = random.NextFloat(speciesProto.DefaultSize - newSizeRange, speciesProto.DefaultSize + newSizeRange);
+        // End Frontier - size editor
 
         return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newSize);
 
