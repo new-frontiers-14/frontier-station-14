@@ -13,7 +13,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 
-using TemperatureCondition = Content.Shared.EntityEffects.EffectConditions.Temperature; // Frontier TODO: We don't have the entity effects refactor (upstream's PR #40580). This line is needed to disambiguate the class from the namespace and can be replaced/removed upon said PR's merged in.
+using TemperatureCondition = Content.Shared.EntityEffects.EffectConditions.Temperature; // Frontier TODO: We don't have the entity effects refactor (upstream's PR #40580). This line is needed to disambiguate the class from the namespace and can be replaced/removed upon said PR's merged in (don't forget to import in the new implemenation!).
 
 namespace Content.Client.Medical.Cryogenics;
 
