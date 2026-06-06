@@ -255,8 +255,9 @@ namespace Content.Client.Lobby.UI
 
             SizePicker.OnValueChanged += newSize => { SetProfileScale(newSize.Value); };
 
-            SizeEdit.OnTextChanged += args => { SetProfileScale(args.Text); };
+            SizeEdit.OnFocusEnter += _ => { SizeEdit.Text = SizePicker.Value.ToString("N3"); };
             SizeEdit.OnFocusExit += args => { SetProfileScale(args.Text, true); };
+            SizeEdit.OnTextChanged += args => { SetProfileScale(args.Text); };
             SizeEdit.OnTextEntered += _ => { SizeEdit.ReleaseKeyboardFocus(); };
 
             SizeEdit.IsValid = args => float.TryParse(args, out var _);
