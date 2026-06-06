@@ -25,3 +25,12 @@
       !type:OverallPlaytimeRequirement
       time: 180000 # 50 hrs
 
+#This is not a perfect solution, idealy we have some way of properly detecting if someone is whitelisted without forcing them to play command
+- type: loadoutEffectGroup
+  id: NFIsWhitelisted
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Command
+      time: 30 #Half an hour
