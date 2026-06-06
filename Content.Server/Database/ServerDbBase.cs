@@ -323,7 +323,7 @@ namespace Content.Server.Database
 
             // Frontier - NFProfile
             profile.NFProfile ??= new NFProfile();
-            profile.NFProfile.Size = appearance.Size;
+            profile.NFProfile.Size = appearance.Scale;
             // End NFProfile
 
             profile.Jobs.Clear();

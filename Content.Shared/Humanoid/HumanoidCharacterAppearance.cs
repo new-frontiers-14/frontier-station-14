@@ -34,7 +34,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     // Frontier - size editor
     [DataField]
-    public float Size { get; set; } = -1;
+    public float Scale { get; set; } = -1;
     // End Frontier - size editor
 
     public HumanoidCharacterAppearance(string hairStyleId,
@@ -44,7 +44,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color eyeColor,
         Color skinColor,
         List<Marking> markings,
-        float size) // Frontier - size editor
+        float scale) // Frontier - size editor
     {
         HairStyleId = hairStyleId;
         HairColor = ClampColor(hairColor);
@@ -53,53 +53,53 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         EyeColor = ClampColor(eyeColor);
         SkinColor = ClampColor(skinColor);
         Markings = markings;
-        Size = size; // Frontier - size editor
+        Scale = scale; // Frontier - size editor
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Size)
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Scale)
     {
 
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Size);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Scale);
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Size);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Scale);
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Size);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Scale);
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Size);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Scale);
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Size);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Scale);
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Size);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Scale);
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Size);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Scale);
     }
     // Frontier - size editor
-    public HumanoidCharacterAppearance WithSize(float newSize)
+    public HumanoidCharacterAppearance WithScale(float newScale)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newSize);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newScale);
     }
     // End Frontier
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
@@ -181,7 +181,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         }
 
         // Frontier - size editor
-        // Randomize the height within a certain range of the species' default
+        // Randomize the scale within a certain range of the species' default
         // Whichever bound it is closer to, the difference is halved and used for both ends of the random range
         // Done to keep it centered around the default, while still allowing some deviation, and also avoiding extremes
         // e.g. a randomized human should not be able to reach >1.1, despite the player-reachable max being set at 1.2
@@ -242,7 +242,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             markingSet.EnsureSexes(sex, markingManager);
 
             // Frontier - size editor - reset to default if out of range
-            size = appearance.Size;
+            size = appearance.Scale;
             if (size < speciesProto.MinSize || size > speciesProto.MaxSize)
                 size = speciesProto.DefaultSize;
             // End Frontier
@@ -269,7 +269,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
-        if (Size != other.Size) return false; // Frontier - size editor
+        if (Scale != other.Scale) return false; // Frontier - size editor
         return true;
     }
 

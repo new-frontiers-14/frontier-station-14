@@ -473,7 +473,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
-        SetScale(uid, profile.Appearance.Size, profile.Species, false, humanoid); // Frontier
+        SetScale(uid, profile.Appearance.Scale, profile.Species, false, humanoid); // Frontier
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);

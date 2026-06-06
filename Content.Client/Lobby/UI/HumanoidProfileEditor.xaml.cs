@@ -253,10 +253,10 @@ namespace Content.Client.Lobby.UI
             // Frontier - size editor
             #region Size
 
-            SizePicker.OnValueChanged += newSize => { SetProfileHeight(newSize.Value); };
+            SizePicker.OnValueChanged += newSize => { SetProfileScale(newSize.Value); };
 
-            SizeEdit.OnTextChanged += args => { SetProfileHeight(args.Text); };
-            SizeEdit.OnFocusExit += args => { SetProfileHeight(args.Text, true); };
+            SizeEdit.OnTextChanged += args => { SetProfileScale(args.Text); };
+            SizeEdit.OnFocusExit += args => { SetProfileScale(args.Text, true); };
             SizeEdit.OnTextEntered += _ => { SizeEdit.ReleaseKeyboardFocus(); };
 
             SizeEdit.IsValid = args => float.TryParse(args, out var _);
@@ -1293,29 +1293,29 @@ namespace Content.Client.Lobby.UI
         }
 
         // Frontier - size editor
-        private void SetProfileHeight(string newHeightString, bool doEvent = false)
+        private void SetProfileScale(string newScaleString, bool doEvent = false)
         {
-            if (!float.TryParse(newHeightString, out var newSize))
+            if (!float.TryParse(newScaleString, out var newScale))
                 return;
 
-            SetProfileHeight(newSize, doEvent);
+            SetProfileScale(newScale, doEvent);
         }
 
-        private void SetProfileHeight(float newHeight, bool doEvent = true)
+        private void SetProfileScale(float newScale, bool doEvent = true)
         {
             if (Profile is null)
                 return;
 
-            newHeight = Math.Clamp(newHeight, SizePicker.MinValue, SizePicker.MaxValue);
+            newScale = Math.Clamp(newScale, SizePicker.MinValue, SizePicker.MaxValue);
 
             if (doEvent)
             {
-                SizeEdit.Text = newHeight.ToString("N2");
-                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSize(newHeight));
+                SizeEdit.Text = newScale.ToString("N2");
+                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithScale(newScale));
                 SetDirty();
             }
 
-            SizePicker.SetValueWithoutEvent(newHeight);
+            SizePicker.SetValueWithoutEvent(newScale);
         }
         // End Frontier - size editor
 
@@ -1653,7 +1653,7 @@ namespace Content.Client.Lobby.UI
             }
 
             var speciesProto = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
-            var size = Profile.Appearance.Size;
+            var size = Profile.Appearance.Scale;
 
             SizePicker.MinValue = speciesProto.MinSize;
             SizePicker.MaxValue = speciesProto.MaxSize;
@@ -1662,7 +1662,7 @@ namespace Content.Client.Lobby.UI
                 size = speciesProto.DefaultSize;
 
             // Force the size picker to update
-            SetProfileHeight(size);
+            SetProfileScale(size);
         }
         // End Frontier - size editor
 
