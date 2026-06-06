@@ -253,26 +253,13 @@ namespace Content.Client.Lobby.UI
             // Frontier - size editor
             #region Size
 
-            SizePicker.OnValueChanged += newSize =>
-            {
-                OnSizePickerOnValueChanged(newSize.Value);
-            };
+            SizePicker.OnValueChanged += newSize => { SetProfileHeight(newSize.Value); };
 
-            SizeEdit.OnTextChanged += args =>
-            {
-                if (!float.TryParse(args.Text, out var newSize))
-                    return;
+            SizeEdit.OnTextChanged += args => { SetProfileHeight(args.Text); };
+            SizeEdit.OnFocusExit += args => { SetProfileHeight(args.Text, true); };
+            SizeEdit.OnTextEntered += _ => { SizeEdit.ReleaseKeyboardFocus(); };
 
-                SizePicker.SetValueWithoutEvent(newSize);
-            };
-
-            SizeEdit.OnFocusExit += args =>
-            {
-                if (!float.TryParse(args.Text, out var newSize))
-                    return;
-
-                OnSizePickerOnValueChanged(newSize);
-            };
+            SizeEdit.IsValid = args => float.TryParse(args, out var _);
 
             RefreshSizePicker();
 
@@ -1137,19 +1124,6 @@ namespace Content.Client.Lobby.UI
             ReloadProfilePreview();
         }
 
-        // Frontier - size editor
-        private void OnSizePickerOnValueChanged(float size)
-        {
-            if (Profile is null)
-                return;
-
-            size = Math.Clamp(size, SizePicker.MinValue, SizePicker.MaxValue);
-            SizeEdit.Text = size.ToString("N2"); // Purely visual; round the displayed value to 2 decimal places
-            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSize(size));
-            SetDirty();
-        }
-        // End Frontier - size editor
-
         private void OnSkinColorOnValueChanged()
         {
             if (Profile is null) return;
@@ -1317,6 +1291,33 @@ namespace Content.Client.Lobby.UI
 
             _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, newName);
         }
+
+        // Frontier - size editor
+        private void SetProfileHeight(string newHeightString, bool doEvent = false)
+        {
+            if (!float.TryParse(newHeightString, out var newSize))
+                return;
+
+            SetProfileHeight(newSize, doEvent);
+        }
+
+        private void SetProfileHeight(float newHeight, bool doEvent = true)
+        {
+            if (Profile is null)
+                return;
+
+            newHeight = Math.Clamp(newHeight, SizePicker.MinValue, SizePicker.MaxValue);
+
+            if (doEvent)
+            {
+                SizeEdit.Text = newHeight.ToString("N2");
+                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSize(newHeight));
+                SetDirty();
+            }
+
+            SizePicker.SetValueWithoutEvent(newHeight);
+        }
+        // End Frontier - size editor
 
         private void SetSpawnPriority(SpawnPriorityPreference newSpawnPriority)
         {
@@ -1661,8 +1662,7 @@ namespace Content.Client.Lobby.UI
                 size = speciesProto.DefaultSize;
 
             // Force the size picker to update
-            SizePicker.SetValueWithoutEvent(size);
-            OnSizePickerOnValueChanged(size);
+            SetProfileHeight(size);
         }
         // End Frontier - size editor
 
