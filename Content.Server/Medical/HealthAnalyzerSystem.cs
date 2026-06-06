@@ -228,7 +228,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             _solutionContainerSystem.ResolveSolution(entity, bloodstream.BloodSolutionName,
                 ref bloodstream.BloodSolution, out var bloodSolution))
         {
-            bloodAmount = _bloodstreamSystem.GetBloodLevelPercentage(entity); // Frontier: Using BloodLevelPercentage instead of GetBloodLevel because we don't have shared bloodstream update.
+            bloodAmount = _bloodstreamSystem.GetBloodLevelPercentage(entity); // Frontier TODO: Using BloodLevelPercentage instead of GetBloodLevel because we don't have upstream's shared bloodstream update (upstream's PR #38690). Replace this once said PR's merged in.
             bleeding = bloodstream.BleedAmount > 0;
         }
 

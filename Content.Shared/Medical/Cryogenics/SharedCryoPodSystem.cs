@@ -145,7 +145,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
 
         if (solutionToInject.Volume > 0)
         {
-            _bloodstream.TryAddToChemicals((patient.Value, bloodstream), solutionToInject); // Frontier: Using TryAddToChemicals because we don't have shared bloodstream PR for TryAddToBloodstream.
+            _bloodstream.TryAddToChemicals((patient.Value, bloodstream), solutionToInject); // Frontier TODO: Using TryAddToChemicals instead of TryAddToBloodstream because we don't have upstream's shared bloodstream update (upstream's PR #38690). Replace this once said PR's merged in.
             _reactive.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);
         }
     }
