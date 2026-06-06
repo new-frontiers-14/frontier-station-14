@@ -102,7 +102,7 @@
                             <!-- Frontier - Size -->
                             <BoxContainer Name="SizeEditorContainer" Margin="10" Orientation="Vertical">
                                 <Label Text="{Loc 'humanoid-profile-editor-proportions-label'}" />
-                                <BoxContainer Margin="10" Orientation="Horizontal">
+                                <BoxContainer Margin="10,5,0,0" SeparationOverride="5" Orientation="Horizontal">
                                     <Label Text="{Loc 'humanoid-profile-editor-scale-label'}" />
                                     <LineEdit Name="SizeEdit" MinSize="50 0" HorizontalAlignment="Right" />
                                     <Slider HorizontalExpand="True" Name="SizePicker" MinValue="0.8" MaxValue="1.2" Value="1" />
