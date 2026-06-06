@@ -86,7 +86,7 @@ ghost-role-information-dungeon-boss-rules = You are a [color={role-type-team-ant
                                         - [color=red]DO NOT[/color] hide from players to run down the expedition timer.
                                         - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
                                         - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
-                                        - [color=red]DO NOT[/color] leave the planet.
+                                        - [color=red]DO NOT[/color] leave the planet or asteroid.
 
 nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's been stranded on a wreck for years, exposed to countless ion storms.
 
