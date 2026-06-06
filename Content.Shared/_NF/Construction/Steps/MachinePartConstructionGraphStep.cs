@@ -30,7 +30,7 @@ namespace Content.Shared.Construction.Steps // NOTE: currently exists under base
         public bool EntityValid(EntityUid entity, [NotNullWhen(true)] out StackComponent? stack)
         {
             stack = null;
-            if (IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out MachinePartComponent? part) && part.PartType != PartPrototypeId
+            if (IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out MachinePartComponent? part) && part.PartType == PartPrototypeId
                 && IoCManager.Resolve<IEntityManager>().TryGetComponent(entity, out StackComponent? otherStack) && otherStack.Count >= Amount)
             {
                 stack = otherStack;

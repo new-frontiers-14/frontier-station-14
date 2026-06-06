@@ -2,7 +2,7 @@
   name: cooking bag
   id: NFCookingBag
   parent: NFBaseClothingBeltStorageBag
-  description: A bag for Cheffs to Keep their food off the floor.
+  description: A bag for chefs to keep their food off the floor.
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Kitchen/Equipment/cooking_bag.rsi
@@ -21,6 +21,8 @@
     whitelist:
       components:
         - Food
+      tags:
+        - Ingredient
     blacklist:
       components:
         - BadFood

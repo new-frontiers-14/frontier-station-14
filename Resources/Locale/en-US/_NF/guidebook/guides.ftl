@@ -26,7 +26,7 @@ guide-entry-medical-doc = Director of Care
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
 guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
-guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
+guide-entry-weapons-color-codes-ammo = Ammunition Color Codes
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
@@ -48,6 +48,8 @@ guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-anchor = Anchor
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-backpacker = Backpacker
+guide-entry-shipyard-balena = Balena
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-baroness = Baroness
 guide-entry-shipyard-bocadillo = Bocadillo
@@ -61,6 +63,7 @@ guide-entry-shipyard-camper = Camper
 guide-entry-shipyard-ceres = Ceres
 guide-entry-shipyard-charon = Charon
 guide-entry-shipyard-chisel = Chisel
+guide-entry-shipyard-coffeehouse = Coffeehouse
 guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-courier = Courier
 guide-entry-shipyard-construct = Construct
@@ -84,6 +87,7 @@ guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-hound = Hound
 guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-izakaya = Izakaya
+guide-entry-shipyard-jackrabbit = Jackrabbit
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern-mk2 = Lantern Mk2
@@ -130,3 +134,6 @@ guide-entry-frontier-rule-10 = 10. Crimes
 guide-entry-frontier-rule-11 = 11. Silicons
 guide-entry-frontier-rule-12 = 12. Security
 guide-entry-frontier-rule-13 = 13. Command
+# Unlisted entries
+nf-guide-blood-cult-staves = Blood Cult Staff Activation Guide
+nf-guide-wizard-federation-staves = Wizard Staff Activation Guide
