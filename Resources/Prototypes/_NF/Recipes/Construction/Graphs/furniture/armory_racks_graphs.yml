@@ -13,6 +13,7 @@
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2
+      - !type:EmptyAllContainers
       - !type:DeleteEntity {}
 
     edges:
@@ -104,6 +105,9 @@
     entity: StructureGunRack
     edges:
       - to: start
+        conditions:
+          - !type:Locked
+            locked: false
         steps:
           - tool: Screwing
             doAfter: 5
@@ -112,6 +116,9 @@
     entity: StructureGunRackWallmounted
     edges:
       - to: start
+        conditions:
+          - !type:Locked
+            locked: false
         steps:
           - tool: Screwing
             doAfter: 5
@@ -120,6 +127,9 @@
     entity: StructureMeleeWeaponRack
     edges:
       - to: start
+        conditions:
+          - !type:Locked
+            locked: false
         steps:
           - tool: Screwing
             doAfter: 5
@@ -128,6 +138,9 @@
     entity: StructureMeleeWeaponRackWallmounted
     edges:
       - to: start
+        conditions:
+          - !type:Locked
+            locked: false
         steps:
           - tool: Screwing
             doAfter: 5
@@ -136,6 +149,9 @@
     entity: StructurePistolRack
     edges:
       - to: start
+        conditions:
+          - !type:Locked
+            locked: false
         steps:
           - tool: Screwing
             doAfter: 5
@@ -144,6 +160,9 @@
     entity: StructurePistolRackWallmounted
     edges:
       - to: start
+        conditions:
+          - !type:Locked
+            locked: false
         steps:
           - tool: Screwing
             doAfter: 5
