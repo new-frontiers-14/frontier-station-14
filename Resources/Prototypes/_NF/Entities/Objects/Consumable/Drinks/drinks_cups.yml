@@ -1,0 +1,21 @@
+- type: entity
+  parent: DrinkTeacup
+  id: DrinkTeacupEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents: [ ]
+        maxVol: 20
+
+- type: entity
+  parent: DrinkTeapot
+  id: DrinkTeapotEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents: []
+        maxVol: 100
