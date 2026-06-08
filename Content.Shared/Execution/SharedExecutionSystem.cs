@@ -53,6 +53,13 @@ public sealed class SharedExecutionSystem : EntitySystem
         var weapon = args.Using.Value;
         var victim = args.Target;
 
+        // Frontier: remove self execute
+        if (attacker == victim)
+        {
+            return;
+        }
+        // End Frontier
+
         if (!CanBeExecuted(victim, attacker))
             return;
 

@@ -9,7 +9,6 @@ using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
@@ -20,6 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Station.Components;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._NF.SectorServices; // Frontier
 
@@ -99,10 +99,10 @@ namespace Content.Server.RoundEnd
         /// </summary>
         public EntityUid? GetStation()
         {
-            AllEntityQuery<StationEmergencyShuttleComponent, StationDataComponent>().MoveNext(out _, out _, out var data);
+            AllEntityQuery<StationEmergencyShuttleComponent, StationDataComponent>().MoveNext(out var uid, out _, out var data);
             if (data == null)
                 return null;
-            var targetGrid = _stationSystem.GetLargestGrid(data);
+            var targetGrid = _stationSystem.GetLargestGrid((uid, data));
             return targetGrid == null ? null : Transform(targetGrid.Value).MapUid;
         }
 
@@ -306,7 +306,7 @@ namespace Content.Server.RoundEnd
         public void DoRoundEndBehavior(RoundEndBehavior behavior,
             TimeSpan time,
             string sender = "comms-console-announcement-title-centcom",
-            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier 
+            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier
             string textAnnounce = "nf-round-end-system-shuttle-already-called-announcement") // Frontier
         {
             switch (behavior)
@@ -351,6 +351,30 @@ namespace Content.Server.RoundEnd
                 RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             }, _cooldownTokenSource.Token);
         }
+
+        // Frontier: show time remaining in round on PDA
+        public TimeSpan? GetAutoCallTime()
+        {
+            // Handle special cases first
+            if (ExpectedCountdownEnd is not null)
+                return ExpectedCountdownEnd;
+
+            if (_shuttle.EmergencyShuttleArrived || _gameTicker.RunLevel != GameRunLevel.InRound)
+                return null;
+
+            var mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                                        : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
+            if (mins == 0)
+            {
+                return null;
+            }
+            else // Normal case where the shuttle hasn't been called yet
+            {
+                return AutoCallStartTime + TimeSpan.FromMinutes(mins) + DefaultCountdownDuration;
+            }
+
+        }
+        // End Frontier
 
         public override void Update(float frameTime)
         {
