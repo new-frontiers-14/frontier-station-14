@@ -87,6 +87,7 @@ guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-hound = Hound
 guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-izakaya = Izakaya
+guide-entry-shipyard-jackrabbit = Jackrabbit
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern-mk2 = Lantern Mk2

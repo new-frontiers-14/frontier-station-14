@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: booleandata (https://github.com/booleandata)
+# Discord: boolean_9386
+
+# Maintainer Info
+# GitHub: booleandata (https://github.com/booleandata)
+# Discord: boolean_9386
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Jackrabbit
+  parent: BaseVessel
+  name: PT Jackrabbit
+  description: A fast and lightweight cruiser for those with criminal records a little too long to be cops.
+  price: 38000 #35510 0.06 37640
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/jackrabbit.yml
+  guidebookPage: ShipyardJackrabbit
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Jackrabbit
+  mapName: 'PT Jackrabbit'
+  mapPath: /Maps/_NF/Shuttles/jackrabbit.yml
+  minPlayers: 0
+  stations:
+    Jackrabbit:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Jackrabbit {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
