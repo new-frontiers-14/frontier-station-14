@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: luna235-ss14 (https://github.com/luna235-ss14)
+# Discord: vic.boudicca
+# Maintainer Info
+# GitHub: luna235-ss14 (https://github.com/luna235-ss14)
+# Discord: vic.boudicca
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: fortuna
+  parent: BaseVessel
+  name: MAG Fortuna
+  description: The Fortuna class ship is a logistics and personnel carrier. Originally a cargo ship, it has seen extensive use as a personnel carrier and strike platform. It has since been decommissioned and replaced by newer, sleeker ships, but it is common on the military surplus market. It is still in frequent use by private ventures, salvagers and explorers, this particular variant has been refitted and modernized by the private military contractor Magnum. Modifications include the overhaul of the crew quarters into a medbay, the salvage bay being repurposed as an armory, as well as an upgrade of the power grid to accomodate an antimatter engine and resistant flux conduits that can withstand the burden of FTL travel. 
+  price: 60000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/fortuna.yml
+  guidebookPage: null
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: fortuna
+  mapName: 'fortuna'
+  mapPath: /Maps/_NF/Shuttles/Expedition/fortuna.yml
+  minPlayers: 0
+  stations:
+    fortuna:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Fortuna {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
