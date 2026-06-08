@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: AmbitiousFailure (https://github.com/AmbitiousFailure/)
+# Discord: AmbitiousFailure
+#
+- type: vessel
+  id: Rusty
+  parent: BaseVessel
+  name: SSF Rusty
+  description: A cheap old model transport shuttle, good enough to get to places.
+  price: 8250 # ~7800 0.05 ~8250
+  category: Micro
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/rusty.yml
+  guidebookPage: ShipyardCoffeehouse
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Welding
+
+- type: gameMap
+  id: Rusty
+  mapName: 'SSF Rusty'
+  mapPath: /Maps/_NF/Shuttles/Scrap/rusty.yml
+  minPlayers: 0
+  stations:
+    Rusty:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Rusty {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
