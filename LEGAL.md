@@ -44,6 +44,7 @@ The table below lists all Namespaces (along with the Nyanotrasen subdirectory) i
 | `_Impstation` | Impstation | https://github.com/impstation/imp-station-14 | AGPL 3.0 |
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
 | `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
+| `_RMC14` | RMC-14 | https://github.com/RMC-14/RMC-14 | MIT |
 
 Additional repositories with ported code without Namespaces (denoted by comments) are listed below.
 
