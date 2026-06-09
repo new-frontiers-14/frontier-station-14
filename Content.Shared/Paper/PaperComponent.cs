@@ -68,6 +68,18 @@ public sealed partial class PaperComponent : Component
             Text = text;
         }
     }
+    // Begin RMC14
+    [Serializable, NetSerializable]
+    public sealed class PaperSignatureRequestMessage : BoundUserInterfaceMessage
+    {
+        public readonly int SignatureIndex;
+
+        public PaperSignatureRequestMessage(int signatureIndex)
+        {
+            SignatureIndex = signatureIndex;
+        }
+    }
+    // End RMC14
 
     [Serializable, NetSerializable]
     public enum PaperUiKey
