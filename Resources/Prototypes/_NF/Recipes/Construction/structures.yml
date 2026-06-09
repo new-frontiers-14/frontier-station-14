@@ -55,6 +55,28 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: CatwalkHazard
+  graph: CatwalkHazard
+  startNode: start
+  targetNode: CatwalkHazard
+  category: construction-category-structures
+  conditions:
+    - !type:TileNotBlocked
+      failIfSpace: false
+    - !type:TileType
+      targets:
+        - Lattice
+        - Plating
+        # Frontier : Allow catwalks on top of lava, plasma and water
+        - FloorBasalt
+        - FloorSnow
+        - FloorPlanetDirt
+        # End Frontier
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
   id: CrateStorageRackConstruction
   graph: CrateStorageRack
   startNode: start
