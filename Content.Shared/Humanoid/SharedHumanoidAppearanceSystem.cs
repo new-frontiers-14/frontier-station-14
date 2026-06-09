@@ -395,10 +395,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="humanoid">Humanoid component of the entity</param>
     public void SetScale(EntityUid uid, float scale, float? densityCoefficient, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
     {
-        if (!_cfgManager.GetCVar(NFCCVars.SizePicker))
-            return;
-
-        if (!Resolve(uid, ref humanoid) || scale <= 0f)
+        if (!_cfgManager.GetCVar(NFCCVars.SizePicker)
+        || !Resolve(uid, ref humanoid)
+        || !float.IsNormal(scale)
+        || scale <= 0f)
             return;
 
         var component = EnsureComp<ScaleVisualsComponent>(uid);
@@ -410,6 +410,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         _scaleVisuals.SetSpriteScale(uid, oldScale * scaleReciprocal * scale);
 
         if (densityCoefficient != null
+        && float.IsNormal((float)densityCoefficient)
         && TryComp(uid, out FixturesComponent? fixturesComp)
         && TryComp(uid, out PhysicsComponent? physicsComp))
         {
@@ -447,7 +448,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (!_proto.TryIndex<SpeciesPrototype>(species, out var speciesProto))
             return;
 
-        if (scale < speciesProto.MinSize || scale > speciesProto.MaxSize)
+        if (!float.IsNormal(scale)
+        || scale < speciesProto.MinSize
+        || scale > speciesProto.MaxSize)
             scale = speciesProto.DefaultSize;
 
         float? density = (scale / speciesProto.DefaultSize) * speciesProto.DensityCoefficient;

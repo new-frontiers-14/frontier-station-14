@@ -1659,7 +1659,9 @@ namespace Content.Client.Lobby.UI
             SizePicker.MinValue = speciesProto.MinSize;
             SizePicker.MaxValue = speciesProto.MaxSize;
 
-            if (size < speciesProto.MinSize || size > speciesProto.MaxSize)
+            if (!float.IsNormal(size)
+            || size < speciesProto.MinSize
+            || size > speciesProto.MaxSize)
                 size = speciesProto.DefaultSize;
 
             // Force the size picker to update

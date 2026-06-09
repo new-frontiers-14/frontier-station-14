@@ -243,7 +243,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
             // Frontier - size editor - reset to default if out of range
             size = appearance.Scale;
-            if (size < speciesProto.MinSize || size > speciesProto.MaxSize)
+            if (!float.IsNormal(size)
+            || size < speciesProto.MinSize
+            || size > speciesProto.MaxSize)
                 size = speciesProto.DefaultSize;
             // End Frontier
         }
