@@ -49,7 +49,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly SharedIdentitySystem _identity = default!;
     [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!; // Frontier
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Frontier
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 

@@ -372,7 +372,7 @@ namespace Content.Server.Database
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
 
-            ModelNF.OnModelCreating(modelBuilder); // Frontier
+            ModelNF.OnModelCreating(modelBuilder); // Frontier - NFProfile
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -428,7 +428,7 @@ namespace Content.Server.Database
         public int PreferenceId { get; set; }
         public Preference Preference { get; set; } = null!;
 
-        public NFProfile NFProfile { get; set; } = null!; // Frontier
+        public NFProfile NFProfile { get; set; } = null!; // Frontier - NFProfile
     }
 
     public class Job

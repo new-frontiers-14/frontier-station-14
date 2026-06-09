@@ -53,7 +53,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                     Color.Azure,
                     Color.Beige,
                     new (),
-                    1f)
+                    1f) // Frontier - size editor
             }.WithBankBalance(27000); // Frontier - accessor issue
         }
 

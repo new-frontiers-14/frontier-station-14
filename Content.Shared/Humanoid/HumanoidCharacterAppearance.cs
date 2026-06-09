@@ -57,44 +57,44 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Scale)
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Scale) // Frontier - size editor: add Scale
     {
 
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Scale);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Scale); // Frontier - size editor: add Scale
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Scale);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Scale); // Frontier - size editor: add Scale
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Scale);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Scale); // Frontier - size editor: add Scale
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Scale);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Scale); // Frontier - size editor: add Scale
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Scale);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Scale); // Frontier - size editor: add Scale
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Scale);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Scale); // Frontier - size editor: add Scale
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Scale);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Scale); // Frontier - size editor: add Scale
     }
     // Frontier - size editor
     public HumanoidCharacterAppearance WithScale(float newScale)
@@ -189,7 +189,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var newSize = random.NextFloat(speciesProto.DefaultSize - newSizeRange, speciesProto.DefaultSize + newSizeRange);
         // End Frontier - size editor
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newSize);
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newSize); // Frontier - size editor: add Scale
 
         float RandomizeColor(float channel)
         {

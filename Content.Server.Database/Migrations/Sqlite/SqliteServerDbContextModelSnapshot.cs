@@ -661,6 +661,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("job", (string)null);
                 });
 
+            // Frontier - NFProfile
             modelBuilder.Entity("Content.Server.Database.NFProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -684,6 +685,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.ToTable("nfprofile", (string)null);
                 });
+            // End Frontier - NFProfile
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
@@ -1663,6 +1665,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
+            // Frontier - NFProfile
             modelBuilder.Entity("Content.Server.Database.NFProfile", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -1674,6 +1677,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Navigation("Profile");
                 });
+            // End Frontier - NFProfile
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
@@ -2039,8 +2043,10 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Navigation("Loadouts");
 
+                    // Frontier - NFProfile
                     b.Navigation("NFProfile")
                         .IsRequired();
+                    // End Frontier - NFProfile
 
                     b.Navigation("Traits");
                 });
