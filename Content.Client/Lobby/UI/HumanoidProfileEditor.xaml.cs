@@ -1297,7 +1297,10 @@ namespace Content.Client.Lobby.UI
         private void SetProfileScale(string newScaleString, bool doEvent = false)
         {
             if (!float.TryParse(newScaleString, out var newScale))
+            {
+                if (doEvent) SizeEdit.Text = SizePicker.Value.ToString("N2");
                 return;
+            }
 
             SetProfileScale(newScale, doEvent);
         }
