@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Warden
+  parent: BaseVessel
+  name: NT Warden
+  description: TBA
+  price: 48200 #Appraises at ~44210. Markup of ~9%.
+  category: Small
+  group: Centcom
+  access: CentralCommand
+  shuttlePath: /Maps/_NF/Shuttles/Admin/warden.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - APU
+
+- type: gameMap
+  id: Warden
+  mapName: 'Warden'
+  mapPath: /Maps/_NF/Shuttles/Admin/warden.yml
+  minPlayers: 0
+  stations:
+    Warden:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Warden {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

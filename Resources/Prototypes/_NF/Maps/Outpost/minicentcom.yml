@@ -1,0 +1,22 @@
+- type: gameMap
+  id: MiniCentcomm
+  mapName: 'Centcomm Outpost'
+  mapPath: /Maps/_NF/Admin/minicentcomm.yml
+  minPlayers: 0
+  maxPlayers: 10
+  randomRotation: false
+  maxRandomOffset: 0
+  stations:
+    Frontier:
+      stationProto: StandardFrontierStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Centcomm Outpost'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Logo/icon/icon-256x256.png # used the biggest one, looks better when downscaling than upscaling
+          stationSubtext: 'frontier-lobby-frontier-subtext'
+          stationDescription: 'frontier-lobby-frontier-description'
+          lobbySortOrder: 1 # Subject to change
