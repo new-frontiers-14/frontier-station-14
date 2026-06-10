@@ -92,6 +92,7 @@ public sealed partial class DockingScreen : BoxContainer
         DockingControl.DockState = state;
         DockingControl.GridEntity = shuttle;
         BuildDocks(shuttle);
+
         // Frontier
         // Enable the undock all button only if there are docked ports
         var hasDockedPorts = false;
@@ -105,7 +106,8 @@ public sealed partial class DockingScreen : BoxContainer
         }
 
         UndockAllButton.Disabled = !hasDockedPorts;
-    }   // End Frontier
+    }
+        // End Frontier
 
     private void BuildDocks(EntityUid? shuttle)
     {
