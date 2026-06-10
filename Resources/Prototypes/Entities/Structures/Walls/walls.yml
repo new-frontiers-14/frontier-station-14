@@ -761,9 +761,11 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
-  - type: Construction
+  - type: Construction # Frontier
     graph: Girder
     node: diagonalReinforcedWall
+  - type: StaticPrice # Frontier
+    price: 100
 
 # Riveting
 - type: entity
@@ -1097,7 +1099,7 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Construction
+  - type: Construction # Frontier
     graph: Girder
     node: diagonalWall
 
