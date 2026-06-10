@@ -40,6 +40,7 @@
               amount: 2
               doAfter: 2
 
+        # Frontier
         - to: diagonalWall
           completed:
             - !type:SnapToGrid
@@ -52,6 +53,7 @@
               doAfter: 1
             - tool: Welding
               doAfter: 4
+        # /Frontier
 
         - to: reinforcedGirder
           completed:
@@ -177,6 +179,7 @@
             - tool: Welding
               doAfter: 10
 
+    # Frontier
     - node: diagonalWall
       entity: WallSolidDiagonal
       edges:
@@ -188,6 +191,7 @@
           steps:
             - tool: Welding
               doAfter: 5
+    # /Frontier
 
     - node: wallChitin
       entity: WallSolidChitin
@@ -341,6 +345,7 @@
               amount: 2
               doAfter: 1
 
+        # Frontier
         - to: diagonalshuttleWall
           conditions:
             - !type:EntityAnchored { }
@@ -353,6 +358,7 @@
             - material: Plasteel
               amount: 1
               doAfter: 1
+        # /Frontier
 
         - to: girder
           completed:
@@ -528,6 +534,7 @@
             - tool: Cutting
               doAfter: 4
 
+    # Frontier
     - node: diagonalReinforcedWall
       entity: WallReinforcedDiagonal
       edges:
@@ -584,6 +591,7 @@
               doAfter: 1
             - tool: Cutting
               doAfter: 1
+    # /Frontier
 
     - node: wallrust
       entity: WallSolidRust
