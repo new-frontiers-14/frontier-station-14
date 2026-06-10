@@ -106,8 +106,8 @@ public sealed partial class DockingScreen : BoxContainer
         }
 
         UndockAllButton.Disabled = !hasDockedPorts;
-    }
         // End Frontier
+    }
 
     private void BuildDocks(EntityUid? shuttle)
     {
