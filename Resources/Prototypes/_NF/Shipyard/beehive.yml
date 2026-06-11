@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: AlbinoNinja (https://github.com/sizemore01)
+# Discord: AlbinoNinja
+
+# Maintainer Info
+# GitHub: AlbinoNinja (https://github.com/sizemore01)
+# Discord: AlbinoNinja
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Beehive
+  parent: BaseVessel
+  name: Beehive
+  description: "The Beehive is a large support ship designed to house a myriad of subships creating a large-scale food hall. It itself does not have the ability, however to cook, grow, or serve drinks."
+  price: 33500 # 30619 0.05 32149.95
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/beehive.yml
+  guidebookPage: ShipyardBeehive
+  class:
+  - Service
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Beehive
+  mapName: 'Beehive'
+  mapPath: /Maps/_NF/Shuttles/beehive.yml
+  minPlayers: 0
+  stations:
+    Beehive:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Beehive {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
