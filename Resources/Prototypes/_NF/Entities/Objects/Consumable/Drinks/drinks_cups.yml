@@ -1,6 +1,7 @@
 - type: entity
-  parent: DrinkTeacup
+  parent: DrinkGlassBase
   id: DrinkTeacupEmpty
+  name: teacup
   suffix: Empty
   components:
   - type: SolutionContainerManager
@@ -8,6 +9,19 @@
       drink:
         reagents: [ ]
         maxVol: 20
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/teacup.rsi
+    state: icon-0
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/teacup.rsi
+    layers:
+    - state: icon-0
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: icon-4
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: icon-
 
 - type: entity
   parent: DrinkTeapot
