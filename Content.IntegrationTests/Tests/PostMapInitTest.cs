@@ -37,6 +37,7 @@ namespace Content.IntegrationTests.Tests
         {
             // "CentComm", // Frontier: no upstream maps
             // "Dart" // Frontier: no upstream maps
+            "MiniCentcomm" // Frontier
         };
 
         private static readonly string[] Grids =
