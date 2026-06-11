@@ -13,7 +13,6 @@ machine-part-name-capacitor = capacitor
 machine-part-name-manipulator = manipulator
 machine-part-name-matter-bin = matter bin
 machine-part-name-power-cell = power cell
-machine-part-name-plushie-ghost = ghost soft toy
 # End Frontier
 
 upgrade-power-draw = power draw
