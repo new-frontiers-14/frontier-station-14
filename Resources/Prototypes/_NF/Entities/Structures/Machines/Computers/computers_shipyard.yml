@@ -290,27 +290,27 @@
       state: telesci_key
 
 - type: entity
-  id: ComputerShipyardCentcom
+  id: ComputerShipyardCentcomm
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
-  name: centcom shipyard console
-  description: Used to buy vessels exclusive to Centcom personnel.
+  name: centcomm shipyard console
+  description: Used to buy vessels exclusive to Centcomm personnel.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_centcom
+      state: computer_centcomm
     - map: ["computerLayerKeyboard"]
-      state: centcom_keyboard
+      state: centcomm_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_centcom
+      state: shipyard_centcomm
     - map: ["computerLayerKeys"]
-      state: centcom_key
+      state: centcomm_key
   - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.Centcom
+    key: enum.ShipyardConsoleUiKey.Centcomm
   - type: UserInterface
     interfaces:
-      enum.ShipyardConsoleUiKey.Centcom:
+      enum.ShipyardConsoleUiKey.Centcomm:
         type: ShipyardConsoleBoundUserInterface
   - type: ShipyardConsole
     shipyardChannel: CentCom
