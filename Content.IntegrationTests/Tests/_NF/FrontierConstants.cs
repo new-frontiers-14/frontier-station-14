@@ -6,6 +6,6 @@ public sealed class FrontierConstants
     {
         "Frontier",
         "NFDev",
-        "minicentcomm"
+        "MiniCentcomm"
     };
 }
