@@ -174,6 +174,14 @@ public sealed class SolutionDumpingSystem : EntitySystem
             return false;
         }
 
+        // Frontier: block transfer out if flagged
+        if (TryComp<RefillableSolutionComponent>(sourceContainer, out var refillable) && refillable.PreventTransferOut)
+        {
+            _popup.PopupClient(Loc.GetString("spill-target-verb-activate-cannot-drain-message", ("owner", sourceContainer)), targetContainer, user);
+            return false;
+        }
+        // End Frontier: block transfer out if flagged
+
         // Both things need to be open. If the entity has nothing to close, it will count as "open".
         return !_openable.IsClosed(sourceContainer, user, predicted: true)
                && !_openable.IsClosed(targetContainer, user, predicted: true);
