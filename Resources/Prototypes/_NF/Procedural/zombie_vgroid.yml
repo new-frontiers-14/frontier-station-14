@@ -190,6 +190,12 @@
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
     perDungeon: true
+  - !type:EntityTableDunGen # Concealed mines
+    minCount: 0
+    maxCount: 3
+    table: !type:NestedSelector
+      tableId: NFTableRandomConcealedMine
+    perDungeon: true
   - !type:MobsDunGen
     minCount: 10
     maxCount: 15
