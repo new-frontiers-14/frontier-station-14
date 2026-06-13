@@ -192,7 +192,7 @@ public sealed class AutopilotSystem : EntitySystem
             return shuttle.BaseMaxLinearVelocity;
 
         var vel = Vector2.Normalize(velocity);
-        
+
         var horizIndex = vel.X > 0 ? 1 : 3; // east else west
         var vertIndex = vel.Y > 0 ? 2 : 0; // north else south
 
@@ -698,7 +698,6 @@ public sealed class AutopilotSystem : EntitySystem
             shuttle.BodyModifier = DampenDampingStrength;
             if (shuttle.DampingModifier != 0)
                 shuttle.DampingModifier = shuttle.BodyModifier;
-            shuttle.EBrakeActive = false;
 
             // Refresh shuttle consoles so pilots see the mode change to "Drive"
             _console.RefreshShuttleConsoles(shuttleUid);
