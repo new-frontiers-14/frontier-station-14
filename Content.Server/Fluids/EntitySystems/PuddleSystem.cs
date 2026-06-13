@@ -379,7 +379,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         puddleUid = EntityUid.Invalid;
         spilled = new Solution();
 
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity, ref entity.Comp, false)) // Frontier: don't log missing SpillableComponent to prevent a test fail related to our jerrycans
             return false;
 
         if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var solution))
