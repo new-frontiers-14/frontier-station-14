@@ -749,7 +749,6 @@ public sealed class AutopilotSystem : EntitySystem
         shuttle.BodyModifier = DampenDampingStrength;
         if (shuttle.DampingModifier != 0)
             shuttle.DampingModifier = shuttle.BodyModifier;
-        shuttle.EBrakeActive = false;
 
         // Refresh shuttle consoles so pilots see the mode change
         _console.RefreshShuttleConsoles(shuttleUid);
