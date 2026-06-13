@@ -97,7 +97,6 @@ public sealed class AutopilotSystem : EntitySystem
                 shuttle.BodyModifier = 2.5f; // AnchorDampingStrength
                 if (shuttle.DampingModifier != 0)
                     shuttle.DampingModifier = shuttle.BodyModifier;
-                shuttle.EBrakeActive = false;
 
                 continue;
             }
