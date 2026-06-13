@@ -65,3 +65,14 @@
     thresholds:
       0: Alive
       12: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - SmallMobLayer
