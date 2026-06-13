@@ -1132,11 +1132,41 @@
     layers:
     - state: plushie_goblin
     - state: plushie_goblin_shiv
-      map: [ "enum.DamageStateVisualLayers.Base" ]
+      map: [ "plushieGoblinShiv" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: goblin-inhand-left
+      - state: plushie_goblin_shiv-inhand-left
+        map: [ "plushieGoblinShivInhandLeft" ]
+      right:
+      - state: goblin-inhand-right
+      - state: plushie_goblin_shiv-inhand-right
+        map: [ "plushieGoblinShivInhandRight" ]
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: goblin-HELMET
+          offset: "0, 0.03"
+        - state: plushie_goblin_shiv-HELMET
+          offset: "0, 0.03"
+          map: [ "plushieGoblinShivHelmet" ]
   - type: RandomSprite
     available:
-      - enum.DamageStateVisualLayers.Base:
-          plushie_goblin_shiv: GlassColors
+      - plushieGoblinShiv:
+          plushie_goblin_shiv: ShivColors
+        plushieGoblinShivInhandLeft:
+          plushie_goblin_shiv-inhand-left: ShivColors
+        plushieGoblinShivInhandRight:
+          plushie_goblin_shiv-inhand-right: ShivColors
+        plushieGoblinShivHelmet:
+          plushie_goblin_shiv-HELMET: ShivColors
+    mappedColors:
+      ShivColors: GlassColors
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_1.ogg
