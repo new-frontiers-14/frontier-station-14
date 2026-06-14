@@ -14,7 +14,7 @@
     - 0,0,20,20
     maxItemSize: Ginormous
   - type: Visibility
-    layer: 2
+    layer: 2 #ghost layer
   - type: DragInsertContainer
     containerId: clowncar_container
     entryDelay: 0
@@ -25,7 +25,7 @@
         ents: []
       clowncar_container: !type:Container
   - type: ExtendedContainer
-    containerName: storagebase
+    containerName: clowncar_container
     deleteContentsOnBreak: false
     capacity: 999
   - type: UserInterface
@@ -37,13 +37,10 @@
   - type: Damageable
     damageContainer: Inorganic
   - type: TriggerOnUse
+  - type: Anchorable
+  - type: AnchorOnTrigger
   - type: TimerTrigger
-    delay: 1
-  - type: DamageOnTrigger
-    damage:
-      types:
-        Slash: 250
-    ignoreResistances: true
+    delay: 0.9
   - type: Destructible
     thresholds:
     - trigger:
@@ -62,3 +59,12 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: TwoStageTrigger
+    triggerDelay: 1
+    components:
+      - type: DamageOverTime
+        damage:
+          types:
+            Slash: 50
+        interval: 0.5
+        ignoreResistances: true
