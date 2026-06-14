@@ -50,5 +50,6 @@ namespace Content.Server.Construction.Components
         // Mono - sets the framesize of boards it accepts.
         [DataField]
         public string? FrameSize = null;
+        // End Mono
     }
 }
