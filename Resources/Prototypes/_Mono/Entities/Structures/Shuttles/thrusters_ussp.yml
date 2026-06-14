@@ -1,0 +1,29 @@
+- type: entity
+  id: ThrusterUSSP
+  parent: ThrusterSecurity
+  suffix: olive
+  components:
+  - type: Sprite
+    sprite: _Mono/Structures/Shuttles/thrusterussp.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+  - type: Machine
+    board: ThrusterMachineCircuitboard
+
+- type: entity
+  id: ThrusterLargeUSSP
+  parent: ThrusterLarge
+  suffix: olive
+  components:
+  - type: Sprite
+    sprite: _Mono/Structures/Shuttles/thrusterussp_large.rsi

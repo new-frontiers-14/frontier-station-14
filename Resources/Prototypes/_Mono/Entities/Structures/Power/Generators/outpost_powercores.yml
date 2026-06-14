@@ -1,0 +1,70 @@
+- type: entity
+  id: MachineOutpostCore
+  parent: BaseGenerator
+  name: B.R0-200k Bluespace Reactor
+  description: A modified FTL drive, safely refitted to release large amounts of power consistently.
+  suffix: 200kW
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Sprite
+      sprite: _Mono/Structures/Power/Generators/outpostcore.rsi
+      snapCardinals: true
+      layers:
+      - state: outpostcore
+      - state: outpostcore_on
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        visible: true
+        shader: unshaded
+        color: "#62D6B9"
+    - type: PowerSupplier
+      supplyRate: 200000
+      supplyRampRate: 100000
+      supplyRampTolerance: 200
+    - type: RadiationSource
+      intensity: 2
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1000
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:ExplodeBehavior
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+    - type: PointLight
+      enabled: false
+      color: "#62D6B9" # beb color
+      radius: 3.0
+      energy: 1.5
+    - type: LitOnPowered
+    - type: Appearance
+    - type: AmbientOnPowered
+    - type: Anchorable
+      delay: 10
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 1600
+      intensitySlope: 2
+      maxIntensity: 300 # like a smaller hardbomb, less than half area but good damage
+      maxTileBreak: 1
+    - type: AmbientSound
+      volume: -1
+      range: 8
+      sound:
+        path: /Audio/Ambience/Objects/anomaly_generator.ogg
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
+            False: { visible: false }
+# visuals are broken but this thing is going to be unanchorable anyway so who cares
+## this probably is a problem with my implementation of the enum anchored visual system
