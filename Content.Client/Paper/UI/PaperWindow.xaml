@@ -14,7 +14,9 @@
                         <TextureButton Name="HeaderImage" HorizontalAlignment="Center" VerticalAlignment="Top" MouseFilter="Ignore"/>
                         <Control Name="TextAlignmentPadding" VerticalAlignment="Top"/>
                         <RichTextLabel Name="BlankPaperIndicator" StyleClasses="LabelSecondaryColor" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-                        <RichTextLabel StyleClasses="PaperWrittenText" Name="WrittenTextLabel" VerticalAlignment="Top"/>
+                        <RichTextLabel Name="WrittenTextLabel" VerticalAlignment="Top"/> <!--RMC14 - StyleClasses seperated into box container-->
+                        <BoxContainer Name="WrittenTextContainer" Orientation="Horizontal" VerticalAlignment="Top" StyleClasses="PaperWrittenText"> <!--RMC14-->
+                        </BoxContainer> <!--RMC14-->
                         <BoxContainer Name="InputContainer" Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Stretch">
                             <PanelContainer StyleClasses="TransparentBorderedWindowPanel" MinHeight="100"
                                 VerticalAlignment="Stretch" VerticalExpand="True" HorizontalExpand="True">
