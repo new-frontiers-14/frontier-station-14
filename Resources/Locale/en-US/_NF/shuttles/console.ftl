@@ -27,3 +27,5 @@ shuttle-console-hide-target = Show
 shuttle-console-hide-target-description = Toggles the visibility of the target waypoint on the radar console.
 shuttle-console-target-name = Target
 shuttle-console-map-track = ⌖
+
+shuttle-console-undock-all = Undock All
