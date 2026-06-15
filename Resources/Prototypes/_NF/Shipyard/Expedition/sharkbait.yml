@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Kesiath (https://github.com/Kesiath)
+# Discord: @kesiath
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Sharkbait
+  parent: BaseVessel
+  name: IOI Sharkbait
+  description: A 3 person exploration vessel designed to spend months in space in relative comfort. This vessel was once the height of luxury but now compared to more modern options it's the perfect budget vessel for an adventure.
+  price: 62000 #Original price 56071
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/sharkbait.yml
+  guidebookPage: ShipyardSharkbait
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: Sharkbait
+  mapName: 'IOI Sharkbait'
+  mapPath: /Maps/_NF/Shuttles/Expedition/sharkbait.yml
+  minPlayers: 0
+  stations:
+    Sharkbait:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Sharkbait {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
