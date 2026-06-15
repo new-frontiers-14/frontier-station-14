@@ -135,3 +135,140 @@
   - type: TriggerOnSpawn
   - type: TimedDespawn
     lifetime: 3
+
+- type: entity # Frontier Item
+  id: SyndicateSpawnSupplyEmpty
+  name: SyndicateSpawnSupplyEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger
+    proto: SyndicateSpawnSupplypodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+    drawdepth: FloorObjects
+  - type: Marker
+
+- type: entity
+  id: SyndicateSpawnSupplypodAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Specific/DropPod/marker.rsi
+    state: marker_ping
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 1.75
+  - type: SpawnOnTrigger
+    proto: SyndicateSpawnSupplypodStartAnimationSound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: SyndicateSpawnSupplypodPermaMarkerAnimation
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SyndicateSpawnSupplypodPermaMarkerAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Specific/DropPod/marker.rsi
+    state: marker
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger
+    proto: SyndicateSpawnSupplypodLandingAnimation
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SyndicateSpawnSupplypodStartAnimationSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Goobstation/DropPod/supplypodlanding.ogg
+    audioParams:
+      maxDistance: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: SyndicateSpawnSupplypodLandingAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Specific/DropPod/landingpod.rsi
+    state: syndicate-landing
+    offset: -1.7, 4.3
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 1.8
+  - type: SpawnOnDespawn
+    prototype: SyndicateSpawnSupplypodLanded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SyndicateSpawnSupplypodLanded
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Goobstation/Objects/Specific/DropPod/supplypod.rsi
+    state: syndicate-landed
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 6
+  - type: SpawnOnDespawn
+    prototype: SyndicateSpawnSupplypodLandedOpening
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SyndicateSpawnSupplypodLandedOpening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Goobstation/Objects/Specific/DropPod/supplypod.rsi
+    state: syndicate-landed-opened
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 20
+  - type: SpawnOnDespawn
+    prototype: SyndicateSpawnSupplypodWooshSound
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Goobstation/DropPod/closet_open.ogg
+    audioParams:
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SyndicateSpawnSupplypodWooshSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Goobstation/DropPod/podwoosh.ogg
+    audioParams:
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 3
