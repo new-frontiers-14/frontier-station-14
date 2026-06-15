@@ -31,6 +31,9 @@ ghost-role-information-elcapo-description = Found himself in jail after years of
 ghost-role-information-curie-name = Curie
 ghost-role-information-curie-description = Walking goo, in the shape of a cat.
 
+ghost-role-information-caddy-name = Caddy
+ghost-role-information-caddy-description = A cat who wandered into medical school on graduation day.
+
 ghost-role-information-crispy-name = Crispy
 ghost-role-information-crispy-description = Mistakes were made.
 
