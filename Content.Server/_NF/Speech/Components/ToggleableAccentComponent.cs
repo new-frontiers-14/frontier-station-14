@@ -9,8 +9,9 @@ namespace Content.Server._NF.Speech.Components;
 public sealed partial class ToggleableAccentComponent : Component
 {
     //Plagiarized from VocalComponent
+    //TODO: Fix this so it has the proper prototype name, or make it a arg for the MakeAccentTogglable or whatever
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string? ToggleAccentActionId = "ActionTogglePreSapienceAccent";
+    public string? ToggleAccentActionId = "ActionToggleAccent";
     //This too
     [DataField]
     public EntityUid? ToggleAccentAction;
@@ -24,16 +25,15 @@ public sealed partial class ToggleableAccentComponent : Component
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReplacementAccentPrototype>))]
     public string? ReplacementAccentPrototypeName = null;
 
+    [DataField]
+    public OnRemovalBehavior RemovalBehavior;
 
     /// <summary>
     /// What should happen to the accent if this component were removed.
-    /// <remarks>DEFAULT should never be manually set by the system,
-    /// it should only be used if a RemovalBehavior was not set by something else.</remarks>
     /// </summary>
     public enum OnRemovalBehavior
     {
         ADD, //If the component is removed, the accent will be added
         REMOVE, //If the component is removed, the accent will be removed
-        DEFAULT //No action will be taken if the component is removed. This should never be set manually
     }
 }

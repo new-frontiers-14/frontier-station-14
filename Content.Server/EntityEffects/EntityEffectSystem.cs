@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Speech.Components;
+using Content.Server._NF.Speech.EntitySystems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -73,6 +75,7 @@ public sealed class EntityEffectSystem : EntitySystem
     [Dependency] private readonly SmokeSystem _smoke = default!;
     [Dependency] private readonly SpreaderSystem _spreader = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly ToggleableAccentSystem _toggleableAccentSystem = default!; //Frontier
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly VomitSystem _vomit = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
@@ -770,15 +773,15 @@ public sealed class EntityEffectSystem : EntitySystem
         if (TryComp<ReplacementAccentComponent>(uid, out var replacementAccentComp))
         {
             var accentId = replacementAccentComp.Accent;
-
+            _toggleableAccentSystem.MakeAccentToggleable(uid, replacementAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.ADD, replacementAccentComp.Accent);
 
         }
         else if (TryComp<MonkeyAccentComponent>(uid, out var monkeyAccentComp))
         {
-
+            _toggleableAccentSystem.MakeAccentToggleable(uid, monkeyAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.ADD, null);
         }
 
-        //Frontier: Below lines made obsolete
+        //Below lines made obsolete
         //RemComp<ReplacementAccentComponent>(uid);
         //RemComp<MonkeyAccentComponent>(uid);
         //End Frontier
