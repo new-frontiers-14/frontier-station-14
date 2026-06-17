@@ -4,7 +4,7 @@
   name: emotional support pet crate
   description: A crate containing a single emotional support pet.
   components:
-  - type: StorageFill
+  - type: ContainerFill
     contents:
       - id: MobCatGhost
         prob: 1
@@ -45,7 +45,7 @@
   suffix: Safe
   abstract: true
   components:
-  - type: StorageFill
+  - type: ContainerFill
     contents:
       - id: MobCatGhost
         prob: 1
@@ -91,7 +91,7 @@
   parent: CrateWoodCage
   suffix: Filled, Clugg
   components:
-  - type: StorageFill
+  - type: ContainerFill
     contents:
       - id: MobCatClugg
 
@@ -101,13 +101,13 @@
   name: poultry cube crate
   description: A crate containing single box of poultry cubes.
   components:
-  - type: StorageFill
+  - type: ContainerFill
     contents:
       - id: PoultryCubeBox
 
 - type: entity
   id: CrateEmotionalSupportCat
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support cat crate
   description: A crate containing a single emotional support cat.
   components:
@@ -119,7 +119,7 @@
 
 - type: entity
   id: CrateEmotionalSupportCalicoCat
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support calico cat crate
   description: A crate containing a single emotional support calico cat.
   components:
@@ -131,7 +131,7 @@
 
 - type: entity
   id: CrateEmotionalSupportCaracalCat
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support caracal cat crate
   description: A crate containing a single emotional support caracal cat.
   components:
@@ -143,7 +143,7 @@
 
 - type: entity
   id: CrateEmotionalSupportBingusCat
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support sphynx cat crate
   description: A crate containing a single emotional support sphynx cat.
   components:
@@ -155,7 +155,7 @@
 
 - type: entity
   id: CrateEmotionalSupportSpaceCat
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support space cat crate
   description: A crate containing a single emotional support space faring cat.
   components:
@@ -167,7 +167,7 @@
 
 - type: entity
   id: CrateEmotionalSupportCorgi
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support corgi crate
   description: A crate containing a single emotional support corgi.
   components:
@@ -179,7 +179,7 @@
 
 - type: entity
   id: CrateEmotionalSupportCorgiPuppy
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support corgi puppy crate
   description: A crate containing a single emotional support corgi puppy.
   components:
@@ -191,7 +191,7 @@
 
 - type: entity
   id: CrateEmotionalSupportPug
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support pug crate
   description: A crate containing a single emotional support pug.
   components:
@@ -203,7 +203,7 @@
 
 - type: entity
   id: CrateEmotionalSupportChicken
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support chicken crate
   description: A crate containing a single emotional support chicken.
   components:
@@ -215,7 +215,7 @@
 
 - type: entity
   id: CrateEmotionalSupportFox
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support fox crate
   description: A crate containing a single emotional support fox.
   components:
@@ -226,20 +226,20 @@
       orGroup: MobGhost
 
 - type: entity
-  id: CrateEmotionalSupportPossum
-  parent: CrateLivestock
-  name: emotional support possum crate
-  description: A crate containing a single emotional support possum.
+  id: CrateEmotionalSupportOpossum
+  parent: PetCarrier
+  name: emotional support opossum crate
+  description: A crate containing a single emotional support opossum.
   components:
   - type: StorageFill
     contents:
-    - id: MobPossumGhost
+    - id: MobOpossumGhost
       prob: 1
       orGroup: MobGhost
 
 - type: entity
   id: CrateEmotionalSupportRaccoon
-  parent: CrateLivestock
+  parent: PetCarrier
   name: emotional support raccoon crate
   description: A crate containing a single emotional support raccoon.
   components:
