@@ -120,6 +120,20 @@ guide-entry-shipyard-tyne = Tyne
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
 
+# NFSD Shipyard entries
+guide-entry-shipyard-broadhead = Broadhead
+guide-entry-shipyard-cleric = Cleric
+guide-entry-shipyard-empress = Empress
+guide-entry-shipyard-fighter = Fighter
+guide-entry-shipyard-heimdall = Heimdall
+guide-entry-shipyard-hospitaller = Hospitaller
+guide-entry-shipyard-hypnos = Hypnos
+guide-entry-shipyard-paladin = Paladin
+guide-entry-shipyard-prowler = Prowler
+guide-entry-shipyard-rogue = Rogue
+guide-entry-shipyard-templar = Templar
+guide-entry-shipyard-wasp = Wasp
+
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
 guide-entry-frontier-rule-1 = 1. Community
