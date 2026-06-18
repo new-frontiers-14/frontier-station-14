@@ -85,7 +85,7 @@ public sealed partial class ShuttleSystem
             autopilot.Enabled)
         {
             _autopilot.DisableAutopilot(transform.GridUid.Value);
-           // Frontier: Disables chat message from Autopilot _autopilot.SendShuttleMessage(transform.GridUid.Value, "Autopilot disengaged - manual mode change");
+            _autopilot.SendShuttleMessage(transform.GridUid.Value, "Autopilot disengaged - manual mode change");
         }
         // Wayfarer end
 

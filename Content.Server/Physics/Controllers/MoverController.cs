@@ -177,7 +177,7 @@ public sealed class MoverController : SharedMoverController
         )
         {
             _autopilot.DisableAutopilotToDriveMode(consoleXform.GridUid.Value);
-        // Frontier: Disables chat message from Autopilot _autopilot.SendShuttleMessage(consoleXform.GridUid.Value, "Releasing manual control to pilot");
+            _autopilot.SendShuttleMessage(consoleXform.GridUid.Value, "Releasing manual control to pilot");
         }
         // End Wayfarer
 
