@@ -61,7 +61,7 @@ public sealed class AutopilotSystem : EntitySystem
         }
 
         DisableAutopilot(gridUid.Value);
-        SendShuttleMessage(gridUid.Value, "Autopilot: Server disconnected - autopilot disabled");
+        // _autopilot.SendShuttleMessage(gridUid.Value, "Autopilot: Server disconnected - autopilot disabled"); // Frontier: Disables chat message from Autopilot
     }
 
     public override void Update(float frameTime)
@@ -86,7 +86,7 @@ public sealed class AutopilotSystem : EntitySystem
             if (!HasPoweredAutopilotServer(uid))
             {
                 DisableAutopilot(uid);
-                SendShuttleMessage(uid, "Autopilot: Server lost power - autopilot disabled");
+                // _autopilot.SendShuttleMessage(uid, "Autopilot: Server lost power - autopilot disabled"); // Frontier: Disables chat message from Autopilot
                 continue;
             }
 
@@ -101,7 +101,7 @@ public sealed class AutopilotSystem : EntitySystem
             {
                 var destinationName = autopilot.DestinationName ?? "destination";
                 autopilot.Enabled = false;
-                SendShuttleMessage(uid, $"Autopilot: {destinationName} reached - Parking");
+                // _autopilot.SendShuttleMessage(uid, $"Autopilot: {destinationName} reached - Parking"); // Frontier: Disables chat message from Autopilot
 
                 // Apply brakes
                 ApplyBraking(uid, shuttle, physics, xform, frameTime);
@@ -278,7 +278,7 @@ public sealed class AutopilotSystem : EntitySystem
         if (autopilot.DebugObstacles && !autopilot.ReportedObstacles.Contains(EntityUid.Invalid))
         {
             autopilot.ReportedObstacles.Add(EntityUid.Invalid); // Use Invalid as a "we've reported scan status" marker
-            SendShuttleMessage(shuttleUid, $"Autopilot: Scanning... speed={speed:F1}, lookAhead={lookAheadDistance:F0}m, ourRadius={ourRadius:F0}m, gridsInRange={grids.Count}");
+            // Frontier: Disables chat message from Autopilot _autopilot.SendShuttleMessage(shuttleUid, $"Autopilot: Scanning... speed={speed:F1}, lookAhead={lookAheadDistance:F0}m, ourRadius={ourRadius:F0}m, gridsInRange={grids.Count}");
         }
 
         foreach (var grid in grids)
@@ -332,7 +332,7 @@ public sealed class AutopilotSystem : EntitySystem
                 var obstacleName = MetaData(gridUid).EntityName;
                 var direction = GetCardinalDirection(toObstacle, forward);
                 var inCylinder = lateralDistance < combinedRadius * 1.5f;
-                SendShuttleMessage(shuttleUid, $"Autopilot: Grid detected {direction} - {obstacleName} (size: {obstacleRadius * 2:F0}m, dist: {distanceToObstacle:F0}m, lateral: {lateralDistance:F0}m, combined: {combinedRadius:F0}m, inPath: {inCylinder})");
+                // _autopilot.SendShuttleMessage(shuttleUid, $"Autopilot: Grid detected {direction} - {obstacleName} (size: {obstacleRadius * 2:F0}m, dist: {distanceToObstacle:F0}m, lateral: {lateralDistance:F0}m, combined: {combinedRadius:F0}m, inPath: {inCylinder})"); // Frontier: Disables chat message from Autopilot
             }
 
             // Check if obstacle intersects our forward cylinder (with wider detection)
@@ -731,7 +731,7 @@ public sealed class AutopilotSystem : EntitySystem
 
         autopilot.Enabled = false;
         autopilot.TargetCoordinates = null;
-        SendShuttleMessage(shuttleUid, "Autopilot: Disabled");
+        // _autopilot.SendShuttleMessage(shuttleUid, "Autopilot: Disabled"); // Frontier: Disables chat message from Autopilot
     }
 
     /// <summary>
