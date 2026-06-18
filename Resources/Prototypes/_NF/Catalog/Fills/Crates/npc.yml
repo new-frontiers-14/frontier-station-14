@@ -4,79 +4,24 @@
   name: emotional support pet crate
   description: A crate containing a single emotional support pet.
   components:
-  - type: StorageFill
-    contents:
-      - id: MobCatGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCatCalicoGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCatCaracalGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobBingusGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCatSpaceGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCorgiGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCorgiPuppyGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobPugGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobChickenGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobFoxGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobPibbleGhost
-        prob: 0.25
-        orGroup: MobGhost
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        rolls: !type:ConstantNumberSelector
+          value: 1
+        tableId: RandomEmotionalSupportPetTable
 
 - type: entity
   id: FillNPCEmotionalSupportSafe # No pitbull
   suffix: Safe
   abstract: true
   components:
-  - type: StorageFill
-    contents:
-      - id: MobCatGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCatCalicoGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCatCaracalGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobBingusGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCatSpaceGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCorgiGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobCorgiPuppyGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobPugGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobChickenGhost
-        prob: 1
-        orGroup: MobGhost
-      - id: MobFoxGhost
-        prob: 1
-        orGroup: MobGhost
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:NestedSelector
+          rolls: !type:ConstantNumberSelector
+            value: 1
+          tableId: RandomEmotionalSupportSafeTable
 
 - type: entity
   id: CrateNPCEmotionalSupportSafe
@@ -91,9 +36,10 @@
   parent: CrateWoodCage
   suffix: Filled, Clugg
   components:
-  - type: StorageFill
-    contents:
-      - id: MobCatClugg
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCatClugg
 
 - type: entity
   id: CrateNPCPoultryCube
@@ -101,9 +47,10 @@
   name: poultry cube crate
   description: A crate containing single box of poultry cubes.
   components:
-  - type: StorageFill
-    contents:
-      - id: PoultryCubeBox
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - PoultryCubeBox
 
 - type: entity
   id: CrateEmotionalSupportCat
@@ -111,11 +58,10 @@
   name: emotional support cat crate
   description: A crate containing a single emotional support cat.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobCatGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCatGhost
 
 - type: entity
   id: CrateEmotionalSupportCalicoCat
@@ -123,11 +69,10 @@
   name: emotional support calico cat crate
   description: A crate containing a single emotional support calico cat.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobCatCalicoGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCatCalicoGhost
 
 - type: entity
   id: CrateEmotionalSupportCaracalCat
@@ -135,11 +80,10 @@
   name: emotional support caracal cat crate
   description: A crate containing a single emotional support caracal cat.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobCatCaracalGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCatCaracalGhost
 
 - type: entity
   id: CrateEmotionalSupportBingusCat
@@ -147,11 +91,10 @@
   name: emotional support sphynx cat crate
   description: A crate containing a single emotional support sphynx cat.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobBingusGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobBingusGhost
 
 - type: entity
   id: CrateEmotionalSupportSpaceCat
@@ -159,11 +102,10 @@
   name: emotional support space cat crate
   description: A crate containing a single emotional support space faring cat.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobCatSpaceGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCatSpaceGhost
 
 - type: entity
   id: CrateEmotionalSupportCorgi
@@ -171,11 +113,10 @@
   name: emotional support corgi crate
   description: A crate containing a single emotional support corgi.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobCorgiGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCorgiGhost
 
 - type: entity
   id: CrateEmotionalSupportCorgiPuppy
@@ -183,11 +124,10 @@
   name: emotional support corgi puppy crate
   description: A crate containing a single emotional support corgi puppy.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobCorgiPuppyGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobCorgiPuppyGhost
 
 - type: entity
   id: CrateEmotionalSupportPug
@@ -195,11 +135,10 @@
   name: emotional support pug crate
   description: A crate containing a single emotional support pug.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobPugGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobPugGhost
 
 - type: entity
   id: CrateEmotionalSupportChicken
@@ -207,11 +146,10 @@
   name: emotional support chicken crate
   description: A crate containing a single emotional support chicken.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobChickenGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobChickenGhost
 
 - type: entity
   id: CrateEmotionalSupportFox
@@ -219,11 +157,10 @@
   name: emotional support fox crate
   description: A crate containing a single emotional support fox.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobFoxGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobFoxGhost
 
 - type: entity
   id: CrateEmotionalSupportOpossum
@@ -231,11 +168,10 @@
   name: emotional support opossum crate
   description: A crate containing a single emotional support opossum.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobOpossumGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobOpossumGhost
 
 - type: entity
   id: CrateEmotionalSupportRaccoon
@@ -243,11 +179,10 @@
   name: emotional support raccoon crate
   description: A crate containing a single emotional support raccoon.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobRaccoonGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobRaccoonGhost
 
 - type: entity
   id: CrateEmotionalSupportHamster
@@ -255,8 +190,61 @@
   name: emotional support hamster crate
   description: A crate containing a single emotional support hamster.
   components:
-  - type: StorageFill
-    contents:
-    - id: MobHamsterGhost
-      prob: 1
-      orGroup: MobGhost
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - MobHamsterGhost
+
+#Entities tables for random pet selection
+
+- type: entityTable
+  id: RandomEmotionalSupportPetTable
+  table: !type:GroupSelector
+    children:
+    - id: MobCatGhost
+      weight: 1
+    - id: MobCatCalicoGhost
+      weight: 1
+    - id: MobCatCaracalGhost
+      weight: 1
+    - id: MobBingusGhost
+      weight: 1
+    - id: MobCatSpaceGhost
+      weight: 1
+    - id: MobCorgiGhost
+      weight: 1
+    - id: MobCorgiPuppyGhost
+      weight: 1
+    - id: MobPugGhost
+      weight: 1
+    - id: MobChickenGhost
+      weight: 1
+    - id: MobFoxGhost
+      weight: 1
+    - id: MobPibbleGhost
+      weight: 1
+
+- type: entityTable
+  id: RandomEmotionalSupportSafeTable
+  table: !type:GroupSelector
+    children:
+    - id: MobCatGhost
+      weight: 1
+    - id: MobCatCalicoGhost
+      weight: 1
+    - id: MobCatCaracalGhost
+      weight: 1
+    - id: MobBingusGhost
+      weight: 1
+    - id: MobCatSpaceGhost
+      weight: 1
+    - id: MobCorgiGhost
+      weight: 1
+    - id: MobCorgiPuppyGhost
+      weight: 1
+    - id: MobPugGhost
+      weight: 1
+    - id: MobChickenGhost
+      weight: 1
+    - id: MobFoxGhost
+      weight: 1
