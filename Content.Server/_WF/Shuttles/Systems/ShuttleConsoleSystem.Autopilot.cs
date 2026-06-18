@@ -103,7 +103,7 @@ public sealed partial class ShuttleConsoleSystem
     {
         _autopilot.EnableAutopilot(shuttleUid, targetCoords, destinationName);
         _popup.PopupEntity(Loc.GetString("shuttle-console-autopilot-enabled", ("destination", destinationName)), user, user);
-        _autopilot.SendShuttleMessage(shuttleUid, $"Autopilot engaged: Destination: {destinationName}");
+      // Frontier: Disables chat message from Autopilot _autopilot.SendShuttleMessage(shuttleUid, $"Autopilot engaged: Destination: {destinationName}");
     }
 
     /// <summary>
