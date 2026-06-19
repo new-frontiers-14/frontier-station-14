@@ -31,6 +31,9 @@ ghost-role-information-elcapo-description = Found himself in jail after years of
 ghost-role-information-curie-name = Curie
 ghost-role-information-curie-description = Walking goo, in the shape of a cat.
 
+ghost-role-information-caddy-name = Caddy
+ghost-role-information-caddy-description = A cat who wandered into medical school on graduation day.
+
 ghost-role-information-crispy-name = Crispy
 ghost-role-information-crispy-description = Mistakes were made.
 
@@ -86,9 +89,15 @@ ghost-role-information-dungeon-boss-rules = You are a [color={role-type-team-ant
                                         - [color=red]DO NOT[/color] hide from players to run down the expedition timer.
                                         - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
                                         - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
-                                        - [color=red]DO NOT[/color] leave the planet.
+                                        - [color=red]DO NOT[/color] leave the planet or asteroid.
 
 nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's been stranded on a wreck for years, exposed to countless ion storms.
 
 nf-ghost-role-information-buddy-name = Buddy
 nf-ghost-role-information-buddy-description = You were constructed from a Build-A-Buddy kit. Become someone's best friend today!
+
+ghost-role-information-greenhornpai-rules = You are a [color=fuchsia][bold]{greenhornpai-system-role-name}[/bold][/color]. Guide your master the best you can.
+                                        You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+                                        You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+                                        You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+

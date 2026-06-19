@@ -5,5 +5,7 @@ construction-presenter-step-wrapper = {$step-number}. {$text}
 
 construction-presenter-tool-step = Use a {LOC($tool)}.
 construction-presenter-material-step = Add {$amount}x {LOC($material)}.
+##Frontier
+construction-presenter-machine-part-step = Add {$amount}x {LOC($part)}.
 construction-presenter-arbitrary-step = Add {LOC($name)}.
 construction-presenter-temperature-step = Heat to {$temperature}.

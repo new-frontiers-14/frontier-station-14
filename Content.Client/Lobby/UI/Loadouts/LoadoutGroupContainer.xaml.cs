@@ -205,6 +205,81 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         }
     }
 
+    // Frontier
+    /// <summary>
+    /// Filters loadout items by search text, handling both standalone and grouped items.
+    /// </summary>
+    public void FilterLoadouts(string searchText)
+    {
+        var hasFilter = !string.IsNullOrEmpty(searchText);
+        var children = LoadoutsContainer.Children.ToList();
+
+        for (var i = 0; i < children.Count; i++)
+        {
+            var child = children[i];
+
+            if (child is not LoadoutContainer loadoutContainer)
+                continue;
+
+            var nextIndex = i + 1;
+            if (nextIndex < children.Count && children[nextIndex] is SubLoadoutContainer subContainer)
+            {
+                var primaryMatches = MatchesSearch(loadoutContainer.Text, searchText);
+                var anySubMatches = false;
+
+                foreach (var subChild in subContainer.Grid.Children)
+                {
+                    if (subChild is not LoadoutContainer subLoadout)
+                        continue;
+
+                    var subMatches = MatchesSearch(subLoadout.Text, searchText);
+                    subLoadout.Visible = subMatches || !hasFilter;
+                    if (subMatches)
+                        anySubMatches = true;
+                }
+
+                var groupVisible = primaryMatches || anySubMatches || !hasFilter;
+                loadoutContainer.Visible = groupVisible;
+
+                // Only override visibility during active search; clearing restores user toggle state.
+                if (hasFilter)
+                    subContainer.Visible = anySubMatches;
+
+                i++;
+            }
+            else
+            {
+                loadoutContainer.Visible = MatchesSearch(loadoutContainer.Text, searchText);
+            }
+        }
+    }
+
+    private static bool MatchesSearch(string? text, string searchText)
+    {
+        if (string.IsNullOrEmpty(searchText))
+            return true;
+
+        if (text == null)
+            return false;
+
+        var containsSearch = text.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+        return containsSearch;
+    }
+
+    /// <summary>
+    /// Used by LoadoutWindow to disable tab buttons for groups emptied by search filtering.
+    /// </summary>
+    public bool HasVisibleLoadouts()
+    {
+        foreach (var child in LoadoutsContainer.Children)
+        {
+            if (child.Visible)
+                return true;
+        }
+        return false;
+    }
+    // End Frontier
+
     /// <summary>
     /// Creates a UI container for a single Loadout item.
     ///

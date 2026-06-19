@@ -55,6 +55,69 @@
 
 - type: entity
   parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherRed
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-red
+      map: ["closeLayer"]
+    - state: open-red
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherBlue
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-blue
+      map: ["closeLayer"]
+    - state: open-blue
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherGreen
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-green
+      map: ["closeLayer"]
+    - state: open-green
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
   id: ClothingWalletLeatherMail
   description: On the inside is an embroidered picture of a cat, a heart, and the word "CLIPPY".
   components:
@@ -123,3 +186,85 @@
     maxItemSize: Small
     grid:
     - 0,0,1,1
+
+- type: entity
+  parent: [ClothingWalletLeatherBrown, BaseC3ContrabandNoValue, ContrabandClothing]
+  id: ClothingWalletLeatherArcadia
+  name: arcadian wallet
+  description: Surprisingly thick and unsurpisingly extremely stylish. Careful not to lose it, and don't sit on it.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-arcadiawear
+      map: ["closeLayer"]
+    - state: open-arcadiawear
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherPunk
+  name: punk wallet
+  description: You feel more upset the more this wallet gets filled out for some reason.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-punk
+      map: ["closeLayer"]
+    - state: open-punk
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherLizard
+  name: lizard wallet
+  description: A extremely rare, limited edition wallet themed after a certain plushie.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-lizard
+      map: ["closeLayer"]
+    - state: open-lizard
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+  - type: Storage
+    storageOpenSound:
+      collection: Weh
+    storageRemoveSound:
+      collection: Weh
+    storageInsertSound:
+      collection: Weh
+  - type: EmitSoundOnCollide
+    sound:
+      collection: Weh
+  - type: EmitSoundOnLand
+    sound:
+      collection: Weh

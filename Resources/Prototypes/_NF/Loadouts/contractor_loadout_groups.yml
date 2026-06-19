@@ -140,7 +140,6 @@
   - ContractorClothingUniformJumpskirtResearchDirector
   - ContractorClothingUniformJumpsuitSeniorEngineer
   - ContractorClothingUniformJumpskirtSeniorEngineer
-  - ContractorClothingUniformJumpsuitChiefEngineerNT
   - ContractorClothingUniformJumpsuitChiefEngineer
   - ContractorClothingUniformJumpskirtChiefEngineer
   - ContractorClothingUniformJumpsuitChiefEngineerTurtle
@@ -159,6 +158,7 @@
   - ContractorUniformShortsRed
   - ContractorUniformShortsRedWithTop
   - ContractorClothingUniformJumpsuitClown
+  - ContractorClothingUniformJumpskirtClown
   - ContractorClothingUniformJumpsuitMime
   - ContractorClothingUniformJumpskirtMime
   - ContractorClothingUniformJumpsuitTshirtJeans
@@ -312,6 +312,8 @@
   minLimit: 0
   loadouts:
   - ContractorClothingOuterHardsuitVoidParamed
+  - ContractorClothingOuterCoatRobesGoblin # Goblin specific item
+  - ContractorClothingOuterEVASuitGoblin # Goblin specific item
   - ContractorClothingOuterHoodieGrey
   - ContractorClothingOuterVestHazard
   - ContractorClothingOuterApron
@@ -356,6 +358,14 @@
   - ContractorClothingOuterWinterRD
 #  - ContractorClothingOuterWinterCMO # Temp removed for MOM. Will return if replaced.
   - ContractorClothingOuterWinterCE
+  - ContractorClothingLongcoatBlack
+  - ContractorClothingLongcoatBrown
+  - ContractorClothingLongcoatNanoTrasen
+  - ContractorClothingLongcoatArashiLabs
+  - ContractorClothingLongcoatQM
+  - ContractorClothingLongcoatRD
+  - ContractorClothingLongcoatCE
+  - ContractorClothingLongcoatCaptain
 #  - ContractorClothingOuterCoatLabCmo # Temp removed for MOM. Will return if replaced.
   - ContractorClothingOuterCoatLabSeniorPhysician
   - ContractorClothingOuterCoatRD
@@ -419,6 +429,9 @@
   - ContractorClothingBeltHolster
   - ContractorClothingBeltChaplainSash
   - ContractorClothingBeltChaplainSashFilled
+  - ContractorTrashBagBlue
+  - ContractorTrashBag
+  - ContractorTrashBagBlueFilledTrash
   - ContractorBooksBag
   - ContractorChemBag
   - ContractorOreBag
@@ -576,6 +589,7 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  # headsets
   - ContractorClothingHeadsetGreyCommon
   - ContractorClothingHeadsetCargoCommon
   - ContractorClothingHeadsetMiningCommon
@@ -591,6 +605,23 @@
   - ContractorClothingHeadsetAltEngineeringCommon
   - ContractorClothingHeadsetAltMedicalCommon
   - ContractorClothingHeadsetAltScienceCommon
+  # wristsets
+  - ContractorNFClothingWristsetContractorCommon
+  - ContractorNFClothingWristsetContractorCommonAlt
+  - ContractorNFClothingWristsetCaptainCommon
+  - ContractorNFClothingWristsetCargoCommon
+  - ContractorNFClothingWristsetMiningCommon
+  - ContractorNFClothingWristsetEngineeringCommon
+  - ContractorNFClothingWristsetAtmosphericsCommon
+  - ContractorNFClothingWristsetMedicalCommon
+  - ContractorNFClothingWristsetScienceCommon
+  - ContractorNFClothingWristsetMedicalScienceCommon
+  - ContractorNFClothingWristsetRoboticsCommon
+  - ContractorNFClothingWristsetServiceCommon
+  - ContractorNFClothingWristsetServiceJanitorCommon
+  - ContractorNFClothingWristsetServiceClownCommon
+  - ContractorNFClothingWristsetServiceMimeCommon
+  - ContractorNFClothingWristsetPunkCommon
   fallbacks:
   - ContractorClothingHeadsetGreyCommon
 
@@ -779,6 +810,7 @@
   - ContractorBeachBall
   - ContractorCrayonBox
   - ContractorSoapNT
+  - ContractorClothingHeadHatHairflower
   - PlushieLizard
   - ContractorPlushieSharkGrey
   - ContractorPlushieSharkBlue
@@ -812,6 +844,7 @@
   - ClothingNeckGoldAutismPin
     # Bureaucracy
   - ContractorBoxFolderMedicalDoctor
+  - ContractorBoxFolderMixedPapers
   - ContractorBrbSign
   - ContractorHandLabeler
   - ContractorStampsApprovedDenied
@@ -824,6 +857,9 @@
   - ContractorRubberStampTrader
   - ContractorRubberStampClown
   - ContractorRubberStampMime
+    # Posters
+  - ContractorNFPosterCorporate
+  - ContractorNFPosterContraband
 
 - type: loadoutGroup
   id: ContractorHandItems
@@ -917,6 +953,9 @@
   loadouts:
   - ContractorClothingWalletLeatherBrown
   - ContractorClothingWalletLeatherBlack
+  - ContractorClothingWalletLeatherRed
+  - ContractorClothingWalletLeatherBlue
+  - ContractorClothingWalletLeatherGreen
   fallbacks:
   - ContractorClothingWalletLeatherBrown
 
@@ -940,7 +979,7 @@
   - ContractorMedicalTrackingImplanter
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
-  - ContractorWehImplanter 
+  - ContractorWehImplanter
   - ContractorSadTromboneImplanter
   - ContractorMimePowersImplanter
   - ContractorBibleUserImplanter

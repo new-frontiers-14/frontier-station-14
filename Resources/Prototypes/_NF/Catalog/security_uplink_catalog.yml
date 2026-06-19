@@ -905,6 +905,25 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityCCSword
+  name:  uplink-security-navyofficersabre-name
+  description: uplink-security-navyofficersabre-desc
+  productEntity: ClothingBeltCCSheathFilled
+  icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 15
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityHammer
   name:  uplink-security-hammer-name
   description: uplink-security-hammer-desc

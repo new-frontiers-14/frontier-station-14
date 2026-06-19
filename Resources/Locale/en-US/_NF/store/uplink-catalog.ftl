@@ -53,6 +53,9 @@ uplink-security-lecter-desc = Standard issue fully automatic rifle. Uses .20 rif
 uplink-security-vulcan-name = Vulcan
 uplink-security-vulcan-desc = Heavy duty, select fire battle rifle. Uses .30 rifle.
 
+uplink-security-drozd-name = Drozd
+uplink-security-drozd-desc = A fully automatic SMG. Uses .35 auto.
+
 uplink-security-lasercarbine-name = Laser Rifle
 uplink-security-lasercarbine-desc = Standard issue laser carbine. Has an internal battery, but requires using a security charging dock. Fires through glass.
 
@@ -155,6 +158,9 @@ uplink-security-armingsword-desc = Ancient design meets modern materials.
 uplink-security-captainsword-name = Captain's Sabre
 uplink-security-captainsword-desc = A sword normally reserved for captains, admiralty, and other high command. Has a small chance to reflect incoming projectiles.
 
+uplink-security-navyofficersabre-name = Navy Officer's Sabre
+uplink-security-navyofficersabre-desc = A ceremonial weapon belonging to a high ranking naval officer. Has a small chance to reflect incoming projectiles.
+
 uplink-security-pulsepistol-name = Pulse Pistol
 uplink-security-pulsepistol-desc = A high powered laser pistol normally reserved for elite ERT units. Has an internal battery, but requires using a security charging dock.
 
@@ -246,11 +252,14 @@ uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
 # region Pirate
-uplink-pirate-hardsuit-name = Pirate Hardsuit
-uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-pirate-EVA-name = Pirate EVA Suit
+uplink-pirate-EVA-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
 
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
+
+uplink-pirate-hardsuit-rogue-name = Rogue Hardsuit
+uplink-pirate-hardsuit-rogue-desc = Lightly armoured hardsuit designed to give you the speed you need to plunder in, and get out.
 
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -350,6 +359,9 @@ uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
+
+uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
+uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle

@@ -21,11 +21,23 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Items/Toys/hew.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/hew.ogg
   - type: StinkyTrait
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: jester
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: jester-equipped-HELMET
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: JesterPlushie
@@ -39,6 +51,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_botanist
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: botanist
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: botanist-equipped-HELMET
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieBotanist
@@ -80,6 +104,17 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieConstruction
+
+- type: entity
+  parent: [PlushieLizard, BaseHandheldInstrument]
+  id: NFPlushieLizardMusician #Weh!
+  name: squeaky lizard plushie
+  components:
+  - type: Instrument
+    program: 1
+    bank: 101
+  - type: StaticPrice
+    price: 400
 
 - type: entity
   parent: PlushieLizard
@@ -137,7 +172,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_NF/Effects/silence.ogg
@@ -173,6 +208,90 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieJanitor
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieHitchhiker
+  name: hitchhiker plushie
+  description: Weird. You are sure this wasn't here before...
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    state: plushie_hitchhiker
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/bikehorn.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/bikehorn.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/bikehorn.ogg
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: hitchhiker
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: hitchhiker-equipped-HELMET
+        offset: "0, 0.03"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Honk
+        Quantity: 10
+      - ReagentId: Ethanol
+        Quantity: 20
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: Ethanol
+          Quantity: 10
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieHitchhiker
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieOceanLizard
+  name: ocean lizard plushie
+  description: This lizard has gills and looks taller than other lizard plushies.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    state: plushie_oceanlizard
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/hew.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/hew.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/hew.ogg
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: oceanlizard
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: oceanlizard-equipped-HELMET
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieOceanLizard
 
 - type: entity
   id: PetRockCarrier
@@ -504,7 +623,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
@@ -542,6 +661,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
     state: plushie_yarrmoth
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
+    heldPrefix:
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/yarrmoth.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: yarr-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieYarrMoth
@@ -555,6 +686,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: corgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: corgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: corgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieCorgi
@@ -567,6 +710,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: girlycorgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: girlycorgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: girlycorgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieGirlyCorgi
@@ -579,6 +734,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: robotcorgi
+  - type: Item
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    heldPrefix: robotcorgi
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: robotcorgi-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieRobotCorgi
@@ -601,7 +768,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
@@ -929,11 +1096,41 @@
     layers:
     - state: plushie_goblin
     - state: plushie_goblin_shiv
-      map: [ "enum.DamageStateVisualLayers.Base" ]
+      map: [ "plushieGoblinShiv" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: goblin-inhand-left
+      - state: plushie_goblin_shiv-inhand-left
+        map: [ "plushieGoblinShivInhandLeft" ]
+      right:
+      - state: goblin-inhand-right
+      - state: plushie_goblin_shiv-inhand-right
+        map: [ "plushieGoblinShivInhandRight" ]
+  - type: Clothing
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: goblin-HELMET
+          offset: "0, 0.03"
+        - state: plushie_goblin_shiv-HELMET
+          offset: "0, 0.03"
+          map: [ "plushieGoblinShivHelmet" ]
   - type: RandomSprite
     available:
-      - enum.DamageStateVisualLayers.Base:
-          plushie_goblin_shiv: GlassColors
+      - plushieGoblinShiv:
+          plushie_goblin_shiv: ShivColors
+        plushieGoblinShivInhandLeft:
+          plushie_goblin_shiv-inhand-left: ShivColors
+        plushieGoblinShivInhandRight:
+          plushie_goblin_shiv-inhand-right: ShivColors
+        plushieGoblinShivHelmet:
+          plushie_goblin_shiv-HELMET: ShivColors
+    mappedColors:
+      ShivColors: GlassColors
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_1.ogg
@@ -950,7 +1147,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_NF/Voice/Goblin/goblin_scream_1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_3.ogg
@@ -958,6 +1155,74 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: GoblinPlushie
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieHarpy
+  name: harpy plushie
+  description: A small feathered friend. Try giving her a hug!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    state: plushie_harpy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    heldPrefix: harpyplushie
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: harpyplushie-equipped-HELMET
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieHarpy
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieYarrpy
+  name: yarrpy plushie
+  description: Now you can bring your favorite First Mate everywhere!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    state: plushie_yarrpy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_DV/Voice/Harpy/caw1.ogg
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    heldPrefix: yarrpyplushie
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/harpy.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: yarrpyplushie-equipped-HELMET
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieYarrpy
 
 #region toy guns
 - type: entity

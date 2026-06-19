@@ -85,9 +85,10 @@
   - type: Appearance
   - type: DeepFried
     crispinessLevelSet: Crispy
-    originalName: crispy
   - type: FriedTrait
     crispinessLevelSet: Crispy
+  - type: NameModifier
+    baseName: crispy
 
 - type: entity
   name: spooky
@@ -101,10 +102,11 @@
       - spooky
   - type: DeepFried
     crispinessLevelSet: Spectral
-    originalName: spooky
   - type: FriedTrait
     crispinessLevelSet: Spectral
   - type: Spectral
+  - type: NameModifier
+    baseName: spooky
 
 - type: entity
   name: dragon omelette
@@ -700,3 +702,21 @@
   - type: Construction
     graph: NFHotdog
     node: hotteddog
+    
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealPoutine
+  name: poutine
+  description: The ultimate hangover cure with fries, gravy and cheese curds. Oh, Canada!
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+      - cheesy
+      - meaty
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meals.rsi
+    state: poutine
