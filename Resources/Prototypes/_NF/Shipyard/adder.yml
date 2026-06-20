@@ -33,10 +33,16 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Adder {1}'
+          mapNameTemplate: 'Adder {0}'
           nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+            !type:ConfigurableSuffixNameGenerator
+            generator: LVHI
+            designator:
+              type: List
+              items:
+                - A1
+                - A7
+                - AD
         - type: StationJobs
           availableJobs:
             ContractorInterview: [ 0, 0 ]
