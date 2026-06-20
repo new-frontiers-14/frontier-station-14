@@ -54,12 +54,32 @@
   parent: DrinkBaseMug # a teacup is basically a mug
   id: DrinkTeacupEmpty
   name: teacup
+  suffix : Empty # Frontier
   description: A plain white porcelain teacup.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Drinks/teacup.rsi
   - type: SolutionContainerVisuals
     maxFillLevels: 4
+  # Frontier: add broken teacup spawning
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassCrack
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BrokenTeacup:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+   # End Frontier
 
 - type: entity
   parent: [ DrinkBaseMaterialGlass, DrinkBaseCup, DrinkVisualsFillOverlay ]
