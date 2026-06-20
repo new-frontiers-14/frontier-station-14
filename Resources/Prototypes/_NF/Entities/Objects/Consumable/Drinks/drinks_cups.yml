@@ -1,0 +1,72 @@
+- type: entity
+  parent: DrinkGlassBase
+  id: DrinkTeacupEmpty
+  name: teacup
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents: [ ]
+        maxVol: 20
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/teacup.rsi
+    state: icon-0
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/teacup.rsi
+    layers:
+    - state: icon-0
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: icon-4
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: icon-
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BrokenTeacup:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 25
+
+- type: entity
+  parent: FoodPlateTrash
+  id: BrokenTeacup
+  name: broken teacup
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/teacup.rsi
+    state: icon-broken
+  - type: Item
+    storedOffset: 0,-3
+  - type: NFCookware
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 1
+
+- type: entity
+  parent: DrinkTeapot
+  id: DrinkTeapotEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents: []
+        maxVol: 100
