@@ -2,6 +2,7 @@
 
 using System.Linq;
 using Content.Shared.Destructible;
+using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -24,6 +25,7 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
         SubscribeLocalEvent<ExtendedContainerComponent, DestructionEventArgs>(OnBreak);
         SubscribeLocalEvent<ExtendedContainerComponent, ContainerIsInsertingAttemptEvent>(OnContainerIsInsertingAttempt);
         SubscribeLocalEvent<ExtendedContainerComponent, ContainerIsRemovingAttemptEvent>(OnContainerIsRemovingAttempt);
+        SubscribeLocalEvent<ExtendedContainerComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerb);
     }
 
     private void OnComponentInit(EntityUid uid, ExtendedContainerComponent component, ComponentInit args)
@@ -80,5 +82,35 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
 
         if (component.InsertSound != null)
             _audioSystem.PlayPredicted(component.InsertSound, Transform(uid).Coordinates, uid);
+    }
+    private void OnGetVerb(
+        EntityUid uid,
+        ExtendedContainerComponent component,
+        GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        AlternativeVerb ejectVerb = new()
+        {
+            Text = "Eject Contents",
+            Category = VerbCategory.Eject,
+            Act = () => EjectContents(uid, component)
+        };
+
+        args.Verbs.Add(ejectVerb);
+    }
+    private void EjectContents(EntityUid uid, ExtendedContainerComponent component)
+    {
+        if (component.Content == null)
+            return;
+
+        var coords = Transform(uid).Coordinates;
+
+        foreach (var entity in component.Content.ContainedEntities.ToArray())
+        {
+            _containers.Remove(entity, component.Content);
+            _transform.SetCoordinates(entity, coords);
+        }
     }
 }
