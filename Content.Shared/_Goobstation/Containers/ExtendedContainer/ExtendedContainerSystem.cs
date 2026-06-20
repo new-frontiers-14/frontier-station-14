@@ -12,9 +12,9 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistsystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    /// <inheritdoc/>
+
     public override void Initialize()
     {
         base.Initialize();
@@ -26,13 +26,11 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
         SubscribeLocalEvent<ExtendedContainerComponent, ContainerIsRemovingAttemptEvent>(OnContainerIsRemovingAttempt);
     }
 
-    /// <summary>
-    /// Ensure the containers.
-    /// </summary>
     private void OnComponentInit(EntityUid uid, ExtendedContainerComponent component, ComponentInit args)
     {
         component.Content = _containers.EnsureContainer<Container>(uid, component.ContainerName);
     }
+
     private void OnBreak(EntityUid uid, ExtendedContainerComponent component, EntityEventArgs args)
     {
         if (component.DeleteContentsOnBreak)
@@ -50,16 +48,12 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Cancel removal from the container if the removed entity is not part of the whitelist then play a sound
-    /// </summary>
     private void OnContainerIsRemovingAttempt(EntityUid uid, ExtendedContainerComponent component, ContainerIsRemovingAttemptEvent args)
     {
         if (args.Container.ID != component.ContainerName)
             return;
 
-        // Cancel removal only if entity is NOT whitelisted
-        if (component.RemoveWhitelist != null && _whitelistsystem.IsValid(component.RemoveWhitelist, args.EntityUid))
+        if (component.RemoveWhitelist != null && _whitelistSystem.IsValid(component.RemoveWhitelist, args.EntityUid))
         {
             args.Cancel();
             return;
@@ -69,10 +63,6 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
             _audioSystem.PlayPredicted(component.RemoveSound, Transform(uid).Coordinates, uid);
     }
 
-    /// <summary>
-    /// Cancel insertion into the container if the inserting entity does not pass the whitelist
-    /// or the container is full, play a sound if successful
-    /// </summary>
     private void OnContainerIsInsertingAttempt(EntityUid uid, ExtendedContainerComponent component, ContainerIsInsertingAttemptEvent args)
     {
         if (args.Container.ID != component.ContainerName)
@@ -82,7 +72,7 @@ public sealed partial class ExtendedContainerSystem : EntitySystem
 
         if (isContainerFull ||
             component.InsertWhitelist != null &&
-            _whitelistsystem.IsValid(component.InsertWhitelist, args.EntityUid))
+            _whitelistSystem.IsValid(component.InsertWhitelist, args.EntityUid))
         {
             args.Cancel();
             return;

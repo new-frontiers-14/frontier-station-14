@@ -6,7 +6,9 @@
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Specific/DropPod/item.rsi
-    state: DROPPOD
+    layers:
+    - state: DROPPOD
+      map: ["pod"]
   - type: Item
     size: Ginormous
   - type: Storage
@@ -39,6 +41,7 @@
   - type: TriggerOnUse
   - type: Anchorable
   - type: AnchorOnTrigger
+  - type: HideOnTrigger
   - type: TimerTrigger
     delay: 0.9
   - type: Destructible
@@ -68,6 +71,13 @@
             Slash: 50
         interval: 0.5
         ignoreResistances: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HideOnTriggerVisuals.Hidden:
+        pod:
+          True: { visible: false }
+          False: { visible: true }
 
 - type: entity # Frontier Item
   parent: BaseItem
@@ -77,7 +87,9 @@
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Specific/DropPod/item.rsi
-    state: SYNDICATE-DROPPOD
+    layers:
+    - state: SYNDICATE-DROPPOD
+      map: ["pod"]
   - type: Item
     size: Ginormous
   - type: Storage
@@ -110,6 +122,7 @@
   - type: TriggerOnUse
   - type: Anchorable
   - type: AnchorOnTrigger
+  - type: HideOnTrigger
   - type: TimerTrigger
     delay: 0.9
   - type: Destructible
@@ -139,3 +152,10 @@
             Slash: 50
         interval: 0.5
         ignoreResistances: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HideOnTriggerVisuals.Hidden:
+        pod:
+          True: { visible: false }
+          False: { visible: true }

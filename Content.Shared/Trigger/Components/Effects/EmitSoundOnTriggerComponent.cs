@@ -16,11 +16,13 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     [DataField(required: true), AutoNetworkedField]
     public SoundSpecifier? Sound;
 
+    /// Frontier Fields
     /// <summary>
     /// Audio parameters to use when playing the sound.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public AudioParams AudioParams = AudioParams.Default; /// Frontier
+    public AudioParams AudioParams = AudioParams.Default;
+    /// End Frontier Fields
 
     /// <summary>
     /// Play the sound at the position instead of parented to the source entity.
