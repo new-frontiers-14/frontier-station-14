@@ -24,6 +24,11 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField] public string Name = string.Empty;
 
     /// <summary>
+    ///     Name of shuttle when purchased to use on entity and deed, if null will use the ID
+    /// </summary>
+    [DataField] public string? IFFName = default;
+
+    /// <summary>
     ///     Short description of the vessel.
     /// </summary>
     [DataField] public string Description = string.Empty;
@@ -83,6 +88,11 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public ProtoId<GuideEntryPrototype>? GuidebookPage = default!;
 
+    [DataField]
+    public ProtoId<SuffixGeneratorPrototype>? SuffixGenerator = default!; //TODO: Make ShuttleSuffixGeneratorProtypes
+
+    [DataField]
+    public SuffixGeneratorInputEntry? Designator = default!;
     /// <summary>
     ///     The price markup of the vessel testing
     /// </summary>

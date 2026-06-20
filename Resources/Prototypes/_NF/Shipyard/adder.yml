@@ -17,6 +17,13 @@
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/adder.yml
+  suffixGenerator: LVHI
+  designator:
+    type: List
+    items:
+    - AD
+    - A1
+    - A7
   guidebookPage: ShipyardAdder
   class:
   - Salvage
@@ -32,11 +39,6 @@
     Adder:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Adder {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
         - type: StationJobs
           availableJobs:
             ContractorInterview: [ 0, 0 ]

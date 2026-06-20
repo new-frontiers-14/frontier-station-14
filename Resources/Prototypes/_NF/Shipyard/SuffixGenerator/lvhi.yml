@@ -1,0 +1,14 @@
+- type: suffixGenerator
+  id: LVHI
+  format: '{1}{0}-{2}'
+  defaultDesignator:
+    type: Alpha # This is {0} unless a ship specifies a designator
+    min: 2 # always 2 letters, max is clamped to min
+  designators:
+  - type: AlphaNumeric # This is {1}
+    min: 1
+    max: 2 # will have 1 or 2 alpha numeric digits
+  - type: Numeric # This is {2}
+    format: '{0:D2}' # This will pad 0s to make it always 2 characters long
+    min: 0
+    max: 100
