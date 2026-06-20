@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Maps.NameGenerators;
+using Content.Shared._NF.Maps.NameGenerators;
 using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;

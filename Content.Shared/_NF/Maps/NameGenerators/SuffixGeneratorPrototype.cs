@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.Maps.NameGenerators;
+namespace Content.Shared._NF.Maps.NameGenerators;
 
 [Prototype]
 public sealed class SuffixGeneratorPrototype : IPrototype
