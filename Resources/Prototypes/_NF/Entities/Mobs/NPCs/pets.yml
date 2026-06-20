@@ -268,6 +268,52 @@
     proto: slime
 
 - type: entity
+  id: MobCatCaddy
+  parent: [NFMobPet, MobCatGhost]
+  name: Caddy
+  description: A cat with a medical degree!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: medicat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: medicat
+  - type: GhostRole
+    name: ghost-role-information-caddy-name
+    description: ghost-role-information-caddy-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatCaddy
+    mindRoles: [ MindRoleGhostRoleNeutral ]
+  - type: Loadout
+    prototypes: [ MobCaddyGear ]
+  - type: RandomMetadata
+    nameSegments: null
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - MedicalTrackingImplant
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatCat
+      amount: 1
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Medical
+  - type: ActiveRadio
+    channels:
+    - Medical
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: ShowJobIcons
+
+- type: entity
   id: MobCatClugg
   parent: [NFMobPet, MobCatCaracalGhost]
   name: Clugg
