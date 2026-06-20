@@ -43,9 +43,9 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] Grids =
         {
             // Frontier: no upstream maps, define our own.
-            // "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml"
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
+            "/Maps/_NF/Shuttles/Admin/warden.yml"
             // End Frontier
         };
 
