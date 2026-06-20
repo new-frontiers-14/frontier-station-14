@@ -653,6 +653,18 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: AltarLamp
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarLampNode
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
   id: AltarSatana
   graph: AltarsGraph
   startNode: start

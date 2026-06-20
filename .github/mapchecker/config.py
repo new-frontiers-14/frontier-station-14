@@ -66,5 +66,8 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         "PlastititaniumWindowDiagonalIndestructible",
         "ClosetMaintenanceFilledRandom",
         "ClosetWallMaintenanceFilledRandom",
+        # Ships should not have anything but withdraw-only ATMs
+        "ComputerBankATM",
+        "ComputerWallmountBankATM",
     ]
 }
