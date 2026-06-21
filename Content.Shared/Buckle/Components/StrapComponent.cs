@@ -92,13 +92,6 @@ public sealed partial class StrapComponent : Component
     [DataField]
     public bool BuckleOnInteractHand = true;
 
-    /// Frontier: huggable wheelchair users!
-    /// <summary>
-    /// Whether InteractHand will unbuckle the user from the strap.
-    /// </summary>
-    [DataField]
-    public bool UnbuckleOnInteractHand = true;
-
     // Frontier: fix vehicles unbuckling
     /// <summary>
     /// Amount of tolerable distance before unbuckling a user
