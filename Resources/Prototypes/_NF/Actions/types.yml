@@ -38,5 +38,9 @@
 - type: entity
   parent: ActionToggleAccent
   id: ActionToggleCogniAccent
-  name: Toggle Cogni
+  name: Toggle Cognizine Accent
   description: Toggle your pre-sapiance accent
+  components:
+    - type: Action
+      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_toggle_off}
+      iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_toggle_on}

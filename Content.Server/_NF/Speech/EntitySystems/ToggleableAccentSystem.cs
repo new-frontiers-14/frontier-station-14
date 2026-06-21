@@ -20,7 +20,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
     [Dependency] private ActionsSystem _actionsSystem = default!;
 
     //TODO: Replace these with proper IDs, and add use cases for them
-    public readonly EntProtoId CognizineToggleActionPrototypeId = "";
+    public readonly EntProtoId CognizineToggleActionPrototypeId = "ActionToggleCogniAccent";
     public readonly EntProtoId GenericToggleAccentPrototypeId = "";
 
     public override void Initialize()
@@ -141,7 +141,8 @@ public sealed class ToggleableAccentSystem : EntitySystem
         {
             RemoveAccent(accentHolder, newComp);
         }
-        var newAction = _actionsSystem.AddAction(accentHolder, newComp.ToggleAccentActionId);
+        //TODO: Make this dynamic, it was only made static for testing
+        var newAction = _actionsSystem.AddAction(accentHolder, CognizineToggleActionPrototypeId);
         newComp.ToggleAccentAction = newAction;
         return true;
     }
