@@ -3,9 +3,11 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Trigger.Components.Effects;
 
+/// <summary>
 /// Frontier Fields
 /// Will play a sound in PVS range when triggered.
 /// If TargetUser is true, it will be played at their position.
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponent
 {
@@ -13,15 +15,17 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     [DataField(required: true), AutoNetworkedField]
     public SoundSpecifier? Sound;
 
-    /// Frontier Fields
     /// <summary>
     /// Audio parameters to use when playing the sound.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public AudioParams AudioParams = AudioParams.Default;
     /// End Frontier Fields
 
+    /// <summary>
     /// Play the sound at the position instead of being parented to the source entity.
     /// Useful if the entity is deleted after.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public bool Positional;
 
@@ -29,4 +33,3 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     [DataField, AutoNetworkedField]
     public bool Predicted;
 }
-/// End Frontier Fields

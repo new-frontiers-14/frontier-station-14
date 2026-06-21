@@ -1,9 +1,9 @@
-using Content.Shared._Goobstation.Trigger;
-using Content.Shared._Goobstation.Trigger.Components;
+using Content.Shared._NF.Trigger;
+using Content.Shared._NF.Trigger.Components;
 using Content.Shared.Trigger;
 using Robust.Shared.GameObjects;
 
-namespace Content.Shared._Goobstation.Trigger.Systems;
+namespace Content.Shared._NF.Trigger.Systems;
 
 public sealed class HideOnTriggerSystem : EntitySystem
 {

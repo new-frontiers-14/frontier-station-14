@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Goobstation.Trigger;
+namespace Content.Shared._NF.Trigger;
 
 [Serializable, NetSerializable]
 public enum HideOnTriggerVisuals : byte

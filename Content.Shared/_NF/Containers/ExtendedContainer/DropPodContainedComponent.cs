@@ -1,4 +1,4 @@
-namespace Content.Shared._Goobstation.Containers.ExtendedContainer;
+namespace Content.Shared._NF.Containers.ExtendedContainer;
 
 [RegisterComponent]
 public sealed partial class DropPodContainedComponent : Component

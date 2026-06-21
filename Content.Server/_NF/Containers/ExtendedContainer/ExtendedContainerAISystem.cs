@@ -2,10 +2,11 @@
 
 using Content.Server.NPC.HTN;
 using Content.Shared._Goobstation.Containers.ExtendedContainer;
+using Content.Shared._NF.Containers.ExtendedContainer;
 using Content.Shared.NPC;
 using Robust.Shared.Containers;
 
-namespace Content.Server._Goobstation.Containers.ExtendedContainer;
+namespace Content.Server._NF.Containers.ExtendedContainer;
 
 public sealed class ExtendedContainerAISystem : EntitySystem
 {
