@@ -852,8 +852,9 @@
         - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
           mobstate: Alive
         damage:
-          Brute: -1
-          Burn: -1
+          groups:
+            Brute: -1
+            Burn: -1
       - !type:HealthChange
         conditions:
         - !type:MobStateCondition
