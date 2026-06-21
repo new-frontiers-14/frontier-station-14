@@ -6,4 +6,4 @@ namespace Content.Server._NF.Speech.Components;
 /// Applies goblin cant accent to user.
 /// </summary>
 [RegisterComponent]
-public sealed partial class GoblinAccentComponent : Component;
+public sealed partial class GoblinAccentComponent : BaseAccentComponent; //Frontier: Component<BaseAccentComponent

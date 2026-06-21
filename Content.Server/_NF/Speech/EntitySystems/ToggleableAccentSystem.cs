@@ -2,13 +2,15 @@ using Content.Server._NF.Speech.Components;
 using Content.Server.Actions;
 using Content.Shared._NF.Speech.Events;
 using Content.Server.Speech.Components;
+using Content.Server.Speech.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
 //TODO: remove sleep deprived comments
 /// <summary>
 /// Allows for toggleable accents that are innate to the user instead of being tied to a specific item.
-/// You can't have multiple toggleable accents at once (right now, refactor coming maybe in the future)
+/// You can't have multiple toggleable accents at once (right now, refactor coming maybe in the future (Don't count on it))
 /// </summary>
 public sealed class ToggleableAccentSystem : EntitySystem
 {
@@ -16,6 +18,10 @@ public sealed class ToggleableAccentSystem : EntitySystem
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;
     [Dependency] private ActionsSystem _actionsSystem = default!;
+
+    //TODO: Replace these with proper IDs, and add use cases for them
+    public readonly EntProtoId CognizineToggleActionPrototypeId = "";
+    public readonly EntProtoId GenericToggleAccentPrototypeId = "";
 
     public override void Initialize()
     {
@@ -42,6 +48,9 @@ public sealed class ToggleableAccentSystem : EntitySystem
     }
 
     //Code stolen from AddAccentPickupSystem and lightly edited
+    /// <summary>
+    /// Applies a toggleable accent, ensuring that it is enabled by the time it returns.
+    /// </summary>
     private void ApplyAccent(EntityUid target, ToggleableAccentComponent comp)
     {
         // does the user already has this accent?
@@ -93,29 +102,37 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// Makes an accent toggleable. Fails and returns false if the entity already has a toggleable accent.
     /// </summary>
     /// <param name="accentHolder">The entity to have the accent applied to</param>
-    /// <param name="accentComp">The (already created, preferably already initalized) accent component</param>
+    /// <param name="accentComp">The (already created, preferably already initialized) accent component</param>
     /// <param name="startActive">If the accent should start enabled or disabled</param>
     /// <param name="removalBehavior">What should happen if the ToggleableAccentComponent was removed</param>
-    /// <param name="replacementAccentPrototypeId">If the accent is a ReplacementAccent, the id of the accent to use</param>
     /// <returns>True if the accent was successfully made toggleable, false if it failed due to the entity already having
     /// a toggleable accent</returns>
     public bool MakeAccentToggleable(EntityUid accentHolder,
-        AccentBase accentComp,
+        BaseAccentComponent accentComp,
         bool startActive,
-        ToggleableAccentComponent.OnRemovalBehavior removalBehavior,
-        string? replacementAccentPrototypeId = null)
+        ToggleableAccentComponent.OnRemovalBehavior removalBehavior)
     {
         if (HasComp<ToggleableAccentComponent>(accentHolder))
             return false;
+
+        //Extract the replacement accent prototype as needed
+        //Even if this is null, it won't matter, since it won't be touched in that case
+        ProtoId<ReplacementAccentPrototype>? replacementAccentProtoId = null;
+        if (accentComp is ReplacementAccentComponent replacementAccentComponent)
+        {
+            replacementAccentProtoId = replacementAccentComponent.Accent;
+        }
 
         var compName = _componentFactory.GetRegistration(accentComp).Name;
 
         var newComp = _componentFactory.GetComponent<ToggleableAccentComponent>();
         newComp.AccentComponentName = compName;
         newComp.IsAccentActive = startActive;
-        newComp.ReplacementAccentPrototypeName = replacementAccentPrototypeId;
+        newComp.ReplacementAccentPrototypeName = replacementAccentProtoId;
         newComp.RemovalBehavior = removalBehavior;
         _entityManager.AddComponent(accentHolder, newComp);
+
+        //TODO: Set the actions starting state according to this, or just cut that entirely, I don't know yet
         if (startActive)
         {
             ApplyAccent(accentHolder, newComp);

@@ -8,7 +8,7 @@ namespace Content.Server.Speech.Components;
 /// Replaces full sentences or words within sentences with new strings.
 /// </summary>
 [RegisterComponent]
-public sealed partial class ReplacementAccentComponent : AccentBase //Frontier: Extends AccentBase
+public sealed partial class ReplacementAccentComponent : BaseAccentComponent //Frontier: Component<BaseAccentComponent
 {
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReplacementAccentPrototype>), required: true)]
     public string Accent = default!;

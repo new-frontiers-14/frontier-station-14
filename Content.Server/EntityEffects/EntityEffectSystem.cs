@@ -772,13 +772,11 @@ public sealed class EntityEffectSystem : EntitySystem
 
         if (TryComp<ReplacementAccentComponent>(uid, out var replacementAccentComp))
         {
-            var accentId = replacementAccentComp.Accent;
-            _toggleableAccentSystem.MakeAccentToggleable(uid, replacementAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.ADD, replacementAccentComp.Accent);
-
+            _toggleableAccentSystem.MakeAccentToggleable(uid, replacementAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.ADD);
         }
         else if (TryComp<MonkeyAccentComponent>(uid, out var monkeyAccentComp))
         {
-            _toggleableAccentSystem.MakeAccentToggleable(uid, monkeyAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.ADD, null);
+            _toggleableAccentSystem.MakeAccentToggleable(uid, monkeyAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.ADD);
         }
 
         //Below lines made obsolete

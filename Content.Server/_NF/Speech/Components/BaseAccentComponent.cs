@@ -7,8 +7,7 @@ namespace Content.Server._NF.Speech.Components;
 /// The lack of [RegisterComponent] is on purpose, in order to prevent this from causing ECS problems. I hope.
 /// (Its probably going to cause problems isn't it ugghhhhh)
 /// </remarks>
-public abstract partial class AccentBase : Component
+public abstract partial class BaseAccentComponent : Component
 {
-    //TODO: Add AccentBase to ALL AccentComponents.
-    //This is going to take a hot minute so I'm doing it last, I'll have it added to just Replacement and Monkey for now
+    //TODO: Move to shared in order to add it to the few shared accent comps
 }

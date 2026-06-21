@@ -10,8 +10,8 @@ public sealed partial class ToggleableAccentComponent : Component
 {
     //Plagiarized from VocalComponent
     //TODO: Fix this so it has the proper prototype name, or make it a arg for the MakeAccentTogglable or whatever
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string? ToggleAccentActionId = "ActionToggleAccent";
+    [DataField]
+    public ProtoId<EntityPrototype>? ToggleAccentActionId = "ActionToggleAccent";
     //This too
     [DataField]
     public EntityUid? ToggleAccentAction;
@@ -22,8 +22,8 @@ public sealed partial class ToggleableAccentComponent : Component
     [DataField(customTypeSerializer: typeof(ComponentNameSerializer))]
     public string AccentComponentName;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReplacementAccentPrototype>))]
-    public string? ReplacementAccentPrototypeName = null;
+    [DataField]
+    public ProtoId<ReplacementAccentPrototype>? ReplacementAccentPrototypeName = null;
 
     [DataField]
     public OnRemovalBehavior RemovalBehavior;
