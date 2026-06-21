@@ -34,7 +34,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
     private void OnAfterActivatableUIOpen(Entity<PlantAnalyzerComponent> ent, ref AfterActivatableUIOpenEvent args)
     {
-        UpdateUI(ent, null, true);
+        UpdateUI(ent, null);
     }
 
     private void OnAfterInteract(Entity<PlantAnalyzerComponent> ent, ref AfterInteractEvent args)
@@ -106,13 +106,10 @@ public sealed class PlantAnalyzerSystem : EntitySystem
     /// <param name="target">The entity being scanned</param>
     /// <param name="noTargetRescan">If true don't rebuild the scanned plant/seed info. Used for scanning mode updates.</param>
     /// <returns></returns>
-    public PlantAnalyzerBoundUserInterfaceState GetPlantAnalyzerUiState(Entity<PlantAnalyzerComponent> ent, EntityUid? target, bool noTargetRescan = false)
+    public PlantAnalyzerBoundUserInterfaceState GetPlantAnalyzerUiState(Entity<PlantAnalyzerComponent> ent, EntityUid? target)
     {
-        if(noTargetRescan)
-            return new PlantAnalyzerBoundUserInterfaceState(ent.Comp.Settings.AdvancedScan, ent.Comp.PlantInfo);
-
         if (!target.HasValue)
-            return new PlantAnalyzerBoundUserInterfaceState(ent.Comp.Settings.AdvancedScan, null);
+            return new PlantAnalyzerBoundUserInterfaceState(ent.Comp.Settings.AdvancedScan, ent.Comp.PlantInfo);
 
         if (TryComp<SeedComponent>(target, out var seedComp))
         {
@@ -136,12 +133,12 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         return new PlantAnalyzerBoundUserInterfaceState(ent.Comp.Settings.AdvancedScan, ent.Comp.PlantInfo);
     }
 
-    public void UpdateUI(Entity<PlantAnalyzerComponent> ent, EntityUid? target, bool noTargetRescan = false)
+    public void UpdateUI(Entity<PlantAnalyzerComponent> ent, EntityUid? target)
     {
         if (!_uiSystem.HasUi(ent, PlantAnalyzerUiKey.Key))
             return;
 
-        var uiState = GetPlantAnalyzerUiState(ent, target, noTargetRescan);
+        var uiState = GetPlantAnalyzerUiState(ent, target);
         _uiSystem.SetUiState(ent.Owner, PlantAnalyzerUiKey.Key, uiState);
     }
 
@@ -279,6 +276,6 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         if (ent.Comp.DoAfter != null)
             return;
         ent.Comp.Settings.AdvancedScan = isAdvMode;
-        UpdateUI(ent, null, true);
+        UpdateUI(ent, null);
     }
 }
