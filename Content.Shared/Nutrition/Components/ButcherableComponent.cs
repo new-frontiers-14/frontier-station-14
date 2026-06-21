@@ -24,7 +24,7 @@ public sealed partial class ButcherableComponent : Component
     /// Time required to butcher that entity.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float ButcherDelay = 8.0f;
+    public float ButcherDelay = 4.0f; // Frontier: 8.0<4.0
 
     /// <summary>
     /// Tool type used to butcher that entity.
