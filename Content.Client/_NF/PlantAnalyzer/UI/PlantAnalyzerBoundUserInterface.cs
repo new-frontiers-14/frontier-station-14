@@ -25,18 +25,20 @@ public sealed class PlantAnalyzerBoundUserInterface : BoundUserInterface
         }
     }
 
-    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    protected override void UpdateState(BoundUserInterfaceState state)
     {
+        base.UpdateState(state);
+
         if (_window == null)
             return;
 
-        if (message is not PlantAnalyzerScannedSeedPlantInformation cast)
+        if (state is not PlantAnalyzerBoundUserInterfaceState cast)
             return;
-        _window.Populate(cast);
+        _window.UpdateState(cast);
     }
 
-    public void AdvPressed(bool scanMode)
+    public void AdvPressed(bool advancedScanMode)
     {
-        SendMessage(new PlantAnalyzerSetMode(scanMode));
+        SendMessage(new PlantAnalyzerSetMode(advancedScanMode));
     }
 }
