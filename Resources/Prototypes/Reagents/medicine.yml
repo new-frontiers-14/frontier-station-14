@@ -699,7 +699,7 @@
         - !type:AdjustReagent
           reagent: NFZombieBiteToxin
           amount: -1
-        - !type:PopupMessage          
+        - !type:PopupMessage
           type: Local
           visualType: Medium
           messages: [ "generic-reagent-effect-nauseous" ]
@@ -713,7 +713,7 @@
           conditions:
           - !type:ReagentThreshold
             min: 5
-        
+
         # Frontier end
 
 - type: reagent
@@ -847,7 +847,7 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:EvenHealthChange
+      - !type:HealthChange
         damage:
           groups:
             Brute: -1
@@ -1191,9 +1191,6 @@
       - !type:SatiateThirst
         factor: 3
       - !type:HealthChange
-        conditions:
-        - !type:TotalDamage
-          max: 50
         damage:
           types:
             Blunt: -0.2
