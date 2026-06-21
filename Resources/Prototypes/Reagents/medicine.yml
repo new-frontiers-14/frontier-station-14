@@ -848,14 +848,19 @@
     Medicine:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
+          Burn: -1
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
+        damage:
           types:
-            Poison: -0.5 ##Should be about what it was when it healed the toxin group
-            Heat: -0.33
-            Shock: -0.33
-            Cold: -0.33
+            Poison: -0.5 # Same as what it was before the second coming of offmed
 
 - type: reagent
   id: Lipozine
