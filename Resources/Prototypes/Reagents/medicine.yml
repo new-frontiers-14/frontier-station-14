@@ -847,10 +847,7 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:HealthChange
-        conditions:
-        - !type:TotalDamage
-          max: 50
+      - !type:EvenHealthChange
         damage:
           groups:
             Brute: -1
@@ -1182,8 +1179,6 @@
         factor: 3
       - !type:HealthChange
         conditions:
-        - !type:TotalDamage
-          max: 50
         damage:
           types:
             Blunt: -0.2
