@@ -37,16 +37,13 @@ namespace Content.IntegrationTests.Tests
         {
             // "CentComm", // Frontier: no upstream maps
             // "Dart" // Frontier: no upstream maps
-            "MiniCentcomm" // Frontier
+            "MiniCentcomm" // Frontier: Contains multiple CentComm items and Shipyard Console.
         };
 
         private static readonly string[] Grids =
         {
             // Frontier: no upstream maps, define our own.
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
-            "/Maps/_NF/Shuttles/Admin/warden.yml"
-            // End Frontier
         };
 
         private static readonly string[] DoNotMapWhitelist =
@@ -62,7 +59,8 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Outpost/frontier.yml", // Contains janitorial bomb suit closet
             "/Maps/_NF/POI/tinnia.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/POI/lpbravo.yml", // Contains syndicate rubber stamp
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder and CentComm Pen
+            "/Maps/_NF/Shuttles/Admin/warden.yml", // Contains CentComm Clipboard and plastitanium walls.
             "/Maps/_NF/Shuttles/Nfsd/paladin.yml", // Contains EXP-2100g "Duster"
             "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship"
             "/Maps/_NF/Admin/ninthcircle.yml", // Contains Intercom (all encryption keys)
