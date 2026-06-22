@@ -1,10 +1,11 @@
 <Document>
     # EAGLE-CLASS MEDICAL SHUTTLE
     <Box>
-      <GuideEntityEmbed Entity="ComputerCrewMonitoring"/>
-      <GuideEntityEmbed Entity="RollerBed"/>
-      <GuideEntityEmbed Entity="StasisBed"/>
-	  <GuideEntityEmbed Entity="ChemMaster"/>
+      <GuideEntityEmbed Entity="ComputerCrewMonitoring" Caption="Crew Monitor"/>
+      <GuideEntityEmbed Entity="GasThermoMachineFreezer" Caption="Cryo Pods"/>
+	  <GuideEntityEmbed Entity="ChemMaster" Caption="ChemMaster"/>
+      <GuideEntityEmbed Entity="EngineeringTechFab" Caption="EngiFab"/>
+      <GuideEntityEmbed Entity="MedicalTechFab" Caption="MedFab"/>
     </Box>
     <Box>
       <GuideEntityEmbed Entity="ShuttleMapEagle" Caption=""/>
@@ -14,13 +15,18 @@
 
     [color=#a4885c]Recommended Crew:[/color] 2-4
 
-    [color=#a4885c]Power Gen Type:[/color] Uranium
+    [color=#a4885c]Power Gen Type:[/color] Bananium
 
   # Shuttle Brief
 
   "A medium-sized engineering and medical vessel. Focused on responding to shuttle distress, the Eagle comes equipped to restore most crew and shuttles to good health."
 
   # Ship Functions
+  ## Ship Buttons
+  <Box>
+  <GuideEntityEmbed Entity="ButtonFrameCaution" Caption="Toggle Generator Shutters"/>
+  <GuideEntityEmbed Entity="ButtonFrameGrey" Caption="Toggle Searchlight"/>
+  </Box>
 
   # Medical
 
