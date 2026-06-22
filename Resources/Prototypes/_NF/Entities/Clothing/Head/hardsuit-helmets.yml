@@ -301,6 +301,28 @@
         Piercing: 0.9
         Heat: 0.9
 
+#Rogue suit
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHardsuitRogue
+  categories: [ HideSpawnMenu ]
+  name: Rogue combat suit helmet
+  description: Little space won't keep a tricorn out of style
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/rogue.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/rogue.rsi
+  - type: PointLight
+    color: "#ffeead"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
 #Wizard Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
