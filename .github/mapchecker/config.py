@@ -69,5 +69,13 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         # Ships should not have anything but withdraw-only ATMs
         "ComputerBankATM",
         "ComputerWallmountBankATM",
+    ],
+    "Centcomm": [
+        # the exclusion for the Centcomm folder Doesn't seem to work for some reason?
+        "BoxFolderCentCom",
+        "WallPlastitanium",
+        "WallPlastitaniumDiagonal",
+        "PlastitaniumWindow",
+        "PlastitaniumWindowDiagonal",
     ]
 }
