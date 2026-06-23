@@ -23,23 +23,22 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionToggleAccent
-  #TODO: Spellcheck and see if the names could be better.
   name: Toggle Accent
   description: Toggle your accent.
   components:
-      - type: Action
-        #TODO: Remove Placeholderes
-        icon: { sprite: Objects/Fun/Plushies/lizard.rsi, state: icon}
-        iconOn: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
-        useDelay: 1
-      - type: InstantAction
-        event: !type:ToggleAccentActionEvent
+    - type: Action
+      #TODO: Repalce these with more specific sprites instead of just using cogni sprites
+      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_toggle_off}
+      iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_toggle_on}
+      useDelay: 1
+    - type: InstantAction
+      event: !type:ToggleAccentActionEvent
 
 - type: entity
   parent: ActionToggleAccent
   id: ActionToggleCogniAccent
   name: Toggle Cognizine Accent
-  description: Toggle your pre-sapiance accent
+  description: Toggle your pre-sapiance accent.
   components:
     - type: Action
       icon: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_toggle_off}

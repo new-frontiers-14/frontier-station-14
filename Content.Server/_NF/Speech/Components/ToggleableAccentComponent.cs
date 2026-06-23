@@ -8,11 +8,7 @@ namespace Content.Server._NF.Speech.Components;
 [RegisterComponent]
 public sealed partial class ToggleableAccentComponent : Component
 {
-    //Plagiarized from VocalComponent
-    //TODO: Fix this so it has the proper prototype name, or make it a arg for the MakeAccentTogglable or whatever
-    [DataField]
-    public ProtoId<EntityPrototype>? ToggleAccentActionId = "ActionToggleAccent";
-    //This too
+
     [DataField]
     public EntityUid? ToggleAccentAction;
 
@@ -33,7 +29,7 @@ public sealed partial class ToggleableAccentComponent : Component
     /// </summary>
     public enum OnRemovalBehavior
     {
-        ADD, //If the component is removed, the accent will be added
-        REMOVE, //If the component is removed, the accent will be removed
+        Add, //If the component is removed, the accent will be added
+        Remove, //If the component is removed, the accent will be removed
     }
 }

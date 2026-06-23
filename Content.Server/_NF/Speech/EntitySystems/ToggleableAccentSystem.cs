@@ -10,7 +10,7 @@ namespace Content.Server._NF.Speech.EntitySystems;
 //TODO: remove sleep deprived comments
 /// <summary>
 /// Allows for toggleable accents that are innate to the user instead of being tied to a specific item.
-/// You can't have multiple toggleable accents at once (right now, refactor coming maybe in the future (Don't count on it))
+/// You can't have multiple toggleable accents at once, unless this system is refactored to allow that.
 /// </summary>
 public sealed class ToggleableAccentSystem : EntitySystem
 {
@@ -19,9 +19,8 @@ public sealed class ToggleableAccentSystem : EntitySystem
     [Dependency] private IComponentFactory _componentFactory = default!;
     [Dependency] private ActionsSystem _actionsSystem = default!;
 
-    //TODO: Replace these with proper IDs, and add use cases for them
     public readonly EntProtoId CognizineToggleActionPrototypeId = "ActionToggleCogniAccent";
-    public readonly EntProtoId GenericToggleAccentPrototypeId = "";
+    public readonly EntProtoId GenericToggleAccentPrototypeId = "ActionToggleAccent";
 
     public override void Initialize()
     {
@@ -87,10 +86,10 @@ public sealed class ToggleableAccentSystem : EntitySystem
     {
         switch (comp.RemovalBehavior)
         {
-            case ToggleableAccentComponent.OnRemovalBehavior.ADD:
+            case ToggleableAccentComponent.OnRemovalBehavior.Add:
                 ApplyAccent(ent, comp);
                 break;
-            case ToggleableAccentComponent.OnRemovalBehavior.REMOVE:
+            case ToggleableAccentComponent.OnRemovalBehavior.Remove:
                 RemoveAccent(ent, comp);
                 break;
         }
@@ -105,12 +104,14 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// <param name="accentComp">The (already created, preferably already initialized) accent component</param>
     /// <param name="startActive">If the accent should start enabled or disabled</param>
     /// <param name="removalBehavior">What should happen if the ToggleableAccentComponent was removed</param>
+    /// <param name="actionProtoId">The action prototype to use. Use one of the readonly fields in this system.</param>
     /// <returns>True if the accent was successfully made toggleable, false if it failed due to the entity already having
     /// a toggleable accent</returns>
     public bool MakeAccentToggleable(EntityUid accentHolder,
         BaseAccentComponent accentComp,
         bool startActive,
-        ToggleableAccentComponent.OnRemovalBehavior removalBehavior)
+        ToggleableAccentComponent.OnRemovalBehavior removalBehavior,
+        EntProtoId actionProtoId)
     {
         if (HasComp<ToggleableAccentComponent>(accentHolder))
             return false;
@@ -141,8 +142,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
         {
             RemoveAccent(accentHolder, newComp);
         }
-        //TODO: Make this dynamic, it was only made static for testing
-        var newAction = _actionsSystem.AddAction(accentHolder, CognizineToggleActionPrototypeId);
+        var newAction = _actionsSystem.AddAction(accentHolder, actionProtoId);
         newComp.ToggleAccentAction = newAction;
         return true;
     }
