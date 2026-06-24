@@ -312,20 +312,6 @@
               amount: 2
               doAfter: 1
 
-        # Frontier
-        - to: diagonalReinforcedWall
-          conditions:
-            - !type:EntityAnchored {}
-          steps:
-            - tool: Welding
-              doAfter: 1
-            - material: Plasteel
-              amount: 1
-              doAfter: 1
-            - tool: Welding
-              doAfter: 2
-        # End Frontier
-
         - to: shuttleWall
           completed:
             - !type:SnapToGrid
@@ -343,20 +329,17 @@
               doAfter: 1
 
         # Frontier
-        - to: diagonalshuttleWall
+        - to: diagonalReinforcedBase
+          completed:
+            - !type:SnapToGrid {}
           conditions:
             - !type:EntityAnchored { }
           steps:
             - tool: Welding
               doAfter: 1
-            - material: MetalRod
-              amount: 1
             - material: Plasteel
               amount: 1
-              doAfter: 1
-            - tool: Welding
-              doAfter: 2
-        # /Frontier
+        # End Frontier
 
         - to: girder
           completed:
@@ -370,6 +353,28 @@
           steps:
             - tool: Cutting
               doAfter: 2
+
+    # Frontier
+    - node: diagonalReinforcedBase
+      edges:
+        - to: diagonalReinforcedWall
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 1
+            - tool: Welding
+              doAfter: 2
+
+        - to: diagonalshuttleWall # Frontier: Has been changed from being an edge to: reinforcedGirder to being an edge to: diagonalReinforcedBase
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 1
+            - tool: Welding
+              doAfter: 2
+    # End Frontier
 
     - node: reinforcedWall
       entity: WallReinforced
@@ -565,7 +570,7 @@
               prototype: SheetPlasteel1
               amount: 1
             - !type:SpawnPrototype
-              prototype: SheetSteel1
+              prototype: PartRodMetal1
               amount: 1
           steps:
           #To-Do: Add deconstruct visuals
