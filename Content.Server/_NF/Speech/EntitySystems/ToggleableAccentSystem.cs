@@ -7,7 +7,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-//TODO: remove sleep deprived comments
 /// <summary>
 /// Allows for toggleable accents that are innate to the user instead of being tied to a specific item.
 /// You can't have multiple toggleable accents at once, unless this system is refactored to allow that.
@@ -69,6 +68,9 @@ public sealed class ToggleableAccentSystem : EntitySystem
     }
 
     //Code stolen from AddAccentPickupSystem with light edits
+    /// <summary>
+    /// Removes an accent, ensuring it isn't on the target by the time it returns
+    /// </summary>
     private void RemoveAccent(EntityUid target, ToggleableAccentComponent comp)
     {
         // try to remove accent
@@ -78,6 +80,9 @@ public sealed class ToggleableAccentSystem : EntitySystem
         comp.IsAccentActive = false;
     }
 
+    ///<summary>
+    /// Called when the component is removed to remove the action and finalize the accent according to component data.
+    /// </summary>
     /// <remarks>
     /// If the component is removed for any reason, I want to ensure that the entity is left in a consistent state
     /// instead of it being dependent on the current status of the toggle
@@ -134,6 +139,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
         _entityManager.AddComponent(accentHolder, newComp);
 
         //TODO: Set the actions starting state according to this, or just cut that entirely, I don't know yet
+        //TODO: Move this to an initialize event
         if (startActive)
         {
             ApplyAccent(accentHolder, newComp);

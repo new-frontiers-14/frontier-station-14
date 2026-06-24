@@ -9,6 +9,9 @@ namespace Content.Server._NF.Speech.Components;
 public sealed partial class ToggleableAccentComponent : Component
 {
 
+    /// <remarks>
+    /// We save the action so we can remove it later.
+    /// </remarks>
     [DataField]
     public EntityUid? ToggleAccentAction;
 
@@ -25,7 +28,7 @@ public sealed partial class ToggleableAccentComponent : Component
     public OnRemovalBehavior RemovalBehavior;
 
     /// <summary>
-    /// What should happen to the accent if this component were removed.
+    /// What should happen to the accent if this component was removed.
     /// </summary>
     public enum OnRemovalBehavior
     {
