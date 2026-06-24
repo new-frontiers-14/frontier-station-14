@@ -53,6 +53,14 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
     ],
     "Sr": [
     ],
+    "Centcomm": [
+        # the exclusion for the Centcomm folder Doesn't seem to work for some reason?
+        "BoxFolderCentCom",
+        "WallPlastitanium",
+        "WallPlastitaniumDiagonal",
+        "PlastitaniumWindow",
+        "PlastitaniumWindowDiagonal",
+    ],
     "Medical": [
     ],
     # It is assumed that mapped instances of plastitanium, security gear, etc. are deemed acceptable
@@ -66,5 +74,8 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         "PlastititaniumWindowDiagonalIndestructible",
         "ClosetMaintenanceFilledRandom",
         "ClosetWallMaintenanceFilledRandom",
+        # Ships should not have anything but withdraw-only ATMs
+        "ComputerBankATM",
+        "ComputerWallmountBankATM",
     ]
 }
