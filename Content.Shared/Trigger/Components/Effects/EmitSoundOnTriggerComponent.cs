@@ -11,7 +11,7 @@ namespace Content.Shared.Trigger.Components.Effects;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponent
 {
-    /// The <see cref="SoundSpecifier"/> to play.
+    // The <see cref="SoundSpecifier"/> to play.
     [DataField(required: true), AutoNetworkedField]
     public SoundSpecifier? Sound;
 
@@ -20,7 +20,7 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     /// </summary>
     [DataField, AutoNetworkedField]
     public AudioParams AudioParams = AudioParams.Default;
-    /// End Frontier Fields
+    // End Frontier Fields
 
     /// <summary>
     /// Play the sound at the position instead of being parented to the source entity.
@@ -29,7 +29,7 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     [DataField, AutoNetworkedField]
     public bool Positional;
 
-    /// Should this sound be predicted for the User?
+    // Should this sound be predicted for the User?
     [DataField, AutoNetworkedField]
     public bool Predicted;
 }
