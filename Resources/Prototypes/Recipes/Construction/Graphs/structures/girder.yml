@@ -42,17 +42,16 @@
 
         # Frontier
         - to: diagonalWall
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
           conditions:
             - !type:EntityAnchored {}
           steps:
+            - tool: Cutting
+              doAfter: 2
             - material: Steel
               amount: 1
               doAfter: 1
             - tool: Welding
-              doAfter: 4
+              doAfter: 2
         # End Frontier
 
         - to: reinforcedGirder
@@ -315,20 +314,21 @@
 
         # Frontier
         - to: diagonalReinforcedWall
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
           conditions:
             - !type:EntityAnchored {}
           steps:
+            - tool: Cutting
+              doAfter: 2
             - material: Steel
               amount: 1
               doAfter: 1
             - tool: Welding
-              doAfter: 4
+              doAfter: 2
             - material: Plasteel
               amount: 1
               doAfter: 1
+            - tool: Welding
+              doAfter: 2
         # End Frontier
 
         - to: shuttleWall
@@ -352,14 +352,18 @@
           conditions:
             - !type:EntityAnchored { }
           steps:
-            - material: Steel
+            - tool: Cutting
+              doAfter: 2
+            - material: MetalRod
               amount: 1
               doAfter: 1
             - tool: Welding
-              doAfter: 4
+              doAfter: 2
             - material: Plasteel
               amount: 1
               doAfter: 1
+            - tool: Welding
+              doAfter: 2
         # /Frontier
 
         - to: girder
