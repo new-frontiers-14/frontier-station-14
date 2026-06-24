@@ -45,7 +45,7 @@
           conditions:
             - !type:EntityAnchored {}
           steps:
-            - tool: Cutting
+            - tool: Welding
               doAfter: 2
             - material: Steel
               amount: 1
@@ -317,13 +317,8 @@
           conditions:
             - !type:EntityAnchored {}
           steps:
-            - tool: Cutting
-              doAfter: 2
-            - material: Steel
-              amount: 1
-              doAfter: 1
             - tool: Welding
-              doAfter: 2
+              doAfter: 1
             - material: Plasteel
               amount: 1
               doAfter: 1
@@ -352,13 +347,10 @@
           conditions:
             - !type:EntityAnchored { }
           steps:
-            - tool: Cutting
-              doAfter: 2
+            - tool: Welding
+              doAfter: 1
             - material: MetalRod
               amount: 1
-              doAfter: 1
-            - tool: Welding
-              doAfter: 2
             - material: Plasteel
               amount: 1
               doAfter: 1
