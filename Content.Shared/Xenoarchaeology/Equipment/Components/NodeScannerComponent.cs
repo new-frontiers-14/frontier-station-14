@@ -15,7 +15,7 @@ public sealed partial class NodeScannerComponent : Component
     /// Maximum range for keeping connection to artifact.
     /// </summary>
     [DataField]
-    public int MaxLinkedRange = 10;
+    public int MaxLinkedRange = 7; // Frontier 5<7
 
     /// <summary>
     /// Update interval for link info.
