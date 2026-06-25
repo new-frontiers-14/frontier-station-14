@@ -1,0 +1,14 @@
+- type: addiction
+  id: Stimulant
+  threshold: 30
+  decayRate: 0.6
+  withdrawal:
+    entries:
+      - threshold: 20
+        duration: 10
+        repeatable: true
+        effects:
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 6
+            type: Add
