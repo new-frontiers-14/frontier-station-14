@@ -1,4 +1,4 @@
-# SURVEILLANCE
+# region SURVEILLANCE
 - type: construction
   id: camera
   graph: SurveillanceCamera
@@ -31,7 +31,7 @@
   conditions:
   - !type:WallmountCondition {}
 
-# POWER
+# region POWER
 - type: construction
   id: APC
   graph: APC
@@ -84,7 +84,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: true
 
-# DISPOSALS
+# region DISPOSALS
 - type: construction
   id: DisposalUnit
   graph: DisposalMachine
@@ -110,7 +110,7 @@
   targetNode: pipe
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
 - type: construction
   id: DisposalTagger
@@ -119,7 +119,7 @@
   targetNode: tagger
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
 - type: construction
   id: DisposalSignaller
@@ -128,7 +128,7 @@
   targetNode: signaller
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
 - type: construction
   id: DisposalTrunk
@@ -137,7 +137,7 @@
   targetNode: trunk
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
 - type: construction
   id: DisposalRouter
@@ -146,7 +146,7 @@
   targetNode: router
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
   mirror: DisposalRouterFlipped
 
 - type: construction
@@ -157,7 +157,7 @@
   targetNode: routerflipped
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
   mirror: DisposalRouter
 
 - type: construction
@@ -167,7 +167,7 @@
   targetNode: signal_router
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
   mirror: DisposalSignalRouterFlipped
 
 - type: construction
@@ -178,7 +178,7 @@
   targetNode: signal_router_flipped
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
   mirror: DisposalSignalRouter
 
 - type: construction
@@ -188,7 +188,7 @@
   targetNode: junction
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
   mirror: DisposalJunctionFlipped
 
 - type: construction
@@ -199,7 +199,7 @@
   targetNode: junctionflipped
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
   mirror: DisposalJunction
 
 - type: construction
@@ -209,7 +209,7 @@
   targetNode: yJunction
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
 - type: construction
   id: DisposalXJunction
@@ -218,7 +218,7 @@
   targetNode: xJunction
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
 - type: construction
   id: DisposalBend
@@ -227,9 +227,9 @@
   targetNode: bend
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true # Frontier: false < true
 
-# ATMOS
+# region ATMOS
 - type: construction
   id: AirAlarmFixture
   graph: AirAlarm
@@ -310,7 +310,7 @@
   - GasPipeSensorAlt1
   - GasPipeSensorAlt2
 
-# ATMOS PIPES
+# region ATMOS PIPES
 - type: construction
   id: GasPipeHalf
   name: construction-recipe-gas-pipe-half
@@ -529,7 +529,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: true
 
-# ATMOS UNARY
+# region ATMOS UNARY
 - type: construction
   id: GasVentPump
   graph: GasUnary
@@ -574,7 +574,7 @@
   conditions:
   - !type:NoUnstackableInTile
 
-# ATMOS BINARY
+# region ATMOS BINARY
 - type: construction
   id: GasPressurePump
   graph: GasBinary
@@ -894,7 +894,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
-# ATMOS TRINARY
+# region ATMOS TRINARY
 - type: construction
   id: GasFilter
   graph: GasTrinary
