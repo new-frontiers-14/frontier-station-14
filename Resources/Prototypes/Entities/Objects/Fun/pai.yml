@@ -104,6 +104,14 @@
   - type: Tag
     tags:
     - SiliconEmotes
+  # Frontier
+  - type: PhysicalComposition # Same as the ScrapPAI
+    materialComposition:
+      Steel: 300 # 3 sheets
+      Plastic: 200 # 2 sheets
+      RawScrapTech: 300 # Frontier: 3 sheet
+      Silver: 100 # Frontier: 3 sheets
+  # End Frontier
 
 - type: entity
   parent: [ PersonalAI, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
@@ -164,7 +172,15 @@
   - type: Appearance
   - type: StaticPrice
     price: 5000
-  - type: NFTreasure # Frontier
+  # Frontier
+  - type: NFTreasure
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 1000 # 10 sheets
+      Plastic: 200 # 2 sheets
+      Glass: 500 # Frontier: 5 sheet
+      Silver: 500 # Frontier: 5 sheets
+  # End Frontier
 
 - type: entity
   parent: PersonalAI

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseItem
   id: NodeScanner
   name: node scanner
@@ -22,3 +22,9 @@
       interfaces:
         enum.NodeScannerUiKey.Key:
           type: NodeScannerBoundUserInterface
+    # Frontier
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 50 # half a sheet, half Fabrication cost
+        Plastic: 25 # 1/4 a sheet, half Fabrication cost
+    # End Frontier
