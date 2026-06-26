@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
@@ -25,7 +26,7 @@ public sealed partial class AddictionPrototype : IPrototype, IInheritingPrototyp
     /// At what 'high' does the entity start to have an addiction
     /// </summary>
     [ViewVariables, DataField(required: true)]
-    public int Threshold { get; set; }
+    public FixedPoint2 Threshold { get; set; }
 
     /// <summary>
     /// How much to multiply the high rating by when the check period happens, should be less than 1 and greater than or equal to 0

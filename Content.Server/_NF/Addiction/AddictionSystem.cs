@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._NF.Addiction;
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
+using Content.Shared.Rejuvenate;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,8 +23,30 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
         SubscribeLocalEvent<AddictionComponent, AddAddictionHighRatingEvent>(OnAddHighRating);
         SubscribeLocalEvent<AddictionComponent, AddAddictionRatingEvent>(OnAddAddictionRating);
-
+        SubscribeLocalEvent<AddictionComponent, RejuvenateEvent>(OnRejuvenate);
     }
+
+
+    public FixedPoint2 GetWithdrawal(Entity<AddictionComponent?> entity, ProtoId<AddictionPrototype> addiction)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+        {
+            return 0;
+        }
+
+        return GetWithdrawal(entity.Comp, addiction);
+    }
+
+    public FixedPoint2 GetWithdrawal(AddictionComponent component, ProtoId<AddictionPrototype> addiction)
+    {
+        if (!component.Addictions.TryGetValue(addiction, out var addictData))
+        {
+            return 0;
+        }
+
+        return addictData.Withdrawal;
+    }
+
 
     public override void Update(float frameTime)
     {
@@ -40,13 +64,13 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
         {
             foreach (var (addictProtoId, addictData) in addict.Addictions)
             {
-                ApplyHighUpdate(uid, addict, addictProtoId, addictData);
-                ApplyAddictionUpdate(uid, addict, addictProtoId, addictData);
+                ApplyHighUpdate(uid, addictProtoId, addictData);
+                ApplyWithdrawalUpdate(uid, addictProtoId, addictData);
             }
         }
     }
 
-    private void ApplyHighUpdate(EntityUid uid, AddictionComponent addictComp, ProtoId<AddictionPrototype> addictProtoId, AddictionData data)
+    private void ApplyHighUpdate(EntityUid uid, ProtoId<AddictionPrototype> addictProtoId, AddictionData data)
     {
         if (_gameTiming.CurTime < data.NextCheck)
         {
@@ -67,22 +91,24 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
         data.NextCheck = _gameTiming.CurTime + addictProto.CheckPeriod;
 
-        if (data.High > 0)
+        //Reduce addiction, then the High, since withdrawal depends on High
+        var withdrawal = data.Withdrawal;
+        if (withdrawal > 0)
         {
-            var desiredHigh = (int)Math.Floor(data.High * addictProto.DecayRate);
-            var ev = new AddAddictionHighRatingEvent(addictProtoId, desiredHigh - data.High);
-            RaiseLocalEvent(uid, ref ev);
-            return;
+            var deltaAddiction = withdrawal * addictProto.Withdrawal.DecayRate;
+            var evAddiction = new AddAddictionRatingEvent(addictProtoId, -deltaAddiction);
+            RaiseLocalEvent(uid, ref evAddiction);
         }
 
-        //Rating is 0 but withdrawal is not
-        var desiredAddiction = (int)Math.Floor(data.Addiction * addictProto.Withdrawal.DecayRate);
-        var evAddiction = new AddAddictionRatingEvent(addictProtoId, desiredAddiction - data.Addiction);
-        RaiseLocalEvent(uid, ref evAddiction);
+        if (data.High > 0)
+        {
+            var ev = new AddAddictionHighRatingEvent(addictProtoId, -addictProto.DecayRate * data.High);
+            RaiseLocalEvent(uid, ref ev);
+        }
 
     }
 
-    private void ApplyAddictionUpdate(EntityUid uid, AddictionComponent addictComp, ProtoId<AddictionPrototype> addictProtoId, AddictionData data)
+    private void ApplyWithdrawalUpdate(EntityUid uid, ProtoId<AddictionPrototype> addictProtoId, AddictionData data)
     {
         if (_gameTiming.CurTime < data.NextWithdrawal)
         {
@@ -95,7 +121,7 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
             return;
         }
 
-        var withdrawal = data.Addiction - data.High;
+        var withdrawal = data.Withdrawal;
         if (withdrawal <= 0) //Addiction is sated for now
         {
             data.NextWithdrawal = data.NextCheck;//When the addiction rating changes next should we see about applying withdrawals
@@ -109,7 +135,9 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
             return;
         }
 
-        var eligibleSymptoms = addictProto.Withdrawal.Symptoms.Where(e => e.Min <= withdrawal).ToList();
+
+        var effectArgs = new EntityEffectBaseArgs(uid, EntityManager);
+        var eligibleSymptoms = addictProto.Withdrawal.Symptoms.Where(e => e.ShouldApply(withdrawal, effectArgs, _random)).ToList();
         if (eligibleSymptoms.Count == 0)
         {
             data.NextWithdrawal = data.NextCheck;
@@ -120,14 +148,13 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
         var nextWithdrawal = _gameTiming.CurTime;
         var i = 0;
-        var effectArgs = new EntityEffectBaseArgs(uid, EntityManager);
         while (withdrawal > 0 && eligibleSymptoms.Count > 0)
         {
             var symptom = eligibleSymptoms[i % eligibleSymptoms.Count];
             withdrawal -= symptom.Rating ?? symptom.Min;
             foreach (var effect in symptom.Effects)
             {
-                if (!effect.ShouldApply(effectArgs, _random))
+                if (!effect.ShouldApply(effectArgs, _random)) //Each effect could have their own conditions to be applied separate from the entire symptom
                 {
                     continue;
                 }
@@ -145,8 +172,21 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
     }
 
+    private void OnRejuvenate(Entity<AddictionComponent> ent, ref RejuvenateEvent args)
+    {
+        // TODO: May need to look into cancelling any active withdrawal effects
+        // iterating through existing addictions to leave room for setting up multipliers for specific addiction types
+        foreach (var (_, addictData) in ent.Comp.Addictions)
+        {
+            addictData.Addiction = 0;
+            addictData.High = 0;
+            addictData.NextCheck = TimeSpan.MaxValue; //Disables checking
+            addictData.NextWithdrawal = TimeSpan.MaxValue;
+        }
 
-    public void OnAddHighRating(Entity<AddictionComponent> entity, ref AddAddictionHighRatingEvent args)
+    }
+
+    private void OnAddHighRating(Entity<AddictionComponent> entity, ref AddAddictionHighRatingEvent args)
     {
         if (!_prototypeManager.TryIndex(args.ProtoId, out var addictProto))
         {
@@ -157,17 +197,17 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
     }
 
-    private void UpdateHighInternal(Entity<AddictionComponent> entity, AddictionPrototype addictProto, int amount)
+    private void UpdateHighInternal(Entity<AddictionComponent> entity, AddictionPrototype addictProto, FixedPoint2 amount)
     {
         var addictData = entity.Comp.Addictions.GetOrNew(addictProto.ID);
 
-        addictData.High += (int)(entity.Comp.Multiplier * addictData.Multiplier * amount);
-        addictData.High = Math.Max(0, addictData.High); //prevent going below 0
+        addictData.High += entity.Comp.Multiplier * addictData.Multiplier * amount;
+        addictData.High = FixedPoint2.Max(0, addictData.High);  //prevent going below 0
 
         if (addictData.High > addictProto.Threshold)
         {
-            var level = (int)(addictData.High * addictProto.Withdrawal.Multiplier); // - addictProto.Threshold;
-            addictData.Addiction = Math.Max(addictData.Addiction, level);
+            var level = addictData.High * addictProto.Withdrawal.Multiplier; // - addictProto.Threshold;
+            addictData.Addiction = FixedPoint2.Max(addictData.Addiction, level);
             addictData.NextWithdrawal = _gameTiming.CurTime + addictProto.CheckPeriod;
         }
 
@@ -179,7 +219,7 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
     }
 
-    public void OnAddAddictionRating(Entity<AddictionComponent> entity, ref AddAddictionRatingEvent args)
+    private void OnAddAddictionRating(Entity<AddictionComponent> entity, ref AddAddictionRatingEvent args)
     {
         if (!_prototypeManager.TryIndex(args.ProtoId, out var addictProto))
         {
@@ -189,14 +229,14 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
         UpdateAddictionInternal(entity, addictProto, args.Amount);
     }
 
-    private void UpdateAddictionInternal(Entity<AddictionComponent> entity, AddictionPrototype addictProto, int amount)
+    private void UpdateAddictionInternal(Entity<AddictionComponent> entity, AddictionPrototype addictProto, FixedPoint2 amount)
     {
         var addictData = entity.Comp.Addictions.GetOrNew(addictProto.ID);
 
-        addictData.Addiction = Math.Max(0, addictData.Addiction + amount);
+        addictData.Addiction = FixedPoint2.Max(0, addictData.Addiction + amount);
         if (addictProto.Withdrawal.Max is not null)
         {
-            addictData.Addiction = Math.Min(addictProto.Withdrawal.Max.Value, addictData.Addiction);
+            addictData.Addiction = FixedPoint2.Min(addictProto.Withdrawal.Max.Value, addictData.Addiction);
         }
         if (amount >= 0)
         {

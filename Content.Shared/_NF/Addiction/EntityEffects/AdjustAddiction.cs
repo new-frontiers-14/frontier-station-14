@@ -1,4 +1,5 @@
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -17,20 +18,26 @@ public sealed partial class AdjustAddiction : EntityEffect
     /// How potent per use is this effect to the 'high', default is 1
     /// </summary>
     [DataField]
-    public int HighAmount { get; private set; } = 1;
+    public FixedPoint2 HighAmount { get; private set; } = 1;
 
     /// <summary>
     /// How potent per use is this effect to the addiction rating, default is 0
     /// </summary>
     [DataField]
-    public int AddictionAmount { get; private set; } = 0;
+    public FixedPoint2 AddictionAmount { get; private set; } = 0;
 
     public override void Effect(EntityEffectBaseArgs args)
     {
         if (args.EntityManager.TrySystem<SharedAddictionSystem>(out var addictSystem))
         {
-            addictSystem.AddAddictionHighRating(args.TargetEntity, Addiction, HighAmount);
-            addictSystem.AddAddictionRating(args.TargetEntity, Addiction, AddictionAmount);
+            FixedPoint2 factor = 1f;
+            if (args is EntityEffectReagentArgs reagentArgs)
+            {
+                factor = reagentArgs.Scale;
+            }
+
+            addictSystem.AddAddictionHighRating(args.TargetEntity, Addiction, HighAmount * factor);
+            addictSystem.AddAddictionRating(args.TargetEntity, Addiction, AddictionAmount * factor);
         }
     }
 

@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -33,7 +34,7 @@ public sealed partial class AddictionData
     /// When it hits certain thresholds, withdrawal rating increases
     /// </summary>
     [DataField, ViewVariables]
-    public int High;
+    public FixedPoint2 High;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextCheck;
@@ -42,8 +43,11 @@ public sealed partial class AddictionData
     /// Addiction rating. If the 'high' rating is below this then withdrawal effects will be applied
     /// </summary>
     [DataField, ViewVariables]
-    public int Addiction;
+    public FixedPoint2 Addiction;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextWithdrawal;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 Withdrawal => FixedPoint2.Max(0, Addiction - High);
 }

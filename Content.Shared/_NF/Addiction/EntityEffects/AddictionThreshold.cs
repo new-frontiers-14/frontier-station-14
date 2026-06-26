@@ -1,4 +1,5 @@
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Addiction.EntityEffects;
@@ -23,8 +24,8 @@ public sealed partial class AddictionThreshold : EntityEffectCondition
     {
         if (args.EntityManager.TryGetComponent<AddictionComponent>(args.TargetEntity, out var addictionComp))
         {
-            var rating = 0;
-            var withdrawal = 0;
+            FixedPoint2 rating = 0;
+            FixedPoint2 withdrawal = 0;
             if (addictionComp.Addictions.TryGetValue(Addiction, out var addictData))
             {
                 rating = addictData.High;

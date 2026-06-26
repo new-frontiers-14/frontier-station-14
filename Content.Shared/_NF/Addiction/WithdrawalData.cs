@@ -1,4 +1,6 @@
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Random;
 
 namespace Content.Shared._NF.Addiction;
 
@@ -10,7 +12,7 @@ public sealed partial class WithdrawalData
     /// The maximum addiction rating this addiction can ever get. Null by default meaning there is no maximum
     /// </summary>
     [ViewVariables, DataField]
-    public int? Max { get; set; }
+    public FixedPoint2? Max { get; set; }
 
     /// <summary>
     /// How fast/slow the addiction rating decreases when the high is at 0 per check period. Must be less than 1 and greater than or equal to 0
@@ -38,16 +40,16 @@ public sealed partial class SymptomEntry
     /// The minimum amount of withdrawal rating for this entry to apply
     /// </summary>
     [DataField(required: true)]
-    public int Min { get; private set; }
+    public FixedPoint2 Min { get; private set; }
 
     [DataField]
-    public int Max { get; private set; } = int.MaxValue;
+    public FixedPoint2 Max { get; private set; } = FixedPoint2.MaxValue;
 
     /// <summary>
     /// The amount of withdrawal rating this entries 'uses up', default of null uses the threshold
     /// </summary>
     [DataField]
-    public int? Rating { get; private set; }
+    public FixedPoint2? Rating { get; private set; }
 
     /// <summary>
     /// Can these effects be applied multiple times per withdrawal tick (useful for scaling hallucinations, drowsiness and similar effects that can stack)
@@ -62,7 +64,10 @@ public sealed partial class SymptomEntry
     public TimeSpan Duration { get; private set; } = TimeSpan.FromSeconds(5);
 
     [DataField]
-    public List<EntityEffectCondition> Conditions { get; private set; } = new();
+    public EntityEffectCondition[]? Conditions { get; private set; }
+
+    [DataField]
+    public float Probability = 1.0f;
 
     /// <summary>
     /// List of effects to perform on the entity if this withdrawal entry is chosen
@@ -70,4 +75,30 @@ public sealed partial class SymptomEntry
     [DataField(required: true)]
     public EntityEffect[] Effects { get; private set; } = default!;
 
+}
+
+public static class SymptomEntryExt
+{
+    public static bool ShouldApply(this SymptomEntry symptom, FixedPoint2 withdrawal, EntityEffectBaseArgs args,
+        IRobustRandom? random = null)
+    {
+        random ??= IoCManager.Resolve<IRobustRandom>();
+
+        if (symptom.Min > withdrawal || symptom.Max < withdrawal)
+            return false;
+
+        if (symptom.Probability < 1.0f && !random.Prob(symptom.Probability))
+            return false;
+
+        if (symptom.Conditions != null)
+        {
+            foreach (var cond in symptom.Conditions)
+            {
+                if (!cond.Condition(args))
+                    return false;
+            }
+        }
+
+        return true;
+    }
 }

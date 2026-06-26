@@ -1,32 +1,45 @@
 - type: addiction
   id: Stimulant
-  threshold: 40
-  decayRate: 0.5
+  threshold: 50
+  decayRate: 0.6
   checkPeriod: 30s
   withdrawal:
-    decayRate: 0.7
+    decayRate: 0.1
     symptoms:
-      - min: 20
-        duration: 2
+      ## Fatigue
+      - min: 10
+        max: 49
+        rating: 5
+        duration: 1
         repeatable: true
         effects:
           - !type:ModifyStatusEffect
             effectProto: StatusEffectDrowsiness
             time: 8
             type: Add
-      - min: 10
-        duration: 5
+      - min: 50
+        rating: 10
+        duration: 1
+        repeatable: true
+        effects:
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 30
+            type: Add
+          - !type:MovespeedModifier
+            walkSpeedModifier: 0.75
+            sprintSpeedModifier: 0.75
+            statusLifetime: 10
+      - min: 30
+        rating: 15
+        probability: 0.3
+        duration: 15
         effects:
           - !type:Emote
             emote: Yawn
             showInChat: true
-            probability: 0.2
-      - min: 2
-        rating: 5
-        duration: 5
-        effects:
-          - !type:PopupMessage
-            visualType: Medium
-            messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
-            type: Local
-            probability: 0.2
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 25
+            type: Add
+
