@@ -1,14 +1,32 @@
 - type: addiction
   id: Stimulant
-  threshold: 30
-  decayRate: 0.6
+  threshold: 40
+  decayRate: 0.5
+  checkPeriod: 30s
   withdrawal:
-    entries:
-      - threshold: 20
-        duration: 10
+    decayRate: 0.7
+    symptoms:
+      - min: 20
+        duration: 2
         repeatable: true
         effects:
           - !type:ModifyStatusEffect
             effectProto: StatusEffectDrowsiness
-            time: 6
+            time: 8
             type: Add
+      - min: 10
+        duration: 5
+        effects:
+          - !type:Emote
+            emote: Yawn
+            showInChat: true
+            probability: 0.2
+      - min: 2
+        rating: 5
+        duration: 5
+        effects:
+          - !type:PopupMessage
+            visualType: Medium
+            messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
+            type: Local
+            probability: 0.2

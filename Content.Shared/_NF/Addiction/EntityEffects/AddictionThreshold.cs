@@ -12,10 +12,10 @@ public sealed partial class AddictionThreshold : EntityEffectCondition
     public int Max = int.MaxValue;
 
     [DataField]
-    public int MinWithdrawal = 0;
+    public int MinAddiction = 0;
 
     [DataField]
-    public int MaxWithdrawal = int.MaxValue;
+    public int MaxAddiction = int.MaxValue;
 
     [DataField(required: true)]
     public ProtoId<AddictionPrototype> Addiction { get; private set; }
@@ -27,11 +27,11 @@ public sealed partial class AddictionThreshold : EntityEffectCondition
             var withdrawal = 0;
             if (addictionComp.Addictions.TryGetValue(Addiction, out var addictData))
             {
-                rating = addictData.Rating;
-                withdrawal = addictData.Withdrawal;
+                rating = addictData.High;
+                withdrawal = addictData.Addiction;
             }
             return rating >= Min && rating <= Max &&
-                withdrawal >= MinWithdrawal && withdrawal <= MaxWithdrawal;
+                withdrawal >= MinAddiction && withdrawal <= MaxAddiction;
         }
         return false;
     }

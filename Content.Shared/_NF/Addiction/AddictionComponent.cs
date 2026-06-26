@@ -29,20 +29,20 @@ public sealed partial class AddictionData
     public float Multiplier = 1f;
 
     /// <summary>
-    /// Current 'addiction' rating, this is increased everytime a AddictionEffect is applied, and decreases over time
+    /// Current 'high' rating, this is increased everytime a AddictionEffect is applied, and decreases over time
     /// When it hits certain thresholds, withdrawal rating increases
     /// </summary>
     [DataField, ViewVariables]
-    public int Rating;
+    public int High;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextCheck;
 
     /// <summary>
-    /// Withdrawal rating. If the 'addiction' rating is below this then withdrawal effects will be applied
+    /// Addiction rating. If the 'high' rating is below this then withdrawal effects will be applied
     /// </summary>
     [DataField, ViewVariables]
-    public int Withdrawal;
+    public int Addiction;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextWithdrawal;

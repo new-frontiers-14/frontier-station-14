@@ -14,23 +14,23 @@ public sealed partial class AdjustAddiction : EntityEffect
     public ProtoId<AddictionPrototype> Addiction { get; private set; } = default!;
 
     /// <summary>
-    /// How potent per use is this effect to the addiction rating, default is 1
+    /// How potent per use is this effect to the 'high', default is 1
     /// </summary>
     [DataField]
-    public int Amount { get; private set; } = 1;
+    public int HighAmount { get; private set; } = 1;
 
     /// <summary>
-    /// How potent per use is this effect to the withdrawal rating, default is 0
+    /// How potent per use is this effect to the addiction rating, default is 0
     /// </summary>
     [DataField]
-    public int Withdrawal { get; private set; } = 0;
+    public int AddictionAmount { get; private set; } = 0;
 
     public override void Effect(EntityEffectBaseArgs args)
     {
         if (args.EntityManager.TrySystem<SharedAddictionSystem>(out var addictSystem))
         {
-            addictSystem.AddAddictionRating(args.TargetEntity, Addiction, Amount);
-            addictSystem.AddWithdrawalRating(args.TargetEntity, Addiction, Withdrawal);
+            addictSystem.AddAddictionHighRating(args.TargetEntity, Addiction, HighAmount);
+            addictSystem.AddAddictionRating(args.TargetEntity, Addiction, AddictionAmount);
         }
     }
 

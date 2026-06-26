@@ -4,16 +4,16 @@ namespace Content.Shared._NF.Addiction;
 
 public abstract partial class SharedAddictionSystem : EntitySystem
 {
-    public void AddAddictionRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, int amount)
+    public void AddAddictionHighRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, int amount)
     {
         EnsureComp<AddictionComponent>(uid); //temporary until we update player species to have the addiction component
-        var ev = new AddAddictionRatingEvent(protoId, amount);
+        var ev = new AddAddictionHighRatingEvent(protoId, amount);
         RaiseLocalEvent(uid, ref ev);
     }
-    public void AddWithdrawalRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, int amount)
+    public void AddAddictionRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, int amount)
     {
         EnsureComp<AddictionComponent>(uid);
-        var ev = new AddWithdrawalRatingEvent(protoId, amount);
+        var ev = new AddAddictionRatingEvent(protoId, amount);
         RaiseLocalEvent(uid, ref ev);
     }
 }
