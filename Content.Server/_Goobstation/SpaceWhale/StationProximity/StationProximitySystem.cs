@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Goobstation.Common.CCVar;
+using Content.Shared._NF.CCVar;
 using Content.Server.Popups;
 using Content.Server.Station.Components;
-using Content.Goobstation.Server.MobCaller;
+using Content.Server._Goobstation.MobCaller;
 using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
@@ -19,7 +19,7 @@ using Robust.Shared.Spawners;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Map;
 
-namespace Content.Goobstation.Server.SpaceWhale.StationProximity;
+namespace Content.Server._Goobstation.SpaceWhale.StationProximity;
 
 /// <summary>
 /// Hardcoded to space whale spawn
@@ -48,8 +48,8 @@ public sealed class StationProximitySystem : EntitySystem
         SubscribeLocalEvent<SpaceWhaleTargetComponent, MobStateChangedEvent>(OnTargetDeath);
         SubscribeLocalEvent<SpaceWhaleTargetComponent, ComponentShutdown>(OnTargetShutdown);
 
-        Subs.CVar(_cfg, GoobCVars.SpaceWhaleSpawn, x => _spaceWhaleEnabled = x, true);
-        Subs.CVar(_cfg, GoobCVars.SpaceWhaleSpawnDistance, x => _spaceWhaleSpawnDistance = x, true);
+        Subs.CVar(_cfg, NFCCVars.SpaceWhaleSpawn, x => _spaceWhaleEnabled = x, true);
+        Subs.CVar(_cfg, NFCCVars.SpaceWhaleSpawnDistance, x => _spaceWhaleSpawnDistance = x, true);
     }
 
     private void OnTargetDeath(Entity<SpaceWhaleTargetComponent> ent, ref MobStateChangedEvent args)
@@ -114,7 +114,7 @@ public sealed class StationProximitySystem : EntitySystem
         if (_stations.Count == 0)
             return;
 
-        var humanoidQuery = EntityQueryEnumerator<HumanoidProfileComponent, MobStateComponent, TransformComponent>();
+        var humanoidQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
         while (humanoidQuery.MoveNext(out var uid, out _, out var mobState, out var xform))
         {
             if (mobState.CurrentState != MobState.Alive)

@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared.Damage.Systems;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Goobstation.Shared.Wraith.Other;
+
+namespace Content.Shared._Goobstation.SpaceWhale.Collide;
 
 public sealed class DamageOnCollideSystem : EntitySystem
 {

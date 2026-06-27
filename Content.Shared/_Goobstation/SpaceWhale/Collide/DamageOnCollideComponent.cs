@@ -2,7 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 
-namespace Content.Goobstation.Shared.Wraith.Other;
+namespace Content.Shared._Goobstation.SpaceWhale.Collide;
 
 /// <summary>
 /// Will damage the entity with DamageOnCollideComponent upon colliding with any entity from the whitelist (if empty will damage to any collision)

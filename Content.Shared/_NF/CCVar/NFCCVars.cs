@@ -266,6 +266,22 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.xenoarch.single_use_nodes", true, CVar.REPLICATED);
 
     /*
+     * Space-Whales
+     */
+
+    /// <summary>
+    /// Whether or not to spawn space whales if the entity is too far away from the station
+    /// </summary>
+    public static readonly CVarDef<bool> SpaceWhaleSpawn =
+        CVarDef.Create("misc.space_whale_spawn", true, CVar.SERVER);
+
+    /// <summary>
+    /// The distance to spawn a space whale from the station
+    /// </summary>
+    public static readonly CVarDef<int> SpaceWhaleSpawnDistance =
+        CVarDef.Create("misc.space_whale_spawn_distance", 200, CVar.SERVER);
+
+    /*
      * Greeting
      */
 

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Shared.SpaceWhale;
+using Content.Shared._Goobstation.SpaceWhale;
 using Robust.Shared.Map;
 
-namespace Content.Goobstation.Server.SpaceWhale;
+namespace Content.Server._Goobstation.SpaceWhale;
 
 public sealed class TailedEntitySystem : SharedTailedEntitySystem
 {

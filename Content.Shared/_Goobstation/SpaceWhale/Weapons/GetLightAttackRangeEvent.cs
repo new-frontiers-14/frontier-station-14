@@ -2,7 +2,7 @@
 
 using Robust.Shared.Map;
 
-namespace Content.Goobstation.Common.Weapons;
+namespace Content.Shared._Goobstation.SpaceWhale.Weapons;
 
 [ByRefEvent]
 public record struct GetLightAttackRangeEvent(EntityUid? Target, EntityUid User, float Range, bool Cancel = false);

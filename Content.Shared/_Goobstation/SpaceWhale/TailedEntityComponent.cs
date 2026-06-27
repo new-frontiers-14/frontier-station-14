@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
-namespace Content.Goobstation.Shared.SpaceWhale;
+namespace Content.Shared._Goobstation.SpaceWhale;
 
 /// <summary>
 /// When given to an entity, creates X tailed entities that try to follow the entity with the component.

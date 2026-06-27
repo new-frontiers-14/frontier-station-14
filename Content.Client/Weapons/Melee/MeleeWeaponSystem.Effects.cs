@@ -18,18 +18,10 @@ public sealed partial class MeleeWeaponSystem
     /// <summary>
     /// Does all of the melee effects for a player that are predicted, i.e. character lunge and weapon animation.
     /// </summary>
-    public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, Angle spriteRotation, bool flippedAnimation, bool predicted = true, EntityUid? source = null) // Trauma - source
+    public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true)
     {
         if (!Timing.IsFirstTimePredicted)
             return;
-
-        // <Trauma>
-        if (source != null && source != user)
-        {
-            user = source.Value;
-            weapon = user;
-        }
-        // </Trauma>
 
         var lunge = GetLungeAnimation(localPos);
 
@@ -40,7 +32,7 @@ public sealed partial class MeleeWeaponSystem
         if (localPos == Vector2.Zero || animation == null)
             return;
 
-        if (!TryComp(user, out TransformComponent? userXform) || userXform.MapID == MapId.Nullspace)
+        if (!_xformQuery.TryGetComponent(user, out var userXform) || userXform.MapID == MapId.Nullspace)
             return;
 
         var animationUid = Spawn(animation, userXform.Coordinates);
@@ -51,6 +43,7 @@ public sealed partial class MeleeWeaponSystem
             return;
         }
 
+        var spriteRotation = Angle.Zero;
         if (arcComponent.Animation != WeaponArcAnimation.None
             && TryComp(weapon, out MeleeWeaponComponent? meleeWeaponComponent))
         {
@@ -58,13 +51,15 @@ public sealed partial class MeleeWeaponSystem
                 && TryComp(weapon, out SpriteComponent? weaponSpriteComponent))
                 _sprite.CopySprite((weapon, weaponSpriteComponent), (animationUid, sprite));
 
+            spriteRotation = meleeWeaponComponent.WideAnimationRotation;
+
             if (meleeWeaponComponent.SwingLeft)
                 angle *= -1;
         }
         _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
         var distance = Math.Clamp(localPos.Length() / 2f, 0.2f, 1f);
 
-        var xform = Transform(animationUid);
+        var xform = _xformQuery.GetComponent(animationUid);
         TrackUserComponent track;
 
         switch (arcComponent.Animation)
@@ -79,13 +74,6 @@ public sealed partial class MeleeWeaponSystem
             case WeaponArcAnimation.Thrust:
                 track = EnsureComp<TrackUserComponent>(animationUid);
                 track.User = user;
-                // Goobstation - Shove Rework Start
-                var dir = Transform(user).LocalRotation.GetCardinalDir();
-
-                if (flippedAnimation && dir is Direction.South or Direction.West)
-                    spriteRotation = Angle.FromDegrees(360) - spriteRotation;
-
-                // Goobstation - Shove Rework End
                 _animation.Play(animationUid, GetThrustAnimation((animationUid, sprite), distance, spriteRotation), ThrustAnimationKey);
                 if (arcComponent.Fadeout)
                     _animation.Play(animationUid, GetFadeAnimation(sprite, 0.05f, 0.15f), FadeAnimationKey);
@@ -228,7 +216,7 @@ public sealed partial class MeleeWeaponSystem
         var query = EntityQueryEnumerator<TrackUserComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var arcComponent, out var xform))
         {
-            if (arcComponent.User == null || TerminatingOrDeleted(arcComponent.User)) // Goobstation
+            if (arcComponent.User == null)
                 continue;
 
             Vector2 targetPos = TransformSystem.GetWorldPosition(arcComponent.User.Value);
@@ -241,13 +229,5 @@ public sealed partial class MeleeWeaponSystem
 
             TransformSystem.SetWorldPosition(uid, targetPos);
         }
-    }
-
-    private Angle? GetParentRotation(TransformComponent xform) // Goobstation
-    {
-        if (xform.ParentUid == xform.GridUid || xform.ParentUid == xform.MapUid || !Exists(xform.ParentUid))
-            return TransformSystem.GetWorldRotation(xform);
-
-        return null;
     }
 }

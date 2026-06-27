@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
-using Content.Goobstation.Common.Weapons;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared._Goobstation.SpaceWhale.Weapons;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Map;
 
-namespace Content.Goobstation.Shared.SpaceWhale;
+namespace Content.Shared._Goobstation.SpaceWhale;
 
 public abstract class SharedTailedEntitySystem : EntitySystem
 {

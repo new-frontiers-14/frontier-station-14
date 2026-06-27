@@ -1,19 +1,19 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Shared.SpaceWhale;
+using Content.Shared._Goobstation.SpaceWhale;
 using Robust.Client.GameObjects;
 
-namespace Content.Goobstation.Client.SpaceWhale;
+namespace Content.Client._Goobstation.SpaceWhale;
 
 public sealed class TailedEntitySystem : SharedTailedEntitySystem
 {
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     protected override void UpdateTailLayers(Entity<TailedEntityComponent> ent)
     {
+        var spriteQuery = GetEntityQuery<SpriteComponent>();
         base.UpdateTailLayers(ent);
 
-        if (_spriteQuery.TryGetComponent(ent.Owner, out var spriteSelf))
+        if (spriteQuery.TryGetComponent(ent.Owner, out var spriteSelf))
             spriteSelf.RenderOrder = (uint) ent.Comp.TailSegments.Count + 5;
 
         for (var i = 0; i < ent.Comp.TailSegments.Count; i++)
@@ -23,7 +23,7 @@ public sealed class TailedEntitySystem : SharedTailedEntitySystem
             if (TerminatingOrDeleted(segment))
                 continue;
 
-            if (!_spriteQuery.TryGetComponent(segment, out var sprite))
+            if (!spriteQuery.TryGetComponent(segment, out var sprite))
                 continue;
 
             sprite.RenderOrder = (uint) (ent.Comp.TailSegments.Count - i + 5);
