@@ -1,3 +1,4 @@
+using Content.Shared._NF.Addiction; // Frontier
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -38,6 +39,17 @@ namespace Content.Shared.EntityEffects.Effects
                     ("organ", reagentArgs.OrganEntity.GetValueOrDefault()),
                 };
             }
+
+            // Frontier: Addiction Popups
+            if (args is EntityEffectWithdrawalArgs withdrawalArgs)
+            {
+                msgArgs = [
+                    ("entity", withdrawalArgs.TargetEntity),
+                    //("addiction", withdrawalArgs.Addiction),
+                    ("lastReagent", withdrawalArgs.LastReagent.LocalizedName)
+                ];
+            }
+            // End Frontier
 
             if (Type == PopupRecipients.Local)
                 popupSys.PopupEntity(Loc.GetString(msg, msgArgs), args.TargetEntity, args.TargetEntity, VisualType);

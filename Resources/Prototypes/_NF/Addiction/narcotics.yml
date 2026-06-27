@@ -1,16 +1,45 @@
 - type: addiction
   id: Stimulant
+  defaultReagent: Desoxyephedrine
   threshold: 50
   decayRate: 0.6
-  checkPeriod: 30s
+  checkPeriod: 40s
   withdrawal:
-    decayRate: 0.1
+    decayRate: 0.15
     symptoms:
+      ## Cravings
+      - min: 2
+        max: 60
+        probability: 0.2
+        rating: 1
+        duration: 5
+        effects:
+          - !type:PopupMessage
+            visualType: Medium
+            messages:
+              - addiction-stimulant-crave-low-0
+              - addiction-stimulant-crave-low-1
+              - addiction-stimulant-crave-low-2
+              - addiction-stimulant-crave-low-3
+              - addiction-stimulant-crave-low-4
+      - min: 61
+        probability: 0.3
+        rating: 5
+        duration: 5
+        effects:
+          - !type:PopupMessage
+            visualType: MediumCaution
+            messages:
+              - addiction-stimulant-crave-high-0
+              - addiction-stimulant-crave-high-1
+              - addiction-stimulant-crave-high-2
+              - addiction-stimulant-crave-high-3
+              - addiction-stimulant-crave-high-4
       ## Fatigue
       - min: 10
         max: 49
-        rating: 5
-        duration: 1
+        rating: 10
+        duration: 4
         repeatable: true
         effects:
           - !type:ModifyStatusEffect
@@ -18,8 +47,8 @@
             time: 8
             type: Add
       - min: 50
-        rating: 10
-        duration: 1
+        rating: 20
+        duration: 2
         repeatable: true
         effects:
           - !type:ModifyStatusEffect

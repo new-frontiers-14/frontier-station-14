@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -10,7 +11,7 @@ public sealed partial class AddictionComponent : Component
     /// <summary>
     /// How fast or slow this entity gets addicted to anything compared to others
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public float Multiplier = 1f;
 
     /// <summary>
@@ -26,26 +27,32 @@ public sealed partial class AddictionData
     /// <summary>
     /// How fast or slow this entity gets addicted to this specific addiction type
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public float Multiplier = 1f;
+
+    /// <summary>
+    /// Last reagent to contribute to the addiction so craving messages can be more direct
+    /// </summary>
+    [ViewVariables]
+    public ProtoId<ReagentPrototype>? LastReagent;
 
     /// <summary>
     /// Current 'high' rating, this is increased everytime a AddictionEffect is applied, and decreases over time
     /// When it hits certain thresholds, withdrawal rating increases
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public FixedPoint2 High;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables]
     public TimeSpan NextCheck;
 
     /// <summary>
     /// Addiction rating. If the 'high' rating is below this then withdrawal effects will be applied
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public FixedPoint2 Addiction;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables]
     public TimeSpan NextWithdrawal;
 
     [ViewVariables(VVAccess.ReadOnly)]

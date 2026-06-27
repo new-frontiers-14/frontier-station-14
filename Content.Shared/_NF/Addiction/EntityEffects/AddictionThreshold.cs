@@ -24,15 +24,15 @@ public sealed partial class AddictionThreshold : EntityEffectCondition
     {
         if (args.EntityManager.TryGetComponent<AddictionComponent>(args.TargetEntity, out var addictionComp))
         {
-            FixedPoint2 rating = 0;
-            FixedPoint2 withdrawal = 0;
+            FixedPoint2 high = 0;
+            FixedPoint2 addiction = 0;
             if (addictionComp.Addictions.TryGetValue(Addiction, out var addictData))
             {
-                rating = addictData.High;
-                withdrawal = addictData.Addiction;
+                high = addictData.High;
+                addiction = addictData.Addiction;
             }
-            return rating >= Min && rating <= Max &&
-                withdrawal >= MinAddiction && withdrawal <= MaxAddiction;
+            return high >= Min && high <= Max &&
+                addiction >= MinAddiction && addiction <= MaxAddiction;
         }
         return false;
     }
