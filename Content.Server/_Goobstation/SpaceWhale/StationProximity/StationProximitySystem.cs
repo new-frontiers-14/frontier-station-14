@@ -5,6 +5,8 @@ using Content.Shared._NF.CCVar;
 using Content.Server.Popups;
 using Content.Server.Station.Components;
 using Content.Server._Goobstation.MobCaller;
+using Content.Server._NF.PacifiedZone;
+using Content.Server._NF.Salvage;
 using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
@@ -100,7 +102,7 @@ public sealed class StationProximitySystem : EntitySystem
         if (!_spaceWhaleEnabled)
             return;
 
-        var stationQuery = EntityQueryEnumerator<BecomesStationComponent, MapGridComponent, TransformComponent>();
+        var stationQuery = EntityQueryEnumerator<SalvageMobRestrictionsGridComponent, MapGridComponent, TransformComponent>();
         _stations.Clear();
 
         while (stationQuery.MoveNext(out var uid, out _, out var grid, out var xform))
@@ -175,7 +177,7 @@ public sealed class StationProximitySystem : EntitySystem
         _audio.PlayEntity(new SoundPathSpecifier("/Audio/_Goobstation/Ambience/SpaceWhale/leviathan-appear.ogg"),
             ent,
             ent,
-            AudioParams.Default.WithVolume(1f));
+            AudioParams.Default.WithVolume(0f));
 
         targetComp.MobCaller = SpawnAttachedTo(targetComp.MobCallerProto, ent.ToCoordinates());
     }
