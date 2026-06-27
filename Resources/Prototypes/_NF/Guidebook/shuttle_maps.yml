@@ -912,6 +912,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapVoltage
+  name: "CS Voltage"
+  description: "Detailed map of a Voltage shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: voltage
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapWasp
   name: "NSF Wasp"
   description: "Detailed map of a Wasp shuttle."
