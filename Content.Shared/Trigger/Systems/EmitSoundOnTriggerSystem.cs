@@ -1,7 +1,7 @@
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Audio; // Frontier
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Network; // Frontier
+using Robust.Shared.Network;
 
 namespace Content.Shared.Trigger.Systems;
 
