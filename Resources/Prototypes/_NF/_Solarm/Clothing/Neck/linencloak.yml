@@ -1,0 +1,17 @@
+- type: entity
+  parent: [ ClothingNeckBase, BaseC1Contraband ]
+  id: ClothingNeckLinenCloak
+  name: Linen cloak
+  suffix: Solarm
+  description: Old, light cloak from linen for protect your shoulders and neck from sand, dust, and sun.
+  components:
+  - type: Sprite
+    sprite: _NF/Solarm/Clothing/Neck/linencloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodLinenCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
