@@ -42,6 +42,66 @@
 
 - type: entity
   parent: MarkerBase
+  id: SpawnDungeonVendomatsChemSyndie
+  name: random chemical vendomat
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/syndiedrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootChemVendomatsSyndicate
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonVendomatsBarSyndie
+  name: random bar vendomat
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/syndiedrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootBarVendomatsSyndicate
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonElectricRangeSyndie
+  name: random electric range
+  suffix: "Loot (Frontier), Syndie"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Structures/Machines/oven_syndie.rsi
+        state: composite_off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonElectricRangeSyndicate
+
+- type: entity
+  parent: MarkerBase
   id: SpawnDungeonLootCrateSyndie
   name: random crate
   suffix: "Loot (Frontier), Syndie"

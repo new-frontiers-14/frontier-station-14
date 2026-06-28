@@ -6,9 +6,9 @@
       id: SuitStorageEVASyndicateLesser
     - weight: 40
       id: SuitStorageEVASyndicate
-    - weight: 9
+    - weight: 7
       id: SuitStorageSyndie
-    - weight: 1
+    - weight: 3
       id: SuitStorageEVACarp # Carp'd again
 
 - type: entityTable
@@ -17,16 +17,41 @@
     children:
     - weight: 30
       id: VendingMachineCigs
+    - weight: 30
+      id: VendingMachinePosterPrinterSyndicate
     - weight: 25
       id: VendingMachineSyndieDrobe
-    - weight: 20
-      id: VendingMachineBoozeSyndicate
     - weight: 10
       id: VendingMachineArcadia
-    - weight: 10
-      id: VendingMachineChemicalsSyndicate
     - weight: 5
       id: VendingMachineSyndieContraband
+
+- type: entityTable
+  id: TableDungeonLootChemVendomatsSyndicate
+  table: !type:GroupSelector
+    children:
+    - weight: 90
+      id: VendingMachineChemicals
+    - weight: 10
+      id: VendingMachineChemicalsSyndicate
+
+- type: entityTable
+  id: TableDungeonLootBarVendomatsSyndicate
+  table: !type:GroupSelector
+    children:
+    - weight: 70
+      id: VendingMachineBooze
+    - weight: 30
+      id: VendingMachineBoozeSyndicate
+
+- type: entityTable
+  id: TableDungeonLootElectricRangeSyndicate
+  table: !type:GroupSelector
+    children:
+    - weight: 80
+      id: KitchenElectricRange
+    - weight: 20
+      id: KitchenElectricRangeSyndicate
 
 - type: entityTable
   id: TableDungeonLootCratesSyndicate

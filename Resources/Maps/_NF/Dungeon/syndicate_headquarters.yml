@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 05/21/2026 15:39:20
-  entityCount: 1896
+  time: 06/28/2026 21:11:23
+  entityCount: 1894
 maps:
 - 588
 grids:
@@ -2761,7 +2761,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,16.5
       parent: 588
-- proto: AirlockSyndicateGlass
+- proto: AirlockSyndicateGlassDungeon
   entities:
   - uid: 80
     components:
@@ -6620,18 +6620,6 @@ entities:
     - type: Transform
       pos: 6.4025984,27.50183
       parent: 588
-- proto: ClothingHeadsetAltSyndicate
-  entities:
-  - uid: 1344
-    components:
-    - type: Transform
-      pos: 13.576402,12.55601
-      parent: 588
-  - uid: 1826
-    components:
-    - type: Transform
-      pos: 25.74263,2.5022683
-      parent: 588
 - proto: ClothingMaskGasSyndicate
   entities:
   - uid: 60
@@ -8551,7 +8539,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 34.5,1.5
       parent: 588
-- proto: PlasmaWindoorSecureSyndicateLocked
+- proto: PlasmaWindoorSecureSyndicateLockedDungeon
   entities:
   - uid: 1070
     components:
@@ -8596,7 +8584,7 @@ entities:
     - type: Transform
       pos: 3.5,34.5
       parent: 588
-- proto: PlastitaniumWindow
+- proto: PlastitaniumWindowDungeon
   entities:
   - uid: 599
     components:
@@ -10644,6 +10632,13 @@ entities:
     - type: Transform
       pos: 42.617462,12.556715
       parent: 588
+- proto: SpawnDungeonElectricRangeSyndie
+  entities:
+  - uid: 214
+    components:
+    - type: Transform
+      pos: 16.5,21.5
+      parent: 588
 - proto: SpawnDungeonFurnitureBedroom
   entities:
   - uid: 129
@@ -10719,11 +10714,6 @@ entities:
       parent: 588
 - proto: SpawnDungeonLootArmoryGuns
   entities:
-  - uid: 214
-    components:
-    - type: Transform
-      pos: 49.40028,9.375886
-      parent: 588
   - uid: 224
     components:
     - type: Transform
@@ -11702,6 +11692,20 @@ entities:
     - type: Transform
       pos: 10.5,30.5
       parent: 588
+- proto: SpawnDungeonVendomatsBarSyndie
+  entities:
+  - uid: 1016
+    components:
+    - type: Transform
+      pos: 18.5,18.5
+      parent: 588
+- proto: SpawnDungeonVendomatsChemSyndie
+  entities:
+  - uid: 1315
+    components:
+    - type: Transform
+      pos: 45.5,12.5
+      parent: 588
 - proto: SpawnDungeonVendomatsClothes
   entities:
   - uid: 1009
@@ -11950,13 +11954,6 @@ entities:
     - type: Transform
       pos: 37.271435,16.642189
       parent: 588
-- proto: SyndicateKitchenElectricRange
-  entities:
-  - uid: 144
-    components:
-    - type: Transform
-      pos: 16.5,21.5
-      parent: 588
 - proto: SyndicateMicrowave
   entities:
   - uid: 754
@@ -12022,6 +12019,13 @@ entities:
       parent: 588
     - type: Fixtures
       fixtures: {}
+- proto: SyndieHandyFlag
+  entities:
+  - uid: 144
+    components:
+    - type: Transform
+      pos: 13.7236595,12.575793
+      parent: 588
 - proto: SyringeStimulants
   entities:
   - uid: 1831
@@ -12752,20 +12756,6 @@ entities:
     - type: Transform
       pos: 17.378744,38.562496
       parent: 588
-- proto: VendingMachineBoozeSyndicate
-  entities:
-  - uid: 1016
-    components:
-    - type: Transform
-      pos: 18.5,18.5
-      parent: 588
-- proto: VendingMachineChemicalsSyndicate
-  entities:
-  - uid: 1315
-    components:
-    - type: Transform
-      pos: 45.5,12.5
-      parent: 588
 - proto: VendingMachineCuddlyCritterVend
   entities:
   - uid: 917
@@ -13333,7 +13323,7 @@ entities:
     - type: Transform
       pos: 1.5,26.5
       parent: 588
-- proto: WindoorSecurePlasma
+- proto: WindoorSecurePlasmaDungeon
   entities:
   - uid: 45
     components:
