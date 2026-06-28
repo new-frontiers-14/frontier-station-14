@@ -7,26 +7,48 @@ namespace Content.Client._Goobstation.SpaceWhale;
 
 public sealed class TailedEntitySystem : SharedTailedEntitySystem
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
 
-    protected override void UpdateTailLayers(Entity<TailedEntityComponent> ent)
+    public override void Initialize()
     {
-        var spriteQuery = GetEntityQuery<SpriteComponent>();
-        base.UpdateTailLayers(ent);
+        base.Initialize();
 
-        if (spriteQuery.TryGetComponent(ent.Owner, out var spriteSelf))
-            spriteSelf.RenderOrder = (uint) ent.Comp.TailSegments.Count + 5;
+        TransformSystem.OnGlobalMoveEvent += OnMove;
 
-        for (var i = 0; i < ent.Comp.TailSegments.Count; i++)
-        {
-            var segment = ent.Comp.TailSegments[i];
+        SubscribeLocalEvent<TailedEntityComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
+        SubscribeLocalEvent<TailedEntitySegmentComponent, AfterAutoHandleStateEvent>(OnSegmentAfterAutoHandleState);
+    }
 
-            if (TerminatingOrDeleted(segment))
-                continue;
+    private void OnAfterAutoHandleState(Entity<TailedEntityComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (_spriteQuery.TryGetComponent(ent.Owner, out var sprite))
+            sprite.RenderOrder = (uint) ent.Comp.TailSegments.Count + 5;
+    }
 
-            if (!spriteQuery.TryGetComponent(segment, out var sprite))
-                continue;
+    private void OnSegmentAfterAutoHandleState(Entity<TailedEntitySegmentComponent> ent,
+        ref AfterAutoHandleStateEvent args)
+    {
+        if (!_spriteQuery.TryGetComponent(ent.Owner, out var sprite))
+            return;
 
-            sprite.RenderOrder = (uint) (ent.Comp.TailSegments.Count - i + 5);
-        }
+        sprite.RenderOrder = (uint) (ent.Comp.SegmentCount - ent.Comp.Order + 5);
+
+        if (ent.Comp.SegmentSpriteState is not { } segmentState || ent.Comp.TailSpriteState is not { } tailState)
+            return;
+
+        _sprite.LayerSetRsiState((ent, sprite),
+            TailedEntitySegmentLayer.Base,
+            ent.Comp.Order == ent.Comp.SegmentCount - 1 ? tailState : segmentState);
+    }
+
+    private void OnMove(ref MoveEvent args)
+    {
+        if (args.OldPosition == args.NewPosition && args.OldRotation == args.NewRotation ||
+            TerminatingOrDeleted(args.Entity) ||
+            !TryComp(args.Entity, out TailedEntityComponent? tailed) || tailed.TailSegments.Count == 0)
+            return;
+
+        UpdateTailPositions((args.Entity, tailed, args.Entity.Comp1));
     }
 }
