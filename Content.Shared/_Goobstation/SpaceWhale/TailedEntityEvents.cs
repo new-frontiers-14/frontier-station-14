@@ -2,7 +2,7 @@
 
 using Content.Shared.Actions;
 
-namespace Content.Goobstation.Shared.SpaceWhale;
+namespace Content.Shared._Goobstation.SpaceWhale;
 
 [ByRefEvent]
 public record struct GetTailedEntitySegmentCountEvent(int Amount);

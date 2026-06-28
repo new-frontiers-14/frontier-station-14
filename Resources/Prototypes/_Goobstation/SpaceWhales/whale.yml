@@ -14,13 +14,14 @@
         layer:
         - Opaque
         - BulletImpassable
-        - Impassable
+        - LowImpassable
+        - MidImpassable
   - type: DamageOnCollide
     inverted: true # fuck you wrath components!
     damage:
       types:
-        Structural: 35
-        Blunt: 5
+        Structural: 150
+        Blunt: 10
     ignoreWhitelist:
       components:
       - ContainmentField
@@ -40,7 +41,6 @@
     whitelist:
       tags:
       - SpaceWhaleSegment
-  # - type: ForcePvsOverride
 
 - type: entity
   id: SpaceLeviathan
@@ -49,11 +49,11 @@
   description: When the space becomes too quiet, there is no hope, there is no escape, but there is this.
   components:
   - type: TailedEntity
-    amount: 30 #subject to change
+    amount: 60 #subject to change
     spacing: 1
     prototype: SpaceWhaleSegment
   - type: MovementSpeedModifier # subject to change
-    baseSprintSpeed: 15
+    baseSprintSpeed: 35
     baseWalkSpeed: 10
     baseWeightlessFriction: 0.5
     weightlessFriction: 0.5
@@ -65,7 +65,7 @@
     shape: hexagon
     visibleFromOtherGrids: true
   - type: MovementIgnoreGravity
-    gravityState: true # wtf lol?
+    weightless: true # wtf lol?
   - type: WarpPoint
     follow: true
     location: space leviathan
@@ -162,6 +162,7 @@
     - SpaceWhaleSegment
   - type: Physics
     bodyType: Dynamic
+  - type: TailedEntitySegment
 
 - type: entity
   id: SpaceLeviathanDespawn

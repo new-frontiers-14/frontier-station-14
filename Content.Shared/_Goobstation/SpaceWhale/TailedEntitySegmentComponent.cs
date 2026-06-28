@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 
-namespace Content.Goobstation.Shared.SpaceWhale;
+namespace Content.Shared._Goobstation.SpaceWhale;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class TailedEntitySegmentComponent : Component
