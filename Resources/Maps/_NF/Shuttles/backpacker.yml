@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 06/02/2026 15:53:15
-  entityCount: 406
+  time: 06/28/2026 05:09:19
+  entityCount: 408
 maps: []
 grids:
 - 1
@@ -89,6 +89,7 @@ entities:
             94: 8,-2
             95: 4,-2
             96: 4,-10
+            120: 6,-2
         - node:
             color: '#FF0000FF'
             id: BrickTileDarkLineN
@@ -379,7 +380,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -62851.145
+      secondsUntilStateChange: -63775.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -551,6 +552,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-11.5
+      parent: 1
+- proto: Autolathe
+  entities:
+  - uid: 259
+    components:
+    - type: Transform
+      pos: 7.5,-1.5
       parent: 1
 - proto: BenchSofaCorpCorner
   entities:
@@ -1215,7 +1223,7 @@ entities:
       parent: 1
 - proto: DresserFilled
   entities:
-  - uid: 149
+  - uid: 407
     components:
     - type: Transform
       pos: 8.5,-1.5
@@ -1278,6 +1286,9 @@ entities:
     - type: Transform
       pos: 5.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 2
   - uid: 159
@@ -1285,6 +1296,9 @@ entities:
     - type: Transform
       pos: 6.5,-10.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 2
 - proto: FirelockGlass
@@ -1294,6 +1308,9 @@ entities:
     - type: Transform
       pos: 5.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 2
 - proto: FloorDrain
@@ -1990,10 +2007,10 @@ entities:
       parent: 1
 - proto: NFHolopadShip
   entities:
-  - uid: 249
+  - uid: 149
     components:
     - type: Transform
-      pos: 7.5,-1.5
+      pos: 6.5,-1.5
       parent: 1
 - proto: NFSpawnerRandomPosterFrontier
   entities:
@@ -2068,10 +2085,10 @@ entities:
       fixtures: {}
 - proto: PottedPlant12
   entities:
-  - uid: 259
+  - uid: 249
     components:
     - type: Transform
-      pos: 8.667414,-1.0765259
+      pos: 8.666891,-1.1248707
       parent: 1
 - proto: PottedPlant18
   entities:
@@ -2717,6 +2734,13 @@ entities:
     components:
     - type: Transform
       pos: 7.307149,-3.2046208
+      parent: 1
+- proto: SpawnRandomTowel
+  entities:
+  - uid: 408
+    components:
+    - type: Transform
+      pos: 8.773914,-6.583158
       parent: 1
 - proto: StairStageDark
   entities:
