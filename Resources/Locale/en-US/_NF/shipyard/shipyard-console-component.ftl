@@ -79,6 +79,7 @@ shipyard-console-engine-Singularity = Singularity
 shipyard-console-engine-Solar = Solar
 shipyard-console-engine-RTG = RTG
 shipyard-console-engine-APU = APU
+shipyard-console-engine-Thermoelectric = Thermoelectric
 shipyard-console-engine-Welding = Welding Fuel
 shipyard-console-engine-Plasma = Plasma
 shipyard-console-engine-Uranium = Uranium

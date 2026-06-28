@@ -112,6 +112,7 @@ guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-tyne = Tyne
 guide-entry-shipyard-vitalis = Vitalis
+guide-entry-shipyard-voltage = Voltage
 
 # Frontier Staff Shipyard entries
 guide-entry-shipyard-broom = Broom
