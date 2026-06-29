@@ -113,8 +113,8 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
             }
         }
 
-        var addictionsToRemove = new List<ProtoId<AddictionPrototype>>();
-        var componentsToRemove = new List<EntityUid>();
+        var addictionsToRemove = new ValueList<ProtoId<AddictionPrototype>>();
+        var componentsToRemove = new ValueList<EntityUid>();
         foreach (var (uid, addict) in addicts)
         {
             if (addict.Addictions.Count == 0)
@@ -314,9 +314,9 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
         var addictData = entity.Comp.Addictions.GetOrNew(addictProto.ID);
 
         addictData.Addiction = FixedPoint2.Max(0, addictData.Addiction + amount);
-        if (addictProto.Withdrawal.Max is not null)
+        if (addictProto.Max is not null)
         {
-            addictData.Addiction = FixedPoint2.Min(addictProto.Withdrawal.Max.Value, addictData.Addiction);
+            addictData.Addiction = FixedPoint2.Min(addictProto.Max.Value, addictData.Addiction);
         }
         if (amount >= 0)
         {

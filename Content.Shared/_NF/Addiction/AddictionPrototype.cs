@@ -40,6 +40,12 @@ public sealed partial class AddictionPrototype : IPrototype, IInheritingPrototyp
     [ViewVariables, DataField(required: true)]
     public float DecayRate { get; set; }
 
+    /// <summary>
+    /// The maximum addiction rating this addiction can ever get. Null by default meaning there is no maximum
+    /// </summary>
+    [ViewVariables, DataField]
+    public FixedPoint2? Max { get; set; }
+
     [DataField(required: true)]
     public WithdrawalData Withdrawal { get; private set; } = default!;
 
@@ -49,13 +55,6 @@ public sealed partial class AddictionPrototype : IPrototype, IInheritingPrototyp
 [DataDefinition]
 public sealed partial class WithdrawalData
 {
-
-    /// <summary>
-    /// The maximum addiction rating this addiction can ever get. Null by default meaning there is no maximum
-    /// </summary>
-    [ViewVariables, DataField]
-    public FixedPoint2? Max { get; set; }
-
     /// <summary>
     /// How fast/slow the addiction rating decreases when the high is at 0 per check period. Must be less than 1 and greater than or equal to 0
     /// </summary>
@@ -66,7 +65,7 @@ public sealed partial class WithdrawalData
     public float Probability { get; private set; } = 1f;
 
     /// <summary>
-    /// How fast or slow the addiction increases above the threshold. This is multiplied by the excess addiction factor
+    /// How fast or slow the addiction increases above the threshold. This is multiplied by the excess addiction factor. Effectively sets addiction to a percentage of the 'high'
     /// </summary>
     [ViewVariables, DataField]
     public float Multiplier { get; set; } = 1f;
