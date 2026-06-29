@@ -1,6 +1,6 @@
 #region staff altar
 - type: entity
-  parent: BaseItemRecharger # [ BaseMachine, SmallConstructibleMachine ]
+  parent: [ BaseC3WizardContraband, BaseItemRecharger ] # [ BaseMachine, SmallConstructibleMachine ]
   id: StaffRechargerWizard
   name: wizard staff altar
   description: A magically attuned altar that can replenish arcane energies of wizard staffs.
@@ -100,7 +100,7 @@
   parent: [ BaseMachine, BaseC3WizardContraband ]
   id: SingingRock
   name: singing rock
-  description: A rock with charming, melodic voice.
+  description: A rock with a charming, melodic voice.
   components:
   - type: StationAiWhitelist
   - type: Sprite
@@ -165,7 +165,7 @@
   id: WizardGasCanisterBottomlessOxygen
   name: bottomless canister
   suffix: Filled, Oxygen
-  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  description: A canister that can hold more gas than its size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
     - type: Sprite
       sprite: _NF/Structures/Specific/Wizard/canister.rsi
@@ -195,7 +195,7 @@
   id: WizardGasCanisterBottomlessNitrogen
   name: bottomless canister
   suffix: Filled, Nitrogen
-  description: A canister that can hold more gas that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  description: A canister that can hold more gas than its size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
     - type: Sprite
       sprite: _NF/Structures/Specific/Wizard/canister.rsi
