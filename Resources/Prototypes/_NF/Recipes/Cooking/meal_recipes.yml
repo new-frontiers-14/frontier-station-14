@@ -303,6 +303,20 @@
   - Assembler
 
 - type: microwaveMealRecipe
+  id: RecipeSausageRawStomachAnimal
+  name: raw stomach sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    OrganAnimalStomach: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
   id: RecipeSausageCooked
   name: cooked sausage recipe
   result: FoodMeatSausage
@@ -1602,3 +1616,19 @@
     FoodCoffee: 1
   recipeType:
   - Oven
+
+# Fries
+
+- type: microwaveMealRecipe
+  id: Poutine
+  name: poutine recipe
+  result: FoodMealPoutine
+  time: 5
+  group: Savory
+  solids:
+    FoodMealFries: 1
+    FoodCheeseCurds: 1
+  reagents:
+    Gravy: 10
+  recipeType:
+  - Assembler

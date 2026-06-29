@@ -37,9 +37,11 @@
   - type: IntrinsicRadioTransmitter
     channels:
     - Service
+    - Common
   - type: ActiveRadio
     channels:
     - Service
+    - Common
   - type: NpcFactionMember
     factions:
       - Cat
@@ -136,15 +138,17 @@
   - type: AutoImplant
     implants:
     - MindShieldImplant
-    - TrackingImplant
+    - NFSDTrackingImplant
     - LightImplant
   - type: FlashImmunity
   - type: IntrinsicRadioTransmitter
     channels:
     - Nfsd
+    - Common
   - type: ActiveRadio
     channels:
     - Nfsd
+    - Common
   - type: MeleeWeapon
     damage:
       types:
@@ -195,7 +199,7 @@
     nameSegments: null
   - type: AutoImplant
     implants:
-    - TrackingImplant
+    - NFSDTrackingImplant
   - type: NpcFactionMember
     factions:
     - Cat
@@ -239,9 +243,11 @@
   - type: IntrinsicRadioTransmitter
     channels:
     - Engineering
+    - Common
   - type: ActiveRadio
     channels:
     - Engineering
+    - Common
   - type: NpcFactionMember
     factions:
       - Cat
@@ -266,6 +272,54 @@
     - Pop
   - type: TypingIndicator
     proto: slime
+
+- type: entity
+  id: MobCatCaddy
+  parent: [NFMobPet, MobCatGhost]
+  name: Caddy
+  description: A cat with a medical degree!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: medicat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: medicat
+  - type: GhostRole
+    name: ghost-role-information-caddy-name
+    description: ghost-role-information-caddy-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatCaddy
+    mindRoles: [ MindRoleGhostRoleNeutral ]
+  - type: Loadout
+    prototypes: [ MobCaddyGear ]
+  - type: RandomMetadata
+    nameSegments: null
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - MedicalTrackingImplant
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatCat
+      amount: 1
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Medical
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Medical
+    - Common
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: ShowJobIcons
 
 - type: entity
   id: MobCatClugg

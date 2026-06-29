@@ -1,0 +1,890 @@
+# region Base Wristset
+- type: entity
+  abstract: true
+  parent: ClothingHeadset
+  id: NFBaseClothingWristset
+  name: wristset
+  description: An updated, modular intercom worn on the wrist. It accepts encryption keys.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/wrist_color.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/wrist_color.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+
+# region frontier command
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetAltCentCom]
+  id: NFClothingWristsetSr
+  name: station representative wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#1f6626ff"
+    - state: icon-decal-02
+      color: "#f1b223ff"
+    - state: icon-unshaded
+      color: "#2e9935ff"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#1f6626ff"
+      - state: equipped-EARS-unshaded
+        color: "#2e9935ff"
+        shader: unshaded
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+
+- type: entity
+  parent: [NFBaseClothingWristset, BaseCommandContraband]
+  id: NFClothingWristsetSheriff
+  name: sheriff wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#384d2f"
+    - state: icon-decal-01
+      color: "#c2ae98"
+    - state: icon-decal-02
+      color: "#f1b223ff"
+    - state: icon-unshaded
+      color: "#52843f"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#384d2f"
+      - state: equipped-EARS-unshaded
+        color: "#52843f"
+        shader: unshaded
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+
+# region near command
+- type: entity
+  parent: [NFBaseClothingWristset, BaseCommandContraband]
+  id: NFClothingWristsetPlantManager
+  name: plant manager wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#f39f27"
+    - state: icon-decal-02
+      color: "#fff4e2"
+    - state: icon-unshaded
+      color: "#fac769"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#f39f27"
+      - state: equipped-EARS-unshaded
+        color: "#f1ef8b"
+        shader: unshaded
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyEngineering
+      - EncryptionKeyCommand
+
+- type: entity
+  parent: [NFBaseClothingWristset, BaseCommandContraband]
+  id: NFClothingWristsetDoc
+  name: director of care wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#749eb2"
+    - state: icon-decal-02
+      color: "#659c8c"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#749eb2"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyDoc
+
+# region NFSD (full)
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetNfsdBrown]
+  id: NFClothingWristsetNfsdBrown
+  name: NFSD wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#63492a"
+    - state: icon-unshaded
+      color: "#52843f"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#63492a"
+      - state: equipped-EARS-unshaded
+        color: "#52843f"
+        shader: unshaded
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+
+- type: entity
+  parent: [NFBaseClothingWristset, NFClothingWristsetNfsdBrown]
+  id: NFClothingWristsetNfsdBrownCommon
+  name: NFSD wristset
+  suffix: Common
+
+- type: entity
+  parent: [NFClothingWristsetNfsdBrown, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdBrownCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
+- type: entity
+  parent: NFClothingWristsetNfsdBrown
+  id: NFClothingWristsetNfsdGreen
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#384d2f"
+    - state: icon-unshaded
+      color: "#52843f"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#384d2f"
+      - state: equipped-EARS-unshaded
+        color: "#52843f"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, NFClothingWristsetNfsdGreen]
+  id: NFClothingWristsetNfsdGreenCommon
+  name: NFSD wristset
+  suffix: Common
+
+- type: entity
+  parent: [NFClothingWristsetNfsdGreen, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdGreenCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
+- type: entity
+  parent: NFClothingWristsetNfsdBrown
+  id: NFClothingWristsetNfsdCream
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#c2ae98"
+    - state: icon-unshaded
+      color: "#52843f"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#c2ae98"
+      - state: equipped-EARS-unshaded
+        color: "#52843f"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, NFClothingWristsetNfsdCream]
+  id: NFClothingWristsetNfsdCreamCommon
+  name: NFSD wristset
+  suffix: Common
+
+- type: entity
+  parent: [NFClothingWristsetNfsdCream, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdCreamCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
+# region contractor
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetContractorCommon
+  name: contractor wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#757575"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#757575"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetContractorCommonAlt
+  name: contractor wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#3e3e48"
+    - state: icon-decal-02
+      color: "#fff4e2"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#3e3e48"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+# region pilot
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetPilotCommon
+  name: pilot wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#5c8bc9"
+    - state: icon-unshaded
+      color: "#ea6400ff"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#5c8bc9"
+      - state: equipped-EARS-unshaded
+        color: "#ea6400ff"
+        shader: unshaded
+
+# region mercenary
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetMercenaryCommon
+  name: mercenary wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#7b7b3f"
+    - state: icon-unshaded
+      color: "#b8b873"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#7b7b3f"
+      - state: equipped-EARS-unshaded
+        color: "#b8b873"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetPrivateSecCommon
+  name: private security wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#935c3f"
+    - state: icon-decal-02
+      color: "#2286bd"
+    - state: icon-unshaded
+      color: "#ffd600"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#7b7b3f"
+      - state: equipped-EARS-unshaded
+        color: "#ffd600"
+        shader: unshaded
+
+# region captain
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetCaptainCommon
+  name: captain wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#3a6781"
+    - state: icon-decal-02
+      color: "#ffce5b"
+    - state: icon-unshaded
+      color: "#ffce5b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#3a6781"
+      - state: equipped-EARS-unshaded
+        color: "#ffce5b"
+        shader: unshaded
+
+# region supply
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetCargo]
+  id: NFClothingWristsetCargoCommon
+  name: cargo wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#b18644"
+    - state: icon-unshaded
+      color: "#f1c98b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#b18644"
+      - state: equipped-EARS-unshaded
+        color: "#f1c98b"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetMining]
+  id: NFClothingWristsetMiningCommon
+  name: mining wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#b18644"
+    - state: icon-unshaded
+      color: "#f18bcf"
+      shader: unshaded
+    - state: icon-decal-02
+      color: "#963dca"
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#b18644"
+      - state: equipped-EARS-unshaded
+        color: "#f18bcf"
+        shader: unshaded
+
+# region engineering
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetEngineering]
+  id: NFClothingWristsetEngineeringCommon
+  name: engineering wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#f39f27"
+    - state: icon-unshaded
+      color: "#f1ef8b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#f39f27"
+      - state: equipped-EARS-unshaded
+        color: "#f1ef8b"
+        shader: unshaded
+
+- type: entity
+  parent: NFClothingWristsetEngineeringCommon
+  id: NFClothingWristsetEngineering
+  suffix: Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyEngineering
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetEngineering]
+  id: NFClothingWristsetAtmosphericsCommon
+  name: atmospherics wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#f39f27"
+    - state: icon-decal-02
+      color: "#3eb388"
+    - state: icon-unshaded
+      color: "#f1ef8b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#f39f27"
+      - state: equipped-EARS-unshaded
+        color: "#f1ef8b"
+        shader: unshaded
+
+- type: entity
+  parent: NFClothingWristsetAtmosphericsCommon
+  id: NFClothingWristsetAtmospherics
+  suffix: Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyEngineering
+
+# region medical
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetMedical]
+  id: NFClothingWristsetMedicalCommon
+  name: medical wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#749eb2"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#749eb2"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+# region science
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetScience]
+  id: NFClothingWristsetScienceCommon
+  name: science wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-decal-01
+      color: "#c96dbf"
+    - state: icon-unshaded
+      color: "#f8a2e6"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#c96dbf"
+      - state: equipped-EARS-unshaded
+        color: "#f8a2e6"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetMedicalScience]
+  id: NFClothingWristsetMedicalScienceCommon
+  name: medical science wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#749eb2"
+    - state: icon-decal-01
+      color: "#c96dbf"
+    - state: icon-unshaded
+      color: "#f8a2e6"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#c96dbf"
+      - state: equipped-EARS-unshaded
+        color: "#f8a2e6"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetRobotics]
+  id: NFClothingWristsetRoboticsCommon
+  name: robotics wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#f39f27"
+    - state: icon-decal-01
+      color: "#c96dbf"
+    - state: icon-unshaded
+      color: "#f1c98b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#f39f27"
+      - state: equipped-EARS-unshaded
+        color: "#f1c98b"
+        shader: unshaded
+
+# region security
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetSecurity]
+  id: NFClothingWristsetSecurityCommon
+  name: security wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#cb0000"
+    - state: icon-unshaded
+      color: "#f18b8b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#cb0000"
+      - state: equipped-EARS-unshaded
+        color: "#f18b8b"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetBrigmedic]
+  id: NFClothingWristsetBrigmedicCommon
+  name: brigmedic wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#749eb2"
+    - state: icon-decal-01
+      color: "#cb0000"
+    - state: icon-unshaded
+      color: "#f18b8b"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#749eb2"
+      - state: equipped-EARS-unshaded
+        color: "#f18b8b"
+        shader: unshaded
+
+# region service
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  id: NFClothingWristsetServiceCommon
+  name: service wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#9fed58"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#9fed58"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  id: NFClothingWristsetServiceJanitorCommon
+  name: janitor wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#9fed58"
+    - state: icon-decal-01
+      color: "#891eb8"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#891eb8"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  id: NFClothingWristsetServiceClownCommon
+  name: clown wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#00ff00"
+    - state: icon-decal-01
+      color: "#006097"
+    - state: icon-decal-02
+      color: "#00ff00"
+    - state: icon-unshaded
+      color: "#cc3300"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#00ff00"
+      - state: equipped-EARS-unshaded
+        color: "#cc3300"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  id: NFClothingWristsetServiceMimeCommon
+  name: mime wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#1d1d1d"
+    - state: icon-decal-02
+      color: "#dbe1e5"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#1d1d1d"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+# region punk
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  id: NFClothingWristsetPunkCommon
+  name: punk wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "wristsetBase" ]
+    - state: icon-decal-01
+      map: [ "wristsetDecal01" ]
+    - state: icon-decal-02
+      map: [ "wristsetDecal02" ]
+    - state: icon-unshaded
+      shader: unshaded
+      map: [ "wristsetScreen" ]
+    - state: icon-buttons
+      map: [ "wristsetButtons" ]
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        map: [ "wristsetClothingBase" ]
+      - state: equipped-EARS-unshaded
+        shader: unshaded
+        map: [ "wristsetClothingScreen" ]
+  - type: RandomSprite
+    available:
+      - wristsetBase:
+          icon: Base
+        wristsetClothingBase:
+          equipped-EARS: Base
+        wristsetDecal01:
+          icon-decal-01: Decor01
+          icon-decal-02: Decor01
+          mask_null: ""
+        wristsetDecal02:
+          icon-decal-01: Decor02
+          icon-decal-02: Decor02
+          mask_null: ""
+        wristsetButtons:
+          icon-buttons: Decor01
+        wristsetScreen:
+          icon-unshaded: Decor02
+        wristsetClothingScreen:
+          equipped-EARS-unshaded: CyberpunkNeon
+    mappedColors:
+      Base: Cyberpunk
+      Decor01: CyberpunkNeon
+      Decor02: CyberpunkNeon
+
+# region antags
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetPirateFreelancer
+  name: pirate wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#784f1e"
+    - state: icon-decal-02
+      color: "#4b0e10"
+    - state: icon-unshaded
+      color: "#d4a365"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#784f1e"
+      - state: equipped-EARS-unshaded
+        color: "#d4a365"
+        shader: unshaded
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyFreelance
+
+# region player factions
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetLvhiCommon
+  name: lvhi wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#283846"
+    - state: icon-decal-01
+      color: "#e48545"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#e48545"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+- type: entity
+  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  id: NFClothingWristsetArcadiaCommon
+  name: arcadia industries wristset
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#dbe1e5"
+    - state: icon-decal-02
+      color: "#8f1010"
+    - state: icon-unshaded
+      color: "#87c0c1"
+      shader: unshaded
+    - state: icon-buttons
+  - type: Clothing
+    clothingVisuals:
+      ears:
+      - state: equipped-EARS
+        color: "#dbe1e5"
+      - state: equipped-EARS-unshaded
+        color: "#87c0c1"
+        shader: unshaded
+
+# no Far Star wristsets for now as I'm not aware if it has codified color palette

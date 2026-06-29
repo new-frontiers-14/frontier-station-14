@@ -49,6 +49,14 @@
   whitelisted: true
 
 - type: ghostRole
+  id: CatCaddy
+  name: ghost-role-information-caddy-name
+  description: ghost-role-information-caddy-description
+  rules: ghost-role-information-emotional-support-rules
+  entityPrototype: MobCatCaddy
+  whitelisted: true
+
+- type: ghostRole
   id: CatMistake
   name: ghost-role-information-mistake-name
   description: ghost-role-information-mistake-description
@@ -87,3 +95,12 @@
   rules: ghost-role-information-nonantagonist-rules
   entityPrototype: NFMobHumanBuddy
   whitelisted: true
+
+- type: ghostRole
+  id: WhitelistToggleableGhostRole
+  name: dummy
+  description: dummy
+  rules: dummy
+  entityPrototype: GreenhornPAI
+  whitelisted: true # Used for whitelist purpose only
+

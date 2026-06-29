@@ -42,11 +42,11 @@
 
 # From BBBullet
 - type: entity
-  id: BluntObject
-  name: BluntObject
-  description: If you can see this you're probably dead!
   abstract: true
   parent: BaseItem
+  id: BluntObject
+  name: blunt object
+  description: If you can see this you're probably dead!
   components:
   - type: Item
   - type: Reflective
@@ -76,14 +76,12 @@
     lifetime: 10
   - type: SpaceGarbage
 
-#region Objects
+# region soaps
 - type: entity
-  name: soap
+  parent: [ BaseBullet, Soap, ConjuredObject10 ]
   id: SoapConjured
-  parent:
-  - BaseBullet
-  - Soap
-  - ConjuredObject10
+  name: conjured soap
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/conjuredsoap.rsi
@@ -128,12 +126,40 @@
     radius: 1.5
     softness: 1
 
+- type: entity
+  parent: SoapConjured
+  id: SoapConjuredAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: false
+    damage:
+      types:
+        Blunt: 14
+  - type: StaminaDamageOnCollide
+    damage: 10
+
+- type: entity
+  parent: SoapConjured
+  id: SoapConjuredMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: false
+    damage:
+      types:
+        Blunt: 22
+  - type: StaminaDamageOnCollide
+    damage: 16
+
 # Blood Cult Soaps
 - type: entity
-  name: soaplet
-  id: SoapletBloodCult
-  categories: [ HideSpawnMenu ]
   parent: SoapConjured
+  id: SoapletBloodCult
+  name: conjured soaplet
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -174,11 +200,10 @@
     softness: 1
 
 - type: entity
-  name: soap
+  parent: [ Soap, ConjuredObject10 ]
   id: SoapConjuredBloodCultCluster # I swear, I'll use it some how
-  parent:
-  - Soap
-  - ConjuredObject10
+  name: soap
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/conjuredsoap.rsi
@@ -236,6 +261,7 @@
   - SoapConjured
   - BaseCartridge
   #- ConjuredObject10
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/conjuredsoap.rsi
@@ -258,12 +284,12 @@
     count: 35
     spread: 40
 
+# region bricks
 - type: entity
-  name: brick
+  parent: [ BluntObject, ConjuredObject10 ]
   id: BrickConjured
-  parent:
-  - BluntObject
-  - ConjuredObject10
+  name: brick
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     deleteOnCollide: false
@@ -280,3 +306,31 @@
     - state: brick
   - type: Ammo
     muzzleFlash: null
+
+- type: entity
+  parent: BrickConjured
+  id: BrickConjuredAdept
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 16
+        Structural: 15
+  - type: StaminaDamageOnCollide
+    damage: 12
+
+- type: entity
+  parent: BrickConjured
+  id: BrickConjuredMaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 25
+        Structural: 20
+  - type: StaminaDamageOnCollide
+    damage: 16

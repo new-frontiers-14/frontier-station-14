@@ -702,3 +702,21 @@
   - type: Construction
     graph: NFHotdog
     node: hotteddog
+    
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealPoutine
+  name: poutine
+  description: The ultimate hangover cure with fries, gravy and cheese curds. Oh, Canada!
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+      - cheesy
+      - meaty
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meals.rsi
+    state: poutine

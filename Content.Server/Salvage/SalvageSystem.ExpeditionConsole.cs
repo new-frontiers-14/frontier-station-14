@@ -3,17 +3,17 @@ using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
-using Content.Shared.Popups; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Robust.Shared.Map.Components; // Frontier
-using Robust.Shared.Physics.Components; // Frontier
-using Content.Shared.NPC; // Frontier
-using Content.Server._NF.Salvage; // Frontier
-using Content.Shared.NPC.Components; // Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Salvage; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.NPC; // Frontier
+using Content.Shared.Popups; // Frontier
+using Content.Shared.Station.Components; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Robust.Shared.Map.Components; // Frontier
+using Robust.Shared.Physics.Components; // Frontier
 using Robust.Shared.Physics; // Frontier
 
 namespace Content.Server.Salvage;
@@ -48,7 +48,7 @@ public sealed partial class SalvageSystem
                 activeExpeditionCount++;
         }
 
-        if (activeExpeditionCount >= _cfgManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
+        if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
             PlayDenySound((uid, component));
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
@@ -64,18 +64,19 @@ public sealed partial class SalvageSystem
         #region Frontier FTL changes
         // until FTL changes for us in some way.
 
+
+        if (Transform(uid).GridUid is not { Valid: true } ourGrid
+            || !TryComp<MapGridComponent>(ourGrid, out var gridComp))
+        {
+            PlayDenySound((uid, component));
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid"), uid, PopupType.MediumCaution);
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+
         // Run a proximity check (unless using a debug console)
         if (_salvage.ProximityCheck && !component.Debug)
         {
-            if (!TryComp<StationDataComponent>(station, out var stationData)
-                || _station.GetLargestGrid(stationData) is not { Valid: true } ourGrid
-                || !TryComp<MapGridComponent>(ourGrid, out var gridComp))
-            {
-                PlayDenySound((uid, component));
-                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid"), uid, PopupType.MediumCaution);
-                UpdateConsoles((station.Value, data));
-                return;
-            }
 
             if (HasComp<FTLComponent>(ourGrid))
             {
@@ -105,7 +106,7 @@ public sealed partial class SalvageSystem
                 return;
             }
         }
-        SpawnMission(missionparams, station.Value, null);
+        SpawnMission(missionparams, station.Value, ourGrid, null);
         #endregion Frontier FTL changes
         // End Frontier
 
@@ -234,9 +235,7 @@ public sealed partial class SalvageSystem
         }
 
         // Frontier: if we have a lingering FTL component, we cannot start a new mission
-        if (!TryComp<StationDataComponent>(station, out var stationData) ||
-                _station.GetLargestGrid(stationData) is not { Valid: true } grid ||
-                HasComp<FTLComponent>(grid))
+        if (HasComp<FTLComponent>(Transform(component.Owner).GridUid))
         {
             state.Cooldown = true; //Hack: disable buttons
         }
