@@ -277,7 +277,7 @@ uplink-pirate-revolver-name = Pirate Revolver
 uplink-pirate-revolver-desc = An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 pistol ammo.
 
 uplink-pirate-romulan-name = Romulan
-uplink-pirate-romulan-desc = Yarrr, a retrofitted Vulcan befitting of a pirate!. Uses .20 rifle ammo.
+uplink-pirate-romulan-desc = Yarrr, a retrofitted Vulcan befitting of a pirate! Uses .20 rifle ammo.
 
 uplink-pirate-cannon-name = Pirate Cannon
 uplink-pirate-cannon-desc = Kaboom!
