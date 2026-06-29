@@ -5,11 +5,11 @@
   decayRate: 0.6
   checkPeriod: 40s
   withdrawal:
-    decayRate: 0.15
+    decayRate: 0.25
     symptoms:
       ## Cravings
       - min: 2
-        max: 60
+        max: 150
         probability: 0.2
         rating: 1
         duration: 5
@@ -22,7 +22,7 @@
               - addiction-stimulant-crave-low-2
               - addiction-stimulant-crave-low-3
               - addiction-stimulant-crave-low-4
-      - min: 61
+      - min: 151
         probability: 0.3
         rating: 5
         duration: 5
@@ -36,8 +36,8 @@
               - addiction-stimulant-crave-high-3
               - addiction-stimulant-crave-high-4
       ## Fatigue
-      - min: 10
-        max: 49
+      - min: 60
+        max: 149
         rating: 10
         duration: 4
         repeatable: true
@@ -46,7 +46,7 @@
             effectProto: StatusEffectDrowsiness
             time: 8
             type: Add
-      - min: 50
+      - min: 150
         rating: 20
         duration: 2
         repeatable: true
@@ -59,8 +59,8 @@
             walkSpeedModifier: 0.75
             sprintSpeedModifier: 0.75
             statusLifetime: 10
-      - min: 30
-        rating: 15
+      - min: 150
+        rating: 30
         probability: 0.3
         duration: 15
         effects:

@@ -9,12 +9,6 @@ namespace Content.Shared._NF.Addiction;
 public sealed partial class AddictionComponent : Component
 {
     /// <summary>
-    /// How fast or slow this entity gets addicted to anything compared to others
-    /// </summary>
-    [DataField]
-    public float Multiplier = 1f;
-
-    /// <summary>
     /// Mapping of addiction types to their current rating, current withdrawal rating and next checks for addiction and withdrawal
     /// </summary>
     [DataField, ViewVariables]
@@ -24,12 +18,6 @@ public sealed partial class AddictionComponent : Component
 [DataDefinition]
 public sealed partial class AddictionData
 {
-    /// <summary>
-    /// How fast or slow this entity gets addicted to this specific addiction type
-    /// </summary>
-    [DataField]
-    public float Multiplier = 1f;
-
     /// <summary>
     /// Last reagent to contribute to the addiction so craving messages can be more direct
     /// </summary>

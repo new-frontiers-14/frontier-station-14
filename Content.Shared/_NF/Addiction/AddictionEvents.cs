@@ -22,3 +22,16 @@ public record class EntityEffectWithdrawalArgs : EntityEffectBaseArgs
         LastReagent = lastReagent;
     }
 }
+
+[ByRefEvent]
+public record struct GetAddictionModifierEvent
+{
+    public ProtoId<AddictionPrototype> ProtoId { get; init; }
+    public float Modifier = 1f;
+
+    public GetAddictionModifierEvent(ProtoId<AddictionPrototype> protoId, float modifier)
+    {
+        ProtoId = protoId;
+        Modifier = modifier;
+    }
+}

@@ -40,8 +40,8 @@ public sealed partial class AddictionPrototype : IPrototype, IInheritingPrototyp
     [ViewVariables, DataField(required: true)]
     public float DecayRate { get; set; }
 
-    [DataField]
-    public WithdrawalData Withdrawal { get; private set; }
+    [DataField(required: true)]
+    public WithdrawalData Withdrawal { get; private set; } = default!;
 
 
 }
@@ -81,17 +81,17 @@ public sealed partial class SymptomEntry
     /// <summary>
     /// The minimum amount of withdrawal rating for this entry to apply
     /// </summary>
-    [DataField(required: true)]
-    public FixedPoint2 Min { get; private set; }
+    [DataField]
+    public FixedPoint2 Min { get; private set; } = 0;
 
     [DataField]
     public FixedPoint2 Max { get; private set; } = FixedPoint2.MaxValue;
 
     /// <summary>
-    /// The amount of withdrawal rating this entries 'uses up', default of null uses the threshold
+    /// The amount of withdrawal rating this entries 'uses up'
     /// </summary>
-    [DataField]
-    public FixedPoint2? Rating { get; private set; }
+    [DataField(required: true)]
+    public FixedPoint2 Rating { get; private set; }
 
     /// <summary>
     /// Can these effects be applied multiple times per withdrawal tick (useful for scaling hallucinations, drowsiness and similar effects that can stack)

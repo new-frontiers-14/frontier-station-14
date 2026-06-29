@@ -7,34 +7,30 @@ namespace Content.Shared._NF.Addiction.EntityEffects;
 public sealed partial class AddictionThreshold : EntityEffectCondition
 {
     [DataField]
-    public int Min = 0;
+    public FixedPoint2 Min = 0;
 
     [DataField]
-    public int Max = int.MaxValue;
+    public FixedPoint2 Max = FixedPoint2.MaxValue;
 
     [DataField]
-    public int MinAddiction = 0;
+    public FixedPoint2 MinAddiction = 0;
 
     [DataField]
-    public int MaxAddiction = int.MaxValue;
+    public FixedPoint2 MaxAddiction = FixedPoint2.MaxValue;
 
     [DataField(required: true)]
     public ProtoId<AddictionPrototype> Addiction { get; private set; }
     public override bool Condition(EntityEffectBaseArgs args)
     {
-        if (args.EntityManager.TryGetComponent<AddictionComponent>(args.TargetEntity, out var addictionComp))
+        FixedPoint2 high = 0;
+        FixedPoint2 addiction = 0;
+        if (args.EntityManager.TryGetComponent<AddictionComponent>(args.TargetEntity, out var addictionComp) && addictionComp.Addictions.TryGetValue(Addiction, out var addictData))
         {
-            FixedPoint2 high = 0;
-            FixedPoint2 addiction = 0;
-            if (addictionComp.Addictions.TryGetValue(Addiction, out var addictData))
-            {
-                high = addictData.High;
-                addiction = addictData.Addiction;
-            }
-            return high >= Min && high <= Max &&
-                addiction >= MinAddiction && addiction <= MaxAddiction;
+            high = addictData.High;
+            addiction = addictData.Addiction;
         }
-        return false;
+        return high >= Min && high <= Max &&
+                addiction >= MinAddiction && addiction <= MaxAddiction;
     }
 
     public override string GuidebookExplanation(IPrototypeManager prototype)
