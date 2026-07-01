@@ -14,7 +14,7 @@ using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using Robust.Shared.Map.Components;
-using Content.Server._NF.VoidRiver.Components;
+using Content.Server._NF.VoidRiver.Components; // Frontier
 using Content.Server._NF.VoidRiver.Systems; // Frontier
 
 namespace Content.Server.Physics.Controllers;
@@ -27,7 +27,7 @@ public sealed class MoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly RiverNodeSystem _riverSystem = default!;
+    [Dependency] private readonly RiverNodeSystem _riverSystem = default!; // Frontier
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
