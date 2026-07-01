@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2026 06:06:16
-  entityCount: 4447
+  time: 07/01/2026 19:03:37
+  entityCount: 4449
 maps: []
 grids:
 - 1
@@ -4923,6 +4923,11 @@ entities:
     components:
     - type: Transform
       pos: 17.5,38.5
+      parent: 1
+  - uid: 4449
+    components:
+    - type: Transform
+      pos: -2.5,44.5
       parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -24348,6 +24353,66 @@ entities:
     - type: Transform
       pos: -18.5,33.5
       parent: 1
+  - uid: 3660
+    components:
+    - type: Transform
+      pos: 1.5,12.5
+      parent: 1
+  - uid: 3661
+    components:
+    - type: Transform
+      pos: 0.5,12.5
+      parent: 1
+  - uid: 3662
+    components:
+    - type: Transform
+      pos: -0.5,12.5
+      parent: 1
+  - uid: 3663
+    components:
+    - type: Transform
+      pos: -1.5,13.5
+      parent: 1
+  - uid: 3664
+    components:
+    - type: Transform
+      pos: -1.5,14.5
+      parent: 1
+  - uid: 3665
+    components:
+    - type: Transform
+      pos: -1.5,15.5
+      parent: 1
+  - uid: 3666
+    components:
+    - type: Transform
+      pos: -0.5,16.5
+      parent: 1
+  - uid: 3667
+    components:
+    - type: Transform
+      pos: 0.5,16.5
+      parent: 1
+  - uid: 3668
+    components:
+    - type: Transform
+      pos: 1.5,16.5
+      parent: 1
+  - uid: 3669
+    components:
+    - type: Transform
+      pos: 2.5,15.5
+      parent: 1
+  - uid: 3670
+    components:
+    - type: Transform
+      pos: 2.5,14.5
+      parent: 1
+  - uid: 3671
+    components:
+    - type: Transform
+      pos: 2.5,13.5
+      parent: 1
 - proto: ReinforcedWindow
   entities:
   - uid: 3493
@@ -25185,66 +25250,6 @@ entities:
     - type: Transform
       pos: -13.5,5.5
       parent: 1
-  - uid: 3660
-    components:
-    - type: Transform
-      pos: -0.5,12.5
-      parent: 1
-  - uid: 3661
-    components:
-    - type: Transform
-      pos: 0.5,12.5
-      parent: 1
-  - uid: 3662
-    components:
-    - type: Transform
-      pos: 1.5,12.5
-      parent: 1
-  - uid: 3663
-    components:
-    - type: Transform
-      pos: 2.5,13.5
-      parent: 1
-  - uid: 3664
-    components:
-    - type: Transform
-      pos: 2.5,14.5
-      parent: 1
-  - uid: 3665
-    components:
-    - type: Transform
-      pos: 2.5,15.5
-      parent: 1
-  - uid: 3666
-    components:
-    - type: Transform
-      pos: 1.5,16.5
-      parent: 1
-  - uid: 3667
-    components:
-    - type: Transform
-      pos: 0.5,16.5
-      parent: 1
-  - uid: 3668
-    components:
-    - type: Transform
-      pos: -0.5,16.5
-      parent: 1
-  - uid: 3669
-    components:
-    - type: Transform
-      pos: -1.5,15.5
-      parent: 1
-  - uid: 3670
-    components:
-    - type: Transform
-      pos: -1.5,14.5
-      parent: 1
-  - uid: 3671
-    components:
-    - type: Transform
-      pos: -1.5,13.5
-      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 1762
@@ -25487,6 +25492,42 @@ entities:
         4430:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
+- proto: SignalSwitch
+  entities:
+  - uid: 3876
+    components:
+    - type: Transform
+      pos: -2.5,44.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        3672:
+        - - On
+          - Close
+        - - Off
+          - Open
+        3673:
+        - - On
+          - Close
+        - - Off
+          - Open
+        3674:
+        - - On
+          - Close
+        - - Off
+          - Open
+        3675:
+        - - On
+          - Close
+        - - Off
+          - Open
+        3676:
+        - - On
+          - Close
+        - - Off
+          - Open
     - type: Fixtures
       fixtures: {}
 - proto: SignAtmos
@@ -26721,15 +26762,15 @@ entities:
     - type: Transform
       pos: -2.5,42.5
       parent: 1
-  - uid: 3876
-    components:
-    - type: Transform
-      pos: -2.5,43.5
-      parent: 1
   - uid: 3877
     components:
     - type: Transform
       pos: -2.5,40.5
+      parent: 1
+  - uid: 4448
+    components:
+    - type: Transform
+      pos: -0.5,36.5
       parent: 1
 - proto: VendingMachineEngiDrobe
   entities:
