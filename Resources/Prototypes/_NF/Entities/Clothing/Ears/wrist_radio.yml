@@ -168,6 +168,19 @@
   suffix: Common
 
 - type: entity
+  parent: [NFClothingWristsetNfsdBrown, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdBrownCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
+- type: entity
   parent: NFClothingWristsetNfsdBrown
   id: NFClothingWristsetNfsdGreen
   components:
@@ -195,6 +208,19 @@
   suffix: Common
 
 - type: entity
+  parent: [NFClothingWristsetNfsdGreen, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdGreenCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
+- type: entity
   parent: NFClothingWristsetNfsdBrown
   id: NFClothingWristsetNfsdCream
   components:
@@ -220,6 +246,19 @@
   id: NFClothingWristsetNfsdCreamCommon
   name: NFSD wristset
   suffix: Common
+
+- type: entity
+  parent: [NFClothingWristsetNfsdCream, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdCreamCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
 
 # region contractor
 - type: entity
