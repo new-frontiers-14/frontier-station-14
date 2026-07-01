@@ -1,3 +1,4 @@
+using Content.Server._NF.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -8,6 +9,12 @@ namespace Content.Server._NF.Speech.Components;
 [RegisterComponent]
 public sealed partial class ToggleableAccentComponent : Component
 {
+
+    /// <remarks>
+    /// This only exists so it can be added in YML and still be able to init properly
+    /// </remarks>
+    [DataField]
+    public EntProtoId ActionPrototype = ToggleableAccentSystem.GenericToggleAccentPrototypeIdString;
 
     /// <remarks>
     /// We save the action so we can remove it later.

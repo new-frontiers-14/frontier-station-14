@@ -19,12 +19,16 @@ public sealed class ToggleableAccentSystem : EntitySystem
     [Dependency] private ActionsSystem _actionsSystem = default!;
 
     public readonly EntProtoId CognizineToggleActionPrototypeId = "ActionToggleCogniAccent";
-    public readonly EntProtoId GenericToggleAccentPrototypeId = "ActionToggleAccent";
+    //There is one case where this would need to be accessed from another class, so I want to make sure we have as few magic strings
+    //as possible
+    public const string GenericToggleAccentPrototypeIdString = "ActionToggleAccent";
+    public readonly EntProtoId GenericToggleAccentPrototypeId = GenericToggleAccentPrototypeIdString;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ToggleableAccentComponent, ToggleAccentActionEvent>(OnToggleAction);
+        SubscribeLocalEvent<ToggleableAccentComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<ToggleableAccentComponent,ComponentRemove>(OnComponentRemove);
     }
 
@@ -45,39 +49,26 @@ public sealed class ToggleableAccentSystem : EntitySystem
         }
     }
 
-    //Code stolen from AddAccentPickupSystem and lightly edited
     /// <summary>
-    /// Applies a toggleable accent, ensuring that it is enabled by the time it returns.
+    /// Ran when the component is added to initialize the action and starting accent state.
     /// </summary>
-    private void ApplyAccent(EntityUid target, ToggleableAccentComponent comp)
+    /// <remarks>
+    /// I wanted to make sure that you could add this in YAML without it breaking, allowing entities to have a toggleable
+    /// accent from the start. This handles everything that isn't adding the component.
+    /// </remarks>
+    private void OnComponentInit(EntityUid ent, ToggleableAccentComponent comp, ComponentInit eventArts)
     {
-        // does the user already has this accent?
-        var componentType = _componentFactory.GetRegistration(comp.AccentComponentName).Type;
-        if (HasComp(target, componentType))
-            return;
-
-        // add accent to the user
-        var accentComponent = (Component)_componentFactory.GetComponent(componentType);
-        AddComp(target, accentComponent);
-
-        // special case for replacement accent
-        if (accentComponent is ReplacementAccentComponent rep)
-            rep.Accent = comp.ReplacementAccentPrototypeName!;
-
-        comp.IsAccentActive = true;
-    }
-
-    //Code stolen from AddAccentPickupSystem with light edits
-    /// <summary>
-    /// Removes an accent, ensuring it isn't on the target by the time it returns
-    /// </summary>
-    private void RemoveAccent(EntityUid target, ToggleableAccentComponent comp)
-    {
-        // try to remove accent
-        var componentType = _componentFactory.GetRegistration(comp.AccentComponentName).Type;
-        RemComp(target, componentType);
-
-        comp.IsAccentActive = false;
+        if (comp.IsAccentActive)
+        {
+            ApplyAccent(ent, comp);
+        }
+        else
+        {
+            RemoveAccent(ent, comp);
+        }
+        var newAction = _actionsSystem.AddAction(ent, comp.ActionPrototype);
+        _actionsSystem.SetToggled(newAction, comp.IsAccentActive);
+        comp.ToggleAccentAction = newAction;
     }
 
     ///<summary>
@@ -105,6 +96,10 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// <summary>
     /// Makes an accent toggleable. Fails and returns false if the entity already has a toggleable accent.
     /// </summary>
+    /// <remarks>
+    /// This only adds the component, through a convenient single method. All the logic and accent initialization happens
+    /// in OnComponentInit
+    /// </remarks>>
     /// <param name="accentHolder">The entity to have the accent applied to</param>
     /// <param name="accentComp">The (already created, preferably already initialized) accent component</param>
     /// <param name="startActive">If the accent should start enabled or disabled</param>
@@ -137,21 +132,44 @@ public sealed class ToggleableAccentSystem : EntitySystem
         newComp.ReplacementAccentPrototypeName = replacementAccentProtoId;
         newComp.RemovalBehavior = removalBehavior;
         _entityManager.AddComponent(accentHolder, newComp);
-
-        //TODO: Set the actions starting state according to this, or just cut that entirely, I don't know yet
-        //TODO: Move this to an initialize event
-        if (startActive)
-        {
-            ApplyAccent(accentHolder, newComp);
-        }
-        else
-        {
-            RemoveAccent(accentHolder, newComp);
-        }
-        var newAction = _actionsSystem.AddAction(accentHolder, actionProtoId);
-        newComp.ToggleAccentAction = newAction;
         return true;
     }
+
+    //Code taken from AccentClothingSystem, with light edits
+    /// <summary>
+    /// Applies a toggleable accent, ensuring that it is enabled by the time it returns.
+    /// </summary>
+    private void ApplyAccent(EntityUid target, ToggleableAccentComponent comp)
+    {
+        // does the user already has this accent?
+        var componentType = _componentFactory.GetRegistration(comp.AccentComponentName).Type;
+        if (HasComp(target, componentType))
+            return;
+
+        // add accent to the user
+        var accentComponent = (Component)_componentFactory.GetComponent(componentType);
+        AddComp(target, accentComponent);
+
+        // special case for replacement accent
+        if (accentComponent is ReplacementAccentComponent rep)
+            rep.Accent = comp.ReplacementAccentPrototypeName!;
+
+        comp.IsAccentActive = true;
+    }
+
+    //Code taken from AccentClothingSystem, with light edits
+    /// <summary>
+    /// Removes an accent, ensuring it isn't on the target by the time it returns
+    /// </summary>
+    private void RemoveAccent(EntityUid target, ToggleableAccentComponent comp)
+    {
+        // try to remove accent
+        var componentType = _componentFactory.GetRegistration(comp.AccentComponentName).Type;
+        RemComp(target, componentType);
+
+        comp.IsAccentActive = false;
+    }
+
 
 
 
