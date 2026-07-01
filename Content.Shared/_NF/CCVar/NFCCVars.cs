@@ -292,4 +292,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerStarterLoadout =
         CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /*
+     * Rivers
+     */
+
+    /// <summary>
+    /// The rate of RiverNodeSystem update in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> RiverUpdateRate =
+        CVarDef.Create("nf14.rivers.update_rate", 1.0f, CVar.SERVERONLY);
 }
