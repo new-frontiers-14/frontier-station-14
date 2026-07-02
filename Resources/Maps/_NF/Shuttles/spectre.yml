@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 07/02/2026 05:32:09
-  entityCount: 1413
+  time: 07/02/2026 10:32:51
+  entityCount: 1422
 maps: []
 grids:
 - 3
@@ -442,11 +442,6 @@ entities:
             color: '#D381C993'
             id: HalfTileOverlayGreyscale
           decals:
-            1360: -5,6
-        - node:
-            color: '#D381C993'
-            id: HalfTileOverlayGreyscale
-          decals:
             1156: -2,0
             1157: -1,0
             1158: 0,0
@@ -455,6 +450,7 @@ entities:
             1190: 5,6
             1196: 2,7
             1197: -2,7
+            1360: -5,6
         - node:
             color: '#D381C993'
             id: HalfTileOverlayGreyscale180
@@ -1003,10 +999,22 @@ entities:
       - 1401
     - type: Fixtures
       fixtures: {}
-  - uid: 1025
+  - uid: 1049
     components:
     - type: Transform
-      pos: -1.5,8.5
+      pos: -6.5,10.5
+      parent: 3
+    - type: DeviceList
+      devices:
+      - 1323
+      - 1347
+      - 1346
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1376
+    components:
+    - type: Transform
+      pos: 2.5,8.5
       parent: 3
     - type: DeviceList
       devices:
@@ -1024,18 +1032,6 @@ entities:
       - 939
       - 957
       - 1322
-    - type: Fixtures
-      fixtures: {}
-  - uid: 1049
-    components:
-    - type: Transform
-      pos: -6.5,10.5
-      parent: 3
-    - type: DeviceList
-      devices:
-      - 1323
-      - 1347
-      - 1346
     - type: Fixtures
       fixtures: {}
 - proto: Airlock
@@ -1366,13 +1362,6 @@ entities:
       parent: 3
     - type: Fixtures
       fixtures: {}
-- proto: Ashtray
-  entities:
-  - uid: 328
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
-      parent: 3
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 366
@@ -1921,11 +1910,10 @@ entities:
       parent: 3
 - proto: ButtonFrameCautionSecurity
   entities:
-  - uid: 1369
+  - uid: 521
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,2.5
+      pos: -1.5,8.5
       parent: 3
 - proto: CableApcExtension
   entities:
@@ -3277,10 +3265,10 @@ entities:
       parent: 3
 - proto: ClothingHandsGlovesRobohands
   entities:
-  - uid: 1374
+  - uid: 1025
     components:
     - type: Transform
-      pos: -3.5,0.5
+      pos: -3.5,2.5
       parent: 3
 - proto: ClothingMaskGasAtmos
   entities:
@@ -3430,10 +3418,10 @@ entities:
       parent: 3
 - proto: DefaultStationBeaconAnomalyGenerator
   entities:
-  - uid: 1189
+  - uid: 1408
     components:
     - type: Transform
-      pos: 0.5,12.5
+      pos: 0.5,13.5
       parent: 3
 - proto: DefaultStationBeaconArtifactLab
   entities:
@@ -3447,12 +3435,26 @@ entities:
     - type: Transform
       pos: 13.5,-4.5
       parent: 3
-- proto: DefaultStationBeaconEngineering
+- proto: DefaultStationBeaconBridge
   entities:
-  - uid: 521
+  - uid: 1187
     components:
     - type: Transform
-      pos: -0.5,18.5
+      pos: 0.5,4.5
+      parent: 3
+- proto: DefaultStationBeaconDisposals
+  entities:
+  - uid: 1414
+    components:
+    - type: Transform
+      pos: 12.5,5.5
+      parent: 3
+- proto: DefaultStationBeaconEngineering
+  entities:
+  - uid: 1369
+    components:
+    - type: Transform
+      pos: 0.5,20.5
       parent: 3
 - proto: DefaultStationBeaconFrontierAtmos
   entities:
@@ -3461,12 +3463,26 @@ entities:
     - type: Transform
       pos: 6.5,9.5
       parent: 3
+- proto: DefaultStationBeaconFrontierAtmosSupplies
+  entities:
+  - uid: 1415
+    components:
+    - type: Transform
+      pos: 7.5,2.5
+      parent: 3
 - proto: DefaultStationBeaconFrontierBreakRoom
   entities:
   - uid: 1410
     components:
     - type: Transform
       pos: 0.5,-5.5
+      parent: 3
+- proto: DefaultStationBeaconFrontierCryosleep
+  entities:
+  - uid: 1413
+    components:
+    - type: Transform
+      pos: -11.5,5.5
       parent: 3
 - proto: DefaultStationBeaconFrontierDock
   entities:
@@ -3486,6 +3502,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,0.5
+      parent: 3
+- proto: DefaultStationBeaconRobotics
+  entities:
+  - uid: 1412
+    components:
+    - type: Transform
+      pos: -6.5,2.5
       parent: 3
 - proto: DefaultStationBeaconServerRoom
   entities:
@@ -3968,8 +3991,8 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
       - 1049
+      - 1376
   - uid: 1324
     components:
     - type: Transform
@@ -3990,7 +4013,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
   - uid: 1328
     components:
     - type: Transform
@@ -4059,8 +4082,8 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
       - 318
+      - 1376
   - uid: 1101
     components:
     - type: Transform
@@ -4068,8 +4091,8 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
       - 796
+      - 1376
   - uid: 1314
     components:
     - type: Transform
@@ -4077,8 +4100,8 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
       - 318
+      - 1376
   - uid: 1315
     components:
     - type: Transform
@@ -4094,7 +4117,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
   - uid: 1317
     components:
     - type: Transform
@@ -4102,7 +4125,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
   - uid: 1318
     components:
     - type: Transform
@@ -4118,8 +4141,8 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
       - 796
+      - 1376
   - uid: 1321
     components:
     - type: Transform
@@ -4128,7 +4151,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 743
-      - 1025
+      - 1376
   - uid: 1322
     components:
     - type: Transform
@@ -4136,8 +4159,8 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
       - 501
+      - 1376
 - proto: FloorDrain
   entities:
   - uid: 751
@@ -5816,7 +5839,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 1035
@@ -5837,7 +5860,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 1100
@@ -5942,7 +5965,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -5955,7 +5978,7 @@ entities:
       parent: 3
     - type: DeviceNetwork
       deviceLists:
-      - 1025
+      - 1376
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -6515,6 +6538,13 @@ entities:
     - type: CollisionWake
       enabled: False
     - type: Conveyed
+- proto: NFAshtray
+  entities:
+  - uid: 328
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 3
 - proto: NFHolopadShip
   entities:
   - uid: 522
@@ -7132,6 +7162,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,20.5
       parent: 3
+  - uid: 1418
+    components:
+    - type: Transform
+      pos: 2.5,24.5
+      parent: 3
 - proto: RandomPosterLegit
   entities:
   - uid: 394
@@ -7165,10 +7200,20 @@ entities:
     - type: Transform
       pos: 16.5,-4.5
       parent: 3
-  - uid: 1376
+  - uid: 1374
     components:
     - type: Transform
       pos: -2.5,12.5
+      parent: 3
+  - uid: 1416
+    components:
+    - type: Transform
+      pos: 2.5,-7.5
+      parent: 3
+  - uid: 1417
+    components:
+    - type: Transform
+      pos: 2.5,15.5
       parent: 3
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -7431,8 +7476,7 @@ entities:
   - uid: 1380
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,2.5
+      pos: -1.5,8.5
       parent: 3
     - type: DeviceLinkSource
       linkedPorts:
@@ -7874,10 +7918,19 @@ entities:
       parent: 3
 - proto: StationMap
   entities:
-  - uid: 1187
+  - uid: 1189
     components:
     - type: Transform
-      pos: 2.5,8.5
+      rot: 3.141592653589793 rad
+      pos: -15.5,-3.5
+      parent: 3
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1409
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,-3.5
       parent: 3
     - type: Fixtures
       fixtures: {}
