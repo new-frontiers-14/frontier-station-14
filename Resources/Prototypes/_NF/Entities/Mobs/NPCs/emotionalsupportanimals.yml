@@ -96,6 +96,18 @@
 
 - type: entity
   suffix: Ghost
+  parent: [BaseEmotionalGhostCat, MobCatKitten]
+  id: MobCatKittenGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesCatCalico]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: kitten
+
+- type: entity
+  suffix: Ghost
   parent: [BaseEmotionalGhostCat, MobCatCalico]
   id: MobCatCalicoGhost
   components:
