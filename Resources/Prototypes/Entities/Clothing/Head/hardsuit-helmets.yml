@@ -4,8 +4,8 @@
 #This is so people don't need to wear both regular, on-station helmets and hardsuits to get full protection.
 #Generally, unless you're adding something like caustic damage, you should probably avoid messing with armor here outside of the above scenario.
 
-# region CREW HARDSUITS
-# region Atmospherics Hardsuit
+#CREW HARDSUITS
+#Atmospherics Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitAtmos
@@ -65,7 +65,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Engineering Hardsuit
+#Engineering Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineering
@@ -120,7 +120,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Spationaut Hardsuit
+#Spationaut Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSpatio
@@ -174,7 +174,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Salvage Hardsuit
+#Salvage Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSalvage
@@ -196,7 +196,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Goliath Hardsuit
+#Goliath Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitGoliath
@@ -250,7 +250,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Maxim Hardsuit
+#Maxim Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitMaxim
@@ -273,7 +273,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region Security Hardsuit
+#Security Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurity
@@ -301,7 +301,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Brigmedic Hardsuit
+#Brigmedic Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBrigmedic
@@ -327,7 +327,7 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
 
-# region Warden's Hardsuit
+#Warden's Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitWarden
@@ -351,7 +351,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region Captain's Hardsuit
+#Captain's Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCap
@@ -370,7 +370,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Chief Engineer's Hardsuit
+#Chief Engineer's Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringWhite
@@ -423,8 +423,10 @@
         shader: unshaded
   - type: PointLight
     color: "#daffad"
+    # Frontier
     radius: 6
     energy: 4
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -436,7 +438,7 @@
     - WhitelistChameleon
   - type: CatWearable # Frontier
 
-# region Chief Medical Officer's Hardsuit
+#Chief Medical Officer's Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitMedical
@@ -449,8 +451,10 @@
     sprite: Clothing/Head/Hardsuits/medical.rsi
   - type: PointLight
     color: "#adf1ff"
+    # Frontier
     radius: 6
     energy: 4
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -459,7 +463,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Research Director's Hardsuit
+#Research Director's Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitRd
@@ -472,8 +476,10 @@
     sprite: Clothing/Head/Hardsuits/rd.rsi
   - type: PointLight
     color: "#d6adff"
+    # Frontier
     radius: 6
     energy: 4
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
@@ -482,7 +488,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Head of Security's hardsuit
+#Head of Security's hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityRed
@@ -495,8 +501,10 @@
     sprite: Clothing/Head/Hardsuits/security-red.rsi
   - type: PointLight
     color: "#ffeead"
+    # Frontier
     radius: 6
     energy: 4
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
@@ -508,7 +516,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region Luxury Mining Hardsuit
+#Luxury Mining Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
@@ -527,8 +535,8 @@
     radius: 7
     energy: 3
 
-# region ANTAG HARDSUITS
-# region Blood-red Hardsuit
+#ANTAG HARDSUITS
+#Blood-red Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSyndie
@@ -541,8 +549,10 @@
     sprite: Clothing/Head/Hardsuits/syndicate.rsi
   - type: PointLight
     color: green
+    # Frontier
     radius: 5
     energy: 8
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -558,7 +568,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Blood-red Medic Hardsuit
+#Blood-red Medic Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSyndieMedic
@@ -571,8 +581,10 @@
     sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
   - type: PointLight
     color: green
+    # Frontier
     radius: 5
     energy: 8
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -584,7 +596,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region Syndicate Elite Hardsuit
+#Syndicate Elite Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSyndieElite
@@ -597,8 +609,10 @@
     sprite: Clothing/Head/Hardsuits/syndieelite.rsi
   - type: PointLight
     color: red
+    # Frontier
     radius: 5
     energy: 8
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -619,7 +633,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Syndicate Commander Hardsuit
+#Syndicate Commander Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSyndieCommander
@@ -632,8 +646,10 @@
     sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: PointLight
     color: green
+    # Frontier
     radius: 5
     energy: 8
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -649,7 +665,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Cybersun Juggernaut Hardsuit
+#Cybersun Juggernaut Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitCybersun
@@ -675,7 +691,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Wizard Hardsuit
+#Wizard Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitWizard
@@ -688,8 +704,10 @@
     sprite: Clothing/Head/Hardsuits/wizard.rsi
   - type: PointLight
     color: "#ffadfb"
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
@@ -705,7 +723,7 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# region Organic Space Suit
+#Organic Space Suit
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitLing
@@ -720,7 +738,7 @@
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
 
-# region Pirate EVA Suit (Deep Space EVA Suit)
+#Pirate EVA Suit (Deep Space EVA Suit)
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitPirateEVA
@@ -736,7 +754,7 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
 
-# region Pirate Captain Hardsuit
+#Pirate Captain Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitPirateCap
@@ -781,8 +799,8 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region CENTCOMM / ERT HARDSUITS
-# region ERT Leader Hardsuit
+#CENTCOMM / ERT HARDSUITS
+#ERT Leader Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander ]
   id: ClothingHeadHelmetHardsuitERTLeader
@@ -794,8 +812,10 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: PointLight
+  # Frontier
     radius: 5
     energy: 4
+    # End Frontier
     color: "#addbff"
   - type: Armor
     modifiers:
@@ -805,7 +825,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region ERT Chaplain Hardsuit
+#ERT Chaplain Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTChaplain
@@ -818,10 +838,12 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
 
-# region ERT Engineer Hardsuit
+#ERT Engineer Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTEngineer
@@ -834,8 +856,10 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
     color: "#f4ffad"
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
   - type: FireProtection
     reduction: 0.2
   - type: Armor
@@ -846,7 +870,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region ERT Medical Hardsuit
+#ERT Medical Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite ]
   id: ClothingHeadHelmetHardsuitERTMedical
@@ -859,10 +883,12 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: PointLight
     color: "#adffec"
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
 
-# region ERT Security Hardsuit
+#ERT Security Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTSecurity
@@ -875,8 +901,10 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: PointLight
     color: "#ffadc6"
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
   - type: Armor
     modifiers:
       coefficients:
@@ -885,7 +913,7 @@
         Piercing: 0.9
         Heat: 0.9
 
-# region ERT Janitor Hardsuit
+#ERT Janitor Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTJanitor
@@ -898,10 +926,12 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: PointLight
     color: "#cbadff"
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
 
-# region CBURN Hardsuit
+#CBURN Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURN
@@ -930,8 +960,10 @@
         shader: unshaded
   - type: PointLight
     color: orange
+    # Frontier
     radius: 5
     energy: 4
+    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -948,7 +980,7 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
-# region Deathsquad Hardsuit
+#Deathsquad Hardsuit
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ]
   id: ClothingHeadHelmetHardsuitDeathsquad
@@ -975,8 +1007,8 @@
         Radiation: 0.80
         Caustic: 0.95
 
-# region MISC. HARDSUITS
-# region Clown Hardsuit
+#MISC. HARDSUITS
+#Clown Hardsuit
 - type: entity
   parent: ClothingHeadHelmetHardsuitSecurity
   id: ClothingHeadHelmetHardsuitClown
@@ -991,7 +1023,7 @@
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Effects/Emotes/parp1.ogg
 
-# region Mime Hardsuit
+#Mime Hardsuit
 - type: entity
   parent: ClothingHeadHelmetHardsuitSecurity
   id: ClothingHeadHelmetHardsuitMime
@@ -1004,7 +1036,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/mime.rsi
 
-# region Santas Hardsuit
+#Santas Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitSanta
