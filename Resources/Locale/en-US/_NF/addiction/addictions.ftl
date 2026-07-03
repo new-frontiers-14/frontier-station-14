@@ -36,3 +36,10 @@ addiction-alcohol-crave-high-3 = You always feel sick when sober.
 addiction-alcohol-crave-high-4 = Where is that sweet alcohol? You could use it now.
 addiction-alcohol-crave-high-5 = Nothing really fixes this headache but alcohol.
 
+addiction-nicotine-crave-low-0 = Could use a smoke.
+addiction-nicotine-crave-low-1 = Should light up a cigarette.
+addiction-nicotine-crave-low-2 = Where are my smokes?
+
+addiction-nicotine-crave-high-0 = Need to smoke now!
+addiction-nicotine-crave-high-1 = Ugh. Need a nicotine fix fast.
+addiction-nicotine-crave-high-2 = C'mon just another smoke.

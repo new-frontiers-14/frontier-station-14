@@ -1,0 +1,38 @@
+- type: addiction
+  id: Nicotine
+  defaultReagent: Nicotine
+  threshold: 35 # 4 cigarettes/cigars or 3 pipes without a long enough break between them and you'll be addicted
+  decayRate: 0.9
+  checkPeriod: 60s
+  withdrawal:
+    decayRate: 0.3
+    symptoms:
+      - min: 1
+        max: 59
+        probability: 0.4
+        rating: 1
+        duration: 15
+        conditions:
+          - !type:AddictionThreshold #maybe we should keep track of last time the high was added to, and send that difference as a parameter
+            max: 1 #must have been a bit since last smoke
+        effects:
+          - !type:PopupMessage
+            visualType: Medium
+            messages:
+              - addiction-nicotine-crave-low-0
+              - addiction-nicotine-crave-low-1
+              - addiction-nicotine-crave-low-2
+      - min: 60
+        probability: 0.4
+        rating: 1
+        duration: 15
+        conditions:
+          - !type:AddictionThreshold
+            max: 2 #must have been a bit since last smoke
+        effects:
+          - !type:PopupMessage
+            visualType: Medium
+            messages:
+              - addiction-nicotine-crave-high-0
+              - addiction-nicotine-crave-high-1
+              - addiction-nicotine-crave-high-2

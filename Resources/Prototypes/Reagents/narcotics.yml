@@ -230,6 +230,14 @@
   plantMetabolism:
   - !type:PlantAdjustHealth
     amount: -5
+  #Frontier Begin
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:AdjustAddiction
+        addiction: Nicotine
+        scaleByQuantity: true
+  #Frontier End
 
 # TODO: Replace these nonstandardized effects with generic brain damage
 - type: reagent
