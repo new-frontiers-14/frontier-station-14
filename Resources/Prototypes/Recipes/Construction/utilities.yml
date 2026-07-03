@@ -1,4 +1,4 @@
-# region SURVEILLANCE
+# SURVEILLANCE
 - type: construction
   id: camera
   graph: SurveillanceCamera
@@ -31,7 +31,7 @@
   conditions:
   - !type:WallmountCondition {}
 
-# region POWER
+# POWER
 - type: construction
   id: APC
   graph: APC
@@ -84,7 +84,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: true
 
-# region DISPOSALS
+# DISPOSALS
 - type: construction
   id: DisposalUnit
   graph: DisposalMachine
@@ -229,7 +229,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: true # Frontier: false < true
 
-# region ATMOS
+# ATMOS
 - type: construction
   id: AirAlarmFixture
   graph: AirAlarm
@@ -310,7 +310,7 @@
   - GasPipeSensorAlt1
   - GasPipeSensorAlt2
 
-# region ATMOS PIPES
+# ATMOS PIPES
 - type: construction
   id: GasPipeHalf
   name: construction-recipe-gas-pipe-half
@@ -529,7 +529,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: true
 
-# region ATMOS UNARY
+# ATMOS UNARY
 - type: construction
   id: GasVentPump
   graph: GasUnary
@@ -574,7 +574,7 @@
   conditions:
   - !type:NoUnstackableInTile
 
-# region ATMOS BINARY
+# ATMOS BINARY
 - type: construction
   id: GasPressurePump
   graph: GasBinary
@@ -894,7 +894,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
-# region ATMOS TRINARY
+# ATMOS TRINARY
 - type: construction
   id: GasFilter
   graph: GasTrinary
