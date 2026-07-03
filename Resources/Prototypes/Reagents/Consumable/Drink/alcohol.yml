@@ -212,6 +212,30 @@
           shouldHave: false
       - !type:Drunk
         boozePower: 2
+        # Frontier Begin
+      - !type:AdjustAddiction
+        addiction: Alcohol
+        highAmount: 2
+        scaleByQuantity: true
+        conditions:
+          - !type:ReagentThreshold
+            reagent: Ethanol
+            min: 5 #need a good amount in you to start accumulating a high, taking a sip of slightly alcoholic beverage isn't going to feed an addiction
+          - !type:OrganType
+            type: dwarf
+            shouldHave: false
+      - !type:AdjustAddiction
+        addiction: Alcohol
+        highAmount: 1 #dwarves get half the addiction effects
+        scaleByQuantity: true
+        conditions:
+          - !type:ReagentThreshold
+            reagent: Ethanol
+            min: 25 #need a decent amount in you to start accumulating a high as a dwarf
+          - !type:OrganType
+            type: dwarf
+            shouldHave: true
+        # Frontier End
 
 - type: reagent
   id: Gin

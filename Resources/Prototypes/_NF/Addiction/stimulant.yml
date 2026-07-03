@@ -1,7 +1,7 @@
 - type: addiction
   id: Stimulant
   defaultReagent: Desoxyephedrine
-  threshold: 50
+  threshold: 100
   decayRate: 0.6
   checkPeriod: 40s
   withdrawal:
@@ -35,6 +35,29 @@
               - addiction-stimulant-crave-high-2
               - addiction-stimulant-crave-high-3
               - addiction-stimulant-crave-high-4
+      ## Incrased Hunger
+      - min: 30
+        max: 90
+        rating: 10
+        duration: 1
+        probability: 0.9
+        effects:
+          - !type:SatiateHunger
+            factor: -1
+      - min: 91
+        max: 149
+        rating: 40
+        duration: 1
+        effects:
+          - !type:SatiateHunger
+            factor: -3
+      - min: 150
+        rating: 50
+        duration: 2
+        repeatable: true
+        effects:
+          - !type:SatiateHunger
+            factor: -5
       ## Fatigue
       - min: 60
         max: 149
@@ -47,7 +70,7 @@
             time: 8
             type: Add
       - min: 150
-        rating: 20
+        rating: 50
         duration: 2
         repeatable: true
         effects:
@@ -58,7 +81,7 @@
           - !type:MovespeedModifier
             walkSpeedModifier: 0.75
             sprintSpeedModifier: 0.75
-            statusLifetime: 10
+            statusLifetime: 8
       - min: 150
         rating: 30
         probability: 0.3

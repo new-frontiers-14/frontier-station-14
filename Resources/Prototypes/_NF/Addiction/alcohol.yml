@@ -1,0 +1,140 @@
+- type: addiction
+  id: Alcohol
+  defaultReagent: Ethanol
+  threshold: 50
+  decayRate: 0.5
+  checkPeriod: 50s
+  withdrawal:
+    decayRate: 0.4
+    symptoms:
+      #cravings and headaches
+      - min: 2
+        max: 49
+        probability: 0.1
+        rating: 1
+        duration: 10
+        effects:
+          - !type:PopupMessage
+            visualType: Medium
+            messages:
+              - addiction-alcohol-crave-low-0
+              - addiction-alcohol-crave-low-1
+              - addiction-alcohol-crave-low-2
+              - addiction-alcohol-crave-low-3
+              - addiction-alcohol-crave-low-4
+              - addiction-symptom-headache-low-0
+              - addiction-symptom-headache-low-1
+              - addiction-symptom-headache-low-2
+      - min: 50
+        probability: 0.2
+        rating: 10
+        duration: 12
+        effects:
+          - !type:PopupMessage
+            visualType: MediumCaution
+            messages:
+              - addiction-alcohol-crave-high-0
+              - addiction-alcohol-crave-high-1
+              - addiction-alcohol-crave-high-2
+              - addiction-alcohol-crave-high-3
+              - addiction-alcohol-crave-high-4
+              - addiction-symptom-headache-high-0
+              - addiction-symptom-headache-high-1
+              - addiction-symptom-headache-high-2
+
+      #nausea
+      - min: 10
+        max: 59
+        probability: 0.1
+        rating: 15
+        duration: 6
+        effects:
+        - !type:PopupMessage
+          visualType: Medium
+          messages:
+            - generic-reagent-effect-nauseous
+            - addiction-symptom-nausea-low-0
+            - addiction-symptom-nausea-low-1
+      - min: 60
+        probability: 0.2
+        rating: 30
+        duration: 5
+        effects:
+        - !type:PopupMessage
+          visualType: MediumCaution
+          messages:
+            - generic-reagent-effect-nauseous
+            - addiction-symptom-nausea-high-0
+            - addiction-symptom-nausea-high-1
+      - min: 45
+        max: 89
+        rating: 90
+        duration: 10
+        probability: 0.05
+        conditions:
+        - !type:AddictionThreshold
+          max: 0.5 #Don't vomit if we're on any kind of alcohol high
+        effects:
+        - !type:ChemVomit
+      - min: 90
+        rating: 90
+        duration: 10
+        probability: 0.15
+        conditions:
+        - !type:AddictionThreshold
+          max: 20 #Don't vomit unless we got a good buzz
+        effects:
+        - !type:ChemVomit
+
+      #tremors
+      - min: 25
+        max: 79
+        probability: 0.1
+        rating: 30
+        duration: 8
+        effects:
+          - !type:Jitter
+            amplitude: 5
+            frequency: 8
+            time: 7
+      - min: 80
+        probability: 0.4
+        rating: 50
+        duration: 3
+        repeatable: true
+        effects:
+          - !type:Jitter
+            amplitude: 6
+            frequency: 8
+            time: 3
+            refresh: false
+      - min: 90
+        probability: 0.9
+        rating: 80
+        duration: 12
+        effects:
+          - !type:Jitter
+            amplitude: 6.5
+            frequency: 8
+            time: 14
+            refresh: false
+
+      #irritability
+      - min: 50
+        probability: 0.1
+        rating: 50
+        duration: 5
+        effects:
+          - !type:Emote
+            emote: Scream
+            showInChat: true
+            force: true
+      - min: 80
+        probability: 0.05
+        rating: 80
+        duration: 5
+        effects:
+          - !type:Emote
+            emote: GoblinMutter
+            showInChat: true
+            force: true

@@ -1,11 +1,10 @@
+using Content.Shared._NF.Addiction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
-namespace Content.Shared._NF.Addiction.EntityEffects;
+namespace Content.Shared._NF.EntityEffects;
 
 public sealed partial class AdjustAddiction : EntityEffect
 {

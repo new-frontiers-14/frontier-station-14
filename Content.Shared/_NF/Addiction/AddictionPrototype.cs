@@ -23,7 +23,7 @@ public sealed partial class AddictionPrototype : IPrototype, IInheritingPrototyp
     public ProtoId<ReagentPrototype> DefaultReagent { get; private set; }
 
     /// <summary>
-    /// How long of a period in must the entity not get this AddictionEffect for its 'high' to drop. Defaults to 60 seconds
+    /// How long of a period in must the entity not get this AddictionEffect for its 'high' to drop. Defaults to 30 seconds
     /// </summary>
     [ViewVariables, DataField]
     public TimeSpan CheckPeriod { get; set; } = TimeSpan.FromMinutes(0.5);
@@ -69,6 +69,11 @@ public sealed partial class WithdrawalData
     /// </summary>
     [ViewVariables, DataField]
     public float Multiplier { get; set; } = 1f;
+
+    /// <summary>
+    /// When there is no withdrawal, or no symptoms that satisfy their conditions this is how long before checking again
+    /// </summary>
+    public TimeSpan MinCheckDelay { get; private set; } = TimeSpan.FromSeconds(3);
 
     [DataField(required: true)]
     public SymptomEntry[] Symptoms { get; private set; }
