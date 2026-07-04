@@ -11,6 +11,7 @@ addiction-symptom-headache-high-0 = Your headache pounds, and pounds.
 addiction-symptom-headache-high-1 = This migraine is the worst.
 addiction-symptom-headache-high-2 = Need something for this pounding headache.
 
+addiction-stimulant-name = stimulant
 addiction-stimulant-crave-low-0 = You could really use a pick me up
 addiction-stimulant-crave-low-1 = You're tired, you deserve a strong boost
 addiction-stimulant-crave-low-2 = {$lastReagent} felt really good, you should get some more
@@ -23,6 +24,7 @@ addiction-stimulant-crave-high-2 = Nothing really matters, except that next dose
 addiction-stimulant-crave-high-3 = YOU NEED { CAPITALIZE($lastReagent) }, NOW!
 addiction-stimulant-crave-high-4 = {$lastReagent}, {$lastReagent}, {$lastReagent} where is it?!
 
+addiction-alcohol-name = alcohol
 addiction-alcohol-crave-low-0 = Need to take that edge off.
 addiction-alcohol-crave-low-1 = Things were smoother with a drink.
 addiction-alcohol-crave-low-2 = Sobriety is overrated.
@@ -36,10 +38,13 @@ addiction-alcohol-crave-high-3 = You always feel sick when sober.
 addiction-alcohol-crave-high-4 = Where is that sweet alcohol? You could use it now.
 addiction-alcohol-crave-high-5 = Nothing really fixes this headache but alcohol.
 
+addiction-nicotine-name = nicotine
 addiction-nicotine-crave-low-0 = Could use a smoke.
 addiction-nicotine-crave-low-1 = Should light up a cigarette.
 addiction-nicotine-crave-low-2 = Where are my smokes?
 
-addiction-nicotine-crave-high-0 = Need to smoke now!
+addiction-nicotine-crave-high-0 = Need nicotine now!
 addiction-nicotine-crave-high-1 = Ugh. Need a nicotine fix fast.
 addiction-nicotine-crave-high-2 = C'mon just another smoke.
+
+addiction-nicotine-search-cig = You search around for a cigarette

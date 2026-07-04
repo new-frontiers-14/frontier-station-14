@@ -25,6 +25,12 @@ public sealed partial class AddictionData
     public ProtoId<ReagentPrototype>? LastReagent;
 
     /// <summary>
+    /// The last time the entity had their high added to
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables]
+    public TimeSpan LastHit;
+
+    /// <summary>
     /// Current 'high' rating, this is increased everytime a AddictionEffect is applied, and decreases over time
     /// When it hits certain thresholds, withdrawal rating increases
     /// </summary>

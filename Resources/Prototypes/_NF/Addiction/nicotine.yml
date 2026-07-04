@@ -1,20 +1,20 @@
 - type: addiction
   id: Nicotine
+  name: addiction-nicotine-name
   defaultReagent: Nicotine
-  threshold: 35 # 4 cigarettes/cigars or 3 pipes without a long enough break between them and you'll be addicted
-  decayRate: 0.9
+  threshold: 22 # 3 cigarettes/cigars or 2 pipes without a long enough break between them and you'll be addicted
+  decayRate: 0.6
   checkPeriod: 60s
   withdrawal:
     decayRate: 0.3
+    multiplier: 1.1 #Make withdrawal symptoms appear slightly as we get addicted, should increase overal withdrawal amounts
     symptoms:
-      - min: 1
-        max: 59
+      - min: 2
+        max: 39
         probability: 0.4
         rating: 1
         duration: 15
-        conditions:
-          - !type:AddictionThreshold #maybe we should keep track of last time the high was added to, and send that difference as a parameter
-            max: 1 #must have been a bit since last smoke
+        minTimeSinceHit: 10s #Only if they haven't taken a drag recently
         effects:
           - !type:PopupMessage
             visualType: Medium
@@ -22,17 +22,90 @@
               - addiction-nicotine-crave-low-0
               - addiction-nicotine-crave-low-1
               - addiction-nicotine-crave-low-2
-      - min: 60
+      - min: 40
         probability: 0.4
         rating: 1
         duration: 15
-        conditions:
-          - !type:AddictionThreshold
-            max: 2 #must have been a bit since last smoke
+        minTimeSinceHit: 8s
         effects:
           - !type:PopupMessage
-            visualType: Medium
+            visualType: MediumCaution
             messages:
               - addiction-nicotine-crave-high-0
               - addiction-nicotine-crave-high-1
               - addiction-nicotine-crave-high-2
+      - min: 40
+        probability: 0.08
+        rating: 1000 #if this gets selected, don't do any other symptoms unless they are in some insane withdrawal
+        duration: 20
+        minTimeSinceHit: 30s #have to be trying to quit
+        effects:
+          # Preferably we'd have a condition to check if the mask slot is open
+          # so this symptom isn't chosen if its not possible to put a cigarette in their mouth
+          # also we could update the message to reflect that you found a cigarette
+          - !type:PopupMessage
+            visualType: Medium
+            messages:
+              - addiction-nicotine-search-cig
+          - !type:WearableReaction
+            prototypeID: Cigarette
+            slot: mask
+      #increased appetite
+      - min: 15
+        max: 49
+        probability: 0.4
+        rating: 30
+        duration: 15
+        effects:
+          - !type:SatiateHunger
+            factor: -8 #at most every 15 seconds
+      - min: 50
+        probability: 0.5
+        rating: 50
+        duration: 15
+        effects:
+          - !type:SatiateHunger
+            factor: -20 #at most every 15 seconds
+      - min: 30
+        max: 79
+        probability: 0.05 #uncommon side effects
+        rating: 1
+        duration: 10
+        effects:
+          - !type:PopupMessage
+            visualType: Medium
+            messages:
+              - addiction-symptom-nausea-low-0
+              - addiction-symptom-nausea-low-1
+              - addiction-symptom-headache-low-0
+              - addiction-symptom-headache-low-1
+              - addiction-symptom-headache-low-2
+      - min: 80
+        probability: 0.05 #uncommon side effects
+        rating: 5
+        duration: 10
+        effects:
+          - !type:PopupMessage
+            visualType: MediumCaution
+            messages:
+              - addiction-symptom-nausea-high-0
+              - addiction-symptom-nausea-high-1
+              - addiction-symptom-headache-high-0
+              - addiction-symptom-headache-high-1
+              - addiction-symptom-headache-high-2
+      #Dry mouth
+      - min: 20
+        max: 59
+        probability: 0.05 #uncommon
+        rating: 20
+        duration: 10
+        effects:
+          - !type:SatiateThirst
+            factor: -2
+      - min: 60
+        probability: 0.05 #uncommon
+        rating: 40
+        duration: 10
+        effects:
+          - !type:SatiateThirst
+            factor: -5

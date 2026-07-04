@@ -12,26 +12,18 @@ public readonly record struct AddAddictionRatingEvent(ProtoId<AddictionPrototype
 
 public record class EntityEffectWithdrawalArgs : EntityEffectBaseArgs
 {
-    public AddictionPrototype Addiction;
-    public FixedPoint2 Withdrawal;
-    public ReagentPrototype LastReagent;
-    public EntityEffectWithdrawalArgs(EntityUid targetEntity, IEntityManager entityManager, AddictionPrototype addiction, FixedPoint2 withdrawal, ReagentPrototype lastReagent) : base(targetEntity, entityManager)
+    public readonly AddictionPrototype Addiction;
+    public readonly FixedPoint2 Withdrawal;
+    public readonly ReagentPrototype LastReagent;
+    public readonly TimeSpan TimeSinceHit;
+    public EntityEffectWithdrawalArgs(EntityUid targetEntity, IEntityManager entityManager, AddictionPrototype addiction, FixedPoint2 withdrawal, ReagentPrototype lastReagent, TimeSpan timeSinceHit) : base(targetEntity, entityManager)
     {
         Addiction = addiction;
         Withdrawal = withdrawal;
         LastReagent = lastReagent;
+        TimeSinceHit = timeSinceHit;
     }
 }
 
 [ByRefEvent]
-public record struct GetAddictionModifierEvent
-{
-    public ProtoId<AddictionPrototype> ProtoId { get; init; }
-    public float Modifier = 1f;
-
-    public GetAddictionModifierEvent(ProtoId<AddictionPrototype> protoId, float modifier)
-    {
-        ProtoId = protoId;
-        Modifier = modifier;
-    }
-}
+public record struct GetAddictionModifierEvent(ProtoId<AddictionPrototype> ProtoId, float AddModifier, float SubModifier);

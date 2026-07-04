@@ -45,7 +45,7 @@ namespace Content.Shared.EntityEffects.Effects
             {
                 msgArgs = [
                     ("entity", withdrawalArgs.TargetEntity),
-                    //("addiction", withdrawalArgs.Addiction),
+                    ("addiction", withdrawalArgs.Addiction.LocalizedName),
                     ("lastReagent", withdrawalArgs.LastReagent.LocalizedName)
                 ];
             }

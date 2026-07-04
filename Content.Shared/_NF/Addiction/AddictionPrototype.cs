@@ -20,6 +20,11 @@ public sealed partial class AddictionPrototype : IPrototype, IInheritingPrototyp
     public bool Abstract { get; private set; }
 
     [DataField(required: true)]
+    public LocId Name;
+
+    public string LocalizedName => Loc.GetString(Name);
+
+    [DataField(required: true)]
     public ProtoId<ReagentPrototype> DefaultReagent { get; private set; }
 
     /// <summary>
@@ -61,11 +66,8 @@ public sealed partial class WithdrawalData
     [DataField]
     public float DecayRate { get; private set; } = 0.5f;
 
-    [DataField]
-    public float Probability { get; private set; } = 1f;
-
     /// <summary>
-    /// How fast or slow the addiction increases above the threshold. This is multiplied by the excess addiction factor. Effectively sets addiction to a percentage of the 'high'
+    /// How fast or slow the addiction increases above the threshold. This is multiplied by the addiction factor. Effectively sets addiction to a percentage of the 'high'
     /// </summary>
     [ViewVariables, DataField]
     public float Multiplier { get; set; } = 1f;
@@ -88,8 +90,23 @@ public sealed partial class SymptomEntry
     [DataField]
     public FixedPoint2 Min { get; private set; } = 0;
 
+    /// <summary>
+    /// Maximum withdrawal rating for this entry to apply
+    /// </summary>
     [DataField]
     public FixedPoint2 Max { get; private set; } = FixedPoint2.MaxValue;
+
+    /// <summary>
+    /// Minimum amount of time since entity had a high increased for the addiction
+    /// </summary>
+    [DataField]
+    public TimeSpan MinTimeSinceHit { get; private set; } = TimeSpan.Zero;
+
+    /// <summary>
+    /// Maximum amount of time since entity had a high increased for the addiction
+    /// </summary>
+    [DataField]
+    public TimeSpan MaxTimeSinceHit { get; private set; } = TimeSpan.MaxValue;
 
     /// <summary>
     /// The amount of withdrawal rating this entries 'uses up'
@@ -134,6 +151,9 @@ public static class SymptomEntryExt
             return false;
 
         if (symptom.Probability < 1.0f && !random.Prob(symptom.Probability))
+            return false;
+
+        if (symptom.MinTimeSinceHit > args.TimeSinceHit || symptom.MaxTimeSinceHit < args.TimeSinceHit)
             return false;
 
         if (symptom.Conditions != null)

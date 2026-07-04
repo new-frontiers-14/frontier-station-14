@@ -9,12 +9,24 @@ public sealed partial class AddictionModifierComponent : Component
     /// How fast or slow this entity gets addicted to anything compared to others
     /// </summary>
     [DataField, ViewVariables]
-    public float Multiplier = 1f;
+    public float AddMultiplier = 1f;
+
+    /// <summary>
+    /// How fast or slow this entity loses their 'high'
+    /// </summary>
+    [DataField, ViewVariables]
+    public float SubMultiplier = 1f;
 
     /// <summary>
     /// Mapping of multipliers to use for specific addiction types
     /// </summary>
     [DataField, ViewVariables]
-    public Dictionary<ProtoId<AddictionPrototype>, float> Modifiers = new();
+    public Dictionary<ProtoId<AddictionPrototype>, AddictionModifier> Modifiers = new();
+}
+
+public sealed class AddictionModifier
+{
+    public float AddMultiplier = 1f;
+    public float SubMultiplier = 1f;
 }
 
