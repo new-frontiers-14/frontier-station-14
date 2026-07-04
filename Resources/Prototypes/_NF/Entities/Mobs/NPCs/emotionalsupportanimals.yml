@@ -33,6 +33,9 @@
     needsHands: false
   - type: Inventory
     templateId: nfpet
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
 
 - type: entity
   id: BaseEmotionalGhostCat
@@ -209,3 +212,33 @@
     nameSegments: [NamesFox]
   - type: Inventory
     speciesId: fox
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhost, MobPossum]
+  id: MobOpossumGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesPossum]
+  - type: Inventory
+    speciesId: opossum
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhost, MobRaccoon]
+  id: MobRaccoonGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesRaccoon]
+  - type: Inventory
+    speciesId: raccoon
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhost, MobHamster]
+  id: MobHamsterGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesHamster]
+  - type: Inventory
+    speciesId: hamster
