@@ -224,19 +224,19 @@ uplink-security-hoverbike-desc = Flatpack containing NFSD issued turbine with bi
 uplink-security-trackingdart-bundle-name = Tracking Dart Bundle
 uplink-security-trackingdart-bundle-desc = A bundle containing a Lake type launcher, 3 tracking darts and 3 pinpointers.
 
-uplink-security-emp-grenade-ammo-name = EMP Grenade Ammos
+uplink-security-emp-grenade-ammo-name = EMP Grenade Ammo
 uplink-security-emp-grenade-ammo-desc = 4 EMP grenades for the NGP-40 projector.
 
-uplink-security-flash-grenade-ammo-name = Flash Grenade Ammos
+uplink-security-flash-grenade-ammo-name = Flash Grenade Ammo
 uplink-security-flash-grenade-ammo-desc = 4 flash grenades for the NGP-40 projector.
 
-uplink-security-gas-grenade-ammo-name = Tear Gas Grenade Ammos
+uplink-security-gas-grenade-ammo-name = Tear Gas Grenade Ammo
 uplink-security-gas-grenade-ammo-desc = 4 tear gas grenades for the NGP-40 projector.
 
-uplink-security-net-grenade-ammo-name = Shock Net Grenade Ammos
+uplink-security-net-grenade-ammo-name = Shock Net Grenade Ammo
 uplink-security-net-grenade-ammo-desc = 4 shock net grenades for the NGP-40 projector.
 
-uplink-security-grenade-ammo-name = Varied Grenade Ammos
+uplink-security-grenade-ammo-name = Varied Grenade Ammo
 uplink-security-grenade-ammo-desc = Shock net grenades, tear gas greandes, flash grenades, and EMP grenades all for the NGP-40 projector.
 
 uplink-security-emp-ammo-name = EMP Projectile Ammo
