@@ -119,13 +119,13 @@
   - type: NFSalvageMobRestrictions
     addComponentsLeaveGrid:
     - type: TimedDespawn
-      lifetime: 15
+      lifetime: 240
     - type: PassiveDamage
       allowedStates:
       - Alive
       damage:
         types:
-          Cellular: 1
+          Cellular: 0.4
     - type: Pacified
     removeComponentsReturnGrid:
     - type: TimedDespawn
