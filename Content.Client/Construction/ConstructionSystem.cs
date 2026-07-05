@@ -6,9 +6,15 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
+// Frontier Start
+using Content.Shared.Frontier.CCVar;
+// Frontier End
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+//Frontier Start
+using Robust.Shared.Configuration;
+//Frontier End
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -29,6 +35,9 @@ namespace Content.Client.Construction
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
+        /// Frontier Start
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        /// Frontier End
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -361,18 +370,26 @@ namespace Content.Client.Construction
         }
 
         /// <summary>
-        /// Checks if any construction ghosts are present at the given position
+        /// Checks whether the construction ghost limit has been reached at the given position.
         /// </summary>
         private bool GhostPresent(EntityCoordinates loc)
         {
-            foreach (var ghost in _ghosts)
-            {
-                if (Comp<TransformComponent>(ghost.Value).Coordinates.Equals(loc))
-                    return true;
-            }
-
-            return false;
+            var ghostCount = _ghosts.Values.Count(ghost => Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
+            return ghostCount >= 6;
         }
+        /// Frontier start
+        /// <summary>
+        /// Checks if the maximum number of construction ghosts has been reached at the given location.
+        /// </summary>
+        private bool HasReachedMaximumGhosts(EntityCoordinates loc)
+        {
+            // Count ghosts at the given location and allow up to the maximum allowed per tile
+            var ghostCount = _ghosts.Values.Count(ghost =>
+                EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
+
+            return ghostCount >= _configurationManager.GetCVar(FrontierCCVars.ConstructionMaxGhostsPerTile);
+        }
+        /// Frontiert end
 
         public void TryStartConstruction(EntityUid ghostId, ConstructionGhostComponent? ghostComp = null)
         {
