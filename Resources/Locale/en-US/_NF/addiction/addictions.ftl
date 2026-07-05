@@ -43,8 +43,8 @@ addiction-nicotine-crave-low-0 = Could use a smoke.
 addiction-nicotine-crave-low-1 = Should light up a cigarette.
 addiction-nicotine-crave-low-2 = Where are my smokes?
 
-addiction-nicotine-crave-high-0 = Need nicotine now!
-addiction-nicotine-crave-high-1 = Ugh. Need a nicotine fix fast.
+addiction-nicotine-crave-high-0 = Must have nicotine now!
+addiction-nicotine-crave-high-1 = Quick, you need a nicotine fix.
 addiction-nicotine-crave-high-2 = C'mon just another smoke.
 
 addiction-nicotine-search-cig = You search around for a cigarette

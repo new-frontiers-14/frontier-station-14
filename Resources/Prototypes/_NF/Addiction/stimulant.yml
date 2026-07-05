@@ -14,6 +14,7 @@
         probability: 0.2
         rating: 1
         duration: 5
+        minTimeSinceHit: 30s
         effects:
           - !type:PopupMessage
             visualType: Medium
@@ -27,6 +28,7 @@
         probability: 0.3
         rating: 5
         duration: 5
+        minTimeSinceHit: 20s
         effects:
           - !type:PopupMessage
             visualType: MediumCaution
@@ -80,7 +82,7 @@
             time: 30
             type: Add
           - !type:MovespeedModifier
-            walkSpeedModifier: 0.75
+            walkSpeedModifier: 0.75 #This should roughly cancel the speed up effect of Desox
             sprintSpeedModifier: 0.75
             statusLifetime: 8
       - min: 150

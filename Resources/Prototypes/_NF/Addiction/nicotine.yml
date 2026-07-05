@@ -38,7 +38,7 @@
         probability: 0.08
         rating: 1000 #if this gets selected, don't do any other symptoms unless they are in some insane withdrawal
         duration: 20
-        minTimeSinceHit: 30s #have to be trying to quit
+        minTimeSinceHit: 60s #have to be trying to quit
         effects:
           # Preferably we'd have a condition to check if the mask slot is open
           # so this symptom isn't chosen if its not possible to put a cigarette in their mouth
@@ -109,3 +109,13 @@
         effects:
           - !type:SatiateThirst
             factor: -5
+      #irritability
+      - min: 50
+        probability: 0.1
+        rating: 50
+        duration: 5
+        effects:
+          - !type:Emote
+            emote: Scream
+            showInChat: true
+            force: true

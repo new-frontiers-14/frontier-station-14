@@ -14,6 +14,7 @@
         probability: 0.1
         rating: 1
         duration: 10
+        minTimeSinceHit: 20s
         effects:
           - !type:PopupMessage
             visualType: Medium
@@ -30,6 +31,7 @@
         probability: 0.2
         rating: 10
         duration: 12
+        minTimeSinceHit: 20s
         effects:
           - !type:PopupMessage
             visualType: MediumCaution
@@ -39,6 +41,7 @@
               - addiction-alcohol-crave-high-2
               - addiction-alcohol-crave-high-3
               - addiction-alcohol-crave-high-4
+              - addiction-alcohol-crave-high-5
               - addiction-symptom-headache-high-0
               - addiction-symptom-headache-high-1
               - addiction-symptom-headache-high-2
@@ -72,9 +75,7 @@
         rating: 90
         duration: 10
         probability: 0.05
-        conditions:
-        - !type:AddictionThreshold
-          max: 0.5 #Don't vomit if we're on any kind of alcohol high
+        minTimeSinceHit: 60s
         effects:
         - !type:ChemVomit
       - min: 90
