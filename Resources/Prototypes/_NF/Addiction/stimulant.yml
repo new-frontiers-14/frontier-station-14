@@ -13,7 +13,7 @@
         max: 150
         probability: 0.2
         rating: 1
-        duration: 5
+        duration: 10
         minTimeSinceHit: 30s
         effects:
           - !type:PopupMessage
@@ -27,7 +27,7 @@
       - min: 151
         probability: 0.3
         rating: 5
-        duration: 5
+        duration: 8
         minTimeSinceHit: 20s
         effects:
           - !type:PopupMessage
@@ -85,8 +85,17 @@
             walkSpeedModifier: 0.75 #This should roughly cancel the speed up effect of Desox
             sprintSpeedModifier: 0.75
             statusLifetime: 8
-      - min: 150
+      - min: 60
+        max: 89
         rating: 30
+        duration: 10
+        probability: 0.1
+        effects:
+          - !type:Emote
+            emote: Yawn
+            showInChat: true
+      - min: 90
+        rating: 50
         probability: 0.3
         duration: 15
         effects:

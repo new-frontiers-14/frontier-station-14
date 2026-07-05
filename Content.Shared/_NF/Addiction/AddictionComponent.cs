@@ -6,6 +6,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared._NF.Addiction;
 
 [RegisterComponent]
+[Access(typeof(SharedAddictionSystem))]
 public sealed partial class AddictionComponent : Component
 {
     /// <summary>

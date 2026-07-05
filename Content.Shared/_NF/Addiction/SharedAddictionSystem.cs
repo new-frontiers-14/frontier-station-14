@@ -7,22 +7,8 @@ namespace Content.Shared._NF.Addiction;
 
 public abstract partial class SharedAddictionSystem : EntitySystem
 {
-    public void AddAddictionHighRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, FixedPoint2 amount, ReagentPrototype? reagent)
-    {
-        if (HasComp<GodmodeComponent>(uid))
-            return;
-        EnsureComp<AddictionComponent>(uid);
-        var ev = new AddAddictionHighRatingEvent(protoId, amount, reagent);
-        RaiseLocalEvent(uid, ref ev);
-    }
-    public void AddAddictionRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, FixedPoint2 amount, ReagentPrototype? reagent)
-    {
-        if (HasComp<GodmodeComponent>(uid))
-            return;
-        EnsureComp<AddictionComponent>(uid);
-        var ev = new AddAddictionRatingEvent(protoId, amount, reagent);
-        RaiseLocalEvent(uid, ref ev);
-    }
+    public abstract void AddAddictionHighRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, FixedPoint2 amount, ReagentPrototype? reagent);
+    public abstract void AddAddictionRating(EntityUid uid, ProtoId<AddictionPrototype> protoId, FixedPoint2 amount, ReagentPrototype? reagent);
 
     #region Getters
     public FixedPoint2 GetHigh(Entity<AddictionComponent?> entity, ProtoId<AddictionPrototype> addiction)

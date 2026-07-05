@@ -1,12 +1,11 @@
 using Content.Shared._NF.Addiction;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.EntityEffects;
 
-public sealed partial class AdjustAddiction : EntityEffect
+public sealed partial class AdjustAddiction : EventEntityEffect<AdjustAddiction>
 {
     /// <summary>
     /// What addiction does this feed or make the entity succumb to (or counter/cure)
@@ -32,23 +31,6 @@ public sealed partial class AdjustAddiction : EntityEffect
     /// </summary>
     [DataField]
     public bool ScaleByQuantity { get; private set; }
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        if (args.EntityManager.TrySystem<SharedAddictionSystem>(out var addictSystem))
-        {
-            FixedPoint2 factor = 1f;
-            ReagentPrototype? reagent = null;
-            if (args is EntityEffectReagentArgs reagentArgs)
-            {
-                factor = ScaleByQuantity ? reagentArgs.Quantity : reagentArgs.Scale;
-                reagent = reagentArgs.Reagent;
-            }
-
-            addictSystem.AddAddictionHighRating(args.TargetEntity, Addiction, HighAmount * factor, reagent);
-            addictSystem.AddAddictionRating(args.TargetEntity, Addiction, AddictionAmount * factor, reagent);
-        }
-    }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
