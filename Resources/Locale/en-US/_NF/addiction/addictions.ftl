@@ -11,6 +11,26 @@ addiction-symptom-headache-high-0 = Your headache pounds, and pounds.
 addiction-symptom-headache-high-1 = This migraine is the worst.
 addiction-symptom-headache-high-2 = Need something for this pounding headache.
 
+addiction-symptom-anxiety-low-0 = Don't make a mistake, like normal
+addiction-symptom-anxiety-low-1 = Other people are judging you.
+addiction-symptom-anxiety-high-0 = What if I lose control?
+addiction-symptom-anxiety-high-1 = Are people laughing AT me?
+
+addiction-symptom-paranoia-low-0 = Is something watching you?
+addiction-symptom-paranoia-low-1 = Do they know?
+addiction-symptom-paranoia-low-2 = What was that?
+addiction-symptom-paranoia-high-0 = They're after you!
+addiction-symptom-paranoia-high-1 = You are not safe
+addiction-symptom-paranoia-high-2 = Something is out to get you
+
+addiction-symptom-depression-low-0 = Nothing ever works out
+addiction-symptom-depression-low-1 = Why bother with anything?
+addiction-symptom-depression-low-2 = No one cares about you.
+addiction-symptom-depression-high-0 = What's the point of living?
+addiction-symptom-depression-high-1 = Would everyone be better off without me?
+addiction-symptom-depression-high-2 = Does anything you do matter?
+
+# Specific addictions
 addiction-stimulant-name = stimulant
 addiction-stimulant-crave-low-0 = You could really use a pick me up
 addiction-stimulant-crave-low-1 = You're tired, you deserve a strong boost
@@ -48,3 +68,16 @@ addiction-nicotine-crave-high-1 = Quick, you need a nicotine fix.
 addiction-nicotine-crave-high-2 = C'mon just another smoke.
 
 addiction-nicotine-search-cig = You search around for a cigarette
+
+addiction-hallucinogen-name = hallucinogen
+addiction-hallucinogen-crave-low-0 = Things are a bit too real
+addiction-hallucinogen-crave-low-1 = Life was better with {$lastReagent}
+addiction-hallucinogen-crave-low-2 = How can I get high?
+addiction-hallucinogen-crave-low-3 = You should find some {$lastReagent}
+addiction-hallucinogen-crave-low-4 = This is dull, you want to see more colors.
+
+addiction-hallucinogen-crave-high-0 = Reality is pain. {$lastReagent} is pleasant.
+addiction-hallucinogen-crave-high-1 = Nothing but {$lastReagent} really matters.
+addiction-hallucinogen-crave-high-2 = Should take a hit of {$lastReagent} for some good times.
+addiction-hallucinogen-crave-high-3 = This isn't real. You should take something to see reality.
+addiction-hallucinogen-crave-high-4 = Where is that sweet alcohol? You could use it now.

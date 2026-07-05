@@ -218,6 +218,12 @@
         time: 16
         type: Add
         refresh: false
+      # Frontier Begin
+      - !type:AdjustAddiction
+        addiction: Hallucinogen #may replace with a specific cannibis addiction
+        highAmount: 1.5
+        delayNextCheck: 14
+      # Frontier End
 
 - type: reagent
   id: Nicotine
@@ -284,6 +290,11 @@
         type: Add
         time: 5
         refresh: false
+      # Frontier Begin
+      - !type:AdjustAddiction
+        addiction: Hallucinogen
+        delayNextCheck: 3
+      # Frontier End
 
 - type: reagent
   id: Bananadine
@@ -301,6 +312,11 @@
         type: Add
         time: 5
         refresh: false
+      # Frontier Begin
+      - !type:AdjustAddiction
+        addiction: Hallucinogen #may replace with a 'clown' addiction
+        delayNextCheck: 3
+      # Frontier End
 
 # Probably replace this one with sleeping chem when putting someone in a comatose state is easier
 - type: reagent
@@ -491,3 +507,8 @@
         type: Add
         time: 5
         refresh: false
+      # Frontier Begin
+      - !type:AdjustAddiction
+        addiction: Hallucinogen #may replace with a 'clown' addiction
+        delayNextCheck: 3
+      # Frontier End

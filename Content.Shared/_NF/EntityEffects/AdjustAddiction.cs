@@ -26,6 +26,9 @@ public sealed partial class AdjustAddiction : EventEntityEffect<AdjustAddiction>
     [DataField]
     public FixedPoint2 AddictionAmount { get; private set; } = 0;
 
+    [DataField]
+    public float? DelayNextCheck = null;
+
     /// <summary>
     /// If the addiction amount should scale by the quantity of the substance being metabolized, otherwise scales based on percent of max metabolism amount
     /// </summary>

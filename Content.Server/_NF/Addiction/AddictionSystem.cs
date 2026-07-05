@@ -241,8 +241,14 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
             reagent = reagentArgs.Reagent;
         }
 
+
         UpdateHighInternal((uid, comp), addictProto, ev.Effect.HighAmount * factor, reagent);
         UpdateAddictionInternal((uid, comp), addictProto, ev.Effect.AddictionAmount * factor, reagent);
+
+        if (ev.Effect.DelayNextCheck != null)
+        {
+            UpdateAddictionNextCheck((uid, comp), addictProto, TimeSpan.FromSeconds(ev.Effect.DelayNextCheck.Value * factor.Float()));
+        }
     }
 
     private void OnCheckAddictionThreshold(ref CheckEntityEffectConditionEvent<AddictionThreshold> ev)
@@ -290,13 +296,14 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
         addictData.High += modifier * amount;
         addictData.High = FixedPoint2.Max(0, addictData.High);  //prevent going below 0
 
+        var nextCheckTime = _gameTiming.CurTime + addictProto.CheckPeriod;
         if (addictData.High > addictProto.Threshold)
         {
             var level = addictData.High * addictProto.Withdrawal.Multiplier;
             addictData.Addiction = FixedPoint2.Max(addictData.Addiction, level);
-            if (addictData.NextWithdrawal > _gameTiming.CurTime + addictProto.CheckPeriod)
+            if (addictData.NextWithdrawal > nextCheckTime)
             {
-                addictData.NextWithdrawal = _gameTiming.CurTime + addictProto.CheckPeriod;
+                addictData.NextWithdrawal = nextCheckTime;
             }
             addictData.LastReagent = reagent?.ID ?? addictData.LastReagent;
         }
@@ -305,7 +312,12 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
         if (amount >= 0)
         {
             addictData.LastHit = _gameTiming.CurTime;
-            addictData.NextCheck = _gameTiming.CurTime + addictProto.CheckPeriod;
+            //leave next check time alone if something has set it farther in the future
+            //typically from 'DelayNextCheck' on AdjustAddiction
+            if (addictData.NextCheck <= nextCheckTime)
+            {
+                addictData.NextCheck = _gameTiming.CurTime + addictProto.CheckPeriod;
+            }
         }
 
     }
@@ -331,6 +343,13 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
                 addictData.NextWithdrawal = addictData.NextCheck;
             }
         }
+    }
+
+    private void UpdateAddictionNextCheck(Entity<AddictionComponent> entity, ProtoId<AddictionPrototype> addiction, TimeSpan duration)
+    {
+        var addictData = entity.Comp.Addictions.GetOrNew(addiction);
+
+        addictData.NextCheck += duration;
     }
 
 
