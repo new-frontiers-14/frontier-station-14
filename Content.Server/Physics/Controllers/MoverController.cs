@@ -530,9 +530,9 @@ public sealed class MoverController : SharedMoverController
                         var shuttlePosition = _xformSystem.GetWorldPosition(shuttleUid, xformQuery);
                         // Modify the max velocity, force, and acceleration? when in a VoidRiver.
                         var velocityMod = _riverSystem.ObtainVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(maxVelocity), flowReceiver);
-                        maxVelocity *= velocityMod; //_riverSystem.GetVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(maxVelocity), flowReceiver);
-                        maxWishVelocity *= velocityMod; //_riverSystem.GetVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(maxWishVelocity), flowReceiver);
-                        totalForce *= velocityMod; //_riverSystem.GetVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(totalForce), flowReceiver);
+                        maxVelocity *= velocityMod;
+                        maxWishVelocity *= velocityMod;
+                        totalForce *= velocityMod;
                     }
                 }
                 // Frontier End

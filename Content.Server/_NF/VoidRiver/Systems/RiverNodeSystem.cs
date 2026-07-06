@@ -1,19 +1,23 @@
+using Content.Server._NF.VoidRiver.Components;
+using Content.Shared.Traits.Assorted;
+using NetCord;
+using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
+using Robust.Shared.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
-using Robust.Shared.Configuration;
-using Content.Server._NF.VoidRiver.Components;
-using System.Numerics;
-using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.VoidRiver.Systems;
 
 public sealed partial class RiverNodeSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly record struct SourceData(
@@ -37,6 +41,7 @@ public sealed partial class RiverNodeSystem : EntitySystem
     {
         base.Initialize();
         SubscribeCvars();
+        SubscribeLocalEvent<RiverNodeComponent, ComponentStartup>(SetupNode);
     }
 
     public override void Update(float frameTime)
@@ -111,6 +116,11 @@ public sealed partial class RiverNodeSystem : EntitySystem
         }
     }
 
+    private void SetupNode(EntityUid uid, RiverNodeComponent component, ComponentStartup args)
+    {
+        component.FlowDirection = _random.NextAngle();
+    }
+
     /// <summary>
     /// Calculates the relevant modifiers the void rivers impart on the shuttle's velocity/acceleration etc.
     /// </summary>
@@ -125,32 +135,64 @@ public sealed partial class RiverNodeSystem : EntitySystem
         if (velocity.Length() != 0f)
         {
             var nodeQuery = GetEntityQuery<RiverNodeComponent>();
+            var riverVector = new Vector2();
+            var riverBoost = 0f;
+            var riverSlowdown = 0f;
+            var totalInfluence = 0f; // This collates the total amount of influence given to account for node distances.
+
+            // Collate data for the final river flow effect.
             foreach (var entity in receiver.InfluencingNodes)
             {
                 if (!nodeQuery.TryGetComponent(entity, out var node))
                 {
                     continue;
                 }
-                var flowDiffScalar = Vector2.Dot(velocity.Normalized(), node.FlowDirection.ToVec());
+                // Calculates the distance between the shuttle and the river node.
                 var riverDirection = shuttlePosition - _transform.GetWorldPosition(entity);
                 var distanceToRiver = riverDirection.Length();
                 var distanceMod = 1.0f;
 
+                // Calculates the modifier for being away from the centre of the node.
                 if (node.NodeRange != 0f && distanceToRiver < node.NodeRange)
                 {
                     distanceMod = 1 - distanceToRiver / node.NodeRange;
                 }
 
-                if (flowDiffScalar >= 0)
-                {
-                    // Set velocityMod somewhere between 1.0 and 1.0+Boost value
-                    velocityMod += flowDiffScalar * node.Boost * distanceMod;
-                }
-                else
-                {
-                    // Set velocityMod somewhere between the SlowDownMultiplier value and 1.0
-                    velocityMod = 1 - (node.SlowdownMultiplier * -flowDiffScalar * distanceMod);
-                }
+                riverVector += node.FlowDirection.ToVec() * distanceMod;
+                riverBoost += node.Boost * distanceMod;
+                riverSlowdown += node.SlowdownMultiplier * distanceMod;
+                totalInfluence += distanceMod;
+            }
+            // Average the Boost and Slowdown
+            if (totalInfluence != 0)
+            {
+                riverBoost /= totalInfluence;
+                riverSlowdown /= totalInfluence;
+            }
+            else
+            {
+                // Something went wrong! This should never be 0.
+            }
+
+            var interferenceMod = 1.0f;
+            if (riverVector.Length() < 1f)
+            {
+                interferenceMod = riverVector.Length();
+            }
+            riverVector = riverVector.Normalized();
+
+            // Calculate the difference in direction between the total river flow effect and the shuttle's desired travel direction.
+            var flowDiffScalar = Vector2.Dot(velocity.Normalized(), riverVector);
+
+            if (flowDiffScalar >= 0)
+            {
+                // Set velocityMod somewhere between 1.0 and 1.0+Boost value
+                velocityMod += flowDiffScalar * riverBoost * interferenceMod;
+            }
+            else
+            {
+                // Set velocityMod somewhere between the SlowDownMultiplier value and 1.0
+                velocityMod = 1 - (riverSlowdown * -flowDiffScalar * interferenceMod);
             }
         }
 
