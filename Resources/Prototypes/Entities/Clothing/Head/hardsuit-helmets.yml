@@ -164,8 +164,6 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-  - type: PointLight
-    radius: 6
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -188,9 +186,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 7
-    energy: 3
   - type: Tag
     tags:
     - CorgiWearable
@@ -240,8 +235,6 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-  - type: PointLight
-    radius: 6
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -423,10 +416,6 @@
         shader: unshaded
   - type: PointLight
     color: "#daffad"
-    # Frontier
-    radius: 6
-    energy: 4
-    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -451,10 +440,6 @@
     sprite: Clothing/Head/Hardsuits/medical.rsi
   - type: PointLight
     color: "#adf1ff"
-    # Frontier
-    radius: 6
-    energy: 4
-    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -476,10 +461,6 @@
     sprite: Clothing/Head/Hardsuits/rd.rsi
   - type: PointLight
     color: "#d6adff"
-    # Frontier
-    radius: 6
-    energy: 4
-    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
@@ -501,10 +482,6 @@
     sprite: Clothing/Head/Hardsuits/security-red.rsi
   - type: PointLight
     color: "#ffeead"
-    # Frontier
-    radius: 6
-    energy: 4
-    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
@@ -531,9 +508,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 7
-    energy: 3
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -550,7 +524,6 @@
   - type: PointLight
     color: green
     # Frontier
-    radius: 5
     energy: 8
     # End Frontier
   - type: PressureProtection
@@ -582,7 +555,6 @@
   - type: PointLight
     color: green
     # Frontier
-    radius: 5
     energy: 8
     # End Frontier
   - type: PressureProtection
@@ -610,7 +582,6 @@
   - type: PointLight
     color: red
     # Frontier
-    radius: 5
     energy: 8
     # End Frontier
   - type: PressureProtection
@@ -647,7 +618,6 @@
   - type: PointLight
     color: green
     # Frontier
-    radius: 5
     energy: 8
     # End Frontier
   - type: PressureProtection
@@ -704,10 +674,6 @@
     sprite: Clothing/Head/Hardsuits/wizard.rsi
   - type: PointLight
     color: "#ffadfb"
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
@@ -784,10 +750,8 @@
       - state: equipped-HELMET-unshaded-vox
         shader: unshaded
   - type: ItemTogglePointLight
-  - type: PointLight # Color matches visor colors, radius/energy same as mining hardsuit for the big captain.
+  - type: PointLight
     color: "#f3ea9c"
-    radius: 7
-    energy: 3
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -812,10 +776,6 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: PointLight
-  # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
     color: "#addbff"
   - type: Armor
     modifiers:
@@ -838,10 +798,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -856,10 +812,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
     color: "#f4ffad"
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
   - type: FireProtection
     reduction: 0.2
   - type: Armor
@@ -883,10 +835,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: PointLight
     color: "#adffec"
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
 
 #ERT Security Hardsuit
 - type: entity
@@ -901,10 +849,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: PointLight
     color: "#ffadc6"
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
   - type: Armor
     modifiers:
       coefficients:
@@ -926,10 +870,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: PointLight
     color: "#cbadff"
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
 
 #CBURN Hardsuit
 - type: entity
@@ -960,10 +900,6 @@
         shader: unshaded
   - type: PointLight
     color: orange
-    # Frontier
-    radius: 5
-    energy: 4
-    # End Frontier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -1050,5 +986,3 @@
     sprite: Clothing/Head/Hardsuits/santahelm.rsi
   - type: PointLight
     color: "#f4ffad"
-    radius: 5
-    energy: 2
