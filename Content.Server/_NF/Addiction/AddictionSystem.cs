@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._NF.Addiction;
 using Content.Shared._NF.EntityEffects;
@@ -5,8 +6,10 @@ using Content.Shared._NF.EntityEffects.Effect;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage.Components;
 using Content.Shared.EntityEffects;
+using Content.Shared.EntityEffects.Effects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
@@ -22,6 +25,7 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSys = default!;
 
     /// <summary>
     /// Minimum rating for High and Addiction to be considered active. Because this system does exponential decay often when at 0.1, it never goes to 0 keeping the component active indefinitely
@@ -173,19 +177,31 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
 
         _random.Shuffle(eligibleSymptoms); //don't apply effects in a completely predictable fashion each time
 
+        SymptomMessageList? messageList = null;
+        int messagePriority = int.MinValue;
         var nextWithdrawal = _gameTiming.CurTime;
         var i = 0;
         while (withdrawal > 0 && eligibleSymptoms.Count > 0)
         {
             var symptom = eligibleSymptoms[i % eligibleSymptoms.Count];
-            withdrawal -= symptom.Rating;
-            foreach (var effect in symptom.Effects)
+
+            if (ShouldUseSymptomMessage(symptom.Messages, messagePriority))
             {
-                if (!effect.ShouldApply(effectArgs, _random)) //Each effect could have their own conditions to be applied separate from the entire symptom
+                messageList = symptom.Messages;
+                messagePriority = messageList.Priority;
+            }
+
+            withdrawal -= symptom.Rating;
+            if (symptom.Effects is not null)
+            {
+                foreach (var effect in symptom.Effects)
                 {
-                    continue;
+                    if (!effect.ShouldApply(effectArgs, _random)) //Each effect could have their own conditions to be applied separate from the entire symptom
+                    {
+                        continue;
+                    }
+                    effect.Effect(effectArgs);
                 }
-                effect.Effect(effectArgs);
             }
             if (!symptom.Repeatable)
             {
@@ -194,9 +210,59 @@ public sealed partial class AddictionSystem : SharedAddictionSystem
             nextWithdrawal += symptom.Duration;
             i++;
         }
+
+        ApplySymptomPopup(messageList, effectArgs);
+
         data.NextWithdrawal = nextWithdrawal;
 
 
+    }
+
+    private bool ShouldUseSymptomMessage([NotNullWhen(true)] SymptomMessageList? message, int priority)
+    {
+        if (message is null)
+            return false;
+        if (message.Priority <= priority)
+            return false;
+        if (message.Probability < 1.0f && !_random.Prob(message.Probability))
+            return false;
+
+        return true;
+    }
+
+    private void ApplySymptomPopup(SymptomMessageList? messageList, EntityEffectWithdrawalArgs args)
+    {
+        if (messageList is null)
+            return;
+
+        LocId msg;
+        if (_prototypeManager.Resolve(messageList.DataSet, out var dataSet))
+        {
+            msg = _random.Pick(dataSet.Values);
+        }
+        else if (messageList.List is not null && messageList.List.Length > 0)
+        {
+            msg = _random.Pick(messageList.List);
+        }
+        else
+        {
+            Log.Error("Symptom Message List should define a DataSet or List attribute");
+            return;
+        }
+
+        var formatted = Loc.GetString(msg, [
+                    ("entity", args.TargetEntity),
+                    ("addiction", args.Addiction.LocalizedName),
+                    ("lastReagent", args.LastReagent.LocalizedName)
+                ]);
+        if (messageList.Type == PopupRecipients.Local)
+        {
+            _popupSys.PopupEntity(formatted, args.TargetEntity, args.TargetEntity, messageList.VisualType);
+        }
+        else
+        {
+            _popupSys.PopupEntity(formatted, args.TargetEntity, messageList.VisualType);
+        }
     }
     #endregion
 

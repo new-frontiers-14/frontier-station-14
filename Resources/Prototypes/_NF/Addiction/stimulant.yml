@@ -13,54 +13,51 @@
         max: 150
         probability: 0.2
         rating: 1
-        duration: 10
+        duration: 15
         minTimeSinceHit: 30s
-        effects:
-          - !type:PopupMessage
-            visualType: Medium
-            messages:
-              - addiction-stimulant-crave-low-0 #doubling up cravings to make them more likely to appear
-              - addiction-stimulant-crave-low-0
-              - addiction-stimulant-crave-low-1
-              - addiction-stimulant-crave-low-1
-              - addiction-stimulant-crave-low-2
-              - addiction-stimulant-crave-low-2
-              - addiction-stimulant-crave-low-3
-              - addiction-stimulant-crave-low-3
-              - addiction-stimulant-crave-low-4
-              - addiction-stimulant-crave-low-4
-              - addiction-symptom-paranoia-low-0
-              - addiction-symptom-paranoia-low-1
-              - addiction-symptom-paranoia-low-2
-              - addiction-symptom-depression-low-0
-              - addiction-symptom-depression-low-1
-              - addiction-symptom-depression-low-2
+        messages:
+          priority: 2
+          dataSet: AddictionStimulantCraveLow
       - min: 151
         probability: 0.3
         rating: 5
-        duration: 8
+        duration: 12
         minTimeSinceHit: 20s
-        effects:
-          - !type:PopupMessage
-            visualType: MediumCaution
-            messages:
-              - addiction-stimulant-crave-high-0
-              - addiction-stimulant-crave-high-0
-              - addiction-stimulant-crave-high-1
-              - addiction-stimulant-crave-high-1
-              - addiction-stimulant-crave-high-2
-              - addiction-stimulant-crave-high-2
-              - addiction-stimulant-crave-high-3
-              - addiction-stimulant-crave-high-3
-              - addiction-stimulant-crave-high-4
-              - addiction-stimulant-crave-high-4
-              - addiction-symptom-paranoia-high-0
-              - addiction-symptom-paranoia-high-1
-              - addiction-symptom-paranoia-high-2
-              - addiction-symptom-depression-high-0
-              - addiction-symptom-depression-high-1
-              - addiction-symptom-depression-high-2
-      ## Incrased Hunger
+        messages:
+          priority: 3
+          dataSet: AddictionStimulantCraveHigh
+          visualType: MediumCaution
+      ## Paranoia
+      - min: 20
+        max: 139
+        probability: 0.1
+        rating: 1
+        duration: 18
+        messages:
+          dataSet: AddictionSymptomParanoriaLow
+      - min: 140
+        probability: 0.15
+        rating: 1
+        duration: 20
+        messages:
+          dataSet: AddictionSymptomParanoriaHigh
+          visualType: MediumCaution
+      ## Depression
+      - min: 10
+        max: 129
+        probability: 0.1
+        rating: 1
+        duration: 15
+        messages:
+          dataSet: AddictionSymptomDepressionLow
+      - min: 130
+        probability: 0.15
+        rating: 1
+        duration: 18
+        messages:
+          dataSet: AddictionSymptomDepressionHigh
+          visualType: MediumCaution
+      ## Increased Hunger
       - min: 30
         max: 90
         rating: 10
@@ -72,7 +69,7 @@
       - min: 91
         max: 149
         rating: 40
-        duration: 1
+        duration: 10
         effects:
           - !type:SatiateHunger
             factor: -3

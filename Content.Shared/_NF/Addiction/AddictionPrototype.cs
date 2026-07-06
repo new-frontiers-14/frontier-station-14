@@ -1,6 +1,9 @@
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Dataset;
 using Content.Shared.EntityEffects;
+using Content.Shared.EntityEffects.Effects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -130,15 +133,46 @@ public sealed partial class SymptomEntry
     public EntityEffectCondition[]? Conditions { get; private set; }
 
     [DataField]
+    public SymptomMessageList? Messages = null;
+
+    [DataField]
     public float Probability = 1.0f;
 
     /// <summary>
-    /// List of effects to perform on the entity if this withdrawal entry is chosen
+    /// Optional List of effects to perform on the entity if this withdrawal entry is chosen, typically not specified if only messages are used
     /// </summary>
-    [DataField(required: true)]
-    public EntityEffect[] Effects { get; private set; } = default!;
+    [DataField]
+    public EntityEffect[]? Effects { get; private set; } = default!;
 
 }
+
+[DataDefinition]
+public sealed partial class SymptomMessageList
+{
+    /// <summary>
+    /// Message from the list with the highest priority is displayed
+    /// </summary>
+    [DataField]
+    public int Priority = 1;
+    /// <summary>
+    /// Probability of even showing this message, will fall back to lower priority messages of other symptoms if available
+    /// </summary>
+    [DataField]
+    public float Probability = 1.0f;
+
+    [DataField]
+    public PopupRecipients Type = PopupRecipients.Local;
+
+    [DataField]
+    public PopupType VisualType = PopupType.Medium;
+
+    //one of these next 2 should be defined
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype>? DataSet = null;
+    [DataField]
+    public LocId[]? List = null;
+}
+
 
 public static class SymptomEntryExt
 {

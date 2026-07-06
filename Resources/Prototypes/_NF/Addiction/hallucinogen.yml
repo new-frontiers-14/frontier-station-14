@@ -15,53 +15,75 @@
         rating: 1
         duration: 10
         minTimeSinceHit: 40s
-        effects:
-          - !type:PopupMessage
-            visualType: Medium
-            messages:
-              - addiction-hallucinogen-crave-low-0 #doubling up on specific ones to make them more likely to appear
-              - addiction-hallucinogen-crave-low-0
-              - addiction-hallucinogen-crave-low-1
-              - addiction-hallucinogen-crave-low-1
-              - addiction-hallucinogen-crave-low-2
-              - addiction-hallucinogen-crave-low-2
-              - addiction-hallucinogen-crave-low-3
-              - addiction-hallucinogen-crave-low-3
-              - addiction-hallucinogen-crave-low-4
-              - addiction-hallucinogen-crave-low-4
-              - addiction-symptom-anxiety-low-0
-              - addiction-symptom-anxiety-low-1
-              - addiction-symptom-depression-low-0
-              - addiction-symptom-depression-low-1
-              - addiction-symptom-depression-low-2
-              - addiction-symptom-headache-low-0
-              - addiction-symptom-headache-low-2
+        messages:
+          priority: 2
+          dataSet: AddictionHallucinogenCraveLow
       - min: 30
         probability: 0.2
         rating: 10
         duration: 12
         minTimeSinceHit: 30s
-        effects:
-          - !type:PopupMessage
-            visualType: MediumCaution
-            messages:
-              - addiction-hallucinogen-crave-high-0
-              - addiction-hallucinogen-crave-high-0
-              - addiction-hallucinogen-crave-high-1
-              - addiction-hallucinogen-crave-high-1
-              - addiction-hallucinogen-crave-high-2
-              - addiction-hallucinogen-crave-high-2
-              - addiction-hallucinogen-crave-high-3
-              - addiction-hallucinogen-crave-high-3
-              - addiction-hallucinogen-crave-high-4
-              - addiction-hallucinogen-crave-high-4
-              - addiction-symptom-anxiety-high-0
-              - addiction-symptom-anxiety-high-1
-              - addiction-symptom-depression-high-0
-              - addiction-symptom-depression-high-1
-              - addiction-symptom-depression-high-2
-              - addiction-symptom-headache-high-0
-              - addiction-symptom-headache-high-2
+        messages:
+          priority: 3
+          visualType: MediumCaution
+          dataSet: AddictionHallucinogenCraveHigh
+      # anxiety
+      - min: 10
+        max: 49
+        probability: 0.05
+        rating: 1
+        duration: 8
+        minTimeSinceHit: 30s
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomAnxietyLow
+      - min: 50
+        probability: 0.05
+        rating: 5
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomAnxietyHigh
+      # depression
+      - min: 15
+        max: 54
+        probability: 0.05
+        rating: 1
+        duration: 8
+        minTimeSinceHit: 30s
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomDepressionLow
+      - min: 55
+        probability: 0.05
+        rating: 5
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomDepressionHigh
+      # headaches
+      - min: 20
+        max: 59
+        probability: 0.08
+        rating: 2
+        duration: 8
+        minTimeSinceHit: 30s
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomHeadacheLow
+      - min: 60
+        probability: 0.08
+        rating: 8
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomHeadacheHigh
       # Fatigue after a big high
       - min: 50
         probability: 0.4
