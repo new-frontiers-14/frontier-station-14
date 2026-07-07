@@ -81,8 +81,8 @@
           - !type:SatiateHunger
             factor: -5
       ## Fatigue
-      - min: 60
-        max: 149
+      - min: 30
+        max: 129
         rating: 10
         duration: 4
         repeatable: true
@@ -91,7 +91,7 @@
             effectProto: StatusEffectDrowsiness
             time: 8
             type: Add
-      - min: 150
+      - min: 130
         rating: 50
         duration: 2
         repeatable: true
@@ -104,9 +104,9 @@
             walkSpeedModifier: 0.75 #This should roughly cancel the speed up effect of Desox
             sprintSpeedModifier: 0.75
             statusLifetime: 8
-      - min: 60
+      - min: 30
         max: 89
-        rating: 30
+        rating: 10
         duration: 10
         probability: 0.1
         effects:
