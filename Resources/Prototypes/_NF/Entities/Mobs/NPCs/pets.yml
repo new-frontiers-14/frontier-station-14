@@ -542,3 +542,62 @@
     - horns:
         horns_curled: YipYipHornColors
   - type: CargoSellBlacklist
+
+- type: entity
+  parent: MobMouse
+  id: MobMouse3
+  description: A cute multi-colored mouse companion
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Pets/mouse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-3
+  - type: SpriteMovement
+    sprite: _NF/Mobs/Pets/mouse.rsi
+    movementLayers:
+      movement:
+        state: mouse-moving-3
+    noMovementLayers:
+      movement:
+        state: mouse-3
+  - type: Clothing
+    quickEquip: false
+    sprite: _NF/Mobs/Pets/mouse.rsi
+    equippedPrefix: 3
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    sprite: _NF/Mobs/Pets/mouse.rsi
+    states:
+      Alive:
+        Base: mouse-3
+      Critical:
+        Base: dead-3
+      Dead:
+        Base: splat-3
+  - type: Item
+    size: Tiny
+    heldPrefix: 2
+  - type: Thirst
+    startingThirst: 25  # spawn with Okay thirst state
+    thresholds:
+      OverHydrated: 70
+      Okay: 50
+      Thirsty: 30
+      Parched: 15
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: Hunger
+    thresholds:
+      Overfed: 70
+      Okay: 50
+      Peckish: 30
+      Starving: 15
+      Dead: 0
+    baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
+  - type: NpcFactionMember
+    factions:
+    - PetsNT
+  - type: CargoSellBlacklist
