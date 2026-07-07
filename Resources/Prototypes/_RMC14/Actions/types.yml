@@ -1,0 +1,25 @@
+# Vulpkanin Tail Wagging
+- type: entity
+  parent: ActionToggleWagging
+  id: ActionToggleVulpkaninWagging
+  components:
+  - type: Action
+    icon: { sprite: _RMC14/Mobs/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
+    iconOn: { sprite: _RMC14/Mobs/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
+    itemIconStyle: NoItem
+    useDelay: 1 # Prevents Emote Spam
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+# Felinid Tail Wagging
+- type: entity
+  parent: ActionToggleWagging
+  id: ActionToggleFelinidWagging
+  components:
+  - type: Action
+    icon: { sprite: _RMC14/Mobs/Felinids, state: tail_wag_icon }
+    iconOn: { sprite: _RMC14/Mobs/Felinids, state: tail_wag_icon }
+    itemIconStyle: NoItem
+    useDelay: 1 # Prevents Emote Spam
+  - type: InstantAction
+    event: !type:ToggleActionEvent
