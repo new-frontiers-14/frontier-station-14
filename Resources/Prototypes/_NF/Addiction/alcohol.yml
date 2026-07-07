@@ -15,36 +15,34 @@
         rating: 1
         duration: 10
         minTimeSinceHit: 20s
-        effects:
-          - !type:PopupMessage
-            visualType: Medium
-            messages:
-              - addiction-alcohol-crave-low-0
-              - addiction-alcohol-crave-low-1
-              - addiction-alcohol-crave-low-2
-              - addiction-alcohol-crave-low-3
-              - addiction-alcohol-crave-low-4
-              - addiction-symptom-headache-low-0
-              - addiction-symptom-headache-low-1
-              - addiction-symptom-headache-low-2
+        messages:
+          priority: 2
+          dataSet: AddictionAlcoholCraveLow
       - min: 50
         probability: 0.2
         rating: 10
         duration: 12
         minTimeSinceHit: 20s
-        effects:
-          - !type:PopupMessage
-            visualType: MediumCaution
-            messages:
-              - addiction-alcohol-crave-high-0
-              - addiction-alcohol-crave-high-1
-              - addiction-alcohol-crave-high-2
-              - addiction-alcohol-crave-high-3
-              - addiction-alcohol-crave-high-4
-              - addiction-alcohol-crave-high-5
-              - addiction-symptom-headache-high-0
-              - addiction-symptom-headache-high-1
-              - addiction-symptom-headache-high-2
+        messages:
+          priority: 3
+          visualType: MediumCaution
+          dataSet: AddictionAlcoholCraveHigh
+      #headache
+      - min: 5
+        max: 54
+        probability: 0.1
+        rating: 2
+        duration: 10
+        messages:
+          dataSet: AddictionSymptomHeadacheLow
+      - min: 55
+        probability: 0.1
+        rating: 10
+        duration: 10
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomHeadacheHigh
 
       #nausea
       - min: 10
@@ -53,23 +51,15 @@
         rating: 15
         duration: 6
         effects:
-        - !type:PopupMessage
-          visualType: Medium
-          messages:
-            - generic-reagent-effect-nauseous
-            - addiction-symptom-nausea-low-0
-            - addiction-symptom-nausea-low-1
+        messages:
+          dataSet: AddictionSymptomNauseaLow
       - min: 60
         probability: 0.2
         rating: 30
         duration: 5
-        effects:
-        - !type:PopupMessage
+        messages:
           visualType: MediumCaution
-          messages:
-            - generic-reagent-effect-nauseous
-            - addiction-symptom-nausea-high-0
-            - addiction-symptom-nausea-high-1
+          dataSet: AddictionSymptomNauseaHigh
       - min: 45
         max: 89
         rating: 90
