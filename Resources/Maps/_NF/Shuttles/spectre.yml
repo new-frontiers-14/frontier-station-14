@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 07/06/2026 16:06:56
-  entityCount: 1488
+  time: 07/07/2026 15:03:12
+  entityCount: 1490
 maps: []
 grids:
 - 3
@@ -4086,6 +4086,12 @@ entities:
       parent: 3
 - proto: EmergencyLight
   entities:
+  - uid: 234
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,1.5
+      parent: 3
   - uid: 724
     components:
     - type: Transform
@@ -4107,8 +4113,14 @@ entities:
   - uid: 807
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -13.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: -11.5,1.5
+      parent: 3
+  - uid: 898
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 14.5,-3.5
       parent: 3
   - uid: 998
     components:
@@ -4137,19 +4149,13 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -11.5,-3.5
-      parent: 3
-  - uid: 1289
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 14.5,0.5
+      pos: -9.5,-2.5
       parent: 3
   - uid: 1290
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 12.5,-3.5
+      rot: -1.5707963267948966 rad
+      pos: 12.5,5.5
       parent: 3
   - uid: 1292
     components:
@@ -4201,14 +4207,20 @@ entities:
   - uid: 1405
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -11.5,5.5
       parent: 3
-  - uid: 1406
+  - uid: 1486
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 12.5,5.5
+      rot: 1.5707963267948966 rad
+      pos: 10.5,-2.5
+      parent: 3
+  - uid: 1487
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -13.5,-3.5
       parent: 3
 - proto: ExosuitFabricator
   entities:
@@ -7343,12 +7355,6 @@ entities:
       parent: 3
 - proto: PoweredSmallLight
   entities:
-  - uid: 234
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -11.5,5.5
-      parent: 3
   - uid: 665
     components:
     - type: Transform
@@ -7366,12 +7372,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 16.5,-2.5
       parent: 3
-  - uid: 898
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 12.5,5.5
-      parent: 3
   - uid: 1190
     components:
     - type: Transform
@@ -7384,6 +7384,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,11.5
       parent: 3
+  - uid: 1289
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -11.5,5.5
+      parent: 3
   - uid: 1299
     components:
     - type: Transform
@@ -7395,6 +7401,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,8.5
+      parent: 3
+  - uid: 1406
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,5.5
       parent: 3
 - proto: Protolathe
   entities:
@@ -8019,14 +8031,14 @@ entities:
       linkedPorts:
         1382:
         - - On
-          - Reverse
-        - - Off
           - Forward
+        - - Off
+          - Reverse
         1381:
         - - On
-          - Reverse
-        - - Off
           - Forward
+        - - Off
+          - Reverse
     - type: Fixtures
       fixtures: {}
 - proto: SignAnomaly
