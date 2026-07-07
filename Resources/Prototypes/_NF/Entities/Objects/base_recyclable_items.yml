@@ -2,7 +2,7 @@
 # and occasionally ignores item sizes too (e.g., the toolbox is a ginormous item but is treated as a RecyclableItemSteelMedium nonetheless).
 # Item sizes: Tiny, Small, Medium (Normal), Large, Huge, Ginormous
 
-# region No materials
+# No materials
 - type: entity
   id: RecyclableItemNoMats
   abstract: true
@@ -13,7 +13,7 @@
     - Trash
     - Recyclable
 
-# region Cardboard
+# Cardboard
 - type: entity # Boxes
   id: RecyclableItemCardboard
   abstract: true
@@ -22,7 +22,7 @@
     materialComposition:
       Cardboard: 100
 
-# region Paper
+# Paper
 - type: entity # Books
   id: RecyclableItemPaper
   abstract: true
@@ -31,7 +31,7 @@
     materialComposition:
       Paper: 50
 
-# region Glass
+# Glass
 ## Tiny
 - type: entity # Dropper etc
   id: RecyclableItemGlassTiny
@@ -41,7 +41,7 @@
     materialComposition:
       Glass: 10
 
-# region Steel
+# Steel
 ## Tiny
 - type: entity # Flares idk
   id: RecyclableItemSteelTiny
@@ -72,7 +72,7 @@
       Steel: 150
       RawScrap: 50
 
-# region Plastic
+# Plastic
 ## Tiny
 - type: entity # Pill canisters, swabs, dice, capacitors etc.
   id: RecyclableItemPlasticTiny
@@ -102,7 +102,7 @@
       Plastic: 50
       RawScrap: 10
 
-# region Simple Devices
+# Simple Devices
 ## Tiny
 - type: entity # Machine parts, encryption keys etc
   id: RecyclableItemDeviceTiny
@@ -128,7 +128,7 @@
       RawScrap: 25
       RawScrapTech: 25
 
-# region Complex Devices
+# Complex Devices
 ## Normal
 - type: entity # Flatpacks etc
   id: RecyclableItemDeviceComplexNormal
@@ -143,7 +143,7 @@
       RawScrap: 100
       RawScrapTech: 20
 
-# region Organic
+# Organic
 ## Tiny
 - type: entity # Soap, candles, seeds etc
   id: RecyclableItemOrganicTiny
@@ -153,7 +153,7 @@
     materialComposition:
       Biomass: 1
 
-# region Wood
+# Wood
 ## Medium
 - type: entity # Musical instruments etc
   id: RecyclableItemWoodMedium
