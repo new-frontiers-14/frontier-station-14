@@ -4,7 +4,8 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
-using Content.Shared.Movement.Components; // Frontier
+using Content.Shared.Movement.Components;
+using Content.Shared.Stunnable; // Frontier: wheelchair users can crawl
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -13,6 +14,7 @@ public sealed class LegsParalyzedSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingSystem = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!; // Frontier: wheelchair users can crawl
 
     public override void Initialize()
     {
@@ -21,13 +23,14 @@ public sealed class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
-        SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
+        //SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent); // Frontier: wheelchair users can crawl
+        SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandAttemptEvent); // Frontier: wheelchair users can crawl
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
     {
         // TODO: In future probably must be surgery related wound
-        _movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);
+        _movementSpeedModifierSystem.ChangeBaseSpeed(uid, 1.5f, 2.5f, MovementSpeedModifierComponent.DefaultAcceleration); // Frontier: wheelchair users can crawl
     }
 
     private void OnShutdown(EntityUid uid, LegsParalyzedComponent component, ComponentShutdown args)
@@ -43,19 +46,29 @@ public sealed class LegsParalyzedSystem : EntitySystem
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
     {
-        _standingSystem.Down(uid);
+        _standingSystem.Down(uid, true, false, false); // Frontier: wheelchair users can crawl
+        _stunSystem.TryCrawling(uid); // Frontier: wheelchair users can crawl
     }
 
-    private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
-    {
-        if (HasComp<RelayInputMoverComponent>(uid)) // Frontier: allow relaying input with paralyzed legs
-            return; // Frontier: allow relaying input with paralyzed legs
-
-        args.Cancel();
-    }
+    // Start Frontier: wheelchair users can crawl
+    // private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
+    // {
+    //     if (HasComp<RelayInputMoverComponent>(uid)) // Frontier: allow relaying input with paralyzed legs
+    //         return; // Frontier: allow relaying input with paralyzed legs
+    //
+    //     args.Cancel();
+    // }
+    // End Frontier: wheelchair users can crawl
 
     private void OnThrowPushbackAttempt(EntityUid uid, LegsParalyzedComponent component, ThrowPushbackAttemptEvent args)
     {
         args.Cancel();
     }
+
+    // Frontier: wheelchair users can crawl
+    private void OnStandAttemptEvent(EntityUid uid, LegsParalyzedComponent component, StandAttemptEvent args)
+    {
+        args.Cancel();
+    }
+    // End Frontier: wheelchair users can crawl
 }
