@@ -284,9 +284,10 @@
 
 - type: entity
   name: J.R.P.A.C.M.A.N. portable generator # Frontier: no -type
+   # Frontier - This is a small generator that can be used to power a single room. It runs on welding fuel and has a maximum output of 15 kW. It is suitable for ages 3 and up. < A small generator capable of powering individual rooms, in case of emergencies. Runs off welding fuel or ethanol and is rated for up to 15 kW. Rated ages 3 and up.
   description: |-
     A small generator capable of powering individual rooms, in case of emergencies.
-    Runs off welding fuel and is rated for up to 15 kW.
+    Runs off welding fuel or ethanol and is rated for up to 15 kW.
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
@@ -341,10 +342,11 @@
       solution: tank
       reagents:
         WeldingFuel: 1
+        Ethanol: 0.8 #Frontier Addition of Ethanol to the fuel list. 0.8 is the burn rate multiplier for ethanol.
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 200 # Frontier - 50<200
+          maxVol: 1000 # Frontier - 50<200<1000
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
