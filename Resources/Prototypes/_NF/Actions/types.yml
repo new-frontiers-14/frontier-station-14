@@ -27,9 +27,8 @@
   description: Toggle your accent.
   components:
     - type: Action
-      #TODO: Repalce these with more specific sprites instead of just using cogni sprites
-      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: normal_accent_disabled}
-      iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_accent_enabled}
+      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: accent_disabled}
+      iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: normal_accent_enabled}
       useDelay: 1
     - type: InstantAction
       event: !type:ToggleAccentActionEvent
@@ -41,5 +40,5 @@
   description: Toggle your pre-sapiance accent.
   components:
     - type: Action
-      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_accent_disabled}
+      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: accent_disabled}
       iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_accent_enabled}
