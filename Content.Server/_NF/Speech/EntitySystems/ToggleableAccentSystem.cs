@@ -131,6 +131,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
         newComp.IsAccentActive = startActive;
         newComp.ReplacementAccentPrototypeName = replacementAccentProtoId;
         newComp.RemovalBehavior = removalBehavior;
+        newComp.ActionPrototype = actionProtoId;
         _entityManager.AddComponent(accentHolder, newComp);
         return true;
     }
