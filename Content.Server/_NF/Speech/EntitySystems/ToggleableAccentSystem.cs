@@ -54,7 +54,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// </summary>
     /// <remarks>
     /// I wanted to make sure that you could add this in YAML without it breaking, allowing entities to have a toggleable
-    /// accent from the start. This handles everything that isn't adding the component.
+    /// accent from the start. This handles everything that isn't adding the component or setting component values.
     /// </remarks>
     private void OnComponentInit(EntityUid ent, ToggleableAccentComponent comp, ComponentInit eventArts)
     {
@@ -170,8 +170,5 @@ public sealed class ToggleableAccentSystem : EntitySystem
 
         comp.IsAccentActive = false;
     }
-
-
-
 
 }

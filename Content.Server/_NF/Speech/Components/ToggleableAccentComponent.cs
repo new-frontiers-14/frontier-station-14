@@ -2,7 +2,6 @@ using Content.Server._NF.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._NF.Speech.Components;
 
@@ -31,12 +30,18 @@ public sealed partial class ToggleableAccentComponent : Component
     [DataField]
     public ProtoId<ReplacementAccentPrototype>? ReplacementAccentPrototypeName = null;
 
+    /// <summary>
+    /// What should happen to the accent if this component was removed. See OnRemovalBehavior for descriptions of what the
+    /// behaviors do.
+    /// </summary>
+    /// <remarks>
+    /// This defaults to remove, but should preferably always be set in YAML. If this comp is added through MakeAccentToggleable,
+    /// it will always have this value overriden.
+    /// </remarks>>
     [DataField]
     public OnRemovalBehavior RemovalBehavior;
 
-    /// <summary>
-    /// What should happen to the accent if this component was removed.
-    /// </summary>
+
     public enum OnRemovalBehavior
     {
         Add, //If the component is removed, the accent will be added
