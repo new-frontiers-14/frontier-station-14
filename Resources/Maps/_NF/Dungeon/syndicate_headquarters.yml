@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 07/01/2026 11:19:19
+  time: 07/08/2026 20:21:44
   entityCount: 1974
 maps:
 - 588
@@ -3144,57 +3144,38 @@ entities:
     - type: Transform
       pos: 3.5,34.5
       parent: 588
-- proto: BlastDoorExterior1
+- proto: BlastDoorOpen
   entities:
   - uid: 296
     components:
     - type: Transform
-      pos: 31.5,8.5
+      pos: 27.5,8.5
       parent: 588
   - uid: 297
     components:
     - type: Transform
-      pos: 31.5,7.5
+      pos: 27.5,9.5
       parent: 588
   - uid: 299
     components:
     - type: Transform
-      pos: 27.5,9.5
+      pos: 31.5,8.5
       parent: 588
   - uid: 301
     components:
     - type: Transform
-      pos: 27.5,7.5
+      pos: 31.5,7.5
       parent: 588
   - uid: 302
     components:
     - type: Transform
-      pos: 31.5,9.5
+      pos: 27.5,7.5
       parent: 588
   - uid: 303
     components:
     - type: Transform
-      pos: 27.5,8.5
+      pos: 31.5,9.5
       parent: 588
-- proto: BlastDoorExterior2Open
-  entities:
-  - uid: 1909
-    components:
-    - type: Transform
-      pos: 18.5,34.5
-      parent: 588
-  - uid: 1910
-    components:
-    - type: Transform
-      pos: 18.5,35.5
-      parent: 588
-  - uid: 1911
-    components:
-    - type: Transform
-      pos: 18.5,36.5
-      parent: 588
-- proto: BlastDoorOpen
-  entities:
   - uid: 611
     components:
     - type: Transform
@@ -3204,6 +3185,21 @@ entities:
     components:
     - type: Transform
       pos: 10.5,1.5
+      parent: 588
+  - uid: 913
+    components:
+    - type: Transform
+      pos: 18.5,36.5
+      parent: 588
+  - uid: 914
+    components:
+    - type: Transform
+      pos: 18.5,35.5
+      parent: 588
+  - uid: 1017
+    components:
+    - type: Transform
+      pos: 18.5,34.5
       parent: 588
 - proto: BodyBagFolded
   entities:
@@ -8053,6 +8049,36 @@ entities:
       parent: 588
 - proto: LockerSyndicate
   entities:
+  - uid: 1043
+    components:
+    - type: Transform
+      pos: 24.5,10.5
+      parent: 588
+  - uid: 1044
+    components:
+    - type: Transform
+      pos: 24.5,6.5
+      parent: 588
+  - uid: 1045
+    components:
+    - type: Transform
+      pos: 4.5,0.5
+      parent: 588
+  - uid: 1046
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 588
+  - uid: 1047
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 588
+  - uid: 1048
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 588
   - uid: 1254
     components:
     - type: Transform
@@ -10811,32 +10837,16 @@ entities:
       parent: 588
     - type: Fixtures
       fixtures: {}
-- proto: SignalButtonExt1
-  entities:
-  - uid: 913
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 31.5,6.5
-      parent: 588
-    - type: Fixtures
-      fixtures: {}
-  - uid: 914
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 27.5,6.5
-      parent: 588
-    - type: Fixtures
-      fixtures: {}
-  - uid: 1017
+  - uid: 1913
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 31.5,6.5
+      pos: 18.5,34.5
       parent: 588
     - type: Fixtures
       fixtures: {}
+- proto: SignalButtonDirectional
+  entities:
   - uid: 1181
     components:
     - type: Transform
@@ -10845,13 +10855,27 @@ entities:
       parent: 588
     - type: Fixtures
       fixtures: {}
-- proto: SignalButtonExt2
-  entities:
-  - uid: 1913
+  - uid: 1909
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 27.5,6.5
+      parent: 588
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1910
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 18.5,34.5
+      pos: 31.5,6.5
+      parent: 588
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1911
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 31.5,6.5
       parent: 588
     - type: Fixtures
       fixtures: {}
@@ -12321,38 +12345,6 @@ entities:
     components:
     - type: Transform
       pos: 19.5,32.5
-      parent: 588
-- proto: SuitStorageEVASyndicateLesser
-  entities:
-  - uid: 1043
-    components:
-    - type: Transform
-      pos: 24.5,10.5
-      parent: 588
-  - uid: 1044
-    components:
-    - type: Transform
-      pos: 24.5,6.5
-      parent: 588
-  - uid: 1045
-    components:
-    - type: Transform
-      pos: 4.5,0.5
-      parent: 588
-  - uid: 1046
-    components:
-    - type: Transform
-      pos: 5.5,0.5
-      parent: 588
-  - uid: 1047
-    components:
-    - type: Transform
-      pos: 0.5,0.5
-      parent: 588
-  - uid: 1048
-    components:
-    - type: Transform
-      pos: 1.5,0.5
       parent: 588
 - proto: SurveillanceCameraGeneral
   entities:

@@ -2,11 +2,9 @@
   id: TableDungeonLootSyndicateSuitStorageUnits
   table: !type:GroupSelector
     children:
-    - weight: 50
-      id: SuitStorageEVASyndicateLesser
-    - weight: 40
+    - weight: 87
       id: SuitStorageEVASyndicate
-    - weight: 7
+    - weight: 10
       id: SuitStorageSyndie
     - weight: 3
       id: SuitStorageEVACarp # Carp'd again
@@ -15,15 +13,15 @@
   id: TableDungeonLootGeneralVendomatsSyndicate
   table: !type:GroupSelector
     children:
-    - weight: 30
+    - weight: 10
       id: VendingMachineCigs
-    - weight: 30
+    - weight: 37
       id: SyndicateVendingMachinePosterPrinter
-    - weight: 25
+    - weight: 35
       id: VendingMachineSyndieDrobe
     - weight: 10
       id: VendingMachineArcadia
-    - weight: 5
+    - weight: 8
       id: VendingMachineSyndieContraband
 
 - type: entityTable
@@ -39,10 +37,8 @@
   id: TableDungeonLootBarVendomatsSyndicate
   table: !type:GroupSelector
     children:
-    - weight: 70
-      id: VendingMachineBooze
-    - weight: 30
-      id: VendingMachineBoozeSyndicate
+    - id: VendingMachineBooze
+    - id: VendingMachineBoozeSyndicate
 
 - type: entityTable
   id: TableDungeonLootElectricRangeSyndicate
@@ -57,11 +53,11 @@
   id: TableDungeonLootCratesSyndicate
   table: !type:GroupSelector
     children:
-    - weight: 5 # Empty
+    - weight: 5 # Empty crate
       id: CrateSyndicate
-    - weight: 5 # Empty
+    - weight: 5 # Empty crate
       id: CrateSyndicateSecure
-    - weight: 10 # Fake, 20% chance total to be either empty or a trap
+    - weight: 10 # Trapped crate
       id: CrateSyndicateTrapped
     - weight: 25
       id: CrateSyndicatePlushies
@@ -80,7 +76,7 @@
   id: TableDungeonLootCratesSyndicateSecure # Similar to above, but only secure crates
   table: !type:GroupSelector
     children:
-    - weight: 10 # Still has a chance to be trapped
+    - weight: 10 # Trapped crate
       id: CrateSyndicateTrapped
     - weight: 45
       id: CrateSyndicateRandom
