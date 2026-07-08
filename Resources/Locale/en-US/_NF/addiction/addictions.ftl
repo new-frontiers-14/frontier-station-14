@@ -1,6 +1,6 @@
 # Generic symptoms shared by addictions
-addiction-symptom-nausea-low-1 = You tummy doesn't feel good.
-addiction-symptom-nausea-low-2 = You stomach is a little upset.
+addiction-symptom-nausea-low-1 = Your tummy doesn't feel good.
+addiction-symptom-nausea-low-2 = Your stomach is a little upset.
 addiction-symptom-nausea-high-1 = You're on the verge of vomiting.
 addiction-symptom-nausea-high-2 = You throw-up a little in your mouth.
 
@@ -80,4 +80,3 @@ addiction-hallucinogen-crave-high-1 = Reality is pain. {$lastReagent} is pleasan
 addiction-hallucinogen-crave-high-2 = Nothing but {$lastReagent} really matters.
 addiction-hallucinogen-crave-high-3 = Should take a hit of {$lastReagent} for some good times.
 addiction-hallucinogen-crave-high-4 = This isn't real. You should take something to see reality.
-addiction-hallucinogen-crave-high-5 = Where is that sweet alcohol? You could use it now.
