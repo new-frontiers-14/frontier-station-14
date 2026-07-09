@@ -96,6 +96,7 @@ guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-pulsar = Pulsar
 guide-entry-shipyard-retort = Retort
 guide-entry-shipyard-skipper = Skipper
+guide-entry-shipyard-spectre = Spectre
 guide-entry-shipyard-stellaris = Stellaris
 guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-vagabond = Vagabond
@@ -111,6 +112,7 @@ guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-tyne = Tyne
 guide-entry-shipyard-vitalis = Vitalis
+guide-entry-shipyard-voltage = Voltage
 
 # Frontier Staff Shipyard entries
 guide-entry-shipyard-broom = Broom
