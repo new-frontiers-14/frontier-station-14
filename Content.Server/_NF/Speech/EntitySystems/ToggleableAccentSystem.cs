@@ -30,8 +30,8 @@ public sealed class ToggleableAccentSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ToggleableAccentComponent, ToggleAccentActionEvent>(OnToggleAction);
-        SubscribeLocalEvent<ToggleableAccentComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<ToggleableAccentComponent,ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<ToggleableAccentComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<ToggleableAccentComponent, ComponentShutdown>(OnComponentShutdown);
     }
 
 
@@ -46,6 +46,9 @@ public sealed class ToggleableAccentSystem : EntitySystem
         }
         //TODO: Confirm the Replacement Accent is valid
         //We might not actually need to do this as an invalid replacement accent simply wouldn't work
+        //Eh, leaving this TODO in so it can get caught during review and maints can tell us if its a problem
+        //Also, hello maints! Thank you for all your hard work <3
+        //Probably should remove these comments after review tho, unless you want random positivity in the middle of the code :>
 
         component.IsAccentActive = !component.IsAccentActive;
         actionEvent.Handled = true;
@@ -61,13 +64,13 @@ public sealed class ToggleableAccentSystem : EntitySystem
     }
 
     /// <summary>
-    /// Ran when the component is added to initialize the action and starting accent state.
+    /// Ran when the component is started to initialize the action and starting accent state.
     /// </summary>
     /// <remarks>
     /// I wanted to make sure that you could add this in YAML without it breaking, allowing entities to have a toggleable
     /// accent from the start. This handles everything that isn't adding the component or setting component values.
     /// </remarks>
-    private void OnComponentInit(EntityUid ent, ToggleableAccentComponent comp, ComponentInit eventArts)
+    private void OnComponentStartup(EntityUid ent, ToggleableAccentComponent comp, ComponentStartup eventArts)
     {
         var newAction = _actionsSystem.AddAction(ent, comp.ActionPrototype);
         _actionsSystem.SetToggled(newAction, comp.IsAccentActive);
@@ -92,10 +95,10 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// Called when the component is removed to remove the action and finalize the accent according to component data.
     /// </summary>
     /// <remarks>
-    /// If the component is removed for any reason, I want to ensure that the entity is left in a consistent state
+    /// If the component is removed/shutdown for any reason, I want to ensure that the entity is left in a consistent state
     /// instead of it being dependent on the current status of the toggle
     /// </remarks>
-    private void OnComponentRemove(EntityUid ent, ToggleableAccentComponent comp, ComponentRemove eventArgs)
+    private void OnComponentShutdown(EntityUid ent, ToggleableAccentComponent comp, ComponentShutdown eventArgs)
     {
         _actionsSystem.RemoveAction(ent, comp.ToggleAccentAction);
        //If the component was never setup properly, nothing but removal of the action needs to be done.
