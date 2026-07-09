@@ -32,7 +32,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Server.GameObjects;
-using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Hands.EntitySystems; // Frontier
 using Content.Server._NF.CryoSleep; // Frontier
 
 namespace Content.Server.Carrying
