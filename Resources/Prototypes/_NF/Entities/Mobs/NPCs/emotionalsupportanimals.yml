@@ -38,6 +38,43 @@
     - MedicalTrackingImplant
 
 - type: entity
+  id: BaseEmotionalSmallGhost
+  abstract: true
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    prototype: EmotionalSupportPet
+    mindRoles:
+    - MindRoleGhostRoleEmotionalSupportPet
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: epicene
+  - type: IdExaminable
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: Inventory
+    templateId: nfpet
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+
+- type: entity
   id: BaseEmotionalGhostCat
   parent: BaseEmotionalGhost
   abstract: true
@@ -193,7 +230,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobChicken]
+  parent: [BaseEmotionalSmallGhost, MobChicken]
   id: MobChickenGhost
   components:
   - type: ReplacementAccent
@@ -247,7 +284,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobHamster]
+  parent: [BaseEmotionalSmallGhost, MobHamster]
   id: MobHamsterGhost
   components:
   - type: RandomMetadata
@@ -257,7 +294,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobParrotNF]
+  parent: [BaseEmotionalSmallGhost, MobParrotNF]
   id: MobParrotGhost
   components:
   - type: RandomMetadata
@@ -267,7 +304,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobMouse3]
+  parent: [BaseEmotionalSmallGhost, MobMouse3]
   id: MobMouseGhost
   components:
   - type: RandomMetadata
