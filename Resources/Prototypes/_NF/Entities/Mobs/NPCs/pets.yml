@@ -552,10 +552,9 @@
     drawdepth: SmallMobs
     sprite: _NF/Mobs/Pets/mouse.rsi
     layers:
-    - map: ["movement"]
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-3
   - type: SpriteMovement
-    sprite: _NF/Mobs/Pets/mouse.rsi
     movementLayers:
       movement:
         state: mouse-moving-3
@@ -569,7 +568,6 @@
     slots:
     - HEAD
   - type: DamageStateVisuals
-    sprite: _NF/Mobs/Pets/mouse.rsi
     states:
       Alive:
         Base: mouse-3
