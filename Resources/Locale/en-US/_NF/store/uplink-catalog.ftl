@@ -354,6 +354,9 @@ uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing y
 uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
 uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
+uplink-pirate-yarrmag-name = Yarrmag
+uplink-pirate-yarrmag-captain-desc = A disposable card made by the Freebooters to hack devices. Works one time.
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.

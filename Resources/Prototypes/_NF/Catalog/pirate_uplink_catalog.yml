@@ -605,3 +605,23 @@
           - PirateUplink
   categories:
   - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateYarrmag
+  name:  uplink-pirate-yarrmag-name
+  description: uplink-pirate-yarrmag-captain-desc
+  productEntity: Yarrmag
+  icon: { sprite: _NF/Objects/Tools/yarrmag.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - NFPirateCaptain
+    - NFPirateFirstMate
