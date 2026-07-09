@@ -92,6 +92,24 @@
         prob: 0.2
 
 - type: entity
+  id: BoxFolderMixedPapers
+  parent: BoxFolderGrey
+  suffix: Mixed Papers, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Paper
+    - id: PaperOffice
+    - id: NFBusinessCardBlank
+    - id: PaperCaptainsThoughts
+    - id: PaperColoredRed
+    - id: PaperColoredOrange
+    - id: PaperColoredYellow
+    - id: PaperColoredGreen
+    - id: PaperColoredBlue
+    - id: PaperColoredPurple
+
+- type: entity
   id: PaperDeadDropHint
   parent: Paper
   name: suspicious note
