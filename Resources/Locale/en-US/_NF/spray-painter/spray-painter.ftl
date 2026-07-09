@@ -23,6 +23,7 @@ spray-painter-style-locker-fsb = FSB
 spray-painter-style-locker-syndicate = Syndicate
 
 spray-painter-style-closet-internals = Internals (universal)
+spray-painter-style-closet-syndicate = Syndicate
 
 spray-painter-style-wallcloset-internals = Internals (universal)
 
@@ -51,8 +52,8 @@ spray-painter-style-canisters-helium = Helium
 # Docking Airlocks
 spray-painter-tab-category-docking = Docking
 
-spray-painter-tab-group-dockingstandard = Standard
-spray-painter-tab-group-dockingglass = Glass
+spray-painter-tab-group-dockingstandard = Standard (Dock)
+spray-painter-tab-group-dockingglass = Glass (Dock)
 
 spray-painter-style-dockingstandard-basic = Basic
 spray-painter-style-dockingstandard-nfsd = NFSD
