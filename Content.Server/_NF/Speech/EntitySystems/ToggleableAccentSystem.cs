@@ -1,5 +1,6 @@
 using Content.Server._NF.Speech.Components;
 using Content.Server.Actions;
+using Content.Server.Popups;
 using Content.Shared._NF.Speech.Events;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.Prototypes;
@@ -14,9 +15,10 @@ namespace Content.Server._NF.Speech.EntitySystems;
 public sealed class ToggleableAccentSystem : EntitySystem
 {
 
-    [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IComponentFactory _componentFactory = default!;
-    [Dependency] private ActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly ActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     public readonly EntProtoId CognizineToggleActionPrototypeId = "ActionToggleCogniAccent";
     //There is one case where this would need to be accessed from another class, so I want to make sure we have as few magic strings
@@ -36,6 +38,15 @@ public sealed class ToggleableAccentSystem : EntitySystem
 
     private void OnToggleAction(EntityUid uid, ToggleableAccentComponent component, ToggleAccentActionEvent actionEvent)
     {
+        if (component.AccentComponentName == "" || component is { AccentComponentName: "ReplacementAccent", ReplacementAccentPrototypeName: "" })
+        {
+            //Component wasn't setup properly, give the user a notification and don't do anything else.
+            _popupSystem.PopupCursor(Loc.GetString("toggleable-accent-misconfigured-popup"), uid);
+            return;
+        }
+        //TODO: Confirm the Replacement Accent is valid
+        //We might not actually need to do this as an invalid replacement accent simply wouldn't work
+
         component.IsAccentActive = !component.IsAccentActive;
         actionEvent.Handled = true;
         actionEvent.Toggle = true;
@@ -58,6 +69,14 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// </remarks>
     private void OnComponentInit(EntityUid ent, ToggleableAccentComponent comp, ComponentInit eventArts)
     {
+        var newAction = _actionsSystem.AddAction(ent, comp.ActionPrototype);
+        _actionsSystem.SetToggled(newAction, comp.IsAccentActive);
+        comp.ToggleAccentAction = newAction;
+        //If the component is added without proper YAML fill outs or via admin intervention, this field will be blank.
+        //If it is, then there is no accent to toggle, so we just don't bother setting its initial state.
+        if (comp.AccentComponentName == "")
+            return;
+
         if (comp.IsAccentActive)
         {
             ApplyAccent(ent, comp);
@@ -66,9 +85,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
         {
             RemoveAccent(ent, comp);
         }
-        var newAction = _actionsSystem.AddAction(ent, comp.ActionPrototype);
-        _actionsSystem.SetToggled(newAction, comp.IsAccentActive);
-        comp.ToggleAccentAction = newAction;
+
     }
 
     ///<summary>
@@ -80,6 +97,11 @@ public sealed class ToggleableAccentSystem : EntitySystem
     /// </remarks>
     private void OnComponentRemove(EntityUid ent, ToggleableAccentComponent comp, ComponentRemove eventArgs)
     {
+        _actionsSystem.RemoveAction(ent, comp.ToggleAccentAction);
+       //If the component was never setup properly, nothing but removal of the action needs to be done.
+        if (comp.AccentComponentName == "")
+            return;
+
         switch (comp.RemovalBehavior)
         {
             case ToggleableAccentComponent.OnRemovalBehavior.Add:
@@ -89,8 +111,6 @@ public sealed class ToggleableAccentSystem : EntitySystem
                 RemoveAccent(ent, comp);
                 break;
         }
-        _actionsSystem.RemoveAction(ent, comp.ToggleAccentAction);
-
     }
 
     /// <summary>

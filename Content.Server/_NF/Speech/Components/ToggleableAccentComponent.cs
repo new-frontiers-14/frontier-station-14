@@ -2,6 +2,7 @@ using Content.Server._NF.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._NF.Speech.Components;
 
@@ -24,11 +25,20 @@ public sealed partial class ToggleableAccentComponent : Component
     [DataField]
     public bool IsAccentActive;
 
+    /// <remarks>
+    /// This field is initialized to an empty string to allow the system to detect and not explode when the component is added
+    /// without being setup completely, like through admin intervention.
+    /// </remarks>
     [DataField(customTypeSerializer: typeof(ComponentNameSerializer))]
-    public string AccentComponentName;
+    public string AccentComponentName = "";
 
-    [DataField]
-    public ProtoId<ReplacementAccentPrototype>? ReplacementAccentPrototypeName = null;
+    /// <remarks>
+    /// This field is initialized to an empty string to allow the system to detect and not explode when the component is added
+    /// without being setup completely, like through admin intervention.
+    /// </remarks>
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReplacementAccentPrototype>))]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string? ReplacementAccentPrototypeName = "";
 
     /// <summary>
     /// What should happen to the accent if this component was removed. See OnRemovalBehavior for descriptions of what the
@@ -39,7 +49,7 @@ public sealed partial class ToggleableAccentComponent : Component
     /// it will always have this value overriden.
     /// </remarks>>
     [DataField]
-    public OnRemovalBehavior RemovalBehavior;
+    public OnRemovalBehavior RemovalBehavior = OnRemovalBehavior.Remove;
 
 
     public enum OnRemovalBehavior
