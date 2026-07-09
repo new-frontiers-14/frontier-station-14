@@ -32,7 +32,8 @@ using Content.Shared.Storage;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Server.GameObjects;
-using Content.Shared.Hands.EntitySystems; // Frontier
+using Content.Shared.Hands.EntitySystems;
+using Content.Server._NF.CryoSleep; // Frontier
 
 namespace Content.Server.Carrying
 {
@@ -78,7 +79,15 @@ namespace Content.Server.Carrying
             SubscribeLocalEvent<BeingCarriedComponent, StrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<BeingCarriedComponent, UnstrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<BeingCarriedComponent, CryosleepEnterEvent>(OnCarriedCryoEnter); //Frontier
         }
+
+        //Frontier Begin - Remove virtual item when cryosleeping held character
+        private void OnCarriedCryoEnter(Entity<BeingCarriedComponent> ent, ref CryosleepEnterEvent args)
+        {
+            DropCarried(ent.Comp.Carrier, ent);
+        }
+        //Frontier End
 
         private void AddCarryVerb(EntityUid uid, CarriableComponent component, GetVerbsEvent<AlternativeVerb> args)
         {
