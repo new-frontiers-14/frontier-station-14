@@ -552,7 +552,7 @@
     drawdepth: SmallMobs
     sprite: _NF/Mobs/Pets/mouse.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: ["movement"]
       state: mouse-3
   - type: SpriteMovement
     sprite: _NF/Mobs/Pets/mouse.rsi
@@ -581,7 +581,6 @@
     size: Tiny
     heldPrefix: 3
   - type: Hunger
-    startingHunger: 70
     thresholds:
       Overfed: 100
       Okay: 50
@@ -590,7 +589,7 @@
       Dead: 0
     baseDecayRate: 0.00925925925926
   - type: Thirst
-    startingThirst: 70
+    startingThirst: 150
     thresholds:
       OverHydrated: 200
       Okay: 150
