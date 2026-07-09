@@ -5,6 +5,7 @@ using Content.Shared._NF.Speech.Events;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.Prototypes;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
@@ -15,10 +16,11 @@ namespace Content.Server._NF.Speech.EntitySystems;
 public sealed class ToggleableAccentSystem : EntitySystem
 {
 
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly ActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public readonly EntProtoId CognizineToggleActionPrototypeId = "ActionToggleCogniAccent";
     //There is one case where this would need to be accessed from another class, so I want to make sure we have as few magic strings
@@ -38,17 +40,12 @@ public sealed class ToggleableAccentSystem : EntitySystem
 
     private void OnToggleAction(EntityUid uid, ToggleableAccentComponent component, ToggleAccentActionEvent actionEvent)
     {
-        if (component.AccentComponentName == "" || component is { AccentComponentName: "ReplacementAccent", ReplacementAccentPrototypeName: "" })
+        if (!Validate(component))
         {
             //Component wasn't setup properly, give the user a notification and don't do anything else.
             _popupSystem.PopupCursor(Loc.GetString("toggleable-accent-misconfigured-popup"), uid);
             return;
         }
-        //TODO: Confirm the Replacement Accent is valid
-        //We might not actually need to do this as an invalid replacement accent simply wouldn't work
-        //Eh, leaving this TODO in so it can get caught during review and maints can tell us if its a problem
-        //Also, hello maints! Thank you for all your hard work <3
-        //Probably should remove these comments after review tho, unless you want random positivity in the middle of the code :>
 
         component.IsAccentActive = !component.IsAccentActive;
         actionEvent.Handled = true;
@@ -77,7 +74,7 @@ public sealed class ToggleableAccentSystem : EntitySystem
         comp.ToggleAccentAction = newAction;
         //If the component is added without proper YAML fill outs or via admin intervention, this field will be blank.
         //If it is, then there is no accent to toggle, so we just don't bother setting its initial state.
-        if (comp.AccentComponentName == "")
+        if (!Validate(comp))
             return;
 
         if (comp.IsAccentActive)
@@ -192,6 +189,30 @@ public sealed class ToggleableAccentSystem : EntitySystem
         RemComp(target, componentType);
 
         comp.IsAccentActive = false;
+    }
+
+    /// <summary>
+    /// Checks if a compoenent has any bad data
+    /// </summary>
+    /// <param name="comp">The component to validate</param>
+    /// <returns>True if the comp has a valid configuration, false if it doesn't.</returns>
+    private bool Validate(ToggleableAccentComponent comp)
+    {
+        //If the component doesn't exist, then the component is invalid.
+        if (!_componentFactory.TryGetRegistration(comp.AccentComponentName, out var registration))
+            return false;
+
+        //If it's a replacement accent, we need to do some more validation.
+        if (registration.Name == _componentFactory.GetComponentName<ReplacementAccentComponent>())
+        {
+            //Try to validate the replacement accent prototype
+            if (comp.ReplacementAccentPrototypeName == null ||
+                !_protoManager.HasIndex<ReplacementAccentPrototype>(comp.ReplacementAccentPrototypeName))
+                return false;
+        }
+        //All checks passed, return true
+        return true;
+
     }
 
 }
