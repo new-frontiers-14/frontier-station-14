@@ -309,6 +309,7 @@ namespace Content.Client.Construction
                 var targetSprite = EnsureComp<SpriteComponent>(dummy);
                 EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
 
+                var ghostSpriteIdx = 0; // Frontier: Fix intercom construction
                 for (var i = 0; i < targetSprite.AllLayers.Count(); i++)
                 {
                     if (!targetSprite[i].Visible || !targetSprite[i].RsiState.IsValid)
@@ -319,10 +320,13 @@ namespace Content.Client.Construction
                         state.StateId.Name is null)
                         continue;
 
-                    _sprite.AddBlankLayer((ghost.Value, sprite), i);
-                    _sprite.LayerSetSprite((ghost.Value, sprite), i, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
-                    sprite.LayerSetShader(i, "unshaded");
-                    _sprite.LayerSetVisible((ghost.Value, sprite), i, true);
+                    // Frontier Begin - Fix Intercom construction... i<ghostSpriteIdx
+                    _sprite.AddBlankLayer((ghost.Value, sprite), ghostSpriteIdx);
+                    _sprite.LayerSetSprite((ghost.Value, sprite), ghostSpriteIdx, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
+                    sprite.LayerSetShader(ghostSpriteIdx, "unshaded");
+                    _sprite.LayerSetVisible((ghost.Value, sprite), ghostSpriteIdx, true);
+                    ghostSpriteIdx++;
+                    // Frontier End
                 }
 
                 Del(dummy);
