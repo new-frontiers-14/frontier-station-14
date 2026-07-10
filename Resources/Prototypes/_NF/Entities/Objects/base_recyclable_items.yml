@@ -102,6 +102,35 @@
       Plastic: 50
       RawScrap: 10
 
+# Plasteel
+## Tiny
+- type: entity # Rings
+  id: RecyclableItemPlasteelTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 10
+
+## Small
+- type: entity # Spray bottles, glue/lube tubes, plungers etc
+  id: RecyclableItemPlasteelSmall
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 25
+      RawScrap: 25
+
+## Medium
+- type: entity # Weapons
+  id: RecyclableItemPlasteelMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 150
+      RawScrap: 50
 # Simple Devices
 ## Tiny
 - type: entity # Machine parts, encryption keys etc
@@ -162,3 +191,13 @@
   - type: PhysicalComposition
     materialComposition:
       Wood: 200
+
+# Bones
+## Medium
+- type: entity #
+  id: RecyclableItemBonesMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Bones: 150
