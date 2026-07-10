@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 07/03/2026 19:55:15
+  time: 07/10/2026 19:40:21
   entityCount: 833
 maps: []
 grids:
@@ -1084,6 +1084,26 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-7.5
+      parent: 2
+  - uid: 776
+    components:
+    - type: Transform
+      pos: -7.5,-0.5
+      parent: 2
+  - uid: 777
+    components:
+    - type: Transform
+      pos: -10.5,-0.5
+      parent: 2
+  - uid: 778
+    components:
+    - type: Transform
+      pos: 8.5,-0.5
+      parent: 2
+  - uid: 800
+    components:
+    - type: Transform
+      pos: 11.5,-0.5
       parent: 2
 - proto: BoxAgrichem
   entities:
@@ -2496,17 +2516,19 @@ entities:
     - type: Transform
       pos: 9.5,3.5
       parent: 2
-- proto: DrinkGlass
+- proto: DrinkGreenTeaGlass
   entities:
-  - uid: 800
+  - uid: 1
     components:
     - type: Transform
-      pos: -7.7391224,4.6874285
+      pos: -7.289309,4.859829
       parent: 2
-  - uid: 801
+- proto: DrinkTeapotEmpty
+  entities:
+  - uid: 775
     components:
     - type: Transform
-      pos: -7.426622,4.8593035
+      pos: -7.7138844,4.711229
       parent: 2
 - proto: EmergencyLight
   entities:
@@ -4595,26 +4617,6 @@ entities:
     - type: Transform
       pos: 5.5,-3.5
       parent: 2
-  - uid: 775
-    components:
-    - type: Transform
-      pos: 8.5,-0.5
-      parent: 2
-  - uid: 776
-    components:
-    - type: Transform
-      pos: 11.5,-0.5
-      parent: 2
-  - uid: 777
-    components:
-    - type: Transform
-      pos: -7.5,-0.5
-      parent: 2
-  - uid: 778
-    components:
-    - type: Transform
-      pos: -10.5,-0.5
-      parent: 2
 - proto: ShuttersNormalOpen
   entities:
   - uid: 215
@@ -4999,10 +5001,10 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        778:
+        777:
         - - Pressed
           - Toggle
-        777:
+        776:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -5014,10 +5016,10 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        775:
+        778:
         - - Pressed
           - Toggle
-        776:
+        800:
         - - Pressed
           - Toggle
     - type: Fixtures
