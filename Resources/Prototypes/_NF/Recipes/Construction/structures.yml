@@ -75,6 +75,110 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
+  
+- type: construction
+  id: StairsConstruction
+  name: recipes-stairs-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageConstruction
+  name: recipes-stairs-stage-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairDarkConstruction
+  name: recipes-stairs-dark-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsDark
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageDarkConstruction
+  name: recipes-stairs-stage-dark-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsStageDark
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairWhiteConstruction
+  name: recipes-stairs-white-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsWhite
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageWhiteConstruction
+  name: recipes-stairs-stage-white-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsStageWhite
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairWoodConstruction
+  name: recipes-stairs-wood-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageWoodConstruction
+  name: recipes-stairs-stage-wood-name
+  graph: StairsGraph
+  startNode: start
+  targetNode: stairsStageWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
 
 - type: construction
   id: CrateStorageRackConstruction
@@ -113,3 +217,29 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: UraniumWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: UraniumReinforcedWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumReinforcedWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
