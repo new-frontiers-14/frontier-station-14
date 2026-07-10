@@ -286,7 +286,7 @@ public abstract class SharedAnomalySystem : EntitySystem
 
         var newVal = component.Health + change;
 
-        if (newVal < 0)
+        if (newVal <= 0 && component.Health > 0) //Frontier fix CHIMP duplicating cores
         {
             component.Health = 0;   //Frontier fix CHIMP duplicating cores
             EndAnomaly(uid, component, logged: true);
