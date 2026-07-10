@@ -375,7 +375,7 @@ namespace Content.Client.Construction
         private bool GhostPresent(EntityCoordinates loc)
         {
             var ghostCount = _ghosts.Values.Count(ghost => Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
-            return ghostCount >= 6;
+            return HasReachedMaximumGhosts(loc);
         }
         /// Frontier start
         /// <summary>
