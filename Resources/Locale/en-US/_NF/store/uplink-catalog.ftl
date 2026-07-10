@@ -357,6 +357,9 @@ uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing y
 uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
 uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
+uplink-pirate-id-chip-name = Bootleg Cyborg Chip
+uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
