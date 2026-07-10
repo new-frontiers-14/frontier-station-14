@@ -605,3 +605,23 @@
           - PirateUplink
   categories:
   - UplinkPirateUtility
+
+- type: listing
+  id: UplinkNFPirateIDChip
+  name: uplink-pirate-id-chip-name
+  description: uplink-pirate-id-chip-desc
+  productEntity: IdChipPirate
+  icon: { sprite: _DV/Objects/Specific/Robotics/pirate_id_chip.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate    
+  categories:
+  - UplinkPirateUtility
