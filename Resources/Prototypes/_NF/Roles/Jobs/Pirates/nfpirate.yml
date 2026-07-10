@@ -41,7 +41,7 @@
   id: NFPirateInterview
   name: job-name-nf-pirate-interview
   description: job-description-nf-pirate
-  playTimeTracker: JobNFPirateInterview
+  playTimeTracker: JobNFPirate
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 86400 # 24 hours
@@ -64,6 +64,15 @@
   id: NFPirateHologramGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitPirate
+    belt: ClothingBeltUtility
+    pocket1: BasePirateUplinkPirateCrew
+  storage:
+    back:
+    - AppraisalTool
+
+- type: startingGear
+  id: NFPirateGear
+  equipment:
     belt: ClothingBeltUtility
     pocket1: BasePirateUplinkPirateCrew
   storage:
