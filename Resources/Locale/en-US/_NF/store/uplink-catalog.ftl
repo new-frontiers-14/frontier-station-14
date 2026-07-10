@@ -356,6 +356,7 @@ uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catal
 
 uplink-pirate-yarrmag-name = Yarrmag
 uplink-pirate-yarrmag-captain-desc = A disposable card made by the Freebooters to hack devices. Works one time.
+
 uplink-pirate-id-chip-name = Bootleg Cyborg Chip
 uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
 
