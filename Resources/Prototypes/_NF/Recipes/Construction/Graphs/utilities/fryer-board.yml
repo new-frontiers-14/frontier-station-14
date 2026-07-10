@@ -1,0 +1,18 @@
+- type: constructionGraph
+  id: FryerBoard
+  start: deepfryer
+  graph:
+  - node: deepfryer
+    entity: DeepFryerMachineCircuitboard
+    edges:
+    - to: spookyfryer
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: spookyfryer
+    entity: CauldronDeepFryerMachineCircuitboard
+    edges:
+    - to: deepfryer
+      steps:
+      - tool: Screwing
+        doAfter: 2
