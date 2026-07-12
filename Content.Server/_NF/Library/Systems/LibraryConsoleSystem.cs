@@ -99,7 +99,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
         var server = await _serverDbEntry.ServerEntity;
 
         // Reject uploads whose content already exists in the library.
-        var existingBooks = await _dbManager.GetLibraryBooksAsync(server.Id);
+        var existingBooks = await _dbManager.GetLibraryBooksAsync();
         if (existingBooks.Any(b => string.Equals(b.Content, content, StringComparison.Ordinal)))
         {
             if (EntityManager.EntityExists(ent))
@@ -124,8 +124,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
 
     private async Task DownloadBookAsync(Entity<LibraryConsoleComponent> ent, int bookId)
     {
-        var server = await _serverDbEntry.ServerEntity;
-        var books = await _dbManager.GetLibraryBooksAsync(server.Id);
+        var books = await _dbManager.GetLibraryBooksAsync();
         var book = books.FirstOrDefault(b => b.Id == bookId);
 
         if (book == null || !EntityManager.EntityExists(ent))
@@ -159,8 +158,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
 
     private async Task UpdateUiStateAsync(Entity<LibraryConsoleComponent> ent)
     {
-        var server = await _serverDbEntry.ServerEntity;
-        var books = await _dbManager.GetLibraryBooksAsync(server.Id);
+        var books = await _dbManager.GetLibraryBooksAsync();
 
         if (!EntityManager.EntityExists(ent))
             return;
