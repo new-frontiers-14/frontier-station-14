@@ -22,7 +22,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
-    public const float FTLRange = 5120f; // Frontier, raised from standard 256f to increased by 20 times
+    public const float FTLRange = 5120f; // Frontier: 256f<5120f
     public const float FTLBufferRange = 8f;
     public const float TileDensityMultiplier = 0.5f;
 
