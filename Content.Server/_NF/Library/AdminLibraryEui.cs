@@ -14,7 +14,6 @@ namespace Content.Server._NF.Library;
 public sealed class AdminLibraryEui : BaseEui
 {
     [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
 
     private List<AdminLibraryBookEntry> _books = new();
 
@@ -51,8 +50,7 @@ public sealed class AdminLibraryEui : BaseEui
 
     private async Task LoadBooksAsync()
     {
-        var server = await _serverDbEntry.ServerEntity;
-        var books = await _dbManager.GetLibraryBooksAsync(server.Id);
+        var books = await _dbManager.GetLibraryBooksAsync();
 
         _books = books
             .Select(b => new AdminLibraryBookEntry(b.Id, b.Title, b.Author, b.Content, b.Date, b.AuthorCKey))
