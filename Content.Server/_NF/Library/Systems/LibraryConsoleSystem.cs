@@ -21,6 +21,7 @@ namespace Content.Server._NF.Library.Systems;
 /// </summary>
 public sealed class LibraryConsoleSystem : EntitySystem
 {
+    [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
@@ -137,7 +138,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
             return;
         }
 
-        paper.Content = book.Content;
+        _paper.SetContent((bookEntity, paper), book.Content);
         _metaData.SetEntityName(bookEntity, book.Title);
         _audio.PlayPvs(ent.Comp.PrintSound, ent.Owner);
 
