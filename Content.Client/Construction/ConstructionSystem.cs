@@ -371,10 +371,10 @@ namespace Content.Client.Construction
             var ghostCount = _ghosts.Values.Count(ghost => Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
             return HasReachedMaximumGhosts(loc);
         }
-        /// Frontier start
-        /// <summary>
-        /// Checks if the maximum number of construction ghosts has been reached at the given location.
-        /// </summary>
+        // Frontier start
+        // <summary>
+        // Checks if the maximum number of construction ghosts has been reached at the given location.
+        //</summary>
         private bool HasReachedMaximumGhosts(EntityCoordinates loc)
         {
             // Count ghosts at the given location and allow up to the maximum allowed per tile
