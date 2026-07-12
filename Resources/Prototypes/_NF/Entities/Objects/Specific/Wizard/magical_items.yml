@@ -109,6 +109,10 @@
   parent: [ DrinkShaker, BaseC3WizardContraband ]
   name: The Shaker
   components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 1000
   - type: Sprite
     sprite: Objects/Consumable/Drinks/shaker.rsi # placeholder
     state: icon
