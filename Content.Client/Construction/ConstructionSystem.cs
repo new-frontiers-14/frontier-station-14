@@ -6,7 +6,7 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
-using Content.Shared.Frontier.CCVar; // Frontier
+using Content.Shared._NF.CCVar; //Frontier
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -279,8 +279,10 @@ namespace Content.Client.Construction
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
-            if (GhostPresent(loc))
+            //Frontier start
+            if (HasReachedMaximumGhosts(loc))
                 return false;
+            //Frontier end
 
             var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
@@ -368,9 +370,15 @@ namespace Content.Client.Construction
         /// </summary>
         private bool GhostPresent(EntityCoordinates loc)
         {
-            var ghostCount = _ghosts.Values.Count(ghost => Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
-            return HasReachedMaximumGhosts(loc);
+            foreach (var ghost in _ghosts)
+            {
+                if (EntityManager.GetComponent<TransformComponent>(ghost.Value).Coordinates.Equals(loc))
+                    return true;
+            }
+
+            return false;
         }
+
         // Frontier start
         // <summary>
         // Checks if the maximum number of construction ghosts has been reached at the given location.
@@ -381,7 +389,7 @@ namespace Content.Client.Construction
             var ghostCount = _ghosts.Values.Count(ghost =>
                 EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
 
-            return ghostCount >= _configurationManager.GetCVar(FrontierCCVars.ConstructionMaxGhostsPerTile);
+            return ghostCount >= _configurationManager.GetCVar(NFCCVars.ConstructionMaxGhostsPerTile);
         }
         // Frontier end
 
