@@ -6,15 +6,11 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
-// Frontier Start
-using Content.Shared.Frontier.CCVar;
-// Frontier End
+using Content.Shared.Frontier.CCVar; // Frontier
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
-//Frontier Start
-using Robust.Shared.Configuration;
-//Frontier End
+using Robust.Shared.Configuration; // Frontier
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -35,9 +31,7 @@ namespace Content.Client.Construction
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
-        /// Frontier Start
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        /// Frontier End
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!; // Frontier
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -389,7 +383,7 @@ namespace Content.Client.Construction
 
             return ghostCount >= _configurationManager.GetCVar(FrontierCCVars.ConstructionMaxGhostsPerTile);
         }
-        /// Frontiert end
+        // Frontier end
 
         public void TryStartConstruction(EntityUid ghostId, ConstructionGhostComponent? ghostComp = null)
         {
