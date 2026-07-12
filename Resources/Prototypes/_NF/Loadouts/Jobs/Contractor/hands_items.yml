@@ -44,7 +44,7 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT2
-  price: 1000
+  price: 0 # Changed for Pride, Original Price 1000
   inhand:
   - LGBTQHandyFlag
 
@@ -94,16 +94,6 @@
   inhand:
   - HoverbikeFlatpack
 
-- type: loadout
-  id: ContractorEmotionalPetCarrier
-  name: emotional support pet
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT3
-  price: 10000
-  inhand:
-  - PetCarrierNPCEmotionalSupportSafe
-
 # Tools
 #T1
 - type: loadout
@@ -152,13 +142,13 @@
     - NetworkConfigurator
 
 - type: loadout
-  id: ContractorHandheldHealthAnalyzerUnpowered
+  id: ContractorHandheldHealthAnalyzer
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
   inhand:
-    - HandheldHealthAnalyzerUnpowered
+    - HandheldHealthAnalyzer
 
 - type: loadout
   id: ContractorAnomalyScanner

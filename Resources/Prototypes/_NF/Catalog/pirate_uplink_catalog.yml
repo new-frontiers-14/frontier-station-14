@@ -34,6 +34,22 @@
         - NFPirateCaptain
 
 - type: listing
+  id: UplinkPirateHardsuitRogue
+  name:  uplink-pirate-hardsuit-rogue-name
+  description: uplink-pirate-hardsuit-rogue-desc
+  productEntity: ClothingOuterHardsuitRogue
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/rogue.rsi, state: icon }
+  cost:
+    Doubloon: 4
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateHardsuitElite
   name:  uplink-pirate-hardsuit-elite-name
   description: uplink-pirate-hardsuit-elite-desc
@@ -587,5 +603,25 @@
       whitelist:
         tags:
           - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkNFPirateIDChip
+  name: uplink-pirate-id-chip-name
+  description: uplink-pirate-id-chip-desc
+  productEntity: IdChipPirate
+  icon: { sprite: _DV/Objects/Specific/Robotics/pirate_id_chip.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate    
   categories:
   - UplinkPirateUtility
