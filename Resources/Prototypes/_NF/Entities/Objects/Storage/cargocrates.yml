@@ -1,0 +1,39 @@
+- type: entity
+  parent: [ToolboxBase, RecyclableItemSteelMedium]
+  id: Cargocratebasic
+  name: cargo crate
+  suffix: Solarm
+  description: An medium-sized metal crated painted in beige color. Can be stuffed in cargo pack.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/cargocrate.rsi
+    layers:
+    - map: [ base ]
+      state: basic
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: basic-open }
+          False: { state: basic }
+  - type: Item
+    sprite: _NF/Objects/Storage/cargocrate.rsi
+    size: Huge
+  - type: MultiHandedItem
+  - type: Storage
+    grid:
+    - 0,0,5,4
+    maxItemSize: Huge
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: UseDelay
+    delay: 0.5
+  - type: Tag
+    tags:
+    - Cargocrate
