@@ -15,3 +15,20 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
+
+- type: entity
+  parent: DrinkShaker
+  id: DrinkShakerBluespace
+  name: bluespace shaker
+  description: The trusty mixing buddy of the bartender, now in shining blue!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 1000
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/shaker_bluespace.rsi
+    layers:
+      - state: shakerbluespace
+  - type: Item
+    sprite: _NF/Objects/Consumable/Drinks/shaker_bluespace.rsi
