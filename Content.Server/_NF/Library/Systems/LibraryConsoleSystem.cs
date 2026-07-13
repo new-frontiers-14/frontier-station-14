@@ -87,14 +87,14 @@ public sealed class LibraryConsoleSystem : EntitySystem
         var title = args.Title;
         var author = args.Author;
         var content = args.Content;
-        var ckey = session.Name;
-        var date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        var authorPlayerUserId = session.UserId.UserId;
+        var date = DateTime.UtcNow;
 
         _audio.PlayPvs(ent.Comp.PrintSound, ent.Owner);
-        _ = AddBookAsync(ent, args.Actor, title, author, content, date, ckey);
+        _ = AddBookAsync(ent, args.Actor, title, author, content, date, authorPlayerUserId);
     }
 
-    private async Task AddBookAsync(Entity<LibraryConsoleComponent> ent, EntityUid actor, string title, string author, string content, string date, string ckey)
+    private async Task AddBookAsync(Entity<LibraryConsoleComponent> ent, EntityUid actor, string title, string author, string content, DateTime date, Guid authorPlayerUserId)
     {
         var server = await _serverDbEntry.ServerEntity;
 
@@ -110,7 +110,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
             return;
         }
 
-        await _dbManager.AddNFLibraryBookAsync(server.Id, title, author, content, date, ckey);
+        await _dbManager.AddNFLibraryBookAsync(server.Id, title, author, content, date, authorPlayerUserId);
 
         // Refresh the UI so the browse tab shows the newly uploaded book.
         if (EntityManager.EntityExists(ent))
@@ -171,7 +171,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
         }
 
         var bookData = books
-            .Select(b => new LibraryBookData(b.Id, b.Title, b.Author, b.Date))
+            .Select(b => new LibraryBookData(b.Id, b.Title, b.Author, b.Date.ToString("yyyy-MM-dd")))
             .ToList();
 
         var state = new LibraryConsoleBoundUserInterfaceState(enabled: true, bookContent, bookData);

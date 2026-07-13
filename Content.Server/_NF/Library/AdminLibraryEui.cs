@@ -53,7 +53,7 @@ public sealed class AdminLibraryEui : BaseEui
         var books = await _dbManager.GetNFLibraryBooksAsync();
 
         _books = books
-            .Select(b => new AdminLibraryBookEntry(b.Id, b.Title, b.Author, b.Content, b.Date, b.AuthorCKey))
+            .Select(b => new AdminLibraryBookEntry(b.Id, b.Title, b.Author, b.Content, b.Date.ToString("yyyy-MM-dd"), b.AuthorPlayerUserId))
             .ToList();
 
         StateDirty();

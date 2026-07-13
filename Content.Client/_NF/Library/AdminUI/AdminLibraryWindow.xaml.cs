@@ -71,13 +71,13 @@ public sealed partial class AdminLibraryWindow : DefaultWindow
             : _allBooks.FindAll(b =>
                 b.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 b.Author.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                b.AuthorCKey.Contains(query, StringComparison.OrdinalIgnoreCase));
+                b.AuthorPlayerUserId.ToString().Contains(query, StringComparison.OrdinalIgnoreCase));
 
         EmptyLabel.Visible = filtered.Count == 0;
 
         foreach (var book in filtered)
         {
-            BookList.AddItem($"{book.Title}  —  {book.Author}  |  {book.Date}  |  {book.AuthorCKey}");
+            BookList.AddItem($"{book.Title}  —  {book.Author}  |  {book.Date}  |  {book.AuthorPlayerUserId}");
             _bookIds.Add(book.Id);
         }
 
@@ -105,7 +105,7 @@ public sealed partial class AdminLibraryWindow : DefaultWindow
 
         PreviewTitle.Text = Loc.GetString("library-admin-preview-title", ("title", book.Title));
         PreviewAuthor.Text = Loc.GetString("library-admin-preview-author", ("author", book.Author));
-        PreviewCKey.Text = Loc.GetString("library-admin-preview-ckey", ("ckey", book.AuthorCKey));
+        PreviewPlayerUserId.Text = Loc.GetString("library-admin-preview-player-user-id", ("playerUserId", book.AuthorPlayerUserId));
         PreviewDate.Text = Loc.GetString("library-admin-preview-date", ("date", book.Date));
         PreviewContent.Text = book.Content;
         PreviewPanel.Visible = true;
