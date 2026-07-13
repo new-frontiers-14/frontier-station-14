@@ -1333,7 +1333,7 @@ namespace Content.Server.Database
         /// </summary>
         public float Score { get; set; }
     }
-
+    //Frontier
     [Table("nf_library_book")]
     public sealed class NFLibraryBook
     {
@@ -1365,4 +1365,5 @@ namespace Content.Server.Database
         /// </summary>
         [Required] public Guid AuthorPlayerUserId { get; set; }
     }
+    //End Frontier
 }
