@@ -397,7 +397,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// </summary>
     public bool AddLoadout(ProtoId<LoadoutGroupPrototype> selectedGroup, ProtoId<LoadoutPrototype> selectedLoadout, IPrototypeManager protoManager)
     {
-        var groupLoadouts = SelectedLoadouts[selectedGroup];
+        var groupLoadouts = SelectedLoadouts.GetOrNew(selectedGroup); // Frontier: indexer<GetOrNew
 
         // Need to unselect existing ones if we're at or above limit
         var limit = Math.Max(0, groupLoadouts.Count + 1 - protoManager.Index(selectedGroup).MaxLimit);
@@ -438,7 +438,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     {
         // Although this may bring us below minimum we'll let EnsureValid handle it.
 
-        var groupLoadouts = SelectedLoadouts[selectedGroup];
+        var groupLoadouts = SelectedLoadouts.GetOrNew(selectedGroup); // Frontier: indexer<GetOrNew
 
         for (var i = 0; i < groupLoadouts.Count; i++)
         {
