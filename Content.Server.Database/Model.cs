@@ -47,7 +47,7 @@ namespace Content.Server.Database
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
         //Frontier
-        public DbSet<LibraryBook> LibraryBooks { get; set; } = null!;
+        public DbSet<LibraryBook> NFLibraryBook { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

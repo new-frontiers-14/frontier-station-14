@@ -1891,7 +1891,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb();
 
-            db.DbContext.LibraryBooks.Add(new LibraryBook
+            db.DbContext.NFLibraryBook.Add(new LibraryBook
             {
                 ServerId = serverId,
                 Title = title,
@@ -1907,7 +1907,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb();
 
-            return await db.DbContext.LibraryBooks
+            return await db.DbContext.NFLibraryBook
                 .ToListAsync();
         }
 
@@ -1915,13 +1915,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb();
 
-            var book = await db.DbContext.LibraryBooks
+            var book = await db.DbContext.NFLibraryBook
                 .SingleOrDefaultAsync(b => b.Id == bookId);
 
             if (book == null)
                 return false;
 
-            db.DbContext.LibraryBooks.Remove(book);
+            db.DbContext.NFLibraryBook.Remove(book);
             await db.DbContext.SaveChangesAsync();
             return true;
         }
