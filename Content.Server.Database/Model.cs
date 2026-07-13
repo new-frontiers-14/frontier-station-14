@@ -1350,6 +1350,6 @@ namespace Content.Server.Database
 
         public string Date { get; set; } = string.Empty;
 
-        public string AuthorCKey { get; set; } = string.Empty;
+        public Guid AuthorPlayerUserId { get; set; }
     }
 }
