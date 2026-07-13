@@ -124,6 +124,7 @@ guide-entry-shipyard-aegis = Aegis
 guide-entry-shipyard-anchor = Anchor
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-charon = Charon
+guide-entry-shipyard-dendron = Dendron
 guide-entry-shipyard-dove = Dove
 guide-entry-shipyard-dragonfly = Dragonfly
 guide-entry-shipyard-pathfinder = Pathfinder
