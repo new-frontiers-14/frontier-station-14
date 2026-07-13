@@ -1339,17 +1339,30 @@ namespace Content.Server.Database
     {
         [Required] public int Id { get; set; }
 
+        /// <summary>
+        /// Which Server the book belongs to.
+        /// </summary>
         [Required] public int ServerId { get; set; }
         [Required] public Server Server { get; set; } = default!;
-
+        /// <summary>
+        /// Title of the book
+        /// </summary>
         [Required] public string Title { get; set; } = string.Empty;
-
+        /// <summary>
+        /// Display Author of the book, not the Guid
+        /// </summary>
         [Required] public string Author { get; set; } = string.Empty;
-
+        /// <summary>
+        /// Text contained within the book
+        /// </summary>
         [Required] public string Content { get; set; } = string.Empty;
-
+        /// <summary>
+        /// Date the book was uploaded
+        /// </summary>
         [Required] public DateTime Date { get; set; }
-
+        /// <summary>
+        /// Guid of the player who uploaded the book
+        /// </summary>
         [Required] public Guid AuthorPlayerUserId { get; set; }
     }
 }
