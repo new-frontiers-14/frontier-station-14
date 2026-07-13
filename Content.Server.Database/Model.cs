@@ -46,8 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
-        //Frontier
-        public DbSet<LibraryBook> NFLibraryBook { get; set; } = null!;
+        public DbSet<LibraryBook> NFLibraryBook { get; set; } = null!; //Frontier
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
