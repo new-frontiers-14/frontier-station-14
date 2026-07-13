@@ -11,7 +11,7 @@
   - type: Matchbox
 
 - type: entity
-  parent: ClothingShoesBootsCombat
+  parent: [ClothingShoesBootsCombat, BaseC2ContrabandUnredeemable]
   id: ClothingShoesBootsNfsdBrown
   name: NFSD brown boots
   description: Stylish boots for running in circles on a deck during emergencies.
@@ -20,9 +20,11 @@
     sprite: _NF/Clothing/Shoes/Boots/nfsd_brown_boots.rsi
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/nfsd_brown_boots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
 
 - type: entity
-  parent: ClothingShoesBootsCombat
+  parent: [ClothingShoesBootsCombat, BaseC2ContrabandUnredeemable]
   id: ClothingShoesBootsNfsdCream
   name: NFSD cream boots
   description: Stylish boots for running in circles on a deck during emergencies.
@@ -31,6 +33,8 @@
     sprite: _NF/Clothing/Shoes/Boots/nfsd_cream_boots.rsi
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/nfsd_cream_boots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
 
 - type: entity
   parent: ClothingShoesBaseButcherable
