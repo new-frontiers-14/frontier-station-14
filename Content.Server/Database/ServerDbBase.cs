@@ -1886,8 +1886,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             string title,
             string author,
             string content,
-            string date,
-            string authorCKey)
+            DateTime date,
+            Guid authorPlayerUserId)
         {
             await using var db = await GetDb();
 
@@ -1898,7 +1898,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 Author = author,
                 Content = content,
                 Date = date,
-                AuthorCKey = authorCKey,
+                AuthorPlayerUserId = authorPlayerUserId,
             });
             await db.DbContext.SaveChangesAsync();
         }
