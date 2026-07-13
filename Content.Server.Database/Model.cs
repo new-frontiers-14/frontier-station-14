@@ -1338,27 +1338,21 @@ namespace Content.Server.Database
     public sealed class NFLibraryBook
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("library_book_id")]
+
         public int Id { get; set; }
 
         [ForeignKey("Server")]
-        [Column("server_id")]
         public int ServerId { get; set; }
         public Server Server { get; set; } = default!;
 
-        [Column("title")]
         public string Title { get; set; } = string.Empty;
 
-        [Column("author")]
         public string Author { get; set; } = string.Empty;
 
-        [Column("content")]
         public string Content { get; set; } = string.Empty;
-        //Date entry was added
-        [Column("date")]
+
         public string Date { get; set; } = string.Empty;
 
-        [Column("author_ckey")]
         public string AuthorCKey { get; set; } = string.Empty;
     }
 }
