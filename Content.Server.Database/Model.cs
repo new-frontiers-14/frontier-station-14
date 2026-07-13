@@ -1337,19 +1337,19 @@ namespace Content.Server.Database
     [Table("nf_library_book")]
     public sealed class NFLibraryBook
     {
-        public int Id { get; set; }
+        [Required] public int Id { get; set; }
 
-        public int ServerId { get; set; }
-        public Server Server { get; set; } = default!;
+        [Required] public int ServerId { get; set; }
+        [Required] public Server Server { get; set; } = default!;
 
-        public string Title { get; set; } = string.Empty;
+        [Required] public string Title { get; set; } = string.Empty;
 
-        public string Author { get; set; } = string.Empty;
+        [Required] public string Author { get; set; } = string.Empty;
 
-        public string Content { get; set; } = string.Empty;
+        [Required] public string Content { get; set; } = string.Empty;
 
-        public string Date { get; set; } = string.Empty;
+        [Required] public string Date { get; set; } = string.Empty;
 
-        public Guid AuthorPlayerUserId { get; set; }
+        [Required] public Guid AuthorPlayerUserId { get; set; }
     }
 }
