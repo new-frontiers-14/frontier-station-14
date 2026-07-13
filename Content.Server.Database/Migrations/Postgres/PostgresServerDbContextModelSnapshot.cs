@@ -699,34 +699,36 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("job", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.LibraryBook", b =>
+            modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoundId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("library_book_id");
+                        .HasColumnName("round_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RoundId"));
 
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("author");
 
-                    b.Property<string>("AuthorCKey")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("author_ckey");
+                    b.Property<Guid>("AuthorPlayerUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("author_player_user_id");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("content");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("date");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer")
+                        .HasColumnName("nf_library_book_id");
 
                     b.Property<int>("ServerId")
                         .HasColumnType("integer")
@@ -737,13 +739,13 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("title");
 
-                    b.HasKey("Id")
-                        .HasName("PK_library_book");
+                    b.HasKey("RoundId")
+                        .HasName("PK_nf_library_book");
 
                     b.HasIndex("ServerId")
-                        .HasDatabaseName("IX_library_book_server_id");
+                        .HasDatabaseName("IX_nf_library_book_server_id");
 
-                    b.ToTable("library_book", (string)null);
+                    b.ToTable("nf_library_book", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
@@ -1763,14 +1765,14 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("Content.Server.Database.LibraryBook", b =>
+            modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
                     b.HasOne("Content.Server.Database.Server", "Server")
                         .WithMany()
                         .HasForeignKey("ServerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_library_book_server_server_id");
+                        .HasConstraintName("FK_nf_library_book_server_server_id");
 
                     b.Navigation("Server");
                 });

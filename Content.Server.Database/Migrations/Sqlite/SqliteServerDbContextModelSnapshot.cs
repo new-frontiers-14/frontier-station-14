@@ -661,32 +661,34 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("job", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.LibraryBook", b =>
+            modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoundId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
-                        .HasColumnName("library_book_id");
+                        .HasColumnName("round_id");
 
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("author");
 
-                    b.Property<string>("AuthorCKey")
-                        .IsRequired()
+                    b.Property<Guid>("AuthorPlayerUserId")
                         .HasColumnType("TEXT")
-                        .HasColumnName("author_ckey");
+                        .HasColumnName("author_player_user_id");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("content");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT")
                         .HasColumnName("date");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("nf_library_book_id");
 
                     b.Property<int>("ServerId")
                         .HasColumnType("INTEGER")
@@ -697,13 +699,13 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 
-                    b.HasKey("Id")
-                        .HasName("PK_library_book");
+                    b.HasKey("RoundId")
+                        .HasName("PK_nf_library_book");
 
                     b.HasIndex("ServerId")
-                        .HasDatabaseName("IX_library_book_server_id");
+                        .HasDatabaseName("IX_nf_library_book_server_id");
 
-                    b.ToTable("library_book", (string)null);
+                    b.ToTable("nf_library_book", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
@@ -1684,14 +1686,14 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("Content.Server.Database.LibraryBook", b =>
+            modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
                     b.HasOne("Content.Server.Database.Server", "Server")
                         .WithMany()
                         .HasForeignKey("ServerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_library_book_server_server_id");
+                        .HasConstraintName("FK_nf_library_book_server_server_id");
 
                     b.Navigation("Server");
                 });
