@@ -1337,6 +1337,8 @@ namespace Content.Server.Database
     [Table("nf_library_book")]
     public sealed class NFLibraryBook
     {
+        [Key, ForeignKey("Round")] public int RoundId { get; set; }
+
         [Required] public int Id { get; set; }
 
         /// <summary>
