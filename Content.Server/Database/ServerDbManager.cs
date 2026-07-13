@@ -345,9 +345,9 @@ namespace Content.Server.Database
         Task<IPIntelCache?> GetIPIntelCache(IPAddress ip);
         Task<bool> CleanIPIntelCache(TimeSpan range);
 
-        Task AddLibraryBookAsync(int serverId, string title, string author, string content, string date, string authorCKey);
-        Task<List<LibraryBook>> GetLibraryBooksAsync();
-        Task<bool> DeleteLibraryBookAsync(int bookId);
+        Task AddNFLibraryBookAsync(int serverId, string title, string author, string content, string date, string authorCKey);
+        Task<List<NFLibraryBook>> GetNFLibraryBooksAsync();
+        Task<bool> DeleteNFLibraryBookAsync(int bookId);
 
         #endregion
 
@@ -1079,22 +1079,22 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
 
-        public Task AddLibraryBookAsync(int serverId, string title, string author, string content, string date, string authorCKey)
+        public Task AddNFLibraryBookAsync(int serverId, string title, string author, string content, string date, string authorCKey)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddLibraryBookAsync(serverId, title, author, content, date, authorCKey));
+            return RunDbCommand(() => _db.AddNFLibraryBookAsync(serverId, title, author, content, date, authorCKey));
         }
 
-        public Task<List<LibraryBook>> GetLibraryBooksAsync()
+        public Task<List<NFLibraryBook>> GetNFLibraryBooksAsync()
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetLibraryBooksAsync());
+            return RunDbCommand(() => _db.GetNFLibraryBooksAsync());
         }
 
-        public Task<bool> DeleteLibraryBookAsync(int bookId)
+        public Task<bool> DeleteNFLibraryBookAsync(int bookId)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.DeleteLibraryBookAsync(bookId));
+            return RunDbCommand(() => _db.DeleteNFLibraryBookAsync(bookId));
         }
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)

@@ -1881,7 +1881,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #region Library
 
-        public async Task AddLibraryBookAsync(
+        public async Task AddNFLibraryBookAsync(
             int serverId,
             string title,
             string author,
@@ -1891,7 +1891,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb();
 
-            db.DbContext.NFLibraryBook.Add(new LibraryBook
+            db.DbContext.NFLibraryBook.Add(new NFLibraryBook
             {
                 ServerId = serverId,
                 Title = title,
@@ -1903,7 +1903,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
-        public async Task<List<LibraryBook>> GetLibraryBooksAsync()
+        public async Task<List<NFLibraryBook>> GetNFLibraryBooksAsync()
         {
             await using var db = await GetDb();
 
@@ -1911,7 +1911,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .ToListAsync();
         }
 
-        public async Task<bool> DeleteLibraryBookAsync(int bookId)
+        public async Task<bool> DeleteNFLibraryBookAsync(int bookId)
         {
             await using var db = await GetDb();
 
