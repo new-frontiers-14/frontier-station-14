@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 07/10/2026 19:40:21
-  entityCount: 833
+  time: 07/13/2026 08:44:50
+  entityCount: 835
 maps: []
 grids:
 - 2
@@ -825,6 +825,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 5.5,-4.5
       parent: 2
+- proto: AlwaysPoweredlightBlue
+  entities:
+  - uid: 62
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,5.5
+      parent: 2
+  - uid: 754
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,5.5
+      parent: 2
+  - uid: 813
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-9.5
+      parent: 2
+  - uid: 820
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-9.5
+      parent: 2
 - proto: AnomalyFloraBulb
   entities:
   - uid: 497
@@ -860,6 +886,12 @@ entities:
       fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
+  - uid: 1
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,-0.5
+      parent: 2
   - uid: 660
     components:
     - type: Transform
@@ -895,6 +927,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,1.5
+      parent: 2
+  - uid: 835
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -10.5,-0.5
       parent: 2
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1059,22 +1097,22 @@ entities:
     - type: Transform
       pos: 5.5,-7.5
       parent: 2
-  - uid: 776
+  - uid: 777
     components:
     - type: Transform
       pos: -7.5,-0.5
       parent: 2
-  - uid: 777
+  - uid: 778
     components:
     - type: Transform
       pos: -10.5,-0.5
       parent: 2
-  - uid: 778
+  - uid: 800
     components:
     - type: Transform
       pos: 8.5,-0.5
       parent: 2
-  - uid: 800
+  - uid: 801
     components:
     - type: Transform
       pos: 11.5,-0.5
@@ -2492,14 +2530,14 @@ entities:
       parent: 2
 - proto: DrinkGreenTeaGlass
   entities:
-  - uid: 1
+  - uid: 775
     components:
     - type: Transform
       pos: -7.289309,4.859829
       parent: 2
 - proto: DrinkTeapotEmpty
   entities:
-  - uid: 775
+  - uid: 776
     components:
     - type: Transform
       pos: -7.7138844,4.711229
@@ -2552,7 +2590,6 @@ entities:
   - uid: 379
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -6.5,-1.5
       parent: 2
     - type: Fixtures
@@ -4176,7 +4213,7 @@ entities:
     - type: Transform
       pos: -3.7394857,2.5288844
       parent: 2
-- proto: PlasticFlapsClear
+- proto: PlasticFlapsAirtightClear
   entities:
   - uid: 212
     components:
@@ -4351,30 +4388,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,3.5
-      parent: 2
-  - uid: 62
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,5.5
-      parent: 2
-  - uid: 754
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,5.5
-      parent: 2
-  - uid: 813
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-9.5
-      parent: 2
-  - uid: 820
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-9.5
       parent: 2
 - proto: PoweredSmallLight
   entities:
@@ -5000,10 +5013,10 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        777:
+        778:
         - - Pressed
           - Toggle
-        776:
+        777:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -5015,10 +5028,10 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        778:
+        800:
         - - Pressed
           - Toggle
-        800:
+        801:
         - - Pressed
           - Toggle
     - type: Fixtures
