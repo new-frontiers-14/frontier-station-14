@@ -1341,7 +1341,6 @@ namespace Content.Server.Database
 
         public int Id { get; set; }
 
-        [ForeignKey("Server")]
         public int ServerId { get; set; }
         public Server Server { get; set; } = default!;
 
