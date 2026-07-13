@@ -50,7 +50,7 @@ public sealed class AdminLibraryEui : BaseEui
 
     private async Task LoadBooksAsync()
     {
-        var books = await _dbManager.GetLibraryBooksAsync();
+        var books = await _dbManager.GetNFLibraryBooksAsync();
 
         _books = books
             .Select(b => new AdminLibraryBookEntry(b.Id, b.Title, b.Author, b.Content, b.Date, b.AuthorCKey))
@@ -61,7 +61,7 @@ public sealed class AdminLibraryEui : BaseEui
 
     private async Task DeleteBookAsync(int bookId)
     {
-        await _dbManager.DeleteLibraryBookAsync(bookId);
+        await _dbManager.DeleteNFLibraryBookAsync(bookId);
         await LoadBooksAsync();
     }
 }
