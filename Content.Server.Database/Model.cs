@@ -1337,8 +1337,6 @@ namespace Content.Server.Database
     [Table("nf_library_book")]
     public sealed class NFLibraryBook
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int Id { get; set; }
 
         public int ServerId { get; set; }
