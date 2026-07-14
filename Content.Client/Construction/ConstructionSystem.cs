@@ -279,10 +279,8 @@ namespace Content.Client.Construction
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
-            //Frontier start
-            if (HasReachedMaximumGhosts(loc))
-                return false;
-            //Frontier end
+            if (HasReachedMaximumGhosts(loc)) // Frontier GhostPresent<HasReachedMaximumGhosts
+return false;
 
             var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
@@ -366,13 +364,13 @@ namespace Content.Client.Construction
         }
 
         /// <summary>
-        /// Checks whether the construction ghost limit has been reached at the given position.
+        /// Checks if any construction ghosts are present at the given position
         /// </summary>
         private bool GhostPresent(EntityCoordinates loc)
         {
             foreach (var ghost in _ghosts)
             {
-                if (EntityManager.GetComponent<TransformComponent>(ghost.Value).Coordinates.Equals(loc))
+                if (Comp<TransformComponent>(ghost.Value).Coordinates.Equals(loc))
                     return true;
             }
 
@@ -380,9 +378,9 @@ namespace Content.Client.Construction
         }
 
         // Frontier start
-        // <summary>
-        // Checks if the maximum number of construction ghosts has been reached at the given location.
-        //</summary>
+        /// <summary>
+        /// Checks if the maximum number of construction ghosts has been reached at the given location.
+        /// </summary>
         private bool HasReachedMaximumGhosts(EntityCoordinates loc)
         {
             // Count ghosts at the given location and allow up to the maximum allowed per tile
