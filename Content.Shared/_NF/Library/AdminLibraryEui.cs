@@ -18,7 +18,7 @@ public sealed class AdminLibraryEuiState : EuiStateBase
 }
 
 /// <summary>
-/// Full details for a single library book, including content and uploader player user ID.
+/// Full details for a single library book, including content and uploader player identity.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class AdminLibraryBookEntry
@@ -29,8 +29,9 @@ public sealed class AdminLibraryBookEntry
     public string Content;
     public string Date;
     public Guid AuthorPlayerUserId;
+    public string AuthorPlayerUserName;
 
-    public AdminLibraryBookEntry(int id, string title, string author, string content, string date, Guid authorPlayerUserId)
+    public AdminLibraryBookEntry(int id, string title, string author, string content, string date, Guid authorPlayerUserId, string authorPlayerUserName)
     {
         Id = id;
         Title = title;
@@ -38,6 +39,7 @@ public sealed class AdminLibraryBookEntry
         Content = content;
         Date = date;
         AuthorPlayerUserId = authorPlayerUserId;
+        AuthorPlayerUserName = authorPlayerUserName;
     }
 }
 

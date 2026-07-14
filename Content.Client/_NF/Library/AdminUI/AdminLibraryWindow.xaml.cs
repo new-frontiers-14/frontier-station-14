@@ -81,13 +81,14 @@ public sealed partial class AdminLibraryWindow : DefaultWindow
             : _allBooks.FindAll(b =>
                 b.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 b.Author.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                b.AuthorPlayerUserName.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 b.AuthorPlayerUserId.ToString().Contains(query, StringComparison.OrdinalIgnoreCase));
 
         EmptyLabel.Visible = filtered.Count == 0;
 
         foreach (var book in filtered)
         {
-            BookList.AddItem($"{book.Title}  —  {book.Author}  |  {book.Date}  |  {book.AuthorPlayerUserId}", metadata: book.Id);
+            BookList.AddItem($"{book.Title}  —  {book.Author}  |  {book.Date}  |  {FormatUploader(book)}", metadata: book.Id);
         }
 
         UpdateButtonState();
@@ -113,10 +114,18 @@ public sealed partial class AdminLibraryWindow : DefaultWindow
 
         PreviewTitle.Text = Loc.GetString("library-admin-preview-title", ("title", book.Title));
         PreviewAuthor.Text = Loc.GetString("library-admin-preview-author", ("author", book.Author));
-        PreviewPlayerUserId.Text = Loc.GetString("library-admin-preview-player-user-id", ("playerUserId", book.AuthorPlayerUserId));
+        PreviewPlayerUserId.Text = Loc.GetString("library-admin-preview-player-user-id", ("playerUserId", FormatUploader(book)));
         PreviewDate.Text = Loc.GetString("library-admin-preview-date", ("date", book.Date));
         PreviewContent.Text = book.Content;
         PreviewPanel.Visible = true;
+    }
+
+    private static string FormatUploader(AdminLibraryBookEntry book)
+    {
+        if (string.IsNullOrWhiteSpace(book.AuthorPlayerUserName))
+            return book.AuthorPlayerUserId.ToString();
+
+        return $"{book.AuthorPlayerUserName} ({book.AuthorPlayerUserId})";
     }
 
     private void UpdateButtonState()

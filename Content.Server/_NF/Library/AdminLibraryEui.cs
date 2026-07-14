@@ -4,6 +4,7 @@ using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Shared._NF.Library;
 using Content.Shared.Eui;
+using Robust.Shared.Network;
 
 namespace Content.Server._NF.Library;
 
@@ -52,9 +53,24 @@ public sealed class AdminLibraryEui : BaseEui
     {
         var books = await _dbManager.GetNFLibraryBooksAsync();
 
-        _books = books
-            .Select(b => new AdminLibraryBookEntry(b.Id, b.Title, b.Author, b.Content, b.Date.ToString("yyyy-MM-dd"), b.AuthorPlayerUserId))
-            .ToList();
+        var booksWithNames = new List<AdminLibraryBookEntry>(books.Count);
+
+        foreach (var book in books)
+        {
+            var playerRecord = await _dbManager.GetPlayerRecordByUserId(new NetUserId(book.AuthorPlayerUserId));
+            var authorPlayerUserName = playerRecord?.LastSeenUserName ?? string.Empty;
+
+            booksWithNames.Add(new AdminLibraryBookEntry(
+                book.Id,
+                book.Title,
+                book.Author,
+                book.Content,
+                book.Date.ToString("yyyy-MM-dd"),
+                book.AuthorPlayerUserId,
+                authorPlayerUserName));
+        }
+
+        _books = booksWithNames;
 
         StateDirty();
     }
