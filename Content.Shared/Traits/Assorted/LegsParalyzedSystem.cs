@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
@@ -24,7 +23,9 @@ public sealed class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
         //SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent); // Frontier: wheelchair users can crawl
-        SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandAttemptEvent); // Frontier: wheelchair users can crawl
+        SubscribeLocalEvent<LegsParalyzedComponent, StandUpAttemptEvent>(OnStandUpAttemptEvent, before: [typeof(SharedStunSystem)]); // Frontier: wheelchair users can crawl
+        SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandAttemptEvent, before: [typeof(SharedStunSystem)]); // Frontier: wheelchair users can crawl
+        SubscribeLocalEvent<LegsParalyzedComponent, KnockedDownAlertEvent>(OnKnockedDownAlertEvent, before: [typeof(SharedStunSystem)]); // Frontier: wheelchair users can crawl
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
@@ -42,11 +43,13 @@ public sealed class LegsParalyzedSystem : EntitySystem
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
         _standingSystem.Stand(uid);
+        _stunSystem.SetAutoStand(uid, true); // Frontier: wheelchair users can crawl
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
     {
-        _stunSystem.TryKnockdown(uid, null, false, false, false, true); // Frontier: wheelchair users can crawl
+        _standingSystem.Down(uid, true, false, true); // Frontier: wheelchair users can crawl
+        _stunSystem.TryCrawling(uid, null, false, false, false, true); // Frontier: wheelchair users can crawl
     }
 
     // Start Frontier: wheelchair users can crawl
@@ -57,17 +60,29 @@ public sealed class LegsParalyzedSystem : EntitySystem
     //
     //     args.Cancel();
     // }
+
+    private void OnStandUpAttemptEvent(EntityUid uid, LegsParalyzedComponent component, StandUpAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        args.Cancelled = true;
+        args.Autostand = false;
+    }
+
+    private void OnStandAttemptEvent(EntityUid uid, LegsParalyzedComponent component, StandAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
+    private void OnKnockedDownAlertEvent(EntityUid uid, LegsParalyzedComponent component, KnockedDownAlertEvent args)
+    {
+        args.Handled = true;
+    }
     // End Frontier: wheelchair users can crawl
 
     private void OnThrowPushbackAttempt(EntityUid uid, LegsParalyzedComponent component, ThrowPushbackAttemptEvent args)
     {
         args.Cancel();
     }
-
-    // Frontier: wheelchair users can crawl
-    private void OnStandAttemptEvent(EntityUid uid, LegsParalyzedComponent component, StandAttemptEvent args)
-    {
-        args.Cancel();
-    }
-    // End Frontier: wheelchair users can crawl
 }
