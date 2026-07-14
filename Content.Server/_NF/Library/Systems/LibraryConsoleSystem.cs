@@ -1,11 +1,13 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Server.Administration.Logs;
 using Content.Server._NF.Library.Components;
 using Content.Server.Database;
 using Content.Server.Popups;
 using Content.Shared._NF.Library.BUI;
 using Content.Shared._NF.Library.Events;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Database;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
@@ -30,6 +32,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
     private const string BookSlotId = "bookConsole_Book";
 
@@ -111,6 +114,10 @@ public sealed class LibraryConsoleSystem : EntitySystem
         }
 
         await _dbManager.AddNFLibraryBookAsync(server.Id, title, author, content, date, authorPlayerUserId);
+
+        _adminLog.Add(LogType.Action,
+            LogImpact.Medium,
+            $"{ToPrettyString(actor):player} uploaded book \"{title}\" by \"{author}\" to {ToPrettyString(ent):entity}");
 
         // Refresh the UI so the browse tab shows the newly uploaded book.
         if (EntityManager.EntityExists(ent))
