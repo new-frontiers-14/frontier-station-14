@@ -1337,9 +1337,14 @@ namespace Content.Server.Database
     [Table("nf_library_book")]
     public sealed class NFLibraryBook
     {
-        [Key, ForeignKey("Round")] public int RoundId { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        [Required] public int Id { get; set; }
+        [ForeignKey("Round")]
+        public int RoundId { get; set; }
+
+        [Required]
+        public Round Round { get; set; } = default!;
 
         /// <summary>
         /// Which Server the book belongs to.

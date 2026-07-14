@@ -1882,6 +1882,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         #region Library
 
         public async Task AddNFLibraryBookAsync(
+            int roundId,
             int serverId,
             string title,
             string author,
@@ -1893,6 +1894,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
             db.DbContext.NFLibraryBook.Add(new NFLibraryBook
             {
+                RoundId = roundId,
                 ServerId = serverId,
                 Title = title,
                 Author = author,

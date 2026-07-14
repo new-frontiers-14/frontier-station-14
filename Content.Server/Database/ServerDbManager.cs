@@ -345,7 +345,7 @@ namespace Content.Server.Database
         Task<IPIntelCache?> GetIPIntelCache(IPAddress ip);
         Task<bool> CleanIPIntelCache(TimeSpan range);
 
-        Task AddNFLibraryBookAsync(int serverId, string title, string author, string content, DateTime date, Guid authorPlayerUserId);
+        Task AddNFLibraryBookAsync(int roundId, int serverId, string title, string author, string content, DateTime date, Guid authorPlayerUserId);
         Task<List<NFLibraryBook>> GetNFLibraryBooksAsync();
         Task<bool> DeleteNFLibraryBookAsync(int bookId);
 
@@ -1079,10 +1079,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
 
-        public Task AddNFLibraryBookAsync(int serverId, string title, string author, string content, DateTime date, Guid authorPlayerUserId)
+        public Task AddNFLibraryBookAsync(int roundId, int serverId, string title, string author, string content, DateTime date, Guid authorPlayerUserId)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddNFLibraryBookAsync(serverId, title, author, content, date, authorPlayerUserId));
+            return RunDbCommand(() => _db.AddNFLibraryBookAsync(roundId, serverId, title, author, content, date, authorPlayerUserId));
         }
 
         public Task<List<NFLibraryBook>> GetNFLibraryBooksAsync()
