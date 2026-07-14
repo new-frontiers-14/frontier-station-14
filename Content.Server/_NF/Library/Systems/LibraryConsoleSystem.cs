@@ -11,6 +11,7 @@ using Content.Shared.Database;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
+using Content.Server.GameTicking;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -28,6 +29,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
     [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
@@ -113,7 +115,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
             return;
         }
 
-        await _dbManager.AddNFLibraryBookAsync(server.Id, title, author, content, date, authorPlayerUserId);
+        await _dbManager.AddNFLibraryBookAsync(_gameTicker.RoundId, server.Id, title, author, content, date, authorPlayerUserId);
 
         _adminLog.Add(LogType.Action,
             LogImpact.Medium,

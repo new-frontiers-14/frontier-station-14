@@ -44,11 +44,18 @@
             </BoxContainer>
         </PanelContainer>
 
-        <!-- Delete button -->
-        <Button Name="DeleteButton"
+        <!-- Action buttons -->
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Button Name="OpenBookViewButton"
+                Text="{Loc library-admin-open-book-view-button}"
+                HorizontalExpand="True"
+                Disabled="True" />
+
+            <Button Name="DeleteButton"
                 Text="{Loc library-admin-delete-button}"
                 HorizontalExpand="True"
                 Disabled="True" />
+        </BoxContainer>
 
     </BoxContainer>
 </DefaultWindow>

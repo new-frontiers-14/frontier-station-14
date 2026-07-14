@@ -22,6 +22,7 @@ library-console-download-book-button = Download to Inserted Book
 library-admin-window-title = Admin Library Browser
 library-admin-search-placeholder = Search by title, author, or player user ID...
 library-admin-empty = No books found.
+library-admin-open-book-view-button = Open Selected Book
 library-admin-delete-button = Delete Selected Book
 library-admin-preview-title = Title: { $title }
 library-admin-preview-author = Author: { $author }

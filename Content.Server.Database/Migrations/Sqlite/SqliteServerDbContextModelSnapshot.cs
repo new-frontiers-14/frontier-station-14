@@ -663,10 +663,10 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
-                    b.Property<int>("RoundId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
-                        .HasColumnName("round_id");
+                        .HasColumnName("nf_library_book_id");
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -686,9 +686,9 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("date");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("RoundId")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("nf_library_book_id");
+                        .HasColumnName("round_id");
 
                     b.Property<int>("ServerId")
                         .HasColumnType("INTEGER")
@@ -699,8 +699,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 
-                    b.HasKey("RoundId")
+                    b.HasKey("Id")
                         .HasName("PK_nf_library_book");
+
+                    b.HasIndex("RoundId")
+                        .HasDatabaseName("IX_nf_library_book_round_id");
 
                     b.HasIndex("ServerId")
                         .HasDatabaseName("IX_nf_library_book_server_id");
@@ -1688,12 +1691,21 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
+                    b.HasOne("Content.Server.Database.Round", "Round")
+                        .WithMany()
+                        .HasForeignKey("RoundId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_nf_library_book_round_round_id");
+
                     b.HasOne("Content.Server.Database.Server", "Server")
                         .WithMany()
                         .HasForeignKey("ServerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_nf_library_book_server_server_id");
+
+                    b.Navigation("Round");
 
                     b.Navigation("Server");
                 });
