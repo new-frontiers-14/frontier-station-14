@@ -4,7 +4,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
-using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Components; // Frontier
 using Content.Shared.Stunnable; // Frontier: wheelchair users can crawl
 
 namespace Content.Shared.Traits.Assorted;
