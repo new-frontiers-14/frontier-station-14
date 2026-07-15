@@ -423,6 +423,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return false;
         }
 
+        if (weapon.SwingBeverage)
+        {
+            weapon.SwingLeft = !weapon.SwingLeft;
+            DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.SwingLeft));
+        }
+
         // Attack confirmed
         for (var i = 0; i < swings; i++)
         {
