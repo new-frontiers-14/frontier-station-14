@@ -300,6 +300,7 @@
   id: ShuttleMapCrescent
   name: "NC Crescent"
   description: "Detailed map of a Crescent shuttle."
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
@@ -315,6 +316,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: crossroads
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapDendron
+  name: "NT Dendron"
+  description: "Detailed map of a Dendron shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: dendron
 
 - type: entity
   parent: PosterBase
@@ -802,6 +814,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapSpectre
+  name: "NR Spectre"
+  description: "Detailed map of a Spectre shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: spectre
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapSpirit
   name: "FSB Spirit"
   description: "Detailed map of a Spirit shuttle."
@@ -909,6 +932,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: vagabond
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapVoltage
+  name: "CS Voltage"
+  description: "Detailed map of a Voltage shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: voltage
 
 - type: entity
   parent: PosterBase
