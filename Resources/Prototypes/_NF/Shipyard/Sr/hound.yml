@@ -35,7 +35,13 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Hound {1}'
+          mapNameTemplate: 'Hound {0}'
           nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+            !type:ConfigurableSuffixNameGenerator
+            generator: CBC
+            designator:
+              type: List
+              items:
+                - H0
+                - HO
+                - HD

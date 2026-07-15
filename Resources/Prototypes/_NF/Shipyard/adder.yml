@@ -33,16 +33,10 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Adder {0}'
+          mapNameTemplate: 'Akupara {1}'
           nameGenerator:
-            !type:ConfigurableSuffixNameGenerator
-            generator: LVHI
-            designator:
-              type: List
-              items:
-                - A1
-                - A7
-                - AD
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
         - type: StationJobs
           availableJobs:
             ContractorInterview: [ 0, 0 ]
