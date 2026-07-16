@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server._NF.Library.Components;
 using Content.Server.Database;
+using Content.Shared._NF.Library;
 using Content.Server.Popups;
 using Content.Shared._NF.Library.BUI;
 using Content.Shared._NF.Library.Events;
@@ -86,6 +87,18 @@ public sealed class LibraryConsoleSystem : EntitySystem
         {
             _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
             _popup.PopupEntity(Loc.GetString("library-console-upload-missing-fields"), args.Actor, args.Actor);
+            return;
+        }
+
+        if (args.Title.Length > LibraryBookLimits.MaxTitleLength ||
+            args.Author.Length > LibraryBookLimits.MaxAuthorLength ||
+            args.Content.Length > LibraryBookLimits.MaxContentLength)
+        {
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            _popup.PopupEntity(Loc.GetString("library-console-upload-too-long",
+                ("maxTitle", LibraryBookLimits.MaxTitleLength),
+                ("maxAuthor", LibraryBookLimits.MaxAuthorLength),
+                ("maxContent", LibraryBookLimits.MaxContentLength)), args.Actor, args.Actor);
             return;
         }
 
