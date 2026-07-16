@@ -710,7 +710,8 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
                         .HasColumnName("author");
 
                     b.Property<Guid>("AuthorPlayerUserId")
@@ -719,7 +720,8 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(32768)
+                        .HasColumnType("character varying(32768)")
                         .HasColumnName("content");
 
                     b.Property<DateTime>("Date")
@@ -736,7 +738,8 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
                         .HasColumnName("title");
 
                     b.HasKey("Id")

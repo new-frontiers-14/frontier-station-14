@@ -13,6 +13,7 @@ library-console-content-placeholder = Insert a book into the console...
 library-console-upload-book-button = Upload Book
 
 library-console-upload-missing-fields = The book must have a title, author, and content before uploading.
+library-console-upload-too-long = The book is too large. Title: { $maxTitle }, Author: { $maxAuthor }, Content: { $maxContent } characters.
 library-console-upload-duplicate = This book's content is already in the library.
 library-console-browse-empty = No books in the library yet.
 library-console-search-placeholder = Search by title or author...

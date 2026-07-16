@@ -670,6 +670,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Author")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("author");
 
@@ -679,6 +680,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Content")
                         .IsRequired()
+                        .HasMaxLength(32768)
                         .HasColumnType("TEXT")
                         .HasColumnName("content");
 
@@ -696,6 +698,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 

@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Shared._NF.Library;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -1890,6 +1891,15 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             DateTime date,
             Guid authorPlayerUserId)
         {
+            if (title.Length > LibraryBookLimits.MaxTitleLength)
+                throw new ArgumentException($"Title exceeds max length of {LibraryBookLimits.MaxTitleLength}.", nameof(title));
+
+            if (author.Length > LibraryBookLimits.MaxAuthorLength)
+                throw new ArgumentException($"Author exceeds max length of {LibraryBookLimits.MaxAuthorLength}.", nameof(author));
+
+            if (content.Length > LibraryBookLimits.MaxContentLength)
+                throw new ArgumentException($"Content exceeds max length of {LibraryBookLimits.MaxContentLength}.", nameof(content));
+
             await using var db = await GetDb();
 
             db.DbContext.NFLibraryBook.Add(new NFLibraryBook
