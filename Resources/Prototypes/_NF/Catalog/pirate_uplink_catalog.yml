@@ -607,6 +607,26 @@
   - UplinkPirateUtility
 
 - type: listing
+  id: UplinkPirateYarrmag
+  name:  uplink-pirate-yarrmag-name
+  description: uplink-pirate-yarrmag-desc
+  productEntity: Yarrmag
+  icon: { sprite: _NF/Objects/Tools/yarrmag.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - NFPirateCaptain
+    - NFPirateFirstMate
+
+- type: listing
   id: UplinkNFPirateIDChip
   name: uplink-pirate-id-chip-name
   description: uplink-pirate-id-chip-desc
@@ -622,6 +642,6 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
-        - NFPirateFirstMate    
+        - NFPirateFirstMate
   categories:
   - UplinkPirateUtility
