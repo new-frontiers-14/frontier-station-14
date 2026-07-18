@@ -1,6 +1,7 @@
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.Guidebook;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Atmos.Components;
@@ -93,6 +94,7 @@ public sealed partial class DeltaPressureComponent : Component
     /// The minimum difference in pressure between any side required for the entity to start taking damage.
     /// </summary>
     [DataField]
+    [GuidebookData]
     public float MinPressureDelta = 7500;
 
     /// <summary>
