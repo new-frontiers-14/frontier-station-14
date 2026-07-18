@@ -62,4 +62,3 @@ marking-VoxTailDocked-vox_tail_docked = Vox Tail (Vestigial)
 marking-VoxTailDocked = Vox Tail (Vestigial)
 
 marking-VoxTailSplit-vox_tail_split = Vox Tail (Split)
-marking-VoxTailSplit = Vox Tail (Split)
