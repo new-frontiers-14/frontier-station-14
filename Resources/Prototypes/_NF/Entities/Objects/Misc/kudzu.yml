@@ -1,0 +1,18 @@
+- type: entity
+  id: KudzuFlowerDecorative
+  name: floral carpet
+  suffix: Decorative
+  description: A colorful carpet of flowers sprawling in every direction. Luckily, it's rapid growth seems to have stopped.
+  parent: Kudzu
+  components:
+    - type: Sprite
+      drawdepth: HighFloorObjects
+      sprite: Objects/Misc/kudzuflower.rsi
+      state: kudzu_11
+    - type: Kudzu
+      spriteVariants: 5
+      growthTickChance: 0.0
+      spreadChance: 0.0
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 1.0
+      sprintSpeedModifier: 1.0
