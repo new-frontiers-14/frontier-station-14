@@ -327,6 +327,9 @@ uplink-pirate-accessconfigurator-captain-desc = An access configurator that is s
 uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
 
+uplink-pirate-yarrped-name = YarRPED
+uplink-pirate-yarrped-desc = A reverse-engineered RPED that installs the worst parts available and stores the valuable parts it removes.
+
 uplink-pirate-pmag-name = Machine Liberator
 uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
 
@@ -353,6 +356,12 @@ uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing y
 
 uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
 uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
+
+uplink-pirate-yarrmag-name = Yarrmag
+uplink-pirate-yarrmag-desc = A disposable card made by the Freebooters to hack devices. Works one time.
+
+uplink-pirate-id-chip-name = Bootleg Cyborg Chip
+uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
 
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
