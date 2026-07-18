@@ -44,7 +44,7 @@ public sealed class LegsParalyzedSystem : EntitySystem
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
         _standingSystem.Stand(uid);
-        _stunSystem.SetAutoStand(uid, true); // Frontier: wheelchair users can crawl
+        RemComp<KnockedDownComponent>(uid); // Frontier: wheelchair users can crawl
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
