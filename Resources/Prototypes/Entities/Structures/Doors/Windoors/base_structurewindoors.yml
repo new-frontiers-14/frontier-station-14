@@ -163,10 +163,6 @@
     noAirWhenFullyAirBlocked: false
     airBlockedDirection:
       - South
-  - type: DeltaPressure
-    minPressure: 250
-    minPressureDelta: 187.5
-    scalingType: Threshold
   - type: Construction
     graph: Windoor
     node: windoor
@@ -239,10 +235,6 @@
   - type: Construction
     graph: Windoor
     node: windoorSecure
-  - type: DeltaPressure
-    minPressure: 3750
-    minPressureDelta: 2500
-    scalingType: Threshold
   - type: StaticPrice
     price: 200 # Frontier: 350<200 - TODO: material value rework
   - type: Tag
@@ -312,10 +304,6 @@
   - type: Construction
     graph: Windoor
     node: pwindoor
-  - type: DeltaPressure
-    minPressure: 18750
-    minPressureDelta: 12500
-    scalingType: Threshold
   - type: StaticPrice
     price: 170 # Frontier: 500<170 - TODO: material value rework
   - type: RadiationBlocker
@@ -382,10 +370,6 @@
   - type: Construction
     graph: Windoor
     node: pwindoorSecure
-  - type: DeltaPressure
-    minPressure: 37500
-    minPressureDelta: 25000
-    scalingType: Threshold
   - type: StaticPrice
     price: 312 # Frontier: 500<312 - material value rework
   - type: RadiationBlocker
@@ -454,10 +438,6 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DeltaPressure
-    minPressure: 18750
-    minPressureDelta: 12500
-    scalingType: Threshold
   - type: Construction
     graph: Windoor
     node: uwindoor
@@ -524,10 +504,6 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DeltaPressure
-    minPressure: 37500
-    minPressureDelta: 25000
-    scalingType: Threshold
   - type: Construction
     graph: Windoor
     node: uwindoorSecure

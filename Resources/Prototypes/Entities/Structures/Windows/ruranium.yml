@@ -48,11 +48,6 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: DeltaPressure
-    minPressure: 150000
-    minPressureDelta: 100000
-    scalingType: Linear
-    scalingPower: 0.0001
   - type: StaticPrice
     price: 140 # Frontier: 215<140 - TODO: material value rework
   - type: RadiationBlocker
@@ -111,10 +106,6 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DeltaPressure
-    minPressure: 37500
-    minPressureDelta: 25000
-    scalingType: Threshold
   - type: StaticPrice
     price: 70 # Frontier: 110<70 - TODO: material value rework
   - type: RadiationBlocker

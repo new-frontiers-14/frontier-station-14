@@ -55,10 +55,7 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: DeltaPressure
-    minPressure: 15000
-    minPressureDelta: 10000
-    scalingType: Threshold
+
 
 - type: entity
   id: WindowReinforcedDirectional
@@ -117,9 +114,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DeltaPressure
-    minPressure: 3750
-    minPressureDelta: 2500
   - type: StaticPrice
     price: 10 # Frontier: 22.5<10
 
