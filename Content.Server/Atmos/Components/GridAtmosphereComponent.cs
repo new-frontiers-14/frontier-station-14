@@ -3,7 +3,6 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Serialization;
 using Content.Server.NodeContainer.NodeGroups;
-using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Atmos.Components
 {
