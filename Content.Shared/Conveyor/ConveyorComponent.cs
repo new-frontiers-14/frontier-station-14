@@ -41,9 +41,6 @@ public sealed partial class ConveyorComponent : Component
     public ProtoId<SinkPortPrototype> OffPort = "Off";
 
     // Frontier begin
-    [DataField, ViewVariables]
-    public int MaxEntities = 35;
-
     [ViewVariables]
     public bool Jammed = false;
     // Frontier end
