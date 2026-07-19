@@ -185,9 +185,9 @@ public abstract class SharedConveyorController : VirtualController
             if (otherXform.GridUid != xform.GridUid)
                 continue;
 
-            var distance = (otherXform.Coordinates.Position - conveyorPosition.Position).Length();
+            var distanceSqrd = (otherXform.Coordinates.Position - conveyorPosition.Position).LengthSquared();
 
-            if (distance <= 5f)
+            if (distanceSqrd <= 25f)
                 return true;
         }
 
