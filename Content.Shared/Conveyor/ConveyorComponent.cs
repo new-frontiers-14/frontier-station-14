@@ -42,7 +42,7 @@ public sealed partial class ConveyorComponent : Component
 
     // Frontier begin
     [DataField, ViewVariables]
-    public int MaxEntities = 20;
+    public int MaxEntities = 35;
 
     [ViewVariables]
     public bool Jammed = false;
