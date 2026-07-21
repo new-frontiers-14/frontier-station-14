@@ -66,6 +66,24 @@
   materials:
     Biomass: 35
 
+- type: latheRecipe
+  id: NFBioGenPaperRolling1
+  result: PaperRolling1
+  categories:
+  - Materials
+  completetime: 1
+  materials:
+    Biomass: 1
+
+- type: latheRecipe
+  id: NFBioGenCigaretteFilter
+  result: CigaretteFilter
+  categories:
+  - Materials
+  completetime: 1
+  materials:
+    Biomass: 1
+
 #region Meat
 
 - type: latheRecipe
@@ -978,4 +996,20 @@
   result: FlyAmanitaSeeds
   icon:
     sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenTobaccoSeeds
+  parent: BioGenSeedsRecipe
+  result: TobaccoSeeds
+  icon:
+    sprite: Objects/Specific/Hydroponics/tobacco.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenCannabisSeeds
+  parent: BioGenSeedsRecipe
+  result: CannabisSeeds
+  icon:
+    sprite: Objects/Specific/Hydroponics/cannabis.rsi
     state: seed
