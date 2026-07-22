@@ -1,7 +1,3 @@
-marking-FelinidCatSnout = Cat Snout
-marking-FelinidCatSnout-snout_cat = Primary
-marking-FelinidCatSnout-snout_cat_nose = Nose
-
 marking-FelinidFurMale = Fur
 marking-FelinidFurMale-fur_mas = Color
 marking-FelinidFurFemale = Fur
