@@ -6,7 +6,7 @@ namespace Content.Shared._NF.Whitelist;
 /// A simple dependency to check if a specific user is globally whitelisted.
 /// </summary>
 /// <remarks>
-/// This code should not have to exist, but due to how whitelisting implemented (not very well), there is no clean way to retrieve a user's
+/// This code should not have to exist, but due to how whitelisting is implemented (not very well), there is no clean way to retrieve a user's
 /// whitelist stats. That is why this has to exist. I hate that this has to exist, but it does. If you have the brass to
 /// refactor the whitelist system so this class doesn't have to exist anymore, future coders will thank you.
 /// </remarks>
