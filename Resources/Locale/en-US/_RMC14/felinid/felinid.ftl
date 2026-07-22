@@ -1,8 +1,3 @@
-marking-FelinidFurMale = Fur
-marking-FelinidFurMale-fur_mas = Color
-marking-FelinidFurFemale = Fur
-marking-FelinidFurMale-fur_fem = Color
-
 marking-FelinidLeopard = Leopard tail
 marking-FelinidLeopard-m_tail_leopard_primary = Primary
 marking-FelinidLeopard-m_tail_leopard_tertiary = Spots
