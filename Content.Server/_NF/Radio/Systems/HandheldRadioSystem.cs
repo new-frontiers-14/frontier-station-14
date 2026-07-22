@@ -14,6 +14,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
