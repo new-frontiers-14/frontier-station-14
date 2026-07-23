@@ -235,10 +235,16 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobHamster]
+  parent: [BaseEmotionalGhost, MobHamsterHamlet]
   id: MobHamsterGhost
   components:
   - type: RandomMetadata
     nameSegments: [NamesHamster]
   - type: Inventory
-    speciesId: hamster
+    templateId: hamster
+  - type: Tag
+    tags:
+    - Hamster
+    - VimPilot
+    - ChefPilot
+
