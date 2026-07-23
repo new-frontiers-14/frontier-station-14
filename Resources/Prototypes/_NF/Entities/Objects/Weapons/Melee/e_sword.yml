@@ -1,12 +1,17 @@
 - type: entity
   name: NFSD energy sword
   parent: [BaseC2ContrabandUnredeemable, EnergySword]
-  id: EnergySwordNfsd
-  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
+  id: eNFSDsword
+  description: An NFSD energy sword, your righteous beam of light in the dark.
   components:
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Heat: 12
+        Slash: 10
   - type: EnergySword
     colorOptions:
-      - "#d4ffbf"
+      - "#10cc42"
     blockHacking: true
 
 - type: entity
