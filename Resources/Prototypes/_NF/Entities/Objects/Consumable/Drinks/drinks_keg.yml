@@ -31,7 +31,11 @@
     solutions:
       drink:
         maxVol: 300
-  - type: Drink
+  - type: Edible
+    edible: Drink
+    solution: drink
+    destroyOnEmpty: false
+    utensil: Spoon
   - type: DrawableSolution
     solution: drink
   - type: RefillableSolution
