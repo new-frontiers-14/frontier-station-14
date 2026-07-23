@@ -10,6 +10,8 @@ on:
 
 jobs:
   Label:
+    permissions:
+      pull-requests: write
     if: ( github.event.pull_request.draft == false ) && ( github.actor != 'PJBot' ) && ( github.actor != 'FrontierATC' ) # Frontier
     runs-on: ubuntu-latest
     steps:

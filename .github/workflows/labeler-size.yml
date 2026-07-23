@@ -2,6 +2,8 @@ name: "Labels: Size"
 on: pull_request_target
 jobs:
   size-label:
+    permissions: 
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: size-label
