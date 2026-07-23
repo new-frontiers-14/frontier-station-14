@@ -122,3 +122,4 @@ names-dog-pitbull-dataset-29 = Baby
 names-dog-pitbull-dataset-30 = Demon
 names-dog-pitbull-dataset-31 = Trixie
 names-dog-pitbull-dataset-32 = Princess
+names-dog-pitbull-dataset-33 = Susie Q
