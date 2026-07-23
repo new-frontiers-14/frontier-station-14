@@ -547,3 +547,60 @@
     - horns:
         horns_curled: YipYipHornColors
   - type: CargoSellBlacklist
+
+- type: entity
+  parent: MobMouse
+  id: MobMouse3
+  description: A cute multi-colored mousey support pet!
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Pets/mouse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-3
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-3
+    noMovementLayers:
+      movement:
+        state: mouse-3
+  - type: Clothing
+    quickEquip: false
+    sprite: _NF/Mobs/Pets/mouse.rsi
+    equippedPrefix: 3
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-3
+      Critical:
+        Base: dead-3
+      Dead:
+        Base: splat-3
+  - type: Item
+    size: Tiny
+    heldPrefix: 3
+  - type: Hunger
+    thresholds:
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.00925925925926
+  - type: Thirst
+    startingThirst: 150
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: NpcFactionMember
+    factions:
+    - PetsNT
+  - type: CargoSellBlacklist

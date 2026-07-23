@@ -38,6 +38,43 @@
     - MedicalTrackingImplant
 
 - type: entity
+  id: BaseEmotionalSmallGhost
+  abstract: true
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    prototype: EmotionalSupportPet
+    mindRoles:
+    - MindRoleGhostRoleEmotionalSupportPet
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: epicene
+  - type: IdExaminable
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: Inventory
+    templateId: nfpet
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+
+- type: entity
   id: BaseEmotionalGhostCat
   parent: BaseEmotionalGhost
   abstract: true
@@ -93,6 +130,18 @@
     states:
       Alive:
         Base: cat
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostCat, MobCatKitten]
+  id: MobCatKittenGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesCatCalico]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: kitten
 
 - type: entity
   suffix: Ghost
@@ -181,7 +230,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobChicken]
+  parent: [BaseEmotionalSmallGhost, MobChicken]
   id: MobChickenGhost
   components:
   - type: ReplacementAccent
@@ -235,10 +284,30 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobHamster]
+  parent: [BaseEmotionalSmallGhost, MobHamster]
   id: MobHamsterGhost
   components:
   - type: RandomMetadata
     nameSegments: [NamesHamster]
   - type: Inventory
     speciesId: hamster
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalSmallGhost, MobParrotNF]
+  id: MobParrotGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesParrot]
+  - type: Inventory
+    speciesId: parrot
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalSmallGhost, MobMouse3]
+  id: MobMouseGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesMouse]
+  - type: Inventory
+    speciesId: mouse
