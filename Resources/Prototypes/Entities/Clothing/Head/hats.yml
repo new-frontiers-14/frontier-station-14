@@ -1103,12 +1103,23 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatTacticalMaidHeadband
   name: tactical maid headband
-  description: A red headband - don't imagine yourself a Rambo and don't pick up a few machine guns.
+  description: A maid's headband - careful not to stain it.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/tacticalmaidheadband.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/tacticalmaidheadband.rsi
+
+- type: entity
+  parent: [BaseC3SyndicateContraband, ClothingHeadBase, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
+  id: ClothingHeadHatSyndicateTacticalMaidHeadband
+  name: red tactical maid headband
+  description: A red headband - don't imagine yourself a Rambo and don't pick up a few machine guns.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/syndicatemaidheadband.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/syndicatemaidheadband.rsi
 
 - type: entity
   parent: ClothingHeadBase
