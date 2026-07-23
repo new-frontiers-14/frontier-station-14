@@ -2,7 +2,7 @@
 # and occasionally ignores item sizes too (e.g., the toolbox is a ginormous item but is treated as a RecyclableItemSteelMedium nonetheless).
 # Item sizes: Tiny, Small, Medium (Normal), Large, Huge, Ginormous
 
-# No materials
+# region No materials
 - type: entity
   id: RecyclableItemNoMats
   abstract: true
@@ -13,7 +13,7 @@
     - Trash
     - Recyclable
 
-# Cardboard
+# region Cardboard
 - type: entity # Boxes
   id: RecyclableItemCardboard
   abstract: true
@@ -22,7 +22,7 @@
     materialComposition:
       Cardboard: 100
 
-# Paper
+# region Paper
 - type: entity # Books
   id: RecyclableItemPaper
   abstract: true
@@ -31,7 +31,7 @@
     materialComposition:
       Paper: 50
 
-# Glass
+# region Glass
 ## Tiny
 - type: entity # Dropper etc
   id: RecyclableItemGlassTiny
@@ -41,7 +41,7 @@
     materialComposition:
       Glass: 10
 
-# Steel
+# region Steel
 ## Tiny
 - type: entity # Flares idk
   id: RecyclableItemSteelTiny
@@ -72,7 +72,7 @@
       Steel: 150
       RawScrap: 50
 
-# Plastic
+# region Plastic
 ## Tiny
 - type: entity # Pill canisters, swabs, dice, capacitors etc.
   id: RecyclableItemPlasticTiny
@@ -102,7 +102,26 @@
       Plastic: 50
       RawScrap: 10
 
-# Simple Devices
+# region Plasteel
+## Tiny
+- type: entity # Rings
+  id: RecyclableItemPlasteelTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 10
+
+## Medium
+- type: entity # Weapons
+  id: RecyclableItemPlasteelMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 150
+      RawScrap: 50
+# region Simple Devices
 ## Tiny
 - type: entity # Machine parts, encryption keys etc
   id: RecyclableItemDeviceTiny
@@ -128,7 +147,7 @@
       RawScrap: 25
       RawScrapTech: 25
 
-# Complex Devices
+# region Complex Devices
 ## Normal
 - type: entity # Flatpacks etc
   id: RecyclableItemDeviceComplexNormal
@@ -143,7 +162,7 @@
       RawScrap: 100
       RawScrapTech: 20
 
-# Organic
+# region Organic
 ## Tiny
 - type: entity # Soap, candles, seeds etc
   id: RecyclableItemOrganicTiny
@@ -153,7 +172,7 @@
     materialComposition:
       Biomass: 1
 
-# Wood
+# region Wood
 ## Medium
 - type: entity # Musical instruments etc
   id: RecyclableItemWoodMedium
@@ -162,3 +181,13 @@
   - type: PhysicalComposition
     materialComposition:
       Wood: 200
+
+# region Bones
+## Medium
+- type: entity # Bone weapons, Bone Armor
+  id: RecyclableItemBonesMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Bones: 150
