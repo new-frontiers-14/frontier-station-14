@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Nawichusea (https://github.com/Nawichusea)
+# Discord: Nawichusea
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Firameq
+  parent: BaseVessel
+  name: MSS Firameq
+  description: "A large cargo sorting pseudo-station."
+  price: 129000 # appraised at:~111435 marked up by 15%: 16715.25 price rounded up.
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Firameq.yml
+  guidebookPage: ShipyardFirameq
+  class:
+  - Cargo
+  engine:
+  - Solar
+
+- type: gameMap
+  id: Firameq
+  mapName: 'MSS Firameq'
+  mapPath: /Maps/_NF/Shuttles/Firameq.yml
+  minPlayers: 0
+  stations:
+    Firameq:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Firameq {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
