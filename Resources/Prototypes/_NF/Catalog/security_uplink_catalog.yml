@@ -862,6 +862,25 @@
         - Sheriff
 
 - type: listing
+  id: UplinkeNFSDSword
+  name:  uplink-security-esword-name
+  description: uplink-security-esword-desc
+  productEntity: eNFSDsword
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+
+- type: listing
   id: UplinkSecurityHammer
   name:  uplink-security-hammer-name
   description: uplink-security-hammer-desc
