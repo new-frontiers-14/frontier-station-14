@@ -386,3 +386,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-syndicate-spray-painter-name = Syndicate Spray Painter
+uplink-syndicate-spray-painter-desc = Turn your evil house into an evil home. Includes patented syndicate designs not provided by NT spray painters.

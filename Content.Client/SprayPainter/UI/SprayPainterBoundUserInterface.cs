@@ -4,6 +4,7 @@ using Content.Shared.SprayPainter.Components;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
+using System.Linq; // Frontier
 
 namespace Content.Client.SprayPainter.UI;
 
@@ -33,11 +34,44 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
         }
 
         var sprayPainter = EntMan.System<SprayPainterSystem>();
-        _window.PopulateCategories(sprayPainter.PaintableStylesByGroup, sprayPainter.PaintableGroupsByCategory, sprayPainter.Decals);
+        // Frontier start - Specify available painting styles/decals on painter comp
+        if (!EntMan.TryGetComponent<SprayPainterComponent>(Owner, out var sprayPainterComp))
+            return;
+
+        var availableDecals = new List<SprayPainterDecalEntry>();
+        // If a hidden decal tag list isn't given, show all.
+        if (!sprayPainterComp.HiddenDecals.Any())
+            availableDecals = sprayPainter.Decals;
+        // If a hidden decal tag list is given, filter out all decals with a tag from the list.
+        else
+            foreach (var decal in sprayPainter.Decals)
+            {
+                if (!sprayPainterComp.HiddenDecals.Intersect(decal.Tags).Any())
+                    availableDecals.Add(decal);
+            }
+
+        //var availableDecals = sprayPainter.Decals.Where(x => sprayPainterComp.PaintableDecals.Intersect(x.Tags).Count() == x.Tags.Count).ToList();
+        var availableStylesGroup = new Dictionary<string, Dictionary<string, EntProtoId>>();
+        // Iterate each group
+        foreach (var styles in sprayPainter.PaintableStylesByGroup)
+        {
+            var availableStyles = new Dictionary<string, EntProtoId>();
+            // Iterate each name/id pair in each group
+            foreach (var style in styles.Value)
+            {
+                if (sprayPainterComp.HiddenStyles.Contains(style.Key))
+                    continue;
+                availableStyles.Add(style.Key, style.Value);
+            }
+            availableStylesGroup.Add(styles.Key, availableStyles);
+        }
+
+        //var availableStyles = sprayPainter.PaintableStylesByGroup.Where(x => !sprayPainterComp.HiddenStyles.Contains(x.Value))
+        _window.PopulateCategories(availableStylesGroup, sprayPainter.PaintableGroupsByCategory, availableDecals);
         Update();
 
-        if (EntMan.TryGetComponent(Owner, out SprayPainterComponent? sprayPainterComp))
-            _window.SetSelectedTab(sprayPainterComp.SelectedTab);
+        _window.SetSelectedTab(sprayPainterComp.SelectedTab);
+        // Frontier end
     }
 
     public override void Update()
