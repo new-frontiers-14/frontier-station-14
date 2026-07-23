@@ -14,6 +14,8 @@ using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using Robust.Shared.Map.Components;
+using Content.Server._NF.VoidRiver.Components; // Frontier
+using Content.Server._NF.VoidRiver.Systems; // Frontier
 
 namespace Content.Server.Physics.Controllers;
 
@@ -25,6 +27,7 @@ public sealed class MoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private readonly RiverNodeSystem _riverSystem = default!; // Frontier
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
@@ -518,6 +521,22 @@ public sealed class MoverController : SharedMoverController
                 var localVel = (-shuttleNorthAngle).RotateVec(body.LinearVelocity);
                 var maxVelocity = ObtainMaxVel(localVel, shuttle); // max for current travel dir
                 var maxWishVelocity = ObtainMaxVel(totalForce, shuttle);
+
+                // Frontier: TODO: Figure out if all of this is needed. (I don't fully understand this yet) (Is maxVelocity the best input? for GetVelocityModifier?)
+                if (TryComp<RiverFlowReceiverComponent>(shuttleUid, out var flowReceiver))
+                {
+                    if (flowReceiver.InRiver)
+                    {
+                        var shuttlePosition = _xformSystem.GetWorldPosition(shuttleUid, xformQuery);
+                        // Modify the max velocity, force, and acceleration? when in a VoidRiver.
+                        var velocityMod = _riverSystem.ObtainVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(maxVelocity), flowReceiver);
+                        maxVelocity *= velocityMod;
+                        maxWishVelocity *= velocityMod;
+                        totalForce *= velocityMod;
+                    }
+                }
+                // Frontier End
+
                 var properAccel = (maxWishVelocity - localVel) / forceMul;
 
                 var finalForce = Vector2Dot(totalForce, properAccel.Normalized()) * properAccel.Normalized();
