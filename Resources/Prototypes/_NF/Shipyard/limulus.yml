@@ -1,0 +1,46 @@
+# Author Info
+# GitHub: Bartholemew-Dingleberry
+# Discord: bartholomew_dingleberry
+
+# Maintainer Info
+# GitHub: Bartholemew-Dingleberry
+# Discord: bartholomew_dingleberry
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Limulus
+  parent: BaseVessel
+  name: DBI Limulus
+  description: A large warehouse shuttle with enough space for your construction projects.
+  price: 68500 # 52523, 30% = 15756.9 = 68279 (it has 2 main archetypes so a tier 3)
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/limulus.yml
+  guidebookPage: ShipyardLimulus
+  class:
+  - Cargo
+  - Engineering
+  engine:
+  - Uranium
+  - Solar
+
+- type: gameMap
+  id: Limulus
+  mapName: 'DBI Limulus'
+  mapPath: /Maps/_NF/Shuttles/limulus.yml
+  minPlayers: 0
+  stations: 
+    Limulus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Limulus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
