@@ -1017,6 +1017,82 @@
     delay: 8 #Frontier
     fx: EffectRCDDeconstruct8 #Frontier
 
+#Frontier: Invincible Shuttle Walls
+- type: entity
+  parent: WallDiagonalBase
+  id: WallShuttleDiagonalIndestructible
+  name: shuttle wall
+  description: Skub knows this wall is too hard to destroy.
+  suffix: diagonal, indestructible
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    color: "#b1b1b1"
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    state: state0
+  - type: Pullable
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  parent: BaseWall
+  id: WallShuttleIndestructible
+  name: shuttle wall
+  description: Skub knows this wall is too hard to destroy.
+  suffix: indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/shuttle.rsi
+    color: "#b1b1b1"
+  - type: Icon
+    sprite: Structures/Walls/shuttle.rsi
+    state: full
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: IconSmooth
+    key: walls
+    base: state
+  - type: Appearance
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5
+# End Frontier: Invincible Shuttle Walls
+
 - type: entity
   parent: BaseWall
   id: WallSolid
