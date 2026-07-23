@@ -262,6 +262,138 @@
       - DroneUsable
 
 - type: entity
+  name: cool lighttube box
+  parent: BoxCardboard
+  id: BoxColoredCooltube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of blue and cyan lights. Chill!
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightTubeCrystalBlue
+      amount: 6
+    - id: LightTubeCrystalCyan
+      amount: 6
+  - type: Sprite
+    layers:
+    - state: box
+    - state: lighttube
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+  - type: Tag
+    tags:
+    - DroneUsable
+
+- type: entity
+  name: construction lighttube box
+  parent: BoxCardboard
+  id: BoxColoredConstructiontube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of orange and yellow lights. Caution!
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightTubeCrystalOrange
+      amount: 6
+    - id: LightTubeCrystalYellow
+      amount: 6
+  - type: Sprite
+    layers:
+    - state: box
+    - state: lighttube
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+  - type: Tag
+    tags:
+    - DroneUsable
+
+- type: entity
+  name: party lighttube box
+  parent: BoxCardboard
+  id: BoxColoredPartytube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of black and pink lights. Groovy!
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightTubeCrystalBlack
+      amount: 6
+    - id: LightTubeCrystalPink
+      amount: 6
+  - type: Sprite
+    layers:
+    - state: box
+    - state: lighttube
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+  - type: Tag
+    tags:
+    - DroneUsable
+
+- type: entity
+  parent: BoxLightbulb
+  id: BoxColoredNavigationbulb
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of red and green lights.
+  name: navigation lightbulb box
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightBulbCrystalRed
+      amount: 6
+    - id: LightBulbCrystalGreen
+      amount: 6
+
+- type: entity
+  parent: BoxLightbulb
+  id: BoxColoredCoolbulb
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of blue and cyan lights.
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightBulbCrystalBlue
+      amount: 6
+    - id: LightBulbCrystalCyan
+      amount: 6
+
+- type: entity
+  parent: BoxLightbulb
+  id: BoxColoredConstructionbulb
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of orange and yellow lights.
+  name: construction lightbulb box
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightBulbCrystalOrange
+      amount: 6
+    - id: LightBulbCrystalYellow
+      amount: 6
+
+- type: entity
+  parent: BoxLightbulb
+  id: BoxColoredPartybulb
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of black and pink lights.
+  name: party lightbulb box
+  components:
+  - type: StorageFill
+    contents:
+    - id: LightBulbCrystalBlack
+      amount: 6
+    - id: LightBulbCrystalPink
+      amount: 6
+
+- type: entity
   name: pirate shipyard RCD box
   parent: BoxCardboard
   id: BoxPirateShipyardRCD
