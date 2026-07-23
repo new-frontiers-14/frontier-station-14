@@ -6,9 +6,11 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
+using Content.Shared._NF.CCVar; //Frontier
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Shared.Configuration; // Frontier
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -29,6 +31,7 @@ namespace Content.Client.Construction
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!; // Frontier
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -276,8 +279,8 @@ namespace Content.Client.Construction
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
-            if (GhostPresent(loc))
-                return false;
+            if (HasReachedMaximumGhosts(loc)) // Frontier GhostPresent<HasReachedMaximumGhosts
+return false;
 
             var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
@@ -365,6 +368,20 @@ namespace Content.Client.Construction
 
             return false;
         }
+
+        // Frontier start
+        /// <summary>
+        /// Checks if the maximum number of construction ghosts has been reached at the given location.
+        /// </summary>
+        private bool HasReachedMaximumGhosts(EntityCoordinates loc)
+        {
+            // Count ghosts at the given location and allow up to the maximum allowed per tile
+            var ghostCount = _ghosts.Values.Count(ghost =>
+                EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
+
+            return ghostCount >= _configurationManager.GetCVar(NFCCVars.ConstructionMaxGhostsPerTile);
+        }
+        // Frontier end
 
         public void TryStartConstruction(EntityUid ghostId, ConstructionGhostComponent? ghostComp = null)
         {
