@@ -1,0 +1,122 @@
+- type: addiction
+  id: Nicotine
+  name: addiction-nicotine-name
+  defaultReagent: Nicotine
+  threshold: 22 # 3 cigarettes/cigars or 2 pipes without a long enough break between them and you'll be addicted
+  decayRate: 0.6
+  checkPeriod: 60s
+  withdrawal:
+    decayRate: 0.3
+    multiplier: 1.1 #Make withdrawal symptoms appear slightly as we get addicted, should increase overal withdrawal amounts
+    symptoms:
+      - min: 2
+        max: 39
+        probability: 0.4
+        rating: 1
+        duration: 15
+        minTimeSinceHit: 10s #Only if they haven't taken a drag recently
+        messages:
+          priority: 2
+          dataSet: AddictionNicotineCraveLow
+      - min: 40
+        probability: 0.4
+        rating: 1
+        duration: 15
+        minTimeSinceHit: 8s
+        messages:
+          priority: 3
+          visualType: MediumCaution
+          dataSet: AddictionNicotineCraveHigh
+
+      # Preferably we'd have a condition to check if the mask slot is open
+      # so this symptom isn't chosen if its not possible to put a cigarette in their mouth
+      # also we could update the message to reflect that you found a cigarette
+      - min: 40
+        probability: 0.08
+        rating: 1000 #if this gets selected, don't do any other symptoms unless they are in some insane withdrawal
+        duration: 20
+        minTimeSinceHit: 60s #have to be trying to quit
+        messages:
+          priority: 2
+          list:
+            - addiction-nicotine-search-cig
+        effects:
+          - !type:WearableReaction
+            prototypeID: Cigarette
+            slot: mask
+      #increased appetite
+      - min: 15
+        max: 49
+        probability: 0.4
+        rating: 30
+        duration: 15
+        effects:
+          - !type:SatiateHunger
+            factor: -8 #at most every 15 seconds
+      - min: 50
+        probability: 0.5
+        rating: 50
+        duration: 15
+        effects:
+          - !type:SatiateHunger
+            factor: -20 #at most every 15 seconds
+      # Nausea - Uncommon
+      - min: 30
+        max: 79
+        probability: 0.04
+        rating: 1
+        duration: 10
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomNauseaLow
+      - min: 80
+        probability: 0.04 #uncommon side effects
+        rating: 5
+        duration: 10
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomNauseaHigh
+      # Headaches - uncommon
+      - min: 30
+        max: 79
+        probability: 0.04
+        rating: 1
+        duration: 10
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomHeadacheLow
+      - min: 80
+        probability: 0.04
+        rating: 5
+        duration: 10
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomHeadacheHigh
+      #Dry mouth - uncommon
+      - min: 20
+        max: 59
+        probability: 0.05
+        rating: 20
+        duration: 10
+        effects:
+          - !type:SatiateThirst
+            factor: -2
+      - min: 60
+        probability: 0.05
+        rating: 40
+        duration: 10
+        effects:
+          - !type:SatiateThirst
+            factor: -5
+      #irritability
+      - min: 50
+        probability: 0.1
+        rating: 50
+        duration: 15
+        effects:
+          - !type:Emote
+            emote: Scream
+            showInChat: true
+            force: true
