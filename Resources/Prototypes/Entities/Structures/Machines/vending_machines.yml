@@ -939,8 +939,8 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineMedical
-  name: NanoMed Plus
+  id: VendingMachineMedicalBase
+  name: NanoMed Civilian
   description: It's a medical drug dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
@@ -960,9 +960,9 @@
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/medical.rsi
     layers:
-    - state: "off"
+    - state: "off-civilian"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
+    - state: "off-civilian"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - state: panel
@@ -976,6 +976,28 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedical
+  name: NanoMed Plus
+  description: It's a medical drug dispenser. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedPlusInventory
+    offState: off
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/medical.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"]]
 
 - type: entity
   parent: VendingMachine
@@ -2265,8 +2287,8 @@
 # wallmount
 - type: entity
   parent: VendingMachineWallmount
-  id: VendingMachineWallMedical
-  name: NanoMed
+  id: VendingMachineWallMedicalCivilian
+  name: NanoMed band-aid
   description: "It's a wall-mounted medical equipment dispenser. Natural chemicals only!"
   components:
   - type: VendingMachine
@@ -2280,9 +2302,9 @@
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/wallmed.rsi
     layers:
-    - state: "off"
+    - state: "off-civilian"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
+    - state: "off-civilian"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - texture: Structures/Machines/VendingMachines/maintenance_panel.png

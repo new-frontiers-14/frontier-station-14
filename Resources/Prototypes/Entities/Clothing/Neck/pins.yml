@@ -14,6 +14,26 @@
 
 - type: entity
   parent: ClothingNeckPinBase
+  id: ClothingGenderPinBase
+  abstract: true
+  components:
+  - type: ChameleonClothing
+    slot: Neck
+#    default: ClothingNeckLGBTPin
+    requireTag: GenderPin
+    affectedByEmp: false
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade #idk man its on the parent
+    - WhitelistChameleon
+    - GenderPin
+
+- type: entity
+  parent: ClothingGenderPinBase
   id: ClothingNeckLGBTPin
   name: LGBT pin
   description: Be gay do crime.

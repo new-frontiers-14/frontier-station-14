@@ -60,6 +60,10 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
+    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
+    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
@@ -124,33 +128,31 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(explode);
 
-        // Frontier: disabled some more destructive smites
-        // var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
-        // Verb chess = new()
-        // {
-        //     Text = chessName,
-        //     Category = VerbCategory.Smite,
-        //     Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Tabletop/chessboard.rsi"), "chessboard"),
-        //     Act = () =>
-        //     {
-        //         _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
-        //         EnsureComp<TabletopDraggableComponent>(args.Target);
-        //         RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
-        //         var xform = Transform(args.Target);
-        //         _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
-        //             args.Target, PopupType.LargeCaution);
-        //         _popupSystem.PopupCoordinates(
-        //             Loc.GetString("admin-smite-chess-others", ("name", args.Target)), xform.Coordinates,
-        //             Filter.PvsExcept(args.Target), true, PopupType.MediumCaution);
-        //         var board = Spawn("ChessBoard", xform.Coordinates);
-        //         var session = _tabletopSystem.EnsureSession(Comp<TabletopGameComponent>(board));
-        //         _transformSystem.SetMapCoordinates(args.Target, session.Position);
-        //         _transformSystem.SetWorldRotationNoLerp((args.Target, xform), Angle.Zero);
-        //     },
-        //     Impact = LogImpact.Extreme,
-        //     Message = string.Join(": ", chessName, Loc.GetString("admin-smite-chess-dimension-description"))
-        // };
-        // args.Verbs.Add(chess);
+        var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
+        Verb chess = new()
+        {
+            Text = chessName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Tabletop/chessboard.rsi"), "chessboard"),
+            Act = () =>
+            {
+                _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
+                EnsureComp<TabletopDraggableComponent>(args.Target);
+                var xform = Transform(args.Target);
+                _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
+                    args.Target, PopupType.LargeCaution);
+                _popupSystem.PopupCoordinates(
+                    Loc.GetString("admin-smite-chess-others", ("name", args.Target)), xform.Coordinates,
+                    Filter.PvsExcept(args.Target), true, PopupType.MediumCaution);
+                var board = Spawn("ChessBoard", xform.Coordinates);
+                var session = _tabletopSystem.EnsureSession(Comp<TabletopGameComponent>(board));
+                _transformSystem.SetMapCoordinates(args.Target, session.Position);
+                _transformSystem.SetWorldRotationNoLerp((args.Target, xform), Angle.Zero);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", chessName, Loc.GetString("admin-smite-chess-dimension-description"))
+        };
+        args.Verbs.Add(chess);
 
         if (TryComp<FlammableComponent>(args.Target, out var flammable))
         {
