@@ -73,6 +73,11 @@ public interface IBluespaceSpawnGroup
     public string? SpawnBiasTarget { get; }
 
     /// <summary>
+    /// Whether or not to use the bias target's overrides or our own min and max distances.
+    /// </summary>
+    public bool SpawnBiasOverride { get; }
+
+    /// <summary>
     /// A localized name. Overrides other name fields.
     /// </summary>
     public List<LocId> NameLoc { get; }
@@ -141,6 +146,9 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public string? SpawnBiasTarget { get; }
 
     /// <inheritdoc />
+    public bool SpawnBiasOverride { get; } = true;
+
+    /// <inheritdoc />
     public List<LocId> NameLoc { get; } = new();
 
     /// <inheritdoc />
@@ -180,6 +188,9 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public float MaximumDistance { get; }
     /// <inheritdoc />
     public string? SpawnBiasTarget { get; }
+
+    /// <inheritdoc />
+    public bool SpawnBiasOverride { get; } = true;
     public List<LocId> NameLoc { get; } = new();
     public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
