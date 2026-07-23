@@ -12,12 +12,13 @@
   - name: mask
     slotTexture: mask
     slotFlags: MASK
-    uiWindowPos: 0,2
-    strippingWindowPos: 1,2
+    uiWindowPos: 1,2 # Starlight
+    strippingWindowPos: 1,1 # Starlight
     displayName: Mask
     whitelist:
       tags:
       - PetWearable
+      - CorgiWearable #Starlight
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags: SUITSTORAGE
@@ -50,8 +51,8 @@
     slotTexture: suit
     slotFlags: OUTERCLOTHING
     stripTime: 6
-    uiWindowPos: 1,1
-    strippingWindowPos: 1,3
+    uiWindowPos: 1,1 # Starlight adjusted
+    strippingWindowPos: 1,2 # Starlight adjusted
     displayName: Suit
     whitelist:
       tags:
@@ -59,12 +60,13 @@
   - name: eyes
     slotTexture: glasses
     slotFlags: EYES
-    uiWindowPos: 1,2
-    strippingWindowPos: 1,1
+    uiWindowPos: 0,3 # Starlight adjusted
+    strippingWindowPos: 0,0 # Starlight adjusted
     displayName: Eyes
     whitelist:
       tags:
       - PetWearable
+      - CorgiWearable #Starlight adjusted
   - name: head
     slotTexture: head
     slotFlags: HEAD
@@ -86,3 +88,24 @@
     whitelist:
       tags:
       - CorgiWearable
+# Starlight Start
+  - name: neck
+    slotTexture: neck
+    slotFlags: NECK
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Neck
+    whitelist:
+      tags:
+      - CorgiWearable
+# Starlight End
+
+  # Frontier: wallet slot
+  - name: wallet
+    slotTexture: wallet
+    slotFlags: WALLET
+    stripTime: 6
+    uiWindowPos: 2,0
+    strippingWindowPos: 2,3
+    displayName: Wallet
+  # End Frontier: wallet slot
