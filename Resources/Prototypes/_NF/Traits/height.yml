@@ -1,36 +1,5 @@
 # If you add a new trait, make sure to add the corresponding component to the whitelist in \Resources\Prototypes\Entities\Mobs\Player\clone.yml so it gets copied to clones correctly!
 
-# This implementation not good, replace later for slider
-- type: trait
-  id: Tall
-  name: trait-tall-name
-  category: Height
-  cost: 1
-  whitelist:
-    components:
-      - TallWhitelist
-  blacklist:
-    components:
-      - SizeAttribute
-  components:
-  - type: SizeAttribute
-    tall: true
-
-- type: trait
-  id: Short
-  name: trait-short-name
-  category: Height
-  cost: 1
-  whitelist:
-    components:
-      - ShortWhitelist
-  blacklist:
-    components:
-      - SizeAttribute
-  components:
-  - type: SizeAttribute
-    short: true
-
 - type: trait
   id: Fluffy
   name: trait-fluffy-name

@@ -3,6 +3,7 @@ using System;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    partial class SqliteServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260605010308_NF_CharacterSize")]
+    partial class NF_CharacterSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -661,7 +664,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("job", (string)null);
                 });
 
-            // Frontier - NFProfile
             modelBuilder.Entity("Content.Server.Database.NFProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -685,7 +687,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.ToTable("nfprofile", (string)null);
                 });
-            // End Frontier - NFProfile
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
@@ -1665,7 +1666,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
-            // Frontier - NFProfile
             modelBuilder.Entity("Content.Server.Database.NFProfile", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -1677,7 +1677,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Navigation("Profile");
                 });
-            // End Frontier - NFProfile
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
@@ -2043,10 +2042,8 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Navigation("Loadouts");
 
-                    // Frontier - NFProfile
                     b.Navigation("NFProfile")
                         .IsRequired();
-                    // End Frontier - NFProfile
 
                     b.Navigation("Traits");
                 });

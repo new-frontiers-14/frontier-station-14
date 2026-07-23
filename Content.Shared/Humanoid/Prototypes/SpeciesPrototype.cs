@@ -128,6 +128,30 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public Color ForcedMarkingColor { get; private set; } = new();
+
+    /// <summary>
+    ///     Frontier: The species' default value for scaling.
+    /// </summary>
+    [DataField]
+    public float DefaultSize { get; private set; } = 1f;
+
+    /// <summary>
+    ///     Frontier: The species' upper bound for scaling.
+    /// </summary>
+    [DataField]
+    public float MaxSize { get; private set; } = 1.2f;
+
+    /// <summary>
+    ///     Frontier: The species' upper bound for scaling.
+    /// </summary>
+    [DataField]
+    public float MinSize { get; private set; } = 0.8f;
+
+    /// <summary>
+    ///     Frontier: Density coefficient for a species.
+    /// </summary>
+    [DataField]
+    public float DensityCoefficient { get; private set; } = 1;
 }
 
 public enum SpeciesNaming : byte

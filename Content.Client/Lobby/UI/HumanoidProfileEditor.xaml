@@ -1,6 +1,7 @@
 <BoxContainer xmlns="https://spacestation14.io"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:humanoid="clr-namespace:Content.Client.Humanoid"
+         xmlns:_nf.humanoid="clr-namespace:Content.Client._NF.Humanoid"
          xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
          xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
          HorizontalExpand="True">
@@ -98,6 +99,16 @@
                                 <Slider HorizontalExpand="True" Name="Skin" MinValue="0" MaxValue="100" Value="20" />
                                 <BoxContainer Name="RgbSkinColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True"></BoxContainer>
                             </BoxContainer>
+                            <!-- Frontier - Size -->
+                            <BoxContainer Name="SizeEditorContainer" Margin="10" Orientation="Vertical">
+                                <Label Text="{Loc 'humanoid-profile-editor-proportions-label'}" />
+                                <BoxContainer Margin="10 5 0 0" SeparationOverride="5" Orientation="Horizontal">
+                                    <Label Text="{Loc 'humanoid-profile-editor-scale-label'}" />
+                                    <LineEdit Name="SizeEdit" MinSize="60 0" HorizontalAlignment="Right" />
+                                    <Slider HorizontalExpand="True" Name="SizePicker" MinValue="0.8" MaxValue="1.2" Value="1" />
+                                </BoxContainer>
+                            </BoxContainer>
+                            <!-- End Frontier -->
                             <!-- Hair -->
                             <BoxContainer Margin="10" Orientation="Horizontal">
                                 <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
