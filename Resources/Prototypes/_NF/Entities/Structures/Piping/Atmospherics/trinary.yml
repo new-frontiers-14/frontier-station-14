@@ -43,7 +43,7 @@
   components:
     - type: GasFilter
       startOnMapInit: true
-      filteredGas: Oxygen
+      filterGases: [Oxygen]
 
 - type: entity
   parent: [GasFilterFlipped, GasFilterOxygenOn]
@@ -62,7 +62,7 @@
   components:
     - type: GasFilter
       startOnMapInit: true
-      filteredGas: Nitrogen
+      filterGases: [Nitrogen]
 
 - type: entity
   parent: [GasFilterFlipped, GasFilterNitrogenOn]

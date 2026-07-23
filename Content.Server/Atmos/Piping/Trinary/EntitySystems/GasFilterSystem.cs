@@ -1,3 +1,33 @@
+// SPDX-FileCopyrightText: 2021 20kdc
+// SPDX-FileCopyrightText: 2021 E F R
+// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
+// SPDX-FileCopyrightText: 2021 ike709
+// SPDX-FileCopyrightText: 2022 Moony
+// SPDX-FileCopyrightText: 2022 Vordenburg
+// SPDX-FileCopyrightText: 2022 mirrorcult
+// SPDX-FileCopyrightText: 2022 theashtronaut
+// SPDX-FileCopyrightText: 2022 wrexbe
+// SPDX-FileCopyrightText: 2023 Checkraze
+// SPDX-FileCopyrightText: 2023 Chief-Engineer
+// SPDX-FileCopyrightText: 2023 DrSmugleaf
+// SPDX-FileCopyrightText: 2023 Kara
+// SPDX-FileCopyrightText: 2023 Kevin Zheng
+// SPDX-FileCopyrightText: 2023 faint
+// SPDX-FileCopyrightText: 2024 Dvir
+// SPDX-FileCopyrightText: 2024 Leon Friedrich
+// SPDX-FileCopyrightText: 2024 LordCarve
+// SPDX-FileCopyrightText: 2024 Nemanja
+// SPDX-FileCopyrightText: 2024 Plykiya
+// SPDX-FileCopyrightText: 2024 metalgearsloth
+// SPDX-FileCopyrightText: 2024 slarticodefast
+// SPDX-FileCopyrightText: 2024 themias
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Steve
+// SPDX-FileCopyrightText: 2025 bitcrushing
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
@@ -41,7 +71,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasFilterComponent, GasAnalyzerScanEvent>(OnFilterAnalyzed);
             // Bound UI subscriptions
             SubscribeLocalEvent<GasFilterComponent, GasFilterChangeRateMessage>(OnTransferRateChangeMessage);
-            SubscribeLocalEvent<GasFilterComponent, GasFilterSelectGasMessage>(OnSelectGasMessage);
+            SubscribeLocalEvent<GasFilterComponent, GasFilterChangeGasesMessage>(OnChangeGasesMessage); // Funky Station - Parameter name change
             SubscribeLocalEvent<GasFilterComponent, GasFilterToggleStatusMessage>(OnToggleStatusMessage);
 
             SubscribeLocalEvent<GasFilterComponent, MapInitEvent>(OnMapInit); // Frontier
@@ -56,7 +86,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         {
             if (!filter.Enabled
                 || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode)
-                || outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure) // No need to transfer if target is full.
+                || inletNode != outletNode // Goobstation - ignore pressure if we're inline
+                    && outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure)
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
                 return;
@@ -73,17 +104,28 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             var removed = inletNode.Air.RemoveVolume(transferVol);
 
-            if (filter.FilteredGas.HasValue)
+            // Funky Station Start - Multigas Filter
+            if (filter.FilterGases != null && filter.FilterGases.Count > 0)
             {
                 var filteredOut = new GasMixture() { Temperature = removed.Temperature };
+                bool hasFilteredMoles = false;
 
-                filteredOut.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
-                removed.SetMoles(filter.FilteredGas.Value, 0f);
+                foreach (var gas in filter.FilterGases)
+                {
+                    var moles = removed.GetMoles(gas);
+                    if (moles > 0f)
+                    {
+                        filteredOut.SetMoles(gas, moles);
+                        removed.SetMoles(gas, 0f);
+                        hasFilteredMoles = true;
+                    }
+                }
 
                 var target = filterNode.Air.Pressure < Atmospherics.MaxOutputPressure ? filterNode : inletNode;
                 _atmosphereSystem.Merge(target.Air, filteredOut);
-                _ambientSoundSystem.SetAmbience(uid, filteredOut.TotalMoles > 0f);
+                _ambientSoundSystem.SetAmbience(uid, hasFilteredMoles);
             }
+            // Funky Station End - Multigas Filter
 
             _atmosphereSystem.Merge(outletNode.Air, removed);
         }
@@ -126,7 +168,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
 
             _userInterfaceSystem.SetUiState(uid, GasFilterUiKey.Key,
-                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
+                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilterGases));
+            // Funky Station - Parameter name changed
         }
 
         private void UpdateAppearance(EntityUid uid, GasFilterComponent? filter = null)
@@ -154,31 +197,15 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             DirtyUI(uid, filter);
 
         }
-
-        private void OnSelectGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterSelectGasMessage args)
+        // Funky Station Start - Sets multigas filter server-side from message args
+        private void OnChangeGasesMessage(EntityUid uid, GasFilterComponent filter, GasFilterChangeGasesMessage args)
         {
-            if (args.ID.HasValue)
-            {
-                if (Enum.TryParse<Gas>(args.ID.ToString(), true, out var parsedGas))
-                {
-                    filter.FilteredGas = parsedGas;
-                    _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {parsedGas.ToString()}");
-                    DirtyUI(uid, filter);
-                }
-                else
-                {
-                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with an invalid ID: {args.ID}");
-                }
-            }
-            else
-            {
-                filter.FilteredGas = null;
-                _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                    $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to none");
-                DirtyUI(uid, filter);
-            }
+            filter.FilterGases = new HashSet<Gas>(args.Gases);
+            _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
+                $"{ToPrettyString(args.Actor):player} set the filter gases on {ToPrettyString(uid):device} to {string.Join(", ", args.Gases)}");
+            DirtyUI(uid, filter);
         }
+        // Funky Station End - Sets multigas filter server-side from message args
 
         /// <summary>
         /// Returns the gas mixture for the gas analyzer
@@ -209,6 +236,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 outletAirLocal.Volume = outlet.Volume;
                 args.GasMixtures.Add((Loc.GetString("gas-analyzer-window-text-outlet"), outletAirLocal));
             }
+
+            // Goobstation - if inlet and outlet are the same you cant get a direction from it
+            if (inlet == outlet)
+                return;
 
             args.DeviceFlipped = inlet != null && filterNode != null && inlet.CurrentPipeDirection.ToDirection() == filterNode.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
