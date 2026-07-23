@@ -37,7 +37,17 @@ namespace Content.Server.Damage.Systems
             if (TerminatingOrDeleted(args.Target))
                 return;
 
-            var dmg = _damageable.TryChangeDamage(args.Target, component.Damage * _damageable.UniversalThrownDamageModifier, component.IgnoreResistances, origin: args.Component.Thrower);
+            // Frontier begin
+            var damage = component.Damage;
+            if (args.Component.Thrower is { } thrower)
+            {
+                var ev = new ApplyClothingDamageModifierEvent(thrower, DamageContext.Thrown, damage);
+                RaiseLocalEvent(thrower, ref ev);
+                damage = ev.Damage;
+            }
+            // Frontier end
+
+            var dmg = _damageable.TryChangeDamage(args.Target, damage * _damageable.UniversalThrownDamageModifier, component.IgnoreResistances, origin: args.Component.Thrower); // Frontier component.Damage<damage
 
             // Log damage only for mobs. Useful for when people throw spears at each other, but also avoids log-spam when explosions send glass shards flying.
             if (dmg != null && HasComp<MobStateComponent>(args.Target))
@@ -58,6 +68,18 @@ namespace Content.Server.Damage.Systems
 
         private void OnDamageExamine(EntityUid uid, DamageOtherOnHitComponent component, ref DamageExamineEvent args)
         {
+            // Frontier begin
+            if (args.User is { } user)
+            {
+                var damage = component.Damage;
+                var ev = new ApplyClothingDamageModifierEvent(user, DamageContext.Thrown, damage);
+                RaiseLocalEvent(user, ref ev);
+                damage = ev.Damage;
+
+                _damageExamine.AddDamageExamine(args.Message, _damageable.ApplyUniversalAllModifiers(damage * _damageable.UniversalThrownDamageModifier), Loc.GetString("damage-throw"));
+                return;
+            }
+            // Frontier end
             _damageExamine.AddDamageExamine(args.Message, _damageable.ApplyUniversalAllModifiers(component.Damage * _damageable.UniversalThrownDamageModifier), Loc.GetString("damage-throw"));
         }
 
