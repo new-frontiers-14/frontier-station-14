@@ -1,10 +1,16 @@
 ﻿using System.Numerics;
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Administration.Logs; // Frontier
 using Content.Shared.Conveyor;
+using Content.Shared.Database; // Frontier
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Audio; // Frontier
+using Robust.Shared.Audio.Systems; // Frontier
 using Robust.Shared.Collections;
+using Robust.Shared.Configuration; // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -24,6 +30,13 @@ public abstract class SharedConveyorController : VirtualController
     [Dependency] private readonly FixtureSystem _fixtures = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
+
+    // Frontier begin
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    private static readonly SoundSpecifier JamSound = new SoundPathSpecifier("/Audio/Effects/metal_scrape3.ogg");
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    // Frontier end
 
     protected const string ConveyorFixture = "conveyor";
 
@@ -126,9 +139,104 @@ public abstract class SharedConveyorController : VirtualController
         EnsureComp<ConveyedComponent>(otherUid);
     }
 
+    // Frontier begin
+    private bool IsOverLimit(EntityUid conveyor)
+    {
+        var limit = _cfg.GetCVar(NFCCVars.ConveyorJamLimit);
+        var count = 0;
+
+        var contacts = PhysicsSystem.GetContacts(conveyor);
+
+        while (contacts.MoveNext(out var contact))
+        {
+            if (!contact.IsTouching)
+                continue;
+
+            var other = contact.OtherEnt(conveyor);
+
+            if (!PhysicsQuery.TryComp(other, out var body))
+                continue;
+
+            if (body.BodyType == BodyType.Static)
+                continue;
+
+            if (++count > limit)
+                return true;
+        }
+
+        return false;
+    }
+    private bool HasNearbyJammedConveyor(EntityUid conveyorUid)
+    {
+        var xform = Transform(conveyorUid);
+        if (xform.GridUid == null)
+            return false;
+
+        var conveyorPosition = xform.Coordinates;
+
+        var query = EntityQueryEnumerator<ConveyorComponent>();
+
+        while (query.MoveNext(out var uid, out var conveyor))
+        {
+            if (uid == conveyorUid)
+                continue;
+
+            if (!conveyor.Jammed)
+                continue;
+
+            var otherXform = Transform(uid);
+
+            if (otherXform.GridUid != xform.GridUid)
+                continue;
+
+            var distanceSqrd = (otherXform.Coordinates.Position - conveyorPosition.Position).LengthSquared();
+
+            if (distanceSqrd <= 25f)
+                return true;
+        }
+
+        return false;
+    }
+    // Frontier end
+
     public override void UpdateBeforeSolve(bool prediction, float frameTime)
     {
         base.UpdateBeforeSolve(prediction, frameTime);
+
+        // Frontier begin
+        if (_cfg.GetCVar(NFCCVars.ConveyorJammingEnabled))
+        {
+            var conveyorQuery = EntityQueryEnumerator<ConveyorComponent>();
+
+            while (conveyorQuery.MoveNext(out var uid, out var conveyor))
+            {
+                if (conveyor.State == ConveyorState.Off)
+                {
+                    if (conveyor.Jammed)
+                    {
+                        conveyor.Jammed = false;
+                        Dirty(uid, conveyor);
+                    }
+
+                    continue;
+                }
+
+                if (conveyor.Jammed)
+                    continue;
+
+                if (!IsOverLimit(uid))
+                    continue;
+
+                conveyor.Jammed = true;
+                Dirty(uid, conveyor);
+
+                if (!HasNearbyJammedConveyor(uid))
+                    _audio.PlayPvs(JamSound, uid, AudioParams.Default.WithVolume(-4f));
+
+                _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(uid):entity} got jammed on {ToPrettyString(Transform(uid).GridUid):entity}.");
+            }
+        }
+        // Frontier end
 
         _job.Prediction = prediction;
         _job.Conveyed.Clear();
@@ -363,7 +471,7 @@ public abstract class SharedConveyorController : VirtualController
 
     public bool CanRun(ConveyorComponent component)
     {
-        return component.State != ConveyorState.Off && component.Powered;
+        return component.State != ConveyorState.Off && component.Powered && (_cfg.GetCVar(NFCCVars.ConveyorJammingEnabled) ? !component.Jammed : true); // Frontier - check for jams
     }
 
     private record struct ConveyorJob : IParallelRobustJob

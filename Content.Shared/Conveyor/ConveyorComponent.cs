@@ -39,6 +39,11 @@ public sealed partial class ConveyorComponent : Component
 
     [DataField]
     public ProtoId<SinkPortPrototype> OffPort = "Off";
+
+    // Frontier begin
+    [ViewVariables]
+    public bool Jammed = false;
+    // Frontier end
 }
 
 [Serializable, NetSerializable]
