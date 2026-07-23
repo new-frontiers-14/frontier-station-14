@@ -38,6 +38,17 @@
     sprite: _NF/Clothing/Eyes/Glasses/nfsd_glasses.rsi
 
 - type: entity
+  parent: [ClothingEyesGlassesNfsd, ClothingEyesHudMedical]
+  id: ClothingEyesGlassesNfsdMed
+  name: brigmed glasses
+  description: Upgraded sunglasses that provide flash immunity and an integrated medical hud.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Glasses/brigmed_glasses.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Glasses/brigmed_glasses.rsi
+
+- type: entity
   parent: [ClothingEyesGlassesMeson, BaseCommandContraband]
   id: ClothingEyesGlassesMesonPlantManager
   name: plant manager's goggles
