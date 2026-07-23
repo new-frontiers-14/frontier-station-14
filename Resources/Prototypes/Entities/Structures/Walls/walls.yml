@@ -10,7 +10,7 @@
     - Wall
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: RangedDamageSound
@@ -761,6 +761,13 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
+    # Frontier
+  - type: Construction
+    graph: Girder
+    node: diagonalReinforcedWall
+  - type: StaticPrice
+    price: 100
+    # End Frontier
 
 # Riveting
 - type: entity
@@ -1094,6 +1101,11 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+    # Frontier
+  - type: Construction
+    graph: Girder
+    node: diagonalWall
+    # End Frontier
 
 - type: entity
   parent: WallSolid
