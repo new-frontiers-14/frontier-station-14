@@ -54,3 +54,26 @@
     price: 250
   - type: VisionCorrection
   - type: ShowJobIcons
+  - type: ToggleClothing
+    action: ActionToggleTray
+  - type: TrayScanner
+
+- type: entity
+  parent: [ClothingEyesBase]
+  id: NFClothingEyesGlassesMesonScanner
+  name: meson scanner goggles
+  description: Yellow-tinted protective goggles with an inbuilt T-ray Scanner for identifying subfloor infrastructure.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Glasses/meson_scanner.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Glasses/meson_scanner.rsi
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: StaticPrice
+    price: 150
+  - type: VisionCorrection
+  - type: ToggleClothing
+    action: ActionToggleTray
+  - type: TrayScanner
