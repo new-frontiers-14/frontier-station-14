@@ -4,7 +4,7 @@ namespace Content.Server._NF.Speech.Components;
 
 [RegisterComponent]
 [Access(typeof(CavemanAccentSystem))]
-public sealed partial class CavemanAccentComponent : Component
+public sealed partial class CavemanAccentComponent : BaseAccentComponent //Frontier: Component<BaseAccentComponent
 {
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("MaxWordLength")]

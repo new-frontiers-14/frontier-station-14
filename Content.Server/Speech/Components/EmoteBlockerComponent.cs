@@ -1,3 +1,4 @@
+using Content.Server._NF.Speech.Components;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -8,7 +9,7 @@ namespace Content.Server.Speech.Components;
 /// Additionally, if the Scream Emote would be blocked, also blocks the Scream Action.
 /// </summary>
 [RegisterComponent]
-public sealed partial class EmoteBlockerComponent : Component
+public sealed partial class EmoteBlockerComponent : BaseAccentComponent // Frontier: Component<BaseAccentComponent
 {
     /// <summary>
     /// Which categories of emotes are blocked by this component.

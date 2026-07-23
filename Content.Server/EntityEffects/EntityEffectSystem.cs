@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Speech.Components;
+using Content.Server._NF.Speech.EntitySystems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -73,6 +75,7 @@ public sealed class EntityEffectSystem : EntitySystem
     [Dependency] private readonly SmokeSystem _smoke = default!;
     [Dependency] private readonly SpreaderSystem _spreader = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly ToggleableAccentSystem _toggleableAccentSystem = default!; //Frontier
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly VomitSystem _vomit = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
@@ -763,8 +766,23 @@ public sealed class EntityEffectSystem : EntitySystem
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
         // This also works on entities that already have a mind
         // We call this before the mind check to allow things like player-controlled mice to be able to benefit from the effect
-        RemComp<ReplacementAccentComponent>(uid);
-        RemComp<MonkeyAccentComponent>(uid);
+
+        //Start Frontier: Instead of removing ReplacementAccentComponent and MonkeyAccentComponent, store them in a
+        //ToggleableAccentComponent to allow people to decide if they want to have the ability to speak coherently or not
+
+        if (TryComp<ReplacementAccentComponent>(uid, out var replacementAccentComp))
+        {
+            _toggleableAccentSystem.MakeAccentToggleable(uid, replacementAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.Add, _toggleableAccentSystem.CognizineToggleActionPrototypeId);
+        }
+        else if (TryComp<MonkeyAccentComponent>(uid, out var monkeyAccentComp))
+        {
+            _toggleableAccentSystem.MakeAccentToggleable(uid, monkeyAccentComp, true, ToggleableAccentComponent.OnRemovalBehavior.Add, _toggleableAccentSystem.CognizineToggleActionPrototypeId);
+        }
+
+        //Below lines made obsolete
+        //RemComp<ReplacementAccentComponent>(uid);
+        //RemComp<MonkeyAccentComponent>(uid);
+        //End Frontier
 
         // Stops from adding a ghost role to things like people who already have a mind
         if (TryComp<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
