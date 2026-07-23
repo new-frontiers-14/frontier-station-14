@@ -231,7 +231,7 @@
       visible: false
     noRot: true
   - type: Vehicle
-    requiredHands: 1 # Frontier: 0<1
+    requiredHands: 0
     engineRunning: true
     # renderOver: South, SouthEast, SouthWest # Frontier
     renderOver: North # Frontier
@@ -242,8 +242,8 @@
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 10
-    baseSprintSpeed: 3.5
-    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4 # Frontier 3.5<4
+    baseWalkSpeed: 3 # Frontier 2.5<3
   - type: StaticPrice
     price: 75
   #- type: PhysicalComposition # Frontier
@@ -285,8 +285,8 @@
   - type: MovementSpeedModifier
     acceleration: 5 # Frontier: 10<5
     friction: 2.5 # Frontier: 0.5<2.5
-    baseSprintSpeed: 3.5
-    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5 # Frontier 3.5<4.5
+    baseWalkSpeed: 3.5 # Frontier 2.5<3.5
   - type: MovementIgnoreGravity # Frontier: float through space
   - type: StaticPrice
     price: 175
