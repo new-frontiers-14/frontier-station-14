@@ -33,6 +33,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Hands.EntitySystems; // Frontier
+using Content.Server._NF.CryoSleep; // Frontier
 
 namespace Content.Server.Carrying
 {
@@ -78,7 +79,15 @@ namespace Content.Server.Carrying
             SubscribeLocalEvent<BeingCarriedComponent, StrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<BeingCarriedComponent, UnstrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<BeingCarriedComponent, CryosleepEnterEvent>(OnCarriedCryoEnter); //Frontier
         }
+
+        //Frontier Begin - Remove virtual item when cryosleeping held character
+        private void OnCarriedCryoEnter(Entity<BeingCarriedComponent> ent, ref CryosleepEnterEvent args)
+        {
+            DropCarried(ent.Comp.Carrier, ent, attachToMap: false);
+        }
+        //Frontier End
 
         private void AddCarryVerb(EntityUid uid, CarriableComponent component, GetVerbsEvent<AlternativeVerb> args)
         {
@@ -321,7 +330,7 @@ namespace Content.Server.Carrying
             return true;
         }
 
-        public void DropCarried(EntityUid carrier, EntityUid carried)
+        public void DropCarried(EntityUid carrier, EntityUid carried, bool attachToMap = true) //Frontier add attachToMap parameter
         {
             RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recursively fire that event
             RemComp<CarryingSlowdownComponent>(carrier);
@@ -329,7 +338,10 @@ namespace Content.Server.Carrying
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
-            _transform.AttachToGridOrMap(carried);
+            if (attachToMap) //Frontier
+            { //Frontier
+                _transform.AttachToGridOrMap(carried);
+            } //Frontier
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
         }
@@ -373,7 +385,7 @@ namespace Content.Server.Carrying
                 // when this happens, it needs to be dropped because it leads to weird behavior
                 if (xform.ParentUid != carrier)
                 {
-                    DropCarried(carrier, carried);
+                    DropCarried(carrier, carried, attachToMap: false);
                     continue;
                 }
 
