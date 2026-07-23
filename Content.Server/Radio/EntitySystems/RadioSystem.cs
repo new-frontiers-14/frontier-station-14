@@ -17,7 +17,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+// Frontier: add support for handheld radio frequency
 using Content.Server._NF.Radio.Components;
+// End Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 

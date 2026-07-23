@@ -5,10 +5,12 @@
   id: RadioHandheld
   components:
   - type: TelecomExempt
+  # Frontier: Reworked handheld radios
   - type: HandheldRadio
     channel: Handheld
   - type: ActiveListener
   - type: ActiveRadio
+  # End Frontier
   - type: Speech
     speechVerb: Robotic
   - type: Sprite
@@ -30,10 +32,18 @@
   parent: [ RadioHandheld, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: RadioHandheldSecurity
   components:
+  # Frontier: Reworked handheld radios
+  # - type: RadioMicrophone
+  #   broadcastChannel: Security
+  #   listenRange: 1
+  # - type: RadioSpeaker
+  #   channels:
+  #   - Security
   - type: HandheldRadio
     channel: Security
   - type: ActiveListener
   - type: ActiveRadio
+  # End Frontier
   - type: Sprite
     sprite: Objects/Devices/securityhandy.rsi
   - type: Item
