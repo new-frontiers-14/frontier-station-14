@@ -239,7 +239,12 @@ namespace Content.Server.Medical.BiomassReclaimer
             }
             if (TryComp<ButcherableComponent>(toProcess, out var butcherableComponent))
             {
-                component.SpawnedEntities = butcherableComponent.SpawnedEntities;
+                // Frontier start - Prevent reclaimable mobs from spewing out special drops e.g. trophies
+                if (butcherableComponent.BiomassReclaimerOverride != null)
+                    component.SpawnedEntities = butcherableComponent.BiomassReclaimerOverride;
+                else
+                    component.SpawnedEntities = butcherableComponent.SpawnedEntities;
+                // Frontier end
             }
 
             var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;

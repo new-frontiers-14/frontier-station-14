@@ -31,6 +31,15 @@ public sealed partial class ButcherableComponent : Component
     /// </summary>
     [DataField("butcheringType"), AutoNetworkedField]
     public ButcheringType Type = ButcheringType.Knife;
+
+    // Frontier start
+    /// <summary>
+    /// When not null, this entity will be produced as the additional meat flung out of a biomass reclaimer while active
+    /// in place of the entity's butchering loot.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<EntitySpawnEntry>? BiomassReclaimerOverride;
+    // Frontier end
 }
 
 public enum ButcheringType : byte
