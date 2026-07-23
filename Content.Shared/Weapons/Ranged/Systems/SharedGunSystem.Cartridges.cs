@@ -33,6 +33,12 @@ public abstract partial class SharedGunSystem
         if (damageSpec == null)
             return;
 
+        // Frontier begin
+        var ev = new ApplyClothingDamageModifierEvent(args.User, DamageContext.Ranged, damageSpec);
+        RaiseLocalEvent(args.User, ref ev);
+        damageSpec = ev.Damage;
+        // Frontier end
+
         _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-projectile"));
     }
 
