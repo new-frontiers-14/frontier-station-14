@@ -60,12 +60,12 @@
         - ReagentId: Blood
           Quantity: 1000
 
-#region Wall for POI
+#region Walls
 - type: entity
   parent: BaseWall
-  id: WallCultIndestructible
+  id: NFWallCultIndestructible
   name: cult wall
-  suffix: indestructible
+  suffix: Frontier, Indestructible
   components:
   - type: Tag
     tags:
@@ -78,7 +78,41 @@
     key: walls
     base: cult
 
-#region Window for POI
+- type: entity
+  parent: BaseWall
+  id: NFWallCult
+  name: cult wall
+  suffix: Frontier
+  components:
+  - type: RCDDeconstructable
+    cost: 8
+    delay: 9
+    fx: EffectRCDDeconstruct8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/wall.rsi
+  - type: Icon
+    sprite: _NF/Structures/Specific/BloodCult/wall.rsi
+  - type: IconSmooth
+    key: walls
+    base: cult
+
+#region Windows
 - type: entity
   parent: BaseStructure
   id: WindowCultIndestructibleInvisible
