@@ -1,0 +1,104 @@
+# SPDX-FileCopyrightText: 2025 Ghagliiarghii
+# SPDX-FileCopyrightText: 2025 HungryCuban
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 significant harassment
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
+- type: entity
+  id: BaseLathe2x1
+  parent: BaseLatheLube
+  abstract: true
+  components:
+  - type: Sprite
+    offset: 0.5,0
+  - type: Machine
+    board: MilitaryTechfabMachineCircuitboard
+  - type: Construction
+    graph: Machine2x1
+  - type: RequireProjectileTarget
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "1.4,0.4,-0.4,-0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: BaseLathe2x2
+  parent: BaseLatheLube
+  abstract: true
+  components:
+  - type: Sprite
+    offset: 0.5,-0.5
+  - type: Machine
+    board: MilitaryTechfabMachineCircuitboard
+  - type: Construction
+    graph: Machine2x2
+  - type: RequireProjectileTarget
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "1.25,0.25,-0.25,-1.25"
+        density: 250
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: BaseLathe3x2
+  parent: BaseLatheLube
+  abstract: true
+  components:
+  - type: Sprite
+    offset: 1,-0.5
+  - type: Machine
+    board: MilitaryTechfabMachineCircuitboard
+  - type: Construction
+    graph: Machine3x2
+  - type: RequireProjectileTarget
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "2.25,0.25,-0.25,-1.25"
+        density: 300
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: BaseLathe3x3
+  parent: BaseLatheLube
+  abstract: true
+  components:
+  - type: Sprite
+    offset: 1,-1
+  - type: Machine
+    board: MilitaryTechfabMachineCircuitboard
+  - type: Construction
+    graph: Machine3x3
+  - type: RequireProjectileTarget
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "2.25,0.25,-0.25,-2.25"
+        density: 350
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer

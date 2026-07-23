@@ -1,6 +1,28 @@
+# SPDX-FileCopyrightText: 2021 20kdc
+# SPDX-FileCopyrightText: 2021 DrSmugleaf
+# SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 Swept
+# SPDX-FileCopyrightText: 2021 Visne
+# SPDX-FileCopyrightText: 2021 mirrorcult
+# SPDX-FileCopyrightText: 2022 Jacob Tong
+# SPDX-FileCopyrightText: 2022 Peptide90
+# SPDX-FileCopyrightText: 2022 Profane McBane
+# SPDX-FileCopyrightText: 2022 keronshb
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2023 AJCM-git
+# SPDX-FileCopyrightText: 2023 Leon Friedrich
+# SPDX-FileCopyrightText: 2023 Nemanja
+# SPDX-FileCopyrightText: 2023 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2023 lzk
+# SPDX-FileCopyrightText: 2024 Ilya246
+# SPDX-FileCopyrightText: 2024 Kara
+# SPDX-FileCopyrightText: 2025 core-mene
+#
+# SPDX-License-Identifier: MPL-2.0
+
 - type: entity
-  id: UnfinishedMachineFrame
-  name: machine frame (1x1) # Mono
+  id: UnfinishedMachineFrame2x2
+  name: machine frame (2x2)
   description: A machine under construction. Needs more parts.
   suffix: Unfinished
   placement:
@@ -15,7 +37,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.25,-0.5,0.25,0.5"
+            bounds: "1.25,0.25,-0.25,-1.25"
           density: 190
           mask:
           - MachineMask
@@ -30,7 +52,7 @@
       containers:
         - machine_board
         - machine_parts
-      graph: Machine
+      graph: Machine2x2
       node: missingWires
     - type: ContainerContainer
       containers:
@@ -41,15 +63,6 @@
       damageModifierSet: Metallic
     - type: Destructible
       thresholds:
-      - trigger: # Excess damage, don't spawn entities
-          !type:DamageTrigger
-          damage: 200
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
       - trigger:
           !type:DamageTrigger
           damage: 100
@@ -62,13 +75,13 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: Structures/Machines/parts.rsi
+      offset: 0.5,-0.5
+      sprite: _Mono/Structures/Machines/frames/frame_2x2.rsi
       state: box_0
-      snapCardinals: true
 
 - type: entity
-  id: MachineFrame
-  name: machine frame (1x1) # Mono
+  id: MachineFrame2x2
+  name: machine frame (2x2)
   suffix: Ready
   placement:
     mode: SnapgridCenter
@@ -82,7 +95,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.25,-0.5,0.25,0.5"
+            bounds: "1.25,0.25,-0.25,-1.25"
           density: 190
           mask:
           - MachineMask
@@ -94,7 +107,7 @@
     - type: Rotatable
     - type: Pullable
     - type: Construction
-      graph: Machine
+      graph: Machine2x2
       node: machineFrame
       defaultTarget: machine
       containers:
@@ -105,15 +118,6 @@
       damageModifierSet: Metallic
     - type: Destructible
       thresholds:
-      - trigger: # Excess damage, don't spawn entities
-          !type:DamageTrigger
-          damage: 200
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
       - trigger:
           !type:DamageTrigger
           damage: 100
@@ -126,14 +130,15 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: MachineFrame
+      frameSize: 2x2
     - type: ContainerContainer
       containers:
         machine_board: !type:Container
         machine_parts: !type:Container
     - type: Sprite
-      sprite: Structures/Machines/parts.rsi
+      offset: 0.5,-0.5
+      sprite: _Mono/Structures/Machines/frames/frame_2x2.rsi
       state: box_1
-      snapCardinals: true
     - type: Appearance
     - type: ItemMapper
       mapLayers:
@@ -144,9 +149,9 @@
             - MachineBoard
 
 - type: entity
-  id: MachineFrameDestroyed
+  id: MachineFrameDestroyed2x2
   parent: BaseStructureDynamic
-  name: destroyed machine frame (1x1) # Mono
+  name: destroyed machine frame (2x2)
   placement:
     mode: SnapgridCenter
   components:
@@ -156,19 +161,13 @@
     - type: Physics
       bodyType: Static
     - type: Construction
-      graph: Machine
+      graph: Machine2x2
       node: destroyedMachineFrame
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: Metallic
     - type: Destructible
       thresholds:
-      - trigger: # Excess damage, don't spawn entities
-          !type:DamageTrigger
-          damage: 200
-        behaviors:
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
       - trigger:
           !type:DamageTrigger
           damage: 100
@@ -176,10 +175,22 @@
         - !type:SpawnEntitiesBehavior
           spawn:
             SheetSteel1:
-              min: 1
-              max: 3
+              min: 4
+              max: 12
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: Structures/Machines/parts.rsi
+      sprite: _Mono/Structures/Machines/frames/frame_2x2.rsi
       state: destroyed
+      offset: 0.5,-0.5
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "1.25,0.25,-0.25,-1.25"
+          density: 190
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
