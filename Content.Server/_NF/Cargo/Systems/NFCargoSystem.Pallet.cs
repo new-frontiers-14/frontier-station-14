@@ -160,6 +160,8 @@ public sealed partial class NFCargoSystem
         toSell = new HashSet<EntityUid>();
         additionalCurrency = new();
 
+        TryComp<WhitelistedMarketModifierComponent>(consoleUid, out var modComp);
+
         foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
         {
             // Containers should already get the sell price of their children so can skip those.
@@ -196,8 +198,23 @@ public sealed partial class NFCargoSystem
                 if (HasComp<IgnoreMarketModifierComponent>(ent))
                     noMultiplierAmount += price;
                 else
+                {
+                    // Check if this item passes the conditions for a special modifier
+                    if (modComp != null &&
+                        _whitelist.IsWhitelistPass(modComp.Whitelist, ent) &&
+                        !_whitelist.IsWhitelistPass(modComp.Blacklist, ent))
+                    {
+                        price *= modComp.Mod;
+                        if (modComp.OverwriteMarketModifiers)
+                        {
+                            noMultiplierAmount += price;
+                            price = 0; // Overwrite adding the price to amount if it's already been added to noMultiplierAmount
+                        }
+                    }
+
                     amount += price;
-                
+                }
+
                 // Check for any additional currency payouts
                 if (TryComp(ent, out AdditionalPalletCurrencyComponent? currencyComponent))
                 {
@@ -268,7 +285,7 @@ public sealed partial class NFCargoSystem
         var stackUid = _stack.Spawn((int)price, stackPrototype, args.Actor.ToCoordinates());
         if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
             _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
-        
+
         // Iterate through additional currency payouts, putting them in hand if possible
         foreach (var (currencyId, currencyAmount) in additionalCurrency)
         {
