@@ -22,5 +22,5 @@ public sealed partial class SectorServicePrototype : IPrototype
     /// A dictionary mapping a service to its necessary components.
     /// </summary>
     [DataField]
-    public ComponentRegistry Components { get; } = new();
+    public ComponentRegistry Components { get; private set; } = new();
 }
