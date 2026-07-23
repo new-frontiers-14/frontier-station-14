@@ -1,6 +1,8 @@
-namespace Content.Shared.StationRecords;
+using Content.Server.StationRecords.Systems;
 
-[Access(typeof(SharedStationRecordsSystem))]
+namespace Content.Server.StationRecords;
+
+[Access(typeof(StationRecordsSystem))]
 [RegisterComponent]
 public sealed partial class StationRecordsComponent : Component
 {

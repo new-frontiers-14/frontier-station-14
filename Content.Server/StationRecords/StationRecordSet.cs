@@ -1,8 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.StationRecords;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.StationRecords;
+namespace Content.Server.StationRecords;
 
 /// <summary>
 ///     Set of station records for a single station. StationRecordsComponent stores these.
