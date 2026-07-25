@@ -60,9 +60,6 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
-    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
-
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
