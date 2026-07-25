@@ -11,14 +11,6 @@
     sprite: _NF/Mobs/NPC/Animals/parrot.rsi
   - type: ActiveListener
     range: 5
-  - type: ParrotSpeech
-    blacklist:
-      components:
-        - ParrotSpeech # Stop parrots repeating their own speech
-        - SurveillanceCamera
-        - SurveillanceCameraMonitor
-        - RadioSpeaker
-        - VendingMachine
 
 # Really shouldn't be here
 - type: entity
@@ -37,7 +29,7 @@
     maxItemSize: Large
     whitelist:
       components:
-        - ParrotSpeech
+        - ParrotMemory
   - type: StaticPrice
     vendPrice: 1000
 
@@ -59,11 +51,11 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2    
+      amount: 2
     - id: MaterialHideRosyMothroach
       amount: 1
       prob: 0.3
-      
+
 - type: entity
   name: bee
   suffix: Angry, Timed

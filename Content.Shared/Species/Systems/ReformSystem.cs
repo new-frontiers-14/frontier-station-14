@@ -91,7 +91,7 @@ public sealed partial class ReformSystem : EntitySystem
 
         // Spawn a new entity
         // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent.
-        var child = Spawn(comp.ReformPrototype, Transform(uid).Coordinates);
+        var child = SpawnNextToOrDrop(comp.ReformPrototype, uid);
 
         // This transfers the mind to the new entity
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
@@ -116,7 +116,7 @@ public sealed partial class ReformSystem : EntitySystem
     }
 
     public sealed partial class ReformEvent : InstantActionEvent { }
-    
+
     [Serializable, NetSerializable]
     public sealed partial class ReformDoAfterEvent : SimpleDoAfterEvent { }
 

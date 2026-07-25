@@ -53,6 +53,9 @@ uplink-security-lecter-desc = Standard issue fully automatic rifle. Uses .20 rif
 uplink-security-vulcan-name = Vulcan
 uplink-security-vulcan-desc = Heavy duty, select fire battle rifle. Uses .30 rifle.
 
+uplink-security-drozd-name = Drozd
+uplink-security-drozd-desc = A fully automatic SMG. Uses .35 auto.
+
 uplink-security-lasercarbine-name = Laser Rifle
 uplink-security-lasercarbine-desc = Standard issue laser carbine. Has an internal battery, but requires using a security charging dock. Fires through glass.
 
@@ -122,6 +125,9 @@ uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpre
 uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
 uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
 
+uplink-security-brigmed-glasses-name = Brigmedic Glasses
+uplink-security-brigmed-glasses-desc = Upgraded sunglasses that provide flash immunity and an integrated medical hud.
+
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
 
@@ -145,6 +151,9 @@ uplink-security-armingsword-desc = Ancient design meets modern materials.
 
 uplink-security-captainsword-name = Captain's Sabre
 uplink-security-captainsword-desc = A sword normally reserved for captains, admiralty, and other high command. Has a small chance to reflect incoming projectiles.
+
+uplink-security-navyofficersabre-name = Navy Officer's Sabre
+uplink-security-navyofficersabre-desc = A ceremonial weapon belonging to a high ranking naval officer. Has a small chance to reflect incoming projectiles.
 
 uplink-security-pulsepistol-name = Pulse Pistol
 uplink-security-pulsepistol-desc = A high powered laser pistol normally reserved for elite ERT units. Has an internal battery, but requires using a security charging dock.
@@ -237,11 +246,14 @@ uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
 # region Pirate
-uplink-pirate-hardsuit-name = Pirate Hardsuit
-uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-pirate-EVA-name = Pirate EVA Suit
+uplink-pirate-EVA-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
 
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
+
+uplink-pirate-hardsuit-rogue-name = Rogue Hardsuit
+uplink-pirate-hardsuit-rogue-desc = Lightly armoured hardsuit designed to give you the speed you need to plunder in, and get out.
 
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -318,6 +330,9 @@ uplink-pirate-accessconfigurator-captain-desc = An access configurator that is s
 uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
 
+uplink-pirate-yarrped-name = YarRPED
+uplink-pirate-yarrped-desc = A reverse-engineered RPED that installs the worst parts available and stores the valuable parts it removes.
+
 uplink-pirate-pmag-name = Machine Liberator
 uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
 
@@ -344,6 +359,12 @@ uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing y
 
 uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
 uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
+
+uplink-pirate-yarrmag-name = Yarrmag
+uplink-pirate-yarrmag-desc = A disposable card made by the Freebooters to hack devices. Works one time.
+
+uplink-pirate-id-chip-name = Bootleg Cyborg Chip
+uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
 
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle

@@ -238,7 +238,16 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
         if (criminalRecord.Status != SecurityStatus.None)
         {
-            specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Misc/security_icons.rsi"),  GetStatusIcon(criminalRecord.Status));
+            if (criminalRecord.Status != SecurityStatus.Permitted) // Frontier
+            {
+                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Misc/security_icons.rsi"),  GetStatusIcon(criminalRecord.Status));
+            }
+            // Frontier begin
+            else
+            {
+                specifier = new SpriteSpecifier.Rsi(new ResPath("_NF/Interface/Misc/security_icons.rsi"),  GetStatusIcon(criminalRecord.Status));
+            }
+            // Frontier end
         }
         PersonStatusTX.SetFromSpriteSpecifier(specifier);
         PersonStatusTX.DisplayRect.TextureScale = new Vector2(3f, 3f);
@@ -276,7 +285,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private void SetStatus(SecurityStatus status)
     {
-        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected)
+        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected || status == SecurityStatus.Permitted) // Frontier - Permitted
         {
             GetReason(status);
             return;
@@ -322,6 +331,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             SecurityStatus.Detained => "hud_incarcerated",
             SecurityStatus.Discharged => "hud_discharged",
             SecurityStatus.Suspected => "hud_suspected",
+            SecurityStatus.Permitted => "hud_permitted", //Frontier
             _ => "SecurityIconNone"
         };
     }

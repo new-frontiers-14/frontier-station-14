@@ -3,7 +3,7 @@
   parent: MarkerBasePlaceFree
   id: SpawnDungeonLootClutterEngi
   name: random clutter
-  suffix: "Loot (Frontier), Engineering"
+  suffix: "Loot (Frontier), Engineering, Safe"
   components:
   - type: Sprite
     layers:
@@ -20,6 +20,28 @@
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
       tableId: TableDungeonLootEngineeringClutter
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClutterEngiWithMines
+  name: random clutter
+  suffix: "Loot (Frontier), Engineering, Unsafe (mines)"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClutterWithMines
 
 #region Tools
 - type: entity
@@ -70,6 +92,23 @@
     deleteSpawnerAfterSpawn: false
     table: !type:NestedSelector
       tableId: TableDungeonLootEngineeringToolboxes
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootEngineeringRipleyDisassembled
+  name: disassmebled Ripley APLU
+  suffix: Loot (Frontier)
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: ripley
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+      tableId: TableDungeonLootEngineeringRipleyDisassembled
 
 #region Parts
 - type: entity

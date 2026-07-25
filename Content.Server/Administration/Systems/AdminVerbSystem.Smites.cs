@@ -1,10 +1,8 @@
 using System.Threading;
 using Content.Server.Administration.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Clothing.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
@@ -14,12 +12,12 @@ using Content.Server.Pointing.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.Components;
-using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Tabletop;
 using Content.Server.Tabletop.Components;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Clumsy;
@@ -40,7 +38,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
-using Content.Shared.Stunnable;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
@@ -50,7 +48,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
 using Robust.Shared.Audio.Systems; // Frontier
@@ -127,32 +124,33 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(explode);
 
-        var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
-        Verb chess = new()
-        {
-            Text = chessName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Tabletop/chessboard.rsi"), "chessboard"),
-            Act = () =>
-            {
-                _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
-                EnsureComp<TabletopDraggableComponent>(args.Target);
-                RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
-                var xform = Transform(args.Target);
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-                _popupSystem.PopupCoordinates(
-                    Loc.GetString("admin-smite-chess-others", ("name", args.Target)), xform.Coordinates,
-                    Filter.PvsExcept(args.Target), true, PopupType.MediumCaution);
-                var board = Spawn("ChessBoard", xform.Coordinates);
-                var session = _tabletopSystem.EnsureSession(Comp<TabletopGameComponent>(board));
-                _transformSystem.SetMapCoordinates(args.Target, session.Position);
-                _transformSystem.SetWorldRotationNoLerp((args.Target, xform), Angle.Zero);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", chessName, Loc.GetString("admin-smite-chess-dimension-description"))
-        };
-        args.Verbs.Add(chess);
+        // Frontier: disabled some more destructive smites
+        // var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
+        // Verb chess = new()
+        // {
+        //     Text = chessName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Tabletop/chessboard.rsi"), "chessboard"),
+        //     Act = () =>
+        //     {
+        //         _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
+        //         EnsureComp<TabletopDraggableComponent>(args.Target);
+        //         RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
+        //         var xform = Transform(args.Target);
+        //         _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
+        //             args.Target, PopupType.LargeCaution);
+        //         _popupSystem.PopupCoordinates(
+        //             Loc.GetString("admin-smite-chess-others", ("name", args.Target)), xform.Coordinates,
+        //             Filter.PvsExcept(args.Target), true, PopupType.MediumCaution);
+        //         var board = Spawn("ChessBoard", xform.Coordinates);
+        //         var session = _tabletopSystem.EnsureSession(Comp<TabletopGameComponent>(board));
+        //         _transformSystem.SetMapCoordinates(args.Target, session.Position);
+        //         _transformSystem.SetWorldRotationNoLerp((args.Target, xform), Angle.Zero);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", chessName, Loc.GetString("admin-smite-chess-dimension-description"))
+        // };
+        // args.Verbs.Add(chess);
 
         if (TryComp<FlammableComponent>(args.Target, out var flammable))
         {
@@ -221,20 +219,25 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     int damageToDeal;
-                    if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Critical, out var criticalThreshold)) {
-                        // We can't crit them so try killing them.
-                        if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Dead,
-                                out var deadThreshold))
-                            return;// whelp.
-                        damageToDeal = deadThreshold.Value.Int() - (int) damageable.TotalDamage;
-                    }
-                    else
-                    {
-                        damageToDeal = criticalThreshold.Value.Int() - (int) damageable.TotalDamage;
-                    }
 
-                    if (damageToDeal <= 0)
-                        damageToDeal = 100; // murder time.
+                    // Frontier: make electrocute do fixed 50 damage
+                    // if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Critical, out var criticalThreshold)) {
+                    //     // We can't crit them so try killing them.
+                    //     if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Dead,
+                    //             out var deadThreshold))
+                    //         return;// whelp.
+                    //     damageToDeal = deadThreshold.Value.Int() - (int) damageable.TotalDamage;
+                    // }
+                    // else
+                    // {
+                    //     damageToDeal = criticalThreshold.Value.Int() - (int) damageable.TotalDamage;
+                    // }
+
+                    // if (damageToDeal <= 0)
+                    //     damageToDeal = 100; // murder time.
+
+                    damageToDeal = 50;
+                    // End Frontier: make electrocute do fixed 50 damage
 
                     if (_inventorySystem.TryGetSlots(args.Target, out var slotDefinitions))
                     {
@@ -613,20 +616,21 @@ public sealed partial class AdminVerbSystem
             */
         }
 
-        var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
-        Verb angerPointingArrows = new()
-        {
-            Text = angerPointingArrowsName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/pointing.rsi"), "pointing"),
-            Act = () =>
-            {
-                EnsureComp<PointingArrowAngeringComponent>(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", angerPointingArrowsName, Loc.GetString("admin-smite-anger-pointing-arrows-description"))
-        };
-        args.Verbs.Add(angerPointingArrows);
+        // Frontier: disabled some more destructive smites
+        // var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
+        // Verb angerPointingArrows = new()
+        // {
+        //     Text = angerPointingArrowsName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/pointing.rsi"), "pointing"),
+        //     Act = () =>
+        //     {
+        //         EnsureComp<PointingArrowAngeringComponent>(args.Target);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", angerPointingArrowsName, Loc.GetString("admin-smite-anger-pointing-arrows-description"))
+        // };
+        // args.Verbs.Add(angerPointingArrows);
 
         var dustName = Loc.GetString("admin-smite-dust-name").ToLowerInvariant();
         Verb dust = new()
@@ -834,24 +838,25 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(disarmProne);
 
-        var superSpeedName = Loc.GetString("admin-smite-super-speed-name").ToLowerInvariant();
-        Verb superSpeed = new()
-        {
-            Text = superSpeedName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/AdminActions/super_speed.png")),
-            Act = () =>
-            {
-                var movementSpeed = EnsureComp<MovementSpeedModifierComponent>(args.Target);
-                _movementSpeedModifierSystem?.ChangeBaseSpeed(args.Target, 400, 8000, 40, movementSpeed);
+        // Frontier: disabled some more destructive smites
+        // var superSpeedName = Loc.GetString("admin-smite-super-speed-name").ToLowerInvariant();
+        // Verb superSpeed = new()
+        // {
+        //     Text = superSpeedName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/AdminActions/super_speed.png")),
+        //     Act = () =>
+        //     {
+        //         var movementSpeed = EnsureComp<MovementSpeedModifierComponent>(args.Target);
+        //         _movementSpeedModifierSystem?.ChangeBaseSpeed(args.Target, 400, 8000, 40, movementSpeed);
 
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-super-speed-prompt"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", superSpeedName, Loc.GetString("admin-smite-super-speed-description"))
-        };
-        args.Verbs.Add(superSpeed);
+        //         _popupSystem.PopupEntity(Loc.GetString("admin-smite-super-speed-prompt"), args.Target,
+        //             args.Target, PopupType.LargeCaution);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", superSpeedName, Loc.GetString("admin-smite-super-speed-description"))
+        // };
+        // args.Verbs.Add(superSpeed);
 
         //Bonk
         var superBonkLiteName = Loc.GetString("admin-smite-super-bonk-lite-name").ToLowerInvariant();
@@ -869,20 +874,22 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(superBonkLite);
 
-        var superBonkName = Loc.GetString("admin-smite-super-bonk-name").ToLowerInvariant();
-        Verb superBonk = new()
-        {
-            Text = superBonkName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Structures/Furniture/Tables/generic.rsi"), "full"),
-            Act = () =>
-            {
-                _superBonkSystem.StartSuperBonk(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", superBonkName, Loc.GetString("admin-smite-super-bonk-description"))
-        };
-        args.Verbs.Add(superBonk);
+        // Frontier: disabled some more destructive smites
+        // var superBonkName = Loc.GetString("admin-smite-super-bonk-name").ToLowerInvariant();
+        // Verb superBonk = new()
+        // {
+        //     Text = superBonkName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new("Structures/Furniture/Tables/generic.rsi"), "full"),
+        //     Act = () =>
+        //     {
+        //         _superBonkSystem.StartSuperBonk(args.Target);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", superBonkName, Loc.GetString("admin-smite-super-bonk-description"))
+        // };
+        // args.Verbs.Add(superBonk);
+
 
         var superslipName = Loc.GetString("admin-smite-super-slip-name").ToLowerInvariant();
         Verb superslip = new()

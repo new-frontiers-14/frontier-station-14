@@ -1,0 +1,18 @@
+﻿- type: entity
+  parent: MobStatusEffectBase
+  id: BloodstreamStatusEffectBase
+  abstract: true
+  components:
+    - type: StatusEffect
+      whitelist:
+        components:
+          - Bloodstream
+
+- type: entity
+  parent: [ BloodstreamStatusEffectBase ]
+  id: StatusEffectBloodloss
+  name: bloodloss
+  components:
+    - type: StutteringAccent
+    # - type: DrunkStatusEffect # Frontier: replaced by BloodlossOverlaySystem. TODO: See if it makes sense to convert that system to use status effects
+    - type: RejuvenateRemovedStatusEffect

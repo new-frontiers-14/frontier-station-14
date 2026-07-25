@@ -12,6 +12,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   recognizable: true
+  standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
     Drink:
@@ -64,6 +65,7 @@
   flavor: slimy
   color: "#2cf274"
   recognizable: true
+  standsout: true
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
   tileReactions:
@@ -188,7 +190,7 @@
 - type: reagent
   id: Fat
   name: reagent-name-fat
-  group: Biological
+  group: Foods #Frontier: can pick up Fat with service selective dropper
   desc: reagent-desc-fat
   flavor: terrible
   color: "#d8d8b0"
@@ -197,6 +199,10 @@
     collection: FootstepBlood
     params:
       volume: 6
+  friction: 0.20 #Frontier
+  slipData: #Frontier
+    requiredSlipSpeed: 1 #Frontier
+
 
 - type: reagent
   id: Vomit

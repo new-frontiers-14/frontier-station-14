@@ -1,69 +1,9 @@
 ﻿- type: inventoryTemplate
   id: hostilehumanoid
   slots:
-    - name: pocket1
-      slotTexture: pocket
-      fullTextureName: template_small
-      slotFlags: POCKET
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 0,3
-      strippingWindowPos: 0,0
-      dependsOn: jumpsuit
-      displayName: Pocket 1
-      stripHidden: false
-
-    - name: pocket2
-      slotTexture: pocket
-      fullTextureName: template_small
-      slotFlags: POCKET
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 2,3
-      strippingWindowPos: 1,0
-      dependsOn: jumpsuit
-      displayName: Pocket 2
-      stripHidden: false
-
-    - name: suitstorage
-      slotTexture: suit_storage
-      slotFlags:   SUITSTORAGE
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 2,0
-      strippingWindowPos: 2,0
-      dependsOn: outerClothing
-      dependsOnComponents:
-      - type: AllowSuitStorage
-      displayName: Suit Storage
-
-    - name: belt
-      slotTexture: belt
-      fullTextureName: template_small
-      slotFlags: BELT
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 3,1
-      strippingWindowPos: 1,1
-      displayName: Belt
-
-    - name: back
-      slotTexture: back
-      fullTextureName: template_small
-      slotFlags: BACK
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 3,0
-      strippingWindowPos: 2,1
-      displayName: Back
-      blacklist:
-        tags:
-        - PetOnly
-
-# Positions that shouldn't be strippable
-# "Not strippable", "hidden":
-# stripTime seems to have a hardcoded maximum value, preventing items in a slot from being completely unlootable via setting a long time
-# By placing the wallet slot above the slots we want to protect, items in those covered slots become non-interactable
+  # region "not strippable", "hidden"
+  # stripTime seems to have a hardcoded maximum value, preventing items in a slot from being completely unlootable via setting a long time
+  # By placing the wallet slot above the slots we want to protect, items in those covered slots become non-interactable
     - name: id
       stripTime: 999999 # "Not strippable"
       stripHidden: true
@@ -73,7 +13,6 @@
       slotFlags: IDCARD
       slotGroup: SecondHotbar
       uiWindowPos: 2,1
-      dependsOn: jumpsuit
       displayName: ID
 
     - name: outerClothing
@@ -157,10 +96,68 @@
       uiWindowPos: 0,1
       displayName: Jumpsuit
 
+  # region lootable, visible
+    - name: pocket1
+      stripTime: 1.5
+      stripHidden: false
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Pocket 1
+
+    - name: pocket2
+      stripTime: 1.5
+      stripHidden: false
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,0
+      displayName: Pocket 2
+
+    - name: suitstorage
+      stripTime: 1.5
+      slotTexture: suit_storage
+      slotFlags:   SUITSTORAGE
+      slotGroup: MainHotbar
+      uiWindowPos: 2,0
+      strippingWindowPos: 2,0
+      dependsOn: outerClothing
+      dependsOnComponents:
+      - type: AllowSuitStorage
+      displayName: Suit Storage
+
+    - name: belt
+      stripTime: 3
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,1
+      displayName: Belt
+
+    - name: back
+      stripTime: 3
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      uiWindowPos: 3,0
+      strippingWindowPos: 2,1
+      displayName: Back
+      blacklist:
+        tags:
+        - PetOnly
+
     - name: wallet
+      stripTime: 1.5
       slotTexture: wallet
       slotFlags: WALLET
       uiWindowPos: 2,0
       strippingWindowPos: 2,2
-      dependsOn: jumpsuit
       displayName: Wallet

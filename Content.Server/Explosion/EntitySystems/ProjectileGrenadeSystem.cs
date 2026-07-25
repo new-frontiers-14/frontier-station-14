@@ -1,5 +1,7 @@
 ﻿using Content.Server.Explosion.Components;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared.Weapons.Ranged.Events; //Frontier
+using Content.Shared.Trigger;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -45,6 +47,9 @@ public sealed class ProjectileGrenadeSystem : EntitySystem
     /// </summary>
     private void OnFragTrigger(Entity<ProjectileGrenadeComponent> entity, ref TriggerEvent args)
     {
+        if (args.Key != entity.Comp.TriggerKey)
+            return;
+
         FragmentIntoProjectiles(entity.Owner, entity.Comp);
         args.Handled = true;
     }
@@ -58,6 +63,8 @@ public sealed class ProjectileGrenadeSystem : EntitySystem
         var grenadeCoord = _transformSystem.GetMapCoordinates(uid);
         var shootCount = 0;
         var totalCount = component.Container.ContainedEntities.Count + component.UnspawnedCount;
+        // Frontier // To trigger projectile fired event. This enables things like chemical injection shrapnel.
+        var shotProjectiles = new List<EntityUid>(component.UnspawnedCount);
 
         // Just in case
         if (totalCount == 0)
@@ -83,7 +90,15 @@ public sealed class ProjectileGrenadeSystem : EntitySystem
             var direction = angle.ToVec().Normalized();
             var velocity = _random.NextVector2(component.MinVelocity, component.MaxVelocity);
             _gun.ShootProjectile(contentUid, direction, velocity, null);
+            // Frontier // add the projectile to the shot projectile list
+            shotProjectiles.Add(contentUid);
         }
+
+        // Frontier // raise event for projectiles being shot.
+        RaiseLocalEvent(uid, new AmmoShotEvent()
+        {
+            FiredProjectiles = shotProjectiles,
+        });
     }
 
     /// <summary>

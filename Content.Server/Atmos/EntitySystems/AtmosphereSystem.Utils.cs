@@ -128,7 +128,7 @@ public partial class AtmosphereSystem
         if (!TryComp<MapComponent>(mapUid, out var mapComp))
             return false;
 
-        return AllowMapGasExtraction || mapComp.MapId == _gameTicker.DefaultMap || HasComp<AtmosEnabledMapComponent>(mapUid);
+        return AllowMapGasExtraction || !HasComp<AtmosDisabledMapComponent>(mapUid);
     }
     // End Frontier: disable atmos off maps
 }

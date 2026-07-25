@@ -583,6 +583,8 @@
   recipeUnlocks:
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
+  - ElectrolysisUnitMachineCircuitboard
+  - CentrifugeMachineCircuitboard
   - DefibrillatorCompact
   technologyPrerequisites:
   - NFBasicMedicine
@@ -1039,6 +1041,7 @@
   cost: 2500
   recipeUnlocks:
   - PlantAnalyzer
+  - NFCookingBag
   position: 0, 24
 
 - type: technology
@@ -1877,17 +1880,23 @@
   position: 3, 43
 
 - type: technology
-  id: NFBulkRifleAmmo
-  name: nf-research-technology-rifle-ammo-bulk
+  id: NFBulkAmmo
+  name: nf-research-technology-ammo-bulk
   entityIcon: NFAmmunitionBoxBigRifle20
   discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:
+  - NFAmmunitionBoxBigPistol35
+  - NFAmmunitionBoxBigPistol35Overpressure
+  - NFAmmunitionBoxBigPistol45
+  - NFAmmunitionBoxBigPistol45Overpressure
   - NFAmmunitionBoxBigRifle20
   - NFAmmunitionBoxBigRifle20Overpressure
   - NFAmmunitionBoxBigRifle30
   - NFAmmunitionBoxBigRifle30Overpressure
+  - NFAmmunitionBoxBigShellShotgunBuckshot
+  - NFAmmunitionBoxBigShellShotgunOverpressure
   technologyPrerequisites:
   - NFImprovedRifleAmmo
   position: 3, 44

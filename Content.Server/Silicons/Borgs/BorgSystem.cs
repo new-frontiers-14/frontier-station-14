@@ -4,7 +4,6 @@ using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Explosion.EntitySystems;
 using Content.Server.Hands.Systems;
 using Content.Server.PowerCell;
 using Content.Shared.UserInterface;
@@ -29,6 +28,7 @@ using Content.Shared.Roles;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Throwing;
+using Content.Shared.Trigger.Systems;
 using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Server.GameObjects;
@@ -138,7 +138,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
             _adminLog.Add(LogType.Action, LogImpact.Medium,
                 $"{ToPrettyString(args.User):player} installed brain {ToPrettyString(used)} into borg {ToPrettyString(uid)}");
             args.Handled = true;
-            UpdateUI(uid, component);
+            Timer.Spawn(0, () => UpdateUI(uid, component)); // Frontier - UpdateUI on timer so it gets added to callstack and updates *after* changes are made not before
         }
 
         if (module != null && CanInsertModule(uid, used, component, module, args.User))
@@ -147,7 +147,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
             _adminLog.Add(LogType.Action, LogImpact.Low,
                 $"{ToPrettyString(args.User):player} installed module {ToPrettyString(used)} into borg {ToPrettyString(uid)}");
             args.Handled = true;
-            UpdateUI(uid, component);
+            Timer.Spawn(0, () => UpdateUI(uid, component)); // Frontier - UpdateUI on timer so it gets added to callstack and updates *after* changes are made not before
         }
     }
 

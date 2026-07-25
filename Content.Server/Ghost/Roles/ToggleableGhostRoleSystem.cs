@@ -58,6 +58,14 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
         ghostRole.RoleRules = Loc.GetString(component.RoleRules);
         ghostRole.JobProto = component.JobProto;
         ghostRole.MindRoles = component.MindRoles;
+        // Frontier
+        if (component.Whitelisted == true)
+        {
+            // Uses a proxy ghost role prototype as a mean to whitelist the GhostRoleComponent
+            // A cleaner solution involves a wide GhostRoleWhitelistSystem refactor
+            ghostRole.Prototype = "WhitelistToggleableGhostRole";
+        }
+        // End Frontier
     }
 
     private void OnExamined(EntityUid uid, ToggleableGhostRoleComponent component, ExaminedEvent args)

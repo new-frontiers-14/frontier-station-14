@@ -58,3 +58,11 @@ criminal-records-species-filter = Species
 ## Arrest auto history lines
 criminal-records-console-auto-history = ARRESTED: {$reason}
 criminal-records-console-unspecified-reason = <unspecified reason>
+
+## Frontier - Permitted
+criminal-records-console-permitted-reason = Permit Type
+criminal-records-status-permitted = Authorized
+criminal-records-console-permitted = {$officer} set permit type(s) "{$reason}" for {$name} ({$job})
+criminal-records-console-broke-permit = {$officer} stripped {$name} ({$job}) of their permits due to violated conditions: {$reason}
+criminal-records-console-withdrew-permit = {$officer} has withdrawn the permits of {$name} ({$job})
+criminal-records-console-lost-permit = {$name} ({$job})'s permits have become stale in unclear circumstances

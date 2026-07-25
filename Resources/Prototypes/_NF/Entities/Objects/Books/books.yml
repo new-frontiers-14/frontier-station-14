@@ -17,3 +17,52 @@
   - type: GuideHelp
     guides:
     - OffshoreGasMining
+
+- type: entity
+  parent: [ BaseGuidebook, BaseC3CultContraband ]
+  id: BookBloodCultStavesGuide
+  name: "Tome of Sanguine Rites: Unlocking The Power Of A Staff"
+  description: A tome of rites for the staff awakening and empoverment.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper_blood
+    - state: cover_old
+      color: "#481018"
+    - state: decor_spine
+      color: "#4e2532"
+    - state: icon_glow
+      color: "#950000"
+      shader: unshaded
+    - state: icon_pentagramm
+      color: "#911210"
+    - state: detail_bookmark
+      color: "#6b0a53"
+    - state: detail_rivets
+      color: "#530827"
+    - state: overlay_blood
+  - type: GuideHelp
+    guides:
+    - BloodCultStavesGuide
+
+- type: entity
+  parent: [ BaseGuidebook, BaseC3WizardContraband ]
+  id: BookWizardStavesGuide
+  name: "A Practical Treatise on Wizard's Staff Care and Preservation"
+  description: A concise treatise on the care of wizard staves, penned by Borzoi the Wise.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#657e9c"
+    - state: icon_text3
+    - state: decor_wingette_circle
+      color: gold
+    - state: icon_medical
+      color: "#664826"
+    - state: detail_rivets
+      color: gold
+  - type: GuideHelp
+    guides:
+    - WizardStavesGuide

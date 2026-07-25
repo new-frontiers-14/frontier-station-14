@@ -60,3 +60,22 @@
     containers:
       storagebase: !type:NestedSelector
         tableId: TableStorageFillT4Parts
+
+# region generic trash
+- type: entityTable
+  id: TableStorageFillGenericTrashItems
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: GenericTrashItems
+      rolls: !type:RangeNumberSelector
+        range: 4, 24
+
+- type: entity
+  abstract: true
+  id: StorageFillGenericTrashItems
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillGenericTrashItems

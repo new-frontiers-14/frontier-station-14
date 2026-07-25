@@ -104,6 +104,38 @@
       tableId: TableRandomTowel
       prob: 1.00
 
+- type: entityTable
+  id: TableRandomBible
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: Bible
+    - id: BibleTanakh
+    - id: BibleDruid
+    - id: BibleCommunistManifesto
+    - id: BibleSatanic
+    - id: BibleNanoTrasen
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnRandomBible
+  name: random bible
+  suffix: Ship
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Specific/Chapel/bible.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: green
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomBible
+      prob: 1.00
+
 # Tools
 
 # Clothes

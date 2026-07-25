@@ -1,0 +1,80 @@
+# region xeno chitin
+- type: entity # no use other than selling for profit for now
+  parent: MaterialBase
+  id: NFMaterialChitinXeno
+  name: xeno chitin
+  suffix: Full
+  description: A piece of dense, bio-organic exoskeleton composed of layered, resinous material. Durable and acid resistant.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/materials.rsi
+    state: skin_3
+    layers:
+    - state: skin_3
+      color: "#475062"
+      map: ["base"]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice # Looks like it sets the price per item in stack
+    price: 90 # So full stack worth 9000 spesos
+  - type: Appearance
+  - type: Stack
+    stackType: NFStackChitinXeno
+    baseLayer: base
+    layerStates:
+    - skin
+    - skin_2
+    - skin_3
+    count: 100
+
+- type: entity
+  parent: NFMaterialChitinXeno
+  id: NFMaterialChitinXeno1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: skin
+  - type: Stack
+    count: 1
+
+# region argocyte chitin
+- type: entity # no use other than selling for profit for now
+  parent: MaterialBase
+  id: NFMaterialChitinArgocyte
+  name: argocyte chitin
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/materials.rsi
+    state: skin_3
+    layers:
+    - state: skin_3
+      color: "#b2b191"
+      map: ["base"]
+  - type: Appearance
+  - type: Stack
+    stackType: NFStackChitinArgocyte
+    baseLayer: base
+    layerStates:
+    - skin
+    - skin_2
+    - skin_3
+    count: 100
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 120 # So full stack worth 12000 spesos
+
+- type: entity
+  parent: NFMaterialChitinArgocyte
+  id: NFMaterialChitinArgocyte1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: skin
+  - type: Stack
+    count: 1
