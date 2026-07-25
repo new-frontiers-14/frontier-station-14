@@ -19,7 +19,6 @@ using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-<<<<<<< HEAD
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Administration.Logs; // Frontier
@@ -30,8 +29,6 @@ using Content.Shared.Stacks; // Frontier
 using Content.Server.Stack; // Frontier
 using Robust.Shared.Containers; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
-=======
->>>>>>> fbf65b7f74 (Make vending machine restocks predicted (and its sound not spammable) (#38609))
 
 namespace Content.Server.VendingMachines
 {
@@ -370,7 +367,6 @@ namespace Content.Server.VendingMachines
 
             if (IsAuthorized(uid, sender, component))
             {
-<<<<<<< HEAD
                 int bankBalance = 0;
                 if (TryComp<BankAccountComponent>(sender, out var bank))
                     bankBalance = bank.Balance;
@@ -427,11 +423,9 @@ namespace Content.Server.VendingMachines
                     _adminLogger.Add(LogType.Action, LogImpact.Low,
                         $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid)}, product:{proto.Name}, cost:{totalPrice},  with ${cashSlotBalance} in the cash slot and ${bankBalance} in the bank.");
                 }
-=======
                 args.Affected = true;
                 args.Disabled = true;
                 component.NextEmpEject = Timing.CurTime;
->>>>>>> fbf65b7f74 (Make vending machine restocks predicted (and its sound not spammable) (#38609))
             }
         }
         // End Frontier: cash slot logic, custom vending check
