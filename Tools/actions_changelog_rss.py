@@ -26,6 +26,7 @@ MAX_ITEM_AGE = timedelta(days=30)
 
 # Set as a repository secret.
 CHANGELOG_RSS_KEY = os.environ.get("CHANGELOG_RSS_KEY")
+CHANGELOG_HOST_KEY  = os.environ.get("CHANGELOG_HOST_KEY")
 
 # Change these to suit your server settings
 # https://docs.fabfile.org/en/stable/getting-started.html#run-commands-via-connections-and-run
@@ -35,7 +36,7 @@ SSH_PORT = 22
 RSS_FILE = "changelog.xml"
 XSL_FILE = "stylesheet.xsl"
 HOST_KEYS = [
-    "AAAAC3NzaC1lZDI1NTE5AAAAIOBpGO/Qc6X0YWuw7z+/WS/65+aewWI29oAyx+jJpCmh"
+    CHANGELOG_HOST_KEY
 ]
 
 # RSS feed parameters, change these
