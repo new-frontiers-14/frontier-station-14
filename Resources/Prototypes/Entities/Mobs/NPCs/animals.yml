@@ -3169,13 +3169,12 @@
     factions:
     - Cat
   # End DeltaV
-  # Frontier: Cat Stamps
-  - type: Stamp # imp - Pet Stamps
+  # Frontier: Pet Stamps
+  - type: Stamp
     stampedName: stamp-component-stamped-name-cat
     stampedColor: "#1c1c1c"
     stampState: "paper_stamp-cat"
     stampLargeIcon: "cat_stamp"
-    reapply: true
   # End Frontier
 
 - type: entity
@@ -3249,13 +3248,12 @@
         Slash: 6
         Piercing: 6
         Structural: 15
-# Frontier: Cat Stamps
-  - type: Stamp # imp - Pet Stamps
+# Frontier: Pet Stamps
+  - type: Stamp
     stampedName: stamp-component-stamped-name-cat
     stampedColor: "#1c1c1c"
     stampState: "paper_stamp-cat"
     stampLargeIcon: "syndicat_stamp"
-    reapply: true
 # End Frontier
 
 - type: entity
@@ -3350,13 +3348,12 @@
     thresholds:
       0: Alive
       25: Dead
-  # Frontier: Cat Stamps
-  - type: Stamp # imp - Pet Stamps
+  # Frontier: Pet Stamps
+  - type: Stamp
     stampedName: stamp-component-stamped-name-cat
     stampedColor: "#1c1c1c"
     stampState: "paper_stamp-cat"
     stampLargeIcon: "kitten_stamp"
-    reapply: true
   # End Frontier
 
 - type: entity
@@ -3628,12 +3625,19 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
-  - type: Stamp # imp - Pet Stamps
+  # Frontier: Pet Stamps
+  - type: Stamp
     stampedName: stamp-component-stamped-name-hamster
     stampedColor: "#1c1c1c"
     stampState: "paper_stamp-hamster"
     stampLargeIcon: "large_stamp-hamster"
-    reapply: true
+    sound:
+      path: /Audio/Animals/mouse_squeak.ogg
+  - type: UseDelay
+    delays:
+      stamp:
+        length: 1.0
+  # End Frontier
 
 - type: entity
   name: pig

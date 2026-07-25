@@ -58,7 +58,7 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<PaperComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PaperComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PaperComponent, PaperInputTextMessage>(OnInputTextMessage);
-        SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs); // Frontier - Sign verb hook and Pet Stamps
+        SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs); // Frontier - Sign verb hook and Stamp verb for Pet Stamps
 
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
@@ -184,8 +184,15 @@ public sealed class PaperSystem : EntitySystem
         {
             Act = () =>
             {
+                // Don't allow stamping while on cooldown
+                if (StampDelayed(args.User))
+                    return;
+
                 if (!TryStamp((uid, component), GetStampInfo(stampComp), stampComp.StampState))
                     return;
+
+                // Start the cooldown after stamping
+                DelayStamp(args.User);
 
                 var stampPaperOtherMessage = Loc.GetString(
                     "paper-component-action-stamp-paper-other-isstamp",
@@ -211,7 +218,8 @@ public sealed class PaperSystem : EntitySystem
 
                 UpdateUserInterface((uid, component));
             },
-            Text = Loc.GetString("paper-component-verb-stamp")
+            Text = Loc.GetString("paper-component-verb-stamp"),
+            Priority = 3 // Higher than edible verbs
         };
 
         args.Verbs.Add(verb);
