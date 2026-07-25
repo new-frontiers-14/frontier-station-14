@@ -48,7 +48,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<VendingMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInserted); // Frontier
         SubscribeLocalEvent<VendingMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemoved); // Frontier
-        SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnRestockDoAfter);
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
 
