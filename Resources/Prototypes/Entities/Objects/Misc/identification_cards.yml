@@ -649,7 +649,7 @@
     job: AtmosphericTechnician
 
 - type: entity
-  parent: [ BaseC3SyndicateContraband, IDCardStandard ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [  IDCardStandard, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndicateIDCard
   name: syndicate ID card
   components:
@@ -663,7 +663,7 @@
     - SyndicateAgent
 
 - type: entity
-  parent: [ SyndicateIDCard, BaseSyndicateContraband ]
+  parent: [ SyndicateIDCard, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndiOperativeIDCard
   name: syndicate operative ID card
   components:
@@ -674,7 +674,7 @@
   - type: AgentIDCard
 
 - type: entity
-  parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
+  parent: [ SyndiOperativeIDCard, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndiCorpsmanIDCard
   name: syndicate corpsman ID card
   components:
