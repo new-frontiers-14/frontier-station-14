@@ -1523,6 +1523,30 @@
     state: pda-pirate
 
 - type: entity
+  parent: [ BaseMedicalPDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
+  id: SyndiAgentPDA
+  name: syndicate corpsman PDA
+  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
+  components:
+  - type: Pda
+    id: SyndicateIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-agent
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-agent
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - MedTekCartridge
+
+- type: entity
   parent: BaseWidePDA
   id: WizardPDA
   name: wizard PDA
