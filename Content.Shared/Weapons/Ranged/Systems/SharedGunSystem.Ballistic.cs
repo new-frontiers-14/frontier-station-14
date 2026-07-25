@@ -190,8 +190,15 @@ public abstract partial class SharedGunSystem
 
         UpdateBallisticAppearance(args.Target.Value, component);
         UpdateAmmoCount(args.Target.Value);
+        // Frontier: better revolver reloading
+        var moreSpace = false;
+        if (ballisticTarget is not null)
+            moreSpace = ballisticTarget.Entities.Count + ballisticTarget.UnspawnedCount < ballisticTarget.Capacity;
+        else if (revolverTarget is not null)
+            moreSpace = GetRevolverCount(revolverTarget) < revolverTarget.Capacity;
+        // End Frontier
+
         // repeat if there is more space in the target and more ammo to fill
-        var moreSpace = target.Entities.Count + target.UnspawnedCount < target.Capacity;
         var moreAmmo = component.Entities.Count + component.UnspawnedCount > 0;
         args.Repeat = moreSpace && moreAmmo && validAmmoType; // Frontier: do not repeat reload attempts with invalid ammo.
     }
