@@ -66,3 +66,81 @@
   - type: GuideHelp
     guides:
     - WizardStavesGuide
+
+- type: entity
+  parent: BookBase
+  id: NukasMemoryLogs
+  name: Nuka's Memory Logs
+  description: A totally not stolen diary that was then published for public enjoyment!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: nukasmemorylogs_cover
+  - type: Paper
+    content: book-text-nukasmemorylogs
+
+- type: entity
+  parent: BookBase
+  id: NoNonsenseAtmosGuide
+  name: The No-Nonsense Atmos Guidebook
+  description: A no-nonsense guide to atmos, and how to not be (as much of) a liability.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: nononsenseatmos_cover
+  - type: Paper
+    content: book-text-nononsenseatmos
+
+- type: entity
+  parent: BookBase
+  id: TheLittleMedibot
+  name: The Little Medibot That Could
+  description: A children's book about a determined little bot!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: littlemedibot_cover
+  - type: Paper
+    content: book-text-thelittlemedibot
+
+- type: entity
+  parent: BookBase
+  id: SmugglersHandbook2ndEd
+  name: The Smuggler's Handbook, 2nd Edition
+  description: A guide to smuggling... wait, why is this in here?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: smugglershandbook_cover
+  - type: Paper
+    content: book-text-smugglershandbook2nded
+
+- type: entity
+  parent: BookBase
+  id: StudyOfArtifactsFromAncient
+  name: The Archaeological Study of Ancient Artifacts of Ancient Xeno-Civilizations Vol 1 - 2nd Edition
+  description: A study into artifacts, their handling, and how to use them to your advantage.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: studyofartifactsfromancient_cover
+  - type: Paper
+    content: book-text-studyofartifactsfromancient
+
+- type: entity
+  parent: BookBase
+  id: TheHauntingofNFSDO
+  name: The Haunting of the NFSDO - CASE FILE LA-014
+  description: A case file by a sheriff who experienced the haunting of the NFSDO.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: thehauntingofnfsdo_cover
+  - type: Paper
+    content: book-text-thehauntingofnfsdo

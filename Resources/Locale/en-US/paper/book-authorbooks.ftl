@@ -261,3 +261,469 @@ book-text-janitor = [bold][color=black][head=3]The Tales of a Tired Janitor[/hea
       Speaking of jumpsuits, the lack of respect is astronomical. The scientists and astronauts zoom past in their sleek suits, utterly oblivious to the fact that I'm the unsung hero keeping this place from turning into a cosmic trash heap. I bet they don't even know my name. "Hey, Space Janitor!" That's what I get. No appreciation for the elbow grease I put into keeping their precious station spick and span.
       And let's remember the hazards. Cleaning up alien slime? Yeah, that's a regular Tuesday for me. One wrong move and I'm dealing with an intergalactic biohazard. It's like playing Russian roulette with space critters that could burst out of some hidden nook and cranny. I signed up to mop floors, not play host to extraterrestrial invaders.
       Being a janitor on this so-called Space Station 14 is a cosmic joke. Where did the other 13 stations go? It's not all spacewalks and futuristic gadgets; it's scrubbing toilets and battling alien goo. If anyone thinks space is glamorous, they clearly haven't seen the mess we space janitors deal with every single day. It's time they appreciate the unsung heroes of the space station – the custodians of the cosmos.
+
+# Frontier 3rd year anniversary entries
+book-text-nukasmemorylogs = [color=green][head=3]Nuka’s Memory Logs[/head]
+        PRIVATE - DO NOT READ!
+
+        Diary of Nuka C. Levine, recovered via totally legitimate and legal means before being put to press.
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        4/10/2526
+
+        My name is Nuka Colleen Levine, I am twenty-three years old. I am a Felinid. I lost my memory.
+        I had some sort of accident while defusing a training bomb, the doctors here say my files show a history of brain trauma, and a recent history of being in dangerous situations. So they think this hit was just "the one". So now I'm undergoing some therapy and procedures to gently ease the memories back into my brain.
+        The nurses don't think I can hear them talking, but I know what they say. Apparently, while a relatively easy procedure, it's not convenient for NT to perform, they prefer just "putting down" the affected individual and bringing out a new clone. But someone behind the scenes was looking out for me, the procedure has been paid in full, and I've been placed with some of the best therapists and doctors.
+        This journal was recommended by my therapist, as a way to log down what I'm feeling as the memories are retrieved. They do it in sequential order, so it should make sense and just feel like I'm "experiencing" everything again. My sister is here with me. She has the most beautiful smile. Despite not having any memories of her... I see her and feel a warmth in my heart. The brain forgets, but the body remembers.
+        The way memory works and why we don't remember things from early childhood can be attributed in light to the act of pruning, our brain makes these connections and things and I guess we "prune" away stuff we don't need. Or, uhm, at least, that's the way I understood it, from what the doctors said. The critical learning from this time becomes more background noise, a basis for the learning and development that will occur as time goes on. So no one really, consciously at least, remembers what it was like to be a year old.
+        Today, the small memories from my first year of life were returned to me. The process wasn't too difficult, I was put into a machine, and memories scraped from my cloning bank were shown. Almost like watching a movie, if the movie was in your head.
+        There isn't much to speak of here. The senses of a baby are not full for quite some time, so most of what you see and experience, and how your brain logs it, is... different.
+        I felt warmth. A soft embrace of someone. Her colors are like mine, and I spent hours that night staring in the mirror at all the colors in my hair, on my ears, my tail. White, black, and caramel, uneven and random splotches with no rhyme or reason. My caramel colors were a bit more saturated than hers though, I have more orange on me than she does, or did. I attribute this to the other figure in the memories, orange. Orange and happy, a calm purr, a strong protective soul. Though the memories feel alien, the figures do not. I don't need a doctor to tell me who they were.
+        During the retrieval, I felt myself begin to cry in mourning, but I didn't know why. These are just blurs of colors, feelings, and voices. I heard my own voice babble in them, as well as the voices of those I would later know as my siblings. My first word was "cook".
+        Out of all the memories, the one that was the strongest, the clearest, was towards the end. I was with my mother in a kitchen. Smells I could not describe filled the air. She sets me on the counter and hands me a spoon and a bowl, I mix it the best I can.
+        She kisses my forehead and says something to me softly, words of praise I did not comprehend. I'm allowed to chew on the spoon as she completes her process. Time passes, and a sweeter smell intrudes. I watch her pull four circles from the warm box. Cake. We baked cake.
+        That was the end of the session, and I found myself with more questions that couldn't be answered. Shouldn't my parents be involved with this? If their daughter had an accident, where are they? Juliet never mentioned them. In fact, Juliet wasn't in my memories at all. There were four of us, quadruplets, and no older siblings. I felt a small suspicion, a panic, had I been stolen? Kidnapped? Given away? Did the woman in my memories not want me anymore? I wondered these things that night, as if to puzzle through what had happened, and despite not truly "knowing", I felt as though I did know.
+        That's it for now. There's not much else to dissect, and I'll torture myself waiting for answers that I'll get in the next sessions.
+        So for now, I'm going to go bake a cake.
+
+        4/11/2526
+
+        Well. I got my answers. Be careful what you wish for, right?
+        The memories continued this session, but the sweet, dreamlike state of the ones before were quickly upturned.
+        Loud noises had sounded nightly. A large wail that never failed to wake up me and my siblings. Our parents would come and soothe us, and soon, the wailing was a lullaby. One night, our crib was moved into a windowless room, and there it remained. Mother began carrying around a large pointed silver thing on her back, and we were swatted for any attempts to touch. Father had a shining stick and glowing papers. Sometimes, outside of the room were shouts and screams and liquid noises. Sometimes, we weren't allowed to go out the next day. It always smelled the same. Metallic.
+        Things seemed... fine. I guess. It became the new norm, and soon, we'd sleep through the crashing.
+        But...
+        Then it wasn't fine.
+        One night, a siren sounded, and like any other, we stirred, but didn't wail. Mother and father came in, and we were moved. Four Felinid kittens in a duffel bag. A note was added, a few toys, and blankets. Mother kept the top unzipped so we could breathe, and we were off. Through the ruined streets, we walked past piles of sleeping people no one had came to wake up. How are they comfy like that? Why are some of them missing parts? They smell bad. Someone should wake them up for bath time.
+        Everything around us became louder and more hectic, a thick sound burred constantly and the air became warm. I peaked out to see so many others, and now us, waiting to enter a big metal bird. Blue plates on the side with white lettering. Metal people stood at the front door, with big scary things in their hands.
+        "N... T!" I mewed happily at my mother. I don't think she heard me. She wasn't looking ahead at the big metal bird, but behind. Everything became more hurried, the people around started shouting and pushing, and I saw specks of red in the distance.
+        "Sienna... they're going to make it before the shuttle leaves." My father spoke, his voice lacking the warmth I knew.
+        She looks at him. Her face is desperate. They look at us. We're next. The metal people are waiting.
+        "Four infants. Felinid."
+        "And you two?"
+        "We'll be back. We're going to try and stall them, until everyone can get aboard."
+        They look down at us and say something we can't hear, as the metal bird sounds roared up too loudly. And then... they're gone.
+        Wait, where am I going? Why are you giving us away? Mother? Mother? Where are you? I can't see you. This person isn't warm. They're covered in metal. They're blue. Are they good? Father? Where are you going? Please come back. Please come back. Please come back. I'm scared. I'm so scared. Please. Please.
+        I look desperately out the bag for my parents. They're gone. I cry. My siblings cry. The person in metal soothes us. The sounds get too loud. Others are crying too. More people file into the bird. I see now the red specks are people, a swarm of them. My parents are there, just out of reach... they're not facing me. They can't hear me cry for them.
+        I'm hungry. I want to go home. I want to bake with you, momma. I want dada to hold me and toss me in the air as he sings a song. Please. Make it stop. Please. Come back. Come back. Please. Please. Please this box is so loud, it's so...
+        We're yanked back inside, and a flurry of beautiful colors is where my parents once were. Blurs of light, purples, blues, greens. People around us fall, but the ones in metal stay standing. The one holding us squeezes the bag tightly. Are my parents out there? In the color? Are they seeing this too? It's so pretty... It's like the sky at night.
+        I'm ripped out of the memories, screaming and crying. Juliet is there, she's soothing me, holding me, telling me everything is okay. But everything isn't okay. Where are my parents, why weren't they aboard, why did we leave without them?!
+        And who were those fuckers in red?!
+
+book-text-nononsenseatmos = [color=black][head=3]The No-Nonsense Atmos Guidebook[/head]
+        The No-Nonsense Atmos Guidebook
+        by Ruben Koster
+        First place winner in the Frontier 3rd Anniversary Writing Contest
+
+        WARNING: If you cannot tell a wrench from a rapid piping device, close this manual immediately before you drain your ship's entire oxygen supply into the vacuum.
+
+        About the Author (Yes, skip this if you actually know what you're doing):
+        I used to be a miner just like you, until I met an "atmos wizard" — you know the type, one of those people who makes a chaotic mess of pipes and somehow coaxes a completely different gas out of the vent.
+
+        My name is Ruben Koster. Much like you, I spent my early days trying and failing for hours on end just to get basic plumbing to work. Right now, I’ve got Jerry (my harpy crewmate) scouting a chromite asteroid for oxygen veins. The refinery is humming along nicely, and frankly, I’m bored out of my mind. So, let’s talk about GAS, Group for Atmos Shenanigans, those clowns are spamming my PDA with smirks and I can't be bothered right now.
+
+        Let’s begin by talking about integrated systems.
+
+        System Tier List (Or: How Much of a Liability Are You?)
+
+        To a greenhorn, the tangled mess of pipes winding through a ship's hull looks like some kind of deep, arcane magic. It isn't. You don't lack intelligence; you just lack malice.
+
+        What differentiates the skill levels of a Frontier atmospheric engineer is simply the number of systems they can keep straight in their head. Let's break down exactly where you stand on the cosmic hierarchy:
+
+        The Beginner (Knows 2 Systems)
+        The Setup: Basic storage and a burn chamber.
+        Ruben's Rating: You can hold gas, and you can set gas on fire. Congratulations, you are a walking liability who will probably asphyxiate the crew by Tuesday.
+
+        The Intermediate (Knows 3 Systems)
+        The Setup: Storage, a burn chamber, and a functional FLOOP.
+        Ruben's Rating: Enough to be called intermediate. The cabins have breathable air, and you aren't dumping your entire profit margin directly into the vacuum.
+
+        The Advanced Engineer (The Optimizer)
+        The Setup: Storage, a burn chamber, a FLOOP, a recycling line, and a highly efficient refinery.
+        Ruben's Rating: You know how to recycle N2O and CO2, compress high pressure pipes into microscopic spaces, and troubleshoot every possible system failure without panicking.
+
+        The Wizard (The Myth)
+        The Setup: Knows every single system listed above and chooses to ignore all of them.
+        Ruben's Rating: They don't use massive burn chambers. They don't waste precious floor tiles. They achieve complete thermodynamic perfection using nothing but pure pipe routing, filters, and precisely tuned mixers. The rest is just for show. Their built systems are a vulgar display of air bending to their absolute will.
+
+        The Storage Quick-Hack: Hoard, Recycle, or Vent?
+
+        Space on a Frontier vessel is tighter than a harpy's nesting box. If you try to save every single mole of random gas your scrubbers pull out of the rocks, your tanks will overpressurize, your manifolds will rupture, and you will clog your pipes into the next sector over.
+
+        A real engineer knows exactly what a gas is worth before dedicating a single tile of pipe to it. Here is the definitive breakdown of what goes into your tanks and what goes into the void.
+
+        1. The Value Lineup
+
+        Oxygen (O2): Pure gold. You need it to breathe, you need it to burn, and you need it to survive. Never vent it, never waste it.
+
+        Nitrogen (N2): The catalyst. If you build a high-efficiency system, it will actively consume N2. If your system is a low-efficiency garbage pile, it will actually generate it. Keep it managed.
+
+        Tritium: (T) Highly toxic, highly essential. This stuff is the cosmic dial that controls how much gas reaction you can squeeze out of your system per tick. Handle it with extreme caution, but do not throw it away.
+
+        Plasma:(P) You can find plasma quite easily out on the rocks. Its primary purpose in life is being the raw ingredient you need to manufacture Tritium.
+
+        2. The Recyclables (Do NOT Space Just Yet)
+
+        Nitrous Oxide (N2O): If you route N2O through a heating loop and crack it at 850K, it breaks down into a beautiful 2:1 ratio of Nitrogen to Oxygen. Free air.
+
+        Carbon Dioxide (CO2): Usually a nuisance, but it can be recycled at a perfect 1:1 ratio. You need a super-upgraded recycler, and you have to feed it at least 1450 kPa and 600K. If your setup can't hit those metrics, vent it. If it can, congratulations - you have a plus 30% gas loop efficiency.
+
+        3. The Meh Gas
+
+        Helium:Useless for your ship and inert. However, do not space it. Pipe it into an isolated, separate tank line. CC will buy pure Helium for 3 spesos per mol. It’s literal free money for doing nothing.
+
+        4. The Useless (Feed it to the void)
+
+        Ammonia/Water Vapor: [color=#bf4040]VENT IT. Total garbage byproducts that clog your system metrics, ruin your pressures, and take up space that could be holding profitable or useful gases. Set your filtration defaults to purge these into the void immediately.
+
+        The F.A.R.T. (Fast Air Readjustment Tank)
+
+        Regular crew call it the Devil's Fart. In engineering terms, it is a plasma and tritium fire gone completely wrong — except we are doing it on purpose.
+
+        Those temperature and pressure metrics required to recycle CO2 and crack N2O won't come from standard thermo heaters. You need raw, volatile energy. We let this specific tank burn until it reaches massive pressure and extreme temperatures, then we inject that hot gas directly into the FLOOP and recycling loops to force them to work.
+
+        The 3-Tile Blueprint
+
+        This efficient setup takes up exactly three tiles and requires three main devices:
+
+        1x Air Injector: This is your fuel intake. Shove 6 Oxygen canisters and 1 Plasma canister through, then ignite.
+        2x Passive Vents: Delivery pipes. One vent leads the hot gas into the FLOOP, the second vent routes it directly into the waste loop.
+        1x Pipe Sensor: Placed between the chamber and the regulators to track the pressure.
+
+        Automation
+
+        Do not sit there staring at the chamber window. Link the pipe sensor to an air alarm.
+
+        Set up a logic trigger: if the chamber pressure dips below 5000 kPa, it must broadcast a warning and sound the ship's sirens. If the FART goes cold or drops below that threshold, your entire filtration and recycling grid stalls out, and you need to get more canisters into the injector immediately.
+        To actually get the hot gas from the FART into the FLOOP or Waste loop without causing catastrophic backflow, you need three serialized devices placed in a strict row:
+
+        1. Gas Pump: Regulates the exact pressure to be injected so you don't warm your downstream pipes too much.
+        2. Signal Valve: Tells the system when to inject based on your network logic or a manual toggle, tell it to open when temperature is under 71.2k or -202c.
+        3. Volumetric Pump: Provides the aggression. It ignores high pressure resistance in the target loop and violently forces the gas forward.
+
+        The FLOOP
+
+        This is the easiest part of the whole build, but you still have to choose your scale. You can run this loop in baby mode at 200 liters, or go high-volume at over 1000 liters.
+
+        Sure, sticking to 200L is safe and secure, but it is also incredibly BORING. High-volume is where the real engineering happens. With that much volume moving through the network, your pipes will drop in temperature rapidly, tanking your entire system's efficiency. You will have to constantly utilize the FART to inject aggressive hot air just to keep the loop's temperature up close to -200°C.
+
+        The Serialized Filter Rule
+
+        The four serialized filters inside the FLOOP are critical. If you mess up their order, you are actively sabotaging yourself.
+
+        NEVER REMOVE FREZON FIRST. If you drop a Frezon filter at the front of the line, the remaining gases in the pipe will simply synthesize more Frezon all over again in the very next pipe section. You'll waste power and accomplish absolutely nothing.
+
+        Follow this strict filtration blueprint:
+        Filter 1: Nitrogen first.
+        Filter 2 & 3: Oxygen or Tritium next.
+        Filter 4: Frezon last.
+
+        Whatever undesired garbage is left in the line after the fourth filter can either be routed back into your primary ship storages or spaced into the void.
+
+        The Plasma Burn Chamber
+
+        To be honest, a plasma burn chamber looks deceptively simple from the outside. You pipe the gas in, you spark it, and you get a fire. It isn't simple. It is the single most finnicky, volatile part of the system. It matters the most, it kills the most, and one wrong move will waste millions of spesos in pure O2 before you can even blink.
+
+        Because of that, I am not going to half-ass the explanation here. Trying to cram the entire thermodynamic nightmare of a high-yield plasma burn into a single chapter of this manual is just giving you greenhorns a faster way to commit suicide. It is too deep, too dangerous, and requires too much precision.
+
+        The Burn Chamber deserve — and requires — its own dedicated manual.
+
+        Once Jerry gets back with the cargo metrics from that chromite asteroid and I find myself bored out of my mind again, I will write a completely separate guidebook covering nothing but burn chamber dynamics, optimal mixing ratios, and TEMPERATURE TAILORING.
+
+        Until that book drops, stick to the FLOOP and keep your wrenches away from the plasma tanks.
+
+        The Recycler Setup
+
+        If you want to stop wasting gas and start turning waste into pure profit, you need a recycling loop. But fair warning: this isn't a compact little one-tile trick. You are going to need physical space, a mountain of pipes, and a few tiles dedicated to a Quasi-Piped environment.
+
+        For the uninitiated, a quasi-pipe setup is just a small, completely sealed room where the floor tiles share a passive vent connected directly to your pipe network. Whatever happens in the room happens in the pipes. It essentially turns those floor tiles into a massive, high-volume storage buffer.
+
+        Heat and Pressure
+
+        The secret to a working recycler is keeping the environment hot — we are talking over 850K — while keeping the pressure relatively moderate.
+
+        Install an inline pressure regulator set to 4500 kPa right in the loop, routed directly to a spaced vent.
+
+        The Works
+
+        Your pipe sequence needs to be highly specific. Set it up exactly like this:
+
+        Step 1: Place a filter dedicated to pulling N2O out of the recycler stream.
+        Step 2: Upgraded Recycler. Transforms CO2 into usable O2 and requires that 600K heat and 1450kPa environment.
+        Step 3: After the recycler output, place filters to remove the recovered O2 and N2. Push the O2 and N2 through a massive bank of external radiators first to cool them down to safe temperatures, then re-inject them into your primary storage.
+        Step 4: N2O breaks at 850k temperature and provides 2xN2 and 1xO2 but the reaction is endothermic.
+
+book-text-thelittlemedibot = [head=3]The Little Medibot That Could
+        The Little Medibot That Could
+        by Scarlet Usta
+        Runner-Up in the Frontier 3rd Anniversary Writing Contest
+
+        There was once a little Medibot that dreamed of being a plastic surgeon, but its little wheels could only take it as far as a pathfinder, not much of a vessel but it is much nicer than a grinder, and the patient walked in, their flames scorching the tiles under their feet as they buzzed "I’m not makin’ it am I?" as they collapsed onto the bed and the little Medibot, not even a bit shaken, beeped "Not if I have anything to say about it!" And with a quick HISS of the hypo the crispy moth flutters “you really are the best, little Medibot”, now they could rest a little easier even with the RUMBLE and ROAR of the FTL engine.
+
+        The little Medibot dreamed of being a chemist but its little wheels had only taken it as far as a Tyne this time. The doctor called out "new patient, alcohol poisoning nothing drastic, do you think you can help?" and the little Medibot Beeped "stop right there!" And with a quick HISS and a PSCHIT of the hypospray and a BUBBLE and BOIL of chemicals and the patient slurs "Thaank...you sooo moouch, chsay why don’t you let me buy yoou a driink"
+
+        The little Medibot thought this frontier thing wasn't too bad, and its little wheels took aboard a Bookworm, no patients, but much bigger than the Nook.
+        “I think I see a shelf, I’m sure the wildlife won’t mind if i help myself” Mewed the captain but of course they had many opinions, especially The Sharkminnow with teeth as sharp as a knife and just big too.
+        CHOMP AND GNASH
+        And a pair of carp also had something to say.
+        THUMP AND SLASH
+        but guess who’s here, a BEAR!
+        BUMP AND BASH
+
+        With their dastardly deed done The shark and their many minions depart
+        “my poor heart, I would never expect that they’d be in league” The patient croaked as they hit the floor with a bump and the Doctors didn’t hear, because of course there was a solar flare!
+        For the fist time the little Medibot had nothing to say all it could do was pray
+        RATTLE, PRATTLE and POP goes pacman spouted as its fuel was gone, not even a crumb left
+        The little Medibot started to feel rather dumb, just as it prayed with all its might doesn’t mean anyone will come. CLICK THUMP Goes the APC all out of juice and then... the lights did too
+
+
+        The little Medibot didn’t dream much anymore, its little wheels don’t even spin just sitting on the bridge of the Empress the size of which would normally impress the little Medibot but somethings got it feeling rather down, so much so a deputy did a petty crime to cover its cross with a big crayon frown.
+        It was all hands on deck, Everyone’s here The SR, sheriff, bailiff, and DOC too. Curiously the plant manager was nowhere to be seen not even for Nar’sie’s return.
+        “I really thought he would be here, I heard he was a fan” The bailiff said.
+        “We really don’t need him here, what we need is a plan!” The sheriff said.
+        RUMBLE, HORROR, AND SHAKES, She’s almost awake!
+        “There’s no time burn, we need to work, little Medibot come with me, we have lives to save”
+
+        Something tossed and turned inside the little Medibot, after all it wasn’t a doctor just a little good for nothing robot but with a PAT PAT of it’s little sterile head and a tug on it’s arm, the little Medibot’s wheels began to spin again.
+
+        Through the halls of the empress,
+        Across the lobby of the duchess much less impressive but still very nice,
+        Past the Bar of the nightlight which sure was a sight,
+        Over the pipes of the Retort, not very much to report,
+        Along the catwalks of the Reclaimer whose captain should get a lawyer on retainer,
+        and all the way into the Caladrius with a medbay packed to the brim with patients, doctors of all kinds!
+
+        A bright vulpakin tail wagging and an anxious felinid ears flicking!
+        A Melting shelleg looking for his winter coat and a human... not much of note!
+        A rather loud dwarf maybe he just found out he was a Proud father!
+        A pair of scurrets petting one another and a giant oni, maybe she’s the mother?!
+        A gasping harpy, someone please get her a scrubber and a rummaging goblin look, he just found some rubber!
+        A cramped vox looking like they’re in an Aquarium and diona debating if they’re a cannibal or a  vegetarian!
+        A fluffy Moth chewing on a cotton boll and a reptilian eating a mouse whole!
+        An oozing slime eating gelatin wait is that a skeleton!?
+        A chittering arachnid weaving silk and even a clown drinking pilk!
+
+        So many patients faces fresh and weary if only there was a little machine to give them a shot of tricordizine, a pat on the back and send them on their way, the skitter along the tiles, dashing patient to patient all sharing their thanks with a chitter, a hiss and a rattle, a creak, a yap and a croak, a patter, a purr, and a flutter and even a meowdy! With the rowdy crowds treated and grumbling back to work to fight the sleepy god of blood no light task, even the little Medibot could tell, watching the medbay slowly empty the little robot had a strange feeling
+        “What is this?...” It asks ever so puzzled “am I proud?!” The little doctor exclaims!
+
+book-text-smugglershandbook2nded = [head=3]The Smuggler's Handbook[/head]
+         2nd Edition
+         By Amera Goswin
+         Runner-Up in the Frontier 3rd Anniversary Writing Contest
+         ╔═══════════════════════════════════╗
+         ║██▀░░▄█████▄░░▀██   ████░███░███░████║
+         ║█▌░░░██▄░░░░░░░▐█   ████░███░███░████║
+         ║█▌░░░░▀███▄░░░░▐█   █▀▀▀▀██▀▀▀██▀▀▀▀█║
+         ║█▌░░░░░░░▀██░░░▐█   █░░▀▄░░▀▀▀░░██░░█║
+         ║██▄░░▀█████▀░░▄██   ██▄▄▄▄▄▄▄▄▄▄▄▄▄██║
+         ╚═══════════════════════════════════╝
+
+         ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+         This document contains information unapproved for public dissemination. Readers should take steps to ensure this information is not released on public channels.
+
+         Foreword
+         ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+         My name is Amera Goswin. I have smuggled hundreds, if not thousands of crates and taught dozens how to do likewise. I taught myself how to smuggle, no one helped me and I made a few mistakes in that time. I hope this guide will help you, the aspiring smuggler or perhaps nosy NFSD officer learn how to do the same. I'd like to give my thanks to Lux Nighteyes, the love of my life, who gave me the strength to keep going after my life took a turn for the worst. I do not think I would be here writing this guide, or perhaps even alive, if it were not for them. Also, Amiri if you are reading this, it is all a lie!
+
+         Introduction
+         ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+         Smuggling as a practice is one of the only ways the average contractor will have any interaction with the Spinwell Syndicate in their time in the Frontier Sector. The Syndicate has been offering smuggling jobs for as long as I have been in the Frontier which is admittedly not forever. But in that time the methodologies of both smugglers and the NFSD have changed and I have been a witness to it. Smuggling is a lucrative practice though fraught with occupational hazards and in a word, illegal. The NFSD will be your biggest obstacle when it comes to profit margins though avoiding them is trivial with proper precautions and a bit of luck.
+
+         So how do you the aspiring smuggler get started? Smuggling starts, like any great endeavor, with preparation. There are a few things you will need to get started listed in order of priority.
+         • Ship
+         • IFF console
+         • Bar of soap
+         • Upgraded capacitors
+         • Bomb suit
+
+         Note that if the NFSD is not operating in sector for a shift you can ignore most of these preparations though it is poor sportsmanship and likely to backfire should they show up mid-shift.
+
+         The Ship
+         Smuggling requires a vessel to store the crates you acquire, to this end cargo vessels are preferable though expeditionary vessels bring their own advantages. The Loader is a tried and true smuggling ship, small but with a cargo hold large enough to hold two pods worth of crates comfortably and more in a pinch. Expedition vessels, meanwhile, are capable of FTLing planet side then returning relatively near the center of the sector. Useful if NFSD is particularly active and running into their ships while headed back to the core from a pod is a concern. An Emu PLU and crate storage racks while not essential are highly recommended as they make moving, storing and organizing crates significantly easier.
+
+         The IFF console
+         These handy consoles have the unique ability to hide your ship's IFF signature, meaning unless a ship is in mass scanner range, you are untraceable. Note NFSD has their own more powerful radar consoles able to see about 800 meters away, far exceeding your own ship's range so keep on your toes!
+
+         Soap
+         Grabbing a dead drop will leave your fingerprints regardless of whether you use gloves, one swipe with this and any trace of you on an item is gone.
+
+         Capacitors
+         Super or Bluespace capacitors in your ships forward engines will allow you to get where you need to go quicker and if you are fast enough, outrun the NFSD. Really it all boils down to more fast is more good.
+
+         Bomb Suit
+         Supply drops will frequently have landmines inside them, these handy suits may save your life and your time, being dead is not profitable. Mining and engineering suits present a good alternative to bomb suits if you cannot find one and are frequently found on salvage wreckage.
+         Be extra cautious around two or more landmines as only a bombsuit or something with equally high explosive resistance can save you after a certain point.
+
+         Smuggling
+         ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+         Smuggling begins with a "suspicious note" in most cases. These notes lead you to a "neatly folded paper." Which lead you to a syndicate supply pod full of valuable contraband crates. These crates are then taken to a cargo sell platform at a Cargo Hub or the Trade Mall.
+
+         Suspicious Notes
+         These notes are sent out to fax machines at random relatively early in the shift and infrequently throughout the shift. They describe vaguely where to find a "neatly folded paper" which is the smuggler's primary tool for finding pods.
+         Notes tell you three things, when the paper will appear, what the paper will be hidden in and what point of interest the paper will be on.
+
+         Neatly Folded Papers
+         Before you dock at the POI you intend to take a paper from make sure to take your ID out, turn your IFF off well before arriving and cover your face. NFSD can check door logs and you don't want your name on those. To find the paper examine objects closely, you will know when you have found it. Remember to wipe your prints off with soap after taking the note!
+         These papers give you the exact coordinates of a syndicate supply pod and the time that another paper will appear at the exact location you found the first, assuming NFSD does not find and remove that spot. Once you take one of these papers you need to move fast. NFSD will immediately be informed that someone has taken a paper, quickly be informed of where you collected the note and later be informed where the pod is located.
+         This is the primary reason an IFF console is essential to smuggling. You do not want your IFF beacon blaring that you are right next to the coordinates the pod was dropped at.
+
+         Syndicate Supply Pod
+         These pods are full of what you are looking for: contraband crates! Sellable at cargo depots and the trade mall for a hefty sum of cash. Just make sure you don't trip any landmines. The average supply pod will have about 85,000 spesos of crates in it. This can vary wildly though from nothing at all the way up to about 200,000 spesos though both ends are extremely unlikely, you can expect to get between 70,000 and 100,000 spesos of crates per pod. There are 5 crate types you can find, listed with their respective selling prices below.
+
+         ═══════════════════
+         Base | Deliver | Type
+         ═══════════════════
+         2500 |  X5000  | Grey
+         2500 |  X8000  | White
+         4000 |  12000  | Black
+         5000 |  18000  | Donk Co.
+         6000 |  18000  | Cybersun
+         ═══════════════════
+
+         Pods also contain miscellaneous syndicate items inside of them that range from toys and trinkets to utilities and medicine. Though they are never any sort of weapon. I won't spoil the fun of discovering what you can find.
+
+         Selling
+         Simple and straightforward though one of the riskier parts of smuggling, take the crates to a cargo sell platform and exchange them for cash. Selling crates at the correct location on time will increase the sell price dramatically, to the "Deliver" price listed above while selling them at the wrong location only yields the base value. It is always recommended to sell at the correct location for maximum profit. Occasionally NFSD will be watching the Cargo Hubs or Trade Mall for IFFless ships docking, you in this scenario usually. What can you do?
+         • Brute Force: While it is an option, it is also a rapid escalation, this option is best left for handling hardline solo deputies who think they can take on a whole armed crew.
+         • Giving up: No one wants to do it but NFSD generally let people off with a slap on the wrist for a first smuggling offense. They are as interested in the crates as you are and generally cannot be bothered to tow you and your ship from the sector fringe.
+         • Waiting: NFSD rarely has the patience for prolonged stakeouts and will often be pulled away by vaults, UIVs, pirates, or other events. While you wait for a distraction, you can buy upgrades, salvage for fuel and supplies, or, if you're feeling bold, collect more notes and crates. Grey contraband crates are the only ones without a timer; all other crates expire after an hour losing substantial value. Just remember, nothing hurts your profits more than being arrested!
+
+         Wrapping Up
+         So, you have smuggled some crates, sold them for a hefty profit and are holding a wad of cash. What now? Assuming you have been careful and left no traces, you just sold any evidence you have been smuggling. You're free to wander back into the sector at your leisure and deposit your cash at any major point of interest.
+
+         Conclusion
+         ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+         Smuggling, while lucrative, can be boring at times, bring a friend! Teach them what this guide may have taught you. Smuggling is not just about the profits, it is a journey across the stars that is best done with an old, new or soon-to-be friend. Take what this guide has hopefully taught you and enjoy the journey. Ask each other about your days, play some music and visit a food ship after a successful run! Smuggling is one of the most low-cost to entry and high profit endeavors in the sector. That gives you plenty of time to enjoy yourselves and let your heat die down, so spend that time well! Thank you for reading my guide, I hope it has been helpful. Go out and make some spesos!
+
+         This document contains information unapproved for public dissemination. Readers should take steps to ensure this information is not released on public channels.
+
+book-text-studyofartifactsfromancient =
+        The Archaeogological
+        Study Of Ancient
+        Artifacts of Ancient Xeno-Civilizations
+        Vol 1 - 2nd Edition
+        "Artifacts and How to Activate Them"
+        Written by Ms. Adalite Tosimizu
+
+        Entry in the Frontier 3rd Anniversary Writing Contest
+        ------------------------------------------------------------------------------------
+
+        I may be missing some stimulations but I do believe I have covered a good few of them that should set one straight when it comes to activating artifacts.
+
+        Do remember to wear proper protective gear before engaging with artifacts, highly recommended to wear a hardsuit, an experimental research hardsuit would do but an engineering/atmospherics hardsuit or a miner's hardsuit are also good.
+
+        A regular hardsuit is also good in a pinch but it's highly advised to pack heat medication and bandaging in the event of catastrophic destruction.
+
+        In any case, I hope this guide is of some use to you, please be safe.
+
+        - Adalite Tosimizu
+
+        ------------------------------------------------------------------------------------
+
+                                     Information of
+                              Artifacts of a Former
+                                         Civilization
+
+        Not much is known about these ancient civilizations outside of their artifacts, strange objects that seem to defy all logic and reasoning and tend to have strange stimulations and equally strange results.
+
+        It could be believed that these beings who left these tools and toys behind were once a thriving and creative civilization, creating sculptures that could bend the fabric of reality itself, much like the anomalies created by ripping said fabric with enough force from a bluespace generator. For the most part, these sculptures tend to be benign, oftentimes conjuring equally benign things such as empty food wrappings or even producing instruments out of seemingly nothing!
+
+        However, there are some that boasts more sinister and dangerous effects. Hypothetically, inside each and every artifact lies an artifexium core that has been weakened after aeons of inactivity. Stimulating the core will cause it to spring to life again, allowing us to utilize its energies to convert it into research points to allow us to decrypt research patterns. The more times one stimulates the core, the more energy it produces, but there is more:
+
+        Not every artifact is created equal, some artifacts are created with a deeper reservoir of artifexium energy than others, a highly radioactive energy that, when infused with large quantities, can cause harm to any and all persons in an environment similarly to an exposed RTG or, gods forbidding, a singularity.
+
+        ------------------------------------------------------------------------------------
+
+                                 Stimulating an
+                                          Artifact
+
+        Artifacts have many ways of having its nodes activated, ranging from being exposed to atmospheric gases such as Oxygen, Nitrogen, and Carbon Dioxide to more violent methods such as extreme positive pressure or physical trauma. As the artifact's potential awakens, actions from previous depths in addition to new ones are necessary to activate deeper nodes.
+        For instance, an artifact at the lowest depth may need one action such as throwing it or closely examining it, while an artifact at the second depth may need to be closely examined, have a dial turned with a screwdriver, and exposure to non-solid plasma in order to activate a node. A standard artifact scanner will outline this for you.
+
+        In this chapter, I will outline a good number of common stimulations you may encounter in the Xeno-archaeological field:
+
+
+        Blood
+        Method: Drawing blood from either a subject (or yourself, in a pinch...) and splashing it on the artifact. Spray bottles may be good for this but artifacts tend to demand quite a large sacrifice of blood.
+
+        Close Examination
+        Method: As the stimulation suggests, closely examine the artifact. And by closely, I mean, close enough that you can take a very good look at it!
+
+        Death
+        Method: Killing a living creature while nearby the artifact will trigger it. Any living creature will do but it is highly, highly recommended to activate this node by dispatching hostile fauna. In a pinch, creatures that tend to end up as sustenance can be used in lieu of this.
+
+        Ammonia/Carbon Dioxide/Frezon/Nitrous Oxide/Non-solid plasma/Tritium
+        Method: Expose the artifact to an environment containing the aforementioned gas. Filling a chamber with traces of each will be enough to stimulate the artifact. I am uncertain if merely splashing solid plasma that's been grinded into a liquid onto the artifact will suffice for a non-solid plasma activation. For Frezon and Tritium, it is best to ask any fellow atmos technicians in sector for some, if you lack the knowledge to make some yourself, provided an artifact has not spewed out such gases (which HAS happened!)
+
+        WARNING -- DO NOT HAVE LIT FIRES NEAR THE AREA WHERE TRACES OF PLASMA AND TRITIUM HAVE BEEN FOUND. EXTREME FIRE HAZARD! -- WARNING
+
+        Oxygen-Free Environment
+        Method: As the name suggests, exposure to an oxygen-free environment will suffice. This means no oxygen. Exposure to space is usually good for this but in more pressurized enivrons, simply removing the oxygen will be sufficient.
+
+        Tightening/Prying/Screwing/Pulsing
+        Method: The artifact may sometimes have bits and pieces on it that need to be interacted with. Tightening can be done with a standard wrench, Prying is done with a crowbar (since it has enough force to pry open the panel), screwing is done via using a screwdriver to turn any raised sections down, and pulsing is done by way of merely pulsing it with a multitool. Alternative tools such as the power drill and jaws of life will also do.
+
+        High/Low temperature gas
+        Method: Expose the artifact to gas of a particular temperature, heated for high and cooled for low. You could hook up a radiator to the piping system for the chamber and utilize it to change the gas temperature or use gas made via atmos trickery. Do note that these are not mutually exclusive and some artifacts may need to be transported from one chamber to another.
+
+        Water
+        Method: Splash water on the artifact. Most space care packages come with a free water bottle, which is easy enough to utilize for scientific experiments. Alternatively, using a beaker and filling it up via sink or water cooler or water barrel will be enough.
+
+        Harmonical Sound Vibrations
+        Method: It seems that merely the intent to play music tends to satisfy this. If you wish, you may continue and play a song for the artifact.
+
+        Regular self-activation
+        Method: Sometimes, an artifact will just activate on its own. You don't have much control over this, it is uncertain if these were safety measures or were merely added for one reason or another. Some reports have stated that looking at the artifact can glean information about how often it self activates by looking for a number etched in.
+
+        Being thrown
+        Method: Only really seen on handheld artifacts, throwing the artifact is more than enough. Deeper depths may require more force but generally just throwing as hard as you can will be just fine.
+
+        Magnetic Waves
+        Method: Exposure to magnetic waves. These are typically magboots but may also include other magnetic objects that have not been tested at the time of writing.
+
+        Physical interaction
+        Method: Sometimes an artifact will require some input from the user, whether that's pressing a button or twisting a knob or some other darker input, merely interacting with it will be enough to set this one off.
+
+        Physical damage
+        Method: While it may seen counter-intuitive to damage a priceless artifact, dealing enough physical damage to it may cause a subroutine within its systems to activate. Reccommended physical instruments include a uranium-tipped spear or a salvager's Crusher axe.
+
+        Radiation
+        Method: Exposure to radiation. This can be done in many ways: via utilization of the uranium-tipped spear as mentioned previously or by exposure to radioactive sources which include, but are not limited to: DK-JR Generators, damaged RTGs, radioactive artifacts and gravitational anomalies.
+
+
+        -----------------------------------------------------------------------------------
+
+                                               ABOUT THE AUTHOR
+
+        My name is Adalite Tosimizu, I have been pretty much self-taught over the years by folks of a nomad colony who've been nothing but nice to me as well as having had a few years of scientific tutelage thanks in due part by Nanotrasen before we got contracted to work closely with them.
+
+        In my time, I've learned a lot about working in the field and after having made a transfer to the New Frontier project to perform scientific studies aboard vessels of my own (or with others, should they be hiring), I realize I hold some semblance of knowledge, which I did not know that I has possessed.
+
+        In this work, I wish to impart knowledge of most of the inner workings of artifacts hailing from ancient xeno-civilizations. I do hope this will be useful to any new research assistant or anyone wishing to seek out new horizons in the realm of research and development.
+
+        Most of the writings in here are purely hypothetical, I am merely grasping at straws just like everyone else so I am attempting to make sense of this all. I hope this may clear up any potential confusion.
+
+        Signed,
+        Adalite Tosimizu
+
+book-text-thehauntingofnfsdo =
+        CASE FILE LA-014
+        THE HAUNTING OF NFSDO
+        RECORDED BY SHERIFF LAURA AMPERE
+        ENTRY IN THE FRONTIER 3RD ANNIVERSARY WRITING CONTEST
+
+        CentComm notified me that my prior after-action report was rejected due to being submitted after shift end and thus was late. Therefore, I am writing my thoughts on the events of that shift in my personal files.
+
+        To start, ghosts are real. This sounds like an absurd statement if taken at face value, but given what my officers and I experienced that shift, I have no other explanation. They are real, and they like to mess with the living.
+
+        I started the shift like I usually do when I clock in as sheriff. I set up the duty log, stocked the armory, put the turrets up, and grabbed some gear from the vending machines. I was soon joined by officers Pete Greybeard, Bacchus Hook, and Andrathath Prime within the early hours of the shift. It seemed like it was going to be a typical shift, with maybe lawbreaking contractors or active pirates at worst. That assumption quickly proved to be incorrect.
+
+        It started with flickering lights. It is not unusual for lights to be randomly flickering here and there; the wiring in these stations and ships are noted to be old and faulty at times. NFSDO would not be an exception. However, when lights start flickering everywhere, including multiple other stations at the same time based on complaints over the common comms channel, that indicates that something is up.
+
+        Following that, dark clouds spontaneously coalesced in front of our eyes at random points. Zero visibility when caught in them, and without a gas analyzer I was not able to check their composition. At the least, none of us suffocated while exposed. Andrathath, seated at the reception lobby desk as the PAL, also reported hearing strange noises and seeing things that vanished upon loss of eye contact. Pete and I, upon checking on him, were locked briefly in the lawyer room with Andrathath. The doors refused to open, the lights went out, and growling noises could be heard behind the walls. Once the doors unlocked, no signs of what made those noises was found.
+
+        Eventually, one brave or crazy contractor showed up to try and help us with our supernatural problem. One Harry Handsome, apparently working on some botanical masterpieces that shift, arrived to conduct his version of an exorcism. Which is to say, when allowed to start his work he started chucking enormous holymelons all over the place. This either annoyed or amused the ghosts, because the lights flickered all over the sector simultaneously, again. Consequently, Harry pulled out his strongest method for one last attempt. In the reception lobby, he set up a ring of holymelons, with some kind of other plant I lack the expertise to identify in the center, and after the ghosts pulled another gas cloud attack, he set them off. The plants promptly exploded, leaving a huge puddle of what was later noted to be doctor’s delight all over the floor.
+
+        I am quite certain that this did not inconvenience the ghosts in any particular way, because their response was to dump an oversized ghost plushie in the lobby out of nowhere. However, they may have had their fun or grown bored, because the severity of the haunting subsequently dropped off.
+
+        A later conversation with sheriff Baldric Wraithstone gave me some context on the whole situation. Apparently, this sector is located in a particular part of the space-time continuum where the boundary between our dimension and others is much thinner than normal. So, ghosts, otherworldly entities, and a whole assortment of strange beings influencing the sector is not uncommon. We just have to learn to live with it.
