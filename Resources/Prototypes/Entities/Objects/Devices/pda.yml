@@ -1475,23 +1475,6 @@
     state: pda-seniorofficer
 
 - type: entity
-  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
-  id: PiratePDA
-  name: pirate PDA
-  description: Yargh!
-  categories: [ HideSpawnMenu ] # Frontier
-  components:
-  - type: Pda
-    id: PirateIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-pirate
-  - type: Icon
-    state: pda-pirate
-
-- type: entity
   parent: [ BaseMedicalPDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
   id: SyndiAgentPDA
   name: syndicate corpsman PDA
@@ -1545,6 +1528,23 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+
+- type: entity
+  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
+  id: PiratePDA
+  name: pirate PDA
+  description: Yargh!
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: Pda
+    id: PirateIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-pirate
+  - type: Icon
+    state: pda-pirate
 
 - type: entity
   parent: BaseWidePDA
