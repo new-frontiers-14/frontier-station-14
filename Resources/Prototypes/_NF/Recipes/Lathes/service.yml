@@ -1,4 +1,4 @@
-# Base prototypes
+# region Base prototypes
 
 - type: latheRecipe
   abstract: true
@@ -36,7 +36,25 @@
     Cloth: 20
     Wood: 20
 
-# Recipes
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeClothing
+  categories:
+  - ClothesNF
+  completetime: 4
+  materials:
+    Cloth: 300 #Most clothes in the Uniform printer take 3 cloth so i've set it to 3
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeToy
+  categories:
+  - NFToys
+  completetime: 1
+  materials:
+    Plastic: 300
+
+# region Recipes
 
 - type: latheRecipe
   id: ServiceRollingPin
@@ -207,8 +225,23 @@
   completetime: 0.5
   materials:
     Paper: 25
+# region Toys
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: DiceBag
+  result: DiceBag
 
-# Smokes
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: ClownRecorder
+  result: ClownRecorder
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: BikeHorn
+  result: BikeHorn
+
+# region Smokes
 - type: latheRecipe
   id: CigPackMcCargo
   result: CigPackMcCargo
@@ -223,7 +256,7 @@
     Steel: 100
     Paper: 100
 
-# Coffee cup
+# region Coffee cup
 - type: latheRecipe
   parent: BaseToolRecipe
   id: DrinkDisposableCup
@@ -237,8 +270,42 @@
   result: DrinkDisposableMcCup
   materials:
     Cardboard: 50
+# region clothing
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingYellow
+  result: ClothingHandsGlovesBoxingYellow
 
-#region piety
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingGreen
+  result: ClothingHandsGlovesBoxingGreen
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingBlue
+  result: ClothingHandsGlovesBoxingBlue
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingRed
+  result: ClothingHandsGlovesBoxingRed
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: UniformShortsRed
+  result: UniformShortsRed
+
+- type: latheRecipe
+  parent: UniformShortsRed
+  id: UniformShortsRedWithTop
+  result: UniformShortsRedWithTop
+
+- type: latheRecipe
+  id: ClothingEyesHudBeer
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesHudBeer
+# region piety
 - type: latheRecipe
   id: NFServiceCenser
   result: Censer
