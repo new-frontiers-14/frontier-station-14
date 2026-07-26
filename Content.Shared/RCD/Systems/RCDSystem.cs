@@ -13,6 +13,7 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
 using Content.Shared._NF.GridAccess; // Frontier
+using Content.Shared.StationRecords; // Frontier
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Shared.Audio.Systems;
@@ -159,6 +160,10 @@ public sealed class RCDSystem : EntitySystem
         }
 
         // Frontier - Grid access restriction
+        //If the RCD is used on a Deed, prevent usage to authorize/deauthorize the RCD
+        if (TryComp<StationRecordKeyStorageComponent>(args.Target, out _))
+            return;
+
         if (TryComp<GridAccessComponent>(args.Used, out var gridAccessComponent))
         {
             if (!GridAccessSystem.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))

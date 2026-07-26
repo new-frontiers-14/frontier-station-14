@@ -20,31 +20,48 @@ public sealed class GridAccessSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<StationRecordKeyStorageComponent, AfterInteractEvent>(OnDeedSwipeHappened);
+        SubscribeLocalEvent<StationRecordKeyStorageComponent, AfterInteractUsingEvent>(OnDeedSwipeHappenedAlternative);
     }
 
-    private void OnDeedSwipeHappened(EntityUid uid, StationRecordKeyStorageComponent _, ref AfterInteractEvent args)
+    private void OnDeedSwipeHappened(EntityUid uidDeed, StationRecordKeyStorageComponent _, ref AfterInteractEvent args)
     {
         if (args.Handled)
             return;
 
-        if (args.Target is not { Valid: true } target || !args.CanReach)
-            return;
-
-        var rcdEntityUid = target;
-
-        // Is this id card interacting with a grid-access device? If not, ignore it.
-        if (!TryComp<GridAccessComponent>(rcdEntityUid, out var gridAccessComponent))
+        if (args.Target is not { Valid: true } uidDevice || !args.CanReach)
             return;
 
         // Device found, we're handling this event.
         args.Handled = true;
 
+        HandleDeedSwipe(uidDeed, uidDevice, args);
+    }
+    private void OnDeedSwipeHappenedAlternative(EntityUid uidDeed, StationRecordKeyStorageComponent _, ref AfterInteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (args.Target is not { Valid: true } || !args.CanReach)
+            return;
+
+        var uidDevice = args.Used;
+
+        // Device found, we're handling this event.
+        args.Handled = true;
+
+        HandleDeedSwipe(uidDeed, uidDevice, args);
+    }
+    private void HandleDeedSwipe(EntityUid uidDeed, EntityUid uidDevice, InteractEvent args)
+    {
+        if (!TryComp<GridAccessComponent>(uidDevice, out var gridAccessComponent))
+            return;//This should never happen? Is there a better way to get oneself own component?
+
         // If the id card has no registered ship we cant continue.
-        if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
+        if (!TryComp<ShuttleDeedComponent>(uidDeed, out var shuttleDeedComponent))
         {
             _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
-                uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(gridAccessComponent.ErrorSound, rcdEntityUid, args.User);
+                uidDeed, args.User, PopupType.Medium);
+            _audio.PlayLocal(gridAccessComponent.ErrorSound, uidDevice, args.User);
             return;
         }
 
@@ -52,19 +69,19 @@ public sealed class GridAccessSystem : EntitySystem
         if (gridAccessComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
-                uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(gridAccessComponent.SwipeSound, rcdEntityUid, args.User);
+                uidDeed, args.User, PopupType.Medium);
+            _audio.PlayLocal(gridAccessComponent.SwipeSound, uidDevice, args.User);
             gridAccessComponent.LinkedShuttleUid = null;
         }
         else // Transfering or setting a new ID card
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
-                uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(gridAccessComponent.InsertSound, rcdEntityUid, args.User);
+                uidDeed, args.User, PopupType.Medium);
+            _audio.PlayLocal(gridAccessComponent.InsertSound, uidDevice, args.User);
             gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
         }
 
-        Dirty(rcdEntityUid, gridAccessComponent);
+        Dirty(uidDevice, gridAccessComponent);
     }
 
     /// <summary>
