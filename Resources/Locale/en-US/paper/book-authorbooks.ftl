@@ -727,3 +727,422 @@ book-text-thehauntingofnfsdo =
         I am quite certain that this did not inconvenience the ghosts in any particular way, because their response was to dump an oversized ghost plushie in the lobby out of nowhere. However, they may have had their fun or grown bored, because the severity of the haunting subsequently dropped off.
 
         A later conversation with sheriff Baldric Wraithstone gave me some context on the whole situation. Apparently, this sector is located in a particular part of the space-time continuum where the boundary between our dimension and others is much thinner than normal. So, ghosts, otherworldly entities, and a whole assortment of strange beings influencing the sector is not uncommon. We just have to learn to live with it.
+
+book-text-released = [head=3]RELEASED[/head]
+        by Leslie Woods
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        The wolf kept her head low, refusing to make eye contact with the mercenaries watching her transfer. She tried to keep white noise in her thoughts, the sensation of the cuffs tightened on her wrists daring to pull her memory back to that place. Stepping into the Templar, her ears perked up, the cold gust of the air conditioning system hitting her face. She was sat on the cell bed, and her cuffs were removed. The bailiff looked at the wolf for a moment, seemingly looking for something to say.
+
+        They did not, and instead left the cell.
+
+        The Templar shook slightly as it undocked from the outpost, and Chel watched the stars as they began to move. The wolf could only vaguely hear what Jenifer was saying through the shuttle console, as it was muffled beyond a far more solid airlock, but she assumed the courthouse had been prepared for their arrival. She leaned back on the bed, closing her eyes.
+
+        The exhausted, drunken eyes of the harpy. The scared, lost eyes of the medic as the wolf left her. Light fighting to stay in the eyes of the bright-colored creature as Chel handed them over to the Sheriff.
+
+        They all looked so stuck.
+
+
+        The wolf opened her eyes, standing up from the bed. She shakily made her way over to the small restroom in the corner, trying and failing to control her breathing. Chel looked at herself in the mirror
+
+
+        Those eyes.
+
+
+        Her breathing quickened.
+
+
+        She had the exact same eyes.
+
+
+        With her left hand, she gripped the sink. She twisted her torso slightly, reeling back and punching the mirror as hard as she could, trying to destroy the gaze that she hated so much to see. Chel held her fist against the mirror, dark-red blood slowly dripping between the cracked, reflecting glass. She refused to look at herself again.
+
+
+        The bailiff stepped back in, looking at the wolf with concern from the window.
+
+
+        "Uh- Chel..? You're bleeding."
+
+
+        The wolf was breathing heavily, her head and eyes still looking down at the sink. The blood had begun to drip into the aluminum basin. The bailiff slowly inched her hand to her belt, grabbing the handle of their baton. She took a hesitant step toward the cell.
+
+
+        "Look, uh.. if you're gonna do this, we're gonna have to move you in cuffs."
+
+
+        Chel didn't move, and the bailiff took another step forward. She reached for her PDA to slide on the access door, though both of them were knocked sideways. The ship jolted hard, completely losing power. The room was pitch black, excluding the now-sparking wall APU. It was an EMP.
+
+
+        Chel crouched down low, the Templar rattling as it was forcefully docked to another vessel. She couldn't see the bailiff, but heard as they sent their service weapon bolt forward. They both sat still in the silent darkness for a minute.
+
+
+        The wolf heard several footsteps approach the docking airlocks, dim red lights slowly beginning to illuminate the room. The sources revealed themselves, as three awfully familiar freelancers stood at the entrance. Two held cannons, one a flintflock. All three stood silently, staring at the bailiff.
+
+
+        "Fuck." The bailiff cursed to herself.
+
+
+        She pressed the magazine release, slowly racking the Vulcan she'd been aiming at the airlocks. Tossing it between herself and the pirate crew, she got up and out of the locker she'd been
+        taking cover behind. Raising her hands high, one of the boarding harpies pressed a finger to the side of their hardsuit helmet.
+
+
+        "Is good-good to board, Vira!" They squawked happily.
+
+
+        Chel immediately recognized the sound of dress shoes clicking against the metal tiles, as Vira entered the room. Almost if for dramatic effect, power returned to the Templar. Vira was not armored, and as far as the wolf could tell, not armed either. He bowed courteously, "Good evening, Jenifer."
+
+
+        "...evening." The bailiff replied.
+
+
+        "I'm sure you've gathered that we're here to collect our dear crewmate. You don't plan to stop us, do you?" He added, looking to the wolf.
+
+
+        Jenifer paused before responding. "Seems I don't have a choice."
+
+
+        Scarlett and Alice snickered quietly behind the captain. "Of course not." He said, smiling. Vira turned, looking at one of the harpies, nodding his head toward the cell. "Crim?"
+        The harpy nodded, taking a step toward the cell. They aimed the flintlock toward the glass beside the wolf, and fired the massive pellet directly through it, shattering the containment almost completely.
+
+        Normally, the wolf would have flinched at the sound, however she couldn't hear much at the moment. White noise had almost completely engulfed her thoughts. Her face felt hot.
+        Still breathing heavily, the wolf stepped from beyond her cell. As Rawberry handed her the engraved pirate anchor she typically held, they looked down at her hand.
+
+
+        "Chel, are you okay? Your hand is, uh..." They asked, pointing to her still-bleeding knuckles. Her arm was slightly stained red with drying blood.
+
+
+        The wolf took the anchor, ignoring the current status of her wound. She looked to the bailiff.
+
+
+        "You wanna fuck 'em up? Did they do that to your hand?" Crimson asked, removing the casing from the flintlock pistol, sliding another pellet in. The rest of the crew looked back at the bailiff. Chel's grip on the anchor tightened, blood seeping down the ragged steel thing.
+
+
+        Those eyes.
+
+
+        The wolf looked at the bailiff for a long moment, seemingly looking for something to say.
+
+        She did not, and instead left the Templar.
+
+book-text-shipslog = [italic]Ships Log of the Dustwing Marauder[/italic]
+        by Captain Roman Mothman
+        An entry for the Frontier 3rd Anniversary Writing Contest
+
+        Recovered from a water-damaged journal. Several pages are missing.
+
+        Entry I
+        If this log ever reaches another captain, know first that my ship is sound.
+        The Dustwing Marauder still answers her helm true.
+        The crew grumbles, as crews ought to.
+        The engines complain louder than the crew.
+        All is well.
+        We’ve charted another forgotten cache today. Gold bars stamped by companies long since swallowed by vacuum. Trinkets. Jewels.
+        Crew wanted to split it immediately.
+        I suggested we wait until we reached port.
+        Safer that way.
+        Besides…
+        It’s a prettier sight all together.
+
+        Entry III
+        Tanner asked to leave.
+        Said his daughter was waiting planetside.
+        Imagine that.
+        Choosing diapers over piracy.
+        The crew laughed.
+        I laughed too.
+        Then i paid him everything he was owed.
+        A captain shouldn’t begrudge a sailor returning home.
+        Still…
+        The galley feels quieter tonight.
+
+        Entry VII
+        Another cache.
+        Another vault.
+        Another fortune.
+        The Dustwing rides slower every week.
+        I’ve begun storing crates in the chapel.
+        Father Aldren would’ve hated that.
+        He always said greed was the only cargo heavier than lead.
+        He’s dead.
+        The cargo isn’t.
+
+
+
+
+
+
+
+
+
+
+        Entry X
+        Mae left.
+        Didn’t even take her full share.
+        Said she’d earned enough.
+        Enough.
+        I’ve never understood that word.
+        Enough for what?
+        Enough to stop?
+        Enough to leave?
+        Enough to abandon Crew you’ve sailed beside for years?
+        She hugged everyone before boarding the shuttle.
+        Even me.
+        I almost asked her to stay.
+        Instead i smiled.
+        Captains don’t beg.
+
+        Entry XII
+        Three bunks empty now.
+        Funny.
+        The treasure grows.
+        The laughter shrinks.
+
+        Entry XV
+        Had to move my bunk.
+        Couldn’t reach it anymore.
+        Too many crates.
+        Sleeping beside the vault now.
+        Feels appropriate.
+        Sometimes i wake thinking i hear voices.
+        It’s only the hull settling.
+        Ships speak.
+        People leave.
+        Ships don’t.
+
+        Entry XVII
+        Caught myself counting crew twice today.
+        Thought we’d lost another.
+        No.
+        Just quiet.
+        Far too Quiet.
+
+
+
+
+
+
+
+
+        Entry XIX
+        A salvage crew hailed us.
+        Friendly enough.
+        Asked if we’d trade.
+        I lied.
+        Told them we’d have nothing worth taking.
+        Couldn’t bear the thought of parting with another crate.
+        Strange.
+        I used to enjoy trading stories more than cargo.
+
+        Entry XXII
+        Only four of us now.
+        Cook says the ship feels haunted.
+        I told him every old ship is.
+        Truth is…
+        I know exactly who haunts this one.
+        Empty bunks.
+        Empty chairs.
+        Names no one says anymore.
+
+        Entry XXIV
+        The first crate fell today.
+        Missed me by inches.
+        Crew begged me to throw some overboard.
+        “Captain,” they said.
+        “We’ve enough.”
+        That word again.
+        Enough.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Final Entry
+        They are all gone.
+        Not dead.
+        Just…
+        gone.
+        Tanner with his daughter.
+        Mae chasing some quiet life.
+        Cook found honest work.
+        Kuruk married.
+        Deathbelle joined a survey fleet.
+        Good people.
+        All of them.
+        I told them i understood.
+        I even meant it.
+        Funny thing.
+        Every farewell left something behind.
+        An empty chair.
+        A silent watch.
+        Another echo.
+        So i filled the silence.
+        One more crate.
+        One more chest.
+        One more shining thing that would never ask to leave.
+        The treasure stayed.
+        Treasure always stays.
+        …
+        Something shifted.
+        The stack-
+
+
+        The remainder of the page is torn away. The final lines are obscured beneath what appears to be dirt and dried, dark stains.
+
+book-text-spacedust = [head=3] Space Dust: A Spacefolk's Void Survival Manual [/head]
+        by William Hastings
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        Welcome to the frontier. Our lifestyle comes with a lot of freedom, but also some heavy responsibilities. Responsibilities to ourselves, and the others around us.
+        This here guide will help you keep yourself, your gear and your ship in shape – and hopefully – others as well.
+        Section 1: Vacuum
+        If you haven’t already done your first spacewalk, know that you will eventually. On the frontier, you will have to step out of your hull for scavenging, fixing, visiting, and a lot more.
+        You’ll want to make sure you have a few things with you:
+        1-1: Something to breathe
+        Some of you will breathe oxygen, nitrogen, or maybe something else. I’ll call all that air for brevity.
+        If you’ve spent all your time aboard a station, or planet-side, you may not think of air as a resource. When stepping into the void, it will be your dearest one.
+        Your kit should come with an emergency air tank, and you will find more around. There will be air tank vendors in some of the local stations, and your ship EVA gear will probably have some spares too.
+        Put a small one in your pocket, or a big one on your back. They will empty eventually, but they will keep you alive until then.
+
+        1-2 Something to keep the vacuum out
+        Out there is what we call a “hard vacuum”. Your ship will keep you comfortable in a shirt, but none of us can walk into the void and expect to walk back untouched.
+        All ships sold in sector come standard with some EVA gear. You should find at least an EVA suit, a spare air tank, and a mini-jet propulsion pack. That suit is there to keep the vacuum out.
+        Start by unlatching all belts and locks, then put in your limbs first. Then, squeeze your hindquarters in, and then your torso. Mind the neck connectors, you’ll want to keep any soft materials out - which means scarves, beards, fur and ears – before you seal in your helmet.
+        Connect your air tank and pressurize the suit. Make sure you are not hearing any hissing, and that your tank pressure is not plummeting down. If that happens, check your joints and connectors for leaks.
+
+        1-3: Something to come back home
+        I was taught two pieces of old wisdom when I started this job: “An object at rest remains at rest, unless acted on by an unbalanced force.”, and “If you give me a lever and a place to stand, I can move the world.”
+        Unfortunately for us, there is scant ground to stand on in deep space. To move yourself in zero-gravity, you need an equal and opposite force to move you around.
+        Fortunately, you still have that mini-jet from the EVA gear. You can put it on your back, provided you don’t already have an air tank there. If you do, it also has connectors for your belt hardpoint, if you are not already wearing a belt.
+        Putting it simply, the jets are a fancy gas tank, which expels air behind you. That’s your unbalanced force, and it will push you forward. Shift the jet controls on, and you will be soaring. As you may have guessed, that works until you run out of gas, so keep an eye on that pressure gauge.
+        A prudent spacewalker may also want to bring some extra gear, in case they lose propulsion. You’ll find grappling hooks to be easily available.
+        In a pinch, remember that anything you throw will send you flying in the opposite direction. If you are floating away, and are out of options, just start chucking anything you have on hand. You can get another crowbar if you make it back to your ship.
+        1-4: Directions
+        Your kit comes with a PDA, which you should have on you at all times. Ours comes with a GPS module. If you are ever lost in space, you can find your own position on it, at any time.
+        Knowing where you are is good, but it doesn’t help if you don’t know where you are going. If you have a universal pinpointer, remember to sync it to something that stays on your ship, like your favorite bed, or your ship’s console.
+        If you’ve got one, consider bringing a handheld mass scanner with you. They can let you find the nearest floating object to bounce from, or a direct route back to your ship.
+        And if nothing else is available, call for help. It doesn’t take much effort to read a shuttle’s position on the star chart and send you the coordinates. If someone asks, and you are near your console, it doesn’t cost anything to help.
+        Section 2: Restocking
+        Congratulations on making it back to your ship. That first outing in the void can be daunting, but since you’ve made it back, you are kith and kin to all of us spacefolks. If you went alone, keep hold of that feeling of isolation. Somewhere between the stars, someone is feeling the same.
+        Now, you’ll want to check the pressure gauge on your air tank and your jets. You never know if you’ll have to walk out in a hurry, there may not be enough time to restock later, but there is now.
+         2 – 1 The reserve
+        Your ship comes standard with a blue cannister of oxygen, and a red one of nitrogen. I trust you already know which one’s yours. Just in case you need to fill a tank for a friend, most folks will take oxygen. Voxes and slimefolks will need nitrogen, though.
+        Those cans are your ship’s air reserve, to maintain life-support aboard, but they are also there to refill your EVA gear.
+        2 – 2 Refilling
+        You’ll need to unlock the can and set its valve pressure all the way to the max, to 1mPA, which is to say 1013kPa. That pressure is the target to be refilled in your tank and jets.
+        Next, you simply insert your air tank into the can. You’ll notice that it hasn’t filled up yet. Take a good look at the valve controls and crank it open. Don’t eject the tank while the valve is open, or you will vent the entire can into your ship’s local atmosphere. Once the tank is full, you can close the valve, then retrieve the tank.
+         Now that you know how it’s done, you can do the same for your jets.
+        Section 3: Ship care
+        You are the only person responsible for your ship’s operation. Think of it as a larger space suit, because in many ways, it is just that.
+        3 – 1 Power
+        Your ship might as well just be a flying brick if you can’t power it. Look around, there is a power source in there somewhere. If you are reading this manual, you are likely operating a P.A.C.M.A.N or S.U.P.E.R.P.A.C.M.A.N class solid fuel generator. Those need solid plasma, or solid uranium to do their work.
+        You will find that they come pre-filled with some fuel as you leave drydocks, and that a spare fuel rod should be in an emergency fuel closet nearby.
+        You’ll want to hang to that spare rod and keep it in the closet. Should you burn through your entire fuel supply, that spare will be enough for you to fly back to a station to restock.
+        Keep in mind that your generator can take both the fuel-grade rods, and the regular solid uranium or plasma as fuel, but the solids are also useful for other things. Try to use all your fuel-grade rods before you start using the better stuff.
+        In a pinch, you can also shove raw ore into the hoppers, and the generator will do its thing. Try to only do that as a last measure, as it is very inneficient.
+        3 – 2 Hull integrity
+        I get it, accidents happen. As careful as you may have been, you’ve scratched the paint on that hull. Now that you’ve learned the hard way that brakes are only good if you slam them in time, let’s assess the damage
+        If you hear an alarm blaring, chances are your hull is breached, and your atmosphere is quickly dispersing out in the void. Stay calm. Just treat your ship as if it was a spacewalk. If you haven’t got one on yet, start by quickly retrieving your EVA suit, and put it on. Make sure you close the helmet and connect your air tanks to internals.
+        Next, you’ll want to patch that hole as quickly as you can. If the floor is missing where the wall should be, start by putting down a lattice of steel rods for support. Grab a piece of steel and turn it into rods. Put the rods directly in the empty space to create a basic lattice.
+        Once you have a proper scaffolding in place, grab another piece of steel, and shape it into steel tiles. Apply one to the lattice to act as a hull plate, which will provide air proofness from below.
+        Lastly, seal the hole. If you have inflatable walls, now is a good time to deploy one. If you don’t, you can build a basic wall to return the hull to airtight standards. It only takes a handful of steel plates to do so.
+        3 – 3 The aftermath
+        Now is the time to check on your air reserves. Go check your air cannisters, and see which ones are zeroed, and which are still good. If you are running a standard mix, chances are your nitrogen is the first to go.
+        Cans of various types are not uncommon. If you have already found some replacements, you can do a standard swap and be done with it.
+        If you haven’t, you can fly back to the trade mall to pick up some replacements or ask around. Someone may already have some stocks available.
+        3 – 4 Patching up
+        You’ll also want to do a quick spacewalk around your ship and take a good look around the impact point. There might be damage to the walls or the windows. For now, they may not be visible, but another hit may cause them to burst open. Grab a welder - and proper eye protection – and make sure all nearby structural elements are in top shape.
+        If your ship isn’t flying quite right, check your thrusters. They might have been banged up open. If the frame is still there, you can rebuild a lattice under them and fix the casing with a screwdriver once they are fastened. If they are gone, you’ll have to make do until you can get a replacement.
+        Section 4: A personal message
+        If you’ve read so far, I wish you good luck. We all fly our own ways, but we have something in common. We have stepped out of the comfort of solid ground, left it behind. I don’t know what pushed you to the stars, but whether it is a yearning unfulfilled, leaving something worse behind, or simple wanderlust, you are now one of us. Spacefolks. Wanderers. Intruders, in a way.
+        Should you be out there, looking at the distant stars, covered in space dust, or preparing yourself to, I don’t know you, but I know what you are – what we all are. We are small, fragile, often underprepared and overconfident. You will need help, we all do. I hope that you never call for it and receive only silence in return. We are few, but we are not alone, not truly, not as long as someone answers the call.
+        Space is wide and cold. It is not malicious, but it is uncaring. Should the occasion arise, should you be in a position to grab in yours a hand reaching out for support, I suggest that you do so. Not because it is right, although it always is. Not because it is easy - it will not always be. But because that hand could have been yours, and it could be every time you fire up these thrusters and reach for the void.
+        Safe travels,
+        W. Hastings
+
+book-text-externalcause = [head=3]External Cause: X72[/head]
+        by Jacob 'Hearse' Pope
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        You think it’s time to enlist in the war, but first you think about war. The good, the bad, and the bad. You think about the good parts… the good parts…You gotta ask yourself a question. Do you have an agenda to push? Perhaps you have a resource you really want? Maybe just maybe, you really hate this one person because they have a resource you want or is opposing your agenda. You don’t? Oh right, you often forget war is only good for the few whose boots never touch foreign soil.
+
+
+        You see the posters showing strong men and camaraderie along with some fancy cool toys you could maybe use one day and let’s be honest from where you stand now the military seems like a way out. You pilot your shuttle to the enlistment office. You talk to a man that tells you all the good the military can do for you. He suggests a position that has a high promotion rate, but you know that he truly means it has a low retention rate, so you deny it thinking you're seeing through the veil and instead enlist as something more conventional.
+
+        Your first few weeks aren’t too bad. They mostly blur together between brutal training and discipline. You understand that this is needed if you have any chance at getting a kill. You’ve seen war movies, you know those that get many kills are usually commended. You don’t yet learn that the true winners never picked up a pen to sign the papers. Training has ended and you are now a full-fledged soldier of a corporation.
+
+        Your first deployment was eye-opening. You took life and saw life get taken. You never realized how fast and hard someone drops when they have no head or how long it takes to die from a gutshot and just how loud they scream. You never meant to get that close to the enemy, but nevertheless you had an up close encounter. You know most soldiers never get an experience like that and people ask you about it all the time, but should you tell them the truth? You saw this man up close. You could see the pores in his face and the patchy stubble of his beard. You remember thinking that he kinda looks like an old friend from high school. You remember all these thoughts flashing through your mind as you both stared at each other as the knife slid across his neck.
+
+        Two more years of deployment to go. You mostly spent the rest of your deployment too focused on watching everything around you to think about anything else. You showed optimism when it felt appropriate. You laughed when you were supposed to laugh. You checked your back almost constantly. You shot at people when needed. You checked your back again. You started to forget the only real part of yourself was the part that constantly needed to check your six. The line blurred and you acted like everyone else did because it was easy to be reactive with your emotions when you needed to be proactive with checking your back and your back again.
+
+        Two years went by quickly and you are being sent home against your will. You were honorably discharged and as your commanding officer said “You are no longer an efficient asset after your injury.” You went home and tried to reacclimate. You see threats everywhere and a few times you end up ducked behind a car trying to hide from the threat on the other side. You see happy faces in a crowd that remind you of something you lost and it’s becoming unbearable. You can’t even look your own family in the face without feeling shame for the things you’ve done. You make your way home after a long exhausting day more exhausting than any day you spent in hell. When you got home you see a man in the enemy’s uniform and he’s coming at you with a knife. Your training kicks in as it should and in a moment he is on the floor. Your knee on his back and a gun drawn pulling the trigger until the magazine is empty. You see your brother on the ground with your knee on his back and your hands pointed towards his direction. You wanted to cry. You thanked God for the fact you decided not to carry that familiar weight on your hip with you today. Your brother laughed and got on his feet. He patted you on the back and called you a show off. You go to your bed and cry knowing that you could’ve killed your own blood. You finally realize with a snot covered face that you lost the moment you picked up the pen at that recruitment office.
+
+        You wake up late at night alone in the garage. You are scared of hurting your spouse late at night because a dream might make you act out of control. You look at your personal carry and you pick it up. You think about harming the people far above you that made you into this. You know it would be too hard to even get to one of them, but there is someone that you could harm that would make all your worries go away and you could take them out without suffering a single consequence. You point the gun at this person and contemplate flexing the muscles in your hand. Should you pull the trigger you wonder. You know that no harm would come to your family if you simply applied pressure with your finger. You’ve done this countless times and you’ve seen it done countless times to the enemy, but to do it this close and personal. You freeze with a million thoughts running through your head. You slowly take your finger off the trigger still pointing at this person. You wonder if you can even call them a person with everything they’ve done. You wonder if you’d be doing the world a service, but ultimately you decide it’d be better to do it away from home so your family doesn’t have to see this.
+
+        You walk in the dark for what feels like ages while constantly keeping an eye on the treeline. You see a glint and dive onto the road to escape the firing zone. You hear the planes flying overhead. You’re pinned and you know it; barely bring your head over the sandbags and you die. Someone screams “INCOMING” and you hear a loud constant whistle of the bomb. A car drives by while blaring its horn and you see more clearly that the glint was a soda can on the side of the road. You stay there on the ground frozen. You wonder if you’ve caused people to react this exact same way. That perhaps you could be the reason someone always has to check their back. That perhaps you could be the reason someone has to seriously consider killing the person you’re on the way to kill as well. You just hope your old war buddies can understand why you did what you’re about to do. You decide to lay down in the road and start screaming towards the sky. You hope your screams pierce the clouds and head straight into heaven. “SAINT PETER, I NEED YOU TO HEAR ME. I’ve killed people. I want to lie and say I don’t know how many, but that’s a lie. I know how much I have killed. I know more about killing than I know about love and I know I’ve seen love more than most.” You begin to cry. “I was up close one time. Close enough to see the imperfections in his face. I want you to know this. Not because I relish it, but because it means I was close enough to see him as a person and I did it anyway. Sometimes I think that makes it worse and sometimes I think it was the only decent thing I ever did was looking him in the eyes.” Your words are barely coming out, but you feel as if Saint Peter can hear you anyways. “When I get to the gate and I know I’m not owed entrance. Let me apologize to every single one. Let me say it to their faces, the ones I never got to see. Let me tell them I’m sorry and let me mean it with everything that’s left in me, because there’s not much left.”
+
+        You are sobbing. “And if someone has got to go down there for it; if a war needs a debt paid and somebody has to pay then I'll pay it.  Not the people I served next to. Not the ones who held my head up when I couldn't, who shared their last water, and those who wrote letters home for guys who didn't have enough fingers to write their own. They didn't choose this. Nobody chose this, but if choosing counts for anything then let it count for me and only me. Those men are good. I watched them be good, in the worst place I've ever seen over and over again they chose good when nobody would've blamed them for stopping. Don't you dare send a single one of them to hell.” You blow out your nose and clean the slobber from your face.
+
+        You think about the last part of your message in your head. “I didn’t used to believe in you, but I’ve run out of people to ask to save us.” You lay there on the ground waiting for a sign. Nothing happens. You look at the stars that were there long before you spoke your first words and will be there long after you say your last. You pull out your pistol and aim it at your head. You sit there for what feels like ages trying to muster the power to pull the trigger. You’ve killed more people than you have close friends. It’s a single squeeze of the finger and gone… You pull the trigger… you see your whole life flash before your eyes. The countless times you killed and the few times you felt true affection. You open your eyes and see the same stars looming above you. You eject the magazine and see it’s empty. You sigh and a warm feeling falls across you. You emptied the magazine just days ago after the harrowing experience with your brother. You come to the realization that you truly tried to do it. It all doesn’t make sense, but makes all the sense in the world right now. Call it a sign from Saint Peter or just a lapse of memory, but you are alive. You nearly threw away everything and for what? Some corporate asshat that took a young person and turned them into an asset?
+
+        It’s going to be hard to get over these thoughts. The stars shine a light not only on the road, but also the clarity that this situation has brought you. Throwing away another life would be a great shame of the universe. You want to be better not only for your spouse, but for every young person that has recently picked up a pen to sign the enlistment papers. You need to prove to them that there is a way to cope and you never truly cared about yourself, but you have accountability for every single person thrown into a war they don’t fully understand, even the ones portrayed as the enemy. You know it won’t be soon, but you know if you don’t try then the people that died saving yours will have died in vain. The stars continue to shine the dark road at two in the morning on your way home. You sleep on the floor next to your spouse on the bed and admire every detail of their face. You remember the last time you were this close to someone except now you don’t have a million thoughts racing through your head.
+
+book-text-howtobetough = [head=3]How to be Tough[/head]
+        by Altoona Toodle
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        The Problem!
+        Many people in the world (often really nice and cool people!) go through one super annoying issue: feeling weak, or inadequate, or like you’re not strong or clever enough to be where you are. You’re not alone if you’re one of these worryingly common people! I was one too, but now I’m super tough. You can be like me, and you don’t need any supplements at all, because it’s all a mental thing!
+
+        Hidden Knowledge
+        I first arrived in Hypatia dirt poor, meekly following around a bright pink moth, who led me onto a tiny, ragtag crew. I didn’t really know what blue collar jobs are like at the time. I had no experience! My first ever captain was a really boisterous and loud man, and he was very fun! He liked pointing authority around, and getting to fly around in something expensive. But during our trip, our fuel ran out! My cool captain got really lost in his head. He got worried, and was sure we would all die. He even passed out from the worry…
+        That day was the first time I had ever even seen a generator. I poked around the machinery (and didn’t lose any fingers), found the fuel slot (a super cool sticker of a mothroach was covering it), and yanked on the power cord super hard! The lights turned on, somehow.
+        But, why was it me that got us out of this trouble? Not only did I have no experience with engineering, but I was also just a worrisome little contractor. I half expected to explode that day. Yet my captain was this self assured everything-man! How could our brave captain not see us out of the metaphorical storm..? Why was it someone little like me that ended up doing it?
+        The truth is that I was a little tougher than I realized. Being able to keep going even when things suck, or to survive scary situations, or do super daring stuff, is the end result of being tough. Becoming a person who can do those things isn’t esoteric knowledge at all, it’s actually totally simple!
+
+        Am I Even Trustworthy?
+        	Hi reader! As a former weak person, I am an expert on this topic. Weak people let their own doubts and worries get in the way of doing stuff. Serving in the NFSD, I took forever to apply for promotions because I was unsure of myself and what I could do. I thought I had not earned those promotions yet, and that other people were way better than I was anyways. This sort of weakness isn’t limited to being a cop though… People can be like this anywhere. You might be like this right now! But now, I’m one of many sheriffs, and I trust myself to handle those responsibilities, even though the old me never would have. It was a lot of people and a lot of crazy events made me into a tougher cop, and an even tougher person.
+
+        What is Being Tough?
+        	What does it actually mean to be tough? It’s not about acting tough. It’s not about being physically tough either, or throwing the best punches. In fact, people who are tough still have fears! Some of the toughest people in the world still cry, and worry, and mess up.
+        	It’s okay to feel weak and powerless. Big and tough people feel that way all the time. How can you be tough..? At its core, being someone who is tough, brave, or ambitious, is all about WHY you do things.
+        The truth is, that if you do something deep from the heart, or for your ideals, or for other people, then you will always give 1 million percent effort! You can get shot with bullet after bullet, or do the scariest of things with total clarity as long as you hold onto this sort of inner feeling that what you’re doing is truly important.
+        	That ‘something’ that is important to you could be keeping people you care about safe, or being nice to others, or even just making sure people are fed yummy food. The secret is holding that thing really close to you, and doing stuff in pursuit of that ideal. Be true to your heart and things are all really easy. It can make you fearless!
+
+        Discovering Strength
+        	One quiet day, I was a fresh deputy in the NFSD, and there were no other officers except our lawyer. Of course, crime struck on this day… A contractor was hitting all sorts of people with their ship. When I first accosted them, I was meek and careful. They then ended up stealing a hardsuit from someone else’s ship and jumped straight into space to escape me!
+        	I didn’t realize it, but I was really exercising my toughness muscles! Seeing that they had taken something from somebody else lit a fire under me, and I felt that I had to do my best to get it back, at least for that nice innocent person. Because I was doing this for someone else, and because I really like helping people, I actually jumped headfirst into space without a hardsuit on! I had to shoot my disabler to propel myself back into the ship.
+        	Was that smart? Not really, but it was pretty brave! The bravery I needed to put myself into nonsensical danger came from my own inner strength and I didn’t realize it. But I was still laser focused on getting that mean guy, and I got myself back into safety to properly gear up. A lot of people, even cops like me, may not do risky things like that very often, but when you do something for such a core and important (to you!) reason, then you can reach really ridiculous heights!
+        	I ended up catching them out in space and dragging them back into jail with me. It was a really slippery chase, but I was able to do it without worry because I was doing it for a really good reason. My baton even ran out of charges, I ended up having to use all the tools in my arsenal, like flashes.
+
+        Being a Practicing Tough Person
+        	Like it or not, you probably have something that’s really important to you already. You might not realize what’s important to you just yet, even! You might not realize how important some people are to you until they’re not around. Take some time to think about what matters to YOU. Once you understand what you really care about, you have the tools necessary to do anything!
+        	Acting true to yourself in service of the things you care about is really big. As long as your actions line up with what you really believe in, you can always be sure that you’ll be able to see things through to the end. We all have to do things we don’t really care about sometimes, but by trying to stick to things that really matter to you, you can power through anything.
+        	Picturing the end goal of your ideal can help a lot too! If you’re the type of person who really cares about keeping people safe, envision something fitting like seeing the people that you care about safe and sound, or maybe even world peace. Picturing the end result of your actions is what can allow you to truly give those actions your all. Envisioning someone smiling at you can be the perfect motivator for doing something nice for them too!
+
+        Fighting Failure Because Failure Sucks
+        	Sometimes, things really suck but you have to persevere despite the suckyness. On one very troublesome day, a string of evil and dastardly syndicate attacks hit all over the sector. I, the sheriff, and a few cadets ended up fighting off the syndicate, even though it was really hard.
+        	Unfortunately, one of our really brave cadets died. The entire department was somber. It was a really tough day.
+        	Whether you like it or not, bad stuff is going to happen to you. I’m sorry in advance about that! Bad stuff happens to me all the time! Taking it well is an important part of being tough. It’s okay to cry and feel really bad when just awful terrible things happen, but what’s important is what you do AFTER that initial process.
+        Being strong in times like that doesn’t mean not grieving, it means keeping your purpose and drive despite all that bad stuff. When our cadet died, we all felt awful. The sheriff took it as a personal failure. We could have done better, but the truth is that you can ALWAYS do better, it shouldn’t hang over your head. I reminded him, and the entire rest of the department, that we do really hard things for really good reasons. Our cadet died for ideals. Giving absolutely everything for the core concept of protecting others, and keeping the sector safe. He died because he was tough.
+        Tough people get hurt. Being strong honestly doesn’t make you impervious or perfect… Being tough means that you can choose not to care about getting hurt. It lets you stave off those scary emotions so that you can do something that really matters.
+        That day, the whole department knew what it meant to be tough.
+
+        Actually BEING Tough
+        	If you recognize what really matters to you, and hold it close to your heart, then you can be really tough and resilient inside. A lot of things are really hard to do, but doing them for a good reason is what makes you strong enough to do those really hard things. Even if you feel weak, you will end up doing strong actions.
+        	Why was it that I was able to teach myself that little bit of engineering to kickstart a generator on my first day in Hypatia? Because I cared about my captain, even if he gave up a little. You can bump your head against any problem and come out victorious as long as you just care, at least a little bit, about something that is really really important.
+        	You already are tough inside, you just need to let what you really care about guide you. I can’t add on any more steps or suggestions because it really is just that simple.
