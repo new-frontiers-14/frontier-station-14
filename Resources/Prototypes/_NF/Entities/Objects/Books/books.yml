@@ -107,7 +107,7 @@
     content: book-text-thelittlemedibot
 
 - type: entity
-  parent: BookBase
+  parent: [ BookBase, BaseC3SyndicateContraband ]
   id: SmugglersHandbook2ndEd
   name: The Smuggler's Handbook, 2nd Edition
   description: A guide to smuggling... wait, why is this in here?
@@ -274,3 +274,16 @@
     - state: spacefireplace_cover
   - type: Paper
     content: book-text-spacefireplace
+
+- type: entity
+  parent: BookBase
+  id: FTLSpaceBusTravel
+  name: Understanding and Prediction of FTL Space Bus Travel
+  description: The following study was conducted in order to gain a better understanding of FTL space, and is an application for the Nanotrasen Private College of Mathematics
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: ftlspacebustravel_cover
+  - type: Paper
+    content: book-text-ftlspacebustravel

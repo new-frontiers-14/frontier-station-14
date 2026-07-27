@@ -14,3 +14,4 @@ book-text-maundersecretwars = maundersecretwars
 book-text-engineerspocketreference = engineerspocketreference
 book-text-dustinthewind = dustinthewind
 book-text-spacefireplace = spacefireplace
+book-text-ftlspacebustravel = ftlspacebustravel

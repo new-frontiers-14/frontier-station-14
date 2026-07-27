@@ -1501,4 +1501,33 @@ book-text-spacefireplace = [head=3]DA MYSTERY OF DA SPACE FIREPLATHE[/head]
         And dat, choomz, is how frontiah engineering always wins against corpo math!
         ------------------------------------------
 
+book-text-ftlspacebustravel = [head=2]Understanding and Prediction of FTL Space Bus Travel[/head]
+        by Lilou Gyrosbane
+        Application for the Nanotrasen Private College of Mathematics
+        Entry in the Frontier 3rd Anniversary Writing Contest
 
+        Introduction
+        The dimension beyond our own, where our shuttles and buses use to jump, is an enigma. Often recorded as empty, fast, and beautiful, FTL space is as terrifying as it is interesting. When entering FTL space, sector buses bolt their airlocks, ensuring no one can exit. However, expeditionary vessels do not, which has led to many accidents in which a contractor becomes lost. With a coordinated rescue crew, said contractor can be recovered, but this is a rare occurrence, largely in part to the unknown nature of FTL space. The following study was conducted in order to gain a better understanding of FTL space, so more contractors can be saved from this beautiful, but merciless, place.
+
+        Methods
+        Bus 3B, located in the Maunder sector, was utilized for this experiment. Researcher sat in the first seat, and remained seated for the entire duration of the data collection phase. When the bus entered FTL space, the x-coordinate was recorded using a Global Positioning System (GPS). Data collection began at 02:28, and ended exactly two hours later at 04:48, resulting in sixty points of data. The data was then analyzed, and the absolute value of the difference in each subsequent x-coordinate recorded, excluding when the coordinate jumped from a positive to a negative value.
+
+        Results
+        Thirty-nine of the values equaled exactly 2,535. Six of the values were 3,042. Four values were 2,551. There were six remaining points of data, equaling 3,044, 2,550, 2,534, 3,041, 3,058, and 3,057. The remaining five data points are from the “over jump”, meaning their values are skewed and the data was not recorded for this purpose.
+
+        Discussion
+        The data shows a clear and defined trend, most often, in FTL space, the bus coordinate will move by 2,535 meters. Using this data, one can almost consistently detect where a bus will be in FTL space, give or take about 500 meters. The inconsistency in the numbers can be explained by interference in FTL space, accounting for expeditionary vessels entering and leaving the space (Mahyer et al, 2526). Therefore, if no expeditionary vessels are utilizing the space, then the number should increase at a consistent and predictable level. It is worth noting that this study did come with its limitations, having only one data collector means that data was only collected for one bus, and while one bus can be tracked, the other bus coordinates are unknown, making it harder to perform FTL space rescues. Additionally, while this method is decently sound in a quiet sector like Maunder, somewhere like Hypatia is likely to have more ships entering FTL space, and therefore, more interference.
+
+        Conclusion
+        While not comprehensive or complete, this data will assist in the recovery of contractors lost to FTL space. While in FTL space, coordinates can be read using a crew monitor, and then rescuers just need to coordinate and do some math to figure out how to get back. With this information, we not only bring more contractors home, but save money on expensive cloning procedures.
+
+
+        Special Thanks
+            Iselle Nightglow, who will always be my biggest inspiration
+            My sisters at NT Facility 34L, for being my lamp in the dark
+            Luna Cometrider, for inspiring me to pursue this with her rescue of Beekus
+            Amiboshi-no-Takashi, for bringing me food while I researched
+            Alex Knight, for also bringing me food while I researched
+
+        References
+            Mahyer, Arielle (2526). A Study Into FTL Travel
