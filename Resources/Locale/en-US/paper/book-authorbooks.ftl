@@ -1146,3 +1146,359 @@ book-text-howtobetough = [head=3]How to be Tough[/head]
         	If you recognize what really matters to you, and hold it close to your heart, then you can be really tough and resilient inside. A lot of things are really hard to do, but doing them for a good reason is what makes you strong enough to do those really hard things. Even if you feel weak, you will end up doing strong actions.
         	Why was it that I was able to teach myself that little bit of engineering to kickstart a generator on my first day in Hypatia? Because I cared about my captain, even if he gave up a little. You can bump your head against any problem and come out victorious as long as you just care, at least a little bit, about something that is really really important.
         	You already are tough inside, you just need to let what you really care about guide you. I can’t add on any more steps or suggestions because it really is just that simple.
+
+book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
+        by Machina Cemix
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        Pirate Lords, they are the ones who've distinguished themselves from the lowly thugs and deigned themselves the leaders.
+
+        Their rules enforced, their code immutable, their every wim a law.
+
+        And I can't accept that, if my father was going to reject me because of this code then I simply had to impose myself onto it.
+
+        And for that, Glory is needed!
+
+        On one such attempt I had Skitty as my right hand woman, we were going to show the sector what we're made of.
+
+        The start was rocky however, skitty was exploring the cove when she ended up dying to asphyxiation, she forgot she didn't have her EVA helmet up while on the hoverbike and got carried away.
+
+        I couldn't help but feel like I've already failed, panicking as I drag her over to where the medical supplies were, I noted the importance of staying with my crew.
+
+        This fact was forced into my face once more when she died trying to get some supplies in a salvage wreck.
+
+        The shame I felt when asking a regular medic for healing was well deserved, being unable to support those under me makes me a horrible captain.
+
+        The next time I attempted to regain this pride by robbery only increased it, as I was calling the crescent to announce my arrival, the power cut out.
+
+        It took a solid 5 minutes to regain power, I couldn't bring myself to continue the attempt to rob after such failure.
+
+        "Fine! we'll just do the bounties for now, that'll get us the supplies we need." I said to Skitty, and as we were on Bahama Mama's trying to take the vending machines.
+
+        And then we were completely unable to do so, no matter how much I wrenched away at the bolts.
+
+        And then Sheriff Dahne showed up, apparently he was the one to lock the vendors in place; "Plasteel glue" he called it.
+
+        Luckily he was understaffed, the only one with him was a simple rat!
+
+        He ordered him to get us, Skitty caught him, then he wriggled out of Skitty's hands, but I knew there won't be a next time.
+
+        They didn't respect us, the rat approached again, and we didn't let go this time.
+
+        It wasn't my plan for my hostage to be a rat, but I won't be picky, we'll get our 100k bounty!
+
+        "Shove him in that crate!""
+
+        If only I could've taken a photo of sven's face! that oughta teach him not to mess with us.
+
+        And so we got a hostage!
+
+        "Hey rat, we have 2 options here: Either you die there... or you behave. which will it be? MAKE A NOISE IF YOU WANNA LIVE"
+
+        The mouse screamed, his bellows escaping the pirate chest's walls, I found his resolve funny.
+
+        "I better not see you try to run, nowhere here is safe." I needed to quell any resistance, and after crushing his spirit an explanation would finish it off.
+
+        "You see, we're poor! VERY POOR! I only have around..... 20k left? no  no it's actually 8k now... since I spent a lot reviving Skitty Kat... we need that ransom money, you understand?"
+
+        "Wha? how are you that poor?" said Skitty Kat, it seems she's not on the same shoestring budget
+
+        I couldn't stomach even my aid thinking less of me so I had to whisper to her: " I uh... being a pirate is kinda hard, ok? Don't JUDGE me"
+
+        "Understandable" said skitty kat before a Harsh crash ended the conversation short, it seems my driving habits are going to cost us the ship.
+
+        "Can you drive us to Expeditioner's Lodge? i'll handle talking to the rat"
+
+        And now I was face to face with the rat, still silently standing in the corner
+
+        "Tell me.... isn't it so odd how someone like you with.... barely any organs... weight.... or really anything... can be so beloved? look at me; i'm way bigger, smarter, yet no one would ever pay a ransom for me not even one of.... 100 spesos" She takes a step forwards "Isn't it unfair? Rat."
+
+        And all I was met with was some weird head shaking, whether or not he agreed I didn't know, nor did I care anyways....
+
+        I decided to call up sven, I called and called, yet he never answered "Oh how could he? did he ever looooove you?" I liked that look of doubt on his face.
+
+        The rat, shaken up by this retreated to the far edge of the bridge "Don't cry little rat, I'm used to being treated so, you see, we moths descended from TIIIIIIINY little insects, even smaller than a roach. Do you know the saying: 'squished like a bug'? it's used to talk about those so easy to kill, it requires no effort." I took another step forward "that's what our placement was... what yours SHOULD be, it's a miracle it isn-"
+
+        It seemed he was looking out the window during that whole speech... because the moment we were close enough to expeditioner's lodge he ran out the bridge, Skitty saw this and undocked from the station and moved away!
+
+        He was in the salvage bay when there was a solid 10 meters of space between the ship and the lodge, and yet he just JUMPED not hesitation.
+
+        And an impressive escape...
+
+        He landed safely on the otherside... somehow. and was completely fine.... somehow.
+
+        I was really regretting everything i've done, it feels like my life's just been a looooong chain of failures, I chased the rat down to drown out these thoughts.
+
+        Being a rat he had a lot of places to hide, but I knew there was no way he'd escape! We found him once or twice but I knew in the end he's just ours so no need to stress it too much.
+
+        And then I saw him take the bus...
+
+        "I've so graciously given you a chance to get him Svenny, all you need to do is find where he went using the bus before me! just know I won't be kind to him when I catch him heheheheh" and with that I boarded the ship with Skitty, looked at the schedule and tried going to the stations listed there, and station after station I grew flabbergasted at my own incompentence...
+
+        And then the Vault came in!
+        The only thing that made this situation a liiiittle better was the nanotrasen vault falling into this sector, at least this mouse situation could be a nice diversion!
+
+        As we went to the vault, taunting Sven's lack of personnel, I knew Sven was too enraptured by his mouse to let him stay unattended at the public transit system, and as such it was a FREE opportunity to profit!
+
+        And so I went the most quick path I could think of, blasting the vault apart!
+
+        Skitty had manned the cannon, and I reloaded it with all the cannonballs doubloons could buy, and layer after layer was torn.
+
+        But the final one was far more resiliant.... it survived every last cannon ball they had.
+
+        The death stares I gave to those walls were all I had as damage, and they were NOT sufficient.
+
+        And then the NFSD showed up, a templar, one that wasn't sven's. It seems he did have personnel after all...
+
+        As it approached, I tried to get the drop on them and boarded with Skitty using the Hidden no Blip Hoverbike and jetpack!
+
+        What we were met with was Sigurd, he was seemingly unbothered by our prescence, which was apparently because Sven failed to even call a No Fly Zone, and he didn't care enough to check the vault to see if it was broken into..... it seemed our failures were more known about now.....
+
+        We waited for a while until Sven showed up and docked with our ship, I bet with sigurd to see how long it'll take for Sven to find us, using the Final 2680 spesos I had. this goes without saying but I also failed this bet too.
+
+        He finally jetpacked over after the vault disappeared "you blew up the vault!" "TRIED!!!" said machina enraged at the spoils she was OWED yet was robbed of by one singular layer of wall...
+
+        Apparently the mouse was a renowned officer and trained bus analyst , it'd explain his decisiveness and mental resilience, he scouted the vault and ended up dying, but was revived soon after, this'd explain sven's long delay
+
+        "I kinda respect your dedication to keeping such a small rodent alive.... I guess now we're getting arrested huh?" said Machina
+
+        "Next time" said Sven before jetpacking away
+
+        "BUT WE KIDNAPPED SOMEONE, AND BOMBED A VAULT?? WHY ARE WE BEING LET GO NOW??" Sven had already left before I even finished, I was too tired to push the matter, and retired for the day, the only way to recover from so many failures back to back is to start over later...
+
+        and so Skitty Kat and I said our goodbyes and cryo-ed.
+
+        And that's it.
+
+        I know what you're thinking, that was the lamest story filled with my failures yeah? Well it's simple!
+
+        I know I'm bound for success, this is simply to give YOU hope! It doesn't matter how much you've failed, you've not failed as hard as I did! and I will make my successes more popular.
+
+        I expect you to do the same.
+
+        Machina Cemix
+
+book-text-maundersecretwars = [head=3]Maunder Secret Wars[/head]
+        by Piper Nguyen
+
+        Entry for the Frontier 3rd Anniversary Writing Contest
+
+        One
+
+        “Whiskey, Echo, Whiskey, Lima, Alfa, Delta”
+        The transmission room walls burst into fire, grey uninteresting plastitanium walls blew outward revealing once neatly arranged pipework and a maze of loose wiring. The heat is so intense, so close that he can feel it licking the outer shell of his hardsuit. Alarms blares from the hall, his fingers trembling to punch in the code on an old but sturdy made long-range communication device.
+
+        Another explosion. This time next room. The ground shook hard, he feared the station would crack open right under his feet, sucking him into the freezing vacuum of space. Without thinking, he was already dialing in the next set of code. Through the whirlwind of heat and quakes, no coherent thought races through his mind yet his hands still move as if he had spent his entire life perfecting the motion. The man did not know what the words meant, he did not remember his name nor his face, but he knew, without a shadow of doubt that this was crucial - these messages must be broadcast.
+
+        Time was of the essence, “It” was closing in and he knew he had only minutes left to live.
+
+        This belief was interrupted by a blinding light outside the spiderweb-cracked window frame. A hulking beast of a machine is floating in front of it. Despite the overwhelming lights that would cast no shadow into the room, the outline was clear, blotting out the dream-like nebula of colorful stars splashed against a deep purple and black canvas that is space. This was a Nanotrasen Hunter class ship and it had just found its prey - now he is certain, his life is measured in seconds.
+        Fingers dance like mad spiders tangling its dinner on a web of silk. For a nano of a second, he fears that this would break the device before he can send the message as the quad-barrel of the ship cannon glows with emitter beam.
+
+        In a moment in time, Kyle the Salvager regains his mind from a walking nightmare, his entire body aches with pain, his mind, in confusion, ringing out for anything real, tangible. In his hand an unfamiliar device was blinking with green light “Activation Code Sent” the device displayed “Frontier Sector” labeled in bright red. In the next, his life ends with a violence flash of emitter beam heat.
+
+        Two
+
+        Bailiff Takeo Galles twirls a mechanical pen in right hand, in his left, a paper note wedged in front of a green and beige colored clipboard. The man in his early 30s spared a second to brush a long strain of his hair out of his face, his deep tired black eyes seem unfocused as if his mind is thousands of miles away from the claustrophobic bridge of the Paladin. The New Frontier Sheriff Department had been his home for nearly over three years now. From the day of his cadet training until his relocation to the Maunder subsector, he had settled contractors brawling over payment details, arrested rowdy mercenaries that ended up on the wrong side of the law, negotiated over pirate raiders threatening hostages for ransom, how far he had gotten. “Bailiff!” The reminiscent was cut short by his partner. “The sheriff is calling in from the Holopad, shall I answer the hail?” cadet Elton Powell took his full attention. Elton is a good man, as good of a cadet as any loyal Nanotrasen employee can ever ask for, short hair, fearsome brown eyes, younger than the Bailiff himself by a few years, why he hasn't been made deputy yet Takeo couldn’t tell. The cadet has been under his wing for a few months now and has proven himself to be eager and willing. Takeo put him on radio duty and he gladly took it. It is nicer this way Takeo thought, he prefers the soft humming of the Paladin engine over the endless chatter on the common channel. “I’ll answer the hail this time, Elton” replied Takeo.
+
+        The Holopad flickers one then twice then the blueish ghost of the sheriff appears into thin air. Even through the hazy outline of the holopad ghost, the distinctive vulpkanin features of the sheriff are clear to see, highlighting her vicious fangs, old scars and burnt marks from her past combat experience. “Respond, patrol team one, we have another report coming in” the harsh commanding voice of the sheriff chimed in. “We have an outer-ring miner calling in claiming they've been seeing an odd looking ship, no identifiable ship number, docking off of Barrier Gate”. All the way out to Barrier Gate, now this is interesting - thought the Bailiff.
+        “I am removing you two from the patrol duty and go investigate this vessel, it might be nothing but…” a hint of fear creeped across the woman's voice. “But with the recent Syndicate sightings in the subsector however, just keep an eye out, this might not be just a regular smuggler run”.
+
+        “Dreadful” grimmed Elton “Syndicate running about, I can only imagine what they could be up to”. A brief thought flashed back in Takeo’s mind, the Syndicate are hardened terrorists they have been known to employ double agents to overcome the great forces of Nanotrasen. And amidst their “conflicts” innocent lives lost, caught between giants battling it out with no regard to the lives below them - this, the Bailiff despised.
+
+        Three
+
+        Barrier Gate looks tranquil, peaceful from this distance. An abandoned station drilled into a giant asteroid sits neatly at the outer ring. Long ago this would have been a bustling respite for the outer ring miners, explorers and shuffling round eyed scientists. With the discovery of solid plasma, the majority of industry moved inward toward the center of the sector, leaving this outer ring relic standing vigilant, watching over the edge of deep space.
+
+        The Paladin engine slows to a halt, its IFF turned off to avoid detection from the strange ship. “Signal the sheriff, inform her that we have arrived at the Barrier Gate and have the ship in sight.” Elton nodded and turned his headset dial to the NFSD channel. Takeo studies the outline of the ship, in all his years of service, he had never seen this type of shuttle before. It is of medium size with two wings protruding outward, plastinium walls cover the shuttle, 8 thrusters sit in jagged rows at the back, no weaponry visible onboard and no power. Both the ship and the station sit in idle darkness of space. Cadet Elton thumbed his radio to turn off his mic, he glanced at the handheld crew monitor, its screen fluttering with life signs of everyone in the subsector… no signs on the Barrier Gate. Then the cadet turned over to Takeo “Bailiff, the sheriff is instructing us to approach with caution”. “Very well” Takeo nodded. “Start up the engine we’re docking in, let's make heads or tails of this.”
+
+        Four
+
+        Elton braced slowly behind the Bailiff, the whole station stale with the smell of recycled air from long ago, there was atmosphere but no gravity. Both the men had to wear Magboots to anchor themselves to the floor, each step ringing out as if to announce their present to the vastness of the cavernous station. “Set your laser pistol to stun, we don’t actually know what is in there yet and I don’t want to punch a hole in the station.” The Bailiff had carefully instructed Elton.
+
+        The pair stop in front of a pried open glass airlock, behind is a beeping device, where a small speaker is repeating lines of words at a steady pace. “Bailiff, look!’ signaled Elton ‘Its… it's some kind of…transmission device”. The Bailiff twitches. The thing was repeating out loud a word… no, a line of words… it made no sense to the hearer but there was a pattern in its machine voice. Elton had already knelt beside the thing, studying it closely “It must be using the Barrier Gate faint energy source to broadcast the message in secret” he concluded.
+
+        It was then the shadow came for him.
+
+        Elton dropped to the floor on his back as a gleaming dagger came for him from behind barely dodging as the blade cut his upper cheek. He rolled over to face the attacker, Bailiff Takeo’s once tired eyes are now focused and filled with hatred unbecoming of an NFSD officer. Takeo aimed his knife at the cadet's neck and lunged forward but the magboot had him pinned to the floor and he hit the ground with a loud thud. The Bailiff cursed, he raised his pistol dead center mass of Elton and fired.
+        Three shots of blue laser beams sizzle through the air, two of them hitting Elton in the chest. Paralyzing pain shocked him, muscle tensed as he reached for his own gun. “Dammit, I’m on your side for god sake” shouted Elton. The Bailiff’s eyebrows frowned hard, he fumbled with his knife hand and switched the pistol to kill. Good lord! He meant to kill me. Using this opportunity, Elton clicks the heel of his boots, deactivating the magnetism just in time to jump up to the roof of the station, dodging the incoming shots. The echoes of the Bailiff profanity thunder through the station, screaming his anger directed at Nanotrasen as if the company can hear him from here. With his hand grip tight to the ceiling, his feet dangling in zero gravity, cadet Elton prayed, he really prayed, and let loose a stream disable bolts.
+
+        Five
+
+        “Good job out there cadet” compliments Sheriff Sofie. The two of them standing outside of the interrogation room, muffled shouts can be heard behind the darkened glass.  “Hard to believe he was trying to recruit you to the Syndicate…” A tang of sadness appeared in her eyes, then she straightened up. “Under normal circumstances, this would validate you for a promotion, however, with the department’s Bailiff apprehended, both the ship and broadcast device destroyed by Takeo as written in your report, your promotion will have to wait.” Sofie sighs, “In the meantime, keep up the good work, glad to have you with us” A silent smirk appeared on Elton's face for a brief second. This too could work out, in truth, he had hoped the broadcast would have mindjacked the Bailiff more peacefully, earning the organization an useful asset, but alas, the Syndicate thrived on chaos. Now with the mad traitorous Bailiff taking the spotlight, he can plan his move in silence, after all, who would suspect a lowly cadet.
+
+        Long live the Syndicate, Death to Nanotrasen.
+
+book-text-engineerspocketreference = [head=3]Engineer's Pocket Reference[/head]
+    by Moebius Anderson
+
+    Entry in the Frontier 3rd Anniversary Writing Contest
+                                 ╔═══════════════════╗
+                                 ║░███░███░░░░██░░░░░║
+                                 ║░░██░████░░░██░░░░░║
+                                 ║░░░█░██░██░░██░█░░░║
+                                 ║░░░░░██░░██░██░██░░║
+                                 ║░░░░░██░░░████░███░║
+                                 ╚═══════════════════╝
+
+      Engineer's Pocket Reference
+
+                                              32nd Edition
+                                   Moebius Anderson, et. al.
+
+    Foreword
+    This volume contains useful reference information about general engineering and atmospherics engineering on NT stations and shuttles. Many of the formulas here depend on basic knowledge of engineering which is not covered in this handbook. Refer to your relevant training materials and guidebooks for more information.
+
+    Power Systems
+    The standard power supply on your station or shuttle will vary depending on the size and load. Refer to station/shuttle documentation for specific recommended settings for your power generation equipment.
+
+    Name       │Fuel      │Out  │Default│Max
+    ───────────┼──────────┼─────┼───────┼───────
+    JRPACMAN   │Welding   │LV   │6 kW   │15 kW
+    PACMAN     │Plasma    │HV/MV│20 kW  │25 kW
+    SUPERPACMAN│Uranium   │HV/MV│30 kW  │50 kW
+    D-K Jr.    │Bananium  │HV/MV│60 kW  │100 kW
+    D-K        │Bananium  │HV/MV│60 kW  │120 kW
+    AME        │Antimatter│HV   │120 kW │ -
+    TEG        │Gases*    │HV   │ -     │ -
+    Singulo    │Plasma**  │HV   │ -     │ -
+    Tesla      │None***   │HV   │ -     │ -
+
+    The TEG runs off temperature differentials. Any gas can be used as the heat transfer medium and the gas is not consumed by the TEG.
+    The Singularity generator uses hawking radiation to generate power. Radiation collectors consume plasma gas in the process.
+    The Tesla requires energetic particles from a particle accelerator to maintain activity.
+
+    Supplemental power supply is provided by solar panels, in installations within proximity of a star. Modern solar panels can achieve different efficiencies depending on the junction material used in its construction.
+
+    Panel Material │ Power
+    ───────────────┼────────────
+    Quartz Glass   │  750 W/m^2
+    Plasma Glass   │ 1000 W/m^2
+    Uranium Glass  │ 1500 W/m^2
+
+    Power distribution is split into three distinct voltage ranges:
+    • HV - For source power generation.
+    • MV - For medium range distribution lines.
+    • LV - For local power delivery.
+
+    Along with power distribution, line equipment also includes batteries to smooth out demand.
+    Name       │ Capacity │ In │ Out
+    ───────────┼──────────┼────┼─────
+    SMES       │ 8000 kJ  │ HV │ HV
+    Substation │ 2500 kJ  │ HV │ MV
+    APC        │   50 kJ  │ MV │ LV
+
+
+    Atmospherics
+    Standard air mix on NT stations and shuttles has the following properties:
+    N2 - 79.0%
+    O2 - 21.0%
+    P  - 101.325 kPa
+    T  - 293.15 K (20 °C)
+
+    Ideal Gas Law
+    The ideal gas law can be used to quickly calculate properties of an atmospheric environment. It is described with the formula:
+
+             PV = nRT
+
+    P = Pressure (kPa)
+    V = Volume (L)
+    n = Number of Mols (mol)
+    R = Universal Gas Constant ≈ 8.314 (L⋅kPa⋅K−1⋅mol−1)
+    T = Temperature (K)
+
+            nRT          nRT
+       P = ─────    V = ─────
+             V            P
+
+            PV           PV
+       T = ────     n = ────
+            nR           RT
+
+    Standard container volumes
+    • 1x Pipe Segment = 200L
+    • Gas Canister = 1500L
+    • Standard NT room tile (1m^2) = 2500L
+
+    Room area fillable to standard station air mix
+    • 1x Air Grenade = 30 m^2
+    • 1x Canister @ 4500kPa = 26.6 m^2
+    • 1x Canister @ 9000kPa = 53.3 m^2
+
+    Basic Atmos Devices maximum working pressures
+    • Gas Pump: 4500kPa
+    • Volumetric Gas Pump: 9000kPa
+    • Gas Mixer: 4500kPa
+    • Gas Filter: 9000kPa
+
+    Stoichiometric Gas Reactions
+    The ratios specified here represent limits under ideal conditions. Note that your process conditions can change rapidly which will effect the efficiency of the reactions. Every plant will behave differently, it is your responsibility to ensure safe and efficient operation of your process controls. Ensure you have completed NT Atmospherics Engineering Corps training module HG-112 Hazardous Gas Handling (or equivalent) before attempting any reactions involving Plasma (Phoron) or its derivatives.
+    Safety is everybody's responsibility.
+
+    Tritium Synthesis
+    Oxygen: 97.0%
+    Plasma: 3.0%
+      Temp: >373K but <700K
+    Note that tritium will react with oxygen above 700K and severely reduce your yield.
+
+    Frezon Synthesis
+      Oxygen: 81.6%
+     Tritium: 10.2%
+    Nitrogen: 8.2%
+        Temp: <73K
+
+    Frezon Cooling
+    Nitrogen: 83.3%
+      Frezon: 16.7%
+        Temp: >23K
+    This reaction can be used strategically to cool large volumes of gas.
+
+    Ammonia Oxidation
+    Ammonia: 50.0%
+     Oxygen: 50.0%
+       Temp: >323K
+    This decomposes Ammonia and Oxygen into N2O and Water
+
+    N2O Decomposition
+    Nitrous Oxide: 100.0%
+             Temp: >850K
+
+book-text-dustinthewind = [head=3]Dust in the Wind[/head]
+        by Dustin Flickerwing
+
+        An Entry in the Frontier 3rd Anniversary Writing Contest
+
+        My name is Dustin Flickerwing. I do not know where the name came from or who gave it to me. I was born on a ship and like so many ships it was destroyed. Whoever my parents were, I did not know them and out at the edge of space there is no one who has the time or resources to take care of an orphan, so instead of parents or a home I got a corporation and an assignment. There is at least one regional director who is figured out that taking in orphans and raising them and keeping track of the cost means you can charge it back to them as an adult to ensure you have cheap labor.
+
+        Still, I survived, but it is not exactly what you might consider to be a warm upbringing. I learned that what happened to me or what happened to my ship is not even uncommon. Death is a regular occurrence and a constant companion. I was moved from place to place, station to station, given corporate training, and education. I became an expert in all the skills required to survive in space. Engineering, medical, and most important when surviving as a corporate 'employee', bureaucracy.
+
+        That let me rise through the corporate ranks taking on more responsibility, but everything I earn goes back to a debt that is barely curbed after the interest applied to it. So, I keep nothing. Moving from disaster to disaster. No keepsakes, no mementos, no family, no belongings. Nothing to lose, and nothing to leave behind, and no hope of a different life.
+
+        I have found instead a different reason to continue. I use all the resources and training that I must try and protect those around me. Those with less training, less expertise, or less fortune. I work medical to keep them going for another day in the most inhospitable places in the galaxy and security to keep those with ill intentions in check. I command to keep things organized and see that those who spend their time and effort for the betterment of others are rewarded.
+
+        I fight so that they can live and that perhaps their lives will be less empty, and in that way, I live through them. When they go on a part of me goes with them and that will be my legacy.
+
+book-text-spacefireplace = [head=3]DA MYSTERY OF DA SPACE FIREPLATHE[/head]
+        by Speshul Effe-Eix
+
+        An Entry in the Frontier 3rd Anniversary Writing Contest
+        ------------------------------------------
+        A SHINY-SUIT CORPO ABOARD DA KILDERKIN
+        Earz up, ya fuel-skum, ring-drifters, and messy choombataz
+        So, I was juth kickin' back aboard my comfy-cozy Kilderkin class thuttle, mindin' my own busineth in the smol kitchen, when this absolute clown from da Corpo Inspekshun Buro steps off da dock. This git was wearin' a suit so shiny you could see yer own cross-eyed face in it, carryin' a giant plastic clipboard and a box full of beep-boop machinery. He had a sharp pencil behind his ear and a permanent scowl like he just smelled a bad batch of Maltroach. He starts barkin' about code violations, certified ventilayshun networx, and how he was gonna shut down my whole operation and fine me a million billion Spesos. I tell'im to relax his fancy pants and go wait in da nook past da guest room with da big red tree growin' through da floorboards.
+         : .  . :  : .  . :  : .  . :
+        PACIN', MEASURIN', AND CRYIN'
+        Ten minutes later, I hear this high-pitched, pathetic whimper comin' from between da bookshelves
+        I poke my amazing bedhead through da door, and Snoly Snesus, da corpo git is 'avin' a total tycho-logical breakdown! See, right there in da nook, I got a real, biutiful, open wood-burning fireplace cracklin' away. The logs are burnin' nice and hot, and da thick grey smoke is billowin' straight up da brick chimney, right out into da freezing, nekkid vacuum of space. The inspector was completely white in da face, lookin' at da fire, then lookin' out at da stars, then back at da fire. He pulled out his fancy beep-boops, runnin' back and forth across da floorboards, measurin' da temperature on the chimney bricky, clankin' his atmospheric analyzer against da grate, and puffin' like a panicked space carp. He kept measurin' and pacin' for hours, typin' chaotic maths into his PDA, and straight-up cryin' fat, corpo tears onto my rug because his fancy toolz kept reportin' dat da room pressure and oxygen levels were perfect. He just couldn't figure out how da smoke was safely ventin' without vacuumating out da ship's oxygen supply!
+         : .  . :  : .  . :  : .  . :
+        DA UTTAH TRIUMF OF HOLY LOGIX
+        Down on his kneez, he was tearin' at his perfectly combed hair, beggin' da chimney to make make sense
+        His clipboard was smashed, his fancy beep-boop analyzer was lyin' in a messy little heap on da floor, he was mutterin'bout how physix wuz ded and about Say-Gain, probably his god or sumthin', I dunno. I walked in, munchin' a premium matcha donut. I looked down at him, rolled my eyes at his complete lack of ayy-kademik edukashun, and said
+        "Look, mistah shiny-suit, you keep corpo grids too close to yer brain. You don't need a three-page atmos guide to burn sum' wood in spess!"
+        He looked up at me with these beeg, bloodshot, broken eyes, pleadin' for engineering maths. I adjusted my goggles, patted his wet cheek, and gave him da absolute SCIENCE truth
+        "It’s spess magik, git!"
+        He let out one final, broken shriek, abandoned his preemo tools, and ran sprintin' down da corridor to his pod at max speed WHOOOSH!
+        And dat, choomz, is how frontiah engineering always wins against corpo math!
+        ------------------------------------------
+
+
