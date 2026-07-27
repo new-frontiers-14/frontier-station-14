@@ -23,10 +23,12 @@ public sealed class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
-        //SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent); // Frontier: wheelchair users can crawl
-        SubscribeLocalEvent<LegsParalyzedComponent, StandUpAttemptEvent>(OnStandUpAttemptEvent, before: [typeof(SharedStunSystem)]); // Frontier: wheelchair users can crawl
-        SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandAttemptEvent, before: [typeof(SharedStunSystem)]); // Frontier: wheelchair users can crawl
-        SubscribeLocalEvent<LegsParalyzedComponent, KnockedDownAlertEvent>(OnKnockedDownAlertEvent, before: [typeof(SharedStunSystem)]); // Frontier: wheelchair users can crawl
+        // Start Frontier: wheelchair users can crawl
+        //SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
+        SubscribeLocalEvent<LegsParalyzedComponent, StandUpAttemptEvent>(OnStandUpAttemptEvent, before: [typeof(SharedStunSystem)]);
+        SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandAttemptEvent, before: [typeof(SharedStunSystem)]);
+        SubscribeLocalEvent<LegsParalyzedComponent, KnockedDownAlertEvent>(OnKnockedDownAlertEvent, before: [typeof(SharedStunSystem)]);
+        // End Frontier: wheelchair users can crawl
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
@@ -56,8 +58,8 @@ public sealed class LegsParalyzedSystem : EntitySystem
     // Start Frontier: wheelchair users can crawl
     // private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
     // {
-    //     if (HasComp<RelayInputMoverComponent>(uid)) // Frontier: allow relaying input with paralyzed legs
-    //         return; // Frontier: allow relaying input with paralyzed legs
+    //     if (HasComp<RelayInputMoverComponent>(uid))
+    //         return;
     //
     //     args.Cancel();
     // }
