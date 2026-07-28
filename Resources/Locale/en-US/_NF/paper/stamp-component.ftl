@@ -19,5 +19,6 @@ stamp-component-stamped-name-hamster = a hamster
 stamp-component-stamped-name-honk = Honk
 stamp-component-stamped-name-pal = Public Affairs Liaison
 stamp-component-stamped-name-plant-manager = Plant Manager
+stamp-component-stamped-name-space-cat = a space cat
 stamp-component-stamped-name-sr = Station Representative
 stamp-component-stamped-name-stc = Station Traffic Controller
