@@ -54,7 +54,7 @@ public sealed class GridAccessSystem : EntitySystem
     private void HandleDeedSwipe(EntityUid uidDeed, EntityUid uidDevice, InteractEvent args)
     {
         if (!TryComp<GridAccessComponent>(uidDevice, out var gridAccessComponent))
-            return;//This should never happen? Is there a better way to get oneself own component?
+            return;
 
         // If the id card has no registered ship we cant continue.
         if (!TryComp<ShuttleDeedComponent>(uidDeed, out var shuttleDeedComponent))

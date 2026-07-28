@@ -140,6 +140,12 @@ public sealed class RCDSystem : EntitySystem
 
         var gridUid = _transform.GetGrid(location);
 
+        // Frontier: grid-access restrictions
+        //If the RCD is used on a Deed, prevent usage to authorize/deauthorize the RCD
+        if (TryComp<StationRecordKeyStorageComponent>(args.Target, out _))
+            return;
+        // End Frontier: grid-access restrictions
+
         if (!TryComp<MapGridComponent>(gridUid, out var mapGrid))
         {
             _popup.PopupClient(Loc.GetString("rcd-component-no-valid-grid"), uid, user);
@@ -160,10 +166,6 @@ public sealed class RCDSystem : EntitySystem
         }
 
         // Frontier - Grid access restriction
-        //If the RCD is used on a Deed, prevent usage to authorize/deauthorize the RCD
-        if (TryComp<StationRecordKeyStorageComponent>(args.Target, out _))
-            return;
-
         if (TryComp<GridAccessComponent>(args.Used, out var gridAccessComponent))
         {
             if (!GridAccessSystem.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))
