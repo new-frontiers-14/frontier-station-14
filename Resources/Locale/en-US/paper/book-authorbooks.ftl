@@ -1531,3 +1531,34 @@ book-text-ftlspacebustravel = [head=2]Understanding and Prediction of FTL Space 
 
         References
             Mahyer, Arielle (2526). A Study Into FTL Travel
+
+book-text-gabbinwivgoblins = [head=3]Gabbin Wiv Goblins[/head]
+        Entry in the Frontier 3rd Anniversary Writing Contest
+                                  "Gabbin' wiv Goblins!
+                      A primer to the language of goblin kind.
+                 Otherwise known as Goblin Cant." Issue#3
+
+                                  By: Learns the Lexicon
+
+                                         - - - - - - - - - - - - - - - - - - -
+
+          "Avast ya gob! Dis be a Fylchin'. Dimmocks in da poke, an ya keep ya stampes! Ya Savvey?"
+
+          Though not a common phrase, this is an example of something you might hear a friendly looking goblin say. More on what our new friend told us later!
+
+          The trouble with communicating with goblins is you might know many of the words they are saying, but the meaning behind them is lost. Studying even a little vocabulary will pay off. Goblin speech is not as intimidating as it first appears.
+
+          Now for some more vocab! The goblin word for 'drink' is simply bub. Drinking to a goblin is bubbin'. A thing to note is that its common in goblin speech to leave off parts of words. To note H sounds at the start of words are left off entirely! I was told that it was to streamline the process of speaking.
+
+          Many words in Goblin speech are loanwords; words borrowed form other languages. However the words Goblins tend to pick have baffled linguists for years. An interesting example is how a Goblin will call a medical doctor a sawbones, a room a crib, and to know is to savvy. The creative re-use of language is what makes Goblin speech a fascinating lifelong study.
+
+          To conclude this lesson a breakdown of the more esoteric vocabulary our new goblin friend just used:
+
+        • Dimmocks: Money, cash and otherwise
+        • Stampes: Legs, and stampahs the Goblin word for shoes
+        • Poke: Any small bag.
+        • Fylch: Theft robbery or the like.
+
+          Perhaps that Goblin wasn't very friendly after all... Until next time good luck, and remember a Goblin laughing at you for not knowing what they are saying is just their strange way of giving you encouragement!
+
+
