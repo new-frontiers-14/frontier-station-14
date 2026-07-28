@@ -517,6 +517,26 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityBrigmedGlasses
+  name:  uplink-security-brigmed-glasses-name
+  description: uplink-security-brigmed-glasses-desc
+  productEntity: ClothingEyesGlassesNfsdMed
+  icon: { sprite: _NF/Clothing/Eyes/Glasses/brigmed_glasses.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Brigmedic
+
+- type: listing
   id: UplinkSecurityThrusterKit
   name:  uplink-security-thrusterkit-name
   description: uplink-security-thrusterkit-desc
@@ -840,6 +860,25 @@
       whitelist:
         - Bailiff
         - SeniorOfficer
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityCCSword
+  name:  uplink-security-navyofficersabre-name
+  description: uplink-security-navyofficersabre-desc
+  productEntity: ClothingBeltCCSheathFilled
+  icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 15
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
         - Sheriff
 
 - type: listing

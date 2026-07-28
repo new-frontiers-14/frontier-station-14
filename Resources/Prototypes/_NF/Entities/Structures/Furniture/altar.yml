@@ -19,3 +19,20 @@
   - type: Construction # Frontier
     graph: AltarsGraph # Frontier
     node: AltarMailNode # Frontier
+
+- type: entity
+  id: AltarLamp
+  parent: AltarBase
+  name: lamp altar
+  description: This altar seems to draw you into the light.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/Altars/Gods/Lamp.rsi
+    state: lamp
+  - type: PointLight
+    radius: 3
+    energy: 2.5
+    color: "#FFC458"
+  - type: Construction
+    graph: AltarsGraph
+    node: AltarLampNode
