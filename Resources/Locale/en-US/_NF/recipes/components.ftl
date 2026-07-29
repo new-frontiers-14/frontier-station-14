@@ -25,3 +25,4 @@ construction-graph-component-computer-tabletop-board = any tabletop computer cir
 construction-graph-component-nf-pirate-toolbox = a pirate repair toolbox
 construction-graph-component-nf-weapon-charger-circuitboard = a recharger machine board
 construction-graph-component-nf-glowshroom-spores = glowshroom spores
+construction-graph-component-lantern = a lantern

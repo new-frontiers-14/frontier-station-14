@@ -161,16 +161,27 @@ public sealed partial class SalvageSystem
             }
         }
 
-        var query = EntityQueryEnumerator<SalvageExpeditionDataComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        // Frontier: exped console oriented query
+        // var query = EntityQueryEnumerator<SalvageExpeditionDataComponent>();
+        var query = EntityQueryEnumerator<SalvageExpeditionConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out _))
         {
+
+            var uid = _station.GetOwningStation(consoleUid);
+            if (uid is not { Valid: true })
+                continue;
+
+            if (!TryComp<SalvageExpeditionDataComponent>(uid, out var comp))
+                continue;
+            // End Frontier: exped console oriented query
+
             // Update offers
             if (comp.NextOffer > currentTime || comp.Claimed)
                 continue;
 
             // Frontier: disable cooldown when still in FTL
-            if (!TryComp<StationDataComponent>(uid, out var stationData)
-                || !HasComp<FTLComponent>(_station.GetLargestGrid((uid, stationData))))
+            if (!HasComp<FTLComponent>(Transform(consoleUid).GridUid))
+
             {
                 comp.Cooldown = false;
             }
@@ -179,7 +190,7 @@ public sealed partial class SalvageSystem
             comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
             comp.CooldownTime = TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
-            UpdateConsoles((uid, comp));
+            UpdateConsoles((uid.Value, comp));
         }
     }
 
@@ -251,7 +262,7 @@ public sealed partial class SalvageSystem
         return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions, component.CanFinish, component.CooldownTime); // Frontier: add CanFinish, CooldownTime
     }
 
-    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk)
+    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid shuttle, EntityUid? coordinatesDisk) // Frontier: add shuttle
     {
         var cancelToken = new CancellationTokenSource();
         var job = new SpawnSalvageMissionJob(
@@ -269,6 +280,7 @@ public sealed partial class SalvageSystem
             _shuttle, // Frontier
             this, // Frontier
             station,
+            shuttle,
             coordinatesDisk,
             missionParams,
             cancelToken.Token);
