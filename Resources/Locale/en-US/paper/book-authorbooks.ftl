@@ -1561,4 +1561,175 @@ book-text-gabbinwivgoblins = [head=3]Gabbin Wiv Goblins[/head]
 
           Perhaps that Goblin wasn't very friendly after all... Until next time good luck, and remember a Goblin laughing at you for not knowing what they are saying is just their strange way of giving you encouragement!
 
+book-text-theburnchamber = [head=3]The Burn Chamber[/head]
+        by Ruben Koster
+        Entry in the Frontier 3rd Anniversary Writing Contest
+
+        The Burn Chamber: Frontier Edition
+
+        Change of plans. Jerry went to go choke down a five-alarm chungus wrapper at Jasper's Burger, and Aldal is currently babysitting the refinery, so I actually have a window to explain this. Let's talk about the Plasma Burn Chamber.
+
+        First rule of the Frontier: This is a ship, not a station. You do not have a dedicated miner constantly dumping infinite resources into your lap. Every single mole of O2 matters. If you let your burn chamber run white hot like a standard station chamber, you will bankrupt your oxygen storage in five minutes flat.
+
+        The 700K Sweet Spot
+
+        On a ship, you have to aggressively cool your fire to keep it manageable. Your target threshold is just under 700K.
+
+        Do not let it drop too low, but do not let it skyrocket either. The closer you can hover to that 700K line, the more your system's efficiency spikes. This means you burn significantly less O2 per Tritium created, giving you a massive yield of Tritium for a fraction of the gas cost.
+
+        The Auto Ignition Threshold
+
+        Here is a quick piece of atmospheric physics so you don't think your igniter is broken: Plasma and Oxygen have a built-in auto ignition point. As long as Oxygen is present in the mix, any ambient temperature over 100°C (373.15 K) will cause the chamber to spontaneously combust on its own.
+        However if the chamber temperature reaches over 700k, it will ignite tritium and turn that hard earned O2 into water vapor, you do not want that.
+
+        But here is the catch when you are starting the room up for the very first time: your aggressive new cooling loop is already sitting out there in space, freezing your pipe network. When you click that first spark, the radiators might pull the initial heat away so fast that the fire instantly chokes out before it can spread.
+
+        Don't sweat it. It usually takes a few tries. You might have to cycle the igniter three or four or ten times until the tile gets hot enough to overcome the active cooling, cross that 100°C threshold, and lock into a permanent, self-sustaining burn. Just keep hitting the controller until the chamber catches.
+
+        Chamber Layout
+
+        To pull off this kind of temperature control in a cramped hull, you need to utilize radiators directly beneath the floor tiles of the chamber.
+
+        Lay out a tight 2x3 tile room.
+        Run your radiators along the outer borders of this grid.
+        Leave exactly ONE tile completely bare with no radiator underneath.
+
+        CRITICAL: Construction Order
+
+        Listen to me very carefully on this, because if you mess up the assembly order, you will have to wrench down the entire room and start from scratch.
+
+        You must build the radiators LAST.
+
+        If you place the space radiators down first and then try to build your passive vents, injectors, or scrubbers on top of them, the tile logic will conflict. The construction system simply won't let you place the machinery. Pipe the room, anchor your devices, and only when the plumbing is 100% complete do you slide the radiators underneath.
+
+        The Two-Step Cooling Mechanism
+
+        To actually cool this burn chamber down, those under floor radiators have to dump their heat somewhere. That means you need to run your pipe loop out through the hull walls or windows and build some spaced scaffolding out in the void. Every atmosian has their own favorite design for how they want this layout to look, but Aldal and I swear by our custom Two-Step Cooling Device.
+
+        Before we look at the blueprint, you need to understand the physics of device throughput per tick, because choosing the wrong device will choke your loop:
+
+        Filters move 1000L per tick. This is your high-speed device; it can yank gas through roughly 5 segments of pipe before the filter block every single tick.
+        Volumetric Pumps only move 200L per tick. They are too sluggish for an aggressive cooling loop unless you add each segment.
+        Gas Pumps and Mixers don't care about literage metrics. They focus entirely on keeping the downstream network at a set pressure -- which I HOPE you have maxed out at 4500 kPa.
+
+        Because filters and mixers have the best flow for moving massive thermal loads, we use them to drive the entirety of the cooling loop.
+
+        Blueprint
+
+        Our setup uses a closed loop of Frezon and Plasma: Plasma must never enter the burn chamber's radiator tiles. We keep the Plasma strictly on the outside rim in space, while Frezon handles the heavy lifting inside.
+
+        Imagine a giant letter "O". The mixer and the filter sit exactly at the dividing line between your inner hull radiators and your outer space radiators.
+
+        Inner Rim (Frezon):
+        The filter shoves Frezon under the burn chamber tiles. It runs through 3 under floor radiators (two bends and one straight), absorbs the blistering heat from the plasma fire, and exits the room straight into the mixer.
+
+        Outer Rim (Heat Sink):
+        Look at the extra side exits on your mixer and filter. We connect those secondary ports to a sprawling outer loop of radiators. This outer loop folds right over the spaced side of the "O" connecting to the plasma filter, creating a secondary rim.
+
+        Processing:
+        Set the filter to specifically separate Plasma. Because it's filtering it, plasma is forced out through the exterior spaced radiators where it can rapidly swap heat with the void. Meanwhile, the Frezon is allowed to pass straight back into the chamber.
+
+        The cold Plasma loops around the exterior and hits the mixer, where it recombines with the hot Frezon coming out of the chamber. You want to tune the mixer so both the inner and outer rims move gas at roughly the same rate.
+
+        Ruben's Preferred Mix:
+        Inject 1 full Plasma canister and mix it with roughly 1000 to 1400 mols of Frezon. Don't worry about the cost, you can easily manufacture that amount of Frezon using trace Tritium harvested from your very first gas-mining nodes. Keep the mixer set to a 52% Plasma to 48% Frezon ratio, tune your pressures to maximum, and watch your burn chamber lock into a rock solid, high yield under-700K baseline.
+
+        Temperature Custom Tailoring
+
+        Listen up, newbies, because I am only going to say this once: this is an advanced topic. If your ship's basic plumbing is clogged, or if you still struggle to read a network monitor, skip this section entirely. Only attempt custom tailoring if your entire grid is running perfectly and you have 30 minutes of absolute quiet to stare at a monitor.
+
+        Custom tailoring your burn temperature to sit exactly in that 650K to 700K sweet spot is both incredibly hard and deeply dangerous. If you lack the mechanical knowledge, you will accidentally vape your entire chamber into useless water vapor, incinerating millions of credits worth of pure O2. Once a burn chamber temperature runs out of control like that, it will not cool back down to usable metrics since tritium burn is roughly 5 times that of plasma. Your only choice will be to open the emergency blast door and space the entire chamber into the void -- wasting your resources, wasting your time, and utterly breaking your spirit.
+
+        Tailoring Methodology
+
+        When you first ignite the chamber, the fire will hover around 100°C (373.15 K) because your two-step space cooling loop is working at maximum capacity. To force that temperature up past 650K without letting it explode into a white hot disaster, you have two primary methods:
+
+        Method 1: Choking the Coolant Feed
+        Instead of letting your Frezon filter shove its maximum 1000L per tick of cold gas back into the room, you manually restrict the flow down to 10L or 20L using a filter.
+        This starves the chamber floor of cooling capacity, allowing the ambient plasma fire to organically climb toward your target temperature before you dial the cooling back up to lock it in.
+
+        Method 2: Adjusting the Oxygen Pressure Cap
+        You can increase the initial pressure cap of the O2 feed. However, you must account for thermal expansion. Physics dictates that 1000 kPa of Oxygen sitting at a cool 100°C will expand violently when the room hits 376.85°C (650 K).
+        That expansion will cause your chamber pressure to spike to your absolute pipe threshold of 4500 kPa incredibly fast. You must plan ahead, calculate your exact O2 limits, and know your preferred operational pressure before cracking releasing O2 valves.
+
+        Fail-Safes and Automated Cut-Offs
+
+        Do not rely on your own reaction speed to manage this balance. Link your signal valves to your atmospheric air alarms network. Program your system to instantly force the cut-off valves CLOSED if any of the following parameters are breached:
+
+        Plasma content in the room exceeds 3% (supersaturation fuel hazard).
+        Temperature exceeds your maximum desired threshold (e.g., over 680K).
+        Internal chamber pressure approaches the dangerous 4500 kPa maximum line.
+
+        If the automation triggers, the system shuts down, the fire chokes out for a while, and you get to live to try again. If you don't set up these automated systems, you are just waiting for a burn failure.
+
+        Conclusion
+
+        And that is where I am stopping.
+
+        Aldal just walked off the refinery because apparently some local space pirates are organizing a party, and they convinced him to provide a canister of Frezon so everyone can huff it to get high. Idiots. The whole lot of them are probably going to freeze their lungs solid before the first bass drop hits.
+
+        I absolutely hate pirates, and watching Aldal pack up my hard earned gas to go cater to a bunch of lawless space bums has completely ruined my mood to keep writing.
+
+        You greenhorns have enough information here to build a functioning FLOOP, run a proper recycler, and hopefully not blow yourselves into charred sausages with the burn chamber. Will I write that dedicated manual for the waste recycling metrics later? Maybe I will, maybe I won't. Depends entirely on if you manage to survive long enough to read it.
+
+        Peace.
+
+book-text-room85 = [head=3]Room 85[/head]
+        by Mira Licent
+        Entry in the Frontier 3rd Anniversary Writing Contest
+        The ship stops near a giant Vroid, far away from any living form of Maunder. On board, Barry and his long time friend Kasky.
+
+        -”Wake up, Barry !” He shouted at his friend, shaking him by the shoulder. “We have work to do. And given its size, we’ve got a lot of it..”
+
+        Barry heads towards the bathroom to freshen up. As soon as he opens the door, a smell of mold wafts out, revealing a filthy room with trash strewn across the floor all bathed in a flashing yellow light. He places both hands on the half-broken sink where several boxes of medications are sitting while looking at himself in the grime-covered mirror. The reflection shows a man in his forties, 182cm tall with a slender build accentuated by his hollow cheeks. He runs a hand through his tousled, medium-length brown hair to clear his forehead while rubbing his unshaven beard with the other hand. After splashing his face with water to wake up, Barry heads towards the EVA room to meet up with his friend to be geared up. He put on a blue EVA suit leaving only his dark-rimmed blue eyes visible behind the visor. For the tools, they each take a rusty pickaxe, a floodlight, a radio and a backpack to carry the ores they mine.
+
+        When ready, Barry opens the EVA door by pressing a button. As the doors open, they produce the sound of crumpled sheet metal, while emergency lights intermittently flood the room with their red glow and air hisses from the pipes. Once fully open, silence returns. They take advantage of the quiet moment to observe the beauty of space. After this period of wandering, detached from time, they look at each other and the two men make their way together through the ventilation systems that replace the doors and emerge into space to the metallic sound of their magboots against the ground.
+
+        An hour passed without anything surprising happening, until Barry stumbled upon a strange flashing light hidden behind a rock. He moves forward cautiously, his old, rusty pickaxe in hand, ready to act if necessary. The further he moves forward, the more his breathing becomes ragged and his heartbeat quickens making the visor of his helmet completely fogged up from the inside. But once he rounded the bend in the rocky terrain, the light he had seen vanished without warning. So, with a trembling hand, he uses his own floodlight to illuminate the path ahead, bit by bit, as he walks. As he moves forward, he catches sight of a strange silhouette crouching in the shadows. Despite the dread gripping him, he moves his lamp forward to illuminate the silhouette. And then, his breath catches. His lamp smashes on the ground. It is in a state of shock that he realizes what lies on the floor is none other than his friend's corpse. His face falls, drops to his knees and everything goes blank..
+
+        -”This is in your head” whispers a female voice.
+
+        -“You scare me, stay away from us.” whispers a more childlike voice.
+
+        	But before the voices can say more, Barry feels something shaking him from the shoulders.
+
+        -”Barry? Barry ! Come on buddy, what’s happening here? I heard you scream through the radio. Is everything alright?” Said Kasky in a worried tone.
+
+        	Sadly, Barry doesn’t give him any answers. He remains silent, his eyes wide open still in shock from what he has just witnessed. Seeing him in this state, Kasky decides to lift him by the shoulder to escort him back to the ship.
+
+        Back in the more familiar setting of the living room, the two men are sitting on the sofa, facing each other. As Barry remains silent, Kasky decides to break the ice.
+
+        -”Listen bud’. he said, trying to reassure him. “I know the last few years have been difficult for you, especially your relationship with your wife and daughter since you got out of the hospital. But you can't give up. We managed to land this job. You will make this. And with any luck, the judge will be lenient and let you see your daughter. I'm sure she misses her dad. For now, we don’t have the choice but to work to pay the bills. Worry not, your friend is here to help you take this step.”
+
+        	At these words, Barry, who is slumped on the couch, starts to cry. Kasky decides to get up, his hand outstretched towards his friend with a smile full of compassion.
+
+        -”Let’s finish the job, and the next round is on me. Deal?”
+
+        	After what happened, they decide to stick together to prevent another complication. Things went well, their respective bags were full of precious ores, but after digging deep into the rocks, they found a mysterious empty place with a strange old wooden door in the stone. Caught by surprise, the two men looked at each other. Before a long moment of hesitation, Barry finally decides to walk in the door’s direction, closely followed by Kasky. Feeling uneasy, he cautiously reaches for the metal handle. Oddly enough, once he holds it, he feels the coolness of the iron against his palm despite his suit, like his hand was bare. Barry turns his wrist to open the door carefully, who responds with a creak that echoes down a pitch-black hallway. Driven by curiosity, they decide to confront the darkness with their single floodlight.
+
+        Once they had passed through the door, it slammed shut behind them with a blood-curdling din. They obviously try to open it back, but it stays firmly close. Even their pickaxes were of no use to them, it was like the door was unbreakable. The two friends are now stuck inside this empty place without any choice but to keep walking for an exit. As if to avoid helping them, their light begins to fade which allows the darkness to cover the white walls around them. The atmosphere is becoming increasingly heavy. The corridor seems endless and devoid of any doors. At that moment, their light decides to go out, leaving them at the mercy of the dark fog. Fortunately, their PDA is equipped with a built-in flashlight that Barry switches on without delay. But, strangely, only his lights up. No matter how much he looks around, his friend has clearly disappeared. Suddenly, Barry hears a faint voice he can’t recognize in the distance. The hair all over his body stands on end. He slowly turned his head in direction of the sound and, in the dimness of the light, a door appeared in front of him. Seized with fear, he managed to summon his courage and headed toward the only possible way.
+
+        He stood rooted in front of the door, fear preventing him from moving any further. It is only him, this door, and the unsettling silence that makes itself feel all around him. His body is so heavy that he is unable to lift his arm to open the door. That is when a new creaking sound is heard. It is the door in front of him opening from herself. He stepped through the doorway but, in the dim light, failed to notice the small sign on the wall bearing the inscription:
+
+        “Room 85.
+        Patient: Barry Connor”
+
+        Inside the room, there is a hospital bed, a small desk, and windows with bars that look out onto nothing but a white concrete wall. But what catches Barry's attention is the fact that its light reflects off a piece of glass. Too weak to be blinded by it, he moves toward the burst of light that leaves him standing before a bedside table where a wooden frame sits on top of it. He sets the pickaxe down against the bed, head-down, so he can take the frame in both hands to examine it more closely. Framed inside is a photograph of three people. His face is visible, while the other two are obscured by the broken glass. Barry is suddenly overcome with profound sadness and, as tears well up in his eyes, the room begins to glow. Only a few seconds passed, but the man saw himself again in that room, sitting on a chair with his head in his hands. He lowers his head over the photo he is holding, and the previously hidden faces are revealed. His wife stood beside him, while his daughter was in the middle, presenting the picture of a happy family. But he didn't have time to savor this moment of peace before a noise was heard behind him. The shadows circle all around him until they hem him in. Wanting to stay alive to find his wife and daughter, he retrieves his pickaxe to defend himself. Something finally touches him on the back, so without hesitation, he raises his weapon to deliver a violent blow to whatever is lying in wait for him. The shadow falls with a deafening crash. Barry's bloodshot eyes are wide open, his teeth are clenched, and his breathing is quickening. He cannot die here, he must return to his family. That is what he would say if he hadn't completely lost his mind. He approaches the silhouette, points his pickaxe upward, and brings it down with all his might: One; Two; Three; Four, Five; Six; Seven times each more violent than the last. But as he regains consciousness, reality hits him with full force. The corpse he is standing on is none other than Kasky's. Realizing that he has likely just killed the only person who still trusted him, Barry remains silent. He lowers his eyes to his trembling, blood-stained hands.
+
+        -”You are a monster.” judge the same feminine voice as before. “You did it again. You will never stop. It’s in your blood. What’s next? You will kill us?”
+
+        -”You haven’t taken your pills, right? The only person you are hurting is yourself. Your mind isn’t clear. You must rest.” confides a more masculine voice similar to Kalsky’s.
+
+        The voices do not stop, they continue to judge him. Barry can't breathe anymore. His oxygen tanks are running low as he gasps for air. The voices continue to torment him as his vision blurs. His eyes close as he falls to the ground.
+
+
+
+        …
+
+
+
+
+        -”Let's move on to the next piece of information. A miner was found dead at the bottom of a cave during a mining operation. As the man had shown no signs of life for several days, the rescue team headed to the scene using the miner’s pinpointer. He reportedly died from a lack of oxygen. It turns out that the man in question is reportedly none other than Barry Connor, known to the NFSD for having killed his friend by stabbing him seven times. Given his history of mental heal-.” and the TV turns off.
+
+
 

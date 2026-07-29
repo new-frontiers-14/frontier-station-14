@@ -16,3 +16,5 @@ book-text-dustinthewind = dustinthewind
 book-text-spacefireplace = spacefireplace
 book-text-ftlspacebustravel = ftlspacebustravel
 book-text-gabbinwivgoblins = gabbinwivgoblins
+book-text-theburnchamber = theburnchamber
+book-text-room85 = room85
