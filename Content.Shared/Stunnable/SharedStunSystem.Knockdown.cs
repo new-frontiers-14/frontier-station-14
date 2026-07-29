@@ -13,6 +13,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Standing;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
@@ -244,11 +245,17 @@ public abstract partial class SharedStunSystem
         if (!Resolve(entity, ref entity.Comp1, false) || !_cfgManager.GetCVar(CCVars.MovementCrawling))
             return;
 
+        if (TryComp<BuckleComponent>(entity.Owner, out var buckle) && buckle.Buckled) // Frontier: wheelchair users can crawl
+            return; // Frontier: wheelchair users can crawl
+
         if (!Resolve(entity, ref entity.Comp2, false))
         {
             TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false);
             return;
         }
+
+        if (HasComp<LegsParalyzedComponent>(entity)) // Frontier: wheelchair users can crawl
+            return; // Frontier: wheelchair users can crawl
 
         var stand = !entity.Comp2.DoAfterId.HasValue;
         SetAutoStand((entity, entity.Comp2), stand);
