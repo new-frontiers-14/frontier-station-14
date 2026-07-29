@@ -29,6 +29,7 @@ public sealed partial class DockingScreen : BoxContainer
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
+    public event Action<List<NetEntity>>? UndockAllRequest; // Frontier
 
     public DockingScreen()
     {
@@ -45,7 +46,37 @@ public sealed partial class DockingScreen : BoxContainer
         {
             UndockRequest?.Invoke(entity);
         };
+
+        UndockAllButton.OnPressed += _ => OnUndockAllPressed(); // Frontier
     }
+
+    // Frontier
+    private void OnUndockAllPressed()
+    {
+        if (UndockAllRequest == null)
+            return;
+
+        // Find all docks that belong to the current shuttle and are docked
+        var netEntity = _entManager.GetNetEntity(DockingControl.GridEntity!.Value);
+        if (!Docks.TryGetValue(netEntity, out var shuttleDocks))
+            return;
+
+        var dockedPorts = new List<NetEntity>();
+
+        foreach (var dock in shuttleDocks)
+        {
+            if (dock.Connected)
+            {
+                dockedPorts.Add(dock.Entity);
+            }
+        }
+
+        if (dockedPorts.Count > 0)
+        {
+            UndockAllRequest.Invoke(dockedPorts);
+        }
+    }
+    // End Frontier
 
     private void OnView(NetEntity obj)
     {
@@ -61,6 +92,21 @@ public sealed partial class DockingScreen : BoxContainer
         DockingControl.DockState = state;
         DockingControl.GridEntity = shuttle;
         BuildDocks(shuttle);
+
+        // Frontier
+        // Enable the undock all button only if there are docked ports
+        var hasDockedPorts = false;
+        if (shuttle != null)
+        {
+            var netEntity = _entManager.GetNetEntity(shuttle.Value);
+            if (Docks.TryGetValue(netEntity, out var shuttleDocks))
+            {
+                hasDockedPorts = shuttleDocks.Any(d => d.Connected);
+            }
+        }
+
+        UndockAllButton.Disabled = !hasDockedPorts;
+        // End Frontier
     }
 
     private void BuildDocks(EntityUid? shuttle)

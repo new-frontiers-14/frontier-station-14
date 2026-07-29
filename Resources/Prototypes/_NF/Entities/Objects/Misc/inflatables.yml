@@ -81,8 +81,6 @@
   id: NFInflatableDoor
   name: inflatable door
   suffix: Frontier
-  placement:
-    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/inflatable_door.rsi
@@ -112,8 +110,6 @@
   id: NFInflatableDoorWindow
   name: inflatable windoor
   suffix: Frontier
-  placement:
-    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/inflatable_door_window.rsi
@@ -137,22 +133,13 @@
   description: An inflated membrane with reinforced hardpoints, capable of docking. Activate to deflate. Do not puncture.
   suffix: Frontier, Docking
   components:
+  - type: Rotatable
+    rotateWhileAnchored: true
   - type: Docking
   - type: NavMapDoor
   - type: Sprite
     sprite: _NF/Objects/Misc/inflatable_dock.rsi
     state: closed
-  - type: Door
-    openSound:
-      path: /Audio/Misc/zip.ogg
-    closeSound:
-      path: /Audio/Misc/zip.ogg
-  - type: Anchorable
-  - type: Transform
-    anchored: true
-  - type: Rotatable
-  - type: Physics
-    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -176,6 +163,7 @@
       - South
   - type: Tag
     tags:
+      - Structure
       - ForceNoFixRotations
   - type: DisassembleOnAltVerb
     prototypeToSpawn: NFInflatableDockStack1
