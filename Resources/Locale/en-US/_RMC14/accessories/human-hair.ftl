@@ -1,10 +1,6 @@
-marking-HumanHairShorterLongBedhead = Shorter Long Bedhead (RMC)
-
 marking-RMCHumanHairCrew = Crewcut (RMC)
 
 marking-RMCHumanHairFlair = Flaired Hair (RMC)
-
-marking-RMCHumanHairLongAlt = Shoulder-length Hair Alt (RMC)
 
 marking-RMCHumanHairLongerAlt = Long Hair Alt (RMC)
 
@@ -42,7 +38,7 @@ marking-RMCHumanHairMohawk = Mohawk (RMC)
 
 marking-RMCHumanHairSpiky = Spiky (RMC)
 
-marking-RMCHumanHairKusangi = Kusanagi Hair (RMC)
+marking-RMCHumanHairKusanagi = Kusanagi (RMC)
 
 marking-RMCHumanHairBraid = Floorlength Braid (RMC)
 
@@ -134,7 +130,7 @@ marking-RMCHumanHairCoffeehouse = Coffee House Cut (RMC)
 
 marking-RMCHumanHairUndercutTop = Undercut, Top (RMC)
 
-marking-RMCHumanHairHighlight = Hightight (RMC)
+marking-RMCHumanHairHightight = Hightight (RMC)
 
 marking-RMCHumanHairFringetail = Fringe Tail (RMC)
 
@@ -194,7 +190,7 @@ marking-RMCHumanHairCroft = Croft (RMC)
 
 marking-RMCHumanHairAviator = Aviator (RMC)
 
-marking-RMCHumanHairGantlePonytail = Gentle Ponytail (RMC)
+marking-RMCHumanHairGentlePonytail = Gentle Ponytail (RMC)
 
 marking-RMCHumanHairEdgar = Edgar (RMC)
 
