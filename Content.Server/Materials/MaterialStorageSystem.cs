@@ -13,7 +13,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Storage.Components; // Frontier
-using Content.Shared.Cargo; // Frontier
+using Content.Shared.Cargo;
+using Content.Shared.Destructible; // Frontier
 
 namespace Content.Server.Materials;
 
@@ -34,8 +35,28 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         base.Initialize();
         SubscribeLocalEvent<MaterialStorageComponent, MachineDeconstructedEvent>(OnDeconstructed);
         SubscribeLocalEvent<MaterialStorageComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
+        SubscribeLocalEvent<MaterialStorageComponent, DestructionEventArgs>(OnDestroyed);
 
         SubscribeAllEvent<EjectMaterialMessage>(OnEjectMessage);
+    }
+
+    private void OnDestroyed(EntityUid uid, MaterialStorageComponent component, DestructionEventArgs eventArgs)
+    {
+        if (!component.DropOnDeconstruct)
+            return;
+
+        if (TryComp<MaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        {
+            //If we don't do this, then the silo will instantly suck up all the materials before being promptly deleted
+            //Guess how we found that out :)
+            magnet.MagnetEnabled = false;
+        }
+
+        foreach (var (material, amount) in component.Storage)
+        {
+            SpawnMultipleFromMaterial(amount, material, Transform(uid).Coordinates);
+        }
+
     }
 
     private void OnDeconstructed(EntityUid uid, MaterialStorageComponent component, MachineDeconstructedEvent args)
