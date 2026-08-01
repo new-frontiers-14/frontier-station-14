@@ -13,8 +13,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Storage.Components; // Frontier
-using Content.Shared.Cargo;
-using Content.Shared.Destructible; // Frontier
+using Content.Shared.Cargo; // Frontier
+using Content.Shared.Destructible; //Frontier
 
 namespace Content.Server.Materials;
 
@@ -35,11 +35,12 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         base.Initialize();
         SubscribeLocalEvent<MaterialStorageComponent, MachineDeconstructedEvent>(OnDeconstructed);
         SubscribeLocalEvent<MaterialStorageComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
-        SubscribeLocalEvent<MaterialStorageComponent, DestructionEventArgs>(OnDestroyed);
+        SubscribeLocalEvent<MaterialStorageComponent, DestructionEventArgs>(OnDestroyed); // Frontier
 
         SubscribeAllEvent<EjectMaterialMessage>(OnEjectMessage);
     }
 
+    //Start Frontier: Ensure silos drop their mats when destroyed
     private void OnDestroyed(EntityUid uid, MaterialStorageComponent component, DestructionEventArgs eventArgs)
     {
         if (!component.DropOnDeconstruct)
@@ -58,6 +59,7 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         }
 
     }
+    //End Frontier
 
     private void OnDeconstructed(EntityUid uid, MaterialStorageComponent component, MachineDeconstructedEvent args)
     {
