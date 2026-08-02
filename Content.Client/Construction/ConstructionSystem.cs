@@ -369,7 +369,7 @@ namespace Content.Client.Construction
             return false;
         }
 
-        // Frontier start
+        // Frontier: Multiple ghosts per tile
         /// <summary>
         /// Checks if the maximum number of construction ghosts has been reached at the given location.
         /// </summary>
@@ -381,7 +381,7 @@ namespace Content.Client.Construction
 
             return ghostCount >= _configurationManager.GetCVar(NFCCVars.ConstructionMaxGhostsPerTile);
         }
-        // Frontier end
+        // End Frontier: Multiple ghosts per tile
 
         public void TryStartConstruction(EntityUid ghostId, ConstructionGhostComponent? ghostComp = null)
         {
