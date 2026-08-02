@@ -61,6 +61,7 @@ public sealed class AutopilotSystem : EntitySystem
         }
 
         DisableAutopilot(gridUid.Value);
+        _console.RefreshShuttleConsoles(gridUid.Value);
         // _autopilot.SendShuttleMessage(gridUid.Value, "Autopilot: Server disconnected - autopilot disabled"); // Frontier: Disables chat message from Autopilot
     }
 
