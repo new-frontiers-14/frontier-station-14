@@ -280,7 +280,7 @@ namespace Content.Client.Construction
                 return false;
 
             if (HasReachedMaximumGhosts(loc)) // Frontier GhostPresent<HasReachedMaximumGhosts
-return false;
+                return false;
 
             var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
