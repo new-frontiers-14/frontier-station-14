@@ -8,6 +8,9 @@ handheld-radio-component-chennel-examine = The current channel is {$channel}.
 # Frontier
 handheld-radio-component-toggle = Toggle Mic
 
+handheld-radio-button-label-speaker = Speaker
+handheld-radio-button-label-mic = Microphone
+
 # Nuclear-14-Start
 handheld-radio-menu-title = Handheld radio
 handheld-radio-current-text-frequency = Broadcast frequency
