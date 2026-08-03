@@ -125,6 +125,9 @@ uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpre
 uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
 uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
 
+uplink-security-brigmed-glasses-name = Brigmedic Glasses
+uplink-security-brigmed-glasses-desc = Upgraded sunglasses that provide flash immunity and an integrated medical hud.
+
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
 
@@ -326,6 +329,9 @@ uplink-pirate-accessconfigurator-captain-desc = An access configurator that is s
 
 uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
+
+uplink-pirate-yarrped-name = YarRPED
+uplink-pirate-yarrped-desc = A reverse-engineered RPED that installs the worst parts available and stores the valuable parts it removes.
 
 uplink-pirate-pmag-name = Machine Liberator
 uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
