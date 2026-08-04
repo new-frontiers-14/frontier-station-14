@@ -107,7 +107,7 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
         GetCombatStyleDetails(examineMarkup, component);
         GetDamageDetails(examineMarkup, component.BonusDamage, component.DamageModifierSet, component.StaminaFlatBonus, component.StaminaMultiplier);
 
-        _examine.AddDetailedExamineVerb(args, component, examineMarkup, Loc.GetString("clothing-damage-examinable-verb-text"), "/Textures/Interface/VerbIcons/knife.svg.192dpi.png", Loc.GetString("clothing-damage-examinable-verb-message"));
+        _examine.AddDetailedExamineVerb(args, component, examineMarkup, Loc.GetString("clothing-damage-examinable-verb-text"), "/Textures/_NF/Interface/VerbIcons/cleavericon.png", Loc.GetString("clothing-damage-examinable-verb-message"));
     }
 
     private void GetCombatStyleDetails(FormattedMessage msg, ClothingDamageModifierComponent component)
