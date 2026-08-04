@@ -66,7 +66,6 @@
   - type: Tag
     tags:
     - CannotSuicide
-    - DoorBumpOpener
     - VimPilot
   - type: Inventory
     templateId: nfpet
@@ -230,6 +229,70 @@
 
 - type: entity
   suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleBlack]
+  id: MobPibbleBlackGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleBrown]
+  id: MobPibbleBrownGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleCoffee]
+  id: MobPibbleCoffeeGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleDarkBrown]
+  id: MobPibbleDarkBrownGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleFawn]
+  id: MobPibbleFawnGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleGrey]
+  id: MobPibbleGreyGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleSusieQ]
+  id: MobPibbleSusieQGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleWhite]
+  id: MobPibbleWhiteGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
   parent: [BaseEmotionalSmallGhost, MobChicken]
   id: MobChickenGhost
   components:
@@ -240,6 +303,9 @@
       Male: Chicken
       Female: Chicken
       Unsexed: Chicken
+  - type: Tag
+    tags:
+    - DoorBumpOpener
   - type: RandomMetadata
     nameSegments: [NamesChicken]
   - type: Inventory
@@ -288,19 +354,29 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalSmallGhost, MobHamster]
+  parent: [BaseEmotionalSmallGhost, MobHamlet]
   id: MobHamsterGhost
   components:
   - type: RandomMetadata
     nameSegments: [NamesHamster]
   - type: Inventory
     speciesId: hamster
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Animals/mouse_squeak.ogg"
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
 
 - type: entity
   suffix: Ghost
   parent: [BaseEmotionalSmallGhost, MobParrotNF]
   id: MobParrotGhost
   components:
+  - type: Tag
+    tags:
+    - DoorBumpOpener
   - type: RandomMetadata
     nameSegments: [NamesParrot]
   - type: Inventory
