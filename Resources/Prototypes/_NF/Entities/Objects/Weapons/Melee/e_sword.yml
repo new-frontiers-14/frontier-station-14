@@ -1,6 +1,6 @@
 - type: entity
   name: NFSD energy sword
-  parent: [BaseC2ContrabandUnredeemable, EnergySword]
+  parent: [EnergySword, BaseC2ContrabandUnredeemable]
   id: eNFSDsword
   description: An NFSD energy sword, your righteous beam of light in the dark.
   components:
@@ -11,8 +11,28 @@
         Slash: 10
   - type: EnergySword
     colorOptions:
-      - "#10cc42"
+      - "#4f6e40"
     blockHacking: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/e_nfsd.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/e_nfsd-inhands_64x.rsi
+  - type: ToggleableVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
 
 - type: entity
   id: NFEnergyPickaxe
