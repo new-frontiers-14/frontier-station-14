@@ -4,8 +4,12 @@ using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Chat.Managers;
+using Content.Server.CartridgeLoader;
+using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.PDA;
+using Content.Shared.CartridgeLoader;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
@@ -25,8 +29,9 @@ public sealed class AutopilotSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    // [Dependency] private readonly IChatManager _chatManager = default!; // Frontier
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
 
     public override void Initialize()
     {
@@ -101,7 +106,7 @@ public sealed class AutopilotSystem : EntitySystem
             {
                 var destinationName = autopilot.DestinationName ?? "destination";
                 autopilot.Enabled = false;
-                // _autopilot.SendShuttleMessage(uid, $"Autopilot: {destinationName} reached - Parking"); // Frontier: Disables chat message from Autopilot
+                SendShuttleMessage(uid, $"Autopilot: {destinationName} reached - Parking");
 
                 // Apply brakes
                 ApplyBraking(uid, shuttle, physics, xform, frameTime);
@@ -652,26 +657,44 @@ public sealed class AutopilotSystem : EntitySystem
 
     /// <summary>
     /// Sends a message to all players on the shuttle.
+    /// FRONTIER: Also notifies the captain (holder of shuttle deed)
     /// </summary>
     public void SendShuttleMessage(EntityUid shuttleUid, string message)
     {
-        var players = new List<ICommonSession>();
+        // Frontier - remove non-diegetic notification
+        // var players = new List<ICommonSession>();
 
-        // Find all players on this shuttle
-        var query = EntityQueryEnumerator<TransformComponent, ActorComponent>();
-        while (query.MoveNext(out _, out var xform, out var actor))
+        // // Find all players on this shuttle
+        // var query = EntityQueryEnumerator<TransformComponent, ActorComponent>();
+        // while (query.MoveNext(out _, out var xform, out var actor))
+        // {
+        //     if (xform.GridUid == shuttleUid)
+        //     {
+        //         players.Add(actor.PlayerSession);
+        //     }
+        // }
+
+        // // Send message to all players on the shuttle
+        // foreach (var player in players)
+        // {
+        //     _chatManager.DispatchServerMessage(player, message);
+        // }
+        // end frontier
+
+        // Frontier - notify holder of shuttle deed
+        var pdalist = EntityQueryEnumerator<CartridgeLoaderComponent, PdaComponent, TransformComponent>();
+        while (pdalist.MoveNext(out var loaderUid, out var loaderComp, out var pda, out var xform))
         {
             if (xform.GridUid == shuttleUid)
             {
-                players.Add(actor.PlayerSession);
+                if (pda.ContainedId != null && TryComp<ShuttleDeedComponent>(pda.ContainedId, out var deed) &&
+                    deed.ShuttleUid == shuttleUid)
+                {
+                    _cartridgeLoader.SendNotification(loaderUid, "Autopilot", message, loaderComp);
+                }
             }
         }
-
-        // Send message to all players on the shuttle
-        foreach (var player in players)
-        {
-            _chatManager.DispatchServerMessage(player, message);
-        }
+        // End frontier
     }
 
     /// <summary>
