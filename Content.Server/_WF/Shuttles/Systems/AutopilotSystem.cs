@@ -106,7 +106,7 @@ public sealed class AutopilotSystem : EntitySystem
             {
                 var destinationName = autopilot.DestinationName ?? "destination";
                 autopilot.Enabled = false;
-                SendShuttleMessage(uid, $"Autopilot: {destinationName} reached - Parking");
+                SendShuttleMessage(uid, Loc.GetString("autopilot-arrival-message", ("destinationName", destinationName)));
 
                 // Apply brakes
                 ApplyBraking(uid, shuttle, physics, xform, frameTime);
