@@ -338,10 +338,12 @@ namespace Content.Server.Carrying
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
-            if (attachToMap) //Frontier
-            { //Frontier
+            //Begin Frontier: Drop person carried when dragging to cryo
+            if (attachToMap)
+            {
                 _transform.AttachToGridOrMap(carried);
-            } //Frontier
+            }
+            //End Frontier
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
         }
