@@ -94,6 +94,7 @@
     - Meow
     - Growl
     - Purr
+    - Mew
   - type: TypingIndicator
     proto: felinid
   - type: Inventory
@@ -119,6 +120,12 @@
       Unsexed: Dog
   - type: Inventory
     speciesId: dog
+  - type: Speech
+    speechSounds: Dog
+    allowedEmotes:
+    - Growl
+    - Bark
+    - Whine
 
 - type: entity
   suffix: Ghost
@@ -354,7 +361,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalSmallGhost, MobHamlet]
+  parent: [BaseEmotionalSmallGhost, MobHamsterHamlet]
   id: MobHamsterGhost
   components:
   - type: RandomMetadata
@@ -389,5 +396,15 @@
   components:
   - type: RandomMetadata
     nameSegments: [NamesMouse]
+  - type: Inventory
+    speciesId: mouse
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhost, MobBandito]
+  id: MobFerretGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesFerret]
   - type: Inventory
     speciesId: mouse
