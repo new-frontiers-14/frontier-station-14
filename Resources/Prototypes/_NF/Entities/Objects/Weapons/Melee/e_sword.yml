@@ -101,6 +101,37 @@
     - "#00ec64"
     blockHacking: true
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/e_centcommknight.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/e_centcommknight-inhands_64x.rsi
+  - type: ToggleableVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+
+- type: entity
+  name: CentComm Energy Sword
+  parent: [BaseCentcommCommandContraband, EnergySword]
+  id: EnergySwordCC
+  description: Your dark corruption is evident, admin.
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#d4ffbf"
+    blockHacking: true
+  - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/e_centcomm.rsi
     layers:
     - state: e_sword
