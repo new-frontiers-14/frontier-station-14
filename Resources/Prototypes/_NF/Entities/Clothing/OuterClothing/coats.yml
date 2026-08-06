@@ -249,7 +249,33 @@
     requireTag: ClothingOuterWeddingBallGown
 
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingColumnGownBase
+  abstract: true
+  name: column gown base
+  description: column gown base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingcolumngown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingcolumngown.rsi
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    requireTag: ClothingOuterWeddingColumnGown
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingColumnGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGown
   name: Column Gown
   description: A simple and straight column gown.
@@ -260,6 +286,10 @@
     sprite: _NF/Clothing/OuterClothing/Misc/weddingcolumngown.rsi
   - type: StaticPrice
     vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGown
+    requireTag: ClothingOuterWeddingColumnGown
 
 - type: entity
   parent: [ ClothingOuterStorageBase ]
@@ -766,9 +796,10 @@
     default: ClothingOuterWeddingBallGownColorMaroon
     requireTag: ClothingOuterWeddingBallGown
 
+# Column Gowns
 # Grey column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorGrey
   name: grey column gown
   description: An elegant grey column gown.
@@ -792,10 +823,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#b3b3b3"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorGrey
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Black column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorBlack
   name: black column gown
   description: An elegant black column gown.
@@ -819,10 +854,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3f3f3f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorBlack
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Blue column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorBlue
   name: blue column gown
   description: An elegant blue column gown.
@@ -846,10 +885,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#52aecc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorBlue
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Dark Blue column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorDarkBlue
   name: dark blue column gown
   description: An elegant dark blue column gown.
@@ -873,10 +916,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3285ba"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorDarkBlue
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Teal column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorTeal
   name: teal column gown
   description: An elegant teal column gown.
@@ -900,10 +947,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#77f3b7"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorTeal
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Green column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorGreen
   name: green column gown
   description: An elegant green column gown.
@@ -927,10 +978,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9ed63a"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorGreen
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Dark Green column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorDarkGreen
   name: dark green column gown
   description: An elegant dark green column gown.
@@ -954,10 +1009,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#007923"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorDarkGreen
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Orange column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorOrange
   name: orange column gown
   description: An elegant orange column gown.
@@ -981,10 +1040,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ff8c19"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorOrange
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Pink column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorPink
   name: pink column gown
   description: An elegant pink column gown.
@@ -1008,10 +1071,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffa69b"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorPink
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Red column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorRed
   name: red column gown
   description: An elegant red column gown.
@@ -1035,10 +1102,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#eb0c07"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorRed
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Yellow column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorYellow
   name: yellow column gown
   description: An elegant yellow column gown.
@@ -1062,10 +1133,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffe14d"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorYellow
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Purple column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorPurple
   name: purple column gown
   description: An elegant light purple column gown.
@@ -1089,10 +1164,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9f70cc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorPurple
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Light Brown column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorLightBrown
   name: light brown column gown
   description: An elegant light brown column gown.
@@ -1116,10 +1195,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#c59431"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorLightBrown
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Brown column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorBrown
   name: brown column gown
   description: An elegant brown column gown.
@@ -1143,10 +1226,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#a17229"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorBrown
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Maroon column gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingColumnGownBase ]
   id: ClothingOuterWeddingColumnGownColorMaroon
   name: maroon column gown
   description: An elegant maroon column gown.
@@ -1170,6 +1257,10 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#cc295f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingColumnGownColorMaroon
+    requireTag: ClothingOuterWeddingColumnGown
 
 # Grey elegant jumpsuit
 - type: entity
