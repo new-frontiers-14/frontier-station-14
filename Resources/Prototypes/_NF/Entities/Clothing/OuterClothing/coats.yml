@@ -206,7 +206,33 @@
     sprite: _NF/Clothing/OuterClothing/Misc/wizard/wizard-fake.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingBallGownBase
+  abstract: true
+  name: ball gown base
+  description: ball gown base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingballgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingballgown.rsi
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    requireTag: ClothingOuterWeddingBallGown
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingBallGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGown
   name: Ball Gown
   description: A poofy and beautiful princess-style ball gown.
@@ -217,6 +243,10 @@
     sprite: _NF/Clothing/OuterClothing/Misc/weddingballgown.rsi
   - type: StaticPrice
     vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGown
+    requireTag: ClothingOuterWeddingBallGown
 
 - type: entity
   parent: [ ClothingOuterStorageBase ]
@@ -270,9 +300,10 @@
   - type: StaticPrice
     vendPrice: 1000
 
+# Ballgowns
 # Grey ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorGrey
   name: grey ballgown
   description: A poofy grey ballgown.
@@ -296,10 +327,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#b3b3b3"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorGrey
+    requireTag: ClothingOuterWeddingBallGown
 
 # Black ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorBlack
   name: black ballgown
   description: A poofy black ballgown.
@@ -323,10 +358,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3f3f3f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorBlack
+    requireTag: ClothingOuterWeddingBallGown
 
 # Blue ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorBlue
   name: blue ballgown
   description: A poofy blue ballgown.
@@ -350,10 +389,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#52aecc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Blue ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorDarkBlue
   name: dark blue ballgown
   description: A poofy dark blue ballgown.
@@ -377,10 +420,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3285ba"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorDarkBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Teal ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorTeal
   name: teal ballgown
   description: A poofy teal ballgown.
@@ -404,10 +451,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#77f3b7"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorTeal
+    requireTag: ClothingOuterWeddingBallGown
 
 # Green ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorGreen
   name: green ballgown
   description: A poofy green ballgown.
@@ -431,10 +482,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9ed63a"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Green ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorDarkGreen
   name: dark green ballgown
   description: A poofy dark green ballgown.
@@ -458,10 +513,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#007923"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorDarkGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Orange ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorOrange
   name: orange ballgown
   description: A poofy orange ballgown.
@@ -485,10 +544,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ff8c19"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorOrange
+    requireTag: ClothingOuterWeddingBallGown
 
 # Pink ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorPink
   name: pink ballgown
   description: A poofy pink ballgown.
@@ -512,10 +575,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffa69b"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorPink
+    requireTag: ClothingOuterWeddingBallGown
 
 # Red ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorRed
   name: red ballgown
   description: A poofy red ballgown.
@@ -539,10 +606,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#eb0c07"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorRed
+    requireTag: ClothingOuterWeddingBallGown
 
 # Yellow ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorYellow
   name: yellow ballgown
   description: A poofy yellow ballgown.
@@ -566,10 +637,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffe14d"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorYellow
+    requireTag: ClothingOuterWeddingBallGown
 
 # Purple ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorPurple
   name: purple ballgown
   description: A poofy light purple ballgown.
@@ -593,10 +668,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9f70cc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorPurple
+    requireTag: ClothingOuterWeddingBallGown
 
 # Light Brown ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorLightBrown
   name: light brown ballgown
   description: A poofy light brown ballgown.
@@ -620,10 +699,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#c59431"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorLightBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Brown ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorBrown
   name: brown ballgown
   description: A poofy brown ballgown.
@@ -647,10 +730,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#a17229"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Maroon ballgown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingBallGownBase ]
   id: ClothingOuterWeddingBallGownColorMaroon
   name: maroon ballgown
   description: A poofy maroon ballgown.
@@ -674,6 +761,10 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#cc295f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingBallGownColorMaroon
+    requireTag: ClothingOuterWeddingBallGown
 
 # Grey column gown
 - type: entity
