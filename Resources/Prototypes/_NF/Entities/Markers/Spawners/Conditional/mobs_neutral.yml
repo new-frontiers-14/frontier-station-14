@@ -50,6 +50,19 @@
     prototypes:
       - MobCatCappy
 
+- type: entity
+  name: Caddy Spawner
+  id: SpawnMobCatCaddy
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatCaddy
+
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
   name: Yip Yip Spawner
