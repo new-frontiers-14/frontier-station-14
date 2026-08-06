@@ -2,6 +2,10 @@
 <img alt="Frontier Station" height="300" src="https://github.com/new-frontiers-14/frontier-station-14/blob/master/Resources/Textures/_NF/Logo/logo.png?raw=true" />
 </div>
 
+<!-- hy-mt2-i18n:start -->
+**English** | [中文](./README_zh-CN.md) | [日本語](./README_ja.md) | [Español](./README_es.md)
+<!-- hy-mt2-i18n:end -->
+
 Frontier Station is a fork of [Space Station 14](https://github.com/space-wizards/space-station-14) that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox) engine written in C#.
 
 This is the primary repo for Frontier Station.
