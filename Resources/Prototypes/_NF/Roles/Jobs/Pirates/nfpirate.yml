@@ -36,6 +36,40 @@
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
 
+#Interview variant
+- type: job
+  id: NFPirateInterview
+  name: job-name-nf-pirate-interview
+  description: job-description-nf-pirate
+  playTimeTracker: JobPirateInterview
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400 # 24 hours
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 10800 # 3 hrs
+  setPreference: false
+  startingGear: NFPirateHologramGear
+  alwaysUseSpawner: true
+  icon: "JobIconNFPirate"
+  supervisors: job-supervisors-nf-pirate
+  access:
+  - Pirate
+  accessGroups:
+  - GeneralAccess
+  jobEntity: InterviewHologramPirate
+  newPlayerMessage: false
+
+- type: startingGear
+  id: NFPirateHologramGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    belt: ClothingBeltUtility
+    pocket1: BasePirateUplinkPirateCrew
+  storage:
+    back:
+    - AppraisalTool
+
 - type: startingGear
   id: NFPirateGear
   equipment:
