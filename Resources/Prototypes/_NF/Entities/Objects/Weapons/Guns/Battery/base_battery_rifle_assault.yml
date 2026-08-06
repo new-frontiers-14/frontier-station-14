@@ -81,6 +81,14 @@
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-cybersun-industries
 
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleAssaultChildrenOfTheAtom
+  parent: NFBaseWeaponFrameEnergyRifleAssault
+  abstract: true
+  components:
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-children-of-the-atom
+
 #region chamber
 - type: entity
   id: NFBaseWeaponEnergyRifleAssaultFireModes
@@ -96,6 +104,24 @@
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: NFBulletLaserMedium
+      fireCost: 80
+    - proto: NFBulletDisabler
+      fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultLaserRepeater
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-low-disabler-repeater
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserRepeater
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserRepeater
       fireCost: 80
     - proto: NFBulletDisabler
       fireCost: 80

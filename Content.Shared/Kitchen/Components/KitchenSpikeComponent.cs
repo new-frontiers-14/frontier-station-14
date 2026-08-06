@@ -120,7 +120,7 @@ public sealed partial class KitchenSpikeComponent : Component
     /// This is summed up with a <see cref="ButcherableComponent"/>'s butcher delay in butcher DoAfter.
     /// </remarks>
     [DataField, AutoNetworkedField]
-    public TimeSpan ButcherDelayAlive = TimeSpan.FromSeconds(8);
+    public TimeSpan ButcherDelayAlive = TimeSpan.FromSeconds(4); // Frontier: 8<4
 
     /// <summary>
     /// Value by which the butchering delay will be multiplied if the victim is dead.

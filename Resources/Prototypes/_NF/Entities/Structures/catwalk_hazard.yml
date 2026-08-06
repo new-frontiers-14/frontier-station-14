@@ -1,0 +1,19 @@
+# TODO move this to tiles once tile smoothing is supported
+- type: entity
+  parent: Catwalk
+  id: CatwalkHazard
+  name: hazard catwalk
+  description: A catwalk with hazard stripes for easier EVA maneuvering and cable placement.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/catwalkhazard.rsi
+    drawdepth: FloorTiles
+  - type: Icon
+    sprite: _NF/Structures/catwalkhazard.rsi
+    state: catwalk_hazard_preview
+  - type: IconSmooth
+    #key: catwalk_hazard #Un-comment this to stop the two types of catwalk from blending.
+    base: catwalk_hazard_
+  - type: Construction
+    graph: CatwalkHazard
+    node: CatwalkHazard
