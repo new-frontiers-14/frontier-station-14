@@ -46,7 +46,7 @@ public sealed partial class MechGrabberComponent : Component
     public SoundSpecifier GrabSound = new SoundPathSpecifier("/Audio/Mecha/sound_mecha_hydraulic.ogg")
     // Frontier: Add sound variation
     {  
-        Params = AudioParams.Default.WithVariation(0.125f)  
+        Params = AudioParams.Default.WithVariation(0.0375f)  
     };
     // End Frontier
 
