@@ -185,7 +185,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         damage += hitEvent.FlatModifier;
 
         // Frontier begin
-        if (args.User is { } user && TryComp<WearerDamageModifierComponent>(user, out _))
+        if (args.User is { } user && HasComp<WearerDamageModifierComponent>(user))
         {
             var ev2 = new ApplyClothingStaminaModifierEvent(user, DamageContext.Melee, damage);
             RaiseLocalEvent(user, ref ev2);
@@ -234,7 +234,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         if (source is { } origin)
         {
-            if (TryComp<WearerDamageModifierComponent>(origin, out _))
+            if (HasComp<WearerDamageModifierComponent>(origin))
             {
                 var ev2 = new ApplyClothingStaminaModifierEvent(origin, context, damage);
                 RaiseLocalEvent(origin, ref ev2);

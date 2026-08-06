@@ -74,6 +74,9 @@ uplink-security-energygun-desc = A semi-automatic energy gun capable of firing b
 uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
 
+uplink-security-sniper-name = Sniper Bundle
+uplink-security-sniper-desc = "Aspect" sniper rifle provided with non lethal .60 rounds for long range support on the field, for lethal ammunition ask your higher ups.
+
 uplink-security-empgrenade-name = EMP Grenade
 uplink-security-empgrenade-desc = A handheld grenade that emits a high energy pulse that disrupts electronics and power systems in a moderately large radius.
 
@@ -116,6 +119,12 @@ uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (over
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 
+uplink-security-60sniperbox-name = .60 Rifle Box
+uplink-security-60sniperbox-desc = a Box containing 30 rounds of .60 rifle bullets.
+
+uplink-security-60sniperbox-rubber-name = .60 Rifle Rubber Box
+uplink-security-60sniperbox-rubber-desc = a Box containing 30 rounds of .60 rifle (rubber) bullets.
+
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
@@ -124,6 +133,9 @@ uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpre
 
 uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
 uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
+
+uplink-security-brigmed-glasses-name = Brigmedic Glasses
+uplink-security-brigmed-glasses-desc = Upgraded sunglasses that provide flash immunity and an integrated medical hud.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.

@@ -226,7 +226,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         {
                             if (dmg != null)
                             {
-                                var ev = new ApplyClothingDamageModifierEvent(shooter, DamageContext.Ranged, dmg);
+                                var ev = new ApplyClothingDamageModifierEvent(shooter, DamageContext.Hitscan, dmg);
                                 RaiseLocalEvent(shooter, ref ev);
                                 dmg = ev.Damage;
                             }

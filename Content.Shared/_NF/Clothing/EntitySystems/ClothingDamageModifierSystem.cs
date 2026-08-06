@@ -47,13 +47,22 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
             if (!source.AppliesTo(args.Context))
                 continue;
 
-            var flat = source.GetFlatBonus(args.Context);
-            if (flat != null)
-                args.Damage += flat;
-
             var mod = source.GetModifierSet(args.Context);
             if (mod != null)
                 args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, mod);
+        }
+
+        foreach (var sourceUid in comp.Sources)
+        {
+            if (!TryComp<ClothingDamageModifierComponent>(sourceUid, out var source))
+                continue;
+
+            if (!source.AppliesTo(args.Context))
+                continue;
+
+            var flat = source.GetFlatBonus(args.Context);
+            if (flat != null)
+                args.Damage += flat;
         }
 
     }
@@ -98,7 +107,7 @@ public sealed class ClothingDamageModifierSystem : EntitySystem
         GetCombatStyleDetails(examineMarkup, component);
         GetDamageDetails(examineMarkup, component.BonusDamage, component.DamageModifierSet, component.StaminaFlatBonus, component.StaminaMultiplier);
 
-        _examine.AddDetailedExamineVerb(args, component, examineMarkup, Loc.GetString("clothing-damage-examinable-verb-text"), "/Textures/Interface/VerbIcons/knife.svg.192dpi.png", Loc.GetString("clothing-damage-examinable-verb-message"));
+        _examine.AddDetailedExamineVerb(args, component, examineMarkup, Loc.GetString("clothing-damage-examinable-verb-text"), "/Textures/_NF/Interface/VerbIcons/cleavericon.png", Loc.GetString("clothing-damage-examinable-verb-message"));
     }
 
     private void GetCombatStyleDetails(FormattedMessage msg, ClothingDamageModifierComponent component)
