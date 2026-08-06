@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: https://github.com/AmbitiousFailure
+# Discord: ambitiousfailure
+
+# Maintainer Info
+# GitHub: https://github.com/AmbitiousFailure
+# Discord: ambitiousfailure
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Coffeehouse
+  parent: BaseVessel
+  name: SSF Coffeehouse
+  description: A small service ship with café inside it, ready to serve the best coffee in the galaxy.
+  price: 32500 # ~29300 0.1 ~32230
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/coffeehouse.yml
+  guidebookPage: ShipyardCoffeehouse
+  class:
+  - Kitchen
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Coffeehouse
+  mapName: 'SSF Coffeehouse'
+  mapPath: /Maps/_NF/Shuttles/coffeehouse.yml
+  minPlayers: 0
+  stations:
+    Coffeehouse:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Coffeehouse {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

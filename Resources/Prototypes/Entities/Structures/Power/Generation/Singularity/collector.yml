@@ -2,7 +2,10 @@
   id: RadiationCollector
   name: radiation collector
   suffix: Empty tank
-  description: A machine that collects radiation and turns it into power. Requires plasma gas to function.
+# Harmony change start - Changed description
+# description: A machine that collects radiation and turns it into power. Requires plasma gas to function.
+  description: A machine that collects radiation and turns it into power. Requires plasma or tritium gas to function.
+# Harmony change end
   placement:
     mode: SnapgridCenter
   components:
@@ -61,7 +64,12 @@
     radiationReactiveGases:
       - reactantPrototype: Plasma
         powerGenerationEfficiency: 1
-        reactantBreakdownRate: 0.0001
+#harmony change start
+        reactantBreakdownRate: 0.00012
+      - reactantPrototype: Tritium
+        powerGenerationEfficiency: 1.5
+        reactantBreakdownRate: 0.00006 
+#harmony change end
   - type: RadiationReceiver
   - type: PowerSupplier
   - type: Anchorable

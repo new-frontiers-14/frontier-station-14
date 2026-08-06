@@ -109,6 +109,10 @@
   parent: [ DrinkShaker, BaseC3WizardContraband ]
   name: The Shaker
   components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 1000
   - type: Sprite
     sprite: Objects/Consumable/Drinks/shaker.rsi # placeholder
     state: icon
@@ -148,7 +152,7 @@
   id: GasTankWizardBottomless
   parent: [ GasTankRoundBase, BaseC3WizardContraband ]
   name: bottomless gas tank
-  description: An unusual looking gas tank that can hold more volume that it's size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  description: An unusual looking gas tank that can hold more volume than its size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
   components:
   - type: Sprite
     sprite: _NF/Objects/Tanks/wizard.rsi
