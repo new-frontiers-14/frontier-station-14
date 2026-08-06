@@ -292,8 +292,34 @@
     requireTag: ClothingOuterWeddingColumnGown
 
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
-  id: ClothingOuterWeddingJumpsuit
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingElegantJumpsuitBase
+  abstract: true
+  name: wedding jumpsuit base
+  description: wedding jumpsuit base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingjumpsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingjumpsuit.rsi
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    requireTag: ClothingOuterWeddingElegantJumpsuit
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingElegantJumpsuit
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
+  id: ClothingOuterWeddingElegantJumpsuit
   name: Elegant Jumpsuit
   description: An elegant feminine jumpsuit.
   components:
@@ -303,9 +329,39 @@
     sprite: _NF/Clothing/OuterClothing/Misc/weddingjumpsuit.rsi
   - type: StaticPrice
     vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuit
+    requireTag: ClothingOuterWeddingElegantJumpsuit
 
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingMermaidGownBase
+  abstract: true
+  name: mermaid gown base
+  description: mermaid gown base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingmermaidgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingmermaidgown.rsi
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    requireTag: ClothingOuterWeddingMermaidGown
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingMermaidGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingMermaidGown
   name: Mermaid Gown
   description: A form-fitting gown with a flared bottom.
@@ -316,9 +372,39 @@
     sprite: _NF/Clothing/OuterClothing/Misc/weddingmermaidgown.rsi
   - type: StaticPrice
     vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGown
+    requireTag: ClothingOuterWeddingMermaidGown
 
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingWaterfallGownBase
+  abstract: true
+  name: waterfall gown base
+  description: waterfall gown base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingwaterfallgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingwaterfallgown.rsi
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    requireTag: ClothingOuterWeddingWaterfallGown
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingWaterfallGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingWaterfallGown
   name: Waterfall Gown
   description: A flowing gown with a slit up one leg.
@@ -329,6 +415,10 @@
     sprite: _NF/Clothing/OuterClothing/Misc/weddingwaterfallgown.rsi
   - type: StaticPrice
     vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGown
+    requireTag: ClothingOuterWeddingWaterfallGown
 
 # Ballgowns
 # Grey ballgown
@@ -1264,7 +1354,7 @@
 
 # Grey elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorGrey
   name: grey elegant jumpsuit
   description: A sleek grey elegant jumpsuit.
@@ -1288,10 +1378,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#b3b3b3"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorGrey
+    requireTag: ClothingOuterWeddingBallGown
 
 # Black elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorBlack
   name: black elegant jumpsuit
   description: A sleek black elegant jumpsuit.
@@ -1315,10 +1409,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3f3f3f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorBlack
+    requireTag: ClothingOuterWeddingBallGown
 
 # Blue elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorBlue
   name: blue elegant jumpsuit
   description: A sleek blue elegant jumpsuit.
@@ -1342,10 +1440,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#52aecc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Blue elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorDarkBlue
   name: dark blue elegant jumpsuit
   description: A sleek dark blue elegant jumpsuit.
@@ -1369,10 +1471,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3285ba"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorDarkBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Teal elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorTeal
   name: teal elegant jumpsuit
   description: A sleek teal elegant jumpsuit.
@@ -1396,10 +1502,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#77f3b7"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorTeal
+    requireTag: ClothingOuterWeddingBallGown
 
 # Green elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorGreen
   name: green elegant jumpsuit
   description: A sleek green elegant jumpsuit.
@@ -1423,10 +1533,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9ed63a"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Green elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorDarkGreen
   name: dark green elegant jumpsuit
   description: A sleek dark green elegant jumpsuit.
@@ -1450,10 +1564,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#007923"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorDarkGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Orange elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorOrange
   name: orange elegant jumpsuit
   description: A sleek orange elegant jumpsuit.
@@ -1477,10 +1595,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ff8c19"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorOrange
+    requireTag: ClothingOuterWeddingBallGown
 
 # Pink elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorPink
   name: pink elegant jumpsuit
   description: A sleek pink elegant jumpsuit.
@@ -1504,10 +1626,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffa69b"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorPink
+    requireTag: ClothingOuterWeddingBallGown
 
 # Red elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorRed
   name: red elegant jumpsuit
   description: A sleek red elegant jumpsuit.
@@ -1531,10 +1657,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#eb0c07"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorRed
+    requireTag: ClothingOuterWeddingBallGown
 
 # Yellow elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorYellow
   name: yellow elegant jumpsuit
   description: A sleek yellow elegant jumpsuit.
@@ -1558,10 +1688,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffe14d"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorYellow
+    requireTag: ClothingOuterWeddingBallGown
 
 # Purple elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorPurple
   name: purple elegant jumpsuit
   description: A sleek light purple elegant jumpsuit.
@@ -1585,10 +1719,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9f70cc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorPurple
+    requireTag: ClothingOuterWeddingBallGown
 
 # Light Brown elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorLightBrown
   name: light brown elegant jumpsuit
   description: A sleek light brown elegant jumpsuit.
@@ -1612,10 +1750,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#c59431"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorLightBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Brown elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorBrown
   name: brown elegant jumpsuit
   description: A sleek brown elegant jumpsuit.
@@ -1639,10 +1781,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#a17229"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Maroon elegant jumpsuit
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingElegantJumpsuitBase ]
   id: ClothingouterweddingelegantjumpsuitColorMaroon
   name: maroon elegant jumpsuit
   description: A sleek maroon elegant jumpsuit.
@@ -1666,10 +1812,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#cc295f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingElegantJumpsuitColorMaroon
+    requireTag: ClothingOuterWeddingBallGown
 
 # Grey mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorGrey
   name: grey mermaid gown
   description: A form-fitting grey mermaid gown.
@@ -1693,10 +1843,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#b3b3b3"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownGrey
+    requireTag: ClothingOuterWeddingBallGown
 
 # Black mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorBlack
   name: black mermaid gown
   description: A form-fitting black mermaid gown.
@@ -1720,10 +1874,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3f3f3f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownBlack
+    requireTag: ClothingOuterWeddingBallGown
 
 # Blue mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorBlue
   name: blue mermaid gown
   description: A form-fitting blue mermaid gown.
@@ -1747,10 +1905,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#52aecc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Blue mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorDarkBlue
   name: dark blue mermaid gown
   description: A form-fitting dark blue mermaid gown.
@@ -1774,10 +1936,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3285ba"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownDarkBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Teal mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorTeal
   name: teal mermaid gown
   description: A form-fitting teal mermaid gown.
@@ -1801,10 +1967,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#77f3b7"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownTeal
+    requireTag: ClothingOuterWeddingBallGown
 
 # Green mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorGreen
   name: green mermaid gown
   description: A form-fitting green mermaid gown.
@@ -1828,10 +1998,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9ed63a"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Green mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorDarkGreen
   name: dark green mermaid gown
   description: A form-fitting dark green mermaid gown.
@@ -1855,10 +2029,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#007923"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownDarkGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Orange mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorOrange
   name: orange mermaid gown
   description: A form-fitting orange mermaid gown.
@@ -1882,10 +2060,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ff8c19"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownOrange
+    requireTag: ClothingOuterWeddingBallGown
 
 # Pink mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorPink
   name: pink mermaid gown
   description: A form-fitting pink mermaid gown.
@@ -1909,10 +2091,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffa69b"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownPink
+    requireTag: ClothingOuterWeddingBallGown
 
 # Red mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorRed
   name: red mermaid gown
   description: A form-fitting red mermaid gown.
@@ -1936,10 +2122,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#eb0c07"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownRed
+    requireTag: ClothingOuterWeddingBallGown
 
 # Yellow mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorYellow
   name: yellow mermaid gown
   description: A form-fitting yellow mermaid gown.
@@ -1963,10 +2153,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffe14d"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownYellow
+    requireTag: ClothingOuterWeddingBallGown
 
 # Purple mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorPurple
   name: purple mermaid gown
   description: A form-fitting light purple mermaid gown.
@@ -1990,10 +2184,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9f70cc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownPurple
+    requireTag: ClothingOuterWeddingBallGown
 
 # Light Brown mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorLightBrown
   name: light brown mermaid gown
   description: A form-fitting light brown mermaid gown.
@@ -2017,10 +2215,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#c59431"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownLightBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Brown mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorBrown
   name: brown mermaid gown
   description: A form-fitting brown mermaid gown.
@@ -2044,10 +2246,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#a17229"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Maroon mermaid gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingMermaidGownBase ]
   id: ClothingOuterWeddingmermaidgowncolorMaroon
   name: maroon mermaid gown
   description: A form-fitting maroon mermaid gown.
@@ -2071,10 +2277,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#cc295f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingMermaidGownMaroon
+    requireTag: ClothingOuterWeddingBallGown
 
 # Grey waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorGrey
   name: grey waterfall gown
   description: A flowing grey waterfall gown.
@@ -2098,10 +2308,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#b3b3b3"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownGrey
+    requireTag: ClothingOuterWeddingBallGown
 
 # Black waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorBlack
   name: black waterfall gown
   description: A flowing black waterfall gown.
@@ -2125,10 +2339,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3f3f3f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownBlack
+    requireTag: ClothingOuterWeddingBallGown
 
 # Blue waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorBlue
   name: blue waterfall gown
   description: A flowing blue waterfall gown.
@@ -2152,10 +2370,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#52aecc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Blue waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorDarkBlue
   name: dark blue waterfall gown
   description: A flowing dark blue waterfall gown.
@@ -2179,10 +2401,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#3285ba"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownDarkBlue
+    requireTag: ClothingOuterWeddingBallGown
 
 # Teal waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorTeal
   name: teal waterfall gown
   description: A flowing teal waterfall gown.
@@ -2206,10 +2432,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#77f3b7"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownTeal
+    requireTag: ClothingOuterWeddingBallGown
 
 # Green waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorGreen
   name: green waterfall gown
   description: A flowing green waterfall gown.
@@ -2233,10 +2463,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9ed63a"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Dark Green waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorDarkGreen
   name: dark green waterfall gown
   description: A flowing dark green waterfall gown.
@@ -2260,10 +2494,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#007923"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownDarkGreen
+    requireTag: ClothingOuterWeddingBallGown
 
 # Orange waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorOrange
   name: orange waterfall gown
   description: A flowing orange waterfall gown.
@@ -2287,10 +2525,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ff8c19"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownOrange
+    requireTag: ClothingOuterWeddingBallGown
 
 # Pink waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorPink
   name: pink waterfall gown
   description: A flowing pink waterfall gown.
@@ -2314,10 +2556,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffa69b"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownPink
+    requireTag: ClothingOuterWeddingBallGown
 
 # Red waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorRed
   name: red waterfall gown
   description: A flowing red waterfall gown.
@@ -2341,10 +2587,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#eb0c07"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownRed
+    requireTag: ClothingOuterWeddingBallGown
 
 # Yellow waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorYellow
   name: yellow waterfall gown
   description: A flowing yellow waterfall gown.
@@ -2368,10 +2618,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#ffe14d"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownYellow
+    requireTag: ClothingOuterWeddingBallGown
 
 # Purple waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorPurple
   name: purple waterfall gown
   description: A flowing light purple waterfall gown.
@@ -2395,10 +2649,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#9f70cc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownPurple
+    requireTag: ClothingOuterWeddingBallGown
 
 # Light Brown waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorLightBrown
   name: light brown waterfall gown
   description: A flowing light brown waterfall gown.
@@ -2422,10 +2680,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#c59431"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownLightBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Brown waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorBrown
   name: brown waterfall gown
   description: A flowing brown waterfall gown.
@@ -2449,10 +2711,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#a17229"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownBrown
+    requireTag: ClothingOuterWeddingBallGown
 
 # Maroon waterfall gown
 - type: entity
-  parent: [ ClothingOuterStorageBase ]
+  parent: [ ClothingOuterWeddingWaterfallGownBase ]
   id: ClothingOuterWeddingwaterfallgowncolorMaroon
   name: maroon waterfall gown
   description: A flowing maroon waterfall gown.
@@ -2476,3 +2742,7 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
         color: "#cc295f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingWaterfallGownMaroon
+    requireTag: ClothingOuterWeddingBallGown
