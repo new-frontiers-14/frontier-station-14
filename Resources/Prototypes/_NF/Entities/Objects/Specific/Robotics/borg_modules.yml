@@ -127,12 +127,24 @@
           - Cigar
           - Cigarette
     - hand:
+        emptyRepresentative: DrinkEnergyDrinkCan
+        emptyLabel: borg-slot-bottle-empty
+        whitelist:
+          tags:
+          - DrinkCan
+          - DrinkBottle
+          - Beer
+          components:
+            - Shakeable
+    - item: DrinkGlass
+      hand:
         emptyRepresentative: DrinkGlass
         emptyLabel: borg-slot-glassware-empty
         whitelist:
           tags:
           - DrinkGlass
-    - hand:
+    - item: DrinkGlass
+      hand:
         emptyRepresentative: DrinkGlass
         emptyLabel: borg-slot-glassware-empty
         whitelist:
@@ -161,6 +173,12 @@
         whitelist:
           components:
           - NFBookBag
+    - hand:
+        emptyRepresentative: BoxFolderClipboardEmpty
+        emptyLabel: borg-slot-folder-empty
+        whitelist:
+          tags:
+          - Folder
     - item: Pen
       hand:
         emptyRepresentative: Pen
@@ -241,7 +259,79 @@
           - Food
           - Produce
           - NFIngredient
+          - Edible
           tags:
           - Ingredient
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: chef-module }
+
+- type: entity
+  id: BorgModuleMutation
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: mutation cyborg module
+  description: "Cool borg module Placeholder"
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-syndicate #Placeholder that sticks out very obviously
+      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: Mutation
+    hands:
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: PlantAnalyzerPowerd
+    - item: BorgDropper
+    - item: BoxMouthSwab
+    - hand:
+        emptyLabel: borg-slot-swab-empty
+        emptyRepresentative: DiseaseSwab
+        whitelist:
+          components:
+          - BotanySwab
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
+
+- type: entity
+  id: AdvancedBorgModuleMusique
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: advanced musique cyborg module
+  description: "Cool borg module Placeholder"
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-syndicate #Placeholder that sticks out very obviously
+      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: AdvancedMusic
+    hands:
+    - item: DawInstrument
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously

@@ -574,11 +574,13 @@
     moduleId: Mining # Frontier
     hands:
     - item: MiningDrill
+    - item: NFCyborgWeaponPka # Frontier
     - item: Shovel
     - item: MineralScannerUnpowered
     # - item: BorgOreBag # Frontier
     # Frontier
-    - hand:
+    - item: OreBag
+      hand:
         emptyRepresentative: OreBag
         emptyLabel: borg-slot-orebag-empty
         whitelist:
@@ -602,11 +604,13 @@
     moduleId: AdvancedMining # Frontier
     hands:
     - item: MiningDrillDiamond
+    - item: NFCyborgWeaponPkaCannon # Frontier
     - item: Shovel
     - item: AdvancedMineralScannerUnpowered
     # - item: OreBagOfHolding # Frontier
     # Frontier
-    - hand:
+    - item: OreBagOfHolding
+      hand:
         emptyRepresentative: OreBagOfHolding
         emptyLabel: borg-slot-orebag-empty
         whitelist:
@@ -629,6 +633,7 @@
     moduleId: GrapplingGun # Frontier
     hands:
     - item: WeaponGrapplingGun
+    - item: NFWeaponHoloflareGun # Frontier
     # - item: BorgFireExtinguisher # Frontier: just use the jetpack module
     - item: BorgHandheldGPSBasic
     - item: HandHeldMassScannerBorg
@@ -679,7 +684,8 @@
     moduleId: Construction # Frontier
     hands:
     # Frontier
-    - hand:
+    - item: ConstructionBag
+      hand:
         emptyRepresentative: ConstructionBag
         emptyLabel: borg-slot-construction-bag-empty
         whitelist:
@@ -719,6 +725,12 @@
         whitelist:
           tags:
           - ConstructionMaterial
+          #Frontier
+          - Igniter
+          - GlassBeaker #a bit to Generic, should only allow regular beaker for construction
+          components:
+          - MachinePart
+          #End Frontier
     - hand:
         emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty
@@ -743,6 +755,14 @@
         whitelist:
           components:
           - FloorTile
+    # Frontier
+    - hand:
+        emptyLabel: borg-slot-lightbulb-empty
+        emptyRepresentative: LightBulb
+        whitelist:
+          components:
+          - LightBulb
+    #End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
 
