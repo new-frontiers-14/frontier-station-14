@@ -1,0 +1,25 @@
+- type: entity
+  parent: FoodPlateTrash
+  id: BrokenTeacup
+  name: broken teacup
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/teacup.rsi
+    state: icon-broken
+  - type: Item
+    storedOffset: 0,-3
+  - type: NFCookware
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 1
+
+- type: entity
+  parent: DrinkTeapot
+  id: DrinkTeapotEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents: []
+        maxVol: 100
