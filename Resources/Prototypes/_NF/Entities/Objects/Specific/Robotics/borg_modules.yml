@@ -18,6 +18,54 @@
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-paramed-module }
 
 - type: entity
+  id: BorgModulePills
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: pill cyborg module
+  description: "Cool borg module Placeholder"
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-syndicate #Placeholder that sticks out very obviously
+      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: Pill
+    hands:
+    - hand:
+        emptyRepresentative: PillCanister
+        emptyLabel: borg-slot-pillcanister-empty
+        whitelist:
+          tags:
+          - PillCanister
+    - hand:
+          emptyRepresentative: PillCanister
+          emptyLabel: borg-slot-pillcanister-empty
+          whitelist:
+            tags:
+            - PillCanister
+    - hand:
+        emptyRepresentative: PillCanister
+        emptyLabel: borg-slot-pillcanister-empty
+        whitelist:
+          tags:
+          - PillCanister
+    - hand:
+        emptyRepresentative: PillTricordrazine
+        emptyLabel: borg-slot-pill-empty
+        whitelist:
+          tags:
+          - Pill
+    - hand:
+        emptyRepresentative: PillTricordrazine
+        emptyLabel: borg-slot-pill-empty
+        whitelist:
+          tags:
+          - Pill
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
+
+
+- type: entity
   id: BorgModuleJetpack
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: Frontier cyborg module

@@ -1,0 +1,13 @@
+- type: entity
+  id: WeaponSprayNozzleBorg
+  parent: WeaponSprayNozzle
+  name: adv. internal spray nozzle
+  suffix: Cyborg
+  description: A high-powered spray nozzle used in conjunction with a backpack-mounted water tank.
+  components:
+  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
+    targetSlot: ALL
+    containerWhitelist:
+      tags:
+      - NozzleBackTank
