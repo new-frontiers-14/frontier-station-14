@@ -301,8 +301,36 @@
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/smallclothes.rsi
 
+# Tuxedos
+
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase]
+  id: ClothingUniformTuxedoBase
+  abstract: true
+  name: tuxedo base
+  description: tuxedo base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/blacktuxedo.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/blacktuxedo.rsi
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    requireTag: ClothingUniformTuxedo
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingUniformTuxedo
+
+- type: entity
+  parent: [ClothingUniformTuxedoBase]
   id: ClothingUniformJumpsuitBlackTuxedo
   name: black tuxedo
   description: A striking black tux!
@@ -311,9 +339,16 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/blacktuxedo.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/blacktuxedo.rsi
+  - type: StaticPrice
+    vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpsuitBlackTuxedo
+    requireTag: ClothingUniformTuxedo
+
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformTuxedoBase]
   id: ClothingUniformJumpsuitDarkTuxedo
   name: dark tuxedo
   description: You look good in this! "Yeah... I know."
@@ -322,9 +357,15 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/darktuxedo.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/darktuxedo.rsi
+  - type: StaticPrice
+    vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpsuitDarkTuxedo
+    requireTag: ClothingUniformTuxedo
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformTuxedoBase]
   id: ClothingUniformJumpsuitGreyTuxedo
   name: grey tuxedo
   description: A soft grey tuxedo!
@@ -333,9 +374,15 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/greytuxedo.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/greytuxedo.rsi
+  - type: StaticPrice
+    vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpsuitGreyTuxedo
+    requireTag: ClothingUniformTuxedo
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformTuxedoBase]
   id: ClothingUniformJumpsuitNavyTuxedo
   name: navy tuxedo
   description: A bold navy tuxedo!
@@ -344,9 +391,15 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/navytuxedo.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/navytuxedo.rsi
+  - type: StaticPrice
+    vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpsuitNavyTuxedo
+    requireTag: ClothingUniformTuxedo
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformTuxedoBase]
   id: ClothingUniformJumpsuitTanTuxedo
   name: tan tuxedo
   description: A daring tan tuxedo!
@@ -355,9 +408,15 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/tantuxedo.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/tantuxedo.rsi
+  - type: StaticPrice
+    vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpsuitTanTuxedo
+    requireTag: ClothingUniformTuxedo
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformTuxedoBase]
   id: ClothingUniformJumpsuitWhiteTuxedo
   name: white tuxedo
   description: A pure white tuxedo!
@@ -366,3 +425,7 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/whitetuxedo.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/whitetuxedo.rsi
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpsuitWhiteTuxedo
+    requireTag: ClothingUniformTuxedo
