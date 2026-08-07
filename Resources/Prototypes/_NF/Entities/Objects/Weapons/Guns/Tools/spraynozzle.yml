@@ -1,13 +1,37 @@
 - type: entity
   id: WeaponSprayNozzleBorg
-  parent: WeaponSprayNozzle
+  parent: BaseItem
   name: adv. internal spray nozzle
   suffix: Cyborg
   description: A high-powered spray nozzle used in conjunction with a backpack-mounted water tank.
   components:
-  - type: ClothingSlotAmmoProvider
-  - type: SlotBasedConnectedContainer
-    targetSlot: ALL
+  - type: Tag
+    tags:
+    - SprayNozzle
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    size: Normal
+  - type: Gun
+    cameraRecoilScalar: 0 #no recoil
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: Absorbent
+    pickupAmount: 35
+    solutionName: tank
+    useAbsorberSolution: false
+    pickupSound:
+      path: /Audio/Effects/Fluids/vacuum-cleaner-fast.ogg
+  - type: Appearance
+  - type: BorgAmmoProvider
     containerWhitelist:
       tags:
       - NozzleBackTank
+  - type: UseDelay
+    delay: 1.0
