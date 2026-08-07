@@ -121,6 +121,7 @@
     materialComposition:
       Plasteel: 150
       RawScrap: 50
+
 # region Simple Devices
 ## Tiny
 - type: entity # Machine parts, encryption keys etc
@@ -183,6 +184,15 @@
       Wood: 200
 
 # region Bones
+## Small
+- type: entity # Bone Helmet
+  id: RecyclableItemBonesSmall
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Bones: 50
+
 ## Medium
 - type: entity # Bone weapons, Bone Armor
   id: RecyclableItemBonesMedium
