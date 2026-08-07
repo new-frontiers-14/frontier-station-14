@@ -1,0 +1,144 @@
+# Chaplain Forms
+
+# Filled Folder
+- type: entity
+  id: BoxFolderChaplain
+  parent: BoxFolderBase
+  name: Chaplain's Folder
+  description: A folder filled with paperwork templates for Chaplains.
+  suffix: Forms
+  components:
+  - type: Sprite
+    layers:
+    - state: folder-colormap
+      color: "#4a4a4a"
+    - state: folder-base
+  - type: StorageFill
+    contents:
+    - id: PaperWrittenMarriageCertificate
+    - id: PaperWrittenDeathCertificate
+    - id: PaperWrittenExorcismCertificate
+    - id: PaperWrittenConfirmationCertificate
+    - id: Paper
+      prob: 0.5
+    - id: Paper
+      prob: 0.5
+
+# Forms
+- type: entity
+  id: PaperWrittenMarriageCertificate
+  name: marriage certificate
+  parent: Paper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Paper
+    content: |2
+      [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+      [color=SkyBlue]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=1][italic]CERTIFICATE OF MARRIAGE[/italic][/head]
+
+      [italic] This certifies that[/italic]
+
+      [form]
+
+      &
+
+      [form]
+
+      [italic]were united in marriage on the [form] day of [form] in the year of 25[form] at [form] by [form]
+
+      As witnessed by[/italic]
+      [form] & [form]
+
+
+
+
+
+      [color=#AAAAAA]This Form is void without the signatures of both spouses, both witnesses, a chaplain, and a Chaplain's stamp OR Frontier Command (Sheriff, Station Representative, Director of Care, Plant Manager). Any missing or inaccurate fields may result in an invalid licensure.[/color]
+
+      [color=SkyBlue]_________________[/color]
+      [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+
+- type: entity
+  id: PaperWrittenDeathCertificate
+  name: death certificate
+  parent: Paper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Paper
+    content: |2
+      [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+      [color=SkyBlue]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=1][italic]DEATH CERTIFICATE[/italic][/head]
+
+      [italic] This is to acknowledge the death of[/italic]
+
+      [form]
+
+      [italic]On the [form] day of [form], in the year 24[form] at [form]
+
+      Cause of death: [form]
+
+
+
+
+      [color=#AAAAAA]This Form is void without the signature of a chaplain, doctor, OR Frontier Command (Sheriff, Station Representative, Director of Care, Plant Manager). Any missing or inaccurate fields may result in an investigation.[/color]
+
+      [color=SkyBlue]_________________[/color]
+      [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+
+- type: entity
+  id: PaperWrittenExorcismCertificate
+  name: exorcism certificate
+  parent: PaperColoredRed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Paper
+    content: |2
+       [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+       [color=SkyBlue]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+       [head=1][italic]EXORCISM CERTIFICATION[/italic][/head]
+
+       [italic] This is to acknowledge the exorcism of[/italic]
+
+       [form]
+
+       [italic]On the [form] day of [form], in the year 24[form] at [form]
+
+
+
+
+       [color=#AAAAAA]This Form is void without the signature of a chaplain AND a chaplain's stamp. Any missing or inaccurate fields may result in an investigation.[/color]
+
+       [color=SkyBlue]_________________[/color]
+       [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+
+- type: entity
+  id: PaperWrittenConfirmationCertificate
+  name: confirmation certificate
+  parent: Paper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Paper
+    content: |2
+      [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
+      [color=SkyBlue]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=1][italic]CERTIFICATE OF CONFIRMATION[/italic][/head]
+
+      [italic] This certifies that[/italic]
+
+      [form]
+
+      [italic]was confirmed into the [form] (religion) [/italic]
+
+      [italic]On the [form] day of [form], in the year 24[form] at [form]
+
+      As witnessed by [form] and [form]
+
+
+
+
+      [color=#AAAAAA]This Form is void without the signature of the confirmed, two witnesses, a chaplain, AND a chaplain's stamp. Any missing or inaccurate fields may result in refusal of confirmation.[/color]
+
+      [color=SkyBlue]_________________[/color]
+      [color=SkyBlue]◥[bold]N[/bold]◣ [bold]Nanotrasen Family Affairs[/bold][/color]
