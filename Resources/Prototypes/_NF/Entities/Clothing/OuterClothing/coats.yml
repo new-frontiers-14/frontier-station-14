@@ -2746,3 +2746,513 @@
     slot: [outerClothing]
     default: ClothingOuterWeddingWaterfallGownMaroon
     requireTag: ClothingOuterWeddingBallGown
+
+# Long sleeved gown
+
+- type: entity
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingLongSleevedGownBase
+  abstract: true
+  name: long sleeved gown base
+  description: long sleeved gown base
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    requireTag: ClothingOuterWeddingLongSleevedGown
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingLongSleevedGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGown
+  name: Long Sleeved Gown
+  description: An elegant long-sleeved gown with a high neck.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+  - type: StaticPrice
+    vendPrice: 1000
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGown
+    requireTag: ClothingOuterWeddingLongSleevedGown
+
+# Grey long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorGrey
+  name: grey long sleeved gown
+  description: A flowing grey long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#b3b3b3"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: inhand-right
+        color: "#b3b3b3"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#b3b3b3"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownGrey
+    requireTag: ClothingOuterWeddingBallGown
+
+# Black long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorBlack
+  name: black long sleeved gown
+  description: A flowing black long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#3f3f3f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3f3f3f"
+      right:
+      - state: inhand-right
+        color: "#3f3f3f"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#3f3f3f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownBlack
+    requireTag: ClothingOuterWeddingBallGown
+
+# Blue long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorBlue
+  name: blue long sleeved gown
+  description: A flowing blue long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#52aecc"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#52aecc"
+      right:
+      - state: inhand-right
+        color: "#52aecc"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#52aecc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownBlue
+    requireTag: ClothingOuterWeddingBallGown
+
+# Dark Blue long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorDarkBlue
+  name: dark blue long sleeved gown
+  description: A flowing dark blue long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#3285ba"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3285ba"
+      right:
+      - state: inhand-right
+        color: "#3285ba"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#3285ba"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownDarkBlue
+    requireTag: ClothingOuterWeddingBallGown
+
+# Teal long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorTeal
+  name: teal long sleeved gown
+  description: A flowing teal long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#77f3b7"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#77f3b7"
+      right:
+      - state: inhand-right
+        color: "#77f3b7"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#77f3b7"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownTeal
+    requireTag: ClothingOuterWeddingBallGown
+
+# Green long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorGreen
+  name: green long sleeved gown
+  description: A flowing green long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#9ed63a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#9ed63a"
+      right:
+      - state: inhand-right
+        color: "#9ed63a"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#9ed63a"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownGreen
+    requireTag: ClothingOuterWeddingBallGown
+
+# Dark Green long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorDarkGreen
+  name: dark green long sleeved gown
+  description: A flowing dark green long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#007923"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#007923"
+      right:
+      - state: inhand-right
+        color: "#007923"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#007923"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownDarkGreen
+    requireTag: ClothingOuterWeddingBallGown
+
+# Orange long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorOrange
+  name: orange long sleeved gown
+  description: A flowing orange long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#ff8c19"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ff8c19"
+      right:
+      - state: inhand-right
+        color: "#ff8c19"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#ff8c19"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownOrange
+    requireTag: ClothingOuterWeddingBallGown
+
+# Pink long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorPink
+  name: pink long sleeved gown
+  description: A flowing pink long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#ffa69b"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffa69b"
+      right:
+      - state: inhand-right
+        color: "#ffa69b"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#ffa69b"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownPink
+    requireTag: ClothingOuterWeddingBallGown
+
+# Red long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorRed
+  name: red long sleeved gown
+  description: A flowing red long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#eb0c07"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#eb0c07"
+      right:
+      - state: inhand-right
+        color: "#eb0c07"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#eb0c07"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownRed
+    requireTag: ClothingOuterWeddingBallGown
+
+# Yellow long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorYellow
+  name: yellow long sleeved gown
+  description: A flowing yellow long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#ffe14d"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffe14d"
+      right:
+      - state: inhand-right
+        color: "#ffe14d"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#ffe14d"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownYellow
+    requireTag: ClothingOuterWeddingBallGown
+
+# Purple long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorPurple
+  name: purple long sleeved gown
+  description: A flowing light purple long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#9f70cc"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#9f70cc"
+      right:
+      - state: inhand-right
+        color: "#9f70cc"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#9f70cc"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownPurple
+    requireTag: ClothingOuterWeddingBallGown
+
+# Light Brown long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorLightBrown
+  name: light brown long sleeved gown
+  description: A flowing light brown long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#c59431"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c59431"
+      right:
+      - state: inhand-right
+        color: "#c59431"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#c59431"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownLightBrown
+    requireTag: ClothingOuterWeddingBallGown
+
+# Brown long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorBrown
+  name: brown long sleeved gown
+  description: A flowing brown long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#a17229"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a17229"
+      right:
+      - state: inhand-right
+        color: "#a17229"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#a17229"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownBrown
+    requireTag: ClothingOuterWeddingBallGown
+
+# Maroon long sleeved gown
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGownBase ]
+  id: ClothingOuterWeddingLongSleevedGowncolorMaroon
+  name: maroon long sleeved gown
+  description: A flowing maroon long sleeved gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    layers:
+    - state: icon
+      color: "#cc295f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#cc295f"
+      right:
+      - state: inhand-right
+        color: "#cc295f"
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#cc295f"
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterWeddingLongSleevedGownMaroon
+    requireTag: ClothingOuterWeddingBallGown
