@@ -10,7 +10,6 @@ using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier
 using Content.Shared.NPC; // Frontier
 using Content.Shared.Popups; // Frontier
-using Content.Shared.Station.Components; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Map.Components; // Frontier
 using Robust.Shared.Physics.Components; // Frontier
@@ -23,8 +22,8 @@ public sealed partial class SalvageSystem
     public static readonly EntProtoId CoordinatesDisk = "CoordinatesDisk";
     public static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
 
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
-    [Dependency] private readonly SalvageSystem _salvage = default!; // Frontier
+    [Dependency] private SharedPopupSystem _popupSystem = default!; // Frontier
+    [Dependency] private SalvageSystem _salvage = default!; // Frontier
 
     private const float ShuttleFTLMassThreshold = 50f; // Frontier
     private const float ShuttleFTLRange = 150f; // Frontier
@@ -90,7 +89,7 @@ public sealed partial class SalvageSystem
             var bounds = _transform.GetWorldMatrix(ourGrid).TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
             var bodyQuery = GetEntityQuery<PhysicsComponent>();
             var otherGrids = new List<Entity<MapGridComponent>>();
-            _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
+            _mapSystem.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
             foreach (var otherGrid in otherGrids)
             {
                 if (ourGrid == otherGrid.Owner ||
