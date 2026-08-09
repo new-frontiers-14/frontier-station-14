@@ -23,13 +23,11 @@
   - type: GroupExamine
   - type: Tag
     tags:
-    # Starlight begin
-    - CorgiWearable
-    # Starlight end
     - Hardsuit
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -107,8 +105,8 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -135,12 +133,7 @@
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: CatWearable # Frontier
-  # Starlight Begin
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-  # Starlight End
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseC3Contraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing as parent
@@ -218,12 +211,7 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  # Starlight Begin
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-  # Starlight End
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: ClothingOuterBase
@@ -262,12 +250,7 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  # Starlight Begin
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-  # Starlight End
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: ClothingOuterBase
@@ -293,8 +276,8 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: ClothingOuterBase
@@ -315,12 +298,7 @@
     containers:
       toggleable-clothing: !type:ContainerSlot {}
   - type: CatWearable # Frontier
-  # Starlight Begin
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-  # Starlight End
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: ClothingOuterSuitCarp
@@ -338,9 +316,4 @@
     clothingPrototype: ClothingHeadHelmetHardsuitCarp
   - type: StaticPrice
     price: 1500
-  # Starlight Begin
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-  # Starlight End
+  - type: CorgiWearable # Frontier

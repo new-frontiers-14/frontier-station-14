@@ -18,7 +18,11 @@
     whitelist:
       tags:
       - PetWearable
+      components:
       - CorgiWearable #Starlight
+    blacklist:
+      components:
+      - DisableCorgiWearable
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags: SUITSTORAGE
@@ -55,8 +59,11 @@
     strippingWindowPos: 1,2 # Starlight adjusted
     displayName: Suit
     whitelist:
-      tags:
+      components:
       - CorgiWearable
+    blacklist:
+      components:
+      - DisableCorgiWearable
   - name: eyes
     slotTexture: glasses
     slotFlags: EYES
@@ -66,7 +73,11 @@
     whitelist:
       tags:
       - PetWearable
+      components:
       - CorgiWearable #Starlight adjusted
+    blacklist:
+      components:
+      - DisableCorgiWearable
   - name: head
     slotTexture: head
     slotFlags: HEAD
@@ -74,8 +85,11 @@
     strippingWindowPos: 1,0
     displayName: Head
     whitelist:
-      tags:
+      components:
       - CorgiWearable
+    blacklist:
+      components:
+      - DisableCorgiWearable
   - name: back
     slotTexture: back
     fullTextureName: template_small
@@ -86,8 +100,11 @@
     strippingWindowPos: 0,5
     displayName: Back
     whitelist:
-      tags:
+      components:
       - CorgiWearable
+    blacklist:
+      components:
+      - DisableCorgiWearable
 # Starlight Start
   - name: neck
     slotTexture: neck
@@ -96,8 +113,11 @@
     strippingWindowPos: 0,1
     displayName: Neck
     whitelist:
-      tags:
+      components:
       - CorgiWearable
+    blacklist:
+      components:
+      - DisableCorgiWearable
 # Starlight End
 
   # Frontier: wallet slot
