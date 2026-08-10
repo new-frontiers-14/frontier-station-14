@@ -1,65 +1,49 @@
 - type: entity
-  name: bouquet of roses
+  name: bouquet of roses base
   parent: [BaseItem]
+  id: BouquetRosesBase
+  abstract: true
+  description: bouquet of roses base
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 1
+    soundHit:
+      collection: PlantRustle
+  - type: Item
+    size: Normal
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 10
+
+- type: entity
+  name: bouquet of roses
+  parent: [BouquetRosesBase]
   id: BouquetRoses
   description: Ohhhh, so romantic!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/bouquetroses.rsi
     state: icon
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Slash: 1
-    soundHit:
-      collection: PlantRustle
-  - type: Item
-    size: Normal
-  - type: PhysicalComposition
-    materialComposition:
-      Paper: 10
 
 - type: entity
   name: bouquet of black roses
-  parent: [BaseItem]
+  parent: [BouquetRosesBase]
   id: BouquetBlackRoses
   description: Ohhhh, so romantic!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/bouquetblackroses.rsi
     state: icon
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Slash: 1
-    soundHit:
-      collection: PlantRustle
-  - type: Item
-    size: Normal
-  - type: PhysicalComposition
-    materialComposition:
-      Paper: 10
 
 - type: entity
   name: bouquet of white roses
-  parent: [BaseItem]
+  parent: [BouquetRosesBase]
   id: BouquetWhiteRoses
   description: Ohhhh, so romantic!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/bouquetwhiteroses.rsi
     state: icon
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Slash: 1
-    soundHit:
-      collection: PlantRustle
-  - type: Item
-    size: Normal
-  - type: PhysicalComposition
-    materialComposition:
-      Paper: 10
