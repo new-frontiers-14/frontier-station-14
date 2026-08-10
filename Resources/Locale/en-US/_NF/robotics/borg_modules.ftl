@@ -1,5 +1,6 @@
 borg-slot-banana-peel-empty = Banana peels
 borg-slot-banana-pie-empty = Comedy
+borg-slot-bodybag-empty = Body bag
 borg-slot-book-bag-empty = Book bag
 borg-slot-bucket-empty = Bucket
 borg-slot-pill-empty = Pill
