@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._NF.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
@@ -12,24 +13,34 @@ public partial class SharedGunSystem
     {
         _container = EntityManager.System<SharedContainerSystem>();
 
-
         SubscribeLocalEvent<BorgAmmoProviderComponent, TakeAmmoEvent>(OnBorgTakeAmmo);
+        SubscribeLocalEvent<BorgAmmoProviderComponent, GetConnectedBorgContainerEvent>(OnGettingConnectedBorgContainer);
     }
 
     private void OnBorgTakeAmmo(EntityUid uid, BorgAmmoProviderComponent component, TakeAmmoEvent args)
     {
+        if (TryGetConnectedBorgContainer(uid, component, out var val))
+            RaiseLocalEvent(val.Value, args);
+    }
+
+    private void OnGettingConnectedBorgContainer(Entity<BorgAmmoProviderComponent> ent, ref GetConnectedBorgContainerEvent args)
+    {
+        if (TryGetConnectedBorgContainer(ent, ent.Comp, out var val))
+            args.ContainerEntity = val;
+    }
+
+    private bool TryGetConnectedBorgContainer(EntityUid uid, BorgAmmoProviderComponent component, [NotNullWhen(true)] out EntityUid? slotEntity)
+    {
+        slotEntity = null;
+
         if (!_container.TryGetContainingContainer((uid, null, null), out var container))
-        {
-            Log.Warning("No Container");
-            return;
-        }
+            return false;
+
         var user = container.Owner;
         var providerWhitelist = component.ContainerWhitelist;
 
         if (!TryComp<ContainerManagerComponent>(user, out var containerManager))
-            return;
-
-        var tankId = EntityUid.Invalid;
+            return false;
 
         foreach (var currentContainer in containerManager.Containers.Values)
         {
@@ -42,14 +53,20 @@ public partial class SharedGunSystem
                 if (_whitelistSystem.IsWhitelistFailOrNull(providerWhitelist, item))
                     continue;
 
-                tankId = item;
+                slotEntity = item;
                 break;
             }
         }
 
-        if (tankId == EntityUid.Invalid)
-            return;
-
-        RaiseLocalEvent(tankId, args);
+        return (slotEntity != null);
     }
+}
+
+[ByRefEvent]
+public struct GetConnectedBorgContainerEvent
+{
+    /// <summary>
+    /// Container entity, if it exists, or null.
+    /// </summary>
+    public EntityUid? ContainerEntity;
 }

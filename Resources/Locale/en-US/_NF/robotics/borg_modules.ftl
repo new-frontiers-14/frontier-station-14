@@ -1,3 +1,4 @@
+borg-slot-backpack-water-empty = Backpack water tank
 borg-slot-banana-peel-empty = Banana peels
 borg-slot-banana-pie-empty = Comedy
 borg-slot-bodybag-empty = Body bag

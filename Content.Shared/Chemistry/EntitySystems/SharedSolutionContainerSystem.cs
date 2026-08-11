@@ -16,6 +16,7 @@ using Content.Shared.Localizations;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Systems; //Frontier
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -172,6 +173,14 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         RaiseLocalEvent(container, ref ev);
         if (ev.ContainerEntity.HasValue)
             container = ev.ContainerEntity.Value;
+
+        //Frontier
+        // use connected Borg container instead of entity from arguments, if it exists.
+        var bc = new GetConnectedBorgContainerEvent();
+        RaiseLocalEvent(container, ref bc);
+        if (bc.ContainerEntity.HasValue)
+            container = bc.ContainerEntity.Value;
+        //End Frontier
 
         EntityUid uid;
         if (name is null)
