@@ -295,45 +295,6 @@
 
 #Janitor
 - type: entity
-  id: BorgModuleAdvancedCustodial
-  parent: [ BaseBorgModuleJanitor, BaseProviderBorgModule ]
-  name: advanced custodial cyborg module
-  description: "Cool borg module Placeholder"
-  components:
-  - type: Sprite
-    layers:
-    - state: janitor
-    - state: icon-syndicate #Placeholder that sticks out very obviously
-      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
-  - type: ItemBorgModule
-    moduleId: LightAdvancedReplacer
-    hands:
-    - item: LightReplacer
-    - item: GoldenPlunger
-    - item: SoapOmega
-      hand:
-        emptyLabel: borg-slot-soap-empty
-        emptyRepresentative: SoapNT
-        whitelist:
-          tags:
-          - Soap
-    - hand:
-        emptyLabel: borg-slot-lightbulb-empty
-        emptyRepresentative: LightBulb
-        whitelist:
-          components:
-          - LightBulb
-    - item: TrashBag
-      hand:
-        emptyLabel: borg-slot-trashbag-empty
-        emptyRepresentative: TrashBag
-        whitelist:
-          tags:
-          - TrashBag
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
-
-- type: entity
   id: BorgModuleAdvancedSprayNozzle
   parent: [ BaseBorgModuleJanitor, BaseProviderBorgModule ]
   name: advanced spray nozzle cyborg module
