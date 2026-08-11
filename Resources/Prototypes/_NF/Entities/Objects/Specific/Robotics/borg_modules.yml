@@ -284,7 +284,6 @@
           components:
           - Utensil
           - NFCookware
-    - item: ServiceSelectiveDropper
     - item: FoodPlateTin
       hand:
         emptyRepresentative: FoodPlateTin
@@ -318,6 +317,15 @@
           - Edible
           tags:
           - Ingredient
+    - item: ServiceSelectiveDropper
+    - hand:
+          emptyRepresentative: MonkeyCube
+          emptyLabel: borg-slot-rehydrateable-cube-empty
+          whitelist:
+            components:
+            - Rehydratable
+            tags:
+            - MonkeyCube
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: chef-module }
 

@@ -26,6 +26,7 @@ borg-slot-pen-empty = Pen
 borg-slot-plant-bag-empty = Plant bag
 borg-slot-produce-empty = Produce
 borg-slot-rcd-empty = RCD
+borg-slot-rehydrateable-cube-empty = Rehydrateable cube
 borg-slot-seeds-empty = Seeds
 borg-slot-shaker-empty = Shaker
 borg-slot-smokes-empty = Smokes
