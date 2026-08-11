@@ -21,13 +21,13 @@
   id: BorgModulePill
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: pill cyborg module
-  description: "Cool borg module Placeholder"
+  description: A module that allows for the creation of pills.
   components:
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-syndicate #Placeholder that sticks out very obviously
-      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+    - state: icon-pill
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     moduleId: Pill
     hands:
@@ -325,13 +325,13 @@
   id: BorgModuleMutation
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: mutation cyborg module
-  description: "Cool borg module Placeholder"
+  description: A module that comes with everything the budding gardener needs to mutate monstrosities!
   components:
   - type: Sprite
     layers:
     - state: service
-    - state: icon-syndicate #Placeholder that sticks out very obviously
-      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+    - state: icon-mutation
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     moduleId: Mutation
     hands:
@@ -378,32 +378,32 @@
   id: AdvancedBorgModuleMusique
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: advanced musique cyborg module
-  description: "Cool borg module Placeholder"
+  description: A module that allows you to play the smoothest of tunes.
   components:
   - type: Sprite
     layers:
     - state: service
-    - state: icon-syndicate #Placeholder that sticks out very obviously
-      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+    - state: icon-musique-adv
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     moduleId: AdvancedMusic
     hands:
     - item: DawInstrument
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
-    
+
 #Janitor
 - type: entity
   id: BorgModuleAdvancedSprayNozzle
   parent: [ BaseBorgModuleJanitor, BaseProviderBorgModule ]
   name: advanced spray nozzle cyborg module
-  description: "Cool borg module Placeholder"
+  description: An internal high-powered spray nozzle, dirt and cats beware!
   components:
   - type: Sprite
     layers:
     - state: janitor
-    - state: icon-syndicate #Placeholder that sticks out very obviously
-      sprite: Objects/Specific/Robotics/borgmodule.rsi #_NF/Objects/Specific/Robotics/borgmodule.rsi
+    - state: icon-spraynozzle-adv
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     moduleId: SprayNozzle
     hands:
