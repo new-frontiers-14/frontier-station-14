@@ -11,7 +11,6 @@ namespace Content.Shared._NF.Preferences.Loadouts.Effects;
 
 public sealed partial class IsWhitelistedLoadoutEffect : LoadoutEffect
 {
-
     public override bool Validate(HumanoidCharacterProfile profile,
         RoleLoadout loadout,
         ICommonSession? session,

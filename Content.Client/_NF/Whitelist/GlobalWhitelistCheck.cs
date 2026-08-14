@@ -6,7 +6,6 @@ namespace Content.Client._NF.Whitelist;
 
 public sealed class GlobalWhitelistCheck : IGlobalWhitelistCheck
 {
-
     [Dependency] private JobRequirementsManager _requirementsManager = default!;
 
     /// <inheritdoc/>>
