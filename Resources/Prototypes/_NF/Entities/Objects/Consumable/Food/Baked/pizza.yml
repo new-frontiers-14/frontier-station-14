@@ -1,0 +1,63 @@
+- type: entity
+  parent: FoodPizzaBase
+  id: NFFoodPizzaNoneLeftBeef
+  name: none pizza left beef
+  description: Just as ordered, precisely to the instructions. For better or for worse.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - sadness
+      - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Protein
+          Quantity: 6
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: none-left-beef
+  - type: SliceableFood
+    slice: FoodPizzaNoneLeftBeefSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+
+# if i was #effortpoasting i would make it instead slice into 4 dry bread slices and 4 beef slices
+- type: entity
+  name: slice of none pizza left beef
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaNoneLeftBeefSlice
+  description: A dry triangle of bread with a couple meat pellets on it.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - sadness
+      - bread
+  - type: SolutionContainerManager # Default values if spawned by hand
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Protein
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: none-left-beef-slice
+  - type: Item
+    heldPrefix: none-left-beef-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+    - Slice
