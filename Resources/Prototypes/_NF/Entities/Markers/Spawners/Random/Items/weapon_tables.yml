@@ -85,7 +85,8 @@
       - id: ClothingHandsKnuckleDustersQM
       - id: ButchCleaver
       - id: EldritchBlade
-      - id: Katana
+      - id: ClothingBeltKatanaSheathFilled
+      - id: Wakizashi
       - id: Machete
     - !type:NestedSelector
       weight: 0.05
@@ -389,6 +390,7 @@
   table: !type:GroupSelector
     children:
     - id: WeaponCaseShortAmmoBoxLethal45
+    - id: WeaponCaseShortAmmoBoxBigLethal45
     - !type:GroupSelector
       children:
       - id: WeaponCaseShortAmmoBoxLethal20
@@ -404,10 +406,12 @@
     - !type:GroupSelector
       children:
       - id: WeaponCaseShortAmmoBoxLethal35
+      - id: WeaponCaseShortAmmoBoxBigLethal35
     - !type:GroupSelector
       children:
       - id: WeaponCaseShortAmmoBoxLethalShotgun
       - id: WeaponCaseShortAmmoBoxSlugShotgun
+      - id: WeaponCaseShortAmmoBoxBigLethalShotgun
 
 # region ammo rubber
 - type: entityTable
