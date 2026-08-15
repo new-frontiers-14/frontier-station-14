@@ -40,7 +40,7 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
 
         var availableDecals = new List<SprayPainterDecalEntry>();
         // If a hidden decal tag list isn't given, show all.
-        if (!sprayPainterComp.HiddenDecals.Any())
+        if (sprayPainterComp.HiddenDecals.Count == 0)
             availableDecals = sprayPainter.Decals;
         // If a hidden decal tag list is given, filter out all decals with a tag from the list.
         else
@@ -50,7 +50,6 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
                     availableDecals.Add(decal);
             }
 
-        //var availableDecals = sprayPainter.Decals.Where(x => sprayPainterComp.PaintableDecals.Intersect(x.Tags).Count() == x.Tags.Count).ToList();
         var availableStylesGroup = new Dictionary<string, Dictionary<string, EntProtoId>>();
         // Iterate each group
         foreach (var styles in sprayPainter.PaintableStylesByGroup)
@@ -66,7 +65,6 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
             availableStylesGroup.Add(styles.Key, availableStyles);
         }
 
-        //var availableStyles = sprayPainter.PaintableStylesByGroup.Where(x => !sprayPainterComp.HiddenStyles.Contains(x.Value))
         _window.PopulateCategories(availableStylesGroup, sprayPainter.PaintableGroupsByCategory, availableDecals);
         Update();
 
