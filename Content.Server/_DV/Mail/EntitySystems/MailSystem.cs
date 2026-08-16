@@ -39,15 +39,18 @@ using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
+using Content.Server._DV.CartridgeLoader.Cartridges; //Frontier
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.Power.EntitySystems; // Frontier
 using Content.Server._NF.Bank; // Frontier
 using Content.Server._NF.Mail.Components; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Server.CartridgeLoader; // Frontier
 using Content.Shared.SSDIndicator; // Frontier
 using Content.Shared.Station.Components; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
+using Content.Shared.CartridgeLoader; // Frontier
 using Robust.Server.Player; // Frontier
 using Robust.Shared.Enums; // Frontier
 
@@ -78,6 +81,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
         [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!; // Frontier
         [Dependency] private readonly IPlayerManager _player = default!; // Frontier
+        [Dependency] private readonly CartridgeLoaderSystem _cartLoader = default!; // Frontier
 
         private ISawmill _sawmill = default!;
         private static readonly ProtoId<TagPrototype> MailTag = "Mail"; // Frontier
@@ -799,6 +803,7 @@ namespace Content.Server._DV.Mail.EntitySystems
                 if (validTeleporters[i].HadMail)
                     _audioSystem.PlayPvs(validTeleporters[i].Entity.Comp.TeleportSound, validTeleporters[i].Entity);
             }
+            NotifyMailCarriers(deliveryCount);
         }
         // End Frontier: sector-wide mail
 
@@ -848,6 +853,24 @@ namespace Content.Server._DV.Mail.EntitySystems
             if (TryComp(_sectorService.GetServiceEntity(), out SectorLogisticStatsComponent? logisticStats))
                 action(logisticStats);
             // End Frontier
+        }
+
+        //Frontier: Send a PDA notification to all active mail carriers when new mail is teleported in.
+        //TODO: Maybe add a way to toggle this notification in mailmetrics?
+        /// <summary>
+        /// Notifies all in sector mail carriers that mail has arrived
+        /// </summary>
+        public void NotifyMailCarriers(int packageCount)
+        {
+            var pdaQuery = EntityQueryEnumerator<CartridgeLoaderComponent>();
+            while (pdaQuery.MoveNext(out var pdaUid, out var cartLoaderComp))
+            {
+                if (!_cartLoader.TryGetProgram<MailMetricsCartridgeComponent>(pdaUid, out var programUid, out var programComp))
+                    continue;
+                _cartLoader.SendNotification(pdaUid,
+                    Loc.GetString("mail-notification-header"),
+                    Loc.GetString("mail-notification-body", ("quantity", packageCount)));
+            }
         }
     }
 
