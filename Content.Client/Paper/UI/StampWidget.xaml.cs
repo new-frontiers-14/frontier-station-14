@@ -31,8 +31,7 @@ public sealed partial class StampWidget : PanelContainer
             if (icon != null)
             {
                 var resCache = IoCManager.Resolve<IResourceCache>();
-                var borderImage = resCache.GetResource<TextureResource>(
-                        "/Textures/_Impstation/Interface/Paper/Stamps/" + icon + ".png");
+                var borderImage = resCache.GetResource<TextureResource>(icon);
 
                 _borderTexture = new StyleBoxTexture { Texture = borderImage };
                 PanelOverride = _borderTexture;
