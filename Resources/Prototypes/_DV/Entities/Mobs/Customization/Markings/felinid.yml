@@ -5,9 +5,9 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
-    state: Felinid_fluffy_tail_full
+    state: felinid_fluffy_tail_full_static # Frontier
   - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
-    state: felinid_fluffy_tail_rings
+    state: felinid_fluffy_tail_rings_static # Frontier
 
 - type: marking
   id: FelinidFluffyTail
@@ -16,7 +16,7 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
-    state: Felinid_fluffy_tail_full
+    state: felinid_fluffy_tail_full_static # Frontier
 
 - type: marking
   id: FelinidAlternativeTail
@@ -25,7 +25,7 @@
   speciesRestriction: [Felinid]
   sprites:
     - sprite: _DV/Mobs/Customization/Felinid/alternative_tail.rsi
-      state: m_waggingtail_cat_FRONT_static
+      state: m_waggingtail_cat_FRONT_static # Frontier
 
 - type: marking
   id: FelinidTiger
@@ -106,7 +106,26 @@
       state: foxtwotailstone2
 
 # Animated Tails
-# Frontier Start
+
+- type: marking
+  id: FelinidFluffyTailRingsAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Felinid]
+  sprites:
+  - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
+    state: Felinid_fluffy_tail_full
+  - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
+    state: felinid_fluffy_tail_rings
+
+- type: marking
+  id: FelinidFluffyTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Felinid]
+  sprites:
+  - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
+    state: Felinid_fluffy_tail_full
 
 - type: marking
   id: FelinidAlternativeTailAnimated
