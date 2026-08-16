@@ -7,6 +7,20 @@ spray-painter-style-airlockglass-mercenary = Mercenary
 spray-painter-style-airlockglass-nfsd = NFSD
 spray-painter-style-airlockglass-syndicate = Syndicate
 
+# Docking Airlocks
+spray-painter-tab-category-docking = Docking
+
+spray-painter-tab-group-dockingstandard = Standard (Dock)
+spray-painter-tab-group-dockingglass = Glass (Dock)
+
+spray-painter-style-dockingstandard-basic = Basic
+spray-painter-style-dockingstandard-nfsd = NFSD
+spray-painter-style-dockingstandard-syndicate = Syndicate
+
+spray-painter-style-dockingglass-basic = Basic
+spray-painter-style-dockingglass-nfsd = NFSD
+spray-painter-style-dockingglass-syndicate = Syndicate
+
 # Lockers
 spray-painter-style-locker-mail = Mail carrier
 spray-painter-style-locker-mercenary = Mercenary
@@ -48,17 +62,3 @@ spray-painter-style-canisters-liquid-nitrogen = Nitrogen (liquid)
 spray-painter-style-canisters-liquid-carbon-dioxide = Carbon dioxide (liquid)
 spray-painter-style-canisters-respiron = Respiron
 spray-painter-style-canisters-helium = Helium
-
-# Docking Airlocks
-spray-painter-tab-category-docking = Docking
-
-spray-painter-tab-group-dockingstandard = Standard (Dock)
-spray-painter-tab-group-dockingglass = Glass (Dock)
-
-spray-painter-style-dockingstandard-basic = Basic
-spray-painter-style-dockingstandard-nfsd = NFSD
-spray-painter-style-dockingstandard-syndicate = Syndicate
-
-spray-painter-style-dockingglass-basic = Basic
-spray-painter-style-dockingglass-nfsd = NFSD
-spray-painter-style-dockingglass-syndicate = Syndicate
