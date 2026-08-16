@@ -234,8 +234,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var ev = new GetMeleeDamageEvent(uid, new(component.Damage * Damageable.UniversalMeleeDamageModifier), new(), user, component.ResistanceBypass);
         RaiseLocalEvent(uid, ref ev);
+        var ev2 = new ApplyClothingDamageModifierEvent(user, DamageContext.Melee, ev.Damage);
+        RaiseLocalEvent(user, ref ev2);
 
-        return DamageSpecifier.ApplyModifierSets(ev.Damage, ev.Modifiers);
+        return DamageSpecifier.ApplyModifierSets(ev2.Damage, ev.Modifiers); // Frontier ev<ev2
     }
 
     public float GetAttackRate(EntityUid uid, EntityUid user, MeleeWeaponComponent? component = null)
