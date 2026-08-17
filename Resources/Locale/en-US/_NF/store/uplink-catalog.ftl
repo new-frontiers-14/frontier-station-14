@@ -74,6 +74,9 @@ uplink-security-energygun-desc = A semi-automatic energy gun capable of firing b
 uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
 
+uplink-security-sniper-name = Sniper Bundle
+uplink-security-sniper-desc = "Aspect" sniper rifle provided with non lethal .60 rounds for long range support on the field, for lethal ammunition ask your higher ups.
+
 uplink-security-empgrenade-name = EMP Grenade
 uplink-security-empgrenade-desc = A handheld grenade that emits a high energy pulse that disrupts electronics and power systems in a moderately large radius.
 
@@ -116,6 +119,12 @@ uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (over
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 
+uplink-security-60sniperbox-name = .60 Rifle Box
+uplink-security-60sniperbox-desc = a Box containing 30 rounds of .60 rifle bullets.
+
+uplink-security-60sniperbox-rubber-name = .60 Rifle Rubber Box
+uplink-security-60sniperbox-rubber-desc = a Box containing 30 rounds of .60 rifle (rubber) bullets.
+
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
@@ -124,6 +133,9 @@ uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpre
 
 uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
 uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
+
+uplink-security-brigmed-glasses-name = Brigmedic Glasses
+uplink-security-brigmed-glasses-desc = Upgraded sunglasses that provide flash immunity and an integrated medical hud.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
@@ -327,6 +339,9 @@ uplink-pirate-accessconfigurator-captain-desc = An access configurator that is s
 uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
 
+uplink-pirate-yarrped-name = YarRPED
+uplink-pirate-yarrped-desc = A reverse-engineered RPED that installs the worst parts available and stores the valuable parts it removes.
+
 uplink-pirate-pmag-name = Machine Liberator
 uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
 
@@ -354,6 +369,12 @@ uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing y
 uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
 uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
+uplink-pirate-yarrmag-name = Yarrmag
+uplink-pirate-yarrmag-desc = A disposable card made by the Freebooters to hack devices. Works one time.
+
+uplink-pirate-id-chip-name = Bootleg Cyborg Chip
+uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
@@ -377,3 +398,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-syndicate-spray-painter-name = Syndicate Spray Painter
+uplink-syndicate-spray-painter-desc = Turn your evil house into an evil home. Includes patented syndicate designs not provided by NT spray painters.
