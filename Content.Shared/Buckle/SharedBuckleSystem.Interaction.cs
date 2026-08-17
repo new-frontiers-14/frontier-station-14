@@ -126,7 +126,12 @@ public abstract partial class SharedBuckleSystem
         // Frontier: set handled to true only if you actually unbuckle something
         if (ent.Comp.BuckledTo != null)
         {
-            args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+            // Frontier: huggable wheelchair users!
+            if (args.User == args.Target || (TryComp(ent.Comp.BuckledTo.Value, out StrapComponent? strap) && strap.UnbuckleOnInteractHand))
+            {
+                args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+            }
+            // End Frontier: huggable wheelchair users!
         }
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
