@@ -62,7 +62,7 @@
           tags:
           - Pill
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: pill-module }
 
 - type: entity
   id: BorgModuleJetpack
@@ -209,12 +209,12 @@
 
 - type: entity
   id: BorgModuleBureaucracy
-  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: bureaucracy cyborg module
   components:
   - type: Sprite
     layers:
-    - state: service
+    - state: generic
     - state: icon-pen
   - type: ItemBorgModule
     moduleId: Bureaucracy
@@ -382,7 +382,7 @@
           components:
           - BotanySwab
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: mutation-module }
 
 - type: entity
   id: AdvancedBorgModuleMusique
@@ -400,7 +400,7 @@
     hands:
     - item: DawInstrument
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-musical-module }
 
 #Janitor
 - type: entity
@@ -426,4 +426,4 @@
           tags:
           - NozzleBackTank
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module } # _NF/ <= Placeholder that sticks out very obviously
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: spray-nozzle-module }
