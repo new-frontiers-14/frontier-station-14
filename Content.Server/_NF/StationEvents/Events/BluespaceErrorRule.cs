@@ -285,7 +285,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _transform.DetachEntity(mob.Entity.Owner, mob.Entity.Comp);
                 }
 
-                var gridValue = _pricing.AppraiseGrid(gridUid, null);
+                // Skip appraisal if there's no reward account. Appraisal eats up too much
+                // frame time for very large grids (e.g. vgroids).
+                var gridValue = component.RewardAccounts.Count > 0
+                    ? _pricing.AppraiseGrid(gridUid, null)
+                    : 0;
 
                 // Deletion has to happen before grid traversal re-parents players.
                 Del(gridUid);

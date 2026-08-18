@@ -440,6 +440,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/misc.rsi
     state: gnome
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
+    heldPrefix: gnome
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/misc.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+        head:
+        - state: gnome-equipped-HELMET
+          offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieGnome
