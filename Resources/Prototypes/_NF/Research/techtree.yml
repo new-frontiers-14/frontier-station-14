@@ -66,6 +66,7 @@
   cost: 2500
   recipeUnlocks:
   - ClothingBeltChiefEngineer
+  - NFClothingEyesGlassesMesonScanner
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedParts
@@ -952,6 +953,19 @@
   - NFAdvancedEntertainment
   position: 2, 19
 
+- type: technology
+  id: SuperInstruments
+  name: nf-research-technology-super-instruments
+  entityIcon: SuperHarmonicaInstrument
+  discipline: NFService
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - SuperHarmonicaInstrument
+  technologyPrerequisites:
+  - NFAdvancedInstruments
+  position: 2, 18
+
 # region Janitorial
 
 - type: technology
@@ -967,13 +981,14 @@
 
 - type: technology
   id: NFJanicart
-  name: nf-research-technology-janicart
+  name: nf-research-technology-mobile-service
   entityIcon: NFVehicleJanicart
   discipline: NFService
   tier: 1
   cost: 2500
   recipeUnlocks:
   - JanicartFlatpack
+  - MailTrolleyFlatpack
   technologyPrerequisites:
   - NFBasicSpray
   position: 0, 22
@@ -1144,6 +1159,7 @@
   - ElectricRangeMachineCircuitboard
   - KitchenAssemblerMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - NFServiceDrinkShakerBluespace
   technologyPrerequisites:
   - NFFoodService
   position: 2, 24
