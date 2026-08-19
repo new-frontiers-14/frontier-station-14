@@ -59,7 +59,8 @@
   - type: StaticPrice
     price: 350
   - type: Paintable
-    group: null
+    #group: null            # Frontier - Paintable docking airlocks
+    group: DockingStandard  # Frontier - Paintable docking airlocks
 
 - type: entity
   id: AirlockGlassShuttle
@@ -79,9 +80,13 @@
       fix1:
         layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
         - GlassAirlockLayer
-  - type: Construction # Frontier
-    graph: AirlockShuttle # Frontier
-    node: airlockGlass # Frontier
+  # Frontier start
+  - type: Construction
+    graph: AirlockShuttle
+    node: airlockGlass
+  - type: Paintable
+    group: DockingGlass
+  # Frontier end
 
 - type: entity
   id: AirlockShuttleAssembly
