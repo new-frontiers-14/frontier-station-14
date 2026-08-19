@@ -203,6 +203,20 @@
 
 - type: entity
   suffix: Ghost
+  parent: [BaseEmotionalGhostCat, MobCatSiamese]
+  id: MobCatSiameseGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesCatSiamese]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pasha
+  - type: Inventory
+    templateId: nfpet
+
+- type: entity
+  suffix: Ghost
   parent: [BaseEmotionalGhostDog, MobCorgi]
   id: MobCorgiGhost
 
