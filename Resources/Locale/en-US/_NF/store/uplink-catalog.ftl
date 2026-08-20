@@ -74,6 +74,9 @@ uplink-security-energygun-desc = A semi-automatic energy gun capable of firing b
 uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
 
+uplink-security-sniper-name = Sniper Bundle
+uplink-security-sniper-desc = "Aspect" sniper rifle provided with non lethal .60 rounds for long range support on the field, for lethal ammunition ask your higher ups.
+
 uplink-security-empgrenade-name = EMP Grenade
 uplink-security-empgrenade-desc = A handheld grenade that emits a high energy pulse that disrupts electronics and power systems in a moderately large radius.
 
@@ -115,6 +118,12 @@ uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (over
 
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
+
+uplink-security-60sniperbox-name = .60 Rifle Box
+uplink-security-60sniperbox-desc = a Box containing 30 rounds of .60 rifle bullets.
+
+uplink-security-60sniperbox-rubber-name = .60 Rifle Rubber Box
+uplink-security-60sniperbox-rubber-desc = a Box containing 30 rounds of .60 rifle (rubber) bullets.
 
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
@@ -389,3 +398,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-syndicate-spray-painter-name = Syndicate Spray Painter
+uplink-syndicate-spray-painter-desc = Turn your evil house into an evil home. Includes patented syndicate designs not provided by NT spray painters.
