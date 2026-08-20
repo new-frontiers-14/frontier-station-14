@@ -1,3 +1,3 @@
 screen-text = screenText
 screen-color = screenColor
-screen-local-grid = screenLocalGrid #Frontier
+screen-local-grid = screenLocalGrid # Frontier
