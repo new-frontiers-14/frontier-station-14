@@ -844,7 +844,7 @@ public sealed partial class ChatUIController : UIController
             msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
         }
 
-        //Color ship ID
+        // Frontier: Color current ship callsign
         if (_player.LocalEntity != null && TryGetIdCard(_player.LocalEntity.Value, out var idCard) && _ent.TryGetComponent<ShuttleDeedComponent>(idCard, out var shipDeed))
         {
             if (shipDeed.ShuttleName != null)
@@ -858,6 +858,7 @@ public sealed partial class ChatUIController : UIController
                 msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, number, "color", _highlightsColor);
             }
         }
+        // End Frontier
 
         // Color any codewords for minds that have roles that use them
         if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
@@ -976,6 +977,7 @@ public sealed partial class ChatUIController : UIController
         return _chatNameColors[colorIdx];
     }
 
+    // Frontier: Color current ship callsign
     private bool TryGetIdCard(EntityUid ent, out EntityUid? idCard)
     {
         if (_inventory != null && _inventory.TryGetSlotEntity(ent, "id", out var pdaSlotItem))
@@ -997,6 +999,7 @@ public sealed partial class ChatUIController : UIController
         idCard = null;
         return false;
     }
+    // End Frontier
 
     private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);
 
