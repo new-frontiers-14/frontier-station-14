@@ -410,6 +410,34 @@
       types: {}
 
 - type: entity
+  name: Pasha
+  parent: MobCat
+  id: MobCatSiamese
+  description: A precious and pampurred feline.
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: pasha
+  - type: NpcFactionMember
+    factions:
+    - PetsNT
+    - Cat
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+
+
+- type: entity
   id: MobCatBloodCult
   parent: [NFMobPet, MobCatMistake]
   name: blood cult cat
@@ -569,6 +597,10 @@
     noMovementLayers:
       movement:
         state: mouse-3
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
   - type: Clothing
     quickEquip: false
     sprite: _NF/Mobs/Pets/mouse.rsi
