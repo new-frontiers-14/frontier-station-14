@@ -754,11 +754,12 @@
   - type: Sprite
     layers:
     - state: engineering
-    - state: icon-rcd
+    - state: icon-rcd-shipyard # Frontier
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     moduleId: RCD # Frontier
     hands:
-    - item: RCDRecharging
+    - item: ShipyardRCDRecharging # Frontier: replaced RCDRecharging
     # - item: BorgFireExtinguisher # Frontier: use jetpack module
     # - item: BorgHandheldGPSBasic # Frontier: use jetpack module
     - item: GasAnalyzer
