@@ -164,3 +164,15 @@
     range: 4
     energyConsumption: 2700000
     disableDuration: 60
+
+- type: entity
+  id: NFCannonBallRubber
+  name: rubbershot
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletCannonBallRubber
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
+    state: ball-rubber
