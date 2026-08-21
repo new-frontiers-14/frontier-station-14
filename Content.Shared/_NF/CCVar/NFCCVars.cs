@@ -1,4 +1,6 @@
 using Robust.Shared.Configuration;
+using Content.Shared.Administration;
+using Content.Shared.CCVar.CVarAccess;
 
 namespace Content.Shared._NF.CCVar;
 
@@ -292,4 +294,17 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerStarterLoadout =
         CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /// <summary>
+    /// Sets whether conveyors should jam when overloaded with entities.
+    /// </summary>
+    [CVarControl(AdminFlags.VarEdit)]
+    public static readonly CVarDef<bool> ConveyorJammingEnabled =
+    CVarDef.Create("conveyor.jamming.enabled", true, CVar.REPLICATED);
+
+    /// <summary>
+    /// Sets the limit of entities at which conveyors get jammed.
+    /// </summary>
+    [CVarControl(AdminFlags.VarEdit)]
+    public static readonly CVarDef<int> ConveyorJamLimit = CVarDef.Create("conveyor.jamming.limit", 35, CVar.REPLICATED);
 }
