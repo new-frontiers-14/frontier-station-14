@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: TheSecondLord
+# Discord: @livelaughlord
+
+# Shuttle Notes:
+# Pure botany ship intended for a crew of 1-3. Includes an industrial reagent grinder.
+- type: vessel
+  id: Dendron
+  parent: BaseVessel
+  name: NT Dendron
+  description: "An ideal vessel for cultivating and processing plants on a large scale."
+  price: 58000 #50805 * 1.15 = 58425.75
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/dendron.yml
+  guidebookPage: ShipyardDendron
+  class:
+  - Botany
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Dendron
+  mapName: 'NT Dendron'
+  mapPath: /Maps/_NF/Shuttles/dendron.yml
+  minPlayers: 0
+  stations:
+    Dendron:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Dendron {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

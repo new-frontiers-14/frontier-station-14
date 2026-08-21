@@ -18,6 +18,28 @@
     table: !type:NestedSelector
       tableId: TableDungeonLootSupplyClutter
 
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClutterSalvageWithMines
+  name: random clutter
+  suffix: "Loot (Frontier), Salvaging, Unsafe (mines)"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootSupplyClutterWithMines
+
 # region Tools
 - type: entity
   parent: MarkerBasePlaceFree

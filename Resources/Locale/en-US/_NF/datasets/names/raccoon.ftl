@@ -1,0 +1,10 @@
+names-raccoon-dataset-1 = Bandit
+names-raccoon-dataset-2 = Rogue
+names-raccoon-dataset-3 = Zorro
+names-raccoon-dataset-4 = Smokey
+names-raccoon-dataset-5 = Scout
+names-raccoon-dataset-6 = Burgle
+names-raccoon-dataset-7 = Dumpty
+names-raccoon-dataset-8 = Mischief
+names-raccoon-dataset-9 = Trouble
+names-raccoon-dataset-10 = Carrey
