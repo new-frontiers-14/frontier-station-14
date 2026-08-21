@@ -1,4 +1,13 @@
-﻿using Robust.Shared.Serialization;
+// SPDX-FileCopyrightText: 2021 ike709
+// SPDX-FileCopyrightText: 2022 Vordenburg
+// SPDX-FileCopyrightText: 2022 mirrorcult
+// SPDX-FileCopyrightText: 2022 wrexbe
+// SPDX-FileCopyrightText: 2025 Steve
+// SPDX-FileCopyrightText: 2025 bitcrushing
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Atmos.Piping.Trinary.Components
 {
@@ -14,14 +23,14 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
         public string FilterLabel { get; }
         public float TransferRate { get; }
         public bool Enabled { get; }
-        public Gas? FilteredGas { get; }
+        public HashSet<Gas>? FilterGases { get; } // Funky Station
 
-        public GasFilterBoundUserInterfaceState(string filterLabel, float transferRate, bool enabled, Gas? filteredGas)
+        public GasFilterBoundUserInterfaceState(string filterLabel, float transferRate, bool enabled, HashSet<Gas>? filterGases) // Funky Station
         {
             FilterLabel = filterLabel;
             TransferRate = transferRate;
             Enabled = enabled;
-            FilteredGas = filteredGas;
+            FilterGases = filterGases; // Funky Station
         }
     }
 
@@ -46,15 +55,16 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
             Rate = rate;
         }
     }
-
+    // Funky Station Start - Changed to hashset, function and variable names changed
     [Serializable, NetSerializable]
-    public sealed class GasFilterSelectGasMessage : BoundUserInterfaceMessage
+    public sealed class GasFilterChangeGasesMessage : BoundUserInterfaceMessage
     {
-        public int? ID { get; }
+        public HashSet<Gas> Gases { get; }
 
-        public GasFilterSelectGasMessage(int? id)
+        public GasFilterChangeGasesMessage(HashSet<Gas> gases)
         {
-            ID = id;
+            Gases = gases;
         }
     }
+    // Funky Station End - Changed to hashset, function and variable names changed
 }

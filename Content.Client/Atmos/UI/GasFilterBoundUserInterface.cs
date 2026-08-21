@@ -1,4 +1,20 @@
-﻿using Content.Client.Atmos.EntitySystems;
+// SPDX-FileCopyrightText: 2021 ike709
+// SPDX-FileCopyrightText: 2022 Leon Friedrich
+// SPDX-FileCopyrightText: 2022 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2022 Vordenburg
+// SPDX-FileCopyrightText: 2022 mirrorcult
+// SPDX-FileCopyrightText: 2023 TemporalOroboros
+// SPDX-FileCopyrightText: 2023 Tom Leys
+// SPDX-FileCopyrightText: 2023 deltanedas
+// SPDX-FileCopyrightText: 2023 metalgearsloth
+// SPDX-FileCopyrightText: 2024 Kot
+// SPDX-FileCopyrightText: 2024 Nemanja
+// SPDX-FileCopyrightText: 2025 Steve
+// SPDX-FileCopyrightText: 2025 bitcrushing
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Client.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Trinary.Components;
 using Content.Shared.Localizations;
@@ -7,9 +23,6 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Atmos.UI
 {
-    /// <summary>
-    /// Initializes a <see cref="GasFilterWindow"/> and updates it when new server messages are received.
-    /// </summary>
     [UsedImplicitly]
     public sealed class GasFilterBoundUserInterface : BoundUserInterface
     {
@@ -34,7 +47,8 @@ namespace Content.Client.Atmos.UI
 
             _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
             _window.FilterTransferRateChanged += OnFilterTransferRatePressed;
-            _window.SelectGasPressed += OnSelectGasPressed;
+            _window.FilterGasesChanged += OnFilterGasesChanged;
+            // Funky Station - Function and variable names changed to reflect multigas filtering
         }
 
         private void OnToggleStatusButtonPressed()
@@ -46,48 +60,25 @@ namespace Content.Client.Atmos.UI
         private void OnFilterTransferRatePressed(string value)
         {
             var rate = UserInputParser.TryFloat(value, out var parsed) ? parsed : 0f;
-
             SendMessage(new GasFilterChangeRateMessage(rate));
         }
 
-        private void OnSelectGasPressed()
+        private void OnFilterGasesChanged(HashSet<Gas> gases)
         {
-            if (_window is null) return;
-            if (_window.SelectedGas is null)
-            {
-                SendMessage(new GasFilterSelectGasMessage(null));
-            }
-            else
-            {
-                if (!int.TryParse(_window.SelectedGas, out var gas)) return;
-                SendMessage(new GasFilterSelectGasMessage(gas));
-            }
+            SendMessage(new GasFilterChangeGasesMessage(gases));
         }
-
-        /// <summary>
-        /// Update the UI state based on server-sent info
-        /// </summary>
-        /// <param name="state"></param>
+        // Funky Station - Change of state in UI broadcasts hashset of gases
         protected override void UpdateState(BoundUserInterfaceState state)
         {
             base.UpdateState(state);
             if (_window == null || state is not GasFilterBoundUserInterfaceState cast)
                 return;
 
-            _window.Title = (cast.FilterLabel);
+            _window.Title = cast.FilterLabel;
             _window.SetFilterStatus(cast.Enabled);
             _window.SetTransferRate(cast.TransferRate);
-            if (cast.FilteredGas is not null)
-            {
-                var atmos = EntMan.System<AtmosphereSystem>();
-                var gas = atmos.GetGas((Gas) cast.FilteredGas);
-                var gasName = Loc.GetString(gas.Name);
-                _window.SetGasFiltered(gas.ID, gasName);
-            }
-            else
-            {
-                _window.SetGasFiltered(null, Loc.GetString("comp-gas-filter-ui-filter-gas-none"));
-            }
+            _window.SetFilteredGases(cast.FilterGases ?? new HashSet<Gas>());
+            // Funky Station - UI updated using hashset of gases
         }
 
         protected override void Dispose(bool disposing)
