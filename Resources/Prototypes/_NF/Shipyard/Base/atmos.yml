@@ -1,0 +1,40 @@
+- type: shuttleAtmosphere
+  id: ColdAirMix
+  name: Cold air mixture (79% N, 21% O at -38°C)
+  temperature: 235
+  atmosphere:
+    # I guess people who buy a cold shuttle get more oxygen and nitrogen than people buying a shuttle with standard
+    # atmosphere, but making any sort of profit off of that seems quite tedious and not worth anyone's while.
+    Oxygen: 27.225372
+    Nitrogen: 102.419266
+  alarms:
+    temperatureThreshold:
+      upperBound:
+        threshold: 273.15 # 0°C
+      upperWarnAround:
+        threshold: 0.95 # ~ -14°C
+
+- type: shuttleAtmosphere
+  id: PureNitrogen
+  name: Pure nitrogen (100% N at 20°C)
+  atmosphere:
+    Nitrogen: 103.92799
+  alarms:
+    gasThresholdPrototypes:
+      Oxygen: voxOxygen
+      Nitrogen: voxNitrogen
+  atmosFixOverrides:
+    6: # Freezer
+      temperature: 235
+      atmosphere:
+        Nitrogen: 129.64464
+  filterGases:
+  - Oxygen
+  - CarbonDioxide
+  - Plasma
+  - Tritium
+  - WaterVapor
+  - Ammonia
+  - NitrousOxide
+  - Frezon
+  - Helium
