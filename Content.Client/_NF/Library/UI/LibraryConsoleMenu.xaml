@@ -1,0 +1,51 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     SetSize="400 500"
+                     MinSize="400 500"
+                     Title="{Loc 'library-console-menu-title'}">
+    <BoxContainer Orientation="Vertical" Margin="8" HorizontalExpand="True" VerticalExpand="True">
+        <TabContainer Name="MainTabContainer" VerticalExpand="True" HorizontalExpand="True">
+            <!-- Tab 0: Upload -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4">
+                <Label Text="{Loc 'library-console-upload-section-label'}"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 4" />
+                <Label Text="{Loc 'library-console-title-label'}" HorizontalAlignment="Left" />
+                <LineEdit Name="TitleEdit"
+                          PlaceHolder="{Loc 'library-console-title-placeholder'}"
+                          HorizontalExpand="True"
+                          Margin="0 0 0 4" />
+                <Label Text="{Loc 'library-console-author-label'}" HorizontalAlignment="Left" />
+                <LineEdit Name="AuthorEdit"
+                          PlaceHolder="{Loc 'library-console-author-placeholder'}"
+                          HorizontalExpand="True"
+                          Margin="0 0 0 4" />
+                <Button Name="UploadBookButton"
+                        Text="{Loc 'library-console-upload-book-button'}"
+                        HorizontalExpand="True"
+                        Margin="0 0 0 4" />
+            </BoxContainer>
+            <!-- Tab 1: Browse -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="4">
+                <LineEdit Name="SearchEdit"
+                          PlaceHolder="{Loc 'library-console-search-placeholder'}"
+                          HorizontalExpand="True"
+                          Margin="0 0 0 4" />
+                <Label Name="BrowseEmptyLabel"
+                       Text="{Loc 'library-console-browse-empty'}"
+                       HorizontalAlignment="Center"
+                       Visible="False"
+                       Margin="0 0 0 4" />
+                <ItemList Name="BookList"
+                          SelectMode="Single"
+                          HorizontalExpand="True"
+                          VerticalExpand="True"
+                          Margin="0 0 0 4" />
+                <Button Name="DownloadBookButton"
+                        Text="{Loc 'library-console-download-book-button'}"
+                        HorizontalExpand="True"
+                        Margin="0 0 0 4" />
+            </BoxContainer>
+        </TabContainer>
+    </BoxContainer>
+</controls:FancyWindow>
