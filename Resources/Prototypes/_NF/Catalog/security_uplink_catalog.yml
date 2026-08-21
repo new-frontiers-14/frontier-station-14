@@ -944,6 +944,25 @@
         - Sheriff
 
 - type: listing
+  id: UplinkEnergySwordNfsd
+  name:  uplink-security-esword-name
+  description: uplink-security-esword-desc
+  productEntity: EnergySwordNfsd
+  icon: { sprite: _NF/Objects/Weapons/Melee/e_nfsd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+
+- type: listing
   id: UplinkSecurityHammer
   name:  uplink-security-hammer-name
   description: uplink-security-hammer-desc
