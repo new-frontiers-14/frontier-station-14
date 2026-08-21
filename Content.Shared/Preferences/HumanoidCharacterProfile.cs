@@ -135,7 +135,7 @@ namespace Content.Shared.Preferences
             int age,
             Sex sex,
             Gender gender,
-            int bankBalance,
+            int bankBalance, // Frontier
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
@@ -150,7 +150,7 @@ namespace Content.Shared.Preferences
             Age = age;
             Sex = sex;
             Gender = gender;
-            BankBalance = bankBalance;
+            BankBalance = bankBalance; // Frontier
             Appearance = appearance;
             SpawnPriority = spawnPriority;
             _jobPriorities = jobPriorities;
@@ -180,7 +180,7 @@ namespace Content.Shared.Preferences
                 other.Age,
                 other.Sex,
                 other.Gender,
-                other.BankBalance,
+                other.BankBalance, // Frontier
                 other.Appearance.Clone(),
                 other.SpawnPriority,
                 new Dictionary<ProtoId<JobPrototype>, JobPriority>(other.JobPriorities),
@@ -636,7 +636,7 @@ namespace Content.Shared.Preferences
             Age = age;
             Sex = sex;
             Gender = gender;
-            BankBalance = bankBalance;
+            BankBalance = bankBalance; // Frontier
             Appearance = appearance;
             SpawnPriority = spawnPriority;
 

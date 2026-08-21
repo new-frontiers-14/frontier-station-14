@@ -20,6 +20,13 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
+using Content.Shared.Sprite; // Frontier
+using Robust.Shared.GameObjects; // Frontier
+using Robust.Shared.Physics; // Frontier
+using Robust.Shared.Physics.Collision.Shapes; // Frontier
+using Robust.Shared.Physics.Systems; // Frontier
+using Robust.Shared.Physics.Components; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Shared.Humanoid;
 
@@ -41,6 +48,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!; // Frontier
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Frontier
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -377,6 +386,79 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     }
 
     /// <summary>
+    ///     Frontier - Set a humanoid mob's scale.
+    /// </summary>
+    /// <param name="uid">The humanoid mob's UID.</param>
+    /// <param name="scale">The scale to set the mob to.</param>
+    /// <param name="density">Optional: The density to set the mob to. Set as null to leave unchanged.</param>
+    /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
+    /// <param name="humanoid">Humanoid component of the entity</param>
+    public void SetScale(EntityUid uid, float scale, float? densityCoefficient, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!_cfgManager.GetCVar(NFCCVars.SizePicker)
+        || !Resolve(uid, ref humanoid)
+        || !float.IsNormal(scale)
+        || scale <= 0f)
+            return;
+
+        var component = EnsureComp<ScaleVisualsComponent>(uid);
+        var oldScale = component.Scale;
+        var scaleReciprocal = 1 / oldScale.Y;
+        // Use the height's reciprocal so that we can assume Y = 1 for scaling,
+        // while retaining the proportions of X;
+        // i.e. for Dwarves ([1, 0.8]) and Sheleg ([1.5, 1.2])
+        _scaleVisuals.SetSpriteScale(uid, oldScale * scaleReciprocal * scale);
+
+        if (densityCoefficient != null
+        && float.IsNormal((float)densityCoefficient)
+        && TryComp(uid, out FixturesComponent? fixturesComp)
+        && TryComp(uid, out PhysicsComponent? physicsComp))
+        {
+            _physics.ScaleFixtures(uid, scale / oldScale.Y);
+
+            foreach (var (id, fixture) in fixturesComp.Fixtures)
+            {
+                if (!fixture.Hard || fixture.Density <= 1f)
+                    continue; // This will skip the flammable fixture and any other fixture that is not supposed to contribute to mass
+
+                _physics.SetDensity(uid, id, fixture, fixture.Density * (float)densityCoefficient);
+            }
+            _physics.ResetMassData(uid, fixturesComp, physicsComp);
+        }
+
+        if (sync)
+        {
+            Dirty(uid, humanoid);
+        }
+    }
+
+    /// <summary>
+    ///     Frontier - Set a humanoid mob's scale, clamping values and inheriting density from a species as applicable.
+    /// </summary>
+    /// <param name="uid">The humanoid mob's UID.</param>
+    /// <param name="scale">The scale to set the mob to.</param>
+    /// <param name="species">The species to take bounds and density from.</param>
+    /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
+    /// <param name="humanoid">Humanoid component of the entity</param>
+    public void SetScale(EntityUid uid, float scale, string species, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!_cfgManager.GetCVar(NFCCVars.SizePicker))
+            return;
+
+        if (!_proto.TryIndex<SpeciesPrototype>(species, out var speciesProto))
+            return;
+
+        if (!float.IsNormal(scale)
+        || scale < speciesProto.MinSize
+        || scale > speciesProto.MaxSize)
+            scale = speciesProto.DefaultSize;
+
+        float? density = (scale / speciesProto.DefaultSize) * speciesProto.DensityCoefficient;
+
+        SetScale(uid, scale, density, sync, humanoid);
+    }
+
+    /// <summary>
     ///     Loads a humanoid character profile directly onto this humanoid mob.
     /// </summary>
     /// <param name="uid">The mob's entity UID.</param>
@@ -394,6 +476,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
+        SetScale(uid, profile.Appearance.Scale, profile.Species, false, humanoid); // Frontier
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);

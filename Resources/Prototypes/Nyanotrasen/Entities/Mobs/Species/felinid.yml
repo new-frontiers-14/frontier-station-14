@@ -4,7 +4,7 @@
   id: MobFelinidBase
   abstract: true
   components:
-  - type: Sprite
+  - type: ScaleVisuals # Frontier Sprite<ScaleVisuals
     scale: 0.8, 0.8
   - type: HumanoidAppearance
     species: Felinid
@@ -94,10 +94,6 @@
         emote: Scream
         probability: 0.2
   - type: NoShoesSilentFootsteps
-  - type: TallWhitelist # Frontier
-    scale: 1 # Frontier
-    density: 185 # Frontier
-    cosmeticOnly: false # Frontier
   - type: Inventory # Frontier
     speciesId: felinid # Frontier
 
