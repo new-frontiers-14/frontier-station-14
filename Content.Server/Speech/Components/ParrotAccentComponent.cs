@@ -1,10 +1,12 @@
+using Content.Server._NF.Speech.Components;
+
 namespace Content.Server.Speech.Components;
 
 /// <summary>
 /// Makes this entity speak like a parrot in all chat messages it sends.
 /// </summary>
 [RegisterComponent]
-public sealed partial class ParrotAccentComponent : Component
+public sealed partial class ParrotAccentComponent : BaseAccentComponent // Frontier: Component<BaseAccentComponent
 {
     /// <summary>
     /// Chance that a message will have a squawk sound added before the first character.
