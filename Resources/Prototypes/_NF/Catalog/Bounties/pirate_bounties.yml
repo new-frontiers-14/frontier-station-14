@@ -1,4 +1,3 @@
-
 - type: pirateBounty
   id: PirateBountyMail
   reward: 3
@@ -7,15 +6,6 @@
   - name: pirate-bounty-item-mail
     amount: 3
     id: Mail
-
-- type: pirateBounty
-  id: PirateBountyPDA
-  reward: 5
-  description: pirate-bounty-description-generic
-  entries:
-  - name: pirate-bounty-item-pda
-    amount: 3
-    id: Pda
 
 - type: pirateBounty
   id: PirateBountyExtinguisher
@@ -27,13 +17,13 @@
     id: FireExtinguisher
 
 - type: pirateBounty
-  id: PirateBountyCaptainGloves
-  reward: 5
+  id: PirateBountyGloves
+  reward: 3
   description: pirate-bounty-description-generic
   entries:
-  - name: pirate-bounty-item-captainGloves
-    amount: 2
-    id: ClothingHandsGlovesCaptain
+  - name: pirate-bounty-item-gloves
+    amount: 6
+    id: ClothingHandsGloves
 
 - type: pirateBounty
   id: PirateBountyGyro
@@ -95,13 +85,13 @@
     id: VendingMachine
 
 - type: pirateBounty
-  id: PirateBountyCappy
-  reward: 10
+  id: PirateBountyCatIDCard
+  reward: 3
   description: pirate-bounty-description-generic
   entries:
-  - name: pirate-bounty-item-cappy
+  - name: pirate-bounty-item-cat-id-card
     amount: 1
-    id: Cappy
+    id: CatIDCard
 
 - type: pirateBounty
   id: PirateBountyCultistNecklace
@@ -132,7 +122,7 @@
 
 - type: pirateBounty
   id: PirateBountyRTG
-  reward: 4
+  reward: 6
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
@@ -141,17 +131,17 @@
     id: GeneratorRTG
 
 - type: pirateBounty
-  id: PirateBountyMercGas
+  id: PirateBountyGasMask
   reward: 3
   description: pirate-bounty-description-generic
   entries:
-  - name: pirate-bounty-item-mercgas
-    amount: 3
-    id: ClothingMaskGasMercenary
+  - name: pirate-bounty-item-gasmask
+    amount: 6
+    id: ClothingMaskGas
 
 - type: pirateBounty
   id: PirateBountyRDHardsuit
-  reward: 3
+  reward: 4
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-rdhardsuit
@@ -159,13 +149,22 @@
     id: ClothingOuterHardsuitRd
 
 - type: pirateBounty
-  id: PirateBountyMK58
+  id: PirateBountyPistol
   reward: 5
   description: pirate-bounty-description-generic
   entries:
-  - name: pirate-bounty-item-mk58
+  - name: pirate-bounty-item-pistol
     amount: 2
-    id: WeaponPistolMk58
+    id: Pistol
+
+- type: pirateBounty
+  id: PirateBountyRevolver
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-revolver
+    amount: 2
+    id: Revolver
 
 - type: pirateBounty
   id: PirateBountyArtifactAnalyzer
@@ -177,47 +176,27 @@
     id: ArtifactAnalyzerMachineCircuitboard
 
 - type: pirateBounty
-  id: PirateBountyHotplate
-  reward: 3
-  description: pirate-bounty-description-generic
-  spawnChest: false
-  entries:
-  - name: pirate-bounty-item-hotplate
-    amount: 1
-    id: ChemistryHotplate
-
-- type: pirateBounty
-  id: PirateBountyDeepFryer
+  id: PirateBountyMicrowave
   reward: 5
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
-  - name: pirate-bounty-item-deepfryer
+  - name: pirate-bounty-item-microwave
     amount: 2
-    id: KitchenDeepFryer
-
-# FIXME: replace with something that isn't in an astrovend
-# - type: pirateBounty
-#   id: PirateBountyKeyCommon
-#   reward: 5
-#   description: pirate-bounty-description-generic
-#   entries:
-#   - name: pirate-bounty-item-keycommon
-#     amount: 3
-#     id: EncryptionKeyCommon
+    id: KitchenMicrowave
 
 - type: pirateBounty
-  id: PirateBountyMedicalFabBoard
+  id: PirateBountyFabBoard
   reward: 3
   description: pirate-bounty-description-generic
   entries:
-  - name: pirate-bounty-item-medicalfabboard
+  - name: pirate-bounty-item-fabboard
     amount: 1
-    id: MedicalTechFabCircuitboard
+    id: TechFabCircuitboard
 
 - type: pirateBounty
   id: PirateBountyHypo
-  reward: 2
+  reward: 3
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-hypo
@@ -226,12 +205,12 @@
 
 - type: pirateBounty
   id: PirateBountyOreBox
-  reward: 3
+  reward: 2
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
   - name: pirate-bounty-item-orebox
-    amount: 2
+    amount: 1
     id: NFMagnetBoxOre
 
 - type: pirateBounty
@@ -246,35 +225,35 @@
 
 - type: pirateBounty
   id: PirateBountyDiamond
-  reward: 4
+  reward: 6
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-diamond
-    amount: 10
+    amount: 4
     id: MaterialDiamond
 
 - type: pirateBounty
   id: PirateBountyGold
-  reward: 4
+  reward: 3
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-gold
-    amount: 100
+    amount: 60
     id: Gold
 
 - type: pirateBounty
-  id: PirateBountyPlasmaCanister
-  reward: 5
-  description: pirate-bounty-description-generic
+  id: PirateBountyGasCanister
+  reward: 3
+  description: pirate-bounty-description-gesneric
   spawnChest: false
   entries:
-  - name: pirate-bounty-item-plasmacanister
+  - name: pirate-bounty-item-gas-canister
     amount: 4
-    id: PlasmaCanister
+    id: GasCanister
 
 - type: pirateBounty
   id: PirateBountyContraCrate
-  reward: 8 # Bonus of 2 doubloons vs. individual turn-in.
+  reward: 9 #Bonus of 3 doubloons vs. individual turn-in.
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
@@ -296,8 +275,61 @@
   id: PirateBountyEnforcer
   reward: 3
   description: pirate-bounty-description-generic
-  spawnChest: false
   entries:
   - name: pirate-bounty-item-enforcer
     amount: 1
     id: Enforcer
+
+- type: pirateBounty
+  id: PirateBountyCommandStamp
+  reward: 3
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-command-stamp
+    amount: 1
+    id: CommandStamp
+
+- type: pirateBounty
+  id: PirateBountyCoins
+  reward: 6
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-coins
+    amount: 40
+    id: Coins
+
+- type: pirateBounty
+  id: PirateBountyStoneSetRing
+  reward: 8
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-stone-set-ring
+    amount: 6
+    id: StoneSetRing
+
+- type: pirateBounty
+  id: PirateBountyPlainRing
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-plain-ring
+    amount: 8
+    id: PlainRing
+
+- type: pirateBounty #I am going to regret this bounty
+  id: PirateBountyLaserPistolX01
+  reward: 2
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-laser-pistol-x01
+    amount: 1
+    id: NFWeaponEnergyPistolLaserX01Multiphase
+
+- type: pirateBounty
+  id: PirateBountyCDET
+  reward: 2
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-cdet
+    amount: 1
+    id: WeaponTurretContrabandDenyingPacked
