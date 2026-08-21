@@ -1,0 +1,133 @@
+# SPDX-FileCopyrightText: 2021 20kdc
+# SPDX-FileCopyrightText: 2021 DrSmugleaf
+# SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2021 metalgearsloth
+# SPDX-FileCopyrightText: 2022 Peptide90
+# SPDX-FileCopyrightText: 2022 Rane
+# SPDX-FileCopyrightText: 2023 Nemanja
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 iacore
+# SPDX-FileCopyrightText: 2025 core-mene
+#
+# SPDX-License-Identifier: MPL-2.0
+
+- type: constructionGraph
+  id: Machine3x2
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+        - !type:DeleteEntity
+      edges:
+        - to: missingWires
+          completed:
+            - !type:SetAnchor
+              value: false
+          steps:
+            - material: Steel
+              amount: 30
+              doAfter: 5
+        - to: destroyedMachineFrame
+          steps:
+            - material: Steel
+              amount: 30
+              doAfter: 5
+
+    - node: missingWires
+      entity: UnfinishedMachineFrame3x2
+      actions:
+        - !type:EmptyAllContainers
+      edges:
+        - to: machineFrame
+          conditions:
+            - !type:EntityAnchored
+          steps:
+            - material: Cable
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 30
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 4
+
+    - node: machineFrame
+      entity: MachineFrame3x2
+      actions:
+        - !type:AddContainer
+          container: machine_parts
+        - !type:AddContainer
+          container: machine_board
+        - !type:MachineFrameRegenerateProgress
+      edges:
+        - to: machine
+          conditions:
+            - !type:EntityAnchored
+            - !type:MachineFrameComplete
+              guideIconBoard:
+                sprite: Objects/Misc/module.rsi
+                state: id_mod
+              guideIconParts:
+                sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
+                state: scan_module
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+        - to: machineFrame
+          conditions:
+            - !type:EntityAnchored
+            - !type:ContainerNotEmpty
+              container: machine_board
+          steps:
+            - tool: Prying
+              doAfter: 4
+              completed:
+                - !type:EmptyAllContainers
+                - !type:MachineFrameRegenerateProgress
+
+        - to: missingWires
+          conditions:
+            - !type:EntityAnchored
+            - !type:ContainerEmpty
+              container: machine_board
+              examineText: construction-condition-machine-container-empty
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+          steps:
+            - tool: Cutting
+              doAfter: 0.5
+
+    - node: machine
+      entity: !type:BoardNodeEntity { container: machine_board }
+      edges:
+        - to: machineFrame
+          completed:
+            - !type:RaiseEvent
+              event: !type:MachineDeconstructedEvent
+              broadcast: false
+          conditions:
+            - !type:EntityAnchored
+            - !type:WirePanel
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+    - node: destroyedMachineFrame
+      entity: MachineFrameDestroyed3x2
+      edges:
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 7.5
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 18
+            - !type:DeleteEntity {}
