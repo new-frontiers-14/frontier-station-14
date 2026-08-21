@@ -292,6 +292,20 @@
     fiberColor: fibers-black
 
 - type: entity
+  parent: [BaseC3SyndicateContraband, ClothingHandsGlovesSyntheticBase, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
+  id: ClothingHandsSyndicateTacticalMaidGloves
+  name: red tactical maid gloves
+  description: Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals... is that blood?
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/syndicatetacticalmaidgloves.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/syndicatetacticalmaidgloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberColor: fibers-black
+
+- type: entity
   parent: ClothingHandsGlovesCombat # Frontier: Removed BaseSecurityCargoContraband
   id: ClothingHandsMercenaryGlovesCombat # Frontier - Merc to Mercenary
   name: mercenary combat gloves
