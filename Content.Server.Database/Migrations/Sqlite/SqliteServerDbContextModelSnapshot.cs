@@ -2039,6 +2039,105 @@ namespace Content.Server.Database.Migrations.Sqlite
                 {
                     b.Navigation("Unban");
                 });
+            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBox", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("wayfarer_safety_deposit_box_id");
+
+                    b.Property<Guid>("BoxId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("box_id");
+
+                    b.Property<string>("BoxSize")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("box_size");
+
+                    b.Property<int>("CharacterIndex")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("character_index");
+
+                    b.Property<DateTime?>("LastWithdrawn")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_withdrawn");
+
+                    b.Property<int?>("LastWithdrawnRoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("last_withdrawn_round_id");
+
+                    b.Property<string>("Nickname")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nickname");
+
+                    b.Property<string>("OwnerName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("owner_name");
+
+                    b.Property<Guid>("OwnerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("owner_user_id");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("purchase_date");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_safety_deposit_box");
+
+                    b.HasIndex("BoxId")
+                        .IsUnique();
+
+                    b.HasIndex("OwnerUserId");
+
+                    b.ToTable("wayfarer_safety_deposit_box", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBoxItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("wayfarer_safety_deposit_box_item_id");
+
+                    b.Property<int>("BoxId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("box_id");
+
+                    b.Property<DateTime>("DepositDate")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deposit_date");
+
+                    b.Property<string>("EntityData")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("entity_data");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_safety_deposit_box_item");
+
+                    b.HasIndex("BoxId")
+                        .HasDatabaseName("IX_wayfarer_safety_deposit_box_item_box_id");
+
+                    b.ToTable("wayfarer_safety_deposit_box_item", (string)null);
+                });
+            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBoxItem", b =>
+                {
+                    b.HasOne("Content.Server.Database.WayfarerSafetyDepositBox", "Box")
+                        .WithMany("Items")
+                        .HasForeignKey("BoxId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_wayfarer_safety_deposit_box_item_wayfarer_safety_deposit_box_box_id");
+
+                    b.Navigation("Box");
+                });
+            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBox", b =>
+                {
+                    b.Navigation("Items");
+                });
 #pragma warning restore 612, 618
         }
     }
