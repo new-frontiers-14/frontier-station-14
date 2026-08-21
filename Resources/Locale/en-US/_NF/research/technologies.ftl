@@ -13,6 +13,7 @@ nf-research-technology-advanced-anomaly-research = Advanced Anomalous Research
 nf-research-technology-advanced-atmospherics = Advanced Atmospherics
 nf-research-technology-advanced-atmospherics-portable = Portable Atmospherics
 nf-research-technology-advanced-atmospherics-tools = Atmospheric Damage Control
+wf-research-technology-autopilot-server = Autopilot Server
 nf-research-technology-advanced-belt = Personal Tool Storage Solutions
 nf-research-technology-advanced-botanical-equipment = Advanced Botanical Equipment
 nf-research-technology-advanced-botanical-storage = Botanical Bluespace Storage
