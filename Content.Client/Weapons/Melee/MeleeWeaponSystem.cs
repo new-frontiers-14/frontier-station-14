@@ -1,15 +1,10 @@
 using System.Linq;
 using Content.Client.Gameplay;
-using Content.Shared.CombatMode;
 using Content.Shared.Effects;
-using Content.Shared.Hands.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Wieldable.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -23,15 +18,15 @@ namespace Content.Client.Weapons.Melee;
 
 public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly InputSystem _inputSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private InputSystem _inputSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -101,7 +96,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         EntityCoordinates coordinates;
 
-        if (MapManager.TryFindGridAt(mousePos, out var gridUid, out _))
+        if (Maps.TryFindGridAt(mousePos, out var gridUid, out _))
         {
             coordinates = TransformSystem.ToCoordinates(gridUid, mousePos);
         }
