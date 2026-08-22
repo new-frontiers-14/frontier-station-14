@@ -20,7 +20,7 @@ namespace Content.Shared._NF.Interaction.Systems;
 /// <summary>
 /// A system for RP fluff items - display a popup after some amount of time and optionally trigger other things.
 /// </summary>
-public sealed class InteractionPopupOnUseSystem : EntitySystem
+public sealed partial class InteractionPopupOnUseSystem : EntitySystem
 {
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;

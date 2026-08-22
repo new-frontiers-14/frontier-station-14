@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Changeling.Systems;
 
-public abstract class SharedChangelingIdentitySystem : EntitySystem
+public abstract partial class SharedChangelingIdentitySystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Carrying
 {
-    public sealed class CarryingSlowdownSystem : EntitySystem
+    public sealed partial class CarryingSlowdownSystem : EntitySystem
     {
         [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
 

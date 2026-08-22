@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._DV.Abilities;
 
-public sealed class ItemCougherSystem : EntitySystem
+public sealed partial class ItemCougherSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;

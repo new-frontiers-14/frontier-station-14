@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.HotPotato;
 
-public abstract class SharedHotPotatoSystem : EntitySystem
+public abstract partial class SharedHotPotatoSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

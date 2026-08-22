@@ -4,7 +4,7 @@ using Robust.Shared.Containers; // Frontier
 
 namespace Content.Shared.Audio.Jukebox;
 
-public abstract class SharedJukeboxSystem : EntitySystem
+public abstract partial class SharedJukeboxSystem : EntitySystem
 {
     [Dependency] protected SharedAudioSystem Audio = default!;
     [Dependency] protected IPrototypeManager _protoManager = default!; // wizden#42210

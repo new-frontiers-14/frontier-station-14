@@ -7,7 +7,7 @@ using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Charges.Systems;
 
-public abstract class SharedChargesSystem : EntitySystem
+public abstract partial class SharedChargesSystem : EntitySystem
 {
     [Dependency] protected IGameTiming _timing = default!;
     [Dependency] protected SharedAppearanceSystem Appearance = default!; // Frontier

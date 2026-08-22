@@ -19,7 +19,7 @@ using Robust.Shared.Enums; // Frontier
 
 namespace Content.Shared.Morgue;
 
-public abstract class SharedCrematoriumSystem : EntitySystem
+public abstract partial class SharedCrematoriumSystem : EntitySystem
 {
     [Dependency] protected SharedEntityStorageSystem EntityStorage = default!;
     [Dependency] protected SharedPopupSystem Popup = default!;

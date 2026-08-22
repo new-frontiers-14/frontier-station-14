@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Triggers;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class TriggerOnToolUseSystem : EntitySystem
+public sealed partial class TriggerOnToolUseSystem : EntitySystem
 {
     [Dependency] private TriggerSystem _trigger = default!;
 

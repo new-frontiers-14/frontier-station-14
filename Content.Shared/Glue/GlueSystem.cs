@@ -14,7 +14,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Glue;
 
-public sealed class GlueSystem : EntitySystem
+public sealed partial class GlueSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;

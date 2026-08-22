@@ -17,7 +17,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Friction
 {
-    public sealed class TileFrictionController : VirtualController
+    public sealed partial class TileFrictionController : VirtualController
     {
         [Dependency] private IConfigurationManager _configManager = default!;
         [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;

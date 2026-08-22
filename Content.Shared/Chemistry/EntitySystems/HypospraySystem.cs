@@ -21,7 +21,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
-public sealed class HypospraySystem : EntitySystem
+public sealed partial class HypospraySystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfter = default!; // Frontier - Upstream: #30704 - MIT
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;

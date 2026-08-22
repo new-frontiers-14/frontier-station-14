@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Goobstation.Clothing.Systems
 {
-    public sealed class DamageOverTimeSystem : EntitySystem
+    public sealed partial class DamageOverTimeSystem : EntitySystem
     {
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private DamageableSystem _damageSys = default!;

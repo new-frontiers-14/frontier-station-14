@@ -8,7 +8,7 @@ namespace Content.Shared._NF.Movement;
 /// <summary>
 /// Changes the friction and acceleration of an entity depending on if they have an inventory slot full.
 /// </summary>
-public sealed class InventorySlotFrictionSystem : EntitySystem
+public sealed partial class InventorySlotFrictionSystem : EntitySystem
 {
     [Dependency] private MovementSpeedModifierSystem _move = default!;
     [Dependency] private InventorySystem _inventory = default!;

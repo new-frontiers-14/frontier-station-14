@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class ScramOnTriggerSystem : EntitySystem
+public sealed partial class ScramOnTriggerSystem : EntitySystem
 {
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;

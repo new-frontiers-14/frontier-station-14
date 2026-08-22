@@ -20,7 +20,7 @@ using System.Text;
 
 namespace Content.Shared._DV.TapeRecorder.Systems;
 
-public abstract class SharedTapeRecorderSystem : EntitySystem
+public abstract partial class SharedTapeRecorderSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] protected IGameTiming Timing = default!;

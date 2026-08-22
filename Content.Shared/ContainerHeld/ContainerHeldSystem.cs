@@ -7,7 +7,7 @@ using Content.Shared.Toggleable;
 
 namespace Content.Shared.ContainerHeld;
 
-public sealed class ContainerHeldSystem : EntitySystem
+public sealed partial class ContainerHeldSystem : EntitySystem
 {
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

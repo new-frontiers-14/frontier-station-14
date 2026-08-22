@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Mindshield.FakeMindShield;
 
-public sealed class FakeMindShieldSystem : EntitySystem
+public sealed partial class FakeMindShieldSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private TagSystem _tag = default!;

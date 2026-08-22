@@ -9,7 +9,7 @@ namespace Content.Shared.Movement.Systems;
 /// <summary>
 /// This handles the worm component
 /// </summary>
-public sealed class WormSystem : EntitySystem
+public sealed partial class WormSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private SharedStunSystem _stun = default!;

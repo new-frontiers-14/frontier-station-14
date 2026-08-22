@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class TwoStageTriggerSystem : EntitySystem
+public sealed partial class TwoStageTriggerSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private TriggerSystem _triggerSystem = default!;

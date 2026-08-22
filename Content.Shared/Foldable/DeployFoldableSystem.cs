@@ -8,7 +8,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Shared.Foldable;
 
-public sealed class DeployFoldableSystem : EntitySystem
+public sealed partial class DeployFoldableSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private FoldableSystem _foldable = default!;

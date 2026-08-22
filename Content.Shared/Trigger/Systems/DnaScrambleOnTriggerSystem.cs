@@ -9,7 +9,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class DnaScrambleOnTriggerSystem : EntitySystem
+public sealed partial class DnaScrambleOnTriggerSystem : EntitySystem
 {
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;

@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public sealed class MessyDrinkerSystem : EntitySystem
+public sealed partial class MessyDrinkerSystem : EntitySystem
 {
     [Dependency] private IngestionSystem _ingestion = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;

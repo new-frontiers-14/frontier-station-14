@@ -4,7 +4,7 @@ using Content.Shared.RepulseAttract;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class RepulseAttractOnTriggerSystem : EntitySystem
+public sealed partial class RepulseAttractOnTriggerSystem : EntitySystem
 {
     [Dependency] private RepulseAttractSystem _repulse = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

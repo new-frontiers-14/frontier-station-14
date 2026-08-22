@@ -5,7 +5,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class EmitSoundOnTriggerSystem : EntitySystem
+public sealed partial class EmitSoundOnTriggerSystem : EntitySystem
 {
     [Dependency] private INetManager _netMan = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

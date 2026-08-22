@@ -12,7 +12,7 @@ namespace Content.Shared.Storage.EntitySystems;
 /// <summary>
 /// <see cref="MaterialStorageMagnetPickupComponent"/>
 /// </summary>
-public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
+public sealed partial class MaterialStorageMagnetPickupSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;

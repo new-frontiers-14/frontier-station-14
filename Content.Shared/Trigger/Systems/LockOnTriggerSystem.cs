@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class LockOnTriggerSystem : EntitySystem
+public sealed partial class LockOnTriggerSystem : EntitySystem
 {
     [Dependency] private LockSystem _lock = default!;
 

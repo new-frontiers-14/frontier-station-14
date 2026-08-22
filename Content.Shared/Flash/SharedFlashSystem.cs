@@ -25,7 +25,7 @@ using Content.Shared.Random.Helpers;
 
 namespace Content.Shared.Flash;
 
-public abstract class SharedFlashSystem : EntitySystem
+public abstract partial class SharedFlashSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

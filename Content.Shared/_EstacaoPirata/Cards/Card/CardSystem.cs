@@ -17,7 +17,7 @@ namespace Content.Shared._EstacaoPirata.Cards.Card;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class CardSystem : EntitySystem
+public sealed partial class CardSystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private CardStackSystem _cardStack = default!;

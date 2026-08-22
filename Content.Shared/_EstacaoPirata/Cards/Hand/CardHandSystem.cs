@@ -17,7 +17,7 @@ namespace Content.Shared._EstacaoPirata.Cards.Hand;
 /// This handles...
 /// </summary>
 
-public sealed class CardHandSystem : EntitySystem
+public sealed partial class CardHandSystem : EntitySystem
 {
     [ValidatePrototypeId<EntityPrototype>]
     public readonly EntProtoId CardHandBaseName = "CardHandBase";

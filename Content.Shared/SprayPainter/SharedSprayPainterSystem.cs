@@ -21,7 +21,7 @@ namespace Content.Shared.SprayPainter;
 /// System for painting paintable objects using a spray painter.
 /// Pipes are handled serverside since AtmosPipeColorSystem is server only.
 /// </summary>
-public abstract class SharedSprayPainterSystem : EntitySystem
+public abstract partial class SharedSprayPainterSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] protected IPrototypeManager Proto = default!;

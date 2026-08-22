@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Animals.Systems;
 
-public abstract class SharedParrotMemorySystem : EntitySystem
+public abstract partial class SharedParrotMemorySystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ISharedAdminManager _admin = default!;

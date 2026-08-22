@@ -10,7 +10,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Magic;
 
-public sealed class SpellbookSystem : EntitySystem
+public sealed partial class SpellbookSystem : EntitySystem
 {
     [Dependency] private SharedChargesSystem _sharedCharges = default!;
     [Dependency] private SharedMindSystem _mind = default!;

@@ -12,13 +12,13 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Movement.Systems;
 
-public abstract class SharedMobCollisionSystem : EntitySystem
+public abstract partial class SharedMobCollisionSystem : EntitySystem
 {
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MovementSpeedModifierSystem _moveMod = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
     [Dependency] protected IConfigurationManager CfgManager = default!;
-    [Dependency] private   readonly IRobustRandom _random = default!;
-    [Dependency] private   readonly MovementSpeedModifierSystem _moveMod = default!;
     [Dependency] protected SharedPhysicsSystem Physics = default!;
-    [Dependency] private   readonly SharedTransformSystem _xformSystem = default!;
 
     protected EntityQuery<MobCollisionComponent> MobQuery;
     protected EntityQuery<PhysicsComponent> PhysicsQuery;

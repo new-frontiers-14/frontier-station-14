@@ -14,7 +14,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Devour;
 
-public sealed class DevourSystem : EntitySystem
+public sealed partial class DevourSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;

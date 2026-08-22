@@ -19,7 +19,7 @@ namespace Content.Shared._DV.Silicons.Borgs;
 /// <summary>
 /// Handles all id chip interaction with borgs.
 /// </summary>
-public sealed class IdChipSlotSystem : EntitySystem
+public sealed partial class IdChipSlotSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private ItemSlotsSystem _slots = default!;

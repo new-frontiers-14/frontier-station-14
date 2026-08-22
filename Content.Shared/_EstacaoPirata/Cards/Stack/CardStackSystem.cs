@@ -21,7 +21,7 @@ namespace Content.Shared._EstacaoPirata.Cards.Stack;
 /// It is used to shuffle, flip, insert, remove, and join stacks of cards.
 /// It also handles the events related to the stack of cards.
 /// </summary>
-public sealed class CardStackSystem : EntitySystem
+public sealed partial class CardStackSystem : EntitySystem
 {
     public const string ContainerId = "cardstack-container";
     public const int MaxCardsInStack = 212; // Frontier: four 53-card decks.

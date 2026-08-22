@@ -7,7 +7,7 @@ using Content.Shared.StationRecords;
 
 namespace Content.Shared._NF.GridAccess;
 
-public sealed class GridAccessSystem : EntitySystem
+public sealed partial class GridAccessSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
 

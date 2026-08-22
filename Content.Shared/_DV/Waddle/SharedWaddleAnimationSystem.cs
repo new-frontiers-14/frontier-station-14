@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._DV.Waddle;
 
-public abstract class SharedWaddleAnimationSystem : EntitySystem
+public abstract partial class SharedWaddleAnimationSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private IGameTiming _timing = default!;

@@ -5,7 +5,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._NF.Vehicle.EntitySystems;
 
-public sealed class VehicleHornSystem : EntitySystem
+public sealed partial class VehicleHornSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

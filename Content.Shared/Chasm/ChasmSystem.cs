@@ -13,7 +13,7 @@ namespace Content.Shared.Chasm;
 /// <summary>
 ///     Handles making entities fall into chasms when stepped on.
 /// </summary>
-public sealed class ChasmSystem : EntitySystem
+public sealed partial class ChasmSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ActionBlockerSystem _blocker = default!;

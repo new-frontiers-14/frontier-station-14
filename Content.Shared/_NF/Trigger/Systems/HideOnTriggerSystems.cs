@@ -5,7 +5,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared._NF.Trigger.Systems;
 
-public sealed class HideOnTriggerSystem : EntitySystem
+public sealed partial class HideOnTriggerSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
 

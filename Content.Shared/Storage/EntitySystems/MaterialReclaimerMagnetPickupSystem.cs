@@ -12,7 +12,7 @@ namespace Content.Shared.Storage.EntitySystems;
 /// <summary>
 /// <see cref="MaterialReclaimerMagnetPickupComponent"/>
 /// </summary>
-public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
+public sealed partial class MaterialReclaimerMagnetPickupSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;

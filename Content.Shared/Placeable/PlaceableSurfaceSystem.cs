@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Placeable;
 
-public sealed class PlaceableSurfaceSystem : EntitySystem
+public sealed partial class PlaceableSurfaceSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;

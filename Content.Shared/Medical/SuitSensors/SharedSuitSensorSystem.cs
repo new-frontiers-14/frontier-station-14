@@ -28,7 +28,7 @@ using Robust.Shared.Map.Components; // Frontier
 
 namespace Content.Shared.Medical.SuitSensors;
 
-public abstract class SharedSuitSensorSystem : EntitySystem
+public abstract partial class SharedSuitSensorSystem : EntitySystem
 {
     // [Dependency] private SharedStationSystem _stationSystem = default!; // Frontier
     [Dependency] private MobStateSystem _mobStateSystem = default!;

@@ -22,7 +22,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Changeling.Systems;
 
-public sealed class ChangelingDevourSystem : EntitySystem
+public sealed partial class ChangelingDevourSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;

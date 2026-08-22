@@ -12,7 +12,7 @@ using Robust.Shared.Map.Components; // imp edit
 
 namespace Content.Shared.Movement.Systems;
 
-public sealed class SpeedModifierContactsSystem : EntitySystem
+public sealed partial class SpeedModifierContactsSystem : EntitySystem
 {
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedGravitySystem _gravity = default!;

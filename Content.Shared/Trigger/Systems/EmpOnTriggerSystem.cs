@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class EmpOnTriggerSystem : EntitySystem
+public sealed partial class EmpOnTriggerSystem : EntitySystem
 {
     [Dependency] private SharedEmpSystem _emp = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

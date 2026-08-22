@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public abstract class SharedChameleonClothingSystem : EntitySystem
+public abstract partial class SharedChameleonClothingSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private ClothingSystem _clothingSystem = default!;
@@ -22,6 +22,7 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedItemSystem _itemSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] protected IGameTiming _timing = default!;
     [Dependency] private LockSystem _lock = default!;
@@ -37,7 +38,6 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     private readonly Dictionary<SlotFlags, List<EntProtoId>> _data = new();
 
     public readonly Dictionary<SlotFlags, List<string>> ValidVariants = new();
-    [Dependency] protected SharedUserInterfaceSystem UI = default!;
 
     private static readonly ProtoId<TagPrototype> WhitelistChameleonTag = "WhitelistChameleon";
 

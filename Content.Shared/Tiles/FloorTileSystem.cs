@@ -20,7 +20,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Tiles;
 
-public sealed class FloorTileSystem : EntitySystem
+public sealed partial class FloorTileSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IMapManager _mapManager = default!;

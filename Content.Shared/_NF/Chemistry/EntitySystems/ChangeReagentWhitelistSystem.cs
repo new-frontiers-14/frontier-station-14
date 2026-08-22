@@ -12,7 +12,7 @@ namespace Content.Shared._NF.Chemistry.EntitySystems;
 /// <summary>
 ///     Allows an entity to change an injector component's whitelist via a UI box
 /// </summary>
-public sealed class ReagentWhitelistChangeSystem : EntitySystem
+public sealed partial class ReagentWhitelistChangeSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

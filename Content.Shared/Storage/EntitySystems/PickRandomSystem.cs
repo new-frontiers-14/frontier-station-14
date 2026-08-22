@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Storage.EntitySystems;
 
-public sealed class PickRandomSystem : EntitySystem
+public sealed partial class PickRandomSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private INetManager _net = default!;

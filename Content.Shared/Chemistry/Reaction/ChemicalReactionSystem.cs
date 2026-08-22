@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Chemistry.Reaction
 {
-    public sealed class ChemicalReactionSystem : EntitySystem
+    public sealed partial class ChemicalReactionSystem : EntitySystem
     {
         /// <summary>
         /// Foam reaction protoId.

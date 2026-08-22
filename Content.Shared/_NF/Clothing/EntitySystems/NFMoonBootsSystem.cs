@@ -11,7 +11,7 @@ using Content.Shared.Clothing;
 
 namespace Content.Shared._NF.Clothing.EntitySystems;
 
-public sealed class SharedNFMoonBootsSystem : EntitySystem
+public sealed partial class SharedNFMoonBootsSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private ClothingSystem _clothing = default!;

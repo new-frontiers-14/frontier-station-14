@@ -3,7 +3,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._NF.Foldable.Systems;
 
-public sealed class FoldableFixtureSystem : EntitySystem
+public sealed partial class FoldableFixtureSystem : EntitySystem
 {
     [Dependency] private FixtureSystem _fixtures = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;

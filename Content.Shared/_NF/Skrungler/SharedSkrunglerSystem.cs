@@ -15,7 +15,7 @@ namespace Content.Shared._NF.Skrungler;
 /// Lets you turn other mobs into plasma fuel.
 /// <seealso cref="SkrunglerComponent"/>
 /// </summary>
-public abstract class SharedSkrunglerSystem : EntitySystem
+public abstract partial class SharedSkrunglerSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;

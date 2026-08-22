@@ -10,7 +10,7 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._NF.Atmos.Systems;
 
-public abstract class SharedGasDepositSystem : EntitySystem
+public abstract partial class SharedGasDepositSystem : EntitySystem
 {
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

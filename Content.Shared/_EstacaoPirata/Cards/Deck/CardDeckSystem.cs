@@ -19,7 +19,7 @@ namespace Content.Shared._EstacaoPirata.Cards.Deck;
 /// <summary>
 ///     This handles card decks
 /// </summary>
-public sealed class CardDeckSystem : EntitySystem
+public sealed partial class CardDeckSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

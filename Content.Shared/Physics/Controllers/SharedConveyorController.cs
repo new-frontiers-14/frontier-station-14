@@ -15,7 +15,7 @@ using Robust.Shared.Threading;
 
 namespace Content.Shared.Physics.Controllers;
 
-public abstract class SharedConveyorController : VirtualController
+public abstract partial class SharedConveyorController : VirtualController
 {
     [Dependency] protected IMapManager MapManager = default!;
     [Dependency] private IParallelManager _parallel = default!;

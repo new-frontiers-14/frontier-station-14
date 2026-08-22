@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class FlashOnTriggerSystem : EntitySystem
+public sealed partial class FlashOnTriggerSystem : EntitySystem
 {
     [Dependency] private SharedFlashSystem _flash = default!;
 

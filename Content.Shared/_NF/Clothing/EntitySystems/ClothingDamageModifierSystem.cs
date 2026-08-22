@@ -6,7 +6,7 @@ using Content.Shared.Examine;
 using Robust.Shared.Utility;
 using System.Linq;
 
-public sealed class ClothingDamageModifierSystem : EntitySystem
+public sealed partial class ClothingDamageModifierSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examine = default!;
     private int _totalContextCount;

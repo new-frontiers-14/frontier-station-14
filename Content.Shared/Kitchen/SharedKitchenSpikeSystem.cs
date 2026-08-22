@@ -30,7 +30,7 @@ namespace Content.Shared.Kitchen;
 /// <summary>
 /// Used to butcher some entities like monkeys.
 /// </summary>
-public sealed class SharedKitchenSpikeSystem : EntitySystem
+public sealed partial class SharedKitchenSpikeSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;

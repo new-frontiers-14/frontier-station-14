@@ -14,7 +14,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Abilities.Mime;
 
-public sealed class MimePowersSystem : EntitySystem
+public sealed partial class MimePowersSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
