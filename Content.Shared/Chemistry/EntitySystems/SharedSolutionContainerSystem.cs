@@ -16,7 +16,6 @@ using Content.Shared.Localizations;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged.Systems; //Frontier
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
