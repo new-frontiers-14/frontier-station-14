@@ -5,7 +5,7 @@ namespace Content.Server._NF.Chemistry;
 
 public sealed class RandomPillSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public const int MaxPillType = 21;
 

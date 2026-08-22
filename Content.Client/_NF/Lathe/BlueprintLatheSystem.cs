@@ -16,9 +16,9 @@ namespace Content.Client._NF.Lathe;
 /// All recipe sets are stored/sent using bitsets.
 /// Each printed item is a blueprint with the requested set of recipes.
 /// </summary>
-public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
+public sealed partial class BlueprintLatheSystem : SharedBlueprintLatheSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

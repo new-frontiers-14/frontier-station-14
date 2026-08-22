@@ -29,21 +29,21 @@ namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goob
 
 public abstract partial class SharedVehicleSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
-    [Dependency] private readonly INetManager _net = default!; // Frontier
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
-    [Dependency] private readonly EmagSystem _emag = default!; // Frontier
-    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
-    [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedBuckleSystem _buckle = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private IGameTiming _timing = default!; // Frontier
+    [Dependency] private INetManager _net = default!; // Frontier
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!; // Frontier
+    [Dependency] private ActionContainerSystem _actionContainer = default!; // Frontier
+    [Dependency] private EmagSystem _emag = default!; // Frontier
+    [Dependency] private SharedPopupSystem _popup = default!; // Frontier
+    [Dependency] private UnpoweredFlashlightSystem _flashlight = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";

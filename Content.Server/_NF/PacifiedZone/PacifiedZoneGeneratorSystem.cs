@@ -11,12 +11,12 @@ namespace Content.Server._NF.PacifiedZone;
 
 public sealed class PacifiedZoneGeneratorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedJobSystem _jobSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly AdminSystem _admin = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedJobSystem _jobSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private AdminSystem _admin = default!;
 
     private static readonly ProtoId<AlertPrototype> AlertProto = "PacifiedZone";
 

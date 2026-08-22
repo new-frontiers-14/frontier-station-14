@@ -11,7 +11,7 @@ namespace Content.Client._NF.Shipyard.UI;
 [GenerateTypedNameReferences]
 public sealed partial class VesselRow : PanelContainer
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
     private readonly GuidebookSystem _guidebook = default!;
     public VesselPrototype? Vessel;
     public VesselRow()

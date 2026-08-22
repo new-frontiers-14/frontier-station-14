@@ -13,10 +13,10 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed class StationAnchorSystem : EntitySystem
 {
-    [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!; // Frontier
-    [Dependency] private readonly PowerChargeSystem _chargeSystem = default!; // Frontier
+    [Dependency] private ShuttleSystem _shuttleSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private DeviceLinkSystem _signalSystem = default!; // Frontier
+    [Dependency] private PowerChargeSystem _chargeSystem = default!; // Frontier
 
     public override void Initialize()
     {

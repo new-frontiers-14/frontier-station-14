@@ -9,8 +9,8 @@ namespace Content.Shared.MagicMirror;
 
 public abstract class SharedMagicMirrorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UISystem = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] protected SharedUserInterfaceSystem UISystem = default!;
 
     public override void Initialize()
     {

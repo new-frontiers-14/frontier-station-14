@@ -11,7 +11,7 @@ namespace Content.Server._NF.Radio.Systems;
 
 public sealed partial class HandheldRadioSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     // Minimum, maximum radio frequencies
     private const int MinRadioFrequency = 1000;

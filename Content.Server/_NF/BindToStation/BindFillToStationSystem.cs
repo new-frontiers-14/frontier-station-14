@@ -13,9 +13,9 @@ namespace Content.Server._NF.BindToStation;
 /// </summary>
 public sealed class BindFillToStationSystem : EntitySystem
 {
-    [Dependency] private readonly BindToStationSystem _bindToStation = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private BindToStationSystem _bindToStation = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {

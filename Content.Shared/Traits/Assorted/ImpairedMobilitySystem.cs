@@ -11,8 +11,8 @@ namespace Content.Shared.Traits.Assorted;
 /// </summary>
 public sealed class ImpairedMobilitySystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private MovementSpeedModifierSystem _speedModifier = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<ImpairedMobilityComponent, ComponentInit>(OnInit);

@@ -19,9 +19,9 @@ namespace Content.Server.Ame;
 [NodeGroup(NodeGroupID.AMEngine)]
 public sealed class AmeNodeGroup : BaseNodeGroup
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IEntityManager _entMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     /// <summary>
     /// The AME controller which is currently in control of this node group.

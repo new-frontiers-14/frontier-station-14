@@ -16,10 +16,10 @@ namespace Content.Shared.Anomaly;
 /// </summary>
 public sealed class SharedAnomalyCoreSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly INetManager _net = default!; // Frontier
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private INetManager _net = default!; // Frontier
 
     public override void Initialize()
     {

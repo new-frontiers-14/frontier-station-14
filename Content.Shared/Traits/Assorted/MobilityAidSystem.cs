@@ -9,7 +9,7 @@ namespace Content.Shared.Traits.Assorted;
 /// </summary>
 public sealed class MobilityAidSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

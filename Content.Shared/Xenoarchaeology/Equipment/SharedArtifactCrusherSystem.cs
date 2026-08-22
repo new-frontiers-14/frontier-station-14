@@ -12,10 +12,10 @@ namespace Content.Shared.Xenoarchaeology.Equipment;
 /// </summary>
 public abstract class SharedArtifactCrusherSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem AudioSystem = default!;
-    [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedAudioSystem AudioSystem = default!;
+    [Dependency] protected SharedContainerSystem ContainerSystem = default!;
+    [Dependency] private EmagSystem _emag = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -6,7 +6,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class UncuffOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
+    [Dependency] private SharedCuffableSystem _cuffable = default!;
 
     public override void Initialize()
     {

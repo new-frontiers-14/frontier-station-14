@@ -8,8 +8,8 @@ namespace Content.Server._NF.Pirate.Systems;
 // Rule-independent system that ensures if auto-pirates get added, the rules get set up properly.
 public sealed class AutoPirateSystem : EntitySystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override void Initialize()
     {

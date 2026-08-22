@@ -15,7 +15,7 @@ public abstract class SharedDrunkSystem : EntitySystem
     There were no comments as to why this value was chosen three years ago. */
     public static float MagicNumber = 1100f;
 
-    [Dependency] protected readonly StatusEffectsSystem Status = default!;
+    [Dependency] protected StatusEffectsSystem Status = default!;
 
     public override void Initialize()
     {

@@ -8,8 +8,8 @@ namespace Content.Server._NF.Station.Systems;
 
 public sealed class StationRenameHolopadsSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly LabelSystem _label = default!; // TODO: use LabelSystem directly instead of this.
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private LabelSystem _label = default!; // TODO: use LabelSystem directly instead of this.
 
     public override void Initialize()
     {

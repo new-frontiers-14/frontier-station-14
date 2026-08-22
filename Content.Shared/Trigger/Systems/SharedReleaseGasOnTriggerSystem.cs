@@ -10,8 +10,8 @@ namespace Content.Shared.Trigger.Systems;
 /// </summary>
 public abstract class SharedReleaseGasOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

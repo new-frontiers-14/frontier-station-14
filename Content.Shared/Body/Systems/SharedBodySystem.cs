@@ -29,12 +29,12 @@ public abstract partial class SharedBodySystem : EntitySystem
     public const string OrganSlotContainerIdPrefix = "body_organ_slot_";
 
     [Dependency] private   readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
-    [Dependency] protected readonly MovementSpeedModifierSystem Movement = default!;
-    [Dependency] protected readonly SharedContainerSystem Containers = default!;
-    [Dependency] protected readonly SharedTransformSystem SharedTransform = default!;
-    [Dependency] protected readonly StandingStateSystem Standing = default!;
+    [Dependency] protected IPrototypeManager Prototypes = default!;
+    [Dependency] protected DamageableSystem Damageable = default!;
+    [Dependency] protected MovementSpeedModifierSystem Movement = default!;
+    [Dependency] protected SharedContainerSystem Containers = default!;
+    [Dependency] protected SharedTransformSystem SharedTransform = default!;
+    [Dependency] protected StandingStateSystem Standing = default!;
 
     public override void Initialize()
     {

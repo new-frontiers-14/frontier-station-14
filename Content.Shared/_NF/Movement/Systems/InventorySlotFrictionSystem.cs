@@ -10,8 +10,8 @@ namespace Content.Shared._NF.Movement;
 /// </summary>
 public sealed class InventorySlotFrictionSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _move = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private MovementSpeedModifierSystem _move = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public override void Initialize()
     {

@@ -9,8 +9,8 @@ namespace Content.Shared.Trigger.Systems;
 /// </summary>
 public sealed class TriggerOnContainerInteractionSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

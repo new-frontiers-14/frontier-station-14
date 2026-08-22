@@ -21,8 +21,8 @@ namespace Content.Server.Power.EntitySystems;
 /// </remarks>
 public sealed class BatteryInterfaceSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = null!;
 
     public override void Initialize()
     {

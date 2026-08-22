@@ -14,9 +14,9 @@ namespace Content.Server._NF.Security.Systems;
 /// </summary>
 public sealed class ContrabandPriceGunSystem : EntitySystem
 {
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

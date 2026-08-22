@@ -8,7 +8,7 @@ namespace Content.Server._NF.Station.Systems;
 
 public sealed class StationRenameWarpsSystems : EntitySystem
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     public override void Initialize()
     {

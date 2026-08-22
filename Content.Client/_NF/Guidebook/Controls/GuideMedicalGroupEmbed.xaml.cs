@@ -13,7 +13,7 @@ namespace Content.Client._NF.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuideMedicalGroupEmbed : BoxContainer, IDocumentTag
 {
-    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    [Dependency] private IEntitySystemManager _sysMan = default!;
 
     public GuideMedicalGroupEmbed()
     {

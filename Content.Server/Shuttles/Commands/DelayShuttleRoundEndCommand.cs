@@ -11,7 +11,7 @@ namespace Content.Server.Shuttles.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class DelayRoundEndCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly EmergencyShuttleSystem _shuttleSystem = default!;
+    [Dependency] private EmergencyShuttleSystem _shuttleSystem = default!;
 
     public override string Command => "delayroundend";
 

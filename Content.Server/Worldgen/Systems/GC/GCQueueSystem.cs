@@ -15,9 +15,9 @@ namespace Content.Server.Worldgen.Systems.GC;
 /// </summary>
 public sealed class GCQueueSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     [ViewVariables] private TimeSpan _maximumProcessTime = TimeSpan.Zero;
 

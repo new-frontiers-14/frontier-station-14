@@ -21,9 +21,9 @@ namespace Content.Server._DV.Abilities.Felinid;
 /// </remarks>
 public sealed class FelinidSystem : SharedFelinidSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly VomitSystem _vomit = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private VomitSystem _vomit = default!;
 
     public override void Initialize()
     {

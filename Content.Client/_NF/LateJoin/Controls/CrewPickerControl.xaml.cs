@@ -18,11 +18,11 @@ namespace Content.Client._NF.LateJoin.Controls;
 [GenerateTypedNameReferences]
 public sealed partial class CrewPickerControl : PickerControl
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly JobRequirementsManager _jobReqs = default!;
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private JobRequirementsManager _jobReqs = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
     private readonly SpriteSystem _spriteSystem;
 
     private Dictionary<NetEntity, StationJobInformation> _lobbyJobs = new();

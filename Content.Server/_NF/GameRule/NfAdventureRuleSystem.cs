@@ -32,15 +32,15 @@ namespace Content.Server._NF.GameRule;
 /// </summary>
 public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleComponent>
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly PointOfInterestSystem _poi = default!;
-    [Dependency] private readonly IBaseServer _baseServer = default!;
-    [Dependency] private readonly IEntitySystemManager _entSys = default!;
-    [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private PointOfInterestSystem _poi = default!;
+    [Dependency] private IBaseServer _baseServer = default!;
+    [Dependency] private IEntitySystemManager _entSys = default!;
+    [Dependency] private ShuttleRecordsSystem _shuttleRecordsSystem = default!;
 
     private readonly HttpClient _httpClient = new();
 

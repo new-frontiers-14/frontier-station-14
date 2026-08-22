@@ -11,8 +11,8 @@ namespace Content.Shared._NF.Lathe;
 /// </summary>
 public abstract class SharedBlueprintLatheSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedMaterialStorageSystem _materialStorage = default!;
 
     /// <summary>
     /// A lookup table of all printable recipes and the blueprint types they can be printed as.

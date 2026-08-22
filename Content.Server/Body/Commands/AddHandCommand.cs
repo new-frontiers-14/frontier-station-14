@@ -14,8 +14,8 @@ namespace Content.Server.Body.Commands
     [AdminCommand(AdminFlags.Fun)]
     sealed class AddHandCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _entManager = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
+        [Dependency] private IEntityManager _entManager = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
 
         private static readonly EntProtoId DefaultHandPrototype = "LeftHandHuman";
         private static int _handIdAccumulator;

@@ -24,7 +24,7 @@ public sealed class GoblinAccentSystem : EntitySystem
     private static readonly Regex RegexSelf = new(@"self\b");
     private static readonly Regex RegexSelfUpper = new(@"SELF\b");
 
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     public override void Initialize()
     {

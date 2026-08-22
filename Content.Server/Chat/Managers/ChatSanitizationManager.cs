@@ -93,8 +93,8 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry("['=", "chatsan-tearfully-smiles"),
     ];
 
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     private bool _doSanitize;
 

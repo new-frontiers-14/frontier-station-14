@@ -9,7 +9,7 @@ using Robust.Shared.Player;
 namespace Content.Server.Morgue;
 public sealed class CrematoriumSystem : SharedCrematoriumSystem
 {
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
 
     public override void Initialize()
     {

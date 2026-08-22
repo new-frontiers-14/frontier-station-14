@@ -42,23 +42,23 @@ public sealed partial class DisposalDoAfterEvent : SimpleDoAfterEvent
 
 public abstract class SharedDisposalUnitSystem : EntitySystem
 {
-    [Dependency] protected readonly ActionBlockerSystem ActionBlockerSystem = default!;
+    [Dependency] protected ActionBlockerSystem ActionBlockerSystem = default!;
     [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] protected readonly MetaDataSystem Metadata = default!;
+    [Dependency] protected MetaDataSystem Metadata = default!;
     [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly IGameTiming GameTiming = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected IGameTiming GameTiming = default!;
     [Dependency] private   readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] private   readonly EmagSystem _emag = default!;
     [Dependency] private   readonly ClimbSystem _climb = default!;
-    [Dependency] protected readonly SharedContainerSystem Containers = default!;
-    [Dependency] protected readonly SharedJointSystem Joints = default!;
+    [Dependency] protected SharedContainerSystem Containers = default!;
+    [Dependency] protected SharedJointSystem Joints = default!;
     [Dependency] private   readonly SharedPowerReceiverSystem _power = default!;
     [Dependency] private   readonly SharedDisposalTubeSystem _disposalTubeSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private   readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private   readonly SharedMapSystem _map = default!;
 

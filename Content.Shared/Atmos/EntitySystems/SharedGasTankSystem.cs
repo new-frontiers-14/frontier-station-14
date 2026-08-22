@@ -18,7 +18,7 @@ public abstract class SharedGasTankSystem : EntitySystem
     [Dependency] private   readonly SharedAudioSystem _audio = default!;
     [Dependency] private   readonly SharedContainerSystem _containers = default!;
     [Dependency] private   readonly SharedInternalsSystem _internals = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
     [Dependency] private   readonly UseDelaySystem _delay = default!;
 
     public const string GasTankDelay = "gasTank";

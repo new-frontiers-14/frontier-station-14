@@ -17,7 +17,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
     [Dependency] private   readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private   readonly SharedPowerReceiverSystem _receiver = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UserInterfaceSystem = default!;
+    [Dependency] protected SharedUserInterfaceSystem UserInterfaceSystem = default!;
 
     // TODO: Check enabled for activatableUI
     // TODO: Add activatableUI to it.

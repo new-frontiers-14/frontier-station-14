@@ -8,7 +8,7 @@ using System.Linq;
 
 public sealed class ClothingDamageModifierSystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
     private int _totalContextCount;
     public override void Initialize()
     {

@@ -10,7 +10,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client._NF.Roles.Systems;
 
-public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
+public sealed partial class InterviewHologramSystem : SharedInterviewHologramSystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IGameTiming _timing = default!;

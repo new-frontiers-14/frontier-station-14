@@ -10,8 +10,8 @@ namespace Content.Server.Power.EntitySystems
 {
     public sealed class ExtensionCableSystem : EntitySystem
     {
-        [Dependency] private readonly SharedMapSystem _map = default!;
-        [Dependency] private readonly StationSystem _station = default!; // Frontier
+        [Dependency] private SharedMapSystem _map = default!;
+        [Dependency] private StationSystem _station = default!; // Frontier
         public override void Initialize()
         {
             base.Initialize();

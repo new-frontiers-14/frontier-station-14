@@ -14,8 +14,8 @@ namespace Content.Shared._NF.Chemistry.EntitySystems;
 /// </summary>
 public sealed class ReagentWhitelistChangeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     [NetSerializable, Serializable]
     public enum ReagentWhitelistChangeUIKey : byte

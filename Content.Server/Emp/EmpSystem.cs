@@ -19,10 +19,10 @@ namespace Content.Server.Emp;
 
 public sealed class EmpSystem : SharedEmpSystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier: EMP Blast PVS
-    [Dependency] private readonly ExamineSystem _examine = default!; // Frontier: examine verb
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS
+    [Dependency] private IConfigurationManager _cfg = default!; // Frontier: EMP Blast PVS
+    [Dependency] private ExamineSystem _examine = default!; // Frontier: examine verb
 
     public const string EmpPulseEffectPrototype = "EffectEmpBlast"; // Frontier: EffectEmpPulse
 

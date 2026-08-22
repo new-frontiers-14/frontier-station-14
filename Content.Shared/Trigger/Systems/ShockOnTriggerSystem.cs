@@ -6,8 +6,8 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class ShockOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedElectrocutionSystem _electrocution = default!;
 
     public override void Initialize()
     {

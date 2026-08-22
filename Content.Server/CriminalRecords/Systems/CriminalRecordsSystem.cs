@@ -24,11 +24,11 @@ namespace Content.Server.CriminalRecords.Systems;
 /// </summary>
 public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
-    // [Dependency] private readonly StationSystem _station = default!; // Frontier
-    [Dependency] private readonly CartridgeLoaderSystem _cartridge = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
+    // [Dependency] private StationSystem _station = default!; // Frontier
+    [Dependency] private CartridgeLoaderSystem _cartridge = default!;
+    [Dependency] private SectorServiceSystem _sectorService = default!; // Frontier
 
     public override void Initialize()
     {

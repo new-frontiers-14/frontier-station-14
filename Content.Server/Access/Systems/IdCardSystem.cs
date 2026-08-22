@@ -17,13 +17,13 @@ namespace Content.Server.Access.Systems;
 
 public sealed class IdCardSystem : SharedIdCardSystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly MicrowaveSystem _microwave = default!;
-    [Dependency] private readonly RadioSystem _radio = default!; //Harmony Change - For Radio Expire ID Message
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private MicrowaveSystem _microwave = default!;
+    [Dependency] private RadioSystem _radio = default!; //Harmony Change - For Radio Expire ID Message
 
     public override void Initialize()
     {

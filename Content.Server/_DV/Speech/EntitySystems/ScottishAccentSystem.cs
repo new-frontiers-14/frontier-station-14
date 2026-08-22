@@ -7,7 +7,7 @@ namespace Content.Server._DV.Speech.EntitySystems;
 
 public sealed class ScottishAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     public override void Initialize()
     {

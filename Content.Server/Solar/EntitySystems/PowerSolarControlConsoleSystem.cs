@@ -14,8 +14,8 @@ namespace Content.Server.Solar.EntitySystems
     [UsedImplicitly]
     internal sealed class PowerSolarControlConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly NFPowerSolarSystem _powerSolarSystem = default!; // Frontier: use NF variant.
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private NFPowerSolarSystem _powerSolarSystem = default!; // Frontier: use NF variant.
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
 
         /// <summary>
         /// Timer used to avoid updating the UI state every frame (which would be overkill)

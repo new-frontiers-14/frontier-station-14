@@ -18,9 +18,9 @@ namespace Content.Server.Audio.Jukebox;
 
 public sealed class JukeboxSystem : SharedJukeboxSystem
 {
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly TransformSystem _transform = default!; // Frontier
-    [Dependency] private readonly IRobustRandom _random = default!; // wizden#42210
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private TransformSystem _transform = default!; // Frontier
+    [Dependency] private IRobustRandom _random = default!; // wizden#42210
 
     public override void Initialize()
     {

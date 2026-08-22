@@ -19,9 +19,9 @@ public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleComma
     public override string Description => Loc.GetString("command-mailto-description", ("requiredComponent", nameof(MailReceiverComponent))); // Frontier: add override
     public override string Help => Loc.GetString("command-mailto-help", ("command", Command)); // Frontier: add override
 
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     private const string BlankMailPrototype = "MailAdminFun";
     private const string BlankLargeMailPrototype = "MailLargeAdminFun"; // Frontier: large mail
@@ -180,8 +180,8 @@ public sealed class MailNowCommand : IConsoleCommand
     public string Description => Loc.GetString("command-mailnow");
     public string Help => Loc.GetString("command-mailnow-help", ("command", Command));
 
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!; // Frontier
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!; // Frontier
 
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {

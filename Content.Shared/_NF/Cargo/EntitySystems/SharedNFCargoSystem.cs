@@ -5,7 +5,7 @@ namespace Content.Shared._NF.Cargo;
 
 public abstract class SharedNFCargoSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     public override void Initialize()
     {

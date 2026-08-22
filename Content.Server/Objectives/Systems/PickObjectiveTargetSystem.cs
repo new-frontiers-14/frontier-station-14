@@ -14,8 +14,8 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed class PickObjectiveTargetSystem : EntitySystem
 {
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

@@ -10,9 +10,9 @@ namespace Content.Server.Administration.Systems;
 /// </summary>
 public sealed class AdminTestArenaSystem : EntitySystem
 {
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
 
     public const string ArenaMapPath = "/Maps/_NF/Test/admin_test_zone.yml"; // Frontier: Map edit, swap /Maps/Test/admin_test_arena.yml
 

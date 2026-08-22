@@ -7,7 +7,7 @@ namespace Content.Shared._NF.Trigger.Systems;
 
 public sealed class HideOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

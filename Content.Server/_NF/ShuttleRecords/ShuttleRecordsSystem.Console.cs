@@ -15,7 +15,7 @@ namespace Content.Server._NF.ShuttleRecords;
 
 public sealed partial class ShuttleRecordsSystem
 {
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private BankSystem _bank = default!;
     public void InitializeShuttleRecords()
     {
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);

@@ -14,13 +14,13 @@ namespace Content.Client._NF.Body.Systems;
 /// Manages a fullscreen desaturation overlay that increases as the local player loses blood.
 /// The effect fades the world to grayscale (preserving the species' blood color) proportional to blood loss.
 /// </summary>
-public sealed class BloodlossOverlaySystem : EntitySystem
+public sealed partial class BloodlossOverlaySystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     private BloodlossOverlay _overlay = default!;
 

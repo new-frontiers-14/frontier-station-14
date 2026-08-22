@@ -6,7 +6,7 @@ namespace Content.Client._NF.EmpGenerator;
 
 public sealed partial class EmpGeneratorSystem : EntitySystem
 {
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

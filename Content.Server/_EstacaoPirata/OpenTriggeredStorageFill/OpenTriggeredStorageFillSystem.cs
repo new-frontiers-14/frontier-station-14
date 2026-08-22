@@ -17,9 +17,9 @@ namespace Content.Server._EstacaoPirata.OpenTriggeredStorageFill;
 public sealed class OpenTriggeredStorageFillSystem : EntitySystem
 {
 
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

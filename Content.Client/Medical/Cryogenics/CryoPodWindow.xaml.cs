@@ -20,8 +20,8 @@ namespace Content.Client.Medical.Cryogenics;
 [GenerateTypedNameReferences]
 public sealed partial class CryoPodWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public event Action? OnEjectPatientPressed;
     public event Action? OnEjectBeakerPressed;

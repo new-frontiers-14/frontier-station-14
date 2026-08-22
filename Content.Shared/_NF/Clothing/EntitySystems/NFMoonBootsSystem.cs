@@ -13,12 +13,12 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
 
 public sealed class SharedNFMoonBootsSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly ClothingSystem _clothing = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private ClothingSystem _clothing = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedItemSystem _item = default!;
 
     public override void Initialize()
     {

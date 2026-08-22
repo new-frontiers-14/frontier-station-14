@@ -11,8 +11,8 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 /// </summary>
 public sealed class AppraisalCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly PricingSystem _pricingSystem = default!;
+    [Dependency] private CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private PricingSystem _pricingSystem = default!;
 
     public override void Initialize()
     {

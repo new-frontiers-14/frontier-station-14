@@ -10,8 +10,8 @@ namespace Content.Server._DV.Weapons.Ranged.Systems;
 
 public sealed class FireOnLandSystem : EntitySystem
 {
-    [Dependency] private readonly GunSystem _gunSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private GunSystem _gunSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

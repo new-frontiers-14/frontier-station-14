@@ -10,13 +10,13 @@ namespace Content.Client._NF.Body.Overlays;
 /// Fullscreen desaturation overlay that fades the world to grayscale (preserving the species'
 /// blood color) as the player loses blood. Intensity is driven by <see cref="Systems.BloodlossOverlaySystem"/>.
 /// </summary>
-public sealed class BloodlossOverlay : Overlay
+public sealed partial class BloodlossOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> Shader = "Bloodloss";
 
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     public override bool RequestScreenTexture => true;

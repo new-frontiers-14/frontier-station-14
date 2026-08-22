@@ -24,8 +24,8 @@ public sealed class MovementModStatusSystem : EntitySystem
     public static readonly EntProtoId FlashSlowdown = "FlashSlowdownStatusEffect";
     public static readonly EntProtoId StatusEffectFriction = "StatusEffectFriction";
 
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     public override void Initialize()
     {

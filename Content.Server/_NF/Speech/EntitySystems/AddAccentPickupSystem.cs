@@ -8,7 +8,7 @@ namespace Content.Server._NF.Speech.EntitySystems;
 
 public sealed class AddAccentPickupSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     public override void Initialize()
     {

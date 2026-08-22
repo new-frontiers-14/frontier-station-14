@@ -16,9 +16,9 @@ namespace Content.Server._NF.RoundNotifications.Systems;
 /// </remarks>
 public sealed class RoundNotificationsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameMapManager _gameMapManager = default!;
-    [Dependency] private readonly DiscordWebhook _discord = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameMapManager _gameMapManager = default!;
+    [Dependency] private DiscordWebhook _discord = default!;
 
     private ISawmill _sawmill = default!;
 

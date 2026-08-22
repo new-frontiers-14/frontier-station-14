@@ -24,7 +24,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Price
     }
 
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
 
     public event Action<ButtonEventArgs>? OnSellShip;
     public event Action<ButtonEventArgs>? OnOrderApproved;

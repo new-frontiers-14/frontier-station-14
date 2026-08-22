@@ -18,9 +18,9 @@ namespace Content.Server.Maps;
 public sealed class MapMigrationSystem : EntitySystem
 {
 #pragma warning disable CS0414
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 #pragma warning restore CS0414
-    [Dependency] private readonly IResourceManager _resMan = default!;
+    [Dependency] private IResourceManager _resMan = default!;
 
     private static readonly string[] MigrationFiles = { "/migration.yml", "/nf_migration.yml" }; // Frontier: use array of migration files
 

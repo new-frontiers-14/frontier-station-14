@@ -13,9 +13,9 @@ namespace Content.Server.Worldgen.Systems.Debris;
 /// </summary>
 public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     /// <inheritdoc />
     public override void Initialize()

@@ -11,8 +11,8 @@ namespace Content.Server._NF.Worldgen.Systems.Carvers;
 /// </summary>
 public sealed class PointSetDistanceCarverSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _random = default!;
     // Cache points for lookup
 
     /// <inheritdoc />

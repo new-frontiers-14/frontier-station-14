@@ -10,7 +10,7 @@ namespace Content.Server.Trigger.Systems;
 /// <seealso cref="IgniteOnTriggerSystem"/>
 public sealed class FireStackOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly FlammableSystem _flame = default!;
+    [Dependency] private FlammableSystem _flame = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

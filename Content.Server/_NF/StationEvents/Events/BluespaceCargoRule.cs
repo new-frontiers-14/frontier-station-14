@@ -16,10 +16,10 @@ namespace Content.Server.StationEvents.Events;
 
 public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleComponent>
 {
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MapSystem _map = default!;
 
     protected override void Added(EntityUid uid, BluespaceCargoRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

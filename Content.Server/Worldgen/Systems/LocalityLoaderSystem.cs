@@ -11,8 +11,8 @@ namespace Content.Server.Worldgen.Systems;
 /// </summary>
 public sealed class LocalityLoaderSystem : BaseWorldSystem
 {
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
 
     // Frontier: space debris destruction
     public override void Initialize()

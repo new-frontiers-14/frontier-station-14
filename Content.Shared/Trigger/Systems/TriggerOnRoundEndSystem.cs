@@ -8,7 +8,7 @@ namespace Content.Shared.Trigger.Systems;
 /// </summary>
 public sealed class TriggerOnRoundEndSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

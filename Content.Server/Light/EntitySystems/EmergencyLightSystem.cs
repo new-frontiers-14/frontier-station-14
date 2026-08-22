@@ -17,12 +17,12 @@ namespace Content.Server.Light.EntitySystems;
 
 public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
 {
-    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    // [Dependency] private readonly StationSystem _station = default!; // Frontier: sector-wide alerts
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier: sector-wide alerts
+    [Dependency] private AmbientSoundSystem _ambient = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private PointLightSystem _pointLight = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    // [Dependency] private StationSystem _station = default!; // Frontier: sector-wide alerts
+    [Dependency] private SectorServiceSystem _sectorService = default!; // Frontier: sector-wide alerts
 
     public override void Initialize()
     {

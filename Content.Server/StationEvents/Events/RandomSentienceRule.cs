@@ -14,8 +14,8 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
     private static readonly ProtoId<LocalizedDatasetPrototype> DataSourceNames = "NFRandomSentienceEventData"; // Frontier: add NF prefix
     private static readonly ProtoId<LocalizedDatasetPrototype> IntelligenceLevelNames = "NFRandomSentienceEventStrength"; // Frontier: add NF prefix
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Started(EntityUid uid, RandomSentienceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

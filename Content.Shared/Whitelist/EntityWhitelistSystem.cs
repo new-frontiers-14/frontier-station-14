@@ -6,7 +6,7 @@ namespace Content.Shared.Whitelist;
 
 public sealed class EntityWhitelistSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
 

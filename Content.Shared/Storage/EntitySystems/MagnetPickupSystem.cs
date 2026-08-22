@@ -17,14 +17,14 @@ namespace Content.Shared.Storage.EntitySystems;
 /// </summary>
 public sealed class MagnetPickupSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    // [Dependency] private readonly InventorySystem _inventory = default!; // Frontier
-    [Dependency] private readonly ItemToggleSystem _toggle = default!; // DeltaV
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!; // Frontier
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    // [Dependency] private InventorySystem _inventory = default!; // Frontier
+    [Dependency] private ItemToggleSystem _toggle = default!; // DeltaV
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedItemSystem _item = default!; // Frontier
 
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);

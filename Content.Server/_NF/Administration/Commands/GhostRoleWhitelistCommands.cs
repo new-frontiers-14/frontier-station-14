@@ -13,11 +13,11 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Ban)]
 public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override string Command => "ghostrolewhitelistadd";
 
@@ -89,9 +89,9 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed class GetGhostRoleWhitelistCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
 
     public override string Command => "ghostrolewhitelistget";
 
@@ -141,11 +141,11 @@ public sealed class GetGhostRoleWhitelistCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed class RemoveGhostRoleWhitelistCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override string Command => "ghostrolewhitelistremove";
 

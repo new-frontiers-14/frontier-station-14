@@ -39,17 +39,17 @@ namespace Content.Server.VendingMachines
 {
     public sealed class VendingMachineSystem : SharedVendingMachineSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
-        [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private PricingSystem _pricing = default!;
+        [Dependency] private ThrowingSystem _throwingSystem = default!;
+        [Dependency] private IGameTiming _timing = default!;
 
-        [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Frontier
-        [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
-        [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
-        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
-        [Dependency] private readonly StackSystem _stack = default!; // Frontier
+        [Dependency] private SharedAudioSystem _audioSystem = default!; // Frontier
+        [Dependency] private BankSystem _bankSystem = default!; // Frontier
+        [Dependency] private PopupSystem _popupSystem = default!; // Frontier
+        [Dependency] private IAdminLogManager _adminLogger = default!; // Frontier
+        [Dependency] private ContrabandTurnInSystem _contraband = default!; // Frontier
+        [Dependency] private StackSystem _stack = default!; // Frontier
 
         private const float WallVendEjectDistanceFromWall = 1f;
 

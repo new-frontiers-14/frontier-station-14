@@ -7,11 +7,11 @@ using Robust.Shared.Graphics.RSI;
 namespace Content.Client._NF.Vehicles;
 
 // Rewritten from Goobstation's VehicleSystem.
-public sealed class VehicleSystem : SharedVehicleSystem
+public sealed partial class VehicleSystem : SharedVehicleSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IEyeManager _eye = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     public override void Initialize()
     {

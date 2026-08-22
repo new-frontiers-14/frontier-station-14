@@ -8,8 +8,8 @@ namespace Content.Server._NF.Speech.EntitySystems;
 
 public sealed class ScandinavianAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     private static readonly IReadOnlyDictionary<char, char[]> Vowels = new Dictionary<char, char[]>()
     {

@@ -26,12 +26,12 @@ public abstract class SharedEnsnareableSystem : EntitySystem
 {
     [Dependency] private   readonly AlertsSystem _alerts = default!;
     [Dependency] private   readonly MovementSpeedModifierSystem _speedModifier = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
     [Dependency] private   readonly SharedAudioSystem _audio = default!;
-    [Dependency] protected readonly SharedContainerSystem Container = default!;
+    [Dependency] protected SharedContainerSystem Container = default!;
     [Dependency] private   readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private   readonly SharedHandsSystem _hands = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()

@@ -9,9 +9,9 @@ namespace Content.Server._NF.Speech.EntitySystems;
 
 public sealed class CavemanAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public readonly string[] PunctuationStringsToRemove = { "'", "\"", ".", ",", "!", "?", ";", ":" }; // Leave hyphens
 

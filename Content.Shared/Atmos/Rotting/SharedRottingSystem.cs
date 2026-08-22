@@ -11,9 +11,9 @@ namespace Content.Shared.Atmos.Rotting;
 
 public abstract class SharedRottingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] protected readonly MobStateSystem _mobState = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] protected MobStateSystem _mobState = default!;
 
     public const int MaxStages = 3;
 

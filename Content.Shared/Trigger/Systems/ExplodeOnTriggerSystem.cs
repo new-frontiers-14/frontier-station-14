@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class ExplodeOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedExplosionSystem _explosion = default!;
+    [Dependency] private SharedExplosionSystem _explosion = default!;
 
     public override void Initialize()
     {

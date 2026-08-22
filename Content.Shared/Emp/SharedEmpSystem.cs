@@ -6,7 +6,7 @@ namespace Content.Shared.Emp;
 
 public abstract class SharedEmpSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     public override void Initialize()
     {

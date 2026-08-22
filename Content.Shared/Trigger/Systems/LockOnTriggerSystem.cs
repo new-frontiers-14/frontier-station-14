@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class LockOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly LockSystem _lock = default!;
+    [Dependency] private LockSystem _lock = default!;
 
     public override void Initialize()
     {

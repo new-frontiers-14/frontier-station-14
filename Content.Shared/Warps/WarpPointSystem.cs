@@ -7,7 +7,7 @@ namespace Content.Shared.Warps;
 
 public sealed class WarpPointSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationSystem _station = default!; // Frontier
+    [Dependency] private SharedStationSystem _station = default!; // Frontier
     public override void Initialize()
     {
         base.Initialize();

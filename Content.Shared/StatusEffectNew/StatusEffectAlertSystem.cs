@@ -9,8 +9,8 @@ namespace Content.Shared.StatusEffectNew;
 /// </summary>
 public sealed class StatusEffectAlertSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
 
     private EntityQuery<StatusEffectComponent> _effectQuery;
 

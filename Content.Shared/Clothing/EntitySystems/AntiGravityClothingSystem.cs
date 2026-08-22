@@ -12,8 +12,8 @@ namespace Content.Shared.Clothing.EntitySystems;
 /// </remarks>
 public sealed class AntiGravityClothingSystem : EntitySystem
 {
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

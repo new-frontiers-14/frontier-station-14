@@ -7,7 +7,7 @@ namespace Content.Client.Medical.CrewMonitoring;
 
 public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
     private readonly SharedTransformSystem _transform = default!; // Frontier
     public NetEntity? Focus;
     public Dictionary<NetEntity, string> LocalizedNames = new();

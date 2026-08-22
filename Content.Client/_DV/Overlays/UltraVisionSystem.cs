@@ -8,9 +8,9 @@ namespace Content.Client._DV.Overlays;
 
 public sealed partial class UltraVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ISharedPlayerManager _playerMan = default!;
 
     private UltraVisionOverlay _overlay = default!;
 

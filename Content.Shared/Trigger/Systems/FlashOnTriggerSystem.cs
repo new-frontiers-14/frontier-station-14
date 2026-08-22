@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class FlashOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
 
     public override void Initialize()
     {

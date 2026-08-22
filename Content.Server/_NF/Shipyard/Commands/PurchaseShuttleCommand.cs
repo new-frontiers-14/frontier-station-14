@@ -12,7 +12,7 @@ namespace Content.Server._NF.Shipyard.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entityManager = default!;
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("shipyard-commands-purchase-desc");
     public string Help => $"{Command} <station ID> <gridfile path>";

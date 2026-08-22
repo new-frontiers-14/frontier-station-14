@@ -9,7 +9,7 @@ namespace Content.Server.Motd;
 [AnyCommand]
 public sealed class GetMotdCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public override string Command => "get-motd";
     

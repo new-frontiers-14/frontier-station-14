@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class TriggerOnToolUseSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
 
     public override void Initialize()
     {

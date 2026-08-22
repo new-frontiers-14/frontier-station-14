@@ -11,8 +11,8 @@ namespace Content.Server._NF.Transfer;
 /// </summary>
 public sealed class TransferMindOnDespawnSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager= default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private IPrototypeManager _protoManager= default!;
 
     ///Subscribe to the despawn event
     public override void Initialize()
