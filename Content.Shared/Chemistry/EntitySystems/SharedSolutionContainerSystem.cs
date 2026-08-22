@@ -174,14 +174,6 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (ev.ContainerEntity.HasValue)
             container = ev.ContainerEntity.Value;
 
-        //Frontier
-        // use connected Borg container instead of entity from arguments, if it exists.
-        var bc = new GetConnectedBorgContainerEvent();
-        RaiseLocalEvent(container, ref bc);
-        if (bc.ContainerEntity.HasValue)
-            container = bc.ContainerEntity.Value;
-        //End Frontier
-
         EntityUid uid;
         if (name is null)
             uid = container;

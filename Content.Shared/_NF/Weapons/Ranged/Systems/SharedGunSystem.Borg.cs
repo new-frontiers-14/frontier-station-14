@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared._NF.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
+using Content.Shared.Containers;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -14,7 +15,7 @@ public partial class SharedGunSystem
         _container = EntityManager.System<SharedContainerSystem>();
 
         SubscribeLocalEvent<BorgAmmoProviderComponent, TakeAmmoEvent>(OnBorgTakeAmmo);
-        SubscribeLocalEvent<BorgAmmoProviderComponent, GetConnectedBorgContainerEvent>(OnGettingConnectedBorgContainer);
+        SubscribeLocalEvent<BorgAmmoProviderComponent, GetConnectedContainerEvent>(OnGettingConnectedBorgContainer);
     }
 
     private void OnBorgTakeAmmo(EntityUid uid, BorgAmmoProviderComponent component, TakeAmmoEvent args)
@@ -23,7 +24,7 @@ public partial class SharedGunSystem
             RaiseLocalEvent(val.Value, args);
     }
 
-    private void OnGettingConnectedBorgContainer(Entity<BorgAmmoProviderComponent> ent, ref GetConnectedBorgContainerEvent args)
+    private void OnGettingConnectedBorgContainer(Entity<BorgAmmoProviderComponent> ent, ref GetConnectedContainerEvent args)
     {
         if (TryGetConnectedBorgContainer(ent, ent.Comp, out var val))
             args.ContainerEntity = val;
@@ -60,13 +61,4 @@ public partial class SharedGunSystem
 
         return (slotEntity != null);
     }
-}
-
-[ByRefEvent]
-public struct GetConnectedBorgContainerEvent
-{
-    /// <summary>
-    /// Container entity, if it exists, or null.
-    /// </summary>
-    public EntityUid? ContainerEntity;
 }
