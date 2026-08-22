@@ -38,7 +38,7 @@ using Content.Server._NF.Players.GhostRole.Events; // Frontier
 namespace Content.Server.Ghost.Roles;
 
 [UsedImplicitly]
-public sealed class GhostRoleSystem : EntitySystem
+public sealed partial class GhostRoleSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private EuiManager _euiManager = default!;
@@ -850,7 +850,7 @@ public sealed class GhostRoleSystem : EntitySystem
 }
 
 [AnyCommand]
-public sealed class GhostRoles : IConsoleCommand
+public sealed partial class GhostRoles : IConsoleCommand
 {
     [Dependency] private IEntityManager _e = default!;
 

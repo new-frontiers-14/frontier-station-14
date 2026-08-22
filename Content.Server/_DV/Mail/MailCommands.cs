@@ -13,7 +13,7 @@ using Content.Server._NF.Mail.Components;
 namespace Content.Server._DV.Mail;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleCommand < LocalizedCommands
+public sealed partial class MailToCommand : LocalizedCommands // Frontier: IConsoleCommand < LocalizedCommands
 {
     public override string Command => "mailto"; // Frontier: add override
     public override string Description => Loc.GetString("command-mailto-description", ("requiredComponent", nameof(MailReceiverComponent))); // Frontier: add override

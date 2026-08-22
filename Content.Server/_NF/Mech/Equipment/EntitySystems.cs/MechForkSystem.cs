@@ -31,7 +31,7 @@ namespace Content.Server._NF.Mech.Equipment.EntitySystems;
 /// <summary>
 /// Handles <see cref="MechForkComponent"/> and all related UI logic
 /// </summary>
-public sealed class MechForkSystem : EntitySystem
+public sealed partial class MechForkSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private MechSystem _mech = default!;
@@ -274,7 +274,7 @@ public sealed class MechForkSystem : EntitySystem
         if (TryComp<ContainerManagerComponent>(args.Args.Target, out var containerManager))
         {
             EntityCoordinates? coords = null;
-            if (TryComp(equipmentComponent.EquipmentOwner, out TransformComponent? xform)) 
+            if (TryComp(equipmentComponent.EquipmentOwner, out TransformComponent? xform))
                 coords = xform.Coordinates;
 
             List<EntityUid> toRemove = new();

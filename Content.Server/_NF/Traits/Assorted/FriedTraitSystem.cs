@@ -6,7 +6,7 @@ namespace Content.Server._NF.Traits.Assorted;
 /// <summary>
 /// This handles fried trait, causing the affected to look crispy.
 /// </summary>
-public sealed class FriedTraitSystem : EntitySystem
+public sealed partial class FriedTraitSystem : EntitySystem
 {
     [Dependency] private DeepFryerSystem _deepFryerSystem = default!;
 

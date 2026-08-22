@@ -17,7 +17,7 @@ namespace Content.Server._NF.Solar.EntitySystems;
 ///     Largely based on upstream's PowerSolarSystem (with many thanks to 20kdc, DrSmugleaf and others)
 /// </summary>
 [UsedImplicitly]
-internal sealed class NFPowerSolarSystem : EntitySystem
+internal sealed partial class NFPowerSolarSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private SharedPhysicsSystem _physicsSystem = default!;

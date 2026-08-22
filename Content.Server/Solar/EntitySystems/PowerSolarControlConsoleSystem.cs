@@ -12,7 +12,7 @@ namespace Content.Server.Solar.EntitySystems
     /// Responsible for updating solar control consoles.
     /// </summary>
     [UsedImplicitly]
-    internal sealed class PowerSolarControlConsoleSystem : EntitySystem
+    internal sealed partial class PowerSolarControlConsoleSystem : EntitySystem
     {
         [Dependency] private NFPowerSolarSystem _powerSolarSystem = default!; // Frontier: use NF variant.
         [Dependency] private UserInterfaceSystem _uiSystem = default!;

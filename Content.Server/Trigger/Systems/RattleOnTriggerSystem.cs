@@ -11,7 +11,7 @@ using Content.Shared.Humanoid; // Frontier
 
 namespace Content.Server.Trigger.Systems;
 
-public sealed class RattleOnTriggerSystem : EntitySystem
+public sealed partial class RattleOnTriggerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private RadioSystem _radio = default!;

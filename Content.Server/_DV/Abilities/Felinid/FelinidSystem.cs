@@ -19,7 +19,7 @@ namespace Content.Server._DV.Abilities.Felinid;
 /// 2. vomiting was in shared
 /// 3. this didn't use RNG.
 /// </remarks>
-public sealed class FelinidSystem : SharedFelinidSystem
+public sealed partial class FelinidSystem : SharedFelinidSystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;

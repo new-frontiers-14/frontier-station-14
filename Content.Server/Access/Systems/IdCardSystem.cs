@@ -15,7 +15,7 @@ using Content.Server.Radio.EntitySystems; //Harmony Change - For Radio Expire ID
 
 namespace Content.Server.Access.Systems;
 
-public sealed class IdCardSystem : SharedIdCardSystem
+public sealed partial class IdCardSystem : SharedIdCardSystem
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IRobustRandom _random = default!;

@@ -14,7 +14,7 @@ using Content.Server._NF.Roles.Systems; // Frontier
 
 namespace Content.Server.StationEvents;
 
-public sealed class EventManagerSystem : EntitySystem
+public sealed partial class EventManagerSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

@@ -14,7 +14,7 @@ using Content.Shared.Weapons.Ranged.Systems; // Frontier
 
 namespace Content.Server._DV.Weapons.Ranged.Systems;
 
-public sealed class EnergyGunSystem : EntitySystem
+public sealed partial class EnergyGunSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private PopupSystem _popupSystem = default!;

@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._CD.Engraving;
 
-public sealed class EngraveableSystem : EntitySystem
+public sealed partial class EngraveableSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private PopupSystem _popup = default!;

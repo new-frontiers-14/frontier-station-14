@@ -22,7 +22,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Kitchen.EntitySystems;
 
-public sealed class SharpSystem : EntitySystem
+public sealed partial class SharpSystem : EntitySystem
 {
     [Dependency] private BodySystem _bodySystem = default!;
     [Dependency] private SharedDestructibleSystem _destructibleSystem = default!;

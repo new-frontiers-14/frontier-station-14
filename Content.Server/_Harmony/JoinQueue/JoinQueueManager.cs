@@ -17,7 +17,7 @@ namespace Content.Server._Harmony.JoinQueue;
 /// <summary>
 ///     Manages new player connections when the server is full and queues them up, granting access when a slot becomes free
 /// </summary>
-public sealed class JoinQueueManager : IJoinQueueManager
+public sealed partial class JoinQueueManager : IJoinQueueManager
 {
     private static readonly Gauge QueueCount = Metrics.CreateGauge(
         "join_queue_total_count",

@@ -13,7 +13,7 @@ using System.Numerics;
 
 namespace Content.Server.Weapons.Melee;
 
-public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
+public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private DamageExamineSystem _damageExamine = default!;

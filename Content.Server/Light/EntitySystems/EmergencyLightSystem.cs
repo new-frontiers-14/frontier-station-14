@@ -15,7 +15,7 @@ using Content.Server._NF.SectorServices; // Frontier: sector services
 
 namespace Content.Server.Light.EntitySystems;
 
-public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
+public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
 {
     [Dependency] private AmbientSoundSystem _ambient = default!;
     [Dependency] private BatterySystem _battery = default!;

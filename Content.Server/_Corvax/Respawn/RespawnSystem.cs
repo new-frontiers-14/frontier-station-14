@@ -19,7 +19,7 @@ using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server._Corvax.Respawn;
 
-public sealed class RespawnSystem : EntitySystem
+public sealed partial class RespawnSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IGameTiming _timing = default!;

@@ -7,7 +7,7 @@ using Content.Server.Chat.Systems;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-public sealed class CavemanAccentSystem : EntitySystem
+public sealed partial class CavemanAccentSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;

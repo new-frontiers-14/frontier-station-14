@@ -27,7 +27,7 @@ using Content.Shared.DeviceLinking.Events; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
-public sealed class ThrusterSystem : EntitySystem
+public sealed partial class ThrusterSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;

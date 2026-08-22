@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Connection.Whitelist;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class AddBlacklistCommand : LocalizedCommands
+public sealed partial class AddBlacklistCommand : LocalizedCommands
 {
     [Dependency] private IPlayerLocator _playerLocator = default!;
     [Dependency] private IServerDbManager _db = default!;

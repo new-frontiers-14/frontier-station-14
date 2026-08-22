@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Server)]
-public sealed class PanicBunkerCommand : LocalizedCommands
+public sealed partial class PanicBunkerCommand : LocalizedCommands
 {
     [Dependency] private IConfigurationManager _cfg = default!;
 

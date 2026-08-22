@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Content.Server.Botany;
 
-public sealed class MutationSystem : EntitySystem
+public sealed partial class MutationSystem : EntitySystem
 {
     private static ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
 

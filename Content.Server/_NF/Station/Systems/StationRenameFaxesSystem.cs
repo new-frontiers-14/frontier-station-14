@@ -4,7 +4,7 @@ using Content.Shared.Fax.Components;
 
 namespace Content.Server.Station.Systems;
 
-public sealed class StationRenameFaxesSystem : EntitySystem
+public sealed partial class StationRenameFaxesSystem : EntitySystem
 {
     [Dependency] private StationSystem _stationSystem = default!;
 

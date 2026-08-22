@@ -10,7 +10,7 @@ using Content.Shared.Popups;
 
 namespace Content.Server._NF.Pinpointer;
 
-public sealed class ClearPinpointerSystem : EntitySystem
+public sealed partial class ClearPinpointerSystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

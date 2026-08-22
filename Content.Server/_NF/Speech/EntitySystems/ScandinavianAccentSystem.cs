@@ -6,7 +6,7 @@ using Content.Shared.Speech;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-public sealed class ScandinavianAccentSystem : EntitySystem
+public sealed partial class ScandinavianAccentSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;

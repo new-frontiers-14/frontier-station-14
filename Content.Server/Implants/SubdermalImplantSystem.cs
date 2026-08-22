@@ -7,7 +7,7 @@ using Content.Shared.Store.Components;
 
 namespace Content.Server.Implants;
 
-public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
+public sealed partial class SubdermalImplantSystem : SharedSubdermalImplantSystem
 {
     [Dependency] private StoreSystem _store = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

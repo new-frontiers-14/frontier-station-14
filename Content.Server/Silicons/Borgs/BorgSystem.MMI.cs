@@ -10,7 +10,6 @@ namespace Content.Server.Silicons.Borgs;
 /// <inheritdoc/>
 public sealed partial class BorgSystem
 {
-
     [Dependency] private SharedRoleSystem _roles = default!;
 
     public void InitializeMMI()

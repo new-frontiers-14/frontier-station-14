@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
 {
-    public sealed class StutteringSystem : SharedStutteringSystem
+    public sealed partial class StutteringSystem : SharedStutteringSystem
     {
         [Dependency] private IRobustRandom _random = default!;
 

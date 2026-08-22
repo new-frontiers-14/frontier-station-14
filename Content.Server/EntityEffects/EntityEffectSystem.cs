@@ -47,7 +47,7 @@ using Content.Shared.Humanoid; //Delta-V - Banning humanoids from becoming ghost
 
 namespace Content.Server.EntityEffects;
 
-public sealed class EntityEffectSystem : EntitySystem
+public sealed partial class EntityEffectSystem : EntitySystem
 {
     private static readonly ProtoId<WeightedRandomFillSolutionPrototype> RandomPickBotanyReagent = "RandomPickBotanyReagent";
 

@@ -16,7 +16,7 @@ namespace Content.Server._NF.Atmos.EntitySystems;
 /// Logic for the gas deposit scanner.  Largely based off of the GasAnalyzerSystem.
 /// </summary>
 [UsedImplicitly]
-public sealed class GasDepositScannerSystem : EntitySystem
+public sealed partial class GasDepositScannerSystem : EntitySystem
 {
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private AtmosphereSystem _atmos = default!;

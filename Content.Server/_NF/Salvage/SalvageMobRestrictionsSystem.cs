@@ -11,7 +11,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._NF.Salvage;
 
-public sealed class SalvageMobRestrictionsSystem : EntitySystem
+public sealed partial class SalvageMobRestrictionsSystem : EntitySystem
 {
     [Dependency] private BodySystem _body = default!;
     [Dependency] private ExplosionSystem _explosion = default!;

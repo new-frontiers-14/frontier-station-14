@@ -5,7 +5,7 @@ using Robust.Shared.Console;
 namespace Content.Server.GameTicking.Commands
 {
     [AdminCommand(AdminFlags.Round)]
-    sealed class DelayStartCommand : IConsoleCommand
+    sealed partial class DelayStartCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _e = default!;
 

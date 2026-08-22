@@ -18,7 +18,7 @@ using Content.Shared.Destructible;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
-public sealed class SliceableFoodSystem : EntitySystem
+public sealed partial class SliceableFoodSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.PacifiedZone;
 
-public sealed class PacifiedZoneGeneratorSystem : EntitySystem
+public sealed partial class PacifiedZoneGeneratorSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
@@ -49,7 +49,7 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
         var genQuery = AllEntityQuery<PacifiedZoneGeneratorComponent>();
         while (genQuery.MoveNext(out var genUid, out var component))
         {
-            // Not yet update time, skip this 
+            // Not yet update time, skip this
             if (_gameTiming.CurTime < component.NextUpdate)
                 continue;
 

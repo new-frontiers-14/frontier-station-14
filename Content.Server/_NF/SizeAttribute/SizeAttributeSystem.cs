@@ -9,7 +9,7 @@ using Content.Shared.Nyanotrasen.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
 {
-    public sealed class SizeAttributeSystem : EntitySystem
+    public sealed partial class SizeAttributeSystem : EntitySystem
     {
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private SharedPhysicsSystem _physics = default!;

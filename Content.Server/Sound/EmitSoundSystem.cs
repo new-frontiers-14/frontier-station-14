@@ -5,7 +5,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Sound;
 
-public sealed class EmitSoundSystem : SharedEmitSoundSystem
+public sealed partial class EmitSoundSystem : SharedEmitSoundSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;

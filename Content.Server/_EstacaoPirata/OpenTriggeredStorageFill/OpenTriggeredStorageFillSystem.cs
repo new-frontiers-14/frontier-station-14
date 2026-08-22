@@ -14,7 +14,7 @@ namespace Content.Server._EstacaoPirata.OpenTriggeredStorageFill;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class OpenTriggeredStorageFillSystem : EntitySystem
+public sealed partial class OpenTriggeredStorageFillSystem : EntitySystem
 {
 
     [Dependency] private SharedStorageSystem _storage = default!;

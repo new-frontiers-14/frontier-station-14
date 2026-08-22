@@ -13,7 +13,7 @@ using Content.Server._NF.BindToStation; // Frontier: station binding
 namespace Content.Server.Construction;
 
 /// <inheritdoc/>
-public sealed class FlatpackSystem : SharedFlatpackSystem
+public sealed partial class FlatpackSystem : SharedFlatpackSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private AmbientSoundSystem _ambientSound = default!;

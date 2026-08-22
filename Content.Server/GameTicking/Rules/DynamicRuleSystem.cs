@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
+public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
 {
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;

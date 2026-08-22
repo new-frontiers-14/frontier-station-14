@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
+public sealed partial class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
 {
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private FaxSystem _faxSystem = default!;

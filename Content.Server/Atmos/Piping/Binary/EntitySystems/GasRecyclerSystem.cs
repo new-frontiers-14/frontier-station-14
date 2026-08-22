@@ -16,7 +16,7 @@ using Content.Shared.Construction.Components; // Frontier
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasReyclerSystem : EntitySystem
+    public sealed partial class GasReyclerSystem : EntitySystem
     {
         [Dependency] private AppearanceSystem _appearance = default!;
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;

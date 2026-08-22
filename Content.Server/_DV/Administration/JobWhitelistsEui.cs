@@ -14,7 +14,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._DV.Administration;
 
-public sealed class JobWhitelistsEui : BaseEui
+public sealed partial class JobWhitelistsEui : BaseEui
 {
     [Dependency] private IAdminManager _admin = default!;
     [Dependency] private ILogManager _log = default!;

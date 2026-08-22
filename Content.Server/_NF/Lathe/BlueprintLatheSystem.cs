@@ -24,7 +24,7 @@ using Content.Shared._NF.Research.Prototypes;
 namespace Content.Server._NF.Lathe;
 
 [UsedImplicitly]
-public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
+public sealed partial class BlueprintLatheSystem : SharedBlueprintLatheSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _proto = default!;

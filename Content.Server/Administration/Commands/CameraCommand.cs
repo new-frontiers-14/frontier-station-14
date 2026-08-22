@@ -7,7 +7,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class CameraCommand : LocalizedCommands
+public sealed partial class CameraCommand : LocalizedCommands
 {
     [Dependency] private EuiManager _eui = default!;
     [Dependency] private IEntityManager _entManager = default!;

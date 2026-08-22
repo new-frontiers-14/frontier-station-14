@@ -30,7 +30,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._NF.Smuggling;
 
-public sealed class DeadDropSystem : EntitySystem
+public sealed partial class DeadDropSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private SharedHandsSystem _hands = default!;

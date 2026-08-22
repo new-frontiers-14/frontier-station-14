@@ -23,7 +23,7 @@ namespace Content.Server.SprayPainter;
 /// Handles spraying pipes and decals using a spray painter.
 /// Other paintable objects are handled in shared.
 /// </summary>
-public sealed class SprayPainterSystem : SharedSprayPainterSystem
+public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
 {
     [Dependency] private AtmosPipeColorSystem _pipeColor = default!;
     [Dependency] private PopupSystem _popup = default!;

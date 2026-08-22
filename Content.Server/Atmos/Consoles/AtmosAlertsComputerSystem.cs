@@ -24,7 +24,7 @@ using Content.Server.Shuttles.Components; // Frontier
 
 namespace Content.Server.Atmos.Monitor.Systems;
 
-public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
+public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
 {
     [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private AirAlarmSystem _airAlarmSystem = default!;

@@ -13,7 +13,7 @@ using Robust.Server.GameObjects;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class OpenExplosionEui : LocalizedEntityCommands
+public sealed partial class OpenExplosionEui : LocalizedEntityCommands
 {
     [Dependency] private EuiManager _euiManager = default!;
 

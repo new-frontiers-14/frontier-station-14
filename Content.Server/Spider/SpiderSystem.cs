@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Spider;
 
-public sealed class SpiderSystem : SharedSpiderSystem
+public sealed partial class SpiderSystem : SharedSpiderSystem
 {
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private TurfSystem _turf = default!;

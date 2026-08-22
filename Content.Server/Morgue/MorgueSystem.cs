@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Morgue;
 
-public sealed class MorgueSystem : SharedMorgueSystem
+public sealed partial class MorgueSystem : SharedMorgueSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

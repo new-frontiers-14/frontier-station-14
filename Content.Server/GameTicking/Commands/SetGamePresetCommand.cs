@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.GameTicking.Commands
 {
     [AdminCommand(AdminFlags.Round)]
-    public sealed class SetGamePresetCommand : IConsoleCommand
+    public sealed partial class SetGamePresetCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entity = default!;
         [Dependency] private IPrototypeManager _prototype = default!;

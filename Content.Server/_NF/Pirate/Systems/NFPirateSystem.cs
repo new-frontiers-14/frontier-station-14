@@ -6,7 +6,7 @@ using Robust.Server.Player;
 namespace Content.Server._NF.Pirate.Systems;
 
 // Rule-independent system that ensures if auto-pirates get added, the rules get set up properly.
-public sealed class AutoPirateSystem : EntitySystem
+public sealed partial class AutoPirateSystem : EntitySystem
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
     [Dependency] private IPlayerManager _player = default!;

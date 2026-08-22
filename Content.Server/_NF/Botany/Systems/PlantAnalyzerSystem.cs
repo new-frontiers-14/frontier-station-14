@@ -12,10 +12,9 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Text;
 
-
 namespace Content.Server.Botany.Systems;
 
-public sealed class PlantAnalyzerSystem : EntitySystem
+public sealed partial class PlantAnalyzerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private PowerCellSystem _cell = default!;

@@ -12,7 +12,7 @@ namespace Content.Server._NF.Security.Systems;
 /// <summary>
 /// This system handles contraband appraisal messages and will inform a user of how much an item is worth for trade-in in FUCs.
 /// </summary>
-public sealed class ContrabandPriceGunSystem : EntitySystem
+public sealed partial class ContrabandPriceGunSystem : EntitySystem
 {
     [Dependency] private UseDelaySystem _useDelay = default!;
     [Dependency] private PopupSystem _popupSystem = default!;

@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
+public sealed partial class GhostRoleWhitelistAddCommand : LocalizedCommands
 {
     [Dependency] private IServerDbManager _db = default!;
     [Dependency] private JobWhitelistManager _jobWhitelist = default!;
@@ -87,7 +87,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class GetGhostRoleWhitelistCommand : LocalizedCommands
+public sealed partial class GetGhostRoleWhitelistCommand : LocalizedCommands
 {
     [Dependency] private IServerDbManager _db = default!;
     [Dependency] private IPlayerLocator _playerLocator = default!;
@@ -139,7 +139,7 @@ public sealed class GetGhostRoleWhitelistCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class RemoveGhostRoleWhitelistCommand : LocalizedCommands
+public sealed partial class RemoveGhostRoleWhitelistCommand : LocalizedCommands
 {
     [Dependency] private IServerDbManager _db = default!;
     [Dependency] private JobWhitelistManager _jobWhitelist = default!;

@@ -11,7 +11,7 @@ using Content.Server._NF.DangerTether; // Frontier
 
 namespace Content.Server.Singularity.EntitySystems;
 
-public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSystem
+public sealed partial class SingularityGeneratorSystem : SharedSingularityGeneratorSystem
 {
     #region Dependencies
     [Dependency] private IViewVariablesManager _vvm = default!;

@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._DV.Weapons.Ranged.Systems;
 
-public sealed class FireOnLandSystem : EntitySystem
+public sealed partial class FireOnLandSystem : EntitySystem
 {
     [Dependency] private GunSystem _gunSystem = default!;
     [Dependency] private IRobustRandom _random = default!;

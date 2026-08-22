@@ -12,7 +12,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Projectiles;
 
-public sealed class ProjectileSystem : SharedProjectileSystem
+public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private ColorFlashEffectSystem _color = default!;

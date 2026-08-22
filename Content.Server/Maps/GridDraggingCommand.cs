@@ -9,7 +9,7 @@ namespace Content.Server.Maps;
 /// Toggles GridDragging on the system.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class GridDraggingCommand : LocalizedEntityCommands
+public sealed partial class GridDraggingCommand : LocalizedEntityCommands
 {
     [Dependency] private GridDraggingSystem _grid = default!;
 

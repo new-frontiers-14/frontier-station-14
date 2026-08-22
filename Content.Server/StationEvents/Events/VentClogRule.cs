@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 namespace Content.Server.StationEvents.Events;
 
 [UsedImplicitly]
-public sealed class VentClogRule : StationEventSystem<VentClogRuleComponent>
+public sealed partial class VentClogRule : StationEventSystem<VentClogRuleComponent>
 {
     [Dependency] private SmokeSystem _smoke = default!;
 

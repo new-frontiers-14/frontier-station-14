@@ -12,7 +12,7 @@ using static Content.Server.Chat.Systems.ChatSystem;
 
 namespace Content.Server.Silicons.StationAi;
 
-public sealed class StationAiSystem : SharedStationAiSystem
+public sealed partial class StationAiSystem : SharedStationAiSystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedTransformSystem _xforms = default!;

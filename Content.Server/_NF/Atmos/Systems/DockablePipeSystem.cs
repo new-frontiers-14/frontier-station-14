@@ -8,7 +8,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.Atmos.Systems;
 
-public sealed class DockablePipeSystem : EntitySystem
+public sealed partial class DockablePipeSystem : EntitySystem
 {
     [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private NodeContainerSystem _nodeContainer = default!;

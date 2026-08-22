@@ -9,7 +9,7 @@ using Content.Shared.Wieldable;
 
 namespace Content.Server.Abilities.Oni
 {
-    public sealed class OniSystem : EntitySystem
+    public sealed partial class OniSystem : EntitySystem
     {
         [Dependency] private SharedGunSystem _gunSystem = default!;
 

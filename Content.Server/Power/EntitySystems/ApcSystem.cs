@@ -16,7 +16,7 @@ using Content.Shared.Tools.Components;
 
 namespace Content.Server.Power.EntitySystems;
 
-public sealed class ApcSystem : EntitySystem
+public sealed partial class ApcSystem : EntitySystem
 {
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private IGameTiming _gameTiming = default!;

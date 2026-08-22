@@ -3,7 +3,7 @@ using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server.Traits.Assorted;
 
-public sealed class BuckleOnMapInitSystem : EntitySystem
+public sealed partial class BuckleOnMapInitSystem : EntitySystem
 {
     [Dependency] private SharedBuckleSystem _buckleSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!; // Goobstation

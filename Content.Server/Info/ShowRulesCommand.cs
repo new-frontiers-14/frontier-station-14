@@ -10,7 +10,7 @@ using Robust.Shared.Network;
 namespace Content.Server.Info;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class ShowRulesCommand : LocalizedCommands
+public sealed partial class ShowRulesCommand : LocalizedCommands
 {
     [Dependency] private IConfigurationManager _configuration = default!;
     [Dependency] private INetManager _net = default!;

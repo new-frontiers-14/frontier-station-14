@@ -10,7 +10,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Power.EntitySystems;
 
-public sealed class PowerChargeSystem : EntitySystem
+public sealed partial class PowerChargeSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;

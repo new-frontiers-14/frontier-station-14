@@ -16,7 +16,7 @@ namespace Content.Server._NF.Roles.Systems;
 /// <summary>
 /// This handles job tracking for station jobs that should be reopened on cryo.
 /// </summary>
-public sealed class JobTrackingSystem : SharedJobTrackingSystem
+public sealed partial class JobTrackingSystem : SharedJobTrackingSystem
 {
     [Dependency] private IAfkManager _afk = default!;
     [Dependency] private IPlayerManager _player = default!;

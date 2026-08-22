@@ -15,7 +15,7 @@ using Content.Shared.Database; // Frontier
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems;
 
 [UsedImplicitly]
-public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
+public sealed partial class GasPressurePumpSystem : SharedGasPressurePumpSystem
 {
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;

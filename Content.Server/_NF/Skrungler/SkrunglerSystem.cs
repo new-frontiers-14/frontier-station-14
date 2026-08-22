@@ -28,7 +28,7 @@ using Robust.Shared.Utility;
 namespace Content.Server._NF.Skrungler;
 
 /// <inheritdoc/>
-public sealed class SkrunglerSystem : SharedSkrunglerSystem
+public sealed partial class SkrunglerSystem : SharedSkrunglerSystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IRobustRandom _random = default!;

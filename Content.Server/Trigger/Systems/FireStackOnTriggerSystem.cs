@@ -8,7 +8,7 @@ namespace Content.Server.Trigger.Systems;
 /// Trigger system for adding or removing fire stacks from an entity with <see cref="FlammableComponent"/>.
 /// </summary>
 /// <seealso cref="IgniteOnTriggerSystem"/>
-public sealed class FireStackOnTriggerSystem : EntitySystem
+public sealed partial class FireStackOnTriggerSystem : EntitySystem
 {
     [Dependency] private FlammableSystem _flame = default!;
 

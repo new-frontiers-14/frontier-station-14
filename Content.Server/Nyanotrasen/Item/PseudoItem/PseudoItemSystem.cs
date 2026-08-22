@@ -10,7 +10,7 @@ using Content.Shared.Hands.EntitySystems; // Frontier
 
 namespace Content.Server.Nyanotrasen.Item.PseudoItem;
 
-public sealed class PseudoItemSystem : SharedPseudoItemSystem
+public sealed partial class PseudoItemSystem : SharedPseudoItemSystem
 {
     [Dependency] private CarryingSystem _carrying = default!;
     [Dependency] private PopupSystem _popup = default!;

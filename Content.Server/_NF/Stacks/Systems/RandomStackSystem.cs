@@ -4,7 +4,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._NF.Stacks.Systems;
 
-public sealed class RandomStackSystem : EntitySystem
+public sealed partial class RandomStackSystem : EntitySystem
 {
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private IRobustRandom _random = default!;

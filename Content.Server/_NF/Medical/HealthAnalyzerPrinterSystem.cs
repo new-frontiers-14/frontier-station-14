@@ -22,7 +22,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Medical;
 
-public sealed class HealthAnalyzerPrinterSystem : EntitySystem
+public sealed partial class HealthAnalyzerPrinterSystem : EntitySystem
 {
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private AudioSystem _audio = default!;

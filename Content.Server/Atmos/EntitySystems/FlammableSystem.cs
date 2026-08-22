@@ -33,7 +33,7 @@ using Content.Server._NF.Atmos.Components; // Frontier
 
 namespace Content.Server.Atmos.EntitySystems
 {
-    public sealed class FlammableSystem : EntitySystem
+    public sealed partial class FlammableSystem : EntitySystem
     {
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;

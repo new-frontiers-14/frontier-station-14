@@ -30,7 +30,7 @@ namespace Content.Server._NF.GameRule;
 /// <summary>
 /// This handles the dungeon and trading post spawning, as well as round end capitalism summary
 /// </summary>
-public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleComponent>
+public sealed partial class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleComponent>
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _player = default!;

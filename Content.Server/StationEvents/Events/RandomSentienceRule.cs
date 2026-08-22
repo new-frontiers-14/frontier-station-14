@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
+public sealed partial class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
 {
     private static readonly ProtoId<LocalizedDatasetPrototype> DataSourceNames = "NFRandomSentienceEventData"; // Frontier: add NF prefix
     private static readonly ProtoId<LocalizedDatasetPrototype> IntelligenceLevelNames = "NFRandomSentienceEventStrength"; // Frontier: add NF prefix

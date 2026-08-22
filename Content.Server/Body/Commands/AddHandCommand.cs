@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Body.Commands
 {
     [AdminCommand(AdminFlags.Fun)]
-    sealed class AddHandCommand : IConsoleCommand
+    sealed partial class AddHandCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entManager = default!;
         [Dependency] private IPrototypeManager _protoManager = default!;

@@ -7,7 +7,7 @@ using Robust.Shared.Physics.Events;
 namespace Content.Server.Stunnable.Systems;
 
 [UsedImplicitly]
-internal sealed class StunOnCollideSystem : EntitySystem
+internal sealed partial class StunOnCollideSystem : EntitySystem
 {
     [Dependency] private StunSystem _stunSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;

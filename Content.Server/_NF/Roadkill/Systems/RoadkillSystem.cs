@@ -16,7 +16,7 @@ namespace Content.Server._NF.Roadkill.Systems;
 /// <summary>
 /// Kills and/or gibs entities (useful for space mobs) when they collide with a quickly moving grid.
 /// </summary>
-public sealed class RoadkillSystem : EntitySystem
+public sealed partial class RoadkillSystem : EntitySystem
 {
     [Dependency] private PhysicsSystem _physics = default!;
     [Dependency] private AudioSystem _audio = default!;

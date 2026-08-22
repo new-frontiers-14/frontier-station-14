@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Damage.Systems;
 
-public sealed class ExaminableDamageSystem : EntitySystem
+public sealed partial class ExaminableDamageSystem : EntitySystem
 {
     [Dependency] private DestructibleSystem _destructible = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

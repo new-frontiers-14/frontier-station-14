@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Trigger.Systems;
 
-public sealed class SpeakOnTriggerSystem : EntitySystem
+public sealed partial class SpeakOnTriggerSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

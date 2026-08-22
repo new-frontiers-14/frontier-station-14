@@ -9,7 +9,7 @@ using Robust.Shared.ContentPack;
 namespace Content.Replay;
 
 [UsedImplicitly]
-public sealed class EntryPoint : GameClient
+public sealed partial class EntryPoint : GameClient
 {
     [Dependency] private IBaseClient _client = default!;
     [Dependency] private IStateManager _stateMan = default!;

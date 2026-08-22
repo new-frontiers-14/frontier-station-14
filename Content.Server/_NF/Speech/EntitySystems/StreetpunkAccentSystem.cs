@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-public sealed class StreetpunkAccentSystem : EntitySystem
+public sealed partial class StreetpunkAccentSystem : EntitySystem
 {
     [Dependency] private ReplacementAccentSystem _replacement = default!;
     private static readonly Regex RegexIng = new(@"ing\b");

@@ -8,7 +8,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.EmpGenerator;
 
-public sealed class EmpGeneratorSystem : EntitySystem
+public sealed partial class EmpGeneratorSystem : EntitySystem
 {
     [Dependency] private SharedPointLightSystem _lights = default!;
     [Dependency] private EmpSystem _emp = default!;

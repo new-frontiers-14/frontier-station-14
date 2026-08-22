@@ -5,7 +5,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class RoleUnbanCommand : LocalizedCommands
+public sealed partial class RoleUnbanCommand : LocalizedCommands
 {
     [Dependency] private IBanManager _banManager = default!;
 

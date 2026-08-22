@@ -14,7 +14,7 @@ namespace Content.Server._NF.RoundNotifications.Systems;
 /// <remarks>
 /// Updated version of the old Nyanotrasen RoundNotificationsSystem
 /// </remarks>
-public sealed class RoundNotificationsSystem : EntitySystem
+public sealed partial class RoundNotificationsSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IGameMapManager _gameMapManager = default!;

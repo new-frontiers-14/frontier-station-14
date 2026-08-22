@@ -16,7 +16,7 @@ using System.Linq; // Frontier
 namespace Content.Server.Audio.Jukebox;
 
 
-public sealed class JukeboxSystem : SharedJukeboxSystem
+public sealed partial class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private AppearanceSystem _appearanceSystem = default!;
     [Dependency] private TransformSystem _transform = default!; // Frontier

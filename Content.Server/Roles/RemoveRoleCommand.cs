@@ -10,7 +10,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Roles
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class RemoveRoleCommand : LocalizedEntityCommands
+    public sealed partial class RemoveRoleCommand : LocalizedEntityCommands
     {
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private SharedJobSystem _jobs = default!;

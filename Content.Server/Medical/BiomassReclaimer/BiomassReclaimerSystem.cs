@@ -38,7 +38,7 @@ using Content.Shared.Contraband; // Frontier
 
 namespace Content.Server.Medical.BiomassReclaimer
 {
-    public sealed class BiomassReclaimerSystem : EntitySystem
+    public sealed partial class BiomassReclaimerSystem : EntitySystem
     {
         [Dependency] private IConfigurationManager _configManager = default!;
         [Dependency] private SharedTransformSystem _transform = default!;

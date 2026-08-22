@@ -14,7 +14,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Voting
 {
     [AnyCommand]
-    public sealed class CreateVoteCommand : LocalizedEntityCommands
+    public sealed partial class CreateVoteCommand : LocalizedEntityCommands
     {
         [Dependency] private IAdminLogManager _adminLogger = default!;
         [Dependency] private IVoteManager _voteManager = default!;

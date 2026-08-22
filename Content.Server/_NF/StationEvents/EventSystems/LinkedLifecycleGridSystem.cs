@@ -14,7 +14,7 @@ using Content.Shared._Goobstation.Vehicles;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class LinkedLifecycleGridSystem : EntitySystem
+public sealed partial class LinkedLifecycleGridSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMindSystem _mind = default!;

@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Trigger.Systems;
 
-public sealed class ReleaseGasOnTriggerSystem : SharedReleaseGasOnTriggerSystem
+public sealed partial class ReleaseGasOnTriggerSystem : SharedReleaseGasOnTriggerSystem
 {
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

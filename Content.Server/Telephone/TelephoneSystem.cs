@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace Content.Server.Telephone;
 
-public sealed class TelephoneSystem : SharedTelephoneSystem
+public sealed partial class TelephoneSystem : SharedTelephoneSystem
 {
     [Dependency] private AppearanceSystem _appearanceSystem = default!;
     [Dependency] private InteractionSystem _interaction = default!;

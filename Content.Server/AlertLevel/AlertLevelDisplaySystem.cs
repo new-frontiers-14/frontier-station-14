@@ -6,7 +6,7 @@ using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.AlertLevel;
 
-public sealed class AlertLevelDisplaySystem : EntitySystem
+public sealed partial class AlertLevelDisplaySystem : EntitySystem
 {
     // [Dependency] private StationSystem _stationSystem = default!; // Frontier
     [Dependency] private SharedAppearanceSystem _appearance = default!;

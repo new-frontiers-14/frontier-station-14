@@ -40,7 +40,7 @@ namespace Content.Server._NF.PublicTransit;
 /// <summary>
 /// If enabled, spawns a public trasnport grid as definied by cvar, to act as an automatic transit shuttle between designated grids
 /// </summary>
-public sealed class PublicTransitSystem : EntitySystem
+public sealed partial class PublicTransitSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfgManager = default!;
     [Dependency] private IGameTiming _timing = default!;

@@ -26,7 +26,7 @@ using Robust.Shared.Maths;
 
 namespace Content.Server._NF.StationEvents.Events;
 
-public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
+public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
     NanotrasenNameGenerator _nameGenerator = new();
     [Dependency] private IMapManager _mapManager = default!;

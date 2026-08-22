@@ -38,7 +38,7 @@ using Content.Server._NF.Bank; // Frontier
 
 namespace Content.Server.Administration.Systems;
 
-public sealed class AdminSystem : EntitySystem
+public sealed partial class AdminSystem : EntitySystem
 {
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private IChatManager _chat = default!;

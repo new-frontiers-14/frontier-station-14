@@ -4,7 +4,7 @@ using Content.Shared.Verbs; // Frontier
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class AddAccentClothingSystem : EntitySystem
+public sealed partial class AddAccentClothingSystem : EntitySystem
 {
     [Dependency] private IComponentFactory _componentFactory = default!; // Frontier
 

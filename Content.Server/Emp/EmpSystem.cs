@@ -17,7 +17,7 @@ using Robust.Shared; // Frontier: EMP Blast PVS
 
 namespace Content.Server.Emp;
 
-public sealed class EmpSystem : SharedEmpSystem
+public sealed partial class EmpSystem : SharedEmpSystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS

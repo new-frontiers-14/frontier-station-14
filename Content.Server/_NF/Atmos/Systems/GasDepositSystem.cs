@@ -33,7 +33,7 @@ namespace Content.Server._NF.Atmos.Systems;
 /// <summary>
 /// System for handling gas deposits and machines for extracting from gas deposits
 /// </summary>
-public sealed class GasDepositSystem : SharedGasDepositSystem
+public sealed partial class GasDepositSystem : SharedGasDepositSystem
 {
     [Dependency] private AmbientSoundSystem _ambientSound = default!;
     [Dependency] private AppearanceSystem _appearance = default!;

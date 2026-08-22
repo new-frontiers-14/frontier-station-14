@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._DV.CustomObjectiveSummary;
 
-public sealed class CustomObjectiveSummarySystem : EntitySystem
+public sealed partial class CustomObjectiveSummarySystem : EntitySystem
 {
     [Dependency] private IServerNetManager _net = default!;
     [Dependency] private ISharedPlayerManager _player = default!;

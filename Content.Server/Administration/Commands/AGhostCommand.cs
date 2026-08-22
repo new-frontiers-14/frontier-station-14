@@ -14,7 +14,7 @@ using Content.Server._NF.CryoSleep; // Frontier
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AGhostCommand : LocalizedCommands
+public sealed partial class AGhostCommand : LocalizedCommands
 {
     [Dependency] private IEntityManager _entities = default!;
     [Dependency] private ISharedPlayerManager _playerManager = default!;

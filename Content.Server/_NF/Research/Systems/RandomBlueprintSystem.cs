@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._NF.Research.Systems;
 
-public sealed class RandomBlueprintSystem : EntitySystem
+public sealed partial class RandomBlueprintSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;

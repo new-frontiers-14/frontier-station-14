@@ -6,7 +6,7 @@ using Content.Shared.Labels.EntitySystems;
 
 namespace Content.Server._NF.Station.Systems;
 
-public sealed class StationRenameHolopadsSystem : EntitySystem
+public sealed partial class StationRenameHolopadsSystem : EntitySystem
 {
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private LabelSystem _label = default!; // TODO: use LabelSystem directly instead of this.

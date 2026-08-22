@@ -9,7 +9,7 @@ using Content.Shared.Emp; // Frontier
 
 namespace Content.Server.Medical.SuitSensors;
 
-public sealed class SuitSensorSystem : SharedSuitSensorSystem
+public sealed partial class SuitSensorSystem : SharedSuitSensorSystem
 {
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;

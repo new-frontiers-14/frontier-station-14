@@ -18,7 +18,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.CrewManifest;
 
-public sealed class CrewManifestSystem : EntitySystem
+public sealed partial class CrewManifestSystem : EntitySystem
 {
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private StationRecordsSystem _recordsSystem = default!;

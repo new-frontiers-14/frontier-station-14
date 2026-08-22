@@ -19,7 +19,7 @@ using Robust.Shared.Player;
 namespace Content.Server.Nutrition.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class CreamPieSystem : SharedCreamPieSystem
+    public sealed partial class CreamPieSystem : SharedCreamPieSystem
     {
         [Dependency] private IngestionSystem _ingestion = default!;
         [Dependency] private ItemSlotsSystem _itemSlots = default!;
