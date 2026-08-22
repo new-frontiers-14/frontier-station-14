@@ -7,4 +7,5 @@ tech-disk-name-format = {$baseName} ({$technology})
 tech-disk-ui-name = technology disk terminal
 tech-disk-ui-total-label = There are {$amount} points on the selected server
 tech-disk-ui-cost-label = Each disk costs {$amount} points to print
-tech-disk-ui-print-button = Print Disk
+tech-disk-ui-print-button = Print Disk for {$amount} points # Frontier: added $amount part
+tech-disk-ui-print-rare-button = Print Rare Disk for {$amount} points # Frontier
