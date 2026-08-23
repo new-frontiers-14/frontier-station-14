@@ -292,4 +292,10 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerStarterLoadout =
         CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /// <summary>
+    ///     The maximum number of construction ghosts allowed per tile.
+    /// </summary>
+    public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
+        CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

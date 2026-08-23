@@ -55,8 +55,8 @@ public sealed partial class GunSystem
 
     private void UpdateShots(EntityUid uid, BatteryAmmoProviderComponent component, float charge, float maxCharge)
     {
-        var shots = (int) (charge / component.FireCost);
-        var maxShots = (int) (maxCharge / component.FireCost);
+        var shots = (int)(charge / component.FireCost);
+        var maxShots = (int)(maxCharge / component.FireCost);
 
         if (component.Shots != shots || component.Capacity != maxShots)
         {
@@ -81,6 +81,19 @@ public sealed partial class GunSystem
         if (damageSpec == null)
             return;
 
+        // Frontier begin
+        var context = entity.Comp switch
+        {
+            HitscanBatteryAmmoProviderComponent => DamageContext.Hitscan,
+            ProjectileBatteryAmmoProviderComponent => DamageContext.Ranged,
+            _ => throw new ArgumentOutOfRangeException(),
+        };
+
+        var ev = new ApplyClothingDamageModifierEvent(args.User, context, damageSpec);
+        RaiseLocalEvent(args.User, ref ev);
+        damageSpec = ev.Damage;
+        // Frontier end
+
         var damageType = entity.Comp switch
         {
             HitscanBatteryAmmoProviderComponent => Loc.GetString("damage-hitscan"),
@@ -98,7 +111,7 @@ public sealed partial class GunSystem
             if (ProtoManager.Index<EntityPrototype>(battery.Prototype).Components
                 .TryGetValue(Factory.GetComponentName<ProjectileComponent>(), out var projectile))
             {
-                var p = (ProjectileComponent) projectile.Component;
+                var p = (ProjectileComponent)projectile.Component;
 
                 if (!p.Damage.Empty)
                 {
