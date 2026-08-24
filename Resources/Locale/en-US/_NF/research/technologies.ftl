@@ -137,6 +137,7 @@ nf-research-technology-shuttlecraft-thrust-small = Miniaturized Thrusters
 nf-research-technology-space-handheld-scanning = Portable Object Detection
 nf-research-technology-space-scanning = Radar
 nf-research-technology-special-means = Special Means
+nf-research-technology-super-instruments = Super Instruments
 nf-research-technology-super-parts = Super Parts
 nf-research-technology-syringe-gun = Syringe Gun
 nf-research-technology-trash-power-generators = Combustion Power Generators
