@@ -182,8 +182,10 @@ entities:
         path: /Audio/Effects/alert.ogg
     - type: WorldGenDistanceCarver
       distanceThresholds:
+      # Dead zone
       - prob: 0
         maxDistance: 1000
+      # Sparse zone
       - prob: 0.1
         maxDistance: 1400
       - prob: 0.2
@@ -202,7 +204,9 @@ entities:
         maxDistance: 4200
       - prob: 0.9
         maxDistance: 4600
+      # Main world
       - maxDistance: 14000
+      # Outer sparse zone
       - prob: 0.8
         maxDistance: 14500
       - prob: 0.6
@@ -211,8 +215,9 @@ entities:
         maxDistance: 15500
       - prob: 0.2
         maxDistance: 16000
+      # Outer dead zone
       - prob: 0
-        maxDistance: 100000000
+        maxDistance: 100000000 # ~ 100 million
     - type: DecalGrid
       chunkCollection:
         version: 2
