@@ -28,4 +28,13 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Predicted;
+
+    // Frontier Fields
+    /// <summary>
+    /// Audio parameters to use when playing the sound.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public AudioParams AudioParams = AudioParams.Default;
+    // End Frontier Fields
+
 }
