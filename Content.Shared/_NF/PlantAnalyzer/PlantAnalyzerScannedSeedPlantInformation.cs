@@ -3,11 +3,27 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.PlantAnalyzer;
 
 /// <summary>
+///     Contains the current state of a plant analyzer display.
 ///     The information about the last scanned plant/seed is stored here.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfaceMessage
+public sealed class PlantAnalyzerBoundUserInterfaceState  : BoundUserInterfaceState
 {
+    public bool AdvancedScanMode;
+    public PlantAnalyzerScannedPlantInformation? PlantInfo;
+
+    public PlantAnalyzerBoundUserInterfaceState(bool advancedScanMode, PlantAnalyzerScannedPlantInformation? plantInfo)
+    {
+        AdvancedScanMode = advancedScanMode;
+        PlantInfo = plantInfo;
+    }
+}
+
+/// <summary>
+///     Basic information gathered in a scan.
+/// </summary>
+[Serializable, NetSerializable]
+public struct PlantAnalyzerScannedPlantInformation{
     public NetEntity? TargetEntity;
     public bool IsTray;
 
@@ -85,9 +101,9 @@ public enum AnalyzerHarvestType : byte
 [Serializable, NetSerializable]
 public sealed class PlantAnalyzerSetMode : BoundUserInterfaceMessage
 {
-    public bool AdvancedScan { get; }
-    public PlantAnalyzerSetMode(bool advancedScan)
+    public bool AdvancedScanMode { get; }
+    public PlantAnalyzerSetMode(bool advancedScanMode)
     {
-        AdvancedScan = advancedScan;
+        AdvancedScanMode = advancedScanMode;
     }
 }
