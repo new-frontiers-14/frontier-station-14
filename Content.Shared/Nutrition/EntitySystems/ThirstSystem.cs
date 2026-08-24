@@ -42,7 +42,7 @@ public sealed class ThirstSystem : EntitySystem
         if (component.CurrentThirst < 0)
         {
             component.CurrentThirst = _random.Next(
-                (int) component.ThirstThresholds[ThirstThreshold.Okay],
+                (int) component.ThirstThresholds[ThirstThreshold.Okay], // frontier: thirsty<okay
                 (int) component.ThirstThresholds[ThirstThreshold.Okay]);
 
             DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
