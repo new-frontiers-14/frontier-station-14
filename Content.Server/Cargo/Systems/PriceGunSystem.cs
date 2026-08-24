@@ -1,5 +1,7 @@
 using Content.Server.Popups;
 using Content.Server.Salvage.JobBoard;
+using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Timing;
@@ -32,7 +34,7 @@ public sealed class PriceGunSystem : SharedPriceGunSystem
         }
         else // Otherwise appraise the price
         {
-            var price = _pricingSystem.GetPrice(target);
+            var price = (int)Math.Round(_pricingSystem.GetPrice(target) * EnsureComp<MarketModifierComponent>(entity).Mod); // Frontier: better appraisal tool
             _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result",
                     ("object", Identity.Entity(target, EntityManager)),
                     ("price", $"{price:F2}")),
