@@ -312,6 +312,27 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityLake
+  name:  uplink-security-lake-name
+  description: uplink-security-lake-desc
+  productEntity: NFWeaponLauncherGrenadeNfsd
+  icon: { sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityDisablerSMG
   name:  uplink-security-disablersmg-name
   description: uplink-security-disablersmg-desc
@@ -409,6 +430,27 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+
+- type: listing
+  id: UplinkSecuritySniper
+  name:  uplink-security-sniper-name
+  description: uplink-security-sniper-desc
+  productEntity: BriefcaseBrownNfsdSniperBundle
+  icon: { sprite: _NF/Objects/Weapons/Guns/Snipers/aspect.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 8
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - SeniorOfficer
+    - Bailiff
+    - Sheriff
 
 #region utililty
 - type: listing
@@ -515,6 +557,26 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityBrigmedGlasses
+  name:  uplink-security-brigmed-glasses-name
+  description: uplink-security-brigmed-glasses-desc
+  productEntity: ClothingEyesGlassesNfsdMed
+  icon: { sprite: _NF/Clothing/Eyes/Glasses/brigmed_glasses.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Brigmedic
 
 - type: listing
   id: UplinkSecurityThrusterKit
@@ -694,6 +756,47 @@
           - Sheriff
 
 - type: listing
+  id: UplinkSecurityAmmunitionBoxRifle60
+  name:  uplink-security-60sniperbox-name
+  description: uplink-security-60sniperbox-desc
+  productEntity: NFAmmunitionBoxRifle60
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Bailiff
+    - Sheriff
+
+- type: listing
+  id: UplinkSecurityAmmunitionBoxRifle60Rubber
+  name:  uplink-security-60sniperbox-rubber-name
+  description: uplink-security-60sniperbox-rubber-desc
+  productEntity: NFAmmunitionBoxRifle60Rubber
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60-rubber }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - SeniorOfficer
+    - Bailiff
+    - Sheriff
+    
+- type: listing
   id: UplinkSecurityMagazineSubMachineGunRubber
   name:  uplink-security-smgmagazine-rubber-name
   description: uplink-security-smgmagazine-rubber-desc
@@ -712,6 +815,86 @@
       whitelist:
         - Bailiff
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityEmpAmmo
+  name: uplink-security-emp-grenade-ammo-name
+  description: uplink-security-emp-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdEmpAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityFlashAmmo
+  name: uplink-security-flash-grenade-ammo-name
+  description: uplink-security-flash-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdFlashAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityGasAmmo
+  name: uplink-security-gas-grenade-ammo-name
+  description: uplink-security-gas-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdGasAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityNetAmmo
+  name: uplink-security-net-grenade-ammo-name
+  description: uplink-security-net-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdNetAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityGrenadeAmmo
+  name: uplink-security-grenade-ammo-name
+  description: uplink-security-grenade-ammo-desc
+  productEntity: ClothingBackpackDuffelNfsdVariedAmmo
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityHypo
@@ -1173,22 +1356,6 @@
   name: uplink-security-trackingdart-bundle-name
   description: uplink-security-trackingdart-bundle-desc
   productEntity: ClothingBackpackDuffelNfsdTrackingBundle
-  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityBundles
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityEmpBundle
-  name: uplink-security-emp-bundle-name
-  description: uplink-security-emp-bundle-desc
-  productEntity: ClothingBackpackDuffelNfsdEmpBundle
   icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 4
