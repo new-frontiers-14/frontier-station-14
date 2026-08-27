@@ -27,13 +27,14 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
     {
         UpdateUI(args.Loader, ent.Comp); // Frontier: remove station as first arg
     }
-
+    // Frontier: Add an event listener for when the client wants to update its notification state
     private void OnNotificationsUpdated(Entity<MailMetricsCartridgeComponent> program, ref CartridgeMessageEvent eventArgs )
     {
         if (eventArgs is MailMetricsNotificationToggleMessage toggleMessage)
             program.Comp.NotificationsEnabled = toggleMessage.NotificationsEnabled;
 
     }
+    // End Frontier
 
     private void OnLogisticsStatsUpdated(LogisticStatsUpdatedEvent args)
     {
@@ -52,10 +53,11 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
         {
             if (cartridge.LoaderUid is not { } loader)
                 continue;
-            UpdateUI(loader, comp);
+            UpdateUI(loader, comp); // Frontier
         }
     }
 
+    // Frontier: Add parameter cartComp to allow us to get and send notification status
     private void UpdateUI(EntityUid loader, MailMetricsCartridgeComponent cartComp)
     {
         //if (_station.GetOwningStation(loader) is { } station) // Frontier
@@ -68,7 +70,7 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
         var unopenedMailCount = GetUnopenedMailCount(); // Frontier: no station arg
 
         // Send logistic stats to cartridge client
-        var state = new MailMetricUiState(logiStats.Metrics, unopenedMailCount, cartComp.NotificationsEnabled);
+        var state = new MailMetricUiState(logiStats.Metrics, unopenedMailCount, cartComp.NotificationsEnabled); // Frontier: Add cartComp.NotificationsEnabled
         _cartridgeLoader.UpdateCartridgeUiState(loader, state);
     }
 

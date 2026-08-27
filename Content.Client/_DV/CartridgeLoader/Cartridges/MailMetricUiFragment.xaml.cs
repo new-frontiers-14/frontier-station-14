@@ -10,7 +10,7 @@ public sealed partial class MailMetricUiFragment : BoxContainer
 {
 
     private OpenedMailPercentGrade? _successGrade;
-    public Action? OnToggleNotificationButtonPressed;
+    public Action? OnToggleNotificationButtonPressed; // Frontier: Mail notification
     //This is the visual state of the button. Since the UI data is only saved server side, the client is just saying what it remembers.
     public bool MailNotificationEnabledButtonStatus { get; private set; } = true; // Frontier: Mail notifications
 

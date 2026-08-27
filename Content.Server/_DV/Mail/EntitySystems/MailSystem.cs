@@ -803,7 +803,7 @@ namespace Content.Server._DV.Mail.EntitySystems
                 if (validTeleporters[i].HadMail)
                     _audioSystem.PlayPvs(validTeleporters[i].Entity.Comp.TeleportSound, validTeleporters[i].Entity);
             }
-            NotifyMailCarriers(deliveryCount);
+            NotifyMailCarriers(deliveryCount); // Frontier; Mail carrier notifications
         }
         // End Frontier: sector-wide mail
 
@@ -856,7 +856,6 @@ namespace Content.Server._DV.Mail.EntitySystems
         }
 
         //Frontier: Send a PDA notification to all active mail carriers when new mail is teleported in.
-        //TODO: Maybe add a way to toggle this notification in mailmetrics?
         /// <summary>
         /// Notifies all in sector mail carriers that mail has arrived
         /// </summary>
@@ -875,6 +874,7 @@ namespace Content.Server._DV.Mail.EntitySystems
                 }
             }
         }
+        // End Frontier
     }
 
     public struct MailRecipient(

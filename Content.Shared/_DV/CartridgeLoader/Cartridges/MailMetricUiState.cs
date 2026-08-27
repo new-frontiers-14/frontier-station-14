@@ -10,15 +10,16 @@ public sealed class MailMetricUiState : BoundUserInterfaceState
     public int UnopenedMailCount { get; }
     public int TotalMail { get; }
     public double SuccessRate { get; }
-    public bool NotificationsEnabled { get; }
+    public bool NotificationsEnabled { get; } // Frontier: Mail notification toggle
 
+    // Frontier: Add notifications enabled parameter
     public MailMetricUiState(MailStats metrics, int unopenedMailCount, bool notificationsEnabled)
     {
         Metrics = metrics;
         UnopenedMailCount = unopenedMailCount;
         TotalMail = metrics.TotalMail(unopenedMailCount);
         SuccessRate = metrics.SuccessRate(unopenedMailCount);
-        NotificationsEnabled = notificationsEnabled;
+        NotificationsEnabled = notificationsEnabled; // Frontier
     }
 }
 
