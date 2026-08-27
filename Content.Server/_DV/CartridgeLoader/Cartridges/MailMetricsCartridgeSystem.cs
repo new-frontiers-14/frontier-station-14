@@ -32,7 +32,6 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
     {
         if (eventArgs is MailMetricsNotificationToggleMessage toggleMessage)
             program.Comp.NotificationsEnabled = toggleMessage.NotificationsEnabled;
-        Console.Out.WriteLine("Notification Toggle Recieved, new satus is now " + program.Comp.NotificationsEnabled);
 
     }
 
