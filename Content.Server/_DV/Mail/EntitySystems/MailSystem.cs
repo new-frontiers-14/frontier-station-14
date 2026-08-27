@@ -867,9 +867,12 @@ namespace Content.Server._DV.Mail.EntitySystems
             {
                 if (!_cartLoader.TryGetProgram<MailMetricsCartridgeComponent>(pdaUid, out var programUid, out var programComp))
                     continue;
-                _cartLoader.SendNotification(pdaUid,
-                    Loc.GetString("mail-notification-header"),
-                    Loc.GetString("mail-notification-body", ("quantity", packageCount)));
+                if (programComp.NotificationsEnabled)
+                {
+                    _cartLoader.SendNotification(pdaUid,
+                        Loc.GetString("mail-notification-header"),
+                        Loc.GetString("mail-notification-body", ("quantity", packageCount)));
+                }
             }
         }
     }

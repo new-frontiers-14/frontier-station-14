@@ -20,11 +20,20 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
         SubscribeLocalEvent<MailMetricsCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<LogisticStatsUpdatedEvent>(OnLogisticsStatsUpdated);
         SubscribeLocalEvent<MailComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<MailMetricsCartridgeComponent, CartridgeMessageEvent>(OnNotificationsUpdated);
     }
 
     private void OnUiReady(Entity<MailMetricsCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        UpdateUI(args.Loader); // Frontier: remove station as first arg
+        UpdateUI(args.Loader, ent.Comp); // Frontier: remove station as first arg
+    }
+
+    private void OnNotificationsUpdated(Entity<MailMetricsCartridgeComponent> program, ref CartridgeMessageEvent eventArgs )
+    {
+        if (eventArgs is MailMetricsNotificationToggleMessage toggleMessage)
+            program.Comp.NotificationsEnabled = toggleMessage.NotificationsEnabled;
+        Console.Out.WriteLine("Notification Toggle Recieved, new satus is now " + program.Comp.NotificationsEnabled);
+
     }
 
     private void OnLogisticsStatsUpdated(LogisticStatsUpdatedEvent args)
@@ -44,11 +53,11 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
         {
             if (cartridge.LoaderUid is not { } loader)
                 continue;
-            UpdateUI(loader);
+            UpdateUI(loader, comp);
         }
     }
 
-    private void UpdateUI(EntityUid loader)
+    private void UpdateUI(EntityUid loader, MailMetricsCartridgeComponent cartComp)
     {
         //if (_station.GetOwningStation(loader) is { } station) // Frontier
         //    ent.Comp.Station = station; // Frontier
@@ -60,7 +69,7 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
         var unopenedMailCount = GetUnopenedMailCount(); // Frontier: no station arg
 
         // Send logistic stats to cartridge client
-        var state = new MailMetricUiState(logiStats.Metrics, unopenedMailCount);
+        var state = new MailMetricUiState(logiStats.Metrics, unopenedMailCount, cartComp.NotificationsEnabled);
         _cartridgeLoader.UpdateCartridgeUiState(loader, state);
     }
 
