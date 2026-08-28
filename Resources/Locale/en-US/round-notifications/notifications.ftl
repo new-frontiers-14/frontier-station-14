@@ -2,4 +2,6 @@
 discord-round-start = Round #{ $id } on map "{ $map }" has started.
 discord-round-end = Round #{ $id } has ended. It lasted for {$hours} hours, {$minutes} minutes, and {$seconds} seconds.
 discord-round-title = Round Notification
-discord-round-unknown-map = Unknown map # Frontier
+
+# Frontier
+discord-round-unknown-map = Unknown map
