@@ -54,6 +54,7 @@
   id: WeaponChargedStaffBase
   components:
   - type: AmmoCounter
+  - type: NFOniFriendlyGun
   - type: Gun
     fireRate: 1
     selectedMode: FullAuto
@@ -187,7 +188,7 @@
   name: adept-wizard ice staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletIceGlobe
+    proto: NFBulletMagicIceBoltStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardIceAdeptActivation
@@ -200,8 +201,8 @@
   name: master-wizard ice staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletIceGlobe
-    fireCost: 40
+    proto: NFBulletMagicIceBoltStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardIceAdeptActivation
     node: WeaponChargedStaffWizardIceMaster
@@ -220,9 +221,6 @@
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
     heldPrefix: thunder-staff
-  - type: HitscanBatteryAmmoProvider
-    proto: WizardHitscanLightning
-    fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardLightningAdeptActivation
     node: start
@@ -234,7 +232,7 @@
   name: adept-wizard lightning staff
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: WizardHitscanLightning
+    proto: NFHitscanMagicLightningStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardLightningAdeptActivation
@@ -247,8 +245,8 @@
   name: master-wizard lightning staff
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: WizardHitscanLightning
-    fireCost: 40
+    proto: NFHitscanMagicLightningStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardLightningAdeptActivation
     node: WeaponChargedStaffWizardLightningMaster
@@ -282,7 +280,7 @@
   name: adept-wizard soap staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: SoapConjured
+    proto: SoapConjuredAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardSoapAdeptActivation
@@ -295,8 +293,8 @@
   name: master-wizard soap staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: SoapConjured
-    fireCost: 40
+    proto: SoapConjuredMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardSoapAdeptActivation
     node: WeaponChargedStaffWizardSoapMaster
@@ -330,7 +328,7 @@
   name: adept-wizard magic bolt staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletMagicBolt
+    proto: NFBulletMagicBoltStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardBoltMagicAdeptActivation
@@ -343,8 +341,8 @@
   name: master-wizard magic bolt staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletMagicBolt
-    fireCost: 40
+    proto: NFBulletMagicBoltStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardBoltMagicAdeptActivation
     node: WeaponChargedStaffWizardBoltMagicMaster
@@ -387,7 +385,7 @@
   name: adept-wizard fire bolt staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletFireBolt
+    proto: NFBulletMagicFireBoltStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardBoltFireAdeptActivation
@@ -400,8 +398,8 @@
   name: master-wizard fire bolt staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletFireBolt
-    fireCost: 40
+    proto: NFBulletMagicFireBoltStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardBoltFireAdeptActivation
     node: WeaponChargedStaffWizardBoltFireMaster
@@ -444,7 +442,7 @@
   name: adept-wizard caustic beam staff
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: CausticBeam
+    proto: NFHitscanMagicCausticBeamStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardCausticAdeptActivation
@@ -457,8 +455,8 @@
   name: master-wizard caustic beam staff
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: CausticBeam
-    fireCost: 40
+    proto: NFHitscanMagicCausticBeamStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardCausticAdeptActivation
     node: WeaponChargedStaffWizardCausticMaster
@@ -498,7 +496,7 @@
   name: adept-wizard brick staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BrickConjured
+    proto: BrickConjuredAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffWizardBrickAdeptActivation
@@ -511,8 +509,8 @@
   name: master-wizard brick staff
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BrickConjured
-    fireCost: 40
+    proto: BrickConjuredMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffWizardBrickAdeptActivation
     node: WeaponChargedStaffWizardBrickMaster
@@ -522,7 +520,7 @@
 - type: entity
   parent: [ BaseC3CultContraband, WeaponInertStaffBase ]
   id: WeaponInertStaffCultistBoltDark
-  name: inert blood cult staff of crimson bolt
+  name: inert adept-cultist staff of crimson bolt
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
@@ -543,10 +541,10 @@
 - type: entity
   parent: [ WeaponInertStaffCultistBoltDark, WeaponStaffRechargeableBloodCult ]
   id: WeaponChargedStaffCultistBoltDarkAdept
-  name: blood cult staff of crimson bolt
+  name: adept-cultist staff of crimson bolt
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletBloodCultDarkBolt
+    proto: NFBulletMagicBloodCultDarkBoltStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponChargedStaffCultistBoltDarkActivation
@@ -556,11 +554,11 @@
 - type: entity
   parent: [ WeaponChargedStaffCultistBoltDarkAdept, WeaponMasterStaffBase ]
   id: WeaponChargedStaffCultistBoltDarkMaster
-  name: blood cult staff of crimson bolt
+  name: master-cultist staff of crimson bolt
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletBloodCultDarkBolt
-    fireCost: 40
+    proto: NFBulletMagicBloodCultDarkBoltStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponChargedStaffCultistBoltDarkActivation
     node: WeaponChargedStaffCultistBoltDarkMaster
@@ -570,7 +568,7 @@
 - type: entity
   parent: [ BaseC3CultContraband, WeaponInertStaffBase ]
   id: WeaponInertStaffCultistHand
-  name: inert blood cult staff of malicious touch
+  name: inert adept-cultist staff of malicious touch
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
@@ -591,10 +589,10 @@
 - type: entity
   parent: [ WeaponInertStaffCultistHand, WeaponStaffRechargeableBloodCult ]
   id: WeaponChargedStaffCultistHandAdept
-  name: blood cult staff of malicious touch
+  name: adept-cultist staff of malicious touch
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletBloodCultHand
+    proto: NFBulletMagicBloodCultHandStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponInertStaffCultistHandActivation
@@ -604,11 +602,11 @@
 - type: entity
   parent: [ WeaponChargedStaffCultistHandAdept, WeaponMasterStaffBase ]
   id: WeaponChargedStaffCultistHandMaster
-  name: blood cult staff of malicious touch
+  name: master-cultist staff of malicious touch
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletBloodCultHand
-    fireCost: 40
+    proto: NFBulletMagicBloodCultHandStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponInertStaffCultistHandActivation
     node: WeaponChargedStaffCultistHandMaster
@@ -618,7 +616,7 @@
 - type: entity
   parent: [ BaseC3CultContraband, WeaponInertStaffBase ]
   id: WeaponInertStaffCultistLightning
-  name: inert blood cult staff of crimson lightning
+  name: inert adept-cultist staff of crimson lightning
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
@@ -639,10 +637,10 @@
 - type: entity
   parent: [ WeaponInertStaffCultistLightning, WeaponStaffRechargeableBloodCult ]
   id: WeaponChargedStaffCultistLightningAdept
-  name: blood cult staff of crimson lightning
+  name: adept-cultist staff of crimson lightning
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: BloodCultLaser
+    proto: NFHitscanMagicBloodCultLightningStaffAdept
     fireCost: 80
   - type: Construction
     graph: WeaponInertStaffCultistLightningActivation
@@ -652,11 +650,11 @@
 - type: entity
   parent: [ WeaponChargedStaffCultistLightningAdept, WeaponMasterStaffBase ]
   id: WeaponChargedStaffCultistLightningMaster
-  name: blood cult staff of crimson lightning
+  name: master-cultist staff of crimson lightning
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: BloodCultLaser
-    fireCost: 40
+    proto: NFHitscanMagicBloodCultLightningStaffMaster
+    fireCost: 50
   - type: Construction
     graph: WeaponInertStaffCultistLightningActivation
     node: WeaponChargedStaffCultistLightningMaster
@@ -666,7 +664,7 @@
 - type: entity
   parent: [ BaseC3CultContraband, WeaponInertStaffBase ]
   id: WeaponInertStaffCultistSoap
-  name: inert blood cult staff of shredding soap
+  name: inert adept-cultist staff of shredding soap
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
@@ -687,7 +685,7 @@
 - type: entity
   parent: [ WeaponInertStaffCultistSoap, WeaponStaffRechargeableBloodCult ]
   id: WeaponChargedStaffCultistSoapAdept
-  name: blood cult staff of shredding soap
+  name: adept-cultist staff of shredding soap
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: ShellSoapConjuredBloodCultCluster
@@ -700,7 +698,7 @@
 - type: entity
   parent: [ WeaponChargedStaffCultistSoapAdept, WeaponMasterStaffBase ]
   id: WeaponChargedStaffCultistSoapMaster
-  name: blood cult staff of shredding soap
+  name: master-cultist staff of shredding soap
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: ShellSoapConjuredBloodCultCluster

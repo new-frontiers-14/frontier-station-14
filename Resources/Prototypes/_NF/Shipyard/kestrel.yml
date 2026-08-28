@@ -13,7 +13,7 @@
   parent: BaseVessel
   name: NC Kestrel
   description: Once a local shipping lane freighter, this model has been converted for use in debris field mining and salvage operations.
-  price: 46000 # ~41754 0.06 44259.24
+  price: 47000 # ~44235 x 1.06 = 46889
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/kestrel.yml
@@ -30,7 +30,7 @@
   minPlayers: 0
   stations:
     Kestrel:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Kestrel {1}'
@@ -41,4 +41,4 @@
           availableJobs:
             ContractorInterview: [ 0, 0 ]
             PilotInterview: [ 0, 0 ]
-            MercenaryInterview: [ 0, 0 ]  
+            MercenaryInterview: [ 0, 0 ]

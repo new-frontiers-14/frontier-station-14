@@ -12,7 +12,7 @@ If you want to host or create content for Frontier Station, this is the repo you
 
 <div class="header" align="center">
 
-[Discord](https://discord.gg/tpuAT7d3zm/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Patreon](https://www.patreon.com/frontierstation14) | [Wiki](https://frontierstation.wiki.gg/)
+[Discord](https://discord.gg/rKNHDAGPvd) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Patreon](https://www.patreon.com/frontierstation14) | [Wiki](https://frontierstation.wiki.gg/)
 
 </div>
 

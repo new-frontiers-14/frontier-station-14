@@ -45,6 +45,7 @@
       - Bottle
       - Syringe
       - ChemDispensable
+      - Ingredient # Frontier
   - type: ActivatableUI
     key: enum.SmartFridgeUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -118,6 +119,8 @@
       collection: MetalThud
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   parent: SmartFridge

@@ -14,8 +14,17 @@
     quickEquip: false
     slots:
     - back
+    - Belt # Frontier
+    - suitStorage #Frontier
+    clothingVisuals: #Frontier
+      back:
+      - state: charging-equipped-BACKPACK
+      belt:
+      - state: charging-equipped-BACKPACK
+      suitstorage:
+      - state: charging-equipped-BACKPACK
   - type: Charger
-    chargeRate: 50 # Frontier: chargeRate: 50 
+    chargeRate: 50 # Frontier: chargeRate: 50
     slotId: charger_slot
     portable: true
   - type: PowerChargerVisuals
@@ -32,7 +41,7 @@
   - type: ItemSlots
     slots:
       charger_slot:
-        ejectOnInteract: true
+        # ejectOnInteract: true # Frontier: In a fit of irony, this prevents you drawing the item in the slot by interacting.
         whitelist:
           components:
           - HitscanBatteryAmmoProvider

@@ -53,6 +53,9 @@ uplink-security-lecter-desc = Standard issue fully automatic rifle. Uses .20 rif
 uplink-security-vulcan-name = Vulcan
 uplink-security-vulcan-desc = Heavy duty, select fire battle rifle. Uses .30 rifle.
 
+uplink-security-drozd-name = Drozd
+uplink-security-drozd-desc = A fully automatic SMG. Uses .35 auto.
+
 uplink-security-lasercarbine-name = Laser Rifle
 uplink-security-lasercarbine-desc = Standard issue laser carbine. Has an internal battery, but requires using a security charging dock. Fires through glass.
 
@@ -70,6 +73,9 @@ uplink-security-energygun-desc = A semi-automatic energy gun capable of firing b
 
 uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
+
+uplink-security-sniper-name = Sniper Bundle
+uplink-security-sniper-desc = "Aspect" sniper rifle provided with non lethal .60 rounds for long range support on the field, for lethal ammunition ask your higher ups.
 
 uplink-security-empgrenade-name = EMP Grenade
 uplink-security-empgrenade-desc = A handheld grenade that emits a high energy pulse that disrupts electronics and power systems in a moderately large radius.
@@ -113,6 +119,12 @@ uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (over
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 
+uplink-security-60sniperbox-name = .60 Rifle Box
+uplink-security-60sniperbox-desc = a Box containing 30 rounds of .60 rifle bullets.
+
+uplink-security-60sniperbox-rubber-name = .60 Rifle Rubber Box
+uplink-security-60sniperbox-rubber-desc = a Box containing 30 rounds of .60 rifle (rubber) bullets.
+
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
@@ -121,6 +133,9 @@ uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpre
 
 uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
 uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
+
+uplink-security-brigmed-glasses-name = Brigmedic Glasses
+uplink-security-brigmed-glasses-desc = Upgraded sunglasses that provide flash immunity and an integrated medical hud.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
@@ -145,6 +160,9 @@ uplink-security-armingsword-desc = Ancient design meets modern materials.
 
 uplink-security-captainsword-name = Captain's Sabre
 uplink-security-captainsword-desc = A sword normally reserved for captains, admiralty, and other high command. Has a small chance to reflect incoming projectiles.
+
+uplink-security-navyofficersabre-name = Navy Officer's Sabre
+uplink-security-navyofficersabre-desc = A ceremonial weapon belonging to a high ranking naval officer. Has a small chance to reflect incoming projectiles.
 
 uplink-security-pulsepistol-name = Pulse Pistol
 uplink-security-pulsepistol-desc = A high powered laser pistol normally reserved for elite ERT units. Has an internal battery, but requires using a security charging dock.
@@ -218,8 +236,20 @@ uplink-security-hoverbike-desc = Flatpack containing NFSD issued turbine with bi
 uplink-security-trackingdart-bundle-name = Tracking Dart Bundle
 uplink-security-trackingdart-bundle-desc = A bundle containing a Lake type launcher, 3 tracking darts and 3 pinpointers.
 
-uplink-security-emp-bundle-name = EMP Bundle
-uplink-security-emp-bundle-desc = A bundle containing a Lake type launcher and 12 EMP grenades.
+uplink-security-emp-grenade-ammo-name = EMP Grenade Ammo
+uplink-security-emp-grenade-ammo-desc = 4 EMP grenades for the NGP-40 projector.
+
+uplink-security-flash-grenade-ammo-name = Flash Grenade Ammo
+uplink-security-flash-grenade-ammo-desc = 4 flash grenades for the NGP-40 projector.
+
+uplink-security-gas-grenade-ammo-name = Tear Gas Grenade Ammo
+uplink-security-gas-grenade-ammo-desc = 4 tear gas grenades for the NGP-40 projector.
+
+uplink-security-net-grenade-ammo-name = Shock Net Grenade Ammo
+uplink-security-net-grenade-ammo-desc = 4 shock net grenades for the NGP-40 projector.
+
+uplink-security-grenade-ammo-name = Varied Grenade Ammo
+uplink-security-grenade-ammo-desc = Shock net grenades, tear gas greandes, flash grenades, and EMP grenades all for the NGP-40 projector.
 
 uplink-security-emp-ammo-name = EMP Projectile Ammo
 uplink-security-emp-ammo-desc = A box containing 4 EMP projectile grenades.
@@ -236,12 +266,18 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
+uplink-security-lake-name = NGP-40 projector
+uplink-security-lake-desc = Single shot grenade launcher able to lob both grenades and darts!
+
 # region Pirate
 uplink-pirate-EVA-name = Pirate EVA Suit
 uplink-pirate-EVA-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
 
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
+
+uplink-pirate-hardsuit-rogue-name = Rogue Hardsuit
+uplink-pirate-hardsuit-rogue-desc = Lightly armoured hardsuit designed to give you the speed you need to plunder in, and get out.
 
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -266,6 +302,9 @@ uplink-pirate-blunderbuss-desc = Deadly at close range, an illegal shotgun often
 
 uplink-pirate-revolver-name = Pirate Revolver
 uplink-pirate-revolver-desc = An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 pistol ammo.
+
+uplink-pirate-romulan-name = Romulan
+uplink-pirate-romulan-desc = Yarrr, a retrofitted Vulcan befitting of a pirate! Uses .20 rifle ammo.
 
 uplink-pirate-cannon-name = Pirate Cannon
 uplink-pirate-cannon-desc = Kaboom!
@@ -318,6 +357,9 @@ uplink-pirate-accessconfigurator-captain-desc = An access configurator that is s
 uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
 
+uplink-pirate-yarrped-name = YarRPED
+uplink-pirate-yarrped-desc = A reverse-engineered RPED that installs the worst parts available and stores the valuable parts it removes.
+
 uplink-pirate-pmag-name = Machine Liberator
 uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
 
@@ -345,6 +387,12 @@ uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing y
 uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
 uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
+uplink-pirate-yarrmag-name = Yarrmag
+uplink-pirate-yarrmag-desc = A disposable card made by the Freebooters to hack devices. Works one time.
+
+uplink-pirate-id-chip-name = Bootleg Cyborg Chip
+uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
@@ -368,3 +416,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-syndicate-spray-painter-name = Syndicate Spray Painter
+uplink-syndicate-spray-painter-desc = Turn your evil house into an evil home. Includes patented syndicate designs not provided by NT spray painters.

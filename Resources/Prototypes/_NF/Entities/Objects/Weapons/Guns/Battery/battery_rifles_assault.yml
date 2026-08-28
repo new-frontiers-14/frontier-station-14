@@ -18,6 +18,48 @@
 #region Laser
 # Frontier
 - type: entity
+  id: NFWeaponEnergyRifleAssaultLaserRepeater
+  parent: [ NFBaseWeaponEnergyRifleAssaultLaserRepeater, NFBaseWeaponFrameEnergyRifleAssaultChildrenOfTheAtom ]
+  name: laser repeater
+  description: |-
+    A burst-fire laser rifle with a stripped down micro-TEG, allowing it to fire quickly at the expense of accuracy.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser-repeater.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: lethal
+      map: [ "Firemode" ]
+      shader: unshaded
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser-repeater.rsi
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser-repeater.rsi
+  - type: Gun
+    minAngle: 2.2
+    maxAngle: 13
+    angleIncrease: 1.4
+    angleDecay: 2.4
+    burstFireRate: 5
+    shotsPerBurst: 2
+    burstCooldown: 0.8
+    selectedMode: Burst
+    availableModes:
+    - Burst
+  - type: StaticPrice
+    price: 650
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryWeaponFireModeVisuals.State:
+        Firemode:
+          NFBulletDisabler: { state: disable }
+          NFBulletLaserRepeater: { state: lethal }
+
+- type: entity
   id: NFWeaponEnergyLightMachineGunTurbo
   parent: [ NFBaseWeaponEnergyRifleAssaultFireModes, NFBaseWeaponFrameEnergyRifleAssaultCybersun ]
   name: turbo laser mk3

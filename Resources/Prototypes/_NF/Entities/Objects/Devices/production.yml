@@ -381,7 +381,7 @@
 
 # Wizards and cultists
 - type: entity
-  parent: BaseMachineCircuitboard
+  parent: [ BaseC3WizardContraband, BaseMachineCircuitboard ]
   id: ScrollWizardStaffRechargerAltar
   name: wizard staff altar binding scroll
   description: An odd amalgamation of wizardry and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
@@ -413,7 +413,7 @@
       price: 0
 
 - type: entity
-  parent: ScrollWizardStaffRechargerAltar
+  parent: [ BaseC3CultContraband, ScrollWizardStaffRechargerAltar ]
   id: ScrollCultStaffRechargerAltar
   name: blood cult staff altar binding scroll
   description: An odd amalgamation of eldritch magic and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
@@ -458,8 +458,8 @@
         # CableHV: 10
 
 - type: entity
+  parent: [ BaseC3CultContraband, ScrollWizardStaffRechargerAltar ]
   id: ScrollCultForge
-  parent: ScrollWizardStaffRechargerAltar
   name: cult forge binding scroll
   components:
     - type: Sprite

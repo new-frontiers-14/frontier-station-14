@@ -20,10 +20,13 @@
         reagents:
         - ReagentId: TableSalt
           Quantity: 50
-  - type: Drink
+  - type: Edible
+    edible: Food
     solution: food
     useSound:
       path: /Audio/Items/eating_1.ogg
+    destroyOnEmpty: false
+    utensil: None
 
 - type: entity
   parent: [ReagentPacketBase, ItemHeftyBase]
@@ -84,7 +87,6 @@
   - type: FlavorProfile
     flavors:
       - bitter
-  - type: Food
   - type: SolutionContainerManager
     solutions:
       food:
@@ -110,7 +112,6 @@
   - type: FlavorProfile
     flavors:
       - bitter
-  - type: Food
   - type: SolutionContainerManager
     solutions:
       food:
@@ -145,10 +146,11 @@
         reagents:
         - ReagentId: Honey
           Quantity: 30
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: food
-    useSound:
-      path: /Audio/Items/eating_1.ogg
+    destroyOnEmpty: false
+    utensil: None
 
 - type: entity
   parent: FoodDoughFlat

@@ -143,8 +143,8 @@
     - !type:OreDunGen
       tileMask:
       - FloorBasalt
-      entity: SpawnMobMercenaryEVAT3
-      count: 5
+      entity: SalvageSpawnerMobMiningAsteroid
+      count: 7
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -239,6 +239,12 @@
     maxCount: 20
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
+    perDungeon: true
+  - !type:EntityTableDunGen # Concealed mines
+    minCount: 0
+    maxCount: 3
+    table: !type:NestedSelector
+      tableId: NFTableRandomConcealedMine
     perDungeon: true
   - !type:MobsDunGen
     minCount: 3
