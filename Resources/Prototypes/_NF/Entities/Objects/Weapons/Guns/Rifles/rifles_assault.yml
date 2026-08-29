@@ -100,6 +100,29 @@
 
 #region Frontier
 - type: entity
+  id: NFWeaponRifleAssaultRomulan
+  parent: [ BaseC3PirateContraband, NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ]
+  name: Romulan
+  description: |-
+    Yarrr, a retrofitted Vulcan befitting of a pirate!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Rifles/romulan.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Rifles/romulan.rsi
+  - type: Gun
+    minAngle: 2.8
+    maxAngle: 13.9
+    fireRate: 3.6
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
+    manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
+
+- type: entity
   id: NFWeaponRifleAssaultGestio
   parent: [ NFBaseWeaponRifleAssaultChamber30LowCapacity, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ]
   name: Gestio
