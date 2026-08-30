@@ -560,13 +560,13 @@ public sealed class PlantHolderSystem : EntitySystem
 
                 environment.AdjustMoles(gas, -amount);
             }
-
-            if (component.MissingGas > 0)
-            {
-                component.Health -= component.MissingGas * HydroponicsSpeedMultiplier;
-                if (component.DrawWarnings)
-                    component.UpdateSpriteAfterUpdate = true;
-            }
+            // Frontier - this is done later
+            // if (component.MissingGas > 0)
+            // {
+            //     component.Health -= component.MissingGas * HydroponicsSpeedMultiplier;
+            //     if (component.DrawWarnings)
+            //         component.UpdateSpriteAfterUpdate = true;
+            // }
         }
 
         // SeedPrototype pressure resistance.
@@ -595,6 +595,33 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             component.ImproperHeat = false;
         }
+
+        // Begin Frontier - Gas conversion
+        var conversionCount = component.Seed.ConvertGases.Count;
+        if (conversionCount > 0)
+        {
+            foreach (var (inputgas, (outputgas, baseamount, scalefactor)) in component.Seed.ConvertGases)
+            {
+                var amount = (float)baseamount * MathF.Round(component.Seed.Potency);
+                if (environment.GetMoles(inputgas) < amount)
+                {
+                    component.MissingGas++;
+                    continue;
+                }
+
+                environment.AdjustMoles(inputgas, -amount);
+                environment.AdjustMoles(outputgas,
+                    MathF.Max(1f, MathF.Round(amount * (float)scalefactor)));
+            }
+        }
+        // Handles both consumption and conversion - though usually only the latter will be happening
+        if (component.MissingGas > 0)
+        {
+            component.Health -= component.MissingGas * HydroponicsSpeedMultiplier;
+            if (component.DrawWarnings)
+                component.UpdateSpriteAfterUpdate = true;
+        }
+        // End Frontier
 
         // Gas production.
         var exudeCount = component.Seed.ExudeGasses.Count;
