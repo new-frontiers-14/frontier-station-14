@@ -574,6 +574,7 @@
     moduleId: Mining # Frontier
     hands:
     - item: MiningDrill
+    - item: NFCyborgWeaponPka # Frontier
     - item: Shovel
     - item: MineralScannerUnpowered
     # - item: BorgOreBag # Frontier
@@ -603,11 +604,12 @@
     moduleId: AdvancedMining # Frontier
     hands:
     - item: MiningDrillDiamond
+    - item: NFCyborgWeaponPkaCannon # Frontier
     - item: Shovel
     - item: AdvancedMineralScannerUnpowered
     # - item: OreBagOfHolding # Frontier
     # Frontier
-    - item: OreBag
+    - item: OreBagOfHolding
       hand:
         emptyRepresentative: OreBagOfHolding
         emptyLabel: borg-slot-orebag-empty
@@ -631,6 +633,7 @@
     moduleId: GrapplingGun # Frontier
     hands:
     - item: WeaponGrapplingGun
+    - item: NFWeaponHoloflareGun # Frontier
     # - item: BorgFireExtinguisher # Frontier: just use the jetpack module
     - item: BorgHandheldGPSBasic
     - item: HandHeldMassScannerBorg
@@ -654,6 +657,7 @@
     - item: JawsOfLife
     - item: PowerDrill
     - item: WelderExperimental
+    - item: SprayPainterMagic # Frontier
     - item: Multitool
     - item: RemoteSignallerAdvanced
     - item: MaintenanceJack # Frontier
@@ -722,6 +726,14 @@
         whitelist:
           tags:
           - ConstructionMaterial
+          #Frontier
+          - Igniter
+          - GlassBeaker
+          - ConveyorAssembly
+          - Multitool
+          components:
+          - MachinePart
+          #End Frontier
     - hand:
         emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty
@@ -746,6 +758,14 @@
         whitelist:
           components:
           - FloorTile
+    # Frontier
+    - hand:
+        emptyLabel: borg-slot-lightbulb-empty
+        emptyRepresentative: LightBulb
+        whitelist:
+          components:
+          - LightBulb
+    #End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
 
@@ -831,6 +851,13 @@
         whitelist:
           components:
           - Absorbent # go go borg towel
+    - item: SprayBottle
+      hand:
+        emptyRepresentative: SprayBottle
+        emptyLabel: borg-slot-spraybottle-empty
+        whitelist:
+          components:
+          - Spray
       # End Frontier
     # - item: BorgBucket # Frontier
     # - item: BorgSprayBottle # Frontier
@@ -843,13 +870,6 @@
         whitelist:
           tags:
           - Bucket
-    - item: SprayBottle
-      hand:
-        emptyRepresentative: SprayBottle
-        emptyLabel: borg-slot-spraybottle-empty
-        whitelist:
-          components:
-          - Spray
     - hand:
         emptyRepresentative: CleanerGrenade
         emptyLabel: borg-slot-cleanade-empty
@@ -979,9 +999,26 @@
     hands:
     - item: HandheldHealthAnalyzerUnpowered
     - item: DefibrillatorOneHandedUnpowered
+    - item: HandheldCrewMonitorPowerd # Frontier
     # - item: BorgFireExtinguisher # Frontier
     # - item: BorgHandheldGPSBasic # Frontier
     - item: HandLabeler
+    # Frontier
+    - item: BodyBagFolded
+      hand:
+        emptyLabel: borg-slot-bodybag-empty
+        emptyRepresentative: BodyBagFolded
+        whitelist:
+          tags:
+          - BodyBag
+    - item: BodyBagFolded
+      hand:
+        emptyLabel: borg-slot-bodybag-empty
+        emptyRepresentative: BodyBagFolded
+        whitelist:
+          tags:
+          - BodyBag
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
 
