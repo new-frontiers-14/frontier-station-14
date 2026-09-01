@@ -19,20 +19,10 @@ using Content.Shared.Destructible;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
-public sealed class NFMultitypeSliceableFoodSystem : EntitySystem
+public sealed partial class SliceableFoodSystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDestructibleSystem _destroy = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    public override void Initialize()
+    private void InitializeMultitype()
     {
-        base.Initialize();
-
         SubscribeLocalEvent<NFMultitypeSliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<NFMultitypeSliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
         SubscribeLocalEvent<NFMultitypeSliceableFoodComponent, ComponentStartup>(OnComponentStartup);
@@ -66,11 +56,11 @@ public sealed class NFMultitypeSliceableFoodSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        if (TrySliceFood(entity.Owner, args.User, args.Used))
+        if (TryMultiSliceFood(entity.Owner, args.User, args.Used))
             args.Handled = true;
     }
 
-    private bool TrySliceFood(Entity<TransformComponent?, NFMultitypeSliceableFoodComponent?, EdibleComponent?> entity,
+    private bool TryMultiSliceFood(Entity<TransformComponent?, NFMultitypeSliceableFoodComponent?, EdibleComponent?> entity,
         EntityUid user,
         EntityUid? usedItem)
     {
@@ -138,34 +128,6 @@ public sealed class NFMultitypeSliceableFoodSystem : EntitySystem
         // DeltaV - End deep frier related code
 
         return sliceUid;
-    }
-
-    private void DeleteFood(EntityUid uid, EntityUid user)
-    {
-        var ev = new BeforeFullySlicedEvent
-        {
-            User = user
-        };
-        RaiseLocalEvent(uid, ev);
-        if (ev.Cancelled)
-            return;
-
-        _destroy.DestroyEntity(uid);
-    }
-
-    private void FillSlice(Entity<EdibleComponent?> slice, Solution solution)
-    {
-        if (!Resolve(slice, ref slice.Comp, false))
-            return;
-
-        // Replace all reagents on prototype not just copying poisons (example: slices of eaten pizza should have less nutrition)
-        if (!_solutionContainer.TryGetSolution(slice.Owner, slice.Comp.Solution, out var itsSoln, out var itsSolution))
-            return;
-
-        _solutionContainer.RemoveAllSolution(itsSoln.Value);
-
-        var lostSolutionPart = solution.SplitSolution(itsSolution.AvailableVolume);
-        _solutionContainer.TryAddSolution(itsSoln.Value, lostSolutionPart);
     }
 
     private void OnComponentStartup(Entity<NFMultitypeSliceableFoodComponent> entity, ref ComponentStartup args)

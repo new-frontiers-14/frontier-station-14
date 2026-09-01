@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(NFMultitypeSliceableFoodSystem))]
+[RegisterComponent, Access(typeof(SliceableFoodSystem))]
 public sealed partial class NFMultitypeSliceableFoodComponent : Component
 {
     /// <summary>
