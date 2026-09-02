@@ -60,15 +60,64 @@
 
 - type: entity
   parent: ClothingBackpackDuffelNfsdBrown
-  id: ClothingBackpackDuffelNfsdEmpBundle
-  name: NFSD Lake EMP bundle
-  description: "An old repainted China-Lake grenade launcher bundled with 10 rounds of EMP."
+  id: ClothingBackpackDuffelNfsdEmpAmmo
+  name: NFSD EMP Lake Ammo
+  description: "4 EMP rounds to be loaded into the NGP-40 projector"
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponLauncherGrenadeNfsd
       - id: NFGrenadeEMP
-        amount: 10
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdFlashAmmo
+  name: NFSD Flash Lake Ammo
+  description: "4 flash rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeFlash
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdGasAmmo
+  name: NFSD Tear Gas Lake Ammo
+  description: "4 tear gas rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeTearGas
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdNetAmmo
+  name: NFSD Tear Gas Lake Ammo
+  description: "4 shock net rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdVariedAmmo
+  name: NFSD Varied Lake Ammo
+  description: "Variety pack of grenades to load into your NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 2
+      - id: NFGrenadeTearGas
+        amount: 2
+      - id: NFGrenadeFlash
+        amount: 2
+      - id: NFGrenadeEMP
+        amount: 2
 
 # Not a duffelbag, but stored with other uplink-related backpacks
 - type: entity
