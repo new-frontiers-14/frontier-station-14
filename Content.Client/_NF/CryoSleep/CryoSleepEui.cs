@@ -26,10 +26,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._NF.CryoSleep;
 
 [UsedImplicitly]
-public sealed class CryoSleepEui : BaseEui
+public sealed partial class CryoSleepEui : BaseEui
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     private readonly AcceptCryoWindow _window;
     private EntityUid? _playerEntity = IoCManager.Resolve<ISharedPlayerManager>().LocalEntity;
     public CryoSleepEui()

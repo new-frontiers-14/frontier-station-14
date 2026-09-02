@@ -10,9 +10,9 @@ namespace Content.Server._NF.Shipyard.Commands;
 /// Purchases a shuttle and docks it to a station.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class PurchaseShuttleCommand : IConsoleCommand
+public sealed partial class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entityManager = default!;
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("shipyard-commands-purchase-desc");
     public string Help => $"{Command} <station ID> <gridfile path>";

@@ -9,10 +9,10 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 /// <summary>
 /// A system for appraisal cartridges, which turn your PDA into a price gun.
 /// </summary>
-public sealed class AppraisalCartridgeSystem : EntitySystem
+public sealed partial class AppraisalCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly PricingSystem _pricingSystem = default!;
+    [Dependency] private CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private PricingSystem _pricingSystem = default!;
 
     public override void Initialize()
     {

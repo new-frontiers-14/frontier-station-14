@@ -19,15 +19,15 @@ using Robust.Shared.Player;
 namespace Content.Server.Nutrition.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class CreamPieSystem : SharedCreamPieSystem
+    public sealed partial class CreamPieSystem : SharedCreamPieSystem
     {
-        [Dependency] private readonly IngestionSystem _ingestion = default!;
-        [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PuddleSystem _puddle = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
-        [Dependency] private readonly TriggerSystem _trigger = default!;
+        [Dependency] private IngestionSystem _ingestion = default!;
+        [Dependency] private ItemSlotsSystem _itemSlots = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private PuddleSystem _puddle = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutions = default!;
+        [Dependency] private TriggerSystem _trigger = default!;
 
         public override void Initialize()
         {

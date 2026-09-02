@@ -11,15 +11,15 @@ using Content.Server._NF.DangerTether; // Frontier
 
 namespace Content.Server.Singularity.EntitySystems;
 
-public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSystem
+public sealed partial class SingularityGeneratorSystem : SharedSingularityGeneratorSystem
 {
     #region Dependencies
-    [Dependency] private readonly IViewVariablesManager _vvm = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly DangerTetherSystem _dangerTether = default!; // Frontier
+    [Dependency] private IViewVariablesManager _vvm = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private DangerTetherSystem _dangerTether = default!; // Frontier
     #endregion Dependencies
 
     public override void Initialize()

@@ -5,9 +5,9 @@ using Robust.Shared.Console;
 namespace Content.Server.GameTicking.Commands
 {
     [AdminCommand(AdminFlags.Round)]
-    sealed class EndRoundCommand : IConsoleCommand
+    sealed partial class EndRoundCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _e = default!;
+        [Dependency] private IEntityManager _e = default!;
 
         public string Command => "endround";
         public string Description => "Ends the round and moves the server to PostRound.";

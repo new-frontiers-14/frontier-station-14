@@ -9,11 +9,11 @@ using Content.Shared.Nyanotrasen.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
 {
-    public sealed class SizeAttributeSystem : EntitySystem
+    public sealed partial class SizeAttributeSystem : EntitySystem
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly AppearanceSystem _appearance = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private SharedPhysicsSystem _physics = default!;
+        [Dependency] private AppearanceSystem _appearance = default!;
         public override void Initialize()
         {
             base.Initialize();

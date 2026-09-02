@@ -17,8 +17,8 @@ namespace Content.Server._NF.Radar;
 /// </remarks>
 public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     private Dictionary<NetUserId, TimeSpan> _nextBlipRequestPerUser = new();
 

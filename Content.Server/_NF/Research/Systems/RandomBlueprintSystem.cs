@@ -9,11 +9,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server._NF.Research.Systems;
 
-public sealed class RandomBlueprintSystem : EntitySystem
+public sealed partial class RandomBlueprintSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BlueprintLatheSystem _blueprintLathe = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private BlueprintLatheSystem _blueprintLathe = default!;
     public override void Initialize()
     {
         base.Initialize();

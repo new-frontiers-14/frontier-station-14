@@ -9,10 +9,10 @@ using Robust.Shared.Timing; //imp edit
 
 namespace Content.Shared._DV.Waddle;
 
-public sealed class WaddleClothingSystem : EntitySystem
+public sealed partial class WaddleClothingSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!; //imp edit
-    [Dependency] private readonly IGameTiming _timing = default!; //imp edit
+    [Dependency] private AlertsSystem _alerts = default!; //imp edit
+    [Dependency] private IGameTiming _timing = default!; //imp edit
 
     public override void Initialize()
     {

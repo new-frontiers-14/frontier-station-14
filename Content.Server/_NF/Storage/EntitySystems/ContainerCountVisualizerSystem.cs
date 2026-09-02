@@ -6,10 +6,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Storage.EntitySystems;
 
-public sealed class ContainerCountVisualizerSystem : EntitySystem
+public sealed partial class ContainerCountVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     public override void Initialize()
     {

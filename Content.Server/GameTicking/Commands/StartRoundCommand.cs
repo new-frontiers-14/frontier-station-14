@@ -5,9 +5,9 @@ using Robust.Shared.Console;
 namespace Content.Server.GameTicking.Commands
 {
     [AdminCommand(AdminFlags.Round)]
-    sealed class StartRoundCommand : IConsoleCommand
+    sealed partial class StartRoundCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _e = default!;
+        [Dependency] private IEntityManager _e = default!;
 
         public string Command => "startround";
         public string Description => "Ends PreRoundLobby state and starts the round.";

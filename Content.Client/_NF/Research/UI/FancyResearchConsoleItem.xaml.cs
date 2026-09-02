@@ -11,7 +11,7 @@ namespace Content.Client._NF.Research.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FancyResearchConsoleItem : LayoutContainer
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     // Public fields
     public TechnologyPrototype Prototype;

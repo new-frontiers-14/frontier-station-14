@@ -10,7 +10,7 @@ namespace Content.Client.Changeling.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ChangelingTransformMenu : RadialMenu
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private IEntityManager _entity = default!;
     public event Action<NetEntity>? OnIdentitySelect;
 
     public ChangelingTransformMenu()

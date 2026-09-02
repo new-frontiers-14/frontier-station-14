@@ -16,15 +16,15 @@ using Content.Shared.Movement.Systems; // Frontier
 
 namespace Content.Server.Resist;
 
-public sealed class EscapeInventorySystem : EntitySystem
+public sealed partial class EscapeInventorySystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
-    [Dependency] private readonly SharedActionsSystem _actions = default!; // Frontier: escape actions
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
+    [Dependency] private SharedActionsSystem _actions = default!; // Frontier: escape actions
 
     // Frontier - cancel inventory escape
     private readonly EntProtoId _escapeCancelAction = "ActionCancelEscape";

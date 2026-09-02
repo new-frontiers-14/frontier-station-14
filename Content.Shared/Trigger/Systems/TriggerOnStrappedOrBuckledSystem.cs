@@ -10,7 +10,7 @@ namespace Content.Shared.Trigger.Systems;
 /// </summary>
 public sealed partial class TriggerOnStrappedOrBuckledSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
 
     public override void Initialize()
     {

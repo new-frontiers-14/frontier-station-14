@@ -6,7 +6,7 @@ namespace Content.Shared.Movement.Systems;
 
 public abstract partial class SharedJetpackSystem : EntitySystem
 {
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private EmagSystem _emag = default!;
 
     public void NfInitialize()
     {

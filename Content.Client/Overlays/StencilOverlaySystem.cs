@@ -5,14 +5,14 @@ using Robust.Client.Graphics;
 
 namespace Content.Client.Overlays;
 
-public sealed class StencilOverlaySystem : EntitySystem
+public sealed partial class StencilOverlaySystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly ParallaxSystem _parallax = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly WeatherSystem _weather = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private ParallaxSystem _parallax = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private WeatherSystem _weather = default!;
 
     public override void Initialize()
     {

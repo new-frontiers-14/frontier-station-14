@@ -6,9 +6,9 @@ namespace Content.Shared.Trigger.Systems;
 /// <summary>
 /// Trigger system for melee related triggers.
 /// </summary>
-public sealed class MeleeTriggerSystem : EntitySystem
+public sealed partial class MeleeTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

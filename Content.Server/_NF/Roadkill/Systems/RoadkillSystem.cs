@@ -16,13 +16,13 @@ namespace Content.Server._NF.Roadkill.Systems;
 /// <summary>
 /// Kills and/or gibs entities (useful for space mobs) when they collide with a quickly moving grid.
 /// </summary>
-public sealed class RoadkillSystem : EntitySystem
+public sealed partial class RoadkillSystem : EntitySystem
 {
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private readonly ProtoId<DamageTypePrototype> _bluntDamageType = "Blunt";
     private readonly FixedPoint2 _extraDamage = 20;

@@ -9,10 +9,10 @@ namespace Content.Shared._NF.Lathe;
 /// <summary>
 /// This handles printing blueprints from all technologies known to a technology database.
 /// </summary>
-public abstract class SharedBlueprintLatheSystem : EntitySystem
+public abstract partial class SharedBlueprintLatheSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedMaterialStorageSystem _materialStorage = default!;
 
     /// <summary>
     /// A lookup table of all printable recipes and the blueprint types they can be printed as.

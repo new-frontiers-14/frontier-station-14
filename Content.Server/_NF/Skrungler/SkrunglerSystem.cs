@@ -28,20 +28,20 @@ using Robust.Shared.Utility;
 namespace Content.Server._NF.Skrungler;
 
 /// <inheritdoc/>
-public sealed class SkrunglerSystem : SharedSkrunglerSystem
+public sealed partial class SkrunglerSystem : SharedSkrunglerSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly SharedMindSystem _minds = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityStorageSystem _entityStorage = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PuddleSystem _puddle = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private SharedMindSystem _minds = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

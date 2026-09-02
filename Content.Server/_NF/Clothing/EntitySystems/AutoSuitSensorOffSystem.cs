@@ -4,9 +4,9 @@ using Content.Shared.Roles;
 
 namespace Content.Shared._NF.Medical.SuitSensors;
 
-public sealed class AutoSuitSensorOffSystem : EntitySystem
+public sealed partial class AutoSuitSensorOffSystem : EntitySystem
 {
-    [Dependency] private readonly SuitSensorSystem _suitSensor = default!;
+    [Dependency] private SuitSensorSystem _suitSensor = default!;
 
     public override void Initialize()
     {

@@ -53,31 +53,31 @@ using Robust.Shared.Enums; // Frontier
 
 namespace Content.Server._DV.Mail.EntitySystems
 {
-    public sealed class MailSystem : EntitySystem
+    public sealed partial class MailSystem : EntitySystem
     {
-        [Dependency] private readonly AccessReaderSystem _accessSystem = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-        [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-        // [Dependency] private readonly MindSystem _mindSystem = default!; // Frontier: warning suppression
-        [Dependency] private readonly OpenableSystem _openable = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
-        [Dependency] private readonly BankSystem _bank = default!; // Frontier
-        [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!; // Frontier
-        [Dependency] private readonly IPlayerManager _player = default!; // Frontier
+        [Dependency] private AccessReaderSystem _accessSystem = default!;
+        [Dependency] private DamageableSystem _damageableSystem = default!;
+        [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private IdCardSystem _idCardSystem = default!;
+        [Dependency] private MetaDataSystem _metaDataSystem = default!;
+        // [Dependency] private MindSystem _mindSystem = default!; // Frontier: warning suppression
+        [Dependency] private OpenableSystem _openable = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+        [Dependency] private SharedAudioSystem _audioSystem = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedHandsSystem _handsSystem = default!;
+        [Dependency] private SharedSolutionContainerSystem _solution = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private TagSystem _tagSystem = default!;
+        [Dependency] private LogisticStatsSystem _logisticsStatsSystem = default!;
+        [Dependency] private EmagSystem _emag = default!;
+        [Dependency] private SectorServiceSystem _sectorService = default!; // Frontier
+        [Dependency] private BankSystem _bank = default!; // Frontier
+        [Dependency] private PowerReceiverSystem _powerReceiver = default!; // Frontier
+        [Dependency] private IPlayerManager _player = default!; // Frontier
 
         private ISawmill _sawmill = default!;
         private static readonly ProtoId<TagPrototype> MailTag = "Mail"; // Frontier

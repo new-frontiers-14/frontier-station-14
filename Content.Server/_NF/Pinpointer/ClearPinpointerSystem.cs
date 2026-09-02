@@ -10,12 +10,12 @@ using Content.Shared.Popups;
 
 namespace Content.Server._NF.Pinpointer;
 
-public sealed class ClearPinpointerSystem : EntitySystem
+public sealed partial class ClearPinpointerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PinpointerSystem _pinpointer = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private PinpointerSystem _pinpointer = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {

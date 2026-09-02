@@ -36,22 +36,22 @@ using Content.Shared.Hands.EntitySystems; // Frontier
 
 namespace Content.Server.Carrying
 {
-    public sealed class CarryingSystem : EntitySystem
+    public sealed partial class CarryingSystem : EntitySystem
     {
-        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
-        [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
-        [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly StandingStateSystem _standingState = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-        [Dependency] private readonly PullingSystem _pullingSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-        [Dependency] private readonly EscapeInventorySystem _escapeInventorySystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-        [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
-        [Dependency] private readonly ContestsSystem _contests = default!;
-        [Dependency] private readonly TransformSystem _transform = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!; // Frontier
+        [Dependency] private VirtualItemSystem _virtualItemSystem = default!;
+        [Dependency] private CarryingSlowdownSystem _slowdown = default!;
+        [Dependency] private DoAfterSystem _doAfterSystem = default!;
+        [Dependency] private StandingStateSystem _standingState = default!;
+        [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+        [Dependency] private PullingSystem _pullingSystem = default!;
+        [Dependency] private MobStateSystem _mobStateSystem = default!;
+        [Dependency] private EscapeInventorySystem _escapeInventorySystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+        [Dependency] private PseudoItemSystem _pseudoItem = default!;
+        [Dependency] private ContestsSystem _contests = default!;
+        [Dependency] private TransformSystem _transform = default!;
+        [Dependency] private SharedHandsSystem _hands = default!; // Frontier
 
         public const float BaseDistanceCoeff = 0.5f; // Frontier: default throwing speed reduction
         public const float MaxDistanceCoeff = 1.0f; // Frontier: default throwing speed reduction

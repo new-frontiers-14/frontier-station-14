@@ -15,13 +15,13 @@ using Content.Shared.Database; // Frontier
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems;
 
 [UsedImplicitly]
-public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
+public sealed partial class GasPressurePumpSystem : SharedGasPressurePumpSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!; // Frontier
 
     public override void Initialize()
     {
