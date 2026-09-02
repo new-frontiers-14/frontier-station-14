@@ -629,12 +629,17 @@
     containers:
       borg_brain:
       - PositronicBrain
+      borg_id_chip: # DeltaV - borg id chips
+      - IdChipDerelict # Frontier - borg id chips, but only basic
       borg_module:
       - BorgModuleTool
-      - BorgModuleFireExtinguisher
+      # - BorgModuleFireExtinguisher #Frontier use frontier module instead
       - BorgModuleConstruction
-      - BorgModuleRCD
+      # - BorgModuleRCD #Frontier use BorgModuleRCDShipyard instead
+      - BorgModuleRCDShipyard #Frontier
       - BorgModuleCable
+      - BorgModuleBureaucracy #Frontier
+      - BorgModuleJetpack #Frontier
   - type: ItemSlots
     slots:
       cell_slot:
@@ -669,9 +674,13 @@
       borg_module:
         - BorgModuleTool
         # - BorgModuleFireExtinguisher # Frontier: jetpack is superior
+        - BorgModuleInflatable #Frontier
+        - BorgModuleArtifact #Frontier
+        - BorgModuleAnomaly #Frontier
+        - BorgModuleBureaucracy #Frontier
         - BorgModuleJetpack # Frontier
       borg_id_chip: # DeltaV - borg id chips
-        - IdChipBasic #Frontier - borg id chips, but only basic
+        - IdChipDerelict #Frontier - borg id chips, but only basic
   - type: ItemSlots
     slots:
       cell_slot:
@@ -703,11 +712,15 @@
     containers:
       borg_brain:
       - PositronicBrain
+      borg_id_chip: # DeltaV - borg id chips
+      - IdChipDerelict # Frontier - borg id chips, but only basic
       borg_module:
       - BorgModuleTool
-      - BorgModuleFireExtinguisher
+      # - BorgModuleFireExtinguisher #Frontier use frontier module instead
       - BorgModuleCleaning
       - BorgModuleCustodial
+      - BorgModuleBureaucracy #Frontier
+      - BorgModuleJetpack # Frontier
   - type: ItemSlots
     slots:
       cell_slot:
@@ -739,12 +752,16 @@
     containers:
       borg_brain:
       - PositronicBrain
+      borg_id_chip: # DeltaV - borg id chips
+      - IdChipDerelict # Frontier - borg id chips, but only basic
       borg_module:
       - BorgModuleTool
-      - BorgModuleFireExtinguisher
+      # - BorgModuleFireExtinguisher #Frontier use frontier module instead
       - BorgModuleChemical
       - BorgModuleTopicals
       - BorgModuleRescue
+      - BorgModuleBureaucracy #Frontier
+      - BorgModuleJetpack # Frontier
   - type: ItemSlots
     slots:
       cell_slot:
@@ -776,11 +793,15 @@
     containers:
       borg_brain:
       - PositronicBrain
+      borg_id_chip: # DeltaV - borg id chips
+      - IdChipDerelict # Frontier - borg id chips, but only basic
       borg_module:
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining
       - BorgModuleTraversal
       - BorgModuleAppraisal
+      - BorgModuleBureaucracy #Frontier
+      - BorgModuleJetpack # Frontier
   - type: ItemSlots
     slots:
       cell_slot:
@@ -812,6 +833,8 @@
     containers:
       borg_brain:
       - PositronicBrain
+      borg_id_chip: # DeltaV - borg id chips
+      - IdChipSyndie # DeltaV - borg id chips
       borg_module:
       - BorgModuleOperative
       - BorgModuleC20r

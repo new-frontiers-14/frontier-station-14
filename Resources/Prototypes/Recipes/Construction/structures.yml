@@ -50,6 +50,22 @@
   conditions:
     - !type:TileNotBlocked
 
+# Frontier
+- type: construction
+  id: DiagonalWall
+  name: recipes-wall-diagonal-name
+  graph: Girder
+  startNode: start
+  targetNode: diagonalWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+# End Frontier
+
 - type: construction
   id: ReinforcedWall
   graph: Girder
@@ -62,6 +78,22 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Frontier
+- type: construction
+  id: DiagonalReinforcedWall
+  name: recipes-reinforced-wall-diagonal-name
+  graph: Girder
+  startNode: start
+  targetNode: diagonalReinforcedWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+# End Frontier
 
 - type: construction
   id: WallClock
