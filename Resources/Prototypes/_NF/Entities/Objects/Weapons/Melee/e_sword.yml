@@ -22,11 +22,12 @@
     - 1,1,1,2
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types: # Slightly less total damage than wielded crusher glaive has
-          Heat: 8
-          Piercing: 2
+        types:
+          Heat: 15
+          Piercing: 5
           Structural: 40 # +10 damage compared to crusher glaive
     deactivatedSecret: true
+    attackRate: 1.5
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
     layers:
@@ -56,7 +57,7 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect # Explicitly specified the value (the default one from the parent might be too high)
-    reflectProb: 0.05
+    reflectProb: 0.15
   - type: Tag
     tags:
     - Pickaxe
