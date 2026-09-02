@@ -1,5 +1,6 @@
 - type: entity
-  parent: [ BaseCartridge, BaseC2Contraband ] # Frontier: BaseMajorContraband<BaseC2Contraband
+  categories: [ HideSpawnMenu ] # Frontier
+  parent: [ BaseCartridge, BaseC2ContrabandUnredeemable ] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable
   id: CartridgeAntiMateriel
   name: cartridge (.60 anti-materiel)
   components:
@@ -8,7 +9,7 @@
     - Cartridge
     - CartridgeAntiMateriel
   - type: CartridgeAmmo
-    proto: BulletAntiMateriel
+    # proto: BulletAntiMateriel # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
     layers:

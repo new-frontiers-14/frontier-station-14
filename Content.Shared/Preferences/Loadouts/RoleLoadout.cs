@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.CCVar;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Random;
 using Robust.Shared.Collections;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -59,6 +61,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     {
         var groupRemove = new ValueList<string>();
         var protoManager = collection.Resolve<IPrototypeManager>();
+        var configManager = collection.Resolve<IConfigurationManager>();
 
         if (!protoManager.TryIndex(Role, out var roleProto))
         {
@@ -78,10 +81,11 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         if (EntityName != null)
         {
             var name = EntityName.Trim();
+            var maxNameLength = configManager.GetCVar(CCVars.MaxNameLength);
 
-            if (name.Length > HumanoidCharacterProfile.MaxNameLength)
+            if (name.Length > maxNameLength)
             {
-                EntityName = name[..HumanoidCharacterProfile.MaxNameLength];
+                EntityName = name[..maxNameLength];
             }
 
             if (name.Length == 0)
@@ -378,12 +382,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             return true;
         }
 
-        // Frontier: add hide effects
         foreach (var effect in loadoutProto.HideEffects)
         {
-            if (!effect.Validate(profile, this, session, collection, out var _)) {
+            if (!effect.Validate(profile, this, session, collection, out var _))
                 return true;
-            }
         }
 
         return false;
@@ -395,7 +397,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// </summary>
     public bool AddLoadout(ProtoId<LoadoutGroupPrototype> selectedGroup, ProtoId<LoadoutPrototype> selectedLoadout, IPrototypeManager protoManager)
     {
-        var groupLoadouts = SelectedLoadouts[selectedGroup];
+        var groupLoadouts = SelectedLoadouts.GetOrNew(selectedGroup); // Frontier: indexer<GetOrNew
 
         // Need to unselect existing ones if we're at or above limit
         var limit = Math.Max(0, groupLoadouts.Count + 1 - protoManager.Index(selectedGroup).MaxLimit);
@@ -436,7 +438,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     {
         // Although this may bring us below minimum we'll let EnsureValid handle it.
 
-        var groupLoadouts = SelectedLoadouts[selectedGroup];
+        var groupLoadouts = SelectedLoadouts.GetOrNew(selectedGroup); // Frontier: indexer<GetOrNew
 
         for (var i = 0; i < groupLoadouts.Count; i++)
         {

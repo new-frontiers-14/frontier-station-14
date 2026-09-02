@@ -1,4 +1,4 @@
-# Base prototypes
+# region Base prototypes
 
 - type: latheRecipe
   abstract: true
@@ -9,7 +9,52 @@
   materials:
     Steel: 75
 
-# Recipes
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipePiety
+  categories:
+  - NFPiety
+  completetime: 1
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeCandle
+  categories:
+  - NFCandles
+  completetime: 1
+  materials:
+    Cloth: 20
+    Wood: 25
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseServiceItemsRecipeCandle
+  id: BaseServiceItemsRecipeCandleSmall
+  materials:
+    Cloth: 20
+    Wood: 20
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeClothing
+  categories:
+  - ClothesNF
+  completetime: 4
+  materials:
+    Cloth: 300 #Most clothes in the Uniform printer take 3 cloth so i've set it to 3
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeToy
+  categories:
+  - NFToys
+  completetime: 1
+  materials:
+    Plastic: 300
+
+# region Recipes
 
 - type: latheRecipe
   id: ServiceRollingPin
@@ -17,6 +62,18 @@
   parent: BaseServiceItemsRecipe
   materials:
     Wood: 200
+
+- type: latheRecipe
+  id: ServiceDrinkShaker
+  result: DrinkShaker
+  parent: BaseServiceItemsRecipe
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  id: NFServiceDrinkShakerBluespace
+  result: DrinkShakerBluespace
+  parent: BluespaceBeaker
 
 - type: latheRecipe
   id: ServiceSpoon
@@ -27,6 +84,27 @@
   id: ServiceFork
   result: Fork
   parent: BaseServiceItemsRecipe
+
+- type: latheRecipe
+  id: ServiceSaucer
+  result: ServiceSaucer
+  parent: BaseServiceItemsRecipe
+  materials:
+    Glass: 25
+
+- type: latheRecipe
+  id: ServiceTeapot
+  result: DrinkTeapotEmpty
+  parent: BaseServiceItemsRecipe
+  materials:
+    Glass: 200
+
+- type: latheRecipe
+  id: ServiceTeacup
+  result: DrinkTeacupEmpty
+  parent: BaseServiceItemsRecipe
+  materials:
+    Glass: 100
 
 - type: latheRecipe
   id: ServicePairedChopsticks
@@ -85,22 +163,12 @@
 - type: latheRecipe
   id: SodiumLightBulb
   result: SodiumLightBulb
-  categories:
-  - Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
+  parent: BaseLightRecipe
 
 - type: latheRecipe
   id: ExteriorLightBulb
   result: ExteriorLightBulb
-  categories:
-  - Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
+  parent: BaseLightRecipe
 
 - type: latheRecipe
   id: DrinkIceBucketEmpty
@@ -148,3 +216,270 @@
   completetime: 2
   materials:
     Wood: 300
+
+- type: latheRecipe
+  id: FoodFrozenPopsicleTrash
+  result: FoodFrozenPopsicleTrash # I know, it has 'trash' in the name, but it's used in cooking!
+  completetime: 0.5
+  materials:
+    Wood: 25
+
+- type: latheRecipe
+  id: DrinkWaterCup
+  result: DrinkWaterCup
+  completetime: 0.5
+  materials:
+    Paper: 25
+
+# region Toys
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: DiceBag
+  result: DiceBag
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: ClownRecorder
+  result: ClownRecorder
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: BikeHorn
+  result: BikeHorn
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: SuperHarmonicaInstrument
+  result: SuperHarmonicaInstrument
+  completetime: 2
+  materials:
+    Silver: 200
+    Plasma: 200
+    Diamond: 100
+
+# region Smokes
+- type: latheRecipe
+  id: CigPackMcCargo
+  result: CigPackMcCargo
+  completetime: 2
+  applyMaterialDiscount: false
+  categories:
+  - Brand
+  - General
+  - StorageNF
+  materials:
+    Plastic: 100
+    Steel: 100
+    Paper: 100
+
+# region Coffee cup
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: DrinkDisposableCup
+  result: DrinkDisposableCup
+  materials:
+    Cardboard: 50
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: DrinkDisposableMcCup
+  result: DrinkDisposableMcCup
+  materials:
+    Cardboard: 50
+
+# region clothing
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingYellow
+  result: ClothingHandsGlovesBoxingYellow
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingGreen
+  result: ClothingHandsGlovesBoxingGreen
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingBlue
+  result: ClothingHandsGlovesBoxingBlue
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingRed
+  result: ClothingHandsGlovesBoxingRed
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: UniformShortsRed
+  result: UniformShortsRed
+
+- type: latheRecipe
+  parent: UniformShortsRed
+  id: UniformShortsRedWithTop
+  result: UniformShortsRedWithTop
+
+- type: latheRecipe
+  id: ClothingEyesHudBeer
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesHudBeer
+
+# region piety
+- type: latheRecipe
+  id: NFServiceCenser
+  result: Censer
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceClothingNeckCrucifix
+  result: ClothingNeckCrucifix
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceUrnMortuary
+  result: UrnMortuary
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Steel: 400
+
+- type: latheRecipe
+  id: NFServiceUrn
+  result: Urn
+  parent: BaseServiceItemsRecipePiety
+
+- type: latheRecipe
+  id: NFServiceClothingMaskPlague
+  result: ClothingMaskPlague
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Steel: 300
+    Cloth: 200
+
+- type: latheRecipe
+  id: NFSilverRingPrinted
+  result: NFSilverRingPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Silver: 250
+
+- type: latheRecipe
+  id: NFSilverRingGemPrinted
+  result: NFSilverRingGemPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Silver: 250
+    Glass: 100
+
+- type: latheRecipe
+  id: NFSilverRingDiamondPrinted
+  result: NFSilverRingDiamondPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Silver: 250
+    ReinforcedGlass: 100
+
+- type: latheRecipe
+  id: NFGoldRingPrinted
+  result: NFGoldRingPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Gold: 200
+
+- type: latheRecipe
+  id: NFGoldRingGemPrinted
+  result: NFGoldRingGemPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Gold: 200
+    Glass: 100
+
+- type: latheRecipe
+  id: NFGoldRingDiamondPrinted
+  result: NFGoldRingDiamondPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Gold: 200
+    ReinforcedGlass: 100
+
+- type: latheRecipe
+  id: NFPlasteelRingPrinted
+  result: NFPlasteelRingPrinted
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Plasteel: 200
+
+- type: latheRecipe
+  id: NFPlasteelRingGem
+  result: NFPlasteelRingGem
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Plasteel: 200
+    Glass: 100
+
+- type: latheRecipe
+  id: NFPlasteelRingDiamond
+  result: NFPlasteelRingDiamond
+  parent: BaseServiceItemsRecipePiety
+  materials:
+    Plasteel: 200
+    ReinforcedGlass: 100
+
+# region candles
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleBlack
+  result: CandleBlack
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleBlue
+  result: CandleBlue
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleGreen
+  result: CandleGreen
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandleRed
+  result: CandleRed
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: CandlePurple
+  result: CandlePurple
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandle
+  id: Candle
+  result: Candle
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleBlackSmall
+  result: CandleBlackSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleBlueSmall
+  result: CandleBlueSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleGreenSmall
+  result: CandleGreenSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleRedSmall
+  result: CandleRedSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandlePurpleSmall
+  result: CandlePurpleSmall
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeCandleSmall
+  id: CandleSmall
+  result: CandleSmall

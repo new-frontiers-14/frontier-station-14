@@ -6,6 +6,7 @@
   - ChiefMedicalOfficerJumpskirt
   - ChiefMedicalOfficerTurtleneckJumpsuit
   - ChiefMedicalOfficerTurtleneckJumpskirt
+  - DocClothingUniformJumpsuitMilitaryCMO
   fallbacks:
   - ChiefMedicalOfficerJumpsuit
   - ChiefMedicalOfficerJumpskirt
@@ -36,17 +37,18 @@
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
-  - ChiefMedicalOfficerBeret
-  - CMOMedicalHeadMirror
+  - DocClothingHeadBeret
+  - DocClothingHeadMirror
   subgroups:
   - ContractorHead
 
 - type: loadoutGroup
   id: DocEars
   name: loadout-group-contractor-ears
-  hidden: true # No point in showing this, it gets auto-selected.
+  hidden: false # Now there are options, so it should be visible
   loadouts:
   - DocClothingHeadsetDoc
+  - DocNFClothingWristsetDoc
   fallbacks:
   - DocClothingHeadsetDoc
 
@@ -77,3 +79,12 @@
   - ContractorShoes
   fallbacks:
   - DocClothingShoesColorWhite
+
+- type: loadoutGroup
+  id: DocOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - DocClothingLongcoatCMO
+  subgroups:
+  - ContractorOuterClothing

@@ -3,26 +3,21 @@
  * Copyright (c) 2024 New Frontiers Contributors
  * See AGPLv3.txt for details.
  */
+using System.Linq;
 using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Bank.Events;
-using Content.Shared.Coordinates;
-using Content.Shared.Stacks;
-using Content.Server.Station.Systems;
-using Content.Server.Cargo.Systems;
-using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Access.Systems;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
+using Content.Shared.Stacks;
 using Robust.Shared.Containers;
-using System.Linq;
-using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
 
     private void InitializeStationATM()
@@ -98,8 +93,10 @@ public sealed partial class BankSystem
 
         _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} withdrew {args.Amount} from {component.Account} station bank account. '{args.Reason}': {args.Description}");
         //spawn the cash stack of whatever cash type the ATM is configured to.
-        var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
-        _stackSystem.Spawn(args.Amount, stackPrototype, uid.ToCoordinates());
+        var stackPrototype = _prototypeManager.Index(component.CashType);
+        var stackUid = _stackSystem.Spawn(args.Amount, stackPrototype, args.Actor.ToCoordinates());
+        if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
+            _transform.SetLocalRotation(stackUid, Angle.Zero);
 
         _uiSystem.SetUiState(uid, args.UiKey,
             new StationBankATMMenuInterfaceState(stationBank - args.Amount, hasAccess, deposit));
@@ -168,7 +165,7 @@ public sealed partial class BankSystem
         }
 
         // and then check them against the ATM's CashType
-        if (_prototypeManager.Index<StackPrototype>(component.CashType) != _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId))
+        if (_prototypeManager.Index(component.CashType) != _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId))
         {
             _log.Info($"{stackComponent.StackTypeId} is not {component.CashType}");
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-wrong-cash"));
@@ -261,7 +258,7 @@ public sealed partial class BankSystem
 
     private void OnATMUIOpen(EntityUid uid, StationBankATMComponent component, BoundUIOpenedEvent args)
     {
-        if (args.Actor is not { Valid : true } player)
+        if (args.Actor is not { Valid: true } player)
             return;
 
         GetInsertedCashAmount(component, out var deposit);
@@ -323,11 +320,11 @@ public sealed partial class BankSystem
 
     private void PlayDenySound(EntityUid uid, StationBankATMComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+        _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), uid);
     }
 
     private void PlayConfirmSound(EntityUid uid, StationBankATMComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
+        _audio.PlayPvs(_audio.ResolveSound(component.ConfirmSound), uid);
     }
 }

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineCuddlyCritterVend
   name: CuddlyCritterVend
   description: Step into the world of wonder and warmth with Cuddly Critters Vending Machine, a haven for plushie and toy enthusiasts alike.
@@ -10,8 +10,8 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: CuddlyCritterAds
+  - type: DatasetVocalizer
+    dataset: CuddlyCritterAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/cuddlycritter.rsi
     layers:
@@ -41,8 +41,8 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: AstroVendAds
+  - type: DatasetVocalizer
+    dataset: AstroVendAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/astrovend.rsi
     layers:
@@ -79,8 +79,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-#  - type: Advertise
-#    pack: FlatpackVendAds
+#  - type: DatasetVocalizer
+#    dataset: FlatpackVendAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/flatpackvend.rsi
     layers:
@@ -123,8 +123,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     screenState: screen
-  - type: Advertise
-    pack: SyndieDrobeAds
+  - type: DatasetVocalizer
+    dataset: SyndieDrobeAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/contravend.rsi
     layers:
@@ -166,8 +166,8 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-#  - type: Advertise
-#    pack: BountyVendAds
+#  - type: DatasetVocalizer
+#    dataset: BountyVendAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/bountyvend.rsi
     layers:
@@ -207,8 +207,8 @@
       # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
       # denyState: deny-unshaded
       ejectDelay: 3
-    - type: Advertise
-      pack: ArcadiaDrobeAds
+    - type: DatasetVocalizer
+      dataset: ArcadiaDrobeAds
     - type: Sprite
       sprite: _NF/Structures/Machines/VendingMachines/arcadiadrobe.rsi
       layers:
@@ -240,8 +240,8 @@
       ejectState: eject-unshaded
       denyState: deny-unshaded
       ejectDelay: 3
-    - type: Advertise
-      pack: LessLethalVendAds
+    - type: DatasetVocalizer
+      dataset: LessLethalVendAds
     - type: Sprite
       sprite: _NF/Structures/Machines/VendingMachines/lesslethalvend.rsi
       layers:
@@ -281,8 +281,8 @@
       ejectState: eject-unshaded
       denyState: deny-unshaded
       ejectDelay: 3
-    - type: Advertise
-      pack: LessLethalVendAds
+    - type: DatasetVocalizer
+      dataset: LessLethalVendAds
     - type: Sprite
       sprite: _NF/Structures/Machines/VendingMachines/nonlethalvend.rsi
       layers:
@@ -299,7 +299,7 @@
       color: "#ff033e"
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineAutoTuneVend
   name: AutoTune
   description: Feeling BASSed? Time to TUNE into AutoVend! Take NOTES and let your audience TREBLE.
@@ -311,8 +311,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-#  - type: Advertise
-#    pack: AutoTuneVendAds
+#  - type: DatasetVocalizer
+#    dataset: AutoTuneVendAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/autotunevend.rsi
     layers:
@@ -360,8 +360,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: MegaSeedAds
+  - type: DatasetVocalizer
+    dataset: MegaSeedAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/pottedplantvend.rsi
     layers:
@@ -390,8 +390,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: NfsdDrobeAds
+  - type: DatasetVocalizer
+    dataset: NfsdDrobeAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/nfsddrobe.rsi
     layers:
@@ -416,8 +416,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: YarrrDrobeAds
+  - type: DatasetVocalizer
+    dataset: YarrrDrobeAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/yarrrdrobe.rsi
     layers:
@@ -440,8 +440,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: NfsdDrobeAds
+  - type: DatasetVocalizer
+    dataset: NfsdDrobeAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/nfsdtech.rsi
     layers:
@@ -487,22 +487,20 @@
   description: A vandalized ClothesMate.
   components:
   - type: VendingMachine
-    pack: VendingMachineClothingPunkInventory
-    offState: broken
+    pack: VendingMachineBountyVendPunkInventory
+    offState: off
     brokenState: broken
-    normalState: clothing-vandalized-unshaded
-    denyState: clothing-vandalized-deny-unshaded
-  - type: Advertise
-    pack: VandalizedClothesMateAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: VandalizedBountyVendAds
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/clothing.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/threadschoom.rsi
     layers:
-    - state: "broken"
+    - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - sprite: _NF/Structures/Machines/VendingMachines/vandalized.rsi
-      state: clothing-vandalized-unshaded
+    - state: "off"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - state: panel
@@ -512,6 +510,12 @@
       map: [ "graffiti" ]
       shader: unshaded
       scale: 0.7, 0.7
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#f96363"
 
 - type: entity
   parent:
@@ -523,17 +527,19 @@
   components:
   - type: VendingMachine
     pack: VendingMachineBountyVendPunkInventory
-    offState: broken
+    offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: VandalizedBountyVendAds
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: VandalizedBountyVendAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/bountyvend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/bonanzamatic.rsi
     layers:
-    - state: "broken"
+    - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "broken"
+    - state: "off"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - state: panel
@@ -544,9 +550,11 @@
       shader: unshaded
       scale: 0.7, 0.7
   - type: PointLight
-    radius: 1.1
-    energy: 1.2
-    color: "#4b93ad"
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#85daeb"
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, VendingMachine]
@@ -562,8 +570,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     ejectDelay: 2.1
-  - type: Advertise
-    pack: FuelVendAds
+  - type: DatasetVocalizer
+    dataset: FuelVendAds
   - type: SpeakOnUIClosed
     pack: FuelVendGoodbyes
   - type: Sprite
@@ -583,12 +591,14 @@
   components:
   - type: VendingMachine
     pack: CiviMedVendInventory
+    taxAccounts:
+      Medical: 0.4
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: CiviMedAds
+  - type: DatasetVocalizer
+    dataset: CiviMedAds
   - type: SpeakOnUIClosed
     pack: CiviMedGoodbyes
   - type: PointLight
@@ -622,6 +632,9 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/wallcivimed.rsi
+  - type: Physics
+    bodyType: Static
+    canCollide: false
 
 - type: entity
   parent: VendingMachine
@@ -635,8 +648,8 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: ValetDrobeAds
+  - type: DatasetVocalizer
+    dataset: ValetDrobeAds
   - type: SpeakOnUIClosed
     pack: ValetDrobeGoodbyes
   - type: Sprite
@@ -668,8 +681,10 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: MailVendAds
+    taxAccounts:
+      Frontier: 0.75
+  - type: DatasetVocalizer
+    dataset: MailVendAds
   - type: SpeakOnUIClosed
     pack: MailVendGoodbyes
   - type: Sprite
@@ -687,7 +702,179 @@
     energy: 1.6
     color: "#4b93ad"
 
-# POI versions of upstream machines
+- type: entity
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  id: VendingMachinePickNPack
+  name: Pick-n-Pack
+  description: Putting arms in your hands since 2549.
+  components:
+  - type: VendingMachine
+    pack: PickNPackInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: VandalizedBountyVendAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/picknpackvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#EEEEFF"
+
+- type: entity
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  id: VendingMachinePosterPrinter
+  name: PosterPress
+  description: Print and post! Or post and print?
+  suffix: Frontier posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterFrontierVendInventory
+    offState: off-frontier
+    brokenState: broken-frontier
+    normalState: normal-unshaded-frontier
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: PosterPressVendAds
+  - type: SpeakOnUIClosed
+    pack: PosterPressVendGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/postervend.rsi
+    layers:
+    - state: "off-frontier"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-frontier"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#EEEEFF"
+
+- type: entity
+  parent: [VendingMachinePosterPrinter, BaseStructureDisableAnchoring]
+  id: VendingMachinePosterPrinterPOI
+  suffix: POI, Frontier posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterFrontierVendPOIInventory
+
+- type: entity
+  parent: VendingMachinePosterPrinter
+  id: VendingMachinePosterPrinterNanotrasen
+  suffix: Nanotrasen posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterNanotrasenVendInventory
+    offState: off-nanotrasen
+    brokenState: broken-nanotrasen
+    normalState: normal-unshaded-nanotrasen
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    layers:
+    - state: "off-nanotrasen"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-nanotrasen"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: [VendingMachinePosterPrinterNanotrasen, BaseStructureDisableAnchoring]
+  id: VendingMachinePosterPrinterNanotrasenPOI
+  suffix: POI, Nanotrasen posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterNanotrasenVendPOIInventory
+
+- type: entity
+  parent: VendingMachinePosterPrinter
+  id: VendingMachinePosterPrinterSyndicate
+  suffix: Contraband posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterSyndicateVendInventory
+    offState: off-syndicate
+    brokenState: broken-syndicate
+    normalState: normal-unshaded-syndicate
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    layers:
+    - state: "off-syndicate"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-syndicate"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#ff8a8a"
+
+- type: entity
+  parent: [VendingMachinePosterPrinterSyndicate, BaseStructureDisableAnchoring]
+  id: VendingMachinePosterPrinterSyndicatePOI
+  suffix: POI, Contraband posters
+  components:
+  - type: VendingMachine
+    pack: PosterPrinterSyndicateVendPOIInventory
+
+- type: entity
+  parent: VendingMachinePosterPrinter
+  id: VendingMachinePaintingPrinter
+  name: ArtPress
+  suffix: Paintings
+  components:
+  - type: VendingMachine
+    pack: PaintingPrinterVendInventory
+    offState: off-painting
+    brokenState: broken-painting
+    normalState: normal-unshaded-painting
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    layers:
+    - state: "off-painting"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-painting"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: [VendingMachinePaintingPrinter, BaseStructureDisableAnchoring]
+  id: VendingMachinePaintingPrinterPOI
+  suffix: POI, Paintings
+  components:
+  - type: VendingMachine
+    pack: PaintingPrinterVendPOIInventory
+
+#region POI versions of upstream machines
 
 - type: entity
   parent: [VendingMachineAmmo, BaseStructureDisableAnchoring]
@@ -769,6 +956,16 @@
   - type: VendingMachine
     pack: BoozeOMatInventory
 
+- type: entity
+  parent: [VendingMachineCuddlyCritterVend, BaseStructureDisableAnchoring]
+  id: VendingMachineCuddlyCritterVendPOI
+  suffix: POI
+
+- type: entity
+  parent: [VendingMachineAutoTuneVend, BaseStructureDisableAnchoring]
+  id: VendingMachineAutoTuneVendPOI
+  suffix: POI
+
 # Gas Tank Dispenser
 
 - type: entity
@@ -778,3 +975,102 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEVAPOIInventory
+
+- type: entity
+  parent: [VendingMachinePickNPack, BaseStructureDisableAnchoring]
+  id: VendingMachinePickNPackPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: PickNPackPOIInventory
+  - type: AccessReader
+    access: [["Mercenary"], ["Security"], ["HeadOfPersonnel"], ["HeadOfSecurity"]]
+  - type: ActivatableUIRequiresAccess
+
+#region conjured MagiVend
+- type: entity
+  parent: [ BaseC3WizardContraband, VendingMachineMagivend ]
+  id: NFVendingMachineMagivend
+  suffix: Frontier
+  components:
+  - type: VendingMachine
+    pack: MagivendConjuredInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+
+- type: entity
+  parent: [ VendingMachineMagivend, ConjuredObject180 ]
+  id: VendingMachineMagivendConjured
+  name: conjured MagiVend
+  description: A conjured magic vending machine. It will disappear shortly.
+  components:
+  - type: VendingMachine
+    pack: MagivendConjuredInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+
+#region DEBUG
+- type: entity
+  categories: [ DoNotMap ]
+  parent: VendingMachineBountyVendPunk
+  id: DEBUGVendingMachineRangedWeapons
+  name: All Guns
+  suffix: DEBUG, Guns
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: VendingMachine
+    pack: DEBUGVendingMachineInventoryRangedWeapons
+
+- type: entity
+  categories: [ DoNotMap ]
+  parent: VendingMachineClothingPunk
+  id: DEBUGVendingMachineMagazines
+  name: All Gun Magazines
+  suffix: DEBUG, Magazines
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: VendingMachine
+    pack: DEBUGVendingMachineInventoryMagazines
+
+- type: entity
+  categories: [ DoNotMap ]
+  parent: VendingMachineClothingPunk
+  id: DEBUGVendingMachineAmmoBoxes
+  name: All Ammo Boxes
+  suffix: DEBUG, Ammo Boxes
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: VendingMachine
+    pack: DEBUGVendingMachineInventoryAmmoBoxes

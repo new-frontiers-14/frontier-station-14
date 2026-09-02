@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
@@ -99,6 +99,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HumanoidSkinColor.Hues => speciesPrototype.DefaultSkinTone,
             HumanoidSkinColor.TintedHues => Humanoid.SkinColor.TintedHues(speciesPrototype.DefaultSkinTone),
             HumanoidSkinColor.VoxFeathers => Humanoid.SkinColor.ClosestVoxColor(speciesPrototype.DefaultSkinTone),
+            HumanoidSkinColor.ShelegToned => Humanoid.SkinColor.ShelegSkinTone(speciesPrototype.DefaultHumanSkinTone), // Frontier
             _ => Humanoid.SkinColor.ValidHumanSkinTone,
         };
 
@@ -131,10 +132,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
         var newHairStyle = hairStyles.Count > 0
             ? random.Pick(hairStyles)
-            : HairStyles.DefaultHairStyle;
+            : HairStyles.DefaultHairStyle.Id;
 
         var newFacialHairStyle = facialHairStyles.Count == 0 || sex == Sex.Female
-            ? HairStyles.DefaultFacialHairStyle
+            ? HairStyles.DefaultFacialHairStyle.Id
             : random.Pick(facialHairStyles);
 
         var newHairColor = random.Pick(HairStyles.RealisticHairColors);
@@ -153,8 +154,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         switch (skinType)
         {
             case HumanoidSkinColor.HumanToned:
-                var tone = Math.Round(Humanoid.SkinColor.HumanSkinToneFromColor(newSkinColor));
-                newSkinColor = Humanoid.SkinColor.HumanSkinTone((int)tone);
+                newSkinColor = Humanoid.SkinColor.HumanSkinTone(random.Next(0, 101));
                 break;
             case HumanoidSkinColor.Hues:
                 break;

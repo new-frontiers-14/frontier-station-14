@@ -33,11 +33,8 @@ namespace Content.Server.GameTicking
             {
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
-                    mind.Session = session;
-                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
+                    _pvsOverride.AddSessionOverride(mindId.Value, session);
                 }
-
-                DebugTools.Assert(mind.Session == session);
             }
 
             DebugTools.Assert(session.GetMind() == mindId);
@@ -59,7 +56,7 @@ namespace Content.Server.GameTicking
 
                     // Make the player actually join the game.
                     // timer time must be > tick length
-                    Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Timer.Spawn(0, () => _playerManager.JoinGame(args.Session)); - Harmony Queue: Removed line, login is done by JoinQueueManager
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
@@ -128,10 +125,9 @@ namespace Content.Server.GameTicking
                 case SessionStatus.Disconnected:
                 {
                     _chatManager.SendAdminAnnouncement(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
-                    if (mind != null)
+                    if (mindId != null)
                     {
-                        _pvsOverride.ClearOverride(GetNetEntity(mindId!.Value));
-                        mind.Session = null;
+                        _pvsOverride.RemoveSessionOverride(mindId.Value, session);
                     }
 
                     _userDb.ClientDisconnected(session);

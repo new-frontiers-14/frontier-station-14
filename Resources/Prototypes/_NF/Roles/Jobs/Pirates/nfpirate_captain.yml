@@ -19,6 +19,7 @@
   weight: 40
   displayWeight: 40
   setPreference: true
+  newPlayerMessage: false
   access:
   - Pirate
   accessGroups:
@@ -29,6 +30,7 @@
     - type: AutoPirateCaptain
     - type: SpecialSectorStationRecord # must be given on spawn
       recordGeneration: FalseRecord
+    - type: DisableSuitSensors
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
@@ -38,10 +40,15 @@
 - type: startingGear
   id: NFPirateCaptainGear
   equipment:
-    ears: ClothingHeadsetAltFreelancer
     belt: ClothingBeltUtility
     pocket1: BasePirateUplinkRadioPirateCaptain
     pocket2: EnergyCutlass
   storage:
     back:
     - AppraisalTool
+    - PirateTechFabFlatpack
+    - Multitool
+
+- type: chameleonOutfit
+  id: NFPirateCaptainChameleonOutfit
+  job: NFPirateCaptain

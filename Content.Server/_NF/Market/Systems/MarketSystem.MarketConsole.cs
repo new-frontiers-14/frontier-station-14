@@ -1,17 +1,17 @@
 using System.Linq;
+using Content.Server._NF.Cargo.Systems;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
-using Content.Server.Cargo.Systems;
-using Content.Server.Storage.Components;
-using Content.Shared._NF.Market;
-using Content.Shared._NF.Market.BUI;
-using Content.Shared._NF.Market.Events;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Materials;
 using Content.Shared.Power;
 using Content.Shared.Stacks;
+using Content.Shared.Storage.Components;
 using Content.Shared.Storage;
-using Content.Shared.Materials;
+using Content.Shared._NF.Bank.Components;
+using Content.Shared._NF.Market.BUI;
+using Content.Shared._NF.Market.Events;
+using Content.Shared._NF.Market;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -24,7 +24,7 @@ public sealed partial class MarketSystem
     [Dependency] private readonly SharedMaterialStorageSystem _sharedMaterialStorageSystem = default!;
     private void InitializeConsole()
     {
-        SubscribeLocalEvent<EntitySoldEvent>(OnEntitySoldEvent);
+        SubscribeLocalEvent<NFEntitySoldEvent>(OnEntitySoldEvent);
         SubscribeLocalEvent<MarketConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
         SubscribeLocalEvent<MarketConsoleComponent, MarketConsoleCartMessage>(OnCartMessage);
         SubscribeLocalEvent<MarketConsoleComponent, PowerChangedEvent>(OnPowerChanged);
@@ -41,7 +41,7 @@ public sealed partial class MarketSystem
     /// This event signifies that something has been sold at a cargo pallet.
     /// </summary>
     /// <param name="entitySoldEvent">The details of the event</param>
-    private void OnEntitySoldEvent(ref EntitySoldEvent entitySoldEvent)
+    private void OnEntitySoldEvent(ref NFEntitySoldEvent entitySoldEvent)
     {
         var station = _station.GetOwningStation(entitySoldEvent.Grid);
         if (station is null ||
@@ -57,7 +57,7 @@ public sealed partial class MarketSystem
     }
 
     /// <summary>
-    /// Recursively updates/inserts an entity and everything it contains into the cargo market. 
+    /// Recursively updates/inserts an entity and everything it contains into the cargo market.
     /// </summary>
     /// <param name="market">The market data set that will store these entities.</param>
     /// <param name="sold">The entity to add.</param>

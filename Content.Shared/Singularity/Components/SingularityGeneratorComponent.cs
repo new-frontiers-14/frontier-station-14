@@ -66,4 +66,12 @@ public sealed partial class SingularityGeneratorComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextFailsafe = TimeSpan.Zero;
+
+    // Frontier: tether dangerous entities
+    /// <summary>
+    /// If true, generator must be in range of a tether to interact with particles.
+    /// </summary>
+    [DataField]
+    public bool RequiresTether = true;
+    // End Frontier: tether dangerous entities
 }

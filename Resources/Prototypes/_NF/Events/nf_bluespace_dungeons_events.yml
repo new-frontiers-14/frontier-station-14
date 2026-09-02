@@ -5,6 +5,7 @@
   abstract: true
   components:
   - type: StationEvent
+  # TODO: add path to  start warning and end Voiceover
     startRadioAnnouncement: station-event-bluespace-dungeon-start-announcement
     startRadioAnnouncementChannel: Supply
     warningRadioAnnouncement: station-event-bluespace-dungeon-warning-announcement
@@ -29,7 +30,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: &dungeonComponents
         - type: Gravity
           enabled: true
@@ -57,7 +59,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidSnow
@@ -72,7 +75,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidCave
@@ -87,7 +91,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidChromite
@@ -102,7 +107,24 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidScrap
+
+- type: entity
+  id: BluespaceDungeonCaveZombie
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: NamesBorer
+        minimumDistance: 1500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
+        addComponents: *dungeonComponents
+        protos:
+        - NFVGRoidCaveZombie

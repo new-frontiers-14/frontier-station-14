@@ -303,6 +303,7 @@
     - FloorSteel
     - Plating
     - Catwalk
+    - CatwalkHazard # Frontier
     - Grille
     - Window
     - WindowDirectional
@@ -320,7 +321,6 @@
     - Deconstruct
   - type: LimitedCharges
     maxCharges: 30
-    charges: 30
   - type: Sprite
     sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: icon
@@ -333,7 +333,7 @@
     - Belt
   - type: PhysicalComposition
     materialComposition:
-      Steel: 600
+      Steel: 500 # Frontier: 600<500
       Plastic: 100
   - type: StaticPrice
     price: 55 # Frontier 110<55
@@ -352,18 +352,17 @@
   suffix: Empty
   components:
   - type: LimitedCharges
-    charges: 0
+    lastCharges: -1
 
 - type: entity
   id: RCDRecharging
   parent: RCD
   name: experimental RCD
-  description: A bluespace-enhanced rapid construction device that passively generates its own compressed matter.
+  description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
   suffix: AutoRecharge
   components:
   - type: LimitedCharges
     maxCharges: 20
-    charges: 20
   - type: AutoRecharge
     rechargeDuration: 10
 
@@ -481,7 +480,10 @@
     soundHit:
       collection: MetalThud
   - type: Item
-    size: Normal
+    size: Large # Frontier Normal<Large
+    shape: # Frontier
+    - 0,0,3,0 # Frontier
+    storedRotation: 45 # Frontier
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
@@ -512,6 +514,7 @@
   - type: Item
     sprite: Objects/Tools/rolling_pin.rsi
     size: Small
+    storedRotation: -45
   - type: Clothing
     sprite: Objects/Tools/rolling_pin.rsi
     quickEquip: false

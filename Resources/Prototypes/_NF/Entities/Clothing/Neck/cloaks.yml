@@ -8,7 +8,7 @@
     sprite: _NF/Clothing/Neck/Cloaks/nfsdsheriff.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-    
+
 - type: entity
   parent: ClothingNeckCloakHop
   id: ClothingNeckCloakSr
@@ -37,3 +37,42 @@
   - type: Construction
     graph: ClothingNeckCloakRosyGraph
     node: ClothingNeckCloakRosy
+
+- type: entity
+  parent: ClothingNeckBase
+  id: NFGoblinMadeClothingNeckTrashCloak
+  name: cloakash
+  description: A cloak stitched from a patchwork of food wrappings. Somehow, wearing it always makes your mind wander to the nearest food joint.
+  components:
+  - type: GoblinMade
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Cloaks/goblin_trash_cloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: NFGoblinMadeClothingHeadHatHoodTrashCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: NFGoblinMadeClothingNeckTrashCloak
+    node: NFGoblinMadeClothingNeckTrashCloak
+  - type: Butcherable
+    spawned:
+    - id: ScrapOre1
+      amount: 2
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrap: 400
+
+# Upstream removed
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakMiner
+  name: miner's cloak
+  description: You move sixteen tons, and what do you get? This cloak. For the distinguished miner.
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Cloaks/miner.rsi

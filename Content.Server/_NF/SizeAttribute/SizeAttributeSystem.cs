@@ -3,6 +3,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
+using Content.Shared.Sprite;
 using Content.Shared._NF.SizeAttribute;
 using Content.Shared.Nyanotrasen.Item.PseudoItem;
 

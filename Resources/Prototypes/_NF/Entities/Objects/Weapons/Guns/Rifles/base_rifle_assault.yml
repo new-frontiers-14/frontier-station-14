@@ -1,0 +1,244 @@
+#region frame
+- type: entity
+  abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifleAssault, NFBaseGunMeleeAttackMedium, NFBaseItemWeaponGunMagazineFed ]
+  id: NFBaseWeaponFrameRifleAssault
+  name: assault rifle
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 2
+    maxAngle: 10
+    angleIncrease: 0.5
+    angleDecay: 2.5
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 2.5
+    # pvsIncrease: 0.25
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
+
+#region manufacturer
+- type: entity
+  abstract: true
+  parent: [ NFBaseWeaponFrameRifleAssault ]
+  id: NFBaseWeaponFrameRifleAssaultNanotrasen
+  components:
+  - type: Gun
+    minAngle: 2.3
+    maxAngle: 11.5
+    angleIncrease: 0.8
+    angleDecay: 2.7
+    fireRate: 3.4
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleAssault ]
+  id: NFBaseWeaponFrameRifleAssaultCybersun
+  components:
+  - type: Gun
+    angleIncrease: 0.6
+    angleDecay: 4.2
+    fireRate: 3.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  abstract: true
+  parent: [ NFBaseWeaponFrameRifleAssault ]
+  id: NFBaseWeaponFrameRifleAssaultFrontierGunsmith
+  components:
+  - type: Gun
+    minAngle: 2.4
+    maxAngle: 12
+    angleIncrease: 1.2
+    angleDecay: 3.8
+    fireRate: 3.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-frontier-gunsmith-consortium
+
+#region chamber
+- type: entity
+  abstract: true
+  id: NFBaseWeaponRifleAssaultChamber
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber20
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-20
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineRifle20
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: &mag20Whitelist
+          tags:
+            - NFMagazineRifle20
+            - NFMagazineDrumRifle20
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber20Standard
+        name: Chamber
+        startingItem: NFCartridgeRifle20
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgeRifle20
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber20
+  id: NFBaseWeaponRifleAssaultChamber20Rubber
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineRifle20Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: *mag20Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle20Rubber
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgeRifle20
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber20Clip
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-20
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineClipRifle20
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - NFMagazineClipRifle20
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: *chamber20Standard
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber30
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-30
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineRifle30
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: &mag30Whitelist
+          tags:
+            - NFMagazineRifle30
+            - NFMagazineLowCapacityRifle30
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber30Standard
+        name: Chamber
+        startingItem: NFCartridgeRifle30
+        priority: 1
+        whitelist: &chamber30Whitelist
+          tags:
+            - NFCartridgeRifle30
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber30
+  id: NFBaseWeaponRifleAssaultChamber30Rubber
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineRifle30Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: *mag30Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber30Rubber
+        name: Chamber
+        startingItem: NFCartridgeRifle30Rubber
+        priority: 1
+        whitelist: *chamber30Whitelist
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber30
+  id: NFBaseWeaponRifleAssaultChamber30LowCapacity
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineLowCapacityRifle30
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: *mag30Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: *chamber30Standard
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber30LowCapacity
+  id: NFBaseWeaponRifleAssaultChamber30LowCapacityRubber
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineLowCapacityRifle30Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: *mag30Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: *chamber30Rubber

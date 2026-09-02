@@ -1,14 +1,11 @@
-﻿# Base
+﻿#region Base
 - type: entity
+  abstract: true
+  parent: [ NFBaseWeaponEncumbranceCrossbow, BaseItem ]
   id: BaseCrossbow
   name: crossbow
-  parent: [ BaseItem, GunMeleeAttackBluntBase ] # \Resources\Prototypes\_NF\Entities\Objects\Weapons\Melee\base_melee_weapon.yml
-  description: The original rooty tooty point and shooty.
-  abstract: true
+  description: A medieval ranged weapon that shoots projectiles called bolts. Now in space!
   components:
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 500
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbow.rsi
     layers:
@@ -16,79 +13,82 @@
       map: [ base ]
     - state: icon-string
       map: [ string ]
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt
       map: [ bolt ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-broadhead
       map: [ broadhead ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-glass
       map: [ glass ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-glassp
       map: [ glassp ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-glassu
       map: [ glassu ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-syringe
       map: [ syringe ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-plasteel
       map: [ plasteel ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-explosive
       map: [ explosive ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-emp
       map: [ electrified ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-incendiary
       map: [ incendiary ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-plunger
       map: [ plunger ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-baguette
       map: [ bread ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-mail
       map: [ mail ]
       visible: false
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-stake
       map: [ stake ]
-    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-shell
       map: [ shrapnel ]
       visible: false
-  - type: Item
-    size: Normal
   - type: Clothing
     quickEquip: false
     slots:
     - Back
     - suitStorage
     - Belt
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
   - type: UseDelay
-    delay: 2
+    delay: 1.5
   - type: Gun
     fireRate: 1
-    minAngle: 5
-    maxAngle: 15
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 2.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -204,29 +204,26 @@
           - CrossbowBoltShrapnel
 
 - type: entity
-  id: BaseCrossbowWieldable
-  parent: BaseCrossbow
   abstract: true
+  parent: [ NFBaseGunMeleeAttackMedium, BaseCrossbow ]
+  id: BaseCrossbowWieldable
   components:
-  - type: Item
-    size: Large
   - type: Clothing
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: GunWieldBonus
-    minAngle: -33
-    maxAngle: -33
+    minAngle: -30
+    maxAngle: -30
   - type: Wieldable
     wieldSound:
       path: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
   - type: UseDelay
     delay: 1
   - type: Gun
-    angleDecay: 35
-    minAngle: 34
-    maxAngle: 36
+    minAngle: 31.8
+    maxAngle: 39
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -234,6 +231,10 @@
     soundGunshot:
       collection: BulletMiss
     soundEmpty: null
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 5
+    # pvsIncrease: 0.5
   - type: Appearance
   # to elucidate whats intended here:
   # arrow is inserted -> ItemMapper sets layer with map `arrow` to visible
@@ -249,25 +250,25 @@
           True: { state: icon-string-drawn }
           False: { state: icon-string }
         bolt:
-          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-drawn }
-          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt }
+          True: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt }
         plunger:
-          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plunger-drawn }
-          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plunger }
+          True: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plunger-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plunger }
         bread:
-          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette-drawn }
-          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette }
+          True: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette }
         mail:
-          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail-drawn }
-          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail }
+          True: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail }
         stake:
-          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake-drawn }
-          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake }
+          True: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake }
 
-# Wieldable
+#region Wieldable
 - type: entity
-  id: CrossbowModern
   parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
+  id: CrossbowModern
   components:
   - type: UseDelay
     delay: 0.5
@@ -279,9 +280,9 @@
     deconstructionTarget: null
 
 - type: entity
-  id: CrossbowImprovised
   parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
-  name: impovised crossbow
+  id: CrossbowImprovised
+  name: improvised crossbow
   components:
   - type: UseDelay
     delay: 2
@@ -292,8 +293,8 @@
     node: ImprovisedCrossbow
 
 - type: entity
-  id: CrossbowBloodCult
   parent: [ BaseCrossbowWieldable, BaseC3CultContraband ]
+  id: CrossbowBloodCult
   name: blood cult crossbow
   components:
   - type: Sprite
@@ -305,10 +306,10 @@
     node: start
     deconstructionTarget: null
 
-# Hand crossbows
+#region Hand xbows
 - type: entity
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC1Contraband ]
   id: CrossbowModernHand
-  parent: [ BaseCrossbow, BaseC1Contraband ]
   name: hand crossbow
   components:
   - type: UseDelay
@@ -320,9 +321,9 @@
     node: CrossbowModernHand
 
 - type: entity
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC1Contraband ]
   id: CrossbowImprovisedHand
-  parent: [ BaseCrossbow, BaseC1Contraband ]
-  name: impovised hand crossbow
+  name: improvised hand crossbow
   components:
   - type: UseDelay
     delay: 2
@@ -333,8 +334,8 @@
     node: ImprovisedCrossbowHand
 
 - type: entity
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC3CultContraband ]
   id: CrossbowBloodCultHand
-  parent: [ BaseCrossbow, BaseC3CultContraband ]
   name: blood cult hand crossbow
   components:
   - type: Sprite

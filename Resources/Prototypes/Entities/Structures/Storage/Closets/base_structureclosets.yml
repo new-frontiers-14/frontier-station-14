@@ -35,6 +35,8 @@
       blacklist:
         tags:
         - Book
+        components: # Frontier
+        - Blueprint # Frontier
   - type: ItemSlots
   - type: DamageOnHighSpeedImpact
     damage:
@@ -52,7 +54,7 @@
           bounds: "-0.25,-0.48,0.25,0.48"
         density: 75
         mask:
-        - MachineMask
+        - CrateMask # Frontier: MachineMask<CrateMask this is so they can go under plastic flaps
         layer:
         - MachineLayer
   - type: EntityStorage
@@ -113,6 +115,7 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 50 # Frontier: 75<50 - TODO: material value rework
+  - type: NFForkLiftable # Frontier
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -124,26 +127,21 @@
     node: done
     containers:
     - entity_storage
+  - type: Paintable
+    group: Closet
 
 #Wall Closet
 - type: entity
+  parent: BaseWallmountMetallic
   id: BaseWallCloset
-  placement:
-    mode: SnapgridCenter
   abstract: true
   name: wall closet
   description: A standard-issue Nanotrasen storage unit, now on walls.
   components:
-  - type: InteractionOutline
-  - type: Clickable
   - type: ResistLocker
   - type: Weldable
-  - type: WallMount
-    arc: 175
   - type: StaticPrice
     price: 50 # Frontier: 75<50 - TODO: material value rework
-  - type: Transform
-    noRot: false
   - type: Sprite
     drawdepth: WallMountedItems
     noRot: false
@@ -168,9 +166,6 @@
     containers:
       entity_storage: !type:Container
         ents: []
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -195,11 +190,18 @@
           SheetSteel1:
             min: 1
             max: 1
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
   - type: Construction
     graph: ClosetWall
     node: done
     containers:
     - entity_storage
+  - type: Paintable
+    group: WallCloset
 
 #Wall locker
 - type: entity
@@ -223,6 +225,8 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Paintable
+    group: WallLocker
 
 #Base suit storage unit
 #I am terribly sorry for duplicating the closet almost-wholesale, but the game malds at me if I don't so here we are.
@@ -246,6 +250,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+      map: ["enum.StorageVisualLayers.Base"] # Frontier: test fixes
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -271,7 +276,7 @@
           bounds: "-0.25,-0.48,0.25,0.48"
         density: 350
         mask:
-        - MachineMask
+        - CrateMask # Frontier: MachineMask<CrateMask this is so they can go under plastic flaps
         layer:
         - MachineLayer
   - type: EntityStorage
@@ -311,7 +316,7 @@
             max: 1
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBase: base
+    stateBaseClosed: base # Frontier: stateBase<stateBaseClosed
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals

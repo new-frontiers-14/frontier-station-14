@@ -1,3 +1,48 @@
+# region Removed Upstream
+- type: entity
+  parent: BaseWall
+  id: WallShuttleInterior
+  name: shuttle wall
+  suffix: Interior
+  components:
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    sprite: _NF/Structures/Walls/shuttleinterior.rsi
+  - type: Icon
+    sprite: _NF/Structures/Walls/shuttleinterior.rsi
+  - type: Construction
+    graph: Girder
+    node: shuttleInteriorWall
+  - type: IconSmooth
+    key: walls
+    base: state
+
+# TODO: migrate these elsewhere
 # region Base Walls
 - type: entity
   parent: BaseStructureDisableToolUse
@@ -66,6 +111,38 @@
   id: NFWallAndesiteCobblebrick
   categories: [ HideSpawnMenu ]
 # endregion Base Walls
+
+# region New Walls
+- type: entity
+  parent: WallSolid
+  id: AsteroidRockFacade
+  name: asteroid facade wall
+  description: A rocky asteroid. On a closer look, you see that it's just a facade.
+  components:
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+  - type: Construction
+    graph: Girder
+    node: asteroidrock
+  - type: Icon
+    sprite: Structures/Walls/rock.rsi
+    state: rock_asteroid
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/rock.rsi
+    layers:
+    - state: rock_asteroid
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_asteroid_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_asteroid_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_asteroid_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_asteroid_west
+# endregion
 
 # region Cobblebrick Ores
 - type: entity
@@ -2738,3 +2815,20 @@
   parent: [NFBaseUraniumGolemVein, NFWallAndesiteCobblebrickUranium]
   suffix: Uranium Golem
 # endregion AndesiteCobblebrick Mobs
+
+#region Indestructable Walls
+- type: entity
+  parent: BaseWall
+  id: WallUraniumIndestructible
+  name: uranium wall
+  suffix: indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/uranium.rsi
+  - type: Icon
+    sprite: Structures/Walls/uranium.rsi
+  - type: IconSmooth
+    key: walls
+    base: uranium
+
+# endregion Indestructable Walls

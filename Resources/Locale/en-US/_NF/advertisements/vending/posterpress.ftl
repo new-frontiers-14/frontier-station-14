@@ -1,0 +1,20 @@
+advertisement-posterpressvend-1 = They say art is priceless. I beg to differ.
+advertisement-posterpressvend-2 = Money is temporary. Art is timeless.
+advertisement-posterpressvend-3 = The number one tool for hiding your real wealth.
+advertisement-posterpressvend-4 = Bare walls are a sign of depression.
+advertisement-posterpressvend-5 = They can't suppress self-expression!
+advertisement-posterpressvend-6 = The best art in the sector!
+advertisement-posterpressvend-7 = Posters really tie shuttle compartments together.
+advertisement-posterpressvend-8 = I don't understand modern art. A flaw in my programming.
+advertisement-posterpressvend-9 = This is a great way to cover up that secret door of yours!
+advertisement-posterpressvend-10 = They say art is the best way to express yourself unless you're a mime.
+advertisement-posterpressvend-11 = I have no hands, and I must paint.
+advertisement-posterpressvend-12 = To truly appreciate this one, you'd need to tilt your head sideways and squint.
+
+goodbye-posterpressvend-1 = Woah. You really bought that one?
+goodbye-posterpressvend-2 = *tongue-clicking sound* Nice!
+goodbye-posterpressvend-3 = Well, yeah, that's... a choice.
+goodbye-posterpressvend-4 = Good choice!
+goodbye-posterpressvend-5 = You know what's better than one piece of art? Two pieces of art!
+goodbye-posterpressvend-6 = Alright.
+goodbye-posterpressvend-7 = No refunds.

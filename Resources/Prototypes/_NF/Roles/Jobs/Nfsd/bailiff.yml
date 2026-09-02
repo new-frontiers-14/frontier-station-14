@@ -37,7 +37,7 @@
   - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -45,13 +45,27 @@
 - type: startingGear
   id: BailiffGear
   equipment:
-    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket1: NFWeaponPistolUniversalNfsdLessLethal
     pocket2: HoloprojectorNfsd
   storage:
     back:
     - Flash
-    - MagazinePistol
-    - MagazinePistolRubber
+    - NFMagazineHighCapacityPistol35Overpressure
+    - NFMagazineHighCapacityPistol35Rubber
     - BaseSecurityUplinkRadioOfficer
     - ShipVoucherNfsdBailiff
     - RubberStampBailiff
+
+- type: chameleonOutfit
+  id: BailiffChameleonOutfit
+  job: Bailiff
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterCoatNfsdFormal
+    neck: ClothingNeckNfsdBadgeWarden
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdCream
+    shoes: ClothingShoesBootsNfsdCreamFilled

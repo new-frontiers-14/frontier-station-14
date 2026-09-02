@@ -80,14 +80,11 @@ public sealed partial class DeepFryerSystem
 
     private void OnInsertItem(EntityUid uid, DeepFryerComponent component, DeepFryerInsertItemMessage args)
     {
-        var user = args.Actor;
-
-        if (user == null ||
-            !TryComp<HandsComponent>(user, out var handsComponent) ||
-            handsComponent.ActiveHandEntity == null)
+        // Frontier: Rewrite for hand refactor compliance (wizden #38438)
+        if (!_handsSystem.TryGetActiveItem(uid, out var item))
             return;
 
-        if (handsComponent.ActiveHandEntity != null)
-            TryInsertItem(uid, component, user, handsComponent.ActiveHandEntity.Value);
+        TryInsertItem(uid, component, args.Actor, item.Value);
+        // End Frontier
     }
 }

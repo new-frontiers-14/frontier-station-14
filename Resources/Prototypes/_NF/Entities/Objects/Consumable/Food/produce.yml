@@ -36,40 +36,6 @@
       Taco: Pear
 
 - type: entity
-  name: coffee berries
-  parent: FoodProduceBase
-  id: FoodCoffee
-  description: Red berries encasing coffee beans.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - bitter
-  - type: Food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Theobromine
-          Quantity: 1
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Hydroponics/coffee.rsi
-  - type: Item
-    heldPrefix: produce
-  - type: Produce
-    seedId: coffee
-  - type: Tag
-    tags:
-    - Fruit
-  - type: SpawnItemsOnUse
-    items:
-      - id: FoodCoffeeBeansRaw
-    sound:
-      path: /Audio/Effects/packetrip.ogg
-
-- type: entity
   name: avocado
   parent: FoodProduceBase
   id: FoodAvocado
@@ -100,7 +66,7 @@
     grindableSolutionName: food
     juiceSolution:
       reagents:
-      - ReagentId: OilVegetable
+      - ReagentId: Cornoil
         Quantity: 5
   - type: Tag
     tags:
@@ -130,12 +96,16 @@
     grindableSolutionName: food
     juiceSolution:
       reagents:
-      - ReagentId: OilVegetable
+      - ReagentId: Cornoil
         Quantity: 2.5
   - type: Tag
     tags:
       - Fruit
       - Slice
+  - type: FoodSequenceElement
+    entries:
+      Taco: Avocado
+      Burger: Avocado
 
 - type: entity
   name: cucumber
@@ -204,6 +174,10 @@
     tags:
       - Vegetable
       - Slice
+  - type: FoodSequenceElement
+    entries:
+      Taco: Cucumber
+      Burger: Cucumber
 
 - type: entity
   name: pickle
@@ -276,6 +250,10 @@
     tags:
       - Vegetable
       - Slice
+  - type: FoodSequenceElement
+    entries:
+      Taco: Pickle
+      Burger: Pickle
 
 - type: entity
   name: honeycomb
@@ -305,6 +283,10 @@
       reagents:
       - ReagentId: Honey
         Quantity: 5
+  - type: FoodSequenceElement
+    entries:
+      Burger: Honeycomb
+      Taco: Honeycomb
 
 - type: entity
   name: sliced potato
@@ -387,6 +369,11 @@
   - type: Construction
     graph: Everyspice
     node: FoodEveryspiceRoasted
+  - type: FoodSequenceElement
+    entries:
+      Burger: Everyspice
+      Skewer: Everyspice
+      Taco: Everyspice
 
 - type: entity
   name: battered onion rings
@@ -424,3 +411,140 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodOnionRings
+
+- type: entity
+  name: monkanana
+  parent: FoodProduceBase
+  id: FoodMonkanana
+  description: Looks like a monkeyfied banana.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - hairy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Primatine
+          Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
+  - type: Produce
+    seedId: monkanana
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+      - Fruit
+  - type: FoodSequenceElement
+    entries:
+      Burger: Monkanana
+      Skewer: Monkanana
+      Taco: Monkanana
+
+- type: entity
+  name: pomegranate
+  parent: FoodProduceBase
+  id: FoodPomegranate
+  description: Fruit filled with juicy seeds.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - pomegranate
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Vitamin
+            Quantity: 7
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/pomegranate.rsi
+  - type: Produce
+    seedId: pomegranate
+  - type: Extractable
+    juiceSolution:
+      reagents:
+        - ReagentId: JuicePomegranate
+          Quantity: 10
+  - type: Tag
+    tags:
+      - Fruit
+  - type: FoodSequenceElement
+    entries:
+      Burger: Pomegranate
+      Taco: Pomegranate
+
+- type: entity
+  name: granatapfel
+  parent: [FoodProduceBase, ItemHeftyBase]
+  id: FoodGranatapfel
+  description: Granatapfel Fruit, Fragile. Explodes on impact sending it's seeds with high velocity. Used for biofuel.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - granatapfel
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 9
+          canReact: false
+          reagents:
+            - ReagentId: Sulfur
+              Quantity: 3
+            - ReagentId: Ethanol
+              Quantity: 3
+            - ReagentId: Hydrogen
+              Quantity: 3
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Hydroponics/granatapfel.rsi
+    - type: Produce
+      seedId: granatapfel
+    - type: Extractable
+      grindableSolutionName: food
+      juiceSolution:
+        reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 10
+    - type: Damageable
+      damageContainer: Biological
+    - type: DamageOnHighSpeedImpact
+      minimumSpeed: 0.1
+      damage:
+        types:
+          Blunt: 1
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 1
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/_NF/Effects/explosions/light-pop.ogg
+            - !type:TriggerBehavior
+              keyOut: granatapfel-trigger
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: ChemicalAmmo
+      solution: food
+    - type: ProjectileGrenade
+      fillPrototype: SeedsGranatapfel
+      capacity: 10
+      triggerKey: granatapfel-trigger
+    - type: ContainerContainer
+      containers:
+        cluster-payload: !type:Container
+    - type: Tag
+      tags:
+        - Fruit
+    - type: FoodSequenceElement
+      entries:
+        Burger: Granatapfel
+        Taco: Granatapfel

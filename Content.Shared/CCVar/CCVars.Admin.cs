@@ -114,7 +114,7 @@ public sealed partial class CCVars
     ///     Minimum particle accelerator strength to create an admin alert message.
     /// </summary>
     public static readonly CVarDef<int> AdminAlertParticleAcceleratorMinPowerState =
-        CVarDef.Create("admin.alert.particle_accelerator_min_power_state", 5, CVar.SERVERONLY); // strength 4
+        CVarDef.Create("admin.alert.particle_accelerator_min_power_state", 6, CVar.SERVERONLY); // Frontier: 5<6, disable behavior by setting to strength 5
 
     /// <summary>
     ///     Should the ban details in admin channel include PII? (IP, HWID, etc)

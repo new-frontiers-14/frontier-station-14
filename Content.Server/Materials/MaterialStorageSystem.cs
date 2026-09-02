@@ -3,8 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
-using Content.Server.Storage.Components; // Frontier
-using Content.Server.Cargo.Systems; // Frontier
 using Content.Server.Power.Components;
 using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
@@ -14,6 +12,9 @@ using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Server.Storage.Components; // Frontier
+using Content.Shared.Cargo; // Frontier
+using Content.Shared.Destructible; //Frontier
 
 namespace Content.Server.Materials;
 
@@ -34,9 +35,31 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         base.Initialize();
         SubscribeLocalEvent<MaterialStorageComponent, MachineDeconstructedEvent>(OnDeconstructed);
         SubscribeLocalEvent<MaterialStorageComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
+        SubscribeLocalEvent<MaterialStorageComponent, DestructionEventArgs>(OnDestroyed); // Frontier
 
         SubscribeAllEvent<EjectMaterialMessage>(OnEjectMessage);
     }
+
+    //Start Frontier: Ensure silos drop their mats when destroyed
+    private void OnDestroyed(EntityUid uid, MaterialStorageComponent component, DestructionEventArgs eventArgs)
+    {
+        if (!component.DropOnDeconstruct)
+            return;
+
+        if (TryComp<MaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        {
+            //If we don't do this, then the silo will instantly suck up all the materials before being promptly deleted
+            //Guess how we found that out :)
+            magnet.MagnetEnabled = false;
+        }
+
+        foreach (var (material, amount) in component.Storage)
+        {
+            SpawnMultipleFromMaterial(amount, material, Transform(uid).Coordinates);
+        }
+
+    }
+    //End Frontier
 
     private void OnDeconstructed(EntityUid uid, MaterialStorageComponent component, MachineDeconstructedEvent args)
     {
@@ -128,14 +151,18 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         if (!base.TryInsertMaterialEntity(user, toInsert, receiver, storage, material, composition))
             return false;
         _audio.PlayPvs(storage.InsertingSound, receiver);
-        _popup.PopupEntity(Loc.GetString("machine-insert-item", ("user", user), ("machine", receiver),
-            ("item", toInsert)), receiver);
-        //QueueDel(toInsert); // Frontier
+        _popup.PopupEntity(Loc.GetString("machine-insert-item",
+                ("user", user),
+                ("machine", receiver),
+                ("item", toInsert)),
+            receiver);
+        // QueueDel(toInsert); // Frontier
 
         // Logging
         TryComp<StackComponent>(toInsert, out var stack);
         var count = stack?.Count ?? 1;
-        _adminLogger.Add(LogType.Action, LogImpact.Low,
+        _adminLogger.Add(LogType.Action,
+            LogImpact.Low,
             $"{ToPrettyString(user):player} inserted {count} {ToPrettyString(toInsert):inserted} into {ToPrettyString(receiver):receiver}");
         Del(toInsert); // Frontier: delete immediately, don't queue
         return true;

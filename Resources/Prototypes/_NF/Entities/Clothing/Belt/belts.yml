@@ -1,13 +1,24 @@
 - type: entity
-  id: ClothingBeltArcadia
+  id: ClothingWebbingArcadia
   name: arcadia webbing
   parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
-  description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
+  description: Webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Belt/arcadia.rsi
+    sprite: _NF/Clothing/Belt/arcadia_webbing.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Belt/arcadia.rsi
+    sprite: _NF/Clothing/Belt/arcadia_webbing.rsi
+
+- type: entity
+  id: ClothingBeltArcadia
+  name: arcadia belt
+  parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  description: A belt created by Arcadia Industries. Seems very capable of fitting many items.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/arcadia_belt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/arcadia_belt.rsi
 
 - type: entity
   parent: NFClothingBeltStorageBase
@@ -34,7 +45,7 @@
           - Bottle
           - DrinkBottle
           components:
-          - Drink
+          - Edible
           - Hypospray
       censer:
         whitelist:
@@ -102,3 +113,49 @@
     sprite: _NF/Clothing/Belt/martial_black.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/martial_black.rsi
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
+  id: ClothingBeltCCSheath
+  name: ornate sabre sheath
+  description: An especially ornate sheath designed to hold a naval officer's blade.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/ccsheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/ccsheath.rsi
+    #- type: Item # Frontier
+    #size: Ginormous # Frontier
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CCSabre
+          - CaptainSabre
+          - Sheathable
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CCSabre
+          - CaptainSabre
+          - Sheathable
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltCCSheathFilled
+  parent: ClothingBeltCCSheath
+  suffix: Filled, CCSabre
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - NavyOfficerSabre

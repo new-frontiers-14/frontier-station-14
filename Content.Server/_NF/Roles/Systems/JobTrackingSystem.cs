@@ -5,9 +5,9 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Systems;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 
@@ -18,9 +18,10 @@ namespace Content.Server._NF.Roles.Systems;
 /// </summary>
 public sealed class JobTrackingSystem : SharedJobTrackingSystem
 {
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly IAfkManager _afk = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -67,7 +68,6 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             return;
 
         OpenJob(ent);
-        ent.Comp.Active = false;
     }
 
     private void OnJobBeforeCryoEntered(Entity<JobTrackingComponent> ent, ref CryosleepBeforeMindRemovedEvent ev)
@@ -76,7 +76,6 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             return;
 
         OpenJob(ent);
-        ent.Comp.Active = false; // Entity shouldn't persist, but if something goes wrong, ensure consistent state.
         ev.DeleteEntity = true;
     }
 
@@ -87,6 +86,8 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
         if (!TryComp<StationJobsComponent>(ent.Comp.SpawnStation, out var stationJobs))
             return;
+
+        ent.Comp.Active = false;
 
         try
         {
@@ -128,12 +129,11 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             if (!job.Active
                 || job.Job != jobProtoId
                 || xform.MapID != _gameTicker.DefaultMap // Skip if they're in cryo or on expedition
-                || !TryComp<MindComponent>(mindContainer.Mind, out var mind)
-                || mind.Session == null
-                || mind.Session.State.Status != SessionStatus.InGame)
+                || !_player.TryGetSessionByEntity(uid, out var session)
+                || session.State.Status != SessionStatus.InGame)
                 continue;
 
-            if (!includeAfk && _afk.IsAfk(mind.Session))
+            if (!includeAfk && _afk.IsAfk(session))
                 continue;
 
             activeJobCount++;

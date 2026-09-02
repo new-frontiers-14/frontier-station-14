@@ -18,6 +18,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing; // Frontier
+using Content.Server.Stack; // Frontier
+using Content.Shared._NF.Anomaly; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -34,18 +37,19 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly MaterialStorageSystem _material = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
+    // [Dependency] private readonly StationSystem _station = default!; // Frontier
+    // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RadiationSystem _radiation = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly StackSystem _stack = default!; // Frontier
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
 
-    [ValidatePrototypeId<WeightedRandomPrototype>]
-    const string WeightListProto = "AnomalyBehaviorList";
+    private static readonly ProtoId<WeightedRandomPrototype> WeightListProto = "AnomalyBehaviorList";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -54,6 +58,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         SubscribeLocalEvent<AnomalyComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AnomalyComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AnomalyComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<AnomalyComponent, EntParentChangedMessage>(OnAnomalyParentChanged); // Frontier
 
 
         InitializeGenerator();
@@ -65,7 +70,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     private void OnMapInit(Entity<AnomalyComponent> anomaly, ref MapInitEvent args)
     {
         anomaly.Comp.NextPulseTime = Timing.CurTime + GetPulseLength(anomaly.Comp) * 3; // longer the first time
-        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1 , anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
+        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1, anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
         ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
 
         ShuffleParticlesEffect(anomaly);
@@ -131,6 +136,24 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         }
     }
 
+    // Frontier: disable anomaly if it goes off-grid
+    private void OnAnomalyParentChanged(Entity<AnomalyComponent> ent, ref EntParentChangedMessage args)
+    {
+        // If this entity is being destroyed, no need to fiddle with components
+        if (TerminatingOrDeleted(ent) || ent.Comp.ConnectedVessel is not { } vessel)
+            return;
+
+        if (!TryComp(ent, out TransformComponent? xform)
+            || !TryComp(vessel, out TransformComponent? vesselXform)
+            || xform.GridUid != vesselXform.GridUid)
+        {
+            //_radiation.SetSourceEnabled(ent.Owner, false); // Moved vessel radiation handling to the AnomalyLinkExpiry system
+            var expiryComp = EnsureComp<AnomalyLinkExpiryComponent>(vessel);
+            expiryComp.EndTime = _timing.CurTime + expiryComp.CheckFrequency;
+        }
+    }
+    // End Frontier: disable anomaly if it goes off-grid
+
     /// <summary>
     /// Gets the amount of research points generated per second for an anomaly.
     /// </summary>
@@ -158,7 +181,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         var severityValue = 1 / (1 + MathF.Pow(MathF.E, -7 * (component.Severity - 0.5f)));
 
-        return (int) ((component.MaxPointsPerSecond - component.MinPointsPerSecond) * severityValue * multiplier) + component.MinPointsPerSecond;
+        return (int)((component.MaxPointsPerSecond - component.MinPointsPerSecond) * severityValue * multiplier) + component.MinPointsPerSecond;
     }
 
     /// <summary>
@@ -184,12 +207,13 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         UpdateGenerator();
         UpdateVessels();
+        UpdateLinkExpiry(); // Frontier
     }
 
     #region Behavior
     private string GetRandomBehavior()
     {
-        var weightList = _prototype.Index<WeightedRandomPrototype>(WeightListProto);
+        var weightList = _prototype.Index(WeightListProto);
         return weightList.Pick(_random);
     }
 
@@ -219,4 +243,31 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         EntityManager.RemoveComponents(anomaly, behavior.Components);
     }
     #endregion
+
+    // Frontier: crystal spawning
+    protected override void SpawnCrystals(Entity<AnomalyComponent> ent)
+    {
+        if (ent.Comp.CrystalPrototype == null || ent.Comp.PointsPerCrystalUnit <= 0)
+            return;
+
+        var numCrystals = GetNumCrystals(ent.Comp);
+
+        if (numCrystals > 0)
+            _stack.SpawnMultiple(ent.Comp.CrystalPrototype, numCrystals, ent);
+    }
+
+    // Calculate how many crystals to spawn.
+    private static int GetNumCrystals(AnomalyComponent comp)
+    {
+        var pointCost = comp.PointsPerCrystalUnit;
+        var numCrystals = 0;
+        while (pointCost < comp.PointsEarned && numCrystals < comp.MaxCrystals)
+        {
+            pointCost += (int)(pointCost * comp.PointsPerCrystalMult);
+            numCrystals++;
+        }
+        return numCrystals;
+    }
+
+    // End Frontier: crystal spawning
 }

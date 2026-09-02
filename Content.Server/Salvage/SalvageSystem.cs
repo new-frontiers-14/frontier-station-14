@@ -16,7 +16,10 @@ using Content.Shared.Construction.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
+using Content.Shared.Labels.EntitySystems;
 using Robust.Shared.EntitySerialization.Systems;
+using Content.Shared.Salvage.Expeditions; // Frontier
+using Content.Server.Salvage.Expeditions; // Frontier
 
 namespace Content.Server.Salvage
 {
@@ -71,6 +74,18 @@ namespace Content.Server.Salvage
             UpdateMagnet();
             UpdateRunner();
         }
+
+        // Frontier: resolve expedition comp
+        public override bool ResolveExpedition(EntityUid? uid, ref SharedSalvageExpeditionComponent? component)
+        {
+            if (component is not null)
+                return true;
+
+            TryComp<SalvageExpeditionComponent>(uid, out var localComp);
+            component = localComp;
+            return component != null;
+        }
+        // End Frontier
     }
 }
 

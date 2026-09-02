@@ -7,6 +7,14 @@
     job_id: Contractor
 
 - type: entity
+  id: SpawnPointContractorInterview
+  parent: SpawnPointContractor
+  name: contractor applicant
+  components:
+  - type: SpawnPoint
+    job_id: ContractorInterview
+
+- type: entity
   id: SpawnPointMercenary
   parent: SpawnPointJobBase
   name: mercenary
@@ -18,6 +26,14 @@
     layers:
       - state: green
       - state: mercenary
+
+- type: entity
+  id: SpawnPointMercenaryInterview
+  parent: SpawnPointMercenary
+  name: mercenary applicant
+  components:
+  - type: SpawnPoint
+    job_id: MercenaryInterview
 
 - type: entity
   id: SpawnPointPilot
@@ -33,6 +49,14 @@
       - state: pilot
 
 - type: entity
+  id: SpawnPointPilotInterview
+  parent: SpawnPointPilot
+  name: pilot applicant
+  components:
+  - type: SpawnPoint
+    job_id: PilotInterview
+
+- type: entity
   id: SpawnPointNFPirate
   parent: SpawnPointJobBase
   name: pirate
@@ -43,6 +67,14 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
+
+- type: entity
+  id: SpawnPointNFPirateInterview
+  parent: SpawnPointNFPirate
+  name: pirate applicant
+  components:
+  - type: SpawnPoint
+    job_id: NFPirateInterview
 
 - type: entity
   id: SpawnPointNFPirateFirstMate
@@ -192,3 +224,29 @@
   components:
   - type: SpawnPoint
     job_id: NFJanitor
+
+- type: entity
+  id: SpawnPointPlantManager
+  parent: SpawnPointJobBase
+  name: plant manager
+  components:
+  - type: SpawnPoint
+    job_id: PlantManager
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: plantmanager
+
+- type: entity
+  id: SpawnPointPlantTechnician
+  parent: SpawnPointJobBase
+  name: plant technician
+  components:
+  - type: SpawnPoint
+    job_id: PlantTechnician
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: planttechnician

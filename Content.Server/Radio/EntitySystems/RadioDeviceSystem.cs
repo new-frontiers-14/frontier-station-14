@@ -2,15 +2,14 @@ using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.Components;
-using Content.Server.Speech;
-using Content.Server.Speech.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Radio;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Radio.Components;
 using Content.Shared.UserInterface; // Nuclear-14
@@ -19,7 +18,8 @@ using Robust.Server.GameObjects; // Nuclear-14
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; //Frontier
-using Robust.Shared.Utility; //Frontier
+using Robust.Shared.Utility; // Frontier
+using Content.Shared.ActionBlocker; //Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -36,6 +36,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier: access
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, RadioChannelPrototype)> _recentlySent = new();
@@ -139,12 +140,12 @@ public sealed class RadioDeviceSystem : EntitySystem
         SetMicrophoneEnabled(uid, null, false, true, component);
     }
 
-    public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null)
+    public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null, bool force = false) // Frontier: add force
     {
         if (!Resolve(uid, ref component, false))
             return;
 
-        if (component.PowerRequired && !this.IsPowered(uid, EntityManager))
+        if (!force && component.PowerRequired && !this.IsPowered(uid, EntityManager)) // Frontier: add force
             return;
 
         component.Enabled = enabled;
@@ -258,7 +259,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
-        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor)) // Frontier
             return; // Frontier
 
         SetMicrophoneEnabled(ent, args.Actor, args.Enabled, true);
@@ -270,7 +272,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
-        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor)) // Frontier
             return; // Frontier
 
         SetSpeakerEnabled(ent, args.Actor, args.Enabled, true);
@@ -282,7 +285,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
-        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor)) // Frontier
             return; // Frontier
 
         if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var channel) || !ent.Comp.SupportedChannels.Contains(args.Channel)) // Nuclear-14: add channel
@@ -378,6 +382,10 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
+        if (!_access.IsAllowed(args.User, uid)
+            || !_actionBlocker.CanComplexInteract(args.User))
+            return;
+
         AlternativeVerb verb = new()
         {
             Text = Loc.GetString("handheld-radio-component-toggle"),
@@ -425,7 +433,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         }
         if (ent.StartMicrophoneOnMapInit)
         {
-            SetMicrophoneEnabled(uid, null, true);
+            SetMicrophoneEnabled(uid, null, true, force: true);
             ent.MicrophoneEnabled = true;
             _appearance.SetData(uid, RadioDeviceVisuals.Broadcasting, true);
         }

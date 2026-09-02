@@ -41,6 +41,22 @@
   whitelisted: true
 
 - type: ghostRole
+  id: CatCurie
+  name: ghost-role-information-curie-name
+  description: ghost-role-information-curie-description
+  rules: ghost-role-information-emotional-support-rules
+  entityPrototype: MobCatCurie
+  whitelisted: true
+
+- type: ghostRole
+  id: CatCaddy
+  name: ghost-role-information-caddy-name
+  description: ghost-role-information-caddy-description
+  rules: ghost-role-information-emotional-support-rules
+  entityPrototype: MobCatCaddy
+  whitelisted: true
+
+- type: ghostRole
   id: CatMistake
   name: ghost-role-information-mistake-name
   description: ghost-role-information-mistake-description
@@ -65,14 +81,6 @@
   whitelisted: true
 
 - type: ghostRole
-  id: SentientArtifact
-  name: ghost-role-information-artifact-name
-  description: ghost-role-information-artifact-description
-  rules: ghost-role-information-freeagent-rules
-  entityPrototype: VariedXenoArtifactItem # Don't spawn this.  FIXME: entity has no ghost role component.
-  whitelisted: true
-
-- type: ghostRole
   id: KoboldYipyip
   name: ghost-role-information-yipyip-name
   description: ghost-role-information-yipyip-description
@@ -87,3 +95,12 @@
   rules: ghost-role-information-nonantagonist-rules
   entityPrototype: NFMobHumanBuddy
   whitelisted: true
+
+- type: ghostRole
+  id: WhitelistToggleableGhostRole
+  name: dummy
+  description: dummy
+  rules: dummy
+  entityPrototype: GreenhornPAI
+  whitelisted: true # Used for whitelist purpose only
+

@@ -54,7 +54,7 @@
     belt: ClothingBeltMilitaryWebbing
   storage:
     back:
-    - WeaponPistolViper
+    - NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
@@ -65,6 +65,15 @@
   equipment:
     pocket2: BaseUplinkRadio40TC
 
+- type: chameleonOutfit
+  id: NukeopsOutfit
+  name: roles-antag-nuclear-operative-name
+  startingGear: SyndicateOperativeGearFullNoUplink
+  icon: "JobIconSyndicate"
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndie
+    neck: ClothingNeckScarfStripedSyndieRed
+
 #Nuclear Operative Commander Gear
 - type: startingGear
   id: SyndicateCommanderGearFull
@@ -74,6 +83,15 @@
     outerClothing: ClothingOuterHardsuitSyndieCommander
   inhand:
   - NukeOpsDeclarationOfWar
+
+- type: chameleonOutfit
+  id: NukeopsCommanderOutfit
+  name: roles-antag-nuclear-operative-commander-name
+  startingGear: SyndicateCommanderGearFull
+  icon: "JobIconSyndicate"
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndieCommander
+    neck: ClothingNeckScarfStripedSyndieGreen
 
 #Nuclear Operative Medic Gear
 - type: startingGear
@@ -91,11 +109,20 @@
     - SawAdvanced
     - Cautery
     - CombatKnife
-    - WeaponPistolViper
+    - NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
     - DeathAcidifierImplanter
+
+- type: chameleonOutfit
+  id: NukeopsMedicOutfit
+  name: roles-antag-nuclear-operative-agent-name
+  startingGear: SyndicateOperativeMedicFull
+  icon: "JobIconSyndicate"
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndieMedic
+    neck: ClothingNeckScarfStripedLightBlue
 
 #Lone Operative Gear
 - type: startingGear

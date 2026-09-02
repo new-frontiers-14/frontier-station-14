@@ -35,14 +35,15 @@
   description: all-at-once-description
   showInVote: false
   rules: [] # Frontier: empty list, keep below commented out
-#     - Nukeops
-#     - Traitor
-#     - Revolutionary
-#     - Zombie
-#     - KesslerSyndromeScheduler
-#     - RampingStationEventScheduler
-#     - SpaceTrafficControlEventScheduler
-#     - BasicRoundstartVariation
+    # - Nukeops
+    # - Traitor
+    # - Revolutionary
+    # - Zombie
+    # - Wizard
+    # - KesslerSyndromeScheduler
+    # - RampingStationEventScheduler
+    # - SpaceTrafficControlEventScheduler
+    # - BasicRoundstartVariation
 
 - type: gamePreset
   id: AllerAtOnce
@@ -55,18 +56,19 @@
   description: aller-at-once-description
   showInVote: false #Please god dont do this
   rules: [] # Frontier: empty list, keep below commented out
-#     - Nukeops
-#     - Traitor
-#     - Revolutionary
-#     - Zombie
-#     - BasicStationEventScheduler
-#     - KesslerSyndromeScheduler
-#     - MeteorSwarmMildScheduler
-#     - MeteorSwarmScheduler
-#     - RampingStationEventScheduler
-#     - SpaceTrafficControlEventScheduler
-#     - SpaceTrafficControlFriendlyEventScheduler
-#     - BasicRoundstartVariation
+    # - Nukeops
+    # - Traitor
+    # - Revolutionary
+    # - Zombie
+    # - Wizard
+    # - BasicStationEventScheduler
+    # - KesslerSyndromeScheduler
+    # - MeteorSwarmMildScheduler
+    # - MeteorSwarmScheduler
+    # - RampingStationEventScheduler
+    # - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlFriendlyEventScheduler
+    # - BasicRoundstartVariation
 
 - type: gamePreset
   id: Extended
@@ -93,6 +95,23 @@
   rules: [] # Frontier: empty list, keep below commented out
 #   - SpaceTrafficControlFriendlyEventScheduler
 #   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Dynamic
+  alias:
+  - dynamic
+  - multiantag
+  - director
+  name: dynamic-title
+  showInVote: false # admin-only for now until we fix some bugs
+  description: dynamic-description
+  rules:
+  - DynamicRule
+  - DummyNonAntag
+  - DynamicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Secret

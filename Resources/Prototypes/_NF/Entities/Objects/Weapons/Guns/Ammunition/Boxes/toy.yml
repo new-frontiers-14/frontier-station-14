@@ -1,0 +1,28 @@
+- type: entity
+  parent: BoxCartridgeBB
+  id: BoxCartridgeRGBB
+  name: box of RGBBs
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - BulletBB
+    proto: BulletRGBB
+  - type: StaticPrice
+    price: 2500 # 25k in the vendor for a meme item
+
+# Ignored upstream redefinitions
+- type: entity
+  parent: BoxDonkSoftBox
+  id: NFBoxDonkSoftBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFBulletFoam
+
+- type: entity
+  parent: BoxCartridgeCap
+  id: NFBoxCartridgeCap
+  name: cap gun cartridge box
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeCap

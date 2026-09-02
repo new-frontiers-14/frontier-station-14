@@ -84,12 +84,6 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.worldgen.distance_modifier", 1f, CVar.SERVERONLY);
 
     /// <summary>
-    /// The rough minimum distance between POIs in meters.
-    /// </summary>
-    public static readonly CVarDef<float> MinPOIDistance =
-        CVarDef.Create("nf14.worldgen.min_poi_distance", 400f, CVar.SERVERONLY);
-
-    /// <summary>
     /// The maximum number of times to retry POI placement during world generation.
     /// </summary>
     public static readonly CVarDef<int> POIPlacementRetries =
@@ -105,10 +99,10 @@ public sealed class NFCCVars
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
     /// <summary>
-    /// Base sell rate (multiplier: 0.75 = 75%)
+    /// Base sell rate (multiplier: 0.95 = 95%)
     /// </summary>
     public static readonly CVarDef<float> ShipyardSellRate =
-        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.95f, CVar.SERVERONLY);
 
     /*
      * Salvage
@@ -260,4 +254,48 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> AdminOverlayBalance =
         CVarDef.Create("nf14.ui.admin_overlay_balance", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Xenoarchaeology
+     */
+
+    /// <summary>
+    /// If true, the admin overlay will display the players starting position.
+    /// </summary>
+    public static readonly CVarDef<bool> XenoarchSingleUseNodes =
+        CVarDef.Create("nf14.xenoarch.single_use_nodes", true, CVar.REPLICATED);
+
+    /*
+     * Greeting
+     */
+
+    /// <summary>
+    /// If true, enables a radio greeting whenever a new player spawns.
+    /// </summary>
+    public static readonly CVarDef<bool> NewPlayerRadioGreetingEnabled =
+        CVarDef.Create("nf14.greeting.enabled", true, CVar.REPLICATED);
+
+    /// <summary>
+    /// The maximum playtime, in minutes, for a new player radio message to be sent.
+    /// </summary>
+    public static readonly CVarDef<int> NewPlayerRadioGreetingMaxPlaytime =
+        CVarDef.Create("nf14.greeting.max_playtime", 600, CVar.REPLICATED); // Ten hours
+
+    /// <summary>
+    /// The channel the radio message should be sent off on.
+    /// </summary>
+    public static readonly CVarDef<string> NewPlayerRadioGreetingChannel =
+        CVarDef.Create("nf14.greeting.channel", "Greeting", CVar.REPLICATED);
+
+    /// <summary>
+    /// A starter loadout prototype given to new players.
+    /// </summary>
+    public static readonly CVarDef<string> NewPlayerStarterLoadout =
+        CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /// <summary>
+    ///     The maximum number of construction ghosts allowed per tile.
+    /// </summary>
+    public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
+        CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

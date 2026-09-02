@@ -14,11 +14,11 @@
       drawdepth: WallMountedItems
       layers:
         - map: [ "computerLayerBody" ]
-          sprite: _NF/Structures/Machines/computer_wallmount.rsi
           state: computer_wallmount
         - map: [ "computerLayerScreen" ]
-          sprite: _NF/Structures/Machines/computer_wallmount.rsi
           state: screen_generic
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
     - type: Damageable
       damageContainer: Inorganic
       damageModifierSet: Electronic
@@ -40,8 +40,9 @@
 
 - type: entity
   parent: BaseStructureComputerWallmount
-  name: computer
   id: ComputerWallmountFrame
+  name: computer frame
+  description: A computer under construction.
   components:
   - type: Construction
     graph: ComputerWallmount

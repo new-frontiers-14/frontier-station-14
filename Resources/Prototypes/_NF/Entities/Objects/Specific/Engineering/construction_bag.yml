@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStorageItem
+  parent: NFBaseClothingBeltStorageBag
   id: ConstructionBag
   name: construction bag
   description: A robust bag for construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
@@ -13,24 +13,17 @@
     - state: icon
     - state: icon-on
       visible: false
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
   - type: Clothing
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     quickEquip: false
-    slots:
-    - belt
-  - type: Item
-    size: Ginormous
   - type: Storage
-    maxItemSize: Normal
-    grid:
-    - 0,0,9,3
     quickInsert: true
     areaInsert: true
     whitelist:
@@ -79,7 +72,7 @@
       shader: unshaded
     - state: icon-on-bluespace
       visible: false
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Item
     size: Ginormous
     inhandVisuals:

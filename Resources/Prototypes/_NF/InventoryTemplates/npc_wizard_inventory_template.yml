@@ -1,0 +1,128 @@
+﻿- type: inventoryTemplate
+  id: hostilewizard
+  slots:
+# region "hidden", "not strippable"
+# The following slots are not intended to be lootable
+    - name: shoes
+      slotTexture: shoes
+      slotFlags: FEET
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Shoes
+
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Jumpsuit
+
+    - name: gloves
+      stripTime: 999999
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+
+    - name: head
+      stripTime: 999999
+      slotTexture: head
+      slotFlags: HEAD
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Head
+
+    - name: eyes
+      slotTexture: glasses
+      slotFlags: EYES
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Eyes
+
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 999999
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Ears
+
+# region "strippable"
+# Slots that are intended to be lootable
+    - name: pocket1
+      stripTime: 3
+      stripHidden: false
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Pocket 1
+
+    - name: pocket2
+      stripTime: 3
+      stripHidden: false
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,0
+      displayName: Pocket 2
+
+    - name: back
+      stripTime: 6
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,1
+      displayName: Back
+
+    - name: belt
+      stripTime: 4
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,1
+      displayName: Belt
+
+    - name: suitstorage
+      slotTexture: suit_storage
+      slotFlags:   SUITSTORAGE
+      slotGroup: MainHotbar
+      uiWindowPos: 2,0
+      strippingWindowPos: 2,1
+      displayName: Suit Storage
+
+    - name: mask
+      stripTime: 3
+      slotTexture: mask
+      slotFlags: MASK
+      uiWindowPos: 1,2
+      strippingWindowPos: 0,2
+      displayName: Mask
+
+    - name: neck
+      stripTime: 3
+      slotTexture: neck
+      slotFlags: NECK
+      uiWindowPos: 0,2
+      strippingWindowPos: 1,2
+      displayName: Neck
+
+    - name: outerClothing
+      stripTime: 3
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Suit

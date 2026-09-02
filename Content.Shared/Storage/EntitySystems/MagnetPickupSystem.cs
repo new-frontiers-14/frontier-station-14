@@ -1,15 +1,14 @@
-using Content.Shared.Storage.Components; // Frontier: Server<Shared
-using Content.Shared.Examine;
-using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Storage.Components;
 using Content.Shared.Item.ItemToggle; // DeltaV
 using Content.Shared.Whitelist;
-using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Item; // Frontier
 using Content.Shared.Verbs; // Frontier
+using Content.Shared.Examine; // Frontier
+using Content.Shared.Hands.Components; // Frontier
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -20,7 +19,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    // [Dependency] private readonly InventorySystem _inventory = default!; // Frontier
     [Dependency] private readonly ItemToggleSystem _toggle = default!; // DeltaV
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
@@ -150,10 +149,17 @@ public sealed class MagnetPickupSystem : EntitySystem
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
                 // Frontier: stop spamming bags
-                count++;
-
-                if (count > MaxEntitiesToInsert)
+                if (count >= MaxEntitiesToInsert)
                     break;
+
+                if (near == parentUid)
+                    continue;
+
+                if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
+                    continue;
+
+                if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
+                    continue;
 
                 if (!TryComp<ItemComponent>(near, out var item))
                     continue;
@@ -161,16 +167,10 @@ public sealed class MagnetPickupSystem : EntitySystem
                 var itemSize = _item.GetItemShape((near, item)).GetArea();
                 if (itemSize > totalSlots - slotCount)
                     break;
+
+                // Count only objects we _could_ insert.
+                count++;
                 // End Frontier: stop spamming bags
-
-                if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
-                    continue;
-
-                if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
-                    continue;
-
-                if (near == parentUid)
-                    continue;
 
                 // TODO: Probably move this to storage somewhere when it gets cleaned up
                 // TODO: This sucks but you need to fix a lot of stuff to make it better

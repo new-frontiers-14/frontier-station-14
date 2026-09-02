@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: https://github.com/AmbitiousFailure
+# Discord: ambitiousfailure
+
+# Maintainer Info
+# GitHub: https://github.com/AmbitiousFailure
+# Discord: ambitiousfailure
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Izakaya
+  parent: BaseVessel
+  name: SSF Izakaya
+  description: A medium-size, japanese-inspired restaurant/pub ship with a large dining area, and equally large kitchen.
+  price: 70000 # ~63200 0.1 ~69520
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/izakaya.yml
+  guidebookPage: ShipyardIzakaya
+  class:
+  - Kitchen
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Izakaya
+  mapName: 'SSF Izakaya'
+  mapPath: /Maps/_NF/Shuttles/izakaya.yml
+  minPlayers: 0
+  stations:
+    Izakaya:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Izakaya {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

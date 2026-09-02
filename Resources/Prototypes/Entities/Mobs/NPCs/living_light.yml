@@ -48,7 +48,6 @@
         BaseUnshaded: dead_glow
   - type: StatusEffects
     allowed:
-    - Stun
     - Corporeal
     - Electrocution
     - StaminaModifier
@@ -91,6 +90,7 @@
   - type: Tag
     tags:
       - FootstepSound
+      - SlowImmune
   - type: Destructible
     thresholds:
       - trigger:
@@ -169,7 +169,7 @@
       types:
         Heat: 5
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedMediumLaser # Frontier: RedLaser<NFRedMediumLaser
     fireCost: 140
   - type: Battery
     maxCharge: 1000

@@ -10,11 +10,19 @@
       amount: 3
 
 - type: entity
+  id: CrateMaterialBiomass50
+  parent: CrateMaterialBiomass
+  suffix: 50 biomass
+  components:
+  - type: StorageFill
+    contents:
+    - id: MaterialBiomass50
+      amount: 1
+
+- type: entity
   id: CrateMaterialBiomass
   parent: CrateFreezer
-  name: biomass crate
-  suffix: 300 # Frontier label for distinction
-  description: 300 units of biomass. Yum.
+  suffix: 300 biomass
   components:
   - type: StorageFill
     contents:
@@ -25,12 +33,24 @@
 - type: entity
   parent: [ CrateGenericSteel, StorageFillMaterialsBasic ]
   id: CrateMaterialsBasicFilled
-  suffix: Filled, Basic Materials (full)
+  suffix: Filled, Basic Plus Wood Materials (full)
   name: materials crate
 
 - type: entity
   parent: [ CrateGenericSteel, StorageFillMaterialsBasic10 ]
   id: CrateMaterialsBasic10Filled
+  suffix: Filled, Basic Plus Wood Materials (10)
+  name: materials crate
+
+- type: entity
+  parent: [ CrateGenericSteel, StorageFillMaterials ]
+  id: CrateMaterialsFilled
+  suffix: Filled, Basic Materials (full)
+  name: materials crate
+
+- type: entity
+  parent: [ CrateGenericSteel, StorageFillMaterials10 ]
+  id: CrateMaterials10Filled
   suffix: Filled, Basic Materials (10)
   name: materials crate
 # endregion Materials

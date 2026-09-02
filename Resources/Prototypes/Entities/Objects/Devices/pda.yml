@@ -74,10 +74,12 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 1.5
+    radius: 1.7
+    falloff: 3
     softness: 5
     autoRot: true
   - type: Ringer
+  - type: RingerUplink
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: PDA
@@ -246,7 +248,7 @@
     state: pda-internmed
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
 
 - type: entity
   parent: BaseSecurityPDA
@@ -413,7 +415,7 @@
   - type: Pda
     id: MimeIDCard
     paiSlot:
-      priority: -2
+      priority: -3 # Frontier: -2<-3
       ejectSound: null
       insertSound: null
       whitelist:
@@ -434,6 +436,17 @@
         - Write
       ejectSound: null
       insertSound: null
+    # Frontier: silent book slot
+    bookSlot:
+      startingItem: NFHyperlinkBookSpaceLaw
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+      ejectSound: null
+      insertSound: null
+    # End Frontier: silent book slot
   - type: CartridgeLoader
     cartridgeSlot:
       ejectSound: null
@@ -500,6 +513,13 @@
     accentVColor: "#a23e3e"
   - type: Icon
     state: pda-qm
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -782,7 +802,7 @@
     state: pda-medical
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
 
 - type: entity
   parent: MedicalPDA
@@ -946,6 +966,7 @@
     id: CentcomIDCard
     penSlot:
       startingItem: PenCentcom
+      priority: -1
       whitelist:
         tags:
         - Write
@@ -981,6 +1002,7 @@
   - type: Pda
     id: UniversalIDCard
   - type: HealthAnalyzer
+    maxScanRange: null
     scanDelay: 0
     silent: true
   - type: CartridgeLoader
@@ -1030,8 +1052,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA
@@ -1093,7 +1115,7 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: BasePDA
+  parent: [ BasePDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
   id: SyndiPDA
   name: syndicate PDA
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
@@ -1453,7 +1475,7 @@
     state: pda-seniorofficer
 
 - type: entity
-  parent: SyndiPDA
+  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
   id: PiratePDA
   name: pirate PDA
   description: Yargh!
@@ -1470,9 +1492,9 @@
     state: pda-pirate
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: [ BaseMedicalPDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
   id: SyndiAgentPDA
-  name: syndicate agent PDA
+  name: syndicate corpsman PDA
   description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
   components:
   - type: Pda
@@ -1494,7 +1516,7 @@
       - MedTekCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: [BasePDA, SelectableLock]
   id: ChameleonPDA
   name: contractor PDA # Frontier passenger<contractor
   description: Why isn't it gray?
@@ -1547,3 +1569,14 @@
     borderColor: "#7F3300"
   - type: Icon
     state: pda-wizard
+
+- type: entity
+  parent: ClearPDA
+  id: ScurretPDA
+  description: A temporary PDA granted to scurret temps. Doesn't do much. Wawa!
+  components:
+  - type: Pda
+    id: VisitorIDCard
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener

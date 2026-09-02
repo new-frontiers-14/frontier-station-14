@@ -44,9 +44,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCorePyroclastic
-        coreInertPrototype: AnomalyCorePyroclasticInert # Frontier
+        coreInertPrototype: AnomalyCorePyroclasticInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyPyroSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionPyroclastic
         startMessage: inner-anomaly-start-message-pyro
@@ -74,9 +76,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreElectricity
-        coreInertPrototype: AnomalyCoreElectricityInert # Frontier
+        coreInertPrototype: AnomalyCoreElectricityInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyElectricitySupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionElectric
         startMessage: inner-anomaly-start-message-shock
@@ -104,9 +108,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreShadow
-        coreInertPrototype: AnomalyCoreShadowInert # Frontier
+        coreInertPrototype: AnomalyCoreShadowInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyShadowSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionShadow
         startMessage: inner-anomaly-start-message-shadow
@@ -134,9 +140,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreIce
-        coreInertPrototype: AnomalyCoreIceInert # Frontier
+        coreInertPrototype: AnomalyCoreIceInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyIceSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionIce
         startMessage: inner-anomaly-start-message-frost
@@ -164,9 +172,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreFlora
-        coreInertPrototype: AnomalyCoreFloraInert # Frontier
+        coreInertPrototype: AnomalyCoreFloraInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyFloraSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionFlora
         startMessage: inner-anomaly-start-message-flora
@@ -194,9 +204,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreBluespace
-        coreInertPrototype: AnomalyCoreBluespaceInert # Frontier
+        coreInertPrototype: AnomalyCoreBluespaceInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyBluespaceSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionBluespace
         startMessage: inner-anomaly-start-message-bluespace
@@ -224,9 +236,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreFlesh
-        coreInertPrototype: AnomalyCoreFleshInert # Frontier
+        coreInertPrototype: AnomalyCoreFleshInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyFleshSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionFlesh
         startMessage: inner-anomaly-start-message-flesh
@@ -254,9 +268,12 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreGravity
-        coreInertPrototype: AnomalyCoreGravityInert # Frontier
+        coreInertPrototype: AnomalyCoreGravityInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyGravitySupercritical
+        supercriticalDuration: 15
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionGravity
         startMessage: inner-anomaly-start-message-grav
@@ -284,9 +301,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreTech
-        coreInertPrototype: AnomalyCoreTechInert # Frontier
+        coreInertPrototype: AnomalyCoreTechInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyTechSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionTech
         startMessage: inner-anomaly-start-message-tech
@@ -315,9 +334,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreRock
-        coreInertPrototype: AnomalyCoreRockInert # Frontier
+        coreInertPrototype: AnomalyCoreRockInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyRockSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionRock
         startMessage: inner-anomaly-start-message-rock
@@ -345,8 +366,11 @@
     injectionComponents:
       - type: Anomaly
         deleteEntity: false
-        maxPointsPerSecond: 100
+        # maxPointsPerSecond: 100 # Frontier
         corePrototype: AnomalyCoreSanta
+        coreInertPrototype: AnomalyCoreSantaInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyPresentSupercritical
       - type: InnerBodyAnomaly
         injectionProto: AnomalyInjectionSanta
         startMessage: inner-anomaly-start-message-santa

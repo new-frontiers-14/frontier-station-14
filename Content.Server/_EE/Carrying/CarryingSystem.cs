@@ -32,6 +32,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Server.GameObjects;
+using Content.Shared.Hands.EntitySystems; // Frontier
 
 namespace Content.Server.Carrying
 {
@@ -50,6 +51,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
+        [Dependency] private readonly SharedHandsSystem _hands = default!; // Frontier
 
         public const float BaseDistanceCoeff = 0.5f; // Frontier: default throwing speed reduction
         public const float MaxDistanceCoeff = 1.0f; // Frontier: default throwing speed reduction
@@ -351,7 +353,7 @@ namespace Content.Server.Carrying
                 || HasComp<BeingCarriedComponent>(carrier)
                 || HasComp<BeingCarriedComponent>(carried)
                 || !TryComp<HandsComponent>(carrier, out var hands)
-                || hands.CountFreeHands() < carriedComp.FreeHandsRequired)
+                || _hands.CountFreeHands(carrier) < carriedComp.FreeHandsRequired) // Frontier - hand refactor compliance (wizden #38438)
                 return false;
 
             return true;
@@ -359,8 +361,9 @@ namespace Content.Server.Carrying
 
         public override void Update(float frameTime)
         {
-            var query = EntityQueryEnumerator<BeingCarriedComponent>();
-            while (query.MoveNext(out var carried, out var comp))
+            // Frontier: query for transform
+            var query = EntityQueryEnumerator<BeingCarriedComponent, TransformComponent>();
+            while (query.MoveNext(out var carried, out var comp, out var xform))
             {
                 var carrier = comp.Carrier;
                 if (carrier is not { Valid: true } || carried is not { Valid: true })
@@ -368,19 +371,19 @@ namespace Content.Server.Carrying
 
                 // SOMETIMES - when an entity is inserted into disposals, or a cryosleep chamber - it can get re-parented without a proper reparent event
                 // when this happens, it needs to be dropped because it leads to weird behavior
-                if (Transform(carried).ParentUid != carrier)
+                if (xform.ParentUid != carrier)
                 {
                     DropCarried(carrier, carried);
                     continue;
                 }
 
                 // Make sure the carried entity is always centered relative to the carrier, as gravity pulls can offset it otherwise
-                var xform = Transform(carried);
                 if (!xform.LocalPosition.Equals(Vector2.Zero))
                 {
-                    xform.LocalPosition = Vector2.Zero;
+                    _transform.SetLocalPosition(carried, Vector2.Zero, xform); // Frontier: warning suppression
                 }
             }
+            // End Frontier: query for transform
             query.Dispose();
         }
     }

@@ -2,15 +2,14 @@
 # Base
 
 - type: entity
+  abstract: true
   parent: FoodInjectableBase
   id: FoodPizzaBase
-  abstract: true
   components:
   - type: FlavorProfile
     flavors:
       - oily
       - bread
-  - type: Food
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
   - type: SolutionContainerManager
@@ -30,6 +29,7 @@
     size: Normal
     shape:
     - 0,0,2,1
+    storedOffset: 0,-5
   - type: Tag
     tags:
     - Pizza
@@ -44,7 +44,6 @@
     flavors:
       - oily
       - bread
-  - type: Food
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
   - type: SolutionContainerManager
@@ -100,6 +99,8 @@
   - type: Sprite
     layers:
     - state: margherita-slice
+  - type: Item
+    heldPrefix: margherita-slice
 
 - type: entity
   name: meat pizza
@@ -138,6 +139,8 @@
   - type: Sprite
     layers:
     - state: meat-slice
+  - type: Item
+    heldPrefix: meat-slice
   - type: Tag
     tags:
     - Meat
@@ -176,6 +179,8 @@
   - type: Sprite
     layers:
     - state: mushroom-slice
+  - type: Item
+    heldPrefix: mushroom-slice
 # Tastes like crust, tomato, cheese, mushroom.
 
 - type: entity
@@ -200,7 +205,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 60 # Frontier
         reagents:
         - ReagentId: Nutriment
           Quantity: 25
@@ -229,6 +234,8 @@
   - type: Sprite
     layers:
     - state: vegetable-slice
+  - type: Item
+    heldPrefix: vegetable-slice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -290,6 +297,8 @@
   - type: Sprite
     layers:
     - state: donkpocket-slice
+  - type: Item
+    heldPrefix: donkpocket-slice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -354,6 +363,8 @@
   - type: Sprite
     layers:
     - state: dank-slice
+  - type: Item
+    heldPrefix: dank-slice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -404,6 +415,8 @@
   - type: Sprite
     layers:
     - state: sassysage-slice
+  - type: Item
+    heldPrefix: sassysage-slice
   - type: Tag
     tags:
     - Meat
@@ -450,6 +463,8 @@
   - type: Sprite
     layers:
     - state: pineapple-slice
+  - type: Item
+    heldPrefix: pineapple-slice
   - type: Tag
     tags:
     - Meat
@@ -512,6 +527,8 @@
   - type: Sprite
     layers:
     - state: arnold-slice
+  - type: Item
+    heldPrefix: arnold-slice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -549,6 +566,8 @@
   - type: Sprite
     layers:
     - state: moldy-slice
+  - type: Item
+    heldPrefix: moldy-slice
   - type: Tag
     tags:
     - Trash
@@ -617,6 +636,8 @@
   - type: Sprite
     layers:
     - state: uranium-slice
+  - type: Item
+    heldPrefix: uranium-slice
   - type: Tag
     tags:
     - Meat
@@ -652,7 +673,7 @@
   - type: Sprite
     layers:
     - state: cotton-pizza
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SliceableFood
     slice: FoodPizzaCottonSlice
@@ -686,6 +707,8 @@
   - type: Sprite
     layers:
     - state: cotton-slice
+  - type: Item
+    heldPrefix: cotton-slice
   - type: Tag
     tags:
     - ClothMade
@@ -705,3 +728,57 @@
         - ReagentId: Fiber
           Quantity: 1.5
   - type: MothFood # Frontier
+
+- type: entity
+  name: world peazza
+  parent: FoodPizzaBase
+  id: FoodPizzaWorldpeas
+  description: Modern diplomacy in the shape of a disc.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - numbingtranquility
+  - type: Sprite
+    layers:
+    - state: worldpeas
+  - type: SliceableFood
+    slice: FoodPizzaWorldpeasSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Happiness
+          Quantity: 12
+        - ReagentId: Pax
+          Quantity: 8
+
+- type: entity
+  name: slice of world peazza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaWorldpeasSlice
+  description: Dividing the world up is a small price to pay for harmony.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - numbingtranquility
+  - type: Sprite
+    layers:
+    - state: worldpeas-slice
+  - type: Item
+    heldPrefix: worldpeas-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3.5
+        - ReagentId: Happiness
+          Quantity: 2
+        - ReagentId: Pax
+          Quantity: 1.5

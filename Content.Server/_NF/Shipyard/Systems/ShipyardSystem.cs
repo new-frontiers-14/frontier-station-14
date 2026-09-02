@@ -1,33 +1,31 @@
-using Content.Server.Shuttles.Systems;
-using Content.Server.Shuttles.Components;
-using Content.Server.Station.Components;
-using Content.Server.Cargo.Systems;
-using Content.Server.Station.Systems;
-using Content.Shared._NF.Shipyard.Components;
-using Content.Shared._NF.Shipyard;
-using Content.Shared.GameTicking;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map;
-using Content.Shared._NF.CCVar;
-using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
-using Content.Shared._NF.Shipyard.Events;
-using Content.Shared.Mobs.Components;
-using Robust.Shared.Containers;
-using Robust.Shared.Map.Components;
+using Content.Server.Cargo.Systems;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems;
 using Content.Server._NF.Station.Components;
+using Content.Shared.GameTicking;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Station.Components;
+using Content.Shared._NF.CCVar;
+using Content.Shared._NF.Shipyard.Components;
+using Content.Shared._NF.Shipyard.Events;
+using Content.Shared._NF.Shipyard;
+using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.EntitySerialization;
+using Robust.Shared.Map;
 using Robust.Shared.Utility;
+
 
 namespace Content.Server._NF.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
@@ -134,7 +132,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var price = _pricing.AppraiseGrid(shuttleGrid.Value, null);
-        var targetGrid = _station.GetLargestGrid(stationData);
+        var targetGrid = _station.GetLargestGrid((stationUid, stationData));
 
 
         if (targetGrid == null) //how are we even here with no station grid
@@ -195,7 +193,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return result;
         }
 
-        var targetGrid = _station.GetLargestGrid(stationGrid);
+        var targetGrid = _station.GetLargestGrid((stationUid, stationGrid));
 
         if (targetGrid == null)
         {

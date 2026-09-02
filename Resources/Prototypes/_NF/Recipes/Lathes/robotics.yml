@@ -10,15 +10,9 @@
     Bluespace: 100
 
 - type: latheRecipe
-  id: BorgModuleAdvancedMining
-  result: BorgModuleAdvancedMining
   parent: BaseBorgModuleRecipe
-  materials:
-    Steel: 1000
-    Glass: 1000
-    Plastic: 250
-    Bluespace: 200 # OreBagOfHolding Bluepsace price
-    Diamond: 100 # MiningDrillDiamond Diamond price
+  id: BorgModulePill
+  result: BorgModulePill
 
 - type: latheRecipe
   id: BorgModuleJetpack
@@ -44,5 +38,50 @@
 
 - type: latheRecipe
   parent: BaseBorgModuleRecipe
+  id: BorgModuleAdvancedSprayNozzle
+  result: BorgModuleAdvancedSprayNozzle
+  materials:
+    Steel: 1000
+    Glass: 1000
+    Plastic: 250
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
   id: BorgModuleChef
   result: BorgModuleChef
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleMutation
+  result: BorgModuleMutation
+  materials:
+    Steel: 500
+    Glass: 1000
+    Plastic: 750
+    Cloth: 600
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: AdvancedBorgModuleMusique
+  result: AdvancedBorgModuleMusique
+
+- type: latheRecipe
+  parent: BaseRoboticsRecipe
+  id: IdChipBasic
+  result: IdChipBasic
+  materials:
+    Steel: 300
+    Glass: 600
+    Silver: 200
+
+- type: latheRecipe
+  parent: BaseRoboticsRecipe
+  id: IdChipSyndie
+  result: IdChipSyndie
+  materials:
+    Steel: 300
+    Glass: 600
+    Silver: 200
+    Gold: 200
+    Plasma: 100

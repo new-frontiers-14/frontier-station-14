@@ -1,0 +1,137 @@
+Basic script for people wishing to re-record the Announcements.
+
+- files: ["aliens.ogg"]
+   sound: "---"
+  script: "Unidentified life signs detected. Secure any exterior access, including ducting and ventilation."
+  NF style: "Xenomorphic signatures detected en masse in the sector. Ships should be on alert for roaming hostiles."
+
+- files: ["announce.ogg"]
+  sound: "Doo-doo-doooo"
+  script: NA, sound only.
+  NF style: "---"
+
+- files: ["attention.ogg"]
+  sound: "---"
+  script: "Attention."
+  NF style: "Attention Frontier Sector."
+
+- files: ["bloblarm.ogg"]
+  sound: "---"
+  script: "---"
+  NF style: "---"
+
+- files: ["ion_storm.ogg"]
+  sound: "---"
+  script: "Ion storm detected near the station. Please check all AI controlled equipment for errors."
+  NF style: "An Ion Storm is passing through the Sector. Please check all AI controlled equipment for errors."
+
+- files: ["meteors.ogg"]
+  sound: "---"
+  script: "Meteors have been detected on a collision course with the station."
+  NF style: "A meteor swarm has been detected to be heading for the Sector. Ships be advised."
+
+- files: ["outbreak7.ogg"]
+  sound: "---"
+  script: "Confirmed outbreak of level 7 biohazard aboard the station. All personel must contain the outbreak."
+  NF style: "There is a confirmed outbreak of level 7 biohazard within the Sector. NFSD is en route to handle the situation."
+
+- files: ["power_off.ogg"]
+  sound: "---"
+  script: "Abnormal activity detected in the station's power net. As a precautionary measure the station's power will be shut off for an indeterminate duration."
+  NF style: "An Electrokinetic Front has hit the Sector. APC units on (some) Ships may power down to avoid damages if you are caught in the wave."
+
+- files: ["power_on.ogg"]
+  sound: "---"
+  script: "Power has been restored to the station. We apologize for the inconvenience."
+  NF style: "The Electrokinetic Front has left the Sector. (Stay safe out there) [idk]"
+
+- files: ["radiation.ogg"]
+  sound: "---"
+  script: "High levels of radiation detected near the station. Please report to the Medbay if you feel strange."
+  NF style: "A Proton Emission has swept high levels of radiation through the Sector. Seek a Medical Ship immediately if you feel strange."
+
+- files: ["shuttle_dock.ogg"]
+  sound: "---"
+  script: "The emergency shuttle has docked with the station."
+  NF style: "The shift has ended! See you next time, Frontiersman."
+
+- files: ["shuttlecalled.ogg"]
+  sound: "---"
+  script: "The emergency shuttle has been called."
+  NF style: "The end of the shift is approaching. Please return to Frontier Station to return your ship and deposit your wages."
+
+- files: ["shuttlerecalled.ogg"]
+  sound: "---"
+  script: "The emergency shuttle has been recalled."
+  NF style: "Ah, nevermind. They've decided to extend the shift."
+
+- files: ["war.ogg"]
+  lsound: "---"
+  script: NA, sound only.
+  NF style: "---"
+
+- files: ["welcome.ogg"]
+  sound: "---"
+  script: "Welcome to the station crew, enjoy your stay."
+  NF style: "Welcome to the Frontier Sector. Stay safe out there! [idk, something quippy or uplifting]"
+
+
+__-Vent clog__
+Text: The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.
+> Script: "Atmos waste systems in the Sector appear to be malfunctioning. Some ships may experience gas build up until they reset."
+
+__-Solar flare__
+Start Text: A solar flare has been detected near the station. Some communication channels may not function.
+> Script: "A solar flare has erupted from the nearby star. This may cause some channels to go down for the duration of the flare."  * cut the transmission somewhere past 'down' with some light static *
+End Text: The solar flare ended. Communication channels no longer affected.
+> Script: "The flare has passed. Communications are operational once more."
+
+__-Random Sentience__
+Text: (Complicated, see file for details) [Resources\Locale\en-US\station-events\events\random-sentience.ftl]
+> Script: "A multitude of creatures and computers have gained some level of intelligence across the Sector." * This seems like a pretty good one for the announcer to break stoic character, maybe add in a sound bite of a computerized "Hello, World" in the background.
+
+__-Gas leak__
+Start Text: Attention crew, there is a gas leak on the station. We advise you to avoid the area and wear suit internals in the meantime.
+> Script: "There appears to be a gas leak on Frontier Station. Staff and Visitors exercise caution when roaming the halls."
+End Text: The source of the gas leak has been fixed. Please be cautious around areas with gas remaining.
+> Script: "The gas leak has been resolved and is in the process of being scrubbed."
+
+__-Breaker Flip__
+Text: Based on { $data }, we have opted to disable specific APCs to avoid damage to equipment. Please contact the engineering department to re-enable them.
+> Script: "A low level emp has flashed through the Sector. CentCom has triggered a failsafe that may disable some Ships APCs to protect them from damages."
+
+__-Vent critters__
+Text: Based on { $data }, we believe a small colony of unknown organisms have taken residence inside the station's ventilation and have taken action to drive them out.
+> Script: "Reports say the Sector is experiencing an unusually high level of vermin. Check your ships for possible signs of infestation."
+
+__-Bluespace syndie crate__
+Text: We received a report that a crate containing syndicate items has shown up in some area, please notify the security team if you found said crate.
+> Script: "Frontiersmen! The NFSD have just sent out an alert that a Syndicate Beacon signal has been detected. Please notify Sec if you encounter anything suspicious. "
+
+__-Bluespace normal crate__
+Text: An error in bluespace telemetry has caused a random crate to teleport to an unknown location.
+> Script: "The Trade Depot just sent word that the cargo teleporter has malfunctioned. Be on the look out for a stray crate."
+
+__-Bluespace ship arrival + leave__
+Arrival Text: We have detected an unusual FTL signature - long range scans indicate an unknown ship. NanoTrasen cannot confirm safety for prospectors within its vicinity, be advised.
+> Script: "Scans indicate an unknown ship is about to FTL into the Sector. Any attempts to Salvage the vessel is done at your own risk."
+Leave Text: In compliance with NanoTrasen FTL traffic patterns, the unknown ship has been dissipated to ensure non-collision.
+> Script: "NanoTrasen has remotely triggered the ship's FTL drive to adhere to traffic guidelines and ensure non-collision. The ship has left the Sector."
+
+__-Bluespace asteroid arrival + leave__
+Arrival Text: Long range scans indicate an unusually large asteroid entering the sector. NanoTrasen advises prospectors to divert operations for maximum profit potential.
+> Script: "Scans indicate an unusually large asteroid is about to enter into Sector space. Local miners are advised to divert their efforts to it before it flies out of range. This is done at your own risk."
+Leave Text: In compliance with NanoTrasen FTL traffic patterns, the asteroid has been dissipated to ensure non-collision.
+> Script: "The asteroid has left Sector space. May your profits from it be high."
+
+__-Bluespace vault arrival + leave__
+Arrival Text: A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return.
+> Script: "Warning! A NanoTrasen AAT Vault's FTL drive has errored and will land in our Sector shortly. Anyone except Security approaching within 200 meters of the Vault will be arrested for trespassing and attempted theft." *this one may be a bit long, but feels kinda helpful?
+Leave Text: We have successfully retrieved the vault from your sector and have reimbursed your nearby Frontier Outpost accordingly.
+> Script: "The Vault has been collected by CentCom. Frontier Station is being rewarded for its safe return."
+
+__-Bluespace cache arrival + leave __
+Arrival Text: A Syndicate transport has been intercepted from FTL and will soon arrive nearby. Guard the armored weapons cache until NanoTrasen can retrieve it for a reward.
+> Script: "Warning! A Syndicate Transport has be intercepted from FTL and and will land in our Sector shortly. Anyone except Security approaching within 200 meters of the Transport will be arrested for trespassing and searched for Contraband." *this one may be a bit long, but feels kinda helpful?
+Leave Text: We have successfully retrieved the Syndicate weapons cache from your sector and have reimbursed your nearby Frontier Outpost accordingly.
+> Script: "The weapons cache has been collected by CentCom. Frontier Station is being rewarded for its safe delivery."

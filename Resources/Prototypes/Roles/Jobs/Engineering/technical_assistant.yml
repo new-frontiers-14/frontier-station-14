@@ -4,12 +4,12 @@
   description: job-description-technical-assistant
   playTimeTracker: JobTechnicalAssistant
   requirements:
-#    - !type:DepartmentTimeRequirement
-#      department: Engineering
-#      time: 54000 #15 hrs
-#      inverted: true # stop playing intern if you're good at engineering!
-    - !type:OverallPlaytimeRequirement # Frontier
-      time: 10800 # Frontier
+    - !type:OverallPlaytimeRequirement
+      time: 3600 #1 hr
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000 #5 hrs
+      inverted: true # stop playing intern if you're good at engineering!
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-hire # Frontier
@@ -29,3 +29,14 @@
   #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: TechnicalAssistantChameleonOutfit
+  job: TechnicalAssistant
+  equipment:
+    head: ClothingHeadHatHardhatOrange
+    eyes: ClothingEyesGlassesMeson
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterVestHazard
+    gloves: ClothingHandsGlovesColorYellow

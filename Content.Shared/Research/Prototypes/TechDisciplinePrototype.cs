@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Prototypes;
@@ -44,5 +44,5 @@ public sealed partial class TechDisciplinePrototype : IPrototype
     /// Purchasing this tier of technology causes a server to become "locked" to this discipline.
     /// </summary>
     [DataField("lockoutTier")]
-    public int LockoutTier = 4;
+    public int LockoutTier = 3;
 }

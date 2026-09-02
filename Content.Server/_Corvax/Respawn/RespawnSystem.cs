@@ -14,7 +14,8 @@ using Robust.Shared.Player; // Frontier
 using Content.Shared.Ghost; // Frontier
 using Content.Server.Administration.Managers; // Frontier
 using Content.Server.Administration; // Frontier
-using Content.Shared.GameTicking; // Frontier
+using Content.Server.GameTicking.Events; // Frontier
+using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server._Corvax.Respawn;
 
@@ -45,7 +46,7 @@ public sealed class RespawnSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart); // Frontier
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart); // Frontier
 
         _admin.OnPermsChanged += OnAdminPermsChanged; // Frontier
         _player.PlayerStatusChanged += PlayerStatusChanged; // Frontier
@@ -74,6 +75,11 @@ public sealed class RespawnSystem : EntitySystem
         if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
 
+        // Frontier: Don't penalize user for dying as a ghost role
+        if (HasComp<GhostRoleComponent>(entity))
+            return;
+        // End Frontier
+
         var respawnData = GetRespawnData(session.UserId);
         SetRespawnTime(session.UserId, ref respawnData, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
     }
@@ -88,13 +94,14 @@ public sealed class RespawnSystem : EntitySystem
             return;
 
         // Frontier: extra conditions for respawn lenience
-        if (HasComp<GhostRoleComponent>(entity)) // Don't penalize user for exiting ghost roles
+        if (HasComp<GhostRoleComponent>(entity) || // Don't penalize user for exiting ghost roles
+            HasComp<InterviewHologramComponent>(entity)) // Don't penalize user for leaving an interview
             return; // Frontier: don't penalize user for exiting ghost roles
 
         if (HasComp<GhostComponent>(entity)) // Don't penalize user for reobserving
             return;
 
-        if (e.Mind.Comp.Session != null && _admin.IsAdmin(e.Mind.Comp.Session)) // Admins get free respawns
+        if (_player.TryGetSessionById(e.Mind.Comp.UserId.Value, out var session) && _admin.IsAdmin(session)) // Admins get free respawns
             return;
 
         // Get respawn info
@@ -191,7 +198,7 @@ public sealed class RespawnSystem : EntitySystem
     }
 
     // Frontier: reset game state, we have a new round.
-    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    private void OnRoundStart(RoundStartingEvent ev)
     {
         _respawnInfo.Clear();
     }

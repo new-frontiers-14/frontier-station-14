@@ -16,6 +16,7 @@ ledger-no-balance = N/A
 ledger-tab-Frontier = Frontier Outpost
 ledger-tab-Nfsd = NFSD
 ledger-tab-Medical = Medical Dispatch
+ledger-tab-Edison = Edison
 # Fallback, if this displays, something's wrong.
 ledger-tab-Unknown = Unknown
 
@@ -28,6 +29,7 @@ ledger-entry-type-BlackMarketShipyardTax = Anon. Scrap Resale
 ledger-entry-type-BluespaceReward = Guard Duty Rewards
 ledger-entry-type-MedicalBountyTax = Medical Bounties
 ledger-entry-type-AntiSmugglingBonus = Anti-Smuggling
+ledger-entry-type-PowerTransmission = Energy Exports
 ledger-entry-type-StationDepositFines = Fines Deposited
 ledger-entry-type-StationDepositDonation = Donations
 ledger-entry-type-StationDepositAssetsSold = Sold Assets

@@ -1,0 +1,25 @@
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: NFCandleInfiniteSpawner
+  name: magic candle spawner
+  suffix: Frontier, 100%
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+          scale: 0.7, 0.7
+        - sprite: Objects/Misc/candles.rsi
+          state: candle-big
+    - type: RandomSpawner
+      prototypes:
+        - CandleRedInfinite
+        - CandleBlueInfinite
+        - CandleBlackInfinite
+        - CandleGreenInfinite
+        - CandlePurpleInfinite
+        - CandleRedSmallInfinite
+        - CandleBlueSmallInfinite
+        - CandleBlackSmallInfinite
+        - CandleGreenSmallInfinite
+        - CandlePurpleSmallInfinite
+      chance: 1.0

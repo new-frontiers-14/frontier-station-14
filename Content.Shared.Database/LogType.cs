@@ -465,6 +465,21 @@ public enum LogType
     /// </summary>
     Botany = 100,
 
+    /// <summary>
+    /// Artifact node got activated.
+    /// </summary>
+    ArtifactNode = 101,
+
+    /// <summary>
+    /// Damaging grid collision has occurred.
+    /// </summary>
+    ShuttleImpact = 102,
+
+    /// <summary>
+    /// Events relating to midi playback.
+    /// </summary>
+    Instrument = 103,
+
     // Frontier Station Specific
     #region Frontier Values
     ATMUsage = 200,
@@ -475,26 +490,39 @@ public enum LogType
     /// An admin spawns a refund for a player.
     /// </summary>
     AdminRefund = 203,
+
     /// <summary>
     /// An atmos device's direction was changed.
     /// </summary>
     AtmosDirectionChanged = 204,
+
     /// <summary>
     /// A player has posted a bounty contract.
     /// </summary>
     BountyContractCreated = 205,
+
     /// <summary>
     /// A player has deleted a bounty contract.
     /// </summary>
     BountyContractRemoved = 206,
+
     /// <summary>
     /// A medical bounty was redeemed.
     /// </summary>
     MedicalBountyRedeemed = 207,
+
     /// <summary>
     /// Shuttle info was changed.
     /// </summary>
     ShuttleInfoChanged = 208,
     #endregion Frontier Values
-    // End Frontier
+    // Frontier End
+
+    // DeltaV Station Specific
+    #region DeltaV Values
+    /// <summary>
+    /// Remove greentexts - Replace with custom responses #2940
+    /// </summary>
+    ObjectiveSummary = 422,
+    #endregion DeltaV Values
 }

@@ -5,7 +5,14 @@ lathe-category-storage-nf = Storage
 lathe-category-kitchen-nf = Kitchen
 lathe-category-clothes-nf = Clothes
 lathe-category-medical-nf = Medical
+lathe-category-magazines-nf = Magazines
+lathe-category-inflatables-nf = Inflatables
+lathe-category-piety-nf = Piety
+lathe-category-candles-nf = Candles
+lathe-category-toys-nf = Toys
 
 # Biogen
 lathe-category-nf-animal-cubes = Animal Cubes
+lathe-category-brand = Brand
 lathe-category-seeds = Seeds
+lathe-category-soda = Soda

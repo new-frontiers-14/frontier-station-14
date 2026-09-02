@@ -6,3 +6,6 @@ reagent-desc-raisins = Are they the best or worst part of the cookie? They're a 
 
 reagent-name-everyspice = everyspice
 reagent-desc-everyspice = A versatile flavoring, this spice has a flavor for every occasion.
+
+reagent-name-gravy = gravy
+reagent-desc-gravy = Gloriously groovy gravy guaranteed to make your meals meatier.

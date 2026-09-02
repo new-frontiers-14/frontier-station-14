@@ -1,0 +1,87 @@
+#region Tables
+- type: entityTable
+  id: TableStashVariety
+  table: !type:GroupSelector
+    children:
+    # Normal
+    - !type:GroupSelector
+      weight: 98
+      children:
+      - id: DuffelBlackStashValuables
+      - id: DuffelBlueStashValuables
+      - id: DuffelGreenStashValuables
+      - id: DuffelOrangeStashValuables
+      - id: DuffelRedStashValuables
+      - id: DuffelPurpleStashValuables
+      - id: DuffelBrownLightStashValuables
+      - id: DuffelBrownStashValuables
+      - id: DuffelWhiteStashValuables
+    # Contraband
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: DuffelTraumaStashDrinks
+      - id: DuffelPrivateSecurityStashMercenary
+      - id: DuffelCargoStashEmbezzled
+      - id: DuffelAtmosphericsStashSmokes
+      - id: DuffelPunkStashThreads
+      - id: DuffelSyndicateStashContraband
+
+#region Spawners
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash
+  parent: MarkerBase
+  suffix: "Stash, 100"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Back/Duffels/cargo.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 1.00
+
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash50
+  parent: SpawnDungeonLootStash
+  suffix: "Stash, 50"
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 0.5
+
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash25
+  parent: SpawnDungeonLootStash
+  suffix: "Stash, 25"
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 0.25
+
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash10
+  parent: SpawnDungeonLootStash
+  suffix: "Stash, 10"
+  components:
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 0.1

@@ -13,6 +13,7 @@ salvage-expedition-announcement-elimination-entity-fallback = target
 
 salvage-expedition-shuttle-not-found = Cannot locate shuttle.
 salvage-expedition-not-everyone-aboard = Not all crew aboard! {CAPITALIZE(THE($target))} is still out there!
+salvage-expedition-failed = Expedition is failed.
 
 # Salvage mods
 salvage-time-mod-standard-time = Normal Duration
@@ -61,3 +62,10 @@ salvage-expedition-megafauna-remaining = {$count ->
 
 salvage-expedition-type-Destruction = Destruction
 salvage-expedition-type-Elimination = Elimination
+
+# Restored the lines, removed from Resources\Locale\en-US\procedural\expeditions.ftl
+salvage-expedition-structure-examine = This is a [color=#B02E26]destruction[/color] objective
+salvage-expedition-structure-remaining = {$count ->
+    [one] {$count} structure remaining.
+    *[other] {$count} structures remaining.
+}

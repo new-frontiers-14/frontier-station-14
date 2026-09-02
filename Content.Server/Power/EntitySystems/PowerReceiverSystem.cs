@@ -17,7 +17,6 @@ namespace Content.Server.Power.EntitySystems
     public sealed class PowerReceiverSystem : SharedPowerReceiverSystem
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
-
         private EntityQuery<ApcPowerReceiverComponent> _recQuery;
         private EntityQuery<ApcPowerProviderComponent> _provQuery;
 
@@ -131,7 +130,7 @@ namespace Content.Server.Power.EntitySystems
             {
                 Act = () =>
                 {
-                    TryTogglePower(uid, user: args.User); // Frontier: Upstream - #28984
+                    TryTogglePower(uid, user: args.User); // Frontier: Upstream - #28984 (TogglePower<TryTogglePower)
                 },
                 Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
                 Text = Loc.GetString("power-switch-component-toggle-verb"),
@@ -165,15 +164,6 @@ namespace Content.Server.Power.EntitySystems
         public bool IsPowered(EntityUid uid, ApcPowerReceiverComponent? receiver = null)
         {
             return !_recQuery.Resolve(uid, ref receiver, false) || receiver.Powered;
-        }
-
-
-        public bool TryTogglePower(EntityUid uid, bool playSwitchSound = true, ApcPowerReceiverComponent? receiver = null, EntityUid? user = null) // Frontier: Upstream - #28984
-        {
-            if (HasComp<EmpDisabledComponent>(uid))
-                return false;
-
-            return TogglePower(uid, playSwitchSound, receiver, user);
         }
 
         public void SetLoad(ApcPowerReceiverComponent comp, float load)

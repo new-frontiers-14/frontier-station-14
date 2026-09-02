@@ -36,6 +36,7 @@
   - type: StaticPrice
     price: 250
   - type: Rotatable # Frontier
+  - type: BindToStation # Frontier
 
 - type: entity
   parent: BaseFlatpack
@@ -49,7 +50,7 @@
     layers:
     - state: solar-assembly-part
   - type: StaticPrice
-    price: 75
+    price: 25 # Frontier: 75<25
 
 - type: entity
   parent: BaseFlatpack
@@ -251,3 +252,19 @@
   components:
   - type: Flatpack
     entity: ComputerCrewMonitoring
+
+- type: entity
+  parent: BaseFlatpack
+  id: HydroponicsTrayFlatpack
+  name: hydroponics tray flatpack
+  description: A flatpack used for constructing a hydroponics tray.
+  components:
+  - type: Flatpack
+    entity: hydroponicsTray
+  - type: Sprite
+    layers:
+    - state: hydroponics-tray
+  - type: GuideHelp
+    guides:
+    - Botany
+    - Chemicals

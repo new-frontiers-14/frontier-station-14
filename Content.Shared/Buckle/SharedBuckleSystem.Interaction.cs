@@ -48,6 +48,10 @@ public abstract partial class SharedBuckleSystem
         }
         else
         {
+            if (!TryComp(args.Dragged, out BuckleComponent? buckle) ||
+                !CanBuckle(args.Dragged, args.User, uid, true, out var _, buckle))
+                return;
+
             var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.BuckleDoafterTime, new BuckleDoAfterEvent(), args.Dragged, args.Dragged, uid)
             {
                 BreakOnMove = true,
@@ -122,7 +126,12 @@ public abstract partial class SharedBuckleSystem
         // Frontier: set handled to true only if you actually unbuckle something
         if (ent.Comp.BuckledTo != null)
         {
-            args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+            // Frontier: huggable wheelchair users!
+            if (args.User == args.Target || (TryComp(ent.Comp.BuckledTo.Value, out StrapComponent? strap) && strap.UnbuckleOnInteractHand))
+            {
+                args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+            }
+            // End Frontier: huggable wheelchair users!
         }
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
@@ -208,6 +217,9 @@ public abstract partial class SharedBuckleSystem
     private void AddUnbuckleVerb(EntityUid uid, BuckleComponent component, GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract || !component.Buckled)
+            return;
+
+        if (!CanUnbuckle((uid, component), args.User, false))
             return;
 
         InteractionVerb verb = new()

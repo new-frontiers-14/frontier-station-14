@@ -47,7 +47,7 @@ public sealed partial class SalvageExpeditionConsoleComponent : Component
     /// <summary>
     /// The sound made when an error happens.
     /// </summary>
-    [DataField("soundError")]
+    [DataField]
     public SoundSpecifier ErrorSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
 
     /// <summary>

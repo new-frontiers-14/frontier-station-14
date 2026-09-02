@@ -1,38 +1,39 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Labels;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
-using Content.Shared.UserInterface;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Emag.Components;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Fax;
-using Content.Shared.Fax.Systems;
 using Content.Shared.Fax.Components;
+using Content.Shared.Fax.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
+using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Mobs.Components;
+using Content.Shared.NameModifier.Components;
 using Content.Shared.Paper;
+using Content.Shared.Power;
+using Content.Shared.Tools;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using Robust.Shared.Toolshed.TypeParsers;
-using System.Xml.Linq;
-using Robust.Shared.Prototypes;
-using Content.Shared.NameModifier.Components;
-using Content.Shared.Power;
+using Content.Server._NF.Lathe; // Frontier
+using Content.Shared.Research.Components; // Frontier
+using Content.Shared.Research.Prototypes; // Frontier
 using Content.Shared.Tag; // Frontier
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Fax;
 
@@ -55,8 +56,12 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!; // Frontier
+    [Dependency] private readonly BlueprintLatheSystem _blueprint = default!; // Frontier
+
+    private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
     private const string PaperSlotId = "Paper";
+    private static readonly ProtoId<TagPrototype> NFPaperStampProtectedTag = "NFPaperStampProtected";
 
     public override void Initialize()
     {
@@ -216,7 +221,7 @@ public sealed class FaxSystem : EntitySystem
     {
         if (args.Handled ||
             !TryComp<ActorComponent>(args.User, out var actor) ||
-            !_toolSystem.HasQuality(args.Used, "Screwing")) // Screwing because Pulsing already used by device linking
+            !_toolSystem.HasQuality(args.Used, ScrewingQuality)) // Screwing because Pulsing already used by device linking
             return;
 
         _quickDialog.OpenDialog(actor.PlayerSession,
@@ -321,8 +326,9 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampProtectedData, out bool? stampProtected); // Frontier
+                    args.Data.TryGetValue(FaxConstants.FaxBlueprintRecipes, out HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes); // Frontier
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, stampProtected ?? false); // Frontier: add stampProtected
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, stampProtected ?? false, blueprintRecipes); // Frontier: add stampProtected, blueprintRecipes
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -488,6 +494,11 @@ public sealed class FaxSystem : EntitySystem
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
+        // Frontier: get blueprint recipes
+        HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes = null;
+        if (TryComp<BlueprintComponent>(sendEntity, out var blueprints))
+            blueprintRecipes = blueprints.ProvidedRecipes;
+
         // TODO: See comment in 'Send()' about not being able to copy whole entities
         var printout = new FaxPrintout(paper.Content,
                                        nameMod?.BaseName ?? metadata.EntityName,
@@ -496,7 +507,9 @@ public sealed class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
-                                       _tag.HasTag(sendEntity.Value, "NFPaperStampProtected")); // Frontier: add stamp protection
+                                       _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag), // Frontier
+                                       blueprintRecipes // Frontier
+                                       );
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -557,8 +570,15 @@ public sealed class FaxSystem : EntitySystem
             { FaxConstants.FaxPaperLabelData, labelComponent?.CurrentLabel },
             { FaxConstants.FaxPaperContentData, paper.Content },
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
-            { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(sendEntity.Value, "NFPaperStampProtected") }, // Frontier
+            { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag) }, // Frontier
         };
+
+        // Frontier: blueprint recipes
+        if (TryComp<BlueprintComponent>(sendEntity, out var blueprint))
+        {
+            payload[FaxConstants.FaxBlueprintRecipes] = blueprint.ProvidedRecipes;
+        }
+        // End Frontier: blueprint recipes
 
         if (metadata.EntityPrototype != null)
         {
@@ -628,7 +648,7 @@ public sealed class FaxSystem : EntitySystem
         var printout = component.PrintingQueue.Dequeue();
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
-        var printed = EntityManager.SpawnEntity(entityToSpawn, Transform(uid).Coordinates);
+        var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {
@@ -648,10 +668,15 @@ public sealed class FaxSystem : EntitySystem
             // Frontier: stamp protection
             if (printout.StampProtected)
             {
-                _tag.AddTag(printed, "NFPaperStampProtected");
+                _tag.AddTag(printed, NFPaperStampProtectedTag);
             }
             // End Frontier
         }
+
+        // Frontier: blueprint recipes
+        if (TryComp<BlueprintComponent>(printed, out var blueprint))
+            _blueprint.SetBlueprintRecipes((printed, blueprint), printout.BlueprintRecipes);
+        // End Frontier: blueprint recipes
 
         _metaData.SetEntityName(printed, printout.Name);
 

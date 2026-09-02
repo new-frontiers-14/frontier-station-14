@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: arimah
+# Discord: arimah
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Fishbowl
+  parent: BaseVessel
+  name: NT Fishbowl
+  description: TBA
+  price: 16500 #Appraises at ~14990. Markup of ~10%.
+  category: Small
+  group: Centcomm
+  access: CentralCommand
+  shuttlePath: /Maps/_NF/Shuttles/Admin/fishbowl.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - APU
+
+- type: gameMap
+  id: Fishbowl
+  mapName: 'Fishbowl'
+  mapPath: /Maps/_NF/Shuttles/Admin/fishbowl.yml
+  minPlayers: 0
+  stations:
+    Fishbowl:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Fishbowl {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

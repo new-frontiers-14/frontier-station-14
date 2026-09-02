@@ -29,13 +29,16 @@
     layers:
     - state: crypt_gray
     - state: common_label
+  - type: Tag
+    tags:
+    - EncryptionCommon
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCargoContraband
   id: EncryptionKeyCargo
   name: cargo encryption key
   categories: [ DoNotMap ] # Frontier
-  description: An encryption key used by supply employees.
+  description: An encryption key used to track the appearance and disappearance of large asteroids. # Frontier: An encryption key used by supply employees.<An encryption key used to track the appearance and disappearance of large asteroids.
   components:
   - type: EncryptionKey
     channels:
@@ -45,6 +48,9 @@
     layers:
     - state: crypt_gray
     - state: cargo_label
+  - type: Tag
+    tags:
+    - EncryptionCargo
 
 - type: entity
   parent: [EncryptionKey, BaseCentcommCommandContraband] # Frontier: Added BaseCentcommCommandContraband, removed BaseCentcommContraband.
@@ -81,6 +87,7 @@
     - Service
     - Supply
     - Traffic # Frontier
+    - Greeting # Frontier
     defaultChannel: Command
   - type: Sprite
     layers:
@@ -102,13 +109,16 @@
     layers:
     - state: crypt_silver
     - state: com_label
+  - type: Tag
+    tags:
+    - EncryptionCommand
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseEngineeringContraband
   id: EncryptionKeyEngineering
   name: engineering encryption key
   categories: [ DoNotMap ] # Frontier
-  description: An encryption key used by the engineers.
+  description: An encryption key used by engineers, and to track the status of derelict ships. # Frontier: An encryption key used by the engineers.<An encryption key used by engineers, and to track the status of derelict ships.
   components:
   - type: EncryptionKey
     channels:
@@ -118,12 +128,15 @@
     layers:
     - state: crypt_gray
     - state: eng_label
+  - type: Tag
+    tags:
+    - EncryptionEngineering
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalContraband
   id: EncryptionKeyMedical
   name: medical encryption key
-  description: An encryption key used by those who save lives.
+  description: An encryption key used to receive medical alerts and coordinate medical response. #Frontier: An encryption key used by those who save lives.<An encryption key used to receive medical alerts and coordinate medical response
   components:
   - type: EncryptionKey
     channels:
@@ -133,6 +146,9 @@
     layers:
     - state: crypt_gray
     - state: med_label
+  - type: Tag
+    tags:
+    - EncryptionMedical
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalScienceContraband
@@ -166,6 +182,9 @@
     layers:
     - state: crypt_gray
     - state: sci_label
+  - type: Tag
+    tags:
+    - EncryptionScience
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseScienceContraband
@@ -198,13 +217,16 @@
     layers:
     - state: crypt_gray
     - state: sec_label
+  - type: Tag
+    tags:
+    - EncryptionSecurity
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCivilianContraband
   id: EncryptionKeyService
   name: service encryption key
   categories: [ DoNotMap ] # Frontier
-  description: An encryption key used by the service staff, tasked with keeping the station full, happy and clean.
+  description: An encryption key used by Frontier Outpost staff. #Frontier: An encryption key used by the service staff, tasked with keeping the station full, happy and clean.<An encryption key used by Frontier Outpost staff.
   components:
   - type: EncryptionKey
     channels:
@@ -214,6 +236,9 @@
     layers:
     - state: crypt_gray
     - state: service_label
+  - type: Tag
+    tags:
+    - EncryptionService
 
 - type: entity
   parent: [EncryptionKey, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
@@ -230,6 +255,8 @@
     layers:
     - state: crypt_red
     - state: synd_label
+  - type: StaticPrice
+    price: 500 # 1000 for 2
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseSiliconScienceContraband
@@ -261,6 +288,8 @@
     layers:
     - state: crypt_red
     - state: ai_label
+  - type: StaticPrice
+    price: 1000
 
 - type: entity
   parent: [EncryptionKey, BaseC3PirateContraband] # Frontier: added BaseC3PirateContraband

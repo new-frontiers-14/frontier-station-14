@@ -12,13 +12,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Widgets;
 [GenerateTypedNameReferences]
 public sealed partial class GhostGui : UIWidget
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-
-    private TimeSpan? _respawnTime;
+    [Dependency] private readonly IGameTiming _gameTiming = default!; // Frontier
+    private TimeSpan? _respawnTime; // Frontier
 
     public GhostTargetWindow TargetWindow { get; }
-    public GhostRespawnRulesWindow RulesWindow { get; }
+    public GhostRespawnRulesWindow RulesWindow { get; } // Frontier
     public CryosleepWakeupWindow CryosleepWakeupWindow { get; } // Frontier
 
     public event Action? RequestWarpsPressed;
@@ -32,9 +30,9 @@ public sealed partial class GhostGui : UIWidget
         RobustXamlLoader.Load(this);
 
         TargetWindow = new GhostTargetWindow();
-        RulesWindow = new GhostRespawnRulesWindow();
+        RulesWindow = new GhostRespawnRulesWindow(); // Frontier
         CryosleepWakeupWindow = new CryosleepWakeupWindow(); // Frontier
-        RulesWindow.RespawnButton.OnPressed += _ => GhostRespawnPressed?.Invoke();
+        RulesWindow.RespawnButton.OnPressed += _ => GhostRespawnPressed?.Invoke(); // Frontier
 
         MouseFilter = MouseFilterMode.Ignore;
 
@@ -78,6 +76,7 @@ public sealed partial class GhostGui : UIWidget
         CryosleepReturnButton.Disabled = !canUncryo ?? true; // Frontier
     }
 
+    // Frontier: respawn logic
     protected override void FrameUpdate(FrameEventArgs args)
     {
         if (_respawnTime is null || _gameTiming.CurTime > _respawnTime)
@@ -92,6 +91,7 @@ public sealed partial class GhostGui : UIWidget
             GhostRespawnButton.Disabled = true;
         }
     }
+    // End Frontier: respawn logic
 
     protected override void Dispose(bool disposing)
     {

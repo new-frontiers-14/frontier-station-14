@@ -106,7 +106,7 @@
     - state: idintern-service
 
 - type: entity
-  parent: [IDCardStandard, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [IDCardStandard] # Frontier: Removed BaseSecurityCommandContraband
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -588,7 +588,7 @@
 
 - type: entity
   name: contractor ID card # Frontier: passenger<contractor
-  parent: [IDCardStandard, BaseC3SyndicateContraband]
+  parent: [IDCardStandard, BaseChameleon, BaseC3SyndicateContraband] # Frontier: Add BaseC3SyndicateContraband
   id: AgentIDCard
   suffix: Agent
   components:
@@ -604,9 +604,11 @@
     - state: idcontractor # Frontier: idpassenger<idcontractor
       sprite: _NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
+  - type: UIRequiresLock
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
+    verbText: agent-id-open-ui-verb
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -648,7 +650,7 @@
     job: AtmosphericTechnician
 
 - type: entity
-  parent: [IDCardStandard, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
+  parent: [ BaseC3SyndicateContraband, IDCardStandard ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndicateIDCard
   name: syndicate ID card
   components:
@@ -661,7 +663,7 @@
     - SyndicateAgent
 
 - type: entity
-  parent: [IDCardStandard, BaseC3PirateContraband] # Frontier: added BaseC3PirateContraband
+  parent: [ BaseC3PirateContraband, IDCardStandard ] # Frontier: BaseMajorContraband<BaseC3PirateContraband
   id: PirateIDCard
   name: pirate ID card
   categories: [ HideSpawnMenu ] # Frontier
@@ -735,6 +737,46 @@
     job: Detective
 
 - type: entity
+  parent: IDCardStandard
+  id: PrisonerIDCard
+  name: prisoner ID card
+  categories: [HideSpawnMenu] # Frontier: use NF variant
+  description: A generically printed ID card for scummy prisoners.
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+  - type: Item
+    heldPrefix: orange
+  - type: Access
+    tags:
+    - GenpopEnter
+  - type: GenpopIdCard
+  - type: IdCard
+    jobTitle: job-name-prisoner
+    jobIcon: JobIconPrisoner
+    canMicrowave: false
+  - type: ExpireIdCard
+    expireMessage: genpop-prisoner-id-expire
+    expiredAccess:
+    - GenpopLeave
+    #Harmony Change Start - Adds Radio Alert Systems
+    alertRadio: true
+    expireMessageRadio: genpop-prisoner-id-expire-radio
+    radioChannel: Nfsd # Frontier
+    #Harmony Change End
+  - type: Speech
+    speechVerb: Robotic
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonIdCard
+    - Recyclable
+  - type: StaticPrice # these are infinitely producible.
+    price: 0
+
+- type: entity
   parent: CentcomIDCard
   id: CBURNIDcard
   name: CBURN ID card
@@ -760,6 +802,7 @@
     - state: idcluwne
   - type: IdCard
     jobTitle: job-title-cluwne
+    jobIcon: JobIconCluwne
   - type: Unremoveable
 
 - type: entity
@@ -847,6 +890,7 @@
     - NuclearOperative
     - SyndicateAgent
     - Wizard
+    - Xenoborg
     - Pirate # Frontier
   - type: Tag #  Ignore Chameleon tags
     tags:

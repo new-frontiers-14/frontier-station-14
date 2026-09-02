@@ -6,20 +6,20 @@
   - ClothingOuterEVASuitBase
   - ClothingOuterHardsuitBase
   id: NFClothingOuterEVASuitBase
+  suffix: Frontier
   components:
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: Item
     shape:
     - 0,0,3,2
-  - type: ClothingSpeedModifier # Changed to 5% because the suit doesn't provide any protection other than from low pressure
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: HeldSpeedModifier
   - type: Clothing
     # For immersion
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
-    equipDelay: 2
-    unequipDelay: 2
+    #equipDelay: 2
+    #unequipDelay: 2
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -34,13 +34,32 @@
     - SuitEVA
     - WhitelistChameleon
 
-#FSB suit
+#FS suit
+
+- type: entity
+  parent: ClothingOuterHardsuitMercenary
+  id: ClothingOuterEVASuitFsa
+  name: FSA EVA suit
+  description: The standard issue EVA suit for Far Star Arms vessels. It comes pre-loaded with standard issue space camo green.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/fsa_voidsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/fsa_voidsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitFSA
+    slot: head
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - ScurretWearable
+    - CorgiWearable
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
   id: ClothingOuterEVASuitFsb
   name: FSB EVA suit
-  description: The standard issue EVA suit for Far Star Biotech corporation vessels. It comes with two cupholders.
+  description: The standard issue EVA suit for Far Star Biotech vessels. It comes with two cupholders.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
@@ -49,3 +68,27 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitFSB
     slot: head
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - ScurretWearable
+    - CorgiWearable
+
+- type: entity
+  parent: NFClothingOuterEVASuitBase
+  id: ClothingOuterEVASuitFsc
+  name: FSC EVA suit
+  description: The standard issue EVA suit for Far Star Commerce vessels. It comes pre-loaded with elbow grease.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/fsc_voidsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/fsc_voidsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitFSC
+    slot: head
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - ScurretWearable
+    - CorgiWearable

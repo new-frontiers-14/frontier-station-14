@@ -6,8 +6,8 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherChinaLakeEmp
-      - id: GrenadeEMP
+      - id: NFWeaponLauncherChinaLakeEmp
+      - id: NFGrenadeEMP
         amount: 8
 
 - type: entity
@@ -55,22 +55,84 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherNfsdLake
+      - id: NFWeaponLauncherGrenadeNfsd
       - id: NFBoxDartsTracking
 
 - type: entity
   parent: ClothingBackpackDuffelNfsdBrown
-  id: ClothingBackpackDuffelNfsdEmpBundle
-  name: NFSD Lake EMP bundle
-  description: "An old repainted China-Lake grenade launcher bundled with 10 rounds of EMP."
+  id: ClothingBackpackDuffelNfsdEmpAmmo
+  name: NFSD EMP Lake Ammo
+  description: "4 EMP rounds to be loaded into the NGP-40 projector"
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherNfsdLake
-      - id: GrenadeEMP
-        amount: 12
+      - id: NFGrenadeEMP
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdFlashAmmo
+  name: NFSD Flash Lake Ammo
+  description: "4 flash rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeFlash
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdGasAmmo
+  name: NFSD Tear Gas Lake Ammo
+  description: "4 tear gas rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeTearGas
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdNetAmmo
+  name: NFSD Tear Gas Lake Ammo
+  description: "4 shock net rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdVariedAmmo
+  name: NFSD Varied Lake Ammo
+  description: "Variety pack of grenades to load into your NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 2
+      - id: NFGrenadeTearGas
+        amount: 2
+      - id: NFGrenadeFlash
+        amount: 2
+      - id: NFGrenadeEMP
+        amount: 2
 
 # Not a duffelbag, but stored with other uplink-related backpacks
+- type: entity
+  parent: BriefcaseBrown
+  id: BriefcaseBrownNfsdSniperBundle
+  suffix: NFSD, Sniper Bundle
+  description: "A product from Nanotrasen's optics department, now with extra binoculars!"
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleSniperAspect
+    - id: Binoculars
+    - id: NFAmmunitionBoxRifle60Rubber
+      amount: 2
+
 - type: entity
   parent: ClothingBackpackSatchelLeather
   id: ClothingBackpackPirateBundle
@@ -80,7 +142,7 @@
       contents:
         - id: BoxSurvival
         - id: Cutlass
-        - id: WeaponRevolverPirate
+        - id: NFWeaponRevolverPirate
         - id: ClothingEyesEyepatch
 
 #Departmental EVA bundles
@@ -136,6 +198,12 @@
   parent: [ ClothingBackpackDuffelMedical, StorageFillEVASuitMedic ]
   id: ClothingBackpackDuffelEVABundleMedical
   name: medical specialist EVA bundle
+  suffix: Filled
+
+- type: entity
+  parent: [ ClothingBackpackDuffelTrauma, StorageFillEVASuitParamedicAlt ]
+  id: ClothingBackpackDuffelEVABundleParamedicAlt
+  name: paramedic EVA bundle
   suffix: Filled
 
 - type: entity
@@ -220,4 +288,10 @@
   parent: [ ClothingBackpackDuffelNfsdBrown, StorageFillEVASuitNfsd ]
   id: ClothingBackpackDuffelEVABundleNfsd
   name: NFSD EVA bundle
+  suffix: Filled
+
+- type: entity
+  parent: [ NFClothingBackpackDuffelColorRed, StorageFillEVASuitStc ]
+  id: ClothingBackpackDuffelEVABundleStc
+  name: STC EVA bundle
   suffix: Filled

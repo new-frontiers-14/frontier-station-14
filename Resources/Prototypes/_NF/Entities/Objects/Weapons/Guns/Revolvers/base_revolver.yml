@@ -1,0 +1,195 @@
+#region frame
+- type: entity
+  abstract: true
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseGunMeleeAttackLow, NFBaseItemWeaponGun ]
+  id: NFBaseWeaponFrameRevolver
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    projectileSpeed: 22.5
+    minAngle: 2.3
+    maxAngle: 11.5
+    angleIncrease: 0.6
+    angleDecay: 3
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.66
+  - type: StaticPrice
+    price: 200
+  - type: NFWeaponDetails
+    class: weapon-details-class-revolver
+
+#region manufacturer
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponFrameRevolver
+  id: NFBaseWeaponFrameRevolverNanotrasen
+  components:
+  - type: Gun
+    minAngle: 2.6
+    maxAngle: 13
+    angleIncrease: 0.9
+    angleDecay: 3.1
+    fireRate: 2.6
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRevolver ]
+  id: NFBaseWeaponFrameRevolverGorlex
+  components:
+  - type: Gun
+    minAngle: 2.5
+    maxAngle: 12.5
+    angleIncrease: 1.1
+    angleDecay: 4
+    fireRate: 3
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRevolver ]
+  id: NFBaseWeaponFrameRevolverSteelbolt
+  components:
+  - type: Gun
+    minAngle: 2.5
+    maxAngle: 12.5
+    angleIncrease: 1.1
+    angleDecay: 4
+    fireRate: 2.7
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponFrameRevolver
+  id: NFBaseWeaponFrameRevolverFrontierGunsmith
+  components:
+  - type: Gun
+    angleIncrease: 1.3
+    angleDecay: 4.2
+    fireRate: 2.4
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponFrameRevolverFrontierGunsmith # Lowest fire rate, it's a toy.
+  id: NFBaseWeaponFrameRevolverFoamForce
+  components:
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-foam-force-llc
+  - type: Tag
+    tags:
+    - Sidearm
+    - ToySidearm
+
+#region chamber
+- type: entity
+  abstract: true
+  id: NFBaseWeaponRevolverChamber
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: RevolverAmmoProvider
+    mayTransfer: true
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamber
+  id: NFBaseWeaponRevolverChamber45
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-45
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol45
+        - NFSpeedLoaderPistol45
+    proto: NFCartridgePistol45
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamber
+  id: NFBaseWeaponRevolverChamber35
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-35
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol35
+        - NFSpeedLoaderPistol35
+    capacity: 8
+    proto: NFCartridgePistol35
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamber
+  id: NFBaseWeaponRevolverChamber60
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-60
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgeRifle60
+    capacity: 1
+    proto: NFCartridgeRifle60
+    chambers: [ True ]
+    ammoSlots: [ null ]
+
+# Cap guns and fake cap guns
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamber
+  id: NFBaseWeaponRevolverChamberCap
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-45-cap
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeCap
+        - SpeedLoaderCap
+    proto: NFCartridgeCap
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamberCap
+  id: NFBaseWeaponRevolverChamber45Cap
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol45
+        - NFSpeedLoaderPistol45
+        - CartridgeCap
+        - SpeedLoaderCap
+    proto: NFCartridgePistol45

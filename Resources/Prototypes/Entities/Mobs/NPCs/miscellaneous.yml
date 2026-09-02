@@ -48,7 +48,7 @@
       tags:
         - FootstepSound
     - type: HitscanBatteryAmmoProvider
-      proto: RedLightLaser
+      proto: NFRedLightLaser # Frontier: use NF variant
       fireCost: 50
     - type: BatterySelfRecharger
       autoRecharge: true
@@ -211,9 +211,7 @@
     group: GenericNumber
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Effects/Footsteps/slime1.ogg
-      params:
-        volume: 3
+      collection: FootstepSlime
   - type: Tag
     tags:
       - FootstepSound

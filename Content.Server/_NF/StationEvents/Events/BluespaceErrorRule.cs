@@ -19,6 +19,10 @@ using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
+using System.Runtime.Intrinsics;
+using Content.Shared.Trigger.Components.Triggers;
+using System;
+using Robust.Shared.Maths;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -66,10 +70,43 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             {
                 EntityUid spawned;
 
-                if (group.MinimumDistance > 0f)
+                var rawCoords = Vector2.Zero;
+
+                EntityUid? biasTarget = null;
+                // If there is a bias target, see if one exists with a matching ID
+                if (group.SpawnBiasTarget is not null)
                 {
-                    spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                    var query = EntityQueryEnumerator<SpawningModifierComponent>();
+
+                    List<EntityUid> targets = new();
+
+                    while (query.MoveNext(out var ent, out var comp))
+                    {
+                        if (comp.id == group.SpawnBiasTarget)
+                            targets.Add(ent);
+                    }
+
+                    if (targets.Count > 0)
+                    {
+                        // Pick a random one from the list of possible targets. The new spawning area will be centred around this. If there were no matches continue as if it was unset.
+                        biasTarget = _random.Pick<EntityUid>(targets);
+                    }
                 }
+
+                if (biasTarget is not null)
+                    rawCoords = rawCoords + _transform.GetMapCoordinates(biasTarget.Value).Position;
+
+                if (biasTarget is not null && group.SpawnBiasOverride && TryComp<SpawningModifierComponent>(biasTarget, out var spawnModComp))
+                {
+                    var spawnAngle = new Angle(rawCoords) + _random.NextAngle(spawnModComp.MinimumAngle*(Math.Tau/360), spawnModComp.MaximumAngle*(Math.Tau/360));
+                    rawCoords = rawCoords + spawnAngle.RotateVec(new Vector2(_random.NextFloat(spawnModComp.MinimumDistance, spawnModComp.MaximumDistance),0));
+                }
+                else
+                {
+                    rawCoords = rawCoords + _random.NextVector2(group.MinimumDistance, group.MaximumDistance);
+                }
+
+                spawnCoords = spawnCoords.WithPosition(rawCoords);
 
                 switch (group)
                 {
@@ -250,7 +287,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _transform.DetachEntity(mob.Entity.Owner, mob.Entity.Comp);
                 }
 
-                var gridValue = _pricing.AppraiseGrid(gridUid, null);
+                // Skip appraisal if there's no reward account. Appraisal eats up too much
+                // frame time for very large grids (e.g. vgroids).
+                var gridValue = component.RewardAccounts.Count > 0
+                    ? _pricing.AppraiseGrid(gridUid, null)
+                    : 0;
 
                 // Deletion has to happen before grid traversal re-parents players.
                 Del(gridUid);

@@ -31,7 +31,7 @@
   - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -39,11 +39,25 @@
 - type: startingGear
   id: SeniorOfficerGear
   equipment:
-    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket1: NFWeaponPistolUniversalNfsdLessLethal
   storage:
     back:
     - Flash
-    - MagazinePistol
-    - MagazinePistolRubber
+    - NFMagazineHighCapacityPistol35Overpressure
+    - NFMagazineHighCapacityPistol35Rubber
     - BaseSecurityUplinkRadioOfficer
     - ShipVoucherNfsdSergeant
+
+- type: chameleonOutfit
+  id: SeniorOfficerChameleonOutfit
+  job: SeniorOfficer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterArmorNfsd
+    neck: ClothingNeckNfsdBadgeSeniorOfficer
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdBrown
+    shoes: ClothingShoesBootsNfsdBrownFilled

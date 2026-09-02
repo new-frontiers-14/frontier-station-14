@@ -1,5 +1,19 @@
 - type: loadout
+  id: ValetForcedClothingOuterEVASuitValet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitValet
+  groupBy: "OuterEVASuits"
+
+- type: loadout
   id: ValetClothingOuterVestValet
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 0
   equipment:
     outerClothing: ClothingOuterVestValet
+  groupBy: "OuterVests"

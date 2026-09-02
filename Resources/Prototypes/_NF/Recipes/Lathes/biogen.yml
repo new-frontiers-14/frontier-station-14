@@ -30,7 +30,7 @@
   result: HydroponicsSoilNutritionFlatpack
   categories:
   - Tools
-  completetime: 200
+  completetime: 60
   applyMaterialDiscount: false
   materials:
     Biomass: 1600
@@ -46,7 +46,7 @@
   id: NFBioGenSheetPlastic
   result: SheetPlastic1
   parent: BaseMaterialsNoDiscountRecipe
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 40
 
@@ -62,56 +62,56 @@
   result: FoodMeat
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 35
 
 #region Meat
 
 - type: latheRecipe
-  id: NFBioGenFoodMeatChicken
-  result: FoodMeatChicken
+  id: NFBioGenFoodMeatWholeChicken
+  result: FoodMeatWholeChicken
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 15
   materials:
-    Biomass: 35
-    
+    Biomass: 70
+
 - type: latheRecipe
-  id: NFBioGenFoodMeatPenguin
-  result: FoodMeatPenguin
+  id: NFBioGenFoodMeatWholePenguin
+  result: FoodMeatWholePenguin
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 20
   materials:
-    Biomass: 35
-    
+    Biomass: 105
+
 - type: latheRecipe
-  id: NFBioGenFoodMeatDuck
-  result: FoodMeatDuck
+  id: NFBioGenFoodMeatWholeDuck
+  result: FoodMeatWholeDuck
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 15
   materials:
-    Biomass: 35
+    Biomass: 70
 
 - type: latheRecipe
   id: NFBioGenFoodMeatCrab
   result: FoodMeatCrab
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
-    
+
 - type: latheRecipe
   id: NFBioGenFoodMeatBacon
   result: FoodMeatBacon
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
-    Biomass: 35 
+    Biomass: 35
 
 #region Cubes
 
@@ -359,6 +359,244 @@
   icon:
     sprite: Objects/Consumable/Food/condiments.rsi
     state: bottle-vinegar
+
+# region Soda
+
+- type: latheRecipe
+  id: NFBioGenCola
+  resultReagents:
+    Cola: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/cola.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenChangelingSting
+  resultReagents:
+    ChangelingSting: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/changelingsting.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenDrGibb
+  resultReagents:
+    DrGibb: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/dr_gibb.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenEnergyDrink
+  resultReagents:
+    EnergyDrink: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/energy_drink.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenGrapeSoda
+  resultReagents:
+    GrapeSoda: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/purple_can.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenLemonLime
+  resultReagents:
+    LemonLime: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/lemon-lime.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenLemonLimeCranberry
+  resultReagents:
+    LemonLimeCranberry: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/lemon-lime-cranberry.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenPwrGame
+  resultReagents:
+    PwrGame: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/pwrgame.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenRootBeer
+  resultReagents:
+    RootBeer: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/rootbeer.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenSolDry
+  resultReagents:
+    SolDry: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/sol_dry.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenSpaceMountainWind
+  resultReagents:
+    SpaceMountainWind: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/space_mountain_wind.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenSpaceUp
+  resultReagents:
+    SpaceUp: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/space-up.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenStarkist
+  resultReagents:
+    Starkist: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/starkist.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenFourteenLoko
+  resultReagents:
+    FourteenLoko: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/fourteen_loko.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenShamblersJuice
+  resultReagents:
+    ShamblersJuice: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/shamblersjuice.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenSodaWater
+  resultReagents:
+    SodaWater: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/sodawater.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+# region Other Drinks
+
+- type: latheRecipe
+  id: NFBioGenNanocaf
+  resultReagents:
+    Nanocaf: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenGreenTea
+  resultReagents:
+    GreenTea: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
 
 # region Seeds
 
@@ -680,6 +918,14 @@
   result: WatermelonSeeds
   icon:
     sprite: Objects/Specific/Hydroponics/watermelon.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenPomegranateSeeds
+  parent: BioGenSeedsRecipe
+  result: PomegranateSeeds
+  icon:
+    sprite: _NF/Objects/Specific/Hydroponics/pomegranate.rsi
     state: seed
 
 # region Medical Seeds

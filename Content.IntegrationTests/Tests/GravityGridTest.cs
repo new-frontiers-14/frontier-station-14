@@ -26,6 +26,7 @@ namespace Content.IntegrationTests.Tests
     idlePower: 50
     chargeRate: 1000000000 # Set this really high so it discharges in a single tick.
     activePower: 500
+    activeChargingPower: 500 # Frontier
   - type: ApcPowerReceiver
   - type: UserInterface
 ";
@@ -76,8 +77,8 @@ namespace Content.IntegrationTests.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(generatorComponent.GravityActive, Is.True);
-                    Assert.That(!entityMan.GetComponent<GravityComponent>(grid1).EnabledVV);
-                    Assert.That(entityMan.GetComponent<GravityComponent>(grid2).EnabledVV);
+                    Assert.That(!entityMan.GetComponent<GravityComponent>(grid1).Enabled);
+                    Assert.That(entityMan.GetComponent<GravityComponent>(grid2).Enabled);
                 });
 
                 // Re-enable needs power so it turns off again.
@@ -94,7 +95,7 @@ namespace Content.IntegrationTests.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(generatorComponent.GravityActive, Is.False);
-                    Assert.That(entityMan.GetComponent<GravityComponent>(grid2).EnabledVV, Is.False);
+                    Assert.That(entityMan.GetComponent<GravityComponent>(grid2).Enabled, Is.False);
                 });
             });
 

@@ -17,57 +17,39 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
-    private readonly EntityUid _injectorEntity;
-    private readonly ChangeReagentWhitelistBoundUserInterface _owner;
+    private EntityUid _injectorEntity = EntityUid.Invalid;
     private ReagentPrototype? _selectedReagent;
 
-    public ChangeReagentWhitelistWindow(ChangeReagentWhitelistBoundUserInterface owner)
+    public Action? OnResetWhitelistReagent;
+    public Action<ProtoId<ReagentPrototype>>? OnChangeWhitelistedReagent;
+
+    public ChangeReagentWhitelistWindow()
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
-
-        _injectorEntity = owner.Owner;
-        _owner = owner;
 
         Title = Loc.GetString("ui-change-reagent-whitelist-title");
 
         ReagentList.OnItemSelected += ReagentListSelected;
         ReagentList.OnItemDeselected += ReagentListDeselected;
         SearchBar.OnTextChanged += (_) => UpdateReagentPrototypes(SearchBar.Text);
-        ApplyButton.OnPressed += ChangeWhitelistedReagent;
-        ResetButton.OnPressed += ResetWhitelistReagent;
+        ApplyButton.OnPressed += OnApplyButtonPressed;
+        ResetButton.OnPressed += (_) => OnResetWhitelistReagent?.Invoke();
 
         ResetButton.Text = Loc.GetString("ui-change-reagent-whitelist-resetbutton-text");
+    }
+
+    public void SetEntity(EntityUid owner)
+    {
+        _injectorEntity = owner;
 
         UpdateReagentPrototypes();
         UpdateApplyButton();
     }
 
-
-    /// <summary>
-    ///     Reset the Entity's InjectorComponent's ReagentWhitelist to nullify the reagent whitelist
-    ///</summary>
-    private void ResetWhitelistReagent(BaseButton.ButtonEventArgs obj)
-    {
-        _owner.ResetReagentWhitelist();
-        _owner.Close();
-    }
-
-    /// <summary>
-    ///     Change the Entity's InjectorComponent's ReagentWhitelist to only include the selected reagent
-    /// </summary>
-    private void ChangeWhitelistedReagent(BaseButton.ButtonEventArgs obj)
-    {
-        if (_selectedReagent == null)
-            return;
-
-        _owner.ChangeReagentWhitelist(_selectedReagent.ID);
-        _owner.Close();
-    }
-
     private void ReagentListSelected(ItemList.ItemListSelectedEventArgs obj)
     {
-        _selectedReagent = (ReagentPrototype) obj.ItemList[obj.ItemIndex].Metadata!;
+        _selectedReagent = (ReagentPrototype)obj.ItemList[obj.ItemIndex].Metadata!;
         UpdateApplyButton();
     }
 
@@ -75,6 +57,12 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
     {
         _selectedReagent = null;
         UpdateApplyButton();
+    }
+
+    private void OnApplyButtonPressed(BaseButton.ButtonEventArgs _)
+    {
+        if (_selectedReagent != null)
+            OnChangeWhitelistedReagent?.Invoke(_selectedReagent);
     }
 
     /// <summary>
@@ -90,7 +78,7 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
         }
 
         ApplyButton.Text = Loc.GetString("ui-change-reagent-whitelist-apply",
-            ("reagent", _selectedReagent.ID));
+            ("reagent", _selectedReagent.LocalizedName));
         ApplyButton.Disabled = false;
     }
 
@@ -111,7 +99,7 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
         foreach (var reagent in _prototypeManager.EnumeratePrototypes<ReagentPrototype>())
         {
             if (!string.IsNullOrEmpty(filter) &&
-                !reagent.ID.ToLowerInvariant().Contains(filter.Trim().ToLowerInvariant()))
+                !reagent.LocalizedName.ToLowerInvariant().Contains(filter.Trim().ToLowerInvariant()))
             {
                 continue;
             }
@@ -124,7 +112,7 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
             ItemList.Item reagentItem = new(ReagentList)
             {
                 Metadata = reagent,
-                Text = reagent.ID
+                Text = reagent.LocalizedName,
             };
 
             ReagentList.Add(reagentItem);

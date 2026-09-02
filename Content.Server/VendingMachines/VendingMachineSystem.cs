@@ -7,10 +7,13 @@ using Content.Server.Cargo.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Vocalization.Systems;
+using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Emp;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
@@ -18,6 +21,7 @@ using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
 using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -58,6 +62,7 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             //SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
+            SubscribeLocalEvent<VendingMachineComponent, TryVocalizeEvent>(OnTryVocalize);
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
@@ -160,7 +165,9 @@ namespace Content.Server.VendingMachines
 
             TryRestockInventory(uid, component);
 
-            Popup.PopupEntity(Loc.GetString("vending-machine-restock-done", ("this", args.Args.Used), ("user", args.Args.User), ("target", uid)), args.Args.User, PopupType.Medium);
+            Popup.PopupEntity(Loc.GetString("vending-machine-restock-done-self", ("target", uid)), args.Args.User, args.Args.User, PopupType.Medium);
+            var othersFilter = Filter.PvsExcept(args.Args.User);
+            Popup.PopupEntity(Loc.GetString("vending-machine-restock-done-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", uid)), args.Args.User, othersFilter, true, PopupType.Medium);
 
             Audio.PlayPvs(restockComponent.SoundRestockDone, uid, AudioParams.Default.WithVolume(-2f).WithVariation(0.2f));
 
@@ -212,7 +219,7 @@ namespace Content.Server.VendingMachines
 
             if (vendComponent.EjectRandomCounter <= 0)
             {
-                _audioSystem.PlayPvs(_audioSystem.GetSound(vendComponent.SoundDeny), uid);
+                _audioSystem.PlayPvs(_audioSystem.ResolveSound(vendComponent.SoundDeny), uid); // Frontier: ResolveSound, warning suppression
                 _popupSystem.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-abused"), uid, PopupType.MediumCaution);
                 return;
             }
@@ -267,14 +274,13 @@ namespace Content.Server.VendingMachines
             }
 
             // Default spawn coordinates
-            var spawnCoordinates = Transform(uid).Coordinates;
+            var xform = Transform(uid);
+            var spawnCoordinates = xform.Coordinates;
 
             //Make sure the wallvends spawn outside of the wall.
-
             if (TryComp<WallMountComponent>(uid, out var wallMountComponent))
             {
-
-                var offset = wallMountComponent.Direction.ToWorldVec() * WallVendEjectDistanceFromWall;
+                var offset = (wallMountComponent.Direction + xform.LocalRotation - Math.PI / 2).ToVec() * WallVendEjectDistanceFromWall;
                 spawnCoordinates = spawnCoordinates.Offset(offset);
             }
 
@@ -335,9 +341,10 @@ namespace Content.Server.VendingMachines
 
         private void OnPriceCalculation(EntityUid uid, VendingMachineRestockComponent component, ref PriceCalculationEvent args)
         {
-            args.Price = 0; // This area of the code make it so the cargoblacklist gets ignored, this change was to resolve it.
+            // Frontier: respect cargo blacklist
+            args.Price = 0;
             return;
-
+            /*
             List<double> priceSets = new();
             // Find the most expensive inventory and use that as the highest price.
             foreach (var vendingInventory in component.CanRestock)
@@ -355,6 +362,8 @@ namespace Content.Server.VendingMachines
             }
 
             args.Price += priceSets.Max();
+            */
+            // End Frontier: respect cargo blacklist
         }
 
         //private void OnEmpPulse(EntityUid uid, VendingMachineComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
@@ -461,5 +470,10 @@ namespace Content.Server.VendingMachines
             }
         }
         // End Frontier: cash slot logic, custom vending check
+
+        private void OnTryVocalize(Entity<VendingMachineComponent> ent, ref TryVocalizeEvent args)
+        {
+            args.Cancelled |= ent.Comp.Broken;
+        }
     }
 }

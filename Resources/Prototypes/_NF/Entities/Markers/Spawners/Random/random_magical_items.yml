@@ -1,0 +1,57 @@
+#region table
+- type: entityTable
+  id: TableRandomMagicItemsWizard
+  table: !type:GroupSelector
+    children:
+    # low impact items
+    - !type:GroupSelector
+      weight: 50
+      children:
+      - id: DrinkTeapotEndless
+      - id: ClothingWalletInfiniteGreed
+      - id: DrinkShakerShaking
+      - id: NFRavenbar
+      - id: ClothingNeckScarfWizardWarmth
+      - id: SmokingPipeWizardNicotine
+      - id: NFClothingNeckTieMetronome
+    # medium impact items
+    - !type:GroupSelector
+      weight: 40
+      children:
+      - id: PottedPlantCoinTree
+      - id: ClothingNeckCloakWizardHolding
+      - id: ClothingBeltWizardHolding
+      - id: CrateWizardLuggageWhistle
+      - id: SmokingPipeWizardThc
+    # high impact items
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: NFGeneratorWizardInfernalCore6kW
+      - id: GasTankWizardBottomless
+      - id: FairyDragonWings
+
+#region spawner
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnRandomMagicItemsWizard
+  name: random magical item
+  suffix: Wizard
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Clothing/Wallet/leather.rsi
+        state: closed-wizard
+      - sprite: _NF/Clothing/Wallet/leather.rsi
+        state: wizard-unshaded
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: green
+        scale: 0.7, 0.7
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomMagicItemsWizard
+      prob: 1.00

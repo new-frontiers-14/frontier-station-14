@@ -1,0 +1,830 @@
+# WizDen
+#region base mags .35
+- type: entity
+  id: NFBaseMagazinePistol35
+  name: pistol magazine (.35 pistol)
+  parent: [ BaseC1Contraband, BaseMagazinePistol, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazinePistol35
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgePistol35
+    capacity: 10
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: NFBaseMagazineHighCapacityPistol35
+  name: high capacity pistol magazine (.35 pistol)
+  parent: [ BaseC1Contraband, BaseMagazinePistolHighCapacity, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineHighCapacityPistol35
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgePistol35
+    capacity: 16
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: NFBaseMagazinePistolSubMachineGun35
+  name: smg magazine (.35 pistol)
+  parent: [ BaseC1Contraband, BaseMagazinePistolSubMachineGun, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineSubMachineGunPistol35
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgePistol35
+    capacity: 30
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: NFBaseMagazineSubMachineGunTopMounted35
+  name: top mounted smg magazine (.35 pistol)
+  parent: [ BaseC1Contraband, MagazinePistolSubMachineGunTopMounted, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineSubMachineGunTopMountedPistol35
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: NFBulletPistol35
+    whitelist:
+      tags:
+      - NFCartridgePistol35
+    capacity: 30
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag_top_mounted.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag_top_mounted.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+#region standard mags .35
+- type: entity
+  id: NFMagazinePistol35Empty
+  name: pistol magazine (.35 pistol, any)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazinePistol35
+  name: pistol magazine (.35 pistol)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+
+- type: entity
+  id: NFMagazinePistol35Overpressure
+  name: pistol magazine (.35 pistol, overpressure)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazinePistol35Incendiary
+  name: pistol magazine (.35 pistol, incendiary)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazinePistol35Uranium
+  name: pistol magazine (.35 pistol, uranium)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazinePistol35Practice
+  name: pistol magazine (.35 pistol, practice)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dddddd"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dddddd"
+
+# Frontier
+- type: entity
+  id: NFMagazinePistol35Emp
+  name: pistol magazine (.35 pistol, EMP)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Emp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ffff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ffff"
+
+- type: entity
+  id: NFMagazinePistol35Rubber
+  name: pistol magazine (.35 pistol, rubber)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+# WizDen
+#region highcap mags .35
+- type: entity
+  id: NFMagazineHighCapacityPistol35Empty
+  name: high capacity pistol magazine (.35 pistol, any)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineHighCapacityPistol35
+  name: high capacity pistol magazine (.35 pistol)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+
+- type: entity
+  id: NFMagazineHighCapacityPistol35Overpressure
+  name: high capacity pistol magazine (.35 pistol, overpressure)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol35Incendiary
+  name: high capacity pistol magazine (.35 pistol, incendiary)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol35Uranium
+  name: high capacity pistol magazine (.35 pistol, uranium)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol35Practice
+  name: high capacity pistol magazine (.35 pistol, practice)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+
+# Frontier
+- type: entity
+  id: NFMagazineHighCapacityPistol35Emp
+  name: high capacity pistol magazine (.35 pistol, EMP)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Emp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ffff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ffff"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol35Rubber
+  name: high capacity pistol magazine (.35 pistol, rubber)
+  parent: NFBaseMagazineHighCapacityPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+# WizDen
+#region smg mags .35
+- type: entity
+  id: NFMagazineSubMachineGun35Empty
+  name: smg magazine (.35 pistol, any)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineSubMachineGun35
+  name: smg magazine (.35 pistol)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+
+- type: entity
+  id: NFMagazineSubMachineGun35Overpressure
+  name: smg magazine (.35 pistol, overpressure)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineSubMachineGun35Incendiary
+  name: smg magazine (.35 pistol, incendiary)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineSubMachineGun35Uranium
+  name: smg magazine (.35 pistol, uranium)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineSubMachineGun35Practice
+  name: smg magazine (.35 pistol, practice)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Empty
+  name: top mounted smg magazine (.35 pistol, any)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35
+  name: top mounted smg magazine (.35 pistol)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Overpressure
+  name: top mounted smg magazine (.35 pistol, overpressure)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#ff8d00"
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Incendiary
+  name: top mounted smg magazine (.35 pistol, incendiary)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#ff0000"
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Uranium
+  name: top mounted smg magazine (.35 pistol, uranium)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#00ff00"
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Practice
+  name: top mounted smg magazine (.35 pistol, practice)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+
+# Frontier
+- type: entity
+  id: NFMagazineSubMachineGun35Rubber # MagazinePistolSubMachineGunRubber
+  name: smg magazine (.35 pistol, rubber)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+- type: entity
+  id: NFMagazineSubMachineGun35Emp # MagazinePistolSubMachineGunEmp
+  name: smg magazine (.35 pistol, EMP)
+  parent: NFBaseMagazinePistolSubMachineGun35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Emp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ffff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ffff"
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Emp
+  name: top mounted smg magazine (.35 pistol, EMP)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Emp
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#00ffff"
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ffff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ffff"
+
+- type: entity
+  id: NFMagazineSubMachineGunTopMounted35Rubber
+  name: top mounted smg magazine (.35 pistol, rubber)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#00b0ff"
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"

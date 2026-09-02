@@ -126,7 +126,7 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        int price = (int)double.Clamp((pointsEarned * component.PointPriceCoefficient), component.MinimumPrice, component.MaximumPrice);
+        int price = (int)Math.Clamp(pointsEarned * component.PointPriceCoefficient, component.MinimumPrice, component.MaximumPrice);
 
         component.StartPrice = price;
         component.EndPrice = price;

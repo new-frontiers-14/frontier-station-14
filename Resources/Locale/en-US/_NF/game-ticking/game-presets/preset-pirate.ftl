@@ -13,4 +13,7 @@ objective-issuer-nf-pirate = [color=#F6CE64]Freebooters' Union[/color]
 
 nf-pirate-round-end-agent-name = pirate
 
+roles-antag-nf-pirate-name = Pirate
+roles-antag-nf-pirate-first-mate-name = Pirate First Mate
+roles-antag-nf-pirate-captain-name = Pirate Captain
 roles-antag-nf-pirate-objective = Plunder the sector, amass doubloons.

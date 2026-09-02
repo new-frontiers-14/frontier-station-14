@@ -11,12 +11,15 @@
         map: ["enum.GunVisualLayers.Base"]
   - type: Item
     size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
     sprite: Objects/Weapons/Guns/Shotguns/flaregun.rsi
   - type: ItemSlots
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: ShellShotgunFlare
+        startingItem: NFShellShotgunFlare # Frontier: use NF prefix
         priority: 1
         whitelist:
           tags: ## TODO: Add a risk of the gun blowing up if using non-light shotgun shells, and then re-enable them.
@@ -51,6 +54,7 @@
 
 
 - type: entity
+  abstract: true # Frontier: use NF variant
   name: security shell gun
   parent: [WeaponFlareGun, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: WeaponFlareGunSecurity

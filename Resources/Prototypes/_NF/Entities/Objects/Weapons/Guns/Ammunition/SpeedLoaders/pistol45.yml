@@ -1,0 +1,198 @@
+# WizDen
+# NF base
+- type: entity
+  id: NFBaseSpeedLoaderPistol45
+  name: "speed loader (.45 pistol)"
+  parent: [ BaseC1Contraband, BaseItem, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFSpeedLoaderPistol45
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol45
+    capacity: 6
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+
+# .45 pistol, speed loaders
+- type: entity
+  id: NFSpeedLoaderPistol45Empty
+  name: "speed loader (.45 pistol, any)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFSpeedLoaderPistol45
+  name: "speed loader (.45 pistol)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45
+
+- type: entity
+  id: NFSpeedLoaderPistol45Overpressure
+  name: "speed loader (.45 pistol, overpressure)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ffff00"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#ffff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#ffff00"
+
+- type: entity
+  id: NFSpeedLoaderPistol45Incendiary
+  name: "speed loader (.45 pistol, incendiary)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFSpeedLoaderPistol45Uranium
+  name: "speed loader (.45 pistol, uranium)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFSpeedLoaderPistol45Practice
+  name: "speed loader (.45 pistol, practice)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+
+# Frontier
+# .45 pistol, speed loaders
+- type: entity
+  id: NFSpeedLoaderPistol45Rubber
+  name: "speed loader (.45 pistol, Rubber)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#00b0ff"

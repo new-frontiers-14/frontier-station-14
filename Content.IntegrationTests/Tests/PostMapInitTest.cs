@@ -33,20 +33,17 @@ namespace Content.IntegrationTests.Tests
         private const bool SkipTestMaps = true;
         private const string TestMapsPath = "/Maps/_NF/Test/"; // Frontier: _NF
 
-        // Frontier: TODO - define this to our set of maps of interest
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
-            "Dart"
+            // "CentComm", // Frontier: no upstream maps
+            // "Dart" // Frontier: no upstream maps
+            "MiniCentcomm" // Frontier: Contains multiple CentComm items and Shipyard Console.
         };
 
         private static readonly string[] Grids =
         {
             // Frontier: no upstream maps, define our own.
-            // "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml"
-            // End Frontier
         };
 
         private static readonly string[] DoNotMapWhitelist =
@@ -54,8 +51,6 @@ namespace Content.IntegrationTests.Tests
             // Frontier: no upstream maps
             // "/Maps/centcomm.yml",
             // "/Maps/bagel.yml", // Contains mime's rubber stamp --> Either fix this, remove the category, or remove this comment if intentional.
-            // "/Maps/gate.yml", // Contains positronic brain and LSE-1200c "Perforator"
-            // "/Maps/meta.yml", // Contains warden's rubber stamp
             // "/Maps/reach.yml", // Contains handheld crew monitor
             // "/Maps/Shuttles/ShuttleEvent/cruiser.yml", // Contains LSE-1200c "Perforator"
             // "/Maps/Shuttles/ShuttleEvent/honki.yml", // Contains golden honker, clown's rubber stamp
@@ -64,13 +59,42 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Outpost/frontier.yml", // Contains janitorial bomb suit closet
             "/Maps/_NF/POI/tinnia.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/POI/lpbravo.yml", // Contains syndicate rubber stamp
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder and CentComm Pen
+            "/Maps/_NF/Shuttles/Admin/warden.yml", // Contains CentComm Clipboard and plastitanium walls.
             "/Maps/_NF/Shuttles/Nfsd/paladin.yml", // Contains EXP-2100g "Duster"
             "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship"
+            "/Maps/_NF/Admin/ninthcircle.yml", // Contains Intercom (all encryption keys)
             // End Frontier
         };
 
         private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
+        // Frontier: comment out upstream game maps
+        /*
+        private static readonly string[] GameMaps =
+        {
+            "Dev",
+            "TestTeg",
+            "Fland",
+            "Packed",
+            "Bagel",
+            "CentComm",
+            "Box",
+            "Marathon",
+            "MeteorArena",
+            "Saltern",
+            "Reach",
+            "Oasis",
+            "Amber",
+            "Plasma",
+            "Elkridge",
+            "Relic",
+            "dm01-entryway",
+            "Exo",
+        };
+        */
+        // End Frontier: comment out upstream game maps
+
+        private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
@@ -123,7 +147,7 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            var shuttleFolder = new ResPath("/Maps/_NF/Shuttles"); // Frontier: use NF maps
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>
@@ -254,7 +278,7 @@ namespace Content.IntegrationTests.Tests
                 return;
 
             var yamlEntities = node["entities"];
-            if (!protoManager.TryIndex<EntityCategoryPrototype>("DoNotMap", out var dnmCategory))
+            if (!protoManager.TryIndex(DoNotMapCategory, out var dnmCategory))
                 return;
 
             Assert.Multiple(() =>

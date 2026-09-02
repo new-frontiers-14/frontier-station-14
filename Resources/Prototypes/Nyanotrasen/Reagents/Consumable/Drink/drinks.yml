@@ -57,3 +57,13 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+      - !type:AdjustReagent # Frontier
+        reagent: Theobromine # Frontier
+        amount: 0.05 # Frontier
+      - !type:AdjustReagent # Frontier
+        conditions: # Frontier
+        - !type:ReagentThreshold # Frontier
+          reagent: Caffeine # Frontier
+          max: 60 # Frontier
+        reagent: Caffeine # Frontier
+        amount: 1 # Frontier

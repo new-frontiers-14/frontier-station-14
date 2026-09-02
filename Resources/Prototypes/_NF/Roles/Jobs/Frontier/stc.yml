@@ -12,7 +12,7 @@
       role: JobSecurityGuard
       time: 10800 # 3 hrs as security guard
   canBeAntag: false
-  icon: "JobIconStc" 
+  icon: "JobIconStc"
   supervisors: job-supervisors-sr
   weight: 160
   displayWeight: 50 # Second from the top
@@ -24,6 +24,8 @@
   - Frontier
   - StationTrafficController
   special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -36,4 +38,14 @@
     back:
     - Flash
     - RubberStampStc
-    - EncryptionKeyStationMaster
+    - BoxFolderStc
+    - ShipVoucherFrontierStc
+  encryptionKeys:
+  - EncryptionKeyStationMaster
+
+- type: chameleonOutfit
+  id: StationTrafficControllerChameleonOutfit
+  job: StationTrafficController
+  equipment:
+    head: ClothingHeadHatStcCap
+

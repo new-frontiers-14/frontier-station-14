@@ -25,7 +25,7 @@ public sealed partial class CrispinessLevelSetPrototype : IPrototype
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class CrispinessTextSet
 {
-    // Localized string for name format, should expect to receive "entity" as the name of the entity.
+    // Localized string for name format, should expect to receive "baseName" as the name of the entity.
     [DataField(required: true)]
     public string Name = default!;
 

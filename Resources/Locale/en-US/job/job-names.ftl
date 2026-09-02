@@ -48,6 +48,7 @@ job-name-ertjanitor = ERT Janitor
 job-name-boxer = Boxer
 job-name-zookeeper = Zookeeper
 job-name-visitor = Visitor
+job-name-cluwne = Cluwne
 
 # unused jobs
 # these are required for the agent ID job icon tooltips
@@ -78,7 +79,8 @@ JobCentralCommandOfficial = Central Command Official
 JobChaplain = Chaplain
 JobChef = Chef
 JobChemist = Chemist
-JobChiefEngineer = Chief Engineer
+# Frontier: Chief Engineer<Plant Manager
+JobChiefEngineer = Plant Manager
 JobChiefMedicalOfficer = Chief Medical Officer
 JobClown = Clown
 JobDetective = Detective

@@ -159,9 +159,20 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechUiActionEntity;
     [DataField] public EntityUid? MechEjectActionEntity;
 
+    // Frontier: extra fields
     /// <summary>
-    /// Frontier: whether or not the equipment in the mech can be removed.
+    /// Whether or not the equipment in the mech can be removed.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool CanRemoveEquipment = true;
+
+    [DataField(serverOnly: true)]
+    public bool MobStateAdded = false;
+
+    [DataField(serverOnly: true)]
+    public bool MobThresholdsAdded = false;
+
+    [DataField(serverOnly: true)]
+    public bool NpcFactionAdded = false;
+    // End Frontier: extra fields
 }

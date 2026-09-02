@@ -1,18 +1,4 @@
 - type: entity
-  id: CrateServiceJanitorialSupplies2
-  parent: CratePlasticBiodegradable
-  name: janitorial supplies crate B
-  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials™! Contains two trash bag boxes, one box of wet floor signs and two bottles of spray cleaner.
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxTrashbag
-        amount: 2
-      - id: SprayBottleSpaceCleaner
-        amount: 2
-      - id: BoxWetFloorSign
-
-- type: entity
   id: CrateVehicleJanicart
   parent: CrateLivestock
   name: janicart crate
@@ -27,8 +13,53 @@
   id: CrateServiceReplacementColoredLights
   name: colored lights crate
   parent: CrateGenericSteel
+  description: Contains an assortment of colored light tubes and bulbs.
   components:
   - type: StorageFill
     contents:
       - id: BoxColoredLighttube
       - id: BoxColoredLightbulb
+
+- type: entity
+  id: CrateServiceReplacementNavigationLights
+  name: navigation lights crate
+  parent: CrateGenericSteel
+  description: Contains an assortment of red and green light tubes and bulbs.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxColoredNavigationLighttube
+    - id: BoxColoredNavigationbulb
+
+- type: entity
+  id: CrateServiceReplacementCoolLights
+  name: cool lights crate
+  parent: CrateGenericSteel
+  description: Contains an assortment of blue and cyan light tubes and bulbs.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxColoredCooltube
+    - id: BoxColoredCoolbulb
+
+- type: entity
+  id: CrateServiceReplacementConstructionLights
+  name: construction lights crate
+  parent: CrateGenericSteel
+  description: Contains an assortment of orange and yellow light tubes and bulbs.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxColoredConstructiontube
+    - id: BoxColoredConstructionbulb
+
+- type: entity
+  id: CrateServiceReplacementPartyLights
+  name: party lights crate
+  parent: CrateGenericSteel
+  description: Contains an assortment of black and pink light tubes and bulbs.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxColoredPartytube
+    - id: BoxColoredPartybulb

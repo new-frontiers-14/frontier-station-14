@@ -33,6 +33,23 @@ public sealed partial class StartingGearPrototype : IPrototype, IInheritingProto
     [DataField]
     [AlwaysPushInheritance]
     public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
+
+    // Frontier: extra fields
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> EncryptionKeys { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> Implants { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> Cartridges { get; set; } = new();
+    // End Frontier: extra fields
 }
 
 /// <summary>
@@ -54,6 +71,24 @@ public interface IEquipmentLoadout
     /// Inserts entities into the specified slot's storage (if it does have storage).
     /// </summary>
     public Dictionary<string, List<EntProtoId>> Storage { get; set; }
+
+    // Frontier: extra fields
+    /// <summary>
+    /// Slots entities into the entity's headset.
+    /// If they are not encryption keys, they will not be spawned.
+    /// </summary>
+    public List<EntProtoId> EncryptionKeys { get; set; }
+
+    /// <summary>
+    /// Implants entities into the entity.
+    /// </summary>
+    public List<EntProtoId> Implants { get; set; }
+
+    /// <summary>
+    /// Inserts cartridges into the user's PDA.
+    /// </summary>
+    public List<EntProtoId> Cartridges { get; set; }
+    // End Frontier: extra fields
 
     /// <summary>
     /// Gets the entity prototype ID of a slot in this starting gear.

@@ -29,6 +29,8 @@
   - HoloprojectorField
   - SignallerAdvanced
   # - DeviceQuantumSpinInverter # Frontier
+  - DeviceDesynchronizer
+  - NFClothingBackpackHarmpack # Frontier: use NF variant
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -36,6 +38,7 @@
   - ClothingShoesBootsMagSci
   - NFClothingShoesBootsMoon # Frontier: use NF variant
   - ClothingShoesBootsSpeed
+  - ClothingShoesBootsJump
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
@@ -45,14 +48,18 @@
   recipes:
   - PowerCellMicroreactor
   - PowerCellHigh
+  - PowerCellHyper
 
 - type: latheRecipePack
   id: ScienceWeapons
   recipes:
-  - WeaponPistolCHIMP
+  - NFWeaponPistolCHIMP # Frontier: add NF prefix
   # - WeaponForceGun # Frontier
-  - WeaponLaserSvalinn
-  - WeaponProtoKineticAccelerator
+  - NFWeaponPka # Frontier: WeaponProtoKineticAccelerator<NFWeaponPka
+  - NFWeaponPkaCannon # Frontier
+  # - PKAUpgradeDamage # Frontier
+  # - PKAUpgradeRange # Frontier
+  # - PKAUpgradeFireRate # Frontier
   # - WeaponTetherGun # Frontier
   - WeaponGauntletGorilla
 
@@ -66,10 +73,10 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
 
-# Only contains parts for making basic modular grenades, no actual explosives
 - type: latheRecipePack
   id: ScienceExplosives
   recipes:
+  - ExplosivePayload #Frontier
   - ChemicalPayload
   - FlashPayload
   - TimerTrigger
@@ -94,6 +101,7 @@
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
+  - ResearchComputerCircuitboard # Frontier: add research computer
 
 - type: latheRecipePack
   id: CameraBoards

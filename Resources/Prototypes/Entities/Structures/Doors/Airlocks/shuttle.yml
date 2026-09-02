@@ -6,6 +6,7 @@
   description: Necessary for connecting two space craft together.
   components:
   - type: Docking
+    dockType: Airlock # Frontier: Prevent shuttle airlocks from docking to transit-exclusive airlocks
   - type: DockingSignalControl
   - type: DeviceLinkSource
     ports:
@@ -52,14 +53,14 @@
   - type: Tag
     tags:
       - ForceNoFixRotations
-  - type: PaintableAirlock
-    group: Shuttle
-    department: null
   - type: Construction
     graph: AirlockShuttle
     node: airlock
   - type: StaticPrice
     price: 350
+  - type: Paintable
+    #group: null            # Frontier - Paintable docking airlocks
+    group: DockingStandard  # Frontier - Paintable docking airlocks
 
 - type: entity
   id: AirlockGlassShuttle
@@ -72,8 +73,6 @@
     sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
   - type: Occluder
     enabled: false
-  - type: PaintableAirlock
-    group: ShuttleGlass
   - type: Door
     occludes: false
   - type: Fixtures
@@ -81,9 +80,13 @@
       fix1:
         layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
         - GlassAirlockLayer
-  - type: Construction # Frontier
-    graph: AirlockShuttle # Frontier
-    node: airlockGlass # Frontier
+  # Frontier start
+  - type: Construction
+    graph: AirlockShuttle
+    node: airlockGlass
+  - type: Paintable
+    group: DockingGlass
+  # Frontier end
 
 - type: entity
   id: AirlockShuttleAssembly
@@ -123,3 +126,13 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/shuttle_syndicate.rsi
+
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttleXenoborg
+  suffix: Docking
+  name: external airlock
+  description: Necessary for connecting two space craft together.
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/shuttle_xenoborg.rsi

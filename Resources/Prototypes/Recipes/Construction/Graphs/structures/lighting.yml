@@ -32,6 +32,24 @@
             - material: Glass
               amount: 1
               doAfter: 1.0
+        # Frontier: shielded lights
+        - to: bulbLightShielded
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1.0
+            - material: Plasteel
+              amount: 1
+              doAfter: 1.0
+        - to: tubeLightShielded
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1.0
+            - material: Plasteel
+              amount: 2
+              doAfter: 2.0
+        # End Frontier: shielded lights
     - node: tubeLight
       entity: PoweredlightEmpty
       edges:
@@ -47,6 +65,16 @@
               prototype: SheetSteel1
               amount: 2
             - !type:DeleteEntity {}
+        # Frontier: shielded lights
+        - to: tubeLightShielded
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 1.0
+        # End Frontier: shielded lights
     - node: bulbLight
       entity: PoweredSmallLightEmpty
       edges:
@@ -62,6 +90,16 @@
               prototype: SheetSteel1
               amount: 1
             - !type:DeleteEntity {}
+        # Frontier: shielded lights
+        - to: bulbLightShielded
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - material: Plasteel
+              amount: 1
+              doAfter: 1.0
+        # End Frontier: shielded lights
     - node: groundLight
       entity: PoweredLightPostSmallEmpty
       edges:
@@ -107,3 +145,41 @@
               prototype: SheetGlass1
               amount: 1
             - !type:DeleteEntity {}
+    # Frontier: shielded lights
+    - node: tubeLightShielded
+      entity: NFPoweredlightShieldedEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: bulbLightShielded
+      entity: NFPoweredSmallLightShieldedEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 1
+            - !type:DeleteEntity {}
+    # End Frontier: shielded lights

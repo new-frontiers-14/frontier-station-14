@@ -17,7 +17,6 @@ namespace Content.Server.Database;
 /// </remarks>
 public sealed class UserDbDataManager : IPostInjectInit
 {
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
 
     private readonly Dictionary<NetUserId, UserData> _users = new();
@@ -44,6 +43,10 @@ public sealed class UserDbDataManager : IPostInjectInit
 
     public void ClientDisconnected(ICommonSession session)
     {
+        // Harmony Queue Start
+        if (!_users.ContainsKey(session.UserId))
+            return; // No session to clean up, was in the queue and not the game
+        // Harmoney Queue End
         _users.Remove(session.UserId, out var data);
         if (data == null)
             throw new InvalidOperationException("Did not have cached data in ClientDisconnect!");

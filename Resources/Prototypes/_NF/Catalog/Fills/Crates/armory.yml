@@ -1,4 +1,4 @@
-# Registered (legal) weapon crates
+#Registered (legal) weapon crates
 - type: entity
   id: CrateArmoryRifleGestio
   parent: CrateFirearmsSecure
@@ -7,12 +7,12 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponRifleGestioExpedition
+      - id: NFWeaponRifleAssaultGestio
         amount: 2
-      - id: MagazineLightRifleLowCapacity
+      - id: NFMagazineLowCapacityRifle30
         amount: 6
 
-# Contraband (unregistered) weaponry crates for expeditions
+#Contraband (unregistered) weaponry crates for expeditions
 - type: entity
   id: CrateArmorySMGExpedition
   parent:
@@ -24,9 +24,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponSubMachineGunWt550Expedition
+      - id: NFWeaponSubMachineGunWt550Expedition
         amount: 2
-      - id: MagazinePistolSubMachineGunTopMounted
+      - id: NFMagazineSubMachineGunTopMounted35
         amount: 4
 
 - type: entity
@@ -40,9 +40,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponShotgunKammererExpedition
+      - id: NFWeaponShotgunEnforcerExpedition
         amount: 2
-      - id: BoxLethalshot
+      - id: NFAmmunitionBoxShellShotgunBuckshot
         amount: 3
 
 - type: entity
@@ -56,7 +56,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLaserCarbineExpedition
+      - id: NFWeaponEnergyRifleCarbineExpedition
         amount: 3
 
 - type: entity
@@ -70,7 +70,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponEnergyGunExpedition
+      - id: NFWeaponEnergySubMachineGunDeltaVExpedition
         amount: 3
 
 - type: entity
@@ -84,9 +84,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponPistolMk58Expedition
+    - id: NFWeaponPistolMk58Expedition
       amount: 2
-    - id: MagazinePistol
+    - id: NFMagazinePistol35
       amount: 4
 
 - type: entity
@@ -100,9 +100,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponRifleGestioExpedition
+      - id: NFWeaponRifleAssaultGestioExpedition
         amount: 2
-      - id: MagazineLightRifleLowCapacity
+      - id: NFMagazineLowCapacityRifle30
         amount: 6
 
 - type: entity
@@ -116,13 +116,13 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponRifleNovaliteC1Expedition
+      - id: NFWeaponRifleAssaultNovaliteC1Expedition
         amount: 2
-      - id: MagazineNovaliteC1
+      - id: NFMagazineClipRifle20
         amount: 6
 
-# Ammo crates
-## .20 rifle
+#Ammo crates
+#Region .20 rifle
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -151,12 +151,12 @@
   id: CrateAmmoBoxBigRubber20
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - CrateAmmoSecureMercenary
-  - StorageFillAmmoBoxPractice20
-  id: CrateAmmoBoxPractice20
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - CrateAmmoSecureMercenary
+#   - StorageFillAmmoBoxPractice20
+#   id: CrateAmmoBoxPractice20
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -172,7 +172,7 @@
   id: CrateAmmoBoxUranium20
   categories: [ HideSpawnMenu ]
 
-## .30 rifle
+#Region .30 rifle
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -194,12 +194,12 @@
   id: CrateAmmoBoxRubber30
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - CrateAmmoSecureMercenary
-  - StorageFillAmmoBoxPractice30
-  id: CrateAmmoBoxPractice30
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - CrateAmmoSecureMercenary
+#   - StorageFillAmmoBoxPractice30
+#   id: CrateAmmoBoxPractice30
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -215,7 +215,7 @@
   id: CrateAmmoBoxUranium30
   categories: [ HideSpawnMenu ]
 
-## .35 pistol
+#Region .35 pistol
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -230,12 +230,12 @@
   id: CrateAmmoBoxRubber35
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - CrateAmmoSecureMercenary
-  - StorageFillAmmoBoxPractice35
-  id: CrateAmmoBoxPractice35
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - CrateAmmoSecureMercenary
+#   - StorageFillAmmoBoxPractice35
+#   id: CrateAmmoBoxPractice35
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -258,7 +258,14 @@
   id: CrateAmmoBoxEmp35
   categories: [ HideSpawnMenu ]
 
-## .25 caseless
+- type: entity
+  parent:
+  - CrateAmmoSecureMercenary
+  - StorageFillAmmoBoxBigLethal35
+  id: CrateAmmoBoxBigLethal35
+  categories: [ HideSpawnMenu ]
+
+#Region .25 caseless
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -287,14 +294,14 @@
   id: CrateAmmoBoxBigRubber25
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - CrateAmmoSecureMercenary
-  - StorageFillAmmoBoxPractice25
-  id: CrateAmmoBoxPractice25
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - CrateAmmoSecureMercenary
+#   - StorageFillAmmoBoxPractice25
+#   id: CrateAmmoBoxPractice25
+#   categories: [ HideSpawnMenu ]
 
-## Shotgun
+#Region Shotgun
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -309,12 +316,12 @@
   id: CrateAmmoBoxRubberShotgun
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - CrateAmmoSecureMercenary
-  - StorageFillAmmoBoxPracticeShotgun
-  id: CrateAmmoBoxPracticeShotgun
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - CrateAmmoSecureMercenary
+#   - StorageFillAmmoBoxPracticeShotgun
+#   id: CrateAmmoBoxPracticeShotgun
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -344,7 +351,14 @@
   id: CrateAmmoBoxFlareShotgun
   categories: [ HideSpawnMenu ]
 
-## .45 ammo
+- type: entity
+  parent:
+  - CrateAmmoSecureMercenary
+  - StorageFillAmmoBoxBigLethalShotgun
+  id: CrateAmmoBoxBigLethalShotgun
+  categories: [ HideSpawnMenu ]
+
+#Region .45 ammo
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -359,12 +373,12 @@
   id: CrateAmmoBoxRubber45
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - CrateAmmoSecureMercenary
-  - StorageFillAmmoBoxPractice45
-  id: CrateAmmoBoxPractice45
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - CrateAmmoSecureMercenary
+#   - StorageFillAmmoBoxPractice45
+#   id: CrateAmmoBoxPractice45
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -378,4 +392,11 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUranium45
   id: CrateAmmoBoxUranium45
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent:
+  - CrateAmmoSecureMercenary
+  - StorageFillAmmoBoxBigLethal45
+  id: CrateAmmoBoxBigLethal45
   categories: [ HideSpawnMenu ]

@@ -3,7 +3,7 @@ using System.Linq;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Medical.Components;
 using Content.Server.Administration.Logs;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
@@ -26,24 +26,27 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server._NF.Traits.Assorted;
+using Content.Server.Hands.Systems;
 
 namespace Content.Server._NF.Medical;
 
 public sealed partial class MedicalBountySystem : EntitySystem
 {
+    [Dependency] IAdminLogManager _adminLog = default!;
     [Dependency] IRobustRandom _random = default!;
     [Dependency] IPrototypeManager _proto = default!;
-    [Dependency] DamageableSystem _damageable = default!;
-    [Dependency] BloodstreamSystem _bloodstream = default!;
-    [Dependency] SharedContainerSystem _container = default!;
-    [Dependency] StackSystem _stack = default!;
     [Dependency] AudioSystem _audio = default!;
+    [Dependency] BankSystem _bank = default!;
+    [Dependency] BloodstreamSystem _bloodstream = default!;
+    [Dependency] DamageableSystem _damageable = default!;
+    [Dependency] HandsSystem _hands = default!;
     [Dependency] PopupSystem _popup = default!;
-    [Dependency] UserInterfaceSystem _ui = default!;
     [Dependency] PowerReceiverSystem _power = default!;
     [Dependency] SharedAppearanceSystem _appearance = default!;
-    [Dependency] BankSystem _bank = default!;
-    [Dependency] IAdminLogManager _adminLog = default!;
+    [Dependency] SharedContainerSystem _container = default!;
+    [Dependency] StackSystem _stack = default!;
+    [Dependency] TransformSystem _transform = default!;
+    [Dependency] UserInterfaceSystem _ui = default!;
 
     private List<MedicalBountyPrototype> _cachedPrototypes = new();
 
@@ -120,7 +123,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
             Solution soln = new Solution();
             var reagentQuantity = _random.Next(reagentValue.MinQuantity, reagentValue.MaxQuantity + 1);
             soln.AddReagent(reagentType, reagentQuantity);
-            if (_bloodstream.TryAddToChemicals(entity, soln, bloodstream))
+            if (_bloodstream.TryAddToChemicals(entity, soln))
                 bountyValueAccum += reagentQuantity * reagentValue.ValuePerPoint;
         }
 
@@ -185,8 +188,9 @@ public sealed partial class MedicalBountySystem : EntitySystem
         }
         else if (bountyPayout > 0)
         {
-            // Use SpawnMultiple in case spesos ever have a limit.
-            _stack.SpawnMultiple("SpaceCash", bountyPayout, Transform(uid).Coordinates);
+            var stackUid = _stack.Spawn(bountyPayout, "Credit", Transform(uid).Coordinates);
+            if (!_hands.TryPickupAnyHand(ev.Actor, stackUid))
+                _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
 
             _adminLog.Add(LogType.MedicalBountyRedeemed, LogImpact.Low, $"{ToPrettyString(ev.Actor):actor} redeemed the medical bounty for {ToPrettyString(bountyUid):subject}. Base value: {bountyPayout}.");
         }

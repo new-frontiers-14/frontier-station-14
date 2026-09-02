@@ -1,0 +1,78 @@
+# region base
+- type: entity
+  abstract: true
+  id: PrintedRingBase
+  suffix: Printed
+  components:
+  - type: StaticPrice
+    price: 30
+  - type: Engraveable # Frontier - base rings may not be metallic
+
+# region silver
+- type: entity
+  parent: [ PrintedRingBase, SilverRing ]
+  id: NFSilverRingPrinted
+
+- type: entity
+  parent: [ PrintedRingBase, SilverRingGem ]
+  id: NFSilverRingGemPrinted
+
+- type: entity
+  parent: [ PrintedRingBase, SilverRingDiamond ]
+  id: NFSilverRingDiamondPrinted
+
+# region gold
+- type: entity
+  parent: [ PrintedRingBase, GoldRing ]
+  id: NFGoldRingPrinted
+
+- type: entity
+  parent: [ PrintedRingBase, GoldRingGem ]
+  id: NFGoldRingGemPrinted
+
+- type: entity
+  parent: [ PrintedRingBase, GoldRingDiamond ]
+  id: NFGoldRingDiamondPrinted
+
+# region plasteel
+- type: entity
+  parent: [ RingBase, PrintedRingBase ]
+  id: NFPlasteelRingPrinted
+  name: plasteel ring
+  description: A precious ring.
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#6a686a"
+
+- type: entity
+  parent: NFPlasteelRingPrinted
+  id: NFPlasteelRingGem
+  name: plasteel gem ring
+  description: Shiny and valuable!
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#6a686a"
+      - state: gem
+        map: [ "gemColor" ]
+  - type: RandomSprite
+    getAllGroups: true
+    available:
+      - gemColor:
+          gem: Rainbow
+
+- type: entity
+  parent: NFPlasteelRingPrinted
+  id: NFPlasteelRingDiamond
+  name: plasteel diamond ring
+  description: Made from ethically mined space diamonds.
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#6a686a"
+      - state: gem
+        color: "#c1ffff"

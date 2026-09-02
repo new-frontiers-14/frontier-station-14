@@ -9,7 +9,7 @@
     whitelist:
       tags:
         - CartridgeCaselessRifle
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 60
   - type: Item
     size: Small
@@ -17,7 +17,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -26,12 +26,14 @@
 
 # Boxes
 - type: entity
+  abstract: true # Frontier: use NF ammo
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRifle
   name: ammunition box (.25 caseless)
+  description: A cardboard box of .25 caseless rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -40,12 +42,14 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  abstract: true # Frontier: use NF ammo
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRiflePractice
   name: ammunition box (.25 caseless practice)
+  description: A cardboard box of .25 caseless rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRiflePractice
+    # proto: CartridgeCaselessRiflePractice # Frontier
   - type: Sprite
     layers:
     - state: base

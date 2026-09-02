@@ -19,6 +19,7 @@ namespace Content.Shared.PDA
         public string? Address;
         public int Balance; // Frontier
         public string? OwnedShipName; // Frontier
+        public TimeSpan? RoundEndTime; // Frontier
 
         public PdaUpdateState(
             List<NetEntity> programs,
@@ -30,6 +31,7 @@ namespace Content.Shared.PDA
             PdaIdInfoText pdaOwnerInfo,
             int balance, // Frontier
             string? ownedShipName, // Frontier
+            TimeSpan? roundEndTime, // Frontier
             string? stationName,
             bool hasUplink = false,
             bool canPlayMusic = false,
@@ -47,6 +49,7 @@ namespace Content.Shared.PDA
             Address = address;
             Balance = balance; // Frontier
             OwnedShipName = ownedShipName; // Frontier
+            RoundEndTime = roundEndTime; // Frontier
         }
     }
 

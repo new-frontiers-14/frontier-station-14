@@ -4029,9 +4029,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: Parallax
       parallax: FrontierStation
@@ -4039,10 +4037,12 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 2428
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1474
-    - type: InstantAction
+    - type: Action
       container: 1474
 - proto: AirAlarm
   entities:
@@ -6369,12 +6369,6 @@ entities:
 - proto: BusScheduleRoute3
   entities:
   - uid: 2215
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 59.5,23.5
-      parent: 2173
-  - uid: 2264
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -27712,7 +27706,7 @@ entities:
     - type: Transform
       pos: -54.5,18.5
       parent: 2173
-- proto: MailBag
+- proto: NFMailBag
   entities:
   - uid: 805
     components:
@@ -28305,6 +28299,13 @@ entities:
     components:
     - type: Transform
       pos: 43.550877,10.587616
+      parent: 2173
+- proto: ParcelDropoffPOI
+  entities:
+  - uid: 5794
+    components:
+    - type: Transform
+      pos: 30.5,20.5
       parent: 2173
 - proto: PillCanister
   entities:
@@ -33210,7 +33211,7 @@ entities:
         - Left: Forward
         - Right: Forward
         - Middle: Off
-- proto: UniformPrinter
+- proto: UniformPrinterStaff
   entities:
   - uid: 2042
     components:
@@ -33252,7 +33253,7 @@ entities:
     - type: Transform
       pos: -49.5,18.5
       parent: 2173
-- proto: VendingMachineCuddlyCritterVend
+- proto: VendingMachineCuddlyCritterVendPOI
   entities:
   - uid: 718
     components:

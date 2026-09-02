@@ -9,11 +9,35 @@ namespace Content.Shared.Audio.Jukebox;
 [Access(typeof(SharedJukeboxSystem))]
 public sealed partial class JukeboxComponent : Component
 {
+    /// <summary>
+    /// The currently playing song.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public ProtoId<JukeboxPrototype>? SelectedSongId;
 
+    /// <summary>
+    /// The audiostream
+    /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid? AudioStream;
+    public EntityUid? AudioStream; // wizden#42210
+
+    /// <summary>
+    /// The queue of queued songs. (which is actually a list)
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<JukeboxPrototype>> Queue = new(); // wizden#42210
+
+    /// <summary>
+    /// Whether or not a played song should be removed from the queue or readded to the bottom.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool RepeatTracks; // wizden#42210
+
+    /// <summary>
+    /// Whether or not the queue should be sampled randomly or in order.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ShuffleTracks; // wizden#42210
 
     /// <summary>
     /// RSI state for the jukebox being on.
@@ -45,26 +69,10 @@ public sealed partial class JukeboxComponent : Component
     // End Frontier
 }
 
-[Serializable, NetSerializable]
-public sealed class JukeboxPlayingMessage : BoundUserInterfaceMessage;
-
-[Serializable, NetSerializable]
-public sealed class JukeboxPauseMessage : BoundUserInterfaceMessage;
-
-[Serializable, NetSerializable]
-public sealed class JukeboxStopMessage : BoundUserInterfaceMessage;
-
-[Serializable, NetSerializable]
-public sealed class JukeboxSelectedMessage(ProtoId<JukeboxPrototype> songId) : BoundUserInterfaceMessage
-{
-    public ProtoId<JukeboxPrototype> SongId { get; } = songId;
-}
-
-[Serializable, NetSerializable]
-public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMessage
-{
-    public float SongTime { get; } = songTime;
-}
+// Component to raise an event when a track ends
+[RegisterComponent]
+public sealed partial class JukeboxMusicComponent : Component // wizden#42210
+{}
 
 [Serializable, NetSerializable]
 public enum JukeboxVisuals : byte

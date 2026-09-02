@@ -1,0 +1,57 @@
+- type: parallax
+  id: FrontierStation
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Parallaxes/layer1.png"
+      slowness: 0.998046875
+      scale: "1, 1"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_NF/Parallaxes/FrontierParallaxBG.png"
+      slowness: 0.998046875
+      scale: "1, 1"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_NF/Parallaxes/FrontierParallaxNeb.png"
+      slowness: 0.998046875
+      scale: "1, 1"
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.996625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.989375
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars-2.toml"
+      slowness: 0.987265625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml"
+      slowness: 0.984352
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_NF/Parallaxes/Asteroids.png"
+      slowness: 0.97
+      scale: 1.5,1.5
+      scrolling: "0.018, 0.01"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_NF/Parallaxes/Asteroids.png"
+      slowness: 0.80
+      scale: 0.95,0.95
+      scrolling: "-0.0075, -0.009"
+  layersLQ:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.875
+  layersLQUseHQ: false

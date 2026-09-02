@@ -1,7 +1,7 @@
 using Content.Server.Access.Systems;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
-using Content.Server.Mind.Commands;
+using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
@@ -14,8 +14,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Random;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Station;
 using JetBrains.Annotations;
@@ -23,14 +21,19 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
 using Content.Shared._NF.Bank.Components; // DeltaV
 using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
-using System.Linq;
-using Content.Shared.NameIdentifier; // Frontier
+using System.Linq; // Frontier
+using Content.Server.CartridgeLoader; // Frontier
+using Content.Shared.CartridgeLoader; // Frontier
+using Robust.Server.GameObjects; // Frontier
+using Robust.Shared.Containers; // Frontier
+using Content.Shared.Radio.Components; // Frontier
+using Content.Shared.Implants; // Frontier
+using Content.Shared.Implants.Components; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -50,19 +53,14 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
     [Dependency] private readonly IServerPreferencesManager _preferences = default!; // Frontier
-
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
-    private bool _randomizeCharacters;
-
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        base.Initialize();
-        Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
-    }
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
+    [Dependency] private readonly TransformSystem _xformSystem = default!; // Frontier
+    [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier
+    [Dependency] private readonly SharedImplanterSystem _implanter = default!; // Frontier
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
@@ -138,8 +136,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (prototype?.JobEntity != null)
         {
             DebugTools.Assert(entity is null);
-            var jobEntity = EntityManager.SpawnEntity(prototype.JobEntity, coordinates);
-            MakeSentientCommand.MakeSentient(jobEntity, EntityManager);
+            var jobEntity = Spawn(prototype.JobEntity, coordinates);
+            _mindSystem.MakeSentient(jobEntity);
 
             // Make sure custom names get handled, what is gameticker control flow whoopy.
             if (loadout != null)
@@ -147,35 +145,32 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 EquipRoleName(jobEntity, loadout, roleProto!);
             }
 
+            // Frontier: equip loadouts on custom job entities
+            if (prototype?.StartingGear is not null)
+                EquipStartingGear(jobEntity, prototype.StartingGear, raiseEvent: false);
+            // End Frontier: equip loadouts on custom job entities
+
             DoJobSpecials(job, jobEntity);
             _identity.QueueIdentityUpdate(jobEntity);
             return jobEntity;
         }
 
-        string speciesId;
-        if (_randomizeCharacters)
-        {
-            var weightId = _configurationManager.GetCVar(CCVars.ICRandomSpeciesWeights);
-            var weights = _prototypeManager.Index<WeightedRandomSpeciesPrototype>(weightId);
-            speciesId = weights.Pick(_random);
-        }
-        else if (profile != null)
-        {
-            speciesId = profile.Species;
-        }
-        else
-        {
-            speciesId = SharedHumanoidAppearanceSystem.DefaultSpecies;
-        }
+        string speciesId = profile != null ? profile.Species : SharedHumanoidAppearanceSystem.DefaultSpecies;
 
         if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
             throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
         entity ??= Spawn(species.Prototype, coordinates);
 
-        if (_randomizeCharacters)
+        if (profile != null)
         {
-            profile = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
+            _humanoidSystem.LoadProfile(entity.Value, profile);
+            _metaSystem.SetEntityName(entity.Value, profile.Name);
+
+            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+            {
+                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+            }
         }
 
         if (loadout != null)
@@ -195,6 +190,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 hasBalance = true;
             }
+
+            // Frontier: A final loadout applied at the end of everything else.
+            // Right now it's just being used for special auto-equips,
+            // but maybe it could be used in the future to equip all loadouts in a single pass?
+            LoadoutPrototype loadoutLast = new();
 
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
@@ -217,6 +217,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     {
                         bankBalance -= int.Max(0, loadoutProto.Price); // Treat negatives as zero.
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
+                        CollectLoadout(loadoutProto, ref loadoutLast);
                         equippedItems.Add(loadoutProto.ID);
                     }
                 }
@@ -246,6 +247,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         }
 
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
+                        CollectLoadout(loadoutProto, ref loadoutLast);
                         equippedItems.Add(fallback);
                         // Minimum number of items equipped, no need to load more prototypes.
                         if (equippedItems.Count >= groupPrototype.MinLimit)
@@ -256,8 +258,14 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             // Frontier: do not re-equip roleLoadout, make sure we equip job startingGear,
             // and deduct loadout costs from a bank account if we have one.
-            if (prototype?.StartingGear is not null)
-                EquipStartingGear(entity.Value, prototype.StartingGear, raiseEvent: false);
+            if (_prototypeManager.TryIndex(prototype?.StartingGear, out var startingGear))
+            {
+                EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                CollectLoadout(startingGear, ref loadoutLast);
+            }
+
+            // Frontier: Attempt auto-equip for implants, encryption keys, and PDA cartridges
+            TryAutoEquipMisc(entity.Value, loadoutLast);
 
             var bankComp = EnsureComp<BankAccountComponent>(entity.Value);
 
@@ -265,32 +273,17 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 _bank.TryBankWithdraw(session!, prefs!, profile!, initialBankBalance - bankBalance, out var newBalance);
             }
+
+            EquipRoleName(entity.Value, loadout, roleProto!);
             /// End Frontier: overwriting EquipRoleLoadout
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 
-        if (profile != null)
+        if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData))
         {
-            // Frontier: allow pseudonyms
-            var name = loadout != null && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
-            // Janky hack for borgs
-            if (TryComp<NameIdentifierComponent>(entity.Value, out var identifier))
-            {
-                // Append our name identifier (why have a pseudonym for a role that has a complete name identifier group?)
-                name = $"{name} {identifier.FullIdentifier}";
-            }
-            // End Frontier
-            if (prototype != null)
-                SetPdaAndIdCardData(entity.Value, name, prototype, station); // Frontier: profile.Name<name
-
-            _humanoidSystem.LoadProfile(entity.Value, profile);
-            _metaSystem.SetEntityName(entity.Value, name); // Frontier: profile.Name<name
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
-            {
-                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
-            }
+            SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station);
         }
 
         DoJobSpecials(job, entity.Value);
@@ -349,6 +342,113 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
 
     #endregion Player spawning helpers
+    // Frontier: extra loadout fields
+    /// <summary>
+    /// Function to equip an entity with encryption keys.
+    /// If not possible, will delete them.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="encryptionKeys">The encryption key prototype IDs to equip.</param>
+    private void EquipEncryptionKeysIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys)
+    {
+        if (!InventorySystem.TryGetSlotEntity(entity, "ears", out var slotEnt))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but doesn't have a headset!");
+            return;
+        }
+        if (!_container.TryGetContainer(slotEnt.Value, EncryptionKeyHolderComponent.KeyContainerName, out var keyContainer))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but their headset doesn't have an encryption key container!");
+            return;
+        }
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in encryptionKeys)
+        {
+            Log.Debug($"Entity {entity} auto-inserting loadout encryption key {entProto} into headset {keyContainer}.");
+            var spawnedEntity = Spawn(entProto, coords);
+            if (!_container.Insert(spawnedEntity, keyContainer))
+            {
+                QueueDel(spawnedEntity);
+                DebugTools.Assert(false, $"Entity {entity} could not insert their loadout encryption key {entProto} into their headset!");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Function to equip an entity with PDA cartridges.
+    /// If not possible, will delete them.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="pdaCartridges">The PDA cartridge prototype IDs to equip.</param>
+    private void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> pdaCartridges)
+    {
+        if (!InventorySystem.TryGetSlotEntity(entity, "id", out var slotEnt))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but doesn't have anything in their ID slot!");
+            return;
+        }
+        if (!TryComp<CartridgeLoaderComponent>(slotEnt, out var cartridgeLoader))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but the item in their ID slot isn't a cartridge loader!");
+            return;
+        }
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in pdaCartridges)
+        {
+            Log.Debug($"Entity {entity} auto-installing cartridge {entProto} into PDA {slotEnt.Value}.");
+            var spawnedEntity = Spawn(entProto, coords);
+            if (!_cartridgeLoader.InstallCartridge(slotEnt.Value, spawnedEntity, cartridgeLoader))
+                DebugTools.Assert(false, $"Entity {entity} could not install cartridge {entProto} into their PDA {slotEnt.Value}!");
+
+            QueueDel(spawnedEntity);
+        }
+    }
+
+    /// <summary>
+    /// Function to equip an entity with implants.
+    /// If not possible, will delete them.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="implants">The implant prototype IDs to equip.</param>
+    private void EquipImplantsIfPossible(EntityUid entity, List<EntProtoId> implants)
+    {
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in implants)
+        {
+            var spawnedEntity = Spawn(entProto, coords);
+            if (TryComp<ImplanterComponent>(spawnedEntity, out var implanter))
+                _implanter.Implant(entity, entity, spawnedEntity, implanter);
+            else
+                DebugTools.Assert(false, $"Entity has an implant for {entProto}, which doesn't have an implanter component!");
+            QueueDel(spawnedEntity);
+        }
+    }
+
+    public void TryAutoEquipMisc(EntityUid entity, LoadoutPrototype loadout)
+    {
+        if (loadout.Implants.Count > 0)
+            EquipImplantsIfPossible(entity, loadout.Implants);
+
+        if (loadout.EncryptionKeys.Count > 0)
+            EquipEncryptionKeysIfPossible(entity, loadout.EncryptionKeys);
+
+        if (loadout.Cartridges.Count > 0)
+            EquipPdaCartridgesIfPossible(entity, loadout.Cartridges);
+    }
+
+    /// <summary>
+    /// Function to collect and store encryption keys and cartridges.
+    /// Does not handle any equip logic.
+    /// </summary>
+    /// <param name="loadoutProto">The loadout prototype to collect from.</param>
+    /// <param name="collectorLoadout">Reference to the loadout to collect to.</param>
+    private void CollectLoadout(IEquipmentLoadout loadoutProto, ref LoadoutPrototype collectorLoadout)
+    {
+        collectorLoadout.EncryptionKeys.AddRange(loadoutProto.EncryptionKeys);
+        collectorLoadout.Cartridges.AddRange(loadoutProto.Cartridges);
+        collectorLoadout.Implants.AddRange(loadoutProto.Implants);
+    }
+    // End Frontier: extra loadout fields
 }
 
 /// <summary>

@@ -17,7 +17,7 @@
   abstract: true
   components:
   - type: StationRenameFaxes
-  
+
 - type: entity
   id: BaseStationRenameHolopads
   abstract: true
@@ -55,33 +55,27 @@
   id: NFBaseStationCargo
   abstract: true
   components:
-    - type: StationCargoOrderDatabase
+    - type: NFStationCargoOrderDatabase
 
 - type: entity
   id: BaseStationCargoMarket
   abstract: true
   components:
   - type: CargoMarketData
-    whitelist:
+    whitelist: #whitelist won't work if the item doesn't have a price, unless sold in a box with other items
       tags:
       - Ore
       - Sheet
       - Metal
       - Ingot
-      - RawMaterial
-      - CrystalRed
-      - CrystalGreen
-      - CrystalPink
-      - CrystalOrange
-      - CrystalBlue
-      - CrystalCyan
+      - ArtifactFragment
       components:
       - Material
       - ConstructionMaterials
-      - ToolRefinable
+      # ToolRefinable #only used by light bulbs and broken glass and blocked by SpaceTrash component anyway
       - MachinePart
       - VendingMachineRestock
-      - Seed
+      - Seed # do we really need that if everyone has a biogenerator already? It just clogs up the UI
       - MachineBoard
       - ComputerBoard
     blacklist:
@@ -90,27 +84,29 @@
       - Mail
       - Paper
       components:
-      - Anchorable # No structures, they won't fit in crates
-      - Food
-      - Currency # No selling money.
-      - SpaceGarbage
-      - Contraband
-      - Gun
-      - Ammo
-      - Drink
-      - GasTank # Default containers won't be empty
-      - Explosive
       - Actor
+      - Ammo
+      - Anchorable # No structures, they won't fit in crates
+      - Body # No corpses
+      - Contraband
+      - Currency # No selling money.
+      - Edible
+      - Explosive
+      - Food
+      - GasTank # Default containers won't be empty
+      - Gun
       - Mind # Players
       - MindContainer # Positronic brains
-      - Body # No corpses
       - MobPrice # Animals (live or dead) and the like
-      - Artifact # Unique, abusable for research points
       - RCD # Dup charges
+      - SpaceGarbage
+      - StationBoundObject # no laundering your rental ship machines
       - Storage # Till fixed
       - StorageFill # Till fixed
-      - BindToStation # no laundering your rental ship machines
+      - XenoArtifact # Unique, abusable for research points
     whitelistOverride:
+      tags:
+      - RawMaterial
       components:
       - UraniumMaterials # Counts as food
 

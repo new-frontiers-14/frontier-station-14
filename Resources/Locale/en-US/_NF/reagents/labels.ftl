@@ -23,7 +23,7 @@ reagent-label-sodium = [bold]Sodium[/bold]
 reagent-label-sugar = [bold]Sugar[/bold]
 reagent-label-sulfur = [bold]Sulfur[/bold]
 # Service & other reagents
-reagent-label-cornoil = [bold]Corn Oil[/bold]
+reagent-label-cornoil = [bold]Vegetable Oil[/bold]
 reagent-label-diethylamine = [bold]Diethylamine[/bold]
 reagent-label-ketchup = [bold]Ketchup[/bold]
 reagent-label-mayo = [bold]Mayonnaise[/bold]

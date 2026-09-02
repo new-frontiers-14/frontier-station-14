@@ -23,6 +23,31 @@
     damageCoefficient: 0.60
   - type: GroupExamine
 
+# mercenary armored bio suit
+- type: entity
+  parent: ClothingOuterBioGeneral
+  id: ClothingOuterBioArmoredMercenary
+  name: mercenary bio suit
+  description: The choice of armor for any mercenaries battling bio-hazards in atmosphere.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Bio/mercenary.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Bio/mercenary.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.8
+        Piercing: 0.8
+        Blunt: 0.84
+        Caustic: 0.4
+        Poison: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.84
+
 # Syndicate armored bio suit
 - type: entity
   parent:
@@ -84,3 +109,26 @@
     sprite: _NF/Clothing/OuterClothing/Vests/mercenary_webvest_black.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Vests/mercenary_webvest_black.rsi
+
+- type: entity
+  parent: ClothingOuterArmorReflective
+  id: NFClothingOuterArmorReflective
+  name: basic reflective vest
+  description: A vest with moderate protection against energy weapons.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Armor/basic_reflective_vest.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Armor/basic_reflective_vest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.7 # Normal reflective vest has 0.4
+  - type: Reflect
+    reflectProb: 0.05 # Normal reflective vest has 0.7
+    reflects:
+      - Energy
+    reflectingInHands: false

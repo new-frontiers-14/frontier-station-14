@@ -86,7 +86,7 @@
     board: GasMiningDrillMachineCircuitboard
   - type: GasDepositExtractor
     baseExtractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
-    extractionRate: 50 
+    extractionRate: 50
     extractionRateMultiplier: 1.2 # max rate: 86.4 mol/s => 20 kmol in ~3.9 min
     port: outlet
   - type: Fixtures
@@ -101,7 +101,8 @@
         layer:
         - MidImpassable
         - LowImpassable
-  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation
+    enabled: false # should be draggable between stations
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]
@@ -193,3 +194,119 @@
         docked-unlit:
           True: { visible: true }
           False: { visible: false }
+
+# When mapping this, ensure the middle square has HV cable and a connector port, it should work.
+- type: entity
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
+  id: EnergyAirConverter
+  name: energy-to-air converter
+  description: An enormous machine that converts huge amounts of power into superheated air.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Anchorable
+    flags: None
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+        enabled: false
+      port:
+        !type:PortablePipeNode
+        nodeGroupID: Pipe
+        rotationsEnabled: false
+        volume: 1
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
+    layers:
+    - sprite: _NF/Structures/Machines/GasConverter/base.rsi
+      state: base
+    - state: fan
+      map: [fan]
+      offset: -0.6875, 1 # 11/16, -22 px offset
+    - state: front-panel-unlit
+      shader: unshaded
+      map: [front-panel]
+      offset: 0, -1
+    - state: gas
+      color: "#FFFFFF01"
+      map: [gas]
+      offset: 1, 0.5
+    - state: window-unlit
+      shader: unshaded
+      map: [window]
+      offset: 0, 0.25
+    - state: panel-unlit
+      shader: unshaded
+      map: [panel]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        fan:
+          True: { state: fan-animated }
+          False: { state: fan }
+        front-panel:
+          True: { visible: true }
+          False: { visible: false }
+        panel:
+          True: { visible: true }
+          False: { visible: false }
+        window:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GasCanisterVisuals.PressureState:
+        gas:
+          0: { color: "#FFFFFF01" }
+          1: { color: "#FFFFFF22" }
+          2: { color: "#FFFFFF44" }
+          3: { color: "#FFFFFF66" }
+  - type: PowerConsumer
+    drawRate: 100000
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon # FIXME: no icon, machine doesn't appear on the power monitor
+  - type: WiredNetworkConnection
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key
+  - type: GasSpawnPowerConsumer
+    spawnMixture:
+      moles:
+      - 0.22 # Oxygen
+      - 0.78 # Nitrogen
+      temperature: 5273 # ~ 5000 deg C, roughly when plasma turns back into gas
+  - type: GasCanister
+    gasMixture:
+      volume: 10000 # big tank to store backup
+    gasTankSlot:
+      locked: True # cannot be unlocked, unusable
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: GasPortable # for the connector port
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      tank_slot: !type:ContainerSlot {}

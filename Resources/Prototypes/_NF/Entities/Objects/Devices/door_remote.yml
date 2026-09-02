@@ -13,3 +13,22 @@
   - type: Access
     groups:
     - AllNfsdAccess
+
+- type: entity
+  parent: DoorRemoteDefault
+  id: DoorRemoteShipyard
+  name: shipyard door remote
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#bdac85"
+    - state: door_remotescreencolour
+      color: "#7194a9"
+  - type: DoorRemote
+    includeUserAccess: true
+  - type: GridAccess
+  - type: StaticPrice
+    price: 55
+    vendPrice: 2000

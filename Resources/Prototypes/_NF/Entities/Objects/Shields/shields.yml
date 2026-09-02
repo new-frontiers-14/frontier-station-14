@@ -9,3 +9,63 @@
     sprite: _NF/Objects/Weapons/Melee/e_shield.rsi
   - type: PointLight
     color: green
+
+- type: entity
+  name: metal shield
+  parent: [BaseC1Contraband, RiotShield ]
+  id: NFMetalShield
+  description: A sturdy metal shield. It has a window so you can wink at whatever is hitting you.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: metal-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: metal
+
+- type: entity
+  id: NFShieldReflective
+  parent: [ BaseC1Contraband, RiotLaserShield ]
+  name: reflective shield
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: reflective-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: reflective
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Heat: 0.4
+    activeBlockModifier:
+      coefficients:
+        Heat: 0.5
+      flatReductions:
+        Heat: 1
+  - type: Reflect
+    reflectProb: 0.1
+    reflects:
+      - Energy
+    reflectingInHands: true
+
+- type: entity
+  id: NFShieldBallistic
+  parent: [ BaseC1Contraband, RiotBulletShield ]
+  name: bullet resistant shield
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: bullet-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: bullet
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Piercing: 0.75
+    activeBlockModifier:
+      coefficients:
+        Piercing: 0.60
+      flatReductions:
+        Piercing: 1

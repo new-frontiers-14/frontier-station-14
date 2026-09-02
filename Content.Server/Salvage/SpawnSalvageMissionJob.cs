@@ -11,7 +11,6 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.Atmos;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Dataset;
@@ -34,11 +33,12 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Components;
-using Content.Server._NF.Salvage.Expeditions; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Content.Server.Station.Systems; // Frontier
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
+using Content.Server._NF.Salvage.Expeditions; // Frontier
+using Content.Shared.Station.Components; // Frontier
+using Content.Shared._NF.Atmos.Components; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -46,19 +46,19 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 {
     private readonly IEntityManager _entManager;
     private readonly IGameTiming _timing;
-    private readonly IMapManager _mapManager;
     private readonly IPrototypeManager _prototypeManager;
     private readonly AnchorableSystem _anchorable;
     private readonly BiomeSystem _biome;
     private readonly DungeonSystem _dungeon;
     private readonly MetaDataSystem _metaData;
-    private readonly SharedTransformSystem _xforms;
     private readonly SharedMapSystem _map;
     private readonly StationSystem _station; // Frontier
     private readonly ShuttleSystem _shuttle; // Frontier
     private readonly SalvageSystem _salvage; // Frontier
 
     public readonly EntityUid Station;
+
+    public readonly EntityUid Shuttle; // Frontier
     public readonly EntityUid? CoordinatesDisk;
     private readonly SalvageMissionParams _missionParams;
 
@@ -76,36 +76,34 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         IEntityManager entManager,
         IGameTiming timing,
         ILogManager logManager,
-        IMapManager mapManager,
         IPrototypeManager protoManager,
         AnchorableSystem anchorable,
         BiomeSystem biome,
         DungeonSystem dungeon,
         MetaDataSystem metaData,
-        SharedTransformSystem xform,
         SharedMapSystem map,
         StationSystem stationSystem, // Frontier
         ShuttleSystem shuttleSystem, // Frontier
         SalvageSystem salvageSystem, // Frontier
         EntityUid station,
+        EntityUid shuttle, // Frontier
         EntityUid? coordinatesDisk,
         SalvageMissionParams missionParams,
         CancellationToken cancellation = default) : base(maxTime, cancellation)
     {
         _entManager = entManager;
         _timing = timing;
-        _mapManager = mapManager;
         _prototypeManager = protoManager;
         _anchorable = anchorable;
         _biome = biome;
         _dungeon = dungeon;
         _metaData = metaData;
-        _xforms = xform;
         _map = map;
         _station = stationSystem; // Frontier
         _shuttle = shuttleSystem; // Frontier
         _salvage = salvageSystem; // Frontier
         Station = station;
+        Shuttle = shuttle; // Frontier
         CoordinatesDisk = coordinatesDisk;
         _missionParams = missionParams;
         _sawmill = logManager.GetSawmill("salvage_job");
@@ -155,8 +153,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         destComp.Enabled = true;
         _metaData.SetEntityName(
             mapUid,
-            _entManager.System<SharedSalvageSystem>().GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), _missionParams.Seed));
+            _entManager.System<SharedSalvageSystem>().GetFTLName(_prototypeManager.Index(SalvageSystem.PlanetNames), _missionParams.Seed));
         _entManager.AddComponent<FTLBeaconComponent>(mapUid);
+        _entManager.EnsureComponent<AtmosDisabledMapComponent>(mapUid); // Frontier: disable atmos devices on exped map
 
         // Saving the mission mapUid to a CD is made optional, in case one is somehow made in a process without a CD entity
         if (CoordinatesDisk.HasValue)
@@ -208,8 +207,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             }
         }
 
-        _mapManager.DoMapInitialize(mapId);
-        _mapManager.SetMapPaused(mapId, true);
+        _map.InitializeMap(mapId);
+        _map.SetPaused(mapUid, true);
 
         // Setup expedition
         var expedition = _entManager.AddComponent<SalvageExpeditionComponent>(mapUid);
@@ -255,8 +254,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var stationData = _entManager.GetComponent<StationDataComponent>(Station);
 
         // Get ship bounding box relative to largest grid coords
-        var shuttleUid = _station.GetLargestGrid(stationData);
-        Box2 shuttleBox = new Box2();
+        var shuttleUid = Shuttle;
+
+        var shuttleBox = new Box2();
 
         if (shuttleUid is { Valid: true } vesselUid &&
             _entManager.TryGetComponent<MapGridComponent>(vesselUid, out var gridComp))
@@ -312,7 +312,14 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             if (!lootProto.Guaranteed)
                 continue;
 
-            await SpawnDungeonLoot(lootProto, mapUid);
+            try
+            {
+                await SpawnDungeonLoot(lootProto, mapUid);
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error($"Failed to spawn guaranteed loot {lootProto.ID}: {e}");
+            }
         }
 
         // Handle boss loot (when relevant).
@@ -342,7 +349,14 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             if (entry == null)
                 break;
 
-            await SpawnRandomEntry(grid, entry, dungeon, random);
+            try
+            {
+                await SpawnRandomEntry((mapUid, grid), entry, dungeon, random);
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error($"Failed to spawn mobs for {entry.Proto}: {e}");
+            }
         }
 
         // Frontier: difficulty-based loot tables
@@ -372,7 +386,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                             break;
 
                         _sawmill.Debug($"Spawning dungeon loot {entry.Proto}");
-                        await SpawnRandomEntry(grid, entry, dungeon, random);
+                        await SpawnRandomEntry((mapUid, grid), entry, dungeon, random);
                     }
                     break;
                 default:
@@ -383,15 +397,15 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // Frontier: delay ship FTL
         if (shuttleUid is { Valid: true })
         {
-            var shuttle = _entManager.GetComponent<ShuttleComponent>(shuttleUid.Value);
-            _shuttle.FTLToCoordinates(shuttleUid.Value, shuttle, new EntityCoordinates(mapUid, coords), 0f, 5.5f, _salvage.TravelTime);
+            var shuttleComp = _entManager.GetComponent<ShuttleComponent>(shuttleUid);
+            _shuttle.FTLToCoordinates(shuttleUid, shuttleComp, new EntityCoordinates(mapUid, coords), 0f, 5.5f, _salvage.TravelTime);
         }
         // End Frontier
 
         return true;
     }
 
-    private async Task SpawnRandomEntry(MapGridComponent grid, IBudgetEntry entry, Dungeon dungeon, Random random)
+    private async Task SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, Random random)
     {
         await SuspendIfOutOfTime();
 
@@ -415,7 +429,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                     continue;
                 }
 
-                var uid = _entManager.SpawnAtPosition(entry.Proto, grid.GridTileToLocal(tile));
+                var uid = _entManager.SpawnAtPosition(entry.Proto, _map.GridTileToLocal(grid, grid, tile));
                 _entManager.RemoveComponent<GhostRoleComponent>(uid);
                 _entManager.RemoveComponent<GhostTakeoverAvailableComponent>(uid);
                 return;

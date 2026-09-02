@@ -1,0 +1,74 @@
+- type: entity
+  id: Skrungler
+  name: skrungler
+  parent: [ BaseC3CultContraband, BaseMachinePowered, ConstructibleMachine ]
+  description: A vile machine that produces fuel from dead bodies.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/skrungler.rsi
+    layers:
+    - state: skrungler_closed
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: skrungler_tray
+      offset: 0, -1
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: skrungler_base
+      visible: false
+      map: ["enum.SkrunglerVisualLayers.SkrunglingBase"]
+    - state: skrungler_active
+      visible: false
+      map: ["enum.SkrunglerVisualLayers.Skrungling"]
+  - type: EntityStorage
+    isCollidableWhenOpen: true
+    showContents: false
+    capacity: 1
+    enteringOffset: 0, -1
+    closeSound:
+      path: /Audio/Items/deconstruct.ogg
+    openSound:
+      path: /Audio/Items/deconstruct.ogg
+    whitelist:
+      tags:
+      - CanPilot # People
+      - VimPilot # Pets
+  - type: EntityStorageLayingDownOverride
+  - type: Construction
+    containers:
+      - machine_board
+      - machine_parts
+      - entity_storage
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      entity_storage: !type:Container
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: skrungler_closed
+    stateBaseOpen: skrungler_open
+    stateDoorOpen: skrungler_tray
+  - type: GenericVisualizer
+    visuals:
+      enum.SkrunglerVisuals.SkrunglingBase:
+        enum.SkrunglerVisualLayers.SkrunglingBase:
+          True: { visible: true }
+          False: { visible: false }
+      enum.SkrunglerVisuals.Skrungling:
+        enum.SkrunglerVisualLayers.Skrungling:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Skrungler
+    outputStackType: FuelSkrungle
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/reclaimer_ambience.ogg
+  - type: Machine
+    board: SkrunglerMachineCircuitboard

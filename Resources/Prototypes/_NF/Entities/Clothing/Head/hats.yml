@@ -98,6 +98,10 @@
     sprite: _NF/Clothing/Head/Hoods/mccargocrown.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/mccargocrown.rsi
+  - type: Butcherable
+    spawned:
+    - id: MaterialCardboard1
+      amount: 1
 
 - type: entity
   parent: ClothingHeadBaseButcherable
@@ -146,6 +150,9 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi
   - type: CatWearable
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBaseButcherable
@@ -158,6 +165,9 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_brown.rsi
   - type: CatWearable
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBaseButcherable
@@ -170,6 +180,9 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_cream.rsi
   - type: CatWearable
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBaseButcherable
@@ -224,6 +237,9 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_campaign_small.rsi
   - type: CatWearable
+  - type: Tag
+    tags:
+    - HamsterWearable
   - type: PirateBountyItem
     id: CampaignHat
 
@@ -262,9 +278,51 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
   - type: HamsterWearable
-    
+
 - type: entity
   parent: ClothingHeadHatBeretHoS
   id: ClothingHeadHatBeretCommander
   name: commander's beret
   description: A black beret with a commander's rank emblem.
+
+- type: entity
+  parent: ClothingHeadBaseButcherable
+  id: ClothingHeadHatBrickwizard
+  name: brick wizard hat
+  description: A wizard's hat with red dust on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/Wizard/brickwizard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/Wizard/brickwizard.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: 0,0.2
+  - type: CatWearable
+
+- type: entity
+  parent: ClothingHeadBaseButcherable
+  id: ClothingHeadHatFakeWizard
+  name: fake wizard hat
+  description: It has WIZZARD written across it in sequins. Comes with a cool beard.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/Wizard/wizard-fake.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/Wizard/wizard-fake.rsi
+
+- type: entity
+  parent: [ ClothingHeadBaseButcherable, BaseC3ContrabandNoValue, ContrabandClothing ]
+  id: ClothingHeadHatArcadia
+  name: arcadia beret
+  description: A beret produced by Arcadia Industries.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/beret_arcadia.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/beret_arcadia.rsi
+  - type: CatWearable
+  - type: Tag
+    tags:
+      - HamsterWearable

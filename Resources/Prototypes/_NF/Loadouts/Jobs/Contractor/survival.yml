@@ -1,49 +1,73 @@
 #T0
 - type: loadout
-  id: ContractorBoxSurvivalNFOxygen
+  id: ContractorNFBoxSurvival
   name: oxygen survival box
   hideEffects:
   - !type:GroupLoadoutEffect
-    proto: OxygenBreatherNF
+    proto: NFOxygenBreather
   storage:
     back:
-    - BoxSurvivalNFOxygen
+    - NFBoxSurvival
 
 - type: loadout
-  id: ContractorBoxSurvivalNFNitrogen
+  id: ContractorNFBoxSurvivalNitrogen
   name: nitrogen survival box
   hideEffects:
   - !type:GroupLoadoutEffect
-    proto: NitrogenBreatherNF
+    proto: NFNitrogenBreather
   storage:
     back:
-    - BoxSurvivalNFNitrogen
+    - NFBoxSurvivalNitrogen
+
+- type: loadout
+  id: ContractorNFBoxSurvivalSheleg
+  name: oxygen survival box
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFSheleg
+  storage:
+    back:
+    - NFBoxSurvivalSheleg
 
 #T1
 - type: loadout
-  id: ContractorBoxSurvivalNFOxygenExtended
+  id: ContractorNFBoxSurvivalExtended
   name: extended-oxygen survival box
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   hideEffects:
   - !type:GroupLoadoutEffect
-    proto: OxygenBreatherNF
+    proto: NFOxygenBreather
   price: 1000
   storage:
     back:
-    - BoxSurvivalNFOxygenExtended
+    - NFBoxSurvivalExtended
 
 - type: loadout
-  id: ContractorBoxSurvivalNFNitrogenExtended
+  id: ContractorNFBoxSurvivalExtendedNitrogen
   name: extended-nitrogen survival box
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   hideEffects:
   - !type:GroupLoadoutEffect
-    proto: NitrogenBreatherNF
+    proto: NFNitrogenBreather
   price: 1000
   storage:
     back:
-    - BoxSurvivalNFNitrogenExtended
+    - NFBoxSurvivalExtendedNitrogen
+
+- type: loadout
+  id: ContractorNFBoxSurvivalExtendedSheleg
+  name: extended-oxygen survival box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFSheleg
+  price: 1000
+  storage:
+    back:
+    - NFBoxSurvivalExtendedSheleg

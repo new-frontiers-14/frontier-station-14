@@ -1,0 +1,61 @@
+# region Base
+- type: latheRecipe
+  abstract: true
+  id: NFBaseInflatablesRecipe
+  categories:
+  - NFInflatables
+  completetime: 0.8
+  materials:
+    Plastic: 75
+
+- type: latheRecipe
+  abstract: true
+  parent: NFBaseInflatablesRecipe
+  id: NFBaseInflatablesComplexRecipe
+  completetime: 2
+  materials:
+    Steel: 150
+    Plastic: 150
+
+# region Recipes
+- type: latheRecipe
+  parent: NFBaseInflatablesRecipe
+  id: NFInflatableFloorStack1
+  result: NFInflatableFloorStack1
+  name: lathe-recipe-NFInflatableFloorStack1-name
+
+- type: latheRecipe
+  parent: NFBaseInflatablesRecipe
+  id: NFInflatableWallStack1
+  result: NFInflatableWallStack1
+  name: lathe-recipe-NFInflatableWallStack1-name
+
+- type: latheRecipe
+  parent: NFBaseInflatablesRecipe
+  id: NFInflatableWindowStack1
+  result: NFInflatableWindowStack1
+  name: lathe-recipe-NFInflatableWindowStack1-name
+
+- type: latheRecipe
+  parent: NFBaseInflatablesRecipe
+  id: NFInflatableDoorStack1
+  result: NFInflatableDoorStack1
+  name: lathe-recipe-NFInflatableDoorStack1-name
+
+- type: latheRecipe
+  parent: NFBaseInflatablesRecipe
+  id: NFInflatableDoorWindowStack1
+  result: NFInflatableDoorWindowStack1
+  name: lathe-recipe-NFInflatableDoorWindowStack1-name
+
+- type: latheRecipe
+  parent: NFBaseInflatablesComplexRecipe
+  id: NFInflatableDockStack1
+  result: NFInflatableDockStack1
+  name: lathe-recipe-NFInflatableDockStack1-name
+
+- type: latheRecipe
+  parent: NFBaseInflatablesRecipe
+  id: NFInflatableCrateStack1
+  result: NFInflatableCrateStack1
+  name: lathe-recipe-NFInflatableCrateStack1-name

@@ -13,6 +13,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 21600 # 6 hours as security guard
   startingGear: BrigmedicGear
   icon: JobIconBrigmedicNF
   supervisors: job-supervisors-bailiff
@@ -25,7 +28,7 @@
   - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -33,11 +36,26 @@
 - type: startingGear
   id: BrigmedicGear
   equipment:
-    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket1: NFWeaponPistolUniversalNfsdLessLethal
   storage:
     back:
-    - EncryptionKeyMedical
     - Flash
-    - MagazinePistol
-    - MagazinePistolRubber
+    - NFMagazineHighCapacityPistol35Overpressure
+    - NFMagazineHighCapacityPistol35Rubber
     - FrontierUplinkCoin10
+  encryptionKeys:
+  - EncryptionKeyMedical
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretCream
+    mask: ClothingMaskBreathMedicalSecurity
+    eyes: ClothingEyesGlassesNfsdMed
+    outerClothing: ClothingOuterCoatNfsdBomberBrigmed
+    neck: ClothingNeckNfsdBadgeSecurityBrigmedic
+    belt: ClothingBeltNfsdWebbingFilledBrigmedic
+    gloves: ClothingHandsGlovesNitrile
+    shoes: ClothingShoesBootsNfsdCreamFilled

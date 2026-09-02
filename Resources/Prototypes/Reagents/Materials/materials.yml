@@ -81,11 +81,12 @@
   name: materials-bananium
   unit: materials-unit-bunch
   icon: { sprite: Objects/Materials/materials.rsi, state: bananium }
-  color: "#32a852"
+  color: "#f4d536" # Frontier: "#32a852"<"e0c330"
   price: 0.2 # $100 for 1 unit # Frontier: 1.0<0.2 TODO - materials rebalance
 
 - type: material
   id: Meaterial # you can't take this pun from me
+  stackEntity: MaterialSheetMeat1 # Frontier
   name: materials-meat
   unit: materials-unit-slab
   icon: { sprite: Objects/Materials/Sheets/meaterial.rsi, state: meat }
@@ -101,7 +102,17 @@
   price: 0.005 # Frontier: 0<0.005 - same value as cardboard
 
 - type: material
+  id: Cotton
+  stackEntity: MaterialCotton1 # Frontier
+  name: materials-cotton
+  unit: materials-unit-boll
+  icon: { sprite: Objects/Materials/materials.rsi, state: cotton }
+  color: "#cccccc"
+  price: 0.01 #Who knew cotton was infinitely more valuable than silk
+
+- type: material
   id: Bones
+  stackEntity: MaterialBones1 # Frontier
   name: materials-bones
   unit: materials-unit-piece
   icon: { sprite: Objects/Materials/materials.rsi, state: bones }
@@ -127,7 +138,7 @@
 
 - type: material
   id: Diamond
-  stackEntity: MaterialDiamond1 # Frontier
+  stackEntity: MaterialDiamond1
   name: materials-diamond
   unit: materials-unit-piece
   icon: { sprite: Objects/Materials/materials.rsi, state: diamond }

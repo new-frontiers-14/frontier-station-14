@@ -23,14 +23,9 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconThirstyId = "ThirstIconThirsty";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconParchedId = "ThirstIconParched";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconOverhydratedId = "ThirstIconOverhydrated";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconThirstyId = "ThirstIconThirsty";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconParchedId = "ThirstIconParched";
 
     public override void Initialize()
     {
@@ -46,15 +41,22 @@ public sealed class ThirstSystem : EntitySystem
         // Do not change behavior unless starting value is explicitly defined
         if (component.CurrentThirst < 0)
         {
-            component.CurrentThirst = _random.Next(
-                (int) component.ThirstThresholds[ThirstThreshold.Thirsty] + 10,
-                (int) component.ThirstThresholds[ThirstThreshold.Okay] - 1);
+            // Frontier: fixed starting thirst
+            component.CurrentThirst = component.ThirstThresholds[ThirstThreshold.Okay];
+
+            // component.CurrentThirst = _random.Next(
+            //     (int) component.ThirstThresholds[ThirstThreshold.Thirsty] + 10,
+            //     (int) component.ThirstThresholds[ThirstThreshold.Okay] - 1);
+
+            DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
         }
         component.NextUpdateTime = _timing.CurTime;
         component.CurrentThirstThreshold = GetThirstThreshold(component, component.CurrentThirst);
         component.LastThirstThreshold = ThirstThreshold.Okay; // TODO: Potentially change this -> Used Okay because no effects.
         // TODO: Check all thresholds make sense and throw if they don't.
         UpdateEffects(uid, component);
+
+        DirtyFields(uid, component, null, nameof(ThirstComponent.NextUpdateTime), nameof(ThirstComponent.CurrentThirstThreshold), nameof(ThirstComponent.LastThirstThreshold));
 
         TryComp(uid, out MovementSpeedModifierComponent? moveMod);
             _movement.RefreshMovementSpeedModifiers(uid, moveMod);
@@ -103,7 +105,7 @@ public sealed class ThirstSystem : EntitySystem
             component.ThirstThresholds[ThirstThreshold.OverHydrated]
         );
 
-        EntityManager.DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
+        DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
     }
 
     private bool IsMovementThreshold(ThirstThreshold threshold)
@@ -127,15 +129,15 @@ public sealed class ThirstSystem : EntitySystem
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
+                _prototype.Resolve(ThirstIconOverhydratedId, out prototype);
                 break;
 
             case ThirstThreshold.Thirsty:
-                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
+                _prototype.Resolve(ThirstIconThirstyId, out prototype);
                 break;
 
             case ThirstThreshold.Parched:
-                _prototype.TryIndex(ThirstIconParchedId, out prototype);
+                _prototype.Resolve(ThirstIconParchedId, out prototype);
                 break;
 
             default:
@@ -163,6 +165,9 @@ public sealed class ThirstSystem : EntitySystem
         {
             _alerts.ClearAlertCategory(uid, component.ThirstyCategory);
         }
+
+        DirtyField(uid, component, nameof(ThirstComponent.LastThirstThreshold));
+        DirtyField(uid, component, nameof(ThirstComponent.ActualDecayRate));
 
         switch (component.CurrentThirstThreshold)
         {

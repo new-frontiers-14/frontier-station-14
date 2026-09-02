@@ -1,4 +1,5 @@
 character-info-title = Character
-character-info-roles-antagonist-text = Antagonist Roles
+# Frontier: lowercase roles
+character-info-roles-antagonist-text = You have no special roles
 character-info-objectives-label = Objectives
 character-info-no-profession = No Profession

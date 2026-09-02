@@ -5,14 +5,14 @@
 # Base
 
 - type: entity
+  abstract: true
   parent: FoodInjectableBase
   id: FoodMealBase
-  abstract: true
   description: A delicious meal, cooked with love.
   components:
   - type: Item
-    storedRotation: -90
-  - type: Food
+    shape:
+    - 0,0,1,0
   - type: Sprite
     sprite: Objects/Consumable/Food/meals.rsi
   - type: SolutionContainerManager
@@ -21,17 +21,20 @@
         maxVol: 36 # Frontier: 26<36
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 15 # Frontier: 20<15
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
+
 # Meals
 
 - type: entity
-  name: loaded baked potato
   parent: FoodMealBase
   id: FoodMealPotatoLoaded
+  name: loaded baked potato
   description: Totally baked.
   components:
+  - type: Item
+    storedOffset: 0,-2
   - type: FlavorProfile
     flavors:
       - cheesy
@@ -41,11 +44,13 @@
 # Tastes like potato.
 
 - type: entity
-  name: space fries
   parent: FoodMealBase
   id: FoodMealFries
+  name: space fries
   description: AKA, French Fries, Freedom Fries, etc.
   components:
+  - type: Item
+    storedOffset: 0,-3
   - type: FlavorProfile
     flavors:
       - potatoes
@@ -55,11 +60,13 @@
 # Tastes like fries, salt.
 
 - type: entity
-  name: cheesy fries
   parent: FoodMealBase
   id: FoodMealFriesCheesy
+  name: cheesy fries
   description: Fries. Covered in cheese. Duh.
   components:
+  - type: Item
+    storedOffset: 0,-3
   - type: FlavorProfile
     flavors:
       - potatoes
@@ -70,11 +77,13 @@
 # Tastes like fries, cheese.
 
 - type: entity
-  name: carrot fries
   parent: FoodMealBase
   id: FoodMealFriesCarrot
+  name: carrot fries
   description: Tasty fries from fresh carrots.
   components:
+  - type: Item
+    storedOffset: 0,-3
   - type: FlavorProfile
     flavors:
       - carrots
@@ -94,12 +103,14 @@
 # Tastes like carrots, salt.
 
 - type: entity
-  name: nachos
   parent: FoodMealBase
   id: FoodMealNachos
+  name: nachos
   description: Chips from Space Mexico.
   components:
-  - type: Food
+  - type: Item
+    storedOffset: 0,-2
+  - type: Edible
     trash:
     - FoodPlateSmall
   - type: FlavorProfile
@@ -110,23 +121,23 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 11
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 15
         - ReagentId: TableSalt
-          Quantity: 1
+          Quantity: 2
 # Tastes like nachos.
 
 - type: entity
-  name: cheesy nachos
   parent: FoodMealBase
   id: FoodMealNachosCheesy
+  name: cheesy nachos
   description: The delicious combination of nachos and melting cheese.
   components:
-  - type: Food
+  - type: Item
+    storedOffset: 0,-2
+  - type: Edible
     trash:
     - FoodPlateSmall
   - type: FlavorProfile
@@ -138,25 +149,25 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 30 # Frontier: 25<30
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
+          Quantity: 20
         - ReagentId: TableSalt
-          Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 2
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
 # Tastes like nachos, cheese.
 
 - type: entity
-  name: Cuban nachos
   parent: FoodMealBase
   id: FoodMealNachosCuban
+  name: Cuban nachos
   description: That's some dangerously spicy nachos.
   components:
-  - type: Food
+  - type: Item
+    storedOffset: 0,-2
+  - type: Edible
     trash:
     - FoodPlateSmall
   - type: FlavorProfile
@@ -169,24 +180,26 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30 # Frontier: 25<30
+        maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
+          Quantity: 20 # Frontier: 25<20
         - ReagentId: CapsaicinOil
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
 # Tastes like nachos, hot pepper.
 
 - type: entity
-  name: mint
   parent: FoodMealBase
   id: FoodMealMint
+  name: mint
   description: It's wafer thin.
   components:
+  - type: Item
+    storedOffset: 0,-1
   - type: FlavorProfile
     flavors:
       - minty
@@ -203,11 +216,13 @@
 # Tastes like parsnips, salt.
 
 - type: entity
-  name: eggplant parmigiana
   parent: FoodMealBase
   id: FoodMealEggplantParm
+  name: eggplant parmigiana
   description: The only good recipe for eggplant.
   components:
+  - type: Item
+    storedOffset: 0,-2
   - type: FlavorProfile
     flavors:
       - eggplant
@@ -231,11 +246,13 @@
 # Tastes like eggplant, cheese.
 
 - type: entity
-  name: yaki imo
   parent: FoodMealBase
   id: FoodMealPotatoYaki
+  name: yaki imo
   description: Made with roasted sweet potatoes!
   components:
+  - type: Item
+    storedOffset: 0,-2
   - type: FlavorProfile
     flavors:
       - sweet
@@ -245,11 +262,13 @@
 # Tastes like sweet potato.
 
 - type: entity
-  name: Cuban carp
   parent: FoodMealBase
   id: FoodMealCubancarp
+  name: Cuban carp
   description: A grifftastic sandwich that burns your tongue and then leaves it numb!
   components:
+  - type: Item
+    storedOffset: 3,-7
   - type: FlavorProfile
     flavors:
       - fishy
@@ -260,14 +279,18 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 55
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 20 # Frontier: 40<20
         - ReagentId: CarpoToxin
           Quantity: 3
-        - ReagentId: Flavorol
+        - ReagentId: Vitamin
           Quantity: 5
+        - ReagentId: CapsaicinOil
+          Quantity: 4
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Tag
     tags:
     - CubanCarp
@@ -275,11 +298,13 @@
 # Tastes like fish, batter, hot peppers.
 
 - type: entity
-  name: corned beef and cabbage
   parent: FoodMealBase
   id: FoodMealCornedbeef
+  name: corned beef and cabbage
   description: Now you can feel like a real tourist vacationing in Ireland.
   components:
+  - type: Item
+    storedOffset: 0,-1
   - type: FlavorProfile
     flavors:
       - meaty
@@ -303,11 +328,16 @@
 # Tastes like meat, cabbage.
 
 - type: entity
-  name: filet migrawr
   parent: FoodMealBase
   id: FoodMealBearsteak
+  name: filet migrawr
   description: Because eating bear wasn't manly enough.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: -1,4
   - type: FlavorProfile
     flavors:
       - meaty
@@ -331,11 +361,15 @@
 # Tastes like meat, salmon.
 
 - type: entity
-  name: pig in a blanket
   parent: FoodMealBase
   id: FoodMealPigblanket
+  name: pig in a blanket
   description: A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it.
   components:
+  - type: Item
+    size: Tiny
+    shape:
+    - 0,0,0,0
   - type: FlavorProfile
     flavors:
       - meaty
@@ -357,13 +391,15 @@
 # Tastes like meat, butter.
 
 - type: entity
-  name: bbq ribs
   parent: FoodMealBase
   id: FoodMealRibs
+  name: bbq ribs
   description: BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist.
   components:
-  - type: Food
-    trash: 
+  - type: Item
+    storedOffset: 0,-4
+  - type: Edible
+    trash:
     - FoodKebabSkewer
   - type: FlavorProfile
     flavors:
@@ -374,25 +410,25 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 45 # Frontier: 35<45
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
         - ReagentId: Protein
-          Quantity: 10
+          Quantity: 15 # Frontier: 20<15
         - ReagentId: BbqSauce
-          Quantity: 10
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 7 # Frontier: 10<7
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Tag
     tags:
     - Meat
 # Tastes like meat, smokey sauce.
 
 - type: entity
-  name: eggs benedict
   parent: FoodMealBase
   id: FoodMealEggsbenedict
+  name: eggs benedict
   description: There is only one egg on this, how rude.
   components:
   - type: FlavorProfile
@@ -401,7 +437,8 @@
       - bacon
       - bun
   - type: Sprite
-    state: benedict
+    sprite: _NF/Objects/Consumable/Food/omelette.rsi
+    state: eggs_benedict # Frontier eggs_benedict < benedict
   - type: SolutionContainerManager
     solutions:
       food:
@@ -419,16 +456,19 @@
 # Tastes like eggs, bacon, bun.
 
 - type: entity
+  parent: FoodMealOmelette
+  id: FoodMealCheeseOmelette # NF: FoodMealCheeseOmelette < FoodMealOmelette
   name: cheese omelette
-  parent: FoodMealBase
-  id: FoodMealOmelette
   description: Cheesy.
   components:
+  - type: Item
+    storedOffset: 0,-1
   - type: FlavorProfile
     flavors:
       - egg
       - cheesy
   - type: Sprite
+    sprite: Objects/Consumable/Food/meals.rsi
     state: omelette
   - type: SolutionContainerManager
     solutions:
@@ -439,17 +479,16 @@
           Quantity: 9
         - ReagentId: Flavorol
           Quantity: 5
-  - type: Tag
-    tags:
-    - Meat
 # Tastes like egg, cheese.
 
 - type: entity
-  name: fried egg
   parent: FoodMealBase
   id: FoodMealFriedegg
+  name: fried egg
   description: A fried egg, with a touch of salt and pepper.
   components:
+  - type: Item
+    storedOffset: 0,-1
   - type: FlavorProfile
     flavors:
       - egg
@@ -463,7 +502,7 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 6
         - ReagentId: TableSalt
           Quantity: 1
         - ReagentId: Blackpepper
@@ -474,11 +513,15 @@
 # Tastes like egg, salt, pepper.
 
 - type: entity
-  name: milk ape
   parent: FoodMealBase
   id: FoodMealMilkape
+  name: milk ape
   description: The king of Jungle Thick.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: FlavorProfile
     flavors:
       - milk
@@ -488,11 +531,14 @@
 # Tastes like milk, chocolate, the jungle.
 
 - type: entity
-  name: memory leek
   parent: FoodMealBase
   id: FoodMealMemoryleek
+  name: memory leek
   description: This should refresh your memory.
   components:
+  - type: Item
+    shape:
+    - 0,0,0,1
   - type: FlavorProfile
     flavors:
       - memoryleek
@@ -510,11 +556,16 @@
 # Tastes like pain.
 
 - type: entity
-  name: salty sweet miso cola soup
   parent: FoodMealBase
   id: DisgustingSweptSoup
+  name: salty sweet miso cola soup
   description: Jesus christ.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,-2
   - type: Sprite
     state: saltysweet
   - type: SolutionContainerManager
@@ -533,11 +584,13 @@
 # Tastes awesome.
 
 - type: entity
-  name: queso
   parent: FoodMealBase
   id: FoodMealQueso
+  name: queso
   description: A classic dipping sauce that you can't go wrong with.
   components:
+    - type: Item
+      storedOffset: 0,-6
     - type: FlavorProfile
       flavors:
         - cheesy
@@ -571,11 +624,13 @@
 # tastes exotic
 
 - type: entity
-  name: enchiladas
   parent: FoodMealBase
   id: FoodMealEnchiladas
+  name: enchiladas
   description: Viva La Mexico!
   components:
+    - type: Item
+      storedOffset: -1,0
     - type: FlavorProfile
       flavors:
         - meaty
@@ -584,25 +639,31 @@
     - type: SolutionContainerManager
       solutions:
         food:
-          maxVol: 15
+          maxVol: 35
           reagents:
           - ReagentId: Nutriment
-            Quantity: 8
+            Quantity: 20 # Frontier: 25<20
+          - ReagentId: Protein
+            Quantity: 5
           - ReagentId: CapsaicinOil
             Quantity: 6
-          - ReagentId: Flavorol
-            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 6
+          - ReagentId: Flavorol # Frontier
+            Quantity: 10 # Frontier
     - type: Tag
       tags:
       - Meat
 # What do Europeans eat instead of enchiladas? 25.4 millimeter-iladas.
 
 - type: entity
-  name: melon fruit bowl
   parent: FoodMealBase
   id: FoodSaladWatermelonFruitBowl
+  name: melon fruit bowl
   description: The only salad where you can eat the bowl.
   components:
+  - type: Item
+    storedOffset: 0,-3
   - type: FlavorProfile
     flavors:
       - fruity
@@ -615,7 +676,7 @@
         maxVol: 65
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 25 # Frontier: 30<25
         - ReagentId: Vitamin
           Quantity: 15
         - ReagentId: Water
@@ -624,18 +685,22 @@
           Quantity: 5
         - ReagentId: Kelotane
           Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
   - type: Tag
     tags:
     - Fruit
 
 - type: entity
-  name: corn in butter
   parent: FoodMealBase
   id: FoodMealCornInButter
+  name: corn in butter
   description: Buttery.
   components:
-  - type: Food
-    trash: 
+  - type: Item
+    storedOffset: 0,-5
+  - type: Edible
+    trash:
     - FoodPlate
   - type: FlavorProfile
     flavors:
@@ -646,9 +711,11 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 17 # Frontier: 10<17
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 4
+        - ReagentId: Flavorol # Frontier
+          Quantity: 4 # Frontier

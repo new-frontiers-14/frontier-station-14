@@ -2,22 +2,21 @@ using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.Instruments;
-using Content.Server.Light.EntitySystems;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Implants;
+using Content.Shared.Inventory;
 using Content.Shared.Light;
-using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.PDA;
-using Content.Shared.Store.Components;
+using Content.Shared.PDA.Ringer;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -27,6 +26,7 @@ using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Server._NF.Shipyard.Systems; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Server.RoundEnd; // Frontier
 
 namespace Content.Server.PDA
 {
@@ -43,6 +43,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!; // Frontier
 
         public override void Initialize()
         {
@@ -64,6 +65,14 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
             SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed, after: new[] { typeof(IdCardSystem) });
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+            SubscribeLocalEvent<PdaComponent, InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent>>(ChameleonControllerOutfitItemSelected);
+        }
+
+        private void ChameleonControllerOutfitItemSelected(Entity<PdaComponent> ent, ref InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent> args)
+        {
+            // Relay it to your ID so it can update as well.
+            if (ent.Comp.ContainedId != null)
+                RaiseLocalEvent(ent.Comp.ContainedId.Value, args);
         }
 
         private void OnEntityRenamed(ref EntityRenamedEvent ev)
@@ -175,7 +184,7 @@ namespace Content.Server.PDA
         /// <summary>
         /// Send new UI state to clients, call if you modify something like uplink.
         /// </summary>
-        public void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null, EntityUid? actor_uid = null) // Frontier
+        public override void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null, EntityUid? actorUid = null) // Frontier: add actorUid
         {
             if (!Resolve(uid, ref pda, false))
                 return;
@@ -198,12 +207,16 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
-            var balance = 0; // frontier
-            if (actor_uid != null && TryComp<BankAccountComponent>(actor_uid, out var account)) // frontier
-                balance = account.Balance; // frontier
-            var ownedShipName = ""; // Frontier
-            if (TryComp<ShuttleDeedComponent>(pda.ContainedId, out var shuttleDeedComp)) // Frontier
-                ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp); // Frontier
+
+            // Frontier: balance & ship deeds
+            var balance = 0;
+            if (actorUid != null && TryComp<BankAccountComponent>(actorUid, out var account))
+                balance = account.Balance;
+            var ownedShipName = "";
+            if (TryComp<ShuttleDeedComponent>(pda.ContainedId, out var shuttleDeedComp))
+                ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp);
+            // End Frontier: balance & ship deeds
+
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
@@ -221,6 +234,7 @@ namespace Content.Server.PDA
                 },
                 balance, // Frontier
                 ownedShipName, // Frontier
+                _roundEndSystem.GetAutoCallTime(), // Frontier
                 pda.StationName,
                 showUplink,
                 hasInstrument,
@@ -261,7 +275,7 @@ namespace Content.Server.PDA
                 return;
 
             if (HasComp<RingerComponent>(uid))
-                _ringer.ToggleRingerUI(uid, msg.Actor);
+                _ringer.TryToggleRingerUi(uid, msg.Actor);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaShowMusicMessage msg)
@@ -290,7 +304,7 @@ namespace Content.Server.PDA
 
             if (TryComp<RingerUplinkComponent>(uid, out var uplink))
             {
-                _ringer.LockUplink(uid, uplink);
+                _ringer.LockUplink((uid, uplink));
                 UpdatePdaUi(uid, pda);
             }
         }

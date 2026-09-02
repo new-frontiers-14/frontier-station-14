@@ -1,0 +1,139 @@
+#region blink scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledBlink
+  name: scroll of blink
+  description: |-
+    A scroll with inscribed incantation for the spell that teleports caster to the choosen location.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "green"
+    - state: scroll-rolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollBlink
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollBlink
+  categories: [ HideSpawnMenu ]
+  name: scroll of blink
+  description: |-
+    A scroll with inscribed incantation for the spell that teleports caster to the choosen location.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "green"
+    - state: scroll-unrolled-text-0
+      color: "violet"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionBlink: 1
+
+#region void applause scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledVoidApplause
+  name: scroll of void applause
+  description: |-
+    A scroll with inscribed incantation for the spell that swaps places of caster and the target.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "green"
+    - state: scroll-rolled-seal
+      color: "purple"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollVoidApplause
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollVoidApplause
+  categories: [ HideSpawnMenu ]
+  name: scroll of void applause
+  description: |-
+    A scroll with inscribed incantation for the spell that swaps places of caster and the target.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-ribbon
+      color: "green"
+    - state: scroll-unrolled-text-1
+      color: "purple"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-05
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-07
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-05
+      color: "gold"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "green"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionVoidApplause: 1

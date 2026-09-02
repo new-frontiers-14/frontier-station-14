@@ -74,6 +74,9 @@
     modifiers:
       coefficients:
         Heat: 0.90 # Frontier 0.80<0.90
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskGasAtmos # Frontier: removed BaseCommandContraband
@@ -118,6 +121,9 @@
         Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -137,6 +143,11 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+    - HamsterWearable
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 50
 
 - type: entity
   parent: ClothingMaskBreathMedical
@@ -302,6 +313,11 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
+  - type: StaticPrice
+    price: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskBase
@@ -320,6 +336,9 @@
   - type: IngestionBlocker
   - type: AddAccentClothing
     accent: MumbleAccent
+  - type: EmoteBlocker
+    blocksCategories:
+    - Vocal
   - type: Construction
     graph: Muzzle
     node: muzzle
@@ -341,6 +360,9 @@
     slots:
     - Snout
     hideOnToggle: true
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -374,6 +396,8 @@
     slots:
     - Hair
     - Snout
+    - HeadTop
+    - HeadSide
     hideOnToggle: true
   - type: Armor
     modifiers:
@@ -441,6 +465,11 @@
     sprite: Clothing/Mask/squadron.rsi
   - type: Clothing
     sprite: Clothing/Mask/squadron.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
   - type: Armor
     modifiers:
       coefficients:
@@ -634,6 +663,27 @@
     sprite: Clothing/Mask/scaredmime.rsi
   - type: Clothing
     sprite: Clothing/Mask/scaredmime.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingMaskMime, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  id: ClothingMaskMimeSecurity
+  name: security mime mask
+  description: You have the right to remain silent.
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/mime_security.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/mime_security.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskBase
@@ -689,6 +739,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - HamsterWearable
 
 # Entity tables
 - type: entityTable

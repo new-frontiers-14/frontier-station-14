@@ -85,7 +85,7 @@ public sealed partial class NavScreen : BoxContainer
     public void UpdateState(NavInterfaceState scc)
     {
         NavRadar.UpdateState(scc);
-        NfUpdateState(); // Frontier Update State
+        NfUpdateState(scc); // Frontier Update State
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)

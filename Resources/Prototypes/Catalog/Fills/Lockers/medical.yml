@@ -1,75 +1,79 @@
-- type: entity
-  id: LockerMedicineFilled
-  suffix: Filled
-  parent: LockerMedicine
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSyringe
-      - id: ChemistryBottleEpinephrine
-        amount: 1
-      - id: Brutepack
-        amount: 2
-      - id: Ointment
-        amount: 2
-      - id: Bloodpack
-        amount: 2
-      - id: Gauze
+- type: entityTable
+  id: LockerFillMedicine
+  table: !type:AllSelector
+    children:
+    - id: BoxSyringe
+    - id: ChemistryBottleEpinephrine
+    - id: Brutepack
+      amount: !type:ConstantNumberSelector
+        value: 2
+    - id: Ointment
+      amount: !type:ConstantNumberSelector
+        value: 2
+    - id: Bloodpack
+      amount: !type:ConstantNumberSelector
+        value: 2
+    - id: Gauze
 
 - type: entity
+  parent: LockerMedicine
+  id: LockerMedicineFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillMedicine
+
+- type: entity
+  parent: LockerWallMedical
   id: LockerWallMedicalFilled
   name: medicine wall locker
   suffix: Filled
-  parent: LockerWallMedical
   components:
-  - type: StorageFill
-    contents:
-      - id: BoxSyringe
-      - id: ChemistryBottleEpinephrine
-        amount: 1
-      - id: Brutepack
-        amount: 2
-      - id: Ointment
-        amount: 2
-      - id: Bloodpack
-        amount: 2
-      - id: Gauze
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillMedicine
+
+- type: entityTable
+  id: LockerFillMedicalDoctor
+  table: !type:AllSelector
+    children:
+    - id: HandheldHealthAnalyzer
+      prob: 0.6
+    - id: ClothingHeadMirror
+      prob: 0.1
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - id: ClothingEyesHudMedical
+    - !type:GroupSelector
+       children:
+       - id: ClothingHeadHatSurgcapGreen
+         weight: 0.1
+       - id: ClothingHeadHatSurgcapPurple
+         weight: 0.05
+       - id: ClothingHeadHatSurgcapBlue
+         weight: 0.90
+    - !type:GroupSelector
+       children:
+       - id: UniformScrubsColorBlue
+         weight: 0.5
+       - id: UniformScrubsColorGreen
+         weight: 0.1
+       - id: UniformScrubsColorPurple
+         weight: 0.05
+    - id: ClothingMaskSterile
 
 - type: entity
+  parent: LockerMedical
   id: LockerMedicalFilled
   suffix: Filled
-  parent: LockerMedical
   components:
-  - type: StorageFill
-    contents:
-      - id: HandheldHealthAnalyzer
-#        prob: 0.6 # Frontier
-#      - id: ClothingHeadMirror # Frontier
-#        prob: 0.1 # Frontier
-      - id: ClothingHandsGlovesLatex
-#      - id: ClothingHeadsetMedical # Frontier
-      - id: ClothingEyesHudMedical # Frontier
-#      - id: ClothingHeadHatSurgcapGreen
-#        prob: 0.1
-#        orGroup: Surgcaps
-#      - id: ClothingHeadHatSurgcapPurple
-#        prob: 0.05
-#        orGroup: Surgcaps
-#      - id: ClothingHeadHatSurgcapBlue
-#        prob: 0.90
-#        orGroup: Surgcaps
-#      - id: UniformScrubsColorBlue
-#        prob: 0.5
-#        orGroup: Surgshrubs
-#      - id: UniformScrubsColorGreen
-#        prob: 0.1
-#        orGroup: Surgshrubs
-#      - id: UniformScrubsColorPurple
-#        prob: 0.05
-#        orGroup: Surgshrubs
-      - id: ClothingMaskSterile
-#      - id: ClothingBeltMedical # Frontier
-      - id: ClothingBeltMedicalFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFStorageFillGearMedicalDoctor # Frontier: LockerFillMedicalDoctor<NFStorageFillGearMedicalDoctor
 
 - type: entity
   parent: LockerWallMedical
@@ -77,74 +81,66 @@
   name: medical doctor's wall locker
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: HandheldHealthAnalyzer
-#        prob: 0.6
-      - id: ClothingHandsGlovesLatex
-#      - id: ClothingHeadsetMedical # Frontier
-      - id: ClothingEyesHudMedical # Frontier
-#      - id: ClothingBeltMedical
-#      - id: ClothingHeadHatSurgcapGreen
-#        prob: 0.1
-#        orGroup: Surgcaps
-#      - id: ClothingHeadHatSurgcapPurple
-#        prob: 0.05
-#        orGroup: Surgcaps
-#      - id: ClothingHeadHatSurgcapBlue
-#        prob: 0.90
-#        orGroup: Surgcaps
-#      - id: UniformScrubsColorBlue
-#        prob: 0.5
-#        orGroup: Surgshrubs
-#      - id: UniformScrubsColorGreen
-#        prob: 0.1
-#        orGroup: Surgshrubs
-#      - id: UniformScrubsColorPurple
-#        prob: 0.05
-#        orGroup: Surgshrubs
-      - id: ClothingMaskSterile
-      - id: ClothingBeltMedicalFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFStorageFillGearMedicalDoctor # Frontier: LockerFillMedicalDoctor<NFStorageFillGearMedicalDoctor
+
+- type: entityTable
+  id: LockerFillChemistry
+  table: !type:AllSelector
+    children:
+    - id: BoxSyringe
+    - id: BoxBeaker
+    - id: BoxBeaker
+      prob: 0.3
+    - id: BoxPillCanister
+    - id: BoxBottle
+    - id: BoxVial
+    - id: PlasmaChemistryVial
+    - id: ChemBag
+    - id: ClothingEyesGlassesChemical
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - id: ClothingMaskSterile
+    - id: HandLabeler
+      prob: 0.5
 
 - type: entity
+  parent: LockerChemistry
   id: LockerChemistryFilled
   suffix: Filled
-  parent: LockerChemistry
   components:
-  - type: StorageFill
-    contents:
-      - id: BoxSyringe
-      - id: BoxBeaker
-        amount: 2
-      - id: BoxPillCanister
-      - id: BoxBottle
-      - id: BoxVial
-      - id: PlasmaChemistryVial
-      - id: ChemBag
-      - id: ClothingHandsGlovesLatex
-#      - id: ClothingHeadsetMedical # Frontier
-      - id: ClothingMaskSterile
-#      - id: HandLabeler # Frontier
-      - id: ClothingEyesGlassesChemical
-      - id: SheetPlasma1
-        amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFStorageFillGearChemistry # Frontier: LockerFillChemistry<NFStorageFillGearChemistry
+
+- type: entityTable
+  id: LockerFillParamedic
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitVoidParamed
+    - id: ClothingOuterCoatParamedicWB
+    - id: ClothingHeadHatParamedicsoft
+    - id: ClothingOuterWinterPara
+    - id: ClothingUniformJumpsuitParamedic
+    - id: ClothingUniformJumpskirtParamedic
+    - id: ClothingEyesHudMedical
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - id: ClothingMaskSterile
+    - id: HandheldGPSBasic
+    - id: MedkitFilled
+      prob: 0.3
+    - id: ClothingBeltMedicalEMTFilled
 
 - type: entity
+  parent: LockerParamedic
   id: LockerParamedicFilled
   suffix: Filled
-  parent: LockerParamedic
   components:
-  - type: StorageFill
-    contents:
-#      - id: ClothingHeadHelmetVoidParamed # Frontier
-#      - id: ClothingOuterHardsuitVoidParamed # Frontier
-#      - id: ClothingOuterCoatParamedicWB # Frontier
-#      - id: ClothingHeadHatParamedicsoft # Frontier
-#      - id: ClothingUniformJumpsuitParamedic # Frontier
-#      - id: ClothingUniformJumpskirtParamedic # Frontier
-      - id: ClothingEyesHudMedical
-      - id: ClothingHandsGlovesLatex
-#      - id: ClothingHeadsetMedical  # Frontier
-      - id: ClothingMaskSterile
-      - id: ClothingBeltMedicalEMTFilled # Frontier
-      - id: MedkitFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFStorageFillGearParamedic # Frontier: LockerFillParamedic<NFStorageFillGearParamedic

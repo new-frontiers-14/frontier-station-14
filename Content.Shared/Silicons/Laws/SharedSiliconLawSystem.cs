@@ -1,4 +1,4 @@
-﻿using Content.Shared.Emag.Systems;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Laws.Components;
@@ -13,10 +13,10 @@ namespace Content.Shared.Silicons.Laws;
 /// </summary>
 public abstract partial class SharedSiliconLawSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    // [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier: no emag
+    // [Dependency] private readonly SharedStunSystem _stunSystem = default!; // Frontier: no emag
+    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: no emag
+    // [Dependency] private readonly SharedMindSystem _mind = default!; // Frontier: no emag
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -59,7 +59,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         if(_mind.TryGetMind(uid, out var mindId, out _))
             EnsureSubvertedSiliconRole(mindId);
 
-        _stunSystem.TryParalyze(uid, component.StunTime, true);
+        _stunSystem.TryUpdateParalyzeDuration(uid, component.StunTime);
 
         args.Handled = true;
     }

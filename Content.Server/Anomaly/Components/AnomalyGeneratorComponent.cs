@@ -1,6 +1,7 @@
 using Content.Shared.Anomaly;
 using Content.Shared.Materials;
 using Content.Shared.Radio;
+using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -38,13 +39,13 @@ public sealed partial class AnomalyGeneratorComponent : Component
     /// The material needed to generate an anomaly
     /// </summary>
     [DataField("requiredMaterial", customTypeSerializer: typeof(PrototypeIdSerializer<MaterialPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-    public string RequiredMaterial = "Bananium"; // Frontier - Plasma to Bananium
+    public string RequiredMaterial = "Anomalite"; // Frontier - Plasma<Anomalite
 
     /// <summary>
     /// The amount of material needed to generate a single anomaly
     /// </summary>
     [DataField("materialPerAnomaly"), ViewVariables(VVAccess.ReadWrite)]
-    public int MaterialPerAnomaly = 1000; // Frontier - Plasma to Bananium, 1500 to 1000
+    public int MaterialPerAnomaly = 300; // Frontier - 1500<300
 
     /// <summary>
     /// The random anomaly spawner entity
@@ -69,4 +70,18 @@ public sealed partial class AnomalyGeneratorComponent : Component
     /// </summary>
     [DataField("generatingFinishedSound")]
     public SoundSpecifier? GeneratingFinishedSound;
+
+    // Frontier: refund material on failure to generate.
+    /// <summary>
+    /// The material needed to generate an anomaly
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<StackPrototype> RefundStackType = "Anomalite";
+
+    /// <summary>
+    /// Stack count to return on refund
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int RefundAmount = 3;
+    // End Frontier
 }

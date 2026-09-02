@@ -60,15 +60,6 @@
         amount: 8
         doAfter: 6
 
-    - to: nest
-      completed:
-      - !type:SnapToGrid
-        southRotation: true
-      steps:
-      - material: WebSilk
-        amount: 6
-        doAfter: 3
-
 
   # Deconstruction is down here
   - node: wall
@@ -142,15 +133,3 @@
       steps:
       - tool: Cutting
         doAfter: 3
-
-  - node: nest
-    entity: WebNest
-    edges:
-    - to: start
-      completed:
-      - !type:SpawnPrototype
-        prototype: MaterialWebSilk1
-        amount: 5
-      steps:
-      - tool: Cutting
-        doAfter: 2

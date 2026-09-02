@@ -40,15 +40,16 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server._NF.Bank; // Frontier
-using Content.Server._NF.SectorServices; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Robust.Shared.Enums; // Frontier
-using Content.Shared._NF.Bank.Components; // Frontier
-using Content.Shared._NF.Bank.BUI; // Frontier
-using Content.Shared.SSDIndicator; // Frontier
 using Content.Server.Power.EntitySystems; // Frontier
+using Content.Server._NF.Bank; // Frontier
 using Content.Server._NF.Mail.Components; // Frontier
+using Content.Server._NF.SectorServices; // Frontier
+using Content.Shared.SSDIndicator; // Frontier
+using Content.Shared.Station.Components; // Frontier
+using Content.Shared._NF.Bank.BUI; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
+using Robust.Server.Player; // Frontier
+using Robust.Shared.Enums; // Frontier
 
 namespace Content.Server._DV.Mail.EntitySystems
 {
@@ -61,7 +62,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-        [Dependency] private readonly MindSystem _mindSystem = default!;
+        // [Dependency] private readonly MindSystem _mindSystem = default!; // Frontier: warning suppression
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
@@ -76,8 +77,12 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
         [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!; // Frontier
+        [Dependency] private readonly IPlayerManager _player = default!; // Frontier
 
         private ISawmill _sawmill = default!;
+        private static readonly ProtoId<TagPrototype> MailTag = "Mail"; // Frontier
+        private static readonly ProtoId<TagPrototype> TrashTag = "Trash"; // Frontier
+        private static readonly ProtoId<TagPrototype> RecyclableTag = "Recyclable"; // Frontier
 
         public override void Initialize()
         {
@@ -538,12 +543,13 @@ namespace Content.Server._DV.Mail.EntitySystems
                 Loc.GetString(mailEntityStrings.NameAddressed, // Frontier: move constant to MailEntityString
                 ("recipient", recipient.Name)));
 
-            var accessReader = EnsureComp<AccessReaderComponent>(uid);
-            // Frontier: TODO - should this be removed for Frontier?
-            foreach (var access in recipient.AccessTags)
-            {
-                accessReader.AccessLists.Add([access]);
-            }
+            // Frontier: - remove access reader checks
+            // var accessReader = EnsureComp<AccessReaderComponent>(uid);
+            // foreach (var access in recipient.AccessTags)
+            // {
+            //     accessReader.AccessLists.Add([access]);
+            // }
+            // End Frontier
         }
 
         /// <summary>
@@ -613,7 +619,7 @@ namespace Content.Server._DV.Mail.EntitySystems
                 string stationName;
                 if (_stationSystem.GetOwningStation(receiverUid) is { Valid: true } station
                     && TryComp<StationDataComponent>(station, out var stationData)
-                    && _stationSystem.GetLargestGrid(stationData) is { Valid: true } stationGrid
+                    && _stationSystem.GetLargestGrid((station, stationData)) is { Valid: true } stationGrid
                     && TryName(stationGrid, out var gridName)
                     && gridName != null)
                 {
@@ -625,8 +631,8 @@ namespace Content.Server._DV.Mail.EntitySystems
                 }
 
                 // Mail recipients requires a connected player
-                if (!_mindSystem.TryGetMind(receiverUid, out var mindId, out var mindComp)
-                    || mindComp?.Session?.State.Status != SessionStatus.InGame)
+                if (!_player.TryGetSessionByEntity(receiverUid, out var session)
+                    || session.State.Status != SessionStatus.InGame)
                     return false;
 
                 // Antagonists (pirates and the like) don't get mail.
@@ -781,7 +787,7 @@ namespace Content.Server._DV.Mail.EntitySystems
                 SetupMail(mail, component, candidate);
                 validTeleporters[index].HadMail = true;
 
-                _tagSystem.AddTag(mail, "Mail"); // Frontier
+                _tagSystem.AddTag(mail, MailTag); // Frontier
             }
 
             for (int i = 0; i < validTeleporters.Count; i++)
@@ -818,8 +824,8 @@ namespace Content.Server._DV.Mail.EntitySystems
                 _handsSystem.PickupOrDrop(user, entity);
             }
 
-            _tagSystem.AddTag(uid, "Trash");
-            _tagSystem.AddTag(uid, "Recyclable");
+            _tagSystem.AddTag(uid, TrashTag);
+            _tagSystem.AddTag(uid, RecyclableTag);
             component.IsEnabled = false;
             UpdateMailTrashState(uid, true);
         }

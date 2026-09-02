@@ -177,7 +177,7 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
     // Deletes a grid, reparenting every humanoid and player character that's on it.
     public void UnparentPlayersFromGrid(EntityUid grid, bool deleteGrid, bool ignoreLifeStage = false)
     {
-        if (!ignoreLifeStage && MetaData(grid).EntityLifeStage >= EntityLifeStage.Terminating)
+        if (!ignoreLifeStage && TerminatingOrDeleted(grid))
             return;
 
         var reparentEntities = GetEntitiesToReparent(grid);

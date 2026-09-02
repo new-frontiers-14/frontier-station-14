@@ -1,16 +1,22 @@
-## Mob base
+# region Mob base
 - type: entity
-  name: Wizard
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobMovementSpeedModifierRanged
+  - MobStaminaSpecial
   - MobHumanoidHostileBase
-  - MobPassiveRegen
-  - MobHumanoidInvetory
+  - MobPassiveRegenWeak
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
-  - NFMobRestrictions
-  id: MobWizFedlBase
+  id: NFMobWizardlBase
+  name: wizard
   components:
+  - type: Damageable
+    damageModifierSet: MobHereticDamageModifierSet
+  - type: Inventory
+    templateId: hostilewizard # Supports loadouts, more lootable slots
+  - type: InventorySlots
   - type: NpcFactionMember
     factions:
     - WizFedFaction
@@ -24,44 +30,33 @@
     damage:
       types:
         Heat: 0
-  - type: Stamina
-    critThreshold: 400
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
-      160: Dead
+      80: Critical
+      140: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      72: 0.7
-      96: 0.5
-  - type: Advertise
-    pack: wizardhumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
+      40: 0.7
+      60: 0.5
+  - type: Vocalizer
+    hideChat: true
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: wizardhumanoidchatter
   - type: AutoWakeUp
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
-    gib: false
-    useArgumentEntity: true
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# Humans
-# Blue Wizard, summons 2 Blue Curacao Elementals
+# region Tier 1
 - type: entity
-  name: Blue Wizard
-  parent: MobWizFedlBase
-  id: MobWizFedWizardBlue
+  parent: NFMobWizardlBase
+  id: NFMobWizardBlueApprentice
   categories: [ HideSpawnMenu ]
+  name: blue wizard apprentice
   components:
   - type: Loadout
     prototypes:
-    - NPCWizardBlueGear
+    - NpcGearWizardBlueApprentice
   - type: BasicEntityAmmoProvider
     proto: WaterElementalConjured
     capacity: 2
@@ -76,63 +71,15 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
 
-# Red Wizard, shoots magic bolts that put targets on fire (2 heat damage, 2 fire stacks)
-# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
-  name: Red Wizard
-  parent: MobWizFedlBase
-  id: MobWizFedWizardRed
+  parent: NFMobWizardlBase
+  id: NFMobWizardApprenticeSoap
+  name: soap wizard apprentice
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
-    - NPCWizardRedGear
-  - type: BasicEntityAmmoProvider
-    proto: BulletFireBolt
-    capacity: 1
-    count: 1
-  - type: Gun
-    showExamineText: false
-    fireRate: 1
-    soundGunshot:
-      path: /Audio/Magic/fireball.ogg
-
-# Violet Wizard, shoots asphyxiation magic bolts (4 bloodloss, 4 asphyxiation)
-# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
-- type: entity
-  name: Violet Wizard
-  parent: MobWizFedlBase
-  id: MobWizFedWizardViolet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Loadout
-    prototypes:
-    - NPCWizardVioletGear
-  - type: BasicEntityAmmoProvider
-    proto: BulletMagicBolt
-    capacity: 8
-    count: 8
-  - type: Gun
-    showExamineText: false
-    fireRate: 6
-    soundGunshot:
-      path: /Audio/Magic/fireball.ogg
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.5
-    rechargeSound:
-      path: /Audio/_NF/Effects/silence.ogg
-
-# Soap Wizard, summons soap to slip targets
-# Look for soap here: \Resources\Prototypes\_NF\Entities\Objects\Specific\Wizard\conjured_items.yml
-- type: entity
-  name: Soap Wizard
-  parent: MobWizFedlBase
-  id: MobWizFedWizardSoap
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Loadout
-    prototypes:
-    - NPCWizardSoapGear
+    - NpcGearWizardSoapApprentice
   - type: BasicEntityAmmoProvider
     proto: SoapConjured
     capacity: 1
@@ -143,49 +90,163 @@
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
 
-# Wizards in hardsuits
 - type: entity
-  name: Blue Wizard
-  parent: MobWizFedWizardBlue
-  id: MobWizFedWizardBlueHardsuit
+  parent: NFMobWizardlBase
+  id: NFMobWizardPurpleApprentice
   categories: [ HideSpawnMenu ]
+  name: purple wizard apprentice
   components:
   - type: Loadout
     prototypes:
-    - NPCWizardBlueHardsuitGear
+    - NpcGearWizardPurpleApprentice
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletMagicBoltMob
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
 
+# region Tier 2
 - type: entity
-  name: Red Wizard
-  parent: MobWizFedWizardRed
-  id: MobWizFedWizardRedHardsuit
+  parent: NFMobWizardlBase
+  id: NFMobWizardAdeptBlue
   categories: [ HideSpawnMenu ]
+  name: blue wizard adept
   components:
   - type: Loadout
     prototypes:
-    - NPCWizardRedHardsuitGear
+    - NpcGearWizardAdeptBlue
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletMagicIceBoltMob
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
 
 - type: entity
-  name: Violet Wizard
-  parent: MobWizFedWizardViolet
-  id: MobWizFedWizardVioletHardsuit
+  parent: NFMobWizardlBase
+  id: NFMobWizardAdeptRed
   categories: [ HideSpawnMenu ]
+  name: red wizard adept
   components:
   - type: Loadout
     prototypes:
-    - NPCWizardVioletHardsuitGear
+    - NpcGearWizardAdeptRed
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletMagicFireBoltMob
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
 
 - type: entity
-  name: Soap Wizard
+  parent: NFMobWizardlBase
+  id: NFMobWizardAdeptPurple
+  categories: [ HideSpawnMenu ]
+  name: purple wizard adept
+  components:
+  - type: Loadout
+    prototypes:
+    - NpcGearWizardAdeptPurple
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: HitscanBatteryAmmoProvider
+    proto: NFHitscanMagicCausticBeamMob
+    fireCost: 100
+  - type: Gun
+    showExamineText: false
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  parent: NFMobWizardlBase
+  id: NFMobWizardAdeptBrick
+  categories: [ HideSpawnMenu ]
+  name: brick wizard adept
+  components:
+  - type: Loadout
+    prototypes:
+    - NpcGearWizardAdeptBrick
+  - type: BasicEntityAmmoProvider
+    proto: BrickConjured
+    capacity: 20
+    count: 20
+  - type: Gun
+    showExamineText: false
+    fireRate: 2
+    soundGunshot:
+        collection: Woosh
+
+# region Tier 3
+- type: entity
+  parent: NFMobWizardAdeptBlue
+  id: NFMobWizardMasterBlue
+  categories: [ HideSpawnMenu ]
+  name: blue wizard master
+  components:
+  - type: Loadout
+    prototypes:
+    - NpcGearWizardMasterBlue
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: HitscanBatteryAmmoProvider
+    proto: NFHitscanMagicLightningMob
+    fireCost: 100
+
+- type: entity
+  parent: NFMobWizardAdeptRed
+  id: NFMobWizardMasterRed
+  categories: [ HideSpawnMenu ]
+  name: red wizard master
+  components:
+  - type: Loadout
+    prototypes:
+    - NpcGearWizardMasterRed
+
+- type: entity
+  parent: NFMobWizardAdeptPurple
+  id: NFMobWizardMasterPurple
+  categories: [ HideSpawnMenu ]
+  name: purple wizard master
+  components:
+  - type: Loadout
+    prototypes:
+    - NpcGearWizardMasterPurple
+
+- type: entity
+  parent: NFMobWizardAdeptBrick
+  id: NFMobWizardMasterBrick
+  categories: [ HideSpawnMenu ]
+  name: brick wizard master
   suffix: AI, Hardsuit
-  parent: MobWizFedWizardSoap
-  id: MobWizFedWizardSoapHardsuit
-  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
-    - NPCWizardSoapHardsuitGear
+    - NpcGearWizardMasterBrick
 
-# Conjured Creatures
+# region Conjured Creatures
 - type: entity
   name: Blue Curacao Elemental
   categories: [ HideSpawnMenu ]
@@ -246,3 +307,28 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.5
     baseSprintSpeed : 4.5
+
+- type: entity # Used for player spawns
+  categories: [ HideSpawnMenu ]
+  parent: WaterElementalConjured
+  id: WaterElementalConjuredStaff
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: TimedDespawn
+    lifetime: 180

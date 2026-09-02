@@ -1,0 +1,145 @@
+#region base
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: NFBaseGatherableFlora
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+          damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+#region glowshroom
+- type: entity
+  parent: NFBaseGatherableFlora
+  id: NFGlowshroom
+  name: glowshroom
+  suffix: Structure
+  description: A highly-resilient species of mushroom that glows in the dark.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/glowshroom.rsi
+    noRot: true
+    drawdepth: FloorTiles # Allows catwalks to be on top of the shrooms
+    layers:
+    - state: structure-1
+      map: [ "glowshroomFloor" ]
+  - type: Gatherable
+    toolWhitelist:
+      components:
+      - Hands
+    loot:
+      All: !type:GroupSelector
+        children:
+        - id: NFFoodGlowshroom
+          weight: 0.05
+          amount: !type:RangeNumberSelector
+            range: 0, 1
+        - id: NFGlowshroomSeeds
+          weight: 0.95
+          amount: !type:RangeNumberSelector
+            range: 0, 1
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    softness: 0.5
+    color: "#AFDDAF"
+    castShadows: false
+  - type: RandomSprite
+    available:
+    - glowshroomFloor:
+        structure-1: ""
+        structure-2: ""
+        structure-3: ""
+  - type: Construction
+    graph: NFGlowshroomStructure
+    node: NFGlowshroom
+
+#region spreading
+# this thing works, but it is commented out for now due to performance concerns
+# and until there is a clearer vision on how and when to use it
+#- type: entity
+#  parent: [ BaseKudzu, NFGlowshroom ]
+#  id: NFGlowshroomSpreading
+#  suffix: Structure, Spreading
+#  components:
+#  - type: Kudzu
+#    growthTickChance: 0.1
+#    spreadChance: 0.1
+
+#region wallmount
+- type: entity
+  parent: NFGlowshroom
+  id: NFGlowshroomWall
+  suffix: Structure, Wallmount
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: WallMount
+    arc: 360 # Crappy workaround
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Objects/Misc/glowshroom.rsi
+    layers:
+    - state: structure-wall-1
+      map: [ "glowshroomWall" ]
+  - type: PointLight
+    autoRot: true
+    offset: "0, -0.8" # shine from the bottom of the wall
+  - type: RandomSprite
+    available:
+    - glowshroomWall:
+        structure-wall-1: ""
+        structure-wall-2: ""
+        structure-wall-3: ""
+  - type: Construction
+    graph: NFGlowshroomStructureWall
+    node: NFGlowshroomWall
+
+#region produce
+- type: entity
+  parent: FoodProduceBase
+  id: NFFoodGlowshroom
+  name: glowshroom
+  description: A highly-resilient species of mushroom that glows in the dark.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/glowshroom.rsi
+    state: produce
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Radium # maybe DON'T eat weird glowing mushrooms, actually
+          Quantity: 8
+  - type: StaticPrice
+    price: 20
+#  - type: PointLight # Commented out due to performance concerns
+#    radius: 1.5
+#    energy: 0.5
+#    softness: 0.5
+#    color: "#AFDDAF"
+#    castShadows: false
+  - type: BadFood
+  - type: Produce
+    seedId: nfglowshroom

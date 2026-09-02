@@ -15,9 +15,9 @@
 - type: loadoutGroup
   id: NFPiratePDA
   name: loadout-group-contractor-pda
-  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - NFPirateNFPiratePDA
+  - NFPirateNFShantymanPDA
   fallbacks:
   - NFPirateNFPiratePDA
 
@@ -31,6 +31,15 @@
   - ContractorClothingMaskGas
   fallbacks:
   - ContractorClothingMaskBreath
+
+- type: loadoutGroup
+  id: NFPirateEars
+  name: loadout-group-contractor-ears
+  loadouts:
+  - NFPirateEarsClothingHeadsetFreelance
+  - NFPirateNFClothingWristsetPirateFreelancer
+  fallbacks:
+  - NFPirateEarsClothingHeadsetFreelance
 
 - type: loadoutGroup
   id: NFPirateShoes
@@ -78,18 +87,21 @@
 - type: loadoutGroup
   id: NFPirateCaptainOuterClothing
   name: loadout-group-contractor-outerclothing
-  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - NFPirateCaptainClothingOuterCoatPirate
+  - NFPirateClothingOuterCoatVictorian
+  - NFPirateClothingOuterCoatVictorianRed
+  - NFPirateClothingLongcoatBlack
+  - NFPirateClothingLongcoatBrown
   fallbacks:
   - NFPirateCaptainClothingOuterCoatPirate
 
 - type: loadoutGroup
   id: NFPirateCaptainPDA
   name: loadout-group-contractor-pda
-  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - NFPirateCaptainNFPirateCaptainPDA
+  - NFPirateCaptainNFShantymanPDA
   fallbacks:
   - NFPirateCaptainNFPirateCaptainPDA
 
@@ -101,6 +113,15 @@
   - PirateCaptainClothingWalletLeatherPirate
   fallbacks:
   - PirateCaptainClothingWalletLeatherPirate
+
+- type: loadoutGroup
+  id: NFPirateCaptainEars
+  name: loadout-group-contractor-ears
+  loadouts:
+  - NFPirateCaptainEarsClothingHeadsetAltFreelancer
+  - NFPirateNFClothingWristsetPirateFreelancer
+  fallbacks:
+  - NFPirateCaptainEarsClothingHeadsetAltFreelancer
 
 - type: loadoutGroup
   id: PirateCaptainBackpackItems
@@ -129,14 +150,18 @@
   name: loadout-group-contractor-outerclothing
   loadouts:
   - NFPirateFirstMateClothingOuterCoatGentle
+  - NFPirateClothingOuterCoatVictorian
+  - NFPirateClothingOuterCoatVictorianRed
+  - NFPirateClothingLongcoatBlack
+  - NFPirateClothingLongcoatBrown
   fallbacks:
   - NFPirateFirstMateClothingOuterCoatGentle
 
 - type: loadoutGroup
   id: NFPirateFirstMatePDA
   name: loadout-group-contractor-pda
-  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - NFPirateFirstMateNFPirateFirstMatePDA
+  - NFPirateFirstMateNFShantymanPDA
   fallbacks:
   - NFPirateFirstMateNFPirateFirstMatePDA

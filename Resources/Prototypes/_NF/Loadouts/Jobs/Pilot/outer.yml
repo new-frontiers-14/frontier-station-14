@@ -1,11 +1,49 @@
 - type: loadout
+  id: PilotForcedClothingOuterEVASuitPilot
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitPilot
+  groupBy: "OuterEVASuits"
+
+- type: loadout
   id: PilotClothingOuterHardsuitPilot
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 1200
   equipment:
     outerClothing: ClothingOuterHardsuitPilot
+  groupBy: "OuterEVASuits"
+
+- type: loadout
+  id: PilotClothingOuterHardsuitCap
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
+  price: 5000
+  equipment:
+    outerClothing: ClothingOuterHardsuitCap
+  groupBy: "OuterEVASuits"
 
 - type: loadout
   id: PilotClothingOuterCoatBomber
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 0
   equipment:
     outerClothing: ClothingOuterCoatBomber
+  groupBy: "OuterJackets"
+
+- type: loadout
+  id: PilotClothingLongcoatMedic
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
+  price: 800
+  equipment:
+    outerClothing: ClothingLongcoatMedic
+  groupBy: "longcoats"

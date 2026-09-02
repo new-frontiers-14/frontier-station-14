@@ -50,14 +50,27 @@ namespace Content.Shared.Roles
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
-        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)] // Frontier
-        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets; // Frontier: sets of requirements - one must be matched in order to
+        // Frontier: alternate requirement sets
+        /// <summary>
+        /// Alternate sets of requirements - one must be matched in order to spawn as this job.
+        /// </summary>
+        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
+        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets;
+        // End Frontier: alternate requirement sets
 
         /// <summary>
         ///     When true - the station will have anouncement about arrival of this player.
         /// </summary>
         [DataField("joinNotifyCrew")]
         public bool JoinNotifyCrew { get; private set; } = false;
+
+        // Frontier: new player greetings
+        /// <summary>
+        /// When true, new players joining this role will have a radio message sent off (if enabled through cvars).
+        /// </summary>
+        [DataField]
+        public bool NewPlayerMessage { get; private set; } = true;
+        // End Frontier: new player greetings
 
         /// <summary>
         ///     When true - the player will recieve a message about importancy of their job.

@@ -13,6 +13,9 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
   whitelisted: true # Frontier
 
 - type: startingGear
@@ -28,16 +31,16 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: NFWeaponPistolN1984 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazineMagnum
+    - NFMagazinePistol45 # Frontier: MagazineMagnum<NFMagazinePistol45
 
 - type: startingGear
   id: ERTLeaderGearEVA
@@ -52,16 +55,16 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: NFWeaponPistolN1984 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazineMagnum
+    - NFMagazinePistol45 # Frontier: MagazineMagnum<NFMagazinePistol45
 
 - type: startingGear
   id: ERTLeaderGearEVALecter
@@ -76,18 +79,26 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazineRifle
-    pocket2: MagazineRifle
+    pocket1: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
+    pocket2: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
   inhand:
-  - WeaponRifleLecter
+  - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazineMagnum
+    - NFMagazinePistol45 # Frontier: MagazineMagnum<NFMagazinePistol45
+
+- type: chameleonOutfit
+  id: ERTLeaderChameleonOutfit
+  job: ERTLeader
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTLeader
+    neck: ClothingNeckBronzeheart
 
 # Chaplain
 - type: job
@@ -108,6 +119,8 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
   whitelisted: true # Frontier
 
 - type: startingGear
@@ -172,6 +185,16 @@
     - FoodBakedBunHotX
     - Lighter
 
+- type: chameleonOutfit
+  id: ERTChaplainChameleonOutfit
+  job: ERTChaplain
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTChaplain
+    mask: ClothingMaskGasERT
+    outerClothing: ClothingOuterHardsuitERTChaplain
+    shoes: ClothingShoesBootsMagAdv
+
 # Engineer
 - type: job
   id: ERTEngineer
@@ -187,6 +210,9 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
   whitelisted: true # Frontier
 
 - type: startingGear
@@ -245,6 +271,14 @@
     - SheetSteel
     - SheetGlass
 
+- type: chameleonOutfit
+  id: ERTEngineerChameleonOutfit
+  job: ERTEngineer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTEngineer
+    neck: ClothingNeckEngineermedal
+
 # Security
 - type: job
   id: ERTSecurity
@@ -252,7 +286,7 @@
   description: job-description-ertsecurity
   playTimeTracker: JobERTSecurity
   setPreference: false
-  startingGear: ERTEngineerGearEVA
+  startingGear: ERTSecurityGearEVA
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -260,6 +294,9 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
   whitelisted: true # Frontier
 
 - type: startingGear
@@ -275,16 +312,16 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
+    pocket1: NFWeaponPistolMk58 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
 
 - type: startingGear
   id: ERTSecurityGearEVA
@@ -299,16 +336,16 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
+    pocket1: NFWeaponPistolMk58 # Frontier: use NF variant
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
 
 - type: startingGear
   id: ERTSecurityGearEVALecter
@@ -323,18 +360,26 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazineRifle
-    pocket2: MagazineRifle
+    pocket1: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
+    pocket2: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
   inhand:
-    - WeaponRifleLecter
+    - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
+
+- type: chameleonOutfit
+  id: ERTSecurityChameleonOutfit
+  job: ERTSecurity
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTSecurity
+    neck: ClothingNeckSecuritymedal
 
 # Medical
 - type: job
@@ -351,6 +396,9 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
   whitelisted: true # Frontier
 
 - type: startingGear
@@ -401,6 +449,14 @@
     - ChemistryBottleEpinephrine
     - ChemistryBottleEpinephrine
 
+- type: chameleonOutfit
+  id: ERTMedicalChameleonOutfit
+  job: ERTMedical
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTMedical
+    neck: ClothingNeckStethoscope
+
 # Janitor
 - type: job
   id: ERTJanitor
@@ -416,6 +472,9 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
   whitelisted: true # Frontier
 
 - type: startingGear
@@ -461,3 +520,12 @@
     - Soap
     - CrowbarRed
     - AdvMopItem
+
+- type: chameleonOutfit
+  id: ERTJanitorChameleonOutfit
+  job: ERTJanitor
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTJanitor
+    neck: ClothingNeckScarfStripedPurple
+    eyes: ClothingEyesGlassesSunglasses

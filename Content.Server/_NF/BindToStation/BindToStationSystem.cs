@@ -1,29 +1,32 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server.Construction.Components;
 using Content.Shared._NF.BindToStation;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
+using Robust.Server.Containers;
 
 namespace Content.Server._NF.BindToStation;
 
 public sealed class BindToStationSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ExtensionCableSystem _extensionCable = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BindToStationComponent, ExaminedEvent>(OnBoundItemExamined);
-        SubscribeLocalEvent<BindToStationComponent, MapInitEvent>(OnBoundMapInit);
-        SubscribeLocalEvent<BindToStationComponent, GotEmaggedEvent>(OnBoundEmagged);
-        SubscribeLocalEvent<BindToStationComponent, GotUnEmaggedEvent>(OnBoundUnemagged);
+        SubscribeLocalEvent<StationBoundObjectComponent, ExaminedEvent>(OnBoundItemExamined);
+        SubscribeLocalEvent<StationBoundObjectComponent, MapInitEvent>(OnBoundMapInit);
+        SubscribeLocalEvent<StationBoundObjectComponent, GotEmaggedEvent>(OnBoundEmagged);
+        SubscribeLocalEvent<StationBoundObjectComponent, GotUnEmaggedEvent>(OnBoundUnemagged);
     }
 
-    private void OnBoundItemExamined(EntityUid uid, BindToStationComponent component, ExaminedEvent args)
+    private void OnBoundItemExamined(EntityUid uid, StationBoundObjectComponent component, ExaminedEvent args)
     {
         if (!args.IsInDetailsRange || component.BoundStation == null || !component.Enabled)
             return;
@@ -33,17 +36,17 @@ public sealed class BindToStationSystem : EntitySystem
     }
 
     // Ensure consistency for station-bound machines
-    public void OnBoundMapInit(Entity<BindToStationComponent> ent, ref MapInitEvent args)
+    public void OnBoundMapInit(Entity<StationBoundObjectComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.Enabled
             && TryComp<ExtensionCableReceiverComponent>(ent.Owner, out var receiver)
             && _station.GetOwningStation(ent.Owner) != ent.Comp.BoundStation)
         {
-            _extensionCable.Disconnect(ent.Owner, receiver);
+            _extensionCable.Disconnect((ent.Owner, receiver));
         }
     }
 
-    public void OnBoundEmagged(Entity<BindToStationComponent> ent, ref GotEmaggedEvent args)
+    public void OnBoundEmagged(Entity<StationBoundObjectComponent> ent, ref GotEmaggedEvent args)
     {
         // Don't check handled - machines may be emagged separately by other types.
         if (!args.Type.HasFlag(EmagType.StationBound))
@@ -61,7 +64,7 @@ public sealed class BindToStationSystem : EntitySystem
         args.Handled = true;
     }
 
-    public void OnBoundUnemagged(Entity<BindToStationComponent> ent, ref GotUnEmaggedEvent args)
+    public void OnBoundUnemagged(Entity<StationBoundObjectComponent> ent, ref GotUnEmaggedEvent args)
     {
         // Don't check handled - machines may be emagged separately by other types.
         if (!args.Type.HasFlag(EmagType.StationBound))
@@ -86,7 +89,7 @@ public sealed class BindToStationSystem : EntitySystem
     /// <param name="station">The station to bind the grid to. If null, unbinds the machine.</param>
     public void BindToStation(EntityUid target, EntityUid? station, bool enabled = true)
     {
-        var binding = EnsureComp<BindToStationComponent>(target);
+        var binding = EnsureComp<StationBoundObjectComponent>(target);
         binding.BoundStation = station;
         binding.Enabled = enabled;
 
@@ -99,11 +102,28 @@ public sealed class BindToStationSystem : EntitySystem
                 && TryComp(target, out TransformComponent? xform)
                 && xform.Anchored)
             {
-                _extensionCable.Connect(target, receiver);
+                _extensionCable.Connect((target, receiver));
             }
             else
             {
-                _extensionCable.Disconnect(target, receiver);
+                _extensionCable.Disconnect((target, receiver));
+            }
+        }
+
+        // If this is a machine with a board, also make sure the binding is applied to the contained board too
+        if (HasComp<MachineComponent>(target) && _container.TryGetContainer(target, MachineFrameComponent.BoardContainerName, out var mboardContainer))
+        {
+            foreach (var board in mboardContainer.ContainedEntities)
+            {
+                BindToStation(board, binding.BoundStation, binding.Enabled);
+            }
+        }
+        // Repeat for computers and their boards
+        if (HasComp<ComputerComponent>(target) && _container.TryGetContainer(target, "board", out var cboardContainer))
+        {
+            foreach (var board in cboardContainer.ContainedEntities)
+            {
+                BindToStation(board, binding.BoundStation, binding.Enabled);
             }
         }
     }

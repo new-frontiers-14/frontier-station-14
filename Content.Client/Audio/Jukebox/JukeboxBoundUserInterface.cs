@@ -10,11 +10,14 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
+    private readonly SharedJukeboxSystem _sharedJukeboxSystem = default!; // wizden#42210
+
     [ViewVariables]
     private JukeboxMenu? _menu;
 
     public JukeboxBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        _sharedJukeboxSystem = EntMan.System<SharedJukeboxSystem>(); // wizden#42210
         IoCManager.InjectDependencies(this);
     }
 
@@ -41,9 +44,27 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
             SendMessage(new JukeboxStopMessage());
         };
 
-        _menu.OnSongSelected += SelectSong;
+        // wizden#42210
+        _menu.OnRepeatToggled += args =>
+        {
+            SendMessage(new JukeboxRepeatMessage(args));
+        };
+
+        _menu.OnShuffleToggled += args =>
+        {
+            SendMessage(new JukeboxShuffleMessage(args));
+        };
+        // End wizden#42210
 
         _menu.SetTime += SetTime;
+        _menu.TrackQueueAction += track => // wizden#42210
+        {
+            SendMessage(new JukeboxQueueTrackMessage(track)); // wizden#42210
+        };
+        _menu.QueueDeleteAction += index => SendMessage(new JukeboxDeleteRequestMessage(index)); // wizden#42210
+        _menu.QueueMoveUpAction += index => SendMessage(new JukeboxMoveRequestMessage(index, -1)); // wizden#42210
+        _menu.QueueMoveDownAction += index => SendMessage(new JukeboxMoveRequestMessage(index, 1)); // wizden#42210
+
         PopulateMusic();
         Reload();
     }
@@ -58,25 +79,27 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
         _menu.SetAudioStream(jukebox.AudioStream);
 
-        if (_protoManager.TryIndex(jukebox.SelectedSongId, out var songProto))
+        if (_protoManager.Resolve(jukebox.SelectedSongId, out var songProto)) // wizden#42210
         {
             var length = EntMan.System<AudioSystem>().GetAudioLength(songProto.Path.Path.ToString());
-            _menu.SetSelectedSong(songProto.Name, (float) length.TotalSeconds);
+            _menu.SetSelectedSong(songProto, (float)length.TotalSeconds); // wizden#42210
         }
         else
         {
-            _menu.SetSelectedSong(string.Empty, 0f);
+            _menu.SetSelectedSong(null, 0f); // wizden#42210
         }
+
+        _menu.PopulateQueueList(jukebox.Queue); // wizden#42210
+        _menu.UpdateButtons(jukebox.RepeatTracks, jukebox.ShuffleTracks); // wizden#42210
     }
 
     public void PopulateMusic()
     {
-        _menu?.Populate(_protoManager.EnumeratePrototypes<JukeboxPrototype>());
-    }
+        if (!EntMan.TryGetComponent(Owner, out JukeboxComponent? jukebox)) // wizden#42210
+            return;
 
-    public void SelectSong(ProtoId<JukeboxPrototype> songid)
-    {
-        SendMessage(new JukeboxSelectedMessage(songid));
+        _menu?.UpdateAvailableTracks(_sharedJukeboxSystem.GetAvailableTracks((Owner, jukebox))); // wizden#42210
+        _menu?.PopulateTracklist(); // wizden#42210
     }
 
     public void SetTime(float time)

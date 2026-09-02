@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Retort
+  parent: BaseVessel
+  name: FSC Retort
+  description: A robust gas mining and engineering vessel designed and deployed by the Far Star Corporation to provide infrastructure support for deep space operations.
+  price: 70000 # T3 engie/salvage
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/retort.yml
+  guidebookPage: ShipyardRetort
+  class:
+  - Atmospherics
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Retort
+  mapName: 'FSC Retort'
+  mapPath: /Maps/_NF/Shuttles/retort.yml
+  minPlayers: 0
+  stations:
+    Retort:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Retort {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

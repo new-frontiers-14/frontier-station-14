@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.DoAfter;
+using Content.Server.Gravity; // Wizden#38846
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Events;
 using Content.Server.NPC.Pathfinding;
@@ -30,11 +31,16 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Prying.Systems;
 using Microsoft.Extensions.ObjectPool;
+using Prometheus;
 
 namespace Content.Server.NPC.Systems;
 
 public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 {
+    private static readonly Gauge ActiveSteeringGauge = Metrics.CreateGauge(
+        "npc_steering_active_count",
+        "Amount of NPCs trying to actively do steering");
+
     /*
      * We use context steering to determine which way to move.
      * This involves creating an array of possible directions and assigning a value for the desireability of each direction.
@@ -52,6 +58,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly GravitySystem _gravity = default!; // Wizden#38846
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly PathfindingSystem _pathfindingSystem = default!;
     [Dependency] private readonly PryingSystem _pryingSystem = default!;
@@ -86,6 +93,8 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     private readonly HashSet<ICommonSession> _subscribedSessions = new();
 
     private object _obstacles = new();
+
+    private int _activeSteeringCount;
 
     public override void Initialize()
     {
@@ -205,7 +214,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        if (EntityManager.TryGetComponent(uid, out InputMoverComponent? controller))
+        if (TryComp(uid, out InputMoverComponent? controller))
         {
             controller.CurTickSprintMovement = Vector2.Zero;
 
@@ -244,12 +253,15 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         };
         var curTime = _timing.CurTime;
 
+        _activeSteeringCount = 0;
+
         Parallel.For(0, index, options, i =>
         {
             var (uid, steering, mover, xform) = npcs[i];
             Steer(uid, steering, mover, xform, frameTime, curTime);
         });
 
+        ActiveSteeringGauge.Set(_activeSteeringCount);
 
         if (_subscribedSessions.Count > 0)
         {
@@ -324,15 +336,22 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
             return;
         }
 
+        Interlocked.Increment(ref _activeSteeringCount);
+
         var agentRadius = steering.Radius;
         var worldPos = _transform.GetWorldPosition(xform);
         var (layer, mask) = _physics.GetHardCollision(uid);
-
         // Use rotation relative to parent to rotate our context vectors by.
         var offsetRot = -_mover.GetParentGridAngle(mover);
+
         _modifierQuery.TryGetComponent(uid, out var modifier);
-        var moveSpeed = GetSprintSpeed(uid, modifier);
         var body = _physicsQuery.GetComponent(uid);
+        // Wizden#38846
+        var weightless = _gravity.IsWeightless(uid);
+        var moveSpeed = GetSprintSpeed(uid, modifier);
+        var acceleration = GetAcceleration((uid, modifier), weightless);
+        var friction = GetFriction((uid, modifier), weightless);
+        // End Wizden#38846
         var dangerPoints = steering.DangerPoints;
         dangerPoints.Clear();
         Span<float> interest = stackalloc float[InterestDirections];
@@ -345,8 +364,9 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         RaiseLocalEvent(uid, ref ev);
         // If seek has arrived at the target node for example then immediately re-steer.
         var forceSteer = true;
+        var moveMultiplier = 1f; // multiplier to acceleration we should actually move with // Wizden#38846
 
-        if (steering.CanSeek && !TrySeek(uid, mover, steering, body, xform, offsetRot, moveSpeed, interest, frameTime, ref forceSteer))
+        if (steering.CanSeek && !TrySeek(uid, mover, steering, body, xform, offsetRot, moveSpeed, acceleration, friction, interest, frameTime, ref forceSteer, ref moveMultiplier)) // Wizden#38846
         {
             SetDirection(uid, mover, steering, Vector2.Zero);
             return;
@@ -393,7 +413,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         if (desiredDirection != -1)
         {
-            resultDirection = new Angle(desiredDirection * InterestRadians).ToVec();
+            resultDirection = new Angle(desiredDirection * InterestRadians).ToVec() * moveMultiplier; // Wizden#38846
         }
 
         steering.LastSteerDirection = resultDirection;
@@ -461,7 +481,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
             return;
         }
 
-        var targetPos = steering.Coordinates.ToMap(EntityManager, _transform);
+        var targetPos = _transform.ToMapCoordinates(steering.Coordinates);
         var ourPos = _transform.GetMapCoordinates(uid, xform: xform);
 
         PrunePath(uid, ourPos, targetPos.Position - ourPos.Position, result.Path);
@@ -479,4 +499,21 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         return modifier.CurrentSprintSpeed;
     }
+    // Wizden#38846
+    private float GetAcceleration(Entity<MovementSpeedModifierComponent?> ent, bool weightless)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return weightless ? MovementSpeedModifierComponent.DefaultWeightlessAcceleration : MovementSpeedModifierComponent.DefaultAcceleration;
+
+        return weightless ? ent.Comp.WeightlessAcceleration : ent.Comp.Acceleration;
+    }
+
+    private float GetFriction(Entity<MovementSpeedModifierComponent?> ent, bool weightless)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return weightless ? MovementSpeedModifierComponent.DefaultWeightlessFriction : MovementSpeedModifierComponent.DefaultFriction;
+
+        return weightless ? ent.Comp.WeightlessFriction : ent.Comp.Friction;
+    }
+    // End Wizden#38846
 }

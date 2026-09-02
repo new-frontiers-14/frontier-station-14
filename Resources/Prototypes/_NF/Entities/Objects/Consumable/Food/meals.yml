@@ -56,7 +56,7 @@
     name: ghost-role-information-crispy-name
     allowMovement: true
     description: ghost-role-information-crispy-description
-    rules: ghost-role-information-Cak-rules
+    rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
   - type: OwOAccent
   - type: Speech
@@ -85,9 +85,10 @@
   - type: Appearance
   - type: DeepFried
     crispinessLevelSet: Crispy
-    originalName: crispy
   - type: FriedTrait
     crispinessLevelSet: Crispy
+  - type: NameModifier
+    baseName: crispy
 
 - type: entity
   name: spooky
@@ -101,14 +102,42 @@
       - spooky
   - type: DeepFried
     crispinessLevelSet: Spectral
-    originalName: spooky
   - type: FriedTrait
     crispinessLevelSet: Spectral
   - type: Spectral
+  - type: NameModifier
+    baseName: spooky
+
+- type: entity
+  name: omelette
+  parent: FoodMealBase
+  id: FoodMealOmelette
+  description: Plain ol' omelette, baby.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - salty
+      - peppery
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/omelette.rsi
+    state: omelette
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
 
 - type: entity
   name: dragon omelette
-  parent: FoodMealBase
+  parent: FoodMealOmelette
   id: FoodMealDragonOmelette
   description: The mother of all omelettes.
   components:
@@ -132,9 +161,33 @@
           Quantity: 10
         - ReagentId: Ichor
           Quantity: 12
-  - type: Tag
-    tags:
-    - Meat
+
+- type: entity
+  name: omurice
+  parent: FoodMealOmelette
+  id: FoodMealOmurice
+  description: A foreign egg omelette, konnichiwa.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - salty
+      - peppery
+      - rice
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/omelette.rsi
+    state: omurice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 13
+        - ReagentId: Flavorol
+          Quantity: 7
+        - ReagentId: Ketchup
+          Quantity: 5
 
 - type: entity
   name: avocado toast
@@ -400,7 +453,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Flavorol
           Quantity: 10
 
@@ -426,7 +479,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -458,7 +511,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -491,7 +544,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -525,7 +578,7 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -537,9 +590,9 @@
     - Vegetable
 
 - type: entity
-  name: tonkatsu noodles
+  name: tonkotsu noodles
   parent: FoodBowlBase
-  id: FoodMealTonkatsuNoodles
+  id: FoodMealTonkotsuNoodles
   description: Pork bone broth with garlic and pork. Rich!
   components:
   - type: FlavorProfile
@@ -551,14 +604,14 @@
     sprite: _NF/Objects/Consumable/Food/bowl.rsi
     layers:
     - state: bowl
-    - state: tonkatsu-noodles
+    - state: tonkotsu-noodles
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol
@@ -568,3 +621,153 @@
   - type: Tag
     tags:
     - Meat
+
+- type: entity
+  name: battered tofu slice
+  parent: FoodTofuSlice
+  id: FoodTofuSliceBattered
+  description: A slice of tofu, dredged in a gloopy flour and egg mixture. Arguably better in this form.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: tofu-slice-battered
+  - type: FlavorProfile
+    flavors:
+      - tofu
+      - raw-egg
+      - chalky
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodSlicedTofuFried
+
+- type: entity
+  name: fried tofu
+  parent: FoodTofuSlice
+  id: FoodSlicedTofuFried
+  description: This once healthy slice of tofu has been fried to crispy perfection.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - tofu
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: tofu-slice-fried
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Nutriment
+          Quantity: 2
+
+- type: entity
+  name: chicken parmesan
+  parent: FoodMealBase
+  id: FoodMealChickenParmesan
+  description: The highest-rated method to taming an Australian. Just be sure to call it "chicken parm"...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - savory
+      - tomato
+      - chicken
+      - pasta
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    state: chickenparm
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 12
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMeatSausage
+  name: cooked sausage
+  description: A simple sausage. Who knows what's in this thing?
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - NFHotdog
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausagecooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 2
+  - type: Construction
+    graph: NFHotdogStove
+    node: cookeddog
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealHotdog
+  name: hotdog
+  description: Hot diggity dog!
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: hotdog
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Construction
+    graph: NFHotdog
+    node: hotteddog
+    
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealPoutine
+  name: poutine
+  description: The ultimate hangover cure with fries, gravy and cheese curds. Oh, Canada!
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+      - cheesy
+      - meaty
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meals.rsi
+    state: poutine

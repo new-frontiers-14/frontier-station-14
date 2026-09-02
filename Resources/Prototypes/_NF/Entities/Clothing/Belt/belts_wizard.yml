@@ -1,0 +1,117 @@
+- type: entity
+  id: ClothingBeltWizardBlue
+  parent: [ ClothingBeltStorageBase, RecyclableItemClothBasic, BaseC3WizardContraband, ContrabandClothing ]
+  name: blue wizard sash
+  description: A magical sash without visible pockets yet capable of storing items.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    layers:
+      - state: icon-base-01
+        color: "#9595af"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-01
+        color: "#9595af"
+      right:
+      - state: inhand-right-base-01
+        color: "#9595af"
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-belt-base-01
+        color: "#9595af"
+
+- type: entity
+  parent: ClothingBeltWizardBlue
+  id: ClothingBeltWizardRed
+  name: red wizard sash
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    layers:
+      - state: icon-base-01
+        color: "#d81919"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-01
+        color: "#d81919"
+      right:
+      - state: inhand-right-base-01
+        color: "#d81919"
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-belt-base-01
+        color: "#d81919"
+
+- type: entity
+  parent: ClothingBeltWizardBlue
+  id: ClothingBeltWizardPurple
+  name: purple wizard sash
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    layers:
+      - state: icon-base-01
+        color: "#3e2147"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-01
+        color: "#3e2147"
+      right:
+      - state: inhand-right-base-01
+        color: "#3e2147"
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-belt-base-01
+        color: "#3e2147"
+
+#region Sash of holding
+- type: entity
+  parent: ClothingBeltWizardBlue
+  id: ClothingBeltWizardHolding
+  name: wizard sash of holding
+  description: A magical sash without visible pockets yet capable of storing items.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    layers:
+      - state: icon-base-01
+        color: "#3e2147"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-01
+        color: "#3e2147"
+      right:
+      - state: inhand-right-base-01
+        color: "#3e2147"
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/wizard_sash.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-belt-base-01
+        color: "#3e2147"
+  - type: Storage
+    grid: # AAA
+    - 0,1,0,3
+    - 2,1,2,3
+    - 1,2,1,2
+    - 1,0,1,0
+    - 4,1,4,3
+    - 6,1,6,3
+    - 5,2,5,2
+    - 5,0,5,0
+    - 8,1,8,3
+    - 10,1,10,3
+    - 9,2,9,2
+    - 9,0,9,0
+    maxItemSize: Huge

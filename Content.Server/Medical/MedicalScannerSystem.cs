@@ -7,7 +7,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Content.Server.Cloning.Components;
-using Content.Server.Construction;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.Power.EntitySystems;

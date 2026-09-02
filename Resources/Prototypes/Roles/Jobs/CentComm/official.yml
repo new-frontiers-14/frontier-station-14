@@ -12,18 +12,31 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: CentcomGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
+    back: ClothingBackpackCentcom # Frontier
     shoes: ClothingShoesBootsCombatFilled
-    head: ClothingHeadHatCentcom
+    head: ClothingHeadHatCentcomcap # Frontier: ClothingHeadHatCentcom<ClothingHeadHatCentcomcap
     eyes: ClothingEyesGlassesSunglasses
-    gloves: ClothingHandsGlovesColorBlack
-    outerClothing: ClothingOuterArmorBasic
+    gloves: ClothingHandsGlovesCombat # Frontier: ClothingHandsGlovesColorBlack<ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCentcommCarapace
     id: CentcomPDA
     ears: ClothingHeadsetAltCentCom
-    belt: WeaponPistolN1984
-    pocket1: BoxFolderBlack
-    pocket2: PenCentcom
+    belt: BoxFolderCentComClipboard # Frontier: NFWeaponPistolN1984<BoxFolderCentComClipboard
+    pocket1: NFWeaponPistolN1984 # Frontier: BoxFolderBlack<NFWeaponPistolN1984
+    #pocket2: PenCentcom # Frontier: commented out
+
+
+- type: chameleonOutfit
+  id: CentralCommandOfficialOutfit
+  job: CentralCommandOfficial
+  hasMindShield: true
+  equipment:
+    neck: ClothingNeckScarfStripedCentcom
+    mask: ClothingMaskGasCentcom

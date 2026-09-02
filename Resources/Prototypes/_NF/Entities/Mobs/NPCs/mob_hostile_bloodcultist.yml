@@ -1,12 +1,15 @@
+#region base
 - type: entity
   name: blood cultist
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
-  - NFMobRestrictions
   id: MobBloodCultistBase
   components:
+  - type: Damageable
+    damageModifierSet: MobHereticDamageModifierSet
   - type: NpcFactionMember
     factions:
       - BloodCultNF
@@ -14,28 +17,22 @@
     rechargeCooldown: 1.5
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
+  - type: Vocalizer
+    hideChat: true
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: AutoWakeUp
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
-    gib: false
-    useArgumentEntity: true
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# Humans
+#region Humans
 # Blood Cult Priest, ranged mab, bolts deal 10 slash damage
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: blood cult priest
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -49,7 +46,7 @@
     prototypes:
       - BloodCultistPriestGear
   - type: HitscanBatteryAmmoProvider
-    proto: BloodCultLaser
+    proto: NFHitscanMagicBloodCultLightningMob
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -59,9 +56,11 @@
     startingCharge: 300
   - type: Gun
     showExamineText: false
-    fireRate: 4
-    minAngle: 1
-    maxAngle: 10
+    fireRate: 2
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
@@ -70,6 +69,8 @@
 - type: entity
   name: blood cult janitor
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaSpecial
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -82,17 +83,17 @@
   - type: Loadout
     prototypes:
     - BloodCultistJanitorGear
-  - type: Stamina
-    critThreshold: 500
   - type: BasicEntityAmmoProvider
     proto: ShellSoapConjuredBloodCultCluster # SoapConjuredBloodCultCluster
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 4
-    minAngle: 1
-    maxAngle: 10
+    fireRate: 2
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
@@ -105,6 +106,8 @@
 - type: entity
   name: blood cult acolyte
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -121,6 +124,8 @@
 - type: entity
   name: blood cult zealot
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistZealotMelee
@@ -136,6 +141,8 @@
 - type: entity
   name: blood cult zealot
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistZealotRanged
@@ -155,8 +162,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 7
+    maxAngle: 16
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -168,6 +177,8 @@
 - type: entity
   name: blood cult zealot
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistCaster
@@ -178,11 +189,15 @@
     prototypes:
       - BloodCultistCasterGear
   - type: BasicEntityAmmoProvider
-    proto: BulletBloodCultDarkBolt
+    proto: NFBulletMagicBloodCultHandMob
     capacity: 3
     count: 3
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/demon_consume.ogg
   - type: RechargeBasicEntityAmmo
@@ -191,23 +206,25 @@
       path: /Audio/_NF/Effects/silence.ogg
 
 # Non-human mobs
+#region Leech
 # Blood Leech, melee, fast, has moderate health regen
 - type: entity
   name: blood leech
   categories: [ HideSpawnMenu ]
   parent:
+  - MobMovementSpeedModifierSpecial
+  - MobStaminaFodder
   - MobNonHumanHostileBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
-  - NFMobRestrictions
   id: MobBloodCultLeech
   description: This cultist, once human, is now a twisted and corrupted abomination, its body warped and distorted by the dark energies of Nar'Sie's influence.
   components:
   - type: NpcFactionMember
     factions:
     - BloodCultNF
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/bloodcultleech.rsi
@@ -225,33 +242,28 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      130: Dead
-  - type: Stamina
-    critThreshold: 100
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4
-    baseSprintSpeed: 6
+      60: Critical
+      120: Dead
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Slash: 10
+        Slash: 8
         Structural: 20
     animation: WeaponArcBite
 
+#region Boss
 # Ascended Cultist, spawns 2 Drained Ones
 - type: entity
   name: ascended cultist
   description: Elevated above their mortal forms by Nar'Sie herself as a reward for their devotion.
   categories: [ HideSpawnMenu ]
   parent:
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - MobHostileBossBase
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
-  #- MobLaserReflect # Added to prevent laser abuse from players
-  - NFMobRestrictions
-  - NFMobBossRestrictions
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -272,8 +284,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
@@ -297,10 +309,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
-      400: Dead
-  - type: Stamina
-    critThreshold: 400
+      240: Critical
+      320: Dead
   - type: BasicEntityAmmoProvider
     proto: SpawnMobBloodCultistAscendedSummons # MobBloodCultDrainedOne
     capacity: 2
@@ -308,8 +318,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 1
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
   - type: RechargeBasicEntityAmmo
@@ -321,7 +333,7 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Slash: 20
+        Slash: 16
         Structural: 20
     animation: WeaponArcClaw
   - type: PointLight
@@ -339,15 +351,14 @@
     spawned:
     - id: ClothingNeckAmuletBloodCult
       amount: 1
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# Drained One, melee
+#region Drained One, melee
 - type: entity
   name: drained one
   categories: [ HideSpawnMenu ]
   parent:
+  - MobStaminaSpecial
+  - MobMovementSpeedModifierMelee
   - MobNonHumanHostileBase
   - FlyingMobBase
   - MobPassiveRegen
@@ -363,8 +374,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
+  - type: DatasetVocalizer
+    dataset: bloodcultisthumanoidchatter
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/drainedone.rsi
@@ -393,10 +404,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
-  - type: Stamina
-    critThreshold: 400
+      80: Critical
+      100: Dead
   - type: MeleeWeapon
     soundHit:
       collection: MetalThud
@@ -417,9 +426,6 @@
     speechVerb: Ghost
   - type: Ammo
     muzzleFlash: null
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 - type: entity
   name: cultist shade
@@ -466,6 +472,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent:
+  - MobStaminaFodder
   - BaseC3MobCreatureNoValue
   - MobBloodCultDrainedOne
   - NFMobTimedDespawn180
@@ -477,7 +484,7 @@
       - HumanoidAppearance
   - type: HTN
     rootTask:
-       task: KillerTomatoCompound
+       task: MeleeFollowerCompound
     blackboard:
       NavClimb: !type:Bool
         false
@@ -489,7 +496,52 @@
     factions:
     - NanoTrasen
 
-# Turrets
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - MobStaminaFodder
+  - BaseC3MobCreatureNoValue
+  - MobBloodCultShade
+  - NFMobTimedDespawn180
+  id: MobBloodCultShadeNanoTrasen
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/shade.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: shade
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: shade
+        BaseUnshaded: unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+#region Turrets
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
@@ -519,6 +571,10 @@
     - type: Gun
       showExamineText: false
       fireRate: 2
+      minAngle: 10
+      maxAngle: 20
+      angleIncrease: 2
+      angleDecay: 3
       selectedMode: FullAuto
       availableModes:
         - FullAuto
@@ -528,7 +584,7 @@
       rechargeCooldown: 1
       rechargeSound: Null
     - type: BasicEntityAmmoProvider
-      proto: BulletBloodCultDarkBolt
+      proto: NFBulletMagicBloodCultDarkBoltMob
       capacity: 3
       count: 3
     - type: HTN
@@ -553,13 +609,13 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 600
+            damage: 480
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 300
+            damage: 240
           # TODO: Construction graph
           behaviors:
             - !type:DoActsBehavior

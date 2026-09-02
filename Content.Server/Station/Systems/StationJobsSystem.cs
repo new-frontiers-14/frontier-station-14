@@ -15,7 +15,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Station.Systems;
 
@@ -29,7 +28,6 @@ public sealed partial class StationJobsSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

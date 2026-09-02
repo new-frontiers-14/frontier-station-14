@@ -88,11 +88,64 @@
       collection: GoblinThroatSingingCollection
 
 - type: emoteSounds
+  id: UnisexSheleg
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: ShelegScreams
+    Laugh:
+      collection: ShelegLaugh
+    Sneeze:
+      collection: ShelegSneezes
+    Cough:
+      collection: ShelegCoughs
+    Hiss:
+      collection: ShelegHiss
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    Yawn:
+      collection: ShelegYawn
+    Snore:
+      collection: ShelegSnores
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      collection: ShelegSigh
+    Crying:
+      collection: ShelegCry
+    Whistle:
+      collection: ShelegWhistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Belch:
+      collection: Belch #ShelegBelch
+    Gasp:
+      collection: ShelegGasp
+    DefaultDeathgasp:
+      collection: ShelegDeathGasp
+
+- type: emoteSounds
   id: Cat
   sound:
     path: /Audio/Animals/cat_meow.ogg
     params:
       variation: 0.125
+  sounds:
+    Scream:
+      collection: CatScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      path: /Audio/Animals/cat_meow.ogg
+      params:
+        variation: 0.125
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
 
 - type: emoteSounds
   id: NfsdCat
@@ -100,14 +153,65 @@
     path: /Audio/_NF/Animals/nfsdcat_meow.ogg
     params:
       variation: 0.125
+  sounds:
+    Scream:
+      collection: CatScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      path: /Audio/_NF/Animals/nfsdcat_meow.ogg
+      params:
+        variation: 0.125
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+
+- type: emoteSounds
+  id: SlimeCat
+  sound:
+    path: /Audio/Animals/cat_meow.ogg
+    params:
+      variation: 0.125
+  sounds:
+    Squish:
+      collection: Squishes
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops
+    Scream:
+      collection: CatScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      path: /Audio/Animals/cat_meow.ogg
+      params:
+        variation: 0.125
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
 
 - type: emoteSounds
   id: CatMistake
-  params:
-    variation: 0.125
+  sound:
+    path: /Audio/Animals/cat_meow.ogg
+    params:
+      variation: 0.125
   sounds:
     Scream:
       collection: CatMistake
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      path: /Audio/Animals/cat_meow.ogg
+      params:
+        variation: 0.125
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
 
 - type: emoteSounds
   id: Dog

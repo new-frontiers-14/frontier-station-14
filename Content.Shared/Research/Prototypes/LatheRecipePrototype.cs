@@ -1,15 +1,15 @@
+using Content.Shared._NF.Research.Prototypes; // Frontier
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Prototypes
 {
-    [NetSerializable, Serializable, Prototype]
+    [Prototype]
     public sealed partial class LatheRecipePrototype : IPrototype, IInheritingPrototype
     {
         [ViewVariables]

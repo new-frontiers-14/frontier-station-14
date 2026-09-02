@@ -1,0 +1,422 @@
+# region Clutter
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryClutter
+  name: random clutter
+  suffix: "Loot (Frontier), Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClutter
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryClutterSec
+  name: random clutter
+  suffix: "Loot (Frontier), Security"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/stunbaton.rsi
+        state: stunbaton_off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClutter
+
+# region Weapons
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryGuns
+  name: random weapon
+  suffix: "Loot (Frontier), Loose"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsMelee
+        weight: 0.2
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsRanged
+        weight: 0.45
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsAmmunition
+        weight: 0.2
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsExplosives
+        weight: 0.15
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootVaultGuns
+  name: random weapon
+  suffix: "Loot (Frontier), Vault"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsMelee
+        weight: 0.2
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsRanged
+        weight: 0.5
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsAmmunition
+        weight: 0.25
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsExplosives
+        weight: 0.05
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryMelee
+  name: random weapon
+  suffix: "Loot (Frontier), Melee"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/combat_knife.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsMelee
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryRare
+  name: random weapon
+  suffix: "Loot (Frontier), Vault"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsMelee
+        weight: 0.3
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsRanged
+        weight: 0.5
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsAmmunition
+        weight: 0.1
+      - !type:NestedSelector
+        tableId: TableDungeonLootWeaponsExplosives
+        weight: 0.1
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmoryExplosives
+  name: random weapon
+  suffix: "Loot (Frontier), Explosives"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Bombs/seismic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootWeaponsExplosives
+
+# region Shields
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootShieldsMercenary
+  name: random shields
+  suffix: "Loot (Frontier), Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/shields.rsi
+        state: riot-icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryShields
+
+# region Clothes
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootClothesMercenary
+  name: random clothes
+  suffix: "Loot (Frontier), Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothes
+
+# region Armor
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootArmorMercenary
+  name: random armor
+  suffix: "Loot (Frontier), Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryClothesArmor
+
+# region Hardsuits
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnDungeonLootHardsuitsMercenary
+  name: random hardsuits
+  suffix: "Loot (Frontier), Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryHardsuits
+
+# region Lockers
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootLockersArmory
+  name: random locker
+  suffix: "Loot (Frontier), Armory, Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Structures/Storage/closet.rsi
+        state: mercenary
+      - sprite: _NF/Structures/Storage/closet.rsi
+        state: mercenary_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryLockers
+
+# region Suit Storage
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootSuitStorageUnitsMercenary
+  name: random suit storage unit
+  suffix: "Loot (Frontier), Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenarySuitStorageUnits
+
+# region Crates
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateArmoryWeapon
+  name: random crate
+  suffix: "Loot (Frontier), Armory, Weapon"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/weapon.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCrates
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateRestockArmory
+  name: random crate (restock)
+  suffix: "Loot (Frontier), Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/weapon.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesRestock
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootCrateArmoryArmor
+  name: random crate
+  suffix: "Loot (Frontier), Armor"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/sec_gear.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryCratesArmor
+
+# region Machines
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonVendomatsArmory
+  name: random vendomat
+  suffix: "Loot (Frontier), Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryMachinesVending
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnDungeonLootLatheArmory
+  name: random machine techfab
+  suffix: "Loot (Frontier), Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: sec
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: TableDungeonLootMercenaryMachinesFabricators

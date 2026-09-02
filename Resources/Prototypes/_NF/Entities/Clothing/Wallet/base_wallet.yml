@@ -25,6 +25,8 @@
     maxItemSize: Small
     grid:
     - 0,0,3,1
+    quickInsert: true
+    areaInsert: true
     whitelist:
       components:
       - Cash
@@ -33,9 +35,13 @@
       - NFShipyardVoucher
       - Card # single cards
       - NFEmagPass
+      tags:
+      - FitsWallet
     blacklist:
       tags:
       - Book
+      components:
+      - Blueprint
   - type: Item
     size: Small
   - type: Clothing
@@ -51,6 +57,8 @@
           - NFShipyardVoucher
           - Card
           - NFEmagPass
+          tags:
+          - WalletPaper
       closed-cash:
         whitelist:
           components:

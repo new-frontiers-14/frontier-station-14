@@ -8,7 +8,6 @@
   color: "#364500"
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
-  slippery: false
   footstepSound:
     collection: FootstepBlood
     params:
@@ -47,3 +46,35 @@
         - !type:OrganType
           type: Goblin
           shouldHave: true
+
+- type: reagent
+  id: Primatine
+  name: reagent-name-primatine
+  desc: reagent-desc-primatine
+  flavor: hairy
+  physicalDesc: reagent-physical-desc-thick
+  color: "#7c3d00"
+  metabolisms:
+    Drink:
+      metabolismRate: 0.25
+      effects:
+        - !type:Emote
+          emote: MonkeyScreeches
+          showInChat: true
+          force: true
+          probability: 0.18
+        - !type:Polymorph
+          prototype: ArtifactMonkey
+          conditions:
+            - !type:NFIsHumanoid
+            - !type:ReagentThreshold
+              min: 50
+        - !type:AdjustReagent
+          reagent: Primatine
+          amount: -20
+          conditions:
+            - !type:ReagentThreshold
+              min: 50
+        - !type:GenericStatusEffect
+          key: Stutter
+          component: ScrambledAccent

@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Adder
+  parent: BaseVessel
+  name: LVHI Adder
+  description: A small maneuverable shuttle designed for mining. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 18000 # 15898 0.05 16692.9
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/adder.yml
+  guidebookPage: ShipyardAdder
+  class:
+  - Salvage
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Adder
+  mapName: 'Adder'
+  mapPath: /Maps/_NF/Shuttles/adder.yml
+  minPlayers: 0
+  stations:
+    Adder:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Adder {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

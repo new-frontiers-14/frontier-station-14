@@ -58,7 +58,7 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
-      gun_magazine: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
   - type: Destructible
     thresholds:
     - trigger:
@@ -82,9 +82,11 @@
     zeroVisible: true
   - type: Machine
     board: ShuttleGunSvalinnMachineGunCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
   - type: ItemSlots
     slots:
-      gun_magazine:
+      cell_slot:
         name: Magazine
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
@@ -92,7 +94,9 @@
           tags:
             - PowerCell
             - PowerCellSmall
-  - type: MagazineAmmoProvider
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedLightLaser # Frontier: use NF prefix
+    fireCost: 50
 
 - type: entity
   id: ShuttleGunPerforator
@@ -112,7 +116,7 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
-      gun_magazine: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
   - type: Destructible
     thresholds:
     - trigger:
@@ -135,16 +139,20 @@
     zeroVisible: true
   - type: Machine
     board: ShuttleGunPerforatorCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
   - type: ItemSlots
     slots:
-      gun_magazine:
+      cell_slot:
         name: Magazine
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
             - PowerCage
-  - type: MagazineAmmoProvider
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedShuttleLaser # Frontier: use NF variant
+    fireCost: 150
 
 # ---- Launchers ----
 # naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
@@ -194,6 +202,7 @@
     whitelist:
       tags:
         - Grenade
+        - NFCartridgeGrenade40mm #frontier
     capacity: 2
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -267,7 +276,7 @@
 
 - type: entity
   id: ShuttleGunPirateCannon
-  parent: [BaseStructureDisableToolUse, ShuttleGunBase] # Frontier: Added BaseStructureDisableToolUse
+  parent: [BaseStructureDisableToolUse, ShuttleGunBase, BaseC3PirateContrabandNoValue] # Frontier: Added BaseStructureDisableToolUse, BaseC3PirateContrabandNoValue
   name: pirate ship cannon
   description: Kaboom!
   components:
@@ -298,7 +307,7 @@
       tags:
         - CannonBall
     capacity: 1
-    proto: CannonBall
+    proto: NFCannonBall # Frontier: use NF variant
     soundInsert:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: NpcFactionMember # Frontier
@@ -354,7 +363,7 @@
         pitch: 1.2
         variation: 0.08
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticShuttle
+    proto: NFBulletKineticShuttle
     capacity: 10
     count: 10
   - type: Machine
@@ -362,3 +371,52 @@
   - type: ExtensionCableReceiver # Frontier
   - type: ApcPowerReceiver # Frontier
     powerLoad: 1500 # Frontier
+
+- type: entity
+  parent: ShuttleGunBase
+  id: ShuttleGunKineticOld
+  name: exomorphic dematerializer
+  description: An ancient ship gun, utilizing biomechanical systems to store and release energy. While unique in its design, it has been rendered obsolete due to its inferior charging and firing speed compared to mechanical constructions.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/xeno.rsi
+    layers:
+    - state: rail
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 0.2
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 5
+    maxAngle: 15
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 35
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletKineticShuttle # Frontier: use NF variant
+    capacity: 3
+    count: 3
+  - type: DeviceLinkSink
+    ports:
+    - Trigger

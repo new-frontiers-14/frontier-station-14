@@ -13,15 +13,15 @@
   parent: BaseVessel
   name: LVHI Kilderkin
   description: "Spaceworthy bar/microbrewery with everything one needs to facilitate poor life choices: lots of booze, smokes, and lack of food. Manufactured by Langstad-Voigt Heavy Industries."
-  price: 49500 # ~46564$ on mapinit + 5% markup + some extra
+  price: 49000 # 44560 0.1 49016
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/kilderkin.yml
   guidebookPage: ShipyardKilderkin
   class:
-  - Civilian
+  - Kitchen
   engine:
-  - Plasma
+  - Uranium
 
 - type: gameMap
   id: Kilderkin
@@ -38,6 +38,6 @@
           prefixCreator: '14'
       - type: StationJobs
         availableJobs:
-          Contractor: [ 0, 0 ]
-          Pilot: [ 0, 0 ]
-          Mercenary: [ 0, 0 ]
+          ContractorInterview: [ 0, 0 ]
+          PilotInterview: [ 0, 0 ]
+          MercenaryInterview: [ 0, 0 ]

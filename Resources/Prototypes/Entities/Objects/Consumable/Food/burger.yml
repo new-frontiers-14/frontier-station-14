@@ -2,12 +2,11 @@
 # Bun
 
 - type: entity
-  name: bun
   parent: FoodBreadSliceBase
   id: FoodBreadBun
+  name: bun
   description: A hamburger bun. Round and convenient to hold.
   components:
-  - type: Food
   - type: Sprite
     sprite: Objects/Consumable/Food/burger.rsi
     layers:
@@ -26,16 +25,18 @@
         amount: 1
       - id: FoodBreadBunBottom
         amount: 1
+  - type: Construction # Frontier - hotdog making
+    graph: NFHotdog # Frontier - hotdog making
+    node: start # Frontier - hotdog making
 
 - type: entity
-  id: FoodBreadBunBottom
   parent: FoodBreadSliceBase
+  id: FoodBreadBunBottom
   name: bottom bun
-  description: It's time to start building the burger tower. 
+  description: It's time to start building the burger tower.
   components:
   - type: Item
-    size: Normal #patch until there is an adequate resizing system in place 
-  - type: Food
+    size: Normal #patch until there is an adequate resizing system in place
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -63,12 +64,11 @@
           Quantity: 3.3 # 1/2 of a bun
 
 - type: entity
-  id: FoodBreadBunTop
   parent: FoodBreadSliceBase
+  id: FoodBreadBunTop
   name: top bun
   description: The perfect finish for your burger tower.
   components:
-  - type: Food
   - type: Sprite
     sprite: Objects/Consumable/Food/burger_sequence.rsi
     layers:
@@ -83,20 +83,18 @@
   - type: FoodSequenceElement
     entries:
       Burger: BunTopBurger
-  
+
 # Base
 
 - type: entity
+  abstract: true
   parent: FoodInjectableBase
   id: FoodBurgerBase
-  abstract: true
   components:
   - type: FlavorProfile
     flavors:
       - bun
       - meaty
-  - type: Food
-    transferAmount: 5
   - type: Sprite
     sprite: Objects/Consumable/Food/burger.rsi
   - type: SolutionContainerManager
@@ -110,6 +108,8 @@
           Quantity: 3
   - type: Item
     sprite: Objects/Consumable/Food/burger.rsi
+    shape:
+    - 0,0,1,0
 
 # Custom Burger Example
 
@@ -220,11 +220,13 @@
     - Meat
 
 - type: entity
-  name: bearger
   parent: FoodBurgerBase
   id: FoodBurgerBear
+  name: bearger
   description: Best served rawr.
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -249,11 +251,16 @@
     - Meat
 
 - type: entity
-  name: big bite burger
   parent: FoodBurgerBase
   id: FoodBurgerBig
+  name: big bite burger
   description: Forget the Big Mac. THIS is the future!
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,3
   - type: FlavorProfile
     flavors: # What bun?
       - meaty
@@ -262,14 +269,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 43
+        maxVol: 57 # Frontier: 45<57
         reagents:
         - ReagentId: Nutriment
-          Quantity: 17
+          Quantity: 18
+        - ReagentId: Protein
+          Quantity: 18
         - ReagentId: Vitamin
-          Quantity: 9
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 6
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
   - type: Sprite
     state: bigbite
   - type: Tag
@@ -278,11 +287,13 @@
 # Tastes like bun, silver, magic.
 
 - type: entity
-  name: brain burger
   parent: FoodBurgerBase
   id: FoodBurgerBrain
+  name: brain burger
   description: A strange looking burger. It looks almost sentient.
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -308,11 +319,13 @@
 # Tastes like bun, brains.
 
 - type: entity
-  name: cat burger
   parent: FoodBurgerBase
   id: FoodBurgerCat
+  name: cat burger
   description: Finally those cats and catpeople are worth something!
   components:
+  - type: Item
+    storedOffset: -1,1
   - type: Sprite
     state: cat
   - type: FlavorProfile
@@ -351,16 +364,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 34 # Frontier
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 7
         - ReagentId: Vitamin
           Quantity: 7
         - ReagentId: Protein
-          Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 8 # Frontier: 10<8
+        - ReagentId: Flavorol # Frontier
+          Quantity: 7 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -389,10 +402,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 26 # Frontier
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 5
         - ReagentId: Protein
           Quantity: 7
         - ReagentId: Vitamin
@@ -407,11 +420,13 @@
 # Tastes like bun, chicken.
 
 - type: entity
-  name: clown burger
   parent: FoodBurgerBase
   id: FoodBurgerClown
+  name: clown burger
   description: This tastes funny...
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -490,11 +505,16 @@
     - Meat
 
 - type: entity
-  name: crazy hamburger # Burger for you euro-cucks
   parent: FoodBurgerBase
   id: FoodBurgerCrazy
+  name: crazy hamburger # Burger for you euro-cucks
   description: This looks like the sort of food that a demented clown in a trenchcoat would make.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: -2,0
   - type: FlavorProfile
     flavors:
       - bun
@@ -506,26 +526,30 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 65
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
+          Quantity: 31
         - ReagentId: Protein
-          Quantity: 6
+          Quantity: 15
         - ReagentId: CapsaicinOil
           Quantity: 3
         - ReagentId: Vitamin
-          Quantity: 6
+          Quantity: 8
+        - ReagentId: Sulfur # What you get for eating something with a flare in it
+          Quantity: 5
   - type: Tag
     tags:
     - Meat
 
 - type: entity
-  name: duck sandwich # Burger for you sick bastards
   parent: FoodBurgerBase
   id: FoodBurgerDuck
+  name: duck sandwich # Burger for you sick bastards
   description: A duck sandwich, only the criminally insane would dare to eat the meat of such an adorable creature.
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -535,14 +559,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 30 # Frontier
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 15
         - ReagentId: Protein
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 5
         - ReagentId: Flavorol
           Quantity: 5
   - type: Tag
@@ -551,11 +573,13 @@
 # Tastes like bun, duck.
 
 - type: entity
-  name: empowered burger
   parent: FoodBurgerBase
   id: FoodBurgerEmpowered
+  name: empowered burger
   description: It's shockingly good, if you live off of electricity that is.
   components:
+  - type: Item
+    storedOffset: -2,1
   - type: Sprite
     state: empowered
   - type: FlavorProfile
@@ -576,11 +600,13 @@
 # Tastes like bun, pure electricity.
 
 - type: entity
-  name: fillet-o-carp burger
   parent: FoodBurgerBase
   id: FoodBurgerCarp
+  name: fillet-o-carp burger
   description: Almost like a carp is yelling somewhere...
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -593,11 +619,16 @@
 # Tastes like bun, fish.
 
 - type: entity
-  name: five alarm burger
   parent: FoodBurgerBase
   id: FoodBurgerFive
+  name: five alarm burger
   description: HOT! HOT! HOT!
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - meaty
@@ -607,18 +638,20 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 62 # Frontier: 55<62
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 20 # Frontier: 25<20
+        - ReagentId: Protein
+          Quantity: 5
         - ReagentId: CapsaicinOil
           Quantity: 5
         - ReagentId: Blackpepper
           Quantity: 5
         - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 12
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -626,11 +659,16 @@
 # Tastes like bun, HEAT.
 
 - type: entity
-  name: ghost burger
   parent: FoodBurgerBase
   id: FoodBurgerGhost
+  name: ghost burger
   description: Too spooky!
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,3
   - type: FlavorProfile
     flavors:
       - bun
@@ -646,8 +684,8 @@
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 12
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
   - type: Tag
     tags:
       - ClothMade
@@ -669,26 +707,28 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 26 # Frontier: 20<26
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 5
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
   - type: Tag
     tags:
     - Meat
 
 - type: entity
-  name: McGuffin
   parent: FoodBurgerBase
   id: FoodBurgerMcguffin
+  name: McGuffin
   description: A cheap and greasy imitation of an eggs Benedict.
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - muffin
@@ -698,28 +738,28 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 26 # Frontier: 20<26
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Flavorol
           Quantity: 5
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
   - type: Tag
     tags:
     - Meat
 
 - type: entity
-  name: BBQ Rib Sandwich
   parent: FoodBurgerBase
   id: FoodBurgerMcrib
+  name: BBQ Rib Sandwich
   description: An elusive rib shaped burger with limited availability across the galaxy. Not as good as you remember it.
   components:
-  - type: Food
-    trash: 
+  - type: Edible
+    trash:
     - FoodKebabSkewer
   - type: FlavorProfile
     flavors:
@@ -730,18 +770,18 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 40 # Frontier: 30<40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 11
         - ReagentId: Protein
-          Quantity: 7
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 4
         - ReagentId: BbqSauce
-          Quantity: 1
-        - ReagentId: Flavorol
           Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -762,7 +802,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 30 # Frontier: 25<30
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -772,8 +812,8 @@
           Quantity: 4
         - ReagentId: Nothing
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
 # Tastes like  .
 
 - type: entity
@@ -799,8 +839,8 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -820,16 +860,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 24 # Frontier: 20<24
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 6
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -863,11 +903,13 @@
 # Tastes like bun, lettuce, sludge.
 
 - type: entity
-  name: soylent burger
   parent: FoodBurgerBase
   id: FoodBurgerSoy
+  name: soylent burger
   description: After eating this you have the overwhelming urge to purchase overpriced figurines of superheroes.
   components:
+  - type: Item
+    storedOffset: 0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -877,24 +919,27 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 28 # Frontier: 20<28
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 6
+          Quantity: 13
         - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Flavorol
           Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
 # Tastes like bun, redditors.
 
 - type: entity
-  name: spell burger
   parent: FoodBurgerBase
   id: FoodBurgerSpell
+  name: spell burger
   description: This is absolutely Ei Nath.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: -1,2
   - type: FlavorProfile
     flavors:
       - bun
@@ -904,7 +949,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 29 # Frontier: 25<29
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -917,11 +962,16 @@
 # Tastes like bun, silver.
 
 - type: entity
-  name: super bite burger
   parent: FoodBurgerBase
   id: FoodBurgerSuper
+  name: super bite burger
   description: This is a mountain of a burger. FOOD!
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,4
   - type: FlavorProfile
     flavors: # What bun?
       - meaty
@@ -967,10 +1017,8 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 8
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
           Quantity: 3
         - ReagentId: Flavorol
           Quantity: 5
@@ -1011,11 +1059,14 @@
 # I'd rather wait for a custom burger component.
 
 - type: entity
-  name: mothroachburger
   parent: FoodBurgerBase
   id: FoodBurgerMothRoach
+  name: mothroachburger
   description: The last lamp it saw was the one inside the microwave.
   components:
+  - type: Item
+    shape:
+    - 0,0,0,1
   - type: FlavorProfile
     flavors:
       - bun
@@ -1037,4 +1088,4 @@
   - type: Tag
     tags:
     - Meat
-    
+

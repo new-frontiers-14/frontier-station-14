@@ -128,13 +128,13 @@
         enabled: false
 
 - type: entity
-  name: P.A.C.M.A.N.-type portable generator
+  name: P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     A flexible backup generator for powering a variety of equipment.
     Runs off solid plasma sheets and is rated for up to 25 kW.
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorPacman
-  suffix: Plasma, 15 kW
+  suffix: Plasma, 20 kW #Fronter 20>15
   components:
     - type: Sprite
       layers:
@@ -158,9 +158,9 @@
       board: PortableGeneratorPacmanMachineCircuitboard
     - type: FuelGenerator
       minTargetPower: 1000
-      maxTargetPower: 25000
-      targetPower: 15000
-      optimalPower: 15000
+      maxTargetPower: 30000 #Frontier 25000<30000
+      targetPower: 20000 #Frontier 15000<20000
+      optimalPower: 20000 #Frontier 15000<20000
       # 45 minutes at max output
       optimalBurnRate: 0.011111
       # a decent curve
@@ -169,8 +169,8 @@
       fuelMaterial: FuelGradePlasma # Frontier: Plasma<FuelGradePlasma
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 3000
-      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma] # Frontier: add FuelGradePlasma, RawPlasma
+      storageLimit: 12000 #frontier 3000<12000
+      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma, Skrungle] # Frontier: add FuelGradePlasma, RawPlasma, Scrungle
     - type: PortableGenerator
       startChance: 0.8
     - type: UpgradePowerSupplier
@@ -193,6 +193,7 @@
     # Frontier: magnet pickup, fuel adapter
     - type: MaterialStorageMagnetPickup
       range: 0.30
+      magnetEnabled: true # Frontier
     - type: FuelGradeAdapter
       conversions:
       - input: Plasma
@@ -201,10 +202,13 @@
       - input: RawPlasma
         output: FuelGradePlasma
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradePlasma
+        rate: 1
     # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
-  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
+  name: S.U.P.E.R.P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     An advanced generator for powering departments.
     Runs off uranium sheets and is rated for up to 50 kW.
@@ -245,8 +249,8 @@
       fuelMaterial: FuelGradeUranium # Frontier: Uranium<FuelGradeUranium
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 3000
-      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium] # Frontier: add FuelGradeUranium, RawUranium
+      storageLimit: 12000 #frontier 3000<12000
+      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium, Skrungle] # Frontier: add FuelGradeUranium, RawUranium, Skrungle
     - type: PortableGenerator
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
@@ -264,6 +268,7 @@
     # Frontier: magnet pickup, fuel adapter
     - type: MaterialStorageMagnetPickup
       range: 0.30
+      magnetEnabled: true # Frontier
     - type: FuelGradeAdapter
       conversions:
       - input: Uranium
@@ -272,13 +277,16 @@
       - input: RawUranium
         output: FuelGradeUranium
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradeUranium
+        rate: 0.5
     # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
-  name: J.R.P.A.C.M.A.N.-type portable generator
-  description: |-
+  name: J.R.P.A.C.M.A.N. portable generator # Frontier: no -type
+  description: |- # This is a small generator that can be used to power a single room. It runs on welding fuel and has a maximum output of 15 kW. It is suitable for ages 3 and up. < A small generator capable of powering individual rooms, in case of emergencies. Runs off welding fuel or ethanol and is rated for up to 15 kW. Rated ages 3 and up.
     A small generator capable of powering individual rooms, in case of emergencies.
-    Runs off welding fuel and is rated for up to 15 kW.
+    Runs off welding fuel or ethanol and is rated for up to 15 kW.
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
@@ -333,10 +341,11 @@
       solution: tank
       reagents:
         WeldingFuel: 1
+        Ethanol: 0.8 #Frontier Addition of Ethanol to the fuel list. 0.8 is the burn rate multiplier for ethanol.
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 200 # Frontier - 50<200
+          maxVol: 1000 # Frontier - 50<200<1000
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
@@ -392,4 +401,5 @@
           behaviors:
             - !type:SolutionExplosionBehavior
               solution: tank
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations

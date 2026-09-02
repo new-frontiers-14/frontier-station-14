@@ -78,6 +78,15 @@ public sealed class VehicleSystem : SharedVehicleSystem
                 sprite.Offset = offset;
         }
     }
+
+    // NOOPs
+    protected override void HandleEmag(Entity<VehicleComponent> ent)
+    {
+    }
+
+    protected override void HandleUnemag(Entity<VehicleComponent> ent)
+    {
+    }
 }
 
 public enum VehicleVisualLayers : byte

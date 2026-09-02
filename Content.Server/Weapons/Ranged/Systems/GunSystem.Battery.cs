@@ -2,9 +2,11 @@ using Content.Server.Power.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.FixedPoint;
+using Content.Shared.PowerCell.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Weapons.Ranged.Systems;
@@ -19,35 +21,42 @@ public sealed partial class GunSystem
         SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, ComponentStartup>(OnBatteryStartup);
         SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, ChargeChangedEvent>(OnBatteryChargeChange);
         SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, DamageExamineEvent>(OnBatteryDamageExamine);
+        SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, PowerCellChangedEvent>(OnPowerCellChanged);
 
         // Projectile
         SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, ComponentStartup>(OnBatteryStartup);
         SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, ChargeChangedEvent>(OnBatteryChargeChange);
         SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, DamageExamineEvent>(OnBatteryDamageExamine);
+        SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, PowerCellChangedEvent>(OnPowerCellChanged);
     }
 
-    private void OnBatteryStartup(EntityUid uid, BatteryAmmoProviderComponent component, ComponentStartup args)
+    private void OnBatteryStartup<T>(Entity<T> entity, ref ComponentStartup args) where T : BatteryAmmoProviderComponent
     {
-        UpdateShots(uid, component);
+        UpdateShots(entity, entity.Comp);
     }
 
-    private void OnBatteryChargeChange(EntityUid uid, BatteryAmmoProviderComponent component, ref ChargeChangedEvent args)
+    private void OnBatteryChargeChange<T>(Entity<T> entity, ref ChargeChangedEvent args) where T : BatteryAmmoProviderComponent
     {
-        UpdateShots(uid, component, args.Charge, args.MaxCharge);
+        UpdateShots(entity, entity.Comp, args.Charge, args.MaxCharge);
+    }
+
+    private void OnPowerCellChanged<T>(Entity<T> entity, ref PowerCellChangedEvent args) where T : BatteryAmmoProviderComponent
+    {
+        UpdateShots(entity, entity.Comp);
     }
 
     private void UpdateShots(EntityUid uid, BatteryAmmoProviderComponent component)
     {
-        if (!TryComp<BatteryComponent>(uid, out var battery))
-            return;
+        var ev = new GetChargeEvent();
+        RaiseLocalEvent(uid, ref ev);
 
-        UpdateShots(uid, component, battery.CurrentCharge, battery.MaxCharge);
+        UpdateShots(uid, component, ev.CurrentCharge, ev.MaxCharge);
     }
 
     private void UpdateShots(EntityUid uid, BatteryAmmoProviderComponent component, float charge, float maxCharge)
     {
-        var shots = (int) (charge / component.FireCost);
-        var maxShots = (int) (maxCharge / component.FireCost);
+        var shots = (int)(charge / component.FireCost);
+        var maxShots = (int)(maxCharge / component.FireCost);
 
         if (component.Shots != shots || component.Capacity != maxShots)
         {
@@ -55,18 +64,37 @@ public sealed partial class GunSystem
         }
 
         component.Shots = shots;
-        component.Capacity = maxShots;
+
+        if (maxShots > 0)
+            component.Capacity = maxShots;
+
         UpdateBatteryAppearance(uid, component);
+
+        var updateAmmoEv = new UpdateClientAmmoEvent();
+        RaiseLocalEvent(uid, ref updateAmmoEv);
     }
 
-    private void OnBatteryDamageExamine(EntityUid uid, BatteryAmmoProviderComponent component, ref DamageExamineEvent args)
+    private void OnBatteryDamageExamine<T>(Entity<T> entity, ref DamageExamineEvent args) where T : BatteryAmmoProviderComponent
     {
-        var damageSpec = GetDamage(component);
+        var damageSpec = GetDamage(entity.Comp);
 
         if (damageSpec == null)
             return;
 
-        var damageType = component switch
+        // Frontier begin
+        var context = entity.Comp switch
+        {
+            HitscanBatteryAmmoProviderComponent => DamageContext.Hitscan,
+            ProjectileBatteryAmmoProviderComponent => DamageContext.Ranged,
+            _ => throw new ArgumentOutOfRangeException(),
+        };
+
+        var ev = new ApplyClothingDamageModifierEvent(args.User, context, damageSpec);
+        RaiseLocalEvent(args.User, ref ev);
+        damageSpec = ev.Damage;
+        // Frontier end
+
+        var damageType = entity.Comp switch
         {
             HitscanBatteryAmmoProviderComponent => Loc.GetString("damage-hitscan"),
             ProjectileBatteryAmmoProviderComponent => Loc.GetString("damage-projectile"),
@@ -81,9 +109,9 @@ public sealed partial class GunSystem
         if (component is ProjectileBatteryAmmoProviderComponent battery)
         {
             if (ProtoManager.Index<EntityPrototype>(battery.Prototype).Components
-                .TryGetValue(_factory.GetComponentName(typeof(ProjectileComponent)), out var projectile))
+                .TryGetValue(Factory.GetComponentName<ProjectileComponent>(), out var projectile))
             {
-                var p = (ProjectileComponent) projectile.Component;
+                var p = (ProjectileComponent)projectile.Component;
 
                 if (!p.Damage.Empty)
                 {
@@ -103,9 +131,9 @@ public sealed partial class GunSystem
         return null;
     }
 
-    protected override void TakeCharge(EntityUid uid, BatteryAmmoProviderComponent component)
+    protected override void TakeCharge(Entity<BatteryAmmoProviderComponent> entity)
     {
-        // Will raise ChargeChangedEvent
-        _battery.UseCharge(uid, component.FireCost);
+        var ev = new ChangeChargeEvent(-entity.Comp.FireCost);
+        RaiseLocalEvent(entity, ref ev);
     }
 }

@@ -22,6 +22,7 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindow<RadarConsoleWindow>();
+        _window?.SetConsole(Owner); // Frontier
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

@@ -88,8 +88,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         }
     }
 
-    private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
-        string? jobId, StationRecordsComponent records)
+    public void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
+        string? jobId, StationRecordsComponent records) // Frontier: private<public
     {
         // TODO make PlayerSpawnCompleteEvent.JobId a ProtoId
         if (string.IsNullOrEmpty(jobId)
@@ -422,6 +422,10 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         {
             StationRecordFilterType.Name =>
                 !someRecord.Name.ToLower().Contains(filterLowerCaseValue),
+            StationRecordFilterType.Job =>
+                !someRecord.JobTitle.ToLower().Contains(filterLowerCaseValue),
+            StationRecordFilterType.Species =>
+                !someRecord.Species.ToLower().Contains(filterLowerCaseValue),
             StationRecordFilterType.Prints => someRecord.Fingerprint != null
                 && IsFilterWithSomeCodeValue(someRecord.Fingerprint, filterLowerCaseValue),
             StationRecordFilterType.DNA => someRecord.DNA != null

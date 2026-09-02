@@ -1,0 +1,108 @@
+- type: constructionGraph
+  id: Flags
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: LGBTQFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: TransFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: LesFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: GayFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: BiFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: EnbyFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: AroFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: IntersexFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: PanFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: AceFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+    - to: TransRoyalShrimpFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+      - material: Gold
+        amount: 5
+        doAfter: 2
+  - node: LGBTQFlag
+    entity: LGBTQFlag
+  - node: TransFlag
+    entity: TransFlag
+  - node: LesFlag
+    entity: LesbianFlag
+  - node: GayFlag
+    entity: GayFlag
+  - node: BiFlag
+    entity: BiFlag
+  - node: EnbyFlag
+    entity: EnbyFlag
+  - node: AroFlag
+    entity: AroFlag
+  - node: IntersexFlag
+    entity: IntersexFlag
+  - node: PanFlag
+    entity: PanFlag
+  - node: AceFlag
+    entity: AceFlag
+  - node: TransRoyalShrimpFlag
+    entity: TransRoyalShrimpFlag

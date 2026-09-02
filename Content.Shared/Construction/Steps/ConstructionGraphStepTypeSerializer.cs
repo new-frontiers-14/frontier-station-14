@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Serialization;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Validation;
@@ -15,6 +15,13 @@ namespace Content.Shared.Construction.Steps
             {
                 return typeof(MaterialConstructionGraphStep);
             }
+
+            //Frontier
+            if (node.Has("part"))
+            {
+                return typeof(MachinePartConstructionGraphStep);
+            }
+            //End Frontier
 
             if (node.Has("tool"))
             {

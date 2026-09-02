@@ -5,6 +5,7 @@
   description: Something seems to be missing.
   components:
   - type: Sprite
+    drawdepth: ThinPipe
     sprite: Objects/Devices/gates.rsi
     layers:
     - state: base
@@ -290,3 +291,13 @@
     - Output
   - type: Construction
     node: memory_cell
+  # Frontier begin
+  - type: ContainerFill
+    containers:
+      machine_parts:
+      - MicroManipulatorStockPart
+      - MicroManipulatorStockPart
+  - type: ContainerContainer
+    containers:
+      machine_parts: !type:Container
+ # Frontier end

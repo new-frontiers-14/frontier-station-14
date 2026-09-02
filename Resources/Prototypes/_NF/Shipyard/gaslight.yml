@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Gaslight
+  parent: BaseVessel
+  name: FSC Gaslight
+  description: A compact gas extraction and mining vessel designed and deployed by the Far Star Corporation.
+  price: 40000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/gaslight.yml
+  guidebookPage: ShipyardGaslight
+  class:
+  - Atmospherics
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Gaslight
+  mapName: 'FSC Gaslight'
+  mapPath: /Maps/_NF/Shuttles/gaslight.yml
+  minPlayers: 0
+  stations:
+    Gaslight:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Gaslight {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

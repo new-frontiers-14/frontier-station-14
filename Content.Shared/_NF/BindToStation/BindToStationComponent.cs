@@ -1,22 +1,15 @@
-using Robust.Shared.GameStates;
-
 namespace Content.Shared._NF.BindToStation;
 
 /// <summary>
-/// Binds a machine to a given station - it must be on that station to work.
+/// Denotes an entity that can be bound to a station.
+/// Can be disabled in child entities to exempt from binding.
 /// </summary>
-[NetworkedComponent, RegisterComponent]
-[AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class BindToStationComponent : Component
 {
-    // The entity UID of the station that this machine/item is bound to.
+    /// <summary>
+    /// If set to false, this will not be bound to a station.
+    /// </summary>
     [DataField]
-    [AutoNetworkedField]
-    public EntityUid? BoundStation;
-
-    // Whether or not the effect is active.
-    // Useful for keeping track of the original
-    [DataField]
-    [AutoNetworkedField]
     public bool Enabled = true;
 }

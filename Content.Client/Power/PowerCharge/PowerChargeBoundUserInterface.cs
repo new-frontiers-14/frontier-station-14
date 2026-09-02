@@ -1,4 +1,4 @@
-﻿using Content.Shared.Power;
+using Content.Shared.Power;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Power.PowerCharge;
@@ -17,6 +17,13 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
         SendMessage(new SwitchChargingMachineMessage(on));
     }
 
+    // Frontier: Add action
+    public void ActionButton()
+    {
+        SendMessage(new PowerChargeActionMessage());
+    }
+    // Frontier End
+
     protected override void Open()
     {
         base.Open();
@@ -24,6 +31,7 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
             return;
 
         _window = this.CreateWindow<PowerChargeWindow>();
+        _window.SetActionUI(component.ActionUI); // Frontier
         _window.UpdateWindow(this, Loc.GetString(component.WindowTitle));
     }
 

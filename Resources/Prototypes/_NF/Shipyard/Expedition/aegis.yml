@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Aegis
+  parent: BaseVessel
+  name: FSA Aegis
+  description: The Aegis is an expedition shuttle designed for long duration exploration missions with the comfort and care of the crew as a mainstay priority.
+  price: 50000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/aegis.yml
+  guidebookPage: ShipyardAegis
+  class:
+  - Expedition
+  - Civilian
+  engine:
+  - AME
+
+- type: gameMap
+  id: Aegis
+  mapName: 'FSA Aegis'
+  mapPath: /Maps/_NF/Shuttles/Expedition/aegis.yml
+  minPlayers: 0
+  stations:
+    Aegis:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Aegis {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

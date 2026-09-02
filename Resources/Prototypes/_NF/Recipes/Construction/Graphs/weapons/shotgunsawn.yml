@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: NFShotgunSawn
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: shotgunsawn
+          steps:
+            - tool: Sawing
+              doAfter: 2
+
+    - node: shotgunsawn
+      entity: NFWeaponShotgunSawnEmpty
+      edges:
+        - to: handmadepistol
+          steps:
+            - tool: Sawing
+              doAfter: 2.5
+          completed:
+          - !type:SpawnPrototype
+            prototype: NFWeaponShotgunHandmadeEmpty
+            amount: 1
+
+    - node: handmadepistol
+      entity: NFWeaponShotgunHandmadeEmpty

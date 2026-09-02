@@ -1,7 +1,8 @@
-﻿# Mapping prototypes
+# Mapping prototypes
 # General
 nf-holopad-general-laboratory = Anomalous Laboratory
 nf-holopad-general-bahama = Bahama Mama's
+nf-holopad-general-barrier-gate = Barrier Gate
 nf-holopad-general-courthouse-witness = Courthouse - Witness Stand
 nf-holopad-general-courthouse-defendant = Courthouse - Defendant's Stand
 nf-holopad-general-expedition-lodge = Expedition Lodge

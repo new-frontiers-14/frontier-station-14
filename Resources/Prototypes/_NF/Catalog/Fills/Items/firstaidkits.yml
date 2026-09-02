@@ -1,0 +1,70 @@
+- type: entity
+  id: MedicalPouchFilledLow
+  suffix: Contractor, Low Quality
+  parent: MedicalPouch
+  components:
+  - type: StorageFill
+    contents:
+    - id: BicaridineMedicalVial # this is only 40 points of healing of one type. This kit is rather weak
+    - id: DermalineMedicalVial
+    - id: DyloveneMedicalVial
+    - id: EpinephrineMedicalVial
+    - id: SalineMedicalVial
+
+- type: entity
+  id: MedicalPouchFilledMedium
+  suffix: Contractor, Medium Quality
+  parent: MedicalPouch
+  components:
+  - type: StorageFill
+    contents:
+    - id: BruizineMedicalVial
+    - id: LacerinolMedicalVial
+    - id: PuncturaseMedicalVial
+    - id: TranexamicAcidMedicalVial
+    - id: PyrazineMedicalVial
+    - id: LeporazineMedicalVial
+    - id: InsuzineMedicalVial
+    - id: StellibininMedicalVial
+    - id: OligArithMedicalVial
+    - id: DexPlusMedicalVial
+    - id: SalineMedicalVial
+
+- type: entity
+  id: MedicalPouchFilledHigh
+  suffix: Contractor, High Quality
+  parent: MedicalPouch
+  components:
+  - type: StorageFill
+    contents:
+    - id: BruizineMedicalVialBluespace
+    - id: LacerinolMedicalVialBluespace
+    - id: PuncturaseMedicalVialBluespace
+    - id: OligomersMedicalVialBluespace
+    - id: OmnizineMedicalVialBluespace
+    - id: PyrazineMedicalVialBluespace
+    - id: LeporazineMedicalVialBluespace
+    - id: InsuzineMedicalVialBluespace
+    - id: StellibininMedicalVialBluespace
+    - id: OligArithMedicalVialBluespace
+    - id: DexPlusMedicalVialBluespace
+    - id: SalineMedicalVialBluespace
+
+- type: entity
+  id: MedicalPouchFilledERT
+  suffix: ERT, High Quality
+  parent: MedicalPouch
+  components:
+  - type: StorageFill
+    contents:
+    - id: BruizineMedicalVialBluespace
+    - id: LacerinolMedicalVialBluespace
+    - id: PuncturaseMedicalVialBluespace
+    - id: OligomersMedicalVialBluespace
+    - id: OmnizineMedicalVialBluespace
+    - id: HyperzineMedicalVialBluespace
+    - id: PyrazineMedicalVialBluespace
+    - id: StellibininMedicalVialBluespace
+    - id: OligArithMedicalVialBluespace
+    - id: DexPlusMedicalVialBluespace
+    - id: SalineMedicalVialBluespace

@@ -5,8 +5,9 @@
   playTimeTracker: JobStationEngineer
   setPreference: false # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 9000 #2.5 hrs
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-hire # Frontier
@@ -22,3 +23,14 @@
   #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: StationEngineerChameleonOutfit
+  job: StationEngineer
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterWinterEngi
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMag
