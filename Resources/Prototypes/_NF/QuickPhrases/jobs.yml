@@ -1,0 +1,370 @@
+- type: quickPhrase
+  parent: [ BaseCivilianPhrase, BaseJobPhrase ]
+  id: BaseCivilianJobPhrase
+  group: Civilian
+  abstract: true
+
+- type: quickPhrase
+  parent: [ BaseCommandPhrase, BaseJobPhrase ]
+  id: BaseCommandJobPhrase
+  group: Command
+  styleClass: CommandButton
+  abstract: true
+
+- type: quickPhrase
+  parent: [ BaseServicePhrase, BaseJobPhrase ]
+  id: BaseStationJobPhrase
+  group: Station
+  styleClass: ServiceButton
+  abstract: true
+
+- type: quickPhrase
+  parent: [ BaseNFSDPhrase, BaseJobPhrase ]
+  id: BaseNFSDJobPhrase
+  group: NFSD Outpost
+  styleClass: SecurityButton
+  abstract: true
+
+- type: quickPhrase
+  parent: [ BaseWildcardPhrase, BaseJobPhrase ]
+  id: BaseWildcardJobPhrase
+  group: Wildcard
+  abstract: true
+
+# Civilian
+
+- type: quickPhrase
+  parent: BaseCivilianJobPhrase
+  id: VisitorPhrase
+  text: job-name-visitor
+
+- type: quickPhrase
+  parent: BaseCivilianJobPhrase
+  id: ContractorPhrase
+  text: job-name-contractor
+
+- type: quickPhrase
+  parent: BaseCivilianJobPhrase
+  id: MercenaryPhrase
+  text: job-name-mercenary
+
+- type: quickPhrase
+  parent: BaseCivilianJobPhrase
+  id: PilotPhrase
+  text: job-name-pilot
+
+- type: quickPhrase
+  parent: BaseCivilianJobPhrase
+  id: BorgPhrase
+  text: job-name-borg
+
+# Command
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: CentralCommandOfficialPhrase
+  text: job-name-centcomoff
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: EmergencyResponseTeamPhrase
+  text: job-name-ert
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: StationRepresentativePhrase
+  text: job-name-sr
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: StationTrafficControllerPhrase
+  text: job-name-stc
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: SheriffPhrase
+  text: job-name-sheriff
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: DirectorOfCarePhrase
+  text: job-name-doc
+
+- type: quickPhrase
+  parent: BaseCommandJobPhrase
+  id: PlantManagerPhrase
+  text: job-name-plant-manager
+
+# Station Staff ("Contracted")
+
+- type: quickPhrase
+  parent: BaseStationJobPhrase
+  id: SecurityGuardPhrase
+  text: job-name-security-guard
+
+- type: quickPhrase
+  parent: BaseStationJobPhrase
+  id: ValetPhrase
+  text: job-name-valet
+
+- type: quickPhrase
+  parent: BaseStationJobPhrase
+  id: JanitorPhrase
+  text: job-name-janitor
+
+- type: quickPhrase
+  parent: BaseStationJobPhrase
+  id: MailCarrierPhrase
+  text: job-name-mail-carrier
+
+- type: quickPhrase
+  parent: BaseStationJobPhrase
+  id: PlantTechnicianPhrase
+  text: job-name-plant-technician
+
+# NFSD Outpost
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: NFSDPhrase
+  text: phrase-nfsd
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: BailiffPhrase
+  text: job-name-bailiff
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: SergeantPhrase
+  text: job-name-senior-officer
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: CorpsmanPhrase
+  text: job-name-brigmedic
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: DetectivePhrase
+  text: job-name-nf-detective
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: DeputyPhrase
+  text: job-name-deputy
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: PublicAffairsLiaisonPhrase
+  text: job-name-pal
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: SecurityCadetPhrase
+  text: job-name-cadet-nf
+
+- type: quickPhrase
+  parent: BaseNFSDJobPhrase
+  id: PrisonerPhrase
+  text: job-name-prisoner
+
+# Edison Power Plant
+
+# Wildcards (Station-side)
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: PassengerPhrase
+  text: job-name-passenger
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: StationAIPhrase
+  text: job-name-station-ai
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ChiefEngineerPhrase
+  text: job-name-ce
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: AtmosTechPhrase
+  text: job-name-atmostech
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: EngineerPhrase
+  text: job-name-engineer
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ResearchDirectorPhrase
+  text: job-name-rd
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ScientistPhrase
+  text: job-name-scientist
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: RoboticistPhrase
+  text: job-name-roboticist
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ChaplainPhrase
+  text: job-name-chaplain
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ArchivistPhrase
+  text: job-name-librarian
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: QuartersMasterPhrase
+  text: job-name-qm
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: CargoTechnicianPhrase
+  text: job-name-cargotech
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: SalvageSpecialistPhrase
+  text: job-name-salvagespec
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: CourierPhrase
+  text: job-name-courier
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ChiefJusticePhrase
+  text: job-name-chief-justice
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: LawyerPhrase
+  text: job-name-lawyer
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: PiratePhrase
+  text: job-name-nf-pirate
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ProsecutorPhrase
+  text: job-name-prosecutor
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ChiefMedicalOfficerPhrase
+  text: job-name-cmo
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ChemistPhrase
+  text: job-name-chemist
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ParamedicPhrase
+  text: job-name-paramedic
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: MedicalDoctorPhrase
+  text: job-name-doctor
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: PsychologistPhrase
+  text: job-name-psychologist
+
+# Just a week away.
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: SurgeonPhrase
+  text: job-name-surgeon
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: HeadOfSecurityPhrase
+  text: job-name-hos
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: WardenPhrase
+  text: job-name-warden
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: SecurityOfficerPhrase
+  text: job-name-security
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: BartenderPhrase
+  text: job-name-bartender
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: BotanistPhrase
+  text: job-name-botanist
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ChefPhrase
+  text: job-name-chef
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: MusicianPhrase
+  text: job-name-musician
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ClownPhrase
+  text: job-name-clown
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: MimePhrase
+  text: job-name-mime
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: HeadOfPersonnelPhrase
+  text: job-name-hop
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: BoxerPhrase
+  text: job-name-boxer
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ReporterPhrase
+  text: job-name-reporter
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: ZookeeperPhrase
+  text: job-name-zookeeper
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: CluwnePhrase
+  text: job-name-cluwne
+
+- type: quickPhrase
+  parent: BaseWildcardJobPhrase
+  id: CaptainPhrase
+  text: job-name-captain
