@@ -133,7 +133,7 @@
 
 - type: entity
   id: VehicleSyndicateSegway
-  parent: VehicleSecway
+  parent: [VehicleSecway, BaseC3SyndicateContraband] #Frontier - Added BaseC3SyndicateContraband as a parent. 
   name: syndicate segway
   description: Be an enemy of the corporation, in style.
   components:
@@ -250,6 +250,8 @@
     #materialComposition: # Frontier
       #Steel: 125 # Frontier
       #Plastic: 125 # Frontier
+  - type: Strap # Frontier
+    unbuckleOnInteractHand: False # Frontier
 
 - type: entity
   parent: VehicleWheelchair
@@ -296,3 +298,5 @@
       #Plastic: 125 # Frontier
   - type: ItemSlots # Frontier
     slots: {} # Frontier: no keys required
+  - type: Strap # Frontier
+    unbuckleOnInteractHand: False # Frontier
