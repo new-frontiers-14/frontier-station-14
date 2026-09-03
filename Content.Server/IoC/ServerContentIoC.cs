@@ -1,5 +1,6 @@
 using Content.Server._NF.Auth;
 using Content.Server._Harmony.JoinQueue; // Harmony Queue
+using Content.Server._NF.Whitelist; //Frontier
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -26,6 +27,7 @@ using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
 using Content.Server.Worldgen.Tools;
 using Content.Shared._Harmony.Common.JoinQueue; // Harmony Queue
+using Content.Shared._NF.Whitelist; //Frontier
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
@@ -87,6 +89,7 @@ namespace Content.Server.IoC
             // Harmony Queue Start
             IoCManager.Register<IJoinQueueManager, JoinQueueManager>();
             // Harmony Queue End
+            IoCManager.Register<IGlobalWhitelistCheck, GlobalWhitelistCheck>(); //Frontier
         }
     }
 }
