@@ -25,7 +25,7 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
 
     private void OnUiReady(Entity<MailMetricsCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        UpdateUI(args.Loader, ent.Comp); // Frontier: remove station as first arg
+        UpdateUI(args.Loader, ent.Comp); // Frontier: remove station as first arg, add the mail metrics comp as the second arg
     }
     // Frontier: Add an event listener for when the client wants to update its notification state
     private void OnNotificationsUpdated(Entity<MailMetricsCartridgeComponent> program, ref CartridgeMessageEvent eventArgs )

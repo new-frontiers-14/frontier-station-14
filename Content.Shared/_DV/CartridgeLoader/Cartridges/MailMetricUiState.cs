@@ -1,4 +1,3 @@
-using Content.Shared.Preferences;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.CartridgeLoader.Cartridges;
@@ -52,8 +51,14 @@ public partial record struct MailStats
     }
 }
 
+//Frontier: Mail notifications
+/// <summary>
+/// A message to inform the server that a client has toggled its notification status
+/// </summary>
+/// <param name="notificationsEnabled">The new status of the notification</param>
 [Serializable] [NetSerializable]
 public sealed class MailMetricsNotificationToggleMessage(bool notificationsEnabled) : CartridgeMessageEvent
 {
     public readonly bool NotificationsEnabled = notificationsEnabled;
 }
+//End Frontier
