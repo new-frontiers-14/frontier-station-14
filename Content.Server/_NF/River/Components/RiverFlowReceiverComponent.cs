@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Content.Server._NF.VoidRiver.Components
+namespace Content.Server._NF.River.Components
 {
     [RegisterComponent]
     public sealed partial class RiverFlowReceiverComponent : Component

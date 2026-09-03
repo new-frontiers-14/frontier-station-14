@@ -14,8 +14,8 @@ using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using Robust.Shared.Map.Components;
-using Content.Server._NF.VoidRiver.Components; // Frontier
-using Content.Server._NF.VoidRiver.Systems; // Frontier
+using Content.Server._NF.River.Components; // Frontier
+using Content.Server._NF.River.Systems; // Frontier
 
 namespace Content.Server.Physics.Controllers;
 
@@ -528,7 +528,7 @@ public sealed class MoverController : SharedMoverController
                     if (flowReceiver.InRiver)
                     {
                         var shuttlePosition = _xformSystem.GetWorldPosition(shuttleUid, xformQuery);
-                        // Modify the max velocity, force, and acceleration? when in a VoidRiver.
+                        // Modify the max velocity, force, and acceleration? when in a River.
                         var velocityMod = _riverSystem.ObtainVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(maxVelocity), flowReceiver);
                         maxVelocity *= velocityMod;
                         maxWishVelocity *= velocityMod;

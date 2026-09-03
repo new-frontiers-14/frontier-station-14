@@ -1,6 +1,6 @@
 using Content.Shared._NF.CCVar;
 
-namespace Content.Server._NF.VoidRiver.Systems;
+namespace Content.Server._NF.River.Systems;
 
 public partial class RiverNodeSystem
 {

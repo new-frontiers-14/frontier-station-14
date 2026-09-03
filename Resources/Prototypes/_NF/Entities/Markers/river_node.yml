@@ -1,0 +1,26 @@
+﻿- type: entity
+  name: River Node
+  id: SpaceRiverNode
+  description: "A starting and/or end point of space rivers."
+  parent: MarkerBase
+  components:
+    - type: RiverNode
+    - type: Sprite
+      layers:
+      - sprite: Markers/cross.rsi
+        state: blue
+        shader: unshaded
+
+- type: entity
+  name: River Source
+  id: SpaceRiverSource
+  description: "A source from which a river springs forth."
+  parent: SpaceRiverNode
+  components:
+    - type: RiverNode
+      isSource: true
+    - type: Sprite
+      layers:
+      - sprite: Markers/cross.rsi
+        state: green
+        shader: unshaded
