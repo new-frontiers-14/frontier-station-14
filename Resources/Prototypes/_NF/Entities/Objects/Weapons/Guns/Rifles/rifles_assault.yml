@@ -46,6 +46,40 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
+- type: entity
+  id: NFWeaponRifleAssaultEstoc
+  name: Estoc DMR
+  parent: [ NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultCybersun ]
+  description: |-
+    A designated marksman rifle, favored for medium-to-long range engagements. Uses .20 rifle ammo.
+  components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
+  - type: Item
+    shape:
+    - 0,0,4,2 # Estoc notably larger than comparable weapons in the category, fits a DMR
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
+    minAngle: 2
+    maxAngle: 15
+    shotsPerBurst: 3
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - SemiAuto
+    burstFireRate: 10
+    burstCooldown: 0.6
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
+
 #region WizDen: Rubber
 - type: entity
   id: NFWeaponRifleAssaultLecterLessLethal
