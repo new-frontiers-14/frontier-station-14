@@ -31,12 +31,13 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
 
     private void OnInit(EntityUid uid, NFSalvageMobRestrictionsComponent component, ComponentInit args)
     {
-        var gridUid = Transform(uid).ParentUid;
-        if (!EntityManager.EntityExists(gridUid))
+        var gridUidOptional = Transform(uid).GridUid;
+        if (gridUidOptional == null || !EntityManager.EntityExists(gridUidOptional))
         {
             // Give up, we were spawned improperly
             return;
         }
+        var gridUid = gridUidOptional.Value;
         // When this code runs, the system hasn't actually gotten ahold of the grid entity yet.
         // So it therefore isn't in a position to do this.
         if (!TryComp(gridUid, out SalvageMobRestrictionsGridComponent? rg))

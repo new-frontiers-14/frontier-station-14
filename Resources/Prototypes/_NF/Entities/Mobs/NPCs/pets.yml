@@ -352,11 +352,13 @@
   - type: NpcFactionMember
     factions:
     - Cat # Needs to be neutral to dinosaurs.
+  - type: CavemanAccent
   - type: NFSalvageMobRestrictions
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
     removeComponentsOnDeath: []
-  - type: CavemanAccent
+    removeComponentsLeaveGrid:
+    - type: NFSalvageMobRestrictions
 
 - type: entity
   id: MobCatMistake
