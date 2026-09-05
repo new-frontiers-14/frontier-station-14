@@ -35,3 +35,4 @@ accent-words-fox-6 = Screeee!
 
 # Accent Toggle
 accent-clothing-component-toggle = Toggle Accent
+toggleable-accent-misconfigured-popup = No accent configured, this is a bug.

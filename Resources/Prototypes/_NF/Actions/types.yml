@@ -10,7 +10,7 @@
   - type: InstantAction
     event: !type:ActivateImplantEvent
 
-- type: entity 
+- type: entity
   parent: BaseImplantAction
   id: ActionActivateWehImplant
   name: Weh
@@ -19,3 +19,26 @@
   - type: Action
     icon: { sprite: Objects/Fun/Plushies/lizard.rsi, state: icon }
     useDelay: 1
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionToggleAccent
+  name: Toggle Accent
+  description: Toggle your accent.
+  components:
+    - type: Action
+      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: accent_disabled}
+      iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: normal_accent_enabled}
+      useDelay: 1
+    - type: InstantAction
+      event: !type:ToggleAccentActionEvent
+
+- type: entity
+  parent: ActionToggleAccent
+  id: ActionToggleCogniAccent
+  name: Toggle Cognizine Accent
+  description: Toggle your pre-sapiance accent.
+  components:
+    - type: Action
+      icon: {sprite: _NF/Actions/toggle_accent.rsi, state: accent_disabled}
+      iconOn: {sprite: _NF/Actions/toggle_accent.rsi, state: cogni_accent_enabled}
