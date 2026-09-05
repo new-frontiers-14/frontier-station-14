@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Shared._NF.Library;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -1878,6 +1879,66 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         }
 
         #endregion
+
+        #region Library
+
+        public async Task AddNFLibraryBookAsync(
+            int roundId,
+            int serverId,
+            string title,
+            string author,
+            string content,
+            DateTime date,
+            Guid authorPlayerUserId)
+        {
+            if (title.Length > LibraryBookLimits.MaxTitleLength)
+                throw new ArgumentException($"Title exceeds max length of {LibraryBookLimits.MaxTitleLength}.", nameof(title));
+
+            if (author.Length > LibraryBookLimits.MaxAuthorLength)
+                throw new ArgumentException($"Author exceeds max length of {LibraryBookLimits.MaxAuthorLength}.", nameof(author));
+
+            if (content.Length > LibraryBookLimits.MaxContentLength)
+                throw new ArgumentException($"Content exceeds max length of {LibraryBookLimits.MaxContentLength}.", nameof(content));
+
+            await using var db = await GetDb();
+
+            db.DbContext.NFLibraryBook.Add(new NFLibraryBook
+            {
+                RoundId = roundId,
+                ServerId = serverId,
+                Title = title,
+                Author = author,
+                Content = content,
+                Date = date,
+                AuthorPlayerUserId = authorPlayerUserId,
+            });
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<NFLibraryBook>> GetNFLibraryBooksAsync()
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.NFLibraryBook
+                .ToListAsync();
+        }
+
+        public async Task<bool> DeleteNFLibraryBookAsync(int bookId)
+        {
+            await using var db = await GetDb();
+
+            var book = await db.DbContext.NFLibraryBook
+                .SingleOrDefaultAsync(b => b.Id == bookId);
+
+            if (book == null)
+                return false;
+
+            db.DbContext.NFLibraryBook.Remove(book);
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        #endregion Library
 
         public abstract Task SendNotification(DatabaseNotification notification);
 

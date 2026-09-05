@@ -19,6 +19,19 @@
     - OffshoreGasMining
 
 - type: entity
+  parent: BookBase
+  id: BookRandomSimple
+  suffix: random visual
+  description: A hardcover book.
+  components:
+  - type: RandomSprite
+    available:
+      - cover:
+          cover_base: Sixteen
+        decor:
+          decor_wingette: Sixteen
+
+- type: entity
   parent: [ BaseGuidebook, BaseC3CultContraband ]
   id: BookBloodCultStavesGuide
   name: "Tome of Sanguine Rites: Unlocking The Power Of A Staff"
