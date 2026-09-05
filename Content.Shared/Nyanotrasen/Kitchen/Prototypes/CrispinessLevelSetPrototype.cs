@@ -8,7 +8,7 @@ namespace Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 [Prototype("crispinessLevelSet")]
 public sealed partial class CrispinessLevelSetPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Crispiness level strings. The index is the crispiness value used, starting with 0.
