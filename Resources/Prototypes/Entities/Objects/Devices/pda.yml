@@ -1475,6 +1475,37 @@
     state: pda-seniorofficer
 
 - type: entity
+  parent: [BasePDA, SelectableLock]
+  id: ChameleonPDA
+  name: contractor PDA # Frontier passenger<contractor
+  description: Why isn't it gray?
+  suffix: Chameleon
+  components:
+  - type: PdaBorderColor
+    borderColor: "#717059"
+  - type: Tag
+    tags: # ignore "WhitelistChameleon" tag
+    - DoorBumpOpener
+  - type: ChameleonClothing
+    slot: [idcard]
+    default: ContractorPDA # Frontier PassengerPDA<ContractorPDA
+    requireTag: WhitelistChameleonPDA
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.RingerUiKey.Key:
+        type: RingerBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+
+- type: entity
   parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
   id: PiratePDA
   name: pirate PDA
@@ -1514,37 +1545,6 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
-
-- type: entity
-  parent: [BasePDA, SelectableLock]
-  id: ChameleonPDA
-  name: contractor PDA # Frontier passenger<contractor
-  description: Why isn't it gray?
-  suffix: Chameleon
-  components:
-  - type: PdaBorderColor
-    borderColor: "#717059"
-  - type: Tag
-    tags: # ignore "WhitelistChameleon" tag
-    - DoorBumpOpener
-  - type: ChameleonClothing
-    slot: [idcard]
-    default: ContractorPDA # Frontier PassengerPDA<ContractorPDA
-    requireTag: WhitelistChameleonPDA
-  - type: UserInterface
-    interfaces:
-      enum.PdaUiKey.Key:
-        type: PdaBoundUserInterface
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-      enum.RingerUiKey.Key:
-        type: RingerBoundUserInterface
-      enum.InstrumentUiKey.Key:
-        type: InstrumentBoundUserInterface
-      enum.HealthAnalyzerUiKey.Key:
-        type: HealthAnalyzerBoundUserInterface
-      enum.ChameleonUiKey.Key:
-        type: ChameleonBoundUserInterface
 
 - type: entity
   parent: BaseWidePDA

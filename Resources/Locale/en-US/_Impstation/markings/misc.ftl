@@ -210,7 +210,6 @@ marking-VoxBelly-voxbelly = Belly
 marking-VoxTailBalled = Thrasher
 marking-VoxTailBalled-voxtailballed = Thrasher
 marking-VoxTailSplit = Twinned
-marking-VoxTailSplit-voxtailsplit = Twinned
 
 # upstream vox markings dont have localized names. lmfao
 # these are just straight up broken and shouldnt be visible from the markings menu period but ALAS im not skilled enough to remove them so you get this stupid botch job instead
