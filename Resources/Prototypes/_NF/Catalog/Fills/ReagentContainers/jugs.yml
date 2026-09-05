@@ -1,0 +1,97 @@
+- type: entity
+  parent: JugBluespace
+  id: JugBluespaceMutamix
+  components:
+    - type: Label
+      currentLabel: Mutagen mix, dose at 15u
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+          reagents:
+            - ReagentId: Radium
+              Quantity: 300
+            - ReagentId: Uranium
+              Quantity: 300
+            - ReagentId: UnstableMutagen
+              Quantity: 300
+    - type: SolutionTransfer
+      transferAmount: 15
+
+- type: entity
+  parent: JugBluespace
+  id: JugBluespacePlantHealMix
+  components:
+    - type: Label
+      currentLabel: Plant Healing Mix (+17.5 health per dose)
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+          reagents:
+            - ReagentId: Vitamin
+              Quantity: 250
+            - ReagentId: Nutriment
+              Quantity: 250
+            - ReagentId: PumpkinFlesh
+              Quantity: 250
+            - ReagentId: Ammonia
+              Quantity: 250
+    - type: SolutionTransfer
+      transferAmount: 20
+
+- type: entity
+  parent: JugBluespace
+  id: JugBluespaceLeft4Zed
+  components:
+    - type: Label
+      currentLabel: reagent-name-left4-zed
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+          reagents:
+            - ReagentId: Left4Zed
+              Quantity: 1000
+
+- type: entity
+  parent: JugBluespace
+  id: JugBluespaceDylovene
+  components:
+    - type: Label
+      currentLabel: reagent-name-dylovene
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+          reagents:
+            - ReagentId: Dylovene
+              Quantity: 1000
+
+- type: entity
+  parent: JugBluespace
+  id: JugBluespaceCryoxadone
+  components:
+    - type: Label
+      currentLabel: reagent-name-cryoxadone
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+          reagents:
+            - ReagentId: Cryoxadone
+              Quantity: 1000
+
+- type: entity
+  parent: JugBluespace
+  id: JugBluespacePhalanximine
+  components:
+    - type: Label
+      currentLabel: reagent-name-phalanximine
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+          reagents:
+            - ReagentId: Phalanximine
+              Quantity: 1000
