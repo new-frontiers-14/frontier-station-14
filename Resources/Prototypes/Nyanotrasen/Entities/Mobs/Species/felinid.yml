@@ -94,10 +94,15 @@
         emote: Scream
         probability: 0.2
   - type: NoShoesSilentFootsteps
-  - type: TallWhitelist # Frontier
-    scale: 1 # Frontier
-    density: 185 # Frontier
-    cosmeticOnly: false # Frontier
+  # Frontier: size traits
+  - type: ShortWhitelist
+    density: 95 # Species density - 45.
+    cosmeticOnly: false
+  - type: TallWhitelist
+    scale: 1
+    density: 185 # Human density.
+    cosmeticOnly: false
+  # End Frontier
   - type: Inventory # Frontier
     speciesId: felinid # Frontier
 
