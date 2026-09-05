@@ -99,3 +99,129 @@
   - type: DamageVisuals
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi
+
+#Frontier: Invincible Shuttle Windows
+- type: entity
+  id: ShuttleWindowIndestructibleBase
+  parent: BaseStructure
+  abstract: true
+  name: shuttle window
+  description: Skub knows this window is too hard to destroy.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: RCDDeconstructable
+    deconstructable: false
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmack
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: WallMount
+    arc: 360 # interact despite grilles
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Physics
+    bodyType: Static
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: Appearance
+  # - type: StaticPrice # Frontier
+  #   price: 100 # Frontier
+  - type: BlockWeather
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+
+- type: entity
+  id: ShuttleWindowIndestructible
+  name: shuttle window
+  parent: ShuttleWindowIndestructibleBase
+  suffix: indestructible
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/shuttle_window.rsi
+    color: "#b1b1b1"
+  - type: Icon
+    sprite: Structures/Windows/shuttle_window.rsi
+    state: full
+  - type: IconSmooth
+    key: walls # Frontier: windows<walls
+    base: swindow
+  - type: Airtight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: ExaminableDamage
+    messages: null
+
+- type: entity
+  id: ShuttleWindowDiagonalIndestructible
+  name: shuttle window
+  parent: ShuttleWindowIndestructibleBase
+  suffix: diagonal, indestructible
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/shuttle_window_diagonal.rsi
+    color: "#b1b1b1"
+    state: state0
+  - type: Tag
+    tags:
+    - Diagonal
+    - Window
+  - type: Icon
+    sprite: Structures/Windows/shuttle_window_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls # Frontier: windows<walls
+    base: state
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+        density: 4000
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: ExaminableDamage
+    messages: null
+#End Frontier: Invincible Shuttle Windows
