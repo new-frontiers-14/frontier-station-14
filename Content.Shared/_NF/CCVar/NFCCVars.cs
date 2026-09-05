@@ -298,4 +298,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
         CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+  
+    /*
+     * Rivers
+     */
+
+    /// <summary>
+    /// The rate of RiverNodeSystem update in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> RiverUpdateRate =
+        CVarDef.Create("nf14.rivers.update_rate", 1.0f, CVar.SERVERONLY);
 }
