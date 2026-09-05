@@ -30,6 +30,7 @@ salvage-dungeon-mod-factory-dorms = Factory Dorms
 salvage-dungeon-mod-lava-mercenary = Lava Mercenary Base
 salvage-dungeon-mod-virology-lab = Virology Lab
 salvage-dungeon-mod-salvage-outpost = Salvage Outpost
+salvage-dungeon-mod-syndicate-hq = Syndicate Headquarters
 
 salvage-air-mod-1 = 82 N2, 21 O2
 salvage-air-mod-2 = 72 N2, 21 O2, 10 N2O

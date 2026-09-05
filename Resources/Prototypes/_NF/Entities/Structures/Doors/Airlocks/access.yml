@@ -72,6 +72,15 @@
       board: [ DoorElectronicsFrontierCommand ]
 
 - type: entity
+  parent: HighSecDoor
+  id: HighSecSyndicateLocked
+  suffix: Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
   parent: AirlockServiceLocked
   id: AirlockMailCarrierLocked
   suffix: Mail, Locked
