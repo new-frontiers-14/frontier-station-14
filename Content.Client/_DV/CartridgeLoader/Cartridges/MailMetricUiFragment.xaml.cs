@@ -10,10 +10,14 @@ public sealed partial class MailMetricUiFragment : BoxContainer
 {
 
     private OpenedMailPercentGrade? _successGrade;
+    public Action? OnToggleNotificationButtonPressed; // Frontier: Mail notification
+    //This is the visual state of the button. Since the UI data is only saved server side, the client is just saying what it remembers.
+    public bool MailNotificationEnabledButtonStatus { get; private set; } = true; // Frontier: Mail notifications
 
     public MailMetricUiFragment()
     {
         RobustXamlLoader.Load(this);
+        NotificationSwitch.OnPressed += _ => OnToggleNotificationButtonPressed?.Invoke(); // Frontier: Mail notification button
 
         // This my way of adding multiple classes to a XAML control.
         // Haha Batman I'm going to blow up Gotham City
@@ -32,6 +36,7 @@ public sealed partial class MailMetricUiFragment : BoxContainer
     {
         UpdateTextLabels(state);
         UpdateSuccessGrade(state);
+        SetNotificationButtonVisual(state.NotificationsEnabled); // Frontier: Display notification status
     }
 
     public void UpdateTextLabels(MailMetricUiState state)
@@ -73,6 +78,16 @@ public sealed partial class MailMetricUiFragment : BoxContainer
 
         SuccessRatePercent.StyleClasses.Add(GetClassForGrade(_successGrade));
     }
+
+    // Frontier: Update the notification switch text
+    public void SetNotificationButtonVisual(bool notificationsEnabled)
+    {
+        //I'm just stealing the icon from the news system, yoink!
+        var locKey = notificationsEnabled ? "news-read-ui-notification-on" : "news-read-ui-notification-off";
+        NotificationSwitch.Text = Loc.GetString(locKey);
+        MailNotificationEnabledButtonStatus = notificationsEnabled;
+    }
+    // End Frontier
 
     private static OpenedMailPercentGrade GetSuccessRateGrade(double successRate)
     {
