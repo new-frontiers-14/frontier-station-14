@@ -6,6 +6,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.Storage;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -18,28 +19,16 @@ using Content.Shared.Destructible;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
-public sealed partial class SliceableFoodSystem : EntitySystem // Frontier: add partial
+public sealed partial class SliceableFoodSystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDestructibleSystem _destroy = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    public override void Initialize()
+    private void InitializeMultitype()
     {
-        base.Initialize();
-
-        SubscribeLocalEvent<SliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<SliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
-        SubscribeLocalEvent<SliceableFoodComponent, ComponentStartup>(OnComponentStartup);
-
-        InitializeMultitype(); // Frontier
+        SubscribeLocalEvent<NFMultitypeSliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<NFMultitypeSliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
+        SubscribeLocalEvent<NFMultitypeSliceableFoodComponent, ComponentStartup>(OnComponentStartup);
     }
 
-    private void OnInteractUsing(Entity<SliceableFoodComponent> entity, ref InteractUsingEvent args)
+    private void OnInteractUsing(Entity<NFMultitypeSliceableFoodComponent> entity, ref InteractUsingEvent args)
     {
         if (args.Handled)
             return;
@@ -62,20 +51,20 @@ public sealed partial class SliceableFoodSystem : EntitySystem // Frontier: add 
         args.Handled = _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private void OnSlicedoAfter(Entity<SliceableFoodComponent> entity, ref SliceFoodDoAfterEvent args)
+    private void OnSlicedoAfter(Entity<NFMultitypeSliceableFoodComponent> entity, ref SliceFoodDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        if (TrySliceFood(entity.Owner, args.User, args.Used))
+        if (TryMultiSliceFood(entity.Owner, args.User, args.Used))
             args.Handled = true;
     }
 
-    private bool TrySliceFood(Entity<TransformComponent?, SliceableFoodComponent?, EdibleComponent?> entity,
+    private bool TryMultiSliceFood(Entity<TransformComponent?, NFMultitypeSliceableFoodComponent?, EdibleComponent?> entity,
         EntityUid user,
         EntityUid? usedItem)
     {
-        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, ref entity.Comp3) || string.IsNullOrEmpty(entity.Comp2.Slice))
+        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, ref entity.Comp3) || entity.Comp2.Slices == null)
             return false;
 
         if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp3.Solution, out var soln, out var solution))
@@ -84,10 +73,16 @@ public sealed partial class SliceableFoodSystem : EntitySystem // Frontier: add 
         if (!TryComp<UtensilComponent>(usedItem, out var utensil) || (utensil.Types & UtensilType.Knife) == 0)
             return false;
 
-        var sliceVolume = solution.Volume / FixedPoint2.New(entity.Comp2.TotalCount);
-        for (int i = 0; i < entity.Comp2.TotalCount; i++)
+        var sliceprototypes = EntitySpawnCollection.GetSpawns(entity.Comp2.Slices, _random);
+
+        var totalCount = sliceprototypes.Count;
+        if (totalCount <= 0)
+            return false;
+        var sliceVolume = solution.Volume / FixedPoint2.New(totalCount);
+
+        foreach (var spawnPrototype in sliceprototypes)
         {
-            var sliceUid = Slice(entity, user);
+            var sliceUid = Slice(entity, user, spawnPrototype);
 
             var lostSolution =
                 _solutionContainer.SplitSolution(soln.Value, sliceVolume);
@@ -108,12 +103,12 @@ public sealed partial class SliceableFoodSystem : EntitySystem // Frontier: add 
     /// Create a new slice in the world and returns its entity.
     /// The solutions must be set afterwards.
     /// </summary>
-    public EntityUid Slice(Entity<TransformComponent?, SliceableFoodComponent?> entity, EntityUid user)
+    public EntityUid Slice(Entity<TransformComponent?, NFMultitypeSliceableFoodComponent?> entity, EntityUid user, string spawnPrototype)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
             return EntityUid.Invalid;
 
-        var sliceUid = Spawn(entity.Comp2.Slice, _transform.GetMapCoordinates((entity, entity.Comp1)));
+        var sliceUid = Spawn(spawnPrototype, _transform.GetMapCoordinates((entity, entity.Comp1)));
 
         // try putting the slice into the container if the food being sliced is in a container!
         // this lets you do things like slice a pizza up inside of a hot food cart without making a food-everywhere mess
@@ -135,35 +130,7 @@ public sealed partial class SliceableFoodSystem : EntitySystem // Frontier: add 
         return sliceUid;
     }
 
-    private void DeleteFood(EntityUid uid, EntityUid user)
-    {
-        var ev = new BeforeFullySlicedEvent
-        {
-            User = user
-        };
-        RaiseLocalEvent(uid, ev);
-        if (ev.Cancelled)
-            return;
-
-        _destroy.DestroyEntity(uid);
-    }
-
-    private void FillSlice(Entity<EdibleComponent?> slice, Solution solution)
-    {
-        if (!Resolve(slice, ref slice.Comp, false))
-            return;
-
-        // Replace all reagents on prototype not just copying poisons (example: slices of eaten pizza should have less nutrition)
-        if (!_solutionContainer.TryGetSolution(slice.Owner, slice.Comp.Solution, out var itsSoln, out var itsSolution))
-            return;
-
-        _solutionContainer.RemoveAllSolution(itsSoln.Value);
-
-        var lostSolutionPart = solution.SplitSolution(itsSolution.AvailableVolume);
-        _solutionContainer.TryAddSolution(itsSoln.Value, lostSolutionPart);
-    }
-
-    private void OnComponentStartup(Entity<SliceableFoodComponent> entity, ref ComponentStartup args)
+    private void OnComponentStartup(Entity<NFMultitypeSliceableFoodComponent> entity, ref ComponentStartup args)
     {
         // TODO: When Food Component is fully kill delete this awful method
         // This exists just to make tests fail I guess, awesome!
