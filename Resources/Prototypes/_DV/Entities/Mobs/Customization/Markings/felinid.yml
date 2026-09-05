@@ -5,9 +5,9 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
-    state: Felinid_fluffy_tail_full
+    state: felinid_fluffy_tail_full_static # Frontier
   - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
-    state: felinid_fluffy_tail_rings
+    state: felinid_fluffy_tail_rings_static # Frontier
 
 - type: marking
   id: FelinidFluffyTail
@@ -16,7 +16,7 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
-    state: Felinid_fluffy_tail_full
+    state: felinid_fluffy_tail_full_static # Frontier
 
 - type: marking
   id: FelinidAlternativeTail
@@ -25,7 +25,7 @@
   speciesRestriction: [Felinid]
   sprites:
     - sprite: _DV/Mobs/Customization/Felinid/alternative_tail.rsi
-      state: m_waggingtail_cat_FRONT
+      state: m_waggingtail_cat_FRONT_static # Frontier
 
 - type: marking
   id: FelinidTiger
@@ -104,3 +104,50 @@
       state: foxtwotailstone1
     - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
       state: foxtwotailstone2
+
+# Animated Tails
+# Begin Frontier
+
+- type: marking
+  id: FelinidFluffyTailRingsAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
+    state: Felinid_fluffy_tail_full
+  - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
+    state: felinid_fluffy_tail_rings
+
+- type: marking
+  id: FelinidFluffyTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _DV/Mobs/Customization/Felinid/felinid_tails.rsi
+    state: Felinid_fluffy_tail_full
+
+- type: marking
+  id: FelinidAlternativeTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _DV/Mobs/Customization/Felinid/alternative_tail.rsi
+    state: m_waggingtail_cat_FRONT
+
+- type: marking
+  id: FelinidTigerAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _DV/Mobs/Customization/Felinid/tiger_tail.rsi
+    state: m_waggingtail_tiger_primary
+  - sprite: _DV/Mobs/Customization/Felinid/tiger_tail.rsi
+    state: m_waggingtail_tiger_secondary
+  - sprite: _DV/Mobs/Customization/Felinid/tiger_tail.rsi
+    state: m_waggingtail_tiger_tertiary
+
+# End Frontier
