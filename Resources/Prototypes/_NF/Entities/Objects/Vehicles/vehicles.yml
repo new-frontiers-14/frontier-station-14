@@ -265,6 +265,17 @@
   - type: PointLight
     radius: 7
     energy: 3
+  - type: ContainerContainer
+    containers:
+      machine_parts: !type:Container
+  - type: VehicleUpgrade
+    requirements:
+      Capacitor: 8
+    availableUpgrades:
+      Speed:
+        partType: Capacitor
+        # slightly smaller step from super to BS, still a noticeable speedup
+        upgradePerTier: [0.75, 1, 1.35, 1.70, 2]
 
 - type: entity
   parent: NFVehicleHoverbike
@@ -523,6 +534,18 @@
       collection: NFVehicleHorn # resetting from the motorbike
       params:
         variation: 0.125
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      machine_parts: !type:Container
+  - type: VehicleUpgrade
+    requirements:
+      Capacitor: 8
+    availableUpgrades:
+      Speed:
+        partType: Capacitor
+        # slightly smaller step from super to BS, still a noticeable speedup
+        upgradePerTier: [0.75, 1, 1.35, 1.70, 2]
 
 - type: entity
   parent: VehicleHoverbikeMailcarrier
