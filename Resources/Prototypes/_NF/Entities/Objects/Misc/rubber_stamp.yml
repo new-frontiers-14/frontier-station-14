@@ -1,6 +1,6 @@
 - type: entity
   name: station representative's rubber stamp
-  parent: [RubberStampHop, BaseCommandContraband]
+  parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampSr
   components:
   - type: Stamp
@@ -42,7 +42,7 @@
 
 - type: entity
   name: doctor's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampDoctor
   components:
   - type: Stamp
@@ -55,7 +55,7 @@
 
 - type: entity
   name: engineer's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampEngineer
   components:
   - type: Stamp
