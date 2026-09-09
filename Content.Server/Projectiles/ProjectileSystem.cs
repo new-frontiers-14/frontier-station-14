@@ -47,6 +47,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
+        // Frontier - raise event on shooter too, when available
+        var damage = ev.Damage;
+        if (component.Shooter is { } shooter)
+        {
+            var ev2 = new ApplyClothingDamageModifierEvent(shooter, DamageContext.Ranged, ev.Damage);
+            RaiseLocalEvent(shooter, ref ev2);
+            damage = ev2.Damage;
+        }
+        // Frontier end
 
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);
@@ -55,7 +64,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             damageRequired -= damageableComponent.TotalDamage;
             damageRequired = FixedPoint2.Max(damageRequired, FixedPoint2.Zero);
         }
-        var modifiedDamage = _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter);
+        var modifiedDamage = _damageableSystem.TryChangeDamage(target, damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter); // Frontier ev.Damage<damage
         var deleted = Deleted(target);
 
         if (modifiedDamage is not null && Exists(component.Shooter))

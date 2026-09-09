@@ -340,6 +340,19 @@
 
 - type: entity
   parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongRomulanExpedition
+  suffix: Dungeon, Romulan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleAssaultRomulanExpedition
+      amount: 1
+    - id: NFMagazineRifle20
+      amount: 2
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
   id: WeaponCaseLongSm
   suffix: Dungeon, Soland-Moss AR
   categories: [ HideSpawnMenu ]
@@ -399,6 +412,19 @@
   - type: StorageFill
     contents:
     - id: NFWeaponRifleAssaultJackdawExpedition
+      amount: 1
+    - id: NFMagazineRifle20
+      amount: 2
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongEstoc
+  suffix: Dungeon, Estoc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleAssaultEstocExpedition
       amount: 1
     - id: NFMagazineRifle20
       amount: 2
@@ -875,6 +901,13 @@
   id: WeaponCaseShortAmmoBoxEmp35
   categories: [ HideSpawnMenu ]
 
+- type: entity
+  parent:
+  - WeaponCaseShortAmmo
+  - StorageFillAmmoBoxBigLethal35
+  id: WeaponCaseShortAmmoBoxBigLethal35
+  categories: [ HideSpawnMenu ]
+
 ## .25 caseless
 - type: entity
   parent:
@@ -961,6 +994,13 @@
   id: WeaponCaseShortAmmoBoxFlareShotgun
   categories: [ HideSpawnMenu ]
 
+- type: entity
+  parent:
+  - WeaponCaseShortAmmo
+  - StorageFillAmmoBoxBigLethalShotgun
+  id: WeaponCaseShortAmmoBoxBigLethalShotgun
+  categories: [ HideSpawnMenu ]
+
 ## .45 ammo
 - type: entity
   parent:
@@ -995,4 +1035,11 @@
   - WeaponCaseShortAmmo
   - StorageFillAmmoBoxUranium45
   id: WeaponCaseShortAmmoBoxUranium45
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent:
+  - WeaponCaseShortAmmo
+  - StorageFillAmmoBoxBigLethal45
+  id: WeaponCaseShortAmmoBoxBigLethal45
   categories: [ HideSpawnMenu ]

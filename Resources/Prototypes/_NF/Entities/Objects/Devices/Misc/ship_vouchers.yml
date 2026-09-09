@@ -22,6 +22,25 @@
   - type: CargoSellBlacklist
   - type: NFShipyardVoucher # FIXME - whitelist component to prevent misprediction
 
+# Centcomm voucher
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherCentcomm
+  name: centcomm ship voucher
+  description: Allows for one free centcomm ship purchase. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: vouchercentcomm
+  - type: Item
+    heldPrefix: centcomm
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Centcomm
+    access:
+    - CentralCommand # Frontier
+
 # NFSD vouchers
 - type: entity
   parent: BaseShipVoucher

@@ -15,6 +15,12 @@
       key_slots:
       - EncryptionKeyCommon
 
+- type: entity
+  abstract: true
+  parent: [NFBaseClothingWristset, BaseClearContraband] #Need BaseClearContraband to not show contraband on security and brigmedic/first responder wristsets
+  id: NFBaseClothingWristsetCommon
+  description: An updated, modular intercom worn on the wrist. It accepts encryption keys.
+
 # region frontier command
 - type: entity
   parent: [NFBaseClothingWristset, ClothingHeadsetAltCentCom]
@@ -168,6 +174,19 @@
   suffix: Common
 
 - type: entity
+  parent: [NFClothingWristsetNfsdBrown, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdBrownCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
+- type: entity
   parent: NFClothingWristsetNfsdBrown
   id: NFClothingWristsetNfsdGreen
   components:
@@ -193,6 +212,19 @@
   id: NFClothingWristsetNfsdGreenCommon
   name: NFSD wristset
   suffix: Common
+
+- type: entity
+  parent: [NFClothingWristsetNfsdGreen, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdGreenCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
 
 - type: entity
   parent: NFClothingWristsetNfsdBrown
@@ -221,9 +253,22 @@
   name: NFSD wristset
   suffix: Common
 
+- type: entity
+  parent: [NFClothingWristsetNfsdCream, ClothingHeadsetAltNfsdBrown]
+  id: NFClothingWristsetNfsdCreamCommand
+  name: NFSD wristset
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommand
+
 # region contractor
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetGrey]
   id: NFClothingWristsetContractorCommon
   name: contractor wristset
   components:
@@ -245,7 +290,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetGrey]
   id: NFClothingWristsetContractorCommonAlt
   name: contractor wristset
   components:
@@ -270,7 +315,7 @@
 
 # region pilot
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetGrey]
   id: NFClothingWristsetPilotCommon
   name: pilot wristset
   components:
@@ -293,7 +338,7 @@
 
 # region mercenary
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetGrey]
   id: NFClothingWristsetMercenaryCommon
   name: mercenary wristset
   components:
@@ -315,7 +360,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetGrey]
   id: NFClothingWristsetPrivateSecCommon
   name: private security wristset
   components:
@@ -340,7 +385,7 @@
 
 # region captain
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetGrey]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetGrey]
   id: NFClothingWristsetCaptainCommon
   name: captain wristset
   components:
@@ -365,7 +410,7 @@
 
 # region supply
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetCargo]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetCargo]
   id: NFClothingWristsetCargoCommon
   name: cargo wristset
   components:
@@ -387,7 +432,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetMining]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetMining]
   id: NFClothingWristsetMiningCommon
   name: mining wristset
   components:
@@ -412,7 +457,7 @@
 
 # region engineering
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetEngineering]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetEngineering]
   id: NFClothingWristsetEngineeringCommon
   name: engineering wristset
   components:
@@ -445,7 +490,7 @@
       - EncryptionKeyEngineering
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetEngineering]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetEngineering]
   id: NFClothingWristsetAtmosphericsCommon
   name: atmospherics wristset
   components:
@@ -481,7 +526,7 @@
 
 # region medical
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetMedical]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetMedical]
   id: NFClothingWristsetMedicalCommon
   name: medical wristset
   components:
@@ -504,7 +549,7 @@
 
 # region science
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetScience]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetScience]
   id: NFClothingWristsetScienceCommon
   name: science wristset
   components:
@@ -527,7 +572,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetMedicalScience]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetMedicalScience]
   id: NFClothingWristsetMedicalScienceCommon
   name: medical science wristset
   components:
@@ -551,7 +596,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetRobotics]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetRobotics]
   id: NFClothingWristsetRoboticsCommon
   name: robotics wristset
   components:
@@ -576,7 +621,7 @@
 
 # region security
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetSecurity]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetSecurity]
   id: NFClothingWristsetSecurityCommon
   name: security wristset
   components:
@@ -598,9 +643,9 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetBrigmedic]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetBrigmedic]
   id: NFClothingWristsetBrigmedicCommon
-  name: brigmedic wristset
+  name: first responder wristset # Named different in game to avoid confusion with an actual brigmedic's wristset
   components:
   - type: Sprite
     layers:
@@ -623,7 +668,7 @@
 
 # region service
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetService]
   id: NFClothingWristsetServiceCommon
   name: service wristset
   components:
@@ -645,7 +690,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetService]
   id: NFClothingWristsetServiceJanitorCommon
   name: janitor wristset
   components:
@@ -669,7 +714,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetService]
   id: NFClothingWristsetServiceClownCommon
   name: clown wristset
   components:
@@ -695,7 +740,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetService]
   id: NFClothingWristsetServiceMimeCommon
   name: mime wristset
   components:
@@ -720,7 +765,7 @@
 
 # region punk
 - type: entity
-  parent: [NFBaseClothingWristset, ClothingHeadsetService]
+  parent: [NFBaseClothingWristsetCommon, ClothingHeadsetService]
   id: NFClothingWristsetPunkCommon
   name: punk wristset
   components:

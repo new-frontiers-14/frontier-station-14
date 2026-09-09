@@ -41,9 +41,12 @@ public sealed class ThirstSystem : EntitySystem
         // Do not change behavior unless starting value is explicitly defined
         if (component.CurrentThirst < 0)
         {
-            component.CurrentThirst = _random.Next(
-                (int) component.ThirstThresholds[ThirstThreshold.Thirsty] + 10,
-                (int) component.ThirstThresholds[ThirstThreshold.Okay] - 1);
+            // Frontier: fixed starting thirst
+            component.CurrentThirst = component.ThirstThresholds[ThirstThreshold.Okay];
+
+            // component.CurrentThirst = _random.Next(
+            //     (int) component.ThirstThresholds[ThirstThreshold.Thirsty] + 10,
+            //     (int) component.ThirstThresholds[ThirstThreshold.Okay] - 1);
 
             DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
         }

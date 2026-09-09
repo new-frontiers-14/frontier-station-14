@@ -80,14 +80,14 @@ public sealed class PartExchangerSystem : EntitySystem
 
         // Exchange machine parts with the machine or frame.
         if (TryComp<MachineComponent>(args.Args.Target.Value, out var machine))
-            TryExchangeMachineParts(machine, args.Args.Target.Value, uid, partsByType);
+            TryExchangeMachineParts(machine, args.Args.Target.Value, uid, partsByType, component.PreferHigherRating);
         else if (TryComp<MachineFrameComponent>(args.Args.Target.Value, out var machineFrame))
-            TryConstructMachineParts(machineFrame, args.Args.Target.Value, uid, partsByType);
+            TryConstructMachineParts(machineFrame, args.Args.Target.Value, uid, partsByType, component.PreferHigherRating);
 
         args.Handled = true;
     }
 
-    private void TryExchangeMachineParts(MachineComponent machine, EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType)
+    private void TryExchangeMachineParts(MachineComponent machine, EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType, bool preferHigherRating)
     {
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
@@ -113,9 +113,13 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        // Sort by rating in descending order (highest rated parts first)
+        // Sort the preferred parts first so they are selected for the machine.
         foreach (var (partKey, partList) in partsByType)
-            partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
+        {
+            partList.Sort((x, y) => preferHigherRating
+                ? y.state.Part.Rating.CompareTo(x.state.Part.Rating)
+                : x.state.Part.Rating.CompareTo(y.state.Part.Rating));
+        }
 
         var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
         foreach (var (type, amount) in macBoardComp.Requirements)
@@ -197,7 +201,7 @@ public sealed class PartExchangerSystem : EntitySystem
         _construction.RefreshParts(uid, machine);
     }
 
-    private void TryConstructMachineParts(MachineFrameComponent machine, EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType)
+    private void TryConstructMachineParts(MachineFrameComponent machine, EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType, bool preferHigherRating)
     {
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
@@ -229,9 +233,13 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        // Sort parts in descending order of rating (highest rated parts first)
+        // Sort the preferred parts first so they are selected for the machine frame.
         foreach (var partList in partsByType.Values)
-            partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
+        {
+            partList.Sort((x, y) => preferHigherRating
+                ? y.state.Part.Rating.CompareTo(x.state.Part.Rating)
+                : x.state.Part.Rating.CompareTo(y.state.Part.Rating));
+        }
 
         var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
         foreach (var (type, amount) in macBoardComp.Requirements)

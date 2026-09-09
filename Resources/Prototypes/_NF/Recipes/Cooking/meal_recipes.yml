@@ -303,6 +303,20 @@
   - Assembler
 
 - type: microwaveMealRecipe
+  id: RecipeSausageRawStomachAnimal
+  name: raw stomach sausage recipe
+  result: FoodSausageRaw
+  resultCount: 3
+  time: 10
+  group: Savory # TODO: move to ingredients
+  solids:
+    OrganAnimalStomach: 1
+  reagents:
+    UncookedAnimalProteins: 9
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
   id: RecipeSausageCooked
   name: cooked sausage recipe
   result: FoodMeatSausage
@@ -885,6 +899,93 @@
     FoodMealFries: 1
     FoodOnionRings: 1
     OrganAnimalHeart: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeOmelette
+  name: omelette recipe
+  result: FoodMealOmelette
+  time: 15
+  group: Breakfast
+  solids:
+    FoodButter: 1
+  reagents:
+    Egg: 12
+    TableSalt: 5
+    Blackpepper: 5
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeOmurice
+  name: omurice recipe
+  result: FoodMealOmurice
+  time: 15
+  group: Breakfast
+  solids:
+    FoodButter: 1
+  reagents:
+    Ketchup: 5
+    Egg: 12
+    TableSalt: 5
+    Blackpepper: 5
+    Rice: 10
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeCheeseOmelette
+  name: cheese omelette recipe
+  result: FoodMealCheeseOmelette
+  time: 15
+  group: Breakfast
+  solids:
+    FoodButter: 1
+    FoodCheeseSlice: 1
+  reagents:
+    Egg: 12
+    TableSalt: 5
+    Blackpepper: 5
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeEggBoiled
+  name: boiled egg recipe
+  result: FoodEggBoiled
+  time: 5
+  solids:
+    FoodEgg: 1
+  reagents:
+    Water: 10
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeFriedegg
+  name: fried egg recipe
+  result: FoodMealFriedegg
+  time: 5
+  solids:
+    FoodEgg: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeEggsbenedict
+  name: eggs benedict recipe
+  result: FoodMealEggsbenedict
+  time: 10
+  group: Breakfast
+  solids:
+    FoodBreadPlainSlice: 1
+    FoodEggBoiled: 1
+    FoodMeatCutletCooked: 1
   recipeType:
   - Assembler
 
@@ -1618,4 +1719,3 @@
     Gravy: 10
   recipeType:
   - Assembler
-  

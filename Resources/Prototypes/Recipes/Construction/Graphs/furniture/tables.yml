@@ -227,7 +227,15 @@
           steps:
             - tool: Prying
               doAfter: 1
-
+  # Frontier
+        - to: TableWoodReinforced
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+  # /Frontier
         - to: TableCarpet
           steps:
             - material: Cloth
@@ -422,7 +430,21 @@
           steps:
             - tool: Prying
               doAfter: 1
-
+  # Frontier
+    - node: TableWoodReinforced
+      entity: TableWoodReinforced
+      edges:
+        - to: TableWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+            - tool: Prying
+              doAfter: 2
+  # /Frontier
     - node: TableXeno
       entity: TableXeno
       edges:

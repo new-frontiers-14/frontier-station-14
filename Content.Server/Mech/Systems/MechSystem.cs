@@ -342,7 +342,7 @@ public sealed partial class MechSystem : SharedMechSystem
     private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
     {
         // Frontier: snails and other simple mobs shouldn't manipulate mech equipment
-        if (!_actionBlocker.CanComplexInteract(args.Actor))
+        if (!_actionBlocker.CanComplexInteract(args.Actor) && !component.PilotSlot.Contains(args.Actor)) //mobs piloting a mech such as HAMTR or VIM should be able to manipulate the equipment if they are piloting it
             return;
         // End Frontier
 

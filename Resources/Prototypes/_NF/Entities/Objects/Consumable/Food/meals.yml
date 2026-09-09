@@ -109,8 +109,35 @@
     baseName: spooky
 
 - type: entity
-  name: dragon omelette
+  name: omelette
   parent: FoodMealBase
+  id: FoodMealOmelette
+  description: Plain ol' omelette, baby.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - salty
+      - peppery
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/omelette.rsi
+    state: omelette
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: dragon omelette
+  parent: FoodMealOmelette
   id: FoodMealDragonOmelette
   description: The mother of all omelettes.
   components:
@@ -134,9 +161,33 @@
           Quantity: 10
         - ReagentId: Ichor
           Quantity: 12
-  - type: Tag
-    tags:
-    - Meat
+
+- type: entity
+  name: omurice
+  parent: FoodMealOmelette
+  id: FoodMealOmurice
+  description: A foreign egg omelette, konnichiwa.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - salty
+      - peppery
+      - rice
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/omelette.rsi
+    state: omurice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 13
+        - ReagentId: Flavorol
+          Quantity: 7
+        - ReagentId: Ketchup
+          Quantity: 5
 
 - type: entity
   name: avocado toast
