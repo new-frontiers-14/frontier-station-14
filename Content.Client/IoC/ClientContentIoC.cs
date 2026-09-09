@@ -26,6 +26,8 @@ using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Client._Harmony.JoinQueue; // Harmony Queue
+using Content.Client._NF.Whitelist; //Frontier
+using Content.Shared._NF.Whitelist; //Frontier
 
 namespace Content.Client.IoC
 {
@@ -66,6 +68,7 @@ namespace Content.Client.IoC
             collection.Register<JoinQueueManager>();
             // Harmony Queue End
             collection.Register<ClientsidePlaytimeTrackingManager>();
+            collection.Register<IGlobalWhitelistCheck, GlobalWhitelistCheck>(); //Frontier
         }
     }
 }
