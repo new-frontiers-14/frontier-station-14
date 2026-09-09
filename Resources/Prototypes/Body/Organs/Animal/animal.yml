@@ -9,6 +9,8 @@
     sprite: Mobs/Species/Human/organs.rsi
   - type: StaticPrice
     price: 5
+  - type: Extractable #  Frontier
+    grindableSolutionName: food # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -120,6 +122,15 @@
   - type: Sprite
     state: liver
   - type: Organ
+    # Frontier
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+    # Frontier End
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [ Animal ]
@@ -139,6 +150,15 @@
   - type: Sprite
     state: heart-on
   - type: Organ
+    # Frontier
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+    # Frontier End
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
@@ -162,6 +182,15 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
+    # Frontier
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+    # Frontier End
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Animal ]
