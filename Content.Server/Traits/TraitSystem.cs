@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -32,7 +33,8 @@ public sealed class TraitSystem : EntitySystem
             return;
         }
 
-        foreach (var traitId in args.Profile.TraitPreferences)
+        foreach (var traitId in args.Profile.TraitPreferences.OrderBy(id =>
+                     _prototypeManager.TryIndex<TraitPrototype>(id, out var trait) ? trait.RequiredTraits.Count : 0))
         {
             if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
             {
@@ -40,7 +42,9 @@ public sealed class TraitSystem : EntitySystem
                 return;
             }
 
-            if (_whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, args.Mob) ||
+            if (!traitPrototype.IsSpeciesAllowed(args.Profile.Species) ||
+                !traitPrototype.AreRequirementsMet(args.Profile.TraitPreferences) ||
+                _whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, args.Mob) ||
                 _whitelistSystem.IsBlacklistPass(traitPrototype.Blacklist, args.Mob))
                 continue;
 

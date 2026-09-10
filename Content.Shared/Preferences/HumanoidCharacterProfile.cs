@@ -403,8 +403,13 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
         {
+            if (traitId == "SiliconAccent" && !_traitPreferences.Contains("Accentless"))
+                return new(this);
+
             // null category is assumed to be default.
-            if (!protoManager.TryIndex(traitId, out var traitProto))
+            if (!protoManager.TryIndex(traitId, out var traitProto) ||
+                !traitProto.IsSpeciesAllowed(Species) ||
+                !traitProto.AreRequirementsMet(_traitPreferences))
                 return new(this);
 
             var category = traitProto.Category;
@@ -684,9 +689,15 @@ namespace Content.Shared.Preferences
             var groups = new Dictionary<string, int>();
             var result = new List<ProtoId<TraitPrototype>>();
 
-            foreach (var trait in traits)
+            var selected = traits.ToHashSet();
+            foreach (var trait in selected)
             {
-                if (!protoManager.TryIndex(trait, out var traitProto))
+                if (trait == "SiliconAccent" && !selected.Contains("Accentless"))
+                    continue;
+
+                if (!protoManager.TryIndex(trait, out var traitProto) ||
+                    !traitProto.IsSpeciesAllowed(Species) ||
+                    !traitProto.AreRequirementsMet(selected))
                     continue;
 
                 // Always valid.
