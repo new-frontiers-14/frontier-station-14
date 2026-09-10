@@ -1303,22 +1303,6 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 1
-    - type: AmeController
-      injecting: True
-    - type: ContainerContainer
-      containers:
-        fuelSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1012
-- proto: AmeJar
-  entities:
-  - uid: 1012
-    components:
-    - type: Transform
-      parent: 206
-    - type: Physics
-      canCollide: False
 - proto: AmeController
   entities:
   - uid: 22
@@ -1326,6 +1310,22 @@ entities:
     - type: Transform
       pos: 6.5,-2.5
       parent: 1
+    - type: AmeController
+      injecting: True
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 3340
+- proto: AmeJar
+  entities:
+  - uid: 3340
+    components:
+    - type: Transform
+      parent: 22
+    - type: Physics
+      canCollide: False
 - proto: AmeShielding
   entities:
   - uid: 23
