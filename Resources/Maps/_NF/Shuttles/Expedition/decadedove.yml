@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/08/2026 15:49:25
-  entityCount: 1109
+  time: 09/10/2026 14:27:30
+  entityCount: 1117
 maps: []
 grids:
 - 1
@@ -1303,13 +1303,6 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 1
-- proto: AmeController
-  entities:
-  - uid: 22
-    components:
-    - type: Transform
-      pos: 6.5,-2.5
-      parent: 1
     - type: AmeController
       injecting: True
     - type: ContainerContainer
@@ -1317,15 +1310,22 @@ entities:
         fuelSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
-          ent: 78
+          ent: 1012
 - proto: AmeJar
   entities:
-  - uid: 78
+  - uid: 1012
     components:
     - type: Transform
-      parent: 190
+      parent: 206
     - type: Physics
       canCollide: False
+- proto: AmeController
+  entities:
+  - uid: 22
+    components:
+    - type: Transform
+      pos: 6.5,-2.5
+      parent: 1
 - proto: AmeShielding
   entities:
   - uid: 23
@@ -1817,6 +1817,46 @@ entities:
     components:
     - type: Transform
       pos: 16.5,3.5
+      parent: 1
+  - uid: 1110
+    components:
+    - type: Transform
+      pos: -9.5,-1.5
+      parent: 1
+  - uid: 1111
+    components:
+    - type: Transform
+      pos: -9.5,-0.5
+      parent: 1
+  - uid: 1112
+    components:
+    - type: Transform
+      pos: -9.5,0.5
+      parent: 1
+  - uid: 1113
+    components:
+    - type: Transform
+      pos: -9.5,1.5
+      parent: 1
+  - uid: 1114
+    components:
+    - type: Transform
+      pos: -9.5,2.5
+      parent: 1
+  - uid: 1115
+    components:
+    - type: Transform
+      pos: -9.5,3.5
+      parent: 1
+  - uid: 1116
+    components:
+    - type: Transform
+      pos: -1.5,12.5
+      parent: 1
+  - uid: 1117
+    components:
+    - type: Transform
+      pos: 4.5,12.5
       parent: 1
 - proto: BarberScissors
   entities:
