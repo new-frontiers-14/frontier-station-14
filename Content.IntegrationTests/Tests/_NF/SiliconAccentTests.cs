@@ -8,10 +8,12 @@ using Content.Server._NF.Speech.Components;
 using Content.Server._NF.Speech.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Traits;
@@ -33,6 +35,7 @@ public sealed class SiliconAccentTests
 {
     private static readonly ProtoId<TraitPrototype> SiliconTrait = "SiliconAccent";
     private static readonly ProtoId<TraitCategoryPrototype> SpeechCategory = "SpeechTraits";
+    private static readonly ProtoId<RoleLoadoutPrototype> BorgRole = "JobBorg";
 
     [Test]
     public async Task Vocabulary()
@@ -374,6 +377,38 @@ public sealed class SiliconAccentTests
             using var selector = new TraitPreferenceSelector(prototypes.Index(SiliconTrait));
             Assert.That(selector.Checkbox.Text, Is.EqualTo("[2] Silicon Accent"));
             Assert.That(selector.Checkbox.ToolTip, Is.EqualTo("A modified dialect spoken by synthetics to translate binary outputs into constructed language."));
+        });
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task CyborgLoadoutCanDisableInherentAccent()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+        await server.WaitAssertion(() =>
+        {
+            var entities = server.EntMan;
+            var prototypes = server.ResolveDependency<IPrototypeManager>();
+            var spawning = server.System<StationSpawningSystem>();
+            var role = prototypes.Index(BorgRole);
+            Assert.That(role.CanDisableSiliconAccent, Is.True);
+
+            var enabledProfile = new HumanoidCharacterProfile();
+            enabledProfile.SetLoadout(new RoleLoadout(BorgRole));
+            var enabledBorg = spawning.SpawnPlayerMob(testMap.GridCoords, "Borg", enabledProfile, station: null);
+            Assert.That(entities.HasComponent<SiliconAccentComponent>(enabledBorg), Is.True);
+
+            var disabledLoadout = new RoleLoadout(BorgRole) { DisableSiliconAccent = true };
+            Assert.That(disabledLoadout.Clone().DisableSiliconAccent, Is.True);
+            var disabledProfile = new HumanoidCharacterProfile();
+            disabledProfile.SetLoadout(disabledLoadout);
+            var disabledBorg = spawning.SpawnPlayerMob(testMap.GridCoords, "Borg", disabledProfile, station: null);
+            Assert.That(entities.HasComponent<SiliconAccentComponent>(disabledBorg), Is.False);
+
+            entities.DeleteEntity(enabledBorg);
+            entities.DeleteEntity(disabledBorg);
         });
         await pair.CleanReturnAsync();
     }

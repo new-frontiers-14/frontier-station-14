@@ -34,6 +34,7 @@ using Robust.Shared.Containers; // Frontier
 using Content.Shared.Radio.Components; // Frontier
 using Content.Shared.Implants; // Frontier
 using Content.Shared.Implants.Components; // Frontier
+using Content.Server._NF.Speech.Components; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -144,6 +145,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 EquipRoleName(jobEntity, loadout, roleProto!);
             }
+
+            // Frontier: honor the cyborg's role-loadout Silicon Accent opt-out
+            if (roleProto?.CanDisableSiliconAccent == true && loadout?.DisableSiliconAccent == true)
+                RemComp<SiliconAccentComponent>(jobEntity);
+            // End Frontier
 
             // Frontier: equip loadouts on custom job entities
             if (prototype?.StartingGear is not null)

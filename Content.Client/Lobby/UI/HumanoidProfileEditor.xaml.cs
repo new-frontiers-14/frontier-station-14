@@ -1072,6 +1072,15 @@ namespace Content.Client.Lobby.UI
                 SetDirty();
             };
 
+            // Frontier: save the cyborg Silicon Accent opt-out with the role loadout
+            _loadoutWindow.OnSiliconAccentOptOutChanged += disabled =>
+            {
+                roleLoadout.DisableSiliconAccent = disabled;
+                Profile = Profile.WithLoadout(roleLoadout);
+                SetDirty();
+            };
+            // End Frontier
+
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {
                 roleLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);

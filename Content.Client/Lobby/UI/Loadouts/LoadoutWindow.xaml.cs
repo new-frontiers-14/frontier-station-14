@@ -21,6 +21,7 @@ namespace Content.Client.Lobby.UI.Loadouts;
 public sealed partial class LoadoutWindow : FancyWindow
 {
     public event Action<string>? OnNameChanged;
+    public event Action<bool>? OnSiliconAccentOptOutChanged; // Frontier
     public event Action<ProtoId<LoadoutGroupPrototype>, ProtoId<LoadoutPrototype>>? OnLoadoutPressed;
     public event Action<ProtoId<LoadoutGroupPrototype>, ProtoId<LoadoutPrototype>>? OnLoadoutUnpressed;
 
@@ -65,6 +66,12 @@ public sealed partial class LoadoutWindow : FancyWindow
             RoleNameEdit.Text = name ?? string.Empty;
             RoleNameEdit.OnTextChanged += args => OnNameChanged?.Invoke(args.Text);
         }
+
+        // Frontier: show the Silicon Accent opt-out only for supported roles
+        DisableSiliconAccent.Visible = proto.CanDisableSiliconAccent;
+        DisableSiliconAccent.Pressed = loadout.DisableSiliconAccent;
+        DisableSiliconAccent.OnToggled += args => OnSiliconAccentOptOutChanged?.Invoke(args.Pressed);
+        // End Frontier
 
         // Frontier
         SearchBar.OnTextChanged += OnSearchTextChanged;
