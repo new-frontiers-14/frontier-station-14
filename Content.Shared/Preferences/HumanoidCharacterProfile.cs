@@ -403,14 +403,18 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
         {
+            // Frontier: require Accentless before selecting Silicon Accent
             if (traitId == "SiliconAccent" && !_traitPreferences.Contains("Accentless"))
                 return new(this);
+            // End Frontier
 
             // null category is assumed to be default.
+            // Frontier: enforce species restrictions and trait prerequisites
             if (!protoManager.TryIndex(traitId, out var traitProto) ||
                 !traitProto.IsSpeciesAllowed(Species) ||
                 !traitProto.AreRequirementsMet(_traitPreferences))
                 return new(this);
+            // End Frontier
 
             var category = traitProto.Category;
 
@@ -689,9 +693,10 @@ namespace Content.Shared.Preferences
             var groups = new Dictionary<string, int>();
             var result = new List<ProtoId<TraitPrototype>>();
 
-            var selected = traits.ToHashSet();
-            foreach (var trait in selected)
+            var selected = traits.ToHashSet(); // Frontier: validate prerequisites against all selected traits
+            foreach (var trait in selected) // Frontier: use prerequisite-aware trait set
             {
+                // Frontier: filter traits that do not meet profile requirements
                 if (trait == "SiliconAccent" && !selected.Contains("Accentless"))
                     continue;
 
@@ -699,6 +704,7 @@ namespace Content.Shared.Preferences
                     !traitProto.IsSpeciesAllowed(Species) ||
                     !traitProto.AreRequirementsMet(selected))
                     continue;
+                // End Frontier
 
                 // Always valid.
                 if (traitProto.Category == null)
