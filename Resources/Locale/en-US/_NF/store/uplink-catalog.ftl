@@ -330,11 +330,59 @@ uplink-pirate-flintlock-desc = A pirate captain's companion. Yarrr! Uses .60 ant
 uplink-pirate-shotgunammo-name = Blunderbuss Shell Box
 uplink-pirate-shotgunammo-desc = A box of .50 shotgun shells, used in the blunderbuss.
 
+uplink-pirate-shotgunammobeanbag-name = Blunderbuss Beanbag Shell Box
+uplink-pirate-shotgunammobeanbag-desc = A box of .50 beanbag shells, used in the blunderbuss.
+
+uplink-pirate-shotgunammobulk-name = Blunderbuss Bulk Shell Box
+uplink-pirate-shotgunammobulk-desc = A big box of .50 shotgun shells, used in the blunderbuss.
+
+uplink-pirate-shotgunammobulkbeanbag-name = Blunderbuss Bulk Beanbag Shell Box
+uplink-pirate-shotgunammobulkbeanbag-desc = A big box of .50 beanbag shells, used in the blunderbuss.
+
 uplink-pirate-revolverammo-name = Pirate Revolver Ammo Box
 uplink-pirate-revolverammo-desc = A box of .45 pistol rounds, used in the pirate revolver.
 
+uplink-pirate-revolverammorubber-name = Pirate Revolver Rubber Ammo Box
+uplink-pirate-revolverammorubber-desc = A box of .45 rubber rounds, used in the pirate revolver.
+
+uplink-pirate-revolverammobulk-name = Pirate Revolver Bulk Ammo Box
+uplink-pirate-revolverammobulk-desc = A big box of .45 pistol rounds, used in the pirate revolver.
+
+uplink-pirate-revolverammobulkrubber-name = Pirate Revolver Bulk Rubber Ammo Box
+uplink-pirate-revolverammobulkrubber-desc = A big box of .45 rubber rounds, used in the pirate revolver.
+
+uplink-pirate-revolverspeedloader-name = .45 Speed Loader
+uplink-pirate-revolverspeedloader-desc = An empty revolver speed loader.
+
 uplink-pirate-flintlockammo-name = Flintlock Pistol Ammo Box
 uplink-pirate-flintlockammo-desc = A box of .60 anti-materiel rounds, used in the flintlock pistol.
+
+uplink-pirate-flintlockammorubber-name = Flintlock Pistol Rubber Ammo Box
+uplink-pirate-flintlockammorubber-desc = A box of .60 rubber rounds, used in the flintlock pistol.
+
+uplink-pirate-flintlockammobulk-name = Flintlock Pistol Bulk Ammo Box
+uplink-pirate-flintlockammobulk-desc = A big box of .60 anti-materiel rounds, used in the flintlock pistol.
+
+uplink-pirate-flintlockammobulkrubber-name = Flintlock Pistol Bulk Rubber Ammo Box
+uplink-pirate-flintlockammobulkrubber-desc = A big box of .60 rubber rounds, used in the flintlock pistol.
+
+uplink-pirate-rifleammo-name = Romulan Rifle Ammo Box
+uplink-pirate-rifleammo-desc = A box of .20 rifle rounds, used in the Romulan rifle.
+
+uplink-pirate-rifleammorubber-name = Romulan Rifle Rubber Ammo Box
+uplink-pirate-rifleammorubber-desc = A box of .20 rubber rounds, used in the Romulan rifle.
+
+uplink-pirate-rifleammobulk-name = Romulan Rifle Bulk Ammo Box
+uplink-pirate-rifleammobulk-desc = A big box of .20 rifle rounds, used in the Romulan rifle.
+
+uplink-pirate-rifleammobulkrubber-name = Romulan Rifle Bulk Rubber Ammo Box
+uplink-pirate-rifleammobulkrubber-desc = A big box of .20 rubber rounds, used in the Romulan rifle.
+
+uplink-pirate-riflemagazinebox-name = Romulan Rifle Magazines Box
+uplink-pirate-riflemagazinebox-desc = A box of .20 magazines, used in the Romulan rifle.
+
+uplink-pirate-riflemagazineboxrubber-name = Romulan Rifle Rubber Magazines Box
+uplink-pirate-riflemagazineboxrubber-desc = A box of .20 rubber magazines, used in the Romulan rifle.
 
 uplink-pirate-ecutlass-name = Energy Cutlass
 uplink-pirate-ecutlass-desc = An energy cutlass!
