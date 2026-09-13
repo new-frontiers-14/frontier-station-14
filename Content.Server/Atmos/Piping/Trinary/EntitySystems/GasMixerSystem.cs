@@ -239,16 +239,36 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             args.DeviceFlipped = inletOne != null && inletTwo != null && inletOne.CurrentPipeDirection.ToDirection() == inletTwo.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
 
-        private void OnMapInit(EntityUid uid, GasMixerComponent mixer, MapInitEvent args) // Frontier - Init on map
+        // Frontier: Custom initialization
+        private void OnMapInit(EntityUid uid, GasMixerComponent mixer, MapInitEvent args)
         {
             if (mixer.StartOnMapInit)
             {
-                mixer.Enabled = true;
-                DirtyUI(uid, mixer);
-
-                UpdateAppearance(uid, mixer);
-                _userInterfaceSystem.CloseUi(uid, GasFilterUiKey.Key);
+                SetMixerEnabled(uid, true, mixer);
             }
         }
+
+        public void SetMixerEnabled(EntityUid uid, bool enabled, GasMixerComponent? mixer = null)
+        {
+            if (!Resolve(uid, ref mixer))
+                return;
+
+            mixer.Enabled = enabled;
+            DirtyUI(uid, mixer);
+
+            UpdateAppearance(uid, mixer);
+            _userInterfaceSystem.CloseUi(uid, GasFilterUiKey.Key);
+        }
+
+        public void SetMixerRatio(EntityUid uid, float ratio, GasMixerComponent? mixer = null)
+        {
+            if (!Resolve(uid, ref mixer))
+                return;
+
+            mixer.InletOneConcentration = ratio;
+            mixer.InletTwoConcentration = 1.0f - mixer.InletOneConcentration;
+            DirtyUI(uid, mixer);
+        }
+        // End Frontier
     }
 }
