@@ -3,6 +3,7 @@ using System;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    partial class SqliteServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260714173838_SwapLibraryBookKeyRoundRef")]
+    partial class SwapLibraryBookKeyRoundRef
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -670,7 +673,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("author");
 
@@ -680,7 +682,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(32768)
                         .HasColumnType("TEXT")
                         .HasColumnName("content");
 
@@ -698,7 +699,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 

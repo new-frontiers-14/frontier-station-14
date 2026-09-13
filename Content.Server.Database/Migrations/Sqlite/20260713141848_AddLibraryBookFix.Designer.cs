@@ -3,6 +3,7 @@ using System;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    partial class SqliteServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260713141848_AddLibraryBookFix")]
+    partial class AddLibraryBookFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -663,14 +666,13 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoundId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
-                        .HasColumnName("nf_library_book_id");
+                        .HasColumnName("round_id");
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("author");
 
@@ -680,7 +682,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(32768)
                         .HasColumnType("TEXT")
                         .HasColumnName("content");
 
@@ -688,9 +689,9 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("date");
 
-                    b.Property<int>("RoundId")
+                    b.Property<int>("Id")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("round_id");
+                        .HasColumnName("nf_library_book_id");
 
                     b.Property<int>("ServerId")
                         .HasColumnType("INTEGER")
@@ -698,15 +699,11 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 
-                    b.HasKey("Id")
+                    b.HasKey("RoundId")
                         .HasName("PK_nf_library_book");
-
-                    b.HasIndex("RoundId")
-                        .HasDatabaseName("IX_nf_library_book_round_id");
 
                     b.HasIndex("ServerId")
                         .HasDatabaseName("IX_nf_library_book_server_id");
@@ -1694,21 +1691,12 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.NFLibraryBook", b =>
                 {
-                    b.HasOne("Content.Server.Database.Round", "Round")
-                        .WithMany()
-                        .HasForeignKey("RoundId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_nf_library_book_round_round_id");
-
                     b.HasOne("Content.Server.Database.Server", "Server")
                         .WithMany()
                         .HasForeignKey("ServerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_nf_library_book_server_server_id");
-
-                    b.Navigation("Round");
 
                     b.Navigation("Server");
                 });
