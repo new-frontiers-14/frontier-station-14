@@ -127,7 +127,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponPkaCannon
-  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticHigh ]
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticHigh, RecyclableItemDeviceComplexNormal ]
   name: proto-kinetic accelerator cannon
   description: Fires high-damage kinetic bolts at a short range, strong enough to destroy hard rocks.
   components:
@@ -141,7 +141,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponPka
-  parent: [ NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticMedium ]
+  parent: [ NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticMedium, RecyclableItemSteelMedium ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
@@ -159,7 +159,7 @@
 
 - type: entity
   id: NFWeaponPkaSawn
-  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseWeaponFramePkaCustomMod, NFBaseWeaponPkaChamberKineticLow ]
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseWeaponFramePkaCustomMod, NFBaseWeaponPkaChamberKineticLow, RecyclableItemSteelMedium ]
   name: sawn-off proto-kinetic accelerator
   description: Boundaries and rules are meant to be broken; otherwise, there will be no progress, but this thing here is a good argument against that statement.
   components:
