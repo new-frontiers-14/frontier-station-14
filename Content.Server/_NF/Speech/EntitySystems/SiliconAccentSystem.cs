@@ -19,6 +19,10 @@ public sealed class SiliconAccentSystem : EntitySystem
         @"\b([Aa])n (?=(?!(?:hour|honest|honor|h2o)\b)[b-df-hj-np-tv-z])",
         RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
+    private static readonly Regex MidSentenceThisUnit = new(
+        @"(?<=[\p{Ll}\d,;:] )This unit\b",
+        RegexOptions.CultureInvariant);
+
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -34,7 +38,13 @@ public sealed class SiliconAccentSystem : EntitySystem
         if (HasComp<BorgChassisComponent>(uid) && HasEquipmentAccent(uid))
             return;
 
-        args.Message = CorrectArticles(_replacement.ApplyReplacements(args.Message, "silicon_accent"));
+        args.Message = CorrectGrammar(_replacement.ApplyReplacements(args.Message, "silicon_accent"));
+    }
+
+    internal static string CorrectGrammar(string message)
+    {
+        message = MidSentenceThisUnit.Replace(message, "this unit");
+        return CorrectArticles(message);
     }
 
     internal static string CorrectArticles(string message)

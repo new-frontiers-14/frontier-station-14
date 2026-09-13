@@ -71,6 +71,8 @@ public sealed partial class LoadoutWindow : FancyWindow
         DisableSiliconAccent.Visible = proto.CanDisableSiliconAccent;
         DisableSiliconAccent.Pressed = loadout.DisableSiliconAccent;
         DisableSiliconAccent.OnToggled += args => OnSiliconAccentOptOutChanged?.Invoke(args.Pressed);
+        if (proto.CanDisableSiliconAccent)
+            MinSize = new Vector2(MinSize.X, 190);
         // End Frontier
 
         // Frontier

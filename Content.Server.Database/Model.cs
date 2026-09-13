@@ -488,6 +488,8 @@ namespace Content.Server.Database
         [MaxLength(256)]
         public string? EntityName { get; set; }
 
+        public bool DisableSiliconAccent { get; set; } // Frontier
+
         /// <summary>
         /// Store the saved loadout groups. These may get validated and removed when loaded at runtime.
         /// </summary>

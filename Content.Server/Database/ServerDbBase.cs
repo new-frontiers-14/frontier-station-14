@@ -245,6 +245,7 @@ namespace Content.Server.Database
                 var loadout = new RoleLoadout(role.RoleName)
                 {
                     EntityName = role.EntityName,
+                    DisableSiliconAccent = role.DisableSiliconAccent, // Frontier
                 };
 
                 foreach (var group in role.Groups)
@@ -345,6 +346,7 @@ namespace Content.Server.Database
                 {
                     RoleName = role,
                     EntityName = loadouts.EntityName ?? string.Empty,
+                    DisableSiliconAccent = loadouts.DisableSiliconAccent, // Frontier
                 };
 
                 foreach (var (group, groupLoadouts) in loadouts.SelectedLoadouts)

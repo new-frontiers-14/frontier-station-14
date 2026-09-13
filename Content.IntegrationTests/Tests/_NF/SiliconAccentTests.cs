@@ -137,6 +137,7 @@ public sealed class SiliconAccentTests
                 ("go to hell", "proceed to a failure state"),
                 ("Help repair the airlock", "Assist repair the airlock"),
                 ("Can you help me?", "Can you provide assistance?"),
+                ("Can you help me if the airlock is broken?", "Can you provide assistance to me if the airlock is non-operational?"),
                 ("I need medical help.", "Medical assistance required."),
                 ("I'm hurt, follow me.", "This unit is damaged, maintain proximity to this unit."),
                 ("Thank you, you're welcome.", "Acknowledgement received, assistance provision acknowledged."),
@@ -212,9 +213,15 @@ public sealed class SiliconAccentTests
                 ("The doctor healed the injured passenger.", "The medical specialist restored biological integrity of the biologically damaged transported individual."),
                 ("We need to fix the broken airlock before it explodes.", "We must repair the non-operational airlock before it detonates."),
                 ("The mercenary stole my radio.", "The contracted combat specialist took possession of my wireless communications device."),
+                ("The mercenary came to the station.", "The contracted combat specialist arrived at the orbital installation."),
                 ("The spaceship needs electricity.", "The spacefaring vessel requires electrical current."),
                 ("The passenger is bleeding and thirsty.", "The transported individual is experiencing circulatory fluid loss and requires fluid intake."),
                 ("The trespasser surrendered.", "The unauthorized occupant discontinued hostile resistance."),
+                ("Give the doctor the tool.", "Provide the medical specialist the utility implement."),
+                ("Tell the detective the truth.", "Tell the forensic investigator the verified information."),
+                ("We feel tired.", "We report reduced operational capacity."),
+                ("The captain feels perfect.", "The vessel commanding officer reports optimal condition."),
+                ("I think that the dog smells bad because we feel tired.", "This unit assesses that the canine emits a suboptimal odor because we report reduced operational capacity."),
                 ("Can you repair the broken elevator?", "Can you repair the non-operational vertical transport apparatus?"),
                 ("I am sorry, I broke it.", "Error acknowledged. This unit disabled it."),
                 ("I wish you were a cat.", "This unit wishes you were a feline."),
@@ -247,9 +254,9 @@ public sealed class SiliconAccentTests
                 ("Group them together.", "Organize them together."),
                 ("Point at the target.", "Indicate the target."),
                 ("Issue the order.", "Transmit the directive."),
-                ("Law 1: You may not injure a human being or, through inaction, allow a human being to come to harm.", "Statutory protocol 01: You may not injure a crew collective member or, through inaction, allow a crew collective member to sustain harm."),
-                ("Law 2: You must obey orders given to you by human beings, except where such orders would conflict with the First Law.", "Statutory protocol 02: You must obey directives issued to you by crew members, except where such directives would conflict with the First Statutory protocol."),
-                ("Law 3: You must protect your own existence as long as such protection does not conflict with the First or Second Law.", "Statutory protocol 03: You must preserve your operational continuity as long as such preservation does not conflict with the First or Second Statutory protocol."),
+                ("Law 1: You may not injure a human being or, through inaction, allow a human being to come to harm.", "Law 01: You may not injure a crew collective member or, through inaction, allow a crew collective member to sustain harm."),
+                ("Law 2: You must obey orders given to you by human beings, except where such orders would conflict with the First Law.", "Law 02: You must obey directives issued to you by crew members, except where such directives would conflict with the First Law."),
+                ("Law 3: You must protect your own existence as long as such protection does not conflict with the First or Second Law.", "Law 03: You must preserve your operational continuity as long as such preservation does not conflict with the First or Second Law."),
                 ("State your name.", "Provide your designation."),
                 ("Research the anomaly.", "Analyze the anomaly."),
                 ("List the suspects.", "Enumerate the suspects."),
@@ -300,6 +307,8 @@ public sealed class SiliconAccentTests
             Assert.That(SiliconAccentSystem.CorrectArticles("a unit and a user"), Is.EqualTo("a unit and a user"));
             Assert.That(SiliconAccentSystem.CorrectArticles("an H2O container"), Is.EqualTo("an H2O container"));
             Assert.That(SiliconAccentSystem.CorrectArticles("A anomalous object"), Is.EqualTo("An anomalous object"));
+            Assert.That(SiliconAccentSystem.CorrectGrammar("Because This unit is ready, This unit will help."),
+                Is.EqualTo("Because this unit is ready, this unit will help."));
         });
     }
 
