@@ -68,6 +68,7 @@ guide-entry-shipyard-copperhead = Copperhead
 guide-entry-shipyard-crescent = Crescent
 guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-dragoon = Dragoon
+guide-entry-shipyard-firameq = Firameq
 guide-entry-shipyard-firefighter = Firefighter
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
