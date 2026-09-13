@@ -607,7 +607,6 @@
   - type: UIRequiresLock
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
-    inHandsOnly: true
     verbText: agent-id-open-ui-verb
   - type: Tag
     tags:
@@ -650,7 +649,7 @@
     job: AtmosphericTechnician
 
 - type: entity
-  parent: [ BaseC3SyndicateContraband, IDCardStandard ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [  IDCardStandard, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndicateIDCard
   name: syndicate ID card
   components:
