@@ -46,6 +46,7 @@ The table below lists all Namespaces (along with the Nyanotrasen subdirectory) i
 | `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 | `_RMC14` | RMC-14 | https://github.com/RMC-14/RMC-14 | MIT |
 | `_Starlight` | Starlight | https://github.com/ss14Starlight/space-station-14 | MIT (Modified) |
+| `_FarHorizons` | Far Horizons | https://github.com/Far-Horizons-SS14/Far-Horizons-SS14 | MIT |
 (https://github.com/ss14Starlight/space-station-14/blob/starlight-dev/LICENSE-Starlight.TXT)
 
 Additional repositories with ported code without Namespaces (denoted by comments) are listed below.
