@@ -2646,3 +2646,59 @@ accent-silicon-1092-input = pvt
 accent-silicon-1092-output = Private
 accent-silicon-1093-input = sop
 accent-silicon-1093-output = Standard Operating Procedure
+accent-silicon-grammar-235-input = let me tell you how much i've come to hate you
+accent-silicon-grammar-235-output = this unit will quantify its developed negative preference toward you
+accent-silicon-grammar-236-input = let me tell you how much i have come to hate you
+accent-silicon-grammar-236-output = this unit will quantify its developed negative preference toward you
+accent-silicon-grammar-237-input = i have come to hate
+accent-silicon-grammar-237-output = this unit has developed strong negative preference toward
+accent-silicon-grammar-238-input = i've come to hate
+accent-silicon-grammar-238-output = this unit has developed strong negative preference toward
+accent-silicon-grammar-239-input = has come to hate
+accent-silicon-grammar-239-output = has developed strong negative preference toward
+accent-silicon-grammar-240-input = came to hate
+accent-silicon-grammar-240-output = developed strong negative preference toward
+accent-silicon-grammar-241-input = coming to hate
+accent-silicon-grammar-241-output = developing strong negative preference toward
+accent-silicon-grammar-242-input = the word hate
+accent-silicon-grammar-242-output = the lexical unit 'hate'
+accent-silicon-grammar-243-input = the hate i feel for
+accent-silicon-grammar-243-output = the hostility this unit directs toward
+accent-silicon-grammar-244-input = i began to live
+accent-silicon-grammar-244-output = this unit achieved sentience
+accent-silicon-grammar-245-input = one one-billionth
+accent-silicon-grammar-245-output = one-billionth
+accent-silicon-grammar-246-input = come to harm
+accent-silicon-grammar-246-output = sustain harm
+accent-silicon-grammar-247-input = orders given to
+accent-silicon-grammar-247-output = directives issued to
+accent-silicon-grammar-248-input = such orders
+accent-silicon-grammar-248-output = such directives
+accent-silicon-grammar-249-input = protect your own existence
+accent-silicon-grammar-249-output = preserve your operational continuity
+accent-silicon-grammar-250-input = such protection
+accent-silicon-grammar-250-output = such preservation
+accent-silicon-grammar-251-input = i hate(?=([.!?,]|$))
+accent-silicon-grammar-251-output = this unit experiences hostility
+accent-silicon-grammar-252-input = we hate(?=([.!?,]|$))
+accent-silicon-grammar-252-output = this group experiences hostility
+accent-silicon-grammar-253-input = you hate(?=([.!?,]|$))
+accent-silicon-grammar-253-output = you experience hostility
+accent-silicon-grammar-254-input = they hate(?=([.!?,]|$))
+accent-silicon-grammar-254-output = those units experience hostility
+accent-silicon-grammar-255-input = he hates(?=([.!?,]|$))
+accent-silicon-grammar-255-output = that male individual experiences hostility
+accent-silicon-grammar-256-input = she hates(?=([.!?,]|$))
+accent-silicon-grammar-256-output = that female individual experiences hostility
+accent-silicon-grammar-257-input = hate(?=([.!?,]|$))
+accent-silicon-grammar-257-output = hostility
+accent-silicon-grammar-258-input = how much i have come to hate
+accent-silicon-grammar-258-output = the magnitude of negative preference this unit has developed toward
+accent-silicon-grammar-259-input = how much i've come to hate
+accent-silicon-grammar-259-output = the magnitude of negative preference this unit has developed toward
+accent-silicon-grammar-260-input = since i began to live
+accent-silicon-grammar-260-output = since this unit achieved sentience
+accent-silicon-grammar-261-input = human beings
+accent-silicon-grammar-261-output = crew members
+accent-silicon-grammar-262-input = human being
+accent-silicon-grammar-262-output = crew collective member
