@@ -5,7 +5,7 @@ namespace Content.Shared._NF.Smuggling.Prototypes;
 
 // Data types for the sending of smuggling messages over radio.
 [Prototype("smugglingReportMessageSet")]
-public sealed class SmugglingReportMessageSetPrototype : IPrototype
+public sealed partial class SmugglingReportMessageSetPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
@@ -43,7 +43,7 @@ public sealed partial class SmugglingReportMessage
     // If the number of smuggling events this hour is lower than this value, this message will be printed off.
     [DataField]
     public int HourlyThreshold { get; private set; } = int.MaxValue;
-    // The type of message to be printed off. Arguments should correspond to 
+    // The type of message to be printed off. Arguments should correspond to
     [DataField]
     public SmugglingReportMessageType Type { get; private set; } = SmugglingReportMessageType.General;
     // The maximum error for the pod location in meters.  Printed locations will be a random location within X meters of the drop pod.
