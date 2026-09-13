@@ -1,4 +1,4 @@
-﻿# Legal Info
+# Legal Info
 
 ## Definitions
 

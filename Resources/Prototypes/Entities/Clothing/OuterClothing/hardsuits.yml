@@ -38,9 +38,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Engineering Hardsuit
 - type: entity
@@ -75,9 +75,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Spationaut Hardsuit
 - type: entity
@@ -112,7 +112,7 @@
     - Hardsuit
     - WhitelistChameleon
     - HardsuitSpatio
-    - CorgiWearable
+  - type: CorgiWearable # Frontier
 
 #Salvage Hardsuit
 - type: entity
@@ -147,9 +147,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Goliath Hardsuit
 - type: entity
@@ -187,9 +187,9 @@
     node: hardsuitGoliath
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Maxim Hardsuit
 - type: entity
@@ -256,9 +256,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Brigmedic Hardsuit
 - type: entity
@@ -286,6 +286,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+  - type: CorgiWearable # Frontier
 
 #Warden's Hardsuit
 - type: entity
@@ -351,9 +352,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitCap
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -390,10 +391,10 @@
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
   - type: CatWearable # Frontier
+  - type: CorgiWearable # Frontier
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -428,9 +429,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Research Director's Hardsuit
 - type: entity
@@ -469,7 +470,6 @@
     tags:
     - WhitelistChameleon
     - HighRiskItem
-    - CorgiWearable
     - Hardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
@@ -479,6 +479,7 @@
     stealGroup: ClothingOuterHardsuitRd
   - type: PirateBountyItem # Frontier
     id: ClothingOuterHardsuitRd # Frontier
+  - type: CorgiWearable # Frontier
 
 #Head of Security's Hardsuit
 - type: entity
@@ -544,6 +545,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
+  - type: CorgiWearable # Frontier
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -586,10 +588,10 @@
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
-    - CorgiWearable
     - ScurretWearable
   - type: StaticPrice
     price: 5000
+  - type: CorgiWearable # Frontier
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -618,6 +620,7 @@
         Radiation: 0.5
         Caustic: 0.5
         Poison: 0.5 # Frontier: Added as upgrade over Merc Bio-suit, zombies on Frontier deal direct poison instead of infection chance
+  - type: CorgiWearable # Frontier
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -661,9 +664,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -700,9 +703,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 
 #Cybersun Juggernaut Hardsuit
@@ -740,9 +743,9 @@
   - type: Tag
     tags:
     - MonkeyWearable
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Wizard Hardsuit
 - type: entity
@@ -777,9 +780,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Ling Space Suit
 - type: entity
@@ -894,6 +897,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  - type: DisableCorgiWearable # Frontier
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -908,6 +912,13 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+# Starlight Begin
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+# Starlight End
+  - type: CorgiWearable # Frontier
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -924,6 +935,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
   - type: FireProtection
     reduction: 0.8
+  - type: CorgiWearable # Frontier
 
 #ERT Medic Hardsuit
 - type: entity
@@ -938,6 +950,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: CorgiWearable # Frontier
 
 #ERT Security Hardsuit
 - type: entity
@@ -952,10 +965,13 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
+  # Starlight Begin
   - type: Tag
     tags:
     - Hardsuit
     - WhitelistChameleon
+  # Starlight End
+  - type: CorgiWearable # Frontier
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -970,6 +986,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+  - type: CorgiWearable # Frontier
 
 #Deathsquad
 - type: entity
@@ -1009,6 +1026,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: CorgiWearable # Frontier
 
 #CBURN Hardsuit
 - type: entity

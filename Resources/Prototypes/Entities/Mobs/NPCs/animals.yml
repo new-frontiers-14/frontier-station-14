@@ -2936,6 +2936,14 @@
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+  # Starlight Start
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl' ]
+  - type: Vocal
+    sounds:
+      Male: DogEmoteSounds
+      Female: DogEmoteSounds
+      Unsexed: DogEmoteSounds
+  # Starlight End
   - type: Fixtures
     fixtures:
       fix1:
@@ -2962,6 +2970,21 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  # Starlight Start
+  - type: Puller
+    needsHands: false
+    pullingAlert: CorgiPulling
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: CorgiHealth
+      Critical: CorgiCrit
+      Dead: CorgiDead
+  - type: Blindable # Starlight - why is this not base?
+  # Starlight End
 
 - type: entity
   parent: MobCorgiBase
@@ -2986,6 +3009,7 @@
   - type: Tag
     tags:
     - VimPilot
+    - DogEmotes # Starlight
 
 - type: entity
   name: corrupted corgi
@@ -3909,6 +3933,9 @@
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
   - type: Stripping
   - type: ComplexInteraction
+  - type: Dna # Starlight
+  - type: Fingerprint # Starlight
+  - type: BankAccount # Frontier
   # Implement custom borgi body type
   - type: Body
     prototype: SmartCorgi
@@ -3924,6 +3951,7 @@
     - VimPilot
     - CanPilot
     - DoorBumpOpener
+    - DogEmotes # Starlight
   - type: StatusIcon # marks them as crew
     bounds: -0.5,-0.5,0.5,0.5
   - type: NpcFactionMember
