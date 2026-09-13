@@ -77,13 +77,20 @@ public sealed partial class ShipyardSystem
             {
                 if (query.TryComp(entity, out var marker))
                 {
-                    targetMixture = overrides.GetValueOrDefault(marker.Mode, defaultAtmosMix);
+                    if (!overrides.TryGetValue(marker.Mode, out targetMixture))
+                    {
+                        // No override - keep the old fixed atmos around
+                        targetMixture = null;
+                    }
                     break;
                 }
             }
 
             // Replace atmosphere
-            air.CopyFrom(targetMixture);
+            if (targetMixture != null)
+            {
+                air.CopyFrom(targetMixture);
+            }
         }
     }
 
