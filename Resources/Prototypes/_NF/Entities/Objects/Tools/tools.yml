@@ -19,6 +19,31 @@
       lastCharges: -1
 
 - type: entity
+  name: experimental shipyard RCD
+  parent: RCDRecharging
+  id: ShipyardRCDRecharging
+  description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator. It has a slot to swipe ID cards.
+  components:
+  - type: RCD
+    isShipyardRCD: true
+  - type: Sprite
+    state: icon-shipyard
+  - type: GridAccess
+
+- type: entity
+  name: experimental shipyard RCD
+  parent: RCDExperimental
+  suffix: Admeme
+  id: ShipyardRCDExperimental
+  description: A bluespace-enhanced rapid construction device that passively generates its own compressed matter. It has a slot to swipe ID cards.
+  components:
+  - type: RCD
+    isShipyardRCD: true
+  - type: Sprite
+    state: icon-shipyard
+  - type: GridAccess
+
+- type: entity
   name: shipyard compressed matter
   parent: RCDAmmo
   id: ShipyardRCDAmmo
