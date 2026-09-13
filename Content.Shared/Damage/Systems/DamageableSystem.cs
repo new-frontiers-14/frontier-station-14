@@ -221,9 +221,6 @@ namespace Content.Shared.Damage
                 }
             }
 
-            if (!ignoreGlobalModifiers)
-                damage = ApplyUniversalAllModifiers(damage);
-
             var delta = new DamageSpecifier();
             delta.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 
