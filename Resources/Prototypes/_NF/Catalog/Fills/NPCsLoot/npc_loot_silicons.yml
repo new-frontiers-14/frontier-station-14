@@ -35,62 +35,41 @@
     offset: 0.1
     table: !type:GroupSelector
       children:
-      - id: BorgModuleJetpack
-      - id: BorgModuleCustodial
-      - id: BorgModuleCable
-      - id: BorgModuleFireExtinguisher
-      - id: BorgModuleAppraisal
-      - id: BorgModuleTraversal
-      - id: BorgModuleTopicals
-      - id: BorgModuleDiagnosis
-      - id: BorgModuleArtifact
-      - id: BorgModuleAnomaly
-      - id: BorgModuleService
-      - id: BorgModuleNFService
-      - id: BorgModuleBureaucracy
-      - id: BorgModuleChef
-      - id: BorgModuleMusique
-      - id: BorgModuleGardening
-      - id: BorgModuleHarvesting
-      - id: BorgModuleClowning
+      #Generic
       - !type:GroupSelector
         children:
-        - id: BorgModuleRescue
-          weight: 0.9
+        - id: BorgModuleCable
+        - id: BorgModuleFireExtinguisher
+        - id: BorgModuleInflatable
+      #Medic
+      - !type:GroupSelector
+        children:
         - id: BorgModuleAdvancedParamedic
-          weight: 0.1
-      - !type:GroupSelector
-        children:
-        - id: BorgModuleChemical
-          weight: 0.9
         - id: BorgModuleAdvancedChemical
-          weight: 0.1
+        - id: BorgModulePill
+      #Janitor
       - !type:GroupSelector
         children:
-        - id: BorgModuleCleaning
-          weight: 0.9
         - id: BorgModuleAdvancedCleaning
-          weight: 0.1
+        - id: BorgModuleAdvancedSprayNozzle
+      #Engi
       - !type:GroupSelector
         children:
-        - id: BorgModuleConstruction
-          weight: 0.9
-        - id: BorgModuleRCDShipyard
-          weight: 0.1
-      - !type:GroupSelector
-        children:
-        - id: BorgModuleTool
-          weight: 0.9
         - id: BorgModuleAdvancedTool
-          weight: 0.1
+        - id: BorgModuleRCD
+      #Salvage
       - !type:GroupSelector
         children:
-        - id: BorgModuleMining
-          weight: 0.9
         - id: BorgModuleAdvancedMining
-          weight: 0.1
+      #Service
       - !type:GroupSelector
-        weight: 0.005
+        children:
+        - id: BorgModuleAdvancedClowning
+        - id: AdvancedBorgModuleMusique
+        - id: BorgModuleMutation
+      #Contraband
+      - !type:GroupSelector
+        weight: 0.8
         children:
         - id: BorgModuleSyndicateWeapon
         - id: BorgModuleEsword
