@@ -1,7 +1,9 @@
-﻿namespace Content.Server.Speech.Components
+﻿using Content.Server._NF.Speech.Components;
+
+namespace Content.Server.Speech.Components
 {
     [RegisterComponent]
-    public sealed partial class OwOAccentComponent : Component
+    public sealed partial class OwOAccentComponent : BaseAccentComponent // Frontier: Component<BaseAccentComponent
     {
     }
 }
