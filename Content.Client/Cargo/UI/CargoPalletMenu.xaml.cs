@@ -22,7 +22,7 @@ public sealed partial class CargoPalletMenu : FancyWindow
 
     public void SetAppraisal(int amount)
     {
-        AppraisalLabel.Text = BankSystemExtensions.ToSpesoString(amount); // Frontier: custom speso formatting
+        AppraisalLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
     public void SetCount(int count)
