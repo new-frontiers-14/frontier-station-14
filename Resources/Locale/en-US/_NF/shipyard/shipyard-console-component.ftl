@@ -39,7 +39,7 @@ shipyard-console-menu-class-label = Class:{" "}
 shipyard-console-menu-engine-label = Engine:{" "}
 shipyard-console-menu-sortby-label = Sort By:{" "}
 shipyard-console-menu-atmos-label = Atmosphere:{" "}
-shipyard-console-menu-atmos-default = Standard station atmosphere
+shipyard-console-menu-atmos-default = Standard (79% N₂, 21% O₂ at 20°C)
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual

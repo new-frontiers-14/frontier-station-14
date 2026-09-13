@@ -1,6 +1,6 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
-                           xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                           xmlns:shipyard="clr-namespace:Content.Client._NF.Shipyard.UI"
                            SetSize="640 500"
                            MinSize="640 300">
     <BoxContainer Orientation="Vertical" Margin="5 0 5 0">
@@ -50,7 +50,7 @@
             </BoxContainer>
         </ScrollContainer>
         <GridContainer Columns="2" HorizontalExpand="True" Name="CustomAtmosContainer">
-            <OptionButton Name="Atmosphere" Prefix="{Loc 'shipyard-console-menu-atmos-label'}"></OptionButton>
+            <shipyard:AtmosOptionButton Name="Atmosphere" Prefix="{Loc 'shipyard-console-menu-atmos-label'}"/>
         </GridContainer>
         <GridContainer Columns="3" HorizontalExpand="True" Margin="0 8 0 2">
             <Button Name="TargetIdButton" Access="Public"/>
