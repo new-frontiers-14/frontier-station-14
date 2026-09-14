@@ -242,6 +242,12 @@ public sealed class SiliconAccentTests
                 ("The child is at school.", "The juvenile biological unit is at the training institution."),
                 ("The student read a book.", "The trainee read a reference volume."),
                 ("Time is valuable.", "Processing interval is valuable."),
+                ("It is time to leave.", "The scheduled action is to vacate current location."),
+                ("It is almost time to eat.", "The scheduled action will soon be to consume nutritional material."),
+                ("Now is the time to help them.", "The current scheduled action is to provide assistance to them."),
+                ("It was time to go.", "The scheduled action was to proceed."),
+                ("It may be time to repair the airlock.", "The scheduled action may be to repair the airlock."),
+                ("Is it time to sleep?", "Is the scheduled action to enter biological rest cycle?"),
                 ("The community needs support.", "The local collective requires assistance."),
                 ("Shoot people.", "Fire at biological individuals."),
                 ("Shoot at people.", "Fire at biological individuals."),
@@ -414,7 +420,7 @@ public sealed class SiliconAccentTests
     }
 
     [Test]
-    public async Task CyborgLoadoutCanDisableInherentAccent()
+    public async Task CyborgBrainCarriesAccentPreferenceBetweenChassis()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
         var server = pair.Server;
@@ -432,6 +438,27 @@ public sealed class SiliconAccentTests
             var enabledBorg = spawning.SpawnPlayerMob(testMap.GridCoords, "Borg", enabledProfile, station: null);
             Assert.That(entities.HasComponent<SiliconAccentComponent>(enabledBorg), Is.True);
 
+            string Speak(EntityUid uid, string input)
+            {
+                var ev = new AccentGetEvent(uid, input);
+                entities.EventBus.RaiseLocalEvent(uid, ev);
+                return ev.Message;
+            }
+
+            var container = server.System<SharedContainerSystem>();
+            var enabledChassis = entities.GetComponent<BorgChassisComponent>(enabledBorg);
+            Assert.That(enabledChassis.BrainEntity, Is.Not.Null);
+            var enabledBrain = enabledChassis.BrainEntity!.Value;
+            Assert.That(entities.HasComponent<SiliconAccentComponent>(enabledBrain), Is.True);
+            Assert.That(Speak(enabledBorg, "hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(container.Remove(enabledBrain, enabledChassis.BrainContainer), Is.True);
+            Assert.That(Speak(enabledBrain, "hello cappy"), Is.EqualTo("Hello World captain"));
+
+            var enabledReplacement = entities.SpawnEntity("BorgChassisSelectable", testMap.GridCoords);
+            var enabledReplacementChassis = entities.GetComponent<BorgChassisComponent>(enabledReplacement);
+            Assert.That(container.Insert(enabledBrain, enabledReplacementChassis.BrainContainer), Is.True);
+            Assert.That(Speak(enabledReplacement, "hello cappy"), Is.EqualTo("Hello World captain"));
+
             var disabledLoadout = new RoleLoadout(BorgRole) { DisableSiliconAccent = true };
             Assert.That(disabledLoadout.Clone().DisableSiliconAccent, Is.True);
             var disabledProfile = new HumanoidCharacterProfile();
@@ -443,26 +470,32 @@ public sealed class SiliconAccentTests
             Assert.That(disabledChassis.BrainEntity, Is.Not.Null);
             var brain = disabledChassis.BrainEntity!.Value;
             Assert.That(entities.HasComponent<SiliconAccentOptOutComponent>(brain), Is.True);
-
-            string Speak(EntityUid uid, string input)
-            {
-                var ev = new AccentGetEvent(uid, input);
-                entities.EventBus.RaiseLocalEvent(uid, ev);
-                return ev.Message;
-            }
+            Assert.That(entities.HasComponent<SiliconAccentComponent>(brain), Is.False);
 
             Assert.That(Speak(disabledBorg, "hello cappy"), Is.EqualTo("hello cappy"));
+            Assert.That(container.Remove(brain, disabledChassis.BrainContainer), Is.True);
+            Assert.That(Speak(brain, "hello cappy"), Is.EqualTo("hello cappy"));
 
             var replacementBorg = entities.SpawnEntity("BorgChassisSelectable", testMap.GridCoords);
             var replacementChassis = entities.GetComponent<BorgChassisComponent>(replacementBorg);
-            var container = server.System<SharedContainerSystem>();
             Assert.That(container.Insert(brain, replacementChassis.BrainContainer), Is.True);
             Assert.That(entities.HasComponent<SiliconAccentOptOutComponent>(brain), Is.True);
             Assert.That(Speak(replacementBorg, "hello cappy"), Is.EqualTo("hello cappy"));
 
+            var mmi = entities.SpawnEntity("MMIFilled", testMap.GridCoords);
+            Assert.That(entities.HasComponent<MMIComponent>(mmi), Is.True);
+            Assert.That(entities.HasComponent<SiliconAccentComponent>(mmi), Is.False);
+            Assert.That(Speak(mmi, "hello cappy"), Is.EqualTo("hello cappy"));
+            var mmiBorg = entities.SpawnEntity("BorgChassisSelectable", testMap.GridCoords);
+            var mmiChassis = entities.GetComponent<BorgChassisComponent>(mmiBorg);
+            Assert.That(container.Insert(mmi, mmiChassis.BrainContainer), Is.True);
+            Assert.That(Speak(mmiBorg, "hello cappy"), Is.EqualTo("hello cappy"));
+
             entities.DeleteEntity(enabledBorg);
+            entities.DeleteEntity(enabledReplacement);
             entities.DeleteEntity(disabledBorg);
             entities.DeleteEntity(replacementBorg);
+            entities.DeleteEntity(mmiBorg);
         });
         await pair.CleanReturnAsync();
     }

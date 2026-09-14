@@ -149,7 +149,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             if (roleProto?.CanDisableSiliconAccent == true && loadout?.DisableSiliconAccent == true &&
                 TryComp<BorgChassisComponent>(jobEntity, out var chassis) && chassis.BrainEntity is { } brain)
+            {
                 EnsureComp<SiliconAccentOptOutComponent>(brain);
+                RemComp<SiliconAccentComponent>(brain);
+            }
 
             // Frontier: equip loadouts on custom job entities
             if (prototype?.StartingGear is not null)
