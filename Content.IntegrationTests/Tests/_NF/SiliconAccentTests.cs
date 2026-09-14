@@ -16,11 +16,13 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Traits;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Containers;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -435,10 +437,32 @@ public sealed class SiliconAccentTests
             var disabledProfile = new HumanoidCharacterProfile();
             disabledProfile.SetLoadout(disabledLoadout);
             var disabledBorg = spawning.SpawnPlayerMob(testMap.GridCoords, "Borg", disabledProfile, station: null);
-            Assert.That(entities.HasComponent<SiliconAccentComponent>(disabledBorg), Is.False);
+            Assert.That(entities.HasComponent<SiliconAccentComponent>(disabledBorg), Is.True);
+
+            var disabledChassis = entities.GetComponent<BorgChassisComponent>(disabledBorg);
+            Assert.That(disabledChassis.BrainEntity, Is.Not.Null);
+            var brain = disabledChassis.BrainEntity!.Value;
+            Assert.That(entities.HasComponent<SiliconAccentOptOutComponent>(brain), Is.True);
+
+            string Speak(EntityUid uid, string input)
+            {
+                var ev = new AccentGetEvent(uid, input);
+                entities.EventBus.RaiseLocalEvent(uid, ev);
+                return ev.Message;
+            }
+
+            Assert.That(Speak(disabledBorg, "hello cappy"), Is.EqualTo("hello cappy"));
+
+            var replacementBorg = entities.SpawnEntity("BorgChassisSelectable", testMap.GridCoords);
+            var replacementChassis = entities.GetComponent<BorgChassisComponent>(replacementBorg);
+            var container = server.System<SharedContainerSystem>();
+            Assert.That(container.Insert(brain, replacementChassis.BrainContainer), Is.True);
+            Assert.That(entities.HasComponent<SiliconAccentOptOutComponent>(brain), Is.True);
+            Assert.That(Speak(replacementBorg, "hello cappy"), Is.EqualTo("hello cappy"));
 
             entities.DeleteEntity(enabledBorg);
             entities.DeleteEntity(disabledBorg);
+            entities.DeleteEntity(replacementBorg);
         });
         await pair.CleanReturnAsync();
     }

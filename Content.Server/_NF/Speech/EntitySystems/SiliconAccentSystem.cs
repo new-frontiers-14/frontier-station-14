@@ -35,8 +35,14 @@ public sealed class SiliconAccentSystem : EntitySystem
 
     private void OnAccent(EntityUid uid, SiliconAccentComponent component, AccentGetEvent args)
     {
-        if (HasComp<BorgChassisComponent>(uid) && HasEquipmentAccent(uid))
-            return;
+        if (TryComp<BorgChassisComponent>(uid, out var chassis))
+        {
+            if (chassis.BrainEntity is { } brain && HasComp<SiliconAccentOptOutComponent>(brain))
+                return;
+
+            if (HasEquipmentAccent(uid))
+                return;
+        }
 
         args.Message = CorrectGrammar(_replacement.ApplyReplacements(args.Message, "silicon_accent"));
     }
