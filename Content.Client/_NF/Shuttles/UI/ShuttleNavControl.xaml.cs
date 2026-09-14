@@ -13,6 +13,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Shared.Interaction;
 
 // Purposefully colliding with base namespace.
 namespace Content.Client.Shuttles.UI;
@@ -187,6 +188,30 @@ public sealed partial class ShuttleNavControl
                     continue;
                 }
                 var nodePosInView = Vector2.Transform(nodeComp.Location, worldToView);
+
+                var nextNodes = _rivers.GetNextNodes(nodeComp);
+                foreach (var nextNode in nextNodes)
+                {
+                    if (!_rivers.TryGetNodeData(nextNode.Node, out var nextNodeComp))
+                    {
+                        continue;
+                    }
+                    var pathColour = Color.DarkSlateGray;
+                    //var controlPointPosInView = Vector2.Transform(nextNode.ControlPoint, worldToView);
+                    //handle.DrawLine(nodePosInView, controlPointPosInView, pathColour);
+                    //var nextNodePosInView = Vector2.Transform(nextNodeComp.Location, worldToView);
+                    //handle.DrawLine(controlPointPosInView, nextNodePosInView, pathColour);
+
+                    var totalSections = 5;
+                    var bezier = _rivers.CalcCurveSections(nodeComp.Location, nextNode.ControlPoint, nextNodeComp.Location, totalSections);
+                    for (var i = 0; i < bezier.Count - 1; i++)
+                    {
+                        var segmentStart = Vector2.Transform(bezier[i], worldToView);
+                        var segmentEnd = Vector2.Transform(bezier[i + 1], worldToView);
+                        handle.DrawLine(segmentStart, segmentEnd, pathColour);
+                    }
+                }
+
                 var colour = Color.DarkGray;
                 colour.A = 0.05f;
                 handle.DrawCircle(nodePosInView, nodeComp.NodeRange * MinimapScale, colour);

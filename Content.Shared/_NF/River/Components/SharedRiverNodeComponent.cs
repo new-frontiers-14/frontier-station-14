@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,18 @@ namespace Content.Shared._NF.River.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class /*Shared*/RiverNodeComponent : Component
 {
+    /// <summary>
+    /// The location of the Node for display purposes.
+    /// </summary>
     [AutoNetworkedField]
     public Vector2 Location;
+
+    /// <summary>
+    /// A list of nodes which this node flows into.
+    /// </summary>
+    [AutoNetworkedField]
+    public List<NetNodeLink> NextNodes = new();
+
     /// <summary>
     /// The direction in which the river flows.
     /// </summary>
@@ -42,4 +53,12 @@ public sealed partial class /*Shared*/RiverNodeComponent : Component
     /// </summary>
     [DataField]
     public bool IsSource = false;
+}
+[Serializable, NetSerializable]
+public readonly struct NetNodeLink(
+        NetEntity node,
+        Vector2 controlPoint)
+{
+    public NetEntity Node { get; } = node;
+    public Vector2 ControlPoint { get; } = controlPoint;
 }
