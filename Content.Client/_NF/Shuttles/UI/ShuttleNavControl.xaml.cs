@@ -1,16 +1,19 @@
+using Content.Client._NF.Radar;
+using Content.Client._NF.River;
+using Content./*Client*/Shared._NF.River.Components;
+using Content.Client.Station;
+using Content.Shared._NF.Radar;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.BUIStates;
-using Robust.Shared.Physics.Components;
-using System.Numerics;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
-using Robust.Shared.Collections;
 using Robust.Client.UserInterface;
+using Robust.Shared.Collections;
 using Robust.Shared.Input;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Content.Shared._NF.Radar;
-using Content.Client._NF.Radar;
-using Content.Client.Station;
+using System.Numerics;
+using Content.Shared.Interaction;
 
 // Purposefully colliding with base namespace.
 namespace Content.Client.Shuttles.UI;
@@ -20,6 +23,7 @@ public sealed partial class ShuttleNavControl
     // Dependency
     private readonly StationSystem _station;
     private readonly RadarBlipSystem _blips;
+    private readonly RiverNodeSystem _rivers;
 
     // Constants for gunnery system
     // These 2 handle timing updates
@@ -169,6 +173,49 @@ public sealed partial class ShuttleNavControl
         foreach (var color in blipValueList)
         {
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
+        }
+    }
+    //TODO: Add summaries
+    private void NFDrawRivers(DrawingHandleBase handle, Matrix3x2 worldToView)
+    {
+        var nodes = _rivers.GetNodeList();
+        if (nodes != null)
+        {
+            foreach (var node in nodes)
+            {
+                if (!_rivers.TryGetNodeData(node, out var nodeComp))
+                {
+                    continue;
+                }
+                var nodePosInView = Vector2.Transform(nodeComp.Location, worldToView);
+
+                var nextNodes = _rivers.GetNextNodes(nodeComp);
+                foreach (var nextNode in nextNodes)
+                {
+                    if (!_rivers.TryGetNodeData(nextNode.Node, out var nextNodeComp))
+                    {
+                        continue;
+                    }
+                    var pathColour = Color.DarkSlateGray;
+                    //var controlPointPosInView = Vector2.Transform(nextNode.ControlPoint, worldToView);
+                    //handle.DrawLine(nodePosInView, controlPointPosInView, pathColour);
+                    //var nextNodePosInView = Vector2.Transform(nextNodeComp.Location, worldToView);
+                    //handle.DrawLine(controlPointPosInView, nextNodePosInView, pathColour);
+
+                    var totalSections = 5;
+                    var bezier = _rivers.CalcCurveSections(nodeComp.Location, nextNode.ControlPoint, nextNodeComp.Location, totalSections);
+                    for (var i = 0; i < bezier.Count - 1; i++)
+                    {
+                        var segmentStart = Vector2.Transform(bezier[i], worldToView);
+                        var segmentEnd = Vector2.Transform(bezier[i + 1], worldToView);
+                        handle.DrawLine(segmentStart, segmentEnd, pathColour);
+                    }
+                }
+
+                var colour = Color.DarkGray;
+                colour.A = 0.05f;
+                handle.DrawCircle(nodePosInView, nodeComp.NodeRange * MinimapScale, colour);
+            }
         }
     }
 
