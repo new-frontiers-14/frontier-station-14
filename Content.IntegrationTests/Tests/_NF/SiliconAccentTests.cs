@@ -296,7 +296,8 @@ public sealed class SiliconAccentTests
             Assert.Multiple(() =>
             {
                 foreach (var (input, output) in cases)
-                    Assert.That(system.ApplyReplacements(input, "silicon_accent"), Is.EqualTo(output), input);
+                    Assert.That(SiliconAccentSystem.CorrectGrammar(system.ApplyReplacements(input, "silicon_accent")),
+                        Is.EqualTo(output), input);
             });
         });
         await pair.CleanReturnAsync();
