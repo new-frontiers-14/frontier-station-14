@@ -15,7 +15,6 @@ namespace Content.Shared._NF.Traits;
 public sealed class OneHandParalyzedSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
 
     public override void Initialize()
@@ -53,8 +52,6 @@ public sealed class OneHandParalyzedSystem : EntitySystem
         if (!UsingParalyzedHand(ent) && !itemTooBig)
             return;
 
-        var message = Loc.GetString("trait-one-hand-paralyzed-pickup-attempt", ("item", Identity.Entity(args.Item, EntityManager)));
-        _popupSystem.PopupClient(message, ent, ent, PopupType.SmallCaution);
         args.Cancel();
     }
 
@@ -69,9 +66,6 @@ public sealed class OneHandParalyzedSystem : EntitySystem
             else if (HasComp<ItemToggleComponent>(target) || HasComp<TriggerOnActivateComponent>(target))
             {
                 args.Cancelled = true;
-                var message = Loc.GetString("trait-one-hand-paralyzed-activate-attempt",
-                    ("item", Identity.Entity(target, EntityManager)));
-                _popupSystem.PopupClient(message, ent, ent, PopupType.SmallCaution);
             }
         }
     }
@@ -89,8 +83,6 @@ public sealed class OneHandParalyzedSystem : EntitySystem
         if (!UsingParalyzedHand(ent) && !itemTooBig)
             return;
 
-            var message = Loc.GetString("trait-one-hand-paralyzed-pull-attempt", ("item", Identity.Entity(args.PulledUid, EntityManager)));
-            _popupSystem.PopupClient(message, ent.Owner, ent.Owner, PopupType.SmallCaution);
             args.Cancelled = true;
         }
 
@@ -99,10 +91,6 @@ public sealed class OneHandParalyzedSystem : EntitySystem
             if (args.Cancelled)
                 return;
             args.Cancelled = true;
-
-            var selfMessage = Loc.GetString("trait-one-hand-paralyzed-wield-message", ("item", args.Wielded));
-            var othersMessage = Loc.GetString("trait-one-hand-paralyzed-wield-message-other", ("user", Identity.Entity(args.User, EntityManager)), ("item", args.Wielded));
-            _popupSystem.PopupPredicted(selfMessage, othersMessage, args.User, args.User, PopupType.SmallCaution);
         }
     }
 }
