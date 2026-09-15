@@ -45,13 +45,16 @@ public sealed class SiliconAccentTests
         await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
         await pair.Server.WaitAssertion(() =>
         {
-            var system = pair.Server.System<ReplacementAccentSystem>();
+            var system = pair.Server.System<SiliconAccentSystem>();
             (string Input, string Output)[] cases =
             [
-                ("hello there, cappy", "Hello World, captain"),
+                ("hello there, cappy", "hello there, captain"),
                 ("indeed", "affirmative"),
                 ("Hello!", "Hello World!"),
                 ("HELLO!", "HELLO WORLD!"),
+                ("Hello, can you help me?", "Hello, can you provide assistance?"),
+                ("Hey everyone, follow me.", "Hey everyone, maintain proximity to this unit."),
+                ("Good morning, how are you?", "Good morning, status query?"),
                 ("good night", "initiate rest cycle"),
                 ("have a good night", "maintain nominal rest cycle"),
                 ("see you later", "until subsequent interaction"),
@@ -69,7 +72,7 @@ public sealed class SiliconAccentTests
                 ("nfsd", "New Frontier Sheriff's Department"),
                 ("NFSD", "NEW FRONTIER SHERIFF'S DEPARTMENT"),
                 ("New Frontier Sheriff's Department", "Sector law-enforcement organization"),
-                ("sec", "NFSD"),
+                ("sec", "sec"),
                 ("cuz I dunno", "because this unit lacks sufficient data"),
                 ("bruh, gimme that cuz this sucks", "associate, provide me that because this is suboptimal"),
                 ("you ain't dumb, dude", "you are not cognitively deficient, individual"),
@@ -121,8 +124,19 @@ public sealed class SiliconAccentTests
                 ("MERC", "MERCENARY"),
                 ("mercs", "mercenaries"),
                 ("mercenary", "contracted combat specialist"),
-                ("ts", "Trade Station"),
-                ("TS", "TRADE STATION"),
+                ("ts", "ts"),
+                ("tm", "trade mall"),
+                ("TM", "TRADE MALL"),
+                ("el", "exped lodge"),
+                ("EL", "EXPED LODGE"),
+                ("md", "medical dispatch"),
+                ("MD", "MEDICAL DISPATCH"),
+                ("pm", "plant manager"),
+                ("PM", "PLANT MANAGER"),
+                ("pt", "plant technician"),
+                ("PT", "PLANT TECHNICIAN"),
+                ("DoC", "Director of care"),
+                ("EMP", "ELECTROMAGNETIC PULSE"),
                 ("fo", "Frontier Outpost"),
                 ("fuc", "Frontier Uplink Coin"),
                 ("sgt", "Sergeant"),
@@ -295,7 +309,7 @@ public sealed class SiliconAccentTests
                 ("They order me to leave.", "They command me to vacate current location."),
                 ("The doctor studies the patient.", "The medical specialist analyzes the medical subject."),
                 ("I wish the cat could help the injured dog.", "This unit wishes the feline could assist the biologically damaged canine."),
-                ("An asteroid passed during the night.", "An minor celestial body passed during the rest cycle."),
+                ("An asteroid passed during the night.", "A minor celestial body passed during the rest cycle."),
                 ("I ordered food.", "I requested nutritional material."),
                 ("The suspect posted a message and stole the radio.", "The individual of investigative interest transmitted a message and unlawfully acquired the wireless communications device."),
                 ("Ow! Oww! Ouch! Oof! Agh! Argh!", "ERROR! ERROR! ERROR! ERROR! ERROR! ERROR!"),
@@ -304,8 +318,7 @@ public sealed class SiliconAccentTests
             Assert.Multiple(() =>
             {
                 foreach (var (input, output) in cases)
-                    Assert.That(SiliconAccentSystem.CorrectGrammar(system.ApplyReplacements(input, "silicon_accent")),
-                        Is.EqualTo(output), input);
+                    Assert.That(system.ApplyAccent(input), Is.EqualTo(output), input);
             });
         });
         await pair.CleanReturnAsync();
