@@ -4,7 +4,6 @@ using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
-using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.UserInterface;
@@ -93,4 +92,3 @@ public sealed class OneHandParalyzedSystem : EntitySystem
             args.Cancelled = true;
         }
     }
-}
