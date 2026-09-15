@@ -83,7 +83,7 @@ public sealed class OneHandParalyzedSystem : EntitySystem
         if (!UsingParalyzedHand(ent) && !itemTooBig)
             return;
 
-            args.Cancelled = true;
+        args.Cancelled = true;
         }
 
         private void OnWieldAttempt(Entity<OneHandParalyzedComponent> ent, ref WieldAttemptEvent args)
@@ -93,4 +93,3 @@ public sealed class OneHandParalyzedSystem : EntitySystem
             args.Cancelled = true;
         }
     }
-}
