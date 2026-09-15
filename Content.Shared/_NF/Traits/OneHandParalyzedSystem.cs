@@ -63,7 +63,7 @@ public sealed class OneHandParalyzedSystem : EntitySystem
             if (args.Target is not { } target || HasComp<ActivatableUIComponent>(target))
             {
             }
-            else if (HasComp<ItemToggleComponent>(target) || HasComp<TriggerOnActivateComponent>(target))
+            else if (HasComp<ItemToggleComponent>(target) || HasComp<TriggerOnActivateComponent>(target) || HasComp<StorageComponent>(target))
             {
                 args.Cancelled = true;
             }
