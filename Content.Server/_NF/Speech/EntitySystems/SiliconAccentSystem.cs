@@ -73,7 +73,7 @@ public sealed class SiliconAccentSystem : EntitySystem
         var preserved = new List<string>();
         message = Greeting.Replace(message, match =>
         {
-            preserved.Add(match.Value);
+            preserved.Add(TranslateGreeting(match.Value));
             return ((char) (0xE000 + preserved.Count - 1)).ToString();
         });
 
@@ -82,6 +82,29 @@ public sealed class SiliconAccentSystem : EntitySystem
             message = message.Replace(((char) (0xE000 + i)).ToString(), preserved[i]);
 
         return message;
+    }
+
+    private static string TranslateGreeting(string greeting)
+    {
+        var replacement = greeting.ToLowerInvariant() switch
+        {
+            "hello everybody" or "hello everyone" or "hey everybody" or "hey everyone" or
+                "hi everybody" or "hi everyone" => "attention all present units",
+            "good afternoon" or "afternoon" => "nominal afternoon cycle",
+            "good evening" or "evening" => "nominal evening cycle",
+            "good morning" or "morning" => "nominal morning cycle",
+            "morning all" => "nominal morning cycle for all present units",
+            "good day" => "nominal operational cycle",
+            _ => "communication initiated",
+        };
+
+        if (greeting.Equals(greeting.ToUpperInvariant(), StringComparison.Ordinal))
+            return replacement.ToUpperInvariant();
+
+        if (char.IsUpper(greeting[0]))
+            return char.ToUpperInvariant(replacement[0]) + replacement[1..];
+
+        return replacement;
     }
 
     internal static string CorrectGrammar(string message)

@@ -48,13 +48,14 @@ public sealed class SiliconAccentTests
             var system = pair.Server.System<SiliconAccentSystem>();
             (string Input, string Output)[] cases =
             [
-                ("hello there, cappy", "hello there, captain"),
+                ("hello there, cappy", "communication initiated, captain"),
                 ("indeed", "affirmative"),
                 ("Hello!", "Hello World!"),
                 ("HELLO!", "HELLO WORLD!"),
-                ("Hello, can you help me?", "Hello, can you provide assistance?"),
-                ("Hey everyone, follow me.", "Hey everyone, maintain proximity to this unit."),
-                ("Good morning, how are you?", "Good morning, status query?"),
+                ("Hello, can you help me?", "Communication initiated, can you provide assistance?"),
+                ("Hey everyone, follow me.", "Attention all present units, maintain proximity to this unit."),
+                ("Good morning, how are you?", "Nominal morning cycle, status query?"),
+                ("HI, THE DOOR IS OPEN.", "COMMUNICATION INITIATED, THE PERSONNEL ACCESS APERTURE IS OPEN."),
                 ("good night", "initiate rest cycle"),
                 ("have a good night", "maintain nominal rest cycle"),
                 ("see you later", "until subsequent interaction"),
