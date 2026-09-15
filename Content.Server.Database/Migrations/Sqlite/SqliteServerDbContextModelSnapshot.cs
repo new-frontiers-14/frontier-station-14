@@ -928,6 +928,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("profile_role_loadout_id");
 
+                    b.Property<bool>("DisableSiliconAccent")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("disable_silicon_accent");
+
                     b.Property<string>("EntityName")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT")

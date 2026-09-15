@@ -1,3 +1,4 @@
+using System.Linq; // Frontier
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -32,7 +33,10 @@ public sealed class TraitSystem : EntitySystem
             return;
         }
 
-        foreach (var traitId in args.Profile.TraitPreferences)
+        // Frontier: apply prerequisite traits before dependent traits
+        foreach (var traitId in args.Profile.TraitPreferences.OrderBy(id =>
+                     _prototypeManager.TryIndex<TraitPrototype>(id, out var trait) ? trait.RequiredTraits.Count : 0))
+        // End Frontier
         {
             if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
             {
@@ -40,9 +44,13 @@ public sealed class TraitSystem : EntitySystem
                 return;
             }
 
-            if (_whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, args.Mob) ||
+            // Frontier: enforce profile trait restrictions at spawn
+            if (!traitPrototype.IsSpeciesAllowed(args.Profile.Species) ||
+                !traitPrototype.AreRequirementsMet(args.Profile.TraitPreferences) ||
+                _whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, args.Mob) ||
                 _whitelistSystem.IsBlacklistPass(traitPrototype.Blacklist, args.Mob))
                 continue;
+            // End Frontier
 
             // Add all components required by the prototype
             EntityManager.AddComponents(args.Mob, traitPrototype.Components, false);

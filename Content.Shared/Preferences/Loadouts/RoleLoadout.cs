@@ -29,6 +29,9 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// </summary>
     public string? EntityName;
 
+    [DataField] // Frontier: role-specific Silicon Accent opt-out
+    public bool DisableSiliconAccent; // Frontier
+
     /*
      * Loadout-specific data used for validation.
      */
@@ -50,6 +53,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         }
 
         weh.EntityName = EntityName;
+        weh.DisableSiliconAccent = DisableSiliconAccent; // Frontier
 
         return weh;
     }
@@ -75,6 +79,11 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         {
             EntityName = null;
         }
+
+        // Frontier: discard the Silicon Accent opt-out for unsupported roles
+        if (!roleProto.CanDisableSiliconAccent)
+            DisableSiliconAccent = false;
+        // End Frontier
 
         // Validate name length
         // TODO: Probably allow regex to be supplied?
@@ -462,7 +471,8 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         if (!Role.Equals(other.Role) ||
             SelectedLoadouts.Count != other.SelectedLoadouts.Count ||
             Points != other.Points ||
-            EntityName != other.EntityName)
+            EntityName != other.EntityName ||
+            DisableSiliconAccent != other.DisableSiliconAccent) // Frontier
         {
             return false;
         }
@@ -487,6 +497,6 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Role, SelectedLoadouts, Points);
+        return HashCode.Combine(Role, SelectedLoadouts, Points, DisableSiliconAccent); // Frontier: include accent opt-out
     }
 }

@@ -22,6 +22,9 @@ public sealed partial class RoleLoadoutPrototype : IPrototype
     [DataField]
     public bool CanCustomizeName;
 
+    [DataField] // Frontier: allow role-specific Silicon Accent opt-out
+    public bool CanDisableSiliconAccent; // Frontier
+
     /// <summary>
     /// Should we use a random name for this loadout?
     /// </summary>

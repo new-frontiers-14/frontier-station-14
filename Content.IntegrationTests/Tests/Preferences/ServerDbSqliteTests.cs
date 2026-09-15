@@ -92,6 +92,27 @@ namespace Content.IntegrationTests.Tests.Preferences
             await pair.CleanReturnAsync();
         }
 
+        // Frontier: Silicon Accent opt-out persistence
+        [Test]
+        public async Task TestSiliconAccentOptOutPersists()
+        {
+            var pair = await PoolManager.GetServerClient();
+            var db = GetDb(pair.Server);
+            var username = NewUserId();
+            var profile = CharlieCharlieson().WithLoadout(new RoleLoadout("JobBorg")
+            {
+                DisableSiliconAccent = true,
+            });
+
+            await db.InitPrefsAsync(username, profile);
+            var saved = await db.GetPlayerPreferencesAsync(username);
+            var loaded = (HumanoidCharacterProfile) saved!.Characters[0];
+
+            Assert.That(loaded.Loadouts["JobBorg"].DisableSiliconAccent, Is.True);
+            await pair.CleanReturnAsync();
+        }
+        // End Frontier
+
         [Test]
         public async Task TestDeleteCharacter()
         {

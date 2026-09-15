@@ -498,6 +498,20 @@ namespace Content.Client.Lobby.UI
         {
             TraitsList.DisposeAllChildren();
 
+            // Frontier: remove trait selections that no longer meet their profile requirements
+            if (Profile != null)
+            {
+                foreach (var selected in Profile.TraitPreferences.ToArray())
+                {
+                    if (_prototypeManager.TryIndex(selected, out var prototype) &&
+                        (!prototype.IsSpeciesAllowed(Profile.Species) ||
+                         !prototype.AreRequirementsMet(Profile.TraitPreferences) ||
+                         selected == "SiliconAccent" && !Profile.TraitPreferences.Contains("Accentless")))
+                        Profile = Profile.WithoutTraitPreference(selected, _prototypeManager);
+                }
+            }
+            // End Frontier
+
             var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
             TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-traits-tab")); // Frontier: 3<2
 
@@ -555,6 +569,21 @@ namespace Content.Client.Lobby.UI
                 {
                     var trait = _prototypeManager.Index<TraitPrototype>(traitProto);
                     var selector = new TraitPreferenceSelector(trait);
+                    // Frontier: show and enforce the Silicon Accent prerequisite
+                    var requiresAccentless = trait.ID == "SiliconAccent" &&
+                        Profile != null && !Profile.TraitPreferences.Contains("Accentless");
+                    selector.Checkbox.Disabled = Profile != null &&
+                        (!trait.IsSpeciesAllowed(Profile.Species) ||
+                         !trait.AreRequirementsMet(Profile.TraitPreferences) ||
+                         requiresAccentless);
+
+                    if (requiresAccentless)
+                    {
+                        selector.Checkbox.Text = $"{selector.Checkbox.Text} — {Loc.GetString("trait-silicon-accent-requires-accentless")}";
+                        selector.Checkbox.Label.FontColorOverride = Color.Red;
+                        selector.Checkbox.ToolTip = Loc.GetString("trait-silicon-accent-requires-accentless");
+                    }
+                    // End Frontier
 
                     selector.Preference = Profile?.TraitPreferences.Contains(trait.ID) == true;
                     if (selector.Preference)
@@ -1042,6 +1071,15 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile.WithLoadout(roleLoadout);
                 SetDirty();
             };
+
+            // Frontier: save the cyborg Silicon Accent opt-out with the role loadout
+            _loadoutWindow.OnSiliconAccentOptOutChanged += disabled =>
+            {
+                roleLoadout.DisableSiliconAccent = disabled;
+                Profile = Profile.WithLoadout(roleLoadout);
+                SetDirty();
+            };
+            // End Frontier
 
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {

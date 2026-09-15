@@ -34,6 +34,8 @@ using Robust.Shared.Containers; // Frontier
 using Content.Shared.Radio.Components; // Frontier
 using Content.Shared.Implants; // Frontier
 using Content.Shared.Implants.Components; // Frontier
+using Content.Shared.Silicons.Borgs.Components; // Frontier
+using Content.Server._NF.Speech.Components; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -143,6 +145,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             if (loadout != null)
             {
                 EquipRoleName(jobEntity, loadout, roleProto!);
+            }
+
+            if (roleProto?.CanDisableSiliconAccent == true && loadout?.DisableSiliconAccent == true &&
+                TryComp<BorgChassisComponent>(jobEntity, out var chassis) && chassis.BrainEntity is { } brain)
+            {
+                EnsureComp<SiliconAccentOptOutComponent>(brain);
+                RemComp<SiliconAccentComponent>(brain);
             }
 
             // Frontier: equip loadouts on custom job entities
