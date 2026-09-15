@@ -5,6 +5,7 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Popups;
+using Content.Shared.Storage;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.UserInterface;
 using Content.Shared.Wieldable;
@@ -14,6 +15,8 @@ namespace Content.Shared._NF.Traits;
 public sealed class OneHandParalyzedSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+
 
     public override void Initialize()
     {
