@@ -11,23 +11,6 @@ namespace Content.Server._NF.Speech.EntitySystems;
 
 public sealed class SiliconAccentSystem : EntitySystem
 {
-    private const string GreetingPattern =
-        "(?:hello everybody|hello everyone|hey everybody|hey everyone|hi everybody|hi everyone|" +
-        "good afternoon|good evening|good morning|morning all|hello there|ahoy there|hey there|" +
-        "good day|hi there|salutations|greetings|afternoon|evening|morning|hello|howdy|ahoy|hiya|hey|hi)";
-
-    private static readonly Regex Greeting = new(
-        $@"\b{GreetingPattern}\b",
-        RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-
-    private static readonly Regex StandaloneGreeting = new(
-        $@"^\s*{GreetingPattern}[.!?]?\s*$",
-        RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-
-    private static readonly Regex RepeatedHelloGoodnight = new(
-        @"^\s*hello,?\s+hello,?\s+good ?night[.!?]?\s*$",
-        RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-
     private static readonly Regex ABeforeVowelSound = new(
         @"\b([Aa]) (?=(?!(?:unit|user|university|united|unique|one|euro|ewe)\b)[aeiou])",
         RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
@@ -67,44 +50,7 @@ public sealed class SiliconAccentSystem : EntitySystem
 
     internal string ApplyAccent(string message)
     {
-        if (StandaloneGreeting.IsMatch(message) || RepeatedHelloGoodnight.IsMatch(message))
-            return CorrectGrammar(_replacement.ApplyReplacements(message, "silicon_accent"));
-
-        var preserved = new List<string>();
-        message = Greeting.Replace(message, match =>
-        {
-            preserved.Add(TranslateGreeting(match.Value));
-            return ((char) (0xE000 + preserved.Count - 1)).ToString();
-        });
-
-        message = CorrectGrammar(_replacement.ApplyReplacements(message, "silicon_accent"));
-        for (var i = 0; i < preserved.Count; i++)
-            message = message.Replace(((char) (0xE000 + i)).ToString(), preserved[i]);
-
-        return message;
-    }
-
-    private static string TranslateGreeting(string greeting)
-    {
-        var replacement = greeting.ToLowerInvariant() switch
-        {
-            "hello everybody" or "hello everyone" or "hey everybody" or "hey everyone" or
-                "hi everybody" or "hi everyone" => "attention all present units",
-            "good afternoon" or "afternoon" => "nominal afternoon cycle",
-            "good evening" or "evening" => "nominal evening cycle",
-            "good morning" or "morning" => "nominal morning cycle",
-            "morning all" => "nominal morning cycle for all present units",
-            "good day" => "nominal operational cycle",
-            _ => "communication initiated",
-        };
-
-        if (greeting.Equals(greeting.ToUpperInvariant(), StringComparison.Ordinal))
-            return replacement.ToUpperInvariant();
-
-        if (char.IsUpper(greeting[0]))
-            return char.ToUpperInvariant(replacement[0]) + replacement[1..];
-
-        return replacement;
+        return CorrectGrammar(_replacement.ApplyReplacements(message, "silicon_accent"));
     }
 
     internal static string CorrectGrammar(string message)

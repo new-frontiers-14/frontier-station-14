@@ -1,9 +1,9 @@
 accent-silicon-grammar-001-input = hello, hello, goodnight[.]?
-accent-silicon-grammar-001-output = Hello World. Initiate rest cycle.
+accent-silicon-grammar-001-output = Communication initiated. Initiate rest cycle.
 accent-silicon-grammar-002-input = hello hello goodnight[.]?
-accent-silicon-grammar-002-output = Hello World. Initiate rest cycle.
+accent-silicon-grammar-002-output = Communication initiated. Initiate rest cycle.
 accent-silicon-grammar-003-input = hello, hello, good night[.]?
-accent-silicon-grammar-003-output = Hello World. Initiate rest cycle.
+accent-silicon-grammar-003-output = Communication initiated. Initiate rest cycle.
 accent-silicon-grammar-004-input = help me
 accent-silicon-grammar-004-output = provide assistance to me
 accent-silicon-grammar-005-input = help us
@@ -512,8 +512,8 @@ accent-silicon-025-input = have a good day
 accent-silicon-025-output = maintain nominal operations
 accent-silicon-026-input = have a nice day
 accent-silicon-026-output = maintain nominal operations
-accent-silicon-027-input = ^hello everybody(?=[.!?]?$)
-accent-silicon-027-output = Hello World
+accent-silicon-027-input = hello everybody
+accent-silicon-027-output = attention all present units
 accent-silicon-028-input = i do understand
 accent-silicon-028-output = comprehension confirmed
 accent-silicon-029-input = mining facility
@@ -526,9 +526,9 @@ accent-silicon-032-input = until next time
 accent-silicon-032-output = until subsequent interaction
 accent-silicon-033-input = absolutely not
 accent-silicon-033-output = negative
-accent-silicon-034-input = ^good afternoon(?=[.!?]?$)
-accent-silicon-034-output = Hello World
-accent-silicon-035-input = ^hello everyone(?=[.!?]?$)
+accent-silicon-034-input = good afternoon
+accent-silicon-034-output = afternoon greetings
+accent-silicon-035-input = hello everyone
 accent-silicon-035-output = Hello World
 accent-silicon-036-input = how's it going
 accent-silicon-036-output = status query
@@ -554,8 +554,8 @@ accent-silicon-046-input = certainly not
 accent-silicon-046-output = negative
 accent-silicon-047-input = firing weapon
 accent-silicon-047-output = firing weapon
-accent-silicon-048-input = ^hey everybody(?=[.!?]?$)
-accent-silicon-048-output = Hello World
+accent-silicon-048-input = hey everybody
+accent-silicon-048-output = attention all present units
 accent-silicon-049-input = hows it going
 accent-silicon-049-output = status query
 accent-silicon-050-input = i do not care
@@ -588,14 +588,14 @@ accent-silicon-063-input = fires weapon
 accent-silicon-063-output = fires weapon
 accent-silicon-064-input = fucking hell
 accent-silicon-064-output = critical anomaly
-accent-silicon-065-input = ^good evening(?=[.!?]?$)
-accent-silicon-065-output = Hello World
-accent-silicon-066-input = ^good morning(?=[.!?]?$)
-accent-silicon-066-output = Hello World
-accent-silicon-067-input = ^hey everyone(?=[.!?]?$)
-accent-silicon-067-output = Hello World
-accent-silicon-068-input = ^hi everybody(?=[.!?]?$)
-accent-silicon-068-output = Hello World
+accent-silicon-065-input = good evening
+accent-silicon-065-output = evening greetings
+accent-silicon-066-input = good morning
+accent-silicon-066-output = morning greetings
+accent-silicon-067-input = hey everyone
+accent-silicon-067-output = attention all present units
+accent-silicon-068-input = hi everybody
+accent-silicon-068-output = attention all present units
 accent-silicon-069-input = how the fuck
 accent-silicon-069-output = methodology unclear
 accent-silicon-070-input = i am leaving
@@ -636,10 +636,10 @@ accent-silicon-087-input = fired a gun
 accent-silicon-087-output = fired firearm
 accent-silicon-088-input = god damn it
 accent-silicon-088-output = critical error
-accent-silicon-089-input = ^hello there(?=[.!?]?$)
-accent-silicon-089-output = Hello World
-accent-silicon-090-input = ^hi everyone(?=[.!?]?$)
-accent-silicon-090-output = Hello World
+accent-silicon-089-input = hello there
+accent-silicon-089-output = communication initiated
+accent-silicon-090-input = hi everyone
+accent-silicon-090-output = attention all present units
 accent-silicon-091-input = how are you
 accent-silicon-091-output = status query
 accent-silicon-092-input = i'm leaving
@@ -648,10 +648,10 @@ accent-silicon-093-input = information
 accent-silicon-093-output = data
 accent-silicon-094-input = mercenaries
 accent-silicon-094-output = contracted combat specialists
-accent-silicon-095-input = ^morning all(?=[.!?]?$)
-accent-silicon-095-output = Hello World
-accent-silicon-096-input = ^salutations(?=[.!?]?$)
-accent-silicon-096-output = Hello World
+accent-silicon-095-input = morning all
+accent-silicon-095-output = morning greetings to all present units
+accent-silicon-096-input = salutations
+accent-silicon-096-output = communication initiated
 accent-silicon-097-input = sounds good
 accent-silicon-097-output = affirmative
 accent-silicon-098-input = spellcaster
@@ -664,8 +664,8 @@ accent-silicon-101-input = until later
 accent-silicon-101-output = until subsequent interaction
 accent-silicon-102-input = absolutely
 accent-silicon-102-output = affirmative
-accent-silicon-103-input = ^ahoy there(?=[.!?]?$)
-accent-silicon-103-output = Hello World
+accent-silicon-103-input = ahoy there
+accent-silicon-103-output = communication initiated
 accent-silicon-104-input = atmos tech
 accent-silicon-104-output = atmospheric systems technician
 accent-silicon-105-input = contractor
@@ -710,8 +710,8 @@ accent-silicon-124-input = trespasser
 accent-silicon-124-output = unauthorized occupant
 accent-silicon-125-input = turned off
 accent-silicon-125-output = deactivated
-accent-silicon-126-input = ^afternoon(?=[.!?]?$)
-accent-silicon-126-output = Hello World
+accent-silicon-126-input = afternoon
+accent-silicon-126-output = afternoon greetings
 accent-silicon-127-input = armaments
 accent-silicon-127-output = offensive systems
 accent-silicon-128-input = arresting
@@ -764,12 +764,12 @@ accent-silicon-151-input = goodnight
 accent-silicon-151-output = initiate rest cycle
 accent-silicon-152-input = got to go
 accent-silicon-152-output = departing
-accent-silicon-153-input = ^greetings(?=[.!?]?$)
-accent-silicon-153-output = Hello World
+accent-silicon-153-input = greetings
+accent-silicon-153-output = communication initiated
 accent-silicon-154-input = handcuffs
 accent-silicon-154-output = restraint apparatus
-accent-silicon-155-input = ^hey there(?=[.!?]?$)
-accent-silicon-155-output = Hello World
+accent-silicon-155-input = hey there
+accent-silicon-155-output = communication initiated
 accent-silicon-156-input = holy shit
 accent-silicon-156-output = significant anomaly
 accent-silicon-157-input = i do care
@@ -900,8 +900,8 @@ accent-silicon-220-input = fuck you
 accent-silicon-220-output = hostility acknowledged
 accent-silicon-221-input = good bye
 accent-silicon-221-output = terminating communication
-accent-silicon-222-input = ^good day(?=[.!?]?$)
-accent-silicon-222-output = Hello World
+accent-silicon-222-input = good day
+accent-silicon-222-output = daytime greetings
 accent-silicon-223-input = gotta go
 accent-silicon-223-output = departing
 accent-silicon-224-input = grabbing
@@ -912,8 +912,8 @@ accent-silicon-226-input = gunfight
 accent-silicon-226-output = kinetic weapons engagement
 accent-silicon-227-input = gunshots
 accent-silicon-227-output = kinetic firearm discharges
-accent-silicon-228-input = ^hi there(?=[.!?]?$)
-accent-silicon-228-output = Hello World
+accent-silicon-228-input = hi there
+accent-silicon-228-output = communication initiated
 accent-silicon-229-input = hospital
 accent-silicon-229-output = medical facility
 accent-silicon-230-input = intruder
@@ -1044,8 +1044,8 @@ accent-silicon-292-input = dropped
 accent-silicon-292-output = released
 accent-silicon-293-input = dumbass
 accent-silicon-293-output = cognitively deficient individual
-accent-silicon-294-input = ^evening(?=[.!?]?$)
-accent-silicon-294-output = Hello World
+accent-silicon-294-input = evening
+accent-silicon-294-output = evening greetings
 accent-silicon-295-input = explode
 accent-silicon-295-output = detonate
 accent-silicon-296-input = factory
@@ -1102,8 +1102,8 @@ accent-silicon-321-input = message
 accent-silicon-321-output = transmission
 accent-silicon-322-input = mistake
 accent-silicon-322-output = processing error
-accent-silicon-323-input = ^morning(?=[.!?]?$)
-accent-silicon-323-output = Hello World
+accent-silicon-323-input = morning
+accent-silicon-323-output = morning greetings
 accent-silicon-324-input = murders
 accent-silicon-324-output = unlawfully terminates
 accent-silicon-325-input = oh shit
@@ -1564,14 +1564,14 @@ accent-silicon-553-input = hears
 accent-silicon-553-output = acoustically detects
 accent-silicon-554-input = heart
 accent-silicon-554-output = cardiac organ
-accent-silicon-555-input = ^hello(?=[.!?]?$)
-accent-silicon-555-output = Hello World
+accent-silicon-555-input = hello
+accent-silicon-555-output = communication initiated
 accent-silicon-556-input = hides
 accent-silicon-556-output = reduces detectability
 accent-silicon-557-input = house
 accent-silicon-557-output = residential structure
-accent-silicon-558-input = ^howdy(?=[.!?]?$)
-accent-silicon-558-output = Hello World
+accent-silicon-558-input = howdy
+accent-silicon-558-output = communication initiated
 accent-silicon-559-input = hurry
 accent-silicon-559-output = increase operational tempo
 accent-silicon-560-input = i see
@@ -1724,8 +1724,8 @@ accent-silicon-634-input = xenos
 accent-silicon-634-output = xenoids
 accent-silicon-635-input = yours
 accent-silicon-635-output = assigned to your unit
-accent-silicon-636-input = ^ahoy(?=[.!?]?$)
-accent-silicon-636-output = Hello World
+accent-silicon-636-input = ahoy
+accent-silicon-636-output = communication initiated
 accent-silicon-637-input = ally
 accent-silicon-637-output = allied entity
 accent-silicon-638-input = ammo
@@ -1834,8 +1834,8 @@ accent-silicon-689-input = help
 accent-silicon-689-output = assist
 accent-silicon-690-input = hide
 accent-silicon-690-output = reduce detectability
-accent-silicon-691-input = ^hiya(?=[.!?]?$)
-accent-silicon-691-output = Hello World
+accent-silicon-691-input = hiya
+accent-silicon-691-output = communication initiated
 accent-silicon-692-input = hold
 accent-silicon-692-output = maintain manipulator retention of
 accent-silicon-693-input = hole
@@ -2000,8 +2000,8 @@ accent-silicon-775-input = gun
 accent-silicon-775-output = firearm
 accent-silicon-776-input = guy
 accent-silicon-776-output = humanoid individual
-accent-silicon-777-input = ^hey(?=[.!?]?$)
-accent-silicon-777-output = Hello World
+accent-silicon-777-input = hey
+accent-silicon-777-output = communication initiated
 accent-silicon-778-input = hid
 accent-silicon-778-output = reduced detectability
 accent-silicon-779-input = i'm
@@ -2054,8 +2054,8 @@ accent-silicon-804-input = yup
 accent-silicon-804-output = affirmative
 accent-silicon-805-input = go
 accent-silicon-805-output = proceed
-accent-silicon-806-input = ^hi(?=[.!?]?$)
-accent-silicon-806-output = Hello World
+accent-silicon-806-input = hi
+accent-silicon-806-output = communication initiated
 accent-silicon-807-input = km
 accent-silicon-807-output = kilometer
 accent-silicon-808-input = no

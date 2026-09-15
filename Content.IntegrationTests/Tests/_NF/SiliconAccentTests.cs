@@ -50,12 +50,16 @@ public sealed class SiliconAccentTests
             [
                 ("hello there, cappy", "communication initiated, captain"),
                 ("indeed", "affirmative"),
-                ("Hello!", "Hello World!"),
-                ("HELLO!", "HELLO WORLD!"),
+                ("Hello!", "Communication initiated!"),
+                ("HELLO!", "COMMUNICATION INITIATED!"),
+                ("Hello everyone!", "Hello World!"),
+                ("HELLO EVERYONE!", "HELLO WORLD!"),
+                ("Hello everyone, follow me.", "Hello World, maintain proximity to this unit."),
                 ("Hello, can you help me?", "Communication initiated, can you provide assistance?"),
+                ("Hello, how are you?", "Communication initiated, status query?"),
                 ("Hey everyone, follow me.", "Attention all present units, maintain proximity to this unit."),
-                ("Good morning, how are you?", "Nominal morning cycle, status query?"),
-                ("HI, THE DOOR IS OPEN.", "COMMUNICATION INITIATED, THE PERSONNEL ACCESS APERTURE IS OPEN."),
+                ("Good morning, how are you?", "Morning greetings, status query?"),
+                ("Good evening, captain.", "Evening greetings, vessel commanding officer."),
                 ("good night", "initiate rest cycle"),
                 ("have a good night", "maintain nominal rest cycle"),
                 ("see you later", "until subsequent interaction"),
@@ -147,7 +151,7 @@ public sealed class SiliconAccentTests
                 ("SOP", "STANDARD OPERATING PROCEDURE"),
                 ("ship cappy", "captain"),
                 ("my name is", "my designation is"),
-                ("Hello, hello, goodnight", "Hello World. Initiate rest cycle."),
+                ("Hello, hello, goodnight", "Communication initiated. Initiate rest cycle."),
                 ("Help me", "Provide assistance to me"),
                 ("kill them", "neutralize them"),
                 ("shoot them", "fire upon them"),
@@ -464,14 +468,14 @@ public sealed class SiliconAccentTests
             Assert.That(enabledChassis.BrainEntity, Is.Not.Null);
             var enabledBrain = enabledChassis.BrainEntity!.Value;
             Assert.That(entities.HasComponent<SiliconAccentComponent>(enabledBrain), Is.True);
-            Assert.That(Speak(enabledBorg, "hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak(enabledBorg, "hello cappy"), Is.EqualTo("communication initiated captain"));
             Assert.That(container.Remove(enabledBrain, enabledChassis.BrainContainer), Is.True);
-            Assert.That(Speak(enabledBrain, "hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak(enabledBrain, "hello cappy"), Is.EqualTo("communication initiated captain"));
 
             var enabledReplacement = entities.SpawnEntity("BorgChassisSelectable", testMap.GridCoords);
             var enabledReplacementChassis = entities.GetComponent<BorgChassisComponent>(enabledReplacement);
             Assert.That(container.Insert(enabledBrain, enabledReplacementChassis.BrainContainer), Is.True);
-            Assert.That(Speak(enabledReplacement, "hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak(enabledReplacement, "hello cappy"), Is.EqualTo("communication initiated captain"));
 
             var disabledLoadout = new RoleLoadout(BorgRole) { DisableSiliconAccent = true };
             Assert.That(disabledLoadout.Clone().DisableSiliconAccent, Is.True);
@@ -535,21 +539,21 @@ public sealed class SiliconAccentTests
             }
 
             Assert.That(entities.HasComponent<SiliconAccentComponent>(borg), Is.True);
-            Assert.That(Speak("hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak("hello cappy"), Is.EqualTo("communication initiated captain"));
             Assert.That(inventory.TryEquip(borg, hat, "head", force: true), Is.True);
             Assert.That(entities.GetComponent<AddAccentClothingComponent>(hat).IsActive, Is.True);
             Assert.That(Speak("hello cappy"), Is.EqualTo(replacement.ApplyReplacements("hello cappy", "cowboy")));
             var verbs = server.System<SharedVerbSystem>();
             verbs.GetLocalVerbs(hat, borg, typeof(AlternativeVerb), force: true).Single().Act!();
-            Assert.That(Speak("hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak("hello cappy"), Is.EqualTo("communication initiated captain"));
             verbs.GetLocalVerbs(hat, borg, typeof(AlternativeVerb), force: true).Single().Act!();
             Assert.That(Speak("hello cappy"), Is.EqualTo(replacement.ApplyReplacements("hello cappy", "cowboy")));
             Assert.That(inventory.TryUnequip(borg, "head", force: true), Is.True);
-            Assert.That(Speak("hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak("hello cappy"), Is.EqualTo("communication initiated captain"));
             Assert.That(inventory.TryEquip(borg, hat, "head", force: true), Is.True);
             Assert.That(Speak("hello cappy"), Is.EqualTo(replacement.ApplyReplacements("hello cappy", "cowboy")));
             entities.DeleteEntity(hat);
-            Assert.That(Speak("hello cappy"), Is.EqualTo("Hello World captain"));
+            Assert.That(Speak("hello cappy"), Is.EqualTo("communication initiated captain"));
             entities.DeleteEntity(borg);
 
             var goblin = entities.SpawnEntity("MobGoblin", MapCoordinates.Nullspace);
@@ -557,7 +561,7 @@ public sealed class SiliconAccentTests
             entities.AddComponent<SiliconAccentComponent>(goblin);
             var siliconSpeech = new AccentGetEvent(goblin, "hello cappy");
             entities.EventBus.RaiseLocalEvent(goblin, siliconSpeech);
-            Assert.That(siliconSpeech.Message, Is.EqualTo("Hello World captain"));
+            Assert.That(siliconSpeech.Message, Is.EqualTo("communication initiated captain"));
             entities.DeleteEntity(goblin);
         });
         await pair.CleanReturnAsync();
