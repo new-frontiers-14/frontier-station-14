@@ -22,3 +22,21 @@
     - NFWriteIgnoreUnprotectedStamps # Weaker version of WriteIgnoreStamps
     - Pickaxe
     - Pen
+
+- type: entity
+  name: pipenette
+  parent: [Pen, Dropper]
+  id: PenPipette
+  description: A pen with the added functionality of a dropper.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/pens.rsi
+    state: pen_pipenette
+    layers:
+      - state: pen_pipenette
+      - state: pen_pipenette1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _NF/Objects/Misc/pens.rsi
+    heldPrefix: pen_pipenette
