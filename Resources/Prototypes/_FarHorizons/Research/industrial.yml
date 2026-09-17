@@ -1,0 +1,60 @@
+- type: technology
+  id: NuclearPowerGeneration
+  name: research-technology-nuclear-power
+  entityIcon: NuclearReactorMonitorComputerCircuitboard # Wayfarer
+  #icon:
+  #  sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+  #  state: default_rod
+  discipline: NFEngineering # Wayfarer: Industrial<NFEngineering
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  #- NuclearFabricatorMachineCircuitboard # Wayfarer: Moved to the recycling research
+  - NuclearReactorMonitorComputerCircuitboard
+  - GasTurbineMonitorComputerCircuitboard
+  - UraniumReactorFuelRod
+  - PlasmaReactorFuelRod
+  - UraniumGlassReactorFuelRod
+  - SilverReactorControlRod
+  - PlasteelReactorControlRod
+  - PlasmaGlassReactorControlRod
+  - SilverReactorGasChannel
+  - PlasteelReactorGasChannel
+  - PlasmaGlassReactorGasChannel
+  - SilverReactorHeatExchanger
+  - PlasteelReactorHeatExchanger
+  - PlasmaGlassReactorHeatExchanger
+  - PlasteelGasTurbineBlade
+  - BrassGasTurbineBlade
+  - SilverGasTurbineStator
+  technologyPrerequisites:
+  - NFPowerGeneration # Wayfarer: PowerGeneration<NFPowerGeneration
+  position: 3, 27 # Wayfarer
+
+- type: technology
+  id: NuclearPowerRecycling
+  name: research-technology-nuclear-recycling
+  entityIcon: PlutoniumReactorFuelRod # Wayfarer
+  #icon:
+  #  sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+  #  state: nuclear_waste
+  discipline: NFEngineering # Wayfarer: Industrial<NFEngineering
+  tier: 2
+  cost: 7500 # Wayfarer: 12500<7500
+  recipeUnlocks:
+  - NuclearFabricatorMachineCircuitboard # Wayfarer: Moved here from above.
+  - NuclearCentrifugeMachineCircuitboard
+  - PlutoniumReactorFuelRod
+  - BananiumReactorFuelRod
+  - GoldReactorControlRod
+  - DiamondReactorControlRod
+  - GoldReactorGasChannel
+  - DiamondReactorGasChannel
+  - GoldReactorHeatExchanger
+  - DiamondReactorHeatExchanger
+  - DiamondGasTurbineBlade
+  - GoldGasTurbineStator
+  - GoldGasTurbineBlade
+  technologyPrerequisites:
+  - NuclearPowerGeneration # Wayfarer: NuclearPowerGeneration<NFPowerGeneration
+  position: 4, 27 # Wayfarer
