@@ -529,7 +529,7 @@ public sealed class MoverController : SharedMoverController
                     {
                         var shuttlePosition = _xformSystem.GetWorldPosition(shuttleUid, xformQuery);
                         // Modify the max velocity, force, and acceleration? when in a River.
-                        var velocityMod = _riverSystem.ObtainVelocityModifier(shuttlePosition, shuttleNorthAngle.RotateVec(maxVelocity), flowReceiver);
+                        var velocityMod = _riverSystem.ObtainVelocityModifier(shuttleUid, shuttleNorthAngle.RotateVec(maxVelocity), flowReceiver);
                         maxVelocity *= velocityMod;
                         maxWishVelocity *= velocityMod;
                         totalForce *= velocityMod;

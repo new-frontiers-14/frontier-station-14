@@ -73,6 +73,21 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 
     public List<Vector2> CalcCurveSections(Vector2 startPoint, Vector2 controlPoint, Vector2 endPoint, int totalLines)
     {
+        //Checks if it's a straight line, if so? perterbs it ever so slightly.
+        //var test1 = startPoint - endPoint;
+        //var test2 = controlPoint - endPoint;
+        //if (test1.Normalize() == test2.Normalize())
+        //{
+        //    if (controlPoint.X != startPoint.X)
+        //    {
+        //        controlPoint.X += 0.0001f;
+        //    }
+        //    else
+        //    {
+        //        controlPoint.Y += 0.0001f;
+        //    }
+        //}
+
         List<Vector2> result = new();
         float increment = 1f / totalLines;
         for (var i = 0; i <= totalLines; i++)

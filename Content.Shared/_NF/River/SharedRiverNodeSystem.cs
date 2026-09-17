@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Content.Shared._NF.River;
 
-public abstract class SharedRiverNodeSystem : EntitySystem
+public abstract partial class SharedRiverNodeSystem : EntitySystem
 {
     //public List<EntityUid> NodeList = new();
     //public override void Initialize()
