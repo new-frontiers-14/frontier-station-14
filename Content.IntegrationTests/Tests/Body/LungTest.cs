@@ -3,13 +3,10 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared.Body.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using System.Linq;
 using System.Numerics;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
@@ -135,7 +132,6 @@ namespace Content.IntegrationTests.Tests.Body
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
             var mapLoader = entityManager.System<MapLoaderSystem>();
