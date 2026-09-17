@@ -4,7 +4,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Graphics.RSI;
 
-namespace Content.Client._NF.Vehicles;
+namespace Content.Client._NF.Vehicle.EntitySystems;
 
 // Rewritten from Goobstation's VehicleSystem.
 public sealed class VehicleSystem : SharedVehicleSystem
