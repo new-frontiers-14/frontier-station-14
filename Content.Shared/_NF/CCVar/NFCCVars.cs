@@ -298,4 +298,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
         CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /*
+     * In-Character
+     */
+
+    /// <summary>
+    /// Allows custom character resizing.
+    /// </summary>
+    public static readonly CVarDef<bool> SizePicker =
+        CVarDef.Create("ic.size_picker", true, CVar.SERVER | CVar.REPLICATED);
 }
