@@ -104,6 +104,12 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> ShipyardSellRate =
         CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.95f, CVar.SERVERONLY);
 
+    /// <summary>
+    /// Whether players can choose a non-standard atmosphere for their shuttle purchase.
+    /// </summary>
+    public static readonly CVarDef<bool> ShipyardCustomAtmos =
+        CVarDef.Create("shuttle.shipyard_allow_custom_atmos", true, CVar.SERVERONLY);
+
     /*
      * Salvage
      */
