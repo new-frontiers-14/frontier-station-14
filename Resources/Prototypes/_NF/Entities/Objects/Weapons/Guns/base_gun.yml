@@ -193,12 +193,13 @@
     attackType: Heavy # Swing
   - type: MeleeWeapon
     attackRate: 1.1
+    swingBeverage: false
     damage:
       types:
         Blunt: 6
         Structural: 4
     angle: 30
-    wideAnimationRotation: 90
+    wideAnimationRotation: 280
     animation: WeaponArcThrust
     soundHit:
       collection: MetalThud
@@ -212,6 +213,7 @@
     attackType: Heavy # Swing
   - type: MeleeWeapon
     attackRate: 1
+    swingBeverage: false
     damage:
       types:
         Blunt: 6
@@ -258,7 +260,7 @@
   id: NFBaseGunMeleeAttackBayonet
   components:
   - type: AltFireMelee
-    attackType: Light # Stab
+    attackType: Heavy # Stab
   - type: MeleeRequiresWield
   - type: MeleeWeapon
     attackRate: .85

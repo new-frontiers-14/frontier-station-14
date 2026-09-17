@@ -20,6 +20,9 @@ using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using System.Runtime.Intrinsics;
+using Content.Shared.Trigger.Components.Triggers;
+using System;
+using Robust.Shared.Maths;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -67,44 +70,43 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             {
                 EntityUid spawned;
 
-                Vector2? biasDirection = null;
+                var rawCoords = Vector2.Zero;
+
+                EntityUid? biasTarget = null;
                 // If there is a bias target, see if one exists with a matching ID
                 if (group.SpawnBiasTarget is not null)
                 {
-                    var query = EntityQueryEnumerator<BiasTargetComponent>();
+                    var query = EntityQueryEnumerator<SpawningModifierComponent>();
 
-                    List<Vector2> targets = new();
+                    List<EntityUid> targets = new();
 
-                    while (query.MoveNext(out var ent, out var biasComp))
+                    while (query.MoveNext(out var ent, out var comp))
                     {
-                        if (biasComp.id == group.SpawnBiasTarget)
-                        {
-                            targets.Add(_transform.GetMapCoordinates(ent).Position);
-                        }
+                        if (comp.id == group.SpawnBiasTarget)
+                            targets.Add(ent);
                     }
 
                     if (targets.Count > 0)
                     {
-                        // Pick a random one from the list of possible targets. We don't care where it is, only its direction.
-                        biasDirection = Vector2.Normalize(_random.Pick<Vector2>(targets));
+                        // Pick a random one from the list of possible targets. The new spawning area will be centred around this. If there were no matches continue as if it was unset.
+                        biasTarget = _random.Pick<EntityUid>(targets);
                     }
                 }
 
-                if (group.MinimumDistance > 0f)
+                if (biasTarget is not null)
+                    rawCoords = rawCoords + _transform.GetMapCoordinates(biasTarget.Value).Position;
+
+                if (biasTarget is not null && group.SpawnBiasOverride && TryComp<SpawningModifierComponent>(biasTarget, out var spawnModComp))
                 {
-                    if (biasDirection is not null)
-                    {
-                        // The spawning region describes a circle with a diameter equal to the width between the minimum and maximum distance.
-                        // We construct this by placing the centre of the circle with a vector in the direction of the bias target with a magnitude equal to the average of the two
-                        // and adding a random vector with a maximum magnitude half of the difference between the two.
-                        var spawnCentre = biasDirection.Value * ((group.MaximumDistance + group.MinimumDistance) / 2);
-                        spawnCoords = spawnCoords.WithPosition(spawnCentre + _random.NextVector2((group.MaximumDistance - group.MinimumDistance) / 2));
-                    }
-                    else
-                    {
-                        spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
-                    }
+                    var spawnAngle = new Angle(rawCoords) + _random.NextAngle(spawnModComp.MinimumAngle*(Math.Tau/360), spawnModComp.MaximumAngle*(Math.Tau/360));
+                    rawCoords = rawCoords + spawnAngle.RotateVec(new Vector2(_random.NextFloat(spawnModComp.MinimumDistance, spawnModComp.MaximumDistance),0));
                 }
+                else
+                {
+                    rawCoords = rawCoords + _random.NextVector2(group.MinimumDistance, group.MaximumDistance);
+                }
+
+                spawnCoords = spawnCoords.WithPosition(rawCoords);
 
                 switch (group)
                 {
