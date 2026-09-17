@@ -38,6 +38,10 @@ stack-hv-cable = {$amount ->
     *[other] HV cables
 }
 # End Frontier: caps
+stack-explosive-cord = {$amount ->
+    [1] explosive cord
+    *[other] explosive cords
+}
 stack-wood-plank = {$amount ->
     [1] wood plank
     *[other] wood planks
