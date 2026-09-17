@@ -103,6 +103,15 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cat
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-cat"
+    stampLargeIcon: "/Textures/_NF/Interface/Paper/Stamps/cat_stamp.png"
+  - type: UseDelay
+    delays:
+      stamp:
+        length: 1.0
 
 - type: entity
   id: BaseEmotionalGhostDog
@@ -194,6 +203,11 @@
         Base: spacecat
   - type: Inventory # Broken hats
     templateId: nfpet # Broken hats
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-space-cat
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-cat"
+    stampLargeIcon: "/Textures/_NF/Interface/Paper/Stamps/astrocat_stamp.png"
 
 - type: entity
   suffix: Ghost
