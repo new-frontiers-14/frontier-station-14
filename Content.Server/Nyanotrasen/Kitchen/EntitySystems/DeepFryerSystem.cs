@@ -229,7 +229,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         }
 
         // Damage non-food items and mobs.
-        if ((!HasComp<FoodComponent>(item) || HasComp<MobStateComponent>(item)) &&
+        if ((!HasComp<EdibleComponent>(item) || HasComp<MobStateComponent>(item)) &&
             TryComp<DamageableComponent>(item, out var damageableComponent))
         {
             var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>(CookingDamageType),
@@ -248,7 +248,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     private void BurnItem(EntityUid uid, DeepFryerComponent component, EntityUid item)
     {
-        if (HasComp<FoodComponent>(item) &&
+        if (HasComp<EdibleComponent>(item) &&
             !HasComp<MobStateComponent>(item) &&
             MetaData(item).EntityPrototype?.ID != component.CharredPrototype)
         {
