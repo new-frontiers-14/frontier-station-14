@@ -28,11 +28,13 @@ using Content.Shared.EntityEffects.EffectConditions;
 using Content.Shared.EntityEffects.Effects.PlantMetabolism;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using Content.Shared.Flash;
 using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -136,6 +138,7 @@ public sealed class EntityEffectSystem : EntitySystem
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateChemicals>>(OnExecutePlantMutateChemicals);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateConsumeGasses>>(OnExecutePlantMutateConsumeGasses);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateExudeGasses>>(OnExecutePlantMutateExudeGasses);
+        SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateConvertGases>>(OnExecutePlantMutateConvertGases);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantMutateHarvest>>(OnExecutePlantMutateHarvest);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PlantSpeciesChange>>(OnExecutePlantSpeciesChange);
         SubscribeLocalEvent<ExecuteEntityEffectEvent<PolymorphEffect>>(OnExecutePolymorph);
@@ -955,6 +958,35 @@ public sealed class EntityEffectSystem : EntitySystem
             gasses.Add(gas, amount);
         }
     }
+
+    // Begin Frontier
+    private void OnExecutePlantMutateConvertGases(ref ExecuteEntityEffectEvent<PlantMutateConvertGases> args)
+    {
+        var plantholder = Comp<PlantHolderComponent>(args.Args.TargetEntity);
+
+        if (plantholder.Seed == null)
+            return;
+
+        var gases = plantholder.Seed.ConvertGases;
+
+        // Add a random amount of a random gas to this gas dictionary
+        FixedPoint2 amount = _random.NextFloat(args.Effect.MinConvertAmount, args.Effect.MaxConvertAmount);
+        FixedPoint2 randomScalefactor = _random.NextFloat(args.Effect.MinScaleFactor, args.Effect.MaxScaleFactor);
+        // Gas gas = _random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList()); // Frontier
+
+        var randomPicks = _protoManager.Index(args.Effect.NFGasConversionsWeightPrototype);
+        var conversionProtoID = randomPicks.Pick(_random); // Frontier
+
+        var conversionPrototype = _protoManager.Index<GasConversionPrototype>(conversionProtoID);
+
+        Gas inputgas = conversionPrototype.InputGas;
+        Gas outputgas = conversionPrototype.OutputGas;
+        if (!gases.ContainsKey(inputgas))
+        {
+            gases.Add(inputgas, (outputgas, amount, conversionPrototype.BaseScaleFactor * randomScalefactor));
+        }
+    }
+    // End Frontier
 
     private void OnExecutePlantMutateHarvest(ref ExecuteEntityEffectEvent<PlantMutateHarvest> args)
     {
