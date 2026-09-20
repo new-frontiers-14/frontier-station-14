@@ -35,7 +35,7 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         switch (args.Length)
         {
             case 1:
-                return CompletionResult.FromHint(Loc.GetString("station-id"));
+                return CompletionResult.FromHint(Loc.GetString("cmd-hint-station-id"));
             case 2:
                 return CompletionResult.FromHint(Loc.GetString("cmd-hint-savemap-path"));
         }
