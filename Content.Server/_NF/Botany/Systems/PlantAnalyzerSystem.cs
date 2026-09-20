@@ -1,15 +1,17 @@
 using Content.Server.Botany.Components;
 using Content.Server.PowerCell;
+using Content.Shared._NF.PlantAnalyzer;
+using Content.Shared.Atmos;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
-using Content.Shared._NF.PlantAnalyzer;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Text;
-using Content.Shared.Atmos;
+
 
 namespace Content.Server.Botany.Systems;
 
@@ -24,9 +26,15 @@ public sealed class PlantAnalyzerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<PlantAnalyzerComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
         SubscribeLocalEvent<PlantAnalyzerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PlantAnalyzerComponent, PlantAnalyzerDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PlantAnalyzerComponent, PlantAnalyzerSetMode>(OnModeSelected);
+    }
+
+    private void OnAfterActivatableUIOpen(Entity<PlantAnalyzerComponent> ent, ref AfterActivatableUIOpenEvent args)
+    {
+        UpdateUI(ent, null);
     }
 
     private void OnAfterInteract(Entity<PlantAnalyzerComponent> ent, ref AfterInteractEvent args)
@@ -78,13 +86,13 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
         _audio.PlayPvs(ent.Comp.ScanningEndSound, ent);
 
-        OpenUserInterface(args.User, ent);
-        UpdateScannedUser(ent, args.Args.Target.Value);
+        OpenUI(args.User, ent);
+        UpdateUI(ent, args.Args.Target.Value);
 
         args.Handled = true;
     }
 
-    private void OpenUserInterface(EntityUid user, EntityUid analyzer)
+    private void OpenUI(EntityUid user, EntityUid analyzer)
     {
         if (!TryComp<ActorComponent>(user, out var actor) || !_uiSystem.HasUi(analyzer, PlantAnalyzerUiKey.Key))
             return;
@@ -92,38 +100,52 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         _uiSystem.OpenUi(analyzer, PlantAnalyzerUiKey.Key, actor.PlayerSession);
     }
 
-    public void UpdateScannedUser(Entity<PlantAnalyzerComponent> ent, EntityUid target)
+    /// <summary>
+    /// Creates a PlantAnalyzerBoundUserInterfaceState, building plant info if needed
+    /// </summary>
+    /// <param name="target">The entity being scanned</param>
+    /// <param name="noTargetRescan">If true don't rebuild the scanned plant/seed info. Used for scanning mode updates.</param>
+    /// <returns></returns>
+    public PlantAnalyzerBoundUserInterfaceState GetPlantAnalyzerUiState(Entity<PlantAnalyzerComponent> ent, EntityUid? target)
     {
-        if (!_uiSystem.HasUi(ent, PlantAnalyzerUiKey.Key))
-            return;
+        if (!target.HasValue)
+            return new PlantAnalyzerBoundUserInterfaceState(ent.Comp.Settings.AdvancedScan, ent.Comp.PlantInfo);
 
         if (TryComp<SeedComponent>(target, out var seedComp))
         {
             if (seedComp.Seed != null)
             {
-                var state = ObtainingGeneDataSeed(seedComp.Seed, target, false, ent.Comp.Settings.AdvancedScan);
-                _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
+                ent.Comp.PlantInfo = ObtainingGeneDataSeed(seedComp.Seed, target, false, ent.Comp.Settings.AdvancedScan);
             }
             else if (seedComp.SeedId != null && _prototypeManager.TryIndex(seedComp.SeedId, out SeedPrototype? protoSeed))
             {
-                var state = ObtainingGeneDataSeed(protoSeed, target, false, ent.Comp.Settings.AdvancedScan);
-                _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
+                ent.Comp.PlantInfo = ObtainingGeneDataSeed(protoSeed, target, false, ent.Comp.Settings.AdvancedScan);
             }
         }
         else if (TryComp<PlantHolderComponent>(target, out var plantComp))
         {
             if (plantComp.Seed != null)
             {
-                var state = ObtainingGeneDataSeed(plantComp.Seed, target, true, ent.Comp.Settings.AdvancedScan);
-                _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
+                ent.Comp.PlantInfo = ObtainingGeneDataSeed(plantComp.Seed, target, true, ent.Comp.Settings.AdvancedScan);
             }
         }
+
+        return new PlantAnalyzerBoundUserInterfaceState(ent.Comp.Settings.AdvancedScan, ent.Comp.PlantInfo);
+    }
+
+    public void UpdateUI(Entity<PlantAnalyzerComponent> ent, EntityUid? target)
+    {
+        if (!_uiSystem.HasUi(ent, PlantAnalyzerUiKey.Key))
+            return;
+
+        var uiState = GetPlantAnalyzerUiState(ent, target);
+        _uiSystem.SetUiState(ent.Owner, PlantAnalyzerUiKey.Key, uiState);
     }
 
     /// <summary>
     ///     Analysis of seed from prototype.
     /// </summary>
-    public PlantAnalyzerScannedSeedPlantInformation ObtainingGeneDataSeed(SeedData seedData, EntityUid target, bool isTray, bool scanIsAdvanced)
+    public PlantAnalyzerScannedPlantInformation ObtainingGeneDataSeed(SeedData seedData, EntityUid? target, bool isTray, bool scanIsAdvanced)
     {
         // Get trickier fields first.
         AnalyzerHarvestType harvestType = AnalyzerHarvestType.Unknown;
@@ -152,7 +174,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             }
         }
 
-        PlantAnalyzerScannedSeedPlantInformation ret = new()
+        PlantAnalyzerScannedPlantInformation ret = new()
         {
             TargetEntity = GetNetEntity(target),
             IsTray = isTray,
@@ -246,7 +268,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
     private void OnModeSelected(Entity<PlantAnalyzerComponent> ent, ref PlantAnalyzerSetMode args)
     {
-        SetMode(ent, args.AdvancedScan);
+        SetMode(ent, args.AdvancedScanMode);
     }
 
     public void SetMode(Entity<PlantAnalyzerComponent> ent, bool isAdvMode)
@@ -254,5 +276,6 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         if (ent.Comp.DoAfter != null)
             return;
         ent.Comp.Settings.AdvancedScan = isAdvMode;
+        UpdateUI(ent, null);
     }
 }

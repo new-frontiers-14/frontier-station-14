@@ -1,0 +1,11 @@
+names-hamster-dataset-1 = Hamela
+names-hamster-dataset-2 = Bean bag
+names-hamster-dataset-3 = Chunk
+names-hamster-dataset-4 = Crumpet
+names-hamster-dataset-5 = Small Fry
+names-hamster-dataset-6 = Mochi
+names-hamster-dataset-7 = Pip Squeak
+names-hamster-dataset-8 = Ham Solo
+names-hamster-dataset-9 = Pierogi
+names-hamster-dataset-10 = Fluffernutter
+names-hamster-dataset-11 = Sawyer

@@ -1,4 +1,4 @@
-# Registered (legal) weapon crates
+#Registered (legal) weapon crates
 - type: entity
   id: CrateArmoryRifleGestio
   parent: CrateFirearmsSecure
@@ -12,7 +12,7 @@
       - id: NFMagazineLowCapacityRifle30
         amount: 6
 
-# Contraband (unregistered) weaponry crates for expeditions
+#Contraband (unregistered) weaponry crates for expeditions
 - type: entity
   id: CrateArmorySMGExpedition
   parent:
@@ -121,8 +121,8 @@
       - id: NFMagazineClipRifle20
         amount: 6
 
-# Ammo crates
-## .20 rifle
+#Ammo crates
+#Region .20 rifle
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -172,7 +172,7 @@
   id: CrateAmmoBoxUranium20
   categories: [ HideSpawnMenu ]
 
-## .30 rifle
+#Region .30 rifle
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -215,7 +215,7 @@
   id: CrateAmmoBoxUranium30
   categories: [ HideSpawnMenu ]
 
-## .35 pistol
+#Region .35 pistol
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -258,7 +258,14 @@
   id: CrateAmmoBoxEmp35
   categories: [ HideSpawnMenu ]
 
-## .25 caseless
+- type: entity
+  parent:
+  - CrateAmmoSecureMercenary
+  - StorageFillAmmoBoxBigLethal35
+  id: CrateAmmoBoxBigLethal35
+  categories: [ HideSpawnMenu ]
+
+#Region .25 caseless
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -294,7 +301,7 @@
 #   id: CrateAmmoBoxPractice25
 #   categories: [ HideSpawnMenu ]
 
-## Shotgun
+#Region Shotgun
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -344,7 +351,14 @@
   id: CrateAmmoBoxFlareShotgun
   categories: [ HideSpawnMenu ]
 
-## .45 ammo
+- type: entity
+  parent:
+  - CrateAmmoSecureMercenary
+  - StorageFillAmmoBoxBigLethalShotgun
+  id: CrateAmmoBoxBigLethalShotgun
+  categories: [ HideSpawnMenu ]
+
+#Region .45 ammo
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
@@ -378,4 +392,11 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUranium45
   id: CrateAmmoBoxUranium45
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent:
+  - CrateAmmoSecureMercenary
+  - StorageFillAmmoBoxBigLethal45
+  id: CrateAmmoBoxBigLethal45
   categories: [ HideSpawnMenu ]

@@ -1,3 +1,4 @@
+using Content.Shared._NF.PlantAnalyzer;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 
@@ -30,4 +31,10 @@ public sealed partial class PlantAnalyzerComponent : Component
 
     [DataField]
     public SoundSpecifier? ScanningEndSound;
+
+    /// <summary>
+    ///    Info on the last scanned plant, if any
+    /// </summary>
+    [DataField]
+    public PlantAnalyzerScannedPlantInformation? PlantInfo;
 }
