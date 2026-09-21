@@ -23,6 +23,9 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Atmos.UI
 {
+    /// <summary>
+    /// Initializes a <see cref="GasFilterWindow"/> and updates it when new server messages are received.
+    /// </summary>
     [UsedImplicitly]
     public sealed class GasFilterBoundUserInterface : BoundUserInterface
     {
