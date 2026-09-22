@@ -116,7 +116,8 @@ construction-graph-tag-intercom-electronics = intercom electronics
 construction-graph-tag-solar-assembly-parts = solar assembly parts
 construction-graph-tag-solar-tracker-electronics = solar tracker electronics
 construction-graph-tag-station-map-electronics = station map electronics
-construction-graph-tag-signal-timer-electronics = signal timer electronics
+construction-graph-tag-signal-timer-electronics = signal timer button electronics
+# Frontier: switch buttons
 construction-graph-tag-screen-timer-electronics = screen timer electronics
 construction-graph-tag-brig-timer-electronics = brig timer electronics
 construction-graph-tag-wallmount-generator-circuit-board = wallmount generator circuit board

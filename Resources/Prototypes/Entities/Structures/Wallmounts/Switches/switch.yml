@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: SignalSwitch
-  name: signal switch
-  description: It's a switch for toggling power to things.
+  name: signal switch button # Frontier: switch buttons
+  description: It's a button for activating something, but with two states! # Frontier: switch buttons
   components:
   - type: WallMount
     arc: 360
@@ -106,8 +106,8 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: ApcNetSwitch
-  name: apc net switch
-  description: It's a switch for toggling lights that are connected to the same apc.
+  name: apc net switch button # Frontier: switch buttons
+  description: It's a button for toggling lights that are connected to the same APC. # Frontier: switch buttons
   components:
   - type: WallMount
     arc: 360
@@ -133,7 +133,7 @@
 - type: entity
   parent: SignalSwitch
   id: SignalSwitchDirectional
-  name: signal switch
+  name: signal switch button # Frontier: switch buttons
   suffix: directional
   components:
   - type: WallMount
@@ -157,7 +157,7 @@
 - type: entity
   parent: ApcNetSwitch
   id: ApcNetSwitchDirectional
-  name: apc net switch
+  name: apc net switch button # Frontier: switch buttons
   suffix: directional
   components:
   - type: WallMount
