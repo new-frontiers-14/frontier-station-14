@@ -134,7 +134,7 @@
     Runs off solid plasma sheets and is rated for up to 30 kW.
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorPacman
-  suffix: Plasma, 20 kW #Fronter 30<20
+  suffix: Plasma, 20 kW # Frontier: 30<20
   components:
     - type: Sprite
       layers:
@@ -158,9 +158,9 @@
       board: PortableGeneratorPacmanMachineCircuitboard
     - type: FuelGenerator
       minTargetPower: 1000
-      maxTargetPower: 30000 #Frontier 25000<30000
-      targetPower: 20000 #Frontier 15000<20000
-      optimalPower: 20000 #Frontier 15000<20000
+      maxTargetPower: 30000 # Frontier: 25000<30000
+      targetPower: 20000 # Frontier: 15000<20000
+      optimalPower: 20000 # Frontier: 15000<20000
       # 45 minutes at max output
       optimalBurnRate: 0.011111
       # a decent curve
@@ -169,7 +169,7 @@
       fuelMaterial: FuelGradePlasma # Frontier: Plasma<FuelGradePlasma
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 12000 #frontier 3000<12000
+      storageLimit: 12000 # Frontier: 3000<12000
       materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma, Skrungle] # Frontier: add FuelGradePlasma, RawPlasma, Scrungle
     - type: PortableGenerator
       startChance: 0.8
@@ -249,7 +249,7 @@
       fuelMaterial: FuelGradeUranium # Frontier: Uranium<FuelGradeUranium
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 12000 #frontier 3000<12000
+      storageLimit: 12000 # Frontier: 3000<12000
       materialWhiteList: [Uranium, FuelGradeUranium, RawUranium, Skrungle] # Frontier: add FuelGradeUranium, RawUranium, Skrungle
     - type: PortableGenerator
     - type: UpgradePowerSupplier
@@ -290,7 +290,7 @@
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
-  suffix: Welding Fuel, 6 kW
+  suffix: Welding Fuel, 6 kW # Frontier: 5 kW<6 kW
   components:
     - type: AmbientSound
       range: 4
@@ -329,9 +329,9 @@
     - type: Machine
       board: PortableGeneratorJrPacmanMachineCircuitboard
     - type: FuelGenerator
-      targetPower: 6000 # Frontier - 2000<6000
+      targetPower: 6000 # Frontier: 2000<6000
       minTargetPower: 1000
-      optimalPower: 6000 # Frontier - 2000<6000
+      optimalPower: 6000 # Frontier: 2000<6000
       maxTargetPower: 15000
       # 30~ minutes at full tank.
       optimalBurnRate: 0.11111111
@@ -341,11 +341,11 @@
       solution: tank
       reagents:
         WeldingFuel: 1
-        Ethanol: 0.8 #Frontier Addition of Ethanol to the fuel list. 0.8 is the burn rate multiplier for ethanol.
+        Ethanol: 0.8 # Frontier: Addition of Ethanol to the fuel list. 0.8 is the burn rate multiplier for ethanol.
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 1000 # Frontier - 50<200<1000
+          maxVol: 1000 # Frontier: 50<200<1000
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
@@ -402,4 +402,4 @@
             - !type:SolutionExplosionBehavior
               solution: tank
     - type: BindToStation # Frontier
-      enabled: false # Frontier - should be draggable between stations
+      enabled: false # Frontier: should be draggable between stations
