@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: OfflcerSam
+# Discord: offlcer_sam
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Rivet
+  parent: BaseVessel
+  name: SI Rivet
+  description: A mining and recovery shuttle designed for reliability for a low price. Brought to you by Stonian Industries.
+  price: 19500 # 18391 x 1.05 = 19310
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/rivet.yml
+  guidebookPage: Null
+  class:
+  - Salvage
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Rivet
+  mapName: 'SI Rivet'
+  mapPath: /Maps/_NF/Shuttles/rivet.yml
+  minPlayers: 0
+  stations:
+    Rivet:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Rivet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
