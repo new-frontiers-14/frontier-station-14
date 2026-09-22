@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/22/2026 22:29:00
+  time: 09/22/2026 23:59:14
   entityCount: 363
 maps: []
 grids:
@@ -1134,7 +1134,7 @@ entities:
     - type: Transform
       pos: -5.5,7.5
       parent: 1
-- proto: GasMixerFlipped
+- proto: GasMixerOnFlipped
   entities:
   - uid: 216
     components:
@@ -1144,8 +1144,7 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.20999998
       inletOneConcentration: 0.79
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
+      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 246
