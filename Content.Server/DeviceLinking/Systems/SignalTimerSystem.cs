@@ -2,11 +2,15 @@ using Content.Server.DeviceLinking.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Systems;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.Interaction; // Frontier: signal timer button
 using Content.Shared.MachineLinking;
 using Content.Shared.TextScreen;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio; // Frontier: signal timer button
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility; // Frontier: signal timer button
 
 namespace Content.Server.DeviceLinking.Systems;
 
@@ -29,7 +33,9 @@ public sealed class SignalTimerSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SignalTimerComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<SignalTimerComponent, ActivateInWorldEvent>(OnActivate, before: [typeof(ActivatableUISystem)]); // Frontier: signal timer button
         SubscribeLocalEvent<SignalTimerComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
+        SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs); // Frontier: signal timer button
 
         SubscribeLocalEvent<SignalTimerComponent, SignalTimerTextChangedMessage>(OnTextChangedMessage);
         SubscribeLocalEvent<SignalTimerComponent, SignalTimerRepeatToggled>(OnRepeatChangedMessage); // Frontier: Repeat toggle event subscribe
@@ -44,6 +50,27 @@ public sealed class SignalTimerSystem : EntitySystem
         _appearanceSystem.SetData(uid, TextScreenVisuals.ScreenText, component.Label);
         _signalSystem.EnsureSinkPorts(uid, component.Trigger);
     }
+
+    // Start Frontier: signal timer button
+    private void OnActivate(EntityUid uid, SignalTimerComponent comp, ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex)
+            return;
+
+        // feedback received: pressing the timer button while a timer is running should cancel the timer.
+        if (HasComp<ActiveSignalTimerComponent>(uid))
+        {
+            _appearanceSystem.SetData(uid, TextScreenVisuals.TargetTime, _gameTiming.CurTime);
+            Trigger(uid, comp);
+        }
+        else
+            OnStartTimer(uid, comp);
+
+        _audio.PlayPvs(comp.ClickSound, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(8f));
+
+        args.Handled = true;
+    }
+    // End Frontier: signal timer button
 
     private void OnAfterActivatableUIOpen(EntityUid uid, SignalTimerComponent component, AfterActivatableUIOpenEvent args)
     {
@@ -61,6 +88,20 @@ public sealed class SignalTimerSystem : EntitySystem
                 _accessReader.IsAllowed(args.User, uid)));
         }
     }
+
+    // Start Frontier: signal timer button
+    private void OnGetAlternativeVerbs(GetVerbsEvent<AlternativeVerb> ev)
+    {
+        ev.Verbs.Add(new AlternativeVerb
+        {
+            Priority = 0,
+            Act = () => _ui.OpenUi(ev.Target, SignalTimerUiKey.Key, ev.User),
+            Text = Loc.GetString("verb-common-open-ui"),
+            // TODO VERB ICON find a better icon
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+        });
+    }
+    // End Frontier: signal timer button
 
     /// <summary>
     ///     Finishes a timer, triggering its main port, and removing its <see cref="ActiveSignalTimerComponent"/>.

@@ -51,6 +51,11 @@ public sealed partial class SignalTimerComponent : Component
     [DataField]
     public ProtoId<SinkPortPrototype> Trigger = "Trigger";
 
+    // Start Frontier: signal timer button
+    [DataField("clickSound")]
+    public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/lightswitch.ogg");
+    // End Frontier: signal timer button
+
     /// <summary>
     ///     If not null, this timer will play this sound when done.
     /// </summary>
