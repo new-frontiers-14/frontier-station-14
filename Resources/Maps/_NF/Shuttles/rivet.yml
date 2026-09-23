@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/23/2026 00:45:29
-  entityCount: 365
+  time: 09/23/2026 00:50:50
+  entityCount: 371
 maps: []
 grids:
 - 1
@@ -302,6 +302,7 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
+      - 367
       - 296
       - 297
     - type: Fixtures
@@ -316,6 +317,11 @@ entities:
       devices:
       - 166
       - 167
+      - 366
+      - 370
+      - 367
+      - 368
+      - 369
     - type: Fixtures
       fixtures: {}
   - uid: 279
@@ -328,6 +334,7 @@ entities:
       devices:
       - 202
       - 326
+      - 366
     - type: Fixtures
       fixtures: {}
   - uid: 280
@@ -340,6 +347,7 @@ entities:
       devices:
       - 219
       - 213
+      - 370
     - type: Fixtures
       fixtures: {}
   - uid: 281
@@ -351,6 +359,8 @@ entities:
       devices:
       - 164
       - 170
+      - 368
+      - 369
     - type: Fixtures
       fixtures: {}
 - proto: Airlock
@@ -1143,6 +1153,57 @@ entities:
     - type: Transform
       pos: -5.5,7.5
       parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 366
+    components:
+    - type: Transform
+      pos: -2.5,5.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 279
+      - 278
+  - uid: 367
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 278
+      - 277
+  - uid: 368
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 278
+      - 281
+  - uid: 369
+    components:
+    - type: Transform
+      pos: 3.5,4.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 278
+      - 281
+  - uid: 370
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 280
+      - 278
 - proto: GasMixerOnFlipped
   entities:
   - uid: 216
@@ -1586,6 +1647,8 @@ entities:
       pos: -1.5,-1.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 277
     - type: AtmosPipeColor
@@ -1637,6 +1700,8 @@ entities:
       pos: 0.5,-1.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 277
     - type: AtmosPipeLayers
@@ -2822,6 +2887,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,2.5
+      parent: 1
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 371
+    components:
+    - type: Transform
+      pos: -5.5,6.5
       parent: 1
 - proto: Window
   entities:
