@@ -1,6 +1,6 @@
 - type: entity
   name: spyglass
-  parent: BaseItem
+  parent: [BaseC3PirateContraband, Binoculars]
   id: Spyglass
   description: A useful tool to spot your treasure before it spots you.
   components:
@@ -9,16 +9,3 @@
     state: icon
   - type: Item
     size: Small
-  - type: Wieldable
-  - type: UseDelay
-    delay: 1.0
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 10 #Frontier: 5 < 10, they need to match the snipers
-    pvsIncrease: 1 #Frontier: 0.5 < 1
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-      Glass: 50
-  - type: StaticPrice
-    price: 100
