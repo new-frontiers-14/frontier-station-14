@@ -4,12 +4,10 @@
   parent: RadioHandheld
   id: RadioHandheldNF
   components:
-  - type: RadioMicrophone
-    broadcastChannel: Handheld
-    toggleOnInteract: false # Nuclear-14
-    frequency: 1330 # Nuclear-14
-  - type: RadioSpeaker
-    toggleOnInteract: false # Nuclear-14
+  - type: HandheldRadio
+    channel: Handheld
+  - type: ActiveListener
+  - type: ActiveRadio
   - type: Sprite
     sprite: _NF/Objects/Devices/communication.rsi
     layers:
@@ -31,7 +29,7 @@
   - type: UserInterface
     interfaces:
       enum.HandheldRadioUiKey.Key:
-        type: HandheldRadioBoundUserInterface
+        type: NFHandheldRadioBoundUserInterface
   # Nuclear-14-End
   - type: Appearance
   - type: GenericVisualizer

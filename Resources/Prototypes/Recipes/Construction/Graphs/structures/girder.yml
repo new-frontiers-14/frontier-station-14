@@ -40,6 +40,20 @@
               amount: 2
               doAfter: 2
 
+        # Frontier
+        - to: diagonalWall
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Welding
+              doAfter: 2
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - tool: Welding
+              doAfter: 2
+        # End Frontier
+
         - to: reinforcedGirder
           completed:
             - !type:SnapToGrid
@@ -134,7 +148,7 @@
               amount: 2
               doAfter: 2
 
-        # Frontier: interior shuttle wall
+        # Frontier: interior shuttle wall and asteroid facade wall
         - to: shuttleInteriorWall
           completed:
             - !type:SnapToGrid
@@ -150,7 +164,23 @@
             - material: Steel
               amount: 2
               doAfter: 1
-        # End Frontier: interior shuttle wall
+
+        - to: asteroidrock
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: FloorTileAstroAsteroidSand
+              amount: 1
+              doAfter: 1
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+        # End Frontier: interior shuttle wall and asteroid facade wall
 
     - node: wall
       entity: WallSolid
@@ -163,6 +193,20 @@
           steps:
             - tool: Welding
               doAfter: 10
+
+    # Frontier
+    - node: diagonalWall
+      entity: WallSolidDiagonal
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 1
+          steps:
+            - tool: Welding
+              doAfter: 5
+    # End Frontier
 
     - node: wallChitin
       entity: WallSolidChitin
@@ -284,6 +328,24 @@
               amount: 2
               doAfter: 1
 
+        # Frontier
+        - to: asteroidcobblebrick
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: FloorTileAstroAsteroidSand
+              amount: 1
+              doAfter: 1
+            - material: Plasteel
+              amount: 1
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+        # Frontier end
+
         - to: shuttleWall
           completed:
             - !type:SnapToGrid
@@ -300,18 +362,18 @@
               amount: 2
               doAfter: 1
 
-        - to: diagonalshuttleWall
+        # Frontier
+        - to: diagonalReinforcedBase
+          completed:
+            - !type:SnapToGrid {}
           conditions:
             - !type:EntityAnchored { }
           steps:
-            - material: Steel
-              amount: 1
-              doAfter: 1
             - tool: Welding
-              doAfter: 4
+              doAfter: 1
             - material: Plasteel
               amount: 1
-              doAfter: 1
+        # End Frontier
 
         - to: girder
           completed:
@@ -325,6 +387,28 @@
           steps:
             - tool: Cutting
               doAfter: 2
+
+    # Frontier
+    - node: diagonalReinforcedBase
+      edges:
+        - to: diagonalReinforcedWall
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 1
+            - tool: Welding
+              doAfter: 2
+
+        - to: diagonalshuttleWall # Frontier: Has been changed from being a reinforcedGirder edge to being a diagonalReinforcedBase edge.
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 1
+            - tool: Welding
+              doAfter: 2
+    # End Frontier
 
     - node: reinforcedWall
       entity: WallReinforced
@@ -487,6 +571,30 @@
             - tool: Cutting
               doAfter: 4
 
+    # Frontier
+    - node: diagonalReinforcedWall
+      entity: WallReinforcedDiagonal
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+
     - node: diagonalshuttleWall
       entity: WallShuttleDiagonal
       edges:
@@ -496,7 +604,7 @@
               prototype: SheetPlasteel1
               amount: 1
             - !type:SpawnPrototype
-              prototype: SheetSteel1
+              prototype: PartRodMetal1
               amount: 1
           steps:
           #To-Do: Add deconstruct visuals
@@ -520,6 +628,7 @@
               doAfter: 1
             - tool: Cutting
               doAfter: 1
+    # End Frontier
 
     - node: wallrust
       entity: WallSolidRust
@@ -562,4 +671,39 @@
               doAfter: 10
             - tool: Screwing
               doAfter: 1
-    # End Frontier: interior shuttle walls
+
+    # Frontier: asteroid facade walls
+    - node: asteroidrock
+      entity: AsteroidRockFacade
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 8
+
+    # Frontier: asteroid brick walls
+    - node: asteroidcobblebrick
+      entity: WallAsteroidCobblebrick
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 1
+            - !type:GivePrototype
+              prototype: FloorTileItemAstroAsteroidSand
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 4
+            - tool: Welding
+              doAfter: 8

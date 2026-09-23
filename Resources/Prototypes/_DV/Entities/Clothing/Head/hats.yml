@@ -1,0 +1,25 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCJToque
+  name: chief justice's toque
+  description: A standard-issue judicial hat. Wigs are old-fashioned anyway.
+  components:
+  - type: Sprite
+    sprite: _DV/Clothing/Head/Hats/cj_toque.rsi
+  - type: Clothing
+    sprite: _DV/Clothing/Head/Hats/cj_toque.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCentcommCavalier
+  name: centcomm cavalier hat
+  description: A well-made cavalier hat made of the finest materials for all your flamboyant needs..
+  components:
+  - type: Sprite
+    sprite: _DV/Clothing/Head/Hats/centcommcavalier.rsi
+  - type: Clothing
+    sprite: _DV/Clothing/Head/Hats/centcommcavalier.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.12"

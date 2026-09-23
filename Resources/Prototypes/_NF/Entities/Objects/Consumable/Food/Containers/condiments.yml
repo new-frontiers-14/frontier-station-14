@@ -1,26 +1,30 @@
 - type: entity
-  parent: BaseFoodCondiment
-  id: BaseFoodCondimentSqueezeBottle
+  parent: BaseFoodCondiment           # not parenting to BaseFoodCondimentBottle because these aren't
+  id: BaseFoodCondimentSqueezeBottle  # openable, spillable and not all are handling fill visuals
   abstract: true
   name: squeeze bottle
   description: A thin plastic container used to store condiments.
   components:
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: food
+    destroyOnEmpty: false
+    utensil: None
+  - type: Solution
+    solution:
+      maxVol: 50 # ~ 400 to 450ml
+  - type: RefillableSolution
+    solution: food
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 50
-  - type: RefillableSolution
-    solution: food
-  - type: Spillable
-    solution: food
   - type: SolutionTransfer
     playTransferSound: true
     canChangeTransferAmount: true
     minTransferAmount: 5
     maxTransferAmount: 50
-  - type: Appearance
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
@@ -88,37 +92,34 @@
     fillBaseName: squeeze-bottle-clear
 
 - type: entity
-  parent: [DrinkBottleVisualsNoInHand, DrinkBottleVisualsAll, DrinkBottleGlassBaseFull] # TODO: make inhand fill sprites (and I guess inhand sprites)
+  parent: BaseFoodCondimentBottle
   id: FoodCondimentBottleSoysauce
   name: soy sauce bottle
   description: Used to season dishes to umami perfection. With extra sodium!
   components:
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon_empty"}
   - type: Item
     size: Small
   - type: SolutionContainerManager
     solutions:
-      drink:
+      food:
         maxVol: 30
         reagents:
         - ReagentId: Soysauce
           Quantity: 30
   - type: SolutionTransfer
     playTransferSound: false
-    canChangeTransferAmount: true
     minTransferAmount: 1
     maxTransferAmount: 5
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/soysauce.rsi
+    layers:
+    - state: bottle-empty
+      map: ["enum.OpenableVisuals.Layer"]
+    - state: bottle-alpha-5
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: true
+  - type: Icon
+    sprite: _NF/Objects/Consumable/Food/soysauce.rsi
     state: icon
-  - type: Openable
-    closeable: true
   - type: SolutionContainerVisuals
     maxFillLevels: 5
-    fillBaseName: fill-

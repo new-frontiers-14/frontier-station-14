@@ -29,7 +29,7 @@
 
 - type: entity
   parent: GasTrinaryBase
-  id: GasFilter
+  id: GasFilterBase # Mono
   name: gas filter
   description: Very useful for filtering gases.
   placement:
@@ -62,8 +62,6 @@
       enabled: false
       transferRate: 1000
       maxTransferRate: 1000
-    - type: Flippable
-      mirrorEntity: GasFilterFlipped
     - type: Construction
       graph: GasTrinary
       node: filter
@@ -78,6 +76,14 @@
     - type: GuideHelp
       guides:
       - MixingAndFiltering
+
+# Mono
+- type: entity
+  parent: GasFilterBase
+  id: GasFilter
+  components:
+  - type: Flippable
+    mirrorEntity: GasFilterFlipped
 
 - type: entity
   parent: GasFilter

@@ -112,7 +112,8 @@ public sealed partial class AdminVerbSystem
             {
                 Text = "Rejuvenate",
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/rejuvenate.png")),
+                // Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/rejuvenate.png")), // Frontier
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png")), // Frontier: consistent verb icons
                 Act = () =>
                 {
                     _rejuvenate.PerformRejuvenate(args.Target);
@@ -130,7 +131,8 @@ public sealed partial class AdminVerbSystem
             {
                 Text = "Make Indestructible",
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
+                // Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")), // Frontier
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/rejuvenate.png")), // Frontier, wand makes more sense for godmode?
                 Act = () =>
                 {
                     _sharedGodmodeSystem.EnableGodmode(args.Target);
@@ -147,7 +149,8 @@ public sealed partial class AdminVerbSystem
             {
                 Text = "Make Vulnerable",
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
+                // Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")), // Frontier
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/rejuvenate.png")), // Frontier, wand makes more sense for godmode?
                 Act = () =>
                 {
                     _sharedGodmodeSystem.DisableGodmode(args.Target);
