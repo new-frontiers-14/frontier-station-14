@@ -26,7 +26,7 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
         var query = EntityQueryEnumerator<SentienceTargetComponent, TransformComponent>();
         while (query.MoveNext(out var targetUid, out var target, out var xform))
         {
-            if (StationSystem.GetOwningStation(targetUid, xform) != station)
+            if (StationSystem.GetOwningStation(targetUid, xform) != station || target.Weight == 0) // Frontier: No Admin PDA will be sentient again.
                 continue;
 
             targetList.Add((targetUid, target));
