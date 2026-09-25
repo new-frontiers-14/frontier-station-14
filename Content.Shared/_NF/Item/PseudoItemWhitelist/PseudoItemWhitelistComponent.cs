@@ -6,15 +6,8 @@ namespace Content.Shared._NF.Item.PseudoItemWhitelist;
 [RegisterComponent, AutoGenerateComponentState]
 public sealed partial class PseudoItemWhitelistComponent : Component
 {
-    [DataField("size")]
-    public ProtoId<ItemSizePrototype> Size = "Huge";
-
-    /// <summary>
-    /// An optional override for the shape of the item within the grid storage.
-    /// If null, a default shape will be used based on <see cref="Size"/>.
-    /// </summary>
     [DataField, AutoNetworkedField]
-    public List<Box2i>? Shape = new List<Box2i>{
+    public List<Box2i> Shape = new List<Box2i>{
         new Box2i(0, 0, 1, 4),
         new Box2i(0, 2, 3, 4),
         new Box2i(4, 0, 5, 4)
@@ -24,7 +17,7 @@ public sealed partial class PseudoItemWhitelistComponent : Component
     public Vector2i StoredOffset = new(0, 17);
 
     [DataField, AutoNetworkedField]
-    public float StoredRotation;
+    public float StoredRotation = 0f;
 
     /// <summary>
     ///     Maximum profile scale that allows a PseudoItem component.
