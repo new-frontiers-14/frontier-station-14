@@ -27,6 +27,7 @@ using Robust.Shared.Physics.Collision.Shapes; // Frontier
 using Robust.Shared.Physics.Systems; // Frontier
 using Robust.Shared.Physics.Components; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Nyanotrasen.Item.PseudoItem; // Frontier
 
 namespace Content.Shared.Humanoid;
 
@@ -393,7 +394,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="density">Optional: The density to set the mob to. Set as null to leave unchanged.</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetScale(EntityUid uid, float scale, float? densityCoefficient, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetScale(EntityUid uid, float scale, float? densityCoefficient, bool sync = true, HumanoidAppearanceComponent? humanoid = null, bool skipPseudoItem = false)
     {
         if (!_cfgManager.GetCVar(NFCCVars.SizePicker)
         || !Resolve(uid, ref humanoid)
@@ -426,6 +427,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             _physics.ResetMassData(uid, fixturesComp, physicsComp);
         }
 
+        if (!skipPseudoItem
+        && TryComp(uid, out PseudoItemComponent? pseudoItemComp)
+        && (
+            scale > pseudoItemComp.MaxProfileScale
+            || scale < pseudoItemComp.MinProfileScale
+        )
+        )
+            RemComp<PseudoItemComponent>(uid);
+
         if (sync)
         {
             Dirty(uid, humanoid);
@@ -440,7 +450,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="species">The species to take bounds and density from.</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetScale(EntityUid uid, float scale, string species, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetScale(EntityUid uid, float scale, string species, bool sync = true, HumanoidAppearanceComponent? humanoid = null, bool skipPseudoItem = false)
     {
         if (!_cfgManager.GetCVar(NFCCVars.SizePicker))
             return;
@@ -455,7 +465,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         float? density = (scale / speciesProto.DefaultSize) * speciesProto.DensityCoefficient;
 
-        SetScale(uid, scale, density, sync, humanoid);
+        SetScale(uid, scale, density, sync, humanoid, skipPseudoItem);
     }
 
     /// <summary>
