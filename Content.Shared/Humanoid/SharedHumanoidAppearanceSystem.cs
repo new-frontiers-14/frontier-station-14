@@ -28,6 +28,7 @@ using Robust.Shared.Physics.Systems; // Frontier
 using Robust.Shared.Physics.Components; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Nyanotrasen.Item.PseudoItem; // Frontier
+using Content.Shared._NF.Item.PseudoItemWhitelist; // Frontier
 
 namespace Content.Shared.Humanoid;
 
@@ -427,14 +428,20 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             _physics.ResetMassData(uid, fixturesComp, physicsComp);
         }
 
-        if (!skipPseudoItem
-        && TryComp(uid, out PseudoItemComponent? pseudoItemComp)
-        && (
-            scale > pseudoItemComp.MaxProfileScale
-            || scale < pseudoItemComp.MinProfileScale
-        )
-        )
-            RemComp<PseudoItemComponent>(uid);
+        if (!skipPseudoItem)
+        {
+            if (TryComp(uid, out PseudoItemWhitelistComponent? pseudoWLComp)
+                && scale < pseudoWLComp.MaxProfileScale
+                && scale > pseudoWLComp.MinProfileScale
+            )
+            {
+                var pseudoItemComp = EnsureComp<PseudoItemComponent>(uid);
+                pseudoItemComp.StoredRotation = pseudoWLComp.StoredRotation;
+                pseudoItemComp.StoredOffset = pseudoWLComp.StoredOffset;
+                pseudoItemComp.Shape = pseudoWLComp.Shape;
+            }
+            else RemComp<PseudoItemComponent>(uid);
+        }
 
         if (sync)
         {

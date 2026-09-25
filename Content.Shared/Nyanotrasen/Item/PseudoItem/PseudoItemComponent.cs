@@ -33,16 +33,4 @@ public sealed partial class PseudoItemComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? SleepAction;
-
-    /// <summary>
-    ///     Frontier: Maximum profile scale that allows a PseudoItem component.
-    /// </summary>
-    [DataField]
-    public float MaxProfileScale { get; private set; } = 0.9f;
-
-    /// <summary>
-    ///     Frontier: Minimum profile scale that allows a PseudoItem component.
-    /// </summary>
-    [DataField]
-    public float MinProfileScale { get; private set; } = 0;
 }
