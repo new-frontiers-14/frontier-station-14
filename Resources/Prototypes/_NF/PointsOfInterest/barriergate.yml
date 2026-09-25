@@ -12,8 +12,8 @@
   id: BarrierGate
   parent: BasePOI
   name: 'Barrier Gate'
-  minimumDistance: 11000
-  maximumDistance: 12000
+  minimumDistance: 8500
+  maximumDistance: 9500
   # minimumClearance: 8000 # To make sure it doesn't pop in next to the Cove. Offline for now.
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/barriergate.yml
@@ -21,8 +21,13 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
-  - type: BiasTarget
+  - type: SpawningModifier
     id: 'vgroid'
+    minimumDistance: 1000
+    maximumDistance: 3500
+    minimumAngle: 90 # spawn in a semi-annulus oriented towards the centre of the sector
+    maximumAngle: 270
+
 
 - type: gameMap
   id: BarrierGate

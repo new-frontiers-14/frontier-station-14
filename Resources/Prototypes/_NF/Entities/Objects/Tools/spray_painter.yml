@@ -48,3 +48,24 @@
       violet: '#EE82EE'
       white: '#FFFFFFFF'
       black: '#333333FF'
+
+- type: entity
+  parent: [SprayPainter, BaseC3SyndicateContraband]
+  id: SprayPainterSyndicate
+  name: syndicate spray painter
+  description: A spray painter which includes iconic syndicate designs. How else would they apply all that blood-red paint?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/spray_painter_syndicate.rsi
+    state: spray_painter_syndicate
+  - type: Item
+    sprite: _NF/Objects/Tools/spray_painter_syndicate.rsi
+  - type: SprayPainter # Same as base spray painter but doesn't hide the syndie designs
+    hiddenStyles: []
+    hiddenDecals:
+    - "dirty"
+    - "burnt"
+    - "crayon"
+    - "flora"
+    - "rock"
+    - "hidden"

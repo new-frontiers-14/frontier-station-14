@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseWoodwindInstrument
+  id: SuperHarmonicaInstrument
+  name: super harmonica
+  components:
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+  - type: Sprite
+    sprite: _NF/Objects/Fun/instruments/superharmonica.rsi
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - neck
+  - type: ActivatableUI
+    inHandsOnly: false
+  - type: StaticPrice
+    price: 1000
