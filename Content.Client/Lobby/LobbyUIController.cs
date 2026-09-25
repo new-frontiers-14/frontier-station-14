@@ -24,6 +24,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Client.Lobby;
 
@@ -70,6 +71,13 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             _profileEditor?.RefreshFlavorText();
         });
+
+        // Frontier - size editor
+        _configurationManager.OnValueChanged(NFCCVars.SizePicker, args =>
+        {
+            _profileEditor?.RefreshSizePicker();
+        });
+        // End Frontier - size editor
 
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshProfileEditor());
 

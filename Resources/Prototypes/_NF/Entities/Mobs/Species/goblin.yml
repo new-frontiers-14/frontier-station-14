@@ -4,7 +4,7 @@
   id: MobGoblinBase
   abstract: true
   components:
-  - type: Sprite
+  - type: ScaleVisuals
     scale: 0.86, 0.75 # Increased from "0.8, 0.7" to "0.86, 0.75" to somewhat compensate for fixture change, odd numbers because I wanted to keep the proportions
   - type: HumanoidAppearance
     species: Goblin
@@ -49,12 +49,13 @@
       types:
         Blunt: 1
   - type: Stamina
-  - type: PseudoItem
+  - type: PseudoItemWhitelist
     shape: # Parallelogram, 16 squares (vs. 26 for felinid bean) - TODO: fix odd rotation, swapped X/Y values.
       - 0,0,0,3
       - 1,1,1,4
       - 2,2,2,5
       - 3,3,3,6
+    storedOffset: 0,0
     storedRotation: -67.5 # Bug: must be half the angle.
   - type: Vocal
     wilhelm: "/Audio/_NF/Voice/Goblin/goblin_cackle_5.ogg"
@@ -131,3 +132,5 @@
   components:
   - type: HumanoidAppearance
     species: Goblin
+  - type: ScaleVisuals
+    scale: 0.86, 0.75

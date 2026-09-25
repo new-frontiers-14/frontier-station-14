@@ -54,6 +54,7 @@ namespace Content.Server.Database
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
+                .Include(p => p.Profiles).ThenInclude(h => h.NFProfile) // Frontier - NFProfile
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
@@ -109,6 +110,7 @@ namespace Content.Server.Database
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
+                .Include(p => p.NFProfile) // Frontier - NFProfile
                 .AsSplitQuery()
                 .SingleOrDefault(h => h.Slot == slot);
 
@@ -220,7 +222,7 @@ namespace Content.Server.Database
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
-            var balance = profile.BankBalance;
+            var balance = profile.BankBalance; // Frontier
 
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             var markingsRaw = profile.Markings?.Deserialize<List<string>>();
@@ -269,7 +271,7 @@ namespace Content.Server.Database
                 profile.Age,
                 sex,
                 gender,
-                balance,
+                balance, // Frontier
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
@@ -278,7 +280,8 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    profile.NFProfile.Size // Frontier - size editor
                 ),
                 spawnPriority,
                 jobs,
@@ -306,7 +309,7 @@ namespace Content.Server.Database
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
-            profile.BankBalance = humanoid.BankBalance;
+            profile.BankBalance = humanoid.BankBalance; // Frontier
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
@@ -317,6 +320,11 @@ namespace Content.Server.Database
             profile.Markings = markings;
             profile.Slot = slot;
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
+
+            // Frontier - NFProfile
+            profile.NFProfile ??= new NFProfile();
+            profile.NFProfile.Size = appearance.Scale;
+            // End NFProfile
 
             profile.Jobs.Clear();
             profile.Jobs.AddRange(
