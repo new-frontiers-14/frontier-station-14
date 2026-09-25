@@ -67,6 +67,26 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+  
+- type: listing
+  id: UplinkPirateHardsuitAurecorsa
+  name:  uplink-pirate-hardsuit-aurecorsa-name
+  description: uplink-pirate-hardsuit-aurecorsa-desc
+  productEntity: ClothingBackpackDuffelPirateAurecorsaBundle
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_aurecorsa.rsi, state: icon }
+  cost:
+    Doubloon: 10
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
@@ -194,6 +214,22 @@
   icon: { sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi, state: icon }
   cost:
     Doubloon: 1
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateRomulan
+  name: uplink-pirate-romulan-name
+  description: uplink-pirate-romulan-desc
+  productEntity: NFWeaponRifleAssaultRomulan
+  icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/romulan.rsi, state: icon }
+  cost:
+    Doubloon: 5
   categories:
     - UplinkPirateWeapons
   conditions:

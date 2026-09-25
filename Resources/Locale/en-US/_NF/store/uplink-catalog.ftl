@@ -282,6 +282,9 @@ uplink-pirate-hardsuit-rogue-desc = Lightly armoured hardsuit designed to give y
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
 
+uplink-pirate-hardsuit-aurecorsa-name = Aurecorsa Pirate Hardsuit Bundle
+uplink-pirate-hardsuit-aurecorsa-desc = An ornamental hardsuit hiding heavily restricted technology. Designed for close quarters combat but offers little protection.
+
 uplink-pirate-crate-captain-name = Pirate Captain's Chest
 uplink-pirate-crate-captain-desc = A chest filled with the necessary goodies for a pirate captain.
 
@@ -302,6 +305,9 @@ uplink-pirate-blunderbuss-desc = Deadly at close range, an illegal shotgun often
 
 uplink-pirate-revolver-name = Pirate Revolver
 uplink-pirate-revolver-desc = An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 pistol ammo.
+
+uplink-pirate-romulan-name = Romulan
+uplink-pirate-romulan-desc = Yarrr, a retrofitted Vulcan befitting of a pirate! Uses .20 rifle ammo.
 
 uplink-pirate-cannon-name = Pirate Cannon
 uplink-pirate-cannon-desc = Kaboom!
