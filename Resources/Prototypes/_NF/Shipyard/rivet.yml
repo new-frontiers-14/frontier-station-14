@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: OfflcerSam
+# Discord: offlcer_sam
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Rivet
+  parent: BaseVessel
+  name: SI Rivet
+  description: A compacted engineering shuttle designed for reliability for a low entry price. Brought to you by Stonian Industries.
+  price: 30000 # ~28487 (calculated) * 1.05 to 1.10 (markup) = ~29911
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/rivet.yml
+  guidebookPage: ShipyardRivet
+  class:
+  - Engineering
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Rivet
+  mapName: 'SI Rivet'
+  mapPath: /Maps/_NF/Shuttles/rivet.yml
+  minPlayers: 0
+  stations:
+    Rivet:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Rivet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
