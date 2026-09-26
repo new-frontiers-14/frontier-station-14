@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseFlag
+  id: BaseFlagNF
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/flags.rsi
+  - type: Construction
+    graph: Flags
+
+- type: entity
+  parent: BaseFlagNF
+  id: NFSDFlag
+  name: nfsd flag
+  description: '"Be officer don''t crime" flag.'
+  components:
+  - type: Sprite
+    state: nfsd_flag
+  - type: Construction
+    node: NFSDFlag
