@@ -43,7 +43,7 @@
 
 - type: entity
   name: captain's rubber stamp
-  parent: RubberStampBase # Frontier: remove BaseCommandContraband
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: remove BaseCommandContraband, added RecyclableItemPlasticMedium
   id: RubberStampCaptain
   categories: [ DoNotMap ]
   components:
@@ -70,7 +70,7 @@
 
 - type: entity
   name: chaplain's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampChaplain
   categories: [ DoNotMap ]
   components:
@@ -83,7 +83,7 @@
 
 - type: entity
   name: lawyer's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampLawyer
   categories: [ DoNotMap ]
   components:
@@ -96,7 +96,7 @@
 
 - type: entity
   name: clown's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampClown
   categories: [ DoNotMap ]
   components:
@@ -112,7 +112,7 @@
 
 - type: entity
   name: chief engineer's rubber stamp
-  parent: RubberStampBase # Frontier: remove BaseCommandContraband
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium, remove BaseCommandContraband
   id: RubberStampCE
   categories: [ DoNotMap ]
   components:
@@ -125,7 +125,7 @@
 
 - type: entity
   name: chief medical officer's rubber stamp
-  parent: RubberStampBase # Frontier: remove BaseCommandContraband
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium, remove BaseCommandContraband
   id: RubberStampCMO
   categories: [ DoNotMap ]
   components:
@@ -138,7 +138,7 @@
 
 - type: entity
   name: head of personnel's rubber stamp
-  parent: RubberStampBase # Frontier: remove BaseCommandContraband
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium, remove BaseCommandContraband,
   id: RubberStampHop
   categories: [ DoNotMap ]
   components:
@@ -151,7 +151,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [RubberStampBase, BaseC2ContrabandUnredeemable, RecyclableItemPlasticMedium] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable, added RecyclableItemPlasticMedium
   id: RubberStampHos
   categories: [ DoNotMap ]
   components:
@@ -164,7 +164,7 @@
 
 - type: entity
   name: mime's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampMime
   categories: [ DoNotMap ]
   components:
@@ -178,7 +178,7 @@
 
 - type: entity
   name: quartermaster's rubber stamp
-  parent: RubberStampBase # Frontier: remove BaseCommandContraband
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium, remove BaseCommandContraband
   id: RubberStampQm
   categories: [ DoNotMap ]
   components:
@@ -191,7 +191,7 @@
 
 - type: entity
   name: research director's rubber stamp
-  parent: RubberStampBase # Frontier: remove BaseCommandContraband
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium, remove BaseCommandContraband
   id: RubberStampRd
   categories: [ DoNotMap ]
   components:
@@ -204,7 +204,7 @@
 
 - type: entity
   name: trader's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampTrader
   components:
   - type: Stamp
@@ -216,7 +216,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: [RubberStampBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [RubberStampBase, BaseC3SyndicateContraband, RecyclableItemPlasticMedium] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added RecyclableItemPlasticMedium
   id: RubberStampSyndicate
   categories: [ DoNotMap ]
   components:
@@ -231,7 +231,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [RubberStampBase, BaseC2ContrabandUnredeemable, RecyclableItemPlasticMedium] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable, added RecyclableItemPlasticMedium
   id: RubberStampWarden
   categories: [ DoNotMap ]
   components:
@@ -244,7 +244,7 @@
 
 - type: entity
   name: APPROVED rubber stamp
-  parent: RubberStampBaseAlt
+  parent: [RubberStampBaseAlt, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampApproved
   components:
   - type: Stamp
@@ -257,7 +257,7 @@
 
 - type: entity
   name: DENIED rubber stamp
-  parent: RubberStampBaseAlt
+  parent: [RubberStampBaseAlt, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampDenied
   components:
   - type: Stamp
@@ -283,7 +283,7 @@
 
 - type: entity
   name: greytide's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampGreytide
   description: A rubber stamp for stamping important documents. The tide washes over you, just looking at it...
   components:
@@ -296,13 +296,13 @@
 
 - type: entity
   name: psychologist's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   id: RubberStampPsychologist
   categories: [ DoNotMap ]
   description: A rubber stamp for stamping important documents. Prescribe those treatments!
   components:
   - type: Stamp
-    stampedName: stamp-component-stamped-name-psychologist 
+    stampedName: stamp-component-stamped-name-psychologist
     stampedColor: "#3366FF" # Frontier: 5B97BC<3366FF
     stampState: "paper_stamp-nf-psychologist" # Frontier: psychologist<nf-psychologist
   - type: Sprite
@@ -311,7 +311,7 @@
 
 - type: entity
   name: wizard's rubber stamp
-  parent: [RubberStampBase, BaseC3WizardContraband] # Frontier: BaseMagicalContraband<BaseC3WizardContraband
+  parent: [RubberStampBase, BaseC3WizardContraband, RecyclableItemPlasticMedium] # Frontier: BaseMagicalContraband<BaseC3WizardContraband, added RecyclableItemPlasticMedium
   id: RubberStampWizard
   description: A chaotic wizard stamp for serving unchaotic paperwork, how ironic.
   categories: [ DoNotMap ]
