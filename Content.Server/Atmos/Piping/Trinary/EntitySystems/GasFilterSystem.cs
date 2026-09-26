@@ -86,6 +86,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         {
             if (!filter.Enabled
                 || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode)
+                || (outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure && filterNode.Air.Pressure >= Atmospherics.MaxOutputPressure)) // No need to transfer if targets are full.
                 || inletNode != outletNode // Goobstation - ignore pressure if we're inline
                     && outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure)
             {
@@ -107,6 +108,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // Funky Station Start - Multigas Filter
             if (filter.FilterGases != null && filter.FilterGases.Count > 0)
             {
+                // Make sure we don't pump over the pressure limit.
+                var limitMolesFilter =
+                    AtmosphereSystem.FractionToMaxPressure(removed, filterNode.Air, Atmospherics.MaxOutputPressure);
+
+                var availableMoles = removed.GetMoles(filter.FilteredGas.Value);
+                var filteredMoles = Math.Max(Math.Min(limitMolesFilter, availableMoles), 0);
+
+                filterNode.Air.AdjustMoles(filter.FilteredGas.Value, filteredMoles);
+                removed.SetMoles(filter.FilteredGas.Value, 0f);
+                inletNode.Air.AdjustMoles(filter.FilteredGas.Value, availableMoles - filteredMoles);
+
+                _ambientSoundSystem.SetAmbience(uid, filteredMoles > 0f);
                 var filteredOut = new GasMixture() { Temperature = removed.Temperature };
                 bool hasFilteredMoles = false;
 
@@ -127,7 +140,15 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             }
             // Funky Station End - Multigas Filter
 
-            _atmosphereSystem.Merge(outletNode.Air, removed);
+            // Fraction of `removed` that can be sent to outlet without exceeding max pressure.
+            var limitRatioOutlet =
+                AtmosphereSystem.FractionToMaxPressure(removed, outletNode.Air, Atmospherics.MaxOutputPressure);
+
+            // This might end up negative, but such cases are handled correctly by the `RemoveRatio` method
+            var passthrough = removed.RemoveRatio(limitRatioOutlet);
+
+            _atmosphereSystem.Merge(outletNode.Air, passthrough);
+            _atmosphereSystem.Merge(inletNode.Air, removed);
         }
 
         private void OnFilterLeaveAtmosphere(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceDisabledEvent args)
