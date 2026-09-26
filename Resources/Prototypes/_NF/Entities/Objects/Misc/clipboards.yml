@@ -1,0 +1,61 @@
+- type: entity
+  parent: BoxFolderClipboardEmpty
+  id: ReinforcedCLipboard
+  name: reinforced clipboard
+  description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: reinforced_clipboard
+    - state: reinforced_clipboard_paper
+      map: ["clipboard_paper"]
+      visible: false
+    - state: reinforced_clipboard_cover_open
+      map: ["clipboard_open"]
+      visible: false
+    - state: reinforced_clipboard_cover_closed
+      map: ["clipboard_closed"]
+      visible: false
+    - state: clipboard_over
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      pen_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      pen_slot:
+        name: clipboard-slot-component-slot-name-pen
+        whitelist:
+          tags:
+          - Write
+        insertOnInteract: false
+  - type: Item
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    size: Small
+  - type: Clothing
+    slots: [belt]
+    quickEquip: false
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    whitelist:
+      tags:
+      - Document
+  - type: ItemMapper
+    mapLayers:
+      clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+      clipboard_pen:
+        whitelist:
+          tags:
+          - Write
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 8
