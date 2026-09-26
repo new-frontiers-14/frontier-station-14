@@ -78,7 +78,7 @@ public sealed partial class CardHandMenu : RadialMenu
     }
 }
 
-public sealed class CardMenuButton : RadialMenuTextureButton
+public sealed class CardMenuButton : RadialMenuButton
 {
     public CardMenuButton()
     {

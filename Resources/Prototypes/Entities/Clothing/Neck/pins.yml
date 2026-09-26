@@ -14,6 +14,25 @@
 
 - type: entity
   parent: ClothingNeckPinBase
+  id: ClothingGenderPinBase
+  abstract: true
+  components:
+  - type: ChameleonClothing
+    slot: [neck]
+#    default: ClothingNeckLGBTPin
+    requireTag: GenderPin
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade #idk man its on the parent
+    - WhitelistChameleon
+    - GenderPin
+
+- type: entity
+  parent: ClothingGenderPinBase
   id: ClothingNeckLGBTPin
   name: LGBT pin
   description: Be gay do crime.
@@ -22,9 +41,13 @@
     state: lgbt
   - type: Clothing
     equippedPrefix: lgbt
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckLGBTPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckAllyPin
   name: straight ally pin
   description: Be ally do crime.
@@ -33,9 +56,13 @@
     state: ally
   - type: Clothing
     equippedPrefix: ally
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckAllyPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckAromanticPin
   name: aromantic pin
   description: Be aro do crime.
@@ -44,9 +71,13 @@
     state: aro
   - type: Clothing
     equippedPrefix: aro
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckAromanticPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckAroacePin
   name: aroace pin
   description: Be aroace do crime.
@@ -55,9 +86,13 @@
     state: aroace
   - type: Clothing
     equippedPrefix: aroace
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckAroacePin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckAsexualPin
   name: asexual pin
   description: Be ace do crime.
@@ -66,9 +101,13 @@
     state: asex
   - type: Clothing
     equippedPrefix: asex
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckAsexualPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckBisexualPin
   name: bisexual pin
   description: Be bi do crime.
@@ -77,9 +116,13 @@
     state: bi
   - type: Clothing
     equippedPrefix: bi
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckBisexualPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckGayPin
   name: gay pin
   description: Be gay~ do crime.
@@ -88,9 +131,13 @@
     state: gay
   - type: Clothing
     equippedPrefix: gay
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckGayPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckIntersexPin
   name: intersex pin
   description: Be intersex do crime.
@@ -99,9 +146,13 @@
     state: inter
   - type: Clothing
     equippedPrefix: inter
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckIntersexPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckLesbianPin
   name: lesbian pin
   description: Be lesbian do crime.
@@ -110,9 +161,13 @@
     state: les
   - type: Clothing
     equippedPrefix: les
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckLesbianPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckNonBinaryPin
   name: non-binary pin
   description: "01100010 01100101 00100000 01100101 01101110 01100010 01111001 00100000 01100100 01101111 00100000 01100011 01110010 01101001 01101101 01100101"
@@ -121,9 +176,13 @@
     state: non
   - type: Clothing
     equippedPrefix: non
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckNonBinaryPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckPansexualPin
   name: pansexual pin
   description: Be pan do crime.
@@ -132,9 +191,13 @@
     state: pan
   - type: Clothing
     equippedPrefix: pan
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckPansexualPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckPluralPin
   name: plural pin
   description: Be plural do crimes. # Frontier: consistent grammar
@@ -143,9 +206,13 @@
     state: plural
   - type: Clothing
     equippedPrefix: plural
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckPluralPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckOmnisexualPin
   name: omnisexual pin
   description: Be omni do crime.
@@ -154,9 +221,13 @@
     state: omni
   - type: Clothing
     equippedPrefix: omni
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckOmnisexualPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckGenderqueerPin
   name: genderqueer pin
   description: Be crime do gender. # Frontier: consistent grammar
@@ -165,9 +236,13 @@
     state: gender
   - type: Clothing
     equippedPrefix: gender
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckGenderqueerPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckGenderfluidPin
   name: genderfluid pin
   description: Be gender be fluid. # Frontier: consistent grammar
@@ -176,9 +251,13 @@
     state: fluid
   - type: Clothing
     equippedPrefix: fluid
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckGenderfluidPin
+    requireTag: GenderPin
 
 - type: entity
-  parent: ClothingNeckPinBase
+  parent: ClothingGenderPinBase
   id: ClothingNeckTransPin
   name: transgender pin
   description: Be trans do crime.
@@ -187,6 +266,10 @@
     state: trans
   - type: Clothing
     equippedPrefix: trans
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckTransPin
+    requireTag: GenderPin
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -198,6 +281,10 @@
     state: autism
   - type: Clothing
     equippedPrefix: autism
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckAutismPin
+    requireTag: GenderPin
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -209,3 +296,7 @@
     state: goldautism
   - type: Clothing
     equippedPrefix: goldautism
+  - type: ChameleonClothing
+    slot: [neck]
+    default: ClothingNeckGoldAutismPin
+    requireTag: GenderPin
