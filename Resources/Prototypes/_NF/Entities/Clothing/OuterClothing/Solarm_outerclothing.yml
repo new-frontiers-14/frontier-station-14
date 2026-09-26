@@ -1,0 +1,18 @@
+- type: entity
+  id: ClothingOuterCoatBlackBurka
+  suffix: Solarm
+  name: black linen burka
+  parent: [ BaseC1Contraband, ClothingOuterCoatHoSTrench ]
+  description: An giant, black-colored burka with full-body cover, mainly used by religious people of 91-st sector. Has a weak protection by armor plates under burka. 
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/Solarm/blackburka.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/Solarm/blackburka.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Piercing: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodBlackBurka
