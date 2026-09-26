@@ -3,6 +3,7 @@ using Content.Server.PowerCell;
 using Content.Shared._NF.PlantAnalyzer;
 using Content.Shared.Atmos;
 using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
@@ -183,6 +184,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             HarvestType = harvestType,
             ExudeGases = GetGasFlags(seedData.ExudeGasses.Keys),
             ConsumeGases = GetGasFlags(seedData.ConsumeGasses.Keys),
+            ConvertGasesData = new Dictionary<Gas, (Gas, FixedPoint2, FixedPoint2)>(seedData.ConvertGases),
             Endurance = seedData.Endurance,
             SeedYield = seedData.Yield,
             Lifespan = seedData.Lifespan,
@@ -223,6 +225,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         if (plant.Seedless || plant.PermanentlySeedless) ret |= MutationFlags.Seedless;
         if (plant.Ligneous) ret |= MutationFlags.Ligneous;
         if (plant.CanScream) ret |= MutationFlags.CanScream;
+        if (plant.Mutations.Any(mut => mut.Name == "Slippery")) ret |= MutationFlags.Slippery;
 
         return ret;
     }
