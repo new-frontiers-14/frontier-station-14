@@ -285,3 +285,21 @@
     - state: decal-shell-uranium
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxBigShellShotgunBeanbag
+  parent: NFBaseAmmunitionBoxBigShellShotgun
+  name: bulk shell box (.50 beanbag)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-shell-beanbag
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
