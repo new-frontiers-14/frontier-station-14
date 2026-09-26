@@ -384,6 +384,9 @@ uplink-pirate-pouch-captain-desc = This pouch shows your status as the captain. 
 uplink-pirate-pouch-name = Pirate's Pouch
 uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 
+uplink-pirate-spyglass-name = Spyglass
+uplink-pirate-spyglass-desc = A useful tool to spot your treasure before it spots you.
+
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
 
