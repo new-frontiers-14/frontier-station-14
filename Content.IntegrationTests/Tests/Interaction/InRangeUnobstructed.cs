@@ -4,7 +4,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 
 namespace Content.IntegrationTests.Tests.Interaction
 {
@@ -31,7 +30,6 @@ namespace Content.IntegrationTests.Tests.Interaction
             var server = pair.Server;
 
             var sEntities = server.ResolveDependency<IEntityManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
             var conSystem = sEntities.EntitySysManager.GetEntitySystem<SharedContainerSystem>();
             var tSystem = sEntities.EntitySysManager.GetEntitySystem<TransformSystem>();
 
