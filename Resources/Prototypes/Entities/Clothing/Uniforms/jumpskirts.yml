@@ -650,6 +650,17 @@
       sprite: Clothing/Uniforms/Jumpskirt/tacticalmaid.rsi
 
 - type: entity
+  parent: [BaseC3SyndicateContraband, ClothingUniformSkirtBase, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
+  id: ClothingUniformJumpskirtSyndicateTacticalMaid
+  name: red tactical maid suitskirt
+  description: It is assumed that the best maids should have designer suits... this one is red.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/syndicatetacticalmaid.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/syndicatetacticalmaid.rsi
+
+- type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtOfLife
   name: skirt of life
