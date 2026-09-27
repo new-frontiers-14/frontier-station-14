@@ -236,7 +236,7 @@
 - type: entity
   parent: NFHolopadGrid
   id: NFHolopadGridCaptain
-  suffix: Captain's Office, Local
+  suffix: Captain, Local
   components:
   - type: Label
     currentLabel: nf-holopad-grid-captain
@@ -252,7 +252,7 @@
 - type: entity
   parent: NFHolopadGrid
   id: NFHolopadGridMedical
-  suffix: Medical Office, Local
+  suffix: Medical, Local
   components:
   - type: Label
     currentLabel: nf-holopad-grid-medical
@@ -260,7 +260,7 @@
 - type: entity
   parent: NFHolopadGrid
   id: NFHolopadGridCargo
-  suffix: Cargo Bay, Local
+  suffix: Cargo, Local
   components:
   - type: Label
     currentLabel: nf-holopad-grid-cargo
@@ -276,7 +276,7 @@
 - type: entity
   parent: NFHolopadGrid
   id: NFHolopadGridScience
-  suffix: Science Lab, Local
+  suffix: Science, Local
   components:
   - type: Label
     currentLabel: nf-holopad-grid-science
@@ -288,6 +288,30 @@
   components:
   - type: Label
     currentLabel: nf-holopad-grid-common
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCommon
+  suffix: Bar, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-bar
+    
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCommon
+  suffix: Kitchen, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-kitchen
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCommon
+  suffix: Janitor, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-janitor
 
 - type: entity
   parent: NFHolopadGrid
