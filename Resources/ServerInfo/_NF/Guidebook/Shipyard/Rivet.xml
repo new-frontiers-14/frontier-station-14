@@ -1,12 +1,15 @@
 <Document>
   # RIVET-CLASS ENGINEERING SHUTTLE
   <Box>
-    <GuideEntityEmbed Entity="EngineeringTechFab"/>
-    <GuideEntityEmbed Entity="BannerEngineering"/>
-  </Box>
-  <Box>
-  <GuideEntityEmbed Entity="ShuttleMapRivet" Caption=""/>
-  </Box>
+		<GuideEntityEmbed Entity="EngineeringTechFab" Caption="Fabrication"/>
+		<GuideEntityEmbed Entity="BannerEngineering" Caption="Engineering"/>
+	</Box>
+	<Box>
+		<GuideEntityEmbed Entity="ShuttleMapRivet" Caption=""/>
+	</Box>
+  
+  # Operational Specifications
+  
   [color=#a4885c]Ship Size:[/color] Small
 
   [color=#a4885c]Recommended Crew:[/color] 1-3
@@ -15,24 +18,58 @@
 
   # Shuttle Brief
   
-  The Rivet is a compact engineering and recovery shuttle designed to provide essential repair, fabrication, and field support capabilities at a low entry cost.
+  The Rivet is a compact engineering and recovery shuttle designed to provide essential repair, fabrication, and field support capabilities at a lowered entry cost.
   
-  Its small hull and practical layout makes it well suited for independent engineering work, emergency repairs, and recovery operations where a larger engineering vessel is unnecessary.
+  Its small hull and practical layout make it well suited for independent engineering work, emergency repairs, and recovery operations where a larger engineering vessel is unnecessary.
   
   [italic]Brought to you by Stonian Industries.[/italic]
 
   # Ship Functions
   
   <Box>
-  <GuideEntityEmbed Entity="ButtonFrameGrey" Caption="Toggle Window Shutters"/>
-  <GuideEntityEmbed Entity="ButtonFrameExit" Caption="Toggle Main Bay Shutters"/>
-  </Box>
+		<GuideEntityEmbed Entity="ButtonFrameGrey" Caption="Toggle Window Shutters"/>
+		<GuideEntityEmbed Entity="ButtonFrameExit" Caption="Toggle Main Bay Shutters"/>
+	</Box>
+
+  # Operational Notes
+
+  Standard recommendations:
+  
+  1. Take note of standard Piloting guides.
+  
+  2. Take note of relevant standard role guides.
+  
+  3. Ensure all critical components are anchored.
+  
+  4. Take note of base power load and adjust generators accordingly to reduce fuel consumption.
+  
+  5. Follow proper cleaning and maintenance guidelines.
+  
+  6. Ship modification is encouraged, we will buy your ships back regardless of condition.
+  
+  7. Have a safe and productive shift, whenever possible.
 
   # Piloting
 
   [textlink="Piloting" link="Piloting"/]
 
   [textlink="Sector Topology" link="SectorTopology"/]
+  
+  # Staffing
+  
+  The Rivet has a recommended crew count range of 1 to 3, but could support more or less.
+  
+  Crew composition can vary as needed, but the following roles are supported.
+  
+  Primary
+  <Box>
+		<GuideEntityEmbed Entity="RandomHumanoidVisitorEngineer" Caption="Ship Engineer"/>
+	</Box>
+  
+  Secondary
+  <Box>
+		<GuideEntityEmbed Entity="RandomHumanoidVisitorSalvageSpecialist" Caption="Salvage Specialist"/>
+	</Box>
 
   # Hiring crew
 
@@ -43,5 +80,8 @@
   # PREFLIGHT CHECKLIST
 
   [textlink="Preflight Checklist" link="PreflightChecklist"/]
-
+  
+  # Engineering
+  
+  [textlink="Engineering" link="Engineering"/]
 </Document>
