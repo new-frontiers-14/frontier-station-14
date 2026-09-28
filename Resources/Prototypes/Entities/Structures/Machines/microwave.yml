@@ -115,38 +115,8 @@
     guides:
     - Chef
     - FoodRecipes
-  - type: Item
-    sprite: Structures/Machines/microwave.rsi
-    size: Ginormous
-  - type: MultiHandedItem
-  - type: MeleeWeapon
-    attackRate: 0.5
-    soundHit:
-      collection: MetalBreak
-    damage:
-      types:
-        Blunt: 25
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 10
-  - type: DamageOnHit
-    damage:
-      types:
-        Blunt: 10
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 50
-  - type: EmitSoundOnLand
-    sound:
-      collection: MetalBreak
-      params:
-        variation: 0.25
-  - type: HeldSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
-  - type: DamageExaminable
+  - type: PirateBountyItem # Frontier
+    id: KitchenMicrowave # Frontier
 
 - type: entity
   id: SyndicateMicrowave
