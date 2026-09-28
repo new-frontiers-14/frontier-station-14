@@ -570,6 +570,7 @@
   recipeUnlocks:
   - BorgModuleAdvancedParamedic
   - BorgModuleAdvancedChemical
+  - BorgModulePill
   technologyPrerequisites:
   - NFBluespaceChemistry
   position: 2, 10
@@ -895,7 +896,7 @@
   - JukeboxCircuitBoard
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 1, 18
+  position: 2, 19
 
 - type: technology
   id: NFAdvancedEntertainment
@@ -926,6 +927,20 @@
   position: 1, 20
 
 - type: technology
+  id: NFAdvancedCyborgInstruments
+  name: nf-research-technology-advanced-cyborg-instruments
+  entityIcon: AdvancedBorgModuleMusique
+  discipline: NFService
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - AdvancedBorgModuleMusique
+  - BorgModuleMutation
+  technologyPrerequisites:
+  - NFAdvancedInstruments
+  position: 3, 19
+
+- type: technology
   id: NFPushHorn
   name: nf-research-technology-clowning-utilities
   entityIcon: PushHorn
@@ -936,7 +951,7 @@
   - PushHorn
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 2, 19
+  position: 1, 18
 
 - type: technology
   id: SuperInstruments
@@ -1028,6 +1043,7 @@
   cost: 2500
   recipeUnlocks:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedSprayNozzle
   technologyPrerequisites:
   - NFAdvancedCleaning
   position: 3, 21

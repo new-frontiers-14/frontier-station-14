@@ -149,6 +149,80 @@
         - Opaque
       fly-by: *flybyfixture
 
+- type: entity
+  id: NFBulletShockNetGrenade
+  name: shock net
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/shock_net.rsi
+    state: shock-net-launched
+  - type: MultiHandedItem
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 10
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Shock: 5
+  - type: Ensnaring
+    freeTime: 1.5
+    breakoutTime: 6.0
+    walkSpeed: 0.40
+    sprintSpeed: 0.40
+    staminaDamage: 50
+    canThrowTrigger: true
+    canMoveBreakout: false
+    maxEnsnares: 1
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.3
+
+- type: entity
+  id: NFBulletGrenadeTearGas
+  name: tear gas grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+     - state: grenade
+  - type: ExplodeOnTrigger
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
+
 # region Upstream
 - type: entity
   parent: MuzzleFlashEffect
