@@ -292,14 +292,22 @@
 - type: entity
   parent: NFHolopadGrid
   id: NFHolopadGridCommon
+  suffix: Common Area, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-common
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridBar
   suffix: Bar, Local
   components:
   - type: Label
     currentLabel: nf-holopad-grid-bar
-    
+
 - type: entity
   parent: NFHolopadGrid
-  id: NFHolopadGridCommon
+  id: NFHolopadGridKitchen
   suffix: Kitchen, Local
   components:
   - type: Label
@@ -307,7 +315,7 @@
 
 - type: entity
   parent: NFHolopadGrid
-  id: NFHolopadGridCommon
+  id: NFHolopadGridJanitor
   suffix: Janitor, Local
   components:
   - type: Label
