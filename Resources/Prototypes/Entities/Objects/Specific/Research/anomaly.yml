@@ -21,6 +21,12 @@
     - ScannersAndVessels
   - type: Item
     storedRotation: -90
+  # Frontier
+  - type: PhysicalComposition # Same as the ScrapPAI
+    materialComposition:
+      Plastic: 50 # half a sheet, quarter Fabrication cost
+      Glass: 50 # half a sheet, quarter-ish Fabrication cost
+  # End Frontier
 
 - type: entity
   id: AnomalyLocatorUnpowered
@@ -59,6 +65,12 @@
       params:
         maxDistance: 1
         volume: -8
+  # Frontier
+  - type: PhysicalComposition # Same as the ScrapPAI
+    materialComposition:
+      Steel: 100 # 1 sheets, quarter Fabrication cost
+      Glass: 50 # half a sheet, half Fabrication cost
+  # End Frontier
 
 - type: entity
   id: AnomalyLocator
@@ -94,6 +106,12 @@
     maxBeepInterval: 2.0
   - type: ProximityDetector
     range: 40
+  # Frontier
+  - type: PhysicalComposition # Same as the ScrapPAI
+    materialComposition:
+      Steel: 100 # 2 sheets, quarter Fabrication cost
+      Glass: 50 # half a sheet, half Fabrication cost
+  # End Frontier
 
 - type: entity
   id: AnomalyLocatorWide
