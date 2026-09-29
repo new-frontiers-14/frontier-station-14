@@ -4,6 +4,7 @@ using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Lander; // Frontier
 using Content.Server._NF.Salvage; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
@@ -93,6 +94,13 @@ public sealed partial class SalvageSystem
             _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
             foreach (var otherGrid in otherGrids)
             {
+                // Frontier: Skip proximity check for lander if nearby grid is our mothership.
+                if (TryComp<LanderComponent>(ourGrid, out var lander)
+                    && lander.MotherStation == _station.GetOwningStation(otherGrid))
+                {
+                    continue;
+                }
+                // End Frontier
                 if (ourGrid == otherGrid.Owner ||
                     !bodyQuery.TryGetComponent(otherGrid.Owner, out var body) ||
                     body.Mass < ShuttleFTLMassThreshold && body.BodyType == BodyType.Dynamic)
