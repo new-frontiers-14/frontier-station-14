@@ -1,7 +1,10 @@
+using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
@@ -24,9 +27,10 @@ public sealed class OneHandParalyzedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<OneHandParalyzedComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<OneHandParalyzedComponent, PickupAttemptEvent>(OnPickUpAttempt);
+        SubscribeLocalEvent<OneHandParalyzedComponent, BeforeEquippingHandEvent>(BeforeEquippingHand);
         SubscribeLocalEvent<OneHandParalyzedComponent, WieldAttemptEvent>(OnWieldAttempt);
         SubscribeLocalEvent<OneHandParalyzedComponent, PullAttemptEvent>(OnPullAttempt);
+
         SubscribeLocalEvent<OneHandParalyzedComponent, InteractionAttemptEvent>(OnInteractionAttemptEvent);
     }
 
@@ -42,38 +46,46 @@ public sealed class OneHandParalyzedSystem : EntitySystem
         return _sharedHandsSystem.GetActiveHand(ent.Owner) == ent.Comp.ParalyzedHand;
     }
 
-    private void OnPickUpAttempt(Entity<OneHandParalyzedComponent> ent, ref PickupAttemptEvent args)
+    private bool CanPickup(Entity<OneHandParalyzedComponent> ent, EntityUid target)
     {
-        if (args.Cancelled)
-            return;
-
         // Can't carry item that requires two hands if you have 2 (or less) hands and one of them is paralyzed.
-        var itemTooBig = HasComp<MultiHandedItemComponent>(args.Item) &&
-                         _sharedHandsSystem.GetHandCount(args.User) <= 2;
+        var itemTooBig = HasComp<MultiHandedItemComponent>(target) &&
+                         _sharedHandsSystem.GetHandCount(ent.Owner) <= 2;
 
-        if (!UsingParalyzedHand(ent) && !itemTooBig)
+        return !UsingParalyzedHand(ent) && !itemTooBig;
+    }
+
+    private void BeforeEquippingHand(Entity<OneHandParalyzedComponent> ent, ref BeforeEquippingHandEvent args)
+    {
+        if (args.Cancelled || CanPickup(ent, args.Item))
             return;
 
+        args.Cancelled = true;
         var message = Loc.GetString("trait-one-hand-paralyzed-pickup-attempt", ("item", Identity.Entity(args.Item, EntityManager)));
         _popupSystem.PopupClient(message, ent, ent, PopupType.SmallCaution);
-        args.Cancel();
     }
 
     private void OnInteractionAttemptEvent(Entity<OneHandParalyzedComponent> ent, ref InteractionAttemptEvent args)
     {
-        if (UsingParalyzedHand(ent))
+        if (args.Cancelled || !UsingParalyzedHand(ent))
+            return;
+
+        // If target is not null, or an entity with ActivatableUI, don't cancel.
+        if (args.Target is not { } target || HasComp<ActivatableUIComponent>(target))
+            return;
+
+        // Check if target doesn't have dangerous triggers that might be fallen back to when the click to pickup fails, like triggering a bomb.
+        if (!HasComp<ItemToggleComponent>(target) && !HasComp<TriggerOnActivateComponent>(target) &&
+            !HasComp<StorageComponent>(target))
+            return;
+
+        args.Cancelled = true;
+
+        if (args.ShowPopup)
         {
-            // If target is null or an entity with ActivatableUI, do nothing?
-            if (args.Target is not { } target || HasComp<ActivatableUIComponent>(target))
-            {
-            }
-            else if (HasComp<ItemToggleComponent>(target) || HasComp<TriggerOnActivateComponent>(target) || HasComp<StorageComponent>(target))
-            {
-                args.Cancelled = true;
-                var message = Loc.GetString("trait-one-hand-paralyzed-activate-attempt",
-                    ("item", Identity.Entity(target, EntityManager)));
-                _popupSystem.PopupClient(message, ent, ent, PopupType.SmallCaution);
-            }
+            var message = Loc.GetString("trait-one-hand-paralyzed-activate-attempt",
+                ("item", Identity.Entity(target, EntityManager)));
+            _popupSystem.PopupClient(message, ent, ent, PopupType.SmallCaution); //TODO: get this to pop up when an interaction attempt actually happens.
         }
     }
 
@@ -90,9 +102,9 @@ public sealed class OneHandParalyzedSystem : EntitySystem
         if (!UsingParalyzedHand(ent) && !itemTooBig)
             return;
 
-            var message = Loc.GetString("trait-one-hand-paralyzed-pull-attempt", ("item", Identity.Entity(args.PulledUid, EntityManager)));
-            _popupSystem.PopupClient(message, ent.Owner, ent.Owner, PopupType.SmallCaution);
-            args.Cancelled = true;
+        var message = Loc.GetString("trait-one-hand-paralyzed-pull-attempt", ("item", Identity.Entity(args.PulledUid, EntityManager)));
+        _popupSystem.PopupClient(message, ent.Owner, ent.Owner, PopupType.SmallCaution);
+        args.Cancelled = true;
         }
 
         private void OnWieldAttempt(Entity<OneHandParalyzedComponent> ent, ref WieldAttemptEvent args)

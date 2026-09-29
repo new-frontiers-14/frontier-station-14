@@ -79,12 +79,12 @@ namespace Content.Shared.ActionBlocker
         ///     check other blockers like <see cref="CanPickup(EntityUid)"/>
         /// </remarks>
         /// <returns></returns>
-        public bool CanInteract(EntityUid user, EntityUid? target)
+        public bool CanInteract(EntityUid user, EntityUid? target, bool showPopup = false) // Frontier: prevent popups on interaction check
         {
             if (!CanConsciouslyPerformAction(user))
                 return false;
 
-            var ev = new InteractionAttemptEvent(user, target);
+            var ev = new InteractionAttemptEvent(user, target, showPopup); // Frontier: prevent popups on interaction check
             RaiseLocalEvent(user, ref ev);
 
             if (ev.Cancelled)
