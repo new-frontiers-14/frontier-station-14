@@ -250,7 +250,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (TryComp<SalvageExpeditionDataComponent>(shuttleStationUid, out var time)
                 && time.Cooldown
                 && TryComp<LanderComponent>(shuttleUid, out var lander)
-                && _station.GetLargestGrid(lander.MotherStation) is not { })
+                && _station.GetLargestGrid(lander.MotherStation) is { })
             {
                 result.Error = ShipyardSaleError.ExpeditionCooldown;
                 result.CooldownTime = time.NextOffer - _timing.CurTime;
