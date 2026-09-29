@@ -43,7 +43,7 @@ using Content.Shared.Forensics.Components;
 using Robust.Server.Player;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Whitelist.Components;
-using Content.Server._NF.Lander; // Frontier
+using Content.Server._NF.Lander;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -415,6 +415,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     break;
                 case ShipyardSaleError.InvalidShip:
                     ConsolePopup(player, Loc.GetString("shipyard-console-sale-invalid-ship"));
+                    break;
+                case ShipyardSaleError.ExpeditionCooldown:
+                    ConsolePopup(player, Loc.GetString("shipyard-console-sale-expedition-cooldown", ("time", saleResult.CooldownTime.ToString("mm\\:ss"))));
                     break;
                 default:
                     ConsolePopup(player, Loc.GetString("shipyard-console-sale-unknown-reason", ("reason", saleResult.Error.ToString())));

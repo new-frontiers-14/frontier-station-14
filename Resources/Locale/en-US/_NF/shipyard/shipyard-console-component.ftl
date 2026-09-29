@@ -15,6 +15,7 @@ shipyard-console-no-deed = No ship deed found.
 shipyard-console-sale-reqs = Ship must be docked and all crew disembarked.
 shipyard-console-sale-not-docked = Ship must be docked.
 shipyard-console-sale-organic-aboard = All crew must disembark. {$name} is still aboard.
+shipyard-console-sale-expedition-cooldown = Ship has expedition cooldown: {$time}.
 # This error message is bad, but if it happens, something awful's happened.
 shipyard-console-sale-invalid-ship = Ship is invalid and cannot be sold.
 shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
