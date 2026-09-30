@@ -251,18 +251,11 @@ public sealed partial class SalvageSystem
                             }
 
                             // Frontier: Hardcode snippet to check if shuttle is an expedition lander for FTL.
-                            if (TryComp<LanderComponent>(shuttleUid, out var target))
+                            if (TryComp<LanderComponent>(shuttleUid, out var target)
+                                && _station.GetLargestGrid(target.MotherStation) is { } targetGrid)
                             {
-                                if (_station.GetLargestGrid(target.MotherStation) is not { } targetGrid)
-                                {
-                                    RemComp<LanderComponent>(shuttleUid);
-                                    return;
-                                }
-                                else
-                                {
-                                    _shuttle.FTLToDock(shuttleUid, shuttle, targetGrid, ftlTime, TravelTime);
-                                    break;
-                                }
+                                _shuttle.FTLToDock(shuttleUid, shuttle, targetGrid, ftlTime, TravelTime);
+                                break;
                             }
 
                             // Destination generator parameters (move to CVAR?)

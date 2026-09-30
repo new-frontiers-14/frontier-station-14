@@ -75,6 +75,16 @@ public sealed partial class SalvageSystem
             return;
         }
 
+        // Frontier: Prevent FTL if expedition lander has no valid mothership.
+        if (TryComp<LanderComponent>(ourGrid, out var motherStation)
+            && _station.GetLargestGrid(motherStation.MotherStation) is not { })
+        {
+            PlayDenySound((uid, component));
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid-mothership"), uid, PopupType.MediumCaution);
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+
         // Run a proximity check (unless using a debug console)
         if (_salvage.ProximityCheck && !component.Debug)
         {
@@ -100,7 +110,7 @@ public sealed partial class SalvageSystem
                 {
                     continue;
                 }
-                // End Frontier
+
                 if (ourGrid == otherGrid.Owner ||
                     !bodyQuery.TryGetComponent(otherGrid.Owner, out var body) ||
                     body.Mass < ShuttleFTLMassThreshold && body.BodyType == BodyType.Dynamic)
