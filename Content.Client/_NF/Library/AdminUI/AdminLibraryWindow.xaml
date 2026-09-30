@@ -1,0 +1,61 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc library-admin-window-title}"
+               SetSize="750 550"
+               MinSize="600 400">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
+
+        <!-- Search bar -->
+        <LineEdit Name="SearchEdit"
+                  PlaceHolder="{Loc library-admin-search-placeholder}"
+                  HorizontalExpand="True"
+                  Margin="0 0 0 4" />
+
+        <!-- Empty state label -->
+        <Label Name="EmptyLabel"
+               Text="{Loc library-admin-empty}"
+               HorizontalAlignment="Center"
+               Visible="False"
+               Margin="0 0 0 4" />
+
+        <!-- Book list -->
+        <ItemList Name="BookList"
+                  SelectMode="Single"
+                  HorizontalExpand="True"
+                  VerticalExpand="True"
+                  Margin="0 0 0 4" />
+
+        <!-- Detail preview panel (hidden until a book is selected) -->
+        <PanelContainer Name="PreviewPanel"
+                        HorizontalExpand="True"
+                        Visible="False"
+                        Margin="0 0 0 4">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4">
+                <Label Name="PreviewTitle" Text="" HorizontalAlignment="Left" />
+                <Label Name="PreviewAuthor" Text="" HorizontalAlignment="Left" />
+                <Label Name="PreviewPlayerUserId" Text="" HorizontalAlignment="Left" />
+                <Label Name="PreviewDate" Text="" HorizontalAlignment="Left" />
+                <Control MinHeight="4" />
+                <ScrollContainer MaxHeight="120" HorizontalExpand="True">
+                    <Label Name="PreviewContent"
+                           Text=""
+                           HorizontalAlignment="Left"
+                           ClipText="False" />
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Action buttons -->
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Button Name="OpenBookViewButton"
+                Text="{Loc library-admin-open-book-view-button}"
+                HorizontalExpand="True"
+                Disabled="True" />
+
+            <Button Name="DeleteButton"
+                Text="{Loc library-admin-delete-button}"
+                HorizontalExpand="True"
+                Disabled="True" />
+        </BoxContainer>
+
+    </BoxContainer>
+</DefaultWindow>
