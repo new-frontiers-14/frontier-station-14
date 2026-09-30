@@ -8,7 +8,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
-using System.Numerics;
 using Content.Shared.Coordinates;
 using Robust.Shared.Random;
 
@@ -41,20 +40,25 @@ public sealed partial class NFCargoSystem
         if (Transform(ent).GridUid is not EntityUid gridUid)
         {
             _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
-            new NFCargoPalletConsoleInterfaceState(0, 0, false));
+                new NFCargoPalletConsoleInterfaceState());
             return;
         }
 
         // Modify prices based on modifier.
         GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount, out Dictionary<string, double> additionalCurrency);
+        var modifier = 1.0f;
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
         {
-            amount *= priceMod.Mod;
+            modifier = priceMod.Mod;
         }
-        amount += noModAmount;
 
         _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
-            new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true));
+            new NFCargoPalletConsoleInterfaceState(
+                (int)(amount + noModAmount),
+                toSell.Count,
+                modifier,
+                (int)(amount * modifier + noModAmount),
+                true));
     }
 
     private void OnPalletUIOpen(Entity<NFCargoPalletConsoleComponent> ent, ref BoundUIOpenedEvent args)
@@ -197,7 +201,7 @@ public sealed partial class NFCargoSystem
                     noMultiplierAmount += price;
                 else
                     amount += price;
-                
+
                 // Check for any additional currency payouts
                 if (TryComp(ent, out AdditionalPalletCurrencyComponent? currencyComponent))
                 {
@@ -250,7 +254,7 @@ public sealed partial class NFCargoSystem
         if (xform.GridUid is not EntityUid gridUid)
         {
             _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
-            new NFCargoPalletConsoleInterfaceState(0, 0, false));
+                new NFCargoPalletConsoleInterfaceState());
             return;
         }
 
@@ -268,7 +272,7 @@ public sealed partial class NFCargoSystem
         var stackUid = _stack.Spawn((int)price, stackPrototype, args.Actor.ToCoordinates());
         if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
             _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
-        
+
         // Iterate through additional currency payouts, putting them in hand if possible
         foreach (var (currencyId, currencyAmount) in additionalCurrency)
         {
