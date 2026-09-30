@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Cargo.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -14,6 +15,7 @@ using Content.Shared.Station.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -36,6 +38,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -125,7 +128,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
-    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
+    /// <param name="atmos">
+    ///     An atmosphere prototype to fill the shuttle with. Will use the grid-defined atmosphere if <c>null</c>.
+    ///     Ignored unless <see cref="NFCCVars.ShipyardCustomAtmos"/> is <c>true</c>.
+    /// </param>
+    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid, ShuttleAtmospherePrototype? atmos = null)
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
             || !TryAddShuttle(shuttlePath, out var shuttleGrid)
@@ -144,6 +151,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             QueueDel(shuttleGrid);
             shuttleEntityUid = null;
             return false;
+        }
+
+        if (_configManager.GetCVar(NFCCVars.ShipyardCustomAtmos) && atmos != null)
+        {
+            SetShuttleAtmosphere(shuttleGrid.Value, atmos);
         }
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString(stationUid)} for {price:f2}");
