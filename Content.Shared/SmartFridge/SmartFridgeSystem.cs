@@ -1,6 +1,8 @@
 using Content.Shared.Access.Systems;
+using Content.Shared.Construction;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Destructible;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -30,6 +32,9 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         SubscribeLocalEvent<SmartFridgeComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(AnchorableSystem)]);
         SubscribeLocalEvent<SmartFridgeComponent, EntRemovedFromContainerMessage>(OnItemRemoved);
+
+        SubscribeLocalEvent<SmartFridgeComponent, DestructionEventArgs>(OnDestroy);
+        SubscribeLocalEvent<SmartFridgeComponent, MachineDeconstructedEvent>(OnDeconstructed);
 
         SubscribeLocalEvent<SmartFridgeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerb);
         SubscribeLocalEvent<SmartFridgeComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
@@ -191,4 +196,24 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         DoInsert(ent, args.User, args.DumpQueue, false);
     }
+
+    private void DropContent(EntityUid uid, SmartFridgeComponent comp)
+    {
+
+        if (!_container.TryGetContainer(uid, comp.Container, out var container))
+            return;
+
+        _container.EmptyContainer(container, force: true);
+
+    }
+
+    private void OnDestroy(EntityUid uid, SmartFridgeComponent comp, DestructionEventArgs eventArgs)
+    {
+        DropContent(uid, comp);
+    }
+    private void OnDeconstructed(EntityUid uid, SmartFridgeComponent comp, MachineDeconstructedEvent eventArgs)
+    {
+        DropContent(uid, comp);
+    }
+
 }
