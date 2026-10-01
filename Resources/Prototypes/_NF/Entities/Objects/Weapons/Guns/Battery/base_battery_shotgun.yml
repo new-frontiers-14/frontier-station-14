@@ -22,11 +22,11 @@
   - type: GunRequiresWield
   - type: Gun
     projectileSpeed: 30
-    minAngle: 1.1
-    maxAngle: 5.5
-    angleIncrease: 0.3
-    angleDecay: 1.5
-    fireRate: 2.25
+    minAngle: 3.4
+    maxAngle: 17
+    angleIncrease: 0.9
+    angleDecay: 4.5
+    fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -68,16 +68,6 @@
   id: NFBaseWeaponEnergyShotgunFireModes
   abstract: true
   components:
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mode-lethal
-      map: ["Firemode"]
-      shader: unshaded
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
   - type: Gun
     examineCaliber: gun-examine-energybolt-high
     soundGunshot:
@@ -95,9 +85,3 @@
       fireCost: 80
       name: stun
       state: disabler
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
