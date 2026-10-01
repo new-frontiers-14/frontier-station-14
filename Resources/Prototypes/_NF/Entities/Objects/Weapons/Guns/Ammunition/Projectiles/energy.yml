@@ -73,7 +73,7 @@
     impactEffect: BulletImpactEffectOrangeDisabler
     damage:
       types:
-        Heat: 5
+        Heat: 7
 
 - type: entity
   id: NFBulletLaserSpread
@@ -81,7 +81,7 @@
   parent: NFBulletLaserVeryLow
   components:
   - type: ProjectileSpread
-    proto: NFBulletLaserLow
+    proto: NFBulletLaserVeryLow
     count: 5
     spread: 30
 
@@ -91,7 +91,7 @@
   parent: NFBulletLaserSpread
   components:
   - type: ProjectileSpread
-    proto: NFBulletLaserLow
+    proto: NFBulletLaserVeryLow
     count: 3
     spread: 10
 
