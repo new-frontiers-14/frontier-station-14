@@ -33,8 +33,10 @@ public sealed class SmartFridgeSystem : EntitySystem
         SubscribeLocalEvent<SmartFridgeComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(AnchorableSystem)]);
         SubscribeLocalEvent<SmartFridgeComponent, EntRemovedFromContainerMessage>(OnItemRemoved);
 
+        //Frontier: drop content on destruction or deconstruct
         SubscribeLocalEvent<SmartFridgeComponent, DestructionEventArgs>(OnDestroy);
         SubscribeLocalEvent<SmartFridgeComponent, MachineDeconstructedEvent>(OnDeconstructed);
+        //Frontier End
 
         SubscribeLocalEvent<SmartFridgeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerb);
         SubscribeLocalEvent<SmartFridgeComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
@@ -197,6 +199,7 @@ public sealed class SmartFridgeSystem : EntitySystem
         DoInsert(ent, args.User, args.DumpQueue, false);
     }
 
+    //Frontier: drop content on destruction or deconstruct
     private void DropContent(EntityUid uid, SmartFridgeComponent comp)
     {
 
@@ -215,5 +218,6 @@ public sealed class SmartFridgeSystem : EntitySystem
     {
         DropContent(uid, comp);
     }
+    //Frontier end
 
 }

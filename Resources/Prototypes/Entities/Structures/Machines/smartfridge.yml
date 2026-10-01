@@ -1,6 +1,6 @@
 - type: entity
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
-  id: BaseSmartFridge
+  parent: [ BaseMachinePowered, ConstructibleMachine ] #Frontier: constructible smartfridge
+  id: BaseSmartFridge #frontier BaseSmartFridge as the abstract parent to all variants
   abstract: true
   name: BaseSmartFridge
   components:
@@ -34,6 +34,7 @@
     whitelist: #frontier: fill in descendant prototype
       components:
       tags:
+    title: smart-fridge-component-title #Frontier: change menu title to yml hardcoded in xaml
   - type: ActivatableUI
     key: enum.SmartFridgeUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -75,7 +76,7 @@
         acts: ["Breakage"]
     - trigger:
         !type:DamageTrigger
-        damage: 400 #Frontier: boosted from 200, to prevent possible frustration with new variants deleting inventories
+        damage: 200
       behaviors:
       - !type:ChangeConstructionNodeBehavior
         node: machineFrame
@@ -115,6 +116,7 @@
       - BallisticAmmoProvider
       tags:
       - HandGrenade
+    title: smart-ammomate-component-title
   - type: Sprite
     sprite: Structures/Machines/SmartAmmoMate.rsi
     snapCardinals: true
@@ -151,10 +153,13 @@
   - type: SmartFridge
     whitelist:
       components:
-      - Cartridge
-      - BallisticAmmoProvider
+      - Stamp
+      - Envelope
+      - HandLabeler
       tags:
-      - HandGrenade
+      - Folder
+      - Paper
+    title: smart-cabinet-component-title
   - type: Sprite
     sprite: Structures/Machines/SmartCabinet.rsi
     snapCardinals: true
@@ -226,6 +231,7 @@
       - GPS
       - WeldingMask
       - RemoteSignaller
+    title: smart-tool-closet-component-title
   - type: Sprite
     sprite: Structures/Machines/SmartToolCloset.rsi
     snapCardinals: true
@@ -294,6 +300,7 @@
       - Syringe
       - ChemDispensable
       - Ingredient # Frontier
+    title: smart-fridge-component-title
 
 - type: entity # SmartFridge > medical smart fridge alias to prevent ID changes on existing maps
   parent: SmartFridgeMedical
