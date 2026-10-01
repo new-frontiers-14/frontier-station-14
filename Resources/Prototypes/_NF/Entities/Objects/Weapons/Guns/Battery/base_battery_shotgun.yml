@@ -33,12 +33,12 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.8
     sprintModifier: 0.8
-  - type: Battery # Default: 30 shots with 80 fireCost
+  - type: Battery # Default: 16 shots with 150 fireCost
     maxCharge: 2400
     startingCharge: 2400
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+    autoRechargeRate: 5 # Default recharge rate: 1 shot per 30 seconds with 150 fireCost
   - type: StaticPrice
     price: 400
   - type: NFWeaponDetails
@@ -69,13 +69,13 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserSpread
-    fireCost: 80
+    proto: NFBulletLaserSpreadNarrow
+    fireCost: 150
   - type: EnergyGun
     fireModes:
-    - proto: NFBulletLaserSpread
-      fireCost: 80
+    - proto: NFBulletLaserSpreadNarrow
+      fireCost: 150
       name: kill
     - proto: NFBulletDisablerSpread
-      fireCost: 80
+      fireCost: 150
       name: stun
