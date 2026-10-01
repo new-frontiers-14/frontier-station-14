@@ -78,8 +78,8 @@
         !type:DamageTrigger
         damage: 200
       behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
+      - !type:ChangeConstructionNodeBehavior #Frontier: Breaks into its repairable state
+        node: machineFrame #Frontier: Breaks into its repairable state
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
@@ -101,6 +101,7 @@
   - type: BindToStation # Frontier
     enabled: false # Frontier - should be draggable between stations
 
+#Frontier start: smartfridge variants
 - type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
   parent: BaseSmartFridge
   id: SmartAmmoMate
@@ -212,6 +213,7 @@
       - HandLabeler
       - AccessOverrider
       - MachinePart
+      - Flatpack
       tags:
       - Powerdrill
       - Wirecutter
@@ -305,3 +307,5 @@
 - type: entity # SmartFridge > medical smart fridge alias to prevent ID changes on existing maps
   parent: SmartFridgeMedical
   id: SmartFridge
+
+#Frontier end: smartfridge variants

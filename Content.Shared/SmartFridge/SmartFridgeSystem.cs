@@ -1,8 +1,8 @@
 using Content.Shared.Access.Systems;
-using Content.Shared.Construction;
+using Content.Shared.Construction;//Frontier: drop inventory on deconstruct
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Destructible;
+using Content.Shared.Destructible;//Frontier: drop inventory on break
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
