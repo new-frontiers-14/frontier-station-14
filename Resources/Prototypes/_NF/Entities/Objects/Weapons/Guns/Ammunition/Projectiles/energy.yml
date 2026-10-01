@@ -63,6 +63,29 @@
       types:
         Heat: 17.5
 
+# Shotguns
+- type: entity
+  name: wide laser barrage
+  id: NFBulletLaserSpread
+  categories: [ HideSpawnMenu ]
+  parent: NFBulletLaserLow
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletLaserLow
+    count: 5
+    spread: 30
+
+- type: entity
+  name: narrow laser barrage
+  id: NFBulletLaserSpreadNarrow
+  categories: [ HideSpawnMenu ]
+  parent: NFBulletLaserSpread
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletLaserLow
+    count: 4
+    spread: 10
+
 #region Disabler bolts
 - type: entity
   parent: BulletDisabler
@@ -112,6 +135,17 @@
     forceSound: true
   - type: StaminaDamageOnCollide
     damage: 14
+    
+- type: entity
+  name: disabling laser barrage
+  id: NFBulletDisablerSpread
+  categories: [ HideSpawnMenu ]
+  parent: NFBulletDisablerLow
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletDisablerLow
+    count: 3
+    spread: 9
 
 #region Kinetic bolts
 - type: entity

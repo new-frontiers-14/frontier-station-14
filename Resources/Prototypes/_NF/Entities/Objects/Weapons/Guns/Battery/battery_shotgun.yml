@@ -1,0 +1,32 @@
+- type: entity
+  name: energy shotgun
+  parent: [ NFBaseWeaponEnergyShotgunFireModes, NFBaseWeaponFrameEnergyShotgunNanotrasen, BaseC2ContrabandUnredeemable ] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
+  id: NFWeaponEnergyShotgun
+  description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: Item
+    size: Large
+    sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
+    heldPrefix: energy
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserSpread
+      fireCost: 150
+      name: kill (wide)
+      state: lethal
+    - proto: NFBulletLaserSpreadNarrow
+      fireCost: 200
+      name: kill (narrow)
+      state: lethal
+    - proto: NFBulletDisablerSpread
+      fireCost: 100
+      name: stun
+      state: disabler
