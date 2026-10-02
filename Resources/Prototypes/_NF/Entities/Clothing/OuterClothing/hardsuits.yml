@@ -312,6 +312,72 @@
     walkModifier: 0.85
     sprintModifier: 0.75
 
+#NFSD Recon Suit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNFNfsd
+  id: ClothingOuterHardsuitNfsdRecon
+  name: NFSD recon suit
+  description: Using cutting edge design in lightweight armour, the recon suit provides you a full mobility suite while also providing admirable defences.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_recon.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_recon.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdRecon
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.7
+        Radiation: 0.55
+        Caustic: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+
+#NFSD Elite Suit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNFNfsd
+  id: ClothingOuterHardsuitNfsdElite
+  name: NFSD Elite suit
+  description: An elite version of the NFSD combat hardsuit, with improved radiation resistance and fireproofing. Property of Nanotrasen.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_elite.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_elite.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdElite
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.2
+        Radiation: 0.01
+        Caustic: 0.5
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
 # SCAF hardsuit
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -469,7 +535,7 @@
         Blunt: 1.25
         Slash: 1.25
         Heat: 1.25
-  
+
 
 #Wizard Hardsuit
 - type: entity
