@@ -36,7 +36,6 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
             return;
 
         Set(entity, entity.Comp, !entity.Comp.Enabled);
-        UpdateState(entity, entity.Comp);
         args.Handled = true;
     }
 

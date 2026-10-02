@@ -6,9 +6,11 @@ namespace Content.Server._Starlight.Atmos.Piping.Unary.Components;
 [RegisterComponent]
 public sealed partial class GasInletSiphonComponent : Component
 {
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool Enabled = false;
+    public bool Enabled;
 
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float TransferRate
     {
