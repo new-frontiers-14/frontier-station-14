@@ -10,7 +10,7 @@ public sealed partial class FOStaffNameGenerator : StationNameGenerator
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "NT";
-    private string[] SuffixCodes => new []{ "NT", "FS", "NC" };
+    private string[] SuffixCodes => new []{ "NTS", "FCS", "NS" }; // NTS (Nanotrasen Staff), FCS (Frontier Comissioned Staff), NS (Nanotrasen Staff)
 
     public override string FormatName(string input)
     {

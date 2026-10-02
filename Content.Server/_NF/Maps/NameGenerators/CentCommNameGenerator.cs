@@ -10,7 +10,7 @@ public sealed partial class CentCommNameGenerator : StationNameGenerator
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "NT";
-    private string[] SuffixCodes => new []{ "CC" };
+    private string[] SuffixCodes => new []{ "CC" }; // CC (Central Command)
 
     public override string FormatName(string input)
     {

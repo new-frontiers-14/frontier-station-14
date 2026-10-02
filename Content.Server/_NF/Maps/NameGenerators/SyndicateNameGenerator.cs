@@ -9,8 +9,8 @@ public sealed partial class SyndicateNameGenerator : StationNameGenerator
     ///     Where the map comes from. Should be a two or three letter code, for example "VG" for Packedstation.
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
-    private string Prefix => "SN";
-    private string[] SuffixCodes => new []{ "CS", "DK", "GX", "IP", "WC" };
+    private string Prefix => "SYN";
+    private string[] SuffixCodes => new []{ "CS", "DK", "GLX", "IDP", "WC" }; // Cybersun, DonkCo, Gorlex, Interdyne Pharma, WaffleCo
 
     public override string FormatName(string input)
     {

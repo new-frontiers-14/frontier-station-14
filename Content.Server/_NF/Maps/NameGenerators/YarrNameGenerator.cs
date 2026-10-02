@@ -10,12 +10,12 @@ public sealed partial class YarrNameGenerator : StationNameGenerator
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "PIR";
-    private string[] SuffixCodes => new []{ "SB", "FB", "RM" };
+    private string[] SuffixCodes => new []{ "SB", "FB", "RM" }; // Steel Bolt, Freebooter, Rum Merchant
 
     public override string FormatName(string input)
     {
         var random = IoCManager.Resolve<IRobustRandom>();
 
-        return string.Format(input, $"{Prefix}{PrefixCreator}", $"{random.Pick(SuffixCodes)}-{random.Next(0, 100):D3}"); // Note: random.Next's max is exclusive, [0-99] = [0,100)
+        return string.Format(input, $"{Prefix}{PrefixCreator}", $"{random.Pick(SuffixCodes)}-{random.Next(0, 1000):D3}"); // Note: random.Next's max is exclusive, [0-999] = [0,1000)
     }
 }

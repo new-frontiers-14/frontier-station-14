@@ -10,7 +10,7 @@ public sealed partial class NFSDNameGenerator : StationNameGenerator
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "NFSD";
-    private string[] SuffixCodes => new []{ "NSF" };
+    private string[] SuffixCodes => new []{ "NSF" }; // NSF (Nanotrasen Security Force)
 
     public override string FormatName(string input)
     {
