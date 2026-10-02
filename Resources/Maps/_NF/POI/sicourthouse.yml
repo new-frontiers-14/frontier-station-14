@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/02/2026 22:07:37
-  entityCount: 4191
+  time: 10/02/2026 22:11:37
+  entityCount: 4201
 maps: []
 grids:
 - 1
@@ -910,6 +910,11 @@ entities:
           decals:
             1597: -9,1
         - node:
+            color: '#4B653E96'
+            id: WarnCornerSmallGreyscaleNE
+          decals:
+            1767: 2,4
+        - node:
             color: '#DE3A3A96'
             id: WarnFullGreyscale
           decals:
@@ -955,6 +960,13 @@ entities:
             1376: 17,7
             1678: 7,12
         - node:
+            color: '#4B653E96'
+            id: WarnLineGreyscaleE
+          decals:
+            1764: 2,5
+            1765: 2,6
+            1766: 2,7
+        - node:
             color: '#4D9BE6FF'
             id: WarnLineGreyscaleE
           decals:
@@ -973,6 +985,13 @@ entities:
           decals:
             706: 0,-25
             707: 0,-26
+        - node:
+            color: '#4B653E96'
+            id: WarnLineGreyscaleN
+          decals:
+            1761: 5,4
+            1762: 4,4
+            1763: 3,4
         - node:
             color: '#4D9BE6FF'
             id: WarnLineGreyscaleN
@@ -8255,6 +8274,51 @@ entities:
     components:
     - type: Transform
       pos: 15.5,5.5
+      parent: 1
+  - uid: 4192
+    components:
+    - type: Transform
+      pos: 5.5,-11.5
+      parent: 1
+  - uid: 4193
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
+  - uid: 4194
+    components:
+    - type: Transform
+      pos: 5.5,1.5
+      parent: 1
+  - uid: 4195
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 1
+  - uid: 4196
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 1
+  - uid: 4197
+    components:
+    - type: Transform
+      pos: 5.5,-0.5
+      parent: 1
+  - uid: 4198
+    components:
+    - type: Transform
+      pos: 5.5,-2.5
+      parent: 1
+  - uid: 4199
+    components:
+    - type: Transform
+      pos: 5.5,-3.5
+      parent: 1
+  - uid: 4200
+    components:
+    - type: Transform
+      pos: 5.5,-1.5
       parent: 1
 - proto: CableHV
   entities:
@@ -21344,6 +21408,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 13.5,-14.5
+      parent: 1
+  - uid: 4201
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,-2.5
       parent: 1
 - proto: Rack
   entities:
