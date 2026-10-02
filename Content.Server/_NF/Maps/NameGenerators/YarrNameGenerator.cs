@@ -10,7 +10,7 @@ public sealed partial class YarrNameGenerator : StationNameGenerator
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "PIR";
-    private string[] SuffixCodes => new []{ "SB", "FB", "RM" }; // Steel Bolt, Freebooter, Rum Merchant
+    private string[] SuffixCodes => new []{ "SB", "FB", "RM" }; // SB (Steel Bolt), FB (Freebooter), RM (Rum Merchant)
 
     public override string FormatName(string input)
     {

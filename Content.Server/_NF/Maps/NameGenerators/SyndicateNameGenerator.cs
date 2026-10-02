@@ -10,7 +10,7 @@ public sealed partial class SyndicateNameGenerator : StationNameGenerator
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "SYN";
-    private string[] SuffixCodes => new []{ "CS", "DK", "GLX", "IDP", "WC" }; // Cybersun, DonkCo, Gorlex, Interdyne Pharma, WaffleCo
+    private string[] SuffixCodes => new []{ "CS", "DK", "GLX", "IDP", "WC" }; // CS (Cybersun), DK (DonkCo), GLX (Gorlex Marauder), IDP (Interdyne Pharmaceuticals), WC (WaffleCo)
 
     public override string FormatName(string input)
     {
