@@ -16,6 +16,7 @@ using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Map.Components; // Frontier
 using Robust.Shared.Physics.Components; // Frontier
 using Robust.Shared.Physics; // Frontier
+using System.Linq; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -76,8 +77,8 @@ public sealed partial class SalvageSystem
         }
 
         // Frontier: Prevent FTL if expedition lander has no valid mothership.
-        if (TryComp<LanderComponent>(ourGrid, out var motherStation)
-            && _station.GetLargestGrid(motherStation.MotherStation) is not { })
+        if (TryComp<LanderComponent>(ourGrid, out var lander)
+            && _station.GetLargestGrid(lander.MotherStation) is not { })
         {
             PlayDenySound((uid, component));
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid-mothership"), uid, PopupType.MediumCaution);
@@ -102,15 +103,21 @@ public sealed partial class SalvageSystem
             var bodyQuery = GetEntityQuery<PhysicsComponent>();
             var otherGrids = new List<Entity<MapGridComponent>>();
             _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
+            // Frontier: Lander check for mothership, must be is in proximity to FTL to expedition.
+            if (TryComp<LanderComponent>(ourGrid, out var mothership) && mothership.MotherStation is { })
+            {
+                var mothershipFound = otherGrids.Any(g => _station.GetOwningStation(g) == mothership.MotherStation);
+                if (!mothershipFound)
+                {
+                    PlayDenySound((uid, component));
+                    _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity-mothership"), uid, PopupType.MediumCaution);
+                    UpdateConsoles((station.Value, data));
+                    return;
+                }
+            }
+
             foreach (var otherGrid in otherGrids)
             {
-                // Frontier: Skip proximity check for lander if nearby grid is our mothership.
-                if (TryComp<LanderComponent>(ourGrid, out var lander)
-                    && lander.MotherStation == _station.GetOwningStation(otherGrid))
-                {
-                    continue;
-                }
-
                 if (ourGrid == otherGrid.Owner ||
                     !bodyQuery.TryGetComponent(otherGrid.Owner, out var body) ||
                     body.Mass < ShuttleFTLMassThreshold && body.BodyType == BodyType.Dynamic)

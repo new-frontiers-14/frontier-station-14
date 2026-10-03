@@ -41,6 +41,7 @@ shuttle-ftl-invalid = Invalid ship for FTL!
 shuttle-ftl-recharge = FTL drives still spooling down!
 shuttle-ftl-too-many = Too many shuttles already on expedition!
 shuttle-ftl-invalid-mothership = No valid mothership to calculate FTL trajectory!
+shuttle-ftl-proximity-mothership = The mothership must be nearby to FTL!
 
 changelog-tab-title-Upstream = Upstream Changelog
 multiauth-already-connected = Already connected to Frontier Official servers.
