@@ -82,8 +82,8 @@
                           Orientation="Horizontal"
                           HorizontalAlignment="Stretch"
                           HorizontalExpand="True"
-                          Align="Center"
-                          Margin="0 0 0 3">
+                          Align="Center">
+                <!--Margin="0 0 0 3">  Wayfarer -->
                 <controls:Button Name="DampenerOff"
                                  Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
                                  TextAlign="Center"
@@ -107,6 +107,16 @@
                                  Margin="0"/>
             </controls:BoxContainer>
             <!-- End Frontier - Inertia dampener controls-->
+
+                    <!-- Wayfarer - Autopilot button below mode buttons -->
+                    <controls:Button Name="AutopilotButton"
+                                     Text="{controls:Loc 'shuttle-console-autopilot'}"
+                                     TextAlign="Center"
+                                     ToggleMode="True"
+                                     HorizontalExpand="True"
+                                     Disabled="True"
+                                     Margin="0 0 0 3"/>
+                    <!-- End Wayfarer -->
 
             <!-- Frontier - settable target -->
             <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="TargetCoordsBox">
