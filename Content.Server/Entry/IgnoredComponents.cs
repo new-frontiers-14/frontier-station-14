@@ -21,7 +21,10 @@ namespace Content.Server.Entry
             "HolidayRsiSwap",
             "OptionsVisualizer",
             "MultipartMachineGhost",
-            "BlueprintLatheClientState" // Frontier
+            // Frontier: Custom client-only components
+            "BlueprintLatheClientState",
+            "MarkerLayers",
+            // End Frontier
         };
     }
 }
