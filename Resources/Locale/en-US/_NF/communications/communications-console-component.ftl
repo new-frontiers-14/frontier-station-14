@@ -1,2 +1,2 @@
 # Comms console variant titles
-comms-console-announcement-title-pirate = Pirate Vessel
+comms-console-announcement-title-pirate = Pirate
