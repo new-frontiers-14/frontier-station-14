@@ -164,7 +164,7 @@ public sealed class MechForkSystem : EntitySystem
             return;
         var target = args.Target;
 
-        if (args.Target == args.User || component.DoAfter != null)
+        if (args.Target == args.User)
             return;
 
         if (!TryComp<MechComponent>(args.User, out var mech) || mech.PilotSlot.ContainedEntity == target)
@@ -195,6 +195,7 @@ public sealed class MechForkSystem : EntitySystem
                     BreakOnMove = true
                 };
 
+                _doAfter.Cancel(component.DoAfter);
                 _doAfter.TryStartDoAfter(insertDoAfterArgs, out component.DoAfter);
                 return;
             }
@@ -211,6 +212,7 @@ public sealed class MechForkSystem : EntitySystem
                     BreakOnMove = true
                 };
 
+                _doAfter.Cancel(component.DoAfter);
                 _doAfter.TryStartDoAfter(insertDoAfterArgs, out component.DoAfter);
                 return;
             }
@@ -239,6 +241,7 @@ public sealed class MechForkSystem : EntitySystem
             BreakOnMove = true
         };
 
+        _doAfter.Cancel(component.DoAfter);
         _doAfter.TryStartDoAfter(doAfterArgs, out component.DoAfter);
     }
 
@@ -274,7 +277,7 @@ public sealed class MechForkSystem : EntitySystem
         if (TryComp<ContainerManagerComponent>(args.Args.Target, out var containerManager))
         {
             EntityCoordinates? coords = null;
-            if (TryComp(equipmentComponent.EquipmentOwner, out TransformComponent? xform)) 
+            if (TryComp(equipmentComponent.EquipmentOwner, out TransformComponent? xform))
                 coords = xform.Coordinates;
 
             List<EntityUid> toRemove = new();
