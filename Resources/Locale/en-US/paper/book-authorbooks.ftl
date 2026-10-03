@@ -1679,7 +1679,7 @@ book-text-room85 = [head=3]Room 85[/head]
         Entry in the Frontier 3rd Anniversary Writing Contest
         The ship stops near a giant Vroid, far away from any living form of Maunder. On board, Barry and his long time friend Kasky.
 
-        -”Wake up, Barry !” He shouted at his friend, shaking him by the shoulder. “We have work to do. And given its size, we’ve got a lot of it..”
+        ”Wake up, Barry!” He shouted at his friend, shaking him by the shoulder. “We have work to do. And given its size, we’ve got a lot of it...”
 
         Barry heads towards the bathroom to freshen up. As soon as he opens the door, a smell of mold wafts out, revealing a filthy room with trash strewn across the floor all bathed in a flashing yellow light. He places both hands on the half-broken sink where several boxes of medications are sitting while looking at himself in the grime-covered mirror. The reflection shows a man in his forties, 182cm tall with a slender build accentuated by his hollow cheeks. He runs a hand through his tousled, medium-length brown hair to clear his forehead while rubbing his unshaven beard with the other hand. After splashing his face with water to wake up, Barry heads towards the EVA room to meet up with his friend to be geared up. He put on a blue EVA suit leaving only his dark-rimmed blue eyes visible behind the visor. For the tools, they each take a rusty pickaxe, a floodlight, a radio and a backpack to carry the ores they mine.
 
