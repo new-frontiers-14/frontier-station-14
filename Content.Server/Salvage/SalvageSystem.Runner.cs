@@ -250,11 +250,11 @@ public sealed partial class SalvageSystem
                                 continue;
                             }
 
-                            // Frontier: Hardcode snippet to check if shuttle is an expedition lander for FTL.
+                            // Frontier: Lander check to dock to a valid mothership for FTL.
                             if (TryComp<LanderComponent>(shuttleUid, out var target)
                                 && _station.GetLargestGrid(target.MotherStation) is { } targetGrid)
                             {
-                                _shuttle.FTLToDock(shuttleUid, shuttle, targetGrid, ftlTime, TravelTime);
+                                _shuttle.FTLToDock(shuttleUid, shuttle, targetGrid, ftlTime, TravelTime, priorityTag: "DockLander");
                                 break;
                             }
 
