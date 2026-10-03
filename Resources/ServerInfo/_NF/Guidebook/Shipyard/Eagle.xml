@@ -1,15 +1,16 @@
 <Document>
     # EAGLE-CLASS MEDICAL SHUTTLE
     <Box>
-      <GuideEntityEmbed Entity="ComputerCrewMonitoring"/>
-      <GuideEntityEmbed Entity="RollerBed"/>
-      <GuideEntityEmbed Entity="StasisBed"/>
-	  <GuideEntityEmbed Entity="ChemMaster"/>
+      <GuideEntityEmbed Entity="ComputerCrewMonitoring" Caption="Crew Monitor"/>
+      <GuideEntityEmbed Entity="GasThermoMachineFreezer" Caption="Cryo Pods"/>
+      <GuideEntityEmbed Entity="EngineeringTechFab" Caption="EngineeringFab"/>
+      <GuideEntityEmbed Entity="MedicalTechFab" Caption="MedicalFab"/>
+      <GuideEntityEmbed Entity="ChemMaster" Caption="ChemMaster"/>
     </Box>
     <Box>
       <GuideEntityEmbed Entity="ShuttleMapEagle" Caption=""/>
     </Box>
-  
+
     [color=#a4885c]Ship Size:[/color] Medium
 
     [color=#a4885c]Recommended Crew:[/color] 2-4
@@ -18,9 +19,13 @@
 
   # Shuttle Brief
 
-  "A modern, medium-sized medical & engineering vessel. Focusing on responding to shuttle distress, Eagle bears the motto 'Recover, Restore, Repair!'."
+  "A medium-sized engineering and medical vessel. Focused on responding to shuttle distress, the Eagle comes equipped to restore most crew and shuttles to good health."
 
   # Ship Functions
+  ## Ship Buttons
+  <Box>
+  <GuideEntityEmbed Entity="ButtonFrameCaution" Caption="Toggle Thrusters and Searchlight"/>
+  </Box>
 
   # Medical
 

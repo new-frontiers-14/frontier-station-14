@@ -60,20 +60,23 @@
                        VerticalExpand="True"
                        HorizontalAlignment="Center"/>
             </controls1:StripeBack>
+            <!-- Frontier: formatting adjustments / hide player shuttles -->
             <controls:Button Name="IFFToggle"
                     Text="{controls:Loc 'shuttle-console-iff-toggle'}"
                     TextAlign="Center"
+                    Margin="0 0 0 1"
                     ToggleMode="True"/>
-            <!-- Frontier: hide player shuttles -->
             <controls:Button Name="IFFShuttleToggle"
                      Text="{controls:Loc 'shuttle-console-iffshuttles-toggle'}"
                      TextAlign="Center"
+                     Margin="0 0 0 1"
                      ToggleMode="True"/>
-            <!-- End Frontier: hide player shuttles -->
             <controls:Button Name="DockToggle"
                     Text="{controls:Loc 'shuttle-console-dock-toggle'}"
                     TextAlign="Center"
+                    Margin="0 0 0 1"
                     ToggleMode="True"/>
+            <!-- End Frontier: formatting adjustments / hide player shuttles -->
             <!-- Frontier - Inertia dampener controls-->
             <controls:BoxContainer Name="DampenerModeButtons"
                           Orientation="Horizontal"
@@ -85,21 +88,21 @@
                                  Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
                                  TextAlign="Center"
                                  ToggleMode="True"
-                                 MinWidth="85"
+                                 HorizontalExpand="True"
                                  StyleClasses="OpenRight"
                                  Margin="0"/>
                 <controls:Button Name="DampenerOn"
                                  Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
                                  TextAlign="Center"
                                  ToggleMode="True"
-                                 MinWidth="85"
+                                 HorizontalExpand="True"
                                  StyleClasses="OpenBoth"
                                  Margin="0"/>
                 <controls:Button Name="AnchorOn"
                                  Text="{controls:Loc 'shuttle-console-inertia-dampener-anchor'}"
                                  TextAlign="Center"
                                  ToggleMode="True"
-                                 MinWidth="85"
+                                 HorizontalExpand="True"
                                  StyleClasses="OpenLeft"
                                  Margin="0"/>
             </controls:BoxContainer>
@@ -163,7 +166,7 @@
                                      Text="{controls:Loc 'shuttle-console-service-flag-Services-label'}"
                                      TextAlign="Center"
                                      ToggleMode="True"
-                                     MinWidth="30"
+                                     HorizontalExpand="True"
                                      ToolTip="{controls:Loc 'shuttle-console-service-flag-Services-description'}"
                                      StyleClasses="OpenRight"
                                      Margin="0"/>
@@ -171,7 +174,7 @@
                                      Text="{controls:Loc 'shuttle-console-service-flag-Trade-label'}"
                                      TextAlign="Center"
                                      ToggleMode="True"
-                                     MinWidth="30"
+                                     HorizontalExpand="True"
                                      ToolTip="{controls:Loc 'shuttle-console-service-flag-Trade-description'}"
                                      StyleClasses="OpenBoth"
                                      Margin="0"/>
@@ -179,7 +182,7 @@
                                      Text="{controls:Loc 'shuttle-console-service-flag-Social-label'}"
                                      TextAlign="Center"
                                      ToggleMode="True"
-                                     MinWidth="30"
+                                     HorizontalExpand="True"
                                      ToolTip="{controls:Loc 'shuttle-console-service-flag-Social-description'}"
                                      StyleClasses="OpenLeft"
                                      Margin="0"/>

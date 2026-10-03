@@ -32,3 +32,17 @@
     whitelist:
       components:
       - MachinePart
+
+- type: entity
+  parent: [ BaseC3PirateContraband, RPED ]
+  id: NFYarRPED
+  name: YarRPED
+  description: A Rapid Part Exchange Device, except its not really for upgrading machines...
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Research/yarrped.rsi
+  - type: Item
+    sprite: _NF/Objects/Specific/Research/yarrped.rsi
+  - type: PartExchanger
+    preferHigherRating: false
+    exchangeDuration: 6

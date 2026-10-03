@@ -5,6 +5,7 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.Fax.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
+using Content.Server._NF.Smuggling.Components;
 using Robust.Shared.Random;
 
 
@@ -59,7 +60,8 @@ public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
                 continue;
             }
 
-            if (!TryComp<StationDataComponent>(chosenStation, out var stationData))
+            if (!TryComp<StationDataComponent>(chosenStation, out var stationData) ||
+                HasComp<StationSmugglingFaxExemptComponent>(chosenStation))
             {
                 retries++;
                 continue;

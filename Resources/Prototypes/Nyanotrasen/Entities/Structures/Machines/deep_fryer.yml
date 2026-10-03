@@ -133,8 +133,11 @@
     solution: vat_oil
   - type: RefillableSolution
     solution: vat_oil
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: vat_oil
+    destroyOnEmpty: false
+    utensil: Spoon #Frontier added
   - type: Appearance
   - type: ActivatableUI
     key: enum.DeepFryerUiKey.Key
@@ -170,8 +173,6 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: PowerSwitch
-  - type: PirateBountyItem # Frontier
-    id: KitchenDeepFryer # Frontier
 
 # Frontier: Halloween special
 - type: entity

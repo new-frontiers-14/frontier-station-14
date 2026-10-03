@@ -252,6 +252,84 @@
 
 
 - type: dungeonConfig
+  id: NFSyndicateHeadquarters
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSyndicateHQ
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorDark
+    contents: NFSyndieEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorDark
+    contents: NFSyndieAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorDark
+    contents: NFSyndieWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorDark
+    contents: NFSyndieWindow
+
+  - !type:WallMountDunGen
+    contents: NFSyndieWallMounts
+    tile: FloorDark
+
+  - !type:BoundaryWallDunGen
+    wall: WallPlastitanium
+    cornerWall: WallPlastitanium
+    tile: FloorDark
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: NFSyndieAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorDark
+    contents: NFSyndieAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#951710FF"
+
+
+- type: dungeonConfig
   id: NFMineshaft
   layers:
   - !type:PrefabDunGen
@@ -1044,3 +1122,39 @@
       prob: 0.05
     - id: DefibrillatorCabinetFilled
       prob: 0.2
+
+# Syndicate
+- type: entityTable
+  id: NFSyndieAirlock
+  table: !type:AllSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockSyndicateGlassDungeon
+
+- type: entityTable
+  id: NFSyndieWindow
+  table: !type:AllSelector
+    children:
+    - id: GrilleDungeon
+    - id: ReinforcedPlasmaWindowDungeon
+
+- type: entityTable
+  id: NFSyndieEntrance
+  table: !type:AllSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockSyndicate
+
+- type: entityTable
+  id: NFSyndieWallMounts
+  table: !type:GroupSelector
+    children:
+    - id: RandomPosterContraband
+    - id: SyndieFlag
+      prob: 0.3
+    - id: StructureGunRackWallmounted
+      prob: 0.1
+    - id: StructureMeleeWeaponRackWallmounted
+      prob: 0.1
+    - id: RandomPainting
+      prob: 0.05

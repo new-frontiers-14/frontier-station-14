@@ -57,6 +57,36 @@
     - CanBuildOnEmptyTile
   fx: EffectRCDConstruct1
 
+- type: rcd
+  id: CatwalkHazard
+  category: WallsAndFlooring
+  sprite: /Textures/_NF/Interface/Radial/RCD/catwalk_hazard.png
+  mode: ConstructObject
+  prototype: CatwalkHazard
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - MustBuildOnSubfloor
+    - IsCatwalk
+  rotation: Fixed
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: PirateCatwalkHazard
+  category: PirateWallsAndFlooring
+  sprite: /Textures/_NF/Interface/Radial/RCD/catwalk_hazard.png
+  mode: ConstructObject
+  prototype: CatwalkHazard
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+  - MustBuildOnSubfloor
+  - IsCatwalk
+  rotation: Fixed
+  fx: EffectRCDConstruct1
+
 # Walls
 - type: rcd
   id: WallMining

@@ -150,3 +150,25 @@
     - map: ["computerLayerKeys"]
       sprite: _NF/Structures/Machines/computers.rsi
       state: scrap_key
+
+- type: entity
+  id: ComputerTabletopShipyardCentcomm
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardCentcomm]
+  name: centcomm shipyard console
+  description: Used to buy vessels exclusive to Centcomm personnel.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_centcomm
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: centcomm_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_centcomm
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: centcomm_key

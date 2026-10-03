@@ -1,0 +1,54 @@
+- type: entity
+  parent: ClothingBeltBase # DeltaV - reparent from ClothingBeltStorageBase
+  id: ClothingBeltKatanaSheath
+  name: katana sheaths
+  description: An ornate belt designed to hold a pair of samurai's blades, or daisho.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Clothing/Belt/katanasheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Nyanotrasen/Clothing/Belt/katanasheath.rsi
+  - type: ItemSlots # DeltaV - adjust how objects are stored
+    slots:
+      katanaslot:
+        name: clothing-belt-katana
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Katana
+        priority: 2
+      wakizashislot:
+        name: clothing-belt-wakizashi
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Wakizashi
+        priority: 1
+  - type: ItemMapper # DeltaV - adjust how stored objects are displayed
+    mapLayers:
+      katana:
+        whitelist:
+          tags:
+          - Katana
+      wakizashi:
+        whitelist:
+          tags:
+          - Wakizashi
+    sprite: _DV/Clothing/Belt/belt_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      katanaslot: !type:ContainerSlot {}
+      wakizashislot: !type:ContainerSlot {}
+  - type: Appearance
+  - type: Tag
+    tags:
+      - BeltSlotNotBelt

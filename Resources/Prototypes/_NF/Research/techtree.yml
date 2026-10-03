@@ -66,6 +66,7 @@
   cost: 2500
   recipeUnlocks:
   - ClothingBeltChiefEngineer
+  - NFClothingEyesGlassesMesonScanner
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedParts
@@ -569,6 +570,7 @@
   recipeUnlocks:
   - BorgModuleAdvancedParamedic
   - BorgModuleAdvancedChemical
+  - BorgModulePill
   technologyPrerequisites:
   - NFBluespaceChemistry
   position: 2, 10
@@ -894,7 +896,7 @@
   - JukeboxCircuitBoard
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 1, 18
+  position: 2, 19
 
 - type: technology
   id: NFAdvancedEntertainment
@@ -925,6 +927,20 @@
   position: 1, 20
 
 - type: technology
+  id: NFAdvancedCyborgInstruments
+  name: nf-research-technology-advanced-cyborg-instruments
+  entityIcon: AdvancedBorgModuleMusique
+  discipline: NFService
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - AdvancedBorgModuleMusique
+  - BorgModuleMutation
+  technologyPrerequisites:
+  - NFAdvancedInstruments
+  position: 3, 19
+
+- type: technology
   id: NFPushHorn
   name: nf-research-technology-clowning-utilities
   entityIcon: PushHorn
@@ -935,7 +951,20 @@
   - PushHorn
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 2, 19
+  position: 1, 18
+
+- type: technology
+  id: SuperInstruments
+  name: nf-research-technology-super-instruments
+  entityIcon: SuperHarmonicaInstrument
+  discipline: NFService
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - SuperHarmonicaInstrument
+  technologyPrerequisites:
+  - NFAdvancedInstruments
+  position: 2, 18
 
 # region Janitorial
 
@@ -952,13 +981,14 @@
 
 - type: technology
   id: NFJanicart
-  name: nf-research-technology-janicart
+  name: nf-research-technology-mobile-service
   entityIcon: NFVehicleJanicart
   discipline: NFService
   tier: 1
   cost: 2500
   recipeUnlocks:
   - JanicartFlatpack
+  - MailTrolleyFlatpack
   technologyPrerequisites:
   - NFBasicSpray
   position: 0, 22
@@ -1013,6 +1043,7 @@
   cost: 2500
   recipeUnlocks:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedSprayNozzle
   technologyPrerequisites:
   - NFAdvancedCleaning
   position: 3, 21
@@ -1128,6 +1159,7 @@
   - ElectricRangeMachineCircuitboard
   - KitchenAssemblerMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - NFServiceDrinkShakerBluespace
   technologyPrerequisites:
   - NFFoodService
   position: 2, 24
@@ -1880,17 +1912,23 @@
   position: 3, 43
 
 - type: technology
-  id: NFBulkRifleAmmo
-  name: nf-research-technology-rifle-ammo-bulk
+  id: NFBulkAmmo
+  name: nf-research-technology-ammo-bulk
   entityIcon: NFAmmunitionBoxBigRifle20
   discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:
+  - NFAmmunitionBoxBigPistol35
+  - NFAmmunitionBoxBigPistol35Overpressure
+  - NFAmmunitionBoxBigPistol45
+  - NFAmmunitionBoxBigPistol45Overpressure
   - NFAmmunitionBoxBigRifle20
   - NFAmmunitionBoxBigRifle20Overpressure
   - NFAmmunitionBoxBigRifle30
   - NFAmmunitionBoxBigRifle30Overpressure
+  - NFAmmunitionBoxBigShellShotgunBuckshot
+  - NFAmmunitionBoxBigShellShotgunOverpressure
   technologyPrerequisites:
   - NFImprovedRifleAmmo
   position: 3, 44

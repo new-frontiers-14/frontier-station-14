@@ -1,4 +1,4 @@
-# Base prototypes
+# region Base prototypes
 
 - type: latheRecipe
   abstract: true
@@ -36,7 +36,25 @@
     Cloth: 20
     Wood: 20
 
-# Recipes
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeClothing
+  categories:
+  - ClothesNF
+  completetime: 4
+  materials:
+    Cloth: 300 #Most clothes in the Uniform printer take 3 cloth so i've set it to 3
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipeToy
+  categories:
+  - NFToys
+  completetime: 1
+  materials:
+    Plastic: 300
+
+# region Recipes
 
 - type: latheRecipe
   id: ServiceRollingPin
@@ -51,6 +69,11 @@
   parent: BaseServiceItemsRecipe
   materials:
     Steel: 200
+
+- type: latheRecipe
+  id: NFServiceDrinkShakerBluespace
+  result: DrinkShakerBluespace
+  parent: BluespaceBeaker
 
 - type: latheRecipe
   id: ServiceSpoon
@@ -208,7 +231,33 @@
   materials:
     Paper: 25
 
-# Smokes
+# region Toys
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: DiceBag
+  result: DiceBag
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: ClownRecorder
+  result: ClownRecorder
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: BikeHorn
+  result: BikeHorn
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeToy
+  id: SuperHarmonicaInstrument
+  result: SuperHarmonicaInstrument
+  completetime: 2
+  materials:
+    Silver: 200
+    Plasma: 200
+    Diamond: 100
+
+# region Smokes
 - type: latheRecipe
   id: CigPackMcCargo
   result: CigPackMcCargo
@@ -223,7 +272,7 @@
     Steel: 100
     Paper: 100
 
-# Coffee cup
+# region Coffee cup
 - type: latheRecipe
   parent: BaseToolRecipe
   id: DrinkDisposableCup
@@ -238,7 +287,43 @@
   materials:
     Cardboard: 50
 
-#region piety
+# region clothing
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingYellow
+  result: ClothingHandsGlovesBoxingYellow
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingGreen
+  result: ClothingHandsGlovesBoxingGreen
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingBlue
+  result: ClothingHandsGlovesBoxingBlue
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: ClothingHandsGlovesBoxingRed
+  result: ClothingHandsGlovesBoxingRed
+
+- type: latheRecipe
+  parent: BaseServiceItemsRecipeClothing
+  id: UniformShortsRed
+  result: UniformShortsRed
+
+- type: latheRecipe
+  parent: UniformShortsRed
+  id: UniformShortsRedWithTop
+  result: UniformShortsRedWithTop
+
+- type: latheRecipe
+  id: ClothingEyesHudBeer
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesHudBeer
+
+# region piety
 - type: latheRecipe
   id: NFServiceCenser
   result: Censer

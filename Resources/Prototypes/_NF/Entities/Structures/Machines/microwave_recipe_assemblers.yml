@@ -117,8 +117,6 @@
     - FoodRecipes
   - type: EntityHeater
     passivePower: 1000 # Base oven power.
-  - type: PlaceableSurface
-    isPlaceable: false # Prevent items hanging around for a few frames when clicked on the oven.
   - type: ItemPlacer
     maxEntities: 4
     whitelist:
@@ -215,6 +213,8 @@
     interfaces:
       enum.MicrowaveUiKey.AssemblerKey:
         type: AssemblerBoundUserInterface
+  - type: PirateBountyItem
+    id: NOBOUNTY #Overrides bounty to not be a valid bounty
 
 - type: entity
   id: MedicalAssembler
