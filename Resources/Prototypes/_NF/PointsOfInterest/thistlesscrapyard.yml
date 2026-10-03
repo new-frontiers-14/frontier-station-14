@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: OfflcerSam
+# Discord: offlcer_sam
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Scrapy Rocks
+- type: pointOfInterest
+  id: ThistlesScrapyard
+  parent: BasePOI
+  name: "Thistle's Scrapyard"
+  minimumDistance: 3500
+  maximumDistance: 6000
+  spawnGroup: Scrapyard
+  gridPath: /Maps/_NF/POI/thistlesscrapyard.yml
+  addComponents:
+  - type: StationTransit
+    routes:
+      MinorPointsOfInterest: 50
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+
+- type: gameMap
+  id: ThistlesScrapyard
+  mapName: "Thistle's Scrapyard"
+  mapPath: /Maps/_NF/POI/thistlesscrapyard.yml
+  minPlayers: 0
+  stations:
+    ThistlesScrapyard:
+      stationProto: DeadDropRecordsFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Thistle's Scrapyard"
