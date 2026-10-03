@@ -125,6 +125,7 @@
   id: ClothingOuterCoatJacketLettermanBlue
   parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
   name: blue letterman jacket
+  suffix: Frontier
   description: Where is your lacrosse stick?
   components:
   - type: Sprite
@@ -136,6 +137,7 @@
   id: ClothingOuterCoatJacketLettermanBrown
   parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
   name: brown letterman jacket
+  suffix: Frontier
   description: Where is your lacrosse stick?
   components:
   - type: Sprite
@@ -147,6 +149,7 @@
   id: ClothingOuterCoatJacketLettermanRed
   parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
   name: red letterman jacket
+  suffix: Frontier
   description: Where is your lacrosse stick?
   components:
   - type: Sprite
@@ -158,12 +161,39 @@
   id: ClothingOuterCoatJacketLettermanMagenta
   parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
   name: magenta letterman jacket
+  suffix: Frontier
   description: Where is your holocrosse joystick?
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Coats/jacket_letterman_magenta.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/jacket_letterman_magenta.rsi
+
+- type: entity
+  id: ClothingOuterCoatJacketLettermanGreen
+  parent: [ ClothingOuterStorageBase, RecyclableItemClothDurable ]
+  name: green letterman jacket
+  suffix: Frontier
+  description: Where is your holocrosse joystick?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/jacket_letterman_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/jacket_letterman_green.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageBase ]
+  id: ClothingOuterCoatLettermanFrontier
+  name: frontier letterman jacket
+  suffix: Nyanotrasen
+  description: A letterman jacket with a frontier twist stitched onto the back.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/letterman_jacket_frontier.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/letterman_jacket_frontier.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.4
 
 - type: entity
   id: ClothingOuterCoatBomberPinkSleeves
