@@ -6,3 +6,9 @@ smart-fridge-component-title = SmartFridge
 smart-fridge-list-item = {$item} [{$amount}]
 smart-fridge-request-generic = All sales final
 smart-fridge-request-chemistry = Request refills from chemistry
+
+# Frontier start variant smartfridges
+smart-cabinet-component-title = SmartCabinet
+smart-ammomate-component-title = SmartAmmoMate
+smart-tool-closet-component-title = SmartToolCloset
+# Frontier ends
