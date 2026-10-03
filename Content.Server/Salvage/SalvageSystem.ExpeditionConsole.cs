@@ -4,8 +4,8 @@ using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
-using Content.Server._NF.Lander; // Frontier
 using Content.Server._NF.Salvage; // Frontier
+using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier

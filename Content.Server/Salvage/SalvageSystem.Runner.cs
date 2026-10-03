@@ -16,7 +16,7 @@ using Robust.Shared.Map; // Frontier
 using Content.Server.GameTicking; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
 using Content.Server._NF.Salvage.Expeditions; // Frontier
-using Content.Server._NF.Lander; // Frontier
+using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Shared.Salvage; // Frontier
 
 namespace Content.Server.Salvage;

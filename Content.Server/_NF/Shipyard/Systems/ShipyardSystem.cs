@@ -6,7 +6,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Server._NF.Lander;
+using Content.Server._NF.Shuttles.Components;
 using Content.Server._NF.Station.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;

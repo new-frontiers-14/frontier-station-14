@@ -12,6 +12,7 @@ shipyard-commands-purchase-atmos-hint = atmosphere prototype
 shipyard-console-no-idcard = Insert ID card.
 shipyard-console-already-deeded = ID card already has a Deed.
 shipyard-console-invalid-station = Not a valid station.
+shipyard-console-counter-limit = Purchase limit reached at this console.
 shipyard-console-no-bank = No bank account found.
 shipyard-console-no-deed = No ship deed found.
 shipyard-console-sale-reqs = Ship must be docked and all crew disembarked.
