@@ -1677,7 +1677,7 @@ book-text-theburnchamber = [head=3]The Burn Chamber[/head]
 book-text-room85 = [head=3]Room 85[/head]
         by Mira Licent
         Entry in the Frontier 3rd Anniversary Writing Contest
-        The ship stops near a giant Vroid, far away from any living form of Maunder. On board, Barry and his long time friend Kasky.
+        The ship stops near a giant Vroid, far away from any signs of life in Maunder. On board, Barry and his long time friend Kasky.
 
         ”Wake up, Barry!” He shouted at his friend, shaking him by the shoulder. “We have work to do. And given its size, we’ve got a lot of it...”
 
