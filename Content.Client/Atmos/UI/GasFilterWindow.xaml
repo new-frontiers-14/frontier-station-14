@@ -12,16 +12,18 @@
             <LineEdit Name="FilterTransferRateInput" MinSize="70 0" />
             <Button Name="SetFilterRate" Text="{Loc comp-gas-filter-ui-filter-set-rate}" Disabled="True"/>
         </BoxContainer>
-
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-            <Label Name="CurrentGasLabel" />
-        </BoxContainer>
-
+        <!-- Funky Station Start - UI layout change to allow selection of multiple gases -->
         <BoxContainer Orientation="Vertical" VerticalExpand="True">
             <Label Text="{Loc comp-gas-filter-ui-filter-gas-select}" />
-            <ItemList Name="GasList" SelectMode="Single" VerticalExpand="True"
-                      SizeFlagsStretchRatio="0.9" />
-            <Button Name="SelectGasButton" Text="{Loc comp-gas-filter-ui-filter-gas-confirm}" HorizontalExpand="True" Disabled="True" />
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 0 0 5">
+                <GridContainer HorizontalExpand="True" Columns="3" Margin="0 5 0 0">
+                    <Button Name="SelectAllButton" HorizontalExpand="True" Text="{Loc 'Select All'}" />
+                    <Button Name="DeselectAllButton" HorizontalExpand="True" Text="{Loc 'Deselect All'}" />
+                    <Control HorizontalExpand="True" />
+                </GridContainer>
+            </BoxContainer>
+            <GridContainer HorizontalExpand="True" Name="GasContainer" Columns="3" Margin="0 5 0 0" VerticalExpand="True" />
+        <!-- Funky Station End - UI layout change to allow selection of multiple gases -->
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

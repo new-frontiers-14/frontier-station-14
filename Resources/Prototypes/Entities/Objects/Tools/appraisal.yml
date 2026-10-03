@@ -2,20 +2,17 @@
   parent: BaseItem
   id: AppraisalTool
   name: appraisal tool
-  description: A beancounter's best friend, with a quantum connection to the galactic market and the ability to appraise even the toughest items. It will also tell you if a crate contains a completed bounty.
+  description: A beancounter's best friend, with a quantum connection to the galactic market and the ability to appraise even the toughest items! # Frontier: remove mention of cargo bounties
   components:
   - type: Sprite
     sprite: Objects/Tools/appraisal-tool.rsi
     state: icon
   - type: Item
     sprite: Objects/Tools/appraisal-tool.rsi
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1
-    storedOffset: -3,-3
+    size: Small
   - type: PriceGun
   - type: UseDelay
-    delay: 3
+    delay: 1 # Frontier: 3>1 faster appraisal tool
   - type: Clothing
     sprite: Objects/Tools/appraisal-tool.rsi
     quickEquip: false

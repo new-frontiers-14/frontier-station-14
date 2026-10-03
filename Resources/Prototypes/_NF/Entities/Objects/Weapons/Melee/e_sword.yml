@@ -20,11 +20,13 @@
     activatedShape:
     - 0,0,2,0
     - 1,1,1,2
+  - type: MeleeWeapon
+    attackRate: 1.5
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types: # Slightly less total damage than wielded crusher glaive has
-          Heat: 8
-          Piercing: 2
+        types:
+          Heat: 15
+          Piercing: 5
           Structural: 40 # +10 damage compared to crusher glaive
     deactivatedSecret: true
   - type: Sprite
@@ -56,7 +58,7 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect # Explicitly specified the value (the default one from the parent might be too high)
-    reflectProb: 0.05
+    reflectProb: 0.15
   - type: Tag
     tags:
     - Pickaxe
