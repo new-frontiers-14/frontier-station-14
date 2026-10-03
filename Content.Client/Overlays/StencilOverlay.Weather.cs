@@ -3,10 +3,8 @@ using Content.Shared.Light.Components;
 using Content.Shared.Weather;
 using Robust.Client.Graphics;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Client.Overlays;
-
 public sealed partial class StencilOverlay
 {
     private List<Entity<MapGridComponent>> _grids = new();
@@ -28,7 +26,7 @@ public sealed partial class StencilOverlay
             _grids.Clear();
 
             // idk if this is safe to cache in a field and clear sloth help
-            _mapManager.FindGridsIntersecting(mapId, worldAABB, ref _grids);
+            _map.FindGridsIntersecting(mapId, worldAABB, ref _grids);
 
             foreach (var grid in _grids)
             {

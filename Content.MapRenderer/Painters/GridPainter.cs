@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using Content.Shared.Decals;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -24,7 +23,6 @@ namespace Content.MapRenderer.Painters
         private readonly IEntityManager _cEntityManager;
 
         private readonly IEntityManager _sEntityManager;
-        private readonly IMapManager _sMapManager;
 
         private readonly ConcurrentDictionary<EntityUid, List<EntityData>> _entities;
         private readonly Dictionary<EntityUid, List<DecalData>> _decals;
@@ -37,7 +35,6 @@ namespace Content.MapRenderer.Painters
             _cEntityManager = client.ResolveDependency<IEntityManager>();
 
             _sEntityManager = server.ResolveDependency<IEntityManager>();
-            _sMapManager = server.ResolveDependency<IMapManager>();
 
             _entities = GetEntities();
             _decals = GetDecals();
