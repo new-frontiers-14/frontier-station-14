@@ -185,7 +185,7 @@ flavor-complex-false-meat = not entirely unlike meat
 flavor-complex-paper = like mushy pulp
 flavor-complex-compressed-meat = like compressed meat
 flavor-complex-dog-food = like dog food
-flavor-complex-commitment = like commitment
+flavor-complex-commitment = like commitment # Frontier
 
 # Drink-specific flavors.
 
