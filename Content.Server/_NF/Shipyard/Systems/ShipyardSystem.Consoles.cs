@@ -31,6 +31,7 @@ using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
 using Content.Server.Shuttles.Components;
+using Content.Server._NF.Shuttles.Components;
 using Content.Server._NF.Station.Components;
 using System.Text.RegularExpressions;
 using Content.Shared.UserInterface;
@@ -157,6 +158,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
+        // Cursed but ShuttleCounter should only assigned to a custom shipyard that sells lander shuttle(s).
+        if (TryComp<ShuttleCounterComponent>(shipyardConsoleUid, out var count)
+            && count.Counter >= count.CountMax)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-counter-limit"));
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
         // Keep track of whether or not a voucher was used.
         // TODO: voucher purchase should be done in a separate function.
         bool voucherUsed = false;
@@ -203,6 +213,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
+
         EntityUid? shuttleStation = null;
         // setting up any stations if we have a matching game map prototype to allow late joins directly onto the vessel
         if (_prototypeManager.TryIndex<GameMapPrototype>(vessel.ID, out var stationProto))
@@ -320,6 +331,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             );
         }
 
+        // Assigning values for the Expedition Lander.
+        if (TryComp<LanderComponent>(shuttleUid, out var target))
+        {
+            target.MotherStation = station;
+            if (TryComp<ShuttleCounterComponent>(shipyardConsoleUid, out var i))
+            {
+                i.Counter += 1;
+            }
+        }
+
         RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
     }
 
@@ -418,6 +439,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 case ShipyardSaleError.InvalidShip:
                     ConsolePopup(player, Loc.GetString("shipyard-console-sale-invalid-ship"));
                     break;
+                case ShipyardSaleError.ExpeditionCooldown:
+                    ConsolePopup(player, Loc.GetString("shipyard-console-sale-expedition-cooldown", ("time", saleResult.CooldownTime.ToString("mm\\:ss"))));
+                    break;
                 default:
                     ConsolePopup(player, Loc.GetString("shipyard-console-sale-unknown-reason", ("reason", saleResult.Error.ToString())));
                     break;
@@ -447,6 +471,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             _bank.TryBankDeposit(player, bill);
             PlayConfirmSound(player, uid, component);
+        }
+
+        // Ensures purchase limit of landers per mothership. Don't sell lander anywhere else if possible.
+        if (TryComp<LanderComponent>(shuttleUid, out var lander)
+            && stationUid == lander.MotherStation
+            && TryComp<ShuttleCounterComponent>(uid, out var i)
+            && i.Counter > 0)
+        {
+            i.Counter -= 1;
         }
 
         var name = GetFullName(deed);

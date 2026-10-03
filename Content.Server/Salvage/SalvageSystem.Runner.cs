@@ -15,7 +15,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Map; // Frontier
 using Content.Server.GameTicking; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
-using Content.Server._NF.Salvage.Expeditions;
+using Content.Server._NF.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Shared.Salvage; // Frontier
 
 namespace Content.Server.Salvage;
@@ -247,6 +248,14 @@ public sealed partial class SalvageSystem
                             {
                                 Log.Error($"Could not get DefaultMap EntityUID, shuttle {shuttleUid} may be stuck on expedition.");
                                 continue;
+                            }
+
+                            // Frontier: Lander check to dock to a valid mothership for FTL.
+                            if (TryComp<LanderComponent>(shuttleUid, out var target)
+                                && _station.GetLargestGrid(target.MotherStation) is { } targetGrid)
+                            {
+                                _shuttle.FTLToDock(shuttleUid, shuttle, targetGrid, ftlTime, TravelTime, priorityTag: "DockLander");
+                                break;
                             }
 
                             // Destination generator parameters (move to CVAR?)

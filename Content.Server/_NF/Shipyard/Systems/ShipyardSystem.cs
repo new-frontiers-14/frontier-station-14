@@ -6,14 +6,16 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared._NF.Shipyard.Prototypes;
+using Content.Server._NF.Shuttles.Components;
 using Content.Server._NF.Station.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Station.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -50,8 +52,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         Success, // Ship can be sold.
         Undocked, // Ship is not docked with the station.
-        OrganicsAboard, // Sapient intelligence is aboard, cannot sell, would delete the organics
-        InvalidShip, // Ship is invalid
+        OrganicsAboard, // Sapient intelligence is aboard, cannot sell, would delete the organics.
+        InvalidShip, // Ship is invalid.
+        ExpeditionCooldown, // Ship has expedition cooldown.
         MessageOverwritten, // Overwritten message.
     }
 
@@ -60,6 +63,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         public ShipyardSaleError Error; // Whether or not the ship can be sold.
         public string? OrganicName; // In case an organic is aboard, this will be set to the first that's aboard.
+        public TimeSpan CooldownTime; // The timer for when expedition cooldown is over.
         public string? OverwrittenMessage; // The message to write if Error is MessageOverwritten.
     }
 
@@ -254,7 +258,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         //also superman 3 moment
         if (_station.GetOwningStation(shuttleUid) is { Valid: true } shuttleStationUid)
         {
-            _station.DeleteStation(shuttleStationUid);
+            // Prevent sale if Lander shuttle has active cooldown from an expedition, if there is still a mothership.
+            if (TryComp<SalvageExpeditionDataComponent>(shuttleStationUid, out var time)
+                && time.Cooldown
+                && TryComp<LanderComponent>(shuttleUid, out var lander)
+                && _station.GetLargestGrid(lander.MotherStation) is { })
+            {
+                result.Error = ShipyardSaleError.ExpeditionCooldown;
+                result.CooldownTime = time.NextOffer - _timing.CurTime;
+                return result;
+            }
+            else
+            {
+                _station.DeleteStation(shuttleStationUid);
+            }
         }
 
         if (TryComp<ShipyardConsoleComponent>(consoleUid, out var comp))
