@@ -234,8 +234,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var ev = new GetMeleeDamageEvent(uid, new(component.Damage * Damageable.UniversalMeleeDamageModifier), new(), user, component.ResistanceBypass);
         RaiseLocalEvent(uid, ref ev);
+        var ev2 = new ApplyClothingDamageModifierEvent(user, DamageContext.Melee, ev.Damage);
+        RaiseLocalEvent(user, ref ev2);
 
-        return DamageSpecifier.ApplyModifierSets(ev.Damage, ev.Modifiers);
+        return DamageSpecifier.ApplyModifierSets(ev2.Damage, ev.Modifiers); // Frontier ev<ev2
     }
 
     public float GetAttackRate(EntityUid uid, EntityUid user, MeleeWeaponComponent? component = null)
@@ -423,6 +425,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return false;
         }
 
+        if (weapon.SwingBeverage)
+        {
+            weapon.SwingLeft = !weapon.SwingLeft;
+            DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.SwingLeft));
+        }
+
         // Attack confirmed
         for (var i = 0; i < swings; i++)
         {
@@ -527,7 +535,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         RaiseLocalEvent(target.Value, attackedEvent);
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
-        var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
+        var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass, armorPenetration: component.ArmorPenetration); // Goobstation added ArmorPenetration
 
         if (damageResult is {Empty: false})
         {
@@ -683,7 +691,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(entity, attackedEvent);
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
 
-            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
+            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass, armorPenetration: component.ArmorPenetration); // Goobstation added ArmorPenetration
 
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {
