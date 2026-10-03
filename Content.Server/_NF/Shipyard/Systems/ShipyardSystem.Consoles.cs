@@ -97,7 +97,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (TryComp<NFIDChipComponent>(targetId, out _))
+        if (TryComp<NFIDChipComponent>(targetId, out var _))
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-borg-chip"));
             PlayDenySound(player, shipyardConsoleUid, component);
