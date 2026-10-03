@@ -35,7 +35,7 @@
   parent: Holopad
   id: NFHolopadGrid
   suffix: Local
-  name: inter ship holopad
+  name: intra-ship holopad
   description: "A floor-mounted device for projecting holographic images to enable communication within a ship."
   components:
   - type: Holopad
@@ -214,3 +214,175 @@
   components:
   - type: Label
     currentLabel: nf-holopad-general-tinnia
+
+# Intra-grid holopads - Departments
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridBridge
+  suffix: Bridge, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-bridge
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCommand
+  suffix: Command, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-command
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCaptain
+  suffix: Captain, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-captain
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridEngineering
+  suffix: Engineering, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-engineering
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridMedical
+  suffix: Medical, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-medical
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCargo
+  suffix: Cargo, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-cargo
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridSecurity
+  suffix: Security, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-security
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridScience
+  suffix: Science, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-science
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCommon
+  suffix: Common Area, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-common
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridBar
+  suffix: Bar, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-bar
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridKitchen
+  suffix: Kitchen, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-kitchen
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridJanitor
+  suffix: Janitor, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-janitor
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridCrew
+  suffix: Crew Quarters, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-crew
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridDocking
+  suffix: Docking Area, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-docking
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridHangar
+  suffix: Hangar Bay, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-hangar
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridSalvage
+  suffix: Salvage Bay, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-salvage
+
+# Intra-grid holopads - Position
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridFore
+  suffix: Fore, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-fore
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridStern
+  suffix: Stern, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-stern
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridPort
+  suffix: Port, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-port
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridStarboard
+  suffix: Starboard, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-starboard
+
+- type: entity
+  parent: NFHolopadGrid
+  id: NFHolopadGridAmidship
+  suffix: Amidships, Local
+  components:
+  - type: Label
+    currentLabel: nf-holopad-grid-amidship

@@ -18,3 +18,28 @@ nf-holopad-general-nfsd-reception = NFSD - Reception
 nf-holopad-general-nfsd-lobby = NFSD - Main Lobby
 nf-holopad-general-edison-reception = Edison Power Plant - Reception
 nf-holopad-general-tinnia = Tinnia's Rest
+
+# Intra-grid holopads - Departments
+nf-holopad-grid-bridge = Bridge
+nf-holopad-grid-command = Command
+nf-holopad-grid-captain = Captain's Office
+nf-holopad-grid-engineering = Engineering
+nf-holopad-grid-medical = Medical
+nf-holopad-grid-cargo = Cargo Bay
+nf-holopad-grid-security = Security
+nf-holopad-grid-science = Science Lab
+nf-holopad-grid-common = Common Area
+nf-holopad-grid-bar = Bar
+nf-holopad-grid-kitchen = Kitchen
+nf-holopad-grid-janitor = Janitor
+nf-holopad-grid-crew = Crew Quarters
+nf-holopad-grid-docking = Docking Area
+nf-holopad-grid-hangar = Hangar Bay
+nf-holopad-grid-salvage = Salvage Bay
+
+# Intra-grid holopads - Position
+nf-holopad-grid-fore = Fore
+nf-holopad-grid-stern = Stern
+nf-holopad-grid-port = Port
+nf-holopad-grid-starboard = Starboard
+nf-holopad-grid-amidship = Amidships
