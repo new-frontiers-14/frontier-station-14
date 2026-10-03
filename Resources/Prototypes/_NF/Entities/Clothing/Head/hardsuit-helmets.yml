@@ -89,9 +89,6 @@
     sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
-  - type: PointLight # Luxury Hardsuit Light
-    radius: 7
-    energy: 3
 
 #Security patrol suit
 - type: entity
@@ -249,10 +246,6 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
-  - type: PointLight
-    radius: 7
-    energy: 2
-    #color: "#d6adff"
 
 #Tactical hardsuit Helmet
 - type: entity
@@ -323,6 +316,30 @@
         Piercing: 0.95
         Heat: 0.95
 
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitPirateAurecorsa
+  categories: [ HideSpawnMenu ]
+  name: aurecorsa pirate hardsuit helmet
+  description: A deep crimson helm with a golden shaded visor lit by a sharp red flashlight, which heralds the wearer's wrath.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/pirate_aurecorsa.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/pirate_aurecorsa.rsi
+  - type: PointLight
+    color: "#DC143C"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.9
+
 #Wizard Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -362,8 +379,6 @@
     sprite: _NF/Clothing/Head/Hardsuits/hostile_environment.rsi
   - type: PointLight
     enabled: true
-    radius: 3.5
-    energy: 5
     color: "#ffeead"
     soft: true
     castShadows: false
