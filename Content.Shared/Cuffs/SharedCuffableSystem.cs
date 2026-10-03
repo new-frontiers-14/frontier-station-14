@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._EE.Flight; // DeltaV - Harpy Flight
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Logs;
@@ -55,6 +56,7 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+        [Dependency] private readonly SharedFlightSystem _flight = default!; // DeltaV - Harpy flight
 
         public override void Initialize()
         {
@@ -513,6 +515,15 @@ namespace Content.Shared.Cuffs
                 _popup.PopupClient(Loc.GetString("handcuff-component-cannot-drop-cuffs", ("target", Identity.Name(target, EntityManager, user))), user, user);
                 return false;
             }
+
+            // EE - Harpy Flight
+            if (_flight.IsFlying(target))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-target-flying-error",
+                    ("targetName", Identity.Name(target, EntityManager, user))), user, user);
+                return false;
+            }
+            // END EE
 
             var cuffTime = handcuffComponent.CuffTime;
 
