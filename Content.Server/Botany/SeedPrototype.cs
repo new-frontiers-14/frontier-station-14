@@ -3,6 +3,7 @@ using Content.Server.Botany.Systems;
 using Content.Server.EntityEffects;
 using Content.Shared.Atmos;
 using Content.Shared.Database;
+using Content.Shared.FixedPoint;
 using Content.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -144,6 +145,8 @@ public partial class SeedData
     [DataField] public Dictionary<Gas, float> ConsumeGasses = new();
 
     [DataField] public Dictionary<Gas, float> ExudeGasses = new();
+    // Frontier - gas conversion
+    [DataField] public Dictionary<Gas, (Gas, FixedPoint2, FixedPoint2)> ConvertGases = new();
 
     #endregion
 
