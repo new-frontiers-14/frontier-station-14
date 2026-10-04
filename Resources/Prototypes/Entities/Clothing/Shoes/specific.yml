@@ -157,7 +157,7 @@
     footstepSoundCollection: null
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseC2ContrabandUnredeemable] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingShoesBootsCombat] # Frontier: ClothingShoesBaseButcherable<ClothingShoesBootsCombat, BaseMajorContraband<BaseC2ContrabandUnredeemable
   id: ClothingShoesSwat
   name: swat shoes
   description: When you want to turn up the heat.
@@ -166,6 +166,8 @@
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: ClothingSlowOnDamageModifier # Frontier: added ClothingSlowOnDamageModifier
+    modifier: 0.65 # Frontier
 
 - type: entity
   parent: [ClothingShoesBaseButcherable, BaseC3WizardContraband] # Frontier: added BaseC3WizardContraband
