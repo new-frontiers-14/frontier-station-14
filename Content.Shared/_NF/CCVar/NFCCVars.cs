@@ -104,6 +104,12 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> ShipyardSellRate =
         CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.95f, CVar.SERVERONLY);
 
+    /// <summary>
+    /// Whether players can choose a non-standard atmosphere for their shuttle purchase.
+    /// </summary>
+    public static readonly CVarDef<bool> ShipyardCustomAtmos =
+        CVarDef.Create("shuttle.shipyard_allow_custom_atmos", true, CVar.SERVERONLY);
+
     /*
      * Salvage
      */
@@ -292,4 +298,10 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerStarterLoadout =
         CVarDef.Create("nf14.greeting.loadout", "NFGreenhornLoadout", CVar.REPLICATED);
+
+    /// <summary>
+    ///     The maximum number of construction ghosts allowed per tile.
+    /// </summary>
+    public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
+        CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

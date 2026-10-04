@@ -1,0 +1,24 @@
+- type: entity
+  name: cyborg crew monitor
+  parent: BaseItem
+  id: HandheldCrewMonitorPowerd
+  description: A integrated monitor displaying the status of suit sensors, adapted for Cyborgs.
+  suffix: Always Powered, Cyborg
+  components:
+  - type: ItemToggle
+    onUse: false # above component does the toggling
+  - type: Item
+    heldPrefix: scanner
+  - type: Sprite
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
