@@ -165,8 +165,11 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// Alert level to set after meltdown
     /// </summary>
-    [DataField]
-    public string MeltdownAlertLevel = "yellow";
+
+    // Frontier: Disables alert adjustment from meltdown
+    // [DataField]
+    // public string MeltdownAlertLevel = "yellow";
+    // End Frontier
 
     /// <summary>
     /// The minimum radiation from the melted reactor
