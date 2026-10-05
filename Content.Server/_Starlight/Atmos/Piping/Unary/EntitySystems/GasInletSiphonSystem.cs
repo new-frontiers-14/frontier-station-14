@@ -26,10 +26,21 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private EntityManager _entityManager = default!;
 
-    [SubscribeLocalEvent]
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<GasInletSiphonComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<GasInletSiphonComponent, ActivateInWorldEvent>(OnActivate);
+        SubscribeLocalEvent<GasInletSiphonComponent, AtmosDeviceEnabledEvent>(OnGasInletSiphonEnterAtmosphere);
+        SubscribeLocalEvent<GasInletSiphonComponent, AtmosDeviceDisabledEvent>(OnGasInletSiphonLeaveAtmosphere);
+        SubscribeLocalEvent<GasInletSiphonComponent, AtmosDeviceUpdateEvent>(OnAirSiphonUpdated);
+        SubscribeLocalEvent<GasInletSiphonComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<ToggleableAtmosDeviceComponent, SetToggleSignalReceivedEvent>(OnSetToggleSignalReceived);
+        SubscribeLocalEvent<ToggleableAtmosDeviceComponent, ToggleSignalReceivedEvent>(OnToggleSignalReceived);
+    }
+
     private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args) => UpdateState(entity, entity.Comp);
 
-    [SubscribeLocalEvent]
     private void OnActivate(Entity<GasInletSiphonComponent> entity, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
@@ -39,7 +50,6 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         args.Handled = true;
     }
 
-    [SubscribeLocalEvent]
     private void OnSetToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref SetToggleSignalReceivedEvent args)
     {
         if (!_entityManager.TryGetComponent<GasInletSiphonComponent>(entity, out var device))
@@ -49,7 +59,6 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         Set(siphonEntity, device, args.Value);
     }
 
-    [SubscribeLocalEvent]
     private void OnToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref ToggleSignalReceivedEvent args)
     {
         if (!_entityManager.TryGetComponent<GasInletSiphonComponent>(entity, out var device))
@@ -59,13 +68,10 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         Set(siphonEntity, device, !device.Enabled);
     }
 
-    [SubscribeLocalEvent]
     private void OnGasInletSiphonEnterAtmosphere(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceEnabledEvent args) => UpdateState(entity, entity.Comp);
 
-    [SubscribeLocalEvent]
     private void OnGasInletSiphonLeaveAtmosphere(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceDisabledEvent args) => UpdateState(entity, entity.Comp);
 
-    [SubscribeLocalEvent]
     private void OnAirSiphonUpdated(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceUpdateEvent args)
     {
         if (!_powerReceiverSystem.IsPowered(entity))
@@ -106,7 +112,6 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         _atmosphereSystem.Merge(destination, removed);
     }
 
-    [SubscribeLocalEvent]
     private void OnPowerChanged(Entity<GasInletSiphonComponent> entity, ref PowerChangedEvent args) => UpdateState(entity, entity.Comp);
 
     private void UpdateState(Entity<GasInletSiphonComponent> entity, GasInletSiphonComponent siphon, AppearanceComponent? appearance = null)

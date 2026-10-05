@@ -1,14 +1,4 @@
 - type: entity
-  parent: GasThermoMachineFreezerEnabled
-  id: GasThermoMachineFreezerEnabledCold
-  suffix: Enabled, 235K
-  components:
-  - type: GasThermoMachine
-    targetTemperature: 235 # Atmospherics.FreezerTemp
-  - type: ApcPowerReceiver
-    powerDisabled: false
-
-- type: entity
   parent: GasUnaryBase
   id: GasInletSiphon
   name: air siphon
@@ -21,7 +11,7 @@
       sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
       layers:
         - state: pipeUnaryConnectors
-          sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          sprite: Structures/Piping/Atmospherics/pipe.rsi
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: siphon
           map: [ "enum.SubfloorLayers.FirstLayer" ]
@@ -34,15 +24,11 @@
         Primary: GasInletSiphon
         Secondary: GasInletSiphonAlt1
         Tertiary: GasInletSiphonAlt2
-        Quaternary: GasInletSiphonAlt3
-        Quinary: GasInletSiphonAlt4
       spriteLayersRsiPaths:
         enum.PipeVisualLayers.Pipe:
-          Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
-          Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
-          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
-          Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
-          Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+          Primary: Structures/Piping/Atmospherics/pipe.rsi
+          Secondary: Structures/Piping/Atmospherics/pipe_alt1.rsi
+          Tertiary: Structures/Piping/Atmospherics/pipe_alt2.rsi
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -64,10 +50,6 @@
       - enum.LightLayers.Unshaded
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-    - type: VentCrawlTube
-    - type: VentCrawlJunction
-      degrees:
-        - 0
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
     - type: DeviceNetwork

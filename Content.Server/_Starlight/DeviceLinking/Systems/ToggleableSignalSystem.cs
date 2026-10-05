@@ -14,11 +14,16 @@ public sealed partial class ToggleableSignalSystem : EntitySystem
     [Dependency] private DeviceLinkSystem _signalSystem = default!;
     [Dependency] private ToggleableAtmosDeviceSystem _toggleableAtmosDeviceSystem = default!;
 
-    [SubscribeLocalEvent]
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<ToggleableSignalComponent, SignalReceivedEvent>(OnSignalReceived);
+        SubscribeLocalEvent<ToggleableSignalComponent, ComponentInit>(OnInit);
+    }
+
     private void OnInit(Entity<ToggleableSignalComponent> entity, ref ComponentInit args) =>
         _signalSystem.EnsureSinkPorts(entity, entity.Comp.OnPort, entity.Comp.OffPort, entity.Comp.TogglePort);
 
-    [SubscribeLocalEvent]
     private void OnSignalReceived(Entity<ToggleableSignalComponent> entity, ref SignalReceivedEvent args)
     {
         if (!TryComp<ToggleableAtmosDeviceComponent>(entity, out var device))

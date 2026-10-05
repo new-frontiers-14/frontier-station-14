@@ -10,13 +10,15 @@ public sealed partial class GasInletSiphonComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public bool Enabled;
 
+    private float _transferRate = 200f;
+
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float TransferRate
     {
-        get;
-        set => field = Math.Clamp(value, 0f, MaxTransferRate);
-    } = 200;
+        get => _transferRate;
+        set => _transferRate = Math.Clamp(value, 0f, MaxTransferRate);
+    }
 
     [DataField]
     public float MaxTransferRate = Atmospherics.MaxTransferRate;
