@@ -1699,7 +1699,7 @@ book-text-room85 = [head=3]Room 85[/head]
 
         Back in the more familiar setting of the living room, the two men sat on the sofa, facing each other. As Barry remained silent, Kasky decided to break the ice.
 
-        -”Listen bud’. he said, trying to reassure him. “I know the last few years have been difficult for you, especially your relationship with your wife and daughter since you got out of the hospital. But you can't give up. We managed to land this job. You will make this. And with any luck, the judge will be lenient and let you see your daughter. I'm sure she misses her dad. For now, we don’t have the choice but to work to pay the bills. Worry not, your friend is here to help you take this step.”
+        -”Listen bud’. he said, trying to reassure him. “I know the last few years have been difficult for you, especially your relationship with your wife and daughter since you got out of the hospital. But you can't give up. We managed to land this job. You will make this. And with any luck, the judge will be lenient and let you see your daughter. I'm sure she misses her dad. For now, we don’t have any choice but to work to pay the bills. Worry not, your friend is here to help you take this step.”
 
         	At these words, Barry, who was slumped on the couch, started to cry. Kasky decided to get up, his hand outstretched towards his friend with a smile full of compassion.
 
