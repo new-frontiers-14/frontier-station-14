@@ -39,7 +39,7 @@ nf-holopad-grid-salvage = Salvage Bay
 
 # Intra-grid holopads - Position
 nf-holopad-grid-fore = Fore
-nf-holopad-grid-stern = Stern
+nf-holopad-grid-aft = Aft
 nf-holopad-grid-port = Port
 nf-holopad-grid-starboard = Starboard
 nf-holopad-grid-amidship = Amidships
