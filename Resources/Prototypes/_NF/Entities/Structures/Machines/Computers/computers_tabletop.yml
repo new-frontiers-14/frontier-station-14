@@ -950,3 +950,27 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       sprite: Structures/Machines/computers.rsi
       state: generic_panel_open
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, PirateComputerCommsPOI]
+  id: PirateComputerTabletopCommsPOI
+  suffix: POI, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: comm_pirate
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: pirate_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
