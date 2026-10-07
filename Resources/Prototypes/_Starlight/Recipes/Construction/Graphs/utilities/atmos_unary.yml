@@ -22,18 +22,6 @@
         amount: 2
         doAfter: 1
 
-    - to: gasinletsiphonAlt3
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
-    - to: gasinletsiphonAlt4
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
   - node: gasinletsiphon
     entity: GasInletSiphon
     edges:
@@ -81,37 +69,3 @@
       steps:
       - tool: Welding
         doAfter: 1
-
-  - node: gasinletsiphonAlt3
-    entity: GasInletSiphonAlt3
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 2
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
-
-  - node: gasinletsiphonAlt4
-    entity: GasInletSiphonAlt4
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 2
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
-
-
