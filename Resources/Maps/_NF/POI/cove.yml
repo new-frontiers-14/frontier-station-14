@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/03/2026 16:58:52
-  entityCount: 2109
+  time: 10/07/2026 17:55:19
+  entityCount: 2106
 maps: []
 grids:
 - 1
@@ -4892,6 +4892,13 @@ entities:
     - type: Transform
       pos: -6.5,10.5
       parent: 1
+- proto: ComputerTabletopRadar
+  entities:
+  - uid: 1956
+    components:
+    - type: Transform
+      pos: -8.5,1.5
+      parent: 1
 - proto: ComputerTabletopStationRecords
   entities:
   - uid: 2083
@@ -4904,7 +4911,8 @@ entities:
   - uid: 1082
     components:
     - type: Transform
-      pos: -7.5,10.5
+      rot: 1.5707963267948966 rad
+      pos: -8.5,9.5
       parent: 1
 - proto: ComputerWallmountBlackMarketBankATM
   entities:
@@ -4912,14 +4920,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,2.5
-      parent: 1
-- proto: ComputerWallmountRadar
-  entities:
-  - uid: 2109
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,1.5
       parent: 1
 - proto: ContrabandAppraisalToolPirate
   entities:
@@ -7775,13 +7775,6 @@ entities:
     - type: Transform
       pos: 3.5,12.5
       parent: 1
-- proto: LuxuryPen
-  entities:
-  - uid: 955
-    components:
-    - type: Transform
-      pos: -8.4360895,9.877812
-      parent: 1
 - proto: MachineCryoSleepPod
   entities:
   - uid: 1114
@@ -8129,18 +8122,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: Paper
-  entities:
-  - uid: 5
-    components:
-    - type: Transform
-      pos: -8.4048395,9.523646
-      parent: 1
-  - uid: 7
-    components:
-    - type: Transform
-      pos: -8.6548395,9.638229
-      parent: 1
 - proto: PaperWrittenPirateScribbles
   entities:
   - uid: 2080
@@ -8170,10 +8151,10 @@ entities:
       parent: 1
 - proto: PirateComputerTabletopComms
   entities:
-  - uid: 1956
+  - uid: 5
     components:
     - type: Transform
-      pos: -8.5,1.5
+      pos: -7.5,10.5
       parent: 1
 - proto: PirateFlag
   entities:
