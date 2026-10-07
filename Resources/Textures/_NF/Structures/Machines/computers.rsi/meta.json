@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "contraband by gentlebutter, animated by whatston3; cargo_market, shuttle_records, solar_screen, station_atm by whatston3; computer_expedition, computer_scrap, scrap_keyboard, scrap_key by erhardsteinhauer,, Centcomm variants by Herbtheon (Github/Discord), comm_pirate, pirate_key and pirate_key_off by Inaraincoat (Github)",
+    "copyright": "contraband by gentlebutter, animated by whatston3; cargo_market, shuttle_records, solar_screen, station_atm by whatston3; computer_expedition, computer_scrap, scrap_keyboard, scrap_key by erhardsteinhauer, Centcomm variants by Herbtheon (Github/Discord), tech_key and transfer copied from wizden computers.rsi, comm_pirate, pirate_key and pirate_key_off by Inaraincoat",
     "size": {
         "x": 32,
         "y": 32
@@ -513,8 +513,70 @@
                 ]
             ]
         },
-		{
-			"name": "comm_pirate",
+        {
+            "name": "transfer",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "tech_key",
+            "directions": 4
+        },
+        {
+            "name": "comm_pirate",
             "directions": 4,
             "delays": [
                 [
@@ -535,11 +597,11 @@
                 ]
             ]
         },
-		{
+        {
             "name": "pirate_key",
             "directions": 4
         },
-		{
+        {
             "name": "pirate_key_off",
             "directions": 4
         }
