@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/03/2026 18:19:15
+  time: 10/08/2026 23:06:09
   entityCount: 421
 maps: []
 grids:
@@ -644,7 +644,7 @@ entities:
       fixtures: {}
 - proto: AirlockCommandGlass
   entities:
-  - uid: 4
+  - uid: 3
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -652,7 +652,7 @@ entities:
       parent: 1
 - proto: AirlockEngineering
   entities:
-  - uid: 3
+  - uid: 4
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -674,13 +674,13 @@ entities:
       parent: 1
 - proto: AirlockExternalGlass
   entities:
-  - uid: 9
+  - uid: 7
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,7.5
       parent: 1
-  - uid: 10
+  - uid: 8
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -688,13 +688,13 @@ entities:
       parent: 1
 - proto: AirlockGlassShuttle
   entities:
-  - uid: 7
+  - uid: 9
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,9.5
       parent: 1
-  - uid: 8
+  - uid: 10
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2321,13 +2321,13 @@ entities:
       parent: 1
 - proto: LockerWallEVAColorEngineerFilled
   entities:
-  - uid: 259
+  - uid: 258
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
-  - uid: 260
+  - uid: 259
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -2335,7 +2335,7 @@ entities:
       parent: 1
 - proto: LockerWallEVAColorPilotFilled
   entities:
-  - uid: 258
+  - uid: 260
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2731,7 +2731,7 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
-- proto: SignalButtonDirectional
+- proto: SignalSwitchDirectional
   entities:
   - uid: 318
     components:
@@ -2742,8 +2742,10 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         313:
-        - - Pressed
-          - Toggle
+        - - Off
+          - Close
+        - - On
+          - Open
     - type: Fixtures
       fixtures: {}
   - uid: 319
@@ -2755,8 +2757,10 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         314:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
     - type: Fixtures
       fixtures: {}
   - uid: 320
@@ -2768,51 +2772,33 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         306:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         305:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         304:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         303:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         307:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
     - type: Fixtures
       fixtures: {}
   - uid: 321
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,5.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        286:
-        - - Pressed
-          - Toggle
-        287:
-        - - Pressed
-          - Toggle
-        288:
-        - - Pressed
-          - Toggle
-        316:
-        - - Pressed
-          - Toggle
-        315:
-        - - Pressed
-          - Toggle
-        317:
-        - - Pressed
-          - Toggle
-    - type: Fixtures
-      fixtures: {}
-  - uid: 322
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -2821,20 +2807,63 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         308:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
         309:
-        - - Pressed
-          - Toggle
+        - - Off
+          - Close
+        - - On
+          - Open
         310:
-        - - Pressed
-          - Toggle
-        311:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         312:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
+        311:
+        - - On
+          - Open
+        - - Off
+          - Close
+    - type: Fixtures
+      fixtures: {}
+  - uid: 322
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,5.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        316:
+        - - On
+          - Open
+        - - Off
+          - Close
+        315:
+        - - On
+          - Open
+        - - Off
+          - Close
+        317:
+        - - Off
+          - Close
+        - - On
+          - Open
+        287:
+        - - On
+          - On
+        - - Off
+          - Off
+        286:
+        - - On
+          - On
+        - - Off
+          - Off
     - type: Fixtures
       fixtures: {}
 - proto: SignCargoDock
