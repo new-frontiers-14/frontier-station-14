@@ -106,6 +106,48 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityReconHardsuit
+  name:  uplink-security-hardsuit-recon-name
+  description: uplink-security-hardsuit-recon-desc
+  productEntity: ClothingOuterHardsuitNfsdRecon
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_recon.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityEliteHardsuit
+  name:  uplink-security-hardsuit-elite-name
+  description: uplink-security-hardsuit-elite-desc
+  productEntity: ClothingOuterHardsuitNfsdElite
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_elite.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 15
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityHardsuitSheriff
   name:  uplink-security-hardsuit-sheriff-name
   description: uplink-security-hardsuit-sheriff-desc
@@ -795,7 +837,7 @@
     - SeniorOfficer
     - Bailiff
     - Sheriff
-    
+
 - type: listing
   id: UplinkSecurityMagazineSubMachineGunRubber
   name:  uplink-security-smgmagazine-rubber-name
