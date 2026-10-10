@@ -19,6 +19,15 @@ public sealed class SmartFridgeBoundUserInterface : BoundUserInterface
 
         _menu = this.CreateWindow<SmartFridgeMenu>();
         _menu.OnItemSelected += OnItemSelected;
+
+        //Frontier: menu title from yml
+        //Since we have now fridge variants, can't hardcode the title in xaml. Declare title field in yml instead
+        if (EntMan.TryGetComponent<SmartFridgeComponent>(Owner, out var comp))
+        {
+            _menu.Title = Loc.GetString(comp.Title);
+        }
+        //end frontier
+
         Refresh();
     }
 
