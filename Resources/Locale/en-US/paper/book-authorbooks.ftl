@@ -460,31 +460,31 @@ book-text-thelittlemedibot = [head=3]The Little Medibot That Could
 
         There was once a little Medibot that dreamed of being a plastic surgeon, but its little wheels could only take it as far as a pathfinder, not much of a vessel but it is much nicer than a grinder, and the patient walked in, their flames scorching the tiles under their feet as they buzzed "I’m not makin’ it am I?" as they collapsed onto the bed and the little Medibot, not even a bit shaken, beeped "Not if I have anything to say about it!" And with a quick HISS of the hypo the crispy moth flutters “you really are the best, little Medibot”, now they could rest a little easier even with the RUMBLE and ROAR of the FTL engine.
 
-        The little Medibot dreamed of being a chemist but its little wheels had only taken it as far as a Tyne this time. The doctor called out "new patient, alcohol poisoning nothing drastic, do you think you can help?" and the little Medibot Beeped "stop right there!" And with a quick HISS and a PSCHIT of the hypospray and a BUBBLE and BOIL of chemicals and the patient slurs "Thaank...you sooo moouch, chsay why don’t you let me buy yoou a driink"
+        The little Medibot dreamed of being a chemist but its little wheels had only taken it as far as a Tyne this time. The doctor called out "new patient, alcohol poisoning nothing drastic, do you think you can help?" and the little Medibot Beeped "stop right there!" And with a quick HISS and a PSCHIT of the hypospray and a BUBBLE and BOIL of chemicals and the patient slurred "Thaank...you sooo moouch, chsay why don’t you let me buy yoou a driink?"
 
-        The little Medibot thought this frontier thing wasn't too bad, and its little wheels took aboard a Bookworm, no patients, but much bigger than the Nook.
-        “I think I see a shelf, I’m sure the wildlife won’t mind if i help myself” Mewed the captain but of course they had many opinions, especially The Sharkminnow with teeth as sharp as a knife and just big too.
+        The little Medibot thought this frontier thing wasn't too bad, and its little wheels took it aboard a Bookworm, no patients, but much bigger than the Nook.
+        “I think I see a shelf, I’m sure the wildlife won’t mind if i help myself.” Mewed the captain, but of course they had many opinions, especially The Sharkminnow with teeth as sharp as a knife and just as big too.
         CHOMP AND GNASH
         And a pair of carp also had something to say.
         THUMP AND SLASH
         but guess who’s here, a BEAR!
         BUMP AND BASH
 
-        With their dastardly deed done The shark and their many minions depart
-        “my poor heart, I would never expect that they’d be in league” The patient croaked as they hit the floor with a bump and the Doctors didn’t hear, because of course there was a solar flare!
-        For the fist time the little Medibot had nothing to say all it could do was pray
-        RATTLE, PRATTLE and POP goes pacman spouted as its fuel was gone, not even a crumb left
-        The little Medibot started to feel rather dumb, just as it prayed with all its might doesn’t mean anyone will come. CLICK THUMP Goes the APC all out of juice and then... the lights did too
+        With their dastardly deed done the shark and their many minions departed.
+        “my poor heart, I would never expect that they’d be in league!” The patient croaked as they hit the floor with a bump and the Doctors didn’t hear, because of course there was a solar flare!
+        For the fist time the little Medibot had nothing to say, all it could do was pray.
+        RATTLE, PRATTLE and POP the PACMAN spouted as its fuel was gone, not even a crumb left.
+        The little Medibot started to feel rather dumb, just as it prayed with all its might doesn’t mean anyone will come. CLICK THUMP Goes the APC all out of juice and then... the lights did too.
 
 
-        The little Medibot didn’t dream much anymore, its little wheels don’t even spin just sitting on the bridge of the Empress the size of which would normally impress the little Medibot but somethings got it feeling rather down, so much so a deputy did a petty crime to cover its cross with a big crayon frown.
-        It was all hands on deck, Everyone’s here The SR, sheriff, bailiff, and DOC too. Curiously the plant manager was nowhere to be seen not even for Nar’sie’s return.
-        “I really thought he would be here, I heard he was a fan” The bailiff said.
+        The little Medibot didn’t dream much anymore, its little wheels didn’t even spin just sitting on the bridge of the Empress, the size of which would normally impress the little Medibot but something had it feeling rather down, so much so a deputy did a petty crime to cover its cross with a big crayon frown.
+        It was all hands on deck, everyone was here The SR, sheriff, bailiff, and DoC too. Curiously the plant manager was nowhere to be seen, not even for Nar’sie’s return.
+        “I really thought he would be here, I heard he was a fan.” The bailiff said.
         “We really don’t need him here, what we need is a plan!” The sheriff said.
         RUMBLE, HORROR, AND SHAKES, She’s almost awake!
-        “There’s no time burn, we need to work, little Medibot come with me, we have lives to save”
+        “There’s no time to burn, we need to work, little Medibot come with me, we have lives to save!”
 
-        Something tossed and turned inside the little Medibot, after all it wasn’t a doctor just a little good for nothing robot but with a PAT PAT of it’s little sterile head and a tug on it’s arm, the little Medibot’s wheels began to spin again.
+        Something tossed and turned inside the little Medibot, after all it wasn’t a doctor just a little good for nothing robot but with a PAT PAT of its little sterile head and a tug on its arm, the little Medibot’s wheels began to spin again.
 
         Through the halls of the empress,
         Across the lobby of the duchess much less impressive but still very nice,
@@ -493,18 +493,18 @@ book-text-thelittlemedibot = [head=3]The Little Medibot That Could
         Along the catwalks of the Reclaimer whose captain should get a lawyer on retainer,
         and all the way into the Caladrius with a medbay packed to the brim with patients, doctors of all kinds!
 
-        A bright vulpakin tail wagging and an anxious felinid ears flicking!
+        A bright vulpkanin tail wagging and an anxious felinid ears flicking!
         A Melting shelleg looking for his winter coat and a human... not much of note!
         A rather loud dwarf maybe he just found out he was a Proud father!
         A pair of scurrets petting one another and a giant oni, maybe she’s the mother?!
         A gasping harpy, someone please get her a scrubber and a rummaging goblin look, he just found some rubber!
-        A cramped vox looking like they’re in an Aquarium and diona debating if they’re a cannibal or a  vegetarian!
+        A cramped vox looking like they’re in an Aquarium and diona debating if they’re a cannibal or a vegetarian!
         A fluffy Moth chewing on a cotton boll and a reptilian eating a mouse whole!
         An oozing slime eating gelatin wait is that a skeleton!?
         A chittering arachnid weaving silk and even a clown drinking pilk!
 
-        So many patients faces fresh and weary if only there was a little machine to give them a shot of tricordizine, a pat on the back and send them on their way, the skitter along the tiles, dashing patient to patient all sharing their thanks with a chitter, a hiss and a rattle, a creak, a yap and a croak, a patter, a purr, and a flutter and even a meowdy! With the rowdy crowds treated and grumbling back to work to fight the sleepy god of blood no light task, even the little Medibot could tell, watching the medbay slowly empty the little robot had a strange feeling
-        “What is this?...” It asks ever so puzzled “am I proud?!” The little doctor exclaims!
+        So many patients, faces fresh and weary. If only there was a little machine to give them a shot of tricordizine, a pat on the back and send them on their way. They skittered along the tiles, dashing patient to patient, all sharing their thanks with a chitter, a hiss and a rattle, a creak, a yap and a croak, a patter, a purr, and a flutter and even a meowdy! With the rowdy crowds treated and grumbling back to work to fight the sleepy god of blood no light task, even the little Medibot could tell, watching the medbay slowly empty the little robot had a strange feeling.
+        “What is this...?” It asked, ever so puzzled, “am I proud?!” The little doctor exclaims!
 
 book-text-smugglershandbook2nded = [head=3]The Smuggler's Handbook[/head]
          2nd Edition
@@ -527,7 +527,7 @@ book-text-smugglershandbook2nded = [head=3]The Smuggler's Handbook[/head]
 
          Introduction
          ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-         Smuggling as a practice is one of the only ways the average contractor will have any interaction with the Spinwell Syndicate in their time in the Frontier Sector. The Syndicate has been offering smuggling jobs for as long as I have been in the Frontier which is admittedly not forever. But in that time the methodologies of both smugglers and the NFSD have changed and I have been a witness to it. Smuggling is a lucrative practice though fraught with occupational hazards and in a word, illegal. The NFSD will be your biggest obstacle when it comes to profit margins though avoiding them is trivial with proper precautions and a bit of luck.
+         Smuggling as a practice is one of the only ways the average contractor will have any interaction with the Spinward Syndicate in their time in the Frontier Sector. The Syndicate has been offering smuggling jobs for as long as I have been in the Frontier which is admittedly not forever. But in that time the methodologies of both smugglers and the NFSD have changed and I have been a witness to it. Smuggling is a lucrative practice though fraught with occupational hazards and in a word, illegal. The NFSD will be your biggest obstacle when it comes to profit margins though avoiding them is trivial with proper precautions and a bit of luck.
 
          So how do you the aspiring smuggler get started? Smuggling starts, like any great endeavor, with preparation. There are a few things you will need to get started listed in order of priority.
          • Ship
@@ -539,7 +539,7 @@ book-text-smugglershandbook2nded = [head=3]The Smuggler's Handbook[/head]
          Note that if the NFSD is not operating in sector for a shift you can ignore most of these preparations though it is poor sportsmanship and likely to backfire should they show up mid-shift.
 
          The Ship
-         Smuggling requires a vessel to store the crates you acquire, to this end cargo vessels are preferable though expeditionary vessels bring their own advantages. The Loader is a tried and true smuggling ship, small but with a cargo hold large enough to hold two pods worth of crates comfortably and more in a pinch. Expedition vessels, meanwhile, are capable of FTLing planet side then returning relatively near the center of the sector. Useful if NFSD is particularly active and running into their ships while headed back to the core from a pod is a concern. An Emu PLU and crate storage racks while not essential are highly recommended as they make moving, storing and organizing crates significantly easier.
+         Smuggling requires a vessel to store the crates you acquire, to this end cargo vessels are preferable though expeditionary vessels bring their own advantages. The Loader is a tried and true smuggling ship, small but with a cargo hold large enough to hold two pods worth of crates comfortably and more in a pinch. Expedition vessels, meanwhile, are capable of FTLing planetside then returning relatively near the center of the sector. Useful if NFSD is particularly active and running into their ships while headed back to the core from a pod is a concern. An Emu PLU and crate storage racks while not essential are highly recommended as they make moving, storing and organizing crates significantly easier.
 
          The IFF console
          These handy consoles have the unique ability to hide your ship's IFF signature, meaning unless a ship is in mass scanner range, you are untraceable. Note NFSD has their own more powerful radar consoles able to see about 800 meters away, far exceeding your own ship's range so keep on your toes!
@@ -556,7 +556,7 @@ book-text-smugglershandbook2nded = [head=3]The Smuggler's Handbook[/head]
 
          Smuggling
          ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-         Smuggling begins with a "suspicious note" in most cases. These notes lead you to a "neatly folded paper." Which lead you to a syndicate supply pod full of valuable contraband crates. These crates are then taken to a cargo sell platform at a Cargo Hub or the Trade Mall.
+         Smuggling begins with a "suspicious note" in most cases. These notes lead you to a "neatly folded paper." Which lead you to a syndicate supply pod full of valuable contraband crates. These crates are then taken to a cargo sell platform at a Cargo Depot or the Trade Mall.
 
          Suspicious Notes
          These notes are sent out to fax machines at random relatively early in the shift and infrequently throughout the shift. They describe vaguely where to find a "neatly folded paper" which is the smuggler's primary tool for finding pods.
@@ -628,7 +628,7 @@ book-text-studyofartifactsfromancient =
 
         It could be believed that these beings who left these tools and toys behind were once a thriving and creative civilization, creating sculptures that could bend the fabric of reality itself, much like the anomalies created by ripping said fabric with enough force from a bluespace generator. For the most part, these sculptures tend to be benign, oftentimes conjuring equally benign things such as empty food wrappings or even producing instruments out of seemingly nothing!
 
-        However, there are some that boasts more sinister and dangerous effects. Hypothetically, inside each and every artifact lies an artifexium core that has been weakened after aeons of inactivity. Stimulating the core will cause it to spring to life again, allowing us to utilize its energies to convert it into research points to allow us to decrypt research patterns. The more times one stimulates the core, the more energy it produces, but there is more:
+        However, there are some that boast more sinister and dangerous effects. Hypothetically, inside each and every artifact lies an artifexium core that has been weakened after aeons of inactivity. Stimulating the core will cause it to spring to life again, allowing us to utilize its energies to convert it into research points to allow us to decrypt research patterns. The more times one stimulates the core, the more energy it produces, but there is more:
 
         Not every artifact is created equal, some artifacts are created with a deeper reservoir of artifexium energy than others, a highly radioactive energy that, when infused with large quantities, can cause harm to any and all persons in an environment similarly to an exposed RTG or, gods forbidding, a singularity.
 
@@ -637,14 +637,14 @@ book-text-studyofartifactsfromancient =
                                  Stimulating an
                                           Artifact
 
-        Artifacts have many ways of having its nodes activated, ranging from being exposed to atmospheric gases such as Oxygen, Nitrogen, and Carbon Dioxide to more violent methods such as extreme positive pressure or physical trauma. As the artifact's potential awakens, actions from previous depths in addition to new ones are necessary to activate deeper nodes.
+        Artifacts have many ways of having their nodes activated, ranging from being exposed to atmospheric gases such as Oxygen, Nitrogen, and Carbon Dioxide to more violent methods such as extreme positive pressure or physical trauma. As the artifact's potential awakens, actions from previous depths in addition to new ones are necessary to activate deeper nodes.
         For instance, an artifact at the lowest depth may need one action such as throwing it or closely examining it, while an artifact at the second depth may need to be closely examined, have a dial turned with a screwdriver, and exposure to non-solid plasma in order to activate a node. A standard artifact scanner will outline this for you.
 
         In this chapter, I will outline a good number of common stimulations you may encounter in the Xeno-archaeological field:
 
 
         Blood
-        Method: Drawing blood from either a subject (or yourself, in a pinch...) and splashing it on the artifact. Spray bottles may be good for this but artifacts tend to demand quite a large sacrifice of blood.
+        Method: Drawing blood from a test subject (or yourself, in a pinch...) and splashing it on the artifact. Spray bottles may be good for this but artifacts tend to demand quite a large sacrifice of blood.
 
         Close Examination
         Method: As the stimulation suggests, closely examine the artifact. And by closely, I mean, close enough that you can take a very good look at it!
@@ -697,7 +697,7 @@ book-text-studyofartifactsfromancient =
 
         My name is Adalite Tosimizu, I have been pretty much self-taught over the years by folks of a nomad colony who've been nothing but nice to me as well as having had a few years of scientific tutelage thanks in due part by Nanotrasen before we got contracted to work closely with them.
 
-        In my time, I've learned a lot about working in the field and after having made a transfer to the New Frontier project to perform scientific studies aboard vessels of my own (or with others, should they be hiring), I realize I hold some semblance of knowledge, which I did not know that I has possessed.
+        In my time, I've learned a lot about working in the field and after having made a transfer to the New Frontier project to perform scientific studies aboard vessels of my own (or with others, should they be hiring), I realize I hold some semblance of knowledge, which I did not know that I had possessed.
 
         In this work, I wish to impart knowledge of most of the inner workings of artifacts hailing from ancient xeno-civilizations. I do hope this will be useful to any new research assistant or anyone wishing to seek out new horizons in the realm of research and development.
 
@@ -1153,7 +1153,7 @@ book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
 
         Pirate Lords, they are the ones who've distinguished themselves from the lowly thugs and deigned themselves the leaders.
 
-        Their rules enforced, their code immutable, their every wim a law.
+        Their rules enforced, their code immutable, their every whim a law.
 
         And I can't accept that, if my father was going to reject me because of this code then I simply had to impose myself onto it.
 
@@ -1161,7 +1161,7 @@ book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
 
         On one such attempt I had Skitty as my right hand woman, we were going to show the sector what we're made of.
 
-        The start was rocky however, skitty was exploring the cove when she ended up dying to asphyxiation, she forgot she didn't have her EVA helmet up while on the hoverbike and got carried away.
+        The start was rocky however, Skitty was exploring the cove when she ended up dying to asphyxiation, she forgot she didn't have her EVA helmet up while on the hoverbike and got carried away.
 
         I couldn't help but feel like I've already failed, panicking as I drag her over to where the medical supplies were, I noted the importance of staying with my crew.
 
@@ -1187,55 +1187,55 @@ book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
 
         It wasn't my plan for my hostage to be a rat, but I won't be picky, we'll get our 100k bounty!
 
-        "Shove him in that crate!""
+        "Shove him in that crate!"
 
-        If only I could've taken a photo of sven's face! that oughta teach him not to mess with us.
+        If only I could've taken a photo of Sven's face! that oughta teach him not to mess with us.
 
         And so we got a hostage!
 
-        "Hey rat, we have 2 options here: Either you die there... or you behave. which will it be? MAKE A NOISE IF YOU WANNA LIVE"
+        "Hey rat, we have 2 options here: Either you die there... Or you behave. Which will it be? MAKE A NOISE IF YOU WANNA LIVE"
 
         The mouse screamed, his bellows escaping the pirate chest's walls, I found his resolve funny.
 
         "I better not see you try to run, nowhere here is safe." I needed to quell any resistance, and after crushing his spirit an explanation would finish it off.
 
-        "You see, we're poor! VERY POOR! I only have around..... 20k left? no  no it's actually 8k now... since I spent a lot reviving Skitty Kat... we need that ransom money, you understand?"
+        "You see, we're poor! VERY POOR! I only have around... 20k left? No no it's actually 8k now... Since I spent a lot reviving Skitty Kat... We need that ransom money, you understand?"
 
-        "Wha? how are you that poor?" said Skitty Kat, it seems she's not on the same shoestring budget
+        "Wha? How are you that poor?" said Skitty Kat, it seems she's not on the same shoestring budget.
 
-        I couldn't stomach even my aid thinking less of me so I had to whisper to her: " I uh... being a pirate is kinda hard, ok? Don't JUDGE me"
+        I couldn't stomach even my aid thinking less of me so I had to whisper to her: " I uh... Being a pirate is kinda hard, ok? Don't JUDGE me"
 
-        "Understandable" said skitty kat before a Harsh crash ended the conversation short, it seems my driving habits are going to cost us the ship.
+        "Understandable" said Skitty Kat before a harsh crash ended the conversation short, it seems my driving habits are going to cost us the ship.
 
-        "Can you drive us to Expeditioner's Lodge? i'll handle talking to the rat"
+        "Can you drive us to the expeditionary lodge? I'll handle talking to the rat"
 
-        And now I was face to face with the rat, still silently standing in the corner
+        And now I was face to face with the rat, still silently standing in the corner.
 
-        "Tell me.... isn't it so odd how someone like you with.... barely any organs... weight.... or really anything... can be so beloved? look at me; i'm way bigger, smarter, yet no one would ever pay a ransom for me not even one of.... 100 spesos" She takes a step forwards "Isn't it unfair? Rat."
+        "Tell me... Isn't it so odd how someone like you with... Barely any organs... Weight... Or really anything... Can be so beloved? Look at me; I'm way bigger, smarter, yet no one would ever pay a ransom for me not even one of... 100 spesos" She takes a step forwards "Isn't it unfair? Rat."
 
-        And all I was met with was some weird head shaking, whether or not he agreed I didn't know, nor did I care anyways....
+        And all I was met with was some weird head shaking, whether or not he agreed I didn't know, nor did I care anyways...
 
-        I decided to call up sven, I called and called, yet he never answered "Oh how could he? did he ever looooove you?" I liked that look of doubt on his face.
+        I decided to call up Sven, I called and called, yet he never answered "Oh how could he? Did he ever looooove you?" I liked that look of doubt on his face.
 
-        The rat, shaken up by this retreated to the far edge of the bridge "Don't cry little rat, I'm used to being treated so, you see, we moths descended from TIIIIIIINY little insects, even smaller than a roach. Do you know the saying: 'squished like a bug'? it's used to talk about those so easy to kill, it requires no effort." I took another step forward "that's what our placement was... what yours SHOULD be, it's a miracle it isn-"
+        The rat, shaken up by this retreated to the far edge of the bridge "Don't cry little rat, I'm used to being treated so, you see, we moths descended from TIIIIIIINY little insects, even smaller than a roach. Do you know the saying: 'Squished like a bug'? It's used to talk about those so easy to kill, it requires no effort." I took another step forward "That's what our placement was... What yours SHOULD be, it's a miracle it isn-"
 
-        It seemed he was looking out the window during that whole speech... because the moment we were close enough to expeditioner's lodge he ran out the bridge, Skitty saw this and undocked from the station and moved away!
+        It seemed he was looking out the window during that whole speech... Because the moment we were close enough to the expeditionary lodge he ran out the bridge, Skitty saw this and undocked from the station and moved away!
 
-        He was in the salvage bay when there was a solid 10 meters of space between the ship and the lodge, and yet he just JUMPED not hesitation.
+        He was in the salvage bay when there was a solid 10 meters of space between the ship and the lodge, and yet he just JUMPED no hesitation.
 
         And an impressive escape...
 
-        He landed safely on the otherside... somehow. and was completely fine.... somehow.
+        He landed safely on the otherside... Somehow. and was completely fine... Somehow.
 
-        I was really regretting everything i've done, it feels like my life's just been a looooong chain of failures, I chased the rat down to drown out these thoughts.
+        I was really regretting everything I've done, it feels like my life's just been a looooong chain of failures. I chased the rat down to drown out these thoughts.
 
         Being a rat he had a lot of places to hide, but I knew there was no way he'd escape! We found him once or twice but I knew in the end he's just ours so no need to stress it too much.
 
         And then I saw him take the bus...
 
-        "I've so graciously given you a chance to get him Svenny, all you need to do is find where he went using the bus before me! just know I won't be kind to him when I catch him heheheheh" and with that I boarded the ship with Skitty, looked at the schedule and tried going to the stations listed there, and station after station I grew flabbergasted at my own incompentence...
+        "I've so graciously given you a chance to get him Svenny, all you need to do is find where he went using the bus before me! Just know I won't be kind to him when I catch him heheheheh" And with that I boarded the ship with Skitty, looked at the schedule and tried going to the stations listed there, and station after station I grew flabbergasted at my own incompentence...
 
-        And then the Vault came in!
+        And then the vault came in!
         The only thing that made this situation a liiiittle better was the nanotrasen vault falling into this sector, at least this mouse situation could be a nice diversion!
 
         As we went to the vault, taunting Sven's lack of personnel, I knew Sven was too enraptured by his mouse to let him stay unattended at the public transit system, and as such it was a FREE opportunity to profit!
@@ -1244,17 +1244,17 @@ book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
 
         Skitty had manned the cannon, and I reloaded it with all the cannonballs doubloons could buy, and layer after layer was torn.
 
-        But the final one was far more resiliant.... it survived every last cannon ball they had.
+        But the final one was far more resiliant... It survived every last cannon ball they had.
 
         The death stares I gave to those walls were all I had as damage, and they were NOT sufficient.
 
-        And then the NFSD showed up, a templar, one that wasn't sven's. It seems he did have personnel after all...
+        And then the NFSD showed up, a templar, one that wasn't Sven's. It seems he did have personnel after all...
 
-        As it approached, I tried to get the drop on them and boarded with Skitty using the Hidden no Blip Hoverbike and jetpack!
+        As it approached, I tried to get the drop on them and boarded with Skitty using the hidden no blip hoverbike and jetpack!
 
-        What we were met with was Sigurd, he was seemingly unbothered by our prescence, which was apparently because Sven failed to even call a No Fly Zone, and he didn't care enough to check the vault to see if it was broken into..... it seemed our failures were more known about now.....
+        What we were met with was Sigurd, he was seemingly unbothered by our prescence, which was apparently because Sven failed to even call a No Fly Zone, and he didn't care enough to check the vault to see if it was broken into... It seemed our failures were more known about now...
 
-        We waited for a while until Sven showed up and docked with our ship, I bet with sigurd to see how long it'll take for Sven to find us, using the Final 2680 spesos I had. this goes without saying but I also failed this bet too.
+        We waited for a while until Sven showed up and docked with our ship, I bet with Sigurd to see how long it'll take for Sven to find us, using the final 2680 spesos I had. this goes without saying but I also failed this bet too.
 
         He finally jetpacked over after the vault disappeared "you blew up the vault!" "TRIED!!!" said machina enraged at the spoils she was OWED yet was robbed of by one singular layer of wall...
 
