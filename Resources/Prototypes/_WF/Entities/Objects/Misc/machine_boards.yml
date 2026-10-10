@@ -1,0 +1,17 @@
+- type: entity
+  id: SafetyDepositConsoleCircuitboard
+  parent: BaseMachineCircuitboard
+  name: safety deposit console board
+  description: A circuit board for a safety deposit console.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: generic
+  - type: MachineBoard
+    prototype: SafetyDepositConsole
+    requirements:
+      Capacitor: 2
+    stackRequirements:
+      Cable: 5
+      Steel: 2
+      Glass: 1

@@ -1,6 +1,7 @@
 # Base entries
 guide-entry-nf14 = Frontier Guide
 guide-entry-bank = NT Galactic Bank
+guide-entry-safety-deposit-box = Safety Deposit Box System
 guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
