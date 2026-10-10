@@ -1,0 +1,42 @@
+- type: entity
+  id: NuclearFabricator
+  parent: BaseLatheLube
+  name: nuclear fabricator
+  description: It makes nuclear reactor parts.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/nuclear_fabricator.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: NuclearFabricatorMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - ReactorCircuitboards
+    - ReactorPartsBasic
+    - ReactorFuelRods
+    - ReactorControlRods
+    - ReactorGasChannels
+    - ReactorHeatExchangers
+    - GasTurbineBlades
+    - GasTurbineStators
