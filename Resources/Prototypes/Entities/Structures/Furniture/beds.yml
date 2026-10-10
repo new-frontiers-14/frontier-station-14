@@ -141,7 +141,7 @@
   - type: Construction
     graph: bedNF
     node: mattress
-  # Frontier: break into cloth, not steel.
+  # End Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -208,6 +208,11 @@
     damage:
       types:
         Cold: -0.5
+  # Frontier: deconstruct into appropriate materials.
+  - type: Construction
+    graph: bedNF
+    node: PsychBed
+  # End Frontier
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
