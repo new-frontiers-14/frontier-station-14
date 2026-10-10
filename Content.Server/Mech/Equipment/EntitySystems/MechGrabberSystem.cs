@@ -21,6 +21,7 @@ using Content.Shared.Buckle.Components; // Frontier
 using Content.Shared.Buckle; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Server.Ghost.Roles.Components; // Frontier
+using Content.Shared.Storage.Components; // Frontier
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
 
@@ -192,7 +193,7 @@ public sealed class MechGrabberSystem : EntitySystem
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
 
-        // Frontier: Remove people from chairs and containers
+        // Frontier: Remove people and magnet bags from chairs and containers
         if (TryComp<StrapComponent>(args.Args.Target, out var strapComp) && strapComp.BuckledEntities != null)
         {
             foreach (var buckleUid in strapComp.BuckledEntities)
@@ -201,12 +202,12 @@ public sealed class MechGrabberSystem : EntitySystem
             }
         }
 
-        // Remove contained humanoids
+        // Remove contained humanoids and magnet bags
         // TODO: revise condition for "generic player entities"
         if (TryComp<ContainerManagerComponent>(args.Args.Target, out var containerManager))
         {
             EntityCoordinates? coords = null;
-            if (TryComp(equipmentComponent.EquipmentOwner, out TransformComponent? xform)) 
+            if (TryComp(equipmentComponent.EquipmentOwner, out TransformComponent? xform))
                 coords = xform.Coordinates;
 
             List<EntityUid> toRemove = new();
@@ -215,7 +216,7 @@ public sealed class MechGrabberSystem : EntitySystem
                 toRemove.Clear();
                 foreach (var contained in container.Value.ContainedEntities)
                 {
-                    if (HasComp<GhostRoleComponent>(contained)
+                    if (HasComp<MagnetPickupComponent>(contained) || HasComp<GhostRoleComponent>(contained)
                         || TryComp<MindContainerComponent>(contained, out var mindContainer)
                         && mindContainer.HasMind)
                     {
@@ -228,7 +229,7 @@ public sealed class MechGrabberSystem : EntitySystem
                 }
             }
         }
-        // End Frontier: Remove people from chairs and containers
+        // End Frontier: Remove people and magnet bags from chairs and containers
 
         _container.Insert(args.Args.Target.Value, component.ItemContainer);
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
