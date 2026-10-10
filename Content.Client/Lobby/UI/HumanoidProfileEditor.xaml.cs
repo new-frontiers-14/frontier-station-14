@@ -35,6 +35,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Client.Lobby.UI
 {
@@ -56,6 +57,7 @@ namespace Content.Client.Lobby.UI
         // CCvar.
         private int _maxNameLength;
         private bool _allowFlavorText;
+        private bool _allowSizePicker; // Frontier
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -137,6 +139,7 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+            _allowSizePicker = _cfgManager.GetCVar(NFCCVars.SizePicker); // Frontier
 
             ImportButton.OnPressed += args =>
             {
@@ -246,6 +249,23 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion
+
+            // Frontier - size editor
+            #region Size
+
+            SizePicker.OnValueChanged += newSize => { SetProfileScale(newSize.Value); };
+
+            SizeEdit.OnFocusEnter += _ => { SizeEdit.Text = SizePicker.Value.ToString("N3"); };
+            SizeEdit.OnFocusExit += args => { SetProfileScale(args.Text, true); };
+            SizeEdit.OnTextChanged += args => { SetProfileScale(args.Text); };
+            SizeEdit.OnTextEntered += _ => { SizeEdit.ReleaseKeyboardFocus(); };
+
+            SizeEdit.IsValid = args => float.TryParse(args, out var _);
+
+            RefreshSizePicker();
+
+            #endregion
+            // End Frontier - size editor
 
             #region Hair
 
@@ -489,6 +509,17 @@ namespace Content.Client.Lobby.UI
                 _flavorTextEdit = null;
                 _flavorText = null;
             }
+        }
+
+        /// <summary>
+        /// Frontier: Refreshes the size editor status.
+        /// </summary>
+        public void RefreshSizePicker()
+        {
+            if (SizeEditorContainer == null)
+                return; // this should literally never happen
+
+            SizeEditorContainer.Visible = _allowSizePicker;
         }
 
         /// <summary>
@@ -777,6 +808,7 @@ namespace Content.Client.Lobby.UI
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
+            UpdateSizePicker(); // Frontier
 
             RefreshAntags();
             RefreshJobs();
@@ -784,6 +816,7 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshFlavorText();
+            RefreshSizePicker(); // Frontier
             ReloadPreview();
 
             if (Profile != null)
@@ -1246,6 +1279,7 @@ namespace Content.Client.Lobby.UI
             UpdateSexControls(); // update sex for new species
             UpdateSpeciesGuidebookIcon();
             ReloadPreview();
+            UpdateSizePicker(); // Frontier
         }
 
         private void SetName(string newName)
@@ -1258,6 +1292,36 @@ namespace Content.Client.Lobby.UI
 
             _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, newName);
         }
+
+        // Frontier - size editor
+        private void SetProfileScale(string newScaleString, bool doEvent = false)
+        {
+            if (!float.TryParse(newScaleString, out var newScale))
+            {
+                if (doEvent) SizeEdit.Text = SizePicker.Value.ToString("N2");
+                return;
+            }
+
+            SetProfileScale(newScale, doEvent);
+        }
+
+        private void SetProfileScale(float newScale, bool doEvent = true)
+        {
+            if (Profile is null)
+                return;
+
+            newScale = Math.Clamp(newScale, SizePicker.MinValue, SizePicker.MaxValue);
+
+            if (doEvent)
+            {
+                SizeEdit.Text = newScale.ToString("N2");
+                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithScale(newScale));
+                SetDirty();
+            }
+
+            SizePicker.SetValueWithoutEvent(newScale);
+        }
+        // End Frontier - size editor
 
         private void SetSpawnPriority(SpawnPriorityPreference newSpawnPriority)
         {
@@ -1583,6 +1647,30 @@ namespace Content.Client.Lobby.UI
             Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
             EyeColorPicker.SetData(Profile.Appearance.EyeColor);
         }
+
+        // Frontier - size editor
+        private void UpdateSizePicker()
+        {
+            if (Profile == null)
+            {
+                return;
+            }
+
+            var speciesProto = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+            var size = Profile.Appearance.Scale;
+
+            SizePicker.MinValue = speciesProto.MinSize;
+            SizePicker.MaxValue = speciesProto.MaxSize;
+
+            if (!float.IsNormal(size)
+            || size < speciesProto.MinSize
+            || size > speciesProto.MaxSize)
+                size = speciesProto.DefaultSize;
+
+            // Force the size picker to update
+            SetProfileScale(size);
+        }
+        // End Frontier - size editor
 
         private void UpdateSaveButton()
         {
