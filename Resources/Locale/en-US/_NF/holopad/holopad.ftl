@@ -17,4 +17,5 @@ nf-holopad-general-nfsd-sheriff-office = NFSD - Sheriff's Office
 nf-holopad-general-nfsd-reception = NFSD - Reception
 nf-holopad-general-nfsd-lobby = NFSD - Main Lobby
 nf-holopad-general-edison-reception = Edison Power Plant - Reception
+nf-holopad-general-thistles = Thistle's Scrapyard - Office
 nf-holopad-general-tinnia = Tinnia's Rest
