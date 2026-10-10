@@ -1,0 +1,73 @@
+- type: entity
+  parent: GasUnaryBase
+  id: GasInletSiphon
+  name: air siphon
+  description: Siphons air from adjacent tiles.
+  placement:
+    mode: AlignAtmosPipeLayers
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - state: pipeUnaryConnectors
+          sprite: Structures/Piping/Atmospherics/pipe.rsi
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasInletSiphon
+        Secondary: GasInletSiphonAlt1
+        Tertiary: GasInletSiphonAlt2
+      spriteLayersRsiPaths:
+        enum.PipeVisualLayers.Pipe:
+          Primary: Structures/Piping/Atmospherics/pipe.rsi
+          Secondary: Structures/Piping/Atmospherics/pipe_alt1.rsi
+          Tertiary: Structures/Piping/Atmospherics/pipe_alt2.rsi
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.GasInletSiphonVisuals.State:
+          enum.LightLayers.Unshaded:
+            Off: { color: "#990000" }
+            UnpoweredOff: { color: "#430000" }
+            On: { color: "#5eff5e" }
+            UnpoweredOn: { color: "#022102" }
+    - type: PipeColorVisuals
+    - type: AtmosDevice
+    - type: GasInletSiphon
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphon
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
+      - enum.LightLayers.Unshaded
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasVentOpening
+    - type: ApcPowerReceiver
+    - type: ExtensionCableReceiver
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-air-siphon
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: ToggleableSignal
+    - type: ToggleableAtmosDevice
+    - type: AmbientSound
+      enabled: true
+      volume: -12
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_vent.ogg
