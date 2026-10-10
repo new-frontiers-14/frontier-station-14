@@ -129,7 +129,7 @@ public enum BluespaceDatasetNameType
 }
 
 [DataRecord]
-public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
+public sealed partial class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
 {
     /// <summary>
     /// Prototypes we can choose from to spawn.
@@ -177,7 +177,7 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
 }
 
 [DataRecord]
-public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
+public sealed partial class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
 {
     public List<ResPath> Paths = new();
 

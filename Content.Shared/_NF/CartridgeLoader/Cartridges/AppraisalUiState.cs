@@ -17,7 +17,7 @@ public sealed class AppraisalUiState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable, DataRecord]
-public sealed class AppraisedItem
+public sealed partial class AppraisedItem
 {
     public readonly string Name;
     public readonly string AppraisedPrice;

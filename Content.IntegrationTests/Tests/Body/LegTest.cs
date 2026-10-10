@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -35,7 +35,6 @@ namespace Content.IntegrationTests.Tests.Body
             AppearanceComponent appearance = null;
 
             var entityManager = server.ResolveDependency<IEntityManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
             var appearanceSystem = entityManager.System<SharedAppearanceSystem>();
             var xformSystem = entityManager.System<SharedTransformSystem>();
 
