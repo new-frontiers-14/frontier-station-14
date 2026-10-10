@@ -304,6 +304,15 @@
   name: bag of holding
   description: A backpack that opens into a localized pocket of bluespace.
   components:
+  - type: ChameleonClothing # Coyote start
+    slot: [back]
+    default: ClothingBackpackHolding
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface # Coyote end
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/holding.rsi # Frontier
     state: holding
