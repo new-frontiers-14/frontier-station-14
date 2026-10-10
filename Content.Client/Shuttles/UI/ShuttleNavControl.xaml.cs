@@ -14,6 +14,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Content.Client.Station; // Frontier
 using Content.Client._NF.Radar; // Frontier
+using Content.Client._NF.River; // Frontier
 
 namespace Content.Client.Shuttles.UI;
 
@@ -65,6 +66,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         // Frontier
         _station = EntManager.System<StationSystem>();
         _blips = EntManager.System<RadarBlipSystem>();
+        _rivers = EntManager.System<RiverNodeSystem>();
 
         OnMouseEntered += HandleMouseEntered;
         OnMouseExited += HandleMouseExited;
@@ -179,6 +181,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         // Frontier: north line drawing
         var rot = ourEntRot + _rotation.Value;
         DrawNorthLine(handle, rot);
+
+        // Frontier: Draw Rivers
+        var worldToView = worldToShuttle * shuttleToView;
+        NFDrawRivers(handle, worldToView);
+        // End Frontier
 
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
