@@ -7,3 +7,4 @@ id-card-access-level-sergeant = Sergeant
 id-card-access-level-bailiff = Bailiff
 id-card-access-level-brigmedic = Brigmedic
 id-card-access-level-pirate = Pirate
+id-card-access-level-pirate-captain = Pirate Captain

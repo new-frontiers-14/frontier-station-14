@@ -167,6 +167,7 @@ namespace Content.Server.Communications
                 levels,
                 currentLevel,
                 currentDelay,
+				CanChangeAlertLevel(comp), //Frontier
                 _roundEndSystem.ExpectedCountdownEnd
             ));
         }
@@ -220,6 +221,8 @@ namespace Content.Server.Communications
                 _popupSystem.PopupCursor(Loc.GetString("comms-console-permission-denied"), message.Actor, PopupType.Medium);
                 return;
             }
+			if (!CanChangeAlertLevel(comp)) //Frontier
+				return;
 
             var stationUid = _stationSystem.GetOwningStation(uid);
             if (stationUid != null)
@@ -344,6 +347,17 @@ namespace Content.Server.Communications
             _roundEndSystem.CancelRoundEndCountdown(uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
+
+		// Frontier
+		private bool CanChangeAlertLevel(CommunicationsConsoleComponent comp)
+		{
+			// Ensure that the console is allowed to change the alert level
+			if (!comp.CanChangeAlertLevel)
+				return false;
+
+			return true;
+		}
+        // End Frontier
     }
 
     /// <summary>
@@ -370,4 +384,5 @@ namespace Content.Server.Communications
         public EntityUid? Sender = Sender;
         public string? Reason;
     }
+
 }

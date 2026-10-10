@@ -607,3 +607,49 @@
   components:
   - type: NFDroneConsole
     id: Trade
+
+- type: entity
+  parent: ComputerComms
+  id: PirateComputerComms
+  name: pirate communications computer
+  description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence. Appears to be held together by 50 year old unlicensed software and ducttape.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_pirate
+    - map: ["computerLayerKeys"]
+      state: pirate_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "PirateCaptain" ]]
+  - type: CommunicationsConsole
+    delay: 600 # 10 minutes delay, opposed to the normal 90 seconds delay.
+    title: comms-console-announcement-title-pirate
+    color: "#C83737" #Color of the pirate outpost
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    sound: /Audio/Announcements/announce.ogg #Not ideal, I would love a sound that is more pirat-y and less nukie than the war sound, and more identifiable than the SRs DUMDUMDUM.
+    canChangeAlertLevel: false
+  - type: Computer
+    board: PirateCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#BC531E"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, PirateComputerComms]
+  id: PirateComputerCommsPOI
+  name: pirate communications computer
+  description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence. Appears to be held together by 50 year old unlicensed software and ducttape. This one seems virtually indestructable!
+  suffix: POI
+  components:
+  - type: Computer
+    board: Null
