@@ -526,18 +526,19 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         var comp = ent.Comp;
         var uid = ent.Owner;
 
-        var stationUid = _station.GetStationInMap(Transform(uid).MapID);
-        if (stationUid != null)
-            _alertLevel.SetLevel(stationUid.Value, comp.MeltdownAlertLevel, true, true, true);
+        // Frontier: Disablied the radio and chat messages for reactor meldwoens.
+        // var stationUid = _station.GetStationInMap(Transform(uid).MapID);
+        // if (stationUid != null)
+        //     _alertLevel.SetLevel(stationUid.Value, comp.MeltdownAlertLevel, true, true, true);
 
-        string stationName = GetReactorLocation(uid); // Wayfarer
-        //var announcement = Loc.GetString("reactor-meltdown-announcement"); // Wayfarer: Edited for the one below
-        var announcement = Loc.GetString("reactor-meltdown-announcement-wf", ("station", stationName));
-        var sender = Loc.GetString("reactor-meltdown-announcement-sender");
-        _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);
+        // string stationName = GetReactorLocation(uid); // Wayfarer
+        // //var announcement = Loc.GetString("reactor-meltdown-announcement"); // Wayfarer: Edited for the one below
+        // var announcement = Loc.GetString("reactor-meltdown-announcement-wf", ("station", stationName));
+        // var sender = Loc.GetString("reactor-meltdown-announcement-sender");
+        // _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);
 
-        //_soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.MeltdownSound)); // Wayfarer: Commented for the one below
-        _audio.PlayGlobal(comp.MeltdownSound, Filter.Broadcast(), true);
+        // //_soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.MeltdownSound)); // Wayfarer: Commented for the one below
+        // _audio.PlayGlobal(comp.MeltdownSound, Filter.Broadcast(), true);
 
         comp.Melted = true;
         var MeltdownBadness = 0f;
