@@ -1256,17 +1256,17 @@ book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
 
         We waited for a while until Sven showed up and docked with our ship, I bet with Sigurd to see how long it'll take for Sven to find us, using the final 2680 spesos I had. this goes without saying but I also failed this bet too.
 
-        He finally jetpacked over after the vault disappeared "you blew up the vault!" "TRIED!!!" said machina enraged at the spoils she was OWED yet was robbed of by one singular layer of wall...
+        He finally jetpacked over after the vault disappeared "You blew up the vault!" "TRIED!!!" Said Machina enraged at the spoils she was OWED yet was robbed of by one singular layer of wall...
 
-        Apparently the mouse was a renowned officer and trained bus analyst , it'd explain his decisiveness and mental resilience, he scouted the vault and ended up dying, but was revived soon after, this'd explain sven's long delay
+        Apparently the mouse was a renowned officer and trained bus analyst , it'd explain his decisiveness and mental resilience, he scouted the vault and ended up dying, but was revived soon after, this'd explain Sven's long delay.
 
-        "I kinda respect your dedication to keeping such a small rodent alive.... I guess now we're getting arrested huh?" said Machina
+        "I kinda respect your dedication to keeping such a small rodent alive... I guess now we're getting arrested huh?" Said Machina.
 
-        "Next time" said Sven before jetpacking away
+        "Next time" Said Sven before jetpacking away.
 
         "BUT WE KIDNAPPED SOMEONE, AND BOMBED A VAULT?? WHY ARE WE BEING LET GO NOW??" Sven had already left before I even finished, I was too tired to push the matter, and retired for the day, the only way to recover from so many failures back to back is to start over later...
 
-        and so Skitty Kat and I said our goodbyes and cryo-ed.
+        And so Skitty Kat and I said our goodbyes and cryo-ed.
 
         And that's it.
 
@@ -1729,7 +1729,7 @@ book-text-room85 = [head=3]Room 85[/head]
 
 
 
-        -”Let's move on to the next piece of information. A miner was found dead at the bottom of a cave during a mining operation. As the man had shown no signs of life for several days, the rescue team headed to the scene using the miner’s pinpointer. He reportedly died from a lack of oxygen. It turns out that the man in question is reportedly none other than Barry Connor, known to the NFSD for having killed his friend by stabbing him seven times. Given his history of mental heal-.” and the TV turns off.
+        -”Let's move on to the next piece of information. A miner was found dead at the bottom of a cave during a mining operation. As the man had shown no signs of life for several days, the rescue team headed to the scene using the miner’s pinpointer. He reportedly died from a lack of oxygen. It turns out that the man in question is reportedly none other than Barry Connor, known to the NFSD for having killed his friend by stabbing him seven times. Given his history of mental heal-.” and the TV turned off.
 
 book-text-delightsandmusings = [head=3] Delights and Musings[/head]
         by Etienne DeCroix-Sphingidae
