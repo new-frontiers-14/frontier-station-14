@@ -310,7 +310,7 @@ book-text-nukasmemorylogs = [color=green][head=3]Nuka’s Memory Logs[/head]
         I'm ripped out of the memories, screaming and crying. Juliet is there, she's soothing me, holding me, telling me everything is okay. But everything isn't okay. Where are my parents, why weren't they aboard, why did we leave without them?!
         And who were those fuckers in red?!
 
-book-text-nononsenseatmos = [color=black][head=3]The No-Nonsense Atmos Guidebook[/head]
+book-text-nononsenseatmos = [head=3]The No-Nonsense Atmos Guidebook[/head]
         The No-Nonsense Atmos Guidebook
         by Ruben Koster
         First place winner in the Frontier 3rd Anniversary Writing Contest
