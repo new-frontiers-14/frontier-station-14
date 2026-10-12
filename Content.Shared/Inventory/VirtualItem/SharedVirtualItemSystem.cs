@@ -129,7 +129,13 @@ public abstract class SharedVirtualItemSystem : EntitySystem
                     continue;
 
                 if (!TerminatingOrDeleted(held))
+                { //Frontier Begin - Fix showing Virtual Item when wielding
+                    if (TryComp<VirtualItemComponent>(held, out var otherVirt))
+                    {
+                        held = otherVirt.BlockingEntity;
+                    } //Frontier End
                     _popup.PopupClient(Loc.GetString("virtual-item-dropped-other", ("dropped", held)), user, user);
+                } // Frontier
 
                 empty = hand;
                 break;

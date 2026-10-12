@@ -4,7 +4,7 @@
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       Title="{Loc 'borg-ui-menu-title'}"
                       MinSize="600 350"
-                      SetSize="650 450">
+                      SetSize="650 500"> <!-- DeltaV - height was 450 -->
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -34,6 +34,10 @@
             <Button HorizontalExpand="True" Name="BrainButton" ToggleMode="False" Margin="0" MinHeight="40" StyleClasses="OpenLeft">
                 <SpriteView Name="BrainView" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Button>
+            <!-- Begin DeltaV Additions - borg id chips -->
+            <Control MinHeight="5"/>
+            <Button HorizontalExpand="True" Name="IdChipButton" MinHeight="40" Disabled="True"/>
+            <!-- End DeltaV Additions -->
         </BoxContainer>
         <customControls:VSeparator/>
         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="15 10 15 15">

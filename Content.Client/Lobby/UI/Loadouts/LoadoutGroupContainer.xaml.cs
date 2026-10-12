@@ -302,7 +302,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
     /// <returns>A fully initialized LoadoutContainer for UI display.</returns>
     private LoadoutContainer CreateLoadoutUI(LoadoutPrototype proto, HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession session, IDependencyCollection collection, LoadoutSystem loadoutSystem)
     {
-        var selected = loadout.SelectedLoadouts[_groupProto.ID];
+        var selected = loadout.SelectedLoadouts.GetValueOrDefault(_groupProto.ID, new()); // Frontier: indexer<GetValueOrDefault
 
         var pressed = selected.Any(e => e.Prototype == proto.ID);
 
