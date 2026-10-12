@@ -58,8 +58,11 @@
   abstract: true
   description: A small bowl for condiment.
   components:
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: food
+    destroyOnEmpty: false
+    utensil: Spoon #Frontier added
   - type: DrawableSolution
     solution: food
   - type: InjectableSolution
