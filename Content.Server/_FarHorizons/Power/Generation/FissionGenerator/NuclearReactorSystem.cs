@@ -37,6 +37,7 @@ using Content.Shared.Popups;
 using Content.Server.Popups;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceNetwork;
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Rejuvenate;
@@ -45,7 +46,8 @@ using Content.Shared.Damage.Systems;
 using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Timing;
 
-using Robust.Shared.Player; // Wayfarer
+using Robust.Shared.Player;
+using Robust.Shared.Configuration; // Wayfarer
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -65,6 +67,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
@@ -91,6 +94,23 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
 
     private readonly Dictionary<KeyValuePair<EntityUid, EntityUid>, LogData> _logQueue = [];
     private static readonly ReactorPartComponent?[] _neighborBuffer = new ReactorPartComponent?[4];
+    // Frontier: Nuclear Reactor Cvars
+    private bool _sendTemperatureAlerts;
+    private void ToggleReactorTempAlerts(bool tempAlerts)
+    {
+        _sendTemperatureAlerts = tempAlerts;
+    }
+    private bool _sendMeltdownAnnouncements;
+    private void ToggleReactorMeltdownAnnouncements(bool meltdownAnnouncements)
+    {
+        _sendMeltdownAnnouncements = meltdownAnnouncements;
+    }
+    private bool _sendMeltdownYellowAlert;
+    private void ToggleReactorMeltdownAlertLevel(bool meltdownYellowAlert)
+    {
+        _sendMeltdownYellowAlert = meltdownYellowAlert;
+    }
+    // End Frontier
 
     public override void Initialize()
     {
@@ -122,6 +142,13 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         // Anchor events
         SubscribeLocalEvent<NuclearReactorComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<NuclearReactorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
+
+        // Frontier: Temperature radio callouts enable/disabled
+        Subs.CVar(_cfg, NFCCVars.ReactorTemperatureAlerts, ToggleReactorTempAlerts, true);
+        // Frontier: Global announcement for meltdowns enable/disable
+        Subs.CVar(_cfg, NFCCVars.ReactorMeltdownAnnouncements, ToggleReactorMeltdownAnnouncements, true);
+        // Frontier: Alert level set to yellow when a meltdown occurs
+        Subs.CVar(_cfg, NFCCVars.ReactorMeltdownYellowAlert, ToggleReactorMeltdownAlertLevel, true);
     }
 
     private void OnInit(EntityUid uid, NuclearReactorComponent comp, ref MapInitEvent args)
@@ -133,7 +160,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
 
         comp.ComponentGrid = new ReactorPartComponent[gridWidth, gridHeight];
         comp.FluxGrid = new List<ReactorNeutron>[gridWidth, gridHeight];
-          comp.FluxGridScratch = new List<ReactorNeutron>[gridWidth, gridHeight];
+        comp.FluxGridScratch = new List<ReactorNeutron>[gridWidth, gridHeight];
         comp.TemperatureGrid = new double[gridWidth, gridHeight];
         comp.NeutronGrid = new int[gridWidth, gridHeight];
 
@@ -415,7 +442,10 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
 
         UpdateVisuals(ent);
         UpdateAudio(ent);
-        // UpdateRadio(ent); // Frontier: Disabled radio callouts for reactors.
+        if(_sendTemperatureAlerts)
+        {
+            UpdateRadio(ent);
+        }
         UpdateTempIndicators(ent);
 
         UpdateUI(uid, comp);
@@ -525,21 +555,20 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
     {
         var comp = ent.Comp;
         var uid = ent.Owner;
-
-        // Frontier: Disablied the radio and chat messages for reactor meldwoens.
-        // var stationUid = _station.GetStationInMap(Transform(uid).MapID);
-        // if (stationUid != null)
-        //     _alertLevel.SetLevel(stationUid.Value, comp.MeltdownAlertLevel, true, true, true);
-
-        // string stationName = GetReactorLocation(uid); // Wayfarer
-        // //var announcement = Loc.GetString("reactor-meltdown-announcement"); // Wayfarer: Edited for the one below
-        // var announcement = Loc.GetString("reactor-meltdown-announcement-wf", ("station", stationName));
-        // var sender = Loc.GetString("reactor-meltdown-announcement-sender");
-        // _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);
-
-        // //_soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.MeltdownSound)); // Wayfarer: Commented for the one below
-        // _audio.PlayGlobal(comp.MeltdownSound, Filter.Broadcast(), true);
-
+        var stationUid = _station.GetStationInMap(Transform(uid).MapID);
+        if (stationUid != null && _sendMeltdownYellowAlert) // Fronttier: Yellow alert Cvar
+        {
+            _alertLevel.SetLevel(stationUid.Value, comp.MeltdownAlertLevel, true, true, true);
+        }    string stationName = GetReactorLocation(uid); // Wayfarer
+            //var announcement = Loc.GetString("reactor-meltdown-announcement"); // Wayfarer: Edited for the one below
+    if (_sendMeltdownAnnouncements) // Frontier: Global announcement for meltdowns
+        {
+            var announcement = Loc.GetString("reactor-meltdown-announcement-wf", ("station", stationName));
+            var sender = Loc.GetString("reactor-meltdown-announcement-sender");
+            _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, true, null, Color.Orange);
+            //_soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.MeltdownSound)); // Wayfarer: Commented for the one below
+            _audio.PlayGlobal(comp.MeltdownSound, Filter.Broadcast(), true);
+        }
         comp.Melted = true;
         var MeltdownBadness = 0f;
         comp.AirContents ??= new();
@@ -661,8 +690,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
             _ambientSoundSystem.SetAmbience(comp.AlarmAudioHighRads.Value, !comp.Melted && comp.RadiationLevel > comp.MaximumRadiation * 0.5);
     }
 
-    // Frontier: Disables the radio alerts for reactor
-    /*     private void UpdateRadio(Entity<NuclearReactorComponent> ent)
+    private void UpdateRadio(Entity<NuclearReactorComponent> ent)
     {
         var comp = ent.Comp;
         var uid = ent.Owner;
@@ -754,8 +782,6 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
 
         comp.LastSendTemperature = comp.Temperature;
     }
- */
-    // End Frontier
     #endregion
 
     #region BUI
