@@ -73,6 +73,8 @@ public abstract partial class SharedStunSystem
         SubscribeAllEvent<ForceStandUpEvent>(OnForceStandup);
         SubscribeLocalEvent<KnockedDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
 
+        SubscribeLocalEvent<KnockedDownComponent, BuckledEvent>(OnBuckled); // Frontier: stand up before buckling.
+
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(HandleToggleKnockdown, handle: false))
             .Register<SharedStunSystem>();
@@ -116,6 +118,8 @@ public abstract partial class SharedStunSystem
         // This is jank but if we don't do this it'll still use the knockedDownComponent modifiers for friction because it hasn't been deleted quite yet.
         entity.Comp.FrictionModifier = 1f;
         entity.Comp.SpeedModifier = 1f;
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(entity); // Frontier: stand up before buckling.
+        _movementSpeedModifier.RefreshFrictionModifiers(entity); // Frontier: stand up before buckling.
 
         _standingState.Stand(entity);
         Alerts.ClearAlert(entity, KnockdownAlert);
@@ -482,6 +486,13 @@ public abstract partial class SharedStunSystem
         return false;
     }
 
+    // Start Frontier: stand up before buckling.
+    private void OnBuckled(Entity<KnockedDownComponent> entity, ref BuckledEvent args)
+    {
+
+        RemComp<KnockedDownComponent>(entity);
+    }
+    // End Frontier: stand up before buckling.
     #endregion
 
     #region Crawling
