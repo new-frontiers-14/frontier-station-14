@@ -6,3 +6,4 @@ construction-recipe-heat-exchanger-bend = radiator bend
 construction-recipe-gas-filter-flipped = Gas Filter Flipped
 construction-recipe-gas-mixer-flipped = Gas Mixer Flipped
 construction-recipe-inline-gas-filter = Inline Gas Filter
+construction-recipe-inline-gas-filter-desc = A compact inline gas filter used in atmosphere piping. Installs inline to selectively filter specific gases.
