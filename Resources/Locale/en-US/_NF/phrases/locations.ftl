@@ -67,6 +67,7 @@ phrase-location-nexus = Power Nexus
 phrase-location-decomm = Decommissioned Reactor
 
 # Security
+phrase-location-brigmedic-office = Brigmedic's Office
 phrase-location-bailiff-office = Bailiff's Office
 phrase-location-detective-office = Detective's Office
 phrase-location-law-office = Law Office
