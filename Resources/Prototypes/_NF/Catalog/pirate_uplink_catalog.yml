@@ -67,6 +67,26 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+  
+- type: listing
+  id: UplinkPirateHardsuitAurecorsa
+  name:  uplink-pirate-hardsuit-aurecorsa-name
+  description: uplink-pirate-hardsuit-aurecorsa-desc
+  productEntity: ClothingBackpackDuffelPirateAurecorsaBundle
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_aurecorsa.rsi, state: icon }
+  cost:
+    Doubloon: 10
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
