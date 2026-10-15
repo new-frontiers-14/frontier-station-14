@@ -86,6 +86,12 @@ public sealed partial class SmartFridgeComponent : Component
     /// </summary>
     [DataField]
     public bool CheckAccessOnInsert = true;
+
+    /// <summary>
+    /// The display title for the UI for each variant
+    /// </summary>
+    [DataField]
+    public string Title = "smart-fridge-component-title";
     // End Frontier
 }
 

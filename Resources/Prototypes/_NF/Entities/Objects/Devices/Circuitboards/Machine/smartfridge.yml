@@ -1,0 +1,68 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartFridgeCircuitBoard
+  name: smart fridge circuit board
+  description: A machine printed circuit board for a smart fridge.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: SmartFridgeMedical
+    stackRequirements:
+      Steel: 5
+      Glass: 5
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartToolClosetCircuitBoard
+  name: smart tool closet circuit board
+  description: A machine printed circuit board for a smart tool closet.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: SmartToolCloset
+    stackRequirements:
+      Steel: 5
+      Glass: 5
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartCabinetCircuitBoard
+  name: smart cabinet circuit board
+  description: A machine printed circuit board for a smart cabinet.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: SmartCabinet
+    stackRequirements:
+      Steel: 5
+      Glass: 5
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartAmmoMateCircuitBoard
+  name: smart ammomate circuit board
+  description: A machine printed circuit board for a smart ammomate.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SmartAmmoMate
+    stackRequirements:
+      Steel: 5
+      Glass: 5
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+

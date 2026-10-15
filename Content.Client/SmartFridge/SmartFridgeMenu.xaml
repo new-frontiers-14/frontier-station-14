@@ -4,8 +4,7 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:co="clr-namespace:Content.Client.UserInterface.Controls"
     MinHeight="450"
-    MinWidth="350"
-    Title="{Loc 'smart-fridge-component-title'}">
+    MinWidth="350"><!-- Frontier: removed hardcoded title -->
     <BoxContainer Name="MainContainer" Orientation="Vertical">
         <LineEdit Name="SearchBar" PlaceHolder="{Loc 'smart-fridge-component-search-filter'}" HorizontalExpand="True"  Margin ="4 4"/>
         <co:SearchListContainer Name="VendingContents" VerticalExpand="True" Margin="4 4"/>

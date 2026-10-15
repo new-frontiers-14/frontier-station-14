@@ -1,15 +1,13 @@
 - type: entity
-  parent: BaseStructureDynamic
-  id: SmartFridge
-  name: SmartFridge
-  description: A refrigerated storage unit for keeping items cold and fresh.
+  parent: [ BaseMachinePowered, ConstructibleMachine ] #Frontier: constructible smartfridge
+  id: BaseSmartFridge #frontier BaseSmartFridge as the abstract parent to all variants
+  abstract: true
+  name: BaseSmartFridge
   components:
   - type: StationAiWhitelist
   - type: Vocalizer
     hideChat: true
   - type: VocalizerRequiresPower
-  - type: DatasetVocalizer
-    dataset: SmartFridgeAds
   - type: Speech
   - type: Appearance
   - type: Sprite
@@ -33,19 +31,10 @@
     powerLoad: 200
   - type: ExtensionCableReceiver
   - type: SmartFridge
-    whitelist:
+    whitelist: #frontier: fill in descendant prototype
       components:
-      - FitsInDispenser
-      - Pill
-      - Produce
-      - Seed
-      - Hypospray # Frontier
       tags:
-      - PillCanister
-      - Bottle
-      - Syringe
-      - ChemDispensable
-      - Ingredient # Frontier
+    title: smart-fridge-component-title #Frontier: change menu title to yml hardcoded in xaml
   - type: ActivatableUI
     key: enum.SmartFridgeUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -79,18 +68,9 @@
   - type: InteractionOutline
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 200
       behaviors:
       - !type:DoActsBehavior
         acts: ["Breakage"]
@@ -98,16 +78,15 @@
         !type:DamageTrigger
         damage: 200
       behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 1
+      - !type:ChangeConstructionNodeBehavior #Frontier: Breaks into its repairable state
+        node: machineFrame #Frontier: Breaks into its repairable state
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+  - type: Repairable #Frontier: Can fix with welder
+    doAfterDelay: 8
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -122,13 +101,211 @@
   - type: BindToStation # Frontier
     enabled: false # Frontier - should be draggable between stations
 
+#Frontier start: smartfridge variants
+- type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
+  parent: BaseSmartFridge
+  id: SmartAmmoMate
+  name: Smart AmmoMate
+  description: A smart ammo dispenser to organize your ordinance.
+  components:
+  - type: Machine
+    board: SmartAmmoMateCircuitBoard
+  - type: SmartFridge
+    whitelist:
+      components:
+      - Cartridge
+      - BallisticAmmoProvider
+      tags:
+      - HandGrenade
+    title: smart-ammomate-component-title
+  - type: Sprite
+    sprite: Structures/Machines/SmartAmmoMate.rsi
+    snapCardinals: true
+    layers:
+    - state: smartammomate
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: smartammomate_door
+      map: ["enum.StorageVisualLayers.Door"]
+      shader: unshaded
+
+- type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
+  parent: SmartAmmoMate
+  id: SmartAmmoMateDoor
+  name: Smart AmmoMate Door
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/SmartAmmoMate.rsi
+    snapCardinals: true
+    layers:
+    - state: smartammomate
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: smartammomate_door2
+      map: ["enum.StorageVisualLayers.Door"]
+      shader: unshaded
+
+- type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
+  parent: BaseSmartFridge
+  id: SmartCabinet
+  name: Smart Cabinet
+  description: A smart filling cabinet to organize your bureaucratic archives.
+  components:
+  - type: Machine
+    board: SmartCabinetCircuitBoard
+  - type: SmartFridge
+    whitelist:
+      components:
+      - Stamp
+      - Envelope
+      - HandLabeler
+      tags:
+      - Folder
+      - Paper
+    title: smart-cabinet-component-title
+  - type: Sprite
+    sprite: Structures/Machines/SmartCabinet.rsi
+    snapCardinals: true
+    layers:
+    - state: smartcabinet
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: smartcabinet_door
+      map: ["enum.StorageVisualLayers.Door"]
+      shader: unshaded
+
+- type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
+  parent: SmartCabinet
+  id: SmartCabinetDoor
+  name: Smart Cabinet Door
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/SmartCabinet.rsi
+    snapCardinals: true
+    layers:
+    - state: smartcabinet
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: smartcabinet_door2
+      map: ["enum.StorageVisualLayers.Door"]
+      shader: unshaded
+
+- type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
+  parent: BaseSmartFridge
+  id: SmartToolCloset
+  name: Smart Tool Closet
+  description: A smart tool closet to organize your machine boards and flatpacks.
+  components:
+  - type: Machine
+    board: SmartToolClosetCircuitBoard
+  - type: SmartFridge
+    whitelist:
+      components:
+      - Electronics
+      - Circuitboard
+      - StationMap
+      - SprayPainter
+      - SprayPainterAmmo
+      - NetworkConfigurator
+      - RCD
+      - RCDAmmo
+      - Welder
+      - PowerCell
+      - Geiger
+      - TrayScanner
+      - GasAnalyzer
+      - HandLabeler
+      - AccessOverrider
+      - MachinePart
+      - Flatpack
+      tags:
+      - Powerdrill
+      - Wirecutter
+      - Crowbar
+      - Screwdriver
+      - Flashlight
+      - Wrench
+      - GeigerCounter
+      - Flare
+      - CableCoil
+      - CigPack
+      - Radio
+      - HolofanProjector
+      - Multitool
+      - AppraisalTool
+      - JawsOfLife
+      - GPS
+      - WeldingMask
+      - RemoteSignaller
+    title: smart-tool-closet-component-title
+  - type: Sprite
+    sprite: Structures/Machines/SmartToolCloset.rsi
+    snapCardinals: true
+    layers:
+    - state: smarttoolcloset
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: smarttoolcloset_door
+      map: ["enum.StorageVisualLayers.Door"]
+      shader: unshaded
+
+- type: entity # Frontier extends abstract BaseSmartFridge instead of defining values directly
+  parent: SmartToolCloset
+  id: SmartToolClosetDoor
+  name: Smart Tool Closet Door
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/SmartToolCloset.rsi
+    snapCardinals: true
+    layers:
+    - state: smarttoolcloset
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: smarttoolcloset_door2
+      map: ["enum.StorageVisualLayers.Door"]
+      shader: unshaded
+  - type: SmartFridge
+    whitelist:
+      components:
+      - FitsInDispenser
+      - Pill
+      - Produce
+      - Seed
+      - Hypospray # Frontier
+      tags:
+      - PillCanister
+      - Bottle
+      - Syringe
+      - ChemDispensable
+      - Ingredient # Frontier
+
+
 - type: entity
-  parent: SmartFridge
+  parent: BaseSmartFridge
   id: SmartFridgeMedical
+  name: Smart Fridge
+  description: A refrigerated storage unit for keeping items cold and fresh.
   suffix: Medical
   categories: [ HideSpawnMenu ] # Frontier, hide this one as we don't use the access systems for it.
   components:
-  - type: SmartFridge
-    flavorText: smart-fridge-request-chemistry
+  - type: Machine
+    board: SmartFridgeCircuitBoard
   - type: AccessReader
     access: [["Medical"]]
+  - type: DatasetVocalizer
+    dataset: SmartFridgeAds
+  - type: SmartFridge
+    whitelist:
+      components:
+      - FitsInDispenser
+      - Pill
+      - Produce
+      - Seed
+      - Hypospray # Frontier
+      tags:
+      - PillCanister
+      - Bottle
+      - Syringe
+      - ChemDispensable
+      - Ingredient # Frontier
+    title: smart-fridge-component-title
+
+- type: entity # SmartFridge > medical smart fridge alias to prevent ID changes on existing maps
+  parent: SmartFridgeMedical
+  id: SmartFridge
+
+#Frontier end: smartfridge variants
