@@ -18,6 +18,53 @@
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-paramed-module }
 
 - type: entity
+  id: BorgModulePill
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: pill cyborg module
+  description: A module that allows for the creation of pills.
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-pill
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: Pill
+    hands:
+    - hand:
+        emptyRepresentative: PillCanister
+        emptyLabel: borg-slot-pillcanister-empty
+        whitelist:
+          tags:
+          - PillCanister
+    - hand:
+          emptyRepresentative: PillCanister
+          emptyLabel: borg-slot-pillcanister-empty
+          whitelist:
+            tags:
+            - PillCanister
+    - hand:
+        emptyRepresentative: PillCanister
+        emptyLabel: borg-slot-pillcanister-empty
+        whitelist:
+          tags:
+          - PillCanister
+    - hand:
+        emptyRepresentative: PillTricordrazine
+        emptyLabel: borg-slot-pill-empty
+        whitelist:
+          tags:
+          - Pill
+    - hand:
+        emptyRepresentative: PillTricordrazine
+        emptyLabel: borg-slot-pill-empty
+        whitelist:
+          tags:
+          - Pill
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: pill-module }
+
+- type: entity
   id: BorgModuleJetpack
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: Frontier cyborg module
@@ -117,22 +164,41 @@
         whitelist:
           components:
           - NFLighter
+          - Matchbox
+          - Matchstick
     - hand:
         emptyRepresentative: CigPackRed
         emptyLabel: borg-slot-smokes-empty
         whitelist:
           components:
           - NFSmokeableContainer
+          - SmokingPipe
           tags:
           - Cigar
           - Cigarette
+          - Smokable
+          - RollingPaper
+          - CigFilter
     - hand:
+        emptyRepresentative: DrinkEnergyDrinkCan
+        emptyLabel: borg-slot-bottle-empty
+        whitelist:
+          tags:
+          - DrinkCan
+          - DrinkBottle
+          - Beer
+          - Mayo
+          components:
+            - Shakeable
+    - item: DrinkGlass
+      hand:
         emptyRepresentative: DrinkGlass
         emptyLabel: borg-slot-glassware-empty
         whitelist:
           tags:
           - DrinkGlass
-    - hand:
+    - item: DrinkGlass
+      hand:
         emptyRepresentative: DrinkGlass
         emptyLabel: borg-slot-glassware-empty
         whitelist:
@@ -143,12 +209,12 @@
 
 - type: entity
   id: BorgModuleBureaucracy
-  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: bureaucracy cyborg module
   components:
   - type: Sprite
     layers:
-    - state: service
+    - state: generic
     - state: icon-pen
   - type: ItemBorgModule
     moduleId: Bureaucracy
@@ -161,6 +227,12 @@
         whitelist:
           components:
           - NFBookBag
+    - hand:
+        emptyRepresentative: BoxFolderClipboardEmpty
+        emptyLabel: borg-slot-folder-empty
+        whitelist:
+          tags:
+          - Folder
     - item: Pen
       hand:
         emptyRepresentative: Pen
@@ -231,6 +303,8 @@
           - Food
           - Produce
           - NFIngredient
+          - Edible
+          - DriedLeaves
           tags:
           - Ingredient
     - hand:
@@ -241,7 +315,115 @@
           - Food
           - Produce
           - NFIngredient
+          - Edible
+          - DriedLeaves
           tags:
           - Ingredient
+    - item: ServiceSelectiveDropper
+    - hand:
+          emptyRepresentative: MonkeyCube
+          emptyLabel: borg-slot-rehydrateable-cube-empty
+          whitelist:
+            components:
+            - Rehydratable
+            tags:
+            - MonkeyCube
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: chef-module }
+
+- type: entity
+  id: BorgModuleMutation
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: mutation cyborg module
+  description: A module that comes with everything the budding gardener needs to mutate monstrosities!
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-mutation
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: Mutation
+    hands:
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: PlantAnalyzerPowerd
+    - item: BorgDropper
+    - item: BoxMouthSwab
+    - hand:
+        emptyLabel: borg-slot-swab-empty
+        emptyRepresentative: DiseaseSwab
+        whitelist:
+          components:
+          - BotanySwab
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: mutation-module }
+
+- type: entity
+  id: AdvancedBorgModuleMusique
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: advanced musique cyborg module
+  description: A module that allows you to play the smoothest of tunes.
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-musique-adv
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: AdvancedMusic
+    hands:
+    - item: DawInstrument
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-musical-module }
+
+#Janitor
+- type: entity
+  id: BorgModuleAdvancedSprayNozzle
+  parent: [ BaseBorgModuleJanitor, BaseProviderBorgModule ]
+  name: advanced spray nozzle cyborg module
+  description: An internal high-powered spray nozzle, dirt and cats beware!
+  components:
+  - type: Sprite
+    layers:
+    - state: janitor
+    - state: icon-spraynozzle-adv
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: SprayNozzle
+    hands:
+    - item: WeaponSprayNozzleBorg
+    - item: ClothingBackpackWaterTank
+      hand:
+        emptyRepresentative: ClothingBackpackWaterTank
+        emptyLabel: borg-slot-backpack-water-empty
+        whitelist:
+          tags:
+          - NozzleBackTank
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: spray-nozzle-module }
