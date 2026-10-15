@@ -1,7 +1,21 @@
-// The MIT License
-// Copyright © 2018 Inigo Quilez
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// (Modified by Nawichusea(So any jank with it? Blame me) Separated from rest of the code for licensing reasons.)
+//Copyright(c) < 2024 > < Felix Potthast >
+//Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+//and associated documentation files (the "Software"), to deal in the Software without
+//restriction, including without limitation the rights to use, copy, modify, merge, publish,
+//distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+//Software is furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all copies
+//or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+//IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+//Modified by Nawichusea (Blame me for any messes =P)
 
 using System.Numerics;
 
@@ -9,80 +23,61 @@ namespace Content.Shared._NF.River;
 
 public abstract partial class SharedRiverNodeSystem
 {
-    private static float Cro(Vector2 a, Vector2 b) { return a.X * b.Y - a.Y * b.X; }
-
-    // This method provides just an approximation, and is only usable in
-    // the very close neighborhood of the curve. Taken and adapted from
-    // http://research.microsoft.com/en-us/um/people/hoppe/ravg.pdf
-    /// <summary>
-    /// Approximately calculates the distance from the nearest point on a Bezier curve and identifies that point.
-    /// </summary>
-    /// <param name="p">The point between which and the curve you wish to calculate the distance.</param>
-    /// <param name="v0">The starting point of the curve.</param>
-    /// <param name="v1">The control point of the curve.</param>
-    /// <param name="v2">The end point of the curve.</param>
-    /// <param name="outQ">The location on the curve from which the distance is measured.</param>
-    /// <returns></returns>
-    public static float distanceToSegment(Vector2 p, Vector2 v0, Vector2 v1, Vector2 v2, out Vector2 outQ)
+    static private float Length2(Vector2 v)
     {
-        float distance;
-        // Tests to see if it is too straight for the bezier code.
-        var testVec1 = v0 - v2;
-        var testVec2 = v1 - v2;
-        var testAngle1 = testVec1.ToAngle();
-        var testAngle2 = testVec2.ToAngle();
+        return Vector2.Dot(v, v);
+    }
 
-        if (!testAngle1.EqualsApprox(testAngle2)) // Not too straight, can do bezier code.
+    static private float DistanceSquared(Vector2 p, Vector2 a, Vector2 b, out Vector2 closestPoint, out float outH)
+    {
+        Vector2 pa = p - a, ba = b - a;
+        var h = Math.Clamp(Vector2.Dot(pa, ba) / Vector2.Dot(ba, ba), 0.0f, 1.0f);
+        closestPoint = ba * h;
+        outH = h;
+        return Length2(pa - closestPoint);
+    }
+
+    /// <summary>
+    /// Ascertains the approximate distance of a point to the Cubic Bezier curve. Uses linear segments for performance and ease of implementation reasons.
+    /// </summary>
+    /// <param name="point">The point whose distance to the curve you wish to ascertain</param>
+    /// <param name="entryPoint">The entrypoint of the Bezier</param>
+    /// <param name="controlPoint1">The control point which indicates the direction in which the flow enters the segment. Should already be modified to include the magnitude.</param>
+    /// <param name="controlPoint2">The control point which indicates the inverse to the direction in which the flow leaves the segment. Should already be modified to be inversed and to include the magnitude.</param>
+    /// <param name="exitPoint">The exitpoint of the Bezier</param>
+    /// <param name="outQ">The approximate location of the closest point.</param>
+    /// <param name="resolution">Determines the amount of sample points taken. Higher numbers can affect performance but increase accuracy.</param>
+    /// <param name="comparative">True: will return a squared value exclusively to be used for comparing against other squared distance values. False: returns the true distance</param>
+    /// <returns>Depending on the comparative setting, will either return the approximate distance to the Bezier, or the squared distance to the Bezier.</returns>
+    public static float CubicDistanceToBezier(Vector2 point, Vector2 entryPoint, Vector2 controlPoint1, Vector2 controlPoint2, Vector2 exitPoint, out Vector2 outQ, out float outT, int resolution, bool comparative = false)
+    {
+        if (resolution < 2) //Safety measure to prevent the resolution from going low enough to break things.
         {
-            // Decided to be explicit about the types for the sake of readability.
-            Vector2 i = v0 - v2;
-            Vector2 j = v2 - v1;
-            Vector2 k = v1 - v0;
-            Vector2 w = j - k;
-
-            v0 -= p; v1 -= p; v2 -= p;
-
-            float x = Cro(v0, v2);
-            float y = Cro(v1, v0);
-            float z = Cro(v2, v1);
-
-            Vector2 s = 2.0f * (y * j + z * k) - x * i;
-
-            float r = (y * z - x * x * 0.25f) / Vector2.Dot(s, s);
-            float t = Math.Clamp((0.5f * x + y + r * Vector2.Dot(s, w)) / (x + y + z), 0.0f, 1.0f);
-
-            Vector2 d = v0 + t * (k + k + t * w);
-            outQ = d + p;
-            distance = d.Length();
+            resolution = 2;
         }
-        else // Too straight, calculate from a straight line between v0 and v2 instead.
+        outQ = new Vector2(0f, 0f);
+        outT = 0f;
+        float d0 = float.MaxValue;
+        Vector2 a = entryPoint;
+        for (int i = 1; i < resolution; i++)
         {
-            var perpendicular = new Vector2(v2.Y - v0.Y, -(v2.X - v0.X));
-            perpendicular = Vector2.Normalize(perpendicular);
-            var v0ToPDiff = v0 - p;
-
-
-            var v2ToOrigin = v2 - v0;
-            var pToOrigin = p - v0;
-
-            var pProjection = Vector2.Dot(pToOrigin, Vector2.Normalize(v2ToOrigin));
-            if (pProjection < 0) // If the closest point is v0, ensure the closets point is v0
+            var t = i / (float)(resolution - 1);
+            var s = 1.0f - t;
+            Vector2 b = entryPoint * s * s * s + controlPoint1 * 3.0f * s * s * t + controlPoint2 * 3.0f * s * t * t + exitPoint * t * t * t;
+            var distance = DistanceSquared(point, a, b, out var comparePoint, out var h);
+            if (d0 > distance)
             {
-                distance = pToOrigin.Length();
-                outQ = v0;
+                d0 = distance;
+                outQ = comparePoint;
+                outT = t + h / (float)(resolution - 1);
             }
-            else if (pProjection > v2ToOrigin.Length()) // If the closest point is v2, ensure the closest point is v2
-            {
-                var pToV2 = v2 - p;
-                distance = pToV2.Length();
-                outQ = v2;
-            }
-            else // If the closest point is on the segment, return the distance and where on the segment.
-            {
-                distance = Math.Abs(Vector2.Dot(perpendicular, v0ToPDiff));
-                outQ = v0 + Vector2.Normalize(v2ToOrigin) * pProjection;
-            }
+            //d0 = Math.Min(d0, DistanceSquared(p, a, b));
+            a = b;
         }
-        return distance;
+        if (!comparative)
+        {
+            d0 = MathF.Sqrt(d0);
+        }
+        return d0;
     }
 }

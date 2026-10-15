@@ -182,11 +182,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var rot = ourEntRot + _rotation.Value;
         DrawNorthLine(handle, rot);
 
-        // Frontier: Draw Rivers
-        var worldToView = worldToShuttle * shuttleToView;
-        NFDrawRivers(handle, worldToView);
-        // End Frontier
-
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
         if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
@@ -217,6 +212,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
         // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
+
+        // Frontier: Draw Rivers
+        var worldToView = worldToShuttle * shuttleToView;
+        NFDrawRivers(handle, worldToView, viewAABB);
+        // End Frontier
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);

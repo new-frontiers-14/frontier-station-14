@@ -1,16 +1,10 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Content.Shared._NF.River.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class /*Shared*/RiverNodeComponent : Component
+public sealed partial class RiverNodeComponent : Component
 {
     /// <summary>
     /// The location of the Node for display purposes.
@@ -22,7 +16,19 @@ public sealed partial class /*Shared*/RiverNodeComponent : Component
     /// A list of nodes which this node flows into.
     /// </summary>
     [AutoNetworkedField]
-    public List<NetNodeLink> NextNodes = new();
+    public List<NetEntity> NextNodes = new();
+
+    /// <summary>
+    /// A list of nodes which flow into this node.
+    /// </summary>
+    [AutoNetworkedField]
+    public List<NetEntity> PriorNodes = new();
+
+    /// <summary>
+    /// The mesh of the river segments that spring from this node. For Mass Scanner rendering.
+    /// </summary>
+    [AutoNetworkedField]
+    public Vector2[] SegmentMesh;
 
     /// <summary>
     /// The direction in which the river flows.
@@ -40,7 +46,7 @@ public sealed partial class /*Shared*/RiverNodeComponent : Component
     /// The amount of extra units of velocity perfect utilisation of the river provides.
     /// </summary>
     [DataField]
-    public float Boost = 0.3f;
+    public float Boost = 1.3f; //Temporary, was 0.3f
 
     /// <summary>
     /// The smallest the Slowdown Multiplier can be when flying perfectly against the flow.
@@ -53,12 +59,17 @@ public sealed partial class /*Shared*/RiverNodeComponent : Component
     /// </summary>
     [DataField]
     public bool IsSource = false;
-}
-[Serializable, NetSerializable]
-public readonly struct NetNodeLink(
-        NetEntity node,
-        Vector2 controlPoint)
-{
-    public NetEntity Node { get; } = node;
-    public Vector2 ControlPoint { get; } = controlPoint;
+
+    [DataField]
+    public Direction CardinalFlow = Direction.East;
+
+    /// <summary>
+    /// Influences whether rivers are keen to merge or split. Higher numbers wish to split rather than merge.
+    /// Lower numbers wish to merge rather than split.
+    /// </summary>
+    public float Saturation = 1f;
+
+    [AutoNetworkedField]
+    public Vector2 ForwardControlPoint;
+
 }

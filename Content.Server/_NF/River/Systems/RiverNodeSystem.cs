@@ -1,31 +1,14 @@
 using Content.Server._NF.River.Components;
-using Content.Server.Administration.Logs.Converters;
 using Content.Shared._NF.River;
 using Content.Shared._NF.River.Components;
 using Content.Shared._NF.River.Events;
-using Content.Shared.Physics;
-using Content.Shared.Traits.Assorted;
-using NetCord;
-using Npgsql.Internal.Postgres;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Numerics;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using static Robust.Shared.Utility.SpriteSpecifier;
 
 namespace Content.Server._NF.River.Systems;
 
@@ -37,7 +20,6 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    //[Dependency] private readonly SharedRiverDistanceSystem _distance = default!;
 
     private float _accumulator;
     private bool _nodesChanged = true; //Is true when any River Node has changed. Nodes won't change every frame, so this is to lower performance impact.
@@ -69,9 +51,18 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         //TODO: Remove! For testing purposes only
         if (!_doneOnce)
         {
-            Spawn("SpaceRiverSource", new MapCoordinates(0f, 0f, new MapId(1)));
+            Spawn("SpaceRiverSourceEast", new MapCoordinates(-500f, 0f, new MapId(1)));
+            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(-200f, 700f, new MapId(1)));
+            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(400f, 700f, new MapId(1)));
+            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(1000f, 700f, new MapId(1)));
+            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(1600f, 700f, new MapId(1)));
+            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(100f, -700f, new MapId(1)));
+            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(700f, -700f, new MapId(1)));
+            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(1300f, -700f, new MapId(1)));
+            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(1900f, -700f, new MapId(1)));
             _doneOnce = true;
         }
+        //END TODO Testing
     }
 
     private void UpdateRivers()
@@ -100,17 +91,16 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 
             var nodeCoord = _transform.GetMapCoordinates(node);
 
-            foreach (var nodeLink in nodeRiverComp.NextNodes)
+            foreach (var nextNetNode in nodeRiverComp.NextNodes)
             {
                 _receiversInRange.Clear();
-                var nextNode = GetEntity(nodeLink.Node);
+                var nextNode = GetEntity(nextNetNode);
                 var nextNodeCoord = _transform.GetMapCoordinates(nextNode);
                 var centrePoint = (nodeCoord.Position + nextNodeCoord.Position) / 2;
                 var lookUpRange = (nodeCoord.Position - centrePoint).Length() + nodeRiverComp.NodeRange;
                 _lookup.GetEntitiesInRange<RiverFlowReceiverComponent>(nodeCoord.MapId, centrePoint, lookUpRange, _receiversInRange);
                 foreach (var receiver in _receiversInRange)
                 {
-                    //receiver.Comp.InfluencingNodes.Add(nextNode);
                     if (!receiver.Comp.InfluencingNodes.Contains(node))
                     {
                         receiver.Comp.InfluencingNodes.Add(node);
@@ -129,17 +119,26 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
     /// <param name="args">Event arguments.</param>
     private void SetupNode(EntityUid uid, RiverNodeComponent component, ComponentStartup args)
     {
+        // Ensures the node doesn't get parented to a grid.        
+        if (_transform.GetMap(uid) is { } currentMap) //If the uid's map is not null, assign the map to currentMap
+        {
+            _transform.SetParent(uid, currentMap);
+        }
+
         component.Location = _transform.GetWorldPosition(uid);
 
         _nodeList.Add(uid);
         _pvsOverride.AddGlobalOverride(uid);
-        Dirty(uid, component);
-        _nodesChanged = true;
 
+        // TODO: Separate this towards River Generation when I get to that.
         if (component.IsSource)
         {
+            component.FlowDirection = component.CardinalFlow.GetClockwise90Degrees().ToAngle(); // Point in desired direction. For some reason North is not North. So rotate it 90 Degrees.
             CreateRiver(uid, 1000); //TODO: make the riverLength variable.
         }
+        // END TODO separate River Gen
+        _nodesChanged = true;
+        Dirty(uid, component);
     }
 
     /// <summary>
@@ -169,14 +168,19 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                 foreach (var segment in node.NextNodes)
                 {
                     // Calculates the distance between the shuttle and the river segment.
-                    var nextNode = GetEntity(segment.Node);
+                    var nextNode = GetEntity(segment);
+                    if (!TryComp<RiverNodeComponent>(nextNode, out var nextComp))
+                    {
+                        continue;
+                    }
                     var shuttleLocation = _transform.GetWorldPosition(shuttleUid);
                     var nodeLocation = _transform.GetWorldPosition(entity);
-                    var controlPoint = segment.ControlPoint;
                     var nextNodeLocation = _transform.GetWorldPosition(nextNode);
 
-                    var distanceToRiver = distanceToSegment(shuttleLocation, nodeLocation, controlPoint, nextNodeLocation, out var closestPoint);
-                    var flowDirection = Vector2.Normalize(nextNodeLocation - closestPoint);
+                    var controlPoint1 = nodeLocation + node.ForwardControlPoint;
+                    var controlPoint2 = nextNodeLocation + -nextComp.ForwardControlPoint;
+                    var distanceToRiver = CubicDistanceToBezier(shuttleLocation, nodeLocation, controlPoint1, controlPoint2, nextNodeLocation, out var closestPoint, out var distAlongCurve, SegmentResolution);
+                    var flowDirection = Vector2.Normalize(CalculateBezierTangent(nodeLocation, controlPoint1, controlPoint2, nextNodeLocation, distAlongCurve));
                     var distanceMod = 1.0f;
 
                     // Calculates the modifier for being away from the river segment.
@@ -190,7 +194,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                     }
 
                     // Calculate the difference in direction between the river flow effect and the shuttle's desired travel direction.
-                    var flowDiffScalar = Vector2.Dot(velocity.Normalized(), flowDirection); //TODO: Make the flow direction relative to the closestPoint.
+                    var flowDiffScalar = Vector2.Dot(velocity.Normalized(), flowDirection);
                     if (flowDiffScalar >= 0) //If going along the flow, stores only the biggest boost modifier.
                     {
                         var tempRiverBoost = flowDiffScalar * node.Boost * distanceMod;
@@ -216,26 +220,35 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         return velocityMod;
     }
 
+    //TODO: Move to river-gen code when I get to that and implement something proper.
     public void CreateRiver(EntityUid node, int riverLength)
     {
         CreateRiverSegment(node, riverLength);
     }
+    //END TODO River gen.
 
-
+    //TODO: Probably move this to river gen once I get to it Possibly overhaul the system when I get to that..
     /// <summary>
     /// Creates a new SpaceRiverNode and connects it to the input node.
     /// </summary>
     /// <param name="lastNode">The node from which you wish to create a segment.</param>
     /// <param name="riverLength">How many segments the river should have</param> //TODO: probably move this to CreateRiver.
     /// <param name="segment">An iterator that counts up the amount of segments to ensure the river becomes the appropriate length</param> //TODO: Probably move this to CreateRiver.
+    /// <param name="branchNumber">Which branch is this? Needs to be no higher than totalBranches</param>
+    /// <param name="totalBranches">The total number of branches stemming from the lastNode. 1 means there is no fork in the river.</param>
     /// <returns>returns true if successful, false if it failed.</returns>
-    public bool CreateRiverSegment(EntityUid lastNode, int riverLength, int segment = 0)
+    public bool CreateRiverSegment(EntityUid lastNode, int riverLength, int segment = 0, int branchNumber = 1, int totalBranches = 1)
     {
         //TODO: Make these not hard-coded.
         var distance = 200f;
-        var maxAngle = 45f;
+        var maxAngle = 20f;
+        var splitIterate = 5;
+        //END TODO hard-coded.
 
-        //Ensure that the maxAngle cannot break the range-finding of segments, nor break the Bezier curve code.
+        var nodePos = _transform.GetMapCoordinates(lastNode);
+
+        //Ensure that the maxAngle cannot break the range-finding of segments, nor break the Bezier curve code. (No longer necessary,
+        //but still keeps things nice-ish. Although, would have to test the range-finding bit)
         if (maxAngle > 90f)
         {
             maxAngle = 90f;
@@ -250,81 +263,130 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             return false;
         }
         var lastDirection = lastComp.FlowDirection;
-        var directionModifier = _random.NextAngle(Angle.FromDegrees(-maxAngle), Angle.FromDegrees(maxAngle));
-        var nodeDirection = lastDirection + directionModifier;
-        var offset = nodeDirection.ToVec() * distance;
-        var nodePos = _transform.GetMapCoordinates(lastNode);
-        var spawnPos = nodePos.Offset(offset);
 
-        var newNode = Spawn("SpaceRiverNode", spawnPos);
+        Angle minBranchDifference = MathF.Asin(lastComp.NodeRange / distance) * 2 * 1.1f; // 10% leway
+        // Make sure all the branches can fit. If not, set the total branches to a number that can fit.
+        if (totalBranches * minBranchDifference.Degrees > 180f)
+        {
+            totalBranches = (int)(180f / minBranchDifference.Degrees);
+        }
+
+        // There can be no more branches than the totalBranches
+        if (branchNumber > totalBranches)
+        {
+            return false;
+        }
+
+        var wiggleRoom = 180f - (minBranchDifference * totalBranches);
+        if (maxAngle * 2 > wiggleRoom / totalBranches)
+        {
+            maxAngle = (float)wiggleRoom / totalBranches;
+        }
+
+
+        //Angle directionOffset = (180f / (totalBranches * 2)) * (branchNumber * 2 - 1) - 90f;
+        Angle minLimiter = maxAngle + minBranchDifference;
+        Angle directionOffset = branchNumber * 2 * minLimiter - ((totalBranches + 1) * minLimiter);
+
+        //Check for other nodes that the segment could connect to.
+        //List<EntityUid> connectableNodes = new();
+        //List<EntityUid> repulsiveNodes = new();
+        //var nearbyRiverNodes = _lookup.GetEntitiesInRange<RiverNodeComponent>(nodePos, distance * 1.5f);
+        //foreach (var nearbyNode in nearbyRiverNodes)
+        //{
+        //    var nearNodePos = _transform.GetWorldPosition(nearbyNode);
+        //    Angle nearNodeDirection = Vector2.Normalize(nearNodePos - nodePos.Position).ToAngle();
+        //
+        //    // Is the nearby node not already connected to this node and ahead of the flow?
+        //    var angleTest = Angle.ShortestDistance(nearNodeDirection, lastDirection).Degrees;
+        //    if (!ContainsNode(nearbyNode, lastComp.NextNodes) && Math.Abs(angleTest) < 90f && (nearNodePos - nodePos.Position).Length() > distance * 0.5f)
+        //    {
+        //        if (!TryComp<RiverNodeComponent>(nearbyNode, out var nearbyComp))
+        //        {
+        //            continue;
+        //        }
+        //
+        //        // Does the nearbyNode's flow not run counter to ours?
+        //        var angleTest2 = Angle.ShortestDistance(nearbyComp.FlowDirection, lastDirection).Degrees;
+        //        if ((angleTest >= 0 && angleTest2 >= 0) || (angleTest <= 0 && angleTest2 <= 0))
+        //        {
+        //            connectableNodes.Add(nearbyNode);
+        //        }
+        //        else
+        //        {
+        //            repulsiveNodes.Add(nearbyNode);
+        //            //var leftRightIndicator = 1; // - if left, + if right
+        //            //if (directionOffset < 0)
+        //            //{
+        //            //    leftRightIndicator = -1;
+        //            //}
+        //            //if (Angle.ShortestDistance(nearNodeDirection, lastDirection) < maxAngle + directionOffset * leftRightIndicator)
+        //            //{
+        //            //}
+        //            //else
+        //            //{
+        //            //    repulsiveNodes.Add(nearbyNode);
+        //            //}
+        //        }
+        //    }
+        //}
+
+        // Temporary?
+        EntityUid newNode;
+        Angle newFlowDirection = new();
+
+        if (true)//connectableNodes.Count == 0)
+        {
+
+            var directionModifier = _random.NextAngle(Angle.FromDegrees(-maxAngle + directionOffset), Angle.FromDegrees(maxAngle + directionOffset));
+            var nodeDirection = lastDirection + directionModifier;
+            var offset = nodeDirection.ToVec() * distance;
+            var spawnPos = nodePos.Offset(offset);
+            newFlowDirection = lastDirection + directionModifier * 2;
+            newFlowDirection = newFlowDirection.Reduced();
+
+            newNode = Spawn("SpaceRiverNode", spawnPos);
+
+        }
+        else
+        {
+            //newNode = connectableNodes[0];
+        }
 
         if (!TryComp<RiverNodeComponent>(newNode, out var newComp))
         {
             return false;
         }
-        newComp.FlowDirection = lastDirection + directionModifier * 2;
+        // There's so many magic numbers in this class... TODO: get rid of as many magic numbers as possible.
+        lastComp.ForwardControlPoint = lastComp.FlowDirection.ToVec() * lastComp.Boost * 50f;
+        newComp.ForwardControlPoint = newFlowDirection.ToVec() * newComp.Boost * 50f;
+        //END TODO magic number cleanup
 
-        var controlPoint = CalculateControlPoint(_transform.GetWorldPosition(lastNode),
-            lastDirection,
-            _transform.GetWorldPosition(newNode),
-            newComp.FlowDirection);
+        if (true)//connectableNodes.Count == 0)
+        {
+            newComp.FlowDirection = newFlowDirection;
+        }
 
-        lastComp.NextNodes.Add(new(GetNetEntity(newNode), controlPoint));
+        lastComp.NextNodes.Add(GetNetEntity(newNode));
+        newComp.PriorNodes.Add(GetNetEntity(lastNode));
+        Dirty(lastNode, lastComp);
+        Dirty(newNode, newComp);
 
         segment++;
-        if (segment < riverLength)
+        if (segment < riverLength && true)//connectableNodes.Count == 0)
         {
-            CreateRiverSegment(newNode, riverLength, segment);
+            if (false)//0 == segment % splitIterate)
+            {
+                CreateRiverSegment(newNode, riverLength, segment, 1, 2);
+                CreateRiverSegment(newNode, riverLength, segment, 2, 2);
+                //CreateRiverSegment(newNode, (int)(riverLength * 0.5f), segment);
+            }
+            else
+            {
+                CreateRiverSegment(newNode, riverLength, segment);
+            }
         }
         return true;
     }
-
-    /// <summary>
-    /// This function calculates where the control point for the Bezier curve needs to be. It does this by checking where two lines corresponding to the flow-directions,
-    /// centred on the start and end points cross. 
-    /// </summary>
-    /// <param name="startPoint">The location where the river flow comes into the river segment.</param>
-    /// <param name="startDirection">The direction in which the startPoint's flowDirection points.</param>
-    /// <param name="endPoint">The location where the river flow leaves the river segment.</param>
-    /// <param name="endDirection">The direction in which the endPoint's flowDirection points.</param>
-    /// <returns>The location of the control point.</returns>
-    public static Vector2 CalculateControlPoint(Vector2 startPoint, Angle startDirection, Vector2 endPoint, Angle endDirection)
-    {
-        var controlPoint = new Vector2(0, 0);
-        var vecStartDir = startDirection.ToVec() + startPoint;
-        var vecEndDir = endDirection.ToVec() + endPoint;
-
-        //If the directions are not equal, find where the direction-lines cross. This is the Control Point for the Bezier Curve.
-        if (vecStartDir.X != vecEndDir.X && vecStartDir.Y != vecEndDir.Y)
-        {
-            // Line intersection math, sorry. Basically finds the point at where the flow directions of the nodes intersect.
-            controlPoint.X = ((startPoint.X * vecStartDir.Y - startPoint.Y * vecStartDir.X) *
-                (endPoint.X - vecEndDir.X) - (startPoint.X - vecStartDir.X) *
-                (endPoint.X * vecEndDir.Y - endPoint.Y * vecEndDir.X)) /
-                ((startPoint.X - vecStartDir.X) * (endPoint.Y - vecEndDir.Y) -
-                (startPoint.Y - vecStartDir.Y) * (endPoint.X - vecEndDir.X));
-
-            controlPoint.Y = ((startPoint.X * vecStartDir.Y - startPoint.Y * vecStartDir.X) *
-                (endPoint.Y - vecEndDir.Y) - (startPoint.Y - vecStartDir.Y) *
-                (endPoint.X * vecEndDir.Y - endPoint.Y * vecEndDir.X)) /
-                ((startPoint.X - vecStartDir.X) * (endPoint.Y - vecEndDir.Y) -
-                (startPoint.Y - vecStartDir.Y) * (endPoint.X - vecEndDir.X));
-        }
-        else
-        {
-            var pointLocationDifference = endPoint - startPoint;
-            controlPoint = startPoint + (pointLocationDifference / 2); // Halfway between the startPoint and endPoint.
-            // Move the control point a little off-line because the Bezier distance function doesn't like straight lines.
-            //if (controlPoint.X != startPoint.X)
-            //{
-            //    controlPoint.X += 0.1f;
-            //}
-            //else
-            //{
-            //    controlPoint.Y += 0.1f;
-            //}
-        }
-
-        return (controlPoint);
-    }
+    //End TODO move to river gen
 }

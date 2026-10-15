@@ -1,19 +1,22 @@
 using Content.Client._NF.Radar;
 using Content.Client._NF.River;
-using Content./*Client*/Shared._NF.River.Components;
 using Content.Client.Station;
+using Content.Client.UserInterface.Controls;
 using Content.Shared._NF.Radar;
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Interaction;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Collections;
 using Robust.Shared.Input;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using System.Net;
 using System.Numerics;
-using Content.Shared.Interaction;
 
 // Purposefully colliding with base namespace.
 namespace Content.Client.Shuttles.UI;
@@ -47,6 +50,12 @@ public sealed partial class ShuttleNavControl
 
     public InertiaDampeningMode DampeningMode { get; set; }
     public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
+
+    // Constants for River System
+    private const float FlowIndicatorLimit = 10f;
+    private const float FlowSpeed = 15f;
+
+    private float _flowIndicatorOffset = 0f;
 
     /// <summary>
     /// Updates the radar UI with the latest navigation state and sets additional NF-specific state.
@@ -176,8 +185,9 @@ public sealed partial class ShuttleNavControl
         }
     }
     //TODO: Add summaries
-    private void NFDrawRivers(DrawingHandleBase handle, Matrix3x2 worldToView)
+    private void NFDrawRivers(DrawingHandleBase handle, Matrix3x2 worldToView, Box2 viewAABB)
     {
+
         var nodes = _rivers.GetNodeList();
         if (nodes != null)
         {
@@ -187,34 +197,96 @@ public sealed partial class ShuttleNavControl
                 {
                     continue;
                 }
-                var nodePosInView = Vector2.Transform(nodeComp.Location, worldToView);
-
+                var anySegmentInView = false;
                 var nextNodes = _rivers.GetNextNodes(nodeComp);
                 foreach (var nextNode in nextNodes)
                 {
-                    if (!_rivers.TryGetNodeData(nextNode.Node, out var nextNodeComp))
+                    if (!_rivers.TryGetNodeData(nextNode, out var nextNodeComp))
                     {
                         continue;
                     }
-                    var pathColour = Color.DarkSlateGray;
-                    //var controlPointPosInView = Vector2.Transform(nextNode.ControlPoint, worldToView);
-                    //handle.DrawLine(nodePosInView, controlPointPosInView, pathColour);
-                    //var nextNodePosInView = Vector2.Transform(nextNodeComp.Location, worldToView);
-                    //handle.DrawLine(controlPointPosInView, nextNodePosInView, pathColour);
+                    //Check for culling, makes a bounding box around the segment, and checks if it intersects the viewport.
+                    //TODO: Figure out a tighter fit, less naive.
+                    var nodeXForm = nodeComp.Location;
+                    var nextNodeXForm = _transform.GetWorldPosition(nextNode);
+                    var control1XForm = nodeXForm + nodeComp.ForwardControlPoint;
+                    var control2XForm = nodeXForm + -nextNodeComp.ForwardControlPoint;
+                    var centrePoint = (nodeXForm + control1XForm + control2XForm + nextNodeXForm) / 4f;
+
+                    var maxX = MathF.Max(MathF.Max(nodeXForm.X, control1XForm.X), MathF.Max(control2XForm.X, nextNodeXForm.X)) + nodeComp.NodeRange;
+                    var maxY = MathF.Max(MathF.Max(nodeXForm.Y, control1XForm.Y), MathF.Max(control2XForm.Y, nextNodeXForm.Y)) + nodeComp.NodeRange;
+                    var minX = MathF.Min(MathF.Min(nodeXForm.X, control1XForm.X), MathF.Min(control2XForm.X, nextNodeXForm.X)) - nodeComp.NodeRange;
+                    var minY = MathF.Min(MathF.Min(nodeXForm.Y, control1XForm.Y), MathF.Min(control2XForm.Y, nextNodeXForm.Y)) - nodeComp.NodeRange;
+
+                    var boxHeight = maxY - minY;
+                    var boxWidth = maxX - minX;
+                    var boxSize = new Vector2(boxWidth, boxHeight);
+
+                    var nodeToWorld = _transform.GetWorldMatrix(node);
+
+                    var boundingBox = Box2.CenteredAround(centrePoint, boxSize);
+
+                    if (!boundingBox.Intersects(viewAABB))
+                    {
+                        continue;
+                    }
+                    anySegmentInView = true;
+                    //End of culling
+
+                    var pathColour = Color.Blue;
 
                     var totalSections = 5;
-                    var bezier = _rivers.CalcCurveSections(nodeComp.Location, nextNode.ControlPoint, nextNodeComp.Location, totalSections);
+                    //var bezier = _rivers.CalcCurveSections(nodeComp.Location, nextNode.ControlPoint, nextNodeComp.Location, totalSections);
+                    Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
+                    Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
+                    var bezier = RiverNodeSystem.CalcCubicCurveSections(nodeComp.Location, controlPoint1, controlPoint2, nextNodeComp.Location, totalSections);
                     for (var i = 0; i < bezier.Count - 1; i++)
                     {
                         var segmentStart = Vector2.Transform(bezier[i], worldToView);
                         var segmentEnd = Vector2.Transform(bezier[i + 1], worldToView);
-                        handle.DrawLine(segmentStart, segmentEnd, pathColour);
+
+                        var coolHandle = (DrawingHandleScreen)handle; //DrawingHandleBase doesn't support dotted lines.
+                        var dashLength = 5 * MinimapScale;
+                        var gapLength = 5 * MinimapScale;
+
+                        coolHandle.DrawDottedLine(segmentStart, segmentEnd, pathColour,
+                            dashSize: dashLength,
+                            gapSize: gapLength,
+                            offset: _flowIndicatorOffset * FlowSpeed * MinimapScale);
+                        //var faintMagenta = Color.Magenta;
+                        //faintMagenta.A = 0.01f;
+                        //handle.DrawCircle(segmentStart, nodeComp.NodeRange * MinimapScale, faintMagenta);
+                    }
+
+                    handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
+                    handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);
+                }
+                if (!anySegmentInView)
+                {
+                    continue;
+                }
+                // Testing
+                for (var i = 0; i < _rivers.MiddleLine.Count; i += 2)
+                {
+                    var lineStart = _rivers.MiddleLine[i];
+                    var lineEnd = _rivers.MiddleLine[i + 1];
+                    if (lineStart != null && lineEnd != null)
+                    {
+                        var xformedLineStart = Vector2.Transform((Vector2)lineStart, worldToView);
+                        var xformedLineEnd = Vector2.Transform((Vector2)lineEnd, worldToView);
+                        handle.DrawLine(xformedLineStart, xformedLineEnd, Color.Magenta);
                     }
                 }
-
+                // End Testing
+                var meshData = _rivers.MeshData[node];
+                Vector2[] renderMesh = new Vector2[meshData.Length];
+                for (var i = 0; i < meshData.Length; i++)
+                {
+                    renderMesh[i] = Vector2.Transform(meshData[i], worldToView);
+                }
                 var colour = Color.DarkGray;
                 colour.A = 0.05f;
-                handle.DrawCircle(nodePosInView, nodeComp.NodeRange * MinimapScale, colour);
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(renderMesh, 0, renderMesh.Length), colour);
             }
         }
     }
@@ -253,6 +325,12 @@ public sealed partial class ShuttleNavControl
 
             if (_consoleEntity != null)
                 _blips.RequestBlips((EntityUid)_consoleEntity);
+        }
+
+        _flowIndicatorOffset += args.DeltaSeconds;
+        if (_flowIndicatorOffset >= FlowIndicatorLimit * MinimapScale)
+        {
+            _flowIndicatorOffset = 0;
         }
 
         if (_isMouseDown && _isMouseInside)

@@ -5,6 +5,9 @@
   parent: MarkerBase
   components:
     - type: RiverNode
+    - type: Transform
+      gridTraversal: false
+      noRot: true
     - type: Sprite
       layers:
       - sprite: Markers/cross.rsi
@@ -13,7 +16,8 @@
 
 - type: entity
   name: River Source
-  id: SpaceRiverSource
+  id: SpaceRiverSourceEast
+  suffix: East
   description: "A source from which a river springs forth."
   parent: SpaceRiverNode
   components:
@@ -24,3 +28,53 @@
       - sprite: Markers/cross.rsi
         state: green
         shader: unshaded
+
+- type: entity
+  name: River Source
+  id: SpaceRiverSourceNorth
+  suffix: North
+  description: "A source from which a river springs forth."
+  parent: SpaceRiverSourceEast
+  components:
+  - type: RiverNode
+    cardinalFlow: North
+
+- type: entity
+  name: River Source
+  id: SpaceRiverSourceWest
+  suffix: West
+  description: "A source from which a river springs forth."
+  parent: SpaceRiverSourceEast
+  components:
+  - type: RiverNode
+    cardinalFlow: West
+
+- type: entity
+  name: River Source
+  id: SpaceRiverSourceSouth
+  suffix: South
+  description: "A source from which a river springs forth."
+  parent: SpaceRiverSourceEast
+  components:
+  - type: RiverNode
+    cardinalFlow: South
+
+- type: entity
+  name: River Source
+  id: SpaceRiverSourceSouthEast
+  suffix: South-East
+  description: "A source from which a river springs forth."
+  parent: SpaceRiverSourceEast
+  components:
+  - type: RiverNode
+    cardinalFlow: SouthEast
+
+- type: entity
+  name: River Source
+  id: SpaceRiverSourceNorthEast
+  suffix: North-East
+  description: "A source from which a river springs forth."
+  parent: SpaceRiverSourceEast
+  components:
+  - type: RiverNode
+    cardinalFlow: NorthEast
