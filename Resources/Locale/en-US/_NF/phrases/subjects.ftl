@@ -150,7 +150,6 @@ phrase-crate = Crate
 phrase-crusher = Crusher
 phrase-drill = Drill
 phrase-expedition = Expedition
-phrase-fulton = Fulton
 phrase-jetpack = Jetpack
 phrase-mail = Mail
 phrase-materials = Materials
