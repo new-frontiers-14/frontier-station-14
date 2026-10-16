@@ -1798,4 +1798,3 @@ book-text-chompsshinygoodbye = [head=3]Chomps and a Shiny Goodbye[/head]
         This is first tales of Shiny Gods performing a Shiny act in presence of chomps. Shiny gods sacrificed double shiny double bonk sticks to saves chomps life, and Chomps will never forgets.
 
 
-
