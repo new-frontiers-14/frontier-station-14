@@ -88,6 +88,15 @@
         - !type:ReagentThreshold
           reagent: Caffeine
           min: 60
+      - !type:AdjustAddiction
+        addiction: Stimulant
+        highAmount: 0.3 # very slow to accumulate/contribute to a stimulant high
+        probability: 0.7 # only somewhat reliable to get high or satiate a stimulant addiction
+        conditions:
+        - !type:AddictionThreshold
+          max: 110 #will only give you a slight addiction/high to stimulants
+          addiction: Stimulant
+
 
 #impstation
 - type: reagent
