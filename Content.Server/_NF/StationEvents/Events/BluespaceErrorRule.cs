@@ -1,49 +1,48 @@
+using System;
 using System.Numerics;
+using System.Runtime.Intrinsics;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Salvage;
+using Content.Shared.Trigger.Components.Triggers;
+using Content.Shared._NF.Bank.BUI;
 using Content.Server.Cargo.Systems;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map;
+using Content.Server.GameTicking;
+using Content.Server.Maps.NameGenerators;
+using Content.Server.Procedural;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
-using Robust.Shared.Random;
-using Content.Server._NF.Salvage;
-using Content.Server._NF.Bank;
-using Content.Shared._NF.Bank.BUI;
-using Content.Server.GameTicking;
-using Content.Server.Procedural;
-using Robust.Shared.Prototypes;
-using Content.Shared.Salvage;
-using Content.Server.Maps.NameGenerators;
 using Content.Server.StationEvents.Events;
+using Content.Server._NF.Bank;
+using Content.Server._NF.Salvage;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
-using System.Runtime.Intrinsics;
-using Content.Shared.Trigger.Components.Triggers;
-using System;
+using Robust.Shared.Map;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Server.GameObjects;
+
 
 namespace Content.Server._NF.StationEvents.Events;
 
-public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
+public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
     NanotrasenNameGenerator _nameGenerator = new();
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly DungeonSystem _dungeon = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
-    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly SharedSalvageSystem _salvage = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private DungeonSystem _dungeon = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
+    [Dependency] private StationRenameWarpsSystems _renameWarps = default!;
+    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private SharedSalvageSystem _salvage = default!;
 
     public override void Initialize()
     {
@@ -187,7 +186,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         _mapSystem.CreateMap(out var mapId);
 
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
+        var spawnedGrid = _mapSystem.CreateGridEntity(mapId);
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProtoId, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);

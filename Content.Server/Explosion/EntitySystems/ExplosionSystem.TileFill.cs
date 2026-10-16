@@ -51,8 +51,8 @@ public sealed partial class ExplosionSystem
         var (localGrids, referenceGrid, maxDistance) = GetLocalGrids(epicenter, totalIntensity, slope, maxIntensity);
 
         // get the epicenter tile indices
-        if (_mapManager.TryFindGridAt(epicenter, out var gridUid, out var candidateGrid) &&
-            _mapSystem.TryGetTileRef(gridUid, candidateGrid, _mapSystem.WorldToTile(gridUid, candidateGrid, epicenter.Position), out var tileRef) &&
+        if (_map.TryFindGridAt(epicenter, out var gridUid, out var candidateGrid) &&
+            _map.TryGetTileRef(gridUid, candidateGrid, _map.WorldToTile(gridUid, candidateGrid, epicenter.Position), out var tileRef) &&
             !tileRef.Tile.IsEmpty)
         {
             epicentreGrid = gridUid;
@@ -62,7 +62,7 @@ public sealed partial class ExplosionSystem
         {
             // reference grid defines coordinate system that the explosion in space will use
             var gridComp = Comp<MapGridComponent>(referenceGrid.Value);
-            initialTile = _mapSystem.WorldToTile(referenceGrid.Value, gridComp, epicenter.Position);
+            initialTile = _map.WorldToTile(referenceGrid.Value, gridComp, epicenter.Position);
         }
         else
         {
@@ -282,7 +282,7 @@ public sealed partial class ExplosionSystem
         var box = Box2.CenteredAround(epicenter.Position, new Vector2(radius, radius));
 
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(epicenter.MapId, box, ref _grids);
+        _map.FindGridsIntersecting(epicenter.MapId, box, ref _grids);
         foreach (var grid in _grids)
         {
             if (TryComp(grid.Owner, out PhysicsComponent? physics) && physics.Mass > mass)
@@ -304,7 +304,7 @@ public sealed partial class ExplosionSystem
         radius *= 4;
         box = Box2.CenteredAround(epicenter.Position, new Vector2(radius, radius));
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(epicenter.MapId, box, ref _grids);
+        _map.FindGridsIntersecting(epicenter.MapId, box, ref _grids);
         var grids = _grids.Select(x => x.Owner).ToList();
 
         if (referenceGrid != null)
