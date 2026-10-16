@@ -1,12 +1,19 @@
 //using Content.Client._NF.River.Components;
+using Content.Client._NF.River.Components;
 using Content.Shared._NF.River;
 using Content.Shared._NF.River.Components;
 using Content.Shared._NF.River.Events;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Robust.Client.GameObjects;
+using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameStates;
 using System.Diagnostics.CodeAnalysis;
+using System.Net.NetworkInformation;
 using System.Numerics;
+using TerraFX.Interop.Xlib;
+using static Robust.Client.UserInterface.Controls.LayoutContainer;
 
 namespace Content.Client._NF.River;
 
@@ -16,10 +23,13 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public readonly Dictionary<EntityUid, Vector2[]> MeshData = new();
+    public readonly Dictionary<EntityUid, Vector2[]> LineData = new();
+    private List<NetEntity> _clientlessList = new();
     private List<EntityUid> _nodeList = new();
 
     // Testing
     public List<Vector2?> MiddleLine = new();
+    public List<NetEntity> InvalidClientEntities = new();
     // End Testing
 
     public override void Initialize()
@@ -27,25 +37,103 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         base.Initialize();
         SubscribeCvars();
         SubscribeNetworkEvent<TransferRiverNodesEvent>(TransferNodes);
+        SubscribeLocalEvent<RiverNodeComponent, ComponentHandleState>(OnNodeHandleState);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        //Retrieve clientside Entities when they have been generated.
+        List<NetEntity> toRemove = new();
+        bool entityUpdated = false;
+        foreach (var netEntity in _clientlessList)
+        {
+            var localEntity = GetEntity(netEntity);
+            if (localEntity != EntityUid.Invalid)
+            {
+                _nodeList.Add(localEntity);
+                toRemove.Add(netEntity);
+                entityUpdated = true;
+            }
+        }
+        foreach (var netEntity in toRemove)
+        {
+            _clientlessList.Remove(netEntity);
+        }
+
+        //Update the nodes that have clientside Entities now.
+        if (entityUpdated)
+        {
+            UpdateSelectNodes(GetEntityList(toRemove));
+        }
     }
 
     private void TransferNodes(TransferRiverNodesEvent transferEvent)
     {
+        _nodeList.Clear();
+        _clientlessList.Clear();
         if (transferEvent?.NodeList == null)
         {
-            _nodeList.Clear();
             return;
         }
-        _nodeList = GetEntityList(transferEvent.NodeList);
+        foreach (var netNode in transferEvent.NodeList)
+        {
+            var localNode = GetEntity(netNode);
+            if (localNode == EntityUid.Invalid)
+            {
+                _clientlessList.Add(netNode);
+            }
+            else
+            {
+                _nodeList.Add(localNode);
+            }
+        }
         UpdateAllNodes();
     }
+
+    private static void OnNodeHandleState(EntityUid entity, RiverNodeComponent comp, ref ComponentHandleState args)
+    {
+        if (args.Current is not RiverNodeComponentState state)
+        {
+            return;
+        }
+        comp.Location = state.Location;
+        comp.NextNodes = state.NextNodes;
+        comp.PriorNodes = state.PriorNodes;
+        comp.FlowDirection = state.FlowDirection;
+        comp.NodeRange = state.NodeRange;
+        comp.Saturation = state.Saturation;
+        comp.ForwardControlPoint = state.ForwardControlPoint;
+    }
+
     private void UpdateAllNodes()
     {
         foreach (var node in _nodeList)
         {
             UpdateRiverSegmentMesh(node, SegmentRenderResolution);
+            UpdateRiverBoundingBox(node);
         }
     }
+
+    private void UpdateSelectNodes(List<EntityUid> nodes)
+    {
+        foreach (var node in nodes)
+        {
+            UpdateRiverSegmentMesh(node, SegmentRenderResolution);
+            UpdateRiverBoundingBox(node);
+            if (!TryComp<RiverNodeComponent>(node, out var comp))
+            {
+                continue;
+            }
+            foreach (var priorNode in GetPriorNodes(comp))
+            {
+                UpdateRiverSegmentMesh(priorNode, SegmentRenderResolution);
+                UpdateRiverBoundingBox(priorNode);
+            }
+        }
+    }
+
     public List<EntityUid> GetNodeList()
     {
         return _nodeList;
@@ -56,6 +144,15 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         var returnValue = TryComp<RiverNodeComponent>(node, out var tempComp);
         nodeComp = tempComp;
         return returnValue;
+    }
+    public List<EntityUid> GetNextNodes(RiverNodeComponent node)
+    {
+        return GetEntityList(node.NextNodes);
+    }
+
+    public List<EntityUid> GetPriorNodes(RiverNodeComponent node)
+    {
+        return GetEntityList(node.PriorNodes);
     }
 
     public static List<Vector2> CalcCubicCurveSections(Vector2 entryPoint, Vector2 controlPoint1, Vector2 controlPoint2, Vector2 endPoint, int resolution)
@@ -77,13 +174,19 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         {
             return false;
         }
+        if (entryComp.NextNodes.Count == 0)
+        {
+            return true; //Nothing went wrong, the river just has no connected nodes.
+        }
+        var result = false;
         var nextNodes = GetNextNodes(entryComp);
         foreach (var endNode in nextNodes)
         {
-            if (!TryComp<RiverNodeComponent>(endNode, out var endComp))
+            if (endNode == EntityUid.Invalid || !TryComp<RiverNodeComponent>(endNode, out var endComp))
             {
                 continue;
             }
+            result = true;
             //Check for culling, makes a bounding box around the segment, and checks if it intersects the viewport.
             //TODO: Figure out a tighter fit, less naive.
             var entryXForm = entryComp.Location;
@@ -102,8 +205,86 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             var boxSize = new Vector2(boxWidth, boxHeight);
 
             var boundingBox = Box2.CenteredAround(centrePoint, boxSize);
+            if (!entryComp.BoundingBoxes.TryAdd(endNode, boundingBox))
+            {
+                entryComp.BoundingBoxes[endNode] = boundingBox;
+            }
         }
-        return true;
+        return result;
+    }
+
+    public Vector2[] CreateDottedLineSpan(Vector2[] lineArray, float offset = 0f, float dashSize = 8f, float gapSize = 2f)
+    {
+
+        List<Vector2> lines = new();
+        for (var i = 1; i < lineArray.Length; i += 2)
+        {
+            var from = lineArray[i - 1];
+            var to = lineArray[i];
+            var lineVector = to - from;
+
+            // No drawing for you.
+            if (lineVector.LengthSquared() < 10f * float.Epsilon)
+                return Array.Empty<Vector2>();
+
+            var lineAndGap = gapSize + dashSize;
+            float maxLength;
+            // Minimum distance.
+            if (lineVector.Length() < lineAndGap)
+            {
+                maxLength = lineAndGap;
+                //lines.Add(from);
+                //lines.Add(to);
+            }
+            else
+            {
+                maxLength = lineVector.Length();
+            }
+            //var maxLength = lineVector.Length();
+            var normalizedLine = lineVector.Normalized();
+            var dashVector = normalizedLine * dashSize;
+            var gapVector = normalizedLine * gapSize;
+
+            var position = from;
+            offset %= (dashSize + gapSize);
+            var length = offset;
+            var dashLength = dashSize;
+
+            // If offset is less than gap size then start with a gap
+            // otherwise start with a partial line
+            if (offset > 0f)
+            {
+                if (offset < gapSize)
+                {
+                    position += normalizedLine * offset;
+                    length += offset;
+                }
+                else
+                {
+                    dashLength = (offset - gapSize);
+                }
+            }
+
+            while (length < maxLength)
+            {
+                lines.Add(position);
+
+                position += normalizedLine * dashLength;
+                var lengthFromStart = (position - from).Length();
+
+                // if over length then cap the thing.
+                if (lengthFromStart > maxLength)
+                {
+                    position = to;
+                }
+
+                lines.Add(position);
+                dashLength = dashVector.Length();
+                position += gapVector;
+                length = (position - from).Length();
+            }
+        }
+        return lines.ToArray();
     }
 
     /// <summary>
@@ -121,8 +302,13 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 
         if (nodeComp.NextNodes.Count == 1)
         {
-            var exitNode = GetNextNodes(nodeComp)[0];
-            if (!TryComp<RiverNodeComponent>(exitNode, out var exitComp))
+            var nodeList = GetNextNodes(nodeComp);
+            if (nodeList.Count == 0)
+            {
+                return false;
+            }
+            var exitNode = nodeList[0];
+            if (exitNode == EntityUid.Invalid || !TryComp<RiverNodeComponent>(exitNode, out var exitComp))
             {
                 return false;
             }
@@ -167,13 +353,13 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         }
         //There's a lot of mention of "Left" and "Right" in this code... I do not actually know for sure if it *is* left and right, or the other way around.
         List<Vector2> protoMesh = new();
-        var nextNodes = GetNextNodes(nodeComp);
-        Vector2 entryPoint = _transform.GetWorldPosition(entryNode);
-        Vector2 endPoint = _transform.GetWorldPosition(exitNode);
+        List<Vector2> protoLines = new();
+        var entryPoint = _transform.GetWorldPosition(entryNode);
+        var endPoint = _transform.GetWorldPosition(exitNode);
 
         //Vector2 controlPoint = nodeLink.ControlPoint;
-        Vector2 controlPoint1 = entryPoint + nodeComp.ForwardControlPoint;
-        Vector2 controlPoint2 = endPoint + -exitComp.ForwardControlPoint;
+        var controlPoint1 = entryPoint + nodeComp.ForwardControlPoint;
+        var controlPoint2 = endPoint + -exitComp.ForwardControlPoint;
 
         float increment = 1f / resolution;
         for (var i = 0; i < resolution; i++)
@@ -226,15 +412,18 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             protoMesh.Add(left1);
             protoMesh.Add(right2);
             protoMesh.Add(left2);
+
+            protoLines.Add(point1);
+            protoLines.Add(point2);
         }
 
-        if (MeshData.ContainsKey(entryNode))
+        if (!MeshData.TryAdd(entryNode, protoMesh.ToArray()))
         {
             MeshData[entryNode] = protoMesh.ToArray();
         }
-        else
+        if (!LineData.TryAdd(entryNode, protoLines.ToArray()))
         {
-            MeshData.Add(entryNode, protoMesh.ToArray());
+            LineData[entryNode] = protoLines.ToArray();
         }
         return true;
     }

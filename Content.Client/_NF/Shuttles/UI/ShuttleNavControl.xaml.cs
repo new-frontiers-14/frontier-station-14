@@ -5,6 +5,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Shared._NF.Radar;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Interaction;
+using Content.Shared.NodeContainer;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
@@ -15,6 +16,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using SixLabors.ImageSharp.ColorSpaces;
 using System.Net;
 using System.Numerics;
 
@@ -184,109 +186,116 @@ public sealed partial class ShuttleNavControl
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
         }
     }
-    //TODO: Add summaries
+
+    /// <summary>
+    /// Renders the space rivers
+    /// </summary>
+    /// <param name="handle">The handle for handling rendering</param>
+    /// <param name="worldToView">A transform matrix which turns world coordinates into view coordinates</param>
+    /// <param name="viewAABB">The AABB box of the viewport, used for culling</param>
     private void NFDrawRivers(DrawingHandleBase handle, Matrix3x2 worldToView, Box2 viewAABB)
     {
-
         var nodes = _rivers.GetNodeList();
         if (nodes != null)
         {
+            // The collators collate data from each river segment for batch rendering.
+            List<Vector2> lineCollator = new();
+            List<Vector2> meshCollator = new();
+
+            // TODO: make this set somewhere else so people can easily change the colours.
+            var centreColour = Color.Blue;
+            var riverColour = Color.DarkGray;
+            riverColour.A = 0.05f;
+
+            // Iterates through all the river nodes to handle their rendering
             foreach (var node in nodes)
             {
                 if (!_rivers.TryGetNodeData(node, out var nodeComp))
                 {
                     continue;
                 }
+
+                // Handles culling of segments outside of viewAABB
                 var anySegmentInView = false;
                 var nextNodes = _rivers.GetNextNodes(nodeComp);
                 foreach (var nextNode in nextNodes)
                 {
-                    if (!_rivers.TryGetNodeData(nextNode, out var nextNodeComp))
+                    if (!nodeComp.BoundingBoxes.TryGetValue(nextNode, out var boundingBox) || !boundingBox.Intersects(viewAABB)) //clientside entity doesn't exist yet, skip for now.
                     {
                         continue;
                     }
-                    //Check for culling, makes a bounding box around the segment, and checks if it intersects the viewport.
-                    //TODO: Figure out a tighter fit, less naive.
-                    var nodeXForm = nodeComp.Location;
-                    var nextNodeXForm = _transform.GetWorldPosition(nextNode);
-                    var control1XForm = nodeXForm + nodeComp.ForwardControlPoint;
-                    var control2XForm = nodeXForm + -nextNodeComp.ForwardControlPoint;
-                    var centrePoint = (nodeXForm + control1XForm + control2XForm + nextNodeXForm) / 4f;
 
-                    var maxX = MathF.Max(MathF.Max(nodeXForm.X, control1XForm.X), MathF.Max(control2XForm.X, nextNodeXForm.X)) + nodeComp.NodeRange;
-                    var maxY = MathF.Max(MathF.Max(nodeXForm.Y, control1XForm.Y), MathF.Max(control2XForm.Y, nextNodeXForm.Y)) + nodeComp.NodeRange;
-                    var minX = MathF.Min(MathF.Min(nodeXForm.X, control1XForm.X), MathF.Min(control2XForm.X, nextNodeXForm.X)) - nodeComp.NodeRange;
-                    var minY = MathF.Min(MathF.Min(nodeXForm.Y, control1XForm.Y), MathF.Min(control2XForm.Y, nextNodeXForm.Y)) - nodeComp.NodeRange;
-
-                    var boxHeight = maxY - minY;
-                    var boxWidth = maxX - minX;
-                    var boxSize = new Vector2(boxWidth, boxHeight);
-
-                    var nodeToWorld = _transform.GetWorldMatrix(node);
-
-                    var boundingBox = Box2.CenteredAround(centrePoint, boxSize);
-
-                    if (!boundingBox.Intersects(viewAABB))
-                    {
-                        continue;
-                    }
                     anySegmentInView = true;
-                    //End of culling
 
-                    var pathColour = Color.Blue;
-
-                    var totalSections = 5;
-                    //var bezier = _rivers.CalcCurveSections(nodeComp.Location, nextNode.ControlPoint, nextNodeComp.Location, totalSections);
-                    Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
-                    Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
-                    var bezier = RiverNodeSystem.CalcCubicCurveSections(nodeComp.Location, controlPoint1, controlPoint2, nextNodeComp.Location, totalSections);
-                    for (var i = 0; i < bezier.Count - 1; i++)
-                    {
-                        var segmentStart = Vector2.Transform(bezier[i], worldToView);
-                        var segmentEnd = Vector2.Transform(bezier[i + 1], worldToView);
-
-                        var coolHandle = (DrawingHandleScreen)handle; //DrawingHandleBase doesn't support dotted lines.
-                        var dashLength = 5 * MinimapScale;
-                        var gapLength = 5 * MinimapScale;
-
-                        coolHandle.DrawDottedLine(segmentStart, segmentEnd, pathColour,
-                            dashSize: dashLength,
-                            gapSize: gapLength,
-                            offset: _flowIndicatorOffset * FlowSpeed * MinimapScale);
-                        //var faintMagenta = Color.Magenta;
-                        //faintMagenta.A = 0.01f;
-                        //handle.DrawCircle(segmentStart, nodeComp.NodeRange * MinimapScale, faintMagenta);
-                    }
-
-                    handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
-                    handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);
+                    //if (!_rivers.TryGetNodeData(nextNode, out var nextNodeComp))
+                    //{
+                    //    continue;
+                    //}
+                    //Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
+                    //Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
+                    //
+                    //handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
+                    //handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);
                 }
                 if (!anySegmentInView)
                 {
                     continue;
                 }
-                // Testing
-                for (var i = 0; i < _rivers.MiddleLine.Count; i += 2)
+
+                // Gets the central river lines ready for rendering.
+                var lineData = _rivers.LineData[node];
+                Vector2[] renderLines = new Vector2[lineData.Length];
+                for (var j = 0; j < lineData.Length; j++)
                 {
-                    var lineStart = _rivers.MiddleLine[i];
-                    var lineEnd = _rivers.MiddleLine[i + 1];
-                    if (lineStart != null && lineEnd != null)
-                    {
-                        var xformedLineStart = Vector2.Transform((Vector2)lineStart, worldToView);
-                        var xformedLineEnd = Vector2.Transform((Vector2)lineEnd, worldToView);
-                        handle.DrawLine(xformedLineStart, xformedLineEnd, Color.Magenta);
-                    }
+                    renderLines[j] = Vector2.Transform(lineData[j], worldToView);
                 }
-                // End Testing
+                Vector2[] lineArray;
+                if (MinimapScale > 0.2f) // Ensures the dashed lines are only drawn at reasonable zoom levels.
+                {
+                    var dashLength = 5 * MinimapScale;
+                    var gapLength = 5 * MinimapScale;
+                    lineArray = _rivers.CreateDottedLineSpan(renderLines,
+                        dashSize: dashLength,
+                        gapSize: gapLength,
+                        offset: _flowIndicatorOffset * FlowSpeed * MinimapScale);
+                }
+                else
+                {
+                    lineArray = renderLines;
+                }
+                lineCollator.AddRange(lineArray);
+
+                // Gets the river mesh ready for rendering.
                 var meshData = _rivers.MeshData[node];
                 Vector2[] renderMesh = new Vector2[meshData.Length];
                 for (var i = 0; i < meshData.Length; i++)
                 {
                     renderMesh[i] = Vector2.Transform(meshData[i], worldToView);
                 }
-                var colour = Color.DarkGray;
-                colour.A = 0.05f;
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(renderMesh, 0, renderMesh.Length), colour);
+                meshCollator.AddRange(renderMesh);
+            }
+
+            // Render the rivers and their centre lines in batches to not overrun the DrawPrimitives method, while being more performant.
+            const float batchSize = 3f * 4096;
+
+            var triCount = lineCollator.Count;
+            for (var i = 0; i < Math.Ceiling(triCount / batchSize); i++)
+            {
+                var start = (int)(i * batchSize);
+                var end = (int)Math.Min(triCount, start + batchSize);
+                var count = end - start;
+                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(lineCollator.ToArray(), start, count), centreColour);
+            }
+            if (MinimapScale > 0.05f) //Mostly unnecessary, but stops drawing vertices when you zoom out way too much, just in case.
+            {
+                var vertCount = meshCollator.Count;
+                for (var j = 0; j < Math.Ceiling(vertCount / batchSize); j++)
+                {
+                    var start = (int)(j * batchSize);
+                    var end = (int)Math.Min(vertCount, start + batchSize);
+                    var count = end - start;
+                    handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(meshCollator.ToArray(), start, count), riverColour);
+                }
             }
         }
     }

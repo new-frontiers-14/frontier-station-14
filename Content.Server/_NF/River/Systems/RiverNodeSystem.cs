@@ -1,10 +1,13 @@
 using Content.Server._NF.River.Components;
+using Content.Server.Atmos.Components;
 using Content.Shared._NF.River;
 using Content.Shared._NF.River.Components;
 using Content.Shared._NF.River.Events;
+using Content.Shared.Atmos.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using System.ComponentModel;
@@ -32,6 +35,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         base.Initialize();
         SubscribeCvars();
         SubscribeLocalEvent<RiverNodeComponent, ComponentStartup>(SetupNode);
+        SubscribeLocalEvent<RiverNodeComponent, ComponentGetState>(OnNodeGetState);
     }
 
     public override void Update(float frameTime)
@@ -52,14 +56,14 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         if (!_doneOnce)
         {
             Spawn("SpaceRiverSourceEast", new MapCoordinates(-500f, 0f, new MapId(1)));
-            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(-200f, 700f, new MapId(1)));
-            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(400f, 700f, new MapId(1)));
-            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(1000f, 700f, new MapId(1)));
-            Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(1600f, 700f, new MapId(1)));
-            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(100f, -700f, new MapId(1)));
-            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(700f, -700f, new MapId(1)));
-            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(1300f, -700f, new MapId(1)));
-            Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(1900f, -700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(-200f, 700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(400f, 700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(1000f, 700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceSouthEast", new MapCoordinates(1600f, 700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(100f, -700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(700f, -700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(1300f, -700f, new MapId(1)));
+            //Spawn("SpaceRiverSourceNorthEast", new MapCoordinates(1900f, -700f, new MapId(1)));
             _doneOnce = true;
         }
         //END TODO Testing
@@ -139,6 +143,11 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         // END TODO separate River Gen
         _nodesChanged = true;
         Dirty(uid, component);
+    }
+
+    private static void OnNodeGetState(EntityUid uid, RiverNodeComponent component, ref ComponentGetState args)
+    {
+        args.State = new RiverNodeComponentState(component.Location, component.NextNodes, component.PriorNodes, component.FlowDirection, component.NodeRange, component.Saturation, component.ForwardControlPoint);
     }
 
     /// <summary>

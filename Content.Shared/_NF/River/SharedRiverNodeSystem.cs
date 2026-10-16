@@ -62,16 +62,6 @@ public abstract partial class SharedRiverNodeSystem : EntitySystem
         return (intersectPoint);
     }
 
-    public List<EntityUid> GetNextNodes(RiverNodeComponent node)
-    {
-        return GetEntityList(node.NextNodes);
-    }
-
-    public List<EntityUid> GetPriorNodes(RiverNodeComponent node)
-    {
-        return GetEntityList(node.PriorNodes);
-    }
-
     /// <summary>
     /// Checks if an entity (a node) is in the NetNodeLink list.
     /// </summary>
