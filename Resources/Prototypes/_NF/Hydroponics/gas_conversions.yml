@@ -1,0 +1,45 @@
+- type: weightedRandom
+  id: NFRandomGasConversions
+  weights:
+    CarbonDioxideToOxygen: 1
+    WaterVaporToOxygen: 1
+    AmmoniaToNitrogen: 1
+    AmmoniaToWaterVapor: 1
+    AmmoniaToPlasma: 1
+    NitrousOxideToNitrogen: 1
+    NitrousOxideToOxygen: 1
+
+- type: gasConversion
+  id: CarbonDioxideToOxygen
+  inputGas: CarbonDioxide
+  outputGas: Oxygen
+
+- type: gasConversion
+  id: WaterVaporToOxygen
+  inputGas: WaterVapor
+  outputGas: Oxygen
+
+- type: gasConversion
+  id: AmmoniaToNitrogen
+  inputGas: Ammonia
+  outputGas: Nitrogen
+
+- type: gasConversion
+  id: AmmoniaToWaterVapor
+  inputGas: Ammonia
+  outputGas: WaterVapor
+
+- type: gasConversion
+  id: AmmoniaToPlasma
+  inputGas: Ammonia
+  outputGas: Plasma
+
+- type: gasConversion
+  id: NitrousOxideToNitrogen
+  inputGas: NitrousOxide
+  outputGas: Nitrogen
+
+- type: gasConversion
+  id: NitrousOxideToOxygen
+  inputGas: NitrousOxide
+  outputGas: Oxygen
