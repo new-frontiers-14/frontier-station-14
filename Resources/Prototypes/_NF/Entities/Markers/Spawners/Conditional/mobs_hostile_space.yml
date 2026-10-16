@@ -1,0 +1,79 @@
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnNFMobBearSpace
+  name: space bear spawner
+  suffix: Frontier, AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Animals/bear.rsi
+        state: bear
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobBearSpace
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnNFMobKangarooSpace
+  name: space kangaroo spawner
+  suffix: Frontier, AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Animals/kangaroo.rsi
+        state: kangaroo-space
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobKangarooSpace
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnNFMobSpiderSpace
+  name: space spider spawner
+  suffix: Frontier, AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Animals/spacespider.rsi
+        state: spacespider
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobSpiderSpace
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnNFMobCobraSpace
+  name: space cobra spawner
+  suffix: Frontier, AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Animals/spacecobra.rsi
+        state: spacecobra
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobCobraSpace
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnNFMobTick
+  name: space tick spawner
+  suffix: Frontier, AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/spacetick.rsi
+        state: alive
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobTick
