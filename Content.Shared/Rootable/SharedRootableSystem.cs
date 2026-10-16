@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Alert;
+using Content.Shared.Buckle.Components; // Frontier: can't be rooted while buckled/knocked.
 using Content.Shared.Cloning.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Fluids.Components;
@@ -8,6 +9,7 @@ using Content.Shared.Gravity;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Slippery;
+using Content.Shared.Stunnable; // Frontier: can't be rooted while buckled/knocked.
 using Content.Shared.Toggleable;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Audio.Systems;
@@ -50,6 +52,8 @@ public abstract class SharedRootableSystem : EntitySystem
         SubscribeLocalEvent<RootableComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<RootableComponent, IsWeightlessEvent>(OnIsWeightless);
         SubscribeLocalEvent<RootableComponent, SlipAttemptEvent>(OnSlipAttempt);
+        SubscribeLocalEvent<RootableComponent, BuckledEvent>(OnBuckled); // can't be rooted while buckled/knocked
+        SubscribeLocalEvent<RootableComponent, KnockedDownEvent>(OnKnockedDown); // can't be rooted while buckled/knocked
         SubscribeLocalEvent<RootableComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<RootableComponent, CloningEvent>(OnCloning);
     }
@@ -102,6 +106,17 @@ public abstract class SharedRootableSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp))
             return false;
 
+        // Start Frontier: can't be rooted while buckled/knocked.
+        if (!entity.Comp.Rooted)
+        {
+            if (TryComp<KnockedDownComponent>(entity, out _))
+                return false;
+
+            if (TryComp<BuckleComponent>(entity, out var buckle) && buckle.Buckled)
+                return false;
+        }
+        // End Frontier: can't be rooted while buckled/knocked.
+
         entity.Comp.Rooted = !entity.Comp.Rooted;
         _movementSpeedModifier.RefreshMovementSpeedModifiers(entity);
         _gravity.RefreshWeightless(entity.Owner);
@@ -148,6 +163,21 @@ public abstract class SharedRootableSystem : EntitySystem
 
         args.NoSlip = true;
     }
+
+    // Start Frontier: can't be rooted while buckled/knocked.
+    private void OnBuckled(Entity<RootableComponent> ent, ref BuckledEvent args)
+    {
+        if (ent.Comp.Rooted)
+            TryToggleRooting(ent.Owner);
+    }
+
+    private void OnKnockedDown(Entity<RootableComponent> ent, ref KnockedDownEvent args)
+    {
+        if (ent.Comp.Rooted)
+            TryToggleRooting(ent.Owner);
+
+    }
+    // End Frontier: can't be rooted while buckled/knocked.
 
     private void OnStartCollide(Entity<RootableComponent> entity, ref StartCollideEvent args)
     {
