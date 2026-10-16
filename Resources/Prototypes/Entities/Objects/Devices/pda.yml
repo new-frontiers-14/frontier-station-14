@@ -517,6 +517,7 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
+    - BountyContractsCartridge # Frontier
     - AstroNavCartridge
 
 - type: entity
@@ -987,6 +988,7 @@
       - MedTekCartridge
       - WantedListCartridge
       - LogProbeCartridge
+      - BountyContractsCartridge # Frontier
       - AstroNavCartridge
 
 - type: entity
@@ -1134,6 +1136,8 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NewsReaderCartridge # Frontier
+      - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
 
 - type: entity
@@ -1486,6 +1490,8 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-pirate
+  - type: PdaBorderColor # Frontier
+    borderColor: "#333333" # Frontier
   - type: Icon
     state: pda-pirate
 
