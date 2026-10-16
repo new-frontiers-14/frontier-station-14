@@ -374,7 +374,7 @@ book-text-nononsenseatmos = [head=3]The No-Nonsense Atmos Guidebook[/head]
 
         4. The Useless (Feed it to the void)
 
-        Ammonia/Water Vapor: [color=#bf4040]VENT IT. Total garbage byproducts that clog your system metrics, ruin your pressures, and take up space that could be holding profitable or useful gases. Set your filtration defaults to purge these into the void immediately.
+        Ammonia/Water Vapor: VENT IT. Total garbage byproducts that clog your system metrics, ruin your pressures, and take up space that could be holding profitable or useful gases. Set your filtration defaults to purge these into the void immediately.
 
         The F.A.R.T. (Fast Air Readjustment Tank)
 
@@ -1009,9 +1009,11 @@ book-text-spacedust = [head=3] Space Dust: A Spacefolk's Void Survival Manual [/
 
         Welcome to the frontier. Our lifestyle comes with a lot of freedom, but also some heavy responsibilities. Responsibilities to ourselves, and the others around us.
         This here guide will help you keep yourself, your gear and your ship in shape – and hopefully – others as well.
+
         Section 1: Vacuum
         If you haven’t already done your first spacewalk, know that you will eventually. On the frontier, you will have to step out of your hull for scavenging, fixing, visiting, and a lot more.
         You’ll want to make sure you have a few things with you:
+
         1-1: Something to breathe
         Some of you will breathe oxygen, nitrogen, or maybe something else. I’ll call all that air for brevity.
         If you’ve spent all your time aboard a station, or planet-side, you may not think of air as a resource. When stepping into the void, it will be your dearest one.
@@ -1031,6 +1033,7 @@ book-text-spacedust = [head=3] Space Dust: A Spacefolk's Void Survival Manual [/
         Putting it simply, the jets are a fancy gas tank, which expels air behind you. That’s your unbalanced force, and it will push you forward. Shift the jet controls on, and you will be soaring. As you may have guessed, that works until you run out of gas, so keep an eye on that pressure gauge.
         A prudent spacewalker may also want to bring some extra gear, in case they lose propulsion. You’ll find grappling hooks to be easily available.
         In a pinch, remember that anything you throw will send you flying in the opposite direction. If you are floating away, and are out of options, just start chucking anything you have on hand. You can get another crowbar if you make it back to your ship.
+
         1-4: Directions
         Your kit comes with a PDA, which you should have on you at all times. Ours comes with a GPS module. If you are ever lost in space, you can find your own position on it, at any time.
         Knowing where you are is good, but it doesn’t help if you don’t know where you are going. If you have a universal pinpointer, remember to sync it to something that stays on your ship, like your favorite bed, or your ship’s console.
@@ -1039,39 +1042,47 @@ book-text-spacedust = [head=3] Space Dust: A Spacefolk's Void Survival Manual [/
         Section 2: Restocking
         Congratulations on making it back to your ship. That first outing in the void can be daunting, but since you’ve made it back, you are kith and kin to all of us spacefolks. If you went alone, keep hold of that feeling of isolation. Somewhere between the stars, someone is feeling the same.
         Now, you’ll want to check the pressure gauge on your air tank and your jets. You never know if you’ll have to walk out in a hurry, there may not be enough time to restock later, but there is now.
-         2 – 1 The reserve
+
+        2 – 1 The reserve
         Your ship comes standard with a blue cannister of oxygen, and a red one of nitrogen. I trust you already know which one’s yours. Just in case you need to fill a tank for a friend, most folks will take oxygen. Voxes and slimefolks will need nitrogen, though.
         Those cans are your ship’s air reserve, to maintain life-support aboard, but they are also there to refill your EVA gear.
+
         2 – 2 Refilling
         You’ll need to unlock the can and set its valve pressure all the way to the max, to 1mPA, which is to say 1013kPa. That pressure is the target to be refilled in your tank and jets.
         Next, you simply insert your air tank into the can. You’ll notice that it hasn’t filled up yet. Take a good look at the valve controls and crank it open. Don’t eject the tank while the valve is open, or you will vent the entire can into your ship’s local atmosphere. Once the tank is full, you can close the valve, then retrieve the tank.
          Now that you know how it’s done, you can do the same for your jets.
         Section 3: Ship care
         You are the only person responsible for your ship’s operation. Think of it as a larger space suit, because in many ways, it is just that.
+
         3 – 1 Power
         Your ship might as well just be a flying brick if you can’t power it. Look around, there is a power source in there somewhere. If you are reading this manual, you are likely operating a P.A.C.M.A.N or S.U.P.E.R.P.A.C.M.A.N class solid fuel generator. Those need solid plasma, or solid uranium to do their work.
         You will find that they come pre-filled with some fuel as you leave drydocks, and that a spare fuel rod should be in an emergency fuel closet nearby.
         You’ll want to hang to that spare rod and keep it in the closet. Should you burn through your entire fuel supply, that spare will be enough for you to fly back to a station to restock.
         Keep in mind that your generator can take both the fuel-grade rods, and the regular solid uranium or plasma as fuel, but the solids are also useful for other things. Try to use all your fuel-grade rods before you start using the better stuff.
         In a pinch, you can also shove raw ore into the hoppers, and the generator will do its thing. Try to only do that as a last measure, as it is very inneficient.
+
         3 – 2 Hull integrity
         I get it, accidents happen. As careful as you may have been, you’ve scratched the paint on that hull. Now that you’ve learned the hard way that brakes are only good if you slam them in time, let’s assess the damage
         If you hear an alarm blaring, chances are your hull is breached, and your atmosphere is quickly dispersing out in the void. Stay calm. Just treat your ship as if it was a spacewalk. If you haven’t got one on yet, start by quickly retrieving your EVA suit, and put it on. Make sure you close the helmet and connect your air tanks to internals.
         Next, you’ll want to patch that hole as quickly as you can. If the floor is missing where the wall should be, start by putting down a lattice of steel rods for support. Grab a piece of steel and turn it into rods. Put the rods directly in the empty space to create a basic lattice.
         Once you have a proper scaffolding in place, grab another piece of steel, and shape it into steel tiles. Apply one to the lattice to act as a hull plate, which will provide air proofness from below.
         Lastly, seal the hole. If you have inflatable walls, now is a good time to deploy one. If you don’t, you can build a basic wall to return the hull to airtight standards. It only takes a handful of steel plates to do so.
+
         3 – 3 The aftermath
         Now is the time to check on your air reserves. Go check your air cannisters, and see which ones are zeroed, and which are still good. If you are running a standard mix, chances are your nitrogen is the first to go.
         Cans of various types are not uncommon. If you have already found some replacements, you can do a standard swap and be done with it.
         If you haven’t, you can fly back to the trade mall to pick up some replacements or ask around. Someone may already have some stocks available.
+
         3 – 4 Patching up
         You’ll also want to do a quick spacewalk around your ship and take a good look around the impact point. There might be damage to the walls or the windows. For now, they may not be visible, but another hit may cause them to burst open. Grab a welder - and proper eye protection – and make sure all nearby structural elements are in top shape.
         If your ship isn’t flying quite right, check your thrusters. They might have been banged up open. If the frame is still there, you can rebuild a lattice under them and fix the casing with a screwdriver once they are fastened. If they are gone, you’ll have to make do until you can get a replacement.
+
         Section 4: A personal message
         If you’ve read so far, I wish you good luck. We all fly our own ways, but we have something in common. We have stepped out of the comfort of solid ground, left it behind. I don’t know what pushed you to the stars, but whether it is a yearning unfulfilled, leaving something worse behind, or simple wanderlust, you are now one of us. Spacefolks. Wanderers. Intruders, in a way.
         Should you be out there, looking at the distant stars, covered in space dust, or preparing yourself to, I don’t know you, but I know what you are – what we all are. We are small, fragile, often underprepared and overconfident. You will need help, we all do. I hope that you never call for it and receive only silence in return. We are few, but we are not alone, not truly, not as long as someone answers the call.
         Space is wide and cold. It is not malicious, but it is uncaring. Should the occasion arise, should you be in a position to grab in yours a hand reaching out for support, I suggest that you do so. Not because it is right, although it always is. Not because it is easy - it will not always be. But because that hand could have been yours, and it could be every time you fire up these thrusters and reach for the void.
         Safe travels,
+
         W. Hastings
 
 book-text-externalcause = [head=3]External Cause: X72[/head]
@@ -1352,17 +1363,17 @@ book-text-engineerspocketreference = [head=3]Engineer's Pocket Reference[/head]
     Power Systems
     The standard power supply on your station or shuttle will vary depending on the size and load. Refer to station/shuttle documentation for specific recommended settings for your power generation equipment.
 
-    Name       │Fuel      │Out  │Default│Max
-    ───────────┼──────────┼─────┼───────┼───────
-    JRPACMAN   │Welding   │LV   │6 kW   │15 kW
-    PACMAN     │Plasma    │HV/MV│20 kW  │25 kW
-    SUPERPACMAN│Uranium   │HV/MV│30 kW  │50 kW
-    D-K Jr.    │Bananium  │HV/MV│60 kW  │100 kW
-    D-K        │Bananium  │HV/MV│60 kW  │120 kW
-    AME        │Antimatter│HV   │120 kW │ -
-    TEG        │Gases*    │HV   │ -     │ -
-    Singulo    │Plasma**  │HV   │ -     │ -
-    Tesla      │None***   │HV   │ -     │ -
+    Name                   │Fuel          │Out       │Default │Max
+    ───────────┼──────┼─────┼──────┼─────
+    JRPACMAN         │Welding    │LV         │6 kW      │15 kW
+    PACMAN             │Plasma      │HV/MV│20 kW   │25 kW
+    SUPERPACMAN│Uranium   │HV/MV│30 kW    │50 kW
+    D-K Jr.                  │Bananium │HV/MV│60 kW   │100 kW
+    D-K                      │Bananium │HV/MV│60 kW   │120 kW
+    AME                     │Antimatter│HV        │120 kW│ -
+    TEG                     │Gases*       │HV        │ -            │ -
+    Singulo               │Plasma**  │HV        │ -           │ -
+    Tesla                  │None***   │HV         │ -            │ -
 
     The TEG runs off temperature differentials. Any gas can be used as the heat transfer medium and the gas is not consumed by the TEG.
     The Singularity generator uses hawking radiation to generate power. Radiation collectors consume plasma gas in the process.
@@ -1371,10 +1382,10 @@ book-text-engineerspocketreference = [head=3]Engineer's Pocket Reference[/head]
     Supplemental power supply is provided by solar panels, in installations within proximity of a star. Modern solar panels can achieve different efficiencies depending on the junction material used in its construction.
 
     Panel Material │ Power
-    ───────────────┼────────────
+    ──────────┼────────────
     Quartz Glass   │  750 W/m^2
     Plasma Glass   │ 1000 W/m^2
-    Uranium Glass  │ 1500 W/m^2
+    Uranium Glass│ 1500 W/m^2
 
     Power distribution is split into three distinct voltage ranges:
     • HV - For source power generation.
@@ -1382,11 +1393,11 @@ book-text-engineerspocketreference = [head=3]Engineer's Pocket Reference[/head]
     • LV - For local power delivery.
 
     Along with power distribution, line equipment also includes batteries to smooth out demand.
-    Name       │ Capacity │ In │ Out
-    ───────────┼──────────┼────┼─────
-    SMES       │ 8000 kJ  │ HV │ HV
-    Substation │ 2500 kJ  │ HV │ MV
-    APC        │   50 kJ  │ MV │ LV
+    Name           │ Capacity │ In   │ Out
+    ────────┼───────┼──┼─────
+    SMES            │ 8000 kJ    │ HV│ HV
+    Substation  │ 2500 kJ    │ HV│ MV
+    APC               │   50 kJ      │ MV│ LV
 
 
     Atmospherics
@@ -1407,13 +1418,13 @@ book-text-engineerspocketreference = [head=3]Engineer's Pocket Reference[/head]
     R = Universal Gas Constant ≈ 8.314 (L⋅kPa⋅K−1⋅mol−1)
     T = Temperature (K)
 
-            nRT          nRT
-       P = ─────    V = ─────
-             V            P
+             nRT                nRT
+   P = ─────    V = ─────
+              V                     P
 
-            PV           PV
-       T = ────     n = ────
-            nR           RT
+            PV                 PV
+   T = ────     n = ────
+            nR                 RT
 
     Standard container volumes
     • 1x Pipe Segment = 200L
@@ -1731,7 +1742,7 @@ book-text-room85 = [head=3]Room 85[/head]
 
         -”Let's move on to the next piece of information. A miner was found dead at the bottom of a cave during a mining operation. As the man had shown no signs of life for several days, the rescue team headed to the scene using the miner’s pinpointer. He reportedly died from a lack of oxygen. It turns out that the man in question is reportedly none other than Barry Connor, known to the NFSD for having killed his friend by stabbing him seven times. Given his history of mental heal-.” and the TV turns off.
 
-book-text-delightsandmusings = [head=3] Delights and Musings[/head]
+book-text-delightsandmusings = [head=3]Delights and Musings[/head]
         by Etienne DeCroix-Sphingidae
         Entry in the Frontier 3rd Anniversary Writing Contest
 
