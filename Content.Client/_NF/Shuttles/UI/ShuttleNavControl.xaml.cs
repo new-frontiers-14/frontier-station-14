@@ -1,16 +1,24 @@
+using Content.Client._NF.Radar;
+using Content.Client._NF.River;
+using Content.Client.Station;
+using Content.Client.UserInterface.Controls;
+using Content.Shared._NF.Radar;
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Interaction;
+using Content.Shared.NodeContainer;
 using Content.Shared.Shuttles.BUIStates;
-using Robust.Shared.Physics.Components;
-using System.Numerics;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
-using Robust.Shared.Collections;
 using Robust.Client.UserInterface;
+using Robust.Shared.Collections;
 using Robust.Shared.Input;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Content.Shared._NF.Radar;
-using Content.Client._NF.Radar;
-using Content.Client.Station;
+using SixLabors.ImageSharp.ColorSpaces;
+using System.Net;
+using System.Numerics;
 
 // Purposefully colliding with base namespace.
 namespace Content.Client.Shuttles.UI;
@@ -20,6 +28,7 @@ public sealed partial class ShuttleNavControl
     // Dependency
     private readonly StationSystem _station;
     private readonly RadarBlipSystem _blips;
+    private readonly RiverNodeSystem _rivers;
 
     // Constants for gunnery system
     // These 2 handle timing updates
@@ -43,6 +52,12 @@ public sealed partial class ShuttleNavControl
 
     public InertiaDampeningMode DampeningMode { get; set; }
     public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
+
+    // Constants for River System
+    private const float FlowIndicatorLimit = 10f;
+    private const float FlowSpeed = 15f;
+
+    private float _flowIndicatorOffset = 0f;
 
     /// <summary>
     /// Updates the radar UI with the latest navigation state and sets additional NF-specific state.
@@ -172,6 +187,119 @@ public sealed partial class ShuttleNavControl
         }
     }
 
+    /// <summary>
+    /// Renders the space rivers
+    /// </summary>
+    /// <param name="handle">The handle for handling rendering</param>
+    /// <param name="worldToView">A transform matrix which turns world coordinates into view coordinates</param>
+    /// <param name="viewAABB">The AABB box of the viewport, used for culling</param>
+    private void NFDrawRivers(DrawingHandleBase handle, Matrix3x2 worldToView, Box2 viewAABB)
+    {
+        var nodes = _rivers.GetNodeList();
+        if (nodes != null)
+        {
+            // The collators collate data from each river segment for batch rendering.
+            List<Vector2> lineCollator = new();
+            List<Vector2> meshCollator = new();
+
+            // TODO: make this set somewhere else so people can easily change the colours.
+            var centreColour = Color.Blue;
+            var riverColour = Color.DarkGray;
+            riverColour.A = 0.05f;
+
+            // Iterates through all the river nodes to handle their rendering
+            foreach (var node in nodes)
+            {
+                if (!_rivers.TryGetNodeData(node, out var nodeComp))
+                {
+                    continue;
+                }
+
+                // Handles culling of segments outside of viewAABB
+                var anySegmentInView = false;
+                var nextNodes = _rivers.GetNextNodes(nodeComp);
+                foreach (var nextNode in nextNodes)
+                {
+                    if (!nodeComp.BoundingBoxes.TryGetValue(nextNode, out var boundingBox) || !boundingBox.Intersects(viewAABB)) //clientside entity doesn't exist yet, skip for now.
+                    {
+                        continue;
+                    }
+
+                    anySegmentInView = true;
+
+                    //if (!_rivers.TryGetNodeData(nextNode, out var nextNodeComp))
+                    //{
+                    //    continue;
+                    //}
+                    //Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
+                    //Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
+                    //
+                    //handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
+                    //handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);
+                }
+                if (!anySegmentInView)
+                {
+                    continue;
+                }
+
+                // Gets the central river lines ready for rendering.
+                var lineData = _rivers.LineData[node];
+                Vector2[] renderLines = new Vector2[lineData.Length];
+                for (var j = 0; j < lineData.Length; j++)
+                {
+                    renderLines[j] = Vector2.Transform(lineData[j], worldToView);
+                }
+                Vector2[] lineArray;
+                if (MinimapScale > 0.2f) // Ensures the dashed lines are only drawn at reasonable zoom levels.
+                {
+                    var dashLength = 5 * MinimapScale;
+                    var gapLength = 5 * MinimapScale;
+                    lineArray = _rivers.CreateDottedLineSpan(renderLines,
+                        dashSize: dashLength,
+                        gapSize: gapLength,
+                        offset: _flowIndicatorOffset * FlowSpeed * MinimapScale);
+                }
+                else
+                {
+                    lineArray = renderLines;
+                }
+                lineCollator.AddRange(lineArray);
+
+                // Gets the river mesh ready for rendering.
+                var meshData = _rivers.MeshData[node];
+                Vector2[] renderMesh = new Vector2[meshData.Length];
+                for (var i = 0; i < meshData.Length; i++)
+                {
+                    renderMesh[i] = Vector2.Transform(meshData[i], worldToView);
+                }
+                meshCollator.AddRange(renderMesh);
+            }
+
+            // Render the rivers and their centre lines in batches to not overrun the DrawPrimitives method, while being more performant.
+            const float batchSize = 3f * 4096;
+
+            var triCount = lineCollator.Count;
+            for (var i = 0; i < Math.Ceiling(triCount / batchSize); i++)
+            {
+                var start = (int)(i * batchSize);
+                var end = (int)Math.Min(triCount, start + batchSize);
+                var count = end - start;
+                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(lineCollator.ToArray(), start, count), centreColour);
+            }
+            if (MinimapScale > 0.05f) //Mostly unnecessary, but stops drawing vertices when you zoom out way too much, just in case.
+            {
+                var vertCount = meshCollator.Count;
+                for (var j = 0; j < Math.Ceiling(vertCount / batchSize); j++)
+                {
+                    var start = (int)(j * batchSize);
+                    var end = (int)Math.Min(vertCount, start + batchSize);
+                    var count = end - start;
+                    handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(meshCollator.ToArray(), start, count), riverColour);
+                }
+            }
+        }
+    }
+
     private void HandleMouseEntered(GUIMouseHoverEventArgs args)
     {
         _isMouseInside = true;
@@ -206,6 +334,12 @@ public sealed partial class ShuttleNavControl
 
             if (_consoleEntity != null)
                 _blips.RequestBlips((EntityUid)_consoleEntity);
+        }
+
+        _flowIndicatorOffset += args.DeltaSeconds;
+        if (_flowIndicatorOffset >= FlowIndicatorLimit * MinimapScale)
+        {
+            _flowIndicatorOffset = 0;
         }
 
         if (_isMouseDown && _isMouseInside)
