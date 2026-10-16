@@ -1,0 +1,104 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="{Loc 'aac-tablet-title'}"
+    Resizable="True"
+    SetSize="580 422"
+    MinSize="580 320">
+    <BoxContainer Orientation="Vertical">
+        <!-- Main Content Area -->
+        <BoxContainer Name="MainContent" Orientation="Vertical" VerticalExpand="True" Margin="8 8 8 4">
+
+            <!-- Top Control Bar -->
+            <PanelContainer StyleClasses="AacControlBar" Margin="0 0 0 8">
+                <BoxContainer Orientation="Vertical" Margin="8">
+                    <!-- Buffer Toggle Row -->
+                    <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+                        <CheckBox Name="ShouldBuffer"
+                                  Text="{Loc 'aac-tablet-combine'}"
+                                  StyleClasses="AacCheckbox"
+                                  Margin="0 0 8 0"/>
+                        <Control HorizontalExpand="True"/>
+
+                        <Control SetWidth="170" Margin="8 0 0 0"/>
+
+                        <OptionButton Name="RadioChannels"
+                                      StyleClasses="OpenBoth"
+                                      SetWidth="120"
+                                      Margin="8 0 0 0"/>
+                        </BoxContainer>
+
+                    <!-- Buffer Display and Controls -->
+                    <BoxContainer Orientation="Horizontal">
+                        <PanelContainer HorizontalExpand="True" StyleClasses="AacBufferDisplay">
+                            <LineEdit Name="BufferedString"
+                                      Editable="False"
+                                      HorizontalExpand="True"
+                                      StyleClasses="AacBufferText"
+                                      Margin="8 4"/>
+                        </PanelContainer>
+                        <Button Name="ClearButton"
+                                Text="{Loc 'aac-tablet-backspace'}"
+                                TextAlign="Center"
+                                StyleClasses="ClearButton"
+                                SetWidth="90"
+                                Margin="8 0 0 0"/>
+
+                        <Button Name="SendButton"
+                                Text="{Loc 'aac-tablet-send'}"
+                                TextAlign="Center"
+                                StyleClasses="SendButton"
+                                SetWidth="90"
+                                Margin="8 0 0 0"/>
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- Tabbed Content Area -->
+            <PanelContainer VerticalExpand="True" StyleClasses="AacContentArea">
+                <TabContainer Name="WindowBody"
+                              TabTitle="Search"
+                              VerticalExpand="True"
+                              MouseFilter="Pass"
+                              Margin="4">
+                    <!-- Search Tab -->
+                    <BoxContainer Orientation="Vertical" Name="Search" VerticalExpand="True">
+                        <!-- Search Bar -->
+                        <PanelContainer StyleClasses="AacSearchBar" Margin="4 4 4 8">
+                            <LineEdit Name="SearchBar"
+                                      PlaceHolder="{Loc 'aac-tablet-search-placeholder'}"
+                                      HorizontalExpand="True"
+                                      StyleClasses="AacSearchInput"
+                                      Margin="8 6"/>
+                        </PanelContainer>
+
+                        <!-- Search Results -->
+                        <ScrollContainer HorizontalExpand="True"
+                                         VerticalExpand="True"
+                                         HScrollEnabled="False"
+                                         Margin="0 -5">
+                            <BoxContainer Name="SearchResults"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          Margin="0 -5"/>
+                        </ScrollContainer>
+                    </BoxContainer>
+                </TabContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <!-- Footer -->
+        <BoxContainer Name="Footer" Orientation="Vertical">
+            <PanelContainer StyleClasses="LowDivider"/>
+            <BoxContainer Orientation="Horizontal" Margin="10 4 10 4" VerticalAlignment="Center">
+                <Label Text="{Loc 'aac-tablet-footer-hint'}"
+                       StyleClasses="AacFooterText"
+                       VerticalAlignment="Center"/>
+                <Control HorizontalExpand="True"/>
+                <Label Text="{Loc 'aac-tablet-footer-info'}"
+                       StyleClasses="AacFooterText"
+                       VerticalAlignment="Center"
+                       Margin="0 0 8 0"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
