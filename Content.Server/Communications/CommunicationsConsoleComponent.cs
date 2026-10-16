@@ -74,5 +74,12 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public bool AnnounceSentBy = true;
+		
+		// Frontier
+		/// <summary>
+        /// Can this console change the alert status?
+        /// </summary>
+		[DataField]
+        public bool CanChangeAlertLevel = true;
     }
 }
