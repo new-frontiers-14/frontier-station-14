@@ -1,0 +1,54 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_baked_whole.yml & food_baked_single.yml
+
+- type: entity
+  name: wedding cake
+  parent: FoodCakeBase
+  id: FoodCakeWedding
+  description: Awwww, mawwage!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/weddingcake.rsi
+    layers:
+    - state: wedding
+  - type: SliceableFood
+    slice: FoodCakeWeddingSlice
+    count: 10
+  - type: Tag
+    tags:
+    - Cake
+  - type: FlavorProfile
+    flavors:
+    - commitment
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  name: wedding cake slice
+  parent: FoodCakeSliceBase
+  id: FoodCakeWeddingSlice
+  description: Awwww, mawwage!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/weddingcake.rsi
+    layers:
+    - state: slice
+  - type: Tag
+    tags:
+    - Cake
+    - Slice
+  - type: FlavorProfile
+    flavors:
+    - commitment
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: slice-inhand-left
+        color: white
+      right:
+      - state: slice-inhand-right
+        color: white
+#Tastes like commitment
