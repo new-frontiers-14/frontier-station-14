@@ -424,8 +424,6 @@
         Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: PirateBountyItem # Frontier
-    id: ClothingMaskGasMercenary # Frontier
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -702,7 +700,7 @@
     replacement: italian
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: [ ClothingMaskBase, BaseC3Contraband ] #Frontier: C3 Contraband
   id: ClothingMaskNinja
   name: ninja mask
   description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement.
