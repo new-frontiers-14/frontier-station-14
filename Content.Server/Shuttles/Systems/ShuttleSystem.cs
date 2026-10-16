@@ -31,6 +31,7 @@ using Robust.Shared.Timing;
 using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Server.GameTicking; // Frontier
 using Content.Shared.Maps;
+using Content.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -72,6 +73,8 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
+    public float accumulator = 0f; //Frontier: Related to IFF HEAT System
+
     public override void Initialize()
     {
         base.Initialize();
@@ -99,6 +102,43 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        accumulator += frameTime; //Frontier: IFF HEAT System START
+        if (accumulator >= 1f)
+        {
+            accumulator = 0f;
+
+            // Update HEAT value per grid
+            var shuttleQuery = EntityQueryEnumerator<ShuttleComponent>();
+
+            while (shuttleQuery.MoveNext(out var uid, out var shuttle))
+            {
+                if (!shuttle.GenerateIFFHeat)
+                    continue;
+
+                if (!shuttle.Active)
+                {
+                    shuttle.CurrentHeat = float.Clamp(shuttle.CurrentHeat - shuttle.HeatDissipation, 0f, shuttle.HeatCapacity);
+                    continue;
+                }
+
+                shuttle.CurrentHeat = float.Clamp(shuttle.CurrentHeat + shuttle.HeatGeneration, 0f, shuttle.HeatCapacity);
+                if (shuttle.CurrentHeat < shuttle.HeatCapacity)
+                continue;
+
+                RemoveIFFFlag(uid, IFFFlags.Hide);
+                shuttle.Active = false;
+
+            }
+
+            // Updates all the IFF consoles on a grid to the grids HEAT value
+            var consoleQuery = EntityQueryEnumerator<IFFConsoleComponent>();
+
+            while (consoleQuery.MoveNext(out var console, out var component))
+            {
+                UpdateIFFInterface(console, component);
+            }
+        }
+        //Frontier: IFF HEAT System END
         UpdateHyperspace();
     }
 
