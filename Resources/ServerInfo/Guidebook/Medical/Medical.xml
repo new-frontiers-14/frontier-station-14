@@ -3,13 +3,13 @@
 This is the department where people go to when they're hurt, it's up to the folks working here to fix them.
 
 ## Personnel
-[color=#5b97bc]Medical[/color]'s staff is made up of Medical Interns, Medical Doctors, Paramedics and Chemists. [color=#5b97bc]Medical[/color] is run by the Chief Medical Officer.
+[color=#5b97bc]Medical[/color]'s staff is made up of Medical Interns, Medical Doctors, Paramedics and Chemists. [color=#5b97bc]Medical[/color] is run by the Director of Care.
 
   <Box>
     <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Doctor"/>
     <GuideEntityEmbed Entity="ToyFigurineParamedic" Caption="Paramedic"/>
     <GuideEntityEmbed Entity="ToyFigurineChemist" Caption="Chemist"/>
-    <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="CMO"/>
+    <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="Director of Care"/>
   </Box>
   
 Right now, medbay is divided into two different sets of care:
@@ -29,4 +29,12 @@ Right now, medbay is divided into two different sets of care:
     <GuideEntityEmbed Entity="PillCanister"/>
     <GuideEntityEmbed Entity="ChemMaster"/>
   </Box>
+
+ ## Responding to emergencies
+  <Box>
+    <GuideEntityEmbed Entity="EncryptionKeyMedical"/>
+    <GuideEntityEmbed Entity="MedicalTrackingImplanter"/>
+  </Box>
+
+  Medical personnel have access to the Medical radio channel by means of the medical encryption key. They receive automatic alerts when someone goes critical (above 100 total damage) or dies, so long as that person has a Medical Tracking Implanter.
 </Document>
