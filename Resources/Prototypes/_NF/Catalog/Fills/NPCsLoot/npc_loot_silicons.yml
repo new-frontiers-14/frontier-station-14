@@ -68,12 +68,20 @@
         - id: AdvancedBorgModuleMusique
         - id: BorgModuleMutation
       #Contraband
-      - !type:GroupSelector
-        weight: 0.8
-        children:
-        - id: BorgModuleSyndicateWeapon
-        - id: BorgModuleEsword
-        - id: BorgModuleL6C
+      - !type:NestedSelector
+        tableId: RogueSiliconBorgModuleContraband
+        weight: 0.15
+
+- type: entityTable
+  id: RogueSiliconBorgModuleContraband
+  table: !type:GroupSelector
+    children:
+    - id: BorgModuleSyndicateWeapon
+      weight: 1
+    - id: BorgModuleEsword
+      weight: 0.2
+    - id: BorgModuleL6C
+      weight: 0.2
 
 # region blueprints
 - type: entity
