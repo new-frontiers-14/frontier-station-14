@@ -3470,7 +3470,11 @@
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
-    allowedEmotes: ['Squeak']
+    allowedEmotes:
+    - Squeak
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Animals/mouse_squeak.ogg"
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/hamster.rsi
