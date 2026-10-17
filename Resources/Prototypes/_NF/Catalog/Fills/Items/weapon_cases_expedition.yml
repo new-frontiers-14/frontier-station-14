@@ -416,6 +416,19 @@
     - id: NFMagazineRifle20
       amount: 2
 
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongEstoc
+  suffix: Dungeon, Estoc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleAssaultEstocExpedition
+      amount: 1
+    - id: NFMagazineRifle20
+      amount: 2
+
 #region Energy
 - type: entity
   parent: [WeaponCaseShort, RareWeaponCase]
@@ -440,6 +453,17 @@
       amount: 1
     - id: PowerCellHigh
       amount: 2
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongLaserRepeaterExpedition
+  suffix: Dungeon, Laser Repeater
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponEnergyRifleAssaultLaserRepeater
+      amount: 1
 
 - type: entity
   parent: [WeaponCaseLong, RareWeaponCase]

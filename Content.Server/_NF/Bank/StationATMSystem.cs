@@ -80,7 +80,7 @@ public sealed partial class BankSystem
         var enumVal = ParseLedgerType($"StationWithdrawal{args.Reason}", false);
         if (!TrySectorWithdraw(component.Account, args.Amount, enumVal))
         {
-            ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
+            ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
             _uiSystem.SetUiState(uid, args.UiKey,
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
@@ -195,7 +195,7 @@ public sealed partial class BankSystem
         var enumVal = ParseLedgerType($"StationDeposit{args.Reason}", true);
         if (!TrySectorDeposit(component.Account, args.Amount, enumVal))
         {
-            ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
+            ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
             _uiSystem.SetUiState(uid, args.UiKey,
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
