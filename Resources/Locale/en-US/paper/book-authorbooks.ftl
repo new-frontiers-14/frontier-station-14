@@ -764,7 +764,7 @@ book-text-released = [head=3]RELEASED[/head]
         "Uh- Chel..? You're bleeding."
 
 
-        The wolf was breathing heavily, her head and eyes still looking down at the sink. The blood had begun to drip into the aluminum basin. The bailiff slowly inched her hand to her belt, grabbing the handle of their baton. She took a hesitant step toward the cell.
+        The wolf was breathing heavily, her head and eyes still looking down at the sink. The blood had begun to drip into the aluminum basin. The bailiff slowly inched her hand to her belt, grabbing the handle of her baton. She took a hesitant step toward the cell.
 
 
         "Look, uh.. if you're gonna do this, we're gonna have to move you in cuffs."
@@ -850,7 +850,7 @@ book-text-shipslog = [italic]Ships Log of the Dustwing Marauder[/italic]
         Choosing diapers over piracy.
         The crew laughed.
         I laughed too.
-        Then i paid him everything he was owed.
+        Then I paid him everything he was owed.
         A captain shouldn’t begrudge a sailor returning home.
         Still…
         The galley feels quieter tonight.
@@ -888,7 +888,7 @@ book-text-shipslog = [italic]Ships Log of the Dustwing Marauder[/italic]
         She hugged everyone before boarding the shuttle.
         Even me.
         I almost asked her to stay.
-        Instead i smiled.
+        Instead I smiled.
         Captains don’t beg.
 
         Entry XII
@@ -903,7 +903,7 @@ book-text-shipslog = [italic]Ships Log of the Dustwing Marauder[/italic]
         Too many crates.
         Sleeping beside the vault now.
         Feels appropriate.
-        Sometimes i wake thinking i hear voices.
+        Sometimes I wake thinking I hear voices.
         It’s only the hull settling.
         Ships speak.
         People leave.
@@ -983,14 +983,14 @@ book-text-shipslog = [italic]Ships Log of the Dustwing Marauder[/italic]
         Deathbelle joined a survey fleet.
         Good people.
         All of them.
-        I told them i understood.
+        I told them I understood.
         I even meant it.
         Funny thing.
         Every farewell left something behind.
         An empty chair.
         A silent watch.
         Another echo.
-        So i filled the silence.
+        So I filled the silence.
         One more crate.
         One more chest.
         One more shining thing that would never ask to leave.
@@ -1044,13 +1044,13 @@ book-text-spacedust = [head=3] Space Dust: A Spacefolk's Void Survival Manual [/
         Now, you’ll want to check the pressure gauge on your air tank and your jets. You never know if you’ll have to walk out in a hurry, there may not be enough time to restock later, but there is now.
 
         2 – 1 The reserve
-        Your ship comes standard with a blue cannister of oxygen, and a red one of nitrogen. I trust you already know which one’s yours. Just in case you need to fill a tank for a friend, most folks will take oxygen. Voxes and slimefolks will need nitrogen, though.
+        Your ship comes standard with a blue canister of oxygen, and a red one of nitrogen. I trust you already know which one’s yours. Just in case you need to fill a tank for a friend, most folks will take oxygen. Voxes and slimefolks will need nitrogen, though.
         Those cans are your ship’s air reserve, to maintain life-support aboard, but they are also there to refill your EVA gear.
 
         2 – 2 Refilling
         You’ll need to unlock the can and set its valve pressure all the way to the max, to 1mPA, which is to say 1013kPa. That pressure is the target to be refilled in your tank and jets.
         Next, you simply insert your air tank into the can. You’ll notice that it hasn’t filled up yet. Take a good look at the valve controls and crank it open. Don’t eject the tank while the valve is open, or you will vent the entire can into your ship’s local atmosphere. Once the tank is full, you can close the valve, then retrieve the tank.
-         Now that you know how it’s done, you can do the same for your jets.
+        Now that you know how it’s done, you can do the same for your jets.
         Section 3: Ship care
         You are the only person responsible for your ship’s operation. Think of it as a larger space suit, because in many ways, it is just that.
 
@@ -1059,17 +1059,17 @@ book-text-spacedust = [head=3] Space Dust: A Spacefolk's Void Survival Manual [/
         You will find that they come pre-filled with some fuel as you leave drydocks, and that a spare fuel rod should be in an emergency fuel closet nearby.
         You’ll want to hang to that spare rod and keep it in the closet. Should you burn through your entire fuel supply, that spare will be enough for you to fly back to a station to restock.
         Keep in mind that your generator can take both the fuel-grade rods, and the regular solid uranium or plasma as fuel, but the solids are also useful for other things. Try to use all your fuel-grade rods before you start using the better stuff.
-        In a pinch, you can also shove raw ore into the hoppers, and the generator will do its thing. Try to only do that as a last measure, as it is very inneficient.
+        In a pinch, you can also shove raw ore into the hoppers, and the generator will do its thing. Try to only do that as a last measure, as it is very inefficient.
 
         3 – 2 Hull integrity
-        I get it, accidents happen. As careful as you may have been, you’ve scratched the paint on that hull. Now that you’ve learned the hard way that brakes are only good if you slam them in time, let’s assess the damage
+        I get it, accidents happen. As careful as you may have been, you’ve scratched the paint on that hull. Now that you’ve learned the hard way that brakes are only good if you slam them in time, let’s assess the damage.
         If you hear an alarm blaring, chances are your hull is breached, and your atmosphere is quickly dispersing out in the void. Stay calm. Just treat your ship as if it was a spacewalk. If you haven’t got one on yet, start by quickly retrieving your EVA suit, and put it on. Make sure you close the helmet and connect your air tanks to internals.
         Next, you’ll want to patch that hole as quickly as you can. If the floor is missing where the wall should be, start by putting down a lattice of steel rods for support. Grab a piece of steel and turn it into rods. Put the rods directly in the empty space to create a basic lattice.
         Once you have a proper scaffolding in place, grab another piece of steel, and shape it into steel tiles. Apply one to the lattice to act as a hull plate, which will provide air proofness from below.
         Lastly, seal the hole. If you have inflatable walls, now is a good time to deploy one. If you don’t, you can build a basic wall to return the hull to airtight standards. It only takes a handful of steel plates to do so.
 
         3 – 3 The aftermath
-        Now is the time to check on your air reserves. Go check your air cannisters, and see which ones are zeroed, and which are still good. If you are running a standard mix, chances are your nitrogen is the first to go.
+        Now is the time to check on your air reserves. Go check your air canisters, and see which ones are zeroed, and which are still good. If you are running a standard mix, chances are your nitrogen is the first to go.
         Cans of various types are not uncommon. If you have already found some replacements, you can do a standard swap and be done with it.
         If you haven’t, you can fly back to the trade mall to pick up some replacements or ask around. Someone may already have some stocks available.
 
@@ -1089,8 +1089,7 @@ book-text-externalcause = [head=3]External Cause: X72[/head]
         by Jacob 'Hearse' Pope
         Entry in the Frontier 3rd Anniversary Writing Contest
 
-        You think it’s time to enlist in the war, but first you think about war. The good, the bad, and the bad. You think about the good parts… the good parts…You gotta ask yourself a question. Do you have an agenda to push? Perhaps you have a resource you really want? Maybe just maybe, you really hate this one person because they have a resource you want or is opposing your agenda. You don’t? Oh right, you often forget war is only good for the few whose boots never touch foreign soil.
-
+        You think it’s time to enlist in the war, but first you think about war. The good, the bad, and the bad. You think about the good parts… the good parts… You gotta ask yourself a question. Do you have an agenda to push? Perhaps you have a resource you really want? Maybe just maybe, you really hate this one person because they have a resource you want or is opposing your agenda. You don’t? Oh right, you often forget war is only good for the few whose boots never touch foreign soil.
 
         You see the posters showing strong men and camaraderie along with some fancy cool toys you could maybe use one day and let’s be honest from where you stand now the military seems like a way out. You pilot your shuttle to the enlistment office. You talk to a man that tells you all the good the military can do for you. He suggests a position that has a high promotion rate, but you know that he truly means it has a low retention rate, so you deny it thinking you're seeing through the veil and instead enlist as something more conventional.
 
@@ -1131,7 +1130,7 @@ book-text-howtobetough = [head=3]How to be Tough[/head]
         What is Being Tough?
         	What does it actually mean to be tough? It’s not about acting tough. It’s not about being physically tough either, or throwing the best punches. In fact, people who are tough still have fears! Some of the toughest people in the world still cry, and worry, and mess up.
         	It’s okay to feel weak and powerless. Big and tough people feel that way all the time. How can you be tough..? At its core, being someone who is tough, brave, or ambitious, is all about WHY you do things.
-        The truth is, that if you do something deep from the heart, or for your ideals, or for other people, then you will always give 1 million percent effort! You can get shot with bullet after bullet, or do the scariest of things with total clarity as long as you hold onto this sort of inner feeling that what you’re doing is truly important.
+            The truth is, that if you do something deep from the heart, or for your ideals, or for other people, then you will always give 1 million percent effort! You can get shot with bullet after bullet, or do the scariest of things with total clarity as long as you hold onto this sort of inner feeling that what you’re doing is truly important.
         	That ‘something’ that is important to you could be keeping people you care about safe, or being nice to others, or even just making sure people are fed yummy food. The secret is holding that thing really close to you, and doing stuff in pursuit of that ideal. Be true to your heart and things are all really easy. It can make you fearless!
 
         Discovering Strength
@@ -1263,7 +1262,7 @@ book-text-machinacemix = [head=3]Machina Cemix and the Transit Rat[/head]
 
         As it approached, I tried to get the drop on them and boarded with Skitty using the hidden no blip hoverbike and jetpack!
 
-        What we were met with was Sigurd, he was seemingly unbothered by our prescence, which was apparently because Sven failed to even call a No Fly Zone, and he didn't care enough to check the vault to see if it was broken into... It seemed our failures were more known about now...
+        What we were met with was Sigurd, he was seemingly unbothered by our presence, which was apparently because Sven failed to even call a No Fly Zone, and he didn't care enough to check the vault to see if it was broken into... It seemed our failures were more known about now...
 
         We waited for a while until Sven showed up and docked with our ship, I bet with Sigurd to see how long it'll take for Sven to find us, using the final 2680 spesos I had. this goes without saying but I also failed this bet too.
 
@@ -1306,16 +1305,16 @@ book-text-maundersecretwars = [head=3]Maunder Secret Wars[/head]
         This belief was interrupted by a blinding light outside the spiderweb-cracked window frame. A hulking beast of a machine is floating in front of it. Despite the overwhelming lights that would cast no shadow into the room, the outline was clear, blotting out the dream-like nebula of colorful stars splashed against a deep purple and black canvas that is space. This was a Nanotrasen Hunter class ship and it had just found its prey - now he is certain, his life is measured in seconds.
         Fingers dance like mad spiders tangling its dinner on a web of silk. For a nano of a second, he fears that this would break the device before he can send the message as the quad-barrel of the ship cannon glows with emitter beam.
 
-        In a moment in time, Kyle the Salvager regains his mind from a walking nightmare, his entire body aches with pain, his mind, in confusion, ringing out for anything real, tangible. In his hand an unfamiliar device was blinking with green light “Activation Code Sent” the device displayed “Frontier Sector” labeled in bright red. In the next, his life ends with a violence flash of emitter beam heat.
+        In a moment in time, Kyle the Salvager regains his mind from a walking nightmare, his entire body aches with pain, his mind, in confusion, ringing out for anything real, tangible. In his hand an unfamiliar device was blinking with green light “Activation Code Sent” the device displayed “Frontier Sector” labeled in bright red. In the next, his life ends with a violent flash of emitter beam heat.
 
         Two
 
         Bailiff Takeo Galles twirls a mechanical pen in right hand, in his left, a paper note wedged in front of a green and beige colored clipboard. The man in his early 30s spared a second to brush a long strain of his hair out of his face, his deep tired black eyes seem unfocused as if his mind is thousands of miles away from the claustrophobic bridge of the Paladin. The New Frontier Sheriff Department had been his home for nearly over three years now. From the day of his cadet training until his relocation to the Maunder subsector, he had settled contractors brawling over payment details, arrested rowdy mercenaries that ended up on the wrong side of the law, negotiated over pirate raiders threatening hostages for ransom, how far he had gotten. “Bailiff!” The reminiscent was cut short by his partner. “The sheriff is calling in from the Holopad, shall I answer the hail?” cadet Elton Powell took his full attention. Elton is a good man, as good of a cadet as any loyal Nanotrasen employee can ever ask for, short hair, fearsome brown eyes, younger than the Bailiff himself by a few years, why he hasn't been made deputy yet Takeo couldn’t tell. The cadet has been under his wing for a few months now and has proven himself to be eager and willing. Takeo put him on radio duty and he gladly took it. It is nicer this way Takeo thought, he prefers the soft humming of the Paladin engine over the endless chatter on the common channel. “I’ll answer the hail this time, Elton” replied Takeo.
 
-        The Holopad flickers one then twice then the blueish ghost of the sheriff appears into thin air. Even through the hazy outline of the holopad ghost, the distinctive vulpkanin features of the sheriff are clear to see, highlighting her vicious fangs, old scars and burnt marks from her past combat experience. “Respond, patrol team one, we have another report coming in” the harsh commanding voice of the sheriff chimed in. “We have an outer-ring miner calling in claiming they've been seeing an odd looking ship, no identifiable ship number, docking off of Barrier Gate”. All the way out to Barrier Gate, now this is interesting - thought the Bailiff.
-        “I am removing you two from the patrol duty and go investigate this vessel, it might be nothing but…” a hint of fear creeped across the woman's voice. “But with the recent Syndicate sightings in the subsector however, just keep an eye out, this might not be just a regular smuggler run”.
+        The Holopad flickers once, then twice, then the blueish ghost of the sheriff appears into thin air. Even through the hazy outline of the holopad ghost, the distinctive vulpkanin features of the sheriff are clear to see, highlighting her vicious fangs, old scars and burnt marks from her past combat experience. “Respond, patrol team one, we have another report coming in” the harsh commanding voice of the sheriff chimed in. “We have an outer-ring miner calling in claiming they've been seeing an odd looking ship, no identifiable ship number, docking off of Barrier Gate”. All the way out to Barrier Gate, now this is interesting - thought the Bailiff.
+        “I am removing you two from the patrol duty and go investigate this vessel, it might be nothing but…” a hint of fear creeped across the woman's voice. “But with the recent Syndicate sightings in the subsector however, just keep an eye out, this might not be just a regular smuggler run.”
 
-        “Dreadful” grimmed Elton “Syndicate running about, I can only imagine what they could be up to”. A brief thought flashed back in Takeo’s mind, the Syndicate are hardened terrorists they have been known to employ double agents to overcome the great forces of Nanotrasen. And amidst their “conflicts” innocent lives lost, caught between giants battling it out with no regard to the lives below them - this, the Bailiff despised.
+        “Dreadful,” grimmed Elton “Syndicate running about, I can only imagine what they could be up to." A brief thought flashed back in Takeo’s mind, the Syndicate are hardened terrorists they have been known to employ double agents to overcome the great forces of Nanotrasen. And amidst their “conflicts” innocent lives lost, caught between giants battling it out with no regard to the lives below them - this, the Bailiff despised.
 
         Three
 
@@ -1325,18 +1324,18 @@ book-text-maundersecretwars = [head=3]Maunder Secret Wars[/head]
 
         Four
 
-        Elton braced slowly behind the Bailiff, the whole station stale with the smell of recycled air from long ago, there was atmosphere but no gravity. Both the men had to wear Magboots to anchor themselves to the floor, each step ringing out as if to announce their present to the vastness of the cavernous station. “Set your laser pistol to stun, we don’t actually know what is in there yet and I don’t want to punch a hole in the station.” The Bailiff had carefully instructed Elton.
+        Elton braced slowly behind the Bailiff, the whole station stale with the smell of recycled air from long ago, there was atmosphere but no gravity. Both the men had to wear Magboots to anchor themselves to the floor, each step ringing out as if to announce their presence to the vastness of the cavernous station. “Set your laser pistol to stun, we don’t actually know what is in there yet and I don’t want to punch a hole in the station.” The Bailiff had carefully instructed Elton.
 
-        The pair stop in front of a pried open glass airlock, behind is a beeping device, where a small speaker is repeating lines of words at a steady pace. “Bailiff, look!’ signaled Elton ‘Its… it's some kind of…transmission device”. The Bailiff twitches. The thing was repeating out loud a word… no, a line of words… it made no sense to the hearer but there was a pattern in its machine voice. Elton had already knelt beside the thing, studying it closely “It must be using the Barrier Gate faint energy source to broadcast the message in secret” he concluded.
+        The pair stop in front of a pried open glass airlock, behind is a beeping device, where a small speaker is repeating lines of words at a steady pace. “Bailiff, look!’ signaled Elton ‘Its… it's some kind of… transmission device”. The Bailiff twitches. The thing was repeating out loud a word… no, a line of words… it made no sense to the hearer but there was a pattern in its machine voice. Elton had already knelt beside the thing, studying it closely “It must be using the Barrier Gate faint energy source to broadcast the message in secret” he concluded.
 
         It was then the shadow came for him.
 
         Elton dropped to the floor on his back as a gleaming dagger came for him from behind barely dodging as the blade cut his upper cheek. He rolled over to face the attacker, Bailiff Takeo’s once tired eyes are now focused and filled with hatred unbecoming of an NFSD officer. Takeo aimed his knife at the cadet's neck and lunged forward but the magboot had him pinned to the floor and he hit the ground with a loud thud. The Bailiff cursed, he raised his pistol dead center mass of Elton and fired.
-        Three shots of blue laser beams sizzle through the air, two of them hitting Elton in the chest. Paralyzing pain shocked him, muscle tensed as he reached for his own gun. “Dammit, I’m on your side for god sake” shouted Elton. The Bailiff’s eyebrows frowned hard, he fumbled with his knife hand and switched the pistol to kill. Good lord! He meant to kill me. Using this opportunity, Elton clicks the heel of his boots, deactivating the magnetism just in time to jump up to the roof of the station, dodging the incoming shots. The echoes of the Bailiff profanity thunder through the station, screaming his anger directed at Nanotrasen as if the company can hear him from here. With his hand grip tight to the ceiling, his feet dangling in zero gravity, cadet Elton prayed, he really prayed, and let loose a stream disable bolts.
+        Three shots of blue laser beams sizzled through the air, two of them hitting Elton in the chest. Paralyzing pain shocked him, muscle tensed as he reached for his own gun. “Dammit, I’m on your side for god's sake.” shouted Elton. The Bailiff’s eyebrows frowned hard, he fumbled with his knife hand and switched the pistol to kill. Good lord! He meant to kill me. Using this opportunity, Elton clicked the heel of his boots, deactivating the magnetism just in time to jump up to the roof of the station, dodging the incoming shots. The echoes of the Bailiff's profanity thunder through the station, screaming his anger directed at Nanotrasen as if the company can hear him from here. With his hand gripped tight to the ceiling, his feet dangling in zero gravity, cadet Elton prayed, he really prayed, and let loose a stream disabler bolts.
 
         Five
 
-        “Good job out there cadet” compliments Sheriff Sofie. The two of them standing outside of the interrogation room, muffled shouts can be heard behind the darkened glass.  “Hard to believe he was trying to recruit you to the Syndicate…” A tang of sadness appeared in her eyes, then she straightened up. “Under normal circumstances, this would validate you for a promotion, however, with the department’s Bailiff apprehended, both the ship and broadcast device destroyed by Takeo as written in your report, your promotion will have to wait.” Sofie sighs, “In the meantime, keep up the good work, glad to have you with us” A silent smirk appeared on Elton's face for a brief second. This too could work out, in truth, he had hoped the broadcast would have mindjacked the Bailiff more peacefully, earning the organization an useful asset, but alas, the Syndicate thrived on chaos. Now with the mad traitorous Bailiff taking the spotlight, he can plan his move in silence, after all, who would suspect a lowly cadet.
+        “Good job out there cadet,” compliments Sheriff Sofie. The two of them standing outside of the interrogation room, muffled shouts can be heard behind the darkened glass.  “Hard to believe he was trying to recruit you to the Syndicate…” A tang of sadness appeared in her eyes, then she straightened up. “Under normal circumstances, this would validate you for a promotion, however, with the department’s Bailiff apprehended, both the ship and broadcast device destroyed by Takeo as written in your report, your promotion will have to wait.” Sofie sighs, “In the meantime, keep up the good work, glad to have you with us.” A silent smirk appeared on Elton's face for a brief second. This too could work out, in truth, he had hoped the broadcast would have mindjacked the Bailiff more peacefully, earning the organization a useful asset, but alas, the Syndicate thrived on chaos. Now with the mad traitorous Bailiff taking the spotlight, he can plan his move in silence, after all, who would suspect a lowly cadet.
 
         Long live the Syndicate, Death to Nanotrasen.
 
