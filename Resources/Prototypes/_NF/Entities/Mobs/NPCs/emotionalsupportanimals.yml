@@ -417,10 +417,14 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobBandito]
+  parent: [BaseEmotionalGhost, MobFerret]
   id: MobFerretGhost
   components:
   - type: RandomMetadata
     nameSegments: [NamesFerret]
   - type: Inventory
     speciesId: ferret
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent
