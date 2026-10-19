@@ -124,10 +124,9 @@
 
 - type: entity
   parent: [ClothingUniformSkirtBase]
-  id: ClothingUniformTuxskirtBase
-  abstract: true
-  name: Tuxskirt base
-  description: Tuxskirt base
+  id: ClothingUniformJumpskirtBlackTuxskirt
+  name: black tuxskirt
+  description: A striking black tuxskirt!
   components:
   - type: Item
     size: Tiny
@@ -137,6 +136,7 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/blackTuxskirt.rsi
   - type: ChameleonClothing
     slot: [innerClothing]
+    default: ClothingUniformJumpskirtBlackTuxskirt
     requireTag: ClothingUniformTuxskirt
   - type: UserInterface
     interfaces:
@@ -144,30 +144,15 @@
         type: ChameleonBoundUserInterface
   - type: Tag
     tags:
-    - ClothMade
-    - WhitelistChameleon
     - ClothingUniformTuxskirt
-
-- type: entity
-  parent: [ClothingUniformTuxskirtBase]
-  id: ClothingUniformJumpskirtBlackTuxskirt
-  name: black Tuxskirt
-  description: A striking black tuxskirt!
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Uniforms/Jumpskirt/blacktuxskirt.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Uniforms/Jumpskirt/blacktuxskirt.rsi
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
   - type: StaticPrice
     vendPrice: 1000
-  - type: ChameleonClothing
-    slot: [innerClothing]
-    default: ClothingUniformJumpskirtBlackTuxskirt
-    requireTag: ClothingUniformTuxskirt
-
 
 - type: entity
-  parent: [ClothingUniformTuxskirtBase]
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
   id: ClothingUniformJumpskirtDarkTuxskirt
   name: dark Tuxskirt
   description: You look good in this! "Yeah... I know."
@@ -176,15 +161,11 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/darktuxskirt.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/darktuxskirt.rsi
-  - type: StaticPrice
-    vendPrice: 1000
   - type: ChameleonClothing
-    slot: [innerClothing]
     default: ClothingUniformJumpskirtDarkTuxskirt
-    requireTag: ClothingUniformTuxskirt
 
 - type: entity
-  parent: [ClothingUniformTuxskirtBase]
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
   id: ClothingUniformJumpskirtGreyTuxskirt
   name: grey Tuxskirt
   description: A soft grey tuxskirt!
@@ -193,15 +174,11 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/greytuxskirt.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/greytuxskirt.rsi
-  - type: StaticPrice
-    vendPrice: 1000
   - type: ChameleonClothing
-    slot: [innerClothing]
     default: ClothingUniformJumpskirtGreyTuxskirt
-    requireTag: ClothingUniformTuxskirt
 
 - type: entity
-  parent: [ClothingUniformTuxskirtBase]
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
   id: ClothingUniformJumpskirtNavyTuxskirt
   name: navy Tuxskirt
   description: A bold navy tuxskirt!
@@ -210,15 +187,11 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/navytuxskirt.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/navytuxskirt.rsi
-  - type: StaticPrice
-    vendPrice: 1000
   - type: ChameleonClothing
-    slot: [innerClothing]
     default: ClothingUniformJumpskirtNavyTuxskirt
-    requireTag: ClothingUniformTuxskirt
 
 - type: entity
-  parent: [ClothingUniformTuxskirtBase]
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
   id: ClothingUniformJumpskirtTanTuxskirt
   name: tan Tuxskirt
   description: A daring tan tuxskirt!
@@ -227,15 +200,11 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/tantuxskirt.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/tantuxskirt.rsi
-  - type: StaticPrice
-    vendPrice: 1000
   - type: ChameleonClothing
-    slot: [innerClothing]
     default: ClothingUniformJumpskirtTanTuxskirt
-    requireTag: ClothingUniformTuxskirt
 
 - type: entity
-  parent: [ClothingUniformTuxskirtBase]
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
   id: ClothingUniformJumpskirtWhiteTuxskirt
   name: white Tuxskirt
   description: A pure white tuxskirt!
@@ -245,6 +214,4 @@
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/whitetuxskirt.rsi
   - type: ChameleonClothing
-    slot: [innerClothing]
     default: ClothingUniformJumpskirtWhiteTuxskirt
-    requireTag: ClothingUniformTuxskirt
