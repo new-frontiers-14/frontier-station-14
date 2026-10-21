@@ -16,6 +16,15 @@
       enum.SprayPainterUiKey.Key:
         type: SprayPainterBoundUserInterface
   - type: SprayPainter
+    hiddenStyles: ["syndicate"]
+    hiddenDecals:
+    - "dirty"
+    - "burnt"
+    - "crayon"
+    - "flora"
+    - "rock"
+    - "hidden"
+    - "syndicate"
     colorPalette:
       red: '#FF1212FF'
       yellow: '#B3A234FF'
@@ -45,6 +54,9 @@
   id: SprayPainterRecharging
   suffix: Admeme
   components:
+  - type: SprayPainter
+    hiddenStyles: [] # None of 'em
+    hiddenDecals: ["hidden"] # Just the deprecaded stairs
   - type: AutoRecharge
     rechargeDuration: 1
 

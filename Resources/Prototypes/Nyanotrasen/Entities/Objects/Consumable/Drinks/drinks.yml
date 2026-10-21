@@ -1,5 +1,5 @@
 - type: entity
-  parent: DrinkGlassBase
+  parent: [DrinkBaseMaterialGlass, DrinkBaseCup]
   id: DrinkTokkuri
   name: tokkuri
   description: Floral and full of osake!
@@ -12,10 +12,10 @@
         - ReagentId: Sake
           Quantity: 100
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/saketokkuri.rsi
+    sprite: Nyanotrasen/Objects/Consumable/Drinks/saketokkuri.rsi
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkOrangeCreamiceGlass
   name: orange creamcicle glass
   description: Orangy, creamy goodness.
@@ -27,11 +27,12 @@
         reagents:
         - ReagentId: OrangeCreamice
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/orangecreamcicle.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkSilverjackGlass
   name: silverjack glass
   description: Reminds you of family.
@@ -43,11 +44,12 @@
         reagents:
         - ReagentId: Silverjack
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/silverjack.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkBrainbombGlass
   name: brainbomb glass
   description: Toxic to about anything alive, especially your liver.
@@ -59,11 +61,12 @@
         reagents:
         - ReagentId: Brainbomb
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/brainbomb.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkClownBloodGlass
   name: clown blood glass
   description: Security Officers favorite drink after a long day.
@@ -75,11 +78,12 @@
         reagents:
         - ReagentId: ClownBlood
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/clownblood.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkCircusJuiceGlass
   name: circus juice glass
   description: Honkmother would be proud.
@@ -91,11 +95,12 @@
         reagents:
         - ReagentId: CircusJuice
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/circusjuice.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkSapoPicanteGlass
   name: sapo picante glass
   description: Tastes nothing like a toad.
@@ -107,11 +112,12 @@
         reagents:
         - ReagentId: SapoPicante
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/sapopicante.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkGraveyardGlass
   name: graveyard glass
   description: For those shifts that never seem to end.
@@ -123,11 +129,12 @@
         reagents:
         - ReagentId: Graveyard
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/graveyard.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkAtomicPunchGlass
   name: atomic punch glass
   description: Will NOT make you immune to bullets; Isotopes included!
@@ -139,11 +146,12 @@
         reagents:
         - ReagentId: AtomicPunch
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/atomicpunch.rsi
+    state: icon
     
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkPinkDrinkGlass
   name: pink drink glass
   description: Entire civilizations have crumbled trying to decide if this drink really tastes like pink...
@@ -155,11 +163,12 @@
         reagents:
         - ReagentId: PinkDrink
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/pinkdrink.rsi
+    state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkBubbleTeaGlass
   name: bubble tea glass
   description: Big straw not included.
@@ -171,5 +180,6 @@
         reagents:
         - ReagentId: BubbleTea
           Quantity: 30
-  - type: Sprite
+  - type: Icon
     sprite: Nyanotrasen/Objects/Consumable/Drinks/bubbletea.rsi
+    state: icon

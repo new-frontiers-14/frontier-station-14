@@ -852,8 +852,6 @@
   - type: Item
     sprite: Mobs/Pets/Smile/smile.rsi
     size: Huge
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-slime
   - type: MobPrice
     price: 3000 # it is a truly valuable creature
   - type: GhostRole
@@ -902,6 +900,9 @@
       proper: true
       gender: male
   - type: CargoSellBlacklist # Frontier
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
 
 - type: entity
   name: Tropico

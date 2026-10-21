@@ -14,6 +14,7 @@
   - type: Item
     size: Small
   - type: TapeRecorder
+    rewindSpeed: 5 # Frontier add rewindSpeed
   - type: ActiveListener
     range: 4
   - type: UseDelay
@@ -76,7 +77,7 @@
   parent: BaseItem
   id: CassetteTape
   name: cassette tape
-  description: A magnetic tape that can hold up to two minutes of content on either side.
+  description: A magnetic tape that can hold up to ten minutes of content on either side. # Frontier two<ten
   components:
   - type: Sprite
     sprite: _DV/Objects/Devices/cassette_tapes.rsi
@@ -90,7 +91,7 @@
     size: Tiny
   - type: Damageable
   - type: TapeCassette
-    maxCapacity: 180
+    maxCapacity: 600 # Frontier 180<600
     repairWhitelist:
       tags:
       - Screwdriver

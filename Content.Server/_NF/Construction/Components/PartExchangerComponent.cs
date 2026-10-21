@@ -25,5 +25,15 @@ public sealed partial class PartExchangerComponent : Component
     [DataField("exchangeSound")]
     public SoundSpecifier ExchangeSound = new SoundPathSpecifier("/Audio/Items/rped.ogg");
 
+    /// <summary>
+    /// Whether the exchanger should install the highest-rated available parts instead of the lowest-rated ones.
+    /// </summary>
+    /// <remarks>
+    /// If the BRPED is what I think it is
+    /// jokes on you I don't have a dog. :P
+    /// </remarks>
+    [DataField("preferHigherRating")]
+    public bool PreferHigherRating = true;
+
     public EntityUid? AudioStream;
 }

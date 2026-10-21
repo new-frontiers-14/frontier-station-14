@@ -1,4 +1,5 @@
 using Content.Shared.Trigger.Components.Effects;
+using Robust.Shared.Audio; // Frontier
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
@@ -38,16 +39,16 @@ public sealed class EmitSoundOnTriggerSystem : EntitySystem
         {
             var coords = Transform(target).Coordinates;
             if (ent.Comp.Predicted)
-                _audio.PlayPredicted(ent.Comp.Sound, coords, user);
+                _audio.PlayPredicted(ent.Comp.Sound, coords, user, ent.Comp.AudioParams); // Frontier
             else if (_netMan.IsServer)
-                _audio.PlayPvs(ent.Comp.Sound, coords);
+                _audio.PlayPvs(ent.Comp.Sound, coords, audioParams: ent.Comp.AudioParams); // Frontier
         }
         else
         {
             if (ent.Comp.Predicted)
-                _audio.PlayPredicted(ent.Comp.Sound, target, user);
+                _audio.PlayPredicted(ent.Comp.Sound, target, user, ent.Comp.AudioParams); // Frontier
             else if (_netMan.IsServer)
-                _audio.PlayPvs(ent.Comp.Sound, target);
+                _audio.PlayPvs(ent.Comp.Sound, target, audioParams: ent.Comp.AudioParams); // Frontier
         }
 
         return true;

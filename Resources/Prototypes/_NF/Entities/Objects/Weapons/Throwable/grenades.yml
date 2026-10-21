@@ -5,3 +5,20 @@
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, EmpGrenade]
   id: EmpGrenadeNfsd
+
+- type: entity
+  parent: AirGrenade
+  id: NitrogenGrenade
+  name: nitrogen grenade
+  description: A special solid state chemical grenade used for quickly releasing nitrogen into a spaced area. Fills up to 30 tiles!
+  components:
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles: # Target is 3117.84 mols total for filling 30 tiles (goal is 101.325 kPa @ 20C)
+      - 0 # oxygen
+      - 3117.84 # nitrogen
+      temperature: 293.15

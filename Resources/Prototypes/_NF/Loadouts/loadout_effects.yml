@@ -83,3 +83,17 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Goblin
+
+- type: loadoutEffectGroup
+  id: NFNotFrontierOrNFSDStaff
+  effects:
+  - !type:RoleBlacklistLoadoutEffect
+    inverted: true #This is actually a white list of roles allowed (way smaller list than if we made it a blacklist)
+    blacklist:
+    - JobContractor
+    - JobPilot
+    - JobMercenary
+    - JobNFPirate
+    - JobNFPirateFirstMate
+    - JobNFPirateCaptain
+    - JobPrisoner

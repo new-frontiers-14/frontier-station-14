@@ -109,6 +109,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: PirateBountyItem # Frontier
+      id: TechFabCircuitboard # Frontier
 
 - type: entity
   id: AmmoTechFabCircuitboard
@@ -125,6 +127,8 @@
         Manipulator: 1 # Frontier
       # stackRequirements: # Frontier
       #   Manipulator: 2 # Frontier
+    - type: PirateBountyItem # Frontier
+      id: TechFabCircuitboard # Frontier
 
 - type: entity
   id: MedicalTechFabCircuitboard
@@ -148,7 +152,7 @@
     - type: StealTarget
       stealGroup: MedicalTechFabCircuitboard
     - type: PirateBountyItem # Frontier
-      id: MedicalTechFabCircuitboard # Frontier
+      id: TechFabCircuitboard # Frontier
 
 - type: entity
   id: CircuitImprinterMachineCircuitboard
@@ -1527,3 +1531,22 @@
       Steel: 2
       # Manipulator: 2 # Frontier
       Cable: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartFridgeCircuitboard
+  name: SmartFridge machine board
+  description: A machine printed circuit board for a SmartFridge.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: SmartFridge
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Glass: 5
+    tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker

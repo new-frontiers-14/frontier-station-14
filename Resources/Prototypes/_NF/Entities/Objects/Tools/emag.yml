@@ -60,3 +60,20 @@
   components:
   - type: LimitedCharges
   - type: AutoRecharge
+
+- type: entity
+  parent: [EmagUnlimited, RecyclableItemPlasticSmall]
+  id: Yarrmag
+  name: yarrmag
+  description: A single use card made by the Freebooters to hack devices.
+  suffix: Limited, 1 Use
+  components:
+  - type: NFEmagPass
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: Sprite
+    sprite: _NF/Objects/Tools/yarrmag.rsi
+  - type: Item
+    sprite: _NF/Objects/Tools/yarrmag.rsi
+    storedRotation: -90
+    size: Tiny
