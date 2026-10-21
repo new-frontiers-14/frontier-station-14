@@ -112,6 +112,38 @@
   categories: [ HideSpawnMenu ]
 # endregion Base Walls
 
+# region New Walls
+- type: entity
+  parent: WallSolid
+  id: AsteroidRockFacade
+  name: asteroid facade wall
+  description: A rocky asteroid. On a closer look, you see that it's just a facade.
+  components:
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+  - type: Construction
+    graph: Girder
+    node: asteroidrock
+  - type: Icon
+    sprite: Structures/Walls/rock.rsi
+    state: rock_asteroid
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/rock.rsi
+    layers:
+    - state: rock_asteroid
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_asteroid_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_asteroid_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_asteroid_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_asteroid_west
+# endregion
+
 # region Cobblebrick Ores
 - type: entity
   id: NFWallIceBananium
@@ -2799,4 +2831,77 @@
     key: walls
     base: uranium
 
+- type: entity
+  parent: WallDiagonalBase
+  id: WallShuttleDiagonalIndestructible
+  name: shuttle wall
+  description: Skub knows this wall is too hard to destroy.
+  suffix: diagonal, indestructible
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    color: "#b1b1b1"
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    state: state0
+  - type: Pullable
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  parent: BaseWall
+  id: WallShuttleIndestructible
+  name: shuttle wall
+  description: Skub knows this wall is too hard to destroy.
+  suffix: indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/shuttle.rsi
+    color: "#b1b1b1"
+  - type: Icon
+    sprite: Structures/Walls/shuttle.rsi
+    state: full
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: IconSmooth
+    key: walls
+    base: state
+  - type: Appearance
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5
 # endregion Indestructable Walls

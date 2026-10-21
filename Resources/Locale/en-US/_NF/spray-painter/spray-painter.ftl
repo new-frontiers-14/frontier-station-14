@@ -1,9 +1,25 @@
 # Airlocks
 spray-painter-style-airlockstandard-mercenary = Mercenary
 spray-painter-style-airlockstandard-nfsd = NFSD
+spray-painter-style-airlockstandard-syndicate = Syndicate
 
 spray-painter-style-airlockglass-mercenary = Mercenary
 spray-painter-style-airlockglass-nfsd = NFSD
+spray-painter-style-airlockglass-syndicate = Syndicate
+
+# Docking Airlocks
+spray-painter-tab-category-docking = Docking
+
+spray-painter-tab-group-dockingstandard = Standard (Dock)
+spray-painter-tab-group-dockingglass = Glass (Dock)
+
+spray-painter-style-dockingstandard-basic = Basic
+spray-painter-style-dockingstandard-nfsd = NFSD
+spray-painter-style-dockingstandard-syndicate = Syndicate
+
+spray-painter-style-dockingglass-basic = Basic
+spray-painter-style-dockingglass-nfsd = NFSD
+spray-painter-style-dockingglass-syndicate = Syndicate
 
 # Lockers
 spray-painter-style-locker-mail = Mail carrier
@@ -18,13 +34,16 @@ spray-painter-style-locker-nfsd-gold = NFSD (gold)
 spray-painter-style-locker-nfsd-sheriff = NFSD (sheriff)
 spray-painter-style-locker-station-representative = Station representative
 spray-painter-style-locker-fsb = FSB
+spray-painter-style-locker-syndicate = Syndicate
 
 spray-painter-style-closet-internals = Internals (universal)
+spray-painter-style-closet-syndicate = Syndicate
 
 spray-painter-style-wallcloset-internals = Internals (universal)
 
 # Crates
 spray-painter-style-cratesteel-ammo = Ammunition
+spray-painter-style-cratesteel-syndicate = Syndicate
 
 spray-painter-style-crateplastic-biodegradable = Biodegradable
 
