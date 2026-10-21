@@ -32,8 +32,8 @@
   components:
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -67,6 +67,7 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -90,6 +91,7 @@
     reflects:
       - Energy
     reflectingInHands: false
+  - type: CorgiWearable # Frontier
 
 #Detective's vest
 - type: entity
@@ -136,8 +138,8 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
@@ -267,6 +269,11 @@
       outerClothing-vox:
       - state: equipped-OUTERCLOTHING-light-vox
         shader: unshaded
+      # Starlight Begin
+      outerClothing-dog:
+      - state: equipped-OUTERCLOTHING-light-dog
+        shader: unshaded
+      # Starlight End
   - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight
@@ -306,6 +313,7 @@
     autoRechargeRate: 2
   - type: Item
     size: Normal
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -328,6 +336,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
+  - type: CorgiWearable # Frontier
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseC3CultContraband, AllowSuitStorageClothing, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3CultContraband, added ContrabandClothing as parent
