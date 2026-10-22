@@ -300,6 +300,9 @@
     mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
     prototypes: [ MobCaddyGear ]
+  - type: ReplacementAccent
+    accent: medCat
+  - type: FrenchAccent
   - type: RandomMetadata
     nameSegments: null
   - type: AutoImplant
@@ -350,11 +353,13 @@
   - type: NpcFactionMember
     factions:
     - Cat # Needs to be neutral to dinosaurs.
+  - type: CavemanAccent
   - type: NFSalvageMobRestrictions
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
     removeComponentsOnDeath: []
-  - type: CavemanAccent
+    removeComponentsLeaveGrid:
+    - type: NFSalvageMobRestrictions
 
 - type: entity
   id: MobCatMistake
