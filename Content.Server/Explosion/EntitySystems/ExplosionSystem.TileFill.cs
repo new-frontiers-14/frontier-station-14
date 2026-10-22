@@ -51,7 +51,7 @@ public sealed partial class ExplosionSystem
         var (localGrids, referenceGrid, maxDistance) = GetLocalGrids(epicenter, totalIntensity, slope, maxIntensity);
 
         // get the epicenter tile indices
-        if (_mapManager.TryFindGridAt(epicenter, out var gridUid, out var candidateGrid) &&
+        if (_map.TryFindGridAt(epicenter, out var gridUid, out var candidateGrid) &&
             _map.TryGetTileRef(gridUid, candidateGrid, _map.WorldToTile(gridUid, candidateGrid, epicenter.Position), out var tileRef) &&
             !tileRef.Tile.IsEmpty)
         {
