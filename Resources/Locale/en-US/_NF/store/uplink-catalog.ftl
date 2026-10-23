@@ -266,6 +266,9 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
+uplink-security-esword-name = eNFSD Sword
+uplink-security-esword-desc = An NFSD energy sword, your righteous beam of light in the dark.
+
 uplink-security-lake-name = NGP-40 projector
 uplink-security-lake-desc = Single shot grenade launcher able to lob both grenades and darts!
 

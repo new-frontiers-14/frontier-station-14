@@ -15,6 +15,70 @@
   placement:
     mode: SnapgridCenter
 
+- type: entity
+  parent: GasMixerOn
+  abstract: true
+  id: GasMixerDistro
+  components:
+  - type: AtmosPipeColor
+    color: '#0055CCFF'
+
+- type: entity
+  parent: GasMixerDistro
+  id: GasMixerDistroSideNitrogen
+  suffix: On, Distro, side N2
+  components:
+  - type: GasMixer
+    inletOneConcentration: 0.21
+    inletTwoConcentration: 0.79
+  - type: GasMixerAutoSetup
+    inletOneGas: Oxygen
+    inletTwoGas: Nitrogen
+  - type: MarkerLayers
+    layers:
+    - sprite: _NF/Structures/Piping/Atmospherics/gasmixer_overlay.rsi
+      state: sideNitrogen
+      map: [ "gasMixerDistroMappingOverlay" ]
+
+- type: entity
+  parent: GasMixerDistro
+  id: GasMixerDistroSideOxygen
+  suffix: On, Distro, side O2
+  components:
+  - type: GasMixer
+    inletOneConcentration: 0.79
+    inletTwoConcentration: 0.21
+  - type: GasMixerAutoSetup
+    inletOneGas: Nitrogen
+    inletTwoGas: Oxygen
+  - type: MarkerLayers
+    layers:
+    - sprite: _NF/Structures/Piping/Atmospherics/gasmixer_overlay.rsi
+      state: sideOxygen
+      map: [ "gasMixerDistroMappingOverlay" ]
+
+- type: entity
+  parent: [GasMixerFlipped, GasMixerDistroSideNitrogen]
+  id: GasMixerDistroSideNitrogenFlipped
+  suffix: On, Distro, side N2, Flipped
+  components:
+  - type: MarkerLayers
+    layers:
+    - sprite: _NF/Structures/Piping/Atmospherics/gasmixer_overlay.rsi
+      state: sideNitrogenF
+      map: [ "gasMixerDistroMappingOverlay" ]
+
+- type: entity
+  parent: [GasMixerFlipped, GasMixerDistroSideOxygen]
+  id: GasMixerDistroSideOxygenFlipped
+  suffix: On, Distro, side O2, Flipped
+  components:
+  - type: MarkerLayers
+    layers:
+    - sprite: _NF/Structures/Piping/Atmospherics/gasmixer_overlay.rsi
+      state: sideOxygenF
+      map: [ "gasMixerDistroMappingOverlay" ]
+
 # Filter None
 - type: entity
   parent: GasFilter
