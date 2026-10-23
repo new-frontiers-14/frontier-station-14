@@ -28,7 +28,7 @@ public abstract partial class SharedRiverNodeSystem
         return Vector2.Dot(v, v);
     }
 
-    static private float DistanceSquared(Vector2 p, Vector2 a, Vector2 b, out Vector2 closestPoint, out float outH)
+    static public float DistanceToLineSegmentSquared(Vector2 p, Vector2 a, Vector2 b, out Vector2 closestPoint, out float outH)
     {
         Vector2 pa = p - a, ba = b - a;
         var h = Math.Clamp(Vector2.Dot(pa, ba) / Vector2.Dot(ba, ba), 0.0f, 1.0f);
@@ -64,7 +64,7 @@ public abstract partial class SharedRiverNodeSystem
             var t = i / (float)(resolution - 1);
             var s = 1.0f - t;
             Vector2 b = entryPoint * s * s * s + controlPoint1 * 3.0f * s * s * t + controlPoint2 * 3.0f * s * t * t + exitPoint * t * t * t;
-            var distance = DistanceSquared(point, a, b, out var comparePoint, out var h);
+            var distance = DistanceToLineSegmentSquared(point, a, b, out var comparePoint, out var h);
             if (d0 > distance)
             {
                 d0 = distance;

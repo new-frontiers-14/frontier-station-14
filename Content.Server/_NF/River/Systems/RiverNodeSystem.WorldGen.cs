@@ -3,6 +3,7 @@ using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using System.Data;
 using System.Numerics;
+using System.Reflection.Metadata;
 
 namespace Content.Server._NF.River.Systems;
 
@@ -23,7 +24,7 @@ public partial class RiverNodeSystem
     public void POIArterialRiverGen(MapId mapId, List<EntityUid> pois)
     {
         // There's a *lot* of loops in this, this can probably be optimised, but it's only run once, so this will do for now.
-        var unitDistance = 2500f; //2500 or 3000? TODO: make this not a magic number.
+        var unitDistance = 3000f; //2500 or 3000? TODO: make this not a magic number.
         var validPois = FilterValidPOIs(mapId, pois);
         var poiPositions = GetPOIPositions(validPois);
         poiPositions.Add(new Vector2(0f, 0f)); // Adds Frontier Station.
@@ -45,11 +46,27 @@ public partial class RiverNodeSystem
                 }
                 if ((poiPos - otherPoiPos).Length() < unitDistance)
                 {
-                    connections.Add(new Connection(poiPos, otherPoiPos));
-                    connected = true;
+                    var tooCloseToPoi = false;
+                    foreach (var distanceCheckPoiPos in poiPositions)
+                    {
+                        if (distanceCheckPoiPos == poiPos || distanceCheckPoiPos == otherPoiPos)
+                        {
+                            continue;
+                        }
+                        if (DistanceToLineSegmentSquared(distanceCheckPoiPos, poiPos, otherPoiPos, out var _, out var t) < 200f || t > 1f || t < 0f)
+                        {
+                            tooCloseToPoi = true;
+                            break;
+                        }
+                    }
+                    if (!tooCloseToPoi)
+                    {
+                        connections.Add(new Connection(poiPos, otherPoiPos));
+                        connected = true;
+                    }
                 }
             }
-            if (!connected)
+            if (!connected && !ContainsPosition(poiPos, connections))
             {
                 unconnectedPositions.Add(poiPos);
             }
@@ -132,14 +149,23 @@ public partial class RiverNodeSystem
             networks.Add(posInNetwork);
         }
 
+        //Handle and consolidate separate networks.
         safetyLimit = 100;
         while (networks.Count > 1 && safetyLimit > 0)
         {
-            // More than one network! Connect them to eachother!
-            var focusNetwork = networks[0];
+            // focusNetwork should be (one of) the largest one(s) to make connections more convenient.
+            var focusNetwork = new List<Vector2>();
+            var largestNetworkIndex = 0;
+            var largestNetworkCount = 0;
+            var iterator = 0;
             List<Vector2> averagePositions = new();
             foreach (var network in networks)
             {
+                if (network.Count > largestNetworkCount)
+                {
+                    largestNetworkIndex = iterator;
+                    largestNetworkCount = network.Count;
+                }
                 Vector2 averagePos = new();
                 foreach (var position in network)
                 {
@@ -147,14 +173,21 @@ public partial class RiverNodeSystem
                 }
                 averagePos = averagePos / network.Count;
                 averagePositions.Add(averagePos);
+                iterator++;
             }
+
+            focusNetwork = networks[largestNetworkIndex];
 
             var closestNetworkIndex = -1;
             var closestNetworkDistance = -1f;
 
-            for (var i = 1; i < networks.Count; i++)
+            for (var i = 0; i < networks.Count; i++)
             {
-                var distance = (averagePositions[i] - averagePositions[0]).Length();
+                if (largestNetworkIndex == i)
+                {
+                    continue;
+                }
+                var distance = (averagePositions[i] - averagePositions[largestNetworkIndex]).Length();
                 if (closestNetworkDistance == -1f || closestNetworkDistance > distance)
                 {
                     closestNetworkDistance = distance;
@@ -193,18 +226,23 @@ public partial class RiverNodeSystem
             }
             // Make a connection, and merge the two networks in the "networks" list.
             validConnections.Add(new Connection(closestFocusPos, closestOtherPos));
-            List<Vector2> tempNetwork = new();
-            tempNetwork.AddRange(closestNetwork);
-            networks[0].AddRange(closestNetwork);
-            networks.Remove(tempNetwork);
+            networks[largestNetworkIndex].AddRange(closestNetwork);
+            networks.Remove(closestNetwork);
 
             safetyLimit--;
         }
 
+        // Create the actual rivers.
         foreach (var connection in validConnections)
         {
             CreateRiver(mapId, connection.Start, connection.End);
         }
+    }
+
+    public bool CreateRiverPair(MapId mapId, Vector2 location1, Vector2 location2)
+    {
+        // TODO: Fill in this function. It needs to create two rivers, one going each way, from one point to another.
+        return true;
     }
 
     public bool CreateRiver(MapId mapId, Vector2 startLocation, Vector2 endLocation)
@@ -297,5 +335,24 @@ public partial class RiverNodeSystem
         var p3 = dY1 * (line1.End.X - line2.End.X) - dX1 * (line1.End.Y - line2.End.Y);
 
         return (p0 * p1 < 0 && p2 * p3 < 0);
+    }
+
+    /// <summary>
+    /// Checks if a position is within a Connections list.
+    /// </summary>
+    /// <param name="position">The position you wish to check is in the list</param>
+    /// <param name="connections">The list you wish to check</param>
+    /// <returns>Whether the position is in the list (true) or not (false)</returns>
+    private bool ContainsPosition(Vector2 position, List<Connection> connections)
+    {
+        foreach (var connection in connections)
+        {
+            if (connection.Start == position || connection.End == position)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
