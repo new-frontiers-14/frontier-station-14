@@ -123,3 +123,4 @@ JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 # Frontier: Warden<Bailiff
 JobWarden = Bailiff
+JobZookeeper = Zookeeper
