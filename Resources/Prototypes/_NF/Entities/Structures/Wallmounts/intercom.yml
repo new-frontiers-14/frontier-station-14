@@ -96,3 +96,62 @@
   - type: ActivatableUIRequiresAccess
   - type: ApcPowerReceiver
     needsPower: false # magic - FIXME: radio microphone has order initialization issues
+    
+# Courtroom PA microphone.
+- type: entity
+  id: CourtMicrophone
+  parent: BaseWallmountMetallic
+  name: court microphone
+  description: A courtroom microphone connected to the local public address system.
+  suffix: Courtroom, Microphone
+  components:
+  - type: TelecomExempt
+  - type: RadioMicrophone
+    broadcastChannel: Courtroom
+    frequency: 1025
+    listenRange: 2
+    enabled: true
+    powerRequired: true
+    toggleOnInteract: false
+    unobstructedRequired: true
+  - type: ActiveListener
+  - type: Sprite
+    noRot: false
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/intercom.rsi
+    layers:
+    - state: base
+    - state: unshaded
+      shader: unshaded
+    - state: broadcasting
+      shader: unshaded
+  - type: Speech
+    speechVerb: Robotic
+
+# Courtroom PA speaker.
+- type: entity
+  id: CourtSpeaker
+  parent: BaseWallmountMetallic
+  name: court speaker
+  description: A wall-mounted speaker for the courtroom public address system.
+  suffix: Courtroom, Speaker
+  components:
+  - type: RadioSpeaker
+    channels:
+    - Courtroom
+    enabled: true
+    toggleOnInteract: false
+    outputChatType: Speak
+  - type: ActiveRadio
+  - type: Sprite
+    noRot: false
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/intercom.rsi
+    layers:
+    - state: base
+    - state: unshaded
+      shader: unshaded
+    - state: speaker
+      shader: unshaded
+  - type: Speech
+    speechVerb: Robotic
