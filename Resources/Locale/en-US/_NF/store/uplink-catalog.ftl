@@ -399,6 +399,9 @@ uplink-pirate-yarrmag-desc = A disposable card made by the Freebooters to hack d
 uplink-pirate-id-chip-name = Bootleg Cyborg Chip
 uplink-pirate-id-chip-desc = A makeshift identification chip to insert into your silicon mateys. Grants cyborgs access to yer vessel.
 
+uplink-pirate-comms-computer-name = Pirate Communications Computer Flatpack
+uplink-pirate-comms-computer-desc = A flatpack for a computer capable of remotely hacking into the frontier's communications systems. Appears to be held together by 50 year old unlicensed software and ducttape.
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
