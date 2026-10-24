@@ -224,6 +224,80 @@
         Piercing: 0.9
         Heat: 0.9
 
+#NFSD Recon Suit
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBaseNfsd
+  id: ClothingHeadHelmetHardsuitNfsdRecon
+  categories: [ HideSpawnMenu ]
+  name: NFSD recon suit helmet
+  description: This helmet has it all, blinky antenna to ensure your rogers roger, and an optic suite to get you where you need to go in a tactical environment.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd_recon.rsi
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET-light
+        shader: unshaded
+      head-vox:
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd_recon.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: equipped-HELMET-unshaded
+        shader: unshaded
+  - type: ItemTogglePointLight
+  - type: PointLight
+    color: "#3BFF1B"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+#NFSD Elite Suit
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBaseNfsd
+  id: ClothingHeadHelmetHardsuitNfsdElite
+  categories: [ HideSpawnMenu ]
+  name: NFSD elite suit helmet
+  description: An elite version of the NFSD combat hardsuit helmet, with improved radiation resistance and fireproofing. Property of Nanotrasen.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd_elite.rsi
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET-light
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd_elite.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: equipped-HELMET-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#ffed7f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
 #SCAF Helmet
 - type: entity
   parent: NFClothingHeadHardsuitWithLightBase
