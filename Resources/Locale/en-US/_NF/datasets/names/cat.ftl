@@ -316,3 +316,14 @@ names-cat-dataset-56 = Raven
 names-cat-dataset-57 = Velvetine
 names-cat-dataset-58 = Orion
 names-cat-dataset-59 = Mittens
+
+names-cat-siamese-dataset-1 = Karma
+names-cat-siamese-dataset-2 = Pasha
+names-cat-siamese-dataset-3 = Aspen
+names-cat-siamese-dataset-4 = Miso
+names-cat-siamese-dataset-5 = Samsara
+names-cat-siamese-dataset-6 = Yuki
+names-cat-siamese-dataset-7 = Ivory
+names-cat-siamese-dataset-8 = Calypso
+names-cat-siamese-dataset-9 = Si
+names-cat-siamese-dataset-10 = Am
