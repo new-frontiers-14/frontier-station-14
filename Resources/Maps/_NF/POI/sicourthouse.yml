@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/24/2026 16:42:20
+  time: 10/24/2026 16:45:31
   entityCount: 5972
 maps: []
 grids:
@@ -21294,6 +21294,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: -15.5,-2.5
       parent: 1
+- proto: GasPassiveVent
+  entities:
+  - uid: 2057
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -21.5,-5.5
+      parent: 1
+    - type: AtmosPipeLayers
+      pipeLayer: Secondary
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeBend
   entities:
   - uid: 1971
@@ -27681,16 +27693,6 @@ entities:
       - 2105
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 2057
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -21.5,-5.5
-      parent: 1
-    - type: AtmosPipeLayers
-      pipeLayer: Secondary
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 2106
     components:
     - type: Transform
