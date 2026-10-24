@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Roles.Components;
@@ -65,7 +65,7 @@ public sealed partial class DeepFryerSystem
             RemComp<RottingComponent>(mob);
 
             // Ensure it's Food here, so it passes the whitelist.
-            var mobFoodComponent = EnsureComp<FoodComponent>(mob);
+            var mobFoodComponent = EnsureComp<EdibleComponent>(mob);
             if (!_solutionContainerSystem.EnsureSolutionEntity(mob, mobFoodComponent.Solution, out var alreadyHadFood, out var mobFood))
                 return false;
 
@@ -137,7 +137,7 @@ public sealed partial class DeepFryerSystem
             paperComponent.Content = stringBuilder.ToString();
         }
 
-        var foodComponent = EnsureComp<FoodComponent>(item);
+        var foodComponent = EnsureComp<EdibleComponent>(item);
         var extraSolution = new Solution();
         if (TryComp(item, out FlavorProfileComponent? flavorProfileComponent))
         {
