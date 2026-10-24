@@ -57,5 +57,11 @@ public sealed partial class RadarConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool HideTarget = false;
+
+    /// <summary>
+    /// The name of the target entity, used for autopilot destination display
+    /// </summary>
+    [DataField]
+    public string? TargetEntityName;
     // End Frontier
 }
