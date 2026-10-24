@@ -78,7 +78,7 @@
   components:
   - type: Sprite
     state: direction_vend
- 
+
 # Directional Station Guide Signs
 - type: entity
   parent: BaseSign
@@ -87,7 +87,7 @@
   components:
     - type: Sprite
       sprite: _NF/Structures/Wallmounts/signs.rsi
-      
+
 - type: entity
   parent: NFBaseSign
   id: SignNfsd
@@ -231,3 +231,31 @@
   components:
   - type: Sprite
     state: atmos_helium
+
+# Kitchen signs
+- type: entity
+  parent: NFBaseSign
+  id: SignCafe
+  name: cafe sign
+  description: A sign that indicates a cozy cafe.
+  components:
+  - type: Sprite
+    state: cafe
+
+- type: entity
+  parent: NFBaseSign
+  id: SignCoffee
+  name: coffee sign
+  description: A sign that indicates coffee is served here.
+  components:
+  - type: Sprite
+    state: coffee
+
+- type: entity
+  parent: NFBaseSign
+  id: Signtea
+  description: A sign that indicates tea is served here.
+  name: tea sign
+  components:
+  - type: Sprite
+    state: tea
