@@ -260,11 +260,8 @@ namespace Content.Server.Atmos.EntitySystems
                 if (tile.Air == null)
                     return;
 
-                tile.Air = null;
-                tile.AirArchived = null;
-                tile.ArchivedCycle = 0;
-                tile.LastShare = 0f;
-                tile.Hotspot = new Hotspot();
+                ShuntTileVolume(tile);
+                NotifyDeviceTileChanged((ent.Owner, ent.Comp1, ent.Comp3), tile.GridIndices);
                 return;
             }
 
@@ -275,6 +272,10 @@ namespace Content.Server.Atmos.EntitySystems
 
             if (data.FixVacuum)
                 GridFixTileVacuum(tile);
+
+            // Since we assigned the tile a new GasMixture we need to tell any devices
+            // on this tile that the reference has changed.
+            NotifyDeviceTileChanged((ent.Owner, ent.Comp1, ent.Comp3), tile.GridIndices);
         }
 
         private void QueueRunTiles(
