@@ -15,10 +15,10 @@ public abstract class AtmosphereDefinition
 }
 
 [Prototype]
-public sealed class ShuttleAtmospherePrototype : AtmosphereDefinition, IPrototype
+public sealed partial class ShuttleAtmospherePrototype : AtmosphereDefinition, IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
     public string Name = string.Empty;
