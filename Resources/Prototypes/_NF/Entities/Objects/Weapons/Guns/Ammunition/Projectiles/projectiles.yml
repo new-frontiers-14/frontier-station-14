@@ -102,6 +102,31 @@
     disableDuration: 30
 
 - type: entity
+  parent: BaseBulletTrigger
+  id: ProjectileIonLance
+  name: ion projectile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/ion.rsi
+    layers:
+    - state: ion
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 2700000
+    disableDuration: 20
+
+- type: entity
   id: NFBulletCannonBallEmp
   name: shockshot
   parent: BaseBulletTrigger
