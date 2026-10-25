@@ -91,6 +91,7 @@ guide-entry-shipyard-mcdelivery = McDelivery
 guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-nook = Nook
 guide-entry-shipyard-phoenix = Phoenix
+guide-entry-shipyard-pick = Pick
 guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-pulsar = Pulsar

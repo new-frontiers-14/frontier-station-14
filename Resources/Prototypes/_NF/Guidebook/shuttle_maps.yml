@@ -715,6 +715,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapPick
+  name: "SI Pick"
+  description: "Detailed map of a Pick shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: pick
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapPlacebo
   name: "NC Placebo"
   description: "Detailed map of a Placebo shuttle."
