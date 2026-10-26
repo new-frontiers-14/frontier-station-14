@@ -1,0 +1,101 @@
+- type: constructionGraph
+  id: GasBinaryStarlight
+  start: start
+  graph:
+    - node: start
+      edges:
+      # connector port
+      - to: portAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: portAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      # dual port vent
+      - to: dualportventpumpAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: dualportventpumpAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+    # connector port
+    - node: portAlt1
+      entity: GasPortAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: portAlt2
+      entity: GasPortAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    # dual port vent
+    - node: dualportventpumpAlt1
+      entity: GasDualPortVentPumpAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Screwing
+          doAfter: 1
+        - tool: Welding
+          doAfter: 1
+
+    - node: dualportventpumpAlt2
+      entity: GasDualPortVentPumpAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Screwing
+          doAfter: 1
+        - tool: Welding
+          doAfter: 1
