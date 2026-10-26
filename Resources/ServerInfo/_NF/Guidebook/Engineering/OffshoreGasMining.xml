@@ -9,7 +9,7 @@ Asteroids in the Frontier sector are a reliable source of large amounts of norma
 <GuideEntityEmbed Entity="GasDepositHelium" Caption="helium deposit"/>
 </Box>
 
-Atmospheric ships, for example, the [color=yellow]Gasbender[/color] and [color=yellow]Ambition[/color], come equipped with the equipment needed to extract from these deposits. Check for the [color=cyan]Atmospherics[/color] category at the [color=steelblue]shipyard console[/color] when buying ships.
+Atmospheric ships, for example, the [color=yellow]Retort[/color] and [color=yellow]Ambition[/color], come equipped with the equipment needed to extract from these deposits. Check for the [color=cyan]Atmospherics[/color] category at the [color=steelblue]shipyard console[/color] when buying ships.
 
 ## Needed Equipment
 
@@ -17,15 +17,21 @@ The equipment you'll need:
 - A mining drill
 - A portable gaslock
 - Steel for pipes
-- A source of power (J.R.P.A.C.M.A.N. recommended)
+- A source of power (J.R.P.A.C.M.A.N. or Portable SMES recommended)
 - LV cable
 - A gas deposit scanner (optional)
 
-<Box>
-<GuideEntityEmbed Entity="GasMiningDrill"/>
-<GuideEntityEmbed Entity="GaslockFrame"/>
-<GuideEntityEmbed Entity="PortableGeneratorJrPacman" Caption="power supply"/>
-<GuideEntityEmbed Entity="GasDepositLocator"/>
+<Box Orientation="Horizontal" VerticalAlignment="Top">
+  <GuideEntityEmbed Entity="GasMiningDrill"/>
+  <GuideEntityEmbed Entity="GaslockFrame"/>
+  <Box Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+    <Box Orientation="Horizontal">
+      <GuideEntityEmbed Entity="PortableGeneratorJrPacman" Caption=""/>
+      <GuideEntityEmbed Entity="PortableSMES" Caption=""/>
+    </Box>
+    <Box HorizontalAlignment="Center">Power Supply</Box>
+  </Box>
+  <GuideEntityEmbed Entity="GasDepositLocator"/>
 </Box>
 
 ## Mining Procedure
@@ -62,7 +68,7 @@ Standard procedure for drilling for gas is as follows:
 
 ## Gas Filtering and Processing
 
-Gas deposits are impure, and [bold]should be filtered before selling[/bold]. [color=turquoise]Gas filters[/color] can help extract one gas at a time through their side port.
+Gas deposits are impure, and [bold]could be filtered before selling or processing[/bold]. [color=turquoise]Gas filters[/color] can help extract one gas at a time through their side port.
 
 Different gases have different values. While most gases are worth a minimal amount in their raw state, [color=peachpuff]helium[/color] can be mined and sold unprocessed for reasonable profit. The most valuable gases are [color=lightskyblue]frezon[/color] followed by [color=limegreen]tritium[/color]. Ask someone who knows more about atmospherics about how to process plasma into tritium, and tritium into frezon.
 
@@ -71,7 +77,11 @@ Selling gas can be done through canisters, which can be crafted from plasteel, o
 - Canisters can be sold using cargo pallets and cargo sales consoles, like any other good.
 - [color=lightgreen]Gas sale points[/color] can accept massive amounts of gas at a time, and require gas to be pumped in through a gaslock.
 
-Both sales methods pay according to the [bold]purity[/bold] of your mix. [bold]Be sure to filter your gas![/bold] The easier it is for NT to separate your gases out, the better the pay.
+When selling gas in bulk at a [color=lightgreen]gas sale point[/color], purity is not an issue, so you can pump all your mixed gas and sell. Keep in mind that a few gases can react with each other so you can encounter problems mixing specific gases, e.g. [color=lightskyblue]Frezon[/color] and [color=red]Nitrogen[/color].
+
+[bold]Gas canisters[/bold] sales pay according to the [bold]purity[/bold] of your mix. [bold]Be sure to filter your gas![/bold] The easier it is for NT to separate your gases out, the better the pay.
+
+Like many commodities, gas sold both via [color=lightgreen]gas sale point[/color] or gas canisters is [bold]subject to market fluctuations[/bold]. Check the [color=steelblue]market console[/color] for current price modifiers.
 
 Best of luck out there, greenhorn, and keep at it.
 
