@@ -32,8 +32,7 @@ namespace Content.Server.Speech.EntitySystems
                 message = message.Replace(word, repl);
             }
 
-            return message.Replace("!", _random.Pick(Barks))
-                .Replace("l", "r").Replace("L", "R");
+            return message.Replace("!", _random.Pick(Barks)); // Frontier: Make BarkAccent less racist sounding.
         }
 
         private void OnAccent(EntityUid uid, BarkAccentComponent component, AccentGetEvent args)
