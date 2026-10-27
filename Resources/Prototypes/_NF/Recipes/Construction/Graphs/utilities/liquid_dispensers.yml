@@ -1,0 +1,25 @@
+﻿- type: constructionGraph
+  id: BoozeDispenserBoard
+  start: boozeDispenser
+  graph:
+  - node: boozeDispenser
+    entity: BoozeDispenserMachineCircuitboard
+    edges:
+    - to: sodaDispenser
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: sodaDispenser
+    entity: SodaDispenserMachineCircuitboard
+    edges:
+    - to: coffeeDispenser
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: coffeeDispenser
+    entity: ImpCoffeeMachineCircuitboard
+    edges:
+    - to: boozeDispenser
+      steps:
+      - tool: Screwing
+        doAfter: 2
