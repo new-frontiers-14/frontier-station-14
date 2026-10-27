@@ -257,7 +257,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                     dashLength = (offset - gapSize);
                 }
             }
-
+            var sanityCheck = 100;
             while (length < maxLength)
             {
                 lines.Add(position);
@@ -275,7 +275,13 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                 dashLength = dashVector.Length();
                 position += gapVector;
                 length = (position - from).Length();
+                if (sanityCheck <= 0)
+                {
+                    break;
+                }
+                sanityCheck--;
             }
+
         }
         return lines.ToArray();
     }

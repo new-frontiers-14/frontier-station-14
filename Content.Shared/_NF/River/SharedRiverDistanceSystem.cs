@@ -34,7 +34,12 @@ public abstract partial class SharedRiverNodeSystem
         var h = Math.Clamp(Vector2.Dot(pa, ba) / Vector2.Dot(ba, ba), 0.0f, 1.0f);
         closestPoint = ba * h;
         outH = h;
-        return Length2(pa - closestPoint);
+        var result = Length2(pa - closestPoint);
+        if (result == float.NaN)
+        {
+            result = 0;
+        }
+        return result;
     }
 
     /// <summary>

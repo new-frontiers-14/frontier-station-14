@@ -1,6 +1,7 @@
 using Content.Server._NF.River.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
+using System.Collections;
 using System.Data;
 using System.Numerics;
 using System.Reflection.Metadata;
@@ -235,14 +236,192 @@ public partial class RiverNodeSystem
         // Create the actual rivers.
         foreach (var connection in validConnections)
         {
-            CreateRiver(mapId, connection.Start, connection.End);
+            //CreateRiver(mapId, connection.Start, connection.End);
+            CreateRiverPair(mapId, connection.Start, connection.End);
         }
     }
 
-    public bool CreateRiverPair(MapId mapId, Vector2 location1, Vector2 location2)
+    public bool CreateRiverPair(MapId mapId, Vector2 location1, Vector2 location2, Angle flowDirection1 = default, Angle flowDirection2 = default, bool customFlowDirs = false)
     {
-        // TODO: Fill in this function. It needs to create two rivers, one going each way, from one point to another.
+        // TODO: Fix whatever it is that is broken here. Still creates too many river segments I guess? (How though? I don't quite get it, it should be far *fewer* than previous attempts)
+        var maxDistanceSquared = MathF.Pow(200f, 2f); //Magic number, TODO: Kill
+        var minDistBetweenRiversSquared = MathF.Pow(60f, 2f);
+
+        List<Vector2> nodePositions1 = new(); //Can insert, woo!
+        List<Vector2> nodePositions2 = new(); //Both should be generated from 1 to 2, but the order of flow should go the other way. Just so that they are able to remain separate.
+
+        nodePositions1.Add(location1);
+        nodePositions1.Add(location2);
+        nodePositions2.Add(location1);
+        nodePositions2.Add(location2);
+
+        var locationDistanceSquared = (location1 - location2).LengthSquared();
+        var longTangent = Vector2.Normalize(location2 - location1);
+
+        if (locationDistanceSquared < maxDistanceSquared) //Does not support tiny rivers.
+        {
+            return false;
+        }
+
+        int segmentNumber = (int)MathF.Sqrt(locationDistanceSquared / maxDistanceSquared);
+        var isDone = false;
+        var safetyLimit = 100;
+        //while (!isDone && safetyLimit > 0)
+        for (int i = 1; i <= segmentNumber; i *= 2)
+        {
+            isDone = true;
+
+            var tempList1 = new List<Vector2>();
+            var tempList2 = new List<Vector2>();
+            for (var i0 = 0; i0 < Math.Min(nodePositions1.Count, nodePositions2.Count) - 1; i0++) //1To2 and 2To1 should always be equal, but in case they aren't, this prevents over-running the lists.
+            {
+                var i1 = i0 + 1;
+                // Pick the halfway point between nodePositionsNToM[i] and nodePositionsNToM[i + 1], perturb it along the normal, make sure it doesn't cross over its sibling,
+                var nodePos1A = nodePositions1[i0];
+                var nodePos1B = nodePositions1[i1];
+                var nodePos2A = nodePositions2[i0];
+                var nodePos2B = nodePositions2[i1];
+
+                var distance1 = (nodePos1B - nodePos1A).Length() * 0.2f;
+                var distance2 = (nodePos2B - nodePos2A).Length() * 0.2f;
+
+                var tangent1 = Vector2.Normalize(nodePos1B - nodePos1A);
+                var tangent2 = Vector2.Normalize(nodePos2B - nodePos2A);
+                var normal1 = new Vector2(-tangent1.Y, tangent1.X); //Left
+                var normal2 = new Vector2(-tangent2.Y, tangent2.X); //Left
+
+                //Testing
+                //normal1 = new Vector2(-longTangent.Y, longTangent.X);
+                //normal2 = normal1;
+                //Testing
+
+                var midNode1 = (nodePos1A + nodePos1B) * 0.5f;
+                var midNode2 = (nodePos2A + nodePos2B) * 0.5f;
+
+                var furthestLeft1 = MathF.Sqrt(minDistBetweenRiversSquared) - MathF.Sqrt(DistanceToLineSegmentSquared(midNode1, nodePos2A, nodePos2B, out var _, out var _));
+                var normalOffset1 = _random.NextFloat(MathF.Max(furthestLeft1, -distance1), distance1);
+
+                var furthestRight2 = MathF.Sqrt(DistanceToLineSegmentSquared(midNode2, nodePos1A, nodePos1B, out var _, out var _)) - MathF.Sqrt(minDistBetweenRiversSquared) + normalOffset1; //Make this dependent on how far left MidNode1 went.
+                var normalOffset2 = _random.NextFloat(-distance2, MathF.Min(furthestRight2, distance2));
+
+                midNode1 = midNode1 + normal1 * -normalOffset1;
+                midNode2 = midNode2 + normal2 * -normalOffset2;
+
+                tempList1.Add(nodePos1A);
+                tempList1.Add(midNode1);
+
+                tempList2.Add(nodePos2A);
+                tempList2.Add(midNode2);
+
+                if (i0 == Math.Min(nodePositions1.Count, nodePositions2.Count) - 2)
+                {
+                    tempList1.Add(nodePos1B);
+                    tempList2.Add(nodePos2B);
+                }
+
+                if ((midNode1 - nodePos1A).LengthSquared() > maxDistanceSquared ||
+                    (midNode1 - nodePos1B).LengthSquared() > maxDistanceSquared ||
+                    (midNode2 - nodePos2A).LengthSquared() > maxDistanceSquared ||
+                    (midNode2 - nodePos2B).LengthSquared() > maxDistanceSquared)
+                {
+                    isDone = false;
+                }
+            }
+            nodePositions1.Clear();
+            nodePositions1.AddRange(tempList1);
+            nodePositions2.Clear();
+            nodePositions2.AddRange(tempList2);
+            tempList1.Clear();
+            tempList2.Clear();
+
+            safetyLimit--;
+        }
+        if (safetyLimit <= 0)
+        {
+            bool safetyLimitHit = true; //For breakpoints
+        }
+
+        PopulateRiverFromVector2List(mapId, nodePositions1);
+        nodePositions2.Reverse();
+        PopulateRiverFromVector2List(mapId, nodePositions2);
+
+        _nodesChanged = true;
         return true;
+    }
+
+    public void PopulateRiverFromVector2List(MapId mapId, List<Vector2> nodePositions, Angle entryFlowDirection = default, Angle exitFlowDirection = default, bool customFlowDirs = false)
+    {
+        List<EntityUid> nodes1 = new();
+        for (var i = 0; i < nodePositions.Count; i++)
+        {
+            if (i == 0)
+            {
+                if (!customFlowDirs)
+                {
+                    entryFlowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i]).ToAngle();
+                }
+                var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
+                var newNode = Spawn("SpaceRiverNode", nodeCoord);
+
+                if (!TryComp<RiverNodeComponent>(newNode, out var newComp))
+                {
+                    continue; //bad
+                }
+
+                newComp.FlowDirection = entryFlowDirection;
+                newComp.ForwardControlPoint = entryFlowDirection.ToVec() * 50f; //Magic number TODO: Kill
+                nodes1.Add(newNode);
+            }
+            else if (i == nodePositions.Count - 1)
+            {
+                if (!customFlowDirs)
+                {
+                    exitFlowDirection = Vector2.Normalize(nodePositions[i] - nodePositions[i - 1]).ToAngle();
+                }
+                var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
+                var newNode = Spawn("SpaceRiverNode", nodeCoord);
+
+                if (!TryComp<RiverNodeComponent>(newNode, out var newComp) ||
+                    !TryComp<RiverNodeComponent>(nodes1[i - 1], out var priorComp))
+                {
+                    continue; //bad
+                }
+
+                newComp.FlowDirection = exitFlowDirection;
+                newComp.ForwardControlPoint = exitFlowDirection.ToVec() * 50f; //Magic number TODO: Kill
+                newComp.PriorNodes.Add(GetNetEntity(nodes1[i - 1]));
+                priorComp.NextNodes.Add(GetNetEntity(newNode));
+
+                nodes1.Add(newNode);
+            }
+            else
+            {
+                var flowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i - 1]);
+                var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
+                var newNode = Spawn("SpaceRiverNode", nodeCoord);
+
+                if (!TryComp<RiverNodeComponent>(newNode, out var newComp) ||
+                    !TryComp<RiverNodeComponent>(nodes1[i - 1], out var priorComp))
+                {
+                    continue; //bad
+                }
+
+                newComp.FlowDirection = flowDirection.ToAngle();
+                newComp.ForwardControlPoint = flowDirection * 50f; //Magic number TODO: Kill
+                newComp.PriorNodes.Add(GetNetEntity(nodes1[i - 1]));
+                priorComp.NextNodes.Add(GetNetEntity(newNode));
+
+                nodes1.Add(newNode);
+            }
+        }
+        foreach (var node in nodes1)
+        {
+            if (!TryComp<RiverNodeComponent>(node, out var comp))
+            {
+                continue;
+            }
+            Dirty(node, comp);
+        }
     }
 
     public bool CreateRiver(MapId mapId, Vector2 startLocation, Vector2 endLocation)

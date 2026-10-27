@@ -38,7 +38,7 @@ public abstract partial class SharedRiverNodeComponent : Component
     /// The distance from the Node that Shuttles are influenced by its effects.
     /// </summary>
     [DataField/*, AutoNetworkedField*/]
-    public float NodeRange = 50.0f; //TODO: Figure out a reasonable value
+    public float NodeRange = 40.0f; //TODO: Figure out a reasonable value
 
     /// <summary>
     /// Influences whether rivers are keen to merge or split. Higher numbers wish to split rather than merge.
