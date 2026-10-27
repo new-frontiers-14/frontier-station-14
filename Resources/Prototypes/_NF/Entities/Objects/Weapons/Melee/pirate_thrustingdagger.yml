@@ -1,0 +1,70 @@
+- type: entity
+  name: thrusting dagger
+  parent: [BaseC3PirateContraband, BaseSword]
+  id: PirateThrustingDagger
+  description: Up close and personal. This weapon does 25% more damage with aimed strikes.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/pirate_thrustingdagger.rsi
+    layers:
+    - state: icon
+    - state: icon1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    scale: 0.75, 0.75
+  - type: Item
+    size: Small
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 2
+    wideAnimationRotation: -135
+    animationOffset: 0.9
+    damage:
+      types:
+        Piercing: 13 #if the plasteel epee ever gets nerfed this should be adjusted too
+    clickDamageModifier: 1.25
+    range: 1.3
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DisarmMalus
+  - type: Tag
+    tags:
+    - NFPirateThrustingDagger
+    - Knife
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: ExaminableSolution
+    solution: melee
+  - type: SolutionTransfer
+    transferAmount: 1
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: icon
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 2
+    equippedFillBaseName: -fill-
+    equippedMaxFillLevels: 2
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    offset: -0.15,0.0
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 13
+  - type: ThrowingAngle
+    angle: 225
+  - type: SolutionInjectOnEmbed
+    transferAmount: 1
+    solution: melee

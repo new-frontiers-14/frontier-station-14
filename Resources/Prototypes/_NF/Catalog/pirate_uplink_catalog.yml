@@ -67,7 +67,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
-  
+
 - type: listing
   id: UplinkPirateHardsuitAurecorsa
   name:  uplink-pirate-hardsuit-aurecorsa-name
@@ -291,6 +291,101 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateRapier
+  name:  uplink-pirate-rapier-name
+  description: uplink-pirate-rapier-desc
+  productEntity: PirateRapier
+  icon: { sprite: _NF/Objects/Weapons/Melee/pirate_rapier.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+        - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateThrustingDagger
+  name:  uplink-pirate-thrustingdagger-name
+  description: uplink-pirate-thrustingdagger-desc
+  productEntity: PirateThrustingDagger
+  icon: { sprite: _NF/Objects/Weapons/Melee/pirate_thrustingdagger.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateRogueBelt
+  name: uplink-pirate-rogue-belt-name
+  description: uplink-pirate-rogue-belt-desc
+  productEntity: ClothingBeltPirateRogueBeltFilled
+  icon: { sprite: _NF/Objects/Clothing/Belt/pirate_rogue_belt/pirate_rogue_belt.rsi, state: sheath-sabre }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateThrowingKnifesBox
+  name: uplink-pirate-throwingknifes-name
+  description: uplink-pirate-throwingknifes-desc
+  productEntity: BoxPirateThrowingKnifes
+  icon: { sprite: _NF/Objects/Weapons/Melee/pirate_throwing_knife.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateRogueSatchel
+  name: uplink-pirate-rogue-satchel-name
+  description: uplink-pirate-rogue-satchel-desc
+  productEntity: ClothingBackpackStachelRogueFilled
+  icon: { sprite: _NF/Clothing/Back/Satchels/pirate_rogue.rsi, state: icon-filled }
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateAnchor

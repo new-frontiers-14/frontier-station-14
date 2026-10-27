@@ -410,3 +410,19 @@
   - type: Sprite
     layers:
       - state: box
+
+- type: entity
+  name: pirate throwing knifes box
+  parent: BoxCardboard
+  id: BoxPirateThrowingKnifes
+  description: A box containing some fancy throwing knifes.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+  - type: StorageFill
+    contents:
+    - id: PirateThrowingKnife
+      amount: 4
+  - type: Sprite
+    layers:
+    - state: box

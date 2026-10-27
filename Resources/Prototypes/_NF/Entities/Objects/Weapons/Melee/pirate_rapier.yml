@@ -1,0 +1,62 @@
+- type: entity
+  name: rapier
+  parent: [BaseC3PirateContraband, BaseSword]
+  id: PirateRapier
+  description: Finesse and grace. This weapon does 25% more damage with aimed strikes.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/pirate_rapier.rsi
+    layers:
+    - state: icon
+    - state: icon1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    storedRotation: -45
+    shape:
+      - 0,0,0,2
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 20
+    clickDamageModifier: 1.25
+    range: 1.75
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DisarmMalus
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/pirate_rapier.rsi
+    slots:
+    - Back
+    - SuitStorage
+    - Belt
+  - type: Tag
+    tags:
+    - NFPirateRapier
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: ExaminableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 1
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: icon
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 2
+    equippedFillBaseName: -fill-
+    equippedMaxFillLevels: 2
