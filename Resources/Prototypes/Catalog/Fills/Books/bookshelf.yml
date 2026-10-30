@@ -27,6 +27,11 @@
       rolls: !type:RangeNumberSelector
         range: 0, 3
       tableId: RandomHandwrittenBookTable
+    # Frontier 3rd Anniversary Books
+    - !type:NestedSelector
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+      tableId: RandomAnniversaryBookTable
 
 - type: entityTable
   id: RandomHandwrittenBookTable
@@ -91,3 +96,30 @@
       tableId: RandomGuidebookTable
     - !type:NestedSelector
       tableId: RandomHandwrittenBookTable
+
+- type: entityTable
+  id: RandomAnniversaryBookTable #Frontier 3rd Anniversary Books!
+  table: !type:GroupSelector
+    children:
+    - id: BookNukasMemoryLogs
+    - id: BookNoNonsenseAtmosGuide
+    - id: BookTheLittleMedibot
+    - id: BookSmugglersHandbook2ndEd
+    - id: BookStudyOfArtifactsFromAncient
+    - id: BookTheHauntingofNFSDO
+    - id: BookReleased
+    - id: BookShipsLog
+    - id: BookSpaceDust
+    - id: BookExternalCause
+    - id: BookHowtobeTough
+    - id: BookMachinaCemix
+    - id: BookMaunderSecretWars
+    - id: BookEngineersPocketReference
+    - id: BookDustintheWind
+    - id: BookSpaceFireplace
+    - id: BookFTLSpaceBusTravel
+    - id: BookGabbinWivGoblins
+    - id: BookTheBurnChamber
+    - id: BookRoom85
+    - id: BookDelightsAndMusings
+    - id: BookChompsShinyGoodbye
