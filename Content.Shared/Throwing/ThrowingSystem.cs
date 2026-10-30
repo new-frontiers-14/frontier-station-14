@@ -6,7 +6,6 @@ using Content.Shared.CCVar;
 using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Friction;
-using Content.Shared.Gravity;
 using Content.Shared.Projectiles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -31,7 +30,6 @@ public sealed partial class ThrowingSystem : EntitySystem
     private float _airDamping;
 
     [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private ThrownItemSystem _thrownSystem = default!;

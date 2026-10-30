@@ -19,6 +19,7 @@ nf-research-technology-advanced-botanical-storage = Botanical Bluespace Storage
 nf-research-technology-advanced-charging = Improved Battery Charging
 nf-research-technology-advanced-cleaning = Liquid Recycling
 nf-research-technology-advanced-cleaning-cyborg = Cyborg Liquid Recycling
+nf-research-technology-advanced-cyborg-instruments = Advanced Cyborg Musical Equipment
 nf-research-technology-advanced-cyborg-tools = Advanced Cyborg Tools
 nf-research-technology-advanced-entertainment = Wireless Broadcasting
 nf-research-technology-advanced-food-service = Advanced Food Service

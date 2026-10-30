@@ -125,7 +125,7 @@
   id: BorgMegaSprayBottle
   name: adv. internal spray jet
   suffix: Filled
-  description: An upgraded version of the integrated spray bottle, installed directly into a custodial cyborg. Typically filled with space cleaner for dealing with those nasty spills.
+  description: An upgraded version of the integrated spray bottle, installed directly into a custodial cyborg. This bottle synthesizes spacecleaner for dealing with those nasty spills. #Frontier: An upgraded version of the integrated spray bottle, installed directly into a custodial cyborg. Typically filled with space cleaner for dealing with those nasty spills.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -134,6 +134,15 @@
         reagents:
         - ReagentId: SpaceCleaner
           Quantity: 500
+  #Frontier
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 5
+    duration: 5
+  #End Frontier
 
 # Vapor
 - type: entity

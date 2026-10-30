@@ -56,8 +56,9 @@ tiles-hydro-floor = hydro floor
 tiles-bar-floor = bar floor
 tiles-clown-floor = clown floor
 tiles-brass-plating = brass plating
-tiles-brass-floor-filled = filled brass plating
-tiles-brass-floor-reebe = smooth brass plating
+# Frontier: changed brass filled & reebe platings to floor
+tiles-brass-floor-filled = filled brass floor
+tiles-brass-floor-reebe = smooth brass floor
 tiles-mime-floor = mime floor
 tiles-kitchen-floor = kitchen floor
 tiles-laundry-floor = laundry floor

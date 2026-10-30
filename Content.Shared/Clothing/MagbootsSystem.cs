@@ -14,7 +14,6 @@ namespace Content.Shared.Clothing;
 public sealed partial class SharedMagbootsSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
-    [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private ItemToggleSystem _toggle = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedGravitySystem _gravity = default!;

@@ -28,6 +28,7 @@ public sealed partial class SliceableFoodSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -35,6 +36,8 @@ public sealed partial class SliceableFoodSystem : EntitySystem
         SubscribeLocalEvent<SliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
         SubscribeLocalEvent<SliceableFoodComponent, ComponentStartup>(OnComponentStartup);
+
+        InitializeMultitype(); // Frontier
     }
 
     private void OnInteractUsing(Entity<SliceableFoodComponent> entity, ref InteractUsingEvent args)
