@@ -670,12 +670,18 @@
       state: service
     - type: MachineBoard
       prototype: ImpCoffeeMachineEmpty
+      requirements:
+        MatterBin: 1
       stackRequirements:
         Steel: 5
       tagRequirements:
           GlassBeaker:
             amount: 1
             defaultPrototype: Beaker
+    - type: Construction
+      graph: BoozeDispenserBoard
+      deconstructionTarget: null
+      node: coffeeDispenser
 
 - type: entity
   parent: StationAnchorCircuitboard
