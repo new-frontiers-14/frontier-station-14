@@ -18,8 +18,9 @@ namespace Content.Shared.Communications
         public List<string>? AlertLevels;
         public string CurrentAlert;
         public float CurrentAlertDelay;
+		public readonly bool CanChangeAlertLevel; //Frontier
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null)
+        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, bool canChangeAlertLevel, TimeSpan? expectedCountdownEnd = null) //Frontier: bool canChangeAlertLevel
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -28,6 +29,7 @@ namespace Content.Shared.Communications
             AlertLevels = alertLevels;
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
+			CanChangeAlertLevel = canChangeAlertLevel; //Frontier
         }
     }
 
