@@ -258,6 +258,12 @@
       path: /Audio/Voice/Vox/vox_cough.ogg
     Sigh:
       path: /Audio/Voice/Vox/vox_sigh.ogg
+    Click:
+      path: /Audio/Voice/Vox/vox_click.ogg
+    Chitter:
+      path: /Audio/Voice/Vox/vox_chitter.ogg
+    MonkeyScreeches: # Frontier
+      collection: MonkeyScreeches # Frontier
     Honk:
       collection: BikeHorn
     Crying:
@@ -270,6 +276,8 @@
       path: /Audio/Effects/Gasp/vox_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
+    Belch: # Frontier
+      collection: Belch # Frontier
   params:
     variation: 0.125
     # We need vox sounds for the other emotes
@@ -545,6 +553,10 @@
       collection: Salutes
     Crack: # Imp
       collection: Cracks # Imp
+    Blink: # Imp addition
+      collection: Blinks
+      params:
+        volume: -3
 
 - type: emoteSounds
   id: DionaBodyEmotes
@@ -564,6 +576,10 @@
        volume: -5
     Crack: # Imp
       collection: Cracks # Imp
+    Blink: # Imp addition
+      collection: Blinks
+      params:
+        volume: -3
 
 - type: emoteSounds
   id: ReptilianBodyEmotes
@@ -584,6 +600,10 @@
       collection: Salutes
     Crack: # Imp
       collection: Cracks # Imp
+    Blink: # Imp addition
+      collection: Blinks
+      params:
+        volume: -3
 
 - type: emoteSounds
   id: MothBodyEmotes
@@ -600,6 +620,12 @@
         volume: -6
     Salute:
       collection: Salutes
+    Blink: # Frontier, from Imp
+      collection: Blinks
+      params:
+        volume: -3
+    Crack: # Frontier
+      collection: Cracks # Frontier
 
 # mobs
 - type: emoteSounds
@@ -718,3 +744,7 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: WawaDeath
+    Blink: # Frontier, from Imp
+      collection: Blinks
+      params:
+        volume: -3
