@@ -753,7 +753,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             node.ReachableNodes.Count == 0)
         {
             // Make a child the new master of the collection if necessary
-            if (device.ChildDevices.TryFirstOrNull(out var kvp))
+            if (device.ChildDevices.TryFirstOrNull(child => !TerminatingOrDeleted(child.Key), out var kvp)) // Frontier: Ignore terminating children
             {
                 var newMaster = kvp.Value.Key;
                 var newMasterDevice = kvp.Value.Value;
@@ -763,6 +763,13 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
                 foreach ((var child, var childDevice) in device.ChildDevices)
                 {
+                    // Frontier: Ignore terminating children
+                    if (TerminatingOrDeleted(child))
+                    {
+                        Log.Warning("Attempting to update node group in deleted child {0}", child);
+                        return;
+                    }
+                    // End Frontier
                     newMasterDevice.ChildDevices.Add(child, childDevice);
 
                     childDevice.CollectionMaster = newMaster;
