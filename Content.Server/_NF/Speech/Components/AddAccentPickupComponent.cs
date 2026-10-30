@@ -24,7 +24,7 @@ public sealed partial class AddAccentPickupComponent : Component
     public string? ReplacementPrototype;
 
     /// <summary>
-    ///     Is the entity held and affecting someones accent?
+    ///     Is the entity held and affecting someone's accent?
     /// </summary>
     public bool IsActive = false;
 
