@@ -19,9 +19,9 @@ using ShuttleGridEntity = Entity<GridAtmosphereComponent?, GasTileOverlayCompone
 
 public sealed partial class ShipyardSystem
 {
-    [Dependency] private readonly GasMixerSystem _gasMixerSystem = default!;
-    [Dependency] private readonly AtmosMonitorSystem _atmosMonitorSystem = default!;
-    [Dependency] private readonly GasVentScrubberSystem _gasVentScrubberSystem = default!;
+    [Dependency] private GasMixerSystem _gasMixerSystem = default!;
+    [Dependency] private AtmosMonitorSystem _atmosMonitorSystem = default!;
+    [Dependency] private GasVentScrubberSystem _gasVentScrubberSystem = default!;
 
     /// <summary>
     /// Sets up the atmosphere of a shuttle from the given prototype.
