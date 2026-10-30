@@ -1,5 +1,4 @@
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.UI.MapObjects;
 using Content.Shared.Whitelist;
@@ -14,13 +13,12 @@ namespace Content.Shared.Shuttles.Systems;
 
 public abstract partial class SharedShuttleSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] protected readonly FixtureSystem Fixtures = default!;
-    [Dependency] protected readonly SharedMapSystem Maps = default!;
-    [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
-    [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] protected FixtureSystem Fixtures = default!;
+    [Dependency] protected SharedMapSystem Maps = default!;
+    [Dependency] protected SharedPhysicsSystem Physics = default!;
+    [Dependency] protected SharedTransformSystem XformSystem = default!;
 
     public const float FTLRange = 256f;
     public const float FTLBufferRange = 8f;
@@ -230,7 +228,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         var ourFTLBuffer = GetFTLBufferRange(shuttleUid);
         var circle = new PhysShapeCircle(ourFTLBuffer + FTLBufferRange, targetPosition);
 
-        _mapManager.FindGridsIntersecting(mapCoordinates.MapId, circle, Robust.Shared.Physics.Transform.Empty,
+        Maps.FindGridsIntersecting(mapCoordinates.MapId, circle, Robust.Shared.Physics.Transform.Empty,
             ref _grids, includeMap: false);
 
         // If any grids in range that aren't us then can't FTL.

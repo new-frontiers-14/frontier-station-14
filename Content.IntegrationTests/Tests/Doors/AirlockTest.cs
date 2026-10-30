@@ -3,7 +3,6 @@ using Content.Server.Doors.Systems;
 using Content.Shared.Doors.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
@@ -118,7 +117,6 @@ namespace Content.IntegrationTests.Tests.Doors
 
             await server.WaitIdleAsync();
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var physicsSystem = entityManager.System<SharedPhysicsSystem>();
             var xformSystem = entityManager.System<SharedTransformSystem>();
