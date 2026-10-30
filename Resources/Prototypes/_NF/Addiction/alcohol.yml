@@ -1,0 +1,132 @@
+- type: addiction
+  id: Alcohol
+  name: addiction-alcohol-name
+  defaultReagent: Ethanol
+  threshold: 50
+  decayRate: 0.5
+  checkPeriod: 50s
+  withdrawal:
+    decayRate: 0.4
+    symptoms:
+      #cravings and headaches
+      - min: 2
+        max: 49
+        probability: 0.1
+        rating: 1
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          dataSet: AddictionAlcoholCraveLow
+      - min: 50
+        probability: 0.2
+        rating: 10
+        duration: 12
+        minTimeSinceHit: 20s
+        messages:
+          priority: 3
+          visualType: MediumCaution
+          dataSet: AddictionAlcoholCraveHigh
+      #headache
+      - min: 5
+        max: 54
+        probability: 0.1
+        rating: 2
+        duration: 10
+        messages:
+          dataSet: AddictionSymptomHeadacheLow
+      - min: 55
+        probability: 0.1
+        rating: 10
+        duration: 10
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomHeadacheHigh
+
+      #nausea
+      - min: 10
+        max: 59
+        probability: 0.1
+        rating: 15
+        duration: 6
+        effects:
+        messages:
+          dataSet: AddictionSymptomNauseaLow
+      - min: 60
+        probability: 0.2
+        rating: 30
+        duration: 5
+        messages:
+          visualType: MediumCaution
+          dataSet: AddictionSymptomNauseaHigh
+      - min: 45
+        max: 89
+        rating: 90
+        duration: 10
+        probability: 0.05
+        minTimeSinceHit: 60s
+        effects:
+        - !type:ChemVomit
+      - min: 90
+        rating: 90
+        duration: 10
+        probability: 0.15
+        conditions:
+        - !type:AddictionThreshold
+          max: 20 #Don't vomit unless we got a good buzz
+        effects:
+        - !type:ChemVomit
+
+      #tremors
+      - min: 25
+        max: 79
+        probability: 0.1
+        rating: 30
+        duration: 8
+        effects:
+          - !type:Jitter
+            amplitude: 5
+            frequency: 8
+            time: 7
+      - min: 80
+        probability: 0.4
+        rating: 50
+        duration: 3
+        repeatable: true
+        effects:
+          - !type:Jitter
+            amplitude: 6
+            frequency: 8
+            time: 3
+            refresh: false
+      - min: 90
+        probability: 0.9
+        rating: 80
+        duration: 12
+        effects:
+          - !type:Jitter
+            amplitude: 6.5
+            frequency: 8
+            time: 14
+            refresh: false
+
+      #irritability
+      - min: 50
+        probability: 0.1
+        rating: 50
+        duration: 5
+        effects:
+          - !type:Emote
+            emote: Scream
+            showInChat: true
+            force: true
+      - min: 80
+        probability: 0.05
+        rating: 80
+        duration: 5
+        effects:
+          - !type:Emote
+            emote: GoblinMutter
+            showInChat: true
+            force: true

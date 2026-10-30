@@ -1,0 +1,103 @@
+- type: addiction
+  id: Hallucinogen
+  name: addiction-hallucinogen-name
+  defaultReagent: SpaceDrugs
+  threshold: 50
+  decayRate: 0.5
+  checkPeriod: 40s
+  withdrawal:
+    decayRate: 0.25
+    symptoms:
+      #cravings
+      - min: 2
+        max: 29
+        probability: 0.1
+        rating: 1
+        duration: 10
+        minTimeSinceHit: 40s
+        messages:
+          priority: 2
+          dataSet: AddictionHallucinogenCraveLow
+      - min: 30
+        probability: 0.2
+        rating: 10
+        duration: 12
+        minTimeSinceHit: 30s
+        messages:
+          priority: 3
+          visualType: MediumCaution
+          dataSet: AddictionHallucinogenCraveHigh
+      # anxiety
+      - min: 10
+        max: 49
+        probability: 0.05
+        rating: 1
+        duration: 8
+        minTimeSinceHit: 30s
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomAnxietyLow
+      - min: 50
+        probability: 0.05
+        rating: 5
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomAnxietyHigh
+      # depression
+      - min: 15
+        max: 54
+        probability: 0.05
+        rating: 1
+        duration: 8
+        minTimeSinceHit: 30s
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomDepressionLow
+      - min: 55
+        probability: 0.05
+        rating: 5
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomDepressionHigh
+      # headaches
+      - min: 20
+        max: 59
+        probability: 0.08
+        rating: 2
+        duration: 8
+        minTimeSinceHit: 30s
+        messages:
+          priority: 1
+          dataSet: AddictionSymptomHeadacheLow
+      - min: 60
+        probability: 0.08
+        rating: 8
+        duration: 10
+        minTimeSinceHit: 20s
+        messages:
+          priority: 2
+          visualType: MediumCaution
+          dataSet: AddictionSymptomHeadacheHigh
+      # Fatigue after a big high
+      - min: 50
+        probability: 0.4
+        rating: 80
+        duration: 10
+        minTimeSinceHit: 120s
+        conditions:
+          - !type:AddictionThreshold
+            minAddiction: 60
+        effects:
+          - !type:Emote
+            emote: Yawn
+            showInChat: true
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 15
+            type: Add
