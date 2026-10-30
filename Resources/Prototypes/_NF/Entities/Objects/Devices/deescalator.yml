@@ -1,0 +1,15 @@
+- type: entity
+  id: Deescalator
+  parent: [BaseC3PirateContraband, DeviceDesynchronizer]
+  name: deescalator
+  description: A versatile device to buy some time in the midst of a conflict gone wrong. It will make the user disappear, leaving nothing but their voice echoing through space. But is it safe?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/deescalator.rsi
+    state: icon
+  - type: UseDelay
+    delay: 2200
+  - type: FireStackOnTrigger
+    targetUser: true
+    fireStacks: 1
+    doIgnite: true
