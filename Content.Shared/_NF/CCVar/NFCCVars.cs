@@ -304,4 +304,20 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
         CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// If radio alerts get sent to Engineering regarding nuclear reactor temperatures.
+    /// </summary>
+    public static readonly CVarDef<bool> ReactorTemperatureAlerts =
+        CVarDef.Create("reactor.temperature_alerts", false, CVar.SERVER);
+    /// <summary>
+    /// If the announcement for reactor meltdowns is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> ReactorMeltdownAnnouncements =
+        CVarDef.Create("reactor.meltdown_announcements", false, CVar.SERVER);
+    /// <summary>
+    /// If the alert level change from a meltdown is enabled
+    /// </summary>
+    public static readonly CVarDef<bool> ReactorMeltdownYellowAlert =
+        CVarDef.Create("reactor.meltdown_yellowalert", false, CVar.SERVER);
 }
