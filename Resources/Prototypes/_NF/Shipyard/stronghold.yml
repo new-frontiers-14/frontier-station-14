@@ -35,10 +35,16 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Stronghold {1}'
+          mapNameTemplate: 'Stronghold {0}'
           nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+            !type:ConfigurableSuffixNameGenerator
+            generator: DBI
+            designator:
+              type: List
+              items:
+                - SHD
+                - SGH
+                - STG
         - type: StationJobs
           availableJobs:
             ContractorInterview: [ 0, 0 ]
