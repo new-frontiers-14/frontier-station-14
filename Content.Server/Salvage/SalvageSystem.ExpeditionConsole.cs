@@ -5,6 +5,7 @@ using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server._NF.Salvage; // Frontier
+using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier
@@ -15,6 +16,7 @@ using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Map.Components; // Frontier
 using Robust.Shared.Physics.Components; // Frontier
 using Robust.Shared.Physics; // Frontier
+using System.Linq; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -74,6 +76,16 @@ public sealed partial class SalvageSystem
             return;
         }
 
+        // Frontier: Prevent FTL if expedition lander has no valid mothership.
+        if (TryComp<LanderComponent>(ourGrid, out var lander)
+            && _station.GetLargestGrid(lander.MotherStation) is not { })
+        {
+            PlayDenySound((uid, component));
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid-mothership"), uid, PopupType.MediumCaution);
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+
         // Run a proximity check (unless using a debug console)
         if (_salvage.ProximityCheck && !component.Debug)
         {
@@ -91,6 +103,19 @@ public sealed partial class SalvageSystem
             var bodyQuery = GetEntityQuery<PhysicsComponent>();
             var otherGrids = new List<Entity<MapGridComponent>>();
             _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
+            // Frontier: Lander check for mothership, must be is in proximity to FTL to expedition.
+            if (TryComp<LanderComponent>(ourGrid, out var mothership) && mothership.MotherStation is { })
+            {
+                var mothershipFound = otherGrids.Any(g => _station.GetOwningStation(g) == mothership.MotherStation);
+                if (!mothershipFound)
+                {
+                    PlayDenySound((uid, component));
+                    _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity-mothership"), uid, PopupType.MediumCaution);
+                    UpdateConsoles((station.Value, data));
+                    return;
+                }
+            }
+
             foreach (var otherGrid in otherGrids)
             {
                 if (ourGrid == otherGrid.Owner ||
