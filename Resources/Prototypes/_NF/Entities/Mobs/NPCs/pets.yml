@@ -353,11 +353,13 @@
   - type: NpcFactionMember
     factions:
     - Cat # Needs to be neutral to dinosaurs.
+  - type: CavemanAccent
   - type: NFSalvageMobRestrictions
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
     removeComponentsOnDeath: []
-  - type: CavemanAccent
+    removeComponentsLeaveGrid:
+    - type: NFSalvageMobRestrictions
 
 - type: entity
   id: MobCatMistake
@@ -410,6 +412,33 @@
     damageRecovery:
       types: {}
 
+- type: entity
+  name: Pasha
+  parent: MobCat
+  id: MobCatSiamese
+  description: A precious and pampurred feline.
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: pasha
+  - type: NpcFactionMember
+    factions:
+    - PetsNT
+    - Cat
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+      
 - type: entity
   id: MobCatBloodCult
   parent: [NFMobPet, MobCatMistake]
@@ -570,6 +599,10 @@
     noMovementLayers:
       movement:
         state: mouse-3
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
   - type: Clothing
     quickEquip: false
     sprite: _NF/Mobs/Pets/mouse.rsi

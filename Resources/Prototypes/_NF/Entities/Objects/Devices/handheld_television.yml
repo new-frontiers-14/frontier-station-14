@@ -1,0 +1,42 @@
+- type: entity
+  parent: [BaseItem, RecyclableItemDeviceSmall]
+  id: HandheldTelevision
+  name: handheld televison
+  description: Does this thing even get a signal?
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    layers:
+    - state: tablet
+    - sprite: _NF/Objects/Devices/tablets.rsi
+      state: televisions
+      shader: unshaded
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ActivatableUI
+    requireActiveHand: false
+    inHandsOnly: true
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: Speech
+    speechVerb: Robotic
+  - type: SurveillanceCameraMonitor
+  - type: SurveillanceCameraSpeaker
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: StaticPrice
+    price: 100
+    vendPrice: 3500
