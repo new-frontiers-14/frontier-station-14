@@ -32,6 +32,7 @@ public abstract partial class SharedBuckleSystem
     public static ProtoId<AlertCategoryPrototype> BuckledAlertCategory = "Buckled";
 
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!; // Frontier: stand up before buckling.
 
     private void InitializeBuckle()
     {
@@ -537,6 +538,40 @@ public abstract partial class SharedBuckleSystem
         RaiseLocalEvent(strap, ref unstrapAttempt);
         return !unstrapAttempt.Cancelled;
     }
+
+    // Start Frontier: stand up before buckling.
+    private void StartBuckleDoAfter(EntityUid user, Entity<BuckleComponent> buckle, Entity<StrapComponent> strap)
+    {
+        var doAfterTime = TimeSpan.Zero;
+
+        if (user != buckle.Owner)
+        {
+            doAfterTime = doAfterTime.Add(TimeSpan.FromSeconds(strap.Comp.BuckleDoafterTime));
+        }
+
+        // Takes longer to pull yourself/someone off the floor and buckled into something.
+        var knockedDown = TryComp<KnockedDownComponent>(buckle.Owner, out _);
+        if (knockedDown)
+        {
+            TryComp<CrawlerComponent>(buckle, out var crawler);
+            if (crawler != null)
+            {
+                var ev = new GetStandUpTimeEvent(crawler.StandTime);
+                RaiseLocalEvent(buckle, ref ev);
+                doAfterTime = doAfterTime.Add(ev.DoAfterTime);
+            }
+        }
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, doAfterTime, new BuckleDoAfterEvent(), buckle.Owner, buckle.Owner, strap)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            AttemptFrequency = AttemptFrequency.EveryTick
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+    // End Frontier: stand up before buckling.
 
     /// <summary>
     /// Once the do-after is complete, try to buckle target to chair/bed
