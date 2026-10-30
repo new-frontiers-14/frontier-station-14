@@ -1,0 +1,22 @@
+- type: entity
+  parent: FoodMeatBase
+  id: FoodMeatKoiFish
+  name: raw koi fillet
+  description: A fillet of space koi. You feel a little guilty about eating something so friendly.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: Sprite
+    state: fish
+  - type: Item
+    storedOffset: -1,1
+    inhandVisuals:
+      left:
+      - state: generic-pink-inhand-left
+      right:
+      - state: generic-pink-inhand-right
