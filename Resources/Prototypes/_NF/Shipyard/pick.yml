@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: OfflcerSam
+# Discord: [Terminated]
+
+# Maintainer Info
+# GitHub: OfflcerSam
+# Discord: [Terminated]
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Pick
+  parent: BaseVessel
+  name: SI Pick
+  description: A personnel mining shuttle designed for single person short-term mining trips. Brought to you by Stonian Industries.
+  price: 16800 # ~15999 (calculated) * ~1.05 (markup) = 16800
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/pick.yml
+  guidebookPage: ShipyardPick
+  class:
+  - Salvage
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Pick
+  mapName: 'SI Pick'
+  mapPath: /Maps/_NF/Shuttles/pick.yml
+  minPlayers: 0
+  stations:
+    Pick:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pick {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
