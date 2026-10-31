@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/07/2026 17:55:19
-  entityCount: 2106
+  time: 10/31/2026 19:21:04
+  entityCount: 2109
 maps: []
 grids:
 - 1
@@ -5131,7 +5131,7 @@ entities:
   - uid: 754
     components:
     - type: Transform
-      pos: -6.5961885,7.2103014
+      pos: -2.660907,6.7159457
       parent: 1
   - uid: 2057
     components:
@@ -7746,7 +7746,7 @@ entities:
     - type: Transform
       pos: 1.5,7.5
       parent: 1
-- proto: KitchenDeepFryer
+- proto: KitchenDeepFryerCauldron
   entities:
   - uid: 334
     components:
@@ -8122,12 +8122,31 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: Paper
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: -6.723523,7.311014
+      parent: 1
+  - uid: 955
+    components:
+    - type: Transform
+      pos: -6.737098,7.1278925
+      parent: 1
 - proto: PaperWrittenPirateScribbles
   entities:
   - uid: 2080
     components:
     - type: Transform
       pos: -0.80706465,2.5555282
+      parent: 1
+- proto: Pen
+  entities:
+  - uid: 2109
+    components:
+    - type: Transform
+      pos: -6.710757,6.9854665
       parent: 1
 - proto: PianoInstrument
   entities:
