@@ -3,6 +3,7 @@
 #          https://discord.com/channels/1123826877245694004/1298995036435910698/1298995036435910698
 #          https://discord.com/channels/1123826877245694004/1182366744266932224/1182366744266932224
 #          https://docs.google.com/document/d/1jDX9numj-VHKBJ2FiiEo1GIlHESffOUIHIIXaqhEnls/edit?pli=1#heading=h.ru93r8n0fb7m
+#          https://discord.com/channels/1123826877245694004/1555969490280251472/1555969490280251472
 
 # Filled Folder
 - type: entity
@@ -24,6 +25,7 @@
     - id: PaperWrittenStcFormProsecutionRequest
     - id: PaperWrittenStcFormTrafficLog
     - id: PaperWrittenStcFormWellnessCheck
+    - id: PaperWrittenStcTrafficWarning
     - id: Paper
       prob: 0.5
     - id: Paper
@@ -33,8 +35,8 @@
     - id: Paper
       prob: 0.5
   - type: StaticPrice
-    price: 100
-    vendPrice: 500
+    price: 50
+    vendPrice: 50
 
 # forms
 - type: entity # Based on form made by DmitriTheDemon (Dustin)
@@ -101,14 +103,23 @@
 
         [head=2]Vessel Callsign:[/head] [form]
 
-        [head=2]Infraction:[/head] Unauthorized Docking Maneuver
+        [head=2]Infraction:[/head]
 
-        [head=2]Amount of Fine:[/head] 2,500 spesos
+        [check]: Dock Loitering
+
+        [check]: Reckless Operation
+
+        [check]: Unauthorized Docking Maneuver
+
+        [check]: Failure to Broadcast IFF
+
+
+        [head=2]Amount of Fine:[/head] [form] spesos
 
 
         [bold]Notes:[/bold]
 
-        Failed to announce departure
+        [form]
 
 
         [head=2]Issuing Agent[/head]
@@ -204,3 +215,45 @@
 
 
         [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+
+- type: entity #Creator: Renieken / verbiage borrowed from DmitriTheDemon
+  id: PaperWrittenStcTrafficWarning
+  name: traffic warning
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: >+
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department[/bold][/color]
+
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+
+      [head=2]Traffic Warning[/head]
+
+
+      [head=2]Time of Offense:[/head][form]
+
+      [head=2]Vessel Callsign:[/head][form]
+
+      [head=2]Infraction:[/head]
+
+      [check]: Dock Loitering
+
+      [check]: Reckless Operation
+
+      [check]: Unauthorized Docking Maneuver
+
+      [check]: Failure to Broadcast IFF
+
+
+      [bold]Notes:[/bold]
+
+      [form]
+
+
+      This a formal warning from the Station Traffic Controller to notify the crew of the vessel of a violation of Space Law §6.4, governing the traffic guidelines in and around Frontier Station and the Trade Outpost.
+
+      If further infractions occur, traffic citations will be issued of which have punishments that include fines, forceful undocking, or declaring of your vessel as legal salvage.
+
+
+      [color=#AAAAAA]This warning is only valid when stamped and signed by the Station Traffic Controller, or authorized Station Representative.[/color]
