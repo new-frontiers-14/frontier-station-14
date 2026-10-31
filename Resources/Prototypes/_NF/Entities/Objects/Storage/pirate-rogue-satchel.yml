@@ -1,0 +1,91 @@
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelRogue
+  name: rogue satchel
+  description: An ornate belt designed to hold a pair of samurai's blades, or daisho.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Satchels/pirate_rogue.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Satchels/pirate_rogue.rsi
+  - type: ItemSlots #adjust how items are stored
+    slots:
+      throwingKnifeSlot1:
+        name: clothing-neck-throwingKnife-1
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+        priority: 4
+        ejectOnBreak: true
+      throwingKnifeSlot2:
+        name: clothing-neck-throwingKnife-2
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+        priority: 3
+        ejectOnBreak: true
+      throwingKnifeSlot3:
+        name: clothing-neck-throwingKnife-3
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+        priority: 2
+        ejectOnBreak: true
+      throwingKnifeSlot4:
+        name: clothing-neck-throwingKnife-4
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+        priority: 1
+        ejectOnBreak: true
+  - type: ItemMapper #adjust how items are displayed
+    mapLayers:
+      throwingKnifeSlot1:
+        minCount: 1
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+      throwingKnifeSlot2:
+        minCount: 2
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+      throwingKnifeSlot3:
+        minCount: 3
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+      throwingKnifeSlot4:
+        minCount: 4
+        whitelist:
+          tags:
+          - NFPirateThrowingKnife
+    sprite: _NF/Clothing/Back/Satchels/pirate_rogue.rsi/holsters_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      throwingKnifeSlot1: !type:ContainerSlot {}
+      throwingKnifeSlot2: !type:ContainerSlot {}
+      throwingKnifeSlot3: !type:ContainerSlot {}
+      throwingKnifeSlot4: !type:ContainerSlot {}
+  - type: Appearance

@@ -345,6 +345,21 @@ uplink-pirate-flintlockammo-desc = A box of .60 anti-materiel rounds, used in th
 uplink-pirate-ecutlass-name = Energy Cutlass
 uplink-pirate-ecutlass-desc = An energy cutlass!
 
+uplink-pirate-rapier-name = Rapier
+uplink-pirate-rapier-desc = A long pointy weapon for stabbing!
+
+uplink-pirate-thrustingdagger-name = Thrusting Dagger
+uplink-pirate-thrustingdagger-desc = A short pointy weapon for stabbing!
+
+uplink-pirate-rogue-belt-name = Rogue Belt
+uplink-pirate-rogue-belt-desc = A belt holding a rapier and dagger, for double the stabbing!
+
+uplink-pirate-throwingknifes-name = Box of Throwing Knifes
+uplink-pirate-throwingknifes-desc = A box full of fancy throwing knifes.
+
+uplink-pirate-rogue-satchel-name = Rogue Satchel
+uplink-pirate-rogue-satchel-desc = A satchel holding some fancy throwing knifes.
+
 uplink-pirate-anchor-name = Pirate Anchor
 uplink-pirate-anchor-desc = A large, heavy anchor to beat down anyone and anything standing between you and your plunder.
 
