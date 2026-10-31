@@ -17,7 +17,7 @@ namespace Content.Server.Tesla.EntitySystems;
 /// </summary>
 public sealed partial class TeslaEnergyBallSystem : EntitySystem // DeltaV - Change to partial
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private AudioSystem _audio = default!;
 
     public override void Initialize()
     {

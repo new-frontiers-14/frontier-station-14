@@ -12,8 +12,8 @@ namespace Content.Shared.Xenoarchaeology.Artifact;
 
 public abstract partial class SharedXenoArtifactSystem
 {
-    [Dependency] private readonly EntityTableSystem _entityTable =  default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
+    [Dependency] private EntityTableSystem _entityTable =  default!;
+    [Dependency] private IConfigurationManager _cfg = default!; // Frontier
 
     private EntityQuery<XenoArtifactComponent> _xenoArtifactQuery;
     private EntityQuery<XenoArtifactNodeComponent> _nodeQuery;

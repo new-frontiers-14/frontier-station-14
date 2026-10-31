@@ -8,7 +8,7 @@ namespace Content.Server._NF.DangerTether;
 /// A system to handle tethering dangerous objects, and deleting them when out of range of any tether.
 /// Runs periodic checks to handle deletion.
 /// </summary>
-public sealed class DangerTetherSystem : EntitySystem
+public sealed partial class DangerTetherSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private TransformSystem _transform = default!;

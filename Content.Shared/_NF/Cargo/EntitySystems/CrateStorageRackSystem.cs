@@ -8,9 +8,9 @@ namespace Content.Shared._NF.Cargo.EntitySystems;
 /// <summary>
 /// Functions related to crate storage racks.
 /// </summary>
-public sealed class CrateStorageRackSystem : EntitySystem
+public sealed partial class CrateStorageRackSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
     public override void Initialize()
     {
         base.Initialize();

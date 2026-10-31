@@ -8,7 +8,7 @@ namespace Content.Server.Tesla.EntitySystems;
 /// </summary>
 public sealed partial class TeslaEnergyBallSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
 

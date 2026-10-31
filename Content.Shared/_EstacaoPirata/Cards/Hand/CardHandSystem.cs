@@ -17,20 +17,20 @@ namespace Content.Shared._EstacaoPirata.Cards.Hand;
 /// This handles...
 /// </summary>
 
-public sealed class CardHandSystem : EntitySystem
+public sealed partial class CardHandSystem : EntitySystem
 {
     [ValidatePrototypeId<EntityPrototype>]
     public readonly EntProtoId CardHandBaseName = "CardHandBase";
     [ValidatePrototypeId<EntityPrototype>]
     public readonly EntProtoId CardDeckBaseName = "CardDeckBase";
 
-    [Dependency] private readonly CardStackSystem _cardStack = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!; // Frontier
+    [Dependency] private CardStackSystem _cardStack = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedStorageSystem _storage = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()

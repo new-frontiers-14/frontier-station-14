@@ -10,10 +10,10 @@ namespace Content.Server._DV.Administration.Commands;
 /// To use this ingame it's easiest to first open the player panel, then hit Job Whitelists.
 /// </summary>
 [AdminCommand(AdminFlags.Whitelist)]
-public sealed class JobWhitelistsCommand : LocalizedCommands
+public sealed partial class JobWhitelistsCommand : LocalizedCommands
 {
-    [Dependency] private readonly EuiManager _eui = default!;
-    [Dependency] private readonly IPlayerLocator _locator = default!;
+    [Dependency] private EuiManager _eui = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
 
     public override string Command => "jobwhitelists";
 

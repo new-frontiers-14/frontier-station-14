@@ -28,19 +28,19 @@ namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] protected readonly OpenableSystem Openable = default!;
-    [Dependency] protected readonly ReactiveSystem Reactive = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] protected readonly SharedPopupSystem Popups = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SpeedModifierContactsSystem _speedModContacts = default!;
-    [Dependency] private readonly StepTriggerSystem _stepTrigger = default!;
-    [Dependency] private readonly TileFrictionController _tile = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] protected OpenableSystem Openable = default!;
+    [Dependency] protected ReactiveSystem Reactive = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] protected SharedPopupSystem Popups = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SpeedModifierContactsSystem _speedModContacts = default!;
+    [Dependency] private StepTriggerSystem _stepTrigger = default!;
+    [Dependency] private TileFrictionController _tile = default!;
 
     private string[] _standoutReagents = [];
 

@@ -16,7 +16,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Throwing;
 
-public sealed class ThrowingSystem : EntitySystem
+public sealed partial class ThrowingSystem : EntitySystem
 {
     public const float ThrowAngularImpulse = 5f;
 
@@ -29,13 +29,13 @@ public sealed class ThrowingSystem : EntitySystem
     private float _frictionModifier;
     private float _airDamping;
 
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ThrownItemSystem _thrownSystem = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ThrownItemSystem _thrownSystem = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
 
     public override void Initialize()
     {

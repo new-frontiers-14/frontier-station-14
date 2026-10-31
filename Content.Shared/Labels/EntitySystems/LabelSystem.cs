@@ -12,10 +12,10 @@ namespace Content.Shared.Labels.EntitySystems;
 
 public sealed partial class LabelSystem : EntitySystem
 {
-    [Dependency] private readonly NameModifierSystem _nameModifier = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!; // Frontier
+    [Dependency] private NameModifierSystem _nameModifier = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private TagSystem _tagSystem = default!; // Frontier
 
     public const string ContainerName = "paper_label";
 

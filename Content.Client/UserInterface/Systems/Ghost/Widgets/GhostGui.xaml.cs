@@ -12,7 +12,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Widgets;
 [GenerateTypedNameReferences]
 public sealed partial class GhostGui : UIWidget
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!; // Frontier
+    [Dependency] private IGameTiming _gameTiming = default!; // Frontier
     private TimeSpan? _respawnTime; // Frontier
 
     public GhostTargetWindow TargetWindow { get; }

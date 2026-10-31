@@ -14,8 +14,8 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
 
     protected virtual void InitializeBallistic()

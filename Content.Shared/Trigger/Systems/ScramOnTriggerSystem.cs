@@ -14,15 +14,15 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class ScramOnTriggerSystem : EntitySystem
+public sealed partial class ScramOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private INetManager _net = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private HashSet<Entity<MapGridComponent>> _targetGrids = new();

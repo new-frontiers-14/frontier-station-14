@@ -12,12 +12,12 @@ using System.Linq;
 
 namespace Content.Shared.Research.Systems;
 
-public sealed class BlueprintSystem : EntitySystem
+public sealed partial class BlueprintSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!; // Frontier
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _proto = default!; // Frontier
 
     private const int MaxExaminedRecipes = 5; // Frontier
 

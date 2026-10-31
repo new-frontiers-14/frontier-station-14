@@ -16,14 +16,14 @@ namespace Content.Shared._NF.Construction.Systems;
 /// </summary>
 public sealed partial class NFWallmountableSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> WallTag = "Wall";
     private static readonly ProtoId<TagPrototype> DiagonalTag = "Diagonal";

@@ -21,9 +21,9 @@ namespace Content.Server.Anomaly;
 /// </summary>
 public sealed partial class AnomalySystem
 {
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ChatSystem _chat = default!; // Frontier
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ChatSystem _chat = default!; // Frontier
 
     private void InitializeGenerator()
     {

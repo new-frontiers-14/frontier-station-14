@@ -6,9 +6,9 @@ using Content.Shared.Verbs;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-public sealed class AddAccentPickupSystem : EntitySystem
+public sealed partial class AddAccentPickupSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     public override void Initialize()
     {

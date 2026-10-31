@@ -12,7 +12,7 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
-    [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
+    [Dependency] private RadarConsoleSystem _radarConsole = default!;
     private const float SpaceFrictionStrength = 0.0075f;
     private const float DampenDampingStrength = 0.25f;
     private const float AnchorDampingStrength = 2.5f;

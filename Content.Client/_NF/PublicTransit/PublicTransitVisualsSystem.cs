@@ -7,9 +7,9 @@ namespace Content.Client._NF.PublicTransit;
 /// <summary>
 /// If enabled, spawns a public trasnport grid as definied by cvar, to act as an automatic transit shuttle between designated grids
 /// </summary>
-public sealed class PublicTransitSystem : VisualizerSystem<PublicTransitVisualsComponent>
+public sealed partial class PublicTransitSystem : VisualizerSystem<PublicTransitVisualsComponent>
 {
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
 
     protected override void OnAppearanceChange(EntityUid uid, PublicTransitVisualsComponent comp, ref AppearanceChangeEvent args)
     {

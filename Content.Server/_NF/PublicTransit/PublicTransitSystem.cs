@@ -40,23 +40,23 @@ namespace Content.Server._NF.PublicTransit;
 /// <summary>
 /// If enabled, spawns a public trasnport grid as definied by cvar, to act as an automatic transit shuttle between designated grids
 /// </summary>
-public sealed class PublicTransitSystem : EntitySystem
+public sealed partial class PublicTransitSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private ShuttleSystem _shuttles = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private StationRenameWarpsSystems _renameWarps = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetwork = default!;
+    [Dependency] private SectorServiceSystem _sectorService = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.

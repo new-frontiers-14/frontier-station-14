@@ -12,13 +12,13 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Storage.EntitySystems;
 
-public sealed class DumpableSystem : EntitySystem
+public sealed partial class DumpableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
 

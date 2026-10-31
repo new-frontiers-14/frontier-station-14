@@ -6,7 +6,7 @@ using Content.Shared._NF.BindToStation;
 
 namespace Content.Server._NF.GameTicking.Rules.VariationPass;
 
-public sealed class BindToStationVariationPass : VariationPassSystem<BindToStationVariationPassComponent>
+public sealed partial class BindToStationVariationPass : VariationPassSystem<BindToStationVariationPassComponent>
 {
     [Dependency] BindToStationSystem _bindToStation = default!;
     protected override void ApplyVariation(Entity<BindToStationVariationPassComponent> ent, ref StationVariationPassEvent args)

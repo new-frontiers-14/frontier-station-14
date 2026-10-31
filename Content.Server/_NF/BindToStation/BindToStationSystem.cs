@@ -10,11 +10,11 @@ using Robust.Server.Containers;
 
 namespace Content.Server._NF.BindToStation;
 
-public sealed class BindToStationSystem : EntitySystem
+public sealed partial class BindToStationSystem : EntitySystem
 {
-    [Dependency] private readonly ExtensionCableSystem _extensionCable = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private ExtensionCableSystem _extensionCable = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     public override void Initialize()
     {

@@ -8,9 +8,9 @@ namespace Content.Client.Nyanotrasen.Overlays;
 
 public sealed partial class DogVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ISharedPlayerManager _playerMan = default!;
 
     private DogVisionOverlay _overlay = default!;
 

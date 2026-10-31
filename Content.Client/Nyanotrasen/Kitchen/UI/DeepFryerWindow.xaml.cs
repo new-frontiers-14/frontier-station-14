@@ -12,7 +12,7 @@ namespace Content.Client.Nyanotrasen.Kitchen.UI
     [Access(typeof(DeepFryerBoundUserInterface))]
     public sealed partial class DeepFryerWindow : DefaultWindow
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
 
         private static readonly Color WarningColor = Color.FromHsv(new Vector4(0.0f, 1.0f, 0.8f, 1.0f));
 

@@ -6,10 +6,10 @@ using Content.Shared.Clothing._NF.Components;
 
 namespace Content.Server._NF.Clothing.EntitySystems;
 
-public sealed class AutoToggleableOuterClothingSystem : EntitySystem
+public sealed partial class AutoToggleableOuterClothingSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ToggleableClothingSystem _clothing = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ToggleableClothingSystem _clothing = default!;
 
     public override void Initialize()
     {

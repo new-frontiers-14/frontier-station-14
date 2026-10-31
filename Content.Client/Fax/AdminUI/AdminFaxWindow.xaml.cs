@@ -17,7 +17,7 @@ public sealed partial class AdminFaxWindow : DefaultWindow
     public Action<(NetEntity entity, string title, string stampedBy, string message, string stampSprite, Color stampColor, bool locked, bool stampProtected)>? OnMessageSend; // Frontier: add stampProtected
     public Action<NetEntity>? OnFollowFax;
 
-    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private IResourceCache _resCache = default!;
 
     public AdminFaxWindow()
     {

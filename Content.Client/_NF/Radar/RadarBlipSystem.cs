@@ -23,8 +23,8 @@ public sealed partial class RadarBlipSystem : EntitySystem
     // Maximum distance for blips to be considered visible
     private const float MaxBlipRenderDistance = 256f;
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     private TimeSpan _lastUpdatedTime;
     private List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> _blips = new();

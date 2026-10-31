@@ -8,8 +8,8 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed partial class TriggerOnMobstateChangeSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

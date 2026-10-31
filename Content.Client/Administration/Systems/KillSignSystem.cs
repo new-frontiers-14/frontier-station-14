@@ -5,9 +5,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Administration.Systems;
 
-public sealed class KillSignSystem : EntitySystem
+public sealed partial class KillSignSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

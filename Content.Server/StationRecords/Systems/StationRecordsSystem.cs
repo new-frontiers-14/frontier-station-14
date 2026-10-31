@@ -35,15 +35,15 @@ namespace Content.Server.StationRecords.Systems;
 ///     depend on this general record being created. This is subject
 ///     to change.
 /// </summary>
-public sealed class StationRecordsSystem : SharedStationRecordsSystem
+public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly StationRecordKeyStorageSystem _keyStorage = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
-    [Dependency] private readonly ForensicsSystem _forensics = default!; // Frontier
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private StationRecordKeyStorageSystem _keyStorage = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SectorServiceSystem _sectorService = default!; // Frontier
+    [Dependency] private ForensicsSystem _forensics = default!; // Frontier
 
     static readonly ProtoId<JobPrototype>[] FakeJobIds = ["Contractor", "Pilot", "Mercenary"]; // Frontier
 

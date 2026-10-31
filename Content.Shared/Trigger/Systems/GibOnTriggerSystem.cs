@@ -5,10 +5,10 @@ using Content.Shared.Body.Components; // Frontier
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class GibOnTriggerSystem : EntitySystem
+public sealed partial class GibOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public override void Initialize()
     {

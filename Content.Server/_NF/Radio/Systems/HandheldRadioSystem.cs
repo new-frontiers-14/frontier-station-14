@@ -24,13 +24,13 @@ namespace Content.Server._NF.Radio.Systems;
 
 public sealed partial class HandheldRadioSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
 
     public override void Initialize()
     {

@@ -18,12 +18,12 @@ namespace Content.Shared._NF.Interaction.Systems;
 /// </summary>
 public sealed partial class HandPlaceholderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public readonly EntProtoId<HandPlaceholderComponent> Placeholder = "HandPlaceholder";
 

@@ -21,19 +21,19 @@ namespace Content.Shared._EstacaoPirata.Cards.Stack;
 /// It is used to shuffle, flip, insert, remove, and join stacks of cards.
 /// It also handles the events related to the stack of cards.
 /// </summary>
-public sealed class CardStackSystem : EntitySystem
+public sealed partial class CardStackSystem : EntitySystem
 {
     public const string ContainerId = "cardstack-container";
     public const int MaxCardsInStack = 212; // Frontier: four 53-card decks.
 
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly CardHandSystem _cardHandSystem = default!; // Frontier
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private CardHandSystem _cardHandSystem = default!; // Frontier
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

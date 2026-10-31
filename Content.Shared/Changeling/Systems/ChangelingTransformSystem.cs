@@ -15,17 +15,17 @@ namespace Content.Shared.Changeling.Systems;
 
 public sealed partial class ChangelingTransformSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedCloningSystem _cloningSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedCloningSystem _cloningSystem = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private const string ChangelingBuiXmlGeneratedName = "ChangelingTransformBoundUserInterface";
     public override void Initialize()

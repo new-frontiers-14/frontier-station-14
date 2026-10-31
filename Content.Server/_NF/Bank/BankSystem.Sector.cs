@@ -9,7 +9,7 @@ namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private SectorServiceSystem _sectorService = default!;
 
     // The interval between sector account increases, in seconds.
     private const float AccountIncreaseInterval = 10.0f;

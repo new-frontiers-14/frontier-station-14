@@ -23,8 +23,8 @@ public sealed partial class SalvageSystem
     public static readonly EntProtoId CoordinatesDisk = "CoordinatesDisk";
     public static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
 
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
-    [Dependency] private readonly SalvageSystem _salvage = default!; // Frontier
+    [Dependency] private SharedPopupSystem _popupSystem = default!; // Frontier
+    [Dependency] private SalvageSystem _salvage = default!; // Frontier
 
     private const float ShuttleFTLMassThreshold = 50f; // Frontier
     private const float ShuttleFTLRange = 150f; // Frontier

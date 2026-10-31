@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Content.Server._NF.Speech.EntitySystems;
 
 // The whole code is a copy of SouthernAccentSystem by UBlueberry (https://github.com/UBlueberry)
-public sealed class GoblinAccentSystem : EntitySystem
+public sealed partial class GoblinAccentSystem : EntitySystem
 {
     private static readonly Regex RegexIng = new(@"(in)g\b", RegexOptions.IgnoreCase);
     private static readonly Regex RegexAnd = new(@"\b(an)d\b", RegexOptions.IgnoreCase);
@@ -24,7 +24,7 @@ public sealed class GoblinAccentSystem : EntitySystem
     private static readonly Regex RegexSelf = new(@"self\b");
     private static readonly Regex RegexSelfUpper = new(@"SELF\b");
 
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     public override void Initialize()
     {

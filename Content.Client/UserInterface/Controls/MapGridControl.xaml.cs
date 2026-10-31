@@ -17,8 +17,8 @@ namespace Content.Client.UserInterface.Controls;
 [Virtual]
 public partial class MapGridControl : LayoutContainer
 {
-    [Dependency] protected readonly IEntityManager EntManager = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IEntityManager EntManager = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     protected static readonly Color BackingColor = new Color(0.08f, 0.08f, 0.08f);
 
@@ -83,9 +83,9 @@ public partial class MapGridControl : LayoutContainer
     // Frontier
     /// <summary>
     /// Determines if the map's range is scaled to match the longest axis of the control.
-    /// 
+    ///
     /// If true, the map's range will stay the same no matter what size the control is.
-    /// 
+    ///
     /// If false, the map's range will expand/contract as the control's size changes.
     /// </summary>
     public bool RescaleMap = true;
@@ -97,7 +97,7 @@ public partial class MapGridControl : LayoutContainer
 
     /// <summary>
     /// The world range after map scaling is applied. Used for the rendering clipping AABB.
-    /// 
+    ///
     /// When RescaleMap is false, this will grow/shrink past MaxWorldRange.
     /// When RescaleMap is true, this will always be equal to or less than world range
     /// </summary>

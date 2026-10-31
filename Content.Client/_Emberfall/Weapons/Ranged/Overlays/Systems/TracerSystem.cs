@@ -7,11 +7,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Emberfall.Weapons.Ranged.Systems;
 
-public sealed class TracerSystem : EntitySystem
+public sealed partial class TracerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

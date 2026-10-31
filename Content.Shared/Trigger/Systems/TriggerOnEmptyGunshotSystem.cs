@@ -4,7 +4,7 @@ using Content.Shared.Weapons.Ranged.Events;
 namespace Content.Shared.Trigger.Systems;
 public sealed partial class TriggerOnEmptyGunshotSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
 
     public override void Initialize()
     {
