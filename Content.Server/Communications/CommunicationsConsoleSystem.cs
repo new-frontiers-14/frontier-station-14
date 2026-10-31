@@ -384,5 +384,4 @@ namespace Content.Server.Communications
         public EntityUid? Sender = Sender;
         public string? Reason;
     }
-
 }
