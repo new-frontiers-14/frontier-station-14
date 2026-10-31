@@ -1,0 +1,18 @@
+- type: entity
+  parent: MarkerBase
+  name: space koi spawner
+  id: SpawnSpaceKoi
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Aliens/Kois/red_black.rsi
+      state: livestock_icon
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSpaceGlowKoi
+    - MobRedBlackKoi
+    - MobGoldBlackKoi
+    - MobRedCircleKoi
+    - MobBloodSkeletonKoi
