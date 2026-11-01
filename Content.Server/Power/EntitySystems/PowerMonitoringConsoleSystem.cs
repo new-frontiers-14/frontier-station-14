@@ -767,7 +767,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                     if (TerminatingOrDeleted(child))
                     {
                         Log.Warning("Attempting to update node group in deleted child {0}", child);
-                        return;
+                        continue;
                     }
                     // End Frontier
                     newMasterDevice.ChildDevices.Add(child, childDevice);
