@@ -112,9 +112,9 @@
     listenRange: 2
     enabled: true
     powerRequired: true
-    toggleOnInteract: false
     unobstructedRequired: true
-  - type: ActiveListener
+  - type: Intercom
+    startMicrophoneOnMapInit: true
   - type: Sprite
     noRot: false
     drawdepth: SmallObjects
@@ -140,9 +140,9 @@
     channels:
     - Courtroom
     enabled: true
-    toggleOnInteract: false
     outputChatType: Speak
-  - type: ActiveRadio
+  - type: Intercom
+    startSpeakerOnMapInit: true
   - type: Sprite
     noRot: false
     drawdepth: SmallObjects
