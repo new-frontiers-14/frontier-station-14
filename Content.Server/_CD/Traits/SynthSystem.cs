@@ -1,5 +1,6 @@
 using Content.Server.Body.Systems;
 using Content.Server.Database;
+using Content.Shared.Body.Components;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
@@ -30,7 +31,12 @@ public sealed class SynthSystem : EntitySystem
             Dirty(uid, indicator);
         }
 
-        // Give them synth blood. Ion storm notif is handled in that system
-        _bloodstream.ChangeBloodReagent(uid, SynthBloodReagent); // DeltaV - make strings static readonly
+        // Begin DeltaV - Change blood amount according to original BloodstreamCompoent.ReferenceSolution volume
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
+        {
+            // Give them synth blood. Ion storm notif is handled in that system
+            _bloodstream.ChangeBloodReagents((uid, bloodstream), new([new(SynthBloodReagent, bloodstream.BloodReferenceSolution.Volume)]));
+        }
+        // End DeltaV
     }
 }
