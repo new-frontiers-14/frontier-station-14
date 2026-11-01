@@ -40,13 +40,6 @@
     - CannotSuicide
   - type: StaticPrice
     price: -800
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodCuredCarp
-      amount: 2
-    - id: MaterialToothSpaceCarp1
-      amount: 1
-      maxAmount: 4
   - type: InteractionPopup
     successChance: 0.6
     interactSuccessString: petting-success-carp
@@ -121,3 +114,10 @@
     radius: 1.2
     energy: 2
     color: "#4faffb"
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: unshaded
+      Dead:
+        Base: dead
