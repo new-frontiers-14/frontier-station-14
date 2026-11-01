@@ -50,7 +50,8 @@ public class GuideEntry
 
     // Frontier: guidebook search and colors, adapted from Starlight #6822.
     /// <summary>
-    /// Additional localized search terms for this page.
+    /// Additional localized search terms, alongside the automatic
+    /// <c>nf-guidebook-search-keywords-{lowercase Id}</c> localization entry.
     /// </summary>
     [DataField]
     public List<LocId> SearchKeywords = new();

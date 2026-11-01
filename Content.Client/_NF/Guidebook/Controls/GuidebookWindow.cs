@@ -8,6 +8,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.Guidebook.Controls; // Extends the upstream partial class in its original namespace.
 
 // Frontier: extends the upstream partial in its original namespace.
@@ -20,14 +21,28 @@ public sealed partial class GuidebookWindow
 
     public event Action? OnBrowseAllGuides;
 
+    /// <summary>
+    /// Localized search terms cached for the entries currently shown in the tree.
+    /// </summary>
     private readonly Dictionary<TreeItem, GuidebookSearchEntry> _searchEntries = new();
+
+    /// <summary>
+    /// Expansion states restored when the player clears a search.
+    /// </summary>
     private readonly Dictionary<TreeItem, bool> _preSearchExpanded = new();
+
+    /// <summary>
+    /// Resolved colors inherited by child pages without an explicit color or department.
+    /// </summary>
     private readonly Dictionary<TreeItem, Color> _entryColors = new();
     private readonly List<ProtoId<GuideEntryPrototype>> _history = new();
     private int _historyIndex = -1;
     private bool _navigatingHistory;
     private bool _sidebarCollapsed;
     private bool _hasSidebar;
+    /// <summary>
+    /// Where the divider was last dragged to, restored when the contents are shown again.
+    /// </summary>
     private float? _sidebarSplit;
 
     private void InitializeNavigation()
@@ -106,6 +121,7 @@ public sealed partial class GuidebookWindow
             ? SplitContainer.SplitResizeMode.RespectChildrenMinSize
             : SplitContainer.SplitResizeMode.NotResizable;
 
+        // A manual split keeps the sidebar's width as an empty gap when its contents are hidden.
         if (!TreeBox.Visible)
             Split.State = SplitContainer.SplitState.Auto;
         else if (_sidebarSplit is { } split)
@@ -116,11 +132,17 @@ public sealed partial class GuidebookWindow
             : "nf-guidebook-hide-contents");
     }
 
+    /// <summary>
+    /// Clears the query and restores hidden entries before navigation or a guidebook refresh.
+    /// </summary>
     private void ClearCategorySearch()
     {
         CategorySearchBar.SetText("", invokeEvent: true);
     }
 
+    /// <summary>
+    /// Discards cached search terms, expansion states, and colors when the entry tree is rebuilt.
+    /// </summary>
     private void ClearGuidebookSearchIndex()
     {
         _searchEntries.Clear();
@@ -128,6 +150,9 @@ public sealed partial class GuidebookWindow
         _entryColors.Clear();
     }
 
+    /// <summary>
+    /// Caches search terms and resolves the explicit, departmental, or inherited color, in that order.
+    /// </summary>
     private void IndexGuidebookEntry(TreeItem item, TreeItem? parent, GuideEntry entry)
     {
         _searchEntries[item] = GuidebookSearchEntry.FromEntry(entry, _localization);
@@ -142,6 +167,7 @@ public sealed partial class GuidebookWindow
             return;
 
         _entryColors[item] = entryColor;
+        // Lighten dark text while preserving its hue and saturation; the marker keeps the original color.
         var textColor = entryColor;
         if (Color.ToHsv(textColor).Z < 0.6f)
         {
