@@ -203,7 +203,7 @@ public sealed partial class ShuttleNavControl
             List<Vector2> meshCollator = new();
 
             // TODO: make this set somewhere else so people can easily change the colours.
-            var centreColour = Color.Blue;
+            var centreColour = Color.Cyan;
             var riverColour = Color.DarkGray;
             riverColour.A = 0.05f;
 
@@ -227,15 +227,15 @@ public sealed partial class ShuttleNavControl
 
                     anySegmentInView = true;
 
-                    //if (!_rivers.TryGetNodeData(nextNode, out var nextNodeComp))
-                    //{
-                    //    continue;
-                    //}
-                    //Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
-                    //Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
-                    //
-                    //handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
-                    //handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);
+                    if (!_rivers.TryGetNodeData(nextNode, out var nextNodeComp))
+                    {
+                        continue;
+                    }
+                    Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
+                    Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
+
+                    handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
+                    handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);
                 }
                 if (!anySegmentInView)
                 {
@@ -243,36 +243,51 @@ public sealed partial class ShuttleNavControl
                 }
 
                 // Gets the central river lines ready for rendering.
-                var lineData = _rivers.LineData[node];
-                Vector2[] renderLines = new Vector2[lineData.Length];
-                for (var j = 0; j < lineData.Length; j++)
+                if (_rivers.LineData.ContainsKey(node))
                 {
-                    renderLines[j] = Vector2.Transform(lineData[j], worldToView);
-                }
-                Vector2[] lineArray;
-                if (MinimapScale > 0.2f) // Ensures the dashed lines are only drawn at reasonable zoom levels.
-                {
-                    var dashLength = 5 * MinimapScale;
-                    var gapLength = 5 * MinimapScale;
-                    lineArray = _rivers.CreateDottedLineSpan(renderLines,
-                        dashSize: dashLength,
-                        gapSize: gapLength,
-                        offset: _flowIndicatorOffset * FlowSpeed * MinimapScale);
+                    var lineData = _rivers.LineData[node];
+                    Vector2[] renderLines = new Vector2[lineData.Length];
+                    for (var j = 0; j < lineData.Length; j++)
+                    {
+                        renderLines[j] = Vector2.Transform(lineData[j], worldToView);
+                    }
+                    Vector2[] lineArray;
+                    if (MinimapScale > 0.2f) // Ensures the dashed lines are only drawn at reasonable zoom levels.
+                    {
+                        var dashLength = 5 * MinimapScale;
+                        var gapLength = 5 * MinimapScale;
+                        lineArray = _rivers.CreateDottedLineSpan(renderLines,
+                            dashSize: dashLength,
+                            gapSize: gapLength,
+                            offset: _flowIndicatorOffset * FlowSpeed * MinimapScale);
+                    }
+                    else
+                    {
+                        lineArray = renderLines;
+                    }
+                    lineCollator.AddRange(lineArray);
                 }
                 else
                 {
-                    lineArray = renderLines;
+                    bool huh = false;
                 }
-                lineCollator.AddRange(lineArray);
 
                 // Gets the river mesh ready for rendering.
-                var meshData = _rivers.MeshData[node];
-                Vector2[] renderMesh = new Vector2[meshData.Length];
-                for (var i = 0; i < meshData.Length; i++)
+                if (_rivers.MeshData.ContainsKey(node))
                 {
-                    renderMesh[i] = Vector2.Transform(meshData[i], worldToView);
+                    var meshData = _rivers.MeshData[node];
+                    Vector2[] renderMesh = new Vector2[meshData.Length];
+                    for (var i = 0; i < meshData.Length; i++)
+                    {
+                        renderMesh[i] = Vector2.Transform(meshData[i], worldToView);
+                    }
+                    meshCollator.AddRange(renderMesh);
                 }
-                meshCollator.AddRange(renderMesh);
+                else
+                {
+                    bool huh2 = false;
+                }
+                
             }
 
             // Render the rivers and their centre lines in batches to not overrun the DrawPrimitives method, while being more performant.

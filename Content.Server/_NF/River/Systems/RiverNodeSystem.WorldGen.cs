@@ -1,6 +1,8 @@
 using Content.Server._NF.River.Components;
 using Content.Shared.Shuttles.Components;
+using Pidgin;
 using Robust.Shared.Map;
+using Robust.Shared.Serialization.Markdown.Validation;
 using System.Collections;
 using System.Data;
 using System.Numerics;
@@ -29,6 +31,12 @@ public partial class RiverNodeSystem
         var validPois = FilterValidPOIs(mapId, pois);
         var poiPositions = GetPOIPositions(validPois);
         poiPositions.Add(new Vector2(0f, 0f)); // Adds Frontier Station.
+
+        foreach (var poi in poiPositions)
+        {
+            var random = _random.Next(2);
+            CreateWell(mapId, poi, 200f, 1 == random); // 1 == random randomises the well rotation.
+        }
 
         // Connect all the POIs that are in range of eachother
         List<Connection> connections = new();
@@ -236,27 +244,38 @@ public partial class RiverNodeSystem
         // Create the actual rivers.
         foreach (var connection in validConnections)
         {
-            //CreateRiver(mapId, connection.Start, connection.End);
             CreateRiverPair(mapId, connection.Start, connection.End);
         }
     }
 
     public bool CreateRiverPair(MapId mapId, Vector2 location1, Vector2 location2, Angle flowDirection1 = default, Angle flowDirection2 = default, bool customFlowDirs = false)
     {
-        // TODO: Fix whatever it is that is broken here. Still creates too many river segments I guess? (How though? I don't quite get it, it should be far *fewer* than previous attempts)
-        var maxDistanceSquared = MathF.Pow(200f, 2f); //Magic number, TODO: Kill
-        var minDistBetweenRiversSquared = MathF.Pow(60f, 2f);
+        var minDistBetweenRivers = 40f; // the default Node Range
+        var maxDistance = 200f;
 
-        List<Vector2> nodePositions1 = new(); //Can insert, woo!
-        List<Vector2> nodePositions2 = new(); //Both should be generated from 1 to 2, but the order of flow should go the other way. Just so that they are able to remain separate.
+        var maxDistanceSquared = MathF.Pow(maxDistance, 2f);
+        var minDistBetweenRiversSquared = MathF.Pow(minDistBetweenRivers, 2f);
 
-        nodePositions1.Add(location1);
-        nodePositions1.Add(location2);
-        nodePositions2.Add(location1);
-        nodePositions2.Add(location2);
+        List<Vector2> nodePositionsRight = new();
+        List<Vector2> nodePositionsLeft = new();
+
+        var longTangent = Vector2.Normalize(location2 - location1);
+        var longNormal = new Vector2(-longTangent.Y, longTangent.X); //Left
+
+        location1 = location1 + longTangent * 200f; //200f = Exclusion zone radius of POIs
+        location2 = location2 - longTangent * 200f; //ibid = Exclusion zone radius
+
+        var offsetLoc1Left = location1 - longNormal * minDistBetweenRivers;
+        var offsetLoc2Left = location2 - longNormal * minDistBetweenRivers;
+        var offsetLoc1Right = location1 + longNormal * minDistBetweenRivers;
+        var offsetLoc2Right = location2 + longNormal * minDistBetweenRivers;
+
+        nodePositionsRight.Add(offsetLoc1Left);
+        nodePositionsRight.Add(offsetLoc2Left);
+        nodePositionsLeft.Add(offsetLoc1Right);
+        nodePositionsLeft.Add(offsetLoc2Right);
 
         var locationDistanceSquared = (location1 - location2).LengthSquared();
-        var longTangent = Vector2.Normalize(location2 - location1);
 
         if (locationDistanceSquared < maxDistanceSquared) //Does not support tiny rivers.
         {
@@ -264,23 +283,18 @@ public partial class RiverNodeSystem
         }
 
         int segmentNumber = (int)MathF.Sqrt(locationDistanceSquared / maxDistanceSquared);
-        var isDone = false;
-        var safetyLimit = 100;
-        //while (!isDone && safetyLimit > 0)
         for (int i = 1; i <= segmentNumber; i *= 2)
         {
-            isDone = true;
 
             var tempList1 = new List<Vector2>();
             var tempList2 = new List<Vector2>();
-            for (var i0 = 0; i0 < Math.Min(nodePositions1.Count, nodePositions2.Count) - 1; i0++) //1To2 and 2To1 should always be equal, but in case they aren't, this prevents over-running the lists.
+            for (var i0 = 0; i0 < Math.Min(nodePositionsRight.Count, nodePositionsLeft.Count) - 1; i0++) //1To2 and 2To1 should always be equal, but in case they aren't, this prevents over-running the lists.
             {
                 var i1 = i0 + 1;
-                // Pick the halfway point between nodePositionsNToM[i] and nodePositionsNToM[i + 1], perturb it along the normal, make sure it doesn't cross over its sibling,
-                var nodePos1A = nodePositions1[i0];
-                var nodePos1B = nodePositions1[i1];
-                var nodePos2A = nodePositions2[i0];
-                var nodePos2B = nodePositions2[i1];
+                var nodePos1A = nodePositionsRight[i0];
+                var nodePos1B = nodePositionsRight[i1];
+                var nodePos2A = nodePositionsLeft[i0];
+                var nodePos2B = nodePositionsLeft[i1];
 
                 var distance1 = (nodePos1B - nodePos1A).Length() * 0.2f;
                 var distance2 = (nodePos2B - nodePos2A).Length() * 0.2f;
@@ -290,18 +304,13 @@ public partial class RiverNodeSystem
                 var normal1 = new Vector2(-tangent1.Y, tangent1.X); //Left
                 var normal2 = new Vector2(-tangent2.Y, tangent2.X); //Left
 
-                //Testing
-                //normal1 = new Vector2(-longTangent.Y, longTangent.X);
-                //normal2 = normal1;
-                //Testing
-
                 var midNode1 = (nodePos1A + nodePos1B) * 0.5f;
                 var midNode2 = (nodePos2A + nodePos2B) * 0.5f;
 
-                var furthestLeft1 = MathF.Sqrt(minDistBetweenRiversSquared) - MathF.Sqrt(DistanceToLineSegmentSquared(midNode1, nodePos2A, nodePos2B, out var _, out var _));
+                var furthestLeft1 = minDistBetweenRivers * 2f - MathF.Sqrt(DistanceToLineSegmentSquared(midNode1, nodePos2A, nodePos2B, out var _, out var _));
                 var normalOffset1 = _random.NextFloat(MathF.Max(furthestLeft1, -distance1), distance1);
 
-                var furthestRight2 = MathF.Sqrt(DistanceToLineSegmentSquared(midNode2, nodePos1A, nodePos1B, out var _, out var _)) - MathF.Sqrt(minDistBetweenRiversSquared) + normalOffset1; //Make this dependent on how far left MidNode1 went.
+                var furthestRight2 = MathF.Sqrt(DistanceToLineSegmentSquared(midNode2, nodePos1A, nodePos1B, out var _, out var _)) - minDistBetweenRivers * 2f + normalOffset1; //Make this dependent on how far left MidNode1 went.
                 var normalOffset2 = _random.NextFloat(-distance2, MathF.Min(furthestRight2, distance2));
 
                 midNode1 = midNode1 + normal1 * -normalOffset1;
@@ -313,37 +322,23 @@ public partial class RiverNodeSystem
                 tempList2.Add(nodePos2A);
                 tempList2.Add(midNode2);
 
-                if (i0 == Math.Min(nodePositions1.Count, nodePositions2.Count) - 2)
+                if (i0 == Math.Min(nodePositionsRight.Count, nodePositionsLeft.Count) - 2)
                 {
                     tempList1.Add(nodePos1B);
                     tempList2.Add(nodePos2B);
                 }
-
-                if ((midNode1 - nodePos1A).LengthSquared() > maxDistanceSquared ||
-                    (midNode1 - nodePos1B).LengthSquared() > maxDistanceSquared ||
-                    (midNode2 - nodePos2A).LengthSquared() > maxDistanceSquared ||
-                    (midNode2 - nodePos2B).LengthSquared() > maxDistanceSquared)
-                {
-                    isDone = false;
-                }
             }
-            nodePositions1.Clear();
-            nodePositions1.AddRange(tempList1);
-            nodePositions2.Clear();
-            nodePositions2.AddRange(tempList2);
+            nodePositionsRight.Clear();
+            nodePositionsRight.AddRange(tempList1);
+            nodePositionsLeft.Clear();
+            nodePositionsLeft.AddRange(tempList2);
             tempList1.Clear();
             tempList2.Clear();
-
-            safetyLimit--;
-        }
-        if (safetyLimit <= 0)
-        {
-            bool safetyLimitHit = true; //For breakpoints
         }
 
-        PopulateRiverFromVector2List(mapId, nodePositions1);
-        nodePositions2.Reverse();
-        PopulateRiverFromVector2List(mapId, nodePositions2);
+        PopulateRiverFromVector2List(mapId, nodePositionsRight);
+        nodePositionsLeft.Reverse();
+        PopulateRiverFromVector2List(mapId, nodePositionsLeft);
 
         _nodesChanged = true;
         return true;
@@ -351,16 +346,75 @@ public partial class RiverNodeSystem
 
     public void PopulateRiverFromVector2List(MapId mapId, List<Vector2> nodePositions, Angle entryFlowDirection = default, Angle exitFlowDirection = default, bool customFlowDirs = false)
     {
+        //TODO: Polish the shit out of this. Currently nodes connect to nodes that don't face the right way and stuff like that.
         List<EntityUid> nodes1 = new();
         for (var i = 0; i < nodePositions.Count; i++)
         {
-            if (i == 0)
+            Angle flowDirection;
+            var priorNode = EntityUid.Invalid;
+
+            // Handle the flowDirection of this node.
+            if (i > 0)
+            {
+                priorNode = nodes1[i - 1];
+                if (i == nodePositions.Count - 1)
+                {
+                    if (!customFlowDirs)
+                    {
+                        flowDirection = Vector2.Normalize(nodePositions[i] - nodePositions[i - 1]).ToAngle();
+                    }
+                    else
+                    {
+                        flowDirection = exitFlowDirection;
+                    }
+                }
+                else
+                {
+                    flowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i - 1]).ToAngle();
+                }
+            }
+            else
             {
                 if (!customFlowDirs)
                 {
-                    entryFlowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i]).ToAngle();
+                    flowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i]).ToAngle();
                 }
-                var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
+                else
+                {
+                    flowDirection = entryFlowDirection;
+                }
+            }
+
+            var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
+
+            // Check if nodes should be merged with nodes from other rivers.
+            var nearbyNodes = _lookup.GetEntitiesInRange<RiverNodeComponent>(nodeCoord, 100f); //Magic number, TODO: KILL
+            var mergeNode = EntityUid.Invalid;
+            var mergeNodeDistanceSquared = -1f;
+            foreach (EntityUid node in nearbyNodes)
+            {
+                if (node == priorNode || !TryComp<RiverNodeComponent>(node, out var nearbyComp))
+                {
+                    continue;
+                }
+
+                var angleDelta = Math.Abs(Angle.ShortestDistance(flowDirection, nearbyComp.FlowDirection));
+                var nodeDistanceSquared = (_transform.GetWorldPosition(node) - nodePositions[i]).LengthSquared();
+                var isBetterFit = false;
+                if (mergeNodeDistanceSquared == -1f || nodeDistanceSquared < mergeNodeDistanceSquared)
+                {
+                    isBetterFit = true;
+                }
+                if (angleDelta < Angle.FromDegrees(90d) && isBetterFit)
+                {
+                    mergeNodeDistanceSquared = nodeDistanceSquared;
+                    mergeNode = node;
+                }
+            }
+
+            // If relevant, create a new node, and connect nodes to form a river segment.
+            if (mergeNode == EntityUid.Invalid)
+            {
                 var newNode = Spawn("SpaceRiverNode", nodeCoord);
 
                 if (!TryComp<RiverNodeComponent>(newNode, out var newComp))
@@ -368,90 +422,123 @@ public partial class RiverNodeSystem
                     continue; //bad
                 }
 
-                newComp.FlowDirection = entryFlowDirection;
-                newComp.ForwardControlPoint = entryFlowDirection.ToVec() * 50f; //Magic number TODO: Kill
-                nodes1.Add(newNode);
-            }
-            else if (i == nodePositions.Count - 1)
-            {
-                if (!customFlowDirs)
+                newComp.FlowDirection = flowDirection;
+                if (i == 0)
                 {
-                    exitFlowDirection = Vector2.Normalize(nodePositions[i] - nodePositions[i - 1]).ToAngle();
+                    newComp.ForwardControlPoint = (nodePositions[i + 1] - nodePositions[i]) * 0.25f;
                 }
-                var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
-                var newNode = Spawn("SpaceRiverNode", nodeCoord);
-
-                if (!TryComp<RiverNodeComponent>(newNode, out var newComp) ||
-                    !TryComp<RiverNodeComponent>(nodes1[i - 1], out var priorComp))
-                {
-                    continue; //bad
-                }
-
-                newComp.FlowDirection = exitFlowDirection;
-                newComp.ForwardControlPoint = exitFlowDirection.ToVec() * 50f; //Magic number TODO: Kill
-                newComp.PriorNodes.Add(GetNetEntity(nodes1[i - 1]));
-                priorComp.NextNodes.Add(GetNetEntity(newNode));
-
-                nodes1.Add(newNode);
+                mergeNode = newNode;
             }
-            else
+
+            if (i > 0)
             {
-                var flowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i - 1]);
-                var nodeCoord = new MapCoordinates(nodePositions[i], mapId);
-                var newNode = Spawn("SpaceRiverNode", nodeCoord);
-
-                if (!TryComp<RiverNodeComponent>(newNode, out var newComp) ||
-                    !TryComp<RiverNodeComponent>(nodes1[i - 1], out var priorComp))
-                {
-                    continue; //bad
-                }
-
-                newComp.FlowDirection = flowDirection.ToAngle();
-                newComp.ForwardControlPoint = flowDirection * 50f; //Magic number TODO: Kill
-                newComp.PriorNodes.Add(GetNetEntity(nodes1[i - 1]));
-                priorComp.NextNodes.Add(GetNetEntity(newNode));
-
-                nodes1.Add(newNode);
+                ConnectNodes(priorNode, mergeNode);
             }
-        }
-        foreach (var node in nodes1)
-        {
-            if (!TryComp<RiverNodeComponent>(node, out var comp))
-            {
-                continue;
-            }
-            Dirty(node, comp);
+
+            nodes1.Add(mergeNode);
         }
     }
 
-    public bool CreateRiver(MapId mapId, Vector2 startLocation, Vector2 endLocation)
+    public void ConnectNodes(EntityUid sourceNode, EntityUid endNode)
     {
-        //TODO: Make this something that's not horrible. *Very* placeholder, just draws long as lines for now.
-
-        var startCoord = new MapCoordinates(startLocation, mapId);
-        var endCoord = new MapCoordinates(endLocation, mapId);
-        var startNode = Spawn("SpaceRiverNode", startCoord);
-        var endNode = Spawn("SpaceRiverNode", endCoord);
-
-        var flowDirection = Vector2.Normalize(endLocation - startLocation).ToAngle();
-        if (!TryComp<RiverNodeComponent>(startNode, out var startComp)
-            || !TryComp<RiverNodeComponent>(endNode, out var endComp))
+        if (!TryComp<RiverNodeComponent>(sourceNode, out var sourceComp) ||
+            !TryComp<RiverNodeComponent>(endNode, out var endComp))
         {
-            return false;
+            return;
+        }
+        ConnectNodes(sourceNode, sourceComp, endNode, endComp);
+    }
+
+    public void ConnectNodes(EntityUid sourceNode, RiverNodeComponent sourceComp, EntityUid endNode, RiverNodeComponent endComp)
+    {
+        var sourcePos = _transform.GetWorldPosition(sourceNode);
+        var endPos = _transform.GetWorldPosition(endNode);
+
+        var distance = (endPos - sourcePos).Length();
+
+        sourceComp.ForwardControlPoint = sourceComp.FlowDirection.ToVec() * (distance * 0.25f);
+        endComp.ForwardControlPoint = endComp.FlowDirection.ToVec() * (distance * 0.25f);
+
+        var netSourceNode = GetNetEntity(sourceNode);
+        var netEndNode = GetNetEntity(endNode);
+
+        if (!endComp.PriorNodes.Contains(netSourceNode))
+        {
+            endComp.PriorNodes.Add(netSourceNode);
+        }
+        if (!sourceComp.NextNodes.Contains(netEndNode))
+        {
+            sourceComp.NextNodes.Add(netEndNode);
         }
 
-        startComp.FlowDirection = flowDirection;
-        endComp.FlowDirection = flowDirection;
-
-        startComp.ForwardControlPoint = startComp.FlowDirection.ToVec() * startComp.Boost * 50f;
-        endComp.ForwardControlPoint = endComp.FlowDirection.ToVec() * endComp.Boost * 50f;
-
-        startComp.NextNodes.Add(GetNetEntity(endNode));
-        endComp.PriorNodes.Add(GetNetEntity(startNode));
-        Dirty(startNode, startComp);
+        Dirty(sourceNode, sourceComp);
         Dirty(endNode, endComp);
+    }
 
-        return true;
+    /// <summary>
+    /// Creates a circular river around a location
+    /// </summary>
+    /// <param name="mapId">The map the well should spawn on</param>
+    /// <param name="location">The location around which the well should be centred</param>
+    /// <param name="radius">How wide the well should be</param>
+    /// <param name="clockwise">The flow is clockwise if true, or counterclockwise if false</param>
+    public void CreateWell(MapId mapId, Vector2 location, float radius, bool clockwise)
+    {
+        var nodeAmount = 16;
+        var randomRotation = _random.NextAngle();
+        double angleDiff = 360 / nodeAmount;
+        var nodes = new EntityUid[nodeAmount];
+        var components = new RiverNodeComponent[nodeAmount];
+        var chirality = 1;
+        if (!clockwise)
+        {
+            chirality = -1;
+        }
+        for (var i = 0; i < nodeAmount; i++)
+        {
+            var nodeProto = (Angle.FromDegrees(i * angleDiff * chirality) + randomRotation).Reduced();
+
+            var nodePos = location + nodeProto.ToVec() * radius;
+
+            var nodeCoord = new MapCoordinates(nodePos, mapId);
+
+            nodes[i] = Spawn("SpaceRiverNode", nodeCoord);
+
+            if (!TryComp<RiverNodeComponent>(nodes[i], out var comp))
+            {
+                return; //bad
+            }
+            components[i] = comp;
+
+
+            components[i].FlowDirection = nodeProto + Angle.FromDegrees(90d * chirality);
+
+            components[i].ForwardControlPoint = components[i].FlowDirection.ToVec() * radius * (2f / (float)nodeAmount);
+
+        }
+
+        for (var j = 0; j < nodeAmount; j++)
+        {
+            if (j == 0)
+            {
+                components[j].PriorNodes.Add(GetNetEntity(nodes[nodeAmount - 1]));
+            }
+            else
+            {
+                components[j].PriorNodes.Add(GetNetEntity(nodes[j - 1]));
+            }
+
+            if (j == nodeAmount - 1)
+            {
+                components[j].NextNodes.Add(GetNetEntity(nodes[0]));
+            }
+            else
+            {
+                components[j].NextNodes.Add(GetNetEntity(nodes[j + 1]));
+            }
+
+            Dirty(nodes[j], components[j]);
+        }
     }
 
     /// <summary>

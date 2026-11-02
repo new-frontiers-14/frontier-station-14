@@ -298,7 +298,16 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         {
             return false;
         }
-
+        foreach (var node in nodeComp.NextNodes)
+        {
+            var nextNode = GetEntity(node);
+            if (!TryComp<RiverNodeComponent>(nextNode, out var nextComp))
+            {
+                continue;
+            }
+            HandleLoneSegment(entryNode, nodeComp, nextNode, nextComp, resolution);
+        }
+        return true;
         if (nodeComp.NextNodes.Count == 1)
         {
             var nodeList = GetNextNodes(nodeComp);
@@ -324,6 +333,15 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         }
         else if (nodeComp.NextNodes.Count != 0)
         {
+            foreach (var node in nodeComp.NextNodes)
+            {
+                var exitNode = GetEntity(node);
+                if (!TryComp<RiverNodeComponent>(exitNode, out var exitComp))
+                {
+                    continue;
+                }
+                return HandleLoneSegment(entryNode, nodeComp, exitNode, exitComp, resolution);
+            }
             // If a Sprouting Segment is also Converging... Yea, It should throw an error somewhere.
             return false;// HandleSproutingSegments(entryNode, nodeComp, resolution);
         }
@@ -418,11 +436,17 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 
         if (!MeshData.TryAdd(entryNode, protoMesh.ToArray()))
         {
-            MeshData[entryNode] = protoMesh.ToArray();
+            Vector2[] newMesh = new Vector2[MeshData[entryNode].Length + protoMesh.Count];
+            MeshData[entryNode].CopyTo(newMesh, 0);
+            protoMesh.ToArray().CopyTo(newMesh, MeshData[entryNode].Length);
+            MeshData[entryNode] = newMesh;
         }
         if (!LineData.TryAdd(entryNode, protoLines.ToArray()))
         {
-            LineData[entryNode] = protoLines.ToArray();
+            Vector2[] newLines = new Vector2[LineData[entryNode].Length + protoLines.Count];
+            LineData[entryNode].CopyTo(newLines, 0);
+            protoLines.ToArray().CopyTo(newLines, LineData[entryNode].Length);
+            LineData[entryNode] = newLines;
         }
         return true;
     }
