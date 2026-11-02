@@ -287,7 +287,6 @@ public sealed partial class ShuttleNavControl
                 {
                     bool huh2 = false;
                 }
-                
             }
 
             // Render the rivers and their centre lines in batches to not overrun the DrawPrimitives method, while being more performant.

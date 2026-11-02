@@ -1,12 +1,7 @@
 using Content.Server._NF.River.Components;
 using Content.Shared.Shuttles.Components;
-using Pidgin;
 using Robust.Shared.Map;
-using Robust.Shared.Serialization.Markdown.Validation;
-using System.Collections;
-using System.Data;
 using System.Numerics;
-using System.Reflection.Metadata;
 
 namespace Content.Server._NF.River.Systems;
 
@@ -35,7 +30,12 @@ public partial class RiverNodeSystem
         foreach (var poi in poiPositions)
         {
             var random = _random.Next(2);
-            CreateWell(mapId, poi, 200f, 1 == random); // 1 == random randomises the well rotation.
+            Chirality spin = Chirality.Counterclockwise;
+            if (random == 0)
+            {
+                spin = Chirality.Clockwise;
+            }
+            CreateWell(mapId, poi, 200f, spin);
         }
 
         // Connect all the POIs that are in range of eachother
@@ -482,27 +482,37 @@ public partial class RiverNodeSystem
     /// <param name="location">The location around which the well should be centred</param>
     /// <param name="radius">How wide the well should be</param>
     /// <param name="clockwise">The flow is clockwise if true, or counterclockwise if false</param>
-    public void CreateWell(MapId mapId, Vector2 location, float radius, bool clockwise)
+    public void CreateWell(MapId mapId, Vector2 location, float radius, Chirality spin)
     {
+        var well = Spawn("SpaceRiverWell", new MapCoordinates(location, mapId));
+
+        if (!TryComp<RiverWellComponent>(well, out var wellComp))
+        {
+            return; // bad
+        }
+        wellComp.FlowRotation = spin;
+        wellComp.Radius = radius;
+
         var nodeAmount = 16;
         var randomRotation = _random.NextAngle();
         double angleDiff = 360 / nodeAmount;
         var nodes = new EntityUid[nodeAmount];
         var components = new RiverNodeComponent[nodeAmount];
-        var chirality = 1;
-        if (!clockwise)
+        var chiralityMod = 1;
+        if (spin == Chirality.Counterclockwise)
         {
-            chirality = -1;
+            chiralityMod = -1;
         }
         for (var i = 0; i < nodeAmount; i++)
         {
-            var nodeProto = (Angle.FromDegrees(i * angleDiff * chirality) + randomRotation).Reduced();
+            var nodeProto = (Angle.FromDegrees(i * angleDiff * chiralityMod) + randomRotation).Reduced();
 
             var nodePos = location + nodeProto.ToVec() * radius;
 
             var nodeCoord = new MapCoordinates(nodePos, mapId);
 
             nodes[i] = Spawn("SpaceRiverNode", nodeCoord);
+            wellComp.WellNodes.Add(nodes[i]);
 
             if (!TryComp<RiverNodeComponent>(nodes[i], out var comp))
             {
@@ -511,7 +521,7 @@ public partial class RiverNodeSystem
             components[i] = comp;
 
 
-            components[i].FlowDirection = nodeProto + Angle.FromDegrees(90d * chirality);
+            components[i].FlowDirection = nodeProto + Angle.FromDegrees(90d * chiralityMod);
 
             components[i].ForwardControlPoint = components[i].FlowDirection.ToVec() * radius * (2f / (float)nodeAmount);
 
