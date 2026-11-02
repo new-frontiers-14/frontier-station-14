@@ -57,19 +57,11 @@ public sealed class BinSystem : EntitySystem
         foreach (var id in component.InitialContents)
         {
             var ent = Spawn(id, xform.Coordinates);
-
-            // Start Frontier: no more vanishing pens
-            if (TryInsertIntoBin(uid, ent, component))
-            {
-                _container.Insert(ent, component.ItemContainer);
-                Dirty(uid, component);
-            }
-            else
+            if (!TryInsertIntoBin(uid, ent, component))
             {
                 Log.Error($"Entity {ToPrettyString(ent)} was unable to be initialized into bin {ToPrettyString(uid)}");
                 return;
             }
-            // End Frontier: no more vanishing pens
         }
     }
 
@@ -144,8 +136,6 @@ public sealed class BinSystem : EntitySystem
         if (!TryInsertIntoBin(target, itemInHand, component))
             return;
 
-        _container.Insert(itemInHand, component.ItemContainer); // Frontier: no more vanishing pens
-        Dirty(target, component); // Frontier: no more vanishing pens
         _admin.Add(LogType.Pickup, LogImpact.Low, $"{ToPrettyString(target):player} inserted {ToPrettyString(user)} into bin {ToPrettyString(target)}.");
     }
 
@@ -167,8 +157,8 @@ public sealed class BinSystem : EntitySystem
         if (_whitelistSystem.IsWhitelistFail(component.Whitelist, toInsert))
             return false;
 
-        // _container.Insert(toInsert, component.ItemContainer); // Frontier: no more vanishing pens
-        // Dirty(uid, component); // Frontier: no more vanishing pens
+        _container.Insert(toInsert, component.ItemContainer);
+        Dirty(uid, component);
         return true;
     }
 
