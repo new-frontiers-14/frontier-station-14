@@ -51,13 +51,13 @@ public sealed partial class TriggerSystem
         if (_container.TryGetContainingContainer((ent, xform), out var container))
         {
             _container.Remove(ent.Owner, container, force: true);
-            SpawnInContainerOrDrop(ent.Comp.Proto, container.Owner, container.ID);
+            PredictedSpawnInContainerOrDrop(ent.Comp.Proto, container.Owner, container.ID);
         }
         else
         {
-            Spawn(ent.Comp.Proto, xform.Coordinates);
+            PredictedSpawnAtPosition(ent.Comp.Proto, xform.Coordinates);
         }
-        QueueDel(ent);
+        PredictedQueueDel(ent);
     }
 
     private void OnProjectileHitEvent(EntityUid uid, TriggerOnProjectileHitComponent component, ref ProjectileHitEvent args)

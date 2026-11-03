@@ -369,11 +369,15 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
+    - NFBorgChip # Frontier
     dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
+  - type: EmagLatheRecipes # Frontier begin
+    emagStaticPacks:
+      - NFBorgChipEmag # Frontier end
   - type: MaterialStorage
     whitelist:
       tags:
@@ -680,7 +684,7 @@
     runningState: building
     staticPacks:
     - BioGenIngredientsStatic
-    - BioGenMaterialsStatic
+    # - BioGenMaterialsStatic Frontier
     - FriendlyCubesStatic # Frontier
     - NFBioGenIngredientsStatic # Frontier
     - NFBioGenMaterialsStatic # Frontier
@@ -694,6 +698,7 @@
     emagStaticPacks:
     - HostileCubesStatic
     - NFBioGenIngredientsDangerous
+    - NFBioGenIngredientsContraband
   - type: ItemMapper
     mapLayers:
       beaker:

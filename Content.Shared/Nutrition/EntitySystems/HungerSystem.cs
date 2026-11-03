@@ -41,9 +41,13 @@ public sealed class HungerSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, HungerComponent component, MapInitEvent args)
     {
-        var amount = _random.Next(
-            (int) component.Thresholds[HungerThreshold.Peckish] + 10,
-            (int) component.Thresholds[HungerThreshold.Okay]);
+        // Frontier: fixed starting hunger
+        var amount = component.Thresholds[HungerThreshold.Okay];
+
+        // var amount = _random.Next(
+        //     (int) component.Thresholds[HungerThreshold.Peckish] + 10,
+        //     (int) component.Thresholds[HungerThreshold.Okay]);
+
         SetHunger(uid, amount, component);
     }
 
