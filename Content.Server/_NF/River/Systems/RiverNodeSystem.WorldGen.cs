@@ -1,4 +1,5 @@
 using Content.Server._NF.River.Components;
+using Content.Shared.Destructible;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using System.Numerics;
@@ -9,13 +10,13 @@ public partial class RiverNodeSystem
 {
     private struct Connection
     {
-        public Connection(Vector2 start, Vector2 end)
+        public Connection(EntityUid start, EntityUid end)
         {
             Start = start;
             End = end;
         }
-        public Vector2 Start { get; set; }
-        public Vector2 End { get; set; }
+        public EntityUid Start { get; set; }
+        public EntityUid End { get; set; }
 
         public override string ToString() => $"({Start}, {End})";
     }
@@ -26,43 +27,47 @@ public partial class RiverNodeSystem
         var validPois = FilterValidPOIs(mapId, pois);
         var poiPositions = GetPOIPositions(validPois);
         poiPositions.Add(new Vector2(0f, 0f)); // Adds Frontier Station.
+        List<EntityUid> wells = new();
 
         foreach (var poi in poiPositions)
         {
             var random = _random.Next(2);
-            Chirality spin = Chirality.Counterclockwise;
+            var spin = Chirality.Counterclockwise;
             if (random == 0)
             {
                 spin = Chirality.Clockwise;
             }
-            CreateWell(mapId, poi, 200f, spin);
+            wells.Add(CreateWell(mapId, poi, 200f, spin));
         }
 
         // Connect all the POIs that are in range of eachother
         List<Connection> connections = new();
 
-        List<Vector2> handledPositions = new();
-        List<Vector2> unconnectedPositions = new();
-        foreach (var poiPos in poiPositions)
+        List<EntityUid> handledWells = new();
+        List<EntityUid> unconnectedWells = new();
+        foreach (var well in wells)
         {
-            handledPositions.Add(poiPos);
+            handledWells.Add(well);
             var connected = false;
-            foreach (var otherPoiPos in poiPositions)
+            foreach (var otherWell in wells)
             {
-                if (handledPositions.Contains(otherPoiPos))
+                if (handledWells.Contains(otherWell))
                 {
                     continue;
                 }
-                if ((poiPos - otherPoiPos).Length() < unitDistance)
+                var wellPosition = _transform.GetWorldPosition(well);
+                var otherWellPosition = _transform.GetWorldPosition(otherWell);
+                if ((wellPosition - otherWellPosition).Length() < unitDistance)
                 {
                     var tooCloseToPoi = false;
-                    foreach (var distanceCheckPoiPos in poiPositions)
+                    foreach (var distanceCheckWell in wells)
                     {
-                        if (distanceCheckPoiPos == poiPos || distanceCheckPoiPos == otherPoiPos)
+                        if (distanceCheckWell == well || distanceCheckWell == otherWell)
                         {
                             continue;
                         }
-                        if (DistanceToLineSegmentSquared(distanceCheckPoiPos, poiPos, otherPoiPos, out var _, out var t) < 200f || t > 1f || t < 0f)
+                        var distanceCheckWellPos = _transform.GetWorldPosition(distanceCheckWell);
+                        if (DistanceToLineSegmentSquared(distanceCheckWellPos, wellPosition, otherWellPosition, out var _, out var t) < 200f || t > 1f || t < 0f)
                         {
                             tooCloseToPoi = true;
                             break;
@@ -70,14 +75,14 @@ public partial class RiverNodeSystem
                     }
                     if (!tooCloseToPoi)
                     {
-                        connections.Add(new Connection(poiPos, otherPoiPos));
+                        connections.Add(new Connection(well, otherWell));
                         connected = true;
                     }
                 }
             }
-            if (!connected && !ContainsPosition(poiPos, connections))
+            if (!connected && !ContainsWell(well, connections))
             {
-                unconnectedPositions.Add(poiPos);
+                unconnectedWells.Add(well);
             }
         }
 
@@ -104,47 +109,47 @@ public partial class RiverNodeSystem
         }
 
         // Check to make sure there is one, completely connected network, not multiple separate ones (and every valid POI is connected)
-        List<List<Vector2>> networks = new();
-        foreach (var position in unconnectedPositions)
+        List<List<EntityUid>> networks = new();
+        foreach (var well in unconnectedWells)
         {
-            List<Vector2> tinyNetwork = new();
-            tinyNetwork.Add(position);
+            List<EntityUid> tinyNetwork = new();
+            tinyNetwork.Add(well);
             networks.Add(tinyNetwork);
         }
-        handledPositions.Clear();
-        handledPositions.AddRange(unconnectedPositions);
+        handledWells.Clear();
+        handledWells.AddRange(unconnectedWells);
 
         var safetyLimit = 100;
-        foreach (var position in poiPositions)
+        foreach (var well in wells)
         {
-            if (handledPositions.Contains(position))
+            if (handledWells.Contains(well))
             {
                 continue;
             }
-            handledPositions.Add(position);
-            List<Vector2> posInNetwork = new();
-            posInNetwork.Add(position);
+            handledWells.Add(well);
+            List<EntityUid> wellInNetwork = new();
+            wellInNetwork.Add(well);
             var networkFilled = false;
             while (!networkFilled && safetyLimit > 0)
             {
                 var somethingAdded = false;
                 foreach (var connection in validConnections)
                 {
-                    if (posInNetwork.Contains(connection.Start) && !posInNetwork.Contains(connection.End))
+                    if (wellInNetwork.Contains(connection.Start) && !wellInNetwork.Contains(connection.End))
                     {
-                        posInNetwork.Add(connection.End);
-                        if (!handledPositions.Contains(connection.End))
+                        wellInNetwork.Add(connection.End);
+                        if (!handledWells.Contains(connection.End))
                         {
-                            handledPositions.Add(connection.End);
+                            handledWells.Add(connection.End);
                         }
                         somethingAdded = true;
                     }
-                    else if (posInNetwork.Contains(connection.End) && !posInNetwork.Contains(connection.Start))
+                    else if (wellInNetwork.Contains(connection.End) && !wellInNetwork.Contains(connection.Start))
                     {
-                        posInNetwork.Add(connection.Start);
-                        if (!handledPositions.Contains(connection.Start))
+                        wellInNetwork.Add(connection.Start);
+                        if (!handledWells.Contains(connection.Start))
                         {
-                            handledPositions.Add(connection.Start);
+                            handledWells.Add(connection.Start);
                         }
                         somethingAdded = true;
                     }
@@ -155,7 +160,7 @@ public partial class RiverNodeSystem
                 }
                 safetyLimit--;
             }
-            networks.Add(posInNetwork);
+            networks.Add(wellInNetwork);
         }
 
         //Handle and consolidate separate networks.
@@ -163,7 +168,7 @@ public partial class RiverNodeSystem
         while (networks.Count > 1 && safetyLimit > 0)
         {
             // focusNetwork should be (one of) the largest one(s) to make connections more convenient.
-            var focusNetwork = new List<Vector2>();
+            var focusNetwork = new List<EntityUid>();
             var largestNetworkIndex = 0;
             var largestNetworkCount = 0;
             var iterator = 0;
@@ -176,9 +181,9 @@ public partial class RiverNodeSystem
                     largestNetworkCount = network.Count;
                 }
                 Vector2 averagePos = new();
-                foreach (var position in network)
+                foreach (var well in network)
                 {
-                    averagePos = averagePos + position;
+                    averagePos = averagePos + _transform.GetWorldPosition(well);
                 }
                 averagePos = averagePos / network.Count;
                 averagePositions.Add(averagePos);
@@ -208,8 +213,8 @@ public partial class RiverNodeSystem
                 break; //Something went wrong!
             }
             var closestNetwork = networks[closestNetworkIndex];
-            Vector2 closestFocusPos = new();
-            Vector2 closestOtherPos = new();
+            EntityUid closestFocusWell = new();
+            EntityUid closestOtherWell = new();
             var closestDistance = -1f;
             for (var i = 0; i < focusNetwork.Count; i++)
             {
@@ -217,28 +222,51 @@ public partial class RiverNodeSystem
                 {
                     if (closestDistance == -1)
                     {
-                        closestFocusPos = focusNetwork[i];
-                        closestOtherPos = closestNetwork[j];
-                        closestDistance = (closestOtherPos - closestFocusPos).Length();
+                        closestFocusWell = focusNetwork[i];
+                        closestOtherWell = closestNetwork[j];
+                        var focusWellPos = _transform.GetWorldPosition(closestFocusWell);
+                        var otherWellPos = _transform.GetWorldPosition(closestOtherWell);
+                        closestDistance = (otherWellPos - focusWellPos).Length();
                     }
                     else
                     {
-                        var distance = (closestNetwork[j] - focusNetwork[i]).Length();
+                        var focusPos = _transform.GetWorldPosition(focusNetwork[i]);
+                        var closestPos = _transform.GetWorldPosition(closestNetwork[j]);
+                        var distance = (closestPos - focusPos).Length();
                         if (distance < closestDistance)
                         {
-                            closestFocusPos = focusNetwork[i];
-                            closestOtherPos = closestNetwork[j];
+                            closestFocusWell = focusNetwork[i];
+                            closestOtherWell = closestNetwork[j];
                             closestDistance = distance;
                         }
                     }
                 }
             }
             // Make a connection, and merge the two networks in the "networks" list.
-            validConnections.Add(new Connection(closestFocusPos, closestOtherPos));
+            validConnections.Add(new Connection(closestFocusWell, closestOtherWell));
             networks[largestNetworkIndex].AddRange(closestNetwork);
             networks.Remove(closestNetwork);
 
             safetyLimit--;
+        }
+
+        // Inform the wells of which wells they're connected to.
+        foreach (var connection in validConnections)
+        {
+            if (!TryComp<RiverWellComponent>(connection.Start, out var startWellComp) ||
+                !TryComp<RiverWellComponent>(connection.End, out var endWellComp))
+            {
+                continue;
+            }
+
+            if (!startWellComp.ConnectedWells.Contains(connection.End))
+            {
+                startWellComp.ConnectedWells.Add(connection.End);
+            }
+            if (!endWellComp.ConnectedWells.Contains(connection.Start))
+            {
+                endWellComp.ConnectedWells.Add(connection.Start);
+            }
         }
 
         // Create the actual rivers.
@@ -248,10 +276,21 @@ public partial class RiverNodeSystem
         }
     }
 
-    public bool CreateRiverPair(MapId mapId, Vector2 location1, Vector2 location2, Angle flowDirection1 = default, Angle flowDirection2 = default, bool customFlowDirs = false)
+    public bool CreateRiverPair(MapId mapId, EntityUid well1, EntityUid well2, Angle flowDirection1 = default, Angle flowDirection2 = default, bool customFlowDirs = false)
     {
+        if (!TryComp<RiverWellComponent>(well1, out var wellComp1) ||
+            !TryComp<RiverWellComponent>(well2, out var wellComp2))
+        {
+            return false;
+        }
+
+        var crossRivers = wellComp1.FlowRotation != wellComp2.FlowRotation;
+
         var minDistBetweenRivers = 40f; // the default Node Range
         var maxDistance = 200f;
+
+        var location1 = _transform.GetWorldPosition(well1);
+        var location2 = _transform.GetWorldPosition(well2);
 
         var maxDistanceSquared = MathF.Pow(maxDistance, 2f);
         var minDistBetweenRiversSquared = MathF.Pow(minDistBetweenRivers, 2f);
@@ -482,13 +521,13 @@ public partial class RiverNodeSystem
     /// <param name="location">The location around which the well should be centred</param>
     /// <param name="radius">How wide the well should be</param>
     /// <param name="clockwise">The flow is clockwise if true, or counterclockwise if false</param>
-    public void CreateWell(MapId mapId, Vector2 location, float radius, Chirality spin)
+    public EntityUid CreateWell(MapId mapId, Vector2 location, float radius, Chirality spin)
     {
         var well = Spawn("SpaceRiverWell", new MapCoordinates(location, mapId));
 
         if (!TryComp<RiverWellComponent>(well, out var wellComp))
         {
-            return; // bad
+            return EntityUid.Invalid; // bad
         }
         wellComp.FlowRotation = spin;
         wellComp.Radius = radius;
@@ -516,7 +555,7 @@ public partial class RiverNodeSystem
 
             if (!TryComp<RiverNodeComponent>(nodes[i], out var comp))
             {
-                return; //bad
+                return EntityUid.Invalid; //bad
             }
             components[i] = comp;
 
@@ -549,6 +588,7 @@ public partial class RiverNodeSystem
 
             Dirty(nodes[j], components[j]);
         }
+        return well;
     }
 
     /// <summary>
@@ -600,15 +640,20 @@ public partial class RiverNodeSystem
     /// <returns>True if the Connections intersect anywhere other than their vertex points, else returns false.</returns>
     private bool CheckIntersect(Connection line1, Connection line2)
     {
-        var dX1 = line1.End.X - line1.Start.X;
-        var dX2 = line2.End.X - line2.Start.X;
-        var dY1 = line1.End.Y - line1.Start.Y;
-        var dY2 = line2.End.Y - line2.Start.Y;
+        var line1Start = _transform.GetWorldPosition(line1.Start);
+        var line1End = _transform.GetWorldPosition(line1.End);
+        var line2Start = _transform.GetWorldPosition(line2.Start);
+        var line2End = _transform.GetWorldPosition(line2.End);
 
-        var p0 = dY2 * (line2.End.X - line1.Start.X) - dX2 * (line2.End.Y - line1.Start.Y);
-        var p1 = dY2 * (line2.End.X - line1.End.X) - dX2 * (line2.End.Y - line1.End.Y);
-        var p2 = dY1 * (line1.End.X - line2.Start.X) - dX1 * (line1.End.Y - line2.Start.Y);
-        var p3 = dY1 * (line1.End.X - line2.End.X) - dX1 * (line1.End.Y - line2.End.Y);
+        var dX1 = line1End.X - line1Start.X;
+        var dX2 = line2End.X - line2Start.X;
+        var dY1 = line1End.Y - line1Start.Y;
+        var dY2 = line2End.Y - line2Start.Y;
+
+        var p0 = dY2 * (line2End.X - line1Start.X) - dX2 * (line2End.Y - line1Start.Y);
+        var p1 = dY2 * (line2End.X - line1End.X) - dX2 * (line2End.Y - line1End.Y);
+        var p2 = dY1 * (line1End.X - line2Start.X) - dX1 * (line1End.Y - line2Start.Y);
+        var p3 = dY1 * (line1End.X - line2End.X) - dX1 * (line1End.Y - line2End.Y);
 
         return (p0 * p1 < 0 && p2 * p3 < 0);
     }
@@ -619,11 +664,11 @@ public partial class RiverNodeSystem
     /// <param name="position">The position you wish to check is in the list</param>
     /// <param name="connections">The list you wish to check</param>
     /// <returns>Whether the position is in the list (true) or not (false)</returns>
-    private bool ContainsPosition(Vector2 position, List<Connection> connections)
+    private bool ContainsWell(EntityUid well, List<Connection> connections)
     {
         foreach (var connection in connections)
         {
-            if (connection.Start == position || connection.End == position)
+            if (connection.Start == well || connection.End == well)
             {
                 return true;
             }
