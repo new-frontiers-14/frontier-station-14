@@ -10,7 +10,9 @@ namespace Content.Server._NF.River.Components;
 [RegisterComponent]
 public sealed partial class RiverWellComponent : Component
 {
+    [DataField]
     public float Radius = 200f;
+    [DataField]
     public Chirality FlowRotation = Chirality.Clockwise;
 
     public List<EntityUid> WellNodes = new();

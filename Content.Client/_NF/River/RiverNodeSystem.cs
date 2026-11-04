@@ -394,7 +394,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             {
                 point1 = entryPoint;
                 point2 = CalculatePointOnBezier(entryPoint, controlPoint1, controlPoint2, endPoint, t2);// entryPoint * MathF.Pow(s2, 3) + controlPoint1 * 3.0f * MathF.Pow(s2, 2) * t2 + controlPoint2 * 3.0f * s2 * MathF.Pow(t2, 2) + endPoint * MathF.Pow(t2, 3);
-                tangent1 = nodeComp.FlowDirection.ToVec();
+                tangent1 = nodeComp.FlowDirection.ToWorldVec();
                 tangent2 = CalculateBezierTangent(entryPoint, controlPoint1, controlPoint2, endPoint, t2);
             }
             else if (i == resolution - 1)
@@ -402,7 +402,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                 point1 = CalculatePointOnBezier(entryPoint, controlPoint1, controlPoint2, endPoint, t1);
                 point2 = endPoint;
                 tangent1 = CalculateBezierTangent(entryPoint, controlPoint1, controlPoint2, endPoint, t1);
-                tangent2 = exitComp.FlowDirection.ToVec();
+                tangent2 = exitComp.FlowDirection.ToWorldVec();
             }
             else
             {

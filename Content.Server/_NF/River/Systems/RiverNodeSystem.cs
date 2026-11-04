@@ -345,7 +345,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 
             var directionModifier = _random.NextAngle(Angle.FromDegrees(-maxAngle + directionOffset), Angle.FromDegrees(maxAngle + directionOffset));
             var nodeDirection = lastDirection + directionModifier;
-            var offset = nodeDirection.ToVec() * distance;
+            var offset = nodeDirection.ToWorldVec() * distance;
             var spawnPos = nodePos.Offset(offset);
             newFlowDirection = lastDirection + directionModifier * 2;
             newFlowDirection = newFlowDirection.Reduced();
@@ -363,8 +363,8 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             return false;
         }
         // There's so many magic numbers in this class... TODO: get rid of as many magic numbers as possible.
-        lastComp.ForwardControlPoint = lastComp.FlowDirection.ToVec() * lastComp.Boost * 50f;
-        newComp.ForwardControlPoint = newFlowDirection.ToVec() * newComp.Boost * 50f;
+        lastComp.ForwardControlPoint = lastComp.FlowDirection.ToWorldVec() * lastComp.Boost * 50f;
+        newComp.ForwardControlPoint = newFlowDirection.ToWorldVec() * newComp.Boost * 50f;
         //END TODO magic number cleanup
 
         if (true)//connectableNodes.Count == 0)

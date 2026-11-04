@@ -26,7 +26,7 @@ public partial class RiverNodeSystem
         var unitDistance = 3000f; //2500 or 3000? TODO: make this not a magic number.
         var validPois = FilterValidPOIs(mapId, pois);
         var poiPositions = GetPOIPositions(validPois);
-        poiPositions.Add(new Vector2(0f, 0f)); // Adds Frontier Station.
+        poiPositions.Add(new Vector2(0f, 0f)); // Adds Frontier Station
         List<EntityUid> wells = new();
 
         foreach (var poi in poiPositions)
@@ -301,18 +301,93 @@ public partial class RiverNodeSystem
         var longTangent = Vector2.Normalize(location2 - location1);
         var longNormal = new Vector2(-longTangent.Y, longTangent.X); //Left
 
-        location1 = location1 + longTangent * 200f; //200f = Exclusion zone radius of POIs
-        location2 = location2 - longTangent * 200f; //ibid = Exclusion zone radius
+        //location1 = location1 + longTangent * 200f; //200f = Exclusion zone radius of POIs
+        //location2 = location2 - longTangent * 200f; //ibid = Exclusion zone radius
 
-        var offsetLoc1Left = location1 - longNormal * minDistBetweenRivers;
-        var offsetLoc2Left = location2 - longNormal * minDistBetweenRivers;
-        var offsetLoc1Right = location1 + longNormal * minDistBetweenRivers;
-        var offsetLoc2Right = location2 + longNormal * minDistBetweenRivers;
+        Vector2 offsetLoc1Arrival = new();// = location1 - longNormal * minDistBetweenRivers;
+        Vector2 offsetLoc2Departure = new();// = location2 - longNormal * minDistBetweenRivers;
+        Vector2 offsetLoc1Departure = new();// = location1 + longNormal * minDistBetweenRivers;
+        Vector2 offsetLoc2Arrival = new();// = location2 + longNormal * minDistBetweenRivers;
 
-        nodePositionsRight.Add(offsetLoc1Left);
-        nodePositionsRight.Add(offsetLoc2Left);
-        nodePositionsLeft.Add(offsetLoc1Right);
-        nodePositionsLeft.Add(offsetLoc2Right);
+        //TODO: Make spaghetti al dente.
+        Angle departureAngle1;
+        Angle arrivalAngle1;
+        if (wellComp1.FlowRotation == Chirality.Clockwise)
+        {
+            departureAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 45d).Reduced(); // 45 degrees clockwise
+            arrivalAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 225d).Reduced(); // 180 + 45 degrees counter-clockwise
+        }
+        else
+        {
+            departureAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 45d).Reduced(); // 45 degrees counter-clockwise
+            arrivalAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 225d).Reduced(); // 180 + 45 degrees clockwise
+        }
+
+        var closestDepartureAngle1 = new Angle();
+        var closestArrivalAngle1 = new Angle();
+        // Get the river positions at Well 1.
+        foreach (var node in wellComp1.WellNodes)
+        {
+            if (!TryComp<RiverNodeComponent>(node, out var nodeComp))
+            {
+                continue;
+            }
+
+            var departureDistance = Math.Abs(Angle.ShortestDistance(departureAngle1, nodeComp.FlowDirection.Reduced()).Degrees);
+            var arrivalDistance = Math.Abs(Angle.ShortestDistance(arrivalAngle1, nodeComp.FlowDirection.Reduced()).Degrees);
+            if (departureDistance < closestDepartureAngle1 || offsetLoc1Departure == new Vector2(0f, 0f))
+            {
+                offsetLoc1Departure = _transform.GetWorldPosition(node);
+                closestDepartureAngle1 = departureDistance;
+            }
+            else if (arrivalDistance < closestArrivalAngle1 || offsetLoc1Arrival == new Vector2(0f, 0f))
+            {
+                offsetLoc1Arrival = _transform.GetWorldPosition(node);
+                closestArrivalAngle1 = arrivalDistance;
+            }
+        }
+
+        Angle departureAngle2;
+        Angle arrivalAngle2;
+        if (wellComp2.FlowRotation == Chirality.Clockwise)
+        {
+            departureAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 225d).Reduced(); // 180 + 45 degrees clockwise
+            arrivalAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 45d).Reduced();// 45 degrees counter-clockwise
+        }
+        else
+        {
+            departureAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 225d).Reduced(); // 180 + 45 degrees counter-clockwise
+            arrivalAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 45d).Reduced(); // 45 degrees clockwise
+        }
+
+        var closestDepartureAngle2 = new Angle();
+        var closestArrivalAngle2 = new Angle();
+        // Get the river positions at Well 2.
+        foreach (var node in wellComp2.WellNodes)
+        {
+            if (!TryComp<RiverNodeComponent>(node, out var nodeComp))
+            {
+                continue;
+            }
+
+            var departureDistance = Math.Abs(Angle.ShortestDistance(departureAngle2, nodeComp.FlowDirection.Reduced()).Degrees);
+            var arrivalDistance = Math.Abs(Angle.ShortestDistance(arrivalAngle2, nodeComp.FlowDirection.Reduced()).Degrees);
+            if (departureDistance < closestDepartureAngle2 || offsetLoc2Departure == new Vector2(0f, 0f))
+            {
+                offsetLoc2Departure = _transform.GetWorldPosition(node);
+                closestDepartureAngle2 = departureDistance;
+            }
+            else if (arrivalDistance < closestArrivalAngle2 || offsetLoc2Arrival == new Vector2(0f, 0f))
+            {
+                offsetLoc2Arrival = _transform.GetWorldPosition(node);
+                closestArrivalAngle2 = arrivalDistance;
+            }
+        }
+
+        nodePositionsRight.Add(offsetLoc1Departure);
+        nodePositionsRight.Add(offsetLoc2Arrival);
+        nodePositionsLeft.Add(offsetLoc1Arrival);
+        nodePositionsLeft.Add(offsetLoc2Departure);
 
         var locationDistanceSquared = (location1 - location2).LengthSquared();
 
@@ -400,7 +475,7 @@ public partial class RiverNodeSystem
                 {
                     if (!customFlowDirs)
                     {
-                        flowDirection = Vector2.Normalize(nodePositions[i] - nodePositions[i - 1]).ToAngle();
+                        flowDirection = Angle.FromWorldVec(Vector2.Normalize(nodePositions[i] - nodePositions[i - 1]));
                     }
                     else
                     {
@@ -409,14 +484,14 @@ public partial class RiverNodeSystem
                 }
                 else
                 {
-                    flowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i - 1]).ToAngle();
+                    flowDirection = Angle.FromWorldVec(Vector2.Normalize(nodePositions[i + 1] - nodePositions[i - 1]));
                 }
             }
             else
             {
                 if (!customFlowDirs)
                 {
-                    flowDirection = Vector2.Normalize(nodePositions[i + 1] - nodePositions[i]).ToAngle();
+                    flowDirection = Angle.FromWorldVec(Vector2.Normalize(nodePositions[i + 1] - nodePositions[i]));
                 }
                 else
                 {
@@ -495,8 +570,8 @@ public partial class RiverNodeSystem
 
         var distance = (endPos - sourcePos).Length();
 
-        sourceComp.ForwardControlPoint = sourceComp.FlowDirection.ToVec() * (distance * 0.25f);
-        endComp.ForwardControlPoint = endComp.FlowDirection.ToVec() * (distance * 0.25f);
+        sourceComp.ForwardControlPoint = sourceComp.FlowDirection.ToWorldVec() * (distance * 0.25f);
+        endComp.ForwardControlPoint = endComp.FlowDirection.ToWorldVec() * (distance * 0.25f);
 
         var netSourceNode = GetNetEntity(sourceNode);
         var netEndNode = GetNetEntity(endNode);
@@ -538,7 +613,7 @@ public partial class RiverNodeSystem
         var nodes = new EntityUid[nodeAmount];
         var components = new RiverNodeComponent[nodeAmount];
         var chiralityMod = 1;
-        if (spin == Chirality.Counterclockwise)
+        if (spin == Chirality.Clockwise)
         {
             chiralityMod = -1;
         }
@@ -546,7 +621,7 @@ public partial class RiverNodeSystem
         {
             var nodeProto = (Angle.FromDegrees(i * angleDiff * chiralityMod) + randomRotation).Reduced();
 
-            var nodePos = location + nodeProto.ToVec() * radius;
+            var nodePos = location + nodeProto.ToWorldVec() * radius;
 
             var nodeCoord = new MapCoordinates(nodePos, mapId);
 
@@ -562,7 +637,7 @@ public partial class RiverNodeSystem
 
             components[i].FlowDirection = nodeProto + Angle.FromDegrees(90d * chiralityMod);
 
-            components[i].ForwardControlPoint = components[i].FlowDirection.ToVec() * radius * (2f / (float)nodeAmount);
+            components[i].ForwardControlPoint = components[i].FlowDirection.ToWorldVec() * radius * (2f / (float)nodeAmount);
 
         }
 
