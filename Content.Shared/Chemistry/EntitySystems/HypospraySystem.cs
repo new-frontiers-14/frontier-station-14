@@ -18,6 +18,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.DoAfter; // Frontier
 using Content.Shared._DV.Chemistry.Components; // Frontier
 using Robust.Shared.Audio.Systems;
+using System.Linq;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -71,13 +72,13 @@ public sealed class HypospraySystem : EntitySystem
 
     private void OnAttack(Entity<HyposprayComponent> entity, ref MeleeHitEvent args)
     {
-        if (args.HitEntities is [])
+        if (args.HitEntities.Count == 0)
             return;
 
         if (entity.Comp.PreventCombatInjection) // Frontier
             return; // Frontier
 
-        TryDoInject(entity, args.HitEntities[0], args.User);
+        TryDoInject(entity, args.HitEntities.First(), args.User);
     }
 
     #endregion
