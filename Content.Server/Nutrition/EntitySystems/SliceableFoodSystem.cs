@@ -18,7 +18,7 @@ using Content.Shared.Destructible;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
-public sealed class SliceableFoodSystem : EntitySystem
+public sealed partial class SliceableFoodSystem : EntitySystem // Frontier: add partial
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -35,6 +35,8 @@ public sealed class SliceableFoodSystem : EntitySystem
         SubscribeLocalEvent<SliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
         SubscribeLocalEvent<SliceableFoodComponent, ComponentStartup>(OnComponentStartup);
+
+        InitializeMultitype(); // Frontier
     }
 
     private void OnInteractUsing(Entity<SliceableFoodComponent> entity, ref InteractUsingEvent args)

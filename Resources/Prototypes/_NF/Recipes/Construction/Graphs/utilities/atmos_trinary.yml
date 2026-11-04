@@ -1,0 +1,297 @@
+- type: constructionGraph
+  id: GasTrinaryStarlight
+  start: start
+  graph:
+    - node: start
+      edges:
+      # filter
+      - to: filterAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: filterAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: filterflippedAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+    
+      - to: filterflippedAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      # Mixer
+      - to: mixerAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: mixerAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: mixerflippedAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: mixerflippedAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: pneumaticvalveAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: pneumaticvalveAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      # Inline Filter
+      - to: inline_filter
+        steps:
+          - material: Steel
+            amount: 2
+            doAfter: 1
+
+      - to: inline_filterAlt1
+        steps:
+          - material: Steel
+            amount: 2
+            doAfter: 1
+
+      - to: inline_filterAlt2
+        steps:
+          - material: Steel
+            amount: 2
+            doAfter: 1
+
+    # filter
+    - node: filterAlt1
+      entity: GasFilterAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: filterAlt2
+      entity: GasFilterAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: filterflippedAlt1
+      entity: GasFilterFlippedAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: filterflippedAlt2
+      entity: GasFilterFlippedAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    # Mixer
+    - node: mixerAlt1
+      entity: GasMixerAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: mixerAlt2
+      entity: GasMixerAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: mixerflippedAlt1
+      entity: GasMixerFlippedAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: mixerflippedAlt2
+      entity: GasMixerFlippedAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: pneumaticvalveAlt1
+      entity: PressureControlledValveAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: pneumaticvalveAlt2
+      entity: PressureControlledValveAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    # Inline Filter
+    - node: inline_filter
+      entity: GasFilterInline
+      edges:
+        - to: start
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 1
+
+    - node: inline_filterAlt1
+      entity: GasFilterInlineAlt1
+      edges:
+        - to: start
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 1
+
+    - node: inline_filterAlt2
+      entity: GasFilterInlineAlt2
+      edges:
+        - to: start
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 1
