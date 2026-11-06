@@ -22,3 +22,25 @@
     - NFWriteIgnoreUnprotectedStamps # Weaker version of WriteIgnoreStamps
     - Pickaxe
     - Pen
+
+- type: entity
+  name: pipenette
+  parent: [Pen, Dropper]
+  id: PenPipette
+  description: How does it write despite lacking an obvious writing tip? It sucks but not much. It just sucks a little.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/pens.rsi
+    state: pen_pipenette
+    layers:
+      - state: pen_pipenette
+      - state: pen_pipenette1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: pen_pipenette
+    inHandsMaxFillLevels: 0
+  - type: Item
+    sprite: _NF/Objects/Misc/pens.rsi
+    heldPrefix: pen_pipenette
