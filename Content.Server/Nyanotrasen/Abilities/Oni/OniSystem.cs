@@ -1,10 +1,11 @@
-using Content.Server.Tools;
 using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Wieldable.Components;
+using Content.Shared._NF.Weapons.Components;
 using Robust.Shared.Containers;
+using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Wieldable;
 
 namespace Content.Server.Abilities.Oni
 {
@@ -20,6 +21,10 @@ namespace Content.Server.Abilities.Oni
             SubscribeLocalEvent<OniComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
             SubscribeLocalEvent<OniComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
             SubscribeLocalEvent<OniComponent, MeleeHitEvent>(OnOniMeleeHit);
+            // Frontier: Modify gun in event
+            SubscribeLocalEvent<HeldByOniComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers,
+                after: [typeof(SharedWieldableSystem)]);
+            // End Frontier
             SubscribeLocalEvent<HeldByOniComponent, MeleeHitEvent>(OnHeldMeleeHit);
             SubscribeLocalEvent<HeldByOniComponent, StaminaMeleeHitEvent>(OnStamHit);
         }
@@ -29,51 +34,44 @@ namespace Content.Server.Abilities.Oni
             var heldComp = EnsureComp<HeldByOniComponent>(args.Entity);
             heldComp.Holder = uid;
 
-            if (TryComp<GunComponent>(args.Entity, out var gun))
+            // Frontier: Oni-friendly "guns" (crusher)
+            if (TryComp<GunComponent>(args.Entity, out var gun) && !HasComp<NFOniFriendlyGunComponent>(args.Entity))
             {
-                // Frontier: adjust penalty for wielded malus (ensuring it's actually wieldable)
-                if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus) && HasComp<WieldableComponent>(args.Entity))
-                {
-                    //GunWieldBonus values are stored as negative.
-                    heldComp.minAngleAdded = (gun.MinAngle + bonus.MinAngle) * GunInaccuracyFactor;
-                    heldComp.angleIncreaseAdded = (gun.AngleIncrease + bonus.AngleIncrease) * GunInaccuracyFactor;
-                    heldComp.maxAngleAdded = (gun.MaxAngle + bonus.MaxAngle) * GunInaccuracyFactor;
-                }
-                else
-                {
-                    heldComp.minAngleAdded = gun.MinAngle * GunInaccuracyFactor;
-                    heldComp.angleIncreaseAdded = gun.AngleIncrease * GunInaccuracyFactor;
-                    heldComp.maxAngleAdded = gun.MaxAngle * GunInaccuracyFactor;
-                }
-
-                gun.MinAngle += heldComp.minAngleAdded;
-                gun.AngleIncrease += heldComp.angleIncreaseAdded;
-                gun.MaxAngle += heldComp.maxAngleAdded;
-                _gunSystem.RefreshModifiers(args.Entity); // Make sure values propagate to modified values (this also dirties the gun for us)
-                // End Frontier
+                _gunSystem.RefreshModifiers(args.Entity);
             }
+            // End Frontier
         }
 
         private void OnEntRemoved(EntityUid uid, OniComponent component, EntRemovedFromContainerMessage args)
         {
-            // Frontier: angle manipulation stored in HeldByOniComponent
-            if (TryComp<GunComponent>(args.Entity, out var gun) &&
-                TryComp<HeldByOniComponent>(args.Entity, out var heldComp))
+            RemComp<HeldByOniComponent>(args.Entity);
+
+            // Frontier: angle manipulation
+            // Frontier: Oni-friendly "guns" (crusher)
+            if (HasComp<GunComponent>(args.Entity) && !HasComp<NFOniFriendlyGunComponent>(args.Entity))
             {
-                gun.MinAngle -= heldComp.minAngleAdded;
-                gun.AngleIncrease -= heldComp.angleIncreaseAdded;
-                gun.MaxAngle -= heldComp.maxAngleAdded;
-                _gunSystem.RefreshModifiers(args.Entity); // Make sure values propagate to modified values (this also dirties the gun for us)
+                _gunSystem.RefreshModifiers(args.Entity);
             }
             // End Frontier
-
-            RemComp<HeldByOniComponent>(args.Entity);
         }
 
         private void OnOniMeleeHit(EntityUid uid, OniComponent component, MeleeHitEvent args)
         {
             args.ModifiersList.Add(component.MeleeModifiers);
         }
+
+        // Frontier: Modify gun in event
+        private void OnGunRefreshModifiers(Entity<HeldByOniComponent> ent, ref GunRefreshModifiersEvent args)
+        {
+            // Frontier: Oni-friendly "guns" (crusher)
+            if (!HasComp<NFOniFriendlyGunComponent>(args.Gun))
+            {
+                args.MinAngle *= GunInaccuracyFactor;
+                args.AngleIncrease *= GunInaccuracyFactor;
+                args.MaxAngle *= GunInaccuracyFactor;
+            }
+        }
+        // End Frontier
 
         private void OnHeldMeleeHit(EntityUid uid, HeldByOniComponent component, MeleeHitEvent args)
         {

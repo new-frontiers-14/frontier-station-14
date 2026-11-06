@@ -80,7 +80,8 @@ reagent-name-tranexamic-acid = tranexamic acid
 reagent-desc-tranexamic-acid = A blood-clotting medicine used to prevent profuse bleeding. Causes heavier bleeding on overdose. Commonly found in small doses within emergency medipens.
 
 reagent-name-tricordrazine = tricordrazine
-reagent-desc-tricordrazine = A wide-spectrum stimulant, originally derived from cordrazine. Treats minor damage of all basic health types as long as the user is not heavily wounded. Best used as an additive to other chemicals.
+# Frontier: edited description
+reagent-desc-tricordrazine = A wide-spectrum stimulant, originally derived from cordrazine. Treats minor damage of all basic health types as long as the user is not critically wounded. Best used as an additive to other chemicals.
 
 reagent-name-lipozine = lipozine
 reagent-desc-lipozine = A chemical that accelerates metabolism, causing the user to hunger faster.
@@ -117,7 +118,8 @@ reagent-name-lacerinol = lacerinol
 reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen sythesis to incredible levels, healing slash trauma.
 
 reagent-name-puncturase = puncturase
-reagent-desc-puncturase = A fizzy chemical that helps rebuild trauma caused by piercing damage, leaving a slight amount of tissue damage behind.
+# Frontier: edited description
+reagent-desc-puncturase = A fizzy chemical that helps rebuild trauma caused by piercing damage.
 
 reagent-name-bruizine = bruizine
 reagent-desc-bruizine = Originally developed as a cough medicine, it turns out this chemical is wildly effective at treating blunt force trauma.
@@ -140,7 +142,7 @@ reagent-desc-necrosol = A cryogenics chemical. Heals most organic damage, a true
 # End Frontier
 
 reagent-name-aloxadone = aloxadone
-reagent-desc-aloxadone = A cryogenics chemical. Used to treat severe third degree burns via regeneration of the burnt tissue. Works regardless of the patient being alive or dead.
+reagent-desc-aloxadone = A cryogenics chemical. Used to treat severe burns and frostbite via regeneration of the affected tissue. Works regardless of the patient being alive or dead.
 
 reagent-name-mannitol = mannitol
 reagent-desc-mannitol = Efficiently restores brain damage.

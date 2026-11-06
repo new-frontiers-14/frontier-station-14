@@ -1,0 +1,23 @@
+- type: entity
+  id: ClothingNeckBodyCameraNFSD
+  parent: ClothingNeckBodyCamera
+  name: NFSD body camera
+  description: A body mounted camera. It's watching you.
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: SurveillanceCameraEntertainment
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+      id: NFSD Body Camera
+      # setupAvailableNetworks: # Turn this on when NFSD camera infrastructure is functional
+      # - SurveillanceCameraSecurity
+
+- type: entity
+  id: ClothingNeckBodyCameraNFSDOff
+  parent: ClothingNeckBodyCameraNFSD
+  suffix: Deactivated
+  components:
+    - type: ItemToggle
+      activated: false

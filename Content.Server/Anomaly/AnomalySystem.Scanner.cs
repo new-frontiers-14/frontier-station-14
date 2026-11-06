@@ -187,7 +187,7 @@ public sealed partial class AnomalySystem
         {
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-earned", ("point", anomalyComp.PointsEarned)));
             msg.PushNewline();
-            msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-anomalite-expected", ("count", int.Min(anomalyComp.PointsEarned / anomalyComp.PointsPerCrystalUnit, anomalyComp.MaxCrystals))));
+            msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-anomalite-expected", ("count", GetNumCrystals(anomalyComp))));
         }
         // End Frontier
         msg.PushNewline();

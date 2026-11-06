@@ -3,36 +3,35 @@
        xmlns:controls="https://spacestation14.io"
        xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
        xmlns:ui="clr-namespace:Content.Client.Shuttles.UI">
-            <ui:ShuttleMapControl Name="MapRadar"
-                             MouseFilter="Stop"
-                             Margin="5 4 10 5"
-                             HorizontalExpand="True"
-                             VerticalExpand="True"
-                             VerticalAlignment="Stretch"/>
-            <controls:BoxContainer Name="RightDisplayMap"
-                          VerticalAlignment="Top"
-                          HorizontalAlignment="Right"
-                          MinWidth="256"
-                          MaxWidth="256"
-                          Margin="5 0 5 5"
-                          Orientation="Vertical"
-                          VerticalExpand="True">
-                <controls1:StripeBack
-                    MinSize="48 48">
-                    <controls:Label Name="MapDisplayLabel" Text="{controls:Loc 'shuttle-console-ftl-label'}"
-                                    VerticalExpand="True"
-                                    HorizontalAlignment="Center"/>
-                </controls1:StripeBack>
-                <controls:Label Name="MapFTLState"
-                                Text="{controls:Loc 'shuttle-console-ftl-state-Available'}"
-                                VerticalAlignment="Stretch"
+    <ui:ShuttleMapControl Name="MapRadar"
+                     MouseFilter="Stop"
+                     Margin="5 4 10 5"
+                     HorizontalExpand="True"
+                     VerticalExpand="True"
+                     VerticalAlignment="Stretch"/>
+    <!-- Frontier: add scrollbox so we can resize the map screen without it cutting off elements -->
+    <controls:ScrollContainer VerticalExpand="True" MinWidth="256" MaxWidth="256" HScrollEnabled="False" Margin="5 0 5 5">
+        <controls:BoxContainer Name="RightDisplayMap"
+                      VerticalAlignment="Top"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True">
+            <controls1:StripeBack
+                MinSize="48 48">
+                <controls:Label Name="MapDisplayLabel" Text="{controls:Loc 'shuttle-console-ftl-label'}"
+                                VerticalExpand="True"
                                 HorizontalAlignment="Center"/>
-                <controls:ProgressBar Name="FTLBar" HorizontalExpand="True"
-                                      Margin="5"
-                                      MinValue="0.0"
-                                      MaxValue="1.0"
-                                      Value="1.0"/>
-                <controls:BoxContainer Orientation="Vertical">
+            </controls1:StripeBack>
+            <controls:Label Name="MapFTLState"
+                            Text="{controls:Loc 'shuttle-console-ftl-state-Available'}"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Center"/>
+            <controls:ProgressBar Name="FTLBar" HorizontalExpand="True"
+                                  Margin="5"
+                                  MinValue="0.0"
+                                  MaxValue="1.0"
+                                  Value="1.0"/>
+            <controls:BoxContainer Orientation="Vertical">
                 <!-- Normal buttons -->
                 <controls1:StripeBack MinSize="48 48">
                     <controls:Label Name="SettingsLabel" Text="{controls:Loc 'shuttle-console-map-settings'}"
@@ -55,12 +54,11 @@
                     <controls:Label Name="HyperspaceLabel" Text="{controls:Loc 'shuttle-console-map-objects'}"
                            HorizontalAlignment="Center"/>
                 </controls1:StripeBack>
-                <controls:ScrollContainer VerticalExpand="True" HScrollEnabled="False"
-                                 ReturnMeasure="True">
-                    <controls:BoxContainer Name="HyperspaceDestinations"
-                                  Orientation="Vertical"
-                                  VerticalExpand="True"/>
-                </controls:ScrollContainer>
+                <controls:BoxContainer Name="HyperspaceDestinations"
+                              Orientation="Vertical"
+                              VerticalExpand="True"/>
             </controls:BoxContainer>
         </controls:BoxContainer>
+    </controls:ScrollContainer>
+    <!-- End Frontier -->
 </controls:BoxContainer>

@@ -2,20 +2,20 @@
 # Base
 
 - type: entity
+  abstract: true
   parent: [ FoodInjectableBase, LaunchableProjectileBase ] # Frontier: added LaunchableProjectileBase, located in \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\base_projectiles.yml
   id: FoodBreadBase
-  abstract: true
   components:
+  - type: Item
+    size: Normal
   - type: FlavorProfile
     flavors:
       - bread
-  - type: Food
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/bread.rsi
   - type: Tag
     tags:
     - Bread
-    - VoxFood
   - type: SolutionContainerManager
     solutions:
       food:
@@ -57,7 +57,6 @@
   id: FoodBreadVolcanic
   description: A dark loaf. Resembles pumice.
   components:
-  - type: Food
   - type: Sprite
     layers:
     - state: alpha
@@ -73,7 +72,6 @@
   id: FoodBreadVolcanicSlice
   description: A slice of dark loaf. Resembles pumice.
   components:
-  - type: Food
   - type: Sprite
     layers:
     - state: alpha-slice
@@ -93,7 +91,6 @@
     flavors:
       - banana
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: banana
@@ -115,7 +112,6 @@
     flavors:
       - banana
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: banana-slice
@@ -126,16 +122,16 @@
     - Slice
 
 - type: entity
-  name: cotton bread
   parent: FoodBreadBase
   id: FoodBreadCotton
+  name: cotton bread
   description: Bread, but for moff.
   components:
   - type: FlavorProfile
     flavors:
     - cotton
     - bread
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Sprite
     layers:
@@ -167,7 +163,7 @@
     flavors:
     - cotton
     - bread
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Sprite
     layers:
@@ -198,7 +194,6 @@
     flavors:
       - bread
       - corn
-  - type: Food
   - type: Sprite
     layers:
     - state: cornbread
@@ -225,7 +220,6 @@
     flavors:
       - bread
       - corn
-  - type: Food
   - type: Sprite
     layers:
     - state: cornbread-slice
@@ -250,7 +244,6 @@
       - cheesy
       - creamy
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: creamcheese
@@ -280,7 +273,6 @@
       - cheesy
       - creamy
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: creamcheese-slice
@@ -306,7 +298,6 @@
     flavors:
       - meaty
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: meat
@@ -339,7 +330,6 @@
     flavors:
       - meaty
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: meat-slice
@@ -370,7 +360,6 @@
     flavors:
       - nothing
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: mimana
@@ -403,7 +392,6 @@
     flavors:
       - nothing
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: mimana-slice
@@ -429,7 +417,6 @@
   id: FoodBreadPlain
   description: Some plain old earthen bread.
   components:
-  - type: Food
   - type: Sprite
     layers:
     - state: plain
@@ -442,7 +429,6 @@
   id: FoodBreadPlainSlice
   description: A slice of home.
   components:
-  - type: Food
   - type: Sprite
     layers:
     - state: plain-slice
@@ -457,7 +443,6 @@
     flavors:
       - meaty
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: sausage
@@ -491,7 +476,6 @@
     flavors:
       - meaty
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: sausage-slice
@@ -524,7 +508,6 @@
     flavors:
       - cobwebs
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: spidermeat
@@ -559,7 +542,6 @@
     flavors:
       - cobwebs
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: spidermeat-slice
@@ -592,7 +574,6 @@
     flavors:
       - tofu
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: tofu
@@ -621,7 +602,6 @@
     flavors:
       - tofu
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: tofu-slice
@@ -647,7 +627,6 @@
     flavors:
       - acid
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: xenomeat
@@ -680,7 +659,6 @@
     flavors:
       - acid
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: xenomeat-slice
@@ -704,9 +682,9 @@
 # Other than bread/slices
 
 - type: entity
-  name: baguette
   parent: FoodBreadBase
   id: FoodBreadBaguette
+  name: baguette
   description: Bon appétit!
   components:
   - type: Sprite
@@ -734,6 +712,9 @@
     equippedPrefix: baguette
     quickEquip: false
   - type: Item
+    shape:
+    - 0,0,0,3
+    storedRotation: -45
     inhandVisuals:
       left:
       - state: baguette-inhand-left
@@ -747,16 +728,16 @@
 # Tastes like France.
 
 - type: entity
-  name: cotton baguette
   parent: FoodBreadBaguette
   id: FoodBreadBaguetteCotton
+  name: cotton baguette
   description: Bon azzétit!
   components:
   - type: Sprite
     state: baguette-cotton
   - type: SliceableFood
     slice: FoodBreadBaguetteCottonSlice
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Tag
     tags:
@@ -765,6 +746,9 @@
   - type: Clothing
     equippedPrefix: baguette-cotton
   - type: Item
+    shape:
+    - 0,0,0,3
+    storedRotation: -45
     inhandVisuals:
       left:
       - state: baguette-cotton-inhand-left
@@ -810,14 +794,14 @@
           Quantity: 0.1
 
 - type: entity
-  name: cotton crostini
   parent: FoodBreadBaguetteSlice
   id: FoodBreadBaguetteCottonSlice
+  name: cotton crostini
   description: Bon az-zetite!
   components:
   - type: Sprite
     state: crostini-cotton
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Tag
     tags:

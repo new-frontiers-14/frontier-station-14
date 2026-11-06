@@ -1,17 +1,23 @@
 using System.Linq;
 using Content.Shared.UserInterface;
+using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
+using Robust.Shared.Configuration;
+using Content.Shared._DV.Silicons.Borgs; // Frontier
 
 namespace Content.Server.Silicons.Borgs;
 
 /// <inheritdoc/>
 public sealed partial class BorgSystem
 {
+    // CCvar.
+    private int _maxNameLength;
+
     public void InitializeUI()
     {
         SubscribeLocalEvent<BorgChassisComponent, BeforeActivatableUIOpenEvent>(OnBeforeBorgUiOpen);
@@ -19,6 +25,9 @@ public sealed partial class BorgSystem
         SubscribeLocalEvent<BorgChassisComponent, BorgEjectBatteryBuiMessage>(OnEjectBatteryBuiMessage);
         SubscribeLocalEvent<BorgChassisComponent, BorgSetNameBuiMessage>(OnSetNameBuiMessage);
         SubscribeLocalEvent<BorgChassisComponent, BorgRemoveModuleBuiMessage>(OnRemoveModuleBuiMessage);
+        SubscribeLocalEvent<IdChipSlotComponent, BorgUiNeedsUpdateEvent>(OnBorgUiUpdateRequest); // Frontier - request UI update
+
+        Subs.CVar(_cfgManager, CCVars.MaxNameLength, value => _maxNameLength = value, true);
     }
 
     private void OnBeforeBorgUiOpen(EntityUid uid, BorgChassisComponent component, BeforeActivatableUIOpenEvent args)
@@ -46,7 +55,7 @@ public sealed partial class BorgSystem
 
     private void OnSetNameBuiMessage(EntityUid uid, BorgChassisComponent component, BorgSetNameBuiMessage args)
     {
-        if (args.Name.Length > HumanoidCharacterProfile.MaxNameLength ||
+        if (args.Name.Length > _maxNameLength ||
             args.Name.Length == 0 ||
             string.IsNullOrWhiteSpace(args.Name) ||
             string.IsNullOrEmpty(args.Name))
@@ -83,6 +92,16 @@ public sealed partial class BorgSystem
 
         UpdateUI(uid, component);
     }
+
+    // Frontier begin - Handle for borg UI update request when id chip is inserted
+    private void OnBorgUiUpdateRequest(EntityUid uid, IdChipSlotComponent component, ref BorgUiNeedsUpdateEvent args)
+    {
+        if (!TryComp(uid, out BorgChassisComponent? comp))
+            return;
+
+        UpdateUI(uid, comp);
+    }
+    // Frontier end
 
     public void UpdateUI(EntityUid uid, BorgChassisComponent? component = null)
     {

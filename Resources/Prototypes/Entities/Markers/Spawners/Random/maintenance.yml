@@ -56,7 +56,7 @@
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
       - id: ClothingMaskSterile
-      - id: ClothingNeckHeadphones
+      - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
       - id: ClothingOuterCoatGentle
       - !type:AllSelector
@@ -114,6 +114,7 @@
       - id: ToySkeleton
       - id: Basketball
       - id: Football
+      - id: TennisBall
       - id: BalloonNT
       - id: BalloonCorgi
       - id: MysteryFigureBox
@@ -172,6 +173,8 @@
       - id: ClothingUniformJumpsuitFamilyGuy
       - id: WristwatchGold
       - id: RubberStampGreytide
+      - id: MysteryLighterBox
+      - id: GoldenPersonalAI
 
 - type: entity
   name: Maint Loot Spawner
@@ -241,7 +244,7 @@
       - id: ClothingMaskBreath
       - id: DoorElectronics
       - id: APCElectronics
-      - id: InflatableWallStack5
+      - id: NFInflatableWallStack5 # Frontier: InflatableWallStack5<NFInflatableWallStack5
       - id: CableHVStack10
       - id: CableMVStack10
       - id: CableApcStack10
@@ -389,6 +392,7 @@
     - type: RandomSpawner
       prototypes:
         - Spaceshroom
+        - NFGlowshroom # Frontier
       chance: 0.6
       offset: 0.0
 

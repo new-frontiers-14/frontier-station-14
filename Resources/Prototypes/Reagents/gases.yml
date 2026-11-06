@@ -32,6 +32,9 @@
         - !type:OrganType
           type: Vox
           shouldHave: false
+        - !type:OrganType # Frontier
+          type: Sheleg # Frontier
+          shouldHave: false # Frontier
         ratios:
           CarbonDioxide: 1.0
           Oxygen: -1.0
@@ -377,7 +380,7 @@
           shouldHave: false
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:GenericStatusEffect
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: NitrousOxide
@@ -385,8 +388,7 @@
         - !type:OrganType
           type: Slime
           shouldHave: false
-        key: ForcedSleep
-        component: ForcedSleeping
+        effectProto: StatusEffectForcedSleeping
         time: 3
         type: Add
       - !type:HealthChange
@@ -420,14 +422,13 @@
         damage:
           types:
             Cellular: 1
-      - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
         type: Add
-        time: 100
+        time: 15
         refresh: false
       - !type:Drunk
-        boozePower: 100
+        boozePower: 15
       - !type:PopupMessage
         type: Local
         messages: [ "frezon-lungs-cold" ]
@@ -456,14 +457,13 @@
         ignoreResistances: true
         damage:
           types:
-            Cellular: 0.1
-      - !type:GenericStatusEffect
+            Cellular: 0.5
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: Frezon
           min: 1
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 500
         refresh: false

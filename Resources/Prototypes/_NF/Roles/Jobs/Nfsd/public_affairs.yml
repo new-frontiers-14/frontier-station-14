@@ -13,6 +13,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 21600 # 6 hours as security guard
   startingGear: PublicAffairGear
   icon: "JobIconPublicAffairsLiaison"
   supervisors: job-supervisors-cadet
@@ -23,7 +26,7 @@
   - CadetNfsdAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -39,3 +42,15 @@
     - BoxFolderPalBrown
     - BoxFolderNfsdForms
     - RubberStampPal
+
+- type: chameleonOutfit
+  id: PublicAffairsLiaisonChameleonOutfit
+  job: PublicAffairsLiaison
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckLawyerbadge
+    outerClothing: ClothingOuterWinterColorBlack
+    gloves: ClothingHandsGlovesColorBlack

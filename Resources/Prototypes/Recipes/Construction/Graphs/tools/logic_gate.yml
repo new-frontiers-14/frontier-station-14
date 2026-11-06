@@ -46,13 +46,10 @@
         doAfter: 1
     - to: memory_cell
       steps:
-      - tag: CapacitorStockPart
-        icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
-        name: construction-graph-tag-capacitor
-      - material: Capacitor
-        amount: 1
+      - part: Manipulator # Frontier
+        store: machine_parts # Frontier
+        amount: 2
+        doAfter: 1 #Frontier
       - material: Cable
         amount: 2
         doAfter: 1
@@ -102,8 +99,9 @@
       - tool: Prying
         doAfter: 2
       completed:
-      - !type:SpawnPrototype
-        prototype: CapacitorStockPart
+      - !type:EmptyAllContainers #Frontier, needs to get these machine parts back
+        pickup: true
+        emptyAtUser: true
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2

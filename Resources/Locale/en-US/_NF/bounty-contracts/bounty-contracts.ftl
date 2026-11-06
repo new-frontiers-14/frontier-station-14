@@ -58,7 +58,7 @@ bounty-contracts-ui-create-button-create = Create
 bounty-contracts-ui-create-error-invalid-price = Error: Invalid price!
 bounty-contracts-ui-create-error-no-name = Error: Invalid bounty name!
 bounty-contracts-ui-create-error-name-too-long = Error: Name too long!
-bounty-contracts-ui-create-error-vessel-too-long = Error: Vessel too long!
+bounty-contracts-ui-create-error-vessel-name-too-long = Error: Vessel name too long!
 bounty-contracts-ui-create-error-description-too-long = Error: Description too long!
 bounty-contracts-ui-create-ready = Your contract is ready to be published!
 

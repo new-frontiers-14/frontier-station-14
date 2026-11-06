@@ -1,3 +1,4 @@
+#region planet
 - type: entity
   name: mercenary boss spawner
   id: SpawnMobMercenaryCaptain
@@ -32,3 +33,12 @@
   - type: ConditionalSpawner
     prototypes:
     - MobMercenaryCaptain
+
+#region space
+- type: entity
+  id: SpawnMobMercenaryCaptainEVA
+  parent: SpawnMobMercenaryCaptain
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMercenaryCaptainEVA

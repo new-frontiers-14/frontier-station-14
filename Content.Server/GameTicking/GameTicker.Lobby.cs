@@ -4,6 +4,7 @@ using Content.Server.Station.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using System.Text;
+using Content.Shared._Harmony.CCVars; // Harmony Queue
 
 namespace Content.Server.GameTicking
 {
@@ -48,7 +49,7 @@ namespace Content.Server.GameTicking
                 return string.Empty;
             }
 
-            var playerCount = $"{_playerManager.PlayerCount}";
+            var playerCount = $"{_playerManager.PlayerCount - (_cfg.GetCVar(HCCVars.EnableQueue) ? _joinQueue.PlayerInQueueCount : 0)}"; // Harmony Queue Start
             var readyCount = _playerGameStatuses.Values.Count(x => x == PlayerGameStatus.ReadyToPlay);
 
             var stationNames = new StringBuilder();
@@ -173,7 +174,6 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count

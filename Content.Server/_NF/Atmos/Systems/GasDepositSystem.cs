@@ -4,7 +4,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
-using Content.Server.Construction;
 using Content.Server.Hands.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
@@ -21,6 +20,7 @@ using Content.Shared._NF.Bank.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Coordinates;
+using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
 using Robust.Server.Audio;
@@ -268,7 +268,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         var amount = 0.0;
         foreach (var salePoint in GetNearbySalePoints(ent, gridUid))
         {
-            amount += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
+            amount += _atmosphere.GetPrice(salePoint.Comp.GasStorage, true);
             salePoint.Comp.GasStorage.Clear();
         }
 
@@ -312,7 +312,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         foreach (var salePoint in GetNearbySalePoints(consoleUid, gridUid))
         {
             _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
-            value += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
+            value += _atmosphere.GetPrice(salePoint.Comp.GasStorage, true);
         }
     }
 

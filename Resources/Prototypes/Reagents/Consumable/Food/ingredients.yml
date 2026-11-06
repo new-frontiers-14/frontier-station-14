@@ -104,6 +104,25 @@
   flavor: peppery
   color: black
   recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:Emote
+        emote: Cough
+        showInChat: true
+        showInGuidebook: true
+        probability: 0.05
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:Emote
+        emote: Cough
+        showInGuidebook: true
+        conditions:
+        - !type:Breathing
+        - !type:Internals
+          usingInternals: false
 
 - type: reagent
   id: Vinegar
@@ -165,8 +184,8 @@
   flavor: oily
   flavorMinimum: 0.05
   color: olive
-  meltingPoint: -6.0 #Nyano - Summary: Add melting point for fryer. 
-  boilingPoint: 299.0 #Nyano - Summary: Add boiling point for fryer. 
+  meltingPoint: -6.0 #Nyano - Summary: Add melting point for fryer.
+  boilingPoint: 299.0 #Nyano - Summary: Add boiling point for fryer.
   recognizable: true
   metabolisms:
     Food:
@@ -182,6 +201,9 @@
           min: 0.1
         factor: 1
       # End Frontier: no extra nutriment, but satiation instead
+  friction: 0.20 #Frontier
+  slipData: #Frontier
+    requiredSlipSpeed: 1 #Frontier
 
 - type: reagent
   id: Oil
@@ -197,6 +219,9 @@
   meltingPoint: -16.0
   tileReactions:
   - !type:FlammableTileReaction {}
+  friction: 0.20 #Frontier
+  slipData: #Frontier
+    requiredSlipSpeed: 1 #Frontier
 
 - type: reagent
   id: CapsaicinOil
@@ -291,6 +316,9 @@
           min: 0.1
         factor: 1
       # End Frontier: no extra nutriment, but satiation instead
+  friction: 0.20 #Frontier
+  slipData: #Frontier
+    requiredSlipSpeed: 1 #Frontier
 
 - type: reagent
   id: TeaPowder

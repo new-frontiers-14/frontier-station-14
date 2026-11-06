@@ -159,7 +159,60 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingHeadBandGreen
 
+- type: latheRecipe
+  id: ClothingHeadHatBishopMitre
+  parent: BaseHatRecipe
+  result: ClothingHeadHatBishopMitre
 
+- type: latheRecipe
+  id: ClothingHeadHatWitchhunter
+  parent: BaseHatRecipe
+  result: ClothingHeadHatWitchhunter
+
+- type: latheRecipe
+  id: ClothingHeadHatCardinal
+  parent: BaseHatRecipe
+  result: ClothingHeadHatCardinal
+
+- type: latheRecipe
+  id: ClothingHeadHatPilgrim
+  parent: BaseHatRecipe
+  result: ClothingHeadHatPilgrim
+
+- type: latheRecipe
+  id: ClothingHeadHatWideBrimmed
+  parent: BaseHatRecipe
+  result: ClothingHeadHatWideBrimmed
+
+- type: latheRecipe
+  id: ClothingHeadHatKippah
+  parent: BaseHatRecipe
+  result: ClothingHeadHatKippah
+
+- type: latheRecipe
+  id: ClothingHeadHatWitch
+  parent: BaseHatRecipe
+  result: ClothingHeadHatWitch
+
+- type: latheRecipe
+  id: ClothingHeadHatWitch1
+  parent: BaseHatRecipe
+  result: ClothingHeadHatWitch1
+
+- type: latheRecipe
+  id: ClothingHeadHatPlaguedoctor
+  parent: BaseHatRecipe
+  result: ClothingHeadHatPlaguedoctor
+
+- type: latheRecipe
+  id: ClothingHeadHatFez
+  parent: BaseHatRecipe
+  result: ClothingHeadHatFez
+
+- type: latheRecipe
+  id: ClothingHeadHatHoodNunHood
+  parent: BaseHatRecipe
+  result: ClothingHeadHatHoodNunHood
 
 # region Jumpsuits
 - type: latheRecipe
@@ -548,6 +601,11 @@
   result: ClothingUniformJumpsuitMilitarySr
 
 - type: latheRecipe
+  id: ClothingUniformJumpsuitMailCarrier
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitMailCarrier
+
+- type: latheRecipe
   id: ClothingUniformJumpsuitNfsd
   parent: NFBaseJumpsuitRecipe
   result: ClothingUniformJumpsuitNfsd
@@ -790,6 +848,11 @@
   result: ClothingUniformJumpskirtSr
 
 - type: latheRecipe
+  id: ClothingUniformJumpskirtMailCarrier
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpskirtMailCarrier
+
+- type: latheRecipe
   id: ClothingUniformJumpskirtNfsd
   parent: NFBaseJumpsuitRecipe
   result: ClothingUniformJumpskirtNfsd
@@ -852,6 +915,11 @@
   result: ClothingOuterJacketSr
 
 - type: latheRecipe
+  id: ClothingOuterWinterCoatMail
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterWinterCoatMail
+
+- type: latheRecipe
   id: ClothingOuterCoatPirate
   parent: NFBaseCoatRecipe
   result: ClothingOuterCoatPirate
@@ -866,7 +934,52 @@
   parent: NFBaseCoatRecipe
   result: ClothingOuterCoatPirateCaptain
 
-# region Cloaks
+- type: latheRecipe
+  id: ClothingOuterCoatVictorian
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatVictorian
+
+- type: latheRecipe
+  id: ClothingOuterCoatVictorianRed
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatVictorianRed
+
+- type: latheRecipe
+  id: ClothingOuterHoodieChaplain
+  parent: BaseCoatRecipe
+  result: ClothingOuterHoodieChaplain
+
+- type: latheRecipe
+  id: ClothingOuterNunRobe
+  parent: BaseCoatRecipe
+  result: ClothingOuterNunRobe
+
+- type: latheRecipe
+  id: ClothingOuterPlagueSuit
+  parent: BaseCoatRecipe
+  result: ClothingOuterPlagueSuit
+
+- type: latheRecipe
+  id: ClothingOuterCoatWitchHunter
+  parent: BaseCoatRecipe
+  result: ClothingOuterCoatWitchHunter
+
+- type: latheRecipe
+  id: ClothingOuterCoatCardinal
+  parent: BaseCoatRecipe
+  result: ClothingOuterCoatCardinal
+
+- type: latheRecipe
+  id: ClothingOuterCoatBishop
+  parent: BaseCoatRecipe
+  result: ClothingOuterCoatBishop
+
+- type: latheRecipe
+  id: ClothingOuterHoodieBlack
+  parent: BaseCoatRecipe
+  result: ClothingOuterHoodieBlack
+
+# region Neck
 
 - type: latheRecipe
   id: ClothingNeckCloakAroace
@@ -988,6 +1101,24 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingNeckCloakPirateCap
 
+- type: latheRecipe
+  id: ClothingNeckStoleChaplain
+  parent: BaseNeckClothingRecipe
+  result: ClothingNeckStoleChaplain
+
+- type: latheRecipe
+  id: ClothingNeckScarfChaplainStole
+  parent: BaseNeckClothingRecipe
+  result: ClothingNeckScarfChaplainStole
+
+- type: latheRecipe
+  id: ClothingNeckScarfPirateAurecorsa
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingNeckScarfPirateAurecorsa
+  materials:
+    Gold: 300
+    Cloth: 500
+
 # region Syndicate
 
 - type: latheRecipe
@@ -1038,12 +1169,20 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: UtilityBeltChiefEngineer
+  id: ClothingBeltChiefEngineer
   result: ClothingBeltChiefEngineer
   completetime: 6
   materials:
     Silver: 400
     Gold: 100
+
+- type: latheRecipe
+  id: ClothingBeltChaplainSash
+  categories:
+  - ClothesNF
+  - NFPiety
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltChaplainSash
 
 # region Pouches
 - type: latheRecipe
@@ -1172,6 +1311,14 @@
   parent: NFBaseBootRecipe
   result: ClothingHandsGlovesCombatNfsdCream
 
+- type: latheRecipe
+  id: ClothingHandsGlovesColorYellow
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesColorYellow
+  categories:
+  - ClothesNF
+  - Tools
+
 # region Boots
 - type: latheRecipe
   id: ClothingShoesBootsMercenary
@@ -1259,6 +1406,22 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingEyesEyepatch
 
+- type: latheRecipe
+  parent: NFBaseWearableDeviceRecipe
+  id: NFClothingEyesGlassesMeson
+  result: ClothingEyesGlassesMeson
+  categories:
+  - ClothesNF
+  - Tools
+
+- type: latheRecipe
+  parent: NFBaseWearableDeviceRecipe
+  id: NFClothingEyesGlassesMesonScanner
+  result: NFClothingEyesGlassesMesonScanner
+  categories:
+  - ClothesNF
+  - Tools
+
 # region Wallets
 - type: latheRecipe
   id: ClothingWalletLeatherBrown
@@ -1287,3 +1450,24 @@
   result: ClothingBackpackSatchelLeather
   materials:
     Cloth: 400
+
+# region holsters
+- type: latheRecipe
+  parent: NFBaseBootRecipe
+  id: NFBaseClothingNeckHolsterThigh
+  result: NFBaseClothingNeckHolsterThigh
+
+- type: latheRecipe
+  parent: NFBaseBootRecipe
+  id: NFBaseClothingNeckHolsterThighNfsd
+  result: NFBaseClothingNeckHolsterThighNfsd
+
+- type: latheRecipe
+  parent: NFBaseBootRecipe
+  id: NFBaseClothingNeckSheathThigh
+  result: NFBaseClothingNeckSheathThigh
+
+- type: latheRecipe
+  parent: NFBaseBootRecipe
+  id: NFBaseClothingNeckSheathThighNfsd
+  result: NFBaseClothingNeckSheathThighNfsd

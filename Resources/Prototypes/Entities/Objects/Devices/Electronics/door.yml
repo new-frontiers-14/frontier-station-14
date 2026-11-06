@@ -14,12 +14,14 @@
     - type: StaticPrice
       price: 55
     - type: AccessReader
-    - type: ActivatableUI
-      key: enum.DoorElectronicsConfigurationUiKey.Key
-      requiredItems:
-        tags:
-        - DoorElectronicsConfigurator
-    - type: UserInterface
-      interfaces:
-        enum.DoorElectronicsConfigurationUiKey.Key:
-          type: DoorElectronicsBoundUserInterface
+    # Frontier: no inherent UI, use the access configurator if needed
+    # - type: ActivatableUI
+    #   key: enum.DoorElectronicsConfigurationUiKey.Key
+    #   requiredItems:
+    #     tags:
+    #     - DoorElectronicsConfigurator
+    # - type: UserInterface
+    #   interfaces:
+    #     enum.DoorElectronicsConfigurationUiKey.Key:
+    #       type: DoorElectronicsBoundUserInterface
+    # Frontier: no inherent UI, use the access configurator if needed

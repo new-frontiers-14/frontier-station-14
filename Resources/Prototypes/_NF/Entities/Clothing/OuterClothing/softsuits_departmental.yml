@@ -55,7 +55,7 @@
     autoRecharge: true
     autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
   - type: Appearance
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       outerClothing:
@@ -70,14 +70,16 @@
       - state: equipped-shoulder-light
       - state: equipped-breathing-gear
       - state: equipped-unshaded
+  - type: ItemTogglePointLight
   - type: PointLight
     #color: "#adffe6"
     enabled: false
-    radius: 3
-    energy: 2
+    radius: 6
+    energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
+  - type: CatWearable
 
 #region Departmental suits
 - type: entity
@@ -133,6 +135,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetHydro
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -187,6 +190,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMailman
+  - type: CatWearable
 
 #region Contractors
 - type: entity
@@ -242,6 +246,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetContractor
+  - type: CatWearable
 
 #region Command
 - type: entity
@@ -297,6 +302,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetSr
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -351,6 +357,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetStc
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -405,6 +412,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetCaptain
+  - type: CatWearable
 
 #region Engineering
 - type: entity
@@ -468,6 +476,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetEngineer
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -522,6 +531,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetAtmosTech
+  - type: CatWearable
 
 #region Supply
 - type: entity
@@ -577,6 +587,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetCargo
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -631,6 +642,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetSalvage
+  - type: CatWearable
 
 #region Medical
 - type: entity
@@ -686,6 +698,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMedic
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuitShoulderLight
@@ -748,6 +761,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetParamedic
+  - type: CatWearable
 
 #region Science
 - type: entity
@@ -803,6 +817,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetScientist
+  - type: CatWearable
 
 #region Service
 - type: entity
@@ -858,6 +873,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetJanitor
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -912,6 +928,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetValet
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -966,6 +983,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetServiceWorker
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -1020,6 +1038,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetChaplain
+  - type: CatWearable
 
 #region Boxing
 - type: entity
@@ -1027,7 +1046,7 @@
   id: ClothingOuterEVASuitBoxerRed
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the red corner.
-  suffix: Red
+  suffix: Frontier, Red
   components:
   - type: Sprite
     layers:
@@ -1076,13 +1095,14 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerRed
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
   id: ClothingOuterEVASuitBoxerGreen
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the green corner.
-  suffix: Green
+  suffix: Frontier, Green
   components:
   - type: Sprite
     layers:
@@ -1131,13 +1151,14 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerGreen
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
   id: ClothingOuterEVASuitBoxerBlue
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the blue corner.
-  suffix: Blue
+  suffix: Frontier, Blue
   components:
   - type: Sprite
     layers:
@@ -1186,13 +1207,14 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerBlue
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
   id: ClothingOuterEVASuitBoxerYellow
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the yellow corner.
-  suffix: Yellow
+  suffix: Frontier, Yellow
   components:
   - type: Sprite
     layers:
@@ -1241,13 +1263,14 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerYellow
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
   id: ClothingOuterEVASuitBoxerRandom
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the random corner.
-  suffix: Randomized colors
+  suffix: Frontier, Randomized colors
   components:
   - type: Sprite
     layers:
@@ -1298,6 +1321,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerRandom
+  - type: CatWearable
 
 #region Wildcards
 - type: entity
@@ -1353,6 +1377,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPilot
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -1407,6 +1432,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMercenary
+  - type: CatWearable
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -1461,6 +1487,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPrivateSec
+  - type: CatWearable
 
 #region NFSD
 - type: entity
@@ -1524,6 +1551,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetNfsd
+  - type: CatWearable
 
 #region Pirate
 - type: entity
@@ -1587,6 +1615,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPirate
+  - type: CatWearable
 
 #region Prisoner
 - type: entity
@@ -1642,6 +1671,7 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPrisoner
+  - type: CatWearable
 
 #region Player Factions
 - type: entity

@@ -485,8 +485,21 @@ namespace Content.Server.Administration.Systems
             // Otherwise patch (edit) it
             if (existingEmbed.Id == null)
             {
-                var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
-                    new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                // Frontier: Replaced with Try/Catch for network issues
+                HttpResponseMessage request;
+                try
+                {
+                    request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
+                        new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                }
+                catch (Exception ex)
+                {
+                    _sawmill.Log(LogLevel.Error,
+                        $"Webhook POST failed (network / refused) for user {userId}: {ex.Message}\n{ex}");
+                    _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, There might be times were Source or Target have temporarily network issues.
+                    return;
+                }
 
                 var content = await request.Content.ReadAsStringAsync();
                 if (!request.IsSuccessStatusCode)
@@ -494,6 +507,7 @@ namespace Content.Server.Administration.Systems
                     _sawmill.Log(LogLevel.Error,
                         $"Webhook returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: "Discord"<"Webhook"
                     _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, if post fails we discard the embed and make a new one
                     return;
                 }
 
@@ -510,8 +524,21 @@ namespace Content.Server.Administration.Systems
             }
             else
             {
-                var request = await _httpClient.PatchAsync($"{_webhookUrl}/messages/{existingEmbed.Id}",
-                    new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                // Frontier: Replaced with Try/Catch for network issues
+                HttpResponseMessage request;
+                try
+                {
+                    request = await _httpClient.PatchAsync($"{_webhookUrl}/messages/{existingEmbed.Id}",
+                        new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                }
+                catch (Exception ex)
+                {
+                    _sawmill.Log(LogLevel.Error,
+                        $"Webhook PATCH failed (network / refused) for user {userId} (will discard current embed state): {ex.Message}\n{ex}");
+                    _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, There might be times were Source or Target have temporarily network issues.
+                    return;
+                }
 
                 if (!request.IsSuccessStatusCode)
                 {
@@ -519,6 +546,7 @@ namespace Content.Server.Administration.Systems
                     _sawmill.Log(LogLevel.Error,
                         $"Webhook returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: "Discord"<"Webhook"
                     _relayMessages.Remove(userId);
+                    _processingChannels.Remove(userId); // Frontier: Very Basic "Retry" logic, if patch fails we discard the embed and make a new one
                     return;
                 }
             }
@@ -547,13 +575,27 @@ namespace Content.Server.Administration.Systems
 
                     payload = GeneratePayload(message.ToString(), existingEmbed.Username, userId, existingEmbed.CharacterName);
 
-                    var request = await _httpClient.PostAsync($"{_onCallUrl}?wait=true",
-                        new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
-
-                    var content = await request.Content.ReadAsStringAsync();
-                    if (!request.IsSuccessStatusCode)
+                    // Frontier: Replaced with Try/Catch for network issues
+                    HttpResponseMessage request;
+                    try
                     {
-                        _sawmill.Log(LogLevel.Error, $"Webhook returned bad status code when posting relay message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: Discord<Webhook
+                        request = await _httpClient.PostAsync($"{_onCallUrl}?wait=true",
+                            new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+                    }
+                    catch (Exception ex)
+                    {
+                        _sawmill.Log(LogLevel.Error,
+                            $"On-call webhook POST failed (network / refused) for user {userId}: {ex.Message}\n{ex}");
+                        request = null!;
+                    }
+
+                    if (request != null)
+                    {
+                        var content = await request.Content.ReadAsStringAsync();
+                        if (!request.IsSuccessStatusCode)
+                        {
+                            _sawmill.Log(LogLevel.Error, $"Webhook returned bad status code when posting relay message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: Discord<Webhook
+                        }
                     }
                 }
             }

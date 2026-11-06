@@ -67,6 +67,28 @@
   - UplinkAmmo
 
 - type: listing
+  id: UplinkNFMagazineShotgunPellet
+  name: uplink-magazine-bulldog-pellet-name
+  description: uplink-magazine-bulldog-pellet-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
+  productEntity: NFMagazineShotgunDrum
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkNFMagazineShotgunSlug
+  name: uplink-magazine-bulldog-slug-name
+  description: uplink-magazine-bulldog-slug-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: NFMagazineShotgunDrumSlug
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkAmmo
+
+- type: listing
   id: UplinkNFMagazinePistolCaselessRifle
   name: uplink-pistol-magazine-cobra-name
   description: uplink-pistol-magazine-cobra-desc
@@ -154,5 +176,16 @@
   icon: { sprite: Objects/Vehicles/syndicatesegway.rsi, state: vehicle }
   cost:
     Telecrystal: 25
+  categories:
+    - UplinkPointless
+
+- type: listing
+  id: UplinkSyndicateSprayPainter
+  name: uplink-syndicate-spray-painter-name
+  description: uplink-syndicate-spray-painter-desc
+  productEntity: SprayPainterSyndicate
+  icon: { sprite: _NF/Objects/Tools/spray_painter_syndicate.rsi, state: spray_painter_syndicate }
+  cost:
+    Telecrystal: 1
   categories:
     - UplinkPointless

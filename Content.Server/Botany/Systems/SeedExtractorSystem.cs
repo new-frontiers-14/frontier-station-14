@@ -1,5 +1,5 @@
 using Content.Server.Botany.Components;
-using Content.Server.Construction;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Interaction;

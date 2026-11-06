@@ -36,7 +36,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
         var ghostRole = new ProtoId<GhostRolePrototype>(args[1].Trim());
         if (!_prototypes.TryIndex(ghostRole, out var ghostRolePrototype))
         {
-            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-ghost-role-does-not-exist", ("ghost-role", ghostRole.Id)));
+            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-ghostrole-does-not-exist", ("ghost-role", ghostRole.Id)));
             shell.WriteLine(Help);
             return;
         }
@@ -48,7 +48,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
             var isWhitelisted = await _db.IsGhostRoleWhitelisted(guid, ghostRole);
             if (isWhitelisted)
             {
-                shell.WriteLine(Loc.GetString("cmd-ghostrolewhitelist-already-whitelisted",
+                shell.WriteLine(Loc.GetString("cmd-ghostrolewhitelistadd-already-whitelisted",
                     ("player", player),
                     ("ghostRoleId", ghostRole.Id),
                     ("ghostRoleName", ghostRolePrototype.Name)));
@@ -79,7 +79,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
         {
             return CompletionResult.FromHintOptions(
                 _prototypes.EnumeratePrototypes<GhostRolePrototype>().Select(p => p.ID),
-                Loc.GetString("cmd-ghostrolewhitelist-hint-job"));
+                Loc.GetString("cmd-ghostrolewhitelist-hint-ghostrole"));
         }
 
         return CompletionResult.Empty;
@@ -164,7 +164,7 @@ public sealed class RemoveGhostRoleWhitelistCommand : LocalizedCommands
         var ghostRole = new ProtoId<GhostRolePrototype>(args[1].Trim());
         if (!_prototypes.TryIndex(ghostRole, out var ghostRolePrototype))
         {
-            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-job-does-not-exist", ("ghostRole", ghostRole)));
+            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-ghostrole-does-not-exist", ("ghostRole", ghostRole)));
             shell.WriteLine(Help);
             return;
         }

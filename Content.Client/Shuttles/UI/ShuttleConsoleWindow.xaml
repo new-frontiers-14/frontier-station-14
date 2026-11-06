@@ -1,9 +1,11 @@
+<!-- Frontier: adjust minimum size so we can shrink down the window -->
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
                       Title="{Loc 'shuttle-console-window-title'}"
                       SetSize="960 762"
-                      MinSize="960 762">
+                      MinSize="480 381">
+<!-- End Frontier -->
     <BoxContainer Orientation="Vertical">
         <!-- Top row mode buttons -->
         <BoxContainer Name="ModeButtons"

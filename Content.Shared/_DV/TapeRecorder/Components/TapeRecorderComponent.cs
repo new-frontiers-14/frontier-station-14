@@ -1,4 +1,6 @@
 using Content.Shared._DV.TapeRecorder.Systems;
+//using Content.Shared._DV.DeviceLinking.Systems; // Frontier removal. Apparently doesn't exist here.
+using Content.Shared.DeviceLinking;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -80,4 +82,20 @@ public sealed partial class TapeRecorderComponent : Component
     {
         Params = AudioParams.Default.WithVolume(-2f).WithMaxDistance(3f)
     };
+
+    /// <summary>
+    /// Ports for signal control
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<SinkPortPrototype> PausePort = "Pause";
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<SinkPortPrototype> RecordPort = "Record";
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<SinkPortPrototype> PlaybackPort = "Playback";
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<SinkPortPrototype> RewindPort = "Rewind";
+
 }

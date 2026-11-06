@@ -9,7 +9,6 @@ using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
@@ -20,6 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Station.Components;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._NF.SectorServices; // Frontier
 
@@ -99,10 +99,10 @@ namespace Content.Server.RoundEnd
         /// </summary>
         public EntityUid? GetStation()
         {
-            AllEntityQuery<StationEmergencyShuttleComponent, StationDataComponent>().MoveNext(out _, out _, out var data);
+            AllEntityQuery<StationEmergencyShuttleComponent, StationDataComponent>().MoveNext(out var uid, out _, out var data);
             if (data == null)
                 return null;
-            var targetGrid = _stationSystem.GetLargestGrid(data);
+            var targetGrid = _stationSystem.GetLargestGrid((uid, data));
             return targetGrid == null ? null : Transform(targetGrid.Value).MapUid;
         }
 
@@ -126,7 +126,7 @@ namespace Content.Server.RoundEnd
             return _countdownTokenSource != null;
         }
 
-        public void RequestRoundEnd(EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement")
+        public void RequestRoundEnd(EntityUid? requester = null, bool checkCooldown = true, string text = "nf-round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement") // Frontier
         {
             var duration = DefaultCountdownDuration;
 
@@ -145,7 +145,7 @@ namespace Content.Server.RoundEnd
             RequestRoundEnd(duration, requester, checkCooldown, text, name);
         }
 
-        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement")
+        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "nf-round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement") // Frontier
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
@@ -190,7 +190,7 @@ namespace Content.Server.RoundEnd
                 null,
                 Color.Gold);
 
-            _audio.PlayGlobal("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast(), true);
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_near.ogg", Filter.Broadcast(), true); // Frontier
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -238,7 +238,7 @@ namespace Content.Server.RoundEnd
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
 
-            _audio.PlayGlobal("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast(), true);
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_extend.ogg", Filter.Broadcast(), true); // Frontier
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
@@ -292,6 +292,7 @@ namespace Content.Server.RoundEnd
                     ("time", time),
                     ("units", Loc.GetString(unitsLocString))));
             Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_end.ogg", Filter.Broadcast(), true); // Frontier
         }
 
         /// <summary>
@@ -305,8 +306,8 @@ namespace Content.Server.RoundEnd
         public void DoRoundEndBehavior(RoundEndBehavior behavior,
             TimeSpan time,
             string sender = "comms-console-announcement-title-centcom",
-            string textCall = "round-end-system-shuttle-called-announcement",
-            string textAnnounce = "round-end-system-shuttle-already-called-announcement")
+            string textCall = "nf-round-end-system-shuttle-called-announcement", // Frontier
+            string textAnnounce = "nf-round-end-system-shuttle-already-called-announcement") // Frontier
         {
             switch (behavior)
             {
@@ -351,6 +352,30 @@ namespace Content.Server.RoundEnd
             }, _cooldownTokenSource.Token);
         }
 
+        // Frontier: show time remaining in round on PDA
+        public TimeSpan? GetAutoCallTime()
+        {
+            // Handle special cases first
+            if (ExpectedCountdownEnd is not null)
+                return ExpectedCountdownEnd;
+
+            if (_shuttle.EmergencyShuttleArrived || _gameTicker.RunLevel != GameRunLevel.InRound)
+                return null;
+
+            var mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                                        : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
+            if (mins == 0)
+            {
+                return null;
+            }
+            else // Normal case where the shuttle hasn't been called yet
+            {
+                return AutoCallStartTime + TimeSpan.FromMinutes(mins) + DefaultCountdownDuration;
+            }
+
+        }
+        // End Frontier
+
         public override void Update(float frameTime)
         {
             // Check if we should auto-call.
@@ -360,7 +385,7 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    RequestRoundEnd(null, false, "nf-round-end-system-shuttle-auto-called-announcement");// Frontier
                     _autoCalledBefore = true;
                 }
 

@@ -67,8 +67,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
-    [ValidatePrototypeId<ColorPalettePrototype>]
-    private const string ChatNamePalette = "ChatNames";
+    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
     private string[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
@@ -232,7 +231,7 @@ public sealed partial class ChatUIController : UIController
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
 
-        var nameColors = _prototypeManager.Index<ColorPalettePrototype>(ChatNamePalette).Colors.Values.ToArray();
+        var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
         _chatNameColors = new string[nameColors.Length];
         for (var i = 0; i < nameColors.Length; i++)
         {
@@ -701,6 +700,13 @@ public sealed partial class ChatUIController : UIController
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null);
         else
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
+
+        // DeltaV begin - refresh indicator change
+        if (CurrentChannel != prefixChannel)
+            _typingIndicator?.ClientSubmittedChatText();
+
+        CurrentChannel = prefixChannel;
+        // DeltaV end
     }
 
     public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)

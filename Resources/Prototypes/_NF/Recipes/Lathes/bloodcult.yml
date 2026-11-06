@@ -26,21 +26,36 @@
     Plasteel: 1500
 
 - type: latheRecipe
-  id: WizardStaffMeleeBlood
-  parent: BaseWeaponRecipeLong
-  result: WizardStaffMeleeBlood
-  materials:
-    Bones: 500
-    Plasteel: 500
-    Wood: 1500
-
-- type: latheRecipe
   id: SpearBone
   parent: BaseWeaponRecipe
   result: SpearBone
   materials:
     Bones: 400
     Cloth: 100
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponInertStaffCultistBoltDark
+  result: WeaponInertStaffCultistBoltDark
+  materials:
+    Bones: 500
+    Plasteel: 500
+    Wood: 1500
+
+- type: latheRecipe
+  parent: WeaponInertStaffCultistBoltDark
+  id: WeaponInertStaffCultistHand
+  result: WeaponInertStaffCultistHand
+
+- type: latheRecipe
+  parent: WeaponInertStaffCultistBoltDark
+  id: WeaponInertStaffCultistLightning
+  result: WeaponInertStaffCultistLightning
+
+- type: latheRecipe
+  parent: WeaponInertStaffCultistBoltDark
+  id: WeaponInertStaffCultistSoap
+  result: WeaponInertStaffCultistSoap
 
 # Armor
 - type: latheRecipe

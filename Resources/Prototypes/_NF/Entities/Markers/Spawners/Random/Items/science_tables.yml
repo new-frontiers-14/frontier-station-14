@@ -1,0 +1,379 @@
+# region Clutter
+- type: entityTable
+  id: TableDungeonLootScienceClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceTools
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringParts
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothes
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCircuitBoards
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceFlatpacks
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocks
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceDisks
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialBasicSingle
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralMaterialValuableSingle
+      weight: 0.1
+
+# region Tools
+- type: entityTable
+  id: TableDungeonLootScienceTools
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceToolsHandheld
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringPowerDrill
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringJawsOfLife
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringWelder
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsRare
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringToolsCommon
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralHandheldDisplays
+      weight: 0.15
+
+- type: entityTable
+  id: TableDungeonLootScienceToolsHandheld
+  table: !type:GroupSelector
+    children:
+    - !type:AllSelector
+      children:
+      - id: AnomalyLocator
+        weight: 0.7
+      - id: AnomalyLocatorWide
+        weight: 0.3
+    - id: AnomalyScanner
+    - id: NodeScanner
+    - !type:AllSelector
+      weight: 0.01
+      children:
+      - id: NFWeaponPistolCHIMP
+        weight: 0.7
+      - id: NFWeaponPistolCHIMPUpgraded
+        weight: 0.3
+
+# region Circuit Boards
+- type: entityTable # TODO: maybe split into multiple tables
+  id: TableDungeonLootScienceCircuitBoards
+  table: !type:GroupSelector
+    children:
+    # Computers
+    - !type:AllSelector
+      children:
+      - id: ResearchComputerCircuitboard
+      - id: AnalysisComputerCircuitboard
+      - id: ComputerIFFCircuitboard
+    # Lathes
+    - !type:AllSelector
+      children:
+      - id: CircuitImprinterMachineCircuitboard
+      - id: ExosuitFabricatorMachineCircuitboard
+      - id: ProtolatheMachineCircuitboard
+      - id: ProtolatheHyperConvectionMachineCircuitboard
+      - id: AutolatheMachineCircuitboard
+      - id: AutolatheHyperConvectionMachineCircuitboard
+      - id: FlatpackerMachineCircuitboard
+    # Machines
+    - !type:AllSelector
+      children:
+      - id: ResearchAndDevelopmentServerMachineCircuitboard
+      - id: APECircuitboard
+      - id: ArtifactAnalyzerMachineCircuitboard
+      - id: ArtifactCrusherMachineCircuitboard
+      - id: AnomalyVesselCircuitboard
+      - id: AnomalyVesselExperimentalCircuitboard
+
+# region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootScienceClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothesBags
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesHats
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothesJumpsuits
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothesJackets
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothesBoots
+      weight: 0.05
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringClothesBelts
+      weight: 0.15
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceClothesNeck
+      weight: 0.15
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootScienceEvas
+
+- type: entityTable
+  id: TableDungeonLootScienceClothesBags
+  table: !type:GroupSelector
+    children:
+    - id: ClothingBackpackDuffelScience
+      weight: 3
+    - id: ClothingBackpackMessengerScience
+      weight: 2
+    - id: ClothingBackpackScience
+      weight: 2
+    - id: ClothingBackpackSatchelScience
+      weight: 2
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: NFPouchScience
+      - id: NFPouchUtility
+
+- type: entityTable
+  id: TableDungeonLootScienceClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingUniformJumpsuitScientist
+    - id: ClothingUniformJumpskirtScientist
+    - id: ClothingUniformJumpsuitScientistFormal
+    - id: ClothingUniformJumpsuitMilitaryScientist
+
+- type: entityTable
+  id: TableDungeonLootScienceClothesJackets
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterCoatLab
+    - id: ClothingOuterCoatRnd
+    - id: ClothingOuterCoatRobo
+    - id: ClothingOuterCoatLabSeniorResearcher
+    - id: ClothingOuterCoatRD
+      weight: 0.05
+
+- type: entityTable
+  id: TableDungeonLootScienceClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesBootsLaceup
+      weight: 0.7
+    - id: ClothingShoesLeather
+      weight: 0.3
+
+- type: entityTable
+  id: TableDungeonLootScienceClothesNeck
+  table: !type:GroupSelector
+    children:
+    - id: ClothingNeckTieSci
+      weight: 0.7
+    - id: ClothingNeckTieBH
+      weight: 0.2
+    - id: ClothingNeckMantleRD
+      weight: 0.05
+    - id: ClothingNeckCloakRd
+      weight: 0.05
+
+# region EVA
+- type: entityTable
+  id: TableDungeonLootScienceEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitScientist
+      weight: 0.45
+    - id: ClothingBackpackDuffelEVABundleScientist
+      weight: 0.44
+    - id: ClothingOuterHardsuitRd
+      weight: 0.01
+
+# region Lockers
+- type: entityTable
+  id: TableDungeonLootScienceLockersAndSuitStorage
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceLockers
+      weight: 0.9
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceSuitStorageUnits
+      weight: 0.1
+
+- type: entityTable
+  id: TableDungeonLootScienceLockers
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      weight: 0.8
+      children:
+      - id: NFLockerScientist
+        weight: 0.7
+      - id: NFLockerScienceFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.1
+      children:
+      - id: ClosetL3Science
+        weight: 0.7
+      - id: ClosetL3ScienceFilled
+        weight: 0.3
+    - !type:GroupSelector
+      weight: 0.07
+      children:
+      - id: ClosetBomb
+        weight: 0.7
+      - id: NFClosetBombFilled
+        weight: 0.3
+    - id: LockerResearchDirectorFilled
+      weight: 0.03
+
+# region Lockers (SSU)
+- type: entityTable
+  id: TableDungeonLootScienceSuitStorageUnits
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - id: SuitStorageBase
+      weight: 0.7
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: SuitStorageEVAScientist
+        weight: 0.95
+      - id: SuitStorageRD
+        weight: 0.05
+
+#region Crates
+- type: entityTable
+  id: TableDungeonLootScienceCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesEmpty
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceCratesEmpty
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: TableDungeonLootEngineeringCratesRestock
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootScienceCratesFilled
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesMaterial
+      weight: 0.4
+
+- type: entityTable
+  id: TableDungeonLootScienceCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CrateScience
+    - id: CrateScienceSecure
+    - id: CrateChemistrySecure
+    - id: CrateMedical
+    - id: CrateArtifactContainer
+
+- type: entityTable
+  id: TableDungeonLootScienceCratesFilled
+  table: !type:GroupSelector
+    children:
+    - id: CrateScienceBiosuit
+      weight: 0.89
+    - id: CrateScienceLabBundle
+      weight: 0.01
+    - !type:GroupSelector # TODO: move to medical
+      weight: 0.1
+      children:
+      - id: CrateMedicalSupplies
+      - id: CrateMedicalSurgery
+      - id: CrateChemistryVials
+      - id: CrateChemistrySupplies
+      - id: CrateMedicalScrubs
+      - id: CrateVirologyBiosuit
+      - id: CrateMedicalSecureDoctor
+      - !type:GroupSelector
+        weight: 0.01
+        children:
+        - id: CrateMedicalSecureMedicinePierce
+        - id: CrateMedicalSecureMedicine
+        - id: CrateEvaKitParamedic
+        - id: CrateChemistrySecureKitChemist
+
+# region Other
+- type: entityTable
+  id: TableDungeonLootScienceDisks
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.7
+      children:
+      - id: ResearchDisk
+        weight: 0.35
+      - id: ResearchDisk5000
+        weight: 0.5
+      - id: ResearchDisk10000
+        weight: 0.15
+    - !type:GroupSelector
+      weight: 0.3
+      children:
+      - id: TreasureCDDrive
+      - id: TreasureHardDiskDrive
+      - id: TreasureFlopDiskDrive
+      - id: TreasureDatadiskEncrypted
+    - id: WeaponCaseShortDocumentsFilled
+      weight: 0.01
+
+- type: entityTable
+  id: TableDungeonLootScienceFlatpacks
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 0.9
+      children:
+      - id: ExosuitFabricatorFlatpack
+      - id: CircuitImprinterFlatpack
+      - id: ProtolatheFlatpack
+      - id: MachineArtifactAnalyzerFlatpack
+      - id: MachineAnomalyVesselFlatpack
+      - id: MachineAPEFlatpack
+      - id: MachineArtifactCrusherFlatpack
+      - id: ComputerResearchAndDevelopmentFlatpack
+      - id: ResearchAndDevelopmentServerFlatpack
+      - id: BlueprintLithographFlatpack
+    # Rare
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: MachineAnomalyGeneratorFlatpack
+      - id: MachineMiniAnomalyGeneratorFlatpack
+      - id: MachineAnomalyVesselExperimentalFlatpack

@@ -107,6 +107,9 @@
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [innerclothing, feet]
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -114,7 +117,7 @@
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
-    walkModifier: 0.4
+    walkModifier: 0.6
     sprintModifier: 0.6
   - type: HeldSpeedModifier
   - type: Item
@@ -144,6 +147,9 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: HarpyHideWings # Frontier, needed for Harpies
   - type: StaticPrice # Frontier
     price: 20 # Frontier
@@ -155,6 +161,9 @@
   id: ClothingOuterEVASuitBase
   name: base EVA Suit
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [innerclothing, feet]
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -174,6 +183,9 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
 #  - type: PhysicalComposition # Frontier
 #    materialComposition: # Frontier
 #      Durathread: 100 # Frontier

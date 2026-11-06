@@ -1,0 +1,62 @@
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, ClothingOuterWinterCoat, BaseCentcommContraband]
+  id: ClothingLongcoatCentCommArmored
+  categories: [ DoNotMap ]
+  name: central command armored longcoat
+  description: A royal green double-breasted longcoat with gold embellishments, specifically designed for a central command agent. Longcoats are fairly robust, offering some protection from the elements. It's been reinforced with a special alloy for some added protection.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/centcomm.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/centcomm.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Caustic: 0.6
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    
+- type: entity
+  parent: [ClothingOuterWinterCoat, BaseCommandContraband]
+  id: ClothingLongcoatCMO
+  name: chief medical officer's longcoat
+  description: A double-breasted longcoat with a green cross, specifically designed for the chief medical officer. Cut-resistant fibers provide some measure of protection against infectious bites. # Frontier: Description altered to hint at poison resistance
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/chief-medical-officer.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/chief-medical-officer.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.9
+        Caustic: 0.75
+        Poison: 0.8 # Frontier: Added poison resist, previously had none
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingLongcoatCE
+  name: chief engineer's longcoat
+  description: A dark green double-breasted with LED strip trim, specifically designed for the chief engineer. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/chief-engineer.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/chief-engineer.rsi
+
+- type: entity
+  parent: [ClothingOuterWinterCoat, BaseCommandContraband]
+  id: ClothingLongcoatHoP
+  name: head of personnel's longcoat
+  description: A navy blue double-breasted longcoat with red shoulderpads, specifically designed for the head of personnel. Longcoats are fairly robust, offering some protection from the elements.
+  components:
+  - type: Sprite
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/head-of-personnel.rsi
+  - type: Clothing
+    sprite: _Floof/Clothing/OuterClothing/Longcoats/head-of-personnel.rsi

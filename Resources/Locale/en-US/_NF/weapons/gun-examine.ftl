@@ -5,6 +5,7 @@ gun-examine-nf-min-angle = - [color={$color}]Minimum spread[/color]: [color=ligh
 gun-examine-nf-fire-rate = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color]
 gun-examine-nf-fire-rate-burst = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color] (burst of [color=lightblue]{$burstsize}[/color] at [color=lightblue]{NATURALFIXED($burstrate, 1)} RPS[/color])
 gun-examine-nf-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color]
+gun-examine-nf-stat-modifier = [bold]([color=lime]{$plus}{NATURALPERCENT($difference, 1)}[/color])[/bold]
 gun-examine-nf-class = - [color={$color}]Class[/color]: [color=lightblue]{$value}[/color]
 gun-examine-nf-manufacturer = - [color={$color}]Manufacturer[/color]: [color=lightblue]{$value}[/color]
 
@@ -27,11 +28,13 @@ gun-examine-hitscan-high-p = 1900J energy beam
 gun-examine-hitscan-xray = 1900J X-ray beam
 gun-examine-energybolt-low = 750J energy bolt
 gun-examine-energybolt-low-disabler-pistol = 750J energy/disabler bolt
+gun-examine-energybolt-low-disabler-repeater = 940J energy/disabler bolt
 gun-examine-energybolt-high = 1400J energy bolt
 gun-examine-energybolt-disabler-pistol = 750J disabler bolt
 gun-examine-energybolt-disabler-practice = 25J disabler bolt
 gun-examine-energybolt-holoflare = holoflare
 gun-examine-pulse-low = 1750J energy pulse
+gun-examine-particle-stream = high-energy particle stream
 gun-examine-energybolt-emp = EMP bolt
 gun-examine-energybolt-kinetic-high = 1600J kinetic bolt
 gun-examine-energybolt-kinetic-medium = 1100J kinetic bolt
@@ -41,14 +44,17 @@ gun-examine-caliber-40mm-grenade-dart = 40mm grenades / tracking darts
 gun-examine-caliber-rocket = rocket-propelled grenades
 gun-examine-caliber-cannon-ball = cannon balls
 gun-examine-caliber-mail-capsule = mail capsules
+gun-examine-caliber-shock-net = shock net grenade
 
 # Manufacturers (alphabetical please)
 weapon-details-manufacturer-custom-made = Custom Made
+weapon-details-manufacturer-children-of-the-atom = Children of the Atom
 weapon-details-manufacturer-cybersun-industries = Cybersun Industries
 weapon-details-manufacturer-foam-force-llc = Foam Force LLC
 weapon-details-manufacturer-frontier-gunsmith-consortium = Frontier Gunsmith Consortium
 weapon-details-manufacturer-gorlex-steel-works = Gorlex Steel Works
 weapon-details-manufacturer-nanotrasen-munitions = NanoTrasen Munitions
+weapon-details-manufacturer-nanotrasen-technologies = NanoTrasen Technologies
 weapon-details-manufacturer-steelbolt-tool-forge = Steelbolt Tool Forge
 
 # Classes (alphabetical please)
@@ -63,3 +69,9 @@ weapon-details-class-shotgun = Shotgun
 weapon-details-class-sniper = Sniper Rifle
 weapon-details-class-submachine-gun = Submachine Gun
 weapon-details-class-tool = Tool
+
+# Weapon rarity descriptions
+weapon-description-rarity-uncommon = This is an [bold][color=#33FF44]uncommon[/color][/bold] weapon.
+weapon-description-rarity-rare = This is a [bold][color=#33CCFF]rare[/color][/bold] weapon.
+weapon-description-rarity-epic = This is an [bold][color=#CC66FF]epic[/color][/bold] weapon.
+weapon-description-rarity-legendary = This is a [bold][color=#FFCC00]legendary[/color][/bold] weapon.

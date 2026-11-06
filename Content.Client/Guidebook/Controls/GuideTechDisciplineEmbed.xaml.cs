@@ -17,19 +17,23 @@ namespace Content.Client.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuideTechDisciplineEmbed : BoxContainer, IDocumentTag
 {
+    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+
+    private readonly ISawmill _sawmill;
 
     public GuideTechDisciplineEmbed()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        _sawmill = _logManager.GetSawmill("guidebook.tech_discipline");
         MouseFilter = MouseFilterMode.Stop;
     }
 
     public GuideTechDisciplineEmbed(string group) : this()
     {
         var prototypes = _prototype.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.Discipline.Equals(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name));
+            .Where(p => p.HasDiscipline(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name)); // Frontier: Updated to support dual-discipline technologies
         foreach (var tech in prototypes)
         {
             var embed = new GuideTechnologyEmbed(tech);
@@ -42,12 +46,12 @@ public sealed partial class GuideTechDisciplineEmbed : BoxContainer, IDocumentTa
         control = null;
         if (!args.TryGetValue("Discipline", out var group))
         {
-            Logger.Error("Technology discipline embed tag is missing discipline argument");
+            _sawmill.Error("Technology discipline embed tag is missing discipline argument");
             return false;
         }
 
         var prototypes = _prototype.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.Discipline.Equals(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name));
+            .Where(p => p.HasDiscipline(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name)); // Frontier: Updated to support dual-discipline technologies
         foreach (var tech in prototypes)
         {
             var embed = new GuideTechnologyEmbed(tech);

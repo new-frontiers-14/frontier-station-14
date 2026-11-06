@@ -1,18 +1,7 @@
 - type: entity
+  parent: [ ClothingBeltPilot, NFStorageFillBeltPilot ]
   id: ClothingBeltPilotFilled
-  parent: ClothingBeltPilot
   suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: CrowbarRed
-      - id: Wrench
-      - id: Screwdriver
-      - id: Multitool
-      - id: HandHeldMassScanner
-      - id: RemoteSignaller
-      - id: InflatableWallStack5
-      - id: InflatableDoorStack1
 
 - type: entity
   id: ClothingBeltNfsdFilled
@@ -90,6 +79,16 @@
       - id: Multitool
 
 - type: entity
+  id: ClothingBeltKatanaSheathFilled
+  parent: ClothingBeltKatanaSheath
+  suffix: Filled, Katana
+  components:
+  - type: ContainerFill
+    containers:
+      katanaslot:
+      - Katana
+
+- type: entity
   id: ClothingBeltSheathFilledHilt
   parent: ClothingBeltSheath
   suffix: Filled, Hilt
@@ -98,3 +97,24 @@
     containers:
       item:
       - CaptainSabreHilt
+
+- type: entity
+  id: ClothingBeltChiefEngineerFilledBasic
+  parent: ClothingBeltChiefEngineer
+  suffix: Filled, Basic
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrowbarYellow
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: GasAnalyzer
+    - id: trayScanner
+
+- type: entity
+  parent: [ TrashBagBlue, StorageFillGenericTrashItems ]
+  id: NFTrashBagBlueFilledTrash
+  suffix: Filled, Trash

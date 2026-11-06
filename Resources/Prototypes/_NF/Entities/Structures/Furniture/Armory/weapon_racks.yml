@@ -1,4 +1,4 @@
-## Command
+#region Command
 # SR PDW racks
 - type: entity
   id: StructurePistolRackLockSR
@@ -93,7 +93,7 @@
   - type: Lock
     locked: true
 
-## Mercenary
+#region Mercenary
 # Gun racks
 - type: entity
   id: StructureGunRackMercenary
@@ -169,7 +169,7 @@
     - state: base-pistol-wall-decal
       color: "#b8b873"
 
-## Salvage
+#region Salvage
 # Gun racks
 - type: entity
   id: StructureGunRackSalvage
@@ -245,7 +245,7 @@
     - state: base-pistol-wall-decal
       color: "#9a54bf"
 
-## NFSD
+#region NFSD
 # Gun racks
 - type: entity
   id: StructureGunRackNfsd
@@ -421,7 +421,7 @@
     - weapon3
     - weapon4
 
-## Blood Cult
+#region Blood Cult
 # Melee weapon racks
 - type: entity
   id: StructureMeleeWeaponRackBloodCult
@@ -435,7 +435,22 @@
     - state: base-melee-decal
       color: "#562f2f"
 
-## Pirates/Freelancers
+#region Wizard
+# Melee weapon racks
+- type: entity
+  id: StructureMeleeWeaponRackWallmountedWizard
+  parent: StructureMeleeWeaponRackWallmounted
+  suffix: Wizard, Wallmount, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee-wall
+      color: "#876393"
+    - state: base-melee-wall-decal
+      color: "#F0AFFF"
+      shader: unshaded
+
+#region Pirates/Freelancers
 # Sidearm racks
 - type: entity
   id: StructurePistolRackPirates

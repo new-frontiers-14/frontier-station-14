@@ -33,8 +33,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     public readonly EntityUid Console;
 
-    [ValidatePrototypeId<LocalizedDatasetPrototype>]
-    private const string ReasonPlaceholders = "CriminalRecordsWantedReasonPlaceholders";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ReasonPlaceholders = "CriminalRecordsWantedReasonPlaceholders";
 
     public Action<uint?>? OnKeySelected;
     public Action<StationRecordFilterType, string>? OnFiltersChanged;
@@ -239,7 +238,16 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
         if (criminalRecord.Status != SecurityStatus.None)
         {
-            specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Misc/security_icons.rsi"),  GetStatusIcon(criminalRecord.Status));
+            if (criminalRecord.Status != SecurityStatus.Permitted) // Frontier
+            {
+                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Misc/security_icons.rsi"),  GetStatusIcon(criminalRecord.Status));
+            }
+            // Frontier begin
+            else
+            {
+                specifier = new SpriteSpecifier.Rsi(new ResPath("_NF/Interface/Misc/security_icons.rsi"),  GetStatusIcon(criminalRecord.Status));
+            }
+            // Frontier end
         }
         PersonStatusTX.SetFromSpriteSpecifier(specifier);
         PersonStatusTX.DisplayRect.TextureScale = new Vector2(3f, 3f);
@@ -277,7 +285,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private void SetStatus(SecurityStatus status)
     {
-        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected)
+        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected || status == SecurityStatus.Permitted) // Frontier - Permitted
         {
             GetReason(status);
             return;
@@ -296,7 +304,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
         var field = "reason";
         var title = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());
-        var placeholders = _proto.Index<LocalizedDatasetPrototype>(ReasonPlaceholders);
+        var placeholders = _proto.Index(ReasonPlaceholders);
         var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", _random.Pick(placeholders))); // just funny it doesn't actually get used
         var prompt = Loc.GetString("criminal-records-console-reason");
         var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
@@ -323,6 +331,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             SecurityStatus.Detained => "hud_incarcerated",
             SecurityStatus.Discharged => "hud_discharged",
             SecurityStatus.Suspected => "hud_suspected",
+            SecurityStatus.Permitted => "hud_permitted", //Frontier
             _ => "SecurityIconNone"
         };
     }

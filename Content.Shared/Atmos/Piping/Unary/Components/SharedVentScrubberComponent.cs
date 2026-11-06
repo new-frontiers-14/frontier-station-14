@@ -13,6 +13,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
         public ScrubberPumpDirection PumpDirection { get; set; } = ScrubberPumpDirection.Scrubbing;
         public float VolumeRate { get; set; } = 200f;
         public bool WideNet { get; set; } = false;
+        public bool AirAlarmPanicWireCut { get; set; }
 
         public static HashSet<Gas> DefaultFilterGases = new()
         {
@@ -22,7 +23,8 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.WaterVapor,
             Gas.Ammonia,
             Gas.NitrousOxide,
-            Gas.Frezon
+            Gas.Frezon,
+            Gas.Helium //Frontier
         };
 
         // Presets for 'dumb' air alarm modes

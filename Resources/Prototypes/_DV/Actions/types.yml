@@ -1,11 +1,13 @@
 - type: entity
   id: ActionHairball
+  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Cough Up Hairball
   description: Purge some of your chemstream, and gain a cool hairball to throw at people.
   components:
-  - type: InstantAction
+  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
     icon:
       sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
       state: icon
     useDelay: 30
+  - type: InstantAction # Frontier, Wizden#27422 compliance
     event: !type:CoughItemActionEvent

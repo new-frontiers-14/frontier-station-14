@@ -15,7 +15,6 @@
   name: raw sheleg meat
   description: A slab of cold.. meat?
   components:
-  - type: Food
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/frozen.rsi
     state: sheleg
@@ -63,6 +62,12 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: chicken-battered
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: generic-inhand-battered-left
+      right:
+      - state: generic-inhand-battered-right
   - type: DeepFrySpawn
     cycles: 2
     output: FoodMeatChickenFried
@@ -79,6 +84,12 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: cutlet-battered
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: generic-inhand-battered-left
+      right:
+      - state: generic-inhand-battered-right
   - type: DeepFrySpawn
     cycles: 1
     output: FoodBakedNugget
@@ -99,6 +110,12 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: cured-carp
+  - type: Item # Close enough.
+    inhandVisuals:
+      left:
+      - state: generic-inhand-battered-left
+      right:
+      - state: generic-inhand-battered-right
   - type: SolutionContainerManager
     solutions:
       food:
@@ -138,6 +155,12 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: cured-carp-fried
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plain-cooked-inhand-left
+      right:
+      - state: plain-cooked-inhand-right
   - type: SolutionContainerManager
     solutions:
       food:
@@ -309,8 +332,10 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: bird-whole-cooked
+  - type: SolutionContainerManager
     solutions:
       food:
+        maxVol: 22
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -333,8 +358,10 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: bird-whole-cooked
+  - type: SolutionContainerManager
     solutions:
       food:
+        maxVol: 22
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -358,8 +385,10 @@
     sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: bird-whole-cooked
     scale: 1.3, 1.3
+  - type: SolutionContainerManager
     solutions:
       food:
+        maxVol: 32
         reagents:
         - ReagentId: Nutriment
           Quantity: 15

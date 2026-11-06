@@ -1,5 +1,6 @@
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Content.Shared.Ghost.Roles;
 
 namespace Content.Server.Ghost.Roles.Components;
 
@@ -86,4 +87,12 @@ public sealed partial class ToggleableGhostRoleComponent : Component
     /// </summary>
     [DataField("job")]
     public ProtoId<JobPrototype>? JobProto;
+
+    // Frontier
+    /// <summary>
+    ///     Whether or not the ghost role requires a player to be whitelisted.
+    /// </summary>
+    [DataField]
+    public bool Whitelisted = false;
+    // End Frontier
 }

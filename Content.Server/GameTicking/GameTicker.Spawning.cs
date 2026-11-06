@@ -39,11 +39,8 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly RespawnSystem _respawn = default!; // Frontier
 
-        [ValidatePrototypeId<EntityPrototype>]
-        public const string ObserverPrototypeName = "MobObserver";
-
-        [ValidatePrototypeId<EntityPrototype>]
-        public const string AdminObserverPrototypeName = "AdminObserver";
+        public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
+        public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
 
         /// <summary>
         /// How many players have joined the round through normal methods.
@@ -294,7 +291,7 @@ namespace Content.Server.GameTicking
             Dirty(mob, jobComp);
             // End Frontier
 
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
             var jobName = _jobs.MindTryGetJobName(newMind);
             _admin.UpdatePlayerList(player);
 
@@ -321,12 +318,19 @@ namespace Content.Server.GameTicking
                         Loc.GetString("latejoin-arrival-sender"),
                         playDefaultSound: false);
                 }
+
+                // Frontier: send new player message if the player is new.
+                if (jobPrototype.NewPlayerMessage)
+                {
+                    HandleGreetingMessage(player, mob, station);
+                }
+                // End Frontier
             }
 
             // who tf is perma oWo
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
             {
-                EntityManager.AddComponent<OwOAccentComponent>(mob);
+                AddComp<OwOAccentComponent>(mob);
             }
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
@@ -448,7 +452,7 @@ namespace Content.Server.GameTicking
         public EntityCoordinates GetObserverSpawnPoint()
         {
             _possiblePositions.Clear();
-            var spawnPointQuery = EntityManager.EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
             while (spawnPointQuery.MoveNext(out var uid, out var point, out var transform))
             {
                 if (point.SpawnType != SpawnPointType.Observer
@@ -497,17 +501,17 @@ namespace Content.Server.GameTicking
                 return spawn;
             }
 
-            if (_mapManager.MapExists(DefaultMap))
+            if (_map.MapExists(DefaultMap))
             {
-                var mapUid = _mapManager.GetMapEntityId(DefaultMap);
+                var mapUid = _map.GetMapOrInvalid(DefaultMap);
                 if (!TerminatingOrDeleted(mapUid))
                     return new EntityCoordinates(mapUid, Vector2.Zero);
             }
 
             // Just pick a point at this point I guess.
-            foreach (var map in _mapManager.GetAllMapIds())
+            foreach (var map in _map.GetAllMapIds())
             {
-                var mapUid = _mapManager.GetMapEntityId(map);
+                var mapUid = _map.GetMapOrInvalid(map);
 
                 if (!metaQuery.TryGetComponent(mapUid, out var meta)
                     || meta.EntityPaused

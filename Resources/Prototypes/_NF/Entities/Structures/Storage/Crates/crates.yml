@@ -15,6 +15,8 @@
     - entity_storage
   - type: StaticPrice
     price: 15 # 12 spesos at 0.75x, proportional to the plastic crate if deconstructable for 1 sheet
+  - type: Paintable
+    group: CratePlastic
 
 - type: entity
   parent: CrateBaseSecure
@@ -169,3 +171,23 @@
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/woodcage.rsi
     state: base
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: CrateEngineeringSecureEngineering # abysmal
+  components:
+  - type: AccessReader
+    access: [["Engineering"]]
+
+- type: entity
+  parent: [CrateBaseSecure, BaseC3SyndicateContraband]
+  id: CrateSyndicateSecure
+  name: secure syndicate crate
+  description: A secure, dark steel crate with red bands and a letter S embossed on the front.
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/syndicate_secure.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/syndicate_secure.rsi
+  - type: AccessReader
+    access: [["SyndicateAgent"]]

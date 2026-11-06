@@ -36,6 +36,7 @@
   - type: StaticPrice
     price: 250
   - type: Rotatable # Frontier
+  - type: BindToStation # Frontier
 
 - type: entity
   parent: BaseFlatpack
@@ -178,6 +179,8 @@
   - type: Sprite
     layers:
     - state: grounding-rod
+  - type: StaticPrice # Frontier
+    price: 40 # Frontier
   - type: GuideHelp
     guides:
     - TeslaEngine

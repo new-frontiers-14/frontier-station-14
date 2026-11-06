@@ -254,14 +254,28 @@
       path: /Audio/Voice/Vox/shriek1.ogg
     Laugh:
       path: /Audio/Voice/Vox/vox_laugh.ogg
+    Cough:
+      path: /Audio/Voice/Vox/vox_cough.ogg
+    Sigh:
+      path: /Audio/Voice/Vox/vox_sigh.ogg
+    Click:
+      path: /Audio/Voice/Vox/vox_click.ogg
+    Chitter:
+      path: /Audio/Voice/Vox/vox_chitter.ogg
     MonkeyScreeches: # Frontier
       collection: MonkeyScreeches # Frontier
     Honk:
       collection: BikeHorn
+    Crying:
+      path: /Audio/Voice/Vox/vox_cry.ogg
     Weh:
       collection: Weh
     Hew:
       collection: Hew
+    Gasp:
+      path: /Audio/Effects/Gasp/vox_gasp.ogg
+    DefaultDeathgasp:
+      path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
     Belch: # Frontier
       collection: Belch # Frontier
   params:
@@ -307,6 +321,15 @@
       path: /Audio/Voice/Arachnid/arachnid_chitter.ogg
     Click:
       path: /Audio/Voice/Arachnid/arachnid_click.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Arachnid/arachnid_cough.ogg # Omu
+    Yawn:
+      path: /Audio/_Starlight/Voice/Arachnid/arachnid_yawn.ogg # Omu
+    Crying:
+      path: /Audio/_Starlight/Voice/Arachnid/arachnid_cry.ogg # Omu
+    Sigh:
+      path: /Audio/_Starlight/Voice/Arachnid/arachnid_sigh.ogg # Omu
+
     MonkeyScreeches: # Frontier
       collection: MonkeyScreeches # Frontier
     Weh:
@@ -316,7 +339,7 @@
     Honk:
       collection: BikeHorn
     Gasp:
-      collection: MaleGasp
+      path: /Audio/_Starlight/Voice/Arachnid/arachnid_gasp.ogg # Omu
     DefaultDeathgasp:
       collection: DeathGasp
     Belch: # Frontier
@@ -427,6 +450,14 @@
       path: /Audio/Voice/Moth/moth_chitter.ogg
     Squeak:
       path: /Audio/Voice/Moth/moth_squeak.ogg
+    Yawn:
+      path: /Audio/_Starlight/Voice/Moth/moth_yawn.ogg # Omu, emote ports
+    Sigh:
+      path: /Audio/_Starlight/Voice/Moth/moth_sigh.ogg # Omu, emote ports
+    Crying:
+      path: /Audio/_Starlight/Voice/Moth/moth_cry.ogg # Omu, emote ports
+    Cough:
+      path: /Audio/_Starlight/Voice/Moth/moth_cough.ogg # Omu, emote ports
     MonkeyScreeches: # Frontier
       collection: MonkeyScreeches # Frontier
     Weh:
@@ -436,7 +467,7 @@
     Honk:
       collection: BikeHorn
     Gasp:
-      collection: MaleGasp
+      path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg # Omu, emote ports
     DefaultDeathgasp:
       collection: MothDeathGasp
     Belch: # Frontier
@@ -447,6 +478,8 @@
   params:
     variation: 0.05
   sounds:
+    Scream:
+      collection: SiliconScreams
     Beep:
       path: /Audio/Machines/twobeep.ogg
     Chime:
@@ -465,6 +498,8 @@
   params:
     variation: 0.05
   sounds:
+    Scream:
+      collection: SiliconScreams
     Laugh:
       path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
     Beep:
@@ -479,6 +514,28 @@
       path: /Audio/Items/bikehorn.ogg
     Ping:
       path: /Audio/Effects/Cargo/ping.ogg
+
+- type: emoteSounds
+  id: UnisexSiliconXenoborg
+  params:
+    variation: 0.05
+  sounds:
+    Scream:
+      collection: XenoborgScream
+    Laugh:
+      collection: XenoborgLaugh
+    Beep:
+      collection: XenoborgBeep
+    Chime:
+      collection: XenoborgChime
+    Buzz:
+      collection: XenoborgBuzz
+    Buzz-Two:
+      collection: XenoborgBuzzTwo
+    Honk:
+      collection: XenoborgBikeHorn
+    Ping:
+      collection: XenoborgPing
 
 # body emotes
 - type: emoteSounds
@@ -496,6 +553,10 @@
       collection: Salutes
     Crack: # Imp
       collection: Cracks # Imp
+    Blink: # Imp addition
+      collection: Blinks
+      params:
+        volume: -3
 
 - type: emoteSounds
   id: DionaBodyEmotes
@@ -515,6 +576,10 @@
        volume: -5
     Crack: # Imp
       collection: Cracks # Imp
+    Blink: # Imp addition
+      collection: Blinks
+      params:
+        volume: -3
 
 - type: emoteSounds
   id: ReptilianBodyEmotes
@@ -535,6 +600,32 @@
       collection: Salutes
     Crack: # Imp
       collection: Cracks # Imp
+    Blink: # Imp addition
+      collection: Blinks
+      params:
+        volume: -3
+
+- type: emoteSounds
+  id: MothBodyEmotes
+  sounds:
+    Flap:
+      path: /Audio/Voice/Moth/moth_flap.ogg
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+    Blink: # Frontier, from Imp
+      collection: Blinks
+      params:
+        volume: -3
+    Crack: # Frontier
+      collection: Cracks # Frontier
 
 # mobs
 - type: emoteSounds
@@ -605,3 +696,55 @@
     path: /Audio/Animals/goat_bah.ogg
     params:
       variation: 0.125
+
+- type: emoteSounds
+  id: Scurret
+  params:
+    variation: 0.125
+  sounds:
+    Thump:
+      path: /Audio/Effects/soft_thump.ogg
+      params:
+        variation: 0.125
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+    Laugh:
+      collection: WawaLaugh
+    Sneeze:
+      collection: WawaSneeze
+    Cough:
+      collection: MaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: WawaSigh
+    Scream:
+      collection: WawaScream
+    Yawn:
+      collection: WawaYawn
+    Crying:
+      collection: WawaCry
+    Snore:
+      collection: Snores
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: WawaDeath
+    Blink: # Frontier, from Imp
+      collection: Blinks
+      params:
+        volume: -3

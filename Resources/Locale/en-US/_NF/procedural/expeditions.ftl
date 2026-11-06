@@ -30,6 +30,7 @@ salvage-dungeon-mod-factory-dorms = Factory Dorms
 salvage-dungeon-mod-lava-mercenary = Lava Mercenary Base
 salvage-dungeon-mod-virology-lab = Virology Lab
 salvage-dungeon-mod-salvage-outpost = Salvage Outpost
+salvage-dungeon-mod-syndicate-hq = Syndicate Headquarters
 
 salvage-air-mod-1 = 82 N2, 21 O2
 salvage-air-mod-2 = 72 N2, 21 O2, 10 N2O
@@ -62,3 +63,10 @@ salvage-expedition-megafauna-remaining = {$count ->
 
 salvage-expedition-type-Destruction = Destruction
 salvage-expedition-type-Elimination = Elimination
+
+# Restored the lines, removed from Resources\Locale\en-US\procedural\expeditions.ftl
+salvage-expedition-structure-examine = This is a [color=#B02E26]destruction[/color] objective
+salvage-expedition-structure-remaining = {$count ->
+    [one] {$count} structure remaining.
+    *[other] {$count} structures remaining.
+}

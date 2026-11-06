@@ -26,8 +26,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Glass/mercenary.rsi
-  - type: PaintableAirlock
-    group: Glass
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -38,9 +36,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Glass/nfsd.rsi
-  - type: PaintableAirlock
-    department: Security
-    group: Glass
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -73,17 +68,29 @@
   components:
   - type: PriorityDock
     tag: DockTransit
+  - type: Docking
+    dockType: Airlock,Transit
 
 - type: entity
   parent: AirlockGlassShuttle
+  id: AirlockExternalGlassStationTransitTradeExpress
+  suffix: Ext, Bus (R2), Exclusive, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockTransitTradeExpress
+  - type: Docking
+    dockType: Transit
+
+- type: entity
+  parent: AirlockExternalGlassShuttleTransit
   id: AirlockExternalGlassShuttleTransitTradeExpress
-  suffix: Ext, Bus (R2), NFSD, Glass, Docking
+  suffix: Ext, Bus (R2), Glass, Docking
   components:
   - type: PriorityDock
     tag: DockTransitTradeExpress
 
 - type: entity
-  parent: AirlockGlassShuttle
+  parent: AirlockExternalGlassShuttleTransit
   id: AirlockExternalGlassShuttleTransitMinorPOI
   suffix: Ext, Route (R3), Glass, Docking
   components:
@@ -91,7 +98,7 @@
     tag: DockTransitMinorPOIs
 
 - type: entity
-  parent: AirlockGlassShuttleNfsd
+  parent: [AirlockGlassShuttleNfsd, AirlockExternalGlassShuttleTransit]
   id: AirlockExternalGlassShuttleNfsdTransitMinorPOI
   suffix: Ext, Route (R3), NFSD, Glass, Docking
   components:

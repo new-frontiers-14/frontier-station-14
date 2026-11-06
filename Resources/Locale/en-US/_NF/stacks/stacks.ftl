@@ -2,6 +2,10 @@ stack-scrap-chunk = scrap {$amount ->
     [1] chunk
     *[other] chunks
 }
+stack-tech-scrap-chunk = tech scrap {$amount ->
+    [1] chunk
+    *[other] chunks
+}
 stack-iron-coin = iron {$amount ->
     [1] coin
     *[other] coins
@@ -21,6 +25,14 @@ stack-adamantine-coin = adamantine {$amount ->
 stack-diamond-coin = diamond {$amount ->
     [1] coin
     *[other] coins
+}
+stack-capacitor = {$amount ->
+    [1] capacitor
+    *[other] capacitors
+}
+stack-matter-bin = {$amount ->
+    [1] matter bin
+    *[other] matter bins
 }
 stack-advanced-capacitor = advanced {$amount ->
     [1] capacitor
@@ -88,6 +100,8 @@ stack-fuel-grade-plasma = fuel-grade plasma
 stack-fuel-grade-uranium = fuel-grade uranium
 stack-fuel-grade-bananium = fuel-grade bananium
 stack-skrungle = skrungle
+nf-stack-chitin-xeno = xeno chitin
+nf-stack-chitin-argocyte = argocyte chitin
 
 stack-dark-grass-floor = dark grass floor
 stack-light-grass-floor = light grass floor
@@ -109,3 +123,8 @@ stack-light-mosaic-wood-floor = light mosaic wood floor
 stack-fancy-wood-floor = fancy wood floor
 stack-versailles-wood-floor = versailles wood floor
 stack-cheese-floor = cheese floor
+stack-inflatable-floor = inflatable floor
+stack-inflatable-window = inflatable window
+stack-inflatable-door-window = inflatable windoor
+stack-inflatable-dock = inflatable external airlock
+stack-inflatable-crate = inflatable crate

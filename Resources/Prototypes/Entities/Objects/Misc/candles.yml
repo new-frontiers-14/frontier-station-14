@@ -34,14 +34,14 @@
       alwaysCombustible: true
       canExtinguish: true
       firestacksOnIgnite: 3.0
-      firestackFade: -0.001 # Frontier -0.01<-0.001 
+      firestackFade: -0.001 # Frontier -0.01<-0.001
       damage:
         types:
           Heat: 0.1
     - type: FireVisuals
       sprite: Objects/Misc/candles.rsi
       normalState: fire-big
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: null
       inhandVisuals:
         left:
@@ -56,7 +56,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 1000 # Frontier 100<1000 
+          damage: 1000 # Frontier 100<1000
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -75,7 +75,6 @@
       left:
       - state: inhand-left
         color: "#a12349"
-      - state: inhand-left-flame
       right:
       - state: inhand-right
         color: "#a12349"
@@ -172,7 +171,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 550 # Frontier 60<550 
+          damage: 550 # Frontier 60<550
         behaviors:
         - !type:SpawnEntitiesBehavior
         - !type:DoActsBehavior

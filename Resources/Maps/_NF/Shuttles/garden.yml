@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 255.0.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/02/2025 02:50:19
-  entityCount: 273
+  time: 06/30/2025 17:37:57
+  entityCount: 272
 maps: []
 grids:
 - 1
@@ -60,6 +60,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -756,7 +757,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 142
-- proto: GasMixerOnFlipped
+- proto: GasMixerDistroSideNitrogenFlipped
   entities:
   - uid: 211
     components:
@@ -764,11 +765,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,5.5
       parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.79
-      inletOneConcentration: 0.21
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 110
@@ -1382,12 +1378,6 @@ entities:
       pos: 3.5,-1.5
       parent: 1
   - uid: 174
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-0.5
-      parent: 1
-  - uid: 175
     components:
     - type: Transform
       rot: 3.141592653589793 rad

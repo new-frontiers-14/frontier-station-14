@@ -4,12 +4,20 @@
   parent: LockerScientist
   categories: [ HideSpawnMenu ] # Frontier
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetScience
-      - id: ClothingMaskSterile
-      - id: ClothingOuterCoatRnd
-      - id: AnomalyScanner
-      - id: NodeScanner
-      - id: NetworkConfigurator
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerScientist
+
+- type: entityTable
+  id: FillLockerScientist
+  table: !type:AllSelector
+    children:
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetScience
+    - id: ClothingMaskSterile
+    - id: ClothingOuterCoatRnd
+    - id: AnomalyScanner
+    - id: NodeScanner
+    - id: NetworkConfigurator
+      prob: 0.5

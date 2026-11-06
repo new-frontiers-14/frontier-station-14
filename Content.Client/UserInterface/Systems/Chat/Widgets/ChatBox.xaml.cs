@@ -20,8 +20,11 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
+    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+
+    private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
-    private readonly IEntityManager _entManager;
     [Dependency] private readonly IConfigurationManager _cfg = default!; // EE - Chat stacking
     [Dependency] private readonly ILocalizationManager _loc = default!; // EE - Chat stacking
 
@@ -38,8 +41,7 @@ public partial class ChatBox : UIWidget
     public ChatBox()
     {
         RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
-        _entManager = IoCManager.Resolve<IEntityManager>();
+        _sawmill = _log.GetSawmill("chat");
 
         ChatInput.Input.OnTextEntered += OnTextEntered;
         ChatInput.Input.OnKeyBindDown += OnInputKeyBindDown;
@@ -74,7 +76,7 @@ public partial class ChatBox : UIWidget
 
     private void OnMessageAdded(ChatMessage msg)
     {
-        Logger.DebugS("chat", $"{msg.Channel}: {msg.Message}");
+        _sawmill.Debug($"{msg.Channel}: {msg.Message}");
         if (!ChatInput.FilterButton.Popup.IsActive(msg.Channel))
         {
             return;
@@ -234,6 +236,7 @@ public partial class ChatBox : UIWidget
             return;
 
         ChatInput.ChannelSelector.Select(toSelect);
+        _controller.CurrentChannel = toSelect; // DeltaV - Alt Chat Indicators
     }
 
     private void OnInputKeyBindDown(GUIBoundKeyEventArgs args)
@@ -266,12 +269,14 @@ public partial class ChatBox : UIWidget
         _controller.UpdateSelectedChannel(this);
 
         // Warn typing indicator about change
-        _controller.NotifyChatTextChange();
+        // _controller.NotifyChatTextChange(); // DeltaV
+        _controller.NotifySpecificChatTextChange(SelectedChannel); // DeltaV - Alt Chat Indicators
     }
 
     private void OnFocusEnter(LineEditEventArgs args)
     {
         // Warn typing indicator about focus
+        _controller.CurrentChannel = SelectedChannel; // DeltaV - Alt Chat Indicators
         _controller.NotifyChatFocus(true);
     }
 

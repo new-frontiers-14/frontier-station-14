@@ -8,7 +8,7 @@
     sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ] # Frontier: Enum changes from Wizden#35341
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi
   - type: NFMoonBoots
@@ -21,18 +21,43 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
 
 - type: entity
+  parent: [ClothingShoesBase, BaseJetpack]
+  id: NFClothingShoesBootsJetpack
+  name: rocket boots
+  description: A jetpack strapped to a pair of fur boots to allow you to fly in space with style and flourish!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/rocketboots.rsi
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 0.75
+  - type: Item
+    size: Normal
+    sprite: null
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          False: {state: icon}
+
+- type: entity
   id: ActionToggleMoonBoots
+  parent: BaseToggleAction
   name: Toggle Moon Boots
   description: Toggles the moon boots on and off.
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigItem
+  - type: InstantAction
     event: !type:ToggleActionEvent
 
 - type: entity

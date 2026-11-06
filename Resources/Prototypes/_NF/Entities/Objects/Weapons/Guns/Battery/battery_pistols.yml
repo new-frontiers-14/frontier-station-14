@@ -1,17 +1,6 @@
 # WizDen
 #region Laser
 - type: entity
-  id: NFWeaponEnergyPistolLaserSvalinn
-  parent: [ NFBaseWeaponFrameEnergyPistolNanotrasen, BaseWeaponPowerCellSmall ]
-  name: svalinn
-  description: A cheap and widely used laser pistol.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
-  - type: Item
-    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
-
-- type: entity
   id: NFWeaponEnergyPistolLaserMakeshift
   parent: [ NFBaseWeaponEnergyPistolHitScan, NFBaseWeaponFrameEnergyPistolFrontierGunsmith ]
   name: makeshift laser pistol
@@ -71,6 +60,8 @@
   - type: Item
     heldPrefix: lethal
     inhandVisuals: {} # FIXME: overwriting antique laser
+  - type: PirateBountyItem
+    id: NFWeaponEnergyPistolLaserX01Multiphase
 
 - type: entity
   id: NFWeaponEnergyPistolLaserAdvanced
@@ -283,5 +274,6 @@
           Cyan: { state: mode-cyan }
           Red: { state: mode-red }
           Yellow: { state: mode-yellow }
+  - type: PacifismAllowedGun # harmless
   - type: StaticPrice
     price: 250

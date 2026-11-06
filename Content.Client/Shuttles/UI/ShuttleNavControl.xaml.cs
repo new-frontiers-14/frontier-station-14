@@ -139,12 +139,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         RotateWithEntity = state.RotateWithEntity;
 
-        // Frontier
-        if (state.MaxIffRange != null)
-            MaximumIFFDistance = state.MaxIffRange.Value;
-        HideCoords = state.HideCoords;
-        // End Frontier
-
         _docks = state.Docks;
 
         NFUpdateState(state); // Frontier Update State
@@ -178,7 +172,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
-        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        // Frontier: MidpointVector<Midpoint
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
+        // End Frontier
 
         // Frontier: north line drawing
         var rot = ourEntRot + _rotation.Value;
@@ -210,7 +206,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
 
-        var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
+        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
+        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
+        // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
 
         _grids.Clear();
@@ -263,8 +261,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             if (shouldDrawIFF)
             {
-                //var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
-                //gridCentre.Y = -gridCentre.Y;
+                // var gridDistance = (gridBody.LocalCenter - xform.LocalPosition).Length(); // Frontier
+                //var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), // Frontier
+                //    ("distance", $"{gridDistance:0.0}")); // Frontier
 
                 // Frontier: IFF drawing functions
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
@@ -339,9 +338,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 // End Frontier: IFF drawing functions
             }
 
-            // Frontier Don't skip drawing blips if they're out of range.
-            NFDrawBlips(handle, blipDataList);
-
             // Detailed view
             var gridAABB = curGridToWorld.TransformBox(grid.Comp.LocalAABB);
 
@@ -352,6 +348,96 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             DrawGrid(handle, curGridToView, grid, labelColor);
             DrawDocks(handle, gUid, curGridToView);
         }
+
+        // Frontier: draw target
+        if (!HideTarget && Target is { } target)
+        {
+            var targetEntity = EntManager.GetEntity(TargetEntity);
+
+            string targetName;
+            if (EntManager.TryGetComponent<MetaDataComponent>(targetEntity, out var targetMeta))
+                targetName = targetMeta.EntityName;
+            else
+                targetName = Loc.GetString("shuttle-console-target-name");
+
+            var curGridToView = Matrix3Helpers.CreateTranslation(target) * worldToShuttle * shuttleToView;
+
+            var labelColor = TargetColor;
+            var coordColor = new Color(TargetColor.R * 0.8f, TargetColor.G * 0.8f, TargetColor.B * 0.8f, 0.5f);
+
+            //var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
+            //gridCentre.Y = -gridCentre.Y;
+
+            // Frontier: IFF drawing functions
+            // The actual position in the UI. We offset the matrix position to render it off by half its width
+            // plus by the offset.
+            //var uiPosition = ScalePosition(gridCentre) / UIScale;
+            var uiPosition = Vector2.Transform(Vector2.Zero, curGridToView) / UIScale;
+
+            // Confines the UI position within the viewport.
+            var uiXCentre = (int) Width / 2;
+            var uiYCentre = (int) Height / 2;
+            var uiXOffset = uiPosition.X - uiXCentre;
+            var uiYOffset = uiPosition.Y - uiYCentre;
+            var uiDistance = (int) Math.Sqrt(Math.Pow(uiXOffset, 2) + Math.Pow(uiYOffset, 2));
+            var uiX = uiXCentre * uiXOffset / uiDistance;
+            var uiY = uiYCentre * uiYOffset / uiDistance;
+
+            var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
+            if (isOutsideRadarCircle)
+            {
+                // 0.95f for offsetting the icons slightly away from edge of radar so it doesnt clip.
+                uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
+                uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
+                uiPosition = new Vector2(
+                    x: uiX + uiXCentre,
+                    y: uiY + uiYCentre
+                );
+            }
+
+            var scaledMousePosition = GetMouseCoordinatesFromCenter().Position * UIScale;
+            var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition * UIScale) < 30f;
+
+            var distance = Vector2.Distance(target, mapPos.Position);
+
+            // Shows decimal when distance is < 50m, otherwise pointless to show it.
+            var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
+            var labelText = Loc.GetString("shuttle-console-iff-label", ("name", targetName)!, ("distance", displayedDistance));
+
+            var coordsText = $"({target.X:0.0}, {target.Y:0.0})";
+
+            // Calculate unscaled offsets.
+            var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+            var blipSize = RadarBlipSize * 0.7f;
+            var labelOffset = new Vector2()
+            {
+                X = uiPosition.X > Width / 2f
+                    ? -labelDimensions.X - blipSize // right align the text to left of the blip
+                    : blipSize, // left align the text to the right of the blip
+                Y = -labelDimensions.Y / 2f
+            };
+
+            handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, labelColor);
+            if (isMouseOver && !HideCoords)
+            {
+                var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
+                var coordOffset = new Vector2()
+                {
+                    X = uiPosition.X > Width / 2f
+                        ? -coordDimensions.X - blipSize / 0.7f // right align the text to left of the blip (0.7 needed for scale)
+                        : blipSize, // left align the text to the right of the blip
+                    Y = coordDimensions.Y / 2
+                };
+                handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, coordColor);
+            }
+
+            NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor); // Frontier code
+            // End Frontier: IFF drawing functions
+        }
+
+        // Draw all blips on the map at this point.
+        NFDrawBlips(handle, blipDataList);
+        // End Frontier: draw target
 
         // If we've set the controlling console, and it's on a different grid
         // to the shuttle itself, then draw an additional marker to help the
@@ -445,8 +531,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     continue;
                 }
 
-                //var color = Color.ToSrgb(Color.Magenta); // Frontier
-                var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
+                var color = Color.ToSrgb(state.HighlightedColor);
 
                 var verts = new[]
                 {
@@ -483,7 +568,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private Vector2 InverseScalePosition(Vector2 value)
     {
-        return (value - MidPointVector) / MinimapScale;
+        // Frontier: MidpointVector<Midpoint
+        return (value - MidPoint) / MinimapScale;
+        // End Frontier
     }
 
     public sealed class BlipData

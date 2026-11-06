@@ -1,8 +1,8 @@
-using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Shared._DV.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
@@ -62,7 +62,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
 
     private void DoInjection(Entity<BaseSolutionInjectOnEventComponent> injectorEntity, EntityUid target, EntityUid? source = null)
     {
-        TryInjectTargets(injectorEntity, [target], source);
+        TryInjectTargets(injectorEntity, new HashSet<EntityUid>() { target }, source);
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
     /// </list>
     /// </remarks>
     /// <returns>true if at least one target was successfully injected, otherwise false</returns>
-    private bool TryInjectTargets(Entity<BaseSolutionInjectOnEventComponent> injector, IReadOnlyList<EntityUid> targets, EntityUid? source = null)
+    private bool TryInjectTargets(Entity<BaseSolutionInjectOnEventComponent> injector, IReadOnlySet<EntityUid> targets, EntityUid? source = null)
     {
         // Make sure we have at least one target
         if (targets.Count == 0)
@@ -154,7 +154,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // Take our portion of the adjusted solution for this target
             var individualInjection = solutionToInject.SplitSolution(volumePerBloodstream);
             // Inject our portion into the target's bloodstream
-            if (_bloodstream.TryAddToChemicals(targetBloodstream.Owner, individualInjection, targetBloodstream.Comp))
+            if (_bloodstream.TryAddToChemicals(targetBloodstream.AsNullable(), individualInjection))
                 anySuccess = true;
         }
 

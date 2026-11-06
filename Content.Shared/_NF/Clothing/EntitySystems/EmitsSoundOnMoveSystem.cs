@@ -60,7 +60,7 @@ public sealed class EmitsSoundOnMoveSystem : EntitySystem
         if (xform.GridUid == null)
             return;
 
-        if (component.RequiresGravity && _gravity.IsWeightless(uid, physics, xform))
+        if (component.RequiresGravity && _gravity.IsWeightless(uid))
             return;
 
         var parent = xform.ParentUid;

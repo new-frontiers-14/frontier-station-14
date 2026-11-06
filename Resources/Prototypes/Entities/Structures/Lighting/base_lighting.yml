@@ -83,6 +83,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+  - type: PlacementReplacement
+    key: lights
   placement:
     mode: SnapgridCenter
     snap:
@@ -450,7 +452,7 @@
   - type: ExtensionCableReceiver
   - type: Battery
     maxCharge: 30000
-    startingCharge: 0
+    startingCharge: 30000 # Frontier 0<30000
   - type: EmergencyLight
   - type: RotatingLight
     speed: 40

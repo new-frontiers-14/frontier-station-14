@@ -79,6 +79,13 @@
   - type: AccessReader
 
 - type: entity
+  parent: [ LockerSalvageSpecialistFilled, StorageFillEVASuitSalvage ]
+  id: SuitStorageEVASalvageFilled
+  suffix: EVA, Salvage Specialist, Filled
+  components:
+  - type: AccessReader
+
+- type: entity
   parent: [ SuitStorageBase, StorageFillEVASuitParamedic ]
   id: SuitStorageParamedic
   suffix: Voidsuit, Paramedic
@@ -191,6 +198,19 @@
   - type: AccessReader
     access: [["Security"]]
 
+- type: entity
+  id: SuitStorageEVACarp
+  parent: SuitStorageBase
+  suffix: Carp Hardsuit
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterSuitCarp
+        - id: PlushieCarp
+        - id: ClothingMaskGasSyndicate
+        - id: JetpackBlackFilled
+
 #HARDSUITS
 #Quartermaster hardsuit
 - type: entity
@@ -266,6 +286,38 @@
         - id: ClothingMaskGasMercenary
         - id: JetpackMiniFilled
         - id: ClothingShoesBootsMagMercenaryFilled
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+#Surplus hardsuit
+- type: entity
+  id: SuitStorageSurplus
+  parent: SuitStorageBase
+  suffix: Surplus
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterHardsuitSurplus
+        - id: ClothingMaskGasSecurity
+        - id: JetpackMiniFilled
+        - id: ClothingShoesBootsMagSecurity
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+#Noble hardsuit
+- type: entity
+  id: SuitStorageNoble
+  parent: SuitStorageBase
+  suffix: Noble
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFTankO2N2EqualFilled
+        - id: ClothingOuterHardsuitNoble
+        - id: ClothingMaskGasSecurity
+        - id: JetpackMiniFilled
+        - id: ClothingShoesBootsMagSecurity
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
 

@@ -73,12 +73,7 @@
           components:
           - MachineBoard
           - ComputerBoard
-        # Frontier: keep grid-bound machines as they are
-        blacklist:
-          components:
-          - StationBoundObject
-        whitelistFailPopup: flatpacker-item-cannot-be-flatpacked
-        # End Frontier: keep grid-bound machines as they are
+        whitelistFailPopup: flatpacker-item-cannot-be-flatpacked # Frontier
   - type: ContainerContainer
     containers:
       machine_board: !type:Container

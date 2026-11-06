@@ -117,7 +117,7 @@ public sealed partial class GhostRoleComponent : Component
     /// If set, this ghost role associates with a particular prototype.
     /// Whitelisted status, name and description are stored in the prototype.
     /// </summary>
-    [DataField]
+    [DataField, Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWrite)]
     public ProtoId<GhostRolePrototype>? Prototype { get; set; }
     // End Frontier
 }

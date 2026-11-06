@@ -1,0 +1,56 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCarp
+  name: Space Carp Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: icon
+      sprite: Mobs/Aliens/Carps/space.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobCarp # Frontier MobCarp<NFMobCarp
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCarpHolo
+  name: Holocarp Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: icon
+      sprite: Mobs/Aliens/Carps/holo.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobCarpHolo # Frontier MobCarpHolo<NFMobCarpHolo
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCarpMagic
+  name: Magicarp Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: icon
+      sprite: Mobs/Aliens/Carps/magic.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobCarpMagic # Frontier MobCarpMagic<NFMobCarpMagic
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobShark
+  name: Space Sharkminnow Spawner
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: icon
+      sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobShark

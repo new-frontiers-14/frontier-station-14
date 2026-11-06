@@ -1,8 +1,8 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameRifle
-  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
   abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseGunMeleeAttackMedium, NFBaseItemWeaponGun ]
+  id: NFBaseWeaponFrameRifle
   components:
   - type: Wieldable
     unwieldOnUse: false
@@ -12,10 +12,10 @@
     maxAngle: -0
   - type: Gun
     projectileSpeed: 30
-    minAngle: 2.2
-    maxAngle: 6.6
-    angleIncrease: 2
-    angleDecay: 3
+    minAngle: 1.6
+    maxAngle: 8
+    angleIncrease: 0.4
+    angleDecay: 2
     fireRate: 3
     selectedMode: SemiAuto
     availableModes:
@@ -31,37 +31,37 @@
 
 #region manufacturer
 - type: entity
-  id: NFBaseWeaponFrameRifleFrontierGunsmith
-  parent: NFBaseWeaponFrameRifle
   abstract: true
+  parent: NFBaseWeaponFrameRifle
+  id: NFBaseWeaponFrameRifleFrontierGunsmith
   components:
   - type: Gun
-    minAngle: 3
-    maxAngle: 9
-    angleIncrease: 2
-    angleDecay: 3
-    fireRate: 2
+    minAngle: 1.9
+    maxAngle: 19.5
+    angleIncrease: 0.9
+    angleDecay: 2.9
+    fireRate: 2.4
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 - type: entity
-  id: NFBaseWeaponFrameRifleSteelbolt
-  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRifle ]
   abstract: true
+  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRifle ]
+  id: NFBaseWeaponFrameRifleSteelbolt
   components:
   - type: Gun
-    minAngle: 4
-    maxAngle: 12
-    angleIncrease: 3
-    angleDecay: 3
-    fireRate: 3
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 0.8
+    angleDecay: 2.9
+    fireRate: 2.7
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
 
 - type: entity
-  id: NFBaseWeaponFrameRifleFoamForce
-  parent: NFBaseWeaponFrameRifleFrontierGunsmith
   abstract: true
+  parent: NFBaseWeaponFrameRifleFrontierGunsmith
+  id: NFBaseWeaponFrameRifleFoamForce
   components:
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-foam-force-llc
@@ -71,8 +71,8 @@
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponRifleChamber
   abstract: true
+  id: NFBaseWeaponRifleChamber
   components:
   - type: Gun
     soundGunshot:
@@ -85,9 +85,9 @@
         ents: []
 
 - type: entity
-  id: NFBaseWeaponRifleChamber20
-  parent: NFBaseWeaponRifleChamber
   abstract: true
+  parent: NFBaseWeaponRifleChamber
+  id: NFBaseWeaponRifleChamber20
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -99,9 +99,9 @@
       - NFCartridgeRifle20
 
 - type: entity
-  id: NFBaseWeaponRifleChamber30
-  parent: NFBaseWeaponRifleChamber
   abstract: true
+  parent: NFBaseWeaponRifleChamber
+  id: NFBaseWeaponRifleChamber30
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-30
@@ -114,9 +114,9 @@
       - NFCartridgeRifle30
 
 - type: entity
-  id: NFBaseWeaponRifleChamberDartFoam
-  parent: NFBaseWeaponRifleChamber
   abstract: true
+  parent: NFBaseWeaponRifleChamber
+  id: NFBaseWeaponRifleChamberDartFoam
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-foam

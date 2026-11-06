@@ -117,7 +117,7 @@ public sealed partial class DockingSystem
     /// Tries to get a valid docking configuration for the shuttle to the target grid.
     /// </summary>
     /// <param name="priorityTag">Priority docking tag to prefer, e.g. for emergency shuttle</param>
-    public DockingConfig? GetDockingConfig(EntityUid shuttleUid, EntityUid targetGrid, string? priorityTag = null, DockType dockType = DockType.Airlock) // Frontier: add dockType
+    public DockingConfig? GetDockingConfig(EntityUid shuttleUid, EntityUid targetGrid, string? priorityTag = null, DockType dockType = DockType.None) // Frontier: add dockType
     {
         var gridDocks = GetDocks(targetGrid);
         var shuttleDocks = GetDocks(shuttleUid);
@@ -133,7 +133,7 @@ public sealed partial class DockingSystem
         EntityCoordinates coordinates,
         Angle angle,
         bool fallback = true,
-        DockType dockType = DockType.Airlock) // Frontier
+        DockType dockType = DockType.None) // Frontier
     {
         var gridDocks = GetDocks(targetGrid);
         var shuttleDocks = GetDocks(shuttleUid);
@@ -187,8 +187,8 @@ public sealed partial class DockingSystem
             {
                 var shuttleDockXform = _xformQuery.GetComponent(dockUid);
 
-                // Frontier: skip docks that don't match type
-                if ((shuttleDock.DockType & dockType) == DockType.None)
+                // Frontier: skip docks that don't match type, if a certain type is requested
+                if (dockType != DockType.None && (shuttleDock.DockType & dockType) == DockType.None)
                     continue;
                 // End Frontier
 
@@ -197,7 +197,7 @@ public sealed partial class DockingSystem
                     var gridXform = _xformQuery.GetComponent(gridDockUid);
 
                     // Frontier: skip docks that don't match type
-                    if ((gridDock.DockType & dockType) == DockType.None)
+                    if ((gridDock.DockType & shuttleDock.DockType) == DockType.None)
                         continue;
                     // End Frontier
 
@@ -248,8 +248,8 @@ public sealed partial class DockingSystem
                         if (other == shuttleDock)
                             continue;
 
-                        // Frontier: skip docks that don't match type
-                        if ((other.DockType & dockType) == DockType.None)
+                        // Frontier: skip docks that don't match type, if a certain type is requested
+                        if (dockType != DockType.None && (other.DockType & dockType) == DockType.None)
                             continue;
                         // End Frontier
 
@@ -259,7 +259,7 @@ public sealed partial class DockingSystem
                                 continue;
 
                             // Frontier: skip docks that don't match type
-                            if ((otherGrid.DockType & dockType) == DockType.None)
+                            if ((otherGrid.DockType & other.DockType) == DockType.None)
                                 continue;
                             // End Frontier
 
@@ -313,7 +313,7 @@ public sealed partial class DockingSystem
         List<Entity<DockingComponent>> shuttleDocks,
         List<Entity<DockingComponent>> gridDocks,
         string? priorityTag = null,
-        DockType dockType = DockType.Airlock) // Frontier
+        DockType dockType = DockType.None) // Frontier
     {
         var validDockConfigs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks, dockType); // Frontier: add dockType
 

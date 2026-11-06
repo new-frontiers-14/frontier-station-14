@@ -22,6 +22,9 @@
 - type: loadout
   id: ContractorEncryptionKeyEngineering
   price: 20
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFNotEngineering
   encryptionKeys:
   - EncryptionKeyEngineering
 
@@ -30,3 +33,12 @@
   price: 20
   encryptionKeys:
   - EncryptionKeyScience
+
+- type: loadout
+  id: ContractorEncryptionKeyGreeting
+  price: 20
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFIsWhitelisted
+  encryptionKeys:
+  - EncryptionKeyGreeting

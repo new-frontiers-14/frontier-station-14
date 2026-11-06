@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Duration for missions
     /// </summary>
     public static readonly CVarDef<float>
-        SalvageExpeditionDuration = CVarDef.Create("salvage.expedition_duration", 900f, CVar.REPLICATED); // Frontier: This is not used, look for SalvageTimeMod
+        SalvageExpeditionDuration = CVarDef.Create("salvage.expedition_duration", 900f, CVar.REPLICATED);
 
     /// <summary>
     ///     Cooldown for missions.

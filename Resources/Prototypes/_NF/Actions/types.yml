@@ -1,9 +1,21 @@
 - type: entity
   id: ActionActivateDissonantWhispersImplant
+  parent: BaseAction
   name: Dissonant Whispers
   description: Utter unharmonious and disquieting whispers giving form to eldritch horrors.
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
-    event: !type:ActivateImplantEvent
     useDelay: 5
+  - type: InstantAction
+    event: !type:ActivateImplantEvent
+
+- type: entity 
+  parent: BaseImplantAction
+  id: ActionActivateWehImplant
+  name: Weh
+  description: Activates your weh implant, which will produce the signature sound of the green lizard.
+  components:
+  - type: Action
+    icon: { sprite: Objects/Fun/Plushies/lizard.rsi, state: icon }
+    useDelay: 1

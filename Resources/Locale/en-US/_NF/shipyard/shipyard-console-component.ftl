@@ -1,5 +1,6 @@
 ## UI
-shipyard-console-invalid-vessel = Cannot purchase vessel:
+shipyard-console-invalid-vessel = Cannot purchase vessel: {$vessel}
+shipyard-console-invalid-atmosphere = Cannot supply atmosphere: {$atmosphere}
 shipyard-console-menu-title = Shipyard Menu
 shipyard-console-menu-listing-free = Free
 shipyard-console-docking = {$owner} shuttle {$vessel} en route.
@@ -7,7 +8,8 @@ shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
 shipyard-console-leaving-secret = Unregistered vessel detected leaving your sector.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
-shipyard-console-no-idcard = No ID card present.
+shipyard-commands-purchase-atmos-hint = atmosphere prototype
+shipyard-console-no-idcard = Insert ID card.
 shipyard-console-already-deeded = ID card already has a Deed.
 shipyard-console-invalid-station = Not a valid station.
 shipyard-console-no-bank = No bank account found.
@@ -18,19 +20,26 @@ shipyard-console-sale-organic-aboard = All crew must disembark. {$name} is still
 # This error message is bad, but if it happens, something awful's happened.
 shipyard-console-sale-invalid-ship = Ship is invalid and cannot be sold.
 shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
+shipyard-console-no-idcard-helper-line1 = Insert ID card to buy or sell a ship.
+shipyard-console-no-idcard-helper-line2 = Your ID card is in your PDA.
 shipyard-console-deed-label = Registered Ship:
 shipyard-console-appraisal-label = Shuttle Resale Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
 shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
+shipyard-console-borg-chip = Cyborg chips cannot be used to purchase a ship.
 
 shipyard-console-contraband-onboard = Smuggled contraband detected onboard.
 shipyard-console-station-resources = Vital station resources detected onboard.
 shipyard-console-dangerous-materials = Dangerous materials detected onboard.
+shipyard-console-cute-pets = Adorable pets detected onboard.
 shipyard-console-fallback-prevent-sale = YML-class bugs detected onboard. Please file a bug report when possible.
 
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
 shipyard-console-menu-engine-label = Engine:{" "}
+shipyard-console-menu-sortby-label = Sort By:{" "}
+shipyard-console-menu-atmos-label = Atmosphere:{" "}
+shipyard-console-menu-atmos-default = Standard (79% N₂, 21% O₂ at 20°C)
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual
@@ -75,7 +84,11 @@ shipyard-console-engine-Singularity = Singularity
 shipyard-console-engine-Solar = Solar
 shipyard-console-engine-RTG = RTG
 shipyard-console-engine-APU = APU
+shipyard-console-engine-Thermoelectric = Thermoelectric
 shipyard-console-engine-Welding = Welding Fuel
 shipyard-console-engine-Plasma = Plasma
 shipyard-console-engine-Uranium = Uranium
 shipyard-console-engine-Bananium = Bananium
+
+shipyard-console-sortby-Name = Name
+shipyard-console-sortby-Price = Price

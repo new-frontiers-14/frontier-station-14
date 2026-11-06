@@ -4,6 +4,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using System.Numerics;
 
 namespace Content.Client.Nyanotrasen.Kitchen.UI
 {

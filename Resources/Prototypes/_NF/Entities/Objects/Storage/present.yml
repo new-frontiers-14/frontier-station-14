@@ -1,0 +1,19 @@
+- type: entity
+  id: NFPresentBox
+  parent: Present
+  suffix: Empty, Frontier
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,2
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
+  - type: Construction
+    graph: NFPresentBoxGraph
+    node: NFPresentBoxNode

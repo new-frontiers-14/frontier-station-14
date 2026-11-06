@@ -1,9 +1,6 @@
 # Frontier: redefined to be closer to cartons
 - type: entity
-  parent: 
-  - RecyclableItemPlasticMedium
-  - DrinkCartonVisualsOpenable
-  - DrinkCartonBaseLargeFull
+  parent: [DrinkCartonBaseFull, RecyclableItemPlasticMedium]
   id: BaseOilJar
   abstract: true
   components:
@@ -36,7 +33,7 @@
 - type: entity
   parent: BaseOilJar
   id: OilJarCorn
-  name: jar of corn oil
+  name: jar of vegetable oil # Frontier: corn<vegetable
   description: A large tinted glass jar with a simple label of a corn stalk on it.
   components:
   - type: Sprite

@@ -24,7 +24,7 @@
   - Frontier
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -37,9 +37,20 @@
     pocket2: NFMagazineHighCapacityPistol35
   storage:
     back:
-    - EncryptionKeyService
-    - EncryptionKeySecurity
     - Flash
     - NFMagazineHighCapacityPistol35
     - NFMagazineHighCapacityPistol35Rubber
     - ShipVoucherFrontierGuard
+  encryptionKeys:
+  - EncryptionKeyService
+  - EncryptionKeySecurity
+
+
+- type: chameleonOutfit
+  id: SecurityGuardChameleonOutfit
+  job: SecurityGuard
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesColorBlack

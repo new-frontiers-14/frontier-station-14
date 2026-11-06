@@ -251,12 +251,12 @@
   - type: ContainerFill
     containers:
       board: [ WallmountSubstationElectronics ]
-      capacitor: [ CapacitorStockPart ]
+      machine_parts: [ CapacitorStockPart ] # Frontier: MicroManipulatorStockPart<CapacitorStockPart
       powercell: [ PowerCellSmall ]
   - type: ContainerContainer
     containers:
       board: !type:Container
-      capacitor: !type:Container
+      machine_parts: !type:Container # Frontier: manipulator<machine_parts
       powercell: !type:Container
 
       # Construction Frame

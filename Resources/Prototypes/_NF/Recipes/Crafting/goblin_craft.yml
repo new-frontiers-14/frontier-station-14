@@ -51,6 +51,26 @@
   entityWhitelist: *goblinWhitelist
   objectType: Item
 
+#region trash mantle
+- type: construction
+  id: NFGoblinMadeClothingNeckTrashMantle
+  graph: NFGoblinMadeClothingNeckTrashMantle
+  startNode: start
+  targetNode: NFGoblinMadeClothingNeckTrashMantle
+  category: construction-category-goblin
+  entityWhitelist: *goblinWhitelist
+  objectType: Item
+
+#region trash cloak
+- type: construction
+  id: NFGoblinMadeClothingNeckTrashCloak
+  graph: NFGoblinMadeClothingNeckTrashCloak
+  startNode: start
+  targetNode: NFGoblinMadeClothingNeckTrashCloak
+  category: construction-category-goblin
+  entityWhitelist: *goblinWhitelist
+  objectType: Item
+
 # tools
 #region multitool
 - type: construction
@@ -211,3 +231,34 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+#region glowshroms
+- type: construction
+  id: NFGlowshroomConstruction
+  entityWhitelist: *goblinWhitelist
+  graph: NFGlowshroomStructure
+  name: recipes-glowshrooms-floor-name
+  startNode: start
+  targetNode: NFGlowshroom
+  category: construction-category-goblin
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: NFGlowshroomWallConstruction
+  entityWhitelist: *goblinWhitelist
+  graph: NFGlowshroomStructureWall
+  name: recipes-glowshrooms-wallmount-name
+  startNode: start
+  targetNode: NFGlowshroomWall
+  category: construction-category-goblin
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition

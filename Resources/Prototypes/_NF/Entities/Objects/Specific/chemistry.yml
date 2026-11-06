@@ -39,7 +39,7 @@
   components:
   - type: Tag
     tags:
-    - CentrifugeCompatible  
+    - CentrifugeCompatible
   - type: Sprite
     sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi
     layers:
@@ -51,7 +51,7 @@
     maxFillLevels: 6
     fillBaseName: vial-1-
     inHandsMaxFillLevels: 4
-    inHandsFillBaseName: -fill-  
+    inHandsFillBaseName: -fill-
   - type: SolutionContainerManager
     solutions:
       beaker:
@@ -60,7 +60,136 @@
     maxTransferAmount: 300
   - type: Item
     size: Tiny
-    sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi  
+    sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi
   - type: StaticPrice
     price: 100
-    vendPrice: 100  
+    vendPrice: 100
+
+- type: entity
+  name: medical pouch
+  id: MedicalPouch
+  parent: [ NFPouchBase, BaseBagOpenClose ]
+  description: Holds up to 12 tiny medical items.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Pouches/pouch_small.rsi
+    layers:
+    - state: base
+      color: "#5a96bb"
+    - state: closed
+      map: [ "closeLayer" ]
+      color: "#5a96bb"
+    - state: open
+      map: [ "openLayer" ]
+      color: "#5a96bb"
+      visible: false
+    - state: inside
+      map: ["insideLayer"]
+      visible: false
+    - state: fill-chem-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: fill-chem-2
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-chem-3
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-chem-4
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: decal-med-cross
+      map: [ "decal1" ]
+      color: "#ffffff"
+  - type: Clothing
+    sprite: _NF/Objects/Storage/Pouches/pouch_small.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#5a96bb"
+      pocket:
+      - state: equipped-BELT
+        color: "#5a96bb"
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Storage/Pouches/pouch_small.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5a96bb"
+      right:
+      - state: inhand-right
+        color: "#5a96bb"
+  - type: Storage
+    grid:
+    - 0,0,3,2
+    whitelist:
+      tags:
+      - Pill
+      - Bottle
+      - CentrifugeCompatible # Vial > CentrifugeCompatible
+      - Syringe
+      components:
+      - Hypospray
+
+- type: entity
+  name: corpsman's medical pouch
+  id: CorpsmanMedicalPouch
+  parent: [ MedicalPouch, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband > BaseC3SyndicateContraband
+  description: Holds up to 15 tiny medical items.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Pouches/pouch_small.rsi
+    layers:
+    - state: base
+      color: "#3e3e48"
+    - state: closed
+      map: [ "closeLayer" ]
+      color: "#3e3e48"
+    - state: open
+      map: [ "openLayer" ]
+      color: "#3e3e48"
+      visible: false
+    - state: inside
+      map: ["insideLayer"]
+      visible: false
+    - state: fill-chem-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: fill-chem-2
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-chem-3
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-chem-4
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: decal-line-01
+      map: [ "decal1" ]
+      color: "#ca4545"
+    - state: decal-med-cross
+      map: [ "decal2" ]
+      color: "#ede984"
+  - type: Clothing
+    sprite: _NF/Objects/Storage/Pouches/pouch_small.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#3e3e48"
+      pocket:
+      - state: equipped-BELT
+        color: "#3e3e48"
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Storage/Pouches/pouch_small.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3e3e48"
+      right:
+      - state: inhand-right
+        color: "#3e3e48"
+  - type: Storage
+    grid:
+    - 0,0,4,2 #syndie stuffs always bigger

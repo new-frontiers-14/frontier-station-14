@@ -96,7 +96,8 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             args.Handled = true;
             TryInsertKey(uid, component, args);
         }
-        else if (TryComp<ToolComponent>(args.Used, out var tool)
+        else if (component.KeysExtractionMethod != null // Frontier: add null check
+                 && TryComp<ToolComponent>(args.Used, out var tool)
                  && _tool.HasQuality(args.Used, component.KeysExtractionMethod, tool)
                  && component.KeyContainer.ContainedEntities.Count > 0) // dont block deconstruction
         {
@@ -137,6 +138,11 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     private void TryRemoveKey(EntityUid uid, EncryptionKeyHolderComponent component, InteractUsingEvent args,
         ToolComponent? tool)
     {
+        // Frontier: nullable extraction method
+        if (component.KeysExtractionMethod == null)
+            return;
+        // End Frontier: nullable extraction method
+
         if (!component.KeysUnlocked)
         {
             _popup.PopupClient(Loc.GetString("encryption-keys-are-locked"), uid, args.User);

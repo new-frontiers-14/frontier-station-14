@@ -45,6 +45,7 @@ public abstract class SharedCriminalRecordsSystem : EntitySystem
             SecurityStatus.Detained => "SecurityIconIncarcerated",
             SecurityStatus.Discharged => "SecurityIconDischarged",
             SecurityStatus.Suspected => "SecurityIconSuspected",
+            SecurityStatus.Permitted => "SecurityIconPermitted", // Frontier
             _ => record.StatusIcon
         };
 

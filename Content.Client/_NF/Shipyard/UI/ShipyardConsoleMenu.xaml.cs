@@ -15,21 +15,35 @@ namespace Content.Client._NF.Shipyard.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShipyardConsoleMenu : FancyWindow
 {
+    /// <summary>
+    ///     How the vessels are sorted in the shipyard menu
+    /// </summary>
+    private enum VesselSortBy : byte
+    {
+        Name,
+        Price
+    }
+
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
+    public record OrderApprovedEventArgs(ProtoId<VesselPrototype> Vessel, ProtoId<ShuttleAtmospherePrototype>? Atmosphere);
+
     public event Action<ButtonEventArgs>? OnSellShip;
-    public event Action<ButtonEventArgs>? OnOrderApproved;
+    public event Action<OrderApprovedEventArgs>? OnOrderApproved;
     private readonly List<VesselSize> _categoryStrings = new();
     private readonly List<VesselClass> _classStrings = new();
     private readonly List<VesselEngine> _engineStrings = new();
+    private readonly List<VesselSortBy> _sortByStrings = new();
     private VesselSize? _category;
     private VesselClass? _class;
     private VesselEngine? _engine;
+    private VesselSortBy? _sortby;
 
     private List<string> _lastAvailableProtos = new();
     private List<string> _lastUnavailableProtos = new();
     private bool _freeListings = false;
     private bool _validId = false;
+    private ConfirmButton? _currentlyConfirmingButton = null;
 
     public ShipyardConsoleMenu()
     {
@@ -40,6 +54,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Categories.OnItemSelected += OnCategoryItemSelected;
         Classes.OnItemSelected += OnClassItemSelected;
         Engines.OnItemSelected += OnEngineItemSelected;
+        Atmosphere.OnItemSelected += OnAtmosphereItemSelected;
+        SortBy.OnItemSelected += OnSortByItemSelected;
         SellShipButton.OnPressed += (args) => { OnSellShip?.Invoke(args); };
     }
 
@@ -62,6 +78,17 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
 
+    private void OnAtmosphereItemSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        Atmosphere.SelectId(args.Id);
+    }
+
+    private void OnSortByItemSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        SetSortByText(args.Id);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+    }
+
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
         PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
@@ -81,6 +108,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     {
         _engine = id == 0 ? null : _engineStrings[id];
         Engines.SelectId(id);
+    }
+
+    private void SetSortByText(int id)
+    {
+        _sortby = id == 0 ? null : _sortByStrings[id];
+        SortBy.SelectId(id);
     }
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
@@ -110,8 +143,19 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             .Where(it => it != null)
             .ToList();
 
-        vesselList.Sort((x, y) =>
-            string.Compare(x!.Name, y!.Name, StringComparison.CurrentCultureIgnoreCase));
+        var sortOrder = _sortby != null ? _sortby! : VesselSortBy.Name;
+
+        switch (sortOrder)
+        {
+            case VesselSortBy.Name:
+                vesselList.Sort((x, y) =>
+                    string.Compare(x!.Name, y!.Name, StringComparison.CurrentCultureIgnoreCase));
+                break;
+
+            case VesselSortBy.Price:
+                vesselList.Sort((x, y) => x!.Price.CompareTo(y!.Price));
+                break;
+        }
         return vesselList;
     }
 
@@ -146,9 +190,33 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 Guidebook = { Disabled = prototype.GuidebookPage is null, TooltipDelay = 0.2f, ToolTip = prototype.Description },
                 Price = { Text = priceText },
             };
-            vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
+            vesselEntry.Purchase.OnConfirming += OnStartConfirmingPurchase;
+            vesselEntry.Purchase.OnPressed += _ =>
+            {
+                    _currentlyConfirmingButton = null;
+                    ShuttleAtmospherePrototype? atmosphere = null;
+                    if (Atmosphere.SelectedMetadata is AtmosButtonMetadata metadata)
+                    {
+                        atmosphere = metadata.Proto;
+                    }
+                    Atmosphere.Select(0); // reset to default atmosphere
+                    OnOrderApproved?.Invoke(new OrderApprovedEventArgs(prototype.ID, atmosphere?.ID));
+            };
             Vessels.AddChild(vesselEntry);
         }
+    }
+
+    /// <summary>
+    /// Confirming handler: ensures that only one button is confirming at a time.
+    /// </summary>
+    private void OnStartConfirmingPurchase(ButtonEventArgs args)
+    {
+        if (args.Button is not ConfirmButton confirmButton)
+            return;
+
+        if (_currentlyConfirmingButton != null)
+            _currentlyConfirmingButton.ClearIsConfirming();
+        _currentlyConfirmingButton = confirmButton;
     }
 
     /// <summary>
@@ -274,6 +342,47 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
     }
 
+    /// <summary>
+    /// Adds available shuttle atmospheres to the selection box, or hides the box if no custom atmospheres are available.
+    /// </summary>
+    public void PopulateAtmos(List<ProtoId<ShuttleAtmospherePrototype>>? atmospheres)
+    {
+        CustomAtmosContainer.Visible = atmospheres != null;
+        Atmosphere.Clear();
+        if (atmospheres == null)
+            return;
+
+        Atmosphere.AddItem(Loc.GetString("shipyard-console-menu-atmos-default"));
+        var i = 1;
+        foreach (var protoId in atmospheres)
+        {
+            if (!_protoManager.Resolve(protoId, out var atmosphere))
+                continue;
+            Atmosphere.AddItem(atmosphere.Name, i);
+            Atmosphere.SetItemMetadata(i, new AtmosButtonMetadata(atmosphere));
+            ++i;
+        }
+    }
+
+    /// <summary>
+    ///     Populates the sort-by types in the Sort By button
+    /// </summary>
+    public void PopulateSortByTypes()
+    {
+        SortBy.Clear();
+
+        _sortByStrings.Clear();
+        foreach (var sort in Enum.GetValues<VesselSortBy>())
+        {
+            _sortByStrings.Add(sort);
+        }
+
+        foreach (var str in _sortByStrings)
+        {
+            SortBy.AddItem(Loc.GetString($"shipyard-console-sortby-{str}"));
+        }
+    }
+
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
         BalanceLabel.Text = BankSystemExtensions.ToSpesoString(state.Balance);
@@ -286,6 +395,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")
             : Loc.GetString("id-card-console-window-insert-button");
+        NoDeedHelperContainer.Visible = !state.IsTargetIdPresent;
+        DeedContainer.Visible = state.IsTargetIdPresent;
         if (state.ShipDeedTitle != null)
         {
             DeedTitle.Text = state.ShipDeedTitle;
@@ -298,4 +409,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         _validId = state.IsTargetIdPresent;
         PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
+
+    private record AtmosButtonMetadata(ShuttleAtmospherePrototype Proto);
 }

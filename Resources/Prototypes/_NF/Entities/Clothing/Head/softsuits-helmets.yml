@@ -43,7 +43,7 @@
     autoRecharge: true
     autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
   - type: Appearance
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       head:
@@ -55,11 +55,12 @@
       - state: equipped-head-base
       - state: equipped-head-reinforced-points
       - state: equipped-head-visor
+  - type: ItemTogglePointLight
   - type: PointLight
     #color: "#adffe6"
     enabled: false
-    radius: 3
-    energy: 2
+    radius: 6
+    energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -90,6 +91,7 @@
         color: "#6b4600"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -116,6 +118,7 @@
         color: "#3e3e48"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 # COLORED DEPARTMENTAL
 #region Contractors
@@ -144,6 +147,7 @@
         color: "#3e3e48"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 #region Command
 - type: entity
@@ -175,9 +179,7 @@
         color: "#f2b833"
       - state: equipped-head-visor
         color: "#fbe6b8"
-  - type: PointLight
-    radius: 5
-    energy: 2
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -204,9 +206,7 @@
         color: "#704900"
       - state: equipped-head-visor
         color: "#adcfd5"
-  - type: PointLight
-    radius: 5
-    energy: 2
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -237,9 +237,7 @@
         color: "#ffce5b"
       - state: equipped-head-visor
         color: "#2572bf"
-  - type: PointLight
-    radius: 5
-    energy: 2
+  - type: CatWearable # Frontier
 
 #region engineering
 - type: entity
@@ -257,7 +255,7 @@
       color: "#ff7f00"
     - state: icon-visor
       color: "#adcfd5"
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       head:
@@ -277,12 +275,13 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 2
+    radius: 2 # These are rotating blinker lights meant as alarm lights/sirens rather than actual lighting
     energy: 2
     color: "#ff7f00"
     mask: /Textures/Effects/LightMasks/double_cone.png
   - type: RotatingLight
     speed: 360
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -311,6 +310,7 @@
         color: "#e1b537"
   - type: PointLight
     color: "#adffe6"
+  - type: CatWearable # Frontier
 
 #region supply
 - type: entity
@@ -338,6 +338,7 @@
         color: "#3e3e48"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -364,8 +365,7 @@
         color: "#ad2aea"
       - state: equipped-head-visor
         color: "#adcfd5"
-  - type: PointLight
-    radius: 6
+  - type: CatWearable # Frontier
 
 #region medical
 - type: entity
@@ -395,6 +395,7 @@
         color: "#adcfd5"
   - type: PointLight
     color: "#adf1ff"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -411,7 +412,7 @@
       color: "#d6e6f3"
     - state: icon-visor
       color: "#8c1e50"
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       head:
@@ -431,12 +432,13 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 2
+    radius: 2 # These are rotating blinker lights meant as alarm lights/sirens rather than actual lighting
     energy: 2
     color: blue
     mask: /Textures/Effects/LightMasks/double_cone.png
   - type: RotatingLight
     speed: 360
+  - type: CatWearable # Frontier
 
 #region science
 - type: entity
@@ -466,6 +468,7 @@
         color: "#2accff"
   - type: PointLight
     color: "#d6adff"
+  - type: CatWearable # Frontier
 
 #region service
 - type: entity
@@ -495,6 +498,7 @@
         color: "#bb5cc9"
   - type: PointLight
     color: "#d6adff"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -521,6 +525,7 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -547,6 +552,7 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -575,6 +581,7 @@
         color: "#ffce5b"
   - type: PointLight
     color: "#ffce5b"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -601,6 +608,7 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -627,6 +635,7 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -653,6 +662,7 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -679,6 +689,7 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -709,6 +720,7 @@
     available:
       - EVA_helmet_decal_boxing:
           equipped-head-base: Sixteen # CyberpunkNeon
+  - type: CatWearable # Frontier
 
 #region wildcards
 - type: entity
@@ -736,6 +748,7 @@
         color: "#784f1e"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -762,6 +775,7 @@
         color: "#27272e"
       - state: equipped-head-visor
         color: "#f5fc95"
+  - type: CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -788,6 +802,7 @@
         color: "#2286bd"
       - state: equipped-head-visor
         color: "#ffd600"
+  - type: CatWearable # Frontier
 
 #region nfsd
 - type: entity
@@ -805,7 +820,7 @@
       color: "#384d2f"
     - state: icon-visor
       color: "#52843f"
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       head:
@@ -825,12 +840,13 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 2
+    radius: 2 # These are rotating blinker lights meant as alarm lights/sirens rather than actual lighting
     energy: 2
     color: red
     mask: /Textures/Effects/LightMasks/double_cone.png
   - type: RotatingLight
     speed: 360
+  - type: CatWearable # Frontier
 
 #region pirates
 - type: entity
@@ -848,7 +864,7 @@
       color: "#784f1e"
     - state: icon-visor
       color: "#68b4ff"
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       head:
@@ -868,11 +884,12 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 2
+    radius: 2 # These are rotating blinker lights meant as alarm lights/sirens rather than actual lighting
     energy: 2
     mask: /Textures/_NF/Effects/LightMasks/skullmask.png
   - type: RotatingLight
     speed: 360
+  - type: CatWearable # Frontier
 
 #region prisoner
 - type: entity
@@ -900,6 +917,7 @@
         color: "#493926"
       - state: equipped-head-visor
         color: "#adcfd5"
+  - type: CatWearable # Frontier
 
 #region player factions
 - type: entity
@@ -954,17 +972,17 @@
       - state: equipped-head-visor
         color: "#8f1717"
 
-#region FSB Void suit helmet
+#region Far Star Void suit helmet
 - type: entity
   parent: [ ClothingHeadSuitWithLightBase, NFClothingHeadClearEVAHelmetBase ]
   id: ClothingHeadHelmetHardsuitFSB
-  name: far star biotech voidsuit helmet
+  name: Far Star Biotech voidsuit helmet
   description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Helmets/fsb_eva_helmet.rsi
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       head:
@@ -973,12 +991,36 @@
         shader: unshaded
   - type: HandheldLight
     addPrefix: false
+  - type: ItemTogglePointLight
   - type: PointLight
     color: "#adf1ff"
-    radius: 5
-    energy: 2
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - ScurretWearable
+    - MonkeyWearable
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitFSB
+  id: ClothingHeadHelmetHardsuitFSC
+  name: Far Star Commerce voidsuit helmet
+  description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/fsc_eva_helmet.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitFSB
+  id: ClothingHeadHelmetHardsuitFSA
+  name: Far Star Arms voidsuit helmet
+  categories: [ HideSpawnMenu ]
+  description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/fsa_eva_helmet.rsi

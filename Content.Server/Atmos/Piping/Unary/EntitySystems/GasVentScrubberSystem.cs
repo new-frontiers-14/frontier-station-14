@@ -153,7 +153,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
         private void OnPacketRecv(EntityUid uid, GasVentScrubberComponent component, DeviceNetworkPacketEvent args)
         {
-            if (!EntityManager.TryGetComponent(uid, out DeviceNetworkComponent? netConn)
+            if (!TryComp(uid, out DeviceNetworkComponent? netConn)
                 || !args.Data.TryGetValue(DeviceNetworkConstants.Command, out var cmd))
                 return;
 
@@ -250,5 +250,21 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         {
             UpdateState(uid, component);
         }
+
+        // Frontier: Shipyard custom atmosphere initialization
+        public void SetFilterGases(EntityUid uid, IEnumerable<Gas> gases, GasVentScrubberComponent? component)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            // Match what GasVentScrubberComponent.FromAirAlarmData does, even though creating a new HashSet here should
+            // be safe
+            component.FilterGases.Clear();
+            component.FilterGases.UnionWith(gases);
+
+            // Not strictly necessary because the gas filter isn't visible on the sprite, but let's be a good citizen
+            UpdateState(uid, component);
+        }
+        // End Frontier: Shipyard custom atmosphere initialization
     }
 }

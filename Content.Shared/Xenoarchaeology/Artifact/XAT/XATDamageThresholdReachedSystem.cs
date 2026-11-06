@@ -22,7 +22,9 @@ public sealed class XATDamageThresholdReachedSystem : BaseXATSystem<XATDamageThr
 
     private void OnDamageChanged(Entity<XenoArtifactComponent> artifact, Entity<XATDamageThresholdReachedComponent, XenoArtifactNodeComponent> node, ref DamageChangedEvent args)
     {
-        if (!args.DamageIncreased || args.DamageDelta == null || args.Origin == artifact.Owner)
+        //Frontier: allow artifact to self-damage for the purpose of activation of Heat, Cold, physical and radiation damages
+        if (!args.DamageIncreased || args.DamageDelta == null)
+        //Frontier End
             return;
 
         var damageTriggerComponent = node.Comp1;

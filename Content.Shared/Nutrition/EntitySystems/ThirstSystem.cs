@@ -23,14 +23,9 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconThirstyId = "ThirstIconThirsty";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconParchedId = "ThirstIconParched";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconOverhydratedId = "ThirstIconOverhydrated";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconThirstyId = "ThirstIconThirsty";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconParchedId = "ThirstIconParched";
 
     public override void Initialize()
     {
@@ -46,9 +41,12 @@ public sealed class ThirstSystem : EntitySystem
         // Do not change behavior unless starting value is explicitly defined
         if (component.CurrentThirst < 0)
         {
-            component.CurrentThirst = _random.Next(
-                (int) component.ThirstThresholds[ThirstThreshold.Thirsty] + 10,
-                (int) component.ThirstThresholds[ThirstThreshold.Okay] - 1);
+            // Frontier: fixed starting thirst
+            component.CurrentThirst = component.ThirstThresholds[ThirstThreshold.Okay];
+
+            // component.CurrentThirst = _random.Next(
+            //     (int) component.ThirstThresholds[ThirstThreshold.Thirsty] + 10,
+            //     (int) component.ThirstThresholds[ThirstThreshold.Okay] - 1);
 
             DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
         }
@@ -131,15 +129,15 @@ public sealed class ThirstSystem : EntitySystem
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
+                _prototype.Resolve(ThirstIconOverhydratedId, out prototype);
                 break;
 
             case ThirstThreshold.Thirsty:
-                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
+                _prototype.Resolve(ThirstIconThirstyId, out prototype);
                 break;
 
             case ThirstThreshold.Parched:
-                _prototype.TryIndex(ThirstIconParchedId, out prototype);
+                _prototype.Resolve(ThirstIconParchedId, out prototype);
                 break;
 
             default:

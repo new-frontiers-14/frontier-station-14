@@ -2,7 +2,7 @@ using Content.Server.Medical.SuitSensors;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Roles;
 
-namespace Content.Server._NF.Medical.SuitSensors;
+namespace Content.Shared._NF.Medical.SuitSensors;
 
 public sealed class AutoSuitSensorOffSystem : EntitySystem
 {

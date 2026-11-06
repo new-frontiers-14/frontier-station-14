@@ -111,3 +111,31 @@
     rarePrototypes:
     - MobArgocyteLeviathingExpeditions
     rareChance: 0.10
+
+#region swarm
+- type: entity
+  parent: MarkerBase
+  id: MobArgocyteSwarm
+  name: Argocyte Swarm Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: skitter
+    - state: ai
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: MobArgocyteSlurvaExpeditions
+        rolls: !type:RangeNumberSelector
+          range: 4, 6
+      - id: MobArgocyteBarrierExpeditions
+        rolls: !type:RangeNumberSelector
+          range: 4, 6
+      - id: MobArgocyteSkitterExpeditions
+        rolls: !type:RangeNumberSelector
+          range: 4, 6
+      - id: MobArgocyteSwiperExpeditions
+        rolls: !type:RangeNumberSelector
+          range: 4, 6

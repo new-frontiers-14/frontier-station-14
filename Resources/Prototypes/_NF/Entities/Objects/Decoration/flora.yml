@@ -1,0 +1,34 @@
+#base
+- type: entity
+  id: BaseTreePalm
+  parent: BaseTree
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Flora/flora_tree_palm.rsi
+    offset: 0,0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 4000
+        layer:
+        - WallLayer
+
+#region palm trees
+- type: entity
+  id: FloraTreePalm
+  parent: BaseTreePalm
+  name: palm tree
+  components:
+  - type: Sprite
+    layers:
+    - state: treepalm01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        treepalm01: ""
+        treepalm02: ""

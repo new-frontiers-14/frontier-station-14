@@ -1,7 +1,7 @@
 - type: listing
-  id: UplinkPirateHardsuit
-  name:  uplink-pirate-hardsuit-name
-  description: uplink-pirate-hardsuit-desc
+  id: UplinkPirateEVASuit
+  name:  uplink-pirate-EVA-name
+  description: uplink-pirate-EVA-desc
   productEntity: ClothingOuterEVASuitPirate
   icon: { sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi, state: icon }
   cost:
@@ -34,6 +34,22 @@
         - NFPirateCaptain
 
 - type: listing
+  id: UplinkPirateHardsuitRogue
+  name:  uplink-pirate-hardsuit-rogue-name
+  description: uplink-pirate-hardsuit-rogue-desc
+  productEntity: ClothingOuterHardsuitRogue
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/rogue.rsi, state: icon }
+  cost:
+    Doubloon: 4
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateHardsuitElite
   name:  uplink-pirate-hardsuit-elite-name
   description: uplink-pirate-hardsuit-elite-desc
@@ -51,6 +67,26 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+  
+- type: listing
+  id: UplinkPirateHardsuitAurecorsa
+  name:  uplink-pirate-hardsuit-aurecorsa-name
+  description: uplink-pirate-hardsuit-aurecorsa-desc
+  productEntity: ClothingBackpackDuffelPirateAurecorsaBundle
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_aurecorsa.rsi, state: icon }
+  cost:
+    Doubloon: 10
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
@@ -70,6 +106,22 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+
+- type: listing
+  id: UplinkPirateWoodenKegRum
+  name:  uplink-pirate-wooden-keg-rum-name
+  description: uplink-pirate-wooden-keg-rum-desc
+  productEntity: WoodenKegRum
+  icon: { sprite: _DV/Objects/Storage/keg.rsi, state: base }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
 
 - type: listing
   id: UplinkPirateCrateFilled
@@ -162,6 +214,22 @@
   icon: { sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi, state: icon }
   cost:
     Doubloon: 1
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateRomulan
+  name: uplink-pirate-romulan-name
+  description: uplink-pirate-romulan-desc
+  productEntity: NFWeaponRifleAssaultRomulan
+  icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/romulan.rsi, state: icon }
+  cost:
+    Doubloon: 5
   categories:
     - UplinkPirateWeapons
   conditions:
@@ -418,6 +486,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+        - NFPirateFirstMate
 
 - type: listing
   id: UplinkRadioImplanterFreelance
@@ -427,6 +496,22 @@
   icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
   cost:
     Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateYarRPED
+  name: uplink-pirate-yarrped-name
+  description: uplink-pirate-yarrped-desc
+  productEntity: NFYarRPED
+  icon: { sprite: _NF/Objects/Specific/Research/yarrped.rsi, state: icon }
+  cost:
+    Doubloon: 4
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -494,6 +579,113 @@
   icon: { sprite: _NF/Objects/Misc/module.rsi, state: pirate_stitcher }
   cost:
     Doubloon: 4
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkNFPouchPirateCaptain
+  name: uplink-pirate-pouch-captain-name
+  description: uplink-pirate-pouch-captain-desc
+  productEntity: NFPouchPirateCaptain
+  icon: { sprite: _NF/Objects/Storage/Pouches/pouch.rsi, state: pirate-captain-icon }
+  cost:
+    Doubloon: 1
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkNFPouchPirate
+  name: uplink-pirate-pouch-name
+  description: uplink-pirate-pouch-desc
+  productEntity: NFPouchPirate
+  icon: { sprite: _NF/Objects/Storage/Pouches/pouch.rsi, state: pirate-icon }
+  cost:
+    Doubloon: 1
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateJetpack
+  name:  uplink-pirate-jetpack-name
+  description: uplink-pirate-jetpack-desc
+  productEntity: JetpackPirateFilled
+  icon: { sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPiratePirateShipyardRCD
+  name: uplink-pirate-shipyard-rcd-name
+  description: uplink-pirate-shipyard-rcd-desc
+  productEntity: BoxPirateShipyardRCD
+  icon: { sprite: _NF/Objects/Tools/pirate_shipyard_rcd.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateYarrmag
+  name:  uplink-pirate-yarrmag-name
+  description: uplink-pirate-yarrmag-desc
+  productEntity: Yarrmag
+  icon: { sprite: _NF/Objects/Tools/yarrmag.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - NFPirateCaptain
+    - NFPirateFirstMate
+
+- type: listing
+  id: UplinkNFPirateIDChip
+  name: uplink-pirate-id-chip-name
+  description: uplink-pirate-id-chip-desc
+  productEntity: IdChipPirate
+  icon: { sprite: _DV/Objects/Specific/Robotics/pirate_id_chip.rsi, state: icon }
+  cost:
+    Doubloon: 2
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:

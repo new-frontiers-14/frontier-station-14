@@ -12,13 +12,13 @@
   id: Broom
   parent: BaseVessel
   name: LVHI Broom
-  description: A cramped yet reliable shuttle for providing janitorial services.
-  price: 13500 # ~12180$ on mapinit + 5% markup + some extra
+  description: A cramped yet reliable shuttle for providing official janitorial services. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 13500 # 12387 x 1.05 = 13006
   category: Micro
   group: Sr
   access: Janitor
   shuttlePath: /Maps/_NF/Shuttles/Sr/broom.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardBroom
   class:
   - Civilian
   engine:
@@ -31,7 +31,7 @@
   minPlayers: 0
   stations:
     Broom:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierStaffVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Broom {1}'

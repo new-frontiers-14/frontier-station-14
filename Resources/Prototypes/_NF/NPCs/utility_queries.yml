@@ -5,8 +5,8 @@
   considerations:
     - !type:TargetIsAliveCon
       curve: !type:BoolCurve
-    - !type:TargetIsNotStunnedCon
-      curve: !type:BoolCurve
+    - !type:TargetIsStunnedCon
+      curve: !type:InverseBoolCurve
     - !type:TargetDistanceCon
       curve: !type:PresetCurve
         preset: TargetDistance

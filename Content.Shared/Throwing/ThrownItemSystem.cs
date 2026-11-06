@@ -47,7 +47,7 @@ namespace Content.Shared.Throwing
 
         private void ThrowItem(EntityUid uid, ThrownItemComponent component, ref ThrownEvent @event)
         {
-            if (!EntityManager.TryGetComponent(uid, out FixturesComponent? fixturesComponent) ||
+            if (!TryComp(uid, out FixturesComponent? fixturesComponent) ||
                 fixturesComponent.Fixtures.Count != 1 ||
                 !TryComp<PhysicsComponent>(uid, out var body))
             {
@@ -86,7 +86,7 @@ namespace Content.Shared.Throwing
         private void HandlePullStarted(PullStartedMessage message)
         {
             // TODO: this isn't directed so things have to be done the bad way
-            if (EntityManager.TryGetComponent(message.PulledUid, out ThrownItemComponent? thrownItemComponent))
+            if (TryComp(message.PulledUid, out ThrownItemComponent? thrownItemComponent))
                 StopThrow(message.PulledUid, thrownItemComponent);
         }
 
@@ -100,7 +100,7 @@ namespace Content.Shared.Throwing
                     _broadphase.RegenerateContacts((uid, physics));
             }
 
-            if (EntityManager.TryGetComponent(uid, out FixturesComponent? manager))
+            if (TryComp(uid, out FixturesComponent? manager))
             {
                 var fixture = _fixtures.GetFixtureOrNull(uid, ThrowingFixture, manager: manager);
 
@@ -140,11 +140,10 @@ namespace Content.Shared.Throwing
                 _adminLogger.Add(LogType.ThrowHit, LogImpact.Low,
                     $"{ToPrettyString(thrown):thrown} thrown by {ToPrettyString(component.Thrower.Value):thrower} hit {ToPrettyString(target):target}.");
 
-            if (component.Thrower is not null)// Nyano - Summary: Gotta check if there was a thrower. 
-                RaiseLocalEvent(target, new ThrowHitByEvent(component.Thrower.Value, thrown, target, component), true); // Nyano - Summary: Gotta update for who threw it.
-            else
-                RaiseLocalEvent(target, new ThrowHitByEvent(null, thrown, target, component), true); // Nyano - Summary: No thrower. 
-            RaiseLocalEvent(thrown, new ThrowDoHitEvent(thrown, target, component), true);
+            var hitByEv = new ThrowHitByEvent(component.Thrower, thrown, target, component); // Frontier: Add thrower
+            var doHitEv = new ThrowDoHitEvent(component.Thrower, thrown, target, component); // Frontier: Add thrower
+            RaiseLocalEvent(target, ref hitByEv, true);
+            RaiseLocalEvent(thrown, ref doHitEv, true);
         }
 
         public override void Update(float frameTime)

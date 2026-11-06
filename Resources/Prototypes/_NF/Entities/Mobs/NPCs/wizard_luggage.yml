@@ -1,0 +1,142 @@
+#region whistle
+- type: entity
+  parent: BaseItem
+  id: CrateWizardLuggageWhistle
+  name: wizard's luggage whistle
+  description: A whistle that summons a wizard's luggage when blown.
+  components:
+  - type: Item
+    sprite: _NF/Mobs/Wizard/luggage.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Mobs/Wizard/luggage.rsi
+    state: whistle
+  - type: Clothing
+    sprite: _NF/Mobs/Wizard/luggage.rsi
+    quickEquip: false
+    slots: neck
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnMobWizardLuggage
+    sound:
+      collection: TrenchWhistle
+
+#region the mob
+- type: entity
+  parent:
+  - BaseC3WizardContraband
+  - NFInflatableCrate
+  - BaseMob
+  - MobStaminaFodder
+  - MobDamageable
+  - MobCombat
+  - NFMobAtmos
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  - NFMobRoadkillable
+  id: MobWizardLuggage
+  categories: [ HideSpawnMenu ]
+  name: wizard's luggage
+  description: A wizard's luggage that happily follows the conjurer. For the most part. But not in airports.
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: NonCombatantFollowerCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Icon
+    sprite: _NF/Mobs/Wizard/luggage.rsi
+  - type: Sprite
+    sprite: _NF/Mobs/Wizard/luggage.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.40,-0.30,0.40,0.45"
+        density: 350
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: Buckle
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: ZombieImmune
+  - type: Hands
+  - type: Puller
+  - type: FTLKnockdownImmune
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      40: 0.7
+      60: 0.5
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: EntityStorage
+    capacity: 40
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+    openSound:
+      path: /Audio/Misc/zip.ogg
+  - type: Reflect
+    reflects:
+    - Energy
+    reflectProb: 0.2
+    spread: 90
+  - type: RadiationBlockingContainer
+    resistance: 2.5
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+#region spawner
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: SpawnMobWizardLuggage
+  categories: [ HideSpawnMenu ]
+  name: spawn wizard's luggage
+  suffix: AI
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobWizardLuggage

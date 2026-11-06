@@ -25,14 +25,9 @@ public sealed class HungerSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string HungerIconOverfedId = "HungerIconOverfed";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string HungerIconPeckishId = "HungerIconPeckish";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string HungerIconStarvingId = "HungerIconStarving";
+    private static readonly ProtoId<SatiationIconPrototype> HungerIconOverfedId = "HungerIconOverfed";
+    private static readonly ProtoId<SatiationIconPrototype> HungerIconPeckishId = "HungerIconPeckish";
+    private static readonly ProtoId<SatiationIconPrototype> HungerIconStarvingId = "HungerIconStarving";
 
     public override void Initialize()
     {
@@ -46,9 +41,13 @@ public sealed class HungerSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, HungerComponent component, MapInitEvent args)
     {
-        var amount = _random.Next(
-            (int) component.Thresholds[HungerThreshold.Peckish] + 10,
-            (int) component.Thresholds[HungerThreshold.Okay]);
+        // Frontier: fixed starting hunger
+        var amount = component.Thresholds[HungerThreshold.Okay];
+
+        // var amount = _random.Next(
+        //     (int) component.Thresholds[HungerThreshold.Peckish] + 10,
+        //     (int) component.Thresholds[HungerThreshold.Okay]);
+
         SetHunger(uid, amount, component);
     }
 
@@ -242,13 +241,13 @@ public sealed class HungerSystem : EntitySystem
         switch (component.CurrentThreshold)
         {
             case HungerThreshold.Overfed:
-                _prototype.TryIndex(HungerIconOverfedId, out prototype);
+                _prototype.Resolve(HungerIconOverfedId, out prototype);
                 break;
             case HungerThreshold.Peckish:
-                _prototype.TryIndex(HungerIconPeckishId, out prototype);
+                _prototype.Resolve(HungerIconPeckishId, out prototype);
                 break;
             case HungerThreshold.Starving:
-                _prototype.TryIndex(HungerIconStarvingId, out prototype);
+                _prototype.Resolve(HungerIconStarvingId, out prototype);
                 break;
             default:
                 prototype = null;

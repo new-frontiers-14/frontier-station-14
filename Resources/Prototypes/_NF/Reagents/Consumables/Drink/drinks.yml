@@ -1,28 +1,4 @@
-- type: reagent
-  id: PumpkinSpiceLatte
-  name: reagent-name-pumpkin-spice-latte
-  parent: BaseDrink
-  desc: reagent-desc-pumpkin-spice-latte
-  physicalDesc: reagent-physical-desc-aromatic
-  flavor: basic
-  color: "#a45c08"
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 2
-      - !type:AdjustReagent
-        reagent: Theobromine
-        amount: 0.05
-      - !type:AdjustReagent
-        reagent: Sugar
-        amount: 0.2
-  metamorphicSprite:
-    sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 2
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
+# Drinks
 
 - type: reagent
   id: CucumberWater
@@ -44,6 +20,93 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
 
+- type: reagent
+  id: HoneyIcedTea
+  name: reagent-name-honey-iced-tea
+  parent: BaseDrink
+  desc: reagent-desc-honey-iced-tea
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: honey
+  color: "#E79A3F"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.6
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Caffeine
+          max: 60
+        reagent: Caffeine
+        amount: 1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
+    state: icon
+
+- type: reagent
+  id: WassailMulledAle
+  name: reagent-name-wassail
+  parent: BaseAlcohol
+  desc: reagent-desc-wassail
+  physicalDesc: reagent-physical-desc-spicy
+  flavor: wassail
+  color: "#AD2D00"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:PopupMessage # a nice warm soothing drink
+        type: Local
+        visualType: Medium
+        messages:
+        - "drinks-effect-nf-wassail"
+        probability: 0.1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/wassail.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
+  id: TheMadgob
+  name: reagent-name-the-madgob
+  parent: BaseDrink
+  desc: reagent-desc-the-madgob
+  physicalDesc: reagent-physical-desc-thick
+  flavor: creative
+  color: "#81b42f"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: PumpkinFlesh
+        amount: 1
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1
+            Brute: -1
+            Airloss: -1
+            Toxin: -1
+      - !type:Emote
+          emote: Belch
+          showInChat: true
+          force: true
+          probability: 0.25
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/themadgob.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+# Alcoholic Drinks
 - type: reagent
   id: GinAndSonic
   name: reagent-name-gin-and-sonic
@@ -85,7 +148,7 @@
         factor: 0.2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.15
+        amount: 0.25
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/goldencat.rsi
     state: icon_empty
@@ -108,11 +171,11 @@
         factor: 1
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.15
+        amount: 0.25
       - !type:ExplosionReactionEffect
         explosionType: Default
         maxIntensity: 0.1
-        intensityPerUnit: 0.05
+        intensityPerUnit: 0.025
         intensitySlope: 1
         maxTotalIntensity: 0.1
         probability: 0.1
@@ -138,7 +201,7 @@
         factor: 0.8
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.25
+        amount: 0.3
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/torpedojuice.rsi
     state: icon_empty
@@ -183,47 +246,6 @@
   metamorphicChangeColor: false
 
 - type: reagent
-  id: HoneyIcedTea
-  name: reagent-name-honey-iced-tea
-  parent: BaseDrink
-  desc: reagent-desc-honey-iced-tea
-  physicalDesc: reagent-physical-desc-aromatic
-  flavor: honey
-  color: "#E79A3F"
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 0.6
-  metamorphicSprite:
-    sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
-    state: icon
-
-- type: reagent
-  id: WassailMulledAle
-  name: reagent-name-wassail
-  parent: BaseAlcohol
-  desc: reagent-desc-wassail
-  physicalDesc: reagent-physical-desc-spicy
-  flavor: wassail
-  color: "#AD2D00"
-  metabolisms:
-    Drink:
-      effects:
-      - !type:PopupMessage # a nice warm soothing drink
-        type: Local
-        visualType: Medium
-        messages:
-        - "drinks-effect-nf-wassail"
-        probability: 0.1
-  metamorphicSprite:
-    sprite: _NF/Objects/Consumable/Drinks/wassail.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 4
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
-
-- type: reagent
   id: Eggnog
   name: reagent-name-eggnog
   parent: BaseAlcohol
@@ -236,4 +258,88 @@
     state: icon_empty
   metamorphicMaxFillLevels: 8
   metamorphicFillBaseName: fill
+  metamorphicChangeColor: false
+
+# Nanocaf drinks
+
+- type: reagent
+  parent: BaseDrink
+  id: NFBaseDrinkNanocaf
+  abstract: true
+  recognizable: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        time: 2.0
+        type: Remove
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/genericcoffeecup.rsi
+    state: icon
+
+- type: reagent
+  id: Nanocaf
+  name: reagent-name-nanocaf
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-nanocaf
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanocaf
+  color: "#664c00"
+
+- type: reagent
+  id: NanoColdBrew
+  name: reagent-name-nanocoldbrew
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-nanocoldbrew
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanocoldbrew
+  color: "#8e6d4c"
+
+- type: reagent
+  id: NanoDepresso
+  name: reagent-name-nanodepresso
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-nanodepresso
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanodepresso
+  color: "#6d6d6d"
+
+- type: reagent
+  id: NanoCoftea
+  name: reagent-name-coftea
+  parent: NFBaseDrinkNanocaf
+  desc: reagent-desc-coftea
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: nanocoftea
+  color: "#353E2E"
+
+  # Coffee drinks
+
+- type: reagent
+  id: PumpkinSpiceLatte
+  name: reagent-name-pumpkin-spice-latte
+  parent: BaseDrink
+  desc: reagent-desc-pumpkin-spice-latte
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: basic
+  color: "#a45c08"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.2
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
   metamorphicChangeColor: false

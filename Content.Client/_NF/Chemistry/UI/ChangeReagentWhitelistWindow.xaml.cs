@@ -78,7 +78,7 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
         }
 
         ApplyButton.Text = Loc.GetString("ui-change-reagent-whitelist-apply",
-            ("reagent", _selectedReagent.ID));
+            ("reagent", _selectedReagent.LocalizedName));
         ApplyButton.Disabled = false;
     }
 
@@ -99,7 +99,7 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
         foreach (var reagent in _prototypeManager.EnumeratePrototypes<ReagentPrototype>())
         {
             if (!string.IsNullOrEmpty(filter) &&
-                !reagent.ID.ToLowerInvariant().Contains(filter.Trim().ToLowerInvariant()))
+                !reagent.LocalizedName.ToLowerInvariant().Contains(filter.Trim().ToLowerInvariant()))
             {
                 continue;
             }
@@ -112,7 +112,7 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
             ItemList.Item reagentItem = new(ReagentList)
             {
                 Metadata = reagent,
-                Text = reagent.ID
+                Text = reagent.LocalizedName,
             };
 
             ReagentList.Add(reagentItem);

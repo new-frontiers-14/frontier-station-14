@@ -1,0 +1,27 @@
+- type: entity
+  parent: [ClothingOuterHardsuitBaseNF, BaseCentcommContraband]
+  id: ClothingOuterHardsuitERTCentcomm
+  name: CentComm hardsuit
+  description: An incredibly protective, gold-accented hardsuit worn by Central Command.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertcentcomm.rsi
+  - type: Clothing
+    sprite: Nyanotrasen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertcentcomm.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTCentcomm
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.3
+        Radiation: 0.25
+        Caustic: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier

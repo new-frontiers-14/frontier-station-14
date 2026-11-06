@@ -106,4 +106,16 @@ public sealed class SalvageSystem : SharedSalvageSystem
         return ret;
     }
     // End Frontier: stop stream when destroying the expedition
+
+    // Frontier: resolve expedition comp
+    public override bool ResolveExpedition(EntityUid? uid, ref SharedSalvageExpeditionComponent? component)
+    {
+        if (component is not null)
+            return true;
+
+        TryComp<SalvageExpeditionComponent>(uid, out var localComp);
+        component = localComp;
+        return component != null;
+    }
+    // End Frontier
 }

@@ -1,14 +1,24 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Shuttle Notes:
+#
 - type: vessel
   id: Empress
   parent: BaseVessel
   name: NSF Empress
   description: A large patrol vessel capable of carrying up to 4 smaller faster attack ships. The flagship vessel of the NFSD.
-  price: 170000 #Appraisal value is 150000
+  price: 165000 #Appraisal value is 146000
   category: Large
   group: Security
   access: Bailiff
   shuttlePath: /Maps/_NF/Shuttles/Nfsd/empress.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardEmpress
   class:
   - Capital
   engine:
@@ -29,4 +39,13 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs: {} # Removed the chef since we dont have a real loadout for it
+          availableJobs:
+            Bailiff: [ 0, 0 ]
+            SeniorOfficer: [ 0, 0 ]
+            Brigmedic: [ 0, 0 ]
+            NFDetective: [ 0, 0 ]
+            Deputy: [ 0, 0 ]
+            Cadet: [ 0, 0 ]
+            # Others:
+            PublicAffairsLiaison: [ 0, 0 ]
+            Prisoner: [ 0, 0 ]

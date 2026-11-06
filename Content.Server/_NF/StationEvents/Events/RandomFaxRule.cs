@@ -1,10 +1,13 @@
-using Content.Server.Station.Components;
-using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
-using Content.Shared.Fax.Components;
 using Content.Server.Fax;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.StationEvents.Components;
+using Content.Shared.Fax.Components;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
+using Content.Server._NF.Smuggling.Components;
 using Robust.Shared.Random;
+
 
 namespace Content.Server.StationEvents.Events;
 
@@ -57,13 +60,14 @@ public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
                 continue;
             }
 
-            if (!TryComp<StationDataComponent>(chosenStation, out var stationData))
+            if (!TryComp<StationDataComponent>(chosenStation, out var stationData) ||
+                HasComp<StationSmugglingFaxExemptComponent>(chosenStation))
             {
                 retries++;
                 continue;
             }
 
-            var grid = StationSystem.GetLargestGrid(stationData);
+            var grid = StationSystem.GetLargestGrid((chosenStation.Value, stationData));
 
             if (grid is null)
             {

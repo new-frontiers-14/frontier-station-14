@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text;
 using Content.Client.Materials;
+using Content.Client.Lathe.UI;
 using Content.Shared._NF.Lathe;
 using Content.Shared._NF.Research.Prototypes;
 using Content.Shared.Lathe;
@@ -100,18 +101,24 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             return;
 
         // Coerce a null blueprint type into a valid one if possible.
-        int[]? recipeBitset = null;
-        if (clientLathe.CurrentBlueprintType == null
-            || !RecipesByBlueprintType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out recipeBitset))
+        if (clientLathe.CurrentBlueprintType == null)
         {
-            clientLathe.CurrentBlueprintType = RecipesByBlueprintType.Keys.FirstOrNull();
+            clientLathe.CurrentBlueprintType = clientLathe.DefaultBlueprintType;
+        }
+
+        int[]? recipeBitset = null;
+        if (!RecipesByBlueprintType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out recipeBitset))
+        {
             clientLathe.CurrentRecipes = null;
+            return;
+        }
+        else if (clientLathe.CurrentRecipes == null)
+        {
+            clientLathe.CurrentRecipes = new int[recipeBitset.Length];
         }
 
         // Check that we can still get a set of recipes from what we have.
-        if (clientLathe.CurrentBlueprintType == null
-            || !RecipesByBlueprintType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out recipeBitset)
-            || !_lathe.PrintableRecipesByType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out var recipeList))
+        if (!_lathe.PrintableRecipesByType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out var recipeList))
         {
             return;
         }
@@ -147,7 +154,9 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
         if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
             quantity = 1;
 
-        var sortedRecipesToShow = recipesToShow.OrderBy(x => _lathe.GetRecipeName(x.recipe));
+        var sortedRecipesToShow = recipesToShow
+            .DistinctBy(x => x.recipe.ID)
+            .OrderBy(x => _lathe.GetRecipeName(x.recipe));
         if (!_entityManager.TryGetComponent(Entity, out BlueprintLatheComponent? lathe))
             return;
 
@@ -255,7 +264,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 
         // Default to whatever the first item is.  No blueprint type is not a valid selection.
         if (!selectedIndex)
-            BlueprintTypeOption.SelectId(0);
+            BlueprintTypeOption.TrySelect(0);
     }
 
     /// <summary>

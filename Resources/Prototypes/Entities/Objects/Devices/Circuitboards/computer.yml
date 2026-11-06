@@ -21,6 +21,7 @@
       chemicalComposition:
         Silicon: 20
     - type: BindToStation # Frontier
+    - type: Circuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -226,9 +227,20 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: SalvageJobBoardComputerCircuitboard
+  name: salvage job board computer board
+  description: A computer printed circuit board for a salvage job board computer.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerSalvageJobBoard
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: SalvageExpeditionsComputerCircuitboard
-  name: expedition console board # Frontier: "salvage expeditions computer" < "expedition console"
-  description: A computer printed circuit board for an expedition console. # Frontier: "salvage expeditions computer" < "expedition console"
+  name: salvage expeditions computer board
+  description: A computer printed circuit board for a salvage expeditions computer.
   components:
     - type: Sprite
       state: cpu_supply
@@ -280,8 +292,20 @@
     state: cpu_service
   - type: ComputerBoard
     prototype: ComputerSurveillanceWirelessCameraMonitor
+
   - type: ComputerTabletopBoard # Frontier
     prototype: ComputerTabletopSurveillanceWirelessCameraMonitor # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: XenoborgCameraMonitorCircuitboard
+  name: xenoborg camera monitor board
+  description: A computer printed circuit board for a xenoborg camera monitor.
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceWirelessXenoborgCameraMonitor
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -354,7 +378,7 @@
       prototype: ComputerWallmountCrewMonitoring # Frontier
 
 - type: entity
-  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: IDComputerCircuitboard
   name: ID card computer board
   description: A computer printed circuit board for an ID card console.
@@ -386,7 +410,7 @@
       prototype: ComputerTabletopBodyScanner # Frontier
 
 - type: entity
-  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: CommsComputerCircuitboard
   name: communications computer board
   description: A computer printed circuit board for a communications console.
@@ -436,7 +460,7 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: RadarConsoleCircuitboard
-  name: radar console computer board
+  name: mass scanner computer board
   components:
   - type: Sprite
     state: cpu_supply
@@ -612,11 +636,33 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: ComputerXenoborgsControlCircuitboard
+  name: xenoborg control console board
+  description: A computer printed circuit board for a xenoborg control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerXenoborgsControl
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: StationAiUploadCircuitboard
   name: AI upload console board
-  description: A computer printed circuit board for a AI upload console.
+  description: A computer printed circuit board for an AI upload console.
   components:
     - type: Sprite
       state: cpu_science
     - type: ComputerBoard
       prototype: StationAiUploadComputer
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationAiFixerCircuitboard
+  name: AI restoration console
+  description: A computer printed circuit board for an AI restoration console console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: StationAiFixerComputer

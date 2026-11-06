@@ -6,7 +6,7 @@
   id: PenExploding
   components:
   - type: WeaponCaseInsertable # Frontier
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 4
     examinable: false
   - type: Explosive
@@ -17,10 +17,13 @@
     canCreateVacuum: false
   - type: ActivateOnPaperOpened
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: TriggerOnUse
   - type: TriggerOnSignal
-  - type: DeviceLinkSink
+  - type: DeviceLinkSink # This should be changed into separate behavior where triggering via signal makes beep, while triggering manually is quiet.
     ports:
-      - Trigger
+    - Trigger
   - type: EmitSoundOnUse
     handle: false # don't want the sound to stop the explosion from triggering
 

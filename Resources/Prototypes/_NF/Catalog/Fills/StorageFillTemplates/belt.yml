@@ -1,0 +1,18 @@
+# region Pilot
+- type: entity
+  abstract: true
+  id: NFStorageFillBeltPilot
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarRed
+        - id: Wrench
+        - id: Screwdriver
+        - id: Multitool
+        - id: PinpointerUniversal # HandHeldMassScanner<PinpointerUniversal
+        - id: Welder # RemoteSignaller<Welder
+        - id: NFInflatableWallStack # NFInflatableWallStack5<NFInflatableWallStack
+        - id: NFInflatableDoorStack # NFInflatableDoorStack1<NFInflatableDoorStack
+# endregion

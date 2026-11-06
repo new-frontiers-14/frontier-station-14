@@ -1,6 +1,6 @@
 using Content.Shared.Nyanotrasen.Kitchen.Components;
 using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nyanotrasen.Kitchen.Components
 {
@@ -15,18 +15,20 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         [DataField("priceCoefficient")]
         public float PriceCoefficient { get; set; } = 1.0f;
 
-        /// <summary>
-        /// What was the entity's original name before any modification?
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("originalName")]
-        public string? OriginalName { get; set; }
+        // Frontier: remove OriginalName, use crispiness level index instead
+        // /// <summary>
+        // /// What was the entity's original name before any modification?
+        // /// </summary>
+        // [ViewVariables(VVAccess.ReadWrite)]
+        // [DataField("originalName")]
+        // public string? OriginalName { get; set; }
+        // End Frontier
 
         /// <summary>
         /// Frontier: the crispiness level set to use for shaders, examination, etc.
         /// </summary>
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<CrispinessLevelSetPrototype>))]
+        [DataField]
         [AutoNetworkedField]
-        public string CrispinessLevelSet { get; set; } = "Crispy";
+        public ProtoId<CrispinessLevelSetPrototype> CrispinessLevelSet { get; set; } = "Crispy";
     }
 }

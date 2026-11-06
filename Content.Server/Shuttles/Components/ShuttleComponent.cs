@@ -17,10 +17,10 @@ namespace Content.Server.Shuttles.Components
         public const float BrakeCoefficient = 1.5f;
 
         /// <summary>
-        /// Maximum velocity assuming unupgraded, tier 1 thrusters
+        /// Maximum velocity.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        public float BaseMaxLinearVelocity = 20f;
+        public float BaseMaxLinearVelocity = 23.07f;  //Frontier 60 - 23.07. Upstream has it set to 60 to test and for collisions currently. Also, for some reason this value is increased by 30%, not sure if parts related or otherwise, so we do a 23.07 to reach a tier 1 velocity of 30.
 
         public const float MaxAngularVelocity = 4f;
 

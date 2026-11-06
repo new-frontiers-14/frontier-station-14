@@ -30,7 +30,7 @@ namespace Content.Shared.Damage
 
         private void OnRefreshMovespeed(EntityUid uid, SlowOnDamageComponent component, RefreshMovementSpeedModifiersEvent args)
         {
-            if (!EntityManager.TryGetComponent<DamageableComponent>(uid, out var damage))
+            if (!TryComp<DamageableComponent>(uid, out var damage))
                 return;
 
             if (damage.TotalDamage == FixedPoint2.Zero)
@@ -75,7 +75,7 @@ namespace Content.Shared.Damage
 
         private void OnExamined(Entity<ClothingSlowOnDamageModifierComponent> ent, ref ExaminedEvent args)
         {
-            var msg = Loc.GetString("slow-on-damage-modifier-examine", ("mod", (1 - ent.Comp.Modifier) * 100));
+            var msg = Loc.GetString("slow-on-damage-modifier-examine", ("mod", ent.Comp.Modifier * 100));
             args.PushMarkup(msg);
         }
 

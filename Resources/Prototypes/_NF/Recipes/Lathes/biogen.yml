@@ -30,7 +30,7 @@
   result: HydroponicsSoilNutritionFlatpack
   categories:
   - Tools
-  completetime: 200
+  completetime: 60
   applyMaterialDiscount: false
   materials:
     Biomass: 1600
@@ -46,7 +46,7 @@
   id: NFBioGenSheetPlastic
   result: SheetPlastic1
   parent: BaseMaterialsNoDiscountRecipe
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 40
 
@@ -62,9 +62,27 @@
   result: FoodMeat
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 35
+
+- type: latheRecipe
+  id: NFBioGenPaperRolling1
+  result: PaperRolling1
+  categories:
+  - Materials
+  completetime: 1
+  materials:
+    Biomass: 1
+
+- type: latheRecipe
+  id: NFBioGenCigaretteFilter
+  result: CigaretteFilter
+  categories:
+  - Materials
+  completetime: 1
+  materials:
+    Biomass: 1
 
 #region Meat
 
@@ -73,7 +91,7 @@
   result: FoodMeatWholeChicken
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 20
+  completetime: 15
   materials:
     Biomass: 70
 
@@ -82,7 +100,7 @@
   result: FoodMeatWholePenguin
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 30
+  completetime: 20
   materials:
     Biomass: 105
 
@@ -91,7 +109,7 @@
   result: FoodMeatWholeDuck
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 20
+  completetime: 15
   materials:
     Biomass: 70
 
@@ -100,18 +118,18 @@
   result: FoodMeatCrab
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
-    
+
 - type: latheRecipe
   id: NFBioGenFoodMeatBacon
   result: FoodMeatBacon
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
-    Biomass: 35 
+    Biomass: 35
 
 #region Cubes
 
@@ -570,6 +588,34 @@
   materials:
     Biomass: 12
 
+# region Other Drinks
+
+- type: latheRecipe
+  id: NFBioGenNanocaf
+  resultReagents:
+    Nanocaf: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: NFBioGenGreenTea
+  resultReagents:
+    GreenTea: 10
+  categories:
+  - Soda
+  icon:
+    sprite: Objects/Consumable/Drinks/coffee.rsi
+    state: icon
+  completetime: 1
+  materials:
+    Biomass: 12
+
 # region Seeds
 
 - type: latheRecipe
@@ -892,6 +938,14 @@
     sprite: Objects/Specific/Hydroponics/watermelon.rsi
     state: seed
 
+- type: latheRecipe
+  id: NFBioGenPomegranateSeeds
+  parent: BioGenSeedsRecipe
+  result: PomegranateSeeds
+  icon:
+    sprite: _NF/Objects/Specific/Hydroponics/pomegranate.rsi
+    state: seed
+
 # region Medical Seeds
 
 - type: latheRecipe
@@ -942,4 +996,20 @@
   result: FlyAmanitaSeeds
   icon:
     sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenTobaccoSeeds
+  parent: BioGenSeedsRecipe
+  result: TobaccoSeeds
+  icon:
+    sprite: Objects/Specific/Hydroponics/tobacco.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenCannabisSeeds
+  parent: BioGenSeedsRecipe
+  result: CannabisSeeds
+  icon:
+    sprite: Objects/Specific/Hydroponics/cannabis.rsi
     state: seed

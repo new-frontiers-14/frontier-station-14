@@ -1,9 +1,9 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameRifleAssault
-  parent: [ NFBaseWeaponEncumbranceRifleAssault, NFBaseItemWeaponGunMagazineFed ]
-  name: assault rifle
   abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifleAssault, NFBaseGunMeleeAttackMedium, NFBaseItemWeaponGunMagazineFed ]
+  id: NFBaseWeaponFrameRifleAssault
+  name: assault rifle
   components:
   - type: Wieldable
     unwieldOnUse: false
@@ -13,10 +13,10 @@
     maxAngle: -0
   - type: Gun
     projectileSpeed: 30
-    minAngle: 2.9
-    maxAngle: 8.7
-    angleIncrease: 2
-    angleDecay: 4
+    minAngle: 2
+    maxAngle: 10
+    angleIncrease: 0.5
+    angleDecay: 2.5
     fireRate: 4
     selectedMode: FullAuto
     availableModes:
@@ -31,49 +31,49 @@
 
 #region manufacturer
 - type: entity
-  id: NFBaseWeaponFrameRifleAssaultNanotrasen
-  parent: [ NFBaseWeaponFrameRifleAssault ]
   abstract: true
+  parent: [ NFBaseWeaponFrameRifleAssault ]
+  id: NFBaseWeaponFrameRifleAssaultNanotrasen
   components:
   - type: Gun
-    minAngle: 4
-    maxAngle: 12
-    angleIncrease: 2.5
-    angleDecay: 3
-    fireRate: 3.5
+    minAngle: 2.3
+    maxAngle: 11.5
+    angleIncrease: 0.8
+    angleDecay: 2.7
+    fireRate: 3.4
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
-  id: NFBaseWeaponFrameRifleAssaultCybersun
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleAssault ]
   abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleAssault ]
+  id: NFBaseWeaponFrameRifleAssaultCybersun
   components:
   - type: Gun
-    angleIncrease: 2
-    angleDecay: 5
-    fireRate: 3
+    angleIncrease: 0.6
+    angleDecay: 4.2
+    fireRate: 3.2
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 
 - type: entity
-  id: NFBaseWeaponFrameRifleAssaultFrontierGunsmith
-  parent: [ NFBaseWeaponFrameRifleAssault ]
   abstract: true
+  parent: [ NFBaseWeaponFrameRifleAssault ]
+  id: NFBaseWeaponFrameRifleAssaultFrontierGunsmith
   components:
   - type: Gun
-    minAngle: 3.5
-    maxAngle: 11
-    angleIncrease: 2
-    angleDecay: 3
-    fireRate: 3.5
+    minAngle: 2.4
+    maxAngle: 12
+    angleIncrease: 1.2
+    angleDecay: 3.8
+    fireRate: 3.2
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber
   abstract: true
+  id: NFBaseWeaponRifleAssaultChamber
   components:
   - type: Gun
     soundGunshot:
@@ -87,9 +87,9 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber20
-  parent: NFBaseWeaponRifleAssaultChamber
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber20
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -115,9 +115,9 @@
             - NFCartridgeRifle20
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber20Rubber
-  parent: NFBaseWeaponRifleAssaultChamber20
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber20
+  id: NFBaseWeaponRifleAssaultChamber20Rubber
   components:
   - type: ItemSlots
     slots:
@@ -138,9 +138,9 @@
             - NFCartridgeRifle20
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber20Clip
-  parent: NFBaseWeaponRifleAssaultChamber
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber20Clip
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -159,9 +159,9 @@
       gun_chamber: *chamber20Standard
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber30
-  parent: NFBaseWeaponRifleAssaultChamber
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber30
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-30
@@ -189,9 +189,9 @@
             - NFCartridgeRifle30
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber30Rubber
-  parent: NFBaseWeaponRifleAssaultChamber30
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber30
+  id: NFBaseWeaponRifleAssaultChamber30Rubber
   components:
   - type: ItemSlots
     slots:
@@ -210,9 +210,9 @@
         whitelist: *chamber30Whitelist
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber30LowCapacity
-  parent: NFBaseWeaponRifleAssaultChamber30
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber30
+  id: NFBaseWeaponRifleAssaultChamber30LowCapacity
   components:
   - type: ItemSlots
     slots:
@@ -227,9 +227,9 @@
       gun_chamber: *chamber30Standard
 
 - type: entity
-  id: NFBaseWeaponRifleAssaultChamber30LowCapacityRubber
-  parent: NFBaseWeaponRifleAssaultChamber30LowCapacity
   abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber30LowCapacity
+  id: NFBaseWeaponRifleAssaultChamber30LowCapacityRubber
   components:
   - type: ItemSlots
     slots:

@@ -1,9 +1,9 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponFrameEnergyPistol
-  parent: [ NFBaseWeaponEncumbrancePistol, BaseWeaponBatterySmall ]
-  suffix: Frontier
   abstract: true
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseGunMeleeAttackLow, BaseWeaponBatterySmall ]
+  id: NFBaseWeaponFrameEnergyPistol
+  suffix: Frontier
   components:
   - type: Sprite
     layers:
@@ -19,10 +19,10 @@
   - type: Appearance
   - type: Gun
     projectileSpeed: 30
-    minAngle: 3.1
-    maxAngle: 6.2
-    angleIncrease: 0.25
-    angleDecay: 1
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 2.5
     fireRate: 3
     selectedMode: SemiAuto
     availableModes:
@@ -45,11 +45,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 3.5
-    maxAngle: 7
-    angleIncrease: 0.25
-    angleDecay: 1
-    fireRate: 3
+    minAngle: 2.1
+    maxAngle: 10.5
+    angleIncrease: 0.7
+    angleDecay: 2.4
+    fireRate: 2.6
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -59,10 +59,10 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 4
-    maxAngle: 8
-    angleIncrease: 0.35
-    angleDecay: 1
+    minAngle: 2.2
+    maxAngle: 11
+    angleIncrease: 1.1
+    angleDecay: 3.5
     fireRate: 2
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium

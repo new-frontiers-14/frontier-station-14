@@ -1,0 +1,356 @@
+#region Clutter
+- type: entityTable
+  id: TableDungeonLootHydroponicsClutter
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsTools
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsSeeds
+      weight: 0.35
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothes
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsChemicals
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsFlatpacks
+      weight: 0.025
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralRestocks
+      weight: 0.025
+
+#region Tools
+- type: entityTable
+  id: TableDungeonLootHydroponicsTools
+  table: !type:GroupSelector
+    children:
+    - id: PlantAnalyzer
+    - id: HydroponicsToolMiniHoe
+    - id: HydroponicsToolClippers
+    - id: HydroponicsToolScythe
+    - id: BoxMouthSwab
+      weight: 0.05
+    - !type:GroupSelector
+      children:
+      - id: HydroponicsToolSpade
+      - id: Shovel
+      - id: NFShovel
+        weight: 0.05
+    - !type:GroupSelector
+      children:
+      - id: HydroponicsToolHatchet
+      - id: Chainsaw
+        weight: 0.05
+    - !type:GroupSelector
+      children:
+      - id: Dropper
+      - id: ServiceSelectiveDropper
+        weight: 0.3
+
+#region Seeds
+- type: entityTable
+  id: TableDungeonLootHydroponicsSeeds
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 90
+      children:
+      - id: BeeSeeds
+      - id: CoffeeSeeds
+      - id: EveryspiceSeeds
+      - id: SpesosTreeSeeds
+      - id: WheatSeeds
+      - id: SpesosTreeSeeds
+      - id: OatSeeds
+      - id: BananaSeeds
+      - id: CarrotSeeds
+      - id: LemonSeeds
+      - id: PotatoSeeds
+      - id: TowercapSeeds
+      - id: TomatoSeeds
+      - id: EggplantSeeds
+      - id: AppleSeeds
+      - id: CornSeeds
+      - id: ChanterelleSeeds
+      - id: ChiliSeeds
+      - id: AloeSeeds
+      - id: PoppySeeds
+      - id: LingzhiSeeds
+      - id: AmbrosiaVulgarisSeeds
+      - id: GalaxythistleSeeds
+      - id: FlyAmanitaSeeds
+      - id: OnionSeeds
+      - id: PineappleSeeds
+      - id: EggySeeds
+      - id: TobaccoSeeds
+      - id: CannabisSeeds
+      - id: NettleSeeds
+      - id: OrangeSeeds
+      - id: LimeSeeds
+      - id: LemoonSeeds
+      - id: GarlicSeeds
+      - id: CabbageSeeds
+      - id: SugarcaneSeeds
+      - id: ChillySeeds
+      - id: LilySeeds
+      - id: RiceSeeds
+      - id: SoybeanSeeds
+      - id: SpacemansTrumpetSeeds
+      - id: KoibeanSeeds
+      - id: OnionRedSeeds
+      - id: WatermelonSeeds
+      - id: GrapeSeeds
+      - id: BerrySeeds
+      - id: BungoSeeds
+      - id: PeaSeeds
+      - id: PumpkinSeeds
+      - id: CottonSeeds
+      - id: MimanaSeeds
+      - id: FakeCapfruitSeeds
+      - id: CucumberSeeds
+      - id: NFGlowshroomSeeds
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: AnomalyBerrySeeds
+      - id: KillerTomatoSeeds
+      - id: DeathNettleSeeds
+      - id: SteelcapSeeds
+      - id: LaughinPeaSeeds
+      - id: BlueTomatoSeeds
+      - id: BloodTomatoSeeds
+      - id: RealCapfruitSeeds
+      - id: ExtradimensionalOrangeSeeds
+      - id: GlasstleSeeds
+      - id: MonkananaSeeds
+
+# region Cemicals
+- type: entityTable
+  id: TableDungeonLootHydroponicsChemicals
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 0.95
+      children:
+      - id: PestSpray
+      - id: WeedSpray
+      - id: PlantBGoneSpray
+      - id: ChemistryBottleEZNutrient
+      - id: ChemistryBottleRobustHarvest
+      - id: ChemistryBottleUnstableMutagen
+    - !type:GroupSelector
+      weight: 0.05
+      children:
+      - id: ChemistryBottleCognizine
+      - id: ChemistryBottleLeft4Zed
+      - id: ChemistryBottleOmnizine
+        weight: 0.05
+
+#region Clothes
+# this is mostly just clutter for flavor
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothes
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothesBags
+      weight: 40
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothesHats
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothesJumpsuits
+      weight: 20
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothesJackets
+      weight: 15
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothesBoots
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsClothesBelts
+      weight: 15
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - !type:NestedSelector
+        tableId: TableDungeonLootHydroponicsEvas
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothesBags
+  table: !type:GroupSelector
+    children:
+    - id: ClothingBackpackDuffelHydroponics
+      weight: 3
+    - id: ClothingBackpackMessengerHydroponics
+      weight: 2
+    - id: ClothingBackpackHydroponics
+      weight: 2
+    - id: ClothingBackpackSatchelHydroponics
+      weight: 2
+    - id: NFPouchHydroponics
+      weight: 0.5
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothesBelts
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty belts to reduce entity spam
+    - !type:GroupSelector
+      weight: 80
+      children:
+      - id: ClothingBeltPlant
+        weight: 70
+      - id: ClothingBeltPlantFilled
+        weight: 30
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: PlantBag
+        weight: 95
+      - id: PlantBagOfHolding
+        weight: 5
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothesHats
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadBandBotany
+    - id: ClothingHeadRastaHat
+    - id: ClothingHeadHatBluesoft
+    - id: ClothingHeadHatGreensoft
+    - id: ClothingHeadHatFlowerWreath
+    - id: ClothingHeadHatHairflower
+    - id: ClothingHeadHatStrawHat
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothesJumpsuits
+  table: !type:GroupSelector
+    children:
+    - id: ClothingUniformOveralls
+    - id: ClothingUniformJumpskirtHydroponics
+    - id: ClothingUniformJumpsuitHydroponics
+    - id: ClothingUniformJumpsuitMilitaryHydroponics
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothesJackets
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterApronBotanist
+      weight: 90
+    - id: ClothingOuterWinterHydro
+      weight: 10
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsClothesBoots
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesBootsWork
+      weight: 45
+    - id: ClothingShoesColorBrown
+      weight: 45
+    - id: ClothingShoesBootsWinterHydro
+      weight: 10
+
+#region EVA
+- type: entityTable
+  id: TableDungeonLootHydroponicsEvas
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterEVASuitHydro
+      weight: 0.7
+    - id: ClothingBackpackDuffelEVABundleHydro
+      weight: 0.3
+
+#region Lockers
+- type: entityTable
+  id: TableDungeonLootHydroponicsLockers
+  table: !type:GroupSelector
+    children:
+    # spawn probabilities skewed towards empty lockers to reduce entity spam
+    - !type:GroupSelector
+      children:
+      - id: LockerBotanist
+        weight: 50
+      - id: LockerBotanistLoot
+        weight: 40
+      - id: LockerBotanistFilled
+        weight: 10
+
+#region Crates
+- type: entityTable
+  id: TableDungeonLootHydroponicsCrates
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsCratesEmpty
+      weight: 35
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsCratesFilled
+      weight: 35
+    - !type:NestedSelector
+      tableId: TableDungeonLootHydroponicsCratesRestock
+      weight: 5
+    - !type:NestedSelector
+      tableId: TableDungeonLootGeneralCratesMaterial
+      weight: 25
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsCratesEmpty
+  table: !type:GroupSelector
+    children:
+    - id: CrateHydroponics
+    - id: CrateHydroSecure
+    - id: CratePlastic
+    - id: CratePlasticBiodegradable
+
+- type: entityTable
+  id: TableDungeonLootHydroponicsCratesFilled
+  table: !type:GroupSelector
+    children:
+    - id: CrateHydroponicsTools
+      weight: 0.3
+    - id: CrateHydroponicsSeeds
+    - id: CrateHydroponicsSeedsExotic
+    - id: CrateHydroponicsSeedsMedicinal
+    - id: CrateServiceKitHydroponics
+      weight: 0.01
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: WaterTankFull
+      - id: WaterTankHighCapacity
+        weight: 0.2
+
+- type: entityTable # Probably should be removed
+  id: TableDungeonLootHydroponicsCratesRestock
+  table: !type:GroupSelector
+    children:
+    - id: CrateVendingMachineRestockNutriMaxFilled
+    - id: CrateVendingMachineRestockSeedsFilled
+
+# region Flatpacks
+- type: entityTable
+  id: TableDungeonLootHydroponicsFlatpacks
+  table: !type:GroupSelector
+    children:
+    - id: ChemMasterFlatpack
+      weight: 0.1
+    - id: VendingMachineSeedsUnlockedFlatpack
+      weight: 0.1
+    - id: VendingMachineNutriFlatpack
+      weight: 0.1
+    - id: ServiceTechFabFlatpack
+    - !type:GroupSelector
+      weight: 0.2
+      children:
+      - id: HydroponicsSoilEmptyFlatpack
+      - id: HydroponicsSoilNutritionFlatpack
+        weight: 0.2
+      - id: HydroponicsTrayEmptyFlatpack
+        weight: 0.1
+      - id: HydroponicsTrayFlatpack
+        weight: 0.05

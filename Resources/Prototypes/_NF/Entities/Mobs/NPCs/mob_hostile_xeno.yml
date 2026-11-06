@@ -1,0 +1,122 @@
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXeno]
+  id: NFMobXeno
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoBurrower
+      amount: 1
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoPraetorian]
+  id: NFMobXenoPraetorian
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoPraetorian
+      amount: 1
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoDrone]
+  id: NFMobXenoDrone
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoDrone
+      amount: 1
+
+- type: entity
+  parent: [MobHostileBossBase, NFMobSimpleHostileBase, MobXenoQueen]
+  id: NFMobXenoQueen
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoQueen
+      amount: 1
+  - type: ReplacementAccent
+    accent: xeno
+  - type: GhostRole
+    prob: 1
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-xeno-name
+    description: ghost-role-information-xeno-description
+    rules: ghost-role-information-xeno-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoRavager]
+  id: NFMobXenoRavager
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoRavager
+      amount: 1
+
+- type: entity
+  parent: [MobStaminaSpecial, MobMovementSpeedModifierSpecial, NFMobSimpleHostileBase, MobXenoRunner]
+  id: NFMobXenoRunner
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoRavager
+      amount: 1
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobXenoRouny]
+  id: NFMobXenoRouny
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoRavager
+      amount: 1
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierRanged, NFMobSimpleHostileBase, MobXenoSpitter]
+  id: NFMobXenoSpitter
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: SpawnDungeonLootNpcXenoSpitter
+      amount: 1
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobPurpleSnake]
+  id: NFMobPurpleSnake
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier
+
+- type: entity
+  parent: [MobStaminaFodder, MobMovementSpeedModifierMelee, NFMobSimpleHostileBase, MobSmallPurpleSnake]
+  id: NFMobSmallPurpleSnake
+  categories: [ HideSpawnMenu ]
+  suffix: Frontier, Small

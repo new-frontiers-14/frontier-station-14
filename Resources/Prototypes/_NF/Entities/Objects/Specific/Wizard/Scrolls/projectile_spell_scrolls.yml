@@ -1,0 +1,139 @@
+#region fireball scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledFireball
+  name: scroll of fireball
+  description: |-
+    A scroll with inscribed incantation for the spell that fires an explosive fireball towards the targeted location.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "red"
+    - state: scroll-rolled-seal
+      color: "orange"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollFireball
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollFireball
+  categories: [ HideSpawnMenu ]
+  name: scroll of fireball
+  description: |-
+    A scroll with inscribed incantation for the spell that fires an explosive fireball towards the targeted location.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-text-1
+      color: "orange"
+    - state: scroll-unrolled-ribbon
+      color: "red"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: "orange"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "orange"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      ActionFireball: 1
+
+#region lightningball scroll
+- type: entity
+  parent: SpellScrollRolled
+  id: SpellScrollRolledLightningball
+  name: scroll of lightningball
+  description: |-
+    A scroll with inscribed incantation for the spell that fires an explosive lightningball towards the targeted location.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-rolled
+    - state: scroll-rolled-ribbon
+      color: "red"
+    - state: scroll-rolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollLightningball
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: SpellScrollBase
+  id: SpellScrollLightningball
+  categories: [ HideSpawnMenu ]
+  name: scroll of lightningball
+  description: |-
+    A scroll with inscribed incantation for the spell that fires an explosive lightningball towards the targeted location.
+    The scroll will vanish within a minute after unrolling, better read those magic words fast!
+  components:
+  - type: Sprite
+    layers:
+    - state: scroll-unrolled
+    - state: scroll-unrolled-text-0
+      color: "blue"
+    - state: scroll-unrolled-ribbon
+      color: "red"
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: "cyan"
+      scale: 0.32, 0.32
+      offset: 0.01,-0.005
+      shader: unshaded
+    - state: scroll-unrolled-seal
+      color: "cyan"
+      shader: unshaded
+  - type: Spellbook
+    spellActions:
+      NFActionTeslaball: 1

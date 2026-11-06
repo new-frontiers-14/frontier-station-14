@@ -103,7 +103,7 @@
     sprite: Structures/Power/Generation/Tesla/energy_ball.rsi
     layers:
     - state: energy_ball
-      shader: unshaded # Wizden#37444
+      shader: unshaded
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/tesla_collapse.ogg
@@ -119,6 +119,13 @@
     - TeslaEngine
     - SingularityTeslaEngine
     - Power
+  # Frontier: tethered danger balls & radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 4
+    shape: Star
+    visibleFromOtherGrids: true
+  # End Frontier: tethered danger balls & radar blips
 
 - type: entity
   id: TeslaMiniEnergyBall
@@ -151,6 +158,13 @@
     sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
     layers:
     - state: tesla_projectile
-      shader: unshaded # Wizden#37444
+      shader: unshaded
   - type: Electrified
     requirePower: false
+  # Frontier: tethered danger balls & radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 2
+    shape: Square # Too small for fine detail
+    visibleFromOtherGrids: true
+  # End Frontier: tethered danger balls & radar blips

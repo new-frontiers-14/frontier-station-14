@@ -1,0 +1,100 @@
+- type: entity
+  id: PowerTransmissionPoint
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
+  name: power transmission point
+  description: A gargantuan machine for offsite power transmission using quantum entanglement.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Anchorable
+    flags: None
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/_NF/Ambience/power-hum.ogg
+    enabled: false
+  - type: Sprite
+    sprite: _NF/Structures/Power/TransmissionPoint/base.rsi
+    offset: 0,1
+    snapCardinals: false
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - state: base
+      - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
+        state: base-unlit
+        shader: unshaded
+        map: ["unlit"]
+        visible: false
+        offset: 0, 2
+      - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
+        state: base-foreground
+        offset: 0, 2
+      - sprite: _NF/Structures/Power/TransmissionPoint/32x32.rsi
+        state: panel-unlit
+        map: ["panel"]
+        visible: false
+        offset: 0, -2
+  - type: SpriteFade
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        unlit:
+          True: { visible: true }
+          False: { visible: false }
+        panel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerTransmission
+    account: Edison
+  - type: PowerConsumer
+    drawRate: 100000
+  - type: ExaminableBattery
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+        enabled: false
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    highVoltageNode: input
+  - type: WiredNetworkConnection
+  - type: GuideHelp
+    guides:
+    - VoltageNetworks
+    - Power
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key
+  - type: PointLight
+    color: "#00ccff"
+    energy: 4
+    radius: 7
+    enabled: false

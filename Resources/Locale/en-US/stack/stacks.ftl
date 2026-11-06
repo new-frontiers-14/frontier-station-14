@@ -38,6 +38,10 @@ stack-hv-cable = {$amount ->
     *[other] HV cables
 }
 # End Frontier: caps
+stack-explosive-cord = {$amount ->
+    [1] explosive cord
+    *[other] explosive cords
+}
 stack-wood-plank = {$amount ->
     [1] wood plank
     *[other] wood planks
@@ -123,9 +127,7 @@ stack-brutepack = brutepack
 stack-bloodpack = bloodpack
 stack-medicated-suture = medicated-suture
 stack-regenerative-mesh = regenerative-mesh
-stack-capacitor = capacitor
-stack-micro-manipulator = micro manipulator
-stack-matter-bin = matter bin
+stack-micro-manipulator = manipulator
 stack-pancake = pancake
 stack-blueberry-pancake = blueberry pancake
 stack-chocolate-chip-pancake = chocolate chip pancake
@@ -161,6 +163,7 @@ stack-steel-light-checker-tile = steel light checker tile
 stack-steel-tile = steel tile
 stack-wood-floor = wood floor
 stack-techmaint-floor = techmaint floor
+stack-techmaint-floor-dark = dark techmaint floor
 stack-freezer-tile = freezer tile
 stack-showroom-tile = showroom tile
 stack-green-circuit-floor = green-circuit floor
@@ -183,7 +186,7 @@ stack-eighties-floor-tile = eighties floor tile
 stack-blue-arcade-tile = blue arcade tile
 stack-red-arcade-tile = red arcade tile
 stack-red-carpet-tile = red carpet tile
-stack-block-carpet-tile = block carpet tile
+stack-black-carpet-tile = black carpet tile
 stack-blue-carpet-tile = blue carpet tile
 stack-green-carpet-tile = green carpet tile
 stack-orange-carpet-tile = orange carpet tile
@@ -234,3 +237,13 @@ stack-astro-snow-floor = astro-snow floor
 stack-large-wood-floor = large wood floor
 stack-red-circuit-floor = red-circuit floor
 stack-asteroid-astro-sand-floor = asteroid astro-sand floor
+stack-xeno-floor = xeno floor
+stack-xeno-steel = xeno steel tile
+stack-xeno-steel-corner = xeno steel corner tile
+stack-xenoborg = xenoborg tile
+stack-xeno-maint = xeno techmaint
+stack-dark-squiggly = dark steel squiggly tile
+stack-white-marble-floor = white marble floor
+stack-dark-marble-floor = dark marble floor
+stack-plasma-marble-floor = plasmarble floor
+stack-uranium-marble-floor = uranium marble floor
