@@ -1,10 +1,9 @@
 # Mapping prototypes
-# General
-nf-button-thrusters = Thruster toggle
-nf-button-blastdoor = Blast doors
-nf-button-shutter = Shutters
-nf-button-emergency-vent = Emergency vent
-nf-button-igniter = Fire igniter
-nf-button-door-bolts = Toggle airlock bolts
-nf-button-generators = Toggle generators
-nf-button-lights = Toggle lights
+nf-button-thrusters = thruster toggle
+nf-button-blastdoor = blast doors
+nf-button-shutter = shutters
+nf-button-emergency-vent = emergency vent
+nf-button-igniter = fire igniter
+nf-button-door-bolts = toggle airlock bolts
+nf-button-generators = toggle generators
+nf-button-lights = toggle lights
