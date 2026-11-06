@@ -1,4 +1,4 @@
-using Content.Client.Cargo.UI;
+using Content.Client._NF.Cargo.UI;
 using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo.Events;
 using Robust.Client.UserInterface;
@@ -9,7 +9,7 @@ namespace Content.Client._NF.Cargo.BUI;
 public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private CargoPalletMenu? _menu;
+    private NFCargoPalletMenu? _menu;
 
     public CargoPalletConsoleNFBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -21,7 +21,7 @@ public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
 
         if (_menu == null)
         {
-            _menu = this.CreateWindow<CargoPalletMenu>();
+            _menu = this.CreateWindow<NFCargoPalletMenu>();
             _menu.AppraiseRequested += OnAppraisal;
             _menu.SellRequested += OnSell;
         }
@@ -44,8 +44,7 @@ public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
         if (state is not NFCargoPalletConsoleInterfaceState palletState)
             return;
 
+        _menu?.UpdateValues(palletState.Appraisal, palletState.Count, palletState.MarketModifier, palletState.MarketOffer - palletState.Appraisal, palletState.MarketOffer);
         _menu?.SetEnabled(palletState.Enabled);
-        _menu?.SetAppraisal(palletState.Appraisal);
-        _menu?.SetCount(palletState.Count);
     }
 }
