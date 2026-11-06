@@ -45,6 +45,7 @@ The table below lists all Namespaces (along with the Nyanotrasen subdirectory) i
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
 | `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 | `_RMC14` | RMC-14 | https://github.com/RMC-14/RMC-14 | MIT |
+| `_WF` | Wayfarer 14 | https://github.com/project-wayfarer/wayfarer-14 | AGPL 3.0 |
 | `_Starlight` | Starlight | https://github.com/ss14Starlight/space-station-14 | MIT (Modified) |
 (https://github.com/ss14Starlight/space-station-14/blob/starlight-dev/LICENSE-Starlight.TXT)
 
