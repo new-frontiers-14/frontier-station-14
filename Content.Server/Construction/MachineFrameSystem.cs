@@ -151,6 +151,20 @@ public sealed class MachineFrameSystem : EntitySystem
         if (!TryComp<MachineBoardComponent>(used, out var machineBoard))
             return false;
 
+        // Mono - board and frame matching
+        if (machineBoard.FrameSize != null && machineBoard.FrameSize != component.FrameSize)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("machine-frame-board-wrong-size"), uid);
+            return true;
+        }
+
+        if (machineBoard.FrameSize == null && component.FrameSize != null)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("machine-frame-board-wrong-size"), uid);
+            return true;
+        }
+        // End Mono
+
         if (!_container.TryRemoveFromContainer(used))
             return false;
 
