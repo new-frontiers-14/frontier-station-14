@@ -627,6 +627,22 @@
   - UplinkPirateUtility
 
 - type: listing
+  id: UplinkPirateSpyglass
+  name:  uplink-pirate-spyglass-name
+  description: uplink-pirate-spyglass-desc
+  productEntity: Spyglass
+  icon: { sprite: _NF/Objects/Tools/spyglass.rsi, state: icon }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateJetpack
   name:  uplink-pirate-jetpack-name
   description: uplink-pirate-jetpack-desc
