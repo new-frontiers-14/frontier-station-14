@@ -23,6 +23,17 @@ public sealed class TreeLine : Control
         if (!parent.Expanded || !parent.Tree.DrawLines || parent.Body.ChildCount == 0)
             return;
 
+        // Frontier: stop connectors at the last visible child (Starlight #6822).
+        TreeItem? lastItem = null;
+        foreach (var child in parent.Body.Children)
+        {
+            if (child is TreeItem { Visible: true } item)
+                lastItem = item;
+        }
+        if (lastItem == null)
+            return;
+        // End Frontier
+
         var width = Math.Max(1, (int) (parent.Tree.LineWidth * UIScale));
         var w1 = width / 2;
         var w2 = width - w1;
@@ -38,8 +49,7 @@ public sealed class TreeLine : Control
         var buttonSize = parent.Button.PixelSize;
         var y1 = buttonPos.Y + buttonSize.Y;
 
-        var lastItem = (TreeItem) parent.Body.GetChild(parent.Body.ChildCount - 1);
-
+        // Frontier: lastItem excludes filtered rows.
         var childPos = lastItem.Button.GlobalPixelPosition - global;
         var y2 = childPos.Y + lastItem.Button.PixelSize.Y / 2;
 
@@ -51,7 +61,9 @@ public sealed class TreeLine : Control
         var dx = Math.Max(1, (int) (FancyTree.Indentation * UIScale / 2));
         foreach (var child in parent.Body.Children)
         {
-            var item = (TreeItem) child;
+            // Frontier: draw connectors only to visible rows (Starlight #6822).
+            if (child is not TreeItem { Visible: true } item)
+                continue;
             var pos = item.Button.GlobalPixelPosition - global;
             var y = pos.Y + item.Button.PixelSize.Y / 2;
             rect = new UIBox2i((x - w1, y - w1), (x + dx, y + w2));

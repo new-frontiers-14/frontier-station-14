@@ -50,8 +50,12 @@ public sealed class TextLinkTag : IMarkupTagHandler
         if (control == null)
             return;
 
+        // Frontier: consume the click after following a guidebook link.
         if (control.TryGetParentHandler<ILinkClickHandler>(out var handler))
+        {
             handler.HandleClick(link);
+            args.Handle();
+        } // End Frontier
         else
             Logger.Warning("Warning! No valid ILinkClickHandler found.");
     }
