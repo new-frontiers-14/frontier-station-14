@@ -7,3 +7,4 @@ nf-button-emergency-vent = Emergency vent
 nf-button-igniter = Fire igniter
 nf-button-door-bolts = Toggle airlock bolts
 nf-button-generators = Toggle generators
+nf-button-lights = Toggle lights
