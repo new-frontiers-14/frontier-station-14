@@ -1,0 +1,69 @@
+- type: entity
+  parent: BoxFolderClipboardEmpty
+  id: NFReinforcedClipboard
+  name: reinforced clipboard
+  description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
+  components:
+  - type: Lock
+  - type: LockVisuals
+  - type: AccessReader
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: reinforced_clipboard
+    - state: reinforced_clipboard_cover_closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: ItemMapper
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    mapLayers:
+      reinforced_clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+          - Write
+  - type: Item
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    heldPrefix: reinforced_clipboard
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      pen_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      pen_slot:
+        name: clipboard-slot-component-slot-name-pen
+        whitelist:
+          tags:
+          - Write
+        insertOnInteract: false
+  - type: Clothing
+    slots: [belt]
+    quickEquip: false
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    state: reinforced_clipboard_belt
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    whitelist:
+      tags:
+      - Document
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
