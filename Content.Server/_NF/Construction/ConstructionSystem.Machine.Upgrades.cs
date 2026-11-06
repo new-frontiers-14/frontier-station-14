@@ -3,7 +3,6 @@ using Content.Server.Construction.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
-using Content.Shared.Stacks;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
@@ -107,8 +106,13 @@ public sealed partial class ConstructionSystem
 
     public void RefreshParts(EntityUid uid, MachineComponent component)
     {
-        var parts = GetAllParts(component);
-        EntityManager.EventBus.RaiseLocalEvent(uid, new RefreshPartsEvent
+        RefreshParts((uid, component));
+    }
+
+    public void RefreshParts(Entity<MachineComponent> machine)
+    {
+        var parts = GetAllParts(machine.Comp);
+        EntityManager.EventBus.RaiseLocalEvent(machine, new RefreshPartsEvent
         {
             Parts = parts,
             PartRatings = GetPartsRatings(parts),
