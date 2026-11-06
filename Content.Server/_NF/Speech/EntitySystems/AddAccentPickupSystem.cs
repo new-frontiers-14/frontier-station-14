@@ -1,7 +1,7 @@
 using Content.Server._NF.Speech.Components;
 using Content.Server.Speech.Components;
-using Content.Shared.Interaction.Events;
 using Content.Shared._NF.Item;
+using Content.Shared.Hands;
 using Content.Shared.Verbs;
 
 namespace Content.Server._NF.Speech.EntitySystems;
@@ -14,7 +14,7 @@ public sealed class AddAccentPickupSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<AddAccentPickupComponent, PickedUpEvent>(OnPickup);
-        SubscribeLocalEvent<AddAccentPickupComponent, DroppedEvent>(OnDropped);
+        SubscribeLocalEvent<AddAccentPickupComponent, GotUnequippedHandEvent>(OnUnequipped);
         SubscribeLocalEvent<AddAccentPickupComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
     }
 
@@ -37,16 +37,14 @@ public sealed class AddAccentPickupSystem : EntitySystem
         component.Holder = args.User;
     }
 
-    private void OnDropped(EntityUid uid, AddAccentPickupComponent component, DroppedEvent args)
+    private void OnUnequipped(EntityUid uid, AddAccentPickupComponent component, GotUnequippedHandEvent args)
     {
-        component.Holder = EntityUid.Invalid; // prevent alt verb
         if (!component.IsActive)
             return;
 
         // try to remove accent
         var componentType = _componentFactory.GetRegistration(component.Accent).Type;
         RemComp(args.User, componentType);
-
         component.IsActive = false;
     }
 
