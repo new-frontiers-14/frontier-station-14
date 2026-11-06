@@ -1,0 +1,90 @@
+<Document>
+  # Safety Deposit Box System
+
+The [color=#44cc00]Safety Deposit Box System[/color] allows you to securely store items across shifts in a persistent database. Your stored items will remain available even after the round ends or the server restarts.
+
+## Safety Deposit Console
+  <Box>
+    <GuideEntityEmbed Entity="SafetyDepositConsole"/>
+  </Box>
+  The [color=#44cc00]Safety Deposit Console[/color] is your interface for managing your deposit boxes. Located at Frontier Outpost and Tinnia's Rest, it allows you to:
+- [bold]Purchase[/bold] new safety deposit boxes
+- [bold]Deposit[/bold] boxes to store items in the database
+- [bold]Withdraw[/bold] stored boxes to retrieve your items
+- [bold]Reclaim[/bold] lost boxes that were never returned
+
+## Box Sizes and Pricing
+  <Box>
+    <GuideEntityEmbed Entity="SafetyDepositBoxSmall"/>
+    <GuideEntityEmbed Entity="SafetyDepositBoxMedium"/>
+    <GuideEntityEmbed Entity="SafetyDepositBoxLarge"/>
+  </Box>
+  Three box sizes are available, each with different storage capacity:
+- [bold]Small (2x2)[/bold] - $2,250,000 Spesos
+- [bold]Medium (2x4)[/bold] - $3,500,000 Spesos
+- [bold]Large (2x6)[/bold] - $4,250,000 Spesos
+
+The cost is deducted from your [color=#44cc00]bank account[/color] when you purchase a box.
+
+## How to Use
+
+### Purchasing a Box
+1. Access a [color=#44cc00]Safety Deposit Console[/color]
+2. Select the size you want (Small, Medium, or Large)
+3. The cost will be deducted from your bank account
+4. A physical box will spawn for you to use
+
+### Storing Items
+1. Place items inside your safety deposit box
+2. Insert the box into the console's [color=#33bbff]box slot[/color]
+3. Click the [bold]Deposit Box[/bold] button
+4. Your items are now safely stored in the database!
+
+The physical box will be consumed when deposited, but your items are now protected across shifts.
+
+### Retrieving Items
+1. Access a [color=#44cc00]Safety Deposit Console[/color]
+2. Find your box in the list (boxes show as [color=#00ff00]"Stored"[/color] when they have items)
+3. Click the [bold]Withdraw[/bold] button
+4. A physical box containing your items will spawn
+
+[color=#ff6600]Important:[/color] Once withdrawn, the box and items exist in the world. If you lose the box or it's destroyed before re-depositing, your items are gone!
+
+## Box Status Indicators
+
+Your boxes can have several status indicators:
+- [color=#00ff00][bold]Stored[/bold][/color] - Box has items safely stored in the database
+- [color=#ffff00][bold]In World[/bold][/color] - Box was withdrawn recently (less than 7 days ago)
+- [color=#ff0000][bold]Lost (Empty)[/bold][/color] - Box was withdrawn over 7 days ago and never returned
+
+## Reclaiming Lost Boxes
+
+If you lost a box after withdrawing it (disconnected, round ended, etc.), and it shows as [color=#ff0000]"Lost (Empty)"[/color]:
+1. Access a [color=#44cc00]Safety Deposit Console[/color]
+2. Find the lost box in your list
+3. Click the [bold]Reclaim[/bold] button
+4. A new empty box with the same ID will be issued to you
+
+[color=#ff6600]Note:[/color] Reclaiming removes the old database record. Any items that were in the box when it was lost are gone permanently.
+
+## Tips and Best Practices
+
+- [bold]Label your boxes[/bold] - Use a hand labeler to give your boxes nicknames for easy identification
+- [bold]Deposit before leaving[/bold] - Always re-deposit your boxes before ending your shift
+- [bold]Keep valuables safe[/bold] - Store important documents, rare items, or valuable equipment
+- [bold]Multiple boxes[/bold] - You can own multiple boxes to organize different types of items
+- [bold]ID cards can't be stored[/bold] - The system won't allow ID cards to be deposited for security reasons
+
+## Item Preservation
+
+The safety deposit system preserves:
+- [bold]Paper content[/bold] - Written documents, stamps, and signatures
+- [bold]Labels[/bold] - Custom names you've applied to items
+- [bold]Stack counts[/bold] - The exact number of items in stacks
+- [bold]Box nicknames[/bold] - Custom labels on the boxes themselves
+
+## Container Restriction
+Items stored inside containers, boxes, or pouches will not be preserved when deposited. Only items directly placed in the safety deposit box will be stored in the database. This is to prevent exploits and ensure item integrity. Failure to do so may resullt in the contents of those items being permanently lost.
+
+Most items can be stored, but some sensitive items (like ID cards) are blacklisted for security reasons.
+</Document>

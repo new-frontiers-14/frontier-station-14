@@ -1,0 +1,145 @@
+# Safety Deposit Box Entities
+
+# Base parent for all safety deposit boxes
+- type: entity
+  id: SafetyDepositBoxBase
+  abstract: true
+  parent: BaseStorageItem
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+  - type: Storage
+    whitelist:
+      tags:
+      - Document
+      - Paper
+      - Write
+      components:
+      - Clothing
+    blacklist:
+      components:
+      - IdCard
+      - Currency
+      - Store
+      - Gun
+      - EncryptionKey
+      - Battery
+      - PowerCell
+      - Implant
+      - ShockOnTrigger  # Prevents shock collars
+      - AdvancedCollar  # Prevents advanced collars
+  - type: SafetyDepositBox
+  - type: Appearance
+  - type: Tag
+    tags:
+    - SafetyDepositBox
+
+- type: entity
+  id: SafetyDepositBoxTrial
+  name: safety deposit box (trial)
+  description: A trial box for storing a single item. Can hold 1x1 items. Limited to one per character.
+  parent: SafetyDepositBoxBase
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Economy/depositboxsmall.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,0,0
+
+- type: entity
+  id: SafetyDepositBoxSmall
+  name: safety deposit box (small)
+  description: A small secure box for storing valuables. Can hold 2x2 items.
+  parent: SafetyDepositBoxBase
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Economy/depositboxsmall.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+
+- type: entity
+  id: SafetyDepositBoxMedium
+  name: safety deposit box (medium)
+  description: A medium secure box for storing valuables. Can hold 2x4 items.
+  parent: SafetyDepositBoxBase
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Economy/depositboxmedium.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,3
+
+- type: entity
+  id: SafetyDepositBoxLarge
+  name: safety deposit box (large)
+  description: A large secure box for storing valuables. Can hold 2x6 items.
+  parent: SafetyDepositBoxBase
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Economy/depositboxlarge.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,1,5
+
+- type: entity
+  id: SafetyDepositConsole
+  name: safety deposit box console
+  description: "A console for purchasing and managing safety deposit boxes."
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _WF/Structures/Machines/atm/depositatm.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+    - state: printing
+      shader: unshaded
+      visible: false
+      map: ["enum.SafetyDepositConsoleVisualLayers.Printing"]
+  - type: Appearance
+  - type: SafetyDepositConsole
+    boxSlot:
+      name: safety-deposit-console-boxSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        tags:
+        - SafetyDepositBox
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      safety-deposit-console-boxSlot: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.SafetyDepositConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SafetyDepositConsoleUiKey.Key:
+        type: SafetyDepositConsoleBoundUserInterface
+  - type: Anchorable
+  - type: Pullable
