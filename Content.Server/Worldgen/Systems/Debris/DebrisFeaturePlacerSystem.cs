@@ -1,5 +1,4 @@
-using System.Linq;
-using System.Numerics;
+using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.GC;
@@ -10,22 +9,23 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._NF.Worldgen.Components.Debris; // Frontier
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Server.Worldgen.Systems.Debris;
 
 /// <summary>
 ///     This handles placing debris within the world evenly with rng, primarily for structures like asteroid fields.
 /// </summary>
-public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
+public sealed partial class DebrisFeaturePlacerSystem : BaseWorldSystem
 {
-    [Dependency] private readonly GCQueueSystem _gc = default!;
-    [Dependency] private readonly NoiseIndexSystem _noiseIndex = default!;
-    [Dependency] private readonly PoissonDiskSampler _sampler = default!;
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private GCQueueSystem _gc = default!;
+    [Dependency] private NoiseIndexSystem _noiseIndex = default!;
+    [Dependency] private PoissonDiskSampler _sampler = default!;
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -255,7 +255,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     private bool HasCollisions(MapId mapId, Box2 point)
     {
         _mapGrids.Clear();
-        _mapManager.FindGridsIntersecting(mapId, point, ref _mapGrids);
+        _mapSystem.FindGridsIntersecting(mapId, point, ref _mapGrids);
         return _mapGrids.Count > 0;
     }
 
