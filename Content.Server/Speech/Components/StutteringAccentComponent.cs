@@ -1,7 +1,9 @@
+using Content.Server._NF.Speech.Components;
+
 namespace Content.Server.Speech.Components
 {
     [RegisterComponent]
-    public sealed partial class StutteringAccentComponent : Component
+    public sealed partial class StutteringAccentComponent : BaseAccentComponent //Frontier: Component<BaseAccentComponent
     {
         /// <summary>
         /// Percentage chance that a stutter will occur if it matches.

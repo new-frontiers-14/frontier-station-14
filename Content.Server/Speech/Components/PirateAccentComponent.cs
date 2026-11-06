@@ -1,10 +1,11 @@
+using Content.Server._NF.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 
 namespace Content.Server.Speech.Components;
 
 [RegisterComponent]
 [Access(typeof(PirateAccentSystem))]
-public sealed partial class PirateAccentComponent : Component
+public sealed partial class PirateAccentComponent : BaseAccentComponent // Frontier: Component<BaseAccentComponent
 {
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("yarrChance")]
