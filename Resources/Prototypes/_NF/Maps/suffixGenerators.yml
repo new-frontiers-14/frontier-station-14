@@ -1,0 +1,43 @@
+# Suffix Generator definitions
+# CAUTION: Shuttle console code currently requires a hyphen (-) and no more than 8 characters to be recognized as a suffix as of 2026/06/20
+
+- type: suffixGenerator
+  id: LVHI
+  format: '{1}{0}-{2}'
+  defaultDesignator:
+    type: Alpha # This is {0} unless a ship specifies a designator
+    min: 2 # always 2 letters, max is clamped to min
+  designators:
+  - type: AlphaNumeric # This is {1}
+    min: 1
+    max: 2 # will have 1 or 2 alpha numeric digits
+  - type: Numeric # This is {2}
+    format: '{0:D2}' # This will pad 0s to make it always 2 characters long
+    min: 0
+    max: 99
+
+- type: suffixGenerator
+  id: CBC
+  format: '{0}-{1}'
+  defaultDesignator:
+    type: Alpha
+    min: 2
+  designators:
+    - type: Numeric
+      format: '{0:D2}' # If its 3 digits it will not have a leading 0, so its 2-3 characters long
+      min: 0
+      max: 999
+
+- type: suffixGenerator
+  id: DBI
+  format: '{1}{2}-{0}'
+  defaultDesignator:
+    type: Alpha
+    min: 3
+  designators:
+    - type: Numeric
+      format: '{0:D2}'
+      min: 1
+      max: 99
+    - type: Alpha
+      min: 1
