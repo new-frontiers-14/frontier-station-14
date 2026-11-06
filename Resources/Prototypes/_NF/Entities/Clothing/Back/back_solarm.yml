@@ -1,0 +1,70 @@
+- type: entity
+  parent: [BaseItem, Clothing]
+  id: ClothingCargoPack
+  suffix: Solarm
+  name: cargo pack
+  description: An giant, heavy metal frame who can be stucked with five cargo crate, perfect option to horders and salvagers to carry on expeditions or derelicts.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Solarm/cargopack.rsi
+    state: icon
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ItemSlots
+    slots:
+      box_Slot1:
+        name: Crate №1
+        startingItem: Cargocratebasic
+        whitelist:
+          tags:
+            - Cargocrate
+        priority: 5
+      box_Slot2:
+        name: Crate №2
+        startingItem: Cargocratebasic
+        whitelist:
+          tags:
+            - Cargocrate
+        priority: 4
+      box_slot3:
+        name: Crate №3
+        startingItem: Cargocratebasic
+        whitelist:
+          tags:
+            - Cargocrate
+        priority: 3
+      box_slot4:
+        name: Crate №4
+        startingItem: Cargocratebasic
+        whitelist:
+          tags:
+            - Cargocrate
+        priority: 2
+      box_slot5:
+        name: Crate №5
+        startingItem: Cargocratebasic
+        whitelist:
+          tags:
+            - Cargocrate
+        priority: 1
+  - type: ContainerContainer
+    containers:
+      box_Slot1: !type:ContainerSlot {}
+      box_Slot2: !type:ContainerSlot {}
+      box_slot3: !type:ContainerSlot {}
+      box_slot4: !type:ContainerSlot {}
+      box_Slot5: !type:ContainerSlot {}
+
+# Thank ya, Bart-i,m kind of blind and dont notice to add userinterface component for it to work XD
