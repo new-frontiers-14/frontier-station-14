@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: highkickz
+# Discord: highkickz
+
+# Maintainer Info
+# GitHub: highkickz
+# Discord: highkickz
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Milkshake
+  parent: BaseVessel
+  name: NT Milkshake
+  description: The Milkshake is a large kitchen vessel designed for the transport of food and beverages while simulating the conditions of a typical old Earth-based kitchen. It is equipped with state-of-the-art refrigeration and cooking facilities, making it ideal for catering services in space.
+  price: 83000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/milkshake.yml
+  guidebookPage: ShipyardMilkshake
+  class:
+  - Service
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Milkshake
+  mapName: 'Milkshake'
+  mapPath: /Maps/_NF/Shuttles/milkshake.yml
+  minPlayers: 0
+  stations:
+    Milkshake:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Milkshake {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
