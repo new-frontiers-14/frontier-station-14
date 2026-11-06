@@ -160,8 +160,8 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         if (velocity.Length() != 0f)
         {
             var nodeQuery = GetEntityQuery<RiverNodeComponent>();
-            var riverBoost = 0f;
-            var riverSlowdown = 0f;
+            var riverBoost = 1f;
+            var riverSlowdown = 1f;
 
             // Collate data for the final river flow effect.
             foreach (var entity in receiver.InfluencingNodes)
@@ -202,17 +202,17 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                     var flowDiffScalar = Vector2.Dot(velocity.Normalized(), flowDirection);
                     if (flowDiffScalar >= 0) //If going along the flow, stores only the biggest boost modifier.
                     {
-                        var tempRiverBoost = flowDiffScalar * node.Boost * distanceMod;
+                        var tempRiverBoost = MathHelper.Lerp(1f, node.Boost, flowDiffScalar * distanceMod);//flowDiffScalar * node.Boost * distanceMod;
                         if (tempRiverBoost > riverBoost)
                         {
                             riverBoost = tempRiverBoost;
                         }
                     }
-                    else //If going against the flow, stores only the biggest slowdown modifier.
+                    else //If going against the flow, stores only the smallest slowdown modifier.
                     {
-                        var tempRiverSlowdown = node.SlowdownMultiplier * -flowDiffScalar * distanceMod;
+                        var tempRiverSlowdown = MathHelper.Lerp(1f, node.SlowdownMultiplier, -flowDiffScalar * distanceMod);//node.SlowdownMultiplier * -flowDiffScalar * distanceMod;
 
-                        if (tempRiverSlowdown > riverSlowdown)
+                        if (tempRiverSlowdown < riverSlowdown)
                         {
                             riverSlowdown = tempRiverSlowdown;
                         }
@@ -220,7 +220,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                 }
             }
             //Colate the final velocity modifier.
-            velocityMod = 1 + riverBoost - riverSlowdown;
+            velocityMod = riverBoost * riverSlowdown;
         }
         return velocityMod;
     }

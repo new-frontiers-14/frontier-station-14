@@ -1,13 +1,13 @@
 using Content.Server._NF.River.Components;
-using Content.Server._NF.ShuttleMaker.Components;
+using Content.Server._NF.FlyableGridPopulator.Components;
 
-namespace Content.Server._NF.ShuttleMaker;
+namespace Content.Server._NF.FlyableGridPopulator;
 
 /// <summary>
 /// This system populates and depopulates ships/shuttles with components necessary for their functioning.
-/// It does this when an entity with a ShuttleMaker component anchors with a grid, or the last ShuttleMaker unanchors.
+/// It does this when an entity with a FlyableGridPopulator component anchors with a grid, or the last FlyableGridPopulator unanchors.
 /// </summary>
-public sealed partial class ShuttleMakerSystem : EntitySystem
+public sealed partial class FlyableGridPopulatorSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
@@ -15,10 +15,10 @@ public sealed partial class ShuttleMakerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ShuttleMakerComponent, AnchorStateChangedEvent>(OnAnchorChange);
+        SubscribeLocalEvent<FlyableGridPopulatorComponent, AnchorStateChangedEvent>(OnAnchorChange);
     }
 
-    private void OnAnchorChange(EntityUid uid, ShuttleMakerComponent component, AnchorStateChangedEvent args)
+    private void OnAnchorChange(EntityUid uid, FlyableGridPopulatorComponent component, AnchorStateChangedEvent args)
     {
         if (args.Anchored)
         {
@@ -55,17 +55,17 @@ public sealed partial class ShuttleMakerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Removes the relevant components from the unanchored from grid if this component is the last ShuttleMaker to unanchor.
+    /// Removes the relevant components from the unanchored from grid if this component is the last FlyableGridPopulator to unanchor.
     /// </summary>
     /// <param name="gridUid">The grid's EntityUid</param>
     private bool DepopulateShuttleComponents(EntityUid gridUid)
     {
         var depopulated = true;
-        HashSet<Entity<ShuttleMakerComponent>> shuttleMakers = new();
-        _lookup.GetGridEntities<ShuttleMakerComponent>(gridUid, shuttleMakers);
-        foreach (var maker in shuttleMakers)
+        HashSet<Entity<FlyableGridPopulatorComponent>> populators = new();
+        _lookup.GetGridEntities<FlyableGridPopulatorComponent>(gridUid, populators);
+        foreach (var populator in populators)
         {
-            if (Transform(maker).Anchored)
+            if (Transform(populator).Anchored)
             {
                 depopulated = false;
                 break;
