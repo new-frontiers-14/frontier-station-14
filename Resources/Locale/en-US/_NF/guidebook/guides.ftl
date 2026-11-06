@@ -100,6 +100,7 @@ guide-entry-shipyard-spectre = Spectre
 guide-entry-shipyard-stellaris = Stellaris
 guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-vagabond = Vagabond
+guide-entry-shipyard-wayfarer = Wayfarer
 
 # Medical Shipyard entries
 guide-entry-shipyard-akupara = Akupara
