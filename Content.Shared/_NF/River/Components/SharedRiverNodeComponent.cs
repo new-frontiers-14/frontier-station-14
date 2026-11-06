@@ -20,12 +20,14 @@ public abstract partial class SharedRiverNodeComponent : Component
     /// A list of nodes which this node flows into.
     /// </summary>
     //[AutoNetworkedField]
+    [DataField]
     public List<NetEntity> NextNodes = new();
 
     /// <summary>
     /// A list of nodes which flow into this node.
     /// </summary>
     //[AutoNetworkedField]
+    [DataField]
     public List<NetEntity> PriorNodes = new();
 
     /// <summary>
@@ -47,7 +49,7 @@ public abstract partial class SharedRiverNodeComponent : Component
     public float Saturation = 1f;
 
     //[AutoNetworkedField]
-    public Vector2 ForwardControlPoint;
+    public Vector2 ForwardControlPoint = new Vector2(0f, 0f);
 
 }
 

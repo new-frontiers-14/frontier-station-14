@@ -1,6 +1,7 @@
 using Content.Server._NF.River.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Shuttles.Components;
+using Lidgren.Network;
 using Robust.Shared.Map;
 using System.Numerics;
 
@@ -35,7 +36,7 @@ public partial class RiverNodeSystem
             var spin = Chirality.Counterclockwise;
             if (random == 0)
             {
-                spin = Chirality.Clockwise;
+                //Commented out for testing TODO: PUT BACK|spin = Chirality.Clockwise;
             }
             wells.Add(CreateWell(mapId, poi, 200f, spin));
         }
@@ -67,7 +68,7 @@ public partial class RiverNodeSystem
                             continue;
                         }
                         var distanceCheckWellPos = _transform.GetWorldPosition(distanceCheckWell);
-                        if (DistanceToLineSegmentSquared(distanceCheckWellPos, wellPosition, otherWellPosition, out var _, out var t) < 200f || t > 1f || t < 0f)
+                        if (DistanceToLineSegmentSquared(distanceCheckWellPos, wellPosition, otherWellPosition, out var _, out var t) < 300f || t > 1f || t < 0f) //300f is pretty arbitrary, but 200 radius + 100 buffer.
                         {
                             tooCloseToPoi = true;
                             break;
@@ -269,6 +270,8 @@ public partial class RiverNodeSystem
             }
         }
 
+        OrganiseWells(wells);
+
         // Create the actual rivers.
         foreach (var connection in validConnections)
         {
@@ -287,7 +290,7 @@ public partial class RiverNodeSystem
         var crossRivers = wellComp1.FlowRotation != wellComp2.FlowRotation;
 
         var minDistBetweenRivers = 40f; // the default Node Range
-        var maxDistance = 200f;
+        var maxDistance = 350f;
 
         var location1 = _transform.GetWorldPosition(well1);
         var location2 = _transform.GetWorldPosition(well2);
@@ -299,33 +302,38 @@ public partial class RiverNodeSystem
         List<Vector2> nodePositionsLeft = new();
 
         var longTangent = Vector2.Normalize(location2 - location1);
-        var longNormal = new Vector2(-longTangent.Y, longTangent.X); //Left
+        var longNormal = new Vector2(-longTangent.Y, longTangent.X); //Left?
+        var reverseLongTangent = Vector2.Normalize(location1 - location2);
+        var connectionDirection1 = longTangent;
+        var connectionDirection2 = reverseLongTangent;
 
-        //location1 = location1 + longTangent * 200f; //200f = Exclusion zone radius of POIs
-        //location2 = location2 - longTangent * 200f; //ibid = Exclusion zone radius
+        // Average out connection points that are close to eachother. So if two connected wells are in roughly the same direction, have the arrival and departure be the same for them.
 
-        Vector2 offsetLoc1Arrival = new();// = location1 - longNormal * minDistBetweenRivers;
-        Vector2 offsetLoc2Departure = new();// = location2 - longNormal * minDistBetweenRivers;
-        Vector2 offsetLoc1Departure = new();// = location1 + longNormal * minDistBetweenRivers;
-        Vector2 offsetLoc2Arrival = new();// = location2 + longNormal * minDistBetweenRivers;
 
-        //TODO: Make spaghetti al dente.
+
+        Vector2 offsetLoc1Arrival = new();
+        Vector2 offsetLoc2Departure = new();
+        Vector2 offsetLoc1Departure = new();
+        Vector2 offsetLoc2Arrival = new();
+
         Angle departureAngle1;
         Angle arrivalAngle1;
         if (wellComp1.FlowRotation == Chirality.Clockwise)
         {
-            departureAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 45d).Reduced(); // 45 degrees clockwise
-            arrivalAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 225d).Reduced(); // 180 + 45 degrees counter-clockwise
+            departureAngle1 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection1).Degrees - 45d).Reduced(); // 45 degrees clockwise
+            arrivalAngle1 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection1).Degrees + 225d).Reduced(); // 180 + 45 degrees counter-clockwise
         }
         else
         {
-            departureAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 45d).Reduced(); // 45 degrees counter-clockwise
-            arrivalAngle1 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 225d).Reduced(); // 180 + 45 degrees clockwise
+            departureAngle1 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection1).Degrees + 45d).Reduced(); // 45 degrees counter-clockwise
+            arrivalAngle1 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection1).Degrees - 225d).Reduced(); // 180 + 45 degrees clockwise
         }
 
+        // Get the river positions at Well 1.
         var closestDepartureAngle1 = new Angle();
         var closestArrivalAngle1 = new Angle();
-        // Get the river positions at Well 1.
+        var arrivalNode1 = EntityUid.Invalid;
+        var departureNode1 = EntityUid.Invalid;
         foreach (var node in wellComp1.WellNodes)
         {
             if (!TryComp<RiverNodeComponent>(node, out var nodeComp))
@@ -338,12 +346,45 @@ public partial class RiverNodeSystem
             if (departureDistance < closestDepartureAngle1 || offsetLoc1Departure == new Vector2(0f, 0f))
             {
                 offsetLoc1Departure = _transform.GetWorldPosition(node);
+                departureNode1 = node;
                 closestDepartureAngle1 = departureDistance;
             }
             else if (arrivalDistance < closestArrivalAngle1 || offsetLoc1Arrival == new Vector2(0f, 0f))
             {
                 offsetLoc1Arrival = _transform.GetWorldPosition(node);
+                arrivalNode1 = node;
                 closestArrivalAngle1 = arrivalDistance;
+            }
+        }
+
+        var checkNode = departureNode1;
+        while (checkNode != arrivalNode1)
+        {
+            if (!TryComp<RiverNodeComponent>(checkNode, out var checkComp))
+            {
+                break;
+            }
+            var safetyCheck = checkNode;
+            if (checkComp.PriorNodes.Count > 1) // New Departure point
+            {
+                offsetLoc1Departure = _transform.GetWorldPosition(checkNode);
+            }
+            if (checkComp.NextNodes.Count > 1) // New Arrival point
+            {
+                offsetLoc1Arrival = _transform.GetWorldPosition(checkNode);
+            }
+            foreach (var node in GetEntityList(checkComp.NextNodes))
+            {
+                if (wellComp1.WellNodes.Contains(node))
+                {
+                    checkNode = node;
+                }
+            }
+
+            // Make sure the loop doesn't break.
+            if (checkNode == safetyCheck || checkNode == departureNode1 || !wellComp1.WellNodes.Contains(checkNode))
+            {
+                break;
             }
         }
 
@@ -351,18 +392,20 @@ public partial class RiverNodeSystem
         Angle arrivalAngle2;
         if (wellComp2.FlowRotation == Chirality.Clockwise)
         {
-            departureAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 225d).Reduced(); // 180 + 45 degrees clockwise
-            arrivalAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 45d).Reduced();// 45 degrees counter-clockwise
+            departureAngle2 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection2).Degrees - 45d).Reduced(); // 45 degrees counter-clockwise
+            arrivalAngle2 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection2).Degrees + 225d).Reduced(); // 180 + 45 degrees clockwise
         }
         else
         {
-            departureAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees + 225d).Reduced(); // 180 + 45 degrees counter-clockwise
-            arrivalAngle2 = Angle.FromDegrees(Angle.FromWorldVec(longTangent).Degrees - 45d).Reduced(); // 45 degrees clockwise
+            departureAngle2 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection2).Degrees + 45d).Reduced(); // 45 degrees clockwise
+            arrivalAngle2 = Angle.FromDegrees(Angle.FromWorldVec(connectionDirection2).Degrees - 225d).Reduced(); // 180 + 45 degrees counter-clockwise
         }
 
+        // Get the river positions at Well 2.
         var closestDepartureAngle2 = new Angle();
         var closestArrivalAngle2 = new Angle();
-        // Get the river positions at Well 2.
+        var arrivalNode2 = EntityUid.Invalid;
+        var departureNode2 = EntityUid.Invalid;
         foreach (var node in wellComp2.WellNodes)
         {
             if (!TryComp<RiverNodeComponent>(node, out var nodeComp))
@@ -375,13 +418,71 @@ public partial class RiverNodeSystem
             if (departureDistance < closestDepartureAngle2 || offsetLoc2Departure == new Vector2(0f, 0f))
             {
                 offsetLoc2Departure = _transform.GetWorldPosition(node);
+                departureNode2 = node;
                 closestDepartureAngle2 = departureDistance;
             }
             else if (arrivalDistance < closestArrivalAngle2 || offsetLoc2Arrival == new Vector2(0f, 0f))
             {
                 offsetLoc2Arrival = _transform.GetWorldPosition(node);
+                arrivalNode2 = node;
                 closestArrivalAngle2 = arrivalDistance;
             }
+        }
+
+        checkNode = departureNode2;
+        while (checkNode != arrivalNode2)
+        {
+            if (!TryComp<RiverNodeComponent>(checkNode, out var checkComp))
+            {
+                break;
+            }
+            var safetyCheck = checkNode;
+            if (checkComp.PriorNodes.Count > 1) // New Departure point
+            {
+                offsetLoc2Departure = _transform.GetWorldPosition(checkNode);
+            }
+            if (checkComp.NextNodes.Count > 1) // New Arrival point
+            {
+                offsetLoc2Arrival = _transform.GetWorldPosition(checkNode);
+            }
+            foreach (var node in GetEntityList(checkComp.NextNodes))
+            {
+                if (wellComp2.WellNodes.Contains(node))
+                {
+                    checkNode = node;
+                }
+            }
+
+            // Make sure the loop doesn't break.
+            if (checkNode == safetyCheck || checkNode == departureNode2 || !wellComp2.WellNodes.Contains(checkNode))
+            {
+                break;
+            }
+        }
+        if (wellComp1.Connections.ContainsKey(well2))
+        {
+            offsetLoc1Departure = _transform.GetWorldPosition(wellComp1.Connections[well2].DepartureNode);
+            offsetLoc1Arrival = _transform.GetWorldPosition(wellComp1.Connections[well2].ArrivalNode);
+        }
+        else
+        {
+            offsetLoc1Departure = location1;
+            offsetLoc1Departure.Y += 100f;
+            offsetLoc1Arrival = location1;
+            offsetLoc1Arrival.Y += 100f;
+
+        }
+        if (wellComp2.Connections.ContainsKey(well1))
+        {
+            offsetLoc2Arrival = _transform.GetWorldPosition(wellComp2.Connections[well1].ArrivalNode);
+            offsetLoc2Departure = _transform.GetWorldPosition(wellComp2.Connections[well1].DepartureNode);
+        }
+        else
+        {
+            offsetLoc2Departure = location2;
+            offsetLoc2Departure.X += 100f;
+            offsetLoc2Arrival = location2;
+            offsetLoc2Arrival.X += 100f;
         }
 
         nodePositionsRight.Add(offsetLoc1Departure);
@@ -505,24 +606,27 @@ public partial class RiverNodeSystem
             var nearbyNodes = _lookup.GetEntitiesInRange<RiverNodeComponent>(nodeCoord, 100f); //Magic number, TODO: KILL
             var mergeNode = EntityUid.Invalid;
             var mergeNodeDistanceSquared = -1f;
-            foreach (EntityUid node in nearbyNodes)
+            if (i == 0 || i == nodePositions.Count - 1) // Test TODO: REMOVE
             {
-                if (node == priorNode || !TryComp<RiverNodeComponent>(node, out var nearbyComp))
+                foreach (EntityUid node in nearbyNodes)
                 {
-                    continue;
-                }
+                    if (node == priorNode || !TryComp<RiverNodeComponent>(node, out var nearbyComp))
+                    {
+                        continue;
+                    }
 
-                var angleDelta = Math.Abs(Angle.ShortestDistance(flowDirection, nearbyComp.FlowDirection));
-                var nodeDistanceSquared = (_transform.GetWorldPosition(node) - nodePositions[i]).LengthSquared();
-                var isBetterFit = false;
-                if (mergeNodeDistanceSquared == -1f || nodeDistanceSquared < mergeNodeDistanceSquared)
-                {
-                    isBetterFit = true;
-                }
-                if (angleDelta < Angle.FromDegrees(90d) && isBetterFit)
-                {
-                    mergeNodeDistanceSquared = nodeDistanceSquared;
-                    mergeNode = node;
+                    var angleDelta = Math.Abs(Angle.ShortestDistance(flowDirection, nearbyComp.FlowDirection));
+                    var nodeDistanceSquared = (_transform.GetWorldPosition(node) - nodePositions[i]).LengthSquared();
+                    var isBetterFit = false;
+                    if (mergeNodeDistanceSquared == -1f || nodeDistanceSquared < mergeNodeDistanceSquared)
+                    {
+                        isBetterFit = true;
+                    }
+                    if (angleDelta < Angle.FromDegrees(90d) && isBetterFit)
+                    {
+                        mergeNodeDistanceSquared = nodeDistanceSquared;
+                        mergeNode = node;
+                    }
                 }
             }
 
@@ -570,8 +674,14 @@ public partial class RiverNodeSystem
 
         var distance = (endPos - sourcePos).Length();
 
-        sourceComp.ForwardControlPoint = sourceComp.FlowDirection.ToWorldVec() * (distance * 0.25f);
-        endComp.ForwardControlPoint = endComp.FlowDirection.ToWorldVec() * (distance * 0.25f);
+        if (sourceComp.ForwardControlPoint.LengthSquared() < 1f)
+        {
+            sourceComp.ForwardControlPoint = sourceComp.FlowDirection.ToWorldVec() * (distance * 0.25f);
+        }
+        if (endComp.ForwardControlPoint.LengthSquared() < 1f)
+        {
+            endComp.ForwardControlPoint = endComp.FlowDirection.ToWorldVec() * (distance * 0.25f);
+        }
 
         var netSourceNode = GetNetEntity(sourceNode);
         var netEndNode = GetNetEntity(endNode);
@@ -664,6 +774,163 @@ public partial class RiverNodeSystem
             Dirty(nodes[j], components[j]);
         }
         return well;
+    }
+
+    public void OrganiseWells(List<EntityUid> wells)
+    {
+        foreach (var well in wells)
+        {
+            //Get the angles of all the connected wells in order, handle each well with relation to its neighbouring wells, merge them if their angles are too shallow.
+            if (!TryComp<RiverWellComponent>(well, out var wellComp))
+            {
+                continue;
+            }
+            var wellPos = _transform.GetWorldPosition(well);
+
+            // Sort connections in order, from left to right/counter-clockwise to clockwise.
+            List<EntityUid> sortedConnectedWells = new();
+            foreach (var connection in wellComp.ConnectedWells)
+            {
+                var connectionDirection = Angle.FromWorldVec(_transform.GetWorldPosition(connection) - wellPos);
+                if (sortedConnectedWells.Count == 0)
+                {
+                    sortedConnectedWells.Add(connection);
+                }
+                else
+                {
+                    var counter = 0;
+                    var insert = false;
+                    foreach (var otherConnection in sortedConnectedWells)
+                    {
+                        var otherConnectionDir = Angle.FromWorldVec(_transform.GetWorldPosition(otherConnection) - wellPos);
+                        if (Angle.ShortestDistance(connectionDirection, otherConnectionDir) < 0d) //Is otherConnection further right than Connection?
+                        {
+                            insert = true;
+                            break;
+                        }
+                        counter++;
+                    }
+                    if (insert)
+                    {
+                        sortedConnectedWells.Insert(counter, connection);
+                        //sortedConnectedWells[counter] = connection;
+                    }
+                    else
+                    {
+                        sortedConnectedWells.Add(connection);
+                    }
+                }
+            }
+
+            for (var i = 0; i < sortedConnectedWells.Count; i++)
+            {
+                var focusConnection = sortedConnectedWells[i];
+                var focusPos = _transform.GetWorldPosition(focusConnection);
+                var focusTangent = Angle.FromWorldVec(focusPos - wellPos);
+                Angle leftRiverAngle = new();
+                Angle rightRiverAngle = new();
+                if (sortedConnectedWells.Count == 1)
+                {
+                    leftRiverAngle = Angle.FromDegrees(focusTangent.Degrees + 90d);
+                    rightRiverAngle = Angle.FromDegrees(focusTangent.Degrees - 90d);
+                }
+                else
+                {
+                    //Check against neighbouring tangents, assign good arrival and departure thingies.
+
+                    //Left
+                    var iLeft = i - 1;
+                    if (iLeft < 0)
+                    {
+                        iLeft = sortedConnectedWells.Count - 1;
+                    }
+                    var leftConnection = sortedConnectedWells[iLeft];
+                    var leftPos = _transform.GetWorldPosition(leftConnection);
+                    var leftTangent = Angle.FromWorldVec(leftPos - wellPos);
+                    leftRiverAngle = Angle.ShortestDistance(focusTangent, leftTangent) * 0.5d + focusTangent;
+
+                    if (leftRiverAngle > Angle.FromDegrees(focusTangent.Degrees + 90d) || leftRiverAngle < focusTangent)
+                    {
+                        leftRiverAngle = Angle.FromDegrees(focusTangent.Degrees + 90d);
+                    }
+
+                    //Right
+                    var iRight = i + 1;
+                    if (iRight >= sortedConnectedWells.Count)
+                    {
+                        iRight = 0;
+                    }
+
+                    var rightConnection = sortedConnectedWells[iRight];
+                    var rightPos = _transform.GetWorldPosition(rightConnection);
+                    var rightTangent = Angle.FromWorldVec(rightPos - wellPos);
+                    rightRiverAngle = Angle.ShortestDistance(focusTangent, rightTangent) * 0.5d + focusTangent;
+
+                    if (rightRiverAngle < Angle.FromDegrees(focusTangent.Degrees - 90d) || rightRiverAngle > focusTangent)
+                    {
+                        rightRiverAngle = Angle.FromDegrees(focusTangent.Degrees - 90d);
+                    }
+                }
+
+                // Get the nodes at the left and right RiverAngle.
+                var closestLeftAngle = new Angle();
+                var closestRightAngle = new Angle();
+                var leftNode = EntityUid.Invalid;
+                var rightNode = EntityUid.Invalid;
+                foreach (var node in wellComp.WellNodes)
+                {
+                    var nodeAngle = Angle.FromWorldVec(_transform.GetWorldPosition(node) - wellPos);
+
+                    var leftDistance = Math.Abs(Angle.ShortestDistance(leftRiverAngle, nodeAngle));
+                    if (leftDistance < closestLeftAngle || leftNode == EntityUid.Invalid)
+                    {
+                        leftNode = node;
+                        closestLeftAngle = leftDistance;
+                    }
+
+                    var rightDistance = Math.Abs(Angle.ShortestDistance(rightRiverAngle, nodeAngle));
+                    if (rightDistance < closestRightAngle || rightNode == EntityUid.Invalid)
+                    {
+                        rightNode = node;
+                        closestRightAngle = rightDistance;
+                    }
+                }
+
+                if (wellComp.FlowRotation == Chirality.Clockwise)
+                {
+                    //if (!wellComp.Connections.TryAdd(leftConnection, new ArrivalDeparturePair(leftNode, EntityUid.Invalid)))
+                    //{
+                    //    var tempLeftConnection = wellComp.Connections[leftConnection];
+                    //    tempLeftConnection.ArrivalNode = leftNode;
+                    //    wellComp.Connections[leftConnection] = tempLeftConnection;
+                    //}
+
+                    wellComp.Connections.Add(focusConnection, new ArrivalDeparturePair(rightNode, leftNode));
+                    //if (!wellComp.Connections.TryAdd(rightConnection, new ArrivalDeparturePair(EntityUid.Invalid, rightNode)))
+                    //{
+                    //    var tempRightConnection = wellComp.Connections[rightConnection];
+                    //    tempRightConnection.DepartureNode = rightNode;
+                    //    wellComp.Connections[rightConnection] = tempRightConnection;
+                    //}
+                }
+                else
+                {
+                    //if (!wellComp.Connections.TryAdd(leftConnection, new ArrivalDeparturePair(EntityUid.Invalid, leftNode)))
+                    //{
+                    //    var tempLeftConnection = wellComp.Connections[leftConnection];
+                    //    tempLeftConnection.DepartureNode = leftNode;
+                    //    wellComp.Connections[leftConnection] = tempLeftConnection;
+                    //}
+                    wellComp.Connections.Add(focusConnection, new ArrivalDeparturePair(leftNode, rightNode));
+                    //if (!wellComp.Connections.TryAdd(rightConnection, new ArrivalDeparturePair(rightNode, EntityUid.Invalid)))
+                    //{
+                    //    var tempRightConnection = wellComp.Connections[rightConnection];
+                    //    tempRightConnection.ArrivalNode = rightNode;
+                    //    wellComp.Connections[rightConnection] = tempRightConnection;
+                    //}
+                }
+            }
+        }
     }
 
     /// <summary>

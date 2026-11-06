@@ -17,6 +17,23 @@ public sealed partial class RiverWellComponent : Component
 
     public List<EntityUid> WellNodes = new();
     public List<EntityUid> ConnectedWells = new();
+    /// <summary>
+    /// The EntityUid Key is a well EntityUid, and the ArrivalDeparturePair are the WellNodes which indicate the arrival and departure point for rivers connecting the other well.
+    /// </summary>
+    public Dictionary<EntityUid, ArrivalDeparturePair> Connections = new();
+}
+
+public struct ArrivalDeparturePair
+{
+    public ArrivalDeparturePair(EntityUid arrivalNode, EntityUid departureNode)
+    {
+        ArrivalNode = arrivalNode;
+        DepartureNode = departureNode;
+    }
+    public EntityUid ArrivalNode { get; set; }
+    public EntityUid DepartureNode { get; set; }
+
+    public override string ToString() => $"({ArrivalNode}, {DepartureNode})";
 }
 
 public enum Chirality
