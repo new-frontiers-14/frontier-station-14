@@ -42,3 +42,12 @@ trait-fluffy-desc = You look more fluffy than other moths.
 # These traits are bound to be replaced with a slider, but they live here for now.
 trait-tall-name = Tall
 trait-short-name = Short
+
+trait-one-hand-paralyzed-name = Unilateral Transradial Paralysis
+trait-one-hand-paralyzed-desc = One of your arms is paralyzed below the elbow, rendering that hand unusable.
+trait-one-hand-paralyzed-pickup-attempt = You try to pick { THE($item) } up, but your hand won't move!
+trait-one-hand-paralyzed-pull-attempt = You try to pull { THE($item) }, but your hand won't move!
+trait-one-hand-paralyzed-activate-attempt = You try to use { THE($item) }, but your hand won't move!
+trait-one-hand-paralyzed-fallback = Your hand won't move!
+trait-one-hand-paralyzed-wield-message = You try to hold { THE($item) } in two hands, but one won't move!
+trait-one-hand-paralyzed-wield-message-other = { CAPITALIZE(THE($user)) } struggles and fails to wield the { THE($item) }.
