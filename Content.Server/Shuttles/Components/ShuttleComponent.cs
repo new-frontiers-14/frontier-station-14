@@ -74,5 +74,35 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [DataField]
         public float DampingModifier;
+        //Frontier: IFF HEAT System START
+        /// <summary>
+        /// Maximum heat capacity of the shuttle.
+        /// </summary>
+        [DataField("heatCapacity"), ViewVariables(VVAccess.ReadWrite)]
+        public float HeatCapacity = 300f;
+
+        /// <summary>
+        /// Current heat accumulated by the shuttle.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float CurrentHeat = 0f;
+
+        /// <summary>
+        /// Heat generated every second while active.
+        /// </summary>
+        [DataField("heatGeneration"), ViewVariables(VVAccess.ReadWrite)]
+        public float HeatGeneration = 10f;
+
+        /// <summary>
+        /// Heat dissipated every second while inactive.
+        /// </summary>
+        [DataField("heatDissipation"), ViewVariables(VVAccess.ReadWrite)]
+        public float HeatDissipation = 1f;
+
+        [DataField]
+        public bool GenerateIFFHeat = true;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool Active = false; //Frontier: IFF HEAT System END
     }
 }
