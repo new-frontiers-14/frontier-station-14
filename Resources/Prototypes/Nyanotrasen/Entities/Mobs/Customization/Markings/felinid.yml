@@ -99,11 +99,11 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_tail_tip
+    state: basic_tail_tip_static # Frontier
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_tail_stripes_even
+    state: basic_tail_stripes_even_static # Frontier
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_tail_stripes_odd
+    state: basic_tail_stripes_odd_static # Frontier
 
 - type: marking
   id: FelinidTailBasicWithBow
@@ -112,13 +112,13 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_tail_tip
+    state: basic_tail_tip_static # Frontier
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_tail_stripes_even
+    state: basic_tail_stripes_even_static # Frontier
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_tail_stripes_odd
+    state: basic_tail_stripes_odd_static # Frontier
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
-    state: basic_bow
+    state: basic_bow_static # Frontier
 
 - type: marking
   id: FelinidTailBasicWithBell
@@ -127,6 +127,69 @@
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_tip_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_even_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_odd_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_bell_static # Frontier
+
+- type: marking
+  id: FelinidTailBasicWithBowAndBell
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Felinid]
+  sprites:
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_tip_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_even_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_odd_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_bow_static # Frontier
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_bell_static # Frontier
+
+# Animated Felinid Tails
+# Frontier Begin
+
+- type: marking
+  id: FelinidTailBasicAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_tip
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_even
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_odd
+
+- type: marking
+  id: FelinidTailBasicWithBowAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_tip
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_even
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_tail_stripes_odd
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    state: basic_bow
+
+- type: marking
+  id: FelinidTailBasicWithBellAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
     state: basic_tail_tip
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
     state: basic_tail_stripes_even
@@ -136,10 +199,10 @@
     state: basic_bell
 
 - type: marking
-  id: FelinidTailBasicWithBowAndBell
+  id: FelinidTailBasicWithBowAndBellAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Felinid]
+  speciesRestriction: []
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
     state: basic_tail_tip
@@ -151,3 +214,5 @@
     state: basic_bow
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
     state: basic_bell
+
+# Frontier End
