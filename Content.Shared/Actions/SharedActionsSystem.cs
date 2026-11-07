@@ -19,9 +19,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Actions;
 
-public abstract class SharedActionsSystem : EntitySystem
+public abstract partial class SharedActionsSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming GameTiming = default!;
+    [Dependency] protected IGameTiming GameTiming = default!;
     [Dependency] private   readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private   readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private   readonly ActionContainerSystem _actionContainer = default!;
