@@ -1476,8 +1476,8 @@
 
 - type: listing
   id: UplinkSecurityEnergyMagnum
-  name: uplink-security-EnergyMagnum-name
-  description: uplink-security-EnergyMagnum-desc
+  name: uplink-security-energy-magnum-name
+  description: uplink-security-energy-magnum-desc
   productEntity: NFWeaponEnergyMagnum
   icon: { sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi, state: icon }
   cost:
@@ -1488,11 +1488,9 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - SecurityUplink
+       - SecurityUplink
   - !type:BuyerJobCondition
     whitelist:
-    - Sheriff
-    - Baliff
-    - Sergeant
-
-
+     - Sheriff
+     - Baliff
+     - SeniorOfficer

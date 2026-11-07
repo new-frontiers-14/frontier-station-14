@@ -272,8 +272,8 @@ uplink-security-esword-desc = An NFSD energy sword, your righteous beam of light
 uplink-security-lake-name = NGP-40 projector
 uplink-security-lake-desc = Single shot grenade launcher able to lob both grenades and darts!
 
-uplink-security-EnergyMagnum-name = Energy magnum
-uplink-security-EnergyMagnum-desc = A high powered sidearm for NFSD in the true man's world
+uplink-security-energy-magnum-name = Energy Magnum
+uplink-security-energy-magnum-desc = A high powered sidearm for NFSD in the true man's world
 
 # region Pirate
 uplink-pirate-EVA-name = Pirate EVA Suit
