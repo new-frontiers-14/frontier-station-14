@@ -13,3 +13,151 @@
   components:
   - type: AccessReader
     access: [["Pirate"]]
+
+- type: entity
+  id: ButtonFrameThruster
+  parent: ButtonFrame
+  suffix: thruster
+  description: It's a frame for a switch that toggles thrusters on or off.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: thruster
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameThrusterNode
+
+- type: entity
+  id: ButtonFrameShutter
+  parent: ButtonFrame
+  suffix: Shutter
+  description: It's a frame for a switch that opens or closes shutters.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: grey
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameShutterNode
+
+- type: entity
+  id: ButtonFrameBolts
+  parent: ButtonFrame
+  suffix: Bolts
+  description: It's a frame for a switch that bolts airlocks.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: caution
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameBoltsNode
+
+- type: entity
+  id: ButtonFrameBlastDoor
+  parent: ButtonFrame
+  suffix: BlastDoor
+  description: It's a frame for a switch that opens or closes blast doors.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: blastdoors
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameBlastDoorNode
+
+- type: entity
+  id: ButtonFrameEmergencyVent
+  parent: ButtonFrame
+  suffix: EmergencyVent
+  description: It's a frame for a switch that exposes a room to space.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: atmosvent
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameEmergencyVentNode
+
+- type: entity
+  id: ButtonFrameLights
+  parent: ButtonFrame
+  suffix: Lights
+  description: It's a frame for a switch that toggles lights.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: grey
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameLightsNode
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonThrusters
+  suffix: Thrusters
+  components:
+  - type: Label
+    currentLabel: nf-button-thrusters
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonBlastDoor
+  suffix: BlastDoor
+  components:
+  - type: Label
+    currentLabel: nf-button-blastdoor
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonShutter
+  suffix: Shutter
+  components:
+  - type: Label
+    currentLabel: nf-button-shutter
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonEmergencyVent
+  suffix: EmergencyVent
+  components:
+  - type: Label
+    currentLabel: nf-button-emergency-vent
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonIgniter
+  suffix: Igniter
+  components:
+  - type: Label
+    currentLabel: nf-button-igniter
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonDoorBolts
+  suffix: DoorBolts
+  components:
+  - type: Label
+    currentLabel: nf-button-door-bolts
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonGenerators
+  suffix: Generators
+  components:
+  - type: Label
+    currentLabel: nf-button-generators
+
+- type: entity
+  parent: SignalButtonDirectional
+  id: NFButtonLights
+  suffix: Lights
+  components:
+  - type: Label
+    currentLabel: nf-button-lights
