@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Nyazen (https://github.com/Nyazen)
+# Discord: @Nyazen
+
+# Maintainer Info
+# GitHub: Nyazen (https://github.com/Nyazen)
+# Discord: Nyazen
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Spike
+  parent: BaseVessel
+  name: CBB Spike
+  description: Once a cheap fishing vessel this ship has been refurbished with a more luxury interior focused for planetary exploration. 
+  price: 92000 # Ship appraised at 80000 +
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/spike.yml
+  guidebookPage: ShipyardSpike
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: Spike
+  mapName: 'CBB Spike'
+  mapPath: /Maps/_NF/Shuttles/Expedition/spike.yml
+  minPlayers: 0
+  stations: 
+    Spike:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spike {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
