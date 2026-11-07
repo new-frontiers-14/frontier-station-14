@@ -24,6 +24,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Server._NF.River.Systems;
 
 namespace Content.Server._NF.GameRule;
 
@@ -41,6 +42,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     [Dependency] private readonly IBaseServer _baseServer = default!;
     [Dependency] private readonly IEntitySystemManager _entSys = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
+    [Dependency] private readonly RiverNodeSystem _rivers = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -244,6 +246,16 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         _poi.GenerateRequireds(mapUid, requiredProtos, out component.RequiredPois);
         _poi.GenerateOptionals(mapUid, optionalProtos, out component.OptionalPois);
         _poi.GenerateUniques(mapUid, remainingUniqueProtosBySpawnGroup, out component.UniquePois);
+
+        // Load all generated Pois into a list, and send them over to the RiverNodeSystem for river generation.
+        List<EntityUid> pois = new();
+        pois.AddRange(component.CargoDepots);
+        pois.AddRange(component.MarketStations);
+        pois.AddRange(component.RequiredPois);
+        pois.AddRange(component.OptionalPois);
+        pois.AddRange(component.UniquePois);
+
+        _rivers.POIArterialRiverGen(mapUid, pois);
 
         base.Started(uid, component, gameRule, args);
 
