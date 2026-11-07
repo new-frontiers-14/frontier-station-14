@@ -64,7 +64,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             damageRequired -= damageableComponent.TotalDamage;
             damageRequired = FixedPoint2.Max(damageRequired, FixedPoint2.Zero);
         }
-        var modifiedDamage = _damageableSystem.TryChangeDamage(target, damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter); // Frontier ev.Damage<damage
+        var modifiedDamage = _damageableSystem.TryChangeDamage(target, damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter, armorPenetration: component.ArmorPenetration); // Frontier ev.Damage<damage && Goobstation added ArmorPenetration
         var deleted = Deleted(target);
 
         if (modifiedDamage is not null && Exists(component.Shooter))
