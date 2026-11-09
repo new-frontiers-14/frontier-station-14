@@ -9,7 +9,7 @@ namespace Content.Client._NF.BountyContracts.UI;
 [GenerateTypedNameReferences]
 public sealed partial class BountyContractUiFragmentTabSet : TabContainer
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
     public event Action<ProtoId<BountyContractCollectionPrototype>>? OnSelectCollection;
     private Dictionary<int, ProtoId<BountyContractCollectionPrototype>> _tabsToCollections;
 

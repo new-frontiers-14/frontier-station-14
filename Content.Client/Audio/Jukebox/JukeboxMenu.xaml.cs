@@ -17,8 +17,8 @@ namespace Content.Client.Audio.Jukebox;
 [GenerateTypedNameReferences]
 public sealed partial class JukeboxMenu : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // wizden#42210
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // wizden#42210
     private AudioSystem _audioSystem;
 
     /// <summary>
