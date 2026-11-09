@@ -9,9 +9,9 @@ using Content.Shared.Wieldable;
 
 namespace Content.Server.Abilities.Oni
 {
-    public sealed class OniSystem : EntitySystem
+    public sealed partial class OniSystem : EntitySystem
     {
-        [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+        [Dependency] private SharedGunSystem _gunSystem = default!;
 
         private const double GunInaccuracyFactor = 17.0; // Frontier (20x<18x -> 10% buff)
 
