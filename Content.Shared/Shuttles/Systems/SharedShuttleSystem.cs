@@ -13,14 +13,14 @@ namespace Content.Shared.Shuttles.Systems;
 
 public abstract partial class SharedShuttleSystem : EntitySystem
 {
-    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] protected FixtureSystem Fixtures = default!;
     [Dependency] protected SharedMapSystem Maps = default!;
     [Dependency] protected SharedPhysicsSystem Physics = default!;
     [Dependency] protected SharedTransformSystem XformSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
-    public const float FTLRange = 256f;
+    public const float FTLRange = 5120f; // Frontier: 256f<5120f
     public const float FTLBufferRange = 8f;
     public const float TileDensityMultiplier = 0.5f;
 
@@ -202,6 +202,13 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
         // This is the already adjusted position
         var targetPosition = mapCoordinates.Position;
+
+        //Check for invalid entities.
+        if (!coordinates.IsValid(EntityManager) || !double.IsFinite(angle.Theta))
+        {
+            Log.Error($"Found invalid FTL destination with coordinates {coordinates} and angle {angle} for shuttle {shuttleUid}");
+            return false;
+        }
 
         // Check range even if it's cross-map.
         if ((targetPosition - ourPos).Length() > FTLRange)

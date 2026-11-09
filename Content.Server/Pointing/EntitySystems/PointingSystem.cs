@@ -36,7 +36,7 @@ namespace Content.Server.Pointing.EntitySystems
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
-        [Dependency] private  RotateToFaceSystem _rotateToFaceSystem = default!;
+        [Dependency] private RotateToFaceSystem _rotateToFaceSystem = default!;
         [Dependency] private SharedContainerSystem _container = default!;
         [Dependency] private SharedPopupSystem _popup = default!;
         [Dependency] private VisibilitySystem _visibilitySystem = default!;

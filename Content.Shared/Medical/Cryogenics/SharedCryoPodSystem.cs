@@ -36,24 +36,24 @@ namespace Content.Shared.Medical.Cryogenics;
 
 public abstract partial class SharedCryoPodSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly ClimbSystem _climb = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly ReactiveSystem _reactive = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private ClimbSystem _climb = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private ReactiveSystem _reactive = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPointLightSystem _light = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
 
     private EntityQuery<BloodstreamComponent> _bloodstreamQuery;
     private EntityQuery<ItemSlotsComponent> _itemSlotsQuery;
@@ -63,8 +63,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution. TODO: Don't hardcode this
     private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
 
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier
+    [Dependency] private SharedTransformSystem _transform = default!; // Frontier
+    [Dependency] private SharedInteractionSystem _interaction = default!; // Frontier
 
     public override void Initialize()
     {

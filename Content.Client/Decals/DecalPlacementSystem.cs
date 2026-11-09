@@ -26,7 +26,6 @@ public sealed partial class DecalPlacementSystem : EntitySystem
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
-
     public static readonly EntProtoId DecalAction = "BaseMappingDecalAction";
 
     private string? _decalId;

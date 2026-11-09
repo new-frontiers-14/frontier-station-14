@@ -24,8 +24,8 @@ public sealed partial class DebrisFeaturePlacerSystem : BaseWorldSystem
     [Dependency] private PoissonDiskSampler _sampler = default!;
     [Dependency] private TransformSystem _xformSys = default!;
     [Dependency] private ILogManager _logManager = default!;
-    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
+	[Dependency] private IRobustRandom _random = default!;
 
     private ISawmill _sawmill = default!;
 

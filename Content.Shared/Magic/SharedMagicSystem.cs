@@ -66,7 +66,6 @@ public abstract partial class SharedMagicSystem : EntitySystem
     [Dependency] private TurfSystem _turf = default!;
 	[Dependency] private SharedChargesSystem _charges = default!;
 
-
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
     public override void Initialize()
