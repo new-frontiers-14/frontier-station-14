@@ -15,12 +15,14 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Decals;
 using Content.Shared.Input;
+using Content.Client.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Roles.RoleCodeword;
 using Robust.Client.GameObjects;
@@ -58,6 +60,7 @@ public sealed partial class ChatUIController : UIController
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
+    [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
 
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
@@ -841,6 +844,22 @@ public sealed partial class ChatUIController : UIController
             msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
         }
 
+        // Frontier: Color current ship callsign
+        if (_player.LocalEntity != null && TryGetIdCard(_player.LocalEntity.Value, out var idCard) && _ent.TryGetComponent<ShuttleDeedComponent>(idCard, out var shipDeed))
+        {
+            if (shipDeed.ShuttleName != null)
+                msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, shipDeed.ShuttleName, "color", _highlightsColor);
+
+            if (shipDeed.ShuttleNameSuffix != null)
+            {
+                var suffix = shipDeed.ShuttleNameSuffix;
+                var number = suffix.Split("-")[1];
+                msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, suffix, "color", _highlightsColor);
+                msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, number, "color", _highlightsColor);
+            }
+        }
+        // End Frontier
+
         // Color any codewords for minds that have roles that use them
         if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
         {
@@ -957,6 +976,30 @@ public sealed partial class ChatUIController : UIController
         var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
         return _chatNameColors[colorIdx];
     }
+
+    // Frontier: Color current ship callsign
+    private bool TryGetIdCard(EntityUid ent, out EntityUid? idCard)
+    {
+        if (_inventory != null && _inventory.TryGetSlotEntity(ent, "id", out var pdaSlotItem))
+        {
+            if (_ent.HasComponent<Shared.Access.Components.IdCardComponent>(pdaSlotItem))
+            {
+                idCard = pdaSlotItem;
+                return true;
+            }
+
+            if (_ent.TryGetComponent<Shared.PDA.PdaComponent>(pdaSlotItem, out var pda)
+                && pda.ContainedId.HasValue)
+            {
+                idCard = pda.ContainedId.Value;
+                return true;
+            }
+        }
+
+        idCard = null;
+        return false;
+    }
+    // End Frontier
 
     private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);
 
