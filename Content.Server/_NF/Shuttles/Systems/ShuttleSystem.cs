@@ -14,17 +14,15 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
-    [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
+    [Dependency] private  RadarConsoleSystem _radarConsole = default!;
     [Dependency] private readonly AutopilotSystem _autopilot = default!; // Wayfarer: Autopilot
     public TimeSpan BrakeDelay = TimeSpan.FromSeconds(10);
     public TimeSpan NextBrakeCheck = TimeSpan.Zero;
 
     // Cache for shuttle consoles to avoid repeated spatial queries
-    private readonly Dictionary<EntityUid, HashSet<Entity<ShuttleConsoleComponent>>> _shuttleConsoleCache = new();
+    private Dictionary<EntityUid, HashSet<Entity<ShuttleConsoleComponent>>> _shuttleConsoleCache = new();
     private TimeSpan _nextConsoleCacheRefresh = TimeSpan.Zero;
-    private readonly TimeSpan _consoleCacheRefreshInterval = TimeSpan.FromSeconds(30);
-
-    [Dependency] private RadarConsoleSystem _radarConsole = default!;
+    private TimeSpan _consoleCacheRefreshInterval = TimeSpan.FromSeconds(30);
     private const float SpaceFrictionStrength = 0.0075f;
     private const float DampenDampingStrength = 0.25f;
     private const float AnchorDampingStrength = 2.5f;
