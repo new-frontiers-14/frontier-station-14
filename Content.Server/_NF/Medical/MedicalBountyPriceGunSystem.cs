@@ -12,11 +12,11 @@ namespace Content.Server._NF.Medical.Systems;
 /// <summary>
 /// This checks the value of medical bounties on entities that might have them.
 /// </summary>
-public sealed partial class MedicalBountyPriceGunSystem : EntitySystem
+public sealed class MedicalBountyPriceGunSystem : EntitySystem
 {
-    [Dependency] private UseDelaySystem _useDelay = default!;
-    [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

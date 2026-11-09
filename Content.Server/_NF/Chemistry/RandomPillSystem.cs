@@ -3,9 +3,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server._NF.Chemistry;
 
-public sealed partial class RandomPillSystem : EntitySystem
+public sealed class RandomPillSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public const int MaxPillType = 21;
 

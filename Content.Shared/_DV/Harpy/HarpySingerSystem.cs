@@ -2,9 +2,9 @@ using Content.Shared.Actions;
 
 namespace Content.Shared._DV.Harpy;
 
-public abstract partial class SharedHarpySingerSystem : EntitySystem
+public abstract class SharedHarpySingerSystem : EntitySystem
 {
-    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
     {

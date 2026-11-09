@@ -9,7 +9,8 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed partial class TriggerSystem
 {
-    [Dependency] private SharedContainerSystem _container = default!;
+
+    [Dependency] private readonly SharedContainerSystem _container = default!;
     private void NFInitialize()
     {
         SubscribeLocalEvent<TriggerOnBeingGibbedComponent, BeforeGibbedEvent>(OnBeingGibbed);

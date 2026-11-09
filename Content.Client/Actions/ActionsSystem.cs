@@ -24,16 +24,15 @@ using YamlDotNet.RepresentationModel;
 namespace Content.Client.Actions
 {
     [UsedImplicitly]
-    public sealed partial class ActionsSystem : SharedActionsSystem
+    public sealed class ActionsSystem : SharedActionsSystem
     {
         public delegate void OnActionReplaced(EntityUid actionId);
 
-        [Dependency] private SharedChargesSystem _sharedCharges = default!;
-        [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private IPrototypeManager _proto = default!;
-        [Dependency] private IResourceManager _resources = default!;
-        [Dependency] private MetaDataSystem _metaData = default!;
-        [Dependency] private ISerializationManager _serialization = default!;
+        [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly IPrototypeManager _proto = default!;
+        [Dependency] private readonly IResourceManager _resources = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public event Action<EntityUid>? OnActionAdded;
         public event Action<EntityUid>? OnActionRemoved;
@@ -287,27 +286,8 @@ namespace Content.Client.Actions
                     continue;
                 }
 
-                if (assignmentNode is SequenceDataNode sequenceAssignments)
-                {
-                    try
-                    {
-                        var nodeAssignments = _serialization.Read<List<(byte Hotbar, byte Slot)>>(sequenceAssignments, notNullableOverride: true);
-
-                        foreach (var index in nodeAssignments)
-                        {
-                            assignments.Add(new SlotAssignment(index.Hotbar, index.Slot, actionId));
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error($"Failed to parse action assignments: {ex}");
-                    }
-                }
-
                 AddActionDirect((user, actions), actionId);
             }
-
-            AssignSlot?.Invoke(assignments);
         }
 
         private void OnWorldTargetAttempt(Entity<WorldTargetActionComponent> ent, ref ActionTargetAttemptEvent args)
@@ -329,10 +309,10 @@ namespace Content.Client.Actions
             // this is the actual entity-world targeting magic
             EntityUid? targetEnt = null;
             if (TryComp<EntityTargetActionComponent>(ent, out var entity) &&
-                args.Input.EntityUid is { Valid: true } entityUid &&
-                ValidateEntityTarget(user, entityUid, (uid, entity)))
+                args.Input.EntityUid != null &&
+                ValidateEntityTarget(user, args.Input.EntityUid, (uid, entity)))
             {
-                targetEnt = entityUid;
+                targetEnt = args.Input.EntityUid;
             }
 
             if (action.ClientExclusive)

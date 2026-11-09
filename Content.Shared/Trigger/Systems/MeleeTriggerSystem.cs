@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Weapons.Melee.Events;
 
@@ -7,9 +6,9 @@ namespace Content.Shared.Trigger.Systems;
 /// <summary>
 /// Trigger system for melee related triggers.
 /// </summary>
-public sealed partial class MeleeTriggerSystem : EntitySystem
+public sealed class MeleeTriggerSystem : EntitySystem
 {
-    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private readonly TriggerSystem _trigger = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,7 +32,7 @@ public sealed partial class MeleeTriggerSystem : EntitySystem
         if  (args.HitEntities.Count == 0)
             target = ent.Comp.TargetIsUser ? null : args.User;
         else
-            target = ent.Comp.TargetIsUser ? args.HitEntities.First() : args.User;
+            target = ent.Comp.TargetIsUser ? args.HitEntities[0] : args.User;
 
         _trigger.Trigger(ent.Owner, target, ent.Comp.KeyOut);
     }
@@ -45,7 +44,7 @@ public sealed partial class MeleeTriggerSystem : EntitySystem
 
         if (!ent.Comp.TriggerEveryHit)
         {
-            var target = ent.Comp.TargetIsUser ? args.HitEntities.First() : args.User;
+            var target = ent.Comp.TargetIsUser ? args.HitEntities[0] : args.User;
             _trigger.Trigger(ent.Owner, target, ent.Comp.KeyOut);
             return;
         }

@@ -9,10 +9,10 @@ namespace Content.Server._NF.Transfer;
 /// Meant to be used along "TimedDespawn" component to transfer the player mind
 /// after the animation for a smooth transition between entities
 /// </summary>
-public sealed partial class TransferMindOnDespawnSystem : EntitySystem
+public sealed class TransferMindOnDespawnSystem : EntitySystem
 {
-    [Dependency] private SharedMindSystem _mindSystem = default!;
-    [Dependency] private IPrototypeManager _protoManager= default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager= default!;
 
     ///Subscribe to the despawn event
     public override void Initialize()

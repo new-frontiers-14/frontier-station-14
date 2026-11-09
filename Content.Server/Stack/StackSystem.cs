@@ -12,9 +12,9 @@ namespace Content.Server.Stack
     ///     This is a good example for learning how to code in an ECS manner.
     /// </summary>
     [UsedImplicitly]
-    public sealed partial class StackSystem : SharedStackSystem
+    public sealed class StackSystem : SharedStackSystem
     {
-        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         public override void Initialize()
         {

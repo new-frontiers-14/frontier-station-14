@@ -14,10 +14,10 @@ using Content.Shared._Goobstation.Vehicles;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed partial class LinkedLifecycleGridSystem : EntitySystem
+public sealed class LinkedLifecycleGridSystem : EntitySystem
 {
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

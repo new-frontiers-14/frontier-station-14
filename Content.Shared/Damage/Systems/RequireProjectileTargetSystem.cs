@@ -6,9 +6,9 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.Damage.Components;
 
-public sealed partial class RequireProjectileTargetSystem : EntitySystem
+public sealed class RequireProjectileTargetSystem : EntitySystem
 {
-    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {

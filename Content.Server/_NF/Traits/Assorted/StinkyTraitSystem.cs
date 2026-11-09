@@ -12,12 +12,12 @@ namespace Content.Server._NF.Traits.Assorted;
 /// <summary>
 /// This handles stink, causing the affected to stink uncontrollably at a random interval.
 /// </summary>
-public sealed partial class StinkyTraitSystem : EntitySystem
+public sealed class StinkyTraitSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private InventorySystem _inventory = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

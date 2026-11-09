@@ -229,10 +229,10 @@ public class RadialMenu : BaseWindow
 /// from interactions.
 /// </summary>
 [Virtual]
-public abstract class RadialMenuButtonBase : BaseButton
+public class RadialMenuTextureButtonBase : TextureButton
 {
     /// <inheritdoc />
-    protected RadialMenuButtonBase()
+    protected RadialMenuTextureButtonBase()
     {
         EnableAllKeybinds = true;
     }
@@ -242,9 +242,7 @@ public abstract class RadialMenuButtonBase : BaseButton
     {
         if (args.Function == EngineKeyFunctions.UIClick
             || args.Function == ContentKeyFunctions.AltActivateItemInWorld)
-        {
             base.KeyBindUp(args);
-        }
     }
 }
 
@@ -255,14 +253,8 @@ public abstract class RadialMenuButtonBase : BaseButton
 /// works only if control have parent, and ActiveContainer property is set.
 /// Also considers all space outside of radial menu buttons as itself for clicking.
 /// </summary>
-public sealed class RadialMenuContextualCentralTextureButton : TextureButton
+public sealed class RadialMenuContextualCentralTextureButton : RadialMenuTextureButtonBase
 {
-    /// <inheritdoc />
-    public RadialMenuContextualCentralTextureButton()
-    {
-        EnableAllKeybinds = true;
-    }
-
     public float InnerRadius { get; set; }
 
     public Vector2? ParentCenter { get; set; }
@@ -279,25 +271,15 @@ public sealed class RadialMenuContextualCentralTextureButton : TextureButton
 
         var innerRadiusSquared = InnerRadius * InnerRadius;
 
-        // comparing to squared values is faster, then making sqrt
+        // comparing to squared values is faster then making sqrt
         return distSquared < innerRadiusSquared;
-    }
-
-    /// <inheritdoc />
-    protected override void KeyBindUp(GUIBoundKeyEventArgs args)
-    {
-        if (args.Function == EngineKeyFunctions.UIClick
-            || args.Function == ContentKeyFunctions.AltActivateItemInWorld)
-        {
-            base.KeyBindUp(args);
-        }
     }
 }
 
 /// <summary>
 /// Menu button for outer area of radial menu (covers everything 'outside').
 /// </summary>
-public sealed class RadialMenuOuterAreaButton : RadialMenuButtonBase
+public sealed class RadialMenuOuterAreaButton : RadialMenuTextureButtonBase
 {
     public float OuterRadius { get; set; }
 
@@ -321,7 +303,7 @@ public sealed class RadialMenuOuterAreaButton : RadialMenuButtonBase
 }
 
 [Virtual]
-public class RadialMenuButton : RadialMenuButtonBase
+public class RadialMenuTextureButton : RadialMenuTextureButtonBase
 {
     /// <summary>
     /// Upon clicking this button the radial menu will be moved to the layer of this control.
@@ -337,8 +319,9 @@ public class RadialMenuButton : RadialMenuButtonBase
     /// <summary>
     /// A simple texture button that can move the user to a different layer within a radial menu
     /// </summary>
-    public RadialMenuButton()
+    public RadialMenuTextureButton()
     {
+        EnableAllKeybinds = true;
         OnButtonUp += OnClicked;
     }
 
@@ -408,7 +391,7 @@ public interface IRadialMenuItemWithSector
 }
 
 [Virtual]
-public class RadialMenuButtonWithSector : RadialMenuButton, IRadialMenuItemWithSector
+public class RadialMenuTextureButtonWithSector : RadialMenuTextureButton, IRadialMenuItemWithSector
 {
     private Vector2[]? _sectorPointsForDrawing;
 
@@ -517,7 +500,7 @@ public class RadialMenuButtonWithSector : RadialMenuButton, IRadialMenuItemWithS
     /// <summary>
     /// A simple texture button that can move the user to a different layer within a radial menu
     /// </summary>
-    public RadialMenuButtonWithSector()
+    public RadialMenuTextureButtonWithSector()
     {
     }
 

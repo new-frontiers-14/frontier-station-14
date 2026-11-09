@@ -9,10 +9,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Mobs.Systems;
 
-public sealed partial class MobThresholdSystem : EntitySystem
+public sealed class MobThresholdSystem : EntitySystem
 {
-    [Dependency] private MobStateSystem _mobStateSystem = default!;
-    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
 
     public override void Initialize()
     {

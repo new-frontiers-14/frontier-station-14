@@ -5,9 +5,9 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed partial class AddMechanismCommand : IConsoleCommand
+    public sealed class AddMechanismCommand : IConsoleCommand
     {
-        [Dependency] private IEntityManager _entManager = default!;
+        [Dependency] private readonly IEntityManager _entManager = default!;
 
         public string Command => "addmechanism";
         public string Description => "Adds a given entity to a containing body.";

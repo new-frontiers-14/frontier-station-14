@@ -3,9 +3,9 @@ using Content.Shared.Materials;
 
 namespace Content.Server._NF.Power.Generator;
 
-public sealed partial class FuelGradeAdapterSystem : EntitySystem
+public sealed class FuelGradeAdapterSystem : EntitySystem
 {
-    [Dependency] private MaterialStorageSystem _materialStorage = default!;
+    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
 
     public override void Initialize()
     {

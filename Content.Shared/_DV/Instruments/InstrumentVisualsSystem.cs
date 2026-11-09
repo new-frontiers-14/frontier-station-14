@@ -3,9 +3,9 @@ using Content.Shared.UserInterface;
 
 namespace Content.Shared._DV.Instruments;
 
-public sealed partial class InstrumentVisualsSystem : EntitySystem
+public sealed class InstrumentVisualsSystem : EntitySystem
 {
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

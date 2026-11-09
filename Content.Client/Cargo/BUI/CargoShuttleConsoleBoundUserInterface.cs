@@ -8,9 +8,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Cargo.BUI;
 
 [UsedImplicitly]
-public sealed partial class CargoShuttleConsoleBoundUserInterface : BoundUserInterface
+public sealed class CargoShuttleConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     [ViewVariables]
     private CargoShuttleMenu? _menu;

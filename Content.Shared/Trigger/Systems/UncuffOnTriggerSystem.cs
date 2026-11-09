@@ -4,9 +4,9 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class UncuffOnTriggerSystem : EntitySystem
+public sealed class UncuffOnTriggerSystem : EntitySystem
 {
-    [Dependency] private SharedCuffableSystem _cuffable = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
 
     public override void Initialize()
     {

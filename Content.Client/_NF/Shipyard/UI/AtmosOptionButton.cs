@@ -7,10 +7,10 @@ using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._NF.Shipyard.UI;
 
-public sealed partial class AtmosOptionButton : OptionButton
+public sealed class AtmosOptionButton : OptionButton
 {
-    [Dependency] private IResourceCache _resCache = default!;
-    [Dependency] private IStylesheetManager _stylesheetManager = default!;
+    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private readonly IStylesheetManager _stylesheetManager = default!;
 
     public AtmosOptionButton()
     {

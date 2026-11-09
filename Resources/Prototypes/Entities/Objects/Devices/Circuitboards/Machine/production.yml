@@ -1366,10 +1366,6 @@
           GlassBeaker:
             amount: 1
             defaultPrototype: Beaker
-    - type: Construction # Frontier
-      graph: DrinkDispenserBoard # Frontier
-      deconstructionTarget: null # Frontier
-      node: boozeDispenser # Frontier
 
 - type: entity
   id: CargoTelepadMachineCircuitboard
@@ -1421,10 +1417,6 @@
           GlassBeaker:
             amount: 1
             defaultPrototype: Beaker
-    - type: Construction # Frontier
-      graph: DrinkDispenserBoard # Frontier
-      deconstructionTarget: null # Frontier
-      node: sodaDispenser # Frontier
 
 - type: entity
   id: TelecomServerCircuitboard
@@ -1539,22 +1531,3 @@
       Steel: 2
       # Manipulator: 2 # Frontier
       Cable: 1
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: SmartFridgeCircuitboard
-  name: SmartFridge machine board
-  description: A machine printed circuit board for a SmartFridge.
-  components:
-  - type: Sprite
-    state: service
-  - type: MachineBoard
-    prototype: SmartFridge
-    requirements:
-      Manipulator: 2
-    stackRequirements:
-      Glass: 5
-    tagRequirements:
-        GlassBeaker:
-          amount: 2
-          defaultPrototype: Beaker

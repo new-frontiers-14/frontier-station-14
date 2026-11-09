@@ -3,9 +3,9 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class LockOnTriggerSystem : EntitySystem
+public sealed class LockOnTriggerSystem : EntitySystem
 {
-    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private readonly LockSystem _lock = default!;
 
     public override void Initialize()
     {

@@ -9,11 +9,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class DamagedSiliconAccentSystem : EntitySystem
+public sealed class DamagedSiliconAccentSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private PowerCellSystem _powerCell = default!;
-    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
 
     public override void Initialize()
     {

@@ -7,10 +7,10 @@ using Robust.Shared.Containers;
 namespace Content.Client.Silicons.Borgs;
 
 /// <inheritdoc/>
-public sealed partial class BorgSystem : SharedBorgSystem
+public sealed class BorgSystem : SharedBorgSystem
 {
-    [Dependency] private AppearanceSystem _appearance = default!;
-    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

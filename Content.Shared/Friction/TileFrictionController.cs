@@ -17,13 +17,13 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Friction
 {
-    public sealed partial class TileFrictionController : VirtualController
+    public sealed class TileFrictionController : VirtualController
     {
-        [Dependency] private IConfigurationManager _configManager = default!;
-        [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
-        [Dependency] private SharedGravitySystem _gravity = default!;
-        [Dependency] private SharedMoverController _mover = default!;
-        [Dependency] private SharedMapSystem _map = default!;
+        [Dependency] private readonly IConfigurationManager _configManager = default!;
+        [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
+        [Dependency] private readonly SharedGravitySystem _gravity = default!;
+        [Dependency] private readonly SharedMoverController _mover = default!;
+        [Dependency] private readonly SharedMapSystem _map = default!;
 
         private EntityQuery<TileFrictionModifierComponent> _frictionQuery;
         private EntityQuery<TransformComponent> _xformQuery;

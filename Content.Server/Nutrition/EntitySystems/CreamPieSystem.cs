@@ -19,20 +19,22 @@ using Robust.Shared.Player;
 namespace Content.Server.Nutrition.EntitySystems
 {
     [UsedImplicitly]
-    public sealed partial class CreamPieSystem : SharedCreamPieSystem
+    public sealed class CreamPieSystem : SharedCreamPieSystem
     {
-        [Dependency] private IngestionSystem _ingestion = default!;
-        [Dependency] private ItemSlotsSystem _itemSlots = default!;
-        [Dependency] private PopupSystem _popup = default!;
-        [Dependency] private PuddleSystem _puddle = default!;
-        [Dependency] private SharedAudioSystem _audio = default!;
-        [Dependency] private SharedSolutionContainerSystem _solutions = default!;
-        [Dependency] private TriggerSystem _trigger = default!;
+        [Dependency] private readonly IngestionSystem _ingestion = default!;
+        [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+        [Dependency] private readonly PopupSystem _popup = default!;
+        [Dependency] private readonly PuddleSystem _puddle = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
+        [Dependency] private readonly TriggerSystem _trigger = default!;
 
         public override void Initialize()
         {
             base.Initialize();
 
+            // activate BEFORE entity is deleted and trash is spawned
+            SubscribeLocalEvent<CreamPieComponent, ConsumeDoAfterEvent>(OnConsume, before: [typeof(FoodSystem)]);
             SubscribeLocalEvent<CreamPieComponent, SliceFoodEvent>(OnSlice);
 
             SubscribeLocalEvent<CreamPiedComponent, RejuvenateEvent>(OnRejuvenate);
@@ -57,10 +59,10 @@ namespace Content.Server.Nutrition.EntitySystems
             QueueDel(entity);
         }
 
-        // TODO
-        // A regression occured here. Previously creampies would activate their hidden payload if you tried to eat them.
-        // However, the refactor to IngestionSystem caused the event to not be reached,
-        // because eating is blocked if an item is inside the food.
+        private void OnConsume(Entity<CreamPieComponent> entity, ref ConsumeDoAfterEvent args)
+        {
+            ActivatePayload(entity);
+        }
 
         private void OnSlice(Entity<CreamPieComponent> entity, ref SliceFoodEvent args)
         {

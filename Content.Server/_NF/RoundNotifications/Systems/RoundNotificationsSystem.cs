@@ -14,11 +14,11 @@ namespace Content.Server._NF.RoundNotifications.Systems;
 /// <remarks>
 /// Updated version of the old Nyanotrasen RoundNotificationsSystem
 /// </remarks>
-public sealed partial class RoundNotificationsSystem : EntitySystem
+public sealed class RoundNotificationsSystem : EntitySystem
 {
-    [Dependency] private IConfigurationManager _config = default!;
-    [Dependency] private IGameMapManager _gameMapManager = default!;
-    [Dependency] private DiscordWebhook _discord = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IGameMapManager _gameMapManager = default!;
+    [Dependency] private readonly DiscordWebhook _discord = default!;
 
     private ISawmill _sawmill = default!;
 

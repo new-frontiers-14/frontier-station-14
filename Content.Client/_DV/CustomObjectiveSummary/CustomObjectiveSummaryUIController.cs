@@ -4,9 +4,9 @@ using Robust.Shared.Network;
 
 namespace Content.Client._DV.CustomObjectiveSummary;
 
-public sealed partial class CustomObjectiveSummaryUIController : UIController
+public sealed class CustomObjectiveSummaryUIController : UIController
 {
-    [Dependency] private IClientNetManager _net = default!;
+    [Dependency] private readonly IClientNetManager _net = default!;
 
     private CustomObjectiveSummaryWindow? _window;
 

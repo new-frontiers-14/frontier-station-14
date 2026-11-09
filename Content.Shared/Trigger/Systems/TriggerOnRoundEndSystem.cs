@@ -6,9 +6,9 @@ namespace Content.Shared.Trigger.Systems;
 /// <summary>
 /// System for creating a trigger when the round ends.
 /// </summary>
-public sealed partial class TriggerOnRoundEndSystem : EntitySystem
+public sealed class TriggerOnRoundEndSystem : EntitySystem
 {
-    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private readonly TriggerSystem _trigger = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

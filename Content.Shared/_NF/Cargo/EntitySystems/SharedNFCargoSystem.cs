@@ -3,9 +3,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Cargo;
 
-public abstract partial class SharedNFCargoSystem : EntitySystem
+public abstract class SharedNFCargoSystem : EntitySystem
 {
-    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected readonly IGameTiming Timing = default!;
 
     public override void Initialize()
     {

@@ -348,7 +348,7 @@
   - type: TimedDespawn #delete the egg after the chicken spawns
     lifetime: 21
 
-- type: entity
+- type: entity # TODO: figure out how to make these guys gib when stepped on
   name: cockroach
   parent: SimpleMobBase
   id: MobCockroach
@@ -397,7 +397,7 @@
   - type: Bloodstream
     bloodReagent: InsectBlood
     bloodMaxVolume: 20
-  - type: Edible
+  - type: Food
   - type: FlavorProfile
     flavors:
     - horrible
@@ -433,12 +433,8 @@
       - !type:GibBehavior
         recursive: false
   - type: NonSpreaderZombie
-  - type: StepTrigger
-    requiredTriggeredSpeed: 1
-  - type: TriggerOnStepTrigger
-  - type: RandomChanceTriggerCondition
-    successChance: 0.2
-  - type: ProtectedFromStepTriggers
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-organic
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -1814,7 +1810,7 @@
         Base: dead-0
       Dead:
         Base: splat-0
-  - type: Edible
+  - type: Food
   - type: FlavorProfile
     flavors:
     - meaty
@@ -2549,8 +2545,6 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/snake_hiss.ogg
-  - type: Puller
-    needsHands: false
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
@@ -2987,6 +2981,8 @@
       amount: 2
   - type: ReplacementAccent
     accent: dog
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-corgi
   - type: Tag
     tags:
     - VimPilot
@@ -3474,11 +3470,7 @@
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
-    allowedEmotes:
-    - Squeak
-  - type: EmitSoundOnTrigger
-    sound:
-      path: "/Audio/Animals/mouse_squeak.ogg"
+    allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/hamster.rsi
@@ -3535,7 +3527,7 @@
         Base: dead-0
       Dead:
         Base: splat-0
-  - type: Edible
+  - type: Food
   - type: FlavorProfile
     flavors:
     - meaty

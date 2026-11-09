@@ -5,9 +5,9 @@ using Content.Shared.Mobs.Systems;
 
 namespace Content.Shared.Traits.Assorted;
 
-public sealed partial class PainNumbnessSystem : EntitySystem
+public sealed class PainNumbnessSystem : EntitySystem
 {
-    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
 
     public override void Initialize()
     {

@@ -7,10 +7,10 @@ using Robust.Shared.Console;
 namespace Content.Server.Body.Commands
 {
     [AdminCommand(AdminFlags.Fun)]
-    internal sealed partial class DestroyMechanismCommand : LocalizedEntityCommands
+    internal sealed class DestroyMechanismCommand : LocalizedEntityCommands
     {
-        [Dependency] private IComponentFactory _compFactory = default!;
-        [Dependency] private BodySystem _bodySystem = default!;
+        [Dependency] private readonly IComponentFactory _compFactory = default!;
+        [Dependency] private readonly BodySystem _bodySystem = default!;
 
         public override string Command => "destroymechanism";
 

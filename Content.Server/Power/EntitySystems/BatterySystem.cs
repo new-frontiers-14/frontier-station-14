@@ -12,9 +12,9 @@ using Content.Server._NF.Power.Components; // Frontier
 namespace Content.Server.Power.EntitySystems
 {
     [UsedImplicitly]
-    public sealed partial class BatterySystem : EntitySystem
+    public sealed class BatterySystem : EntitySystem
     {
-        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
 
         public override void Initialize()
         {

@@ -8,10 +8,10 @@ using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server._DV.CartridgeLoader.Cartridges;
 
-public sealed partial class MailMetricsCartridgeSystem : EntitySystem
+public sealed class MailMetricsCartridgeSystem : EntitySystem
 {
-    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private SectorServiceSystem _sectorService = default!; // Frontier
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
 
     public override void Initialize()
     {

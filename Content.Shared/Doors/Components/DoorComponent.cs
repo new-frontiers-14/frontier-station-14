@@ -187,22 +187,22 @@ public sealed partial class DoorComponent : Component
     public string EmaggingSpriteState = "sparks";
 
     /// <summary>
-    /// The length of the door's opening animation.
+    /// The sprite state used for the door when it's open.
     /// </summary>
     [DataField]
-    public TimeSpan OpeningAnimationTime = TimeSpan.FromSeconds(0.8);
+    public float OpeningAnimationTime = 0.8f;
 
     /// <summary>
-    /// The length of the door's closing animation.
+    /// The sprite state used for the door when it's open.
     /// </summary>
     [DataField]
-    public TimeSpan ClosingAnimationTime = TimeSpan.FromSeconds(0.8);
+    public float ClosingAnimationTime = 0.8f;
 
     /// <summary>
-    /// The length of the door's emagging animation.
+    /// The sprite state used for the door when it's open.
     /// </summary>
     [DataField]
-    public TimeSpan EmaggingAnimationTime = TimeSpan.FromSeconds(1.5);
+    public float EmaggingAnimationTime = 1.5f;
 
     /// <summary>
     /// The animation used when the door opens.
@@ -264,8 +264,8 @@ public sealed partial class DoorComponent : Component
     /// <summary>
     /// Default time that the door should take to pry open.
     /// </summary>
-    [DataField]
-    public TimeSpan PryTime = TimeSpan.FromSeconds(1.5f);
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float PryTime = 1.5f;
 
     [DataField]
     public bool ChangeAirtight = true;

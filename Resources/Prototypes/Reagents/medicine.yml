@@ -699,7 +699,7 @@
         - !type:AdjustReagent
           reagent: NFZombieBiteToxin
           amount: -1
-        - !type:PopupMessage
+        - !type:PopupMessage          
           type: Local
           visualType: Medium
           messages: [ "generic-reagent-effect-nauseous" ]
@@ -713,7 +713,7 @@
           conditions:
           - !type:ReagentThreshold
             min: 5
-
+        
         # Frontier end
 
 - type: reagent
@@ -849,19 +849,16 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
-          mobstate: Alive
+        - !type:TotalDamage
+          max: 50
         damage:
           groups:
             Brute: -1
-            Burn: -1
-      - !type:HealthChange
-        conditions:
-        - !type:MobStateCondition
-          mobstate: Alive
-        damage:
           types:
-            Poison: -0.5 # Same as what it was before the second coming of offmed
+            Poison: -0.5 ##Should be about what it was when it healed the toxin group
+            Heat: -0.33
+            Shock: -0.33
+            Cold: -0.33
 
 - type: reagent
   id: Lipozine
@@ -891,11 +888,6 @@
     Medicine:
       effects:
       - !type:EvenHealthChange
-        # Frontier start
-        conditions:
-        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
-          mobstate: Alive
-        # Frontier end
         damage:
           Burn: -2
           Toxin: -2
@@ -1114,7 +1106,7 @@
         damage:
           types:
             Slash: -2 # 8 per u
-            #Heat: 0.2 # 0.8 per u # Frontier
+            Heat: 0.2 # 0.8 per u
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1139,7 +1131,7 @@
         damage:
           types:
             Piercing: -2.5 # 10 per u
-            #Radiation: 0.05 # 0.2 per u, 3 for 15u # Frontier
+            Radiation: 0.05 # 0.2 per u, 3 for 15u
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1189,11 +1181,9 @@
       - !type:SatiateThirst
         factor: 3
       - !type:HealthChange
-        # Frontier start
         conditions:
-        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
-          mobstate: Alive
-        # Frontier end
+        - !type:TotalDamage
+          max: 50
         damage:
           types:
             Blunt: -0.2
@@ -1206,11 +1196,9 @@
       - !type:SatiateThirst
         factor: 3
       - !type:HealthChange
-        # Frontier start
         conditions:
-        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
-          mobstate: Alive
-        # Frontier end
+        - !type:TotalDamage
+          max: 50
         damage:
           types:
             Blunt: -0.2

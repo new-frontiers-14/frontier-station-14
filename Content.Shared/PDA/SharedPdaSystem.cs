@@ -4,10 +4,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.PDA
 {
-    public abstract partial class SharedPdaSystem : EntitySystem
+    public abstract class SharedPdaSystem : EntitySystem
     {
-        [Dependency] protected ItemSlotsSystem ItemSlotsSystem = default!;
-        [Dependency] protected SharedAppearanceSystem Appearance = default!;
+        [Dependency] protected readonly ItemSlotsSystem ItemSlotsSystem = default!;
+        [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
 
         public override void Initialize()
         {

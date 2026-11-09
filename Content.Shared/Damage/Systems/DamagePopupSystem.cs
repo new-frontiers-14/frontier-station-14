@@ -4,9 +4,9 @@ using Content.Shared.Popups;
 
 namespace Content.Shared.Damage.Systems;
 
-public sealed partial class DamagePopupSystem : EntitySystem
+public sealed class DamagePopupSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -31,8 +31,7 @@ public sealed partial class DamagePopupSystem : EntitySystem
                 _ => "Invalid type",
             };
 
-            // Turn this back into (msg, ent.Owner, args.Origin) when shooting gets predicted.
-            _popupSystem.PopupPredicted(msg, ent.Owner, null);
+            _popupSystem.PopupPredicted(msg, ent.Owner, args.Origin);
         }
     }
 

@@ -129,20 +129,6 @@
     - state: custburg-filling
       color: red
     - state: custburg-top
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-patty-inhand-left
-        color: "#f70000"
-      - state: alpha-filling-inhand-left
-        color: "#f70000"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-patty-inhand-right
-        color: "#f70000"
-      - state: alpha-filling-inhand-right
-        color: "#f70000"
 
 # Burger
 
@@ -174,20 +160,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-patty-inhand-left
-        color: "#382010"
-      - state: alpha-filling-inhand-left
-        color: "#bd9451"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-patty-inhand-right
-        color: "#382010"
-      - state: alpha-filling-inhand-right
-        color: "#bd9451"
 # Tastes like bun, grass.
 
 - type: entity
@@ -216,20 +188,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-patty-inhand-left
-        color: "#b37659"
-      - state: alpha-filling-inhand-left
-        color: "#e8634f"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-patty-inhand-right
-        color: "#b37659"
-      - state: alpha-filling-inhand-right
-        color: "#e8634f"
 # Tastes like bun, bacon.
 
 - type: entity
@@ -260,16 +218,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: alpha-bun-inhand-left
-        color: "#f7f7f7"
-      - state: burger-inhand-left
-      right:
-      - state: alpha-bun-inhand-right
-        color: "#f7f7f7"
-      - state: burger-inhand-right
 
 - type: entity
   parent: FoodBurgerBase
@@ -279,11 +227,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: bear-inhand-left
-      right:
-      - state: bear-inhand-right
   - type: FlavorProfile
     flavors:
       - bun
@@ -318,11 +261,6 @@
     shape:
     - 0,0,1,1
     storedOffset: 0,3
-    inhandVisuals:
-      left:
-      - state: burger-big-inhand-left
-      right:
-      - state: burger-big-inhand-right
   - type: FlavorProfile
     flavors: # What bun?
       - meaty
@@ -356,11 +294,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: brain-inhand-left
-      right:
-      - state: brain-inhand-right
   - type: FlavorProfile
     flavors:
       - bun
@@ -383,7 +316,6 @@
   - type: Tag
     tags:
     - Meat
-
 # Tastes like bun, brains.
 
 - type: entity
@@ -394,13 +326,6 @@
   components:
   - type: Item
     storedOffset: -1,1
-    inhandVisuals:
-      left:
-      - state: cat-inhand-left
-      - state: plain-inhand-left
-      right:
-      - state: cat-inhand-right
-      - state: plain-inhand-right
   - type: Sprite
     state: cat
   - type: FlavorProfile
@@ -452,12 +377,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: plain-inhand-left
-      right:
-      - state: plain-inhand-right
 # TODO: Make this work.
   # - type: Sprite
   #   state: plate
@@ -498,20 +417,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-filling-inhand-left
-        color: "#98d966"
-      - state: alpha-patty-inhand-left
-        color: "#f7b125"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-filling-inhand-right
-        color: "#98d966"
-      - state: alpha-patty-inhand-right
-        color: "#f7b125"
 # Tastes like bun, chicken.
 
 - type: entity
@@ -522,11 +427,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: clown-inhand-left
-      right:
-      - state: clown-inhand-right
   - type: FlavorProfile
     flavors:
       - bun
@@ -574,12 +474,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: dog-inhand-left
-      right:
-      - state: dog-inhand-right
 
 - type: entity
   name: crab burger
@@ -609,20 +503,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-filling-inhand-left
-        color: "#7e1a07"
-      - state: alpha-patty-inhand-left
-        color: "#7e1a07"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-filling-inhand-right
-        color: "#7e1a07"
-      - state: alpha-patty-inhand-right
-        color: "#7e1a07"
 
 - type: entity
   parent: FoodBurgerBase
@@ -635,11 +515,6 @@
     shape:
     - 0,0,1,1
     storedOffset: -2,0
-    inhandVisuals:
-      left:
-      - state: crazy-inhand-left
-      right:
-      - state: crazy-inhand-right
   - type: FlavorProfile
     flavors:
       - bun
@@ -675,19 +550,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-filling-inhand-left
-        color: "#98d966"
-      - state: alpha-patty-inhand-left
-        color: "#e8b348"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-filling-inhand-right
-        color: "#98d966"
-      - state: alpha-patty-inhand-right
-        color: "#e8b348"
   - type: FlavorProfile
     flavors:
       - bun
@@ -718,11 +580,6 @@
   components:
   - type: Item
     storedOffset: -2,1
-    inhandVisuals:
-      left:
-      - state: plasma-inhand-left
-      right:
-      - state: plasma-inhand-right
   - type: Sprite
     state: empowered
   - type: FlavorProfile
@@ -740,7 +597,6 @@
           Quantity: 5
         - ReagentId: Flavorol
           Quantity: 5
-
 # Tastes like bun, pure electricity.
 
 - type: entity
@@ -751,19 +607,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-filling-inhand-left
-        color: "#7e1a07"
-      - state: alpha-patty-inhand-left
-        color: "#7e1a07"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-filling-inhand-right
-        color: "#7e1a07"
-      - state: alpha-patty-inhand-right
-        color: "#7e1a07"
   - type: FlavorProfile
     flavors:
       - bun
@@ -773,7 +616,6 @@
   - type: Tag
     tags:
     - Meat
-
 # Tastes like bun, fish.
 
 - type: entity
@@ -787,12 +629,6 @@
     shape:
     - 0,0,1,1
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: plain-inhand-left
-      right:
-      - state: plain-inhand-right
-
   - type: FlavorProfile
     flavors:
       - meaty
@@ -819,6 +655,7 @@
   - type: Tag
     tags:
     - Meat
+
 # Tastes like bun, HEAT.
 
 - type: entity
@@ -832,21 +669,6 @@
     shape:
     - 0,0,1,1
     storedOffset: 0,3
-    inhandVisuals:
-      left:
-      - state: alpha-bun-inhand-left
-        color: "#cededa"
-      - state: alpha-filling-inhand-left
-        color: "#6a6281"
-      - state: alpha-patty-inhand-left
-        color: "#95a79f"
-      right:
-      - state: alpha-bun-inhand-right
-        color: "#cededa"
-      - state: alpha-filling-inhand-right
-        color: "#6a6281"
-      - state: alpha-patty-inhand-right
-        color: "#95a79f"
   - type: FlavorProfile
     flavors:
       - bun
@@ -898,12 +720,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: plain-inhand-left
-      right:
-      - state: plain-inhand-right
 
 - type: entity
   parent: FoodBurgerBase
@@ -913,20 +729,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-filling-inhand-left
-        color: "#f2efce"
-      - state: alpha-patty-inhand-left
-        color: "#e3756d"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-filling-inhand-right
-        color: "#f2efce"
-      - state: alpha-patty-inhand-right
-        color: "#e3756d"
-
   - type: FlavorProfile
     flavors:
       - muffin
@@ -983,20 +785,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-filling-inhand-left
-        color: "#899660"
-      - state: alpha-patty-inhand-left
-        color: "#a94a31"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-filling-inhand-right
-        color: "#899660"
-      - state: alpha-patty-inhand-right
-        color: "#a94a31"
 # Tastes like bun, pork patty.
 
 - type: entity
@@ -1026,12 +814,6 @@
           Quantity: 1
         - ReagentId: Flavorol # Frontier
           Quantity: 5 # Frontier
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: mime-inhand-left
-      right:
-      - state: mime-inhand-right
 # Tastes like  .
 
 - type: entity
@@ -1062,12 +844,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: plain-inhand-left
-      right:
-      - state: plain-inhand-right
 
 - type: entity
   name: rat burger
@@ -1097,15 +873,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: rat-inhand-left
-      right:
-      - state: bun-inhand-right
-      - state: rat-inhand-right
-
 # Tastes like bun, HEAT.
 
 - type: entity
@@ -1133,22 +900,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: alpha-bun-inhand-left
-        color: "#7f7f7f"
-      - state: alpha-patty-inhand-left
-        color: "#c0c0c0"
-      - state: alpha-filling-inhand-left
-        color: "#141414"
-      right:
-      - state: alpha-bun-inhand-right
-        color: "#7f7f7f"
-      - state: alpha-patty-inhand-right
-        color: "#c0c0c0"
-      - state: alpha-filling-inhand-right
-        color: "#141414"
 # Tastes like bun, lettuce, sludge.
 
 - type: entity
@@ -1159,19 +910,6 @@
   components:
   - type: Item
     storedOffset: 0,1
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-patty-inhand-left
-        color: "#91d90b"
-      - state: alpha-filling-inhand-left
-        color: "#91d90b"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-patty-inhand-right
-        color: "#91d90b"
-      - state: alpha-filling-inhand-right
-        color: "#91d90b"
   - type: FlavorProfile
     flavors:
       - bun
@@ -1202,12 +940,6 @@
     shape:
     - 0,0,1,1
     storedOffset: -1,2
-    inhandVisuals:
-      left:
-      - state: spell-inhand-left
-      right:
-      - state: spell-inhand-right
-
   - type: FlavorProfile
     flavors:
       - bun
@@ -1227,7 +959,6 @@
           Quantity: 10
         - ReagentId: Flavorol
           Quantity: 5
-
 # Tastes like bun, silver.
 
 - type: entity
@@ -1241,11 +972,6 @@
     shape:
     - 0,0,1,1
     storedOffset: 0,4
-    inhandVisuals:
-      left:
-      - state: burger-super-inhand-left
-      right:
-      - state: burger-super-inhand-right
   - type: FlavorProfile
     flavors: # What bun?
       - meaty
@@ -1271,7 +997,6 @@
   - type: Tag
     tags:
     - Meat
-
 # Tastes like bun, diabetes.
 
 - type: entity
@@ -1297,20 +1022,6 @@
           Quantity: 3
         - ReagentId: Flavorol
           Quantity: 5
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-patty-inhand-left
-        color: "#f0d8a1"
-      - state: alpha-filling-inhand-left
-        color: "#e5ad29"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-patty-inhand-right
-        color: "#f0d8a1"
-      - state: alpha-filling-inhand-right
-        color: "#e5ad29"
 # Tastes like bun, tofu.
 
 - type: entity
@@ -1342,20 +1053,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: bun-inhand-left
-      - state: alpha-patty-inhand-left
-        color: "#00cc33"
-      - state: alpha-filling-inhand-left
-        color: "#9900cc"
-      right:
-      - state: bun-inhand-right
-      - state: alpha-patty-inhand-right
-        color: "#00cc33"
-      - state: alpha-filling-inhand-right
-        color: "#9900cc"
 # Tastes like bun, acid.
 
 # Note: I would put a bunch of colored burgers here as listed in the tg .dm but
@@ -1370,11 +1067,6 @@
   - type: Item
     shape:
     - 0,0,0,1
-    inhandVisuals:
-      left:
-      - state: mothroach-inhand-left
-      right:
-      - state: mothroach-inhand-right
   - type: FlavorProfile
     flavors:
       - bun

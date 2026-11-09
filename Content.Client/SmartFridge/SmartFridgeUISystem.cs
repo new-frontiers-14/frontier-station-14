@@ -3,9 +3,9 @@ using Robust.Shared.Analyzers;
 
 namespace Content.Client.SmartFridge;
 
-public sealed partial class SmartFridgeUISystem : EntitySystem
+public sealed class SmartFridgeUISystem : EntitySystem
 {
-    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
     {

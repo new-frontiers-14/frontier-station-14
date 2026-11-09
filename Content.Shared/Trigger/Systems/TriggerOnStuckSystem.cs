@@ -3,9 +3,9 @@ using Content.Shared.Trigger.Components.Triggers;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class TriggerOnStuckSystem : EntitySystem
+public sealed class TriggerOnStuckSystem : EntitySystem
 {
-    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private readonly TriggerSystem _trigger = default!;
 
     public override void Initialize()
     {

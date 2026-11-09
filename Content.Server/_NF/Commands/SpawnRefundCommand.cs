@@ -14,11 +14,11 @@ using Robust.Shared.Utility;
 namespace Content.Server._NF.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed partial class SpawnRefundCommand : IConsoleCommand
+public sealed class SpawnRefundCommand : IConsoleCommand
 {
-    [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IEntitySystemManager _entity = default!;
-    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IEntitySystemManager _entity = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
     private static readonly EntProtoId CashPrototypeId = "SpaceCash";
 

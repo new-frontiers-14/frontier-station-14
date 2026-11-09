@@ -4,10 +4,10 @@ using Content.Shared.RepulseAttract;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class RepulseAttractOnTriggerSystem : EntitySystem
+public sealed class RepulseAttractOnTriggerSystem : EntitySystem
 {
-    [Dependency] private RepulseAttractSystem _repulse = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private readonly RepulseAttractSystem _repulse = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

@@ -9,9 +9,9 @@ using JetBrains.Annotations;
 
 namespace Content.Server._NF.Auth;
 
-public sealed partial class MiniAuthManager
+public sealed class MiniAuthManager
 {
-    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private readonly HttpClient _http = new();
 

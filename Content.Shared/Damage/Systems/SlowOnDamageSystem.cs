@@ -7,9 +7,9 @@ using Content.Shared.Movement.Systems;
 
 namespace Content.Shared.Damage
 {
-    public sealed partial class SlowOnDamageSystem : EntitySystem
+    public sealed class SlowOnDamageSystem : EntitySystem
     {
-        [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+        [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
 
         public override void Initialize()
         {

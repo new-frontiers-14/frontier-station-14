@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server._NF.Shuttles.Components; // Frontier: FTL knockdown immunity
-using Content.Shared._NF.Shuttles.Components; // Frontier: Make FTL on shuttles work with ShuttleFTL component
 using Content.Shared._NF.Atmos.Components; // Frontier
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -240,8 +239,7 @@ public sealed partial class ShuttleSystem
             return false;
         }
 
-        if (TryComp<PhysicsComponent>(shuttleUid, out var shuttlePhysics) &&
-            !HasComp<ShuttleFTLComponent>(shuttleUid)) // Frontier: ShuttleFTLComponent bypasses mass check
+        if (TryComp<PhysicsComponent>(shuttleUid, out var shuttlePhysics))
         {
 
             // Too large to FTL
@@ -283,12 +281,6 @@ public sealed partial class ShuttleSystem
         float? hyperspaceTime = null,
         string? priorityTag = null)
     {
-        if (!coordinates.IsValid(EntityManager) || !double.IsFinite(angle.Theta))
-        {
-            Log.Error($"Found invalid FTL destination with coordinates {coordinates} and angle {angle} for shuttle {shuttleUid}");
-            return;
-        }
-
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return;
 

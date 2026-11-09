@@ -14,13 +14,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._DV.Administration;
 
-public sealed partial class JobWhitelistsEui : BaseEui
+public sealed class JobWhitelistsEui : BaseEui
 {
-    [Dependency] private IAdminManager _admin = default!;
-    [Dependency] private ILogManager _log = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private IServerDbManager _db = default!;
-    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private readonly IAdminManager _admin = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
 
     private readonly ISawmill _sawmill;
 

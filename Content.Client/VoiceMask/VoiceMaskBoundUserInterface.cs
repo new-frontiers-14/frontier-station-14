@@ -5,9 +5,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.VoiceMask;
 
-public sealed partial class VoiceMaskBoundUserInterface : BoundUserInterface
+public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private IPrototypeManager _protomanager = default!;
+    [Dependency] private readonly IPrototypeManager _protomanager = default!;
 
     [ViewVariables]
     private VoiceMaskNameChangeWindow? _window;

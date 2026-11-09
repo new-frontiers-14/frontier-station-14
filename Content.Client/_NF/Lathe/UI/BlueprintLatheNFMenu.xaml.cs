@@ -25,8 +25,8 @@ namespace Content.Client._NF.Lathe.UI;
 [GenerateTypedNameReferences]
 public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 {
-    [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private readonly SpriteSystem _spriteSystem;
     private readonly BlueprintLatheSystem _lathe;
@@ -101,24 +101,18 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             return;
 
         // Coerce a null blueprint type into a valid one if possible.
-        if (clientLathe.CurrentBlueprintType == null)
-        {
-            clientLathe.CurrentBlueprintType = clientLathe.DefaultBlueprintType;
-        }
-
         int[]? recipeBitset = null;
-        if (!RecipesByBlueprintType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out recipeBitset))
+        if (clientLathe.CurrentBlueprintType == null
+            || !RecipesByBlueprintType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out recipeBitset))
         {
+            clientLathe.CurrentBlueprintType = RecipesByBlueprintType.Keys.FirstOrNull();
             clientLathe.CurrentRecipes = null;
-            return;
-        }
-        else if (clientLathe.CurrentRecipes == null)
-        {
-            clientLathe.CurrentRecipes = new int[recipeBitset.Length];
         }
 
         // Check that we can still get a set of recipes from what we have.
-        if (!_lathe.PrintableRecipesByType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out var recipeList))
+        if (clientLathe.CurrentBlueprintType == null
+            || !RecipesByBlueprintType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out recipeBitset)
+            || !_lathe.PrintableRecipesByType.TryGetValue(clientLathe.CurrentBlueprintType.Value, out var recipeList))
         {
             return;
         }
@@ -264,7 +258,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 
         // Default to whatever the first item is.  No blueprint type is not a valid selection.
         if (!selectedIndex)
-            BlueprintTypeOption.TrySelect(0);
+            BlueprintTypeOption.SelectId(0);
     }
 
     /// <summary>

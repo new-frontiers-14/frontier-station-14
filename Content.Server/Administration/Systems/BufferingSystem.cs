@@ -6,9 +6,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Administration.Systems;
 
-public sealed partial class BufferingSystem : EntitySystem
+public sealed class BufferingSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Update(float frameTime)
     {

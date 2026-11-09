@@ -6,10 +6,10 @@ namespace Content.Server.Worldgen.Systems.Carvers;
 /// <summary>
 ///     This handles carving out holes in world generation according to a noise channel.
 /// </summary>
-public sealed partial class NoiseRangeCarverSystem : EntitySystem
+public sealed class NoiseRangeCarverSystem : EntitySystem
 {
-    [Dependency] private NoiseIndexSystem _index = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private readonly NoiseIndexSystem _index = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     /// <inheritdoc />
     public override void Initialize()

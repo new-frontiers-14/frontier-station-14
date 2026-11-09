@@ -9,11 +9,11 @@ namespace Content.Server.Worldgen.Systems.Debris;
 /// <summary>
 ///     This handles populating simple structures, simply using a loot table for each tile.
 /// </summary>
-public sealed partial class SimpleFloorPlanPopulatorSystem : BaseWorldSystem
+public sealed class SimpleFloorPlanPopulatorSystem : BaseWorldSystem
 {
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     /// <inheritdoc />
     public override void Initialize()

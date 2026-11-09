@@ -9,10 +9,10 @@ namespace Content.Server.Worldgen.Systems;
 /// <summary>
 ///     This handles loading in objects based on distance from player, using some metadata on chunks.
 /// </summary>
-public sealed partial class LocalityLoaderSystem : BaseWorldSystem
+public sealed class LocalityLoaderSystem : BaseWorldSystem
 {
-    [Dependency] private TransformSystem _xformSys = default!;
-    [Dependency] private LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
+    [Dependency] private readonly TransformSystem _xformSys = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
 
     // Frontier: space debris destruction
     public override void Initialize()

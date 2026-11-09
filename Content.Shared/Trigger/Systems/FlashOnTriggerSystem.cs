@@ -3,9 +3,9 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class FlashOnTriggerSystem : EntitySystem
+public sealed class FlashOnTriggerSystem : EntitySystem
 {
-    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private readonly SharedFlashSystem _flash = default!;
 
     public override void Initialize()
     {

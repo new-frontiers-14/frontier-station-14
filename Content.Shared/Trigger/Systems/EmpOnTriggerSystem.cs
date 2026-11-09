@@ -3,10 +3,10 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class EmpOnTriggerSystem : EntitySystem
+public sealed class EmpOnTriggerSystem : EntitySystem
 {
-    [Dependency] private SharedEmpSystem _emp = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedEmpSystem _emp = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

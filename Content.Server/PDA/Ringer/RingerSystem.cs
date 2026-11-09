@@ -10,9 +10,9 @@ namespace Content.Server.PDA.Ringer;
 /// <summary>
 /// Handles the server-side logic for <see cref="SharedRingerSystem"/>.
 /// </summary>
-public sealed partial class RingerSystem : SharedRingerSystem
+public sealed class RingerSystem : SharedRingerSystem
 {
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

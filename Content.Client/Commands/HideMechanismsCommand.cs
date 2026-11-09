@@ -5,10 +5,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Client.Commands;
 
-public sealed partial class HideMechanismsCommand : LocalizedEntityCommands
+public sealed class HideMechanismsCommand : LocalizedEntityCommands
 {
-    [Dependency] private SharedContainerSystem _containerSystem = default!;
-    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
     public override string Command => "hidemechanisms";
 

@@ -12,11 +12,11 @@ using System.Linq;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed partial class ImmovableRodRule : StationEventSystem<ImmovableRodRuleComponent>
+public sealed class ImmovableRodRule : StationEventSystem<ImmovableRodRuleComponent>
 {
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private GunSystem _gun = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     protected override void Started(EntityUid uid, ImmovableRodRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -35,8 +35,7 @@ public sealed partial class ImmovableRodRule : StationEventSystem<ImmovableRodRu
             var speed = RobustRandom.NextFloat(rod.MinSpeed, rod.MaxSpeed);
             var angle = RobustRandom.NextAngle();
             var direction = angle.ToVec();
-            var mapCoords = _transform.ToMapCoordinates(targetCoords);
-            var spawnCoords = mapCoords.Offset(-direction * speed * despawn.Lifetime / 2);
+            var spawnCoords = targetCoords.ToMap(EntityManager, _transform).Offset(-direction * speed * despawn.Lifetime / 2);
             var ent = Spawn(protoName, spawnCoords);
             _gun.ShootProjectile(ent, direction, Vector2.Zero, uid, speed: speed);
         }

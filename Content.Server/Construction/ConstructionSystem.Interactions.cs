@@ -25,9 +25,9 @@ namespace Content.Server.Construction
 {
     public sealed partial class ConstructionSystem
     {
-        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 #if EXCEPTION_TOLERANCE
-        [Dependency] private IRuntimeLog _runtimeLog = default!;
+        [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
 #endif
 
         private readonly Queue<EntityUid> _constructionUpdateQueue = new();
@@ -579,10 +579,6 @@ namespace Content.Server.Construction
 
                 handled.Handled = true;
             }
-
-            // Make sure the event passes validation before enqueuing it
-            if (HandleEvent(uid, args, true, construction) != HandleResult.Validated)
-                return;
 
             // Enqueue this event so it'll be handled in the next tick.
             // This prevents some issues that could occur from entity deletion, component deletion, etc in a handler.

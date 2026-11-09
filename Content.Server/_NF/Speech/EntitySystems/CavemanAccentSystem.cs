@@ -7,11 +7,11 @@ using Content.Server.Chat.Systems;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-public sealed partial class CavemanAccentSystem : EntitySystem
+public sealed class CavemanAccentSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ReplacementAccentSystem _replacement = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     public readonly string[] PunctuationStringsToRemove = { "'", "\"", ".", ",", "!", "?", ";", ":" }; // Leave hyphens
 

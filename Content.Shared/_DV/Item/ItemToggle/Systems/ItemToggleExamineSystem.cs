@@ -4,9 +4,9 @@ using Content.Shared.Item.ItemToggle;
 
 namespace Content.Shared._DV.Item.ItemToggle.Systems;
 
-public sealed partial class ItemToggleExamineSystem : EntitySystem
+public sealed class ItemToggleExamineSystem : EntitySystem
 {
-    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private readonly ItemToggleSystem _toggle = default!;
 
     public override void Initialize()
     {

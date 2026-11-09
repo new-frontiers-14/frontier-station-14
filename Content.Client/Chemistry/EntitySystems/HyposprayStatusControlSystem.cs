@@ -5,9 +5,9 @@ using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.Client.Chemistry.EntitySystems;
 
-public sealed partial class HyposprayStatusControlSystem : EntitySystem
+public sealed class HyposprayStatusControlSystem : EntitySystem
 {
-    [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
     public override void Initialize()
     {
         base.Initialize();

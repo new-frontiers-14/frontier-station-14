@@ -4,9 +4,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Emp.Systems;
 
-public sealed partial class EmpBlastSystem : EntitySystem
+public sealed class EmpBlastSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {

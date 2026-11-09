@@ -4,9 +4,9 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class StaminaDamageOnTriggerSystem : EntitySystem
+public sealed class StaminaDamageOnTriggerSystem : EntitySystem
 {
-    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {

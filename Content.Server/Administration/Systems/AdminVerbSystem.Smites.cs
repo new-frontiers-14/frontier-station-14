@@ -60,33 +60,33 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
-    [Dependency] private CreamPieSystem _creamPieSystem = default!;
-    [Dependency] private ElectrocutionSystem _electrocutionSystem = default!;
-    [Dependency] private EntityStorageSystem _entityStorageSystem = default!;
-    [Dependency] private ExplosionSystem _explosionSystem = default!;
-    [Dependency] private FixtureSystem _fixtures = default!;
-    [Dependency] private FlammableSystem _flammableSystem = default!;
-    [Dependency] private GhostKickManager _ghostKickManager = default!;
-    [Dependency] private SharedGodmodeSystem _sharedGodmodeSystem = default!;
-    [Dependency] private InventorySystem _inventorySystem = default!;
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
-    [Dependency] private PolymorphSystem _polymorphSystem = default!;
-    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private TabletopSystem _tabletopSystem = default!;
-    [Dependency] private VomitSystem _vomitSystem = default!;
-    [Dependency] private WeldableSystem _weldableSystem = default!;
-    [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!;
-    [Dependency] private SuperBonkSystem _superBonkSystem = default!;
-    [Dependency] private SlipperySystem _slipperySystem = default!;
-    [Dependency] private SharedAudioSystem _audio = default!; // Frontier
-    [Dependency] private DamageableSystem _damageable = default!; // Frontier
-    [Dependency] private SleepingSystem _sleep = default!; // Frontier
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
+    [Dependency] private readonly ElectrocutionSystem _electrocutionSystem = default!;
+    [Dependency] private readonly EntityStorageSystem _entityStorageSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly FixtureSystem _fixtures = default!;
+    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+    [Dependency] private readonly GhostKickManager _ghostKickManager = default!;
+    [Dependency] private readonly SharedGodmodeSystem _sharedGodmodeSystem = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly TabletopSystem _tabletopSystem = default!;
+    [Dependency] private readonly VomitSystem _vomitSystem = default!;
+    [Dependency] private readonly WeldableSystem _weldableSystem = default!;
+    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
+    [Dependency] private readonly SlipperySystem _slipperySystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
+    [Dependency] private readonly DamageableSystem _damageable = default!; // Frontier
+    [Dependency] private readonly SleepingSystem _sleep = default!; // Frontier
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -124,31 +124,33 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(explode);
 
-        var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
-        Verb chess = new()
-        {
-            Text = chessName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Tabletop/chessboard.rsi"), "chessboard"),
-            Act = () =>
-            {
-                _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
-                EnsureComp<TabletopDraggableComponent>(args.Target);
-                var xform = Transform(args.Target);
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-                _popupSystem.PopupCoordinates(
-                    Loc.GetString("admin-smite-chess-others", ("name", args.Target)), xform.Coordinates,
-                    Filter.PvsExcept(args.Target), true, PopupType.MediumCaution);
-                var board = Spawn("ChessBoard", xform.Coordinates);
-                var session = _tabletopSystem.EnsureSession(Comp<TabletopGameComponent>(board));
-                _transformSystem.SetMapCoordinates(args.Target, session.Position);
-                _transformSystem.SetWorldRotationNoLerp((args.Target, xform), Angle.Zero);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", chessName, Loc.GetString("admin-smite-chess-dimension-description"))
-        };
-        args.Verbs.Add(chess);
+        // Frontier: disabled some more destructive smites
+        // var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
+        // Verb chess = new()
+        // {
+        //     Text = chessName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Tabletop/chessboard.rsi"), "chessboard"),
+        //     Act = () =>
+        //     {
+        //         _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
+        //         EnsureComp<TabletopDraggableComponent>(args.Target);
+        //         RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
+        //         var xform = Transform(args.Target);
+        //         _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
+        //             args.Target, PopupType.LargeCaution);
+        //         _popupSystem.PopupCoordinates(
+        //             Loc.GetString("admin-smite-chess-others", ("name", args.Target)), xform.Coordinates,
+        //             Filter.PvsExcept(args.Target), true, PopupType.MediumCaution);
+        //         var board = Spawn("ChessBoard", xform.Coordinates);
+        //         var session = _tabletopSystem.EnsureSession(Comp<TabletopGameComponent>(board));
+        //         _transformSystem.SetMapCoordinates(args.Target, session.Position);
+        //         _transformSystem.SetWorldRotationNoLerp((args.Target, xform), Angle.Zero);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", chessName, Loc.GetString("admin-smite-chess-dimension-description"))
+        // };
+        // args.Verbs.Add(chess);
 
         if (TryComp<FlammableComponent>(args.Target, out var flammable))
         {

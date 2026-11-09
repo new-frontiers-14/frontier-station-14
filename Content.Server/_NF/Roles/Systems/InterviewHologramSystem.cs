@@ -26,7 +26,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Roles.Systems;
 
-public sealed partial class InterviewHologramSystem : SharedInterviewHologramSystem
+public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private IChatManager _chat = default!;
@@ -139,7 +139,7 @@ public sealed partial class InterviewHologramSystem : SharedInterviewHologramSys
             ApplyAppearanceForSession(ent, session);
         }
 
-        // Notify all relevant captains if they have their PDA that someone is applying for a job.
+        // Notify all relevant captains if they have their PDA that someone is applying for a job. 
         if (!ent.Comp.NotificationsSent)
         {
             string jobTitle;

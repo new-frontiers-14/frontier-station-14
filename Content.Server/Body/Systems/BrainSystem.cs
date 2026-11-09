@@ -8,9 +8,9 @@ using Content.Shared.Pointing;
 
 namespace Content.Server.Body.Systems;
 
-public sealed partial class BrainSystem : EntitySystem
+public sealed class BrainSystem : EntitySystem
 {
-    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {

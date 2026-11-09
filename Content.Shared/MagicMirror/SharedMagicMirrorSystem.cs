@@ -7,10 +7,10 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.MagicMirror;
 
-public abstract partial class SharedMagicMirrorSystem : EntitySystem
+public abstract class SharedMagicMirrorSystem : EntitySystem
 {
-    [Dependency] private SharedInteractionSystem _interaction = default!;
-    [Dependency] protected SharedUserInterfaceSystem UISystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] protected readonly SharedUserInterfaceSystem UISystem = default!;
 
     public override void Initialize()
     {

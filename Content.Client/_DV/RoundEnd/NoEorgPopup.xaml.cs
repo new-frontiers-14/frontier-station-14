@@ -12,7 +12,7 @@ namespace Content.Client._DV.RoundEnd;
 [GenerateTypedNameReferences]
 public sealed partial class NoEorgPopup : FancyWindow
 {
-    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private float _remainingTime;
     private bool _initialSkipState;

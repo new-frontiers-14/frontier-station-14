@@ -14,8 +14,8 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
 
 
     protected virtual void InitializeBallistic()
@@ -59,7 +59,6 @@ public abstract partial class SharedGunSystem
         Audio.PlayPredicted(component.SoundInsert, uid, args.User);
         args.Handled = true;
         UpdateBallisticAppearance(uid, component);
-        UpdateAmmoCount(args.Target);
         DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
     }
 
@@ -188,15 +187,14 @@ public abstract partial class SharedGunSystem
                 Del(ent.Value);
         }
 
+        // repeat if there is more space in the target and more ammo to fill it
         // Frontier: better revolver reloading
         var moreSpace = false;
         if (ballisticTarget is not null)
-            moreSpace = ballisticTarget.Entities.Count + ballisticTarget.UnspawnedCount < ballisticTarget.Capacity;
+            moreSpace = GetBallisticShots(ballisticTarget) < ballisticTarget.Capacity;
         else if (revolverTarget is not null)
             moreSpace = GetRevolverCount(revolverTarget) < revolverTarget.Capacity;
         // End Frontier
-
-        // repeat if there is more space in the target and more ammo to fill
         var moreAmmo = component.Entities.Count + component.UnspawnedCount > 0;
         args.Repeat = moreSpace && moreAmmo && validAmmoType; // Frontier: do not repeat reload attempts with invalid ammo.
     }

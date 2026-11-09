@@ -8,9 +8,9 @@ using static Robust.Client.GameObjects.SpriteComponent;
 
 namespace Content.Client.Kitchen.Visualizers;
 
-public sealed partial class DeepFriedVisualizerSystem : VisualizerSystem<DeepFriedComponent>
+public sealed class DeepFriedVisualizerSystem : VisualizerSystem<DeepFriedComponent>
 {
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     private const string FriedShader = "Crispy";
     private const string SpectralShader = "Spectral";

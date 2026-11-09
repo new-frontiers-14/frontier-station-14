@@ -1,7 +1,4 @@
-using Content.Client.Stylesheets;
-using Content.Client.UserInterface.Controls;
-using Content.Shared.Changeling.Components;
-using Content.Shared.Changeling.Systems;
+﻿using Content.Shared.Changeling.Systems;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -10,58 +7,28 @@ namespace Content.Client.Changeling.UI;
 [UsedImplicitly]
 public sealed partial class ChangelingTransformBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    private SimpleRadialMenu? _menu;
-    private static readonly Color SelectedOptionBackground = StyleNano.ButtonColorGoodDefault.WithAlpha(128);
-    private static readonly Color SelectedOptionHoverBackground = StyleNano.ButtonColorGoodHovered.WithAlpha(128);
+    private ChangelingTransformMenu? _window;
 
     protected override void Open()
     {
         base.Open();
 
-        _menu = this.CreateWindow<SimpleRadialMenu>();
-        Update();
-        _menu.OpenOverMouseScreenPosition();
-    }
+        _window = this.CreateWindow<ChangelingTransformMenu>();
 
+        _window.OnIdentitySelect += SendIdentitySelect;
+
+        _window.Update(Owner);
+    }
 
     public override void Update()
     {
-        if (_menu == null)
+        if (_window == null)
             return;
 
-        if (!EntMan.TryGetComponent<ChangelingIdentityComponent>(Owner, out var lingIdentity))
-            return;
-
-        var models = ConvertToButtons(lingIdentity.ConsumedIdentities, lingIdentity?.CurrentIdentity);
-
-        _menu.SetButtons(models);
+        _window.Update(Owner);
     }
 
-    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(
-        IEnumerable<EntityUid> identities,
-        EntityUid? currentIdentity
-    )
-    {
-        var buttons = new List<RadialMenuOptionBase>();
-        foreach (var identity in identities)
-        {
-            if (!EntMan.TryGetComponent<MetaDataComponent>(identity, out var metadata))
-                continue;
-
-            var option = new RadialMenuActionOption<NetEntity>(SendIdentitySelect, EntMan.GetNetEntity(identity))
-            {
-                IconSpecifier = RadialMenuIconSpecifier.With(identity),
-                ToolTip = metadata.EntityName,
-                BackgroundColor = (currentIdentity == identity) ? SelectedOptionBackground : null,
-                HoverBackgroundColor = (currentIdentity == identity) ? SelectedOptionHoverBackground : null
-            };
-            buttons.Add(option);
-        }
-
-        return buttons;
-    }
-
-    private void SendIdentitySelect(NetEntity identityId)
+    public void SendIdentitySelect(NetEntity identityId)
     {
         SendPredictedMessage(new ChangelingTransformIdentitySelectMessage(identityId));
     }

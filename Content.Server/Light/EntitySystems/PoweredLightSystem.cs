@@ -9,9 +9,9 @@ namespace Content.Server.Light.EntitySystems;
 /// <summary>
 ///     System for the PoweredLightComponents
 /// </summary>
-public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
+public sealed class PoweredLightSystem : SharedPoweredLightSystem
 {
-    [Dependency] private IRobustRandom _random = default!; // Frontier
+    [Dependency] private readonly IRobustRandom _random = default!; // Frontier
     public override void Initialize()
     {
         base.Initialize();

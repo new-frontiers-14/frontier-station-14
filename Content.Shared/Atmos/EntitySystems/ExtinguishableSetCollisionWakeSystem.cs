@@ -5,9 +5,10 @@ namespace Content.Shared.Atmos.EntitySystems;
 /// <summary>
 /// Implements <see cref="ExtinguishableSetCollisionWakeComponent"/>.
 /// </summary>
-public sealed partial class ExtinguishableSetCollisionWakeSystem : EntitySystem
+public sealed class ExtinguishableSetCollisionWakeSystem : EntitySystem
 {
-    [Dependency] private CollisionWakeSystem _collisionWake = null!;
+    [Dependency]
+    private readonly CollisionWakeSystem _collisionWake = null!;
 
     public override void Initialize()
     {

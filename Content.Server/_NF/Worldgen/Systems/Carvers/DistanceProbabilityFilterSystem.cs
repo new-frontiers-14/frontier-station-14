@@ -9,10 +9,10 @@ namespace Content.Server._NF.Worldgen.Systems.Carvers;
 /// <summary>
 /// This carves out holes in world gen based on distance from a set of known points.
 /// </summary>
-public sealed partial class PointSetDistanceCarverSystem : EntitySystem
+public sealed class PointSetDistanceCarverSystem : EntitySystem
 {
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     // Cache points for lookup
 
     /// <inheritdoc />

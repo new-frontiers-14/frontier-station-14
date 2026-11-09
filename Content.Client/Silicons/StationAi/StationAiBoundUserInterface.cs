@@ -23,15 +23,15 @@ public sealed class StationAiBoundUserInterface(EntityUid owner, Enum uiKey) : B
         _menu.Open();
     }
 
-    private IEnumerable<RadialMenuActionOptionBase> ConvertToButtons(IReadOnlyList<StationAiRadial> actions)
+    private IEnumerable<RadialMenuActionOption> ConvertToButtons(IReadOnlyList<StationAiRadial> actions)
     {
-        var models = new RadialMenuActionOptionBase[actions.Count];
+        var models = new RadialMenuActionOption[actions.Count];
         for (int i = 0; i < actions.Count; i++)
         {
             var action = actions[i];
             models[i] = new RadialMenuActionOption<BaseStationAiAction>(HandleRadialMenuClick, action.Event)
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(action.Sprite),
+                Sprite = action.Sprite,
                 ToolTip = action.Tooltip
             };
         }

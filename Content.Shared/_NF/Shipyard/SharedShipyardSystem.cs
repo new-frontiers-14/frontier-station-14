@@ -24,9 +24,9 @@ public enum ShipyardConsoleUiKey : byte
     Custom
 }
 
-public abstract partial class SharedShipyardSystem : EntitySystem
+public abstract class SharedShipyardSystem : EntitySystem
 {
-    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 
     public override void Initialize()
     {

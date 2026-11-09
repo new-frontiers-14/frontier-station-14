@@ -8,10 +8,10 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Slippery;
 
-public sealed partial class SlidingSystem : EntitySystem
+public sealed class SlidingSystem : EntitySystem
 {
-    [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private MovementSpeedModifierSystem _speedModifierSystem = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _speedModifierSystem = default!;
 
     private EntityQuery<SlipperyComponent> _slipperyQuery;
 

@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: Mobs/Species/Diona/organs.rsi
   - type: Organ
-  - type: Edible
+  - type: Food
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -19,7 +19,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Cellulose
+        - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: FlavorProfile
     flavors:
@@ -85,7 +85,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Cellulose
+        - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
   - type: Metabolizer
@@ -135,11 +135,6 @@
       Lung:
         maxVol: 100
         canReact: False
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
 
 # Organs that turn into nymphs on removal
 - type: entity

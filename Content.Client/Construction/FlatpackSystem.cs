@@ -7,10 +7,10 @@ using Content.Shared._NF.BindToStation; // Frontier
 namespace Content.Client.Construction;
 
 /// <inheritdoc/>
-public sealed partial class FlatpackSystem : SharedFlatpackSystem
+public sealed class FlatpackSystem : SharedFlatpackSystem
 {
-    [Dependency] private AppearanceSystem _appearance = default!;
-    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

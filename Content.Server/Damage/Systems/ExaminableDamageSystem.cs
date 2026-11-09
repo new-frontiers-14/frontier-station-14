@@ -7,10 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Damage.Systems;
 
-public sealed partial class ExaminableDamageSystem : EntitySystem
+public sealed class ExaminableDamageSystem : EntitySystem
 {
-    [Dependency] private DestructibleSystem _destructible = default!;
-    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private readonly DestructibleSystem _destructible = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

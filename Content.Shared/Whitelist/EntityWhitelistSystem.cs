@@ -4,9 +4,9 @@ using Content.Shared.Tag;
 
 namespace Content.Shared.Whitelist;
 
-public sealed partial class EntityWhitelistSystem : EntitySystem
+public sealed class EntityWhitelistSystem : EntitySystem
 {
-    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
 

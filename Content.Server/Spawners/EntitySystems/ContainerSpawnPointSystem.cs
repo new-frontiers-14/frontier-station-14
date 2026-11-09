@@ -2,6 +2,7 @@ using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Preferences;
+using Content.Shared.Roles;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -9,14 +10,14 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
 
-public sealed partial class ContainerSpawnPointSystem : EntitySystem
+public sealed class ContainerSpawnPointSystem : EntitySystem
 {
-    [Dependency] private ContainerSystem _container = default!;
-    [Dependency] private GameTicker _gameTicker = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private StationSystem _station = default!;
-    [Dependency] private StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     public override void Initialize()
     {
@@ -91,9 +92,6 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
             if (!_container.Insert(args.SpawnResult.Value, container, containerXform: xform))
                 continue;
 
-            var ev = new ContainerSpawnEvent(args.SpawnResult.Value);
-            RaiseLocalEvent(uid, ref ev);
-
             return;
         }
 
@@ -101,9 +99,3 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
         args.SpawnResult = null;
     }
 }
-
-/// <summary>
-/// Raised on a container when a player is spawned into it.
-/// </summary>
-[ByRefEvent]
-public record struct ContainerSpawnEvent(EntityUid Player);

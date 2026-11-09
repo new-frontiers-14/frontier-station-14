@@ -13,11 +13,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Medical.EntitySystems;
 
-public sealed partial class MedicalRecipeDataSystem : SharedMedicalGuideDataSystem
+public sealed class MedicalRecipeDataSystem : SharedMedicalGuideDataSystem
 {
-    [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private IPrototypeManager _protoMan = default!;
-    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     private Dictionary<string, List<MedicalRecipeData>> _sources = new();
 

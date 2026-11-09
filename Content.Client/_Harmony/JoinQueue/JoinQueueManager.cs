@@ -4,10 +4,10 @@ using Robust.Shared.Network;
 
 namespace Content.Client._Harmony.JoinQueue;
 
-public sealed partial class JoinQueueManager
+public sealed class JoinQueueManager
 {
-    [Dependency] private IClientNetManager _net = default!;
-    [Dependency] private IStateManager _state = default!;
+    [Dependency] private readonly IClientNetManager _net = default!;
+    [Dependency] private readonly IStateManager _state = default!;
 
 
     public void Initialize()
