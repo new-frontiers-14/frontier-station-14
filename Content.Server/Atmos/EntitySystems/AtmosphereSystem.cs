@@ -29,6 +29,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private IParallelManager _parallel = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
@@ -39,6 +40,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] public PuddleSystem Puddle = default!;
+    [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private GameTicker _gameTicker = default!; // Frontier
 
     private const float ExposedUpdateDelay = 1f;
