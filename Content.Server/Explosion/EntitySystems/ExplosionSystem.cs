@@ -47,7 +47,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
     [Dependency] private PathfindingSystem _pathfindingSystem = default!;
     [Dependency] private SharedCameraRecoilSystem _recoilSystem = default!;
-    [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private ThrowingSystem _throwingSystem = default!;
     [Dependency] private PvsOverrideSystem _pvsSys = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
