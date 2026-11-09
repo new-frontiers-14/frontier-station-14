@@ -12,10 +12,10 @@ namespace Content.Server._NF.Projectile.EntitySystems;
 
 public sealed partial class BlindOnProjectileHitSystem : EntitySystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly BlindableSystem _blindingSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private BlindableSystem _blindingSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     private readonly ProtoId<EmotePrototype> _screamEmoteId = "Scream";
 
