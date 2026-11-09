@@ -24,6 +24,7 @@ public sealed partial class ShuttleSystem
     private TimeSpan _nextConsoleCacheRefresh = TimeSpan.Zero;
     private readonly TimeSpan _consoleCacheRefreshInterval = TimeSpan.FromSeconds(30);
 
+    [Dependency] private RadarConsoleSystem _radarConsole = default!;
     private const float SpaceFrictionStrength = 0.0075f;
     private const float DampenDampingStrength = 0.25f;
     private const float AnchorDampingStrength = 2.5f;
