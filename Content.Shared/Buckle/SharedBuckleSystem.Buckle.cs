@@ -31,8 +31,8 @@ public abstract partial class SharedBuckleSystem
 {
     public static ProtoId<AlertCategoryPrototype> BuckledAlertCategory = "Buckled";
 
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!; // Frontier: stand up before buckling.
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!; // Frontier: stand up before buckling.
 
     private void InitializeBuckle()
     {
