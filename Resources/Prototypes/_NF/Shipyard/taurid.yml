@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Endecc
+# Discord: EnDecc
+
+# Maintainer Info
+# GitHub: Endecc
+# Discord: EnDecc
+
+# Shuttle notes:
+#
+- type: vessel
+  id: Taurid
+  parent: BaseVessel
+  name: VSY Taurid
+  description: A moderately sized mercenary ship, featuring a robotics lab and a peculiar hole in the middle.
+  price: 40000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/taurid.yml
+  guidebookPage: ShipyardTaurid
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Taurid
+  mapName: 'VSY Taurid'
+  mapPath: /Maps/_NF/Shuttles/taurid.yml
+  minPlayers: 0
+  stations:
+    Taurid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Taurid {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
