@@ -4,6 +4,8 @@ using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Stunnable; // Frontier: stand up before buckling.
+using Content.Shared.Traits.Assorted; // Frontier: stand up before buckling.
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
@@ -39,28 +41,26 @@ public abstract partial class SharedBuckleSystem
         if (!StrapCanDragDropOn(uid, args.User, uid, args.Dragged, component))
             return;
 
-        if (args.Dragged == args.User)
-        {
-            if (!TryComp(args.User, out BuckleComponent? buckle))
-                return;
+        // Start Frontier: stand up before buckling.
+        if (!TryComp(args.Dragged, out BuckleComponent? buckle))
+            return;
 
-            args.Handled = TryBuckle(args.User, args.User, uid, buckle);
-        }
-        else
+        var knockedDown = TryComp<KnockedDownComponent>(args.Dragged, out var knockedDownComponent);
+        if (knockedDown)
         {
-            if (!TryComp(args.Dragged, out BuckleComponent? buckle) ||
-                !CanBuckle(args.Dragged, args.User, uid, true, out var _, buckle))
-                return;
-
-            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.BuckleDoafterTime, new BuckleDoAfterEvent(), args.Dragged, args.Dragged, uid)
+            if (args.Dragged == args.User)
             {
-                BreakOnMove = true,
-                BreakOnDamage = true,
-                AttemptFrequency = AttemptFrequency.EveryTick
-            };
+                if (!_stunSystem.TryStand((args.Dragged, knockedDownComponent)!))
+                    return;
+            }
 
-            _doAfter.TryStartDoAfter(doAfterArgs);
+            args.Handled = true;
+            StartBuckleDoAfter(args.User, (args.Dragged, buckle), (uid, component));
+            return;
         }
+
+        args.Handled = TryBuckle(args.Dragged, args.User, uid, buckle);
+        // End Frontier: stand up before buckling.
     }
 
     private bool StrapCanDragDropOn(
@@ -96,8 +96,19 @@ public abstract partial class SharedBuckleSystem
         // Buckle self
         if (buckle.BuckledTo == null && component.BuckleOnInteractHand && StrapHasSpace(uid, buckle, component))
         {
-            TryBuckle(args.User, args.User, uid, buckle, popup: true);
-            args.Handled = true;
+            // Start Frontier: stand up before buckling.
+            if (!TryComp<KnockedDownComponent>(args.User, out var knockedDown))
+            {
+                args.Handled = TryBuckle(args.User, args.User, uid, buckle, popup: true); // Frontier: set handled to true only if you actually buckle.
+            }
+            else
+            {
+                if (_stunSystem.TryStand((args.User, knockedDown)) || HasComp<LegsParalyzedComponent>(args.User))
+                {
+                    StartBuckleDoAfter(args.User, (args.User, buckle),  (uid, component));
+                }
+            }
+            // End Frontier: stand up before buckling.
             return;
         }
 
@@ -127,7 +138,7 @@ public abstract partial class SharedBuckleSystem
         if (ent.Comp.BuckledTo != null)
         {
             // Frontier: huggable wheelchair users!
-            if (args.User == args.Target || (TryComp(ent.Comp.BuckledTo.Value, out StrapComponent? strap) && strap.UnbuckleOnInteractHand))
+            if (args.User == args.Target || TryComp(ent.Comp.BuckledTo.Value, out StrapComponent? strap) && strap.UnbuckleOnInteractHand)
             {
                 args.Handled = TryUnbuckle(ent!, args.User, popup: true);
             }
