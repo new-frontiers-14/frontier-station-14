@@ -99,6 +99,7 @@ guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spectre = Spectre
 guide-entry-shipyard-stellaris = Stellaris
 guide-entry-shipyard-surveyor = Surveyor
+guide-entry-shipyard-taurid = Taurid
 guide-entry-shipyard-vagabond = Vagabond
 
 # Medical Shipyard entries
