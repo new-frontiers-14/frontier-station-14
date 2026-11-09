@@ -24,13 +24,13 @@ namespace Content.Server._NF.Contraband.Systems;
 /// </summary>
 public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
 
     private EntityQuery<MobStateComponent> _mobQuery;
     private EntityQuery<TransformComponent> _xformQuery;

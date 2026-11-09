@@ -18,18 +18,19 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.DoAfter; // Frontier
 using Content.Shared._DV.Chemistry.Components; // Frontier
 using Robust.Shared.Audio.Systems;
+using System.Linq;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
-public sealed class HypospraySystem : EntitySystem
+public sealed partial class HypospraySystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Frontier - Upstream: #30704 - MIT
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!; // Frontier - Upstream: #30704 - MIT
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     public override void Initialize()
     {
@@ -71,13 +72,13 @@ public sealed class HypospraySystem : EntitySystem
 
     private void OnAttack(Entity<HyposprayComponent> entity, ref MeleeHitEvent args)
     {
-        if (args.HitEntities is [])
+        if (args.HitEntities.Count == 0)
             return;
 
         if (entity.Comp.PreventCombatInjection) // Frontier
             return; // Frontier
 
-        TryDoInject(entity, args.HitEntities[0], args.User);
+        TryDoInject(entity, args.HitEntities.First(), args.User);
     }
 
     #endregion
