@@ -7,6 +7,7 @@ using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared._NF.Shuttles.Components; // Frontier: Making FTL on shuttles work with ShuttleFTL component
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -135,7 +136,8 @@ public sealed partial class ShuttleConsoleSystem
         }
 
         // Check shuttle can FTL to this target.
-        if (!_shuttle.CanFTLTo(shuttleUid.Value, targetMap, ent))
+        if (!_shuttle.CanFTLTo(shuttleUid.Value, targetMap, ent) &&
+            !HasComp<ShuttleFTLComponent>(shuttleUid)) // Frontier, added check for ShuttleFTL to allow grid to ignore mass check
         {
             return;
         }
