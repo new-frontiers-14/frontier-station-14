@@ -20,16 +20,16 @@ using System.Text;
 
 namespace Content.Shared._DV.TapeRecorder.Systems;
 
-public abstract class SharedTapeRecorderSystem : EntitySystem
+public abstract partial class SharedTapeRecorderSystem : EntitySystem
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ItemSlotsSystem _slots = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     protected const string SlotName = "cassette_tape";
 

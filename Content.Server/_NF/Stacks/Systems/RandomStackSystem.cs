@@ -4,10 +4,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server._NF.Stacks.Systems;
 
-public sealed class RandomStackSystem : EntitySystem
+public sealed partial class RandomStackSystem : EntitySystem
 {
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
