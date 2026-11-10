@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/03/2026 19:50:11
-  entityCount: 487
+  time: 11/10/2026 14:41:09
+  entityCount: 489
 maps: []
 grids:
 - 1
@@ -894,7 +894,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
+      pos: 0.24971789,-1.5005552
       parent: 1
   - uid: 283
     components:
@@ -913,6 +913,14 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-2.5
+      parent: 1
+- proto: ButtonFrameGrey
+  entities:
+  - uid: 183
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.71882164,-1.4992371
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1729,7 +1737,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 43
-- proto: GasMixerOn
+- proto: GasMixer
   entities:
   - uid: 173
     components:
@@ -1737,9 +1745,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-5.5
       parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.20999998
-      inletOneConcentration: 0.79
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -3014,31 +3019,6 @@ entities:
       parent: 1
 - proto: SignalButtonDirectional
   entities:
-  - uid: 183
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        304:
-        - - Pressed
-          - Toggle
-        305:
-        - - Pressed
-          - Toggle
-        306:
-        - - Pressed
-          - Toggle
-        307:
-        - - Pressed
-          - Toggle
-        308:
-        - - Pressed
-          - Toggle
-    - type: Fixtures
-      fixtures: {}
   - uid: 184
     components:
     - type: Transform
@@ -3127,6 +3107,89 @@ entities:
         - - Pressed
           - Toggle
         347:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
+  - uid: 488
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.25007164,-1.4992371
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        304:
+        - - Pressed
+          - Toggle
+        307:
+        - - Pressed
+          - Toggle
+        306:
+        - - Pressed
+          - Toggle
+        305:
+        - - Pressed
+          - Toggle
+        308:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
+  - uid: 489
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.71882164,-1.4992371
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        88:
+        - - Pressed
+          - Toggle
+        313:
+        - - Pressed
+          - Toggle
+        81:
+        - - Pressed
+          - Toggle
+        317:
+        - - Pressed
+          - Toggle
+        395:
+        - - Pressed
+          - Toggle
+        59:
+        - - Pressed
+          - Toggle
+        44:
+        - - Pressed
+          - Toggle
+        419:
+        - - Pressed
+          - Toggle
+        411:
+        - - Pressed
+          - Toggle
+        405:
+        - - Pressed
+          - Toggle
+        414:
+        - - Pressed
+          - Toggle
+        409:
+        - - Pressed
+          - Toggle
+        381:
+        - - Pressed
+          - Toggle
+        57:
+        - - Pressed
+          - Toggle
+        58:
+        - - Pressed
+          - Toggle
+        56:
         - - Pressed
           - Toggle
     - type: Fixtures
