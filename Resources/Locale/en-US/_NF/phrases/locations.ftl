@@ -179,7 +179,6 @@ phrase-shuttle-tyne = Tyne
 phrase-shuttle-surveyor = Surveyor
 phrase-shuttle-vagabond = Vagabond
 phrase-shuttle-vitalis = Vitalis
-phrase-shuttle-wasp = Wasp
 phrase-shuttle-warden = Warden
 
 # Wildcard

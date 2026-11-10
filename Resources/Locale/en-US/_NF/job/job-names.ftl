@@ -57,3 +57,6 @@ JobSeniorEngineer = Senior Engineer
 JobSeniorOfficer = Sergeant
 JobSeniorPhysician = Senior Physician
 JobSeniorResearcher = Senior Researcher
+
+# Miscellaneous
+JobZookeeper = Zookeeper
