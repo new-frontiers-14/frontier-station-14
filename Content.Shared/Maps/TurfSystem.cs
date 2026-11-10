@@ -13,10 +13,9 @@ namespace Content.Shared.Maps;
 public sealed partial class TurfSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _entityLookup = default!;
-    [Dependency] private ITileDefinitionManager _tileDefinitions = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinitions = default!;
 
     /// <summary>
     /// Attempts to get the turf at or under some given coordinates or null if no such turf exists.

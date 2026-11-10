@@ -14,11 +14,11 @@ namespace Content.Server._NF.Weapons.Rarity;
 /// </summary>
 public sealed partial class WeaponRaritySystem : SharedWeaponRaritySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly GunSystem _gunSystem = default!;
-    [Dependency] private readonly NameModifierSystem _namingSystem = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private GunSystem _gunSystem = default!;
+    [Dependency] private NameModifierSystem _namingSystem = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 
     public override void Initialize()
     {

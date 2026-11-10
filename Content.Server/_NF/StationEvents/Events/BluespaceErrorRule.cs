@@ -29,6 +29,7 @@ namespace Content.Server._NF.StationEvents.Events;
 public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
     NanotrasenNameGenerator _nameGenerator = new();
+
     [Dependency] private MapSystem _map = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;

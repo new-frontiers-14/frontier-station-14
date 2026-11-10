@@ -17,7 +17,6 @@ using DebugMessage = Content.Shared.Atmos.EntitySystems.SharedAtmosDebugOverlayS
 
 namespace Content.Client.Atmos.Overlays;
 
-
 public sealed partial class AtmosDebugOverlay : Overlay
 {
     [Dependency] private IEntityManager _entManager = default!;

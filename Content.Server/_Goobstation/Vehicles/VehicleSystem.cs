@@ -5,10 +5,10 @@ using Content.Shared._NF.Radar; // Frontier
 
 namespace Content.Server._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
-public sealed class VehicleSystem : SharedVehicleSystem
+public sealed partial class VehicleSystem : SharedVehicleSystem
 {
     //// Frontier: extra logic (radar blips, faction stuff)
-    [Dependency] private readonly RadarBlipSystem _radar = default!;
+    [Dependency] private RadarBlipSystem _radar = default!;
 
     /// <summary>
     /// Configures the radar blip for a vehicle entity.
