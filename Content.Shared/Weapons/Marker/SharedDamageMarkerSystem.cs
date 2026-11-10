@@ -12,14 +12,14 @@ using Content.Shared.Mobs.Systems; // Frontier
 
 namespace Content.Shared.Weapons.Marker;
 
-public abstract class SharedDamageMarkerSystem : EntitySystem
+public abstract partial class SharedDamageMarkerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!; // Frontier
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!; // Frontier
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {

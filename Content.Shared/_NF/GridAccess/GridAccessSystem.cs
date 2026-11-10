@@ -7,13 +7,13 @@ using Content.Shared.StationRecords;
 
 namespace Content.Shared._NF.GridAccess;
 
-public sealed class GridAccessSystem : EntitySystem
+public sealed partial class GridAccessSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
-    [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!;
+    [Dependency] private SharedTransformSystem _sharedTransformSystem = default!;
 
     public override void Initialize()
     {
