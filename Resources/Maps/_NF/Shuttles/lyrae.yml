@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2026 14:56:57
-  entityCount: 802
+  time: 11/10/2026 16:35:49
+  entityCount: 801
 maps: []
 grids:
 - 1
@@ -1399,12 +1399,6 @@ entities:
       parent: 1
 - proto: ButtonFrameCaution
   entities:
-  - uid: 121
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,6.5
-      parent: 1
   - uid: 155
     components:
     - type: Transform
@@ -1415,6 +1409,12 @@ entities:
     components:
     - type: Transform
       pos: 6.5,1.5
+      parent: 1
+  - uid: 539
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,7.5
       parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -1438,6 +1438,12 @@ entities:
       parent: 1
 - proto: ButtonFrameGrey
   entities:
+  - uid: 9
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,6.5
+      parent: 1
   - uid: 223
     components:
     - type: Transform
@@ -2296,7 +2302,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,4.5
       parent: 1
-  - uid: 9
+  - uid: 627
     components:
     - type: Transform
       pos: -7.5,4.5
@@ -2649,19 +2655,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 777
-- proto: GasMixerOn
-  entities:
-  - uid: 36
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-4.5
-      parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.79
-      inletOneConcentration: 0.21
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasOutletInjector
   entities:
   - uid: 449
@@ -3917,11 +3910,6 @@ entities:
     - type: Transform
       pos: 3.5,5.5
       parent: 1
-  - uid: 422
-    components:
-    - type: Transform
-      pos: -7.5,5.5
-      parent: 1
   - uid: 423
     components:
     - type: Transform
@@ -4134,6 +4122,12 @@ entities:
     - type: Transform
       pos: -7.5,1.5
       parent: 1
+  - uid: 531
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 8.5,4.5
+      parent: 1
 - proto: LockerWallMaterialsFuelBananiumFilled
   entities:
   - uid: 765
@@ -4191,7 +4185,7 @@ entities:
       parent: 1
 - proto: MaterialReclaimer
   entities:
-  - uid: 608
+  - uid: 422
     components:
     - type: Transform
       pos: -7.5,4.5
@@ -4476,6 +4470,11 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
+  - uid: 523
+    components:
+    - type: Transform
+      pos: -6.5,3.5
+      parent: 1
   - uid: 592
     components:
     - type: Transform
@@ -4675,11 +4674,6 @@ entities:
     - type: Transform
       pos: -2.5,9.5
       parent: 1
-  - uid: 523
-    components:
-    - type: Transform
-      pos: -7.5,5.5
-      parent: 1
   - uid: 524
     components:
     - type: Transform
@@ -4727,6 +4721,64 @@ entities:
         - - Pressed
           - Toggle
         282:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
+  - uid: 342
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,6.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        558:
+        - - Pressed
+          - Toggle
+        564:
+        - - Pressed
+          - Toggle
+        566:
+        - - Pressed
+          - Toggle
+        556:
+        - - Pressed
+          - Toggle
+        557:
+        - - Pressed
+          - Toggle
+        567:
+        - - Pressed
+          - Toggle
+        560:
+        - - Pressed
+          - Toggle
+        690:
+        - - Pressed
+          - Toggle
+        698:
+        - - Pressed
+          - Toggle
+        565:
+        - - Pressed
+          - Toggle
+        561:
+        - - Pressed
+          - Toggle
+        559:
+        - - Pressed
+          - Toggle
+        563:
+        - - Pressed
+          - Toggle
+        554:
+        - - Pressed
+          - Toggle
+        562:
+        - - Pressed
+          - Toggle
+        555:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -4793,24 +4845,24 @@ entities:
           - Toggle
     - type: Fixtures
       fixtures: {}
-  - uid: 531
+  - uid: 608
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,6.5
+      rot: 1.5707963267948966 rad
+      pos: -4.5,7.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        503:
-        - - Pressed
-          - Toggle
-        498:
+        504:
         - - Pressed
           - Toggle
         505:
         - - Pressed
           - Toggle
-        504:
+        498:
+        - - Pressed
+          - Toggle
+        503:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -4843,11 +4895,11 @@ entities:
       fixtures: {}
 - proto: SignalSwitchDirectional
   entities:
-  - uid: 342
+  - uid: 121
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -10.498047,4.7164145
+      pos: -10.502806,4.7183075
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -4856,11 +4908,11 @@ entities:
           - Forward
         - - Off
           - Off
-        9:
+        627:
         - - On
-          - Forward
-        - - Off
           - Off
+        - - Off
+          - Forward
     - type: Fixtures
       fixtures: {}
 - proto: SignAnomaly
@@ -4918,21 +4970,6 @@ entities:
       fixtures: {}
 - proto: SignSpace
   entities:
-  - uid: 538
-    components:
-    - type: Transform
-      pos: -6.5,3.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
-  - uid: 539
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 8.5,4.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
   - uid: 541
     components:
     - type: Transform
@@ -5222,6 +5259,11 @@ entities:
     components:
     - type: Transform
       pos: 12.5,4.5
+      parent: 1
+  - uid: 36
+    components:
+    - type: Transform
+      pos: -7.5,5.5
       parent: 1
   - uid: 38
     components:
@@ -5584,11 +5626,6 @@ entities:
     - type: Transform
       pos: -8.5,10.5
       parent: 1
-  - uid: 651
-    components:
-    - type: Transform
-      pos: -2.5,1.5
-      parent: 1
   - uid: 652
     components:
     - type: Transform
@@ -5874,6 +5911,11 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-3.5
+      parent: 1
+  - uid: 538
+    components:
+    - type: Transform
+      pos: -2.5,1.5
       parent: 1
   - uid: 595
     components:

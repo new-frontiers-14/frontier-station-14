@@ -11,13 +11,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
+public sealed partial class GhostRoleWhitelistAddCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override string Command => "ghostrolewhitelistadd";
 
@@ -36,7 +36,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
         var ghostRole = new ProtoId<GhostRolePrototype>(args[1].Trim());
         if (!_prototypes.TryIndex(ghostRole, out var ghostRolePrototype))
         {
-            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-ghost-role-does-not-exist", ("ghost-role", ghostRole.Id)));
+            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-ghostrole-does-not-exist", ("ghost-role", ghostRole.Id)));
             shell.WriteLine(Help);
             return;
         }
@@ -48,7 +48,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
             var isWhitelisted = await _db.IsGhostRoleWhitelisted(guid, ghostRole);
             if (isWhitelisted)
             {
-                shell.WriteLine(Loc.GetString("cmd-ghostrolewhitelist-already-whitelisted",
+                shell.WriteLine(Loc.GetString("cmd-ghostrolewhitelistadd-already-whitelisted",
                     ("player", player),
                     ("ghostRoleId", ghostRole.Id),
                     ("ghostRoleName", ghostRolePrototype.Name)));
@@ -79,7 +79,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
         {
             return CompletionResult.FromHintOptions(
                 _prototypes.EnumeratePrototypes<GhostRolePrototype>().Select(p => p.ID),
-                Loc.GetString("cmd-ghostrolewhitelist-hint-job"));
+                Loc.GetString("cmd-ghostrolewhitelist-hint-ghostrole"));
         }
 
         return CompletionResult.Empty;
@@ -87,11 +87,11 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class GetGhostRoleWhitelistCommand : LocalizedCommands
+public sealed partial class GetGhostRoleWhitelistCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
 
     public override string Command => "ghostrolewhitelistget";
 
@@ -139,13 +139,13 @@ public sealed class GetGhostRoleWhitelistCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class RemoveGhostRoleWhitelistCommand : LocalizedCommands
+public sealed partial class RemoveGhostRoleWhitelistCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override string Command => "ghostrolewhitelistremove";
 
@@ -164,7 +164,7 @@ public sealed class RemoveGhostRoleWhitelistCommand : LocalizedCommands
         var ghostRole = new ProtoId<GhostRolePrototype>(args[1].Trim());
         if (!_prototypes.TryIndex(ghostRole, out var ghostRolePrototype))
         {
-            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-job-does-not-exist", ("ghostRole", ghostRole)));
+            shell.WriteError(Loc.GetString("cmd-ghostrolewhitelist-ghostrole-does-not-exist", ("ghostRole", ghostRole)));
             shell.WriteLine(Help);
             return;
         }
