@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/10/2026 14:41:09
+  time: 11/10/2026 18:25:07
   entityCount: 489
 maps: []
 grids:
@@ -1737,16 +1737,14 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 43
-- proto: GasMixer
+- proto: GasMixerDistroSideOxygen
   entities:
-  - uid: 173
+  - uid: 96
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-5.5
       parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 159
@@ -2593,11 +2591,6 @@ entities:
     - type: Transform
       pos: 2.5,-13.5
       parent: 1
-  - uid: 96
-    components:
-    - type: Transform
-      pos: 8.5,-5.5
-      parent: 1
   - uid: 115
     components:
     - type: Transform
@@ -2831,6 +2824,11 @@ entities:
     - type: Transform
       pos: 7.5,-2.5
       parent: 1
+  - uid: 173
+    components:
+    - type: Transform
+      pos: 8.5,-5.5
+      parent: 1
   - uid: 288
     components:
     - type: Transform
@@ -2877,11 +2875,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,1.5
-      parent: 1
-  - uid: 137
-    components:
-    - type: Transform
-      pos: 8.5,-5.5
       parent: 1
   - uid: 145
     components:
@@ -3190,6 +3183,9 @@ entities:
         - - Pressed
           - Toggle
         56:
+        - - Pressed
+          - Toggle
+        377:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -3685,6 +3681,11 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-4.5
+      parent: 1
+  - uid: 137
+    components:
+    - type: Transform
+      pos: 8.5,-5.5
       parent: 1
   - uid: 162
     components:
