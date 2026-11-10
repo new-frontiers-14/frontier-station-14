@@ -7,9 +7,9 @@ using Content.Shared.Movement.Systems;
 
 namespace Content.Shared.Damage
 {
-    public sealed class SlowOnDamageSystem : EntitySystem
+    public sealed partial class SlowOnDamageSystem : EntitySystem
     {
-        [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+        [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
 
         public override void Initialize()
         {
@@ -75,7 +75,7 @@ namespace Content.Shared.Damage
 
         private void OnExamined(Entity<ClothingSlowOnDamageModifierComponent> ent, ref ExaminedEvent args)
         {
-            var msg = Loc.GetString("slow-on-damage-modifier-examine", ("mod", (1 - ent.Comp.Modifier) * 100));
+            var msg = Loc.GetString("slow-on-damage-modifier-examine", ("mod", ent.Comp.Modifier * 100));
             args.PushMarkup(msg);
         }
 
