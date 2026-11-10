@@ -11,13 +11,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._NF.Research.UI;
 
 [UsedImplicitly]
-public sealed class ResearchConsoleFrontierBoundUserInterface : BoundUserInterface
+public sealed partial class ResearchConsoleFrontierBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private FancyResearchConsoleMenu? _consoleMenu;
 
     private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
     private ISawmill _sawmill = default!;
 
     // Sound to play when unlocking a technology

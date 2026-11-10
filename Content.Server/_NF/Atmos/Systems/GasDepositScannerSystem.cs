@@ -16,13 +16,13 @@ namespace Content.Server._NF.Atmos.EntitySystems;
 /// Logic for the gas deposit scanner.  Largely based off of the GasAnalyzerSystem.
 /// </summary>
 [UsedImplicitly]
-public sealed class GasDepositScannerSystem : EntitySystem
+public sealed partial class GasDepositScannerSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 
     /// <summary>
     /// Minimum moles of a gas to be included in the list.

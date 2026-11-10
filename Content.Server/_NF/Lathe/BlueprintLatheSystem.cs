@@ -24,16 +24,16 @@ using Content.Shared._NF.Research.Prototypes;
 namespace Content.Server._NF.Lathe;
 
 [UsedImplicitly]
-public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
+public sealed partial class BlueprintLatheSystem : SharedBlueprintLatheSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
-    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-    [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _uiSys = default!;
+    [Dependency] private MaterialStorageSystem _materialStorage = default!;
+    [Dependency] private ReagentSpeedSystem _reagentSpeed = default!;
 
     /// <summary>
     /// Per-tick cache
