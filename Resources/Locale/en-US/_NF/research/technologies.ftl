@@ -105,6 +105,7 @@ nf-research-technology-matter-energy-conversion = Matter-Energy Conversion
 nf-research-technology-meat-manipulation = Meat Manipulation
 nf-research-technology-mechanical-compression = Hydraulic Compression Systems
 nf-research-technology-mechanized-treatment = Mechanized Treatment
+nf-research-technology-meson-medical = Protective Information Utility
 nf-research-technology-nonlethal-ammunition = Nonlethal Ammunition
 nf-research-technology-particle-emission = Particle Emission
 nf-research-technology-personal-propulsion = Personal Propulsion
