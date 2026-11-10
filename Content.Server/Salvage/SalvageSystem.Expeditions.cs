@@ -34,7 +34,7 @@ public sealed partial class SalvageSystem
     private const double SalvageJobTime = 0.002;
     private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with order
 
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!; // Frontier
+    [Dependency] private IConfigurationManager _configurationManager = default!; // Frontier
 
     private float _cooldown;
     private float _failedCooldown; // Frontier
