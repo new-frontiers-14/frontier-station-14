@@ -9,8 +9,8 @@ namespace Content.Client._NF.Cargo.Systems;
 
 public sealed partial class NFCargoSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _player = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private AnimationPlayerSystem _player = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private static readonly Animation CargoTelepadBeamAnimation = new()
     {

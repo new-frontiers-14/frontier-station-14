@@ -22,8 +22,8 @@ namespace Content.Client.Paper.UI
     {
         private PaperComponent.PaperBoundUserInterfaceState _currentState = default!; // RMC14
         private string _currentRawText = string.Empty; // RMC14
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         [ViewVariables]
         private static Color DefaultTextColor = new(25, 25, 25);

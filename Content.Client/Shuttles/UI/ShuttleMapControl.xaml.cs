@@ -22,9 +22,9 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleMapControl : BaseShuttleControl
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IInputManager _inputs = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IInputManager _inputs = default!;
+    [Dependency] private IEntityManager _entManager = default!; // Frontier
 
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
