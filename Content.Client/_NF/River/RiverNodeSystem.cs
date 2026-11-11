@@ -12,8 +12,8 @@ namespace Content.Client._NF.River;
 
 public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public readonly Dictionary<EntityUid, Vector2[]> MeshData = new();
     public readonly Dictionary<EntityUid, Vector2[]> LineData = new();
