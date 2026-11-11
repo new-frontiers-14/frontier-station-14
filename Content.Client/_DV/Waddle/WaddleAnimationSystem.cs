@@ -8,10 +8,10 @@ using Robust.Shared.Animations;
 
 namespace Content.Client._DV.Waddle;
 
-public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
+public sealed partial class WaddleAnimationSystem : SharedWaddleAnimationSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!; //imp edit
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private StandingStateSystem _standing = default!; //imp edit
 
     public override void Initialize()
     {

@@ -13,7 +13,7 @@ namespace Content.Client._NF.Pirate.UI;
 [GenerateTypedNameReferences]
 public sealed partial class PirateBountyEntry : BoxContainer
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public Action? OnLabelButtonPressed;
     public Action? OnSkipButtonPressed;
