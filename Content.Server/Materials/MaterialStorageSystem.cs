@@ -14,29 +14,52 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Storage.Components; // Frontier
 using Content.Shared.Cargo; // Frontier
+using Content.Shared.Destructible; //Frontier
 
 namespace Content.Server.Materials;
 
 /// <summary>
 /// This handles <see cref="SharedMaterialStorageSystem"/>
 /// </summary>
-public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
+public sealed partial class MaterialStorageSystem : SharedMaterialStorageSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private StackSystem _stackSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<MaterialStorageComponent, MachineDeconstructedEvent>(OnDeconstructed);
         SubscribeLocalEvent<MaterialStorageComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
+        SubscribeLocalEvent<MaterialStorageComponent, DestructionEventArgs>(OnDestroyed); // Frontier
 
         SubscribeAllEvent<EjectMaterialMessage>(OnEjectMessage);
     }
+
+    //Start Frontier: Ensure silos drop their mats when destroyed
+    private void OnDestroyed(EntityUid uid, MaterialStorageComponent component, DestructionEventArgs eventArgs)
+    {
+        if (!component.DropOnDeconstruct)
+            return;
+
+        if (TryComp<MaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        {
+            //If we don't do this, then the silo will instantly suck up all the materials before being promptly deleted
+            //Guess how we found that out :)
+            magnet.MagnetEnabled = false;
+        }
+
+        foreach (var (material, amount) in component.Storage)
+        {
+            SpawnMultipleFromMaterial(amount, material, Transform(uid).Coordinates);
+        }
+
+    }
+    //End Frontier
 
     private void OnDeconstructed(EntityUid uid, MaterialStorageComponent component, MachineDeconstructedEvent args)
     {

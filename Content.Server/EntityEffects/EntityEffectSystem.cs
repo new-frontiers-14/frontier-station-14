@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._NF.Speech.Components;
-using Content.Server._NF.Speech.EntitySystems;
+using Content.Server._NF.Speech.Components; // Frontier
+using Content.Server._NF.Speech.EntitySystems; // Frontier
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -20,7 +20,6 @@ using Content.Server.Speech.Components;
 using Content.Server.Spreader;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
-using Content.Server.Traits.Assorted;
 using Content.Server.Zombies;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -35,6 +34,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
+using Content.Shared.Traits.Assorted;
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -49,36 +49,36 @@ using Content.Shared.Humanoid; //Delta-V - Banning humanoids from becoming ghost
 
 namespace Content.Server.EntityEffects;
 
-public sealed class EntityEffectSystem : EntitySystem
+public sealed partial class EntityEffectSystem : EntitySystem
 {
     private static readonly ProtoId<WeightedRandomFillSolutionPrototype> RandomPickBotanyReagent = "RandomPickBotanyReagent";
 
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly EmpSystem _emp = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly MutationSystem _mutation = default!;
-    [Dependency] private readonly NarcolepsySystem _narcolepsy = default!;
-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly RespiratorSystem _respirator = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SmokeSystem _smoke = default!;
-    [Dependency] private readonly SpreaderSystem _spreader = default!;
-    [Dependency] private readonly TemperatureSystem _temperature = default!;
-    [Dependency] private readonly ToggleableAccentSystem _toggleableAccentSystem = default!; //Frontier
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly VomitSystem _vomit = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private EmpSystem _emp = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MutationSystem _mutation = default!;
+    [Dependency] private NarcolepsySystem _narcolepsy = default!;
+    [Dependency] private PlantHolderSystem _plantHolder = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private RespiratorSystem _respirator = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SmokeSystem _smoke = default!;
+    [Dependency] private SpreaderSystem _spreader = default!;
+    [Dependency] private TemperatureSystem _temperature = default!;
+    [Dependency] private ToggleableAccentSystem _toggleableAccentSystem = default!; //Frontier
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private VomitSystem _vomit = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     // Frontier: List of gasses
     private Gas[] _plantGasList =

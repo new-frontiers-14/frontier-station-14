@@ -59,6 +59,13 @@
   - ContractorClothingUniformJumpsuitHawaiBlue
   - ContractorClothingUniformJumpsuitHawaiRed
   - ContractorClothingUniformJumpsuitHawaiYellow
+  - ContractorClothingUniformJumpskirtMNKOfficeSkirt
+  - ContractorClothingUniformJumpsuitMNKUnderGarment
+  - ContractorClothingUniformJumpskirtMNKDressBlack
+  - ContractorClothingUniformJumpsuitMNKGymBra
+  - ContractorClothingUniformJumpsuitMNKBlackOveralls
+  - ContractorClothingUniformJumpskirtMNKBlackShoulder
+  - ContractorClothingUniformJumpsuitMNKTracksuitBlack
   - ContractorClothingUniformJumpsuitFlannel
   - ContractorClothingUniformJumpsuitCasualBlue
   - ContractorClothingUniformJumpskirtCasualBlue
@@ -151,6 +158,9 @@
   - ContractorClothingUniformJumpsuitKimono
   - ContractorClothingKimonoBlue
   - ContractorClothingKimonoPink
+  - ContractorClothingKimonoPurple
+  - ContractorClothingKimonoSky
+  - ContractorClothingKimonoGreen
   - ContractorClothingUniformJumpsuitGladiator
   - ContractorClothingUniformJumpskirtPerformer
   - ContractorClothingUniformJumpskirtJanimaid
@@ -387,7 +397,11 @@
   - ContractorClothingOuterCoatJacketLettermanBlue # Punkish (Static visuals)
   - ContractorClothingOuterCoatJacketLettermanBrown # Punkish (Static visuals)
   - ContractorClothingOuterCoatJacketLettermanRed # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanGreen # Punkish (Static visuals)
   - ContractorClothingOuterCoatJacketLettermanMagenta # Punkish (Static visuals)
+  - ContractorClothingOuterCoatLettermanBlue # Nyanotrasen Letterman Variant
+  - ContractorClothingOuterCoatLettermanRed # Nyanotrasen Letterman Variant
+  - ContractorClothingOuterCoatLettermanFrontier # Nyanotrasen Letterman Variant
   - ContractorClothingOuterCoatBomberPinkSleeves # Punkish (Static visuals)
   - ContractorClothingOuterCoatBomberRandomized # Punkish (Randomized visuals)
   - ContractorClothingOuterCoatRandomized # Punkish (Randomized visuals)
@@ -399,6 +413,9 @@
   - ContractorClothingOuterCoatBishop
   - ContractorClothingOuterCoatWitchHunter
   - ContractorClothingOuterCoatCardinal
+  - ContractorClothingOuterCoatMNKBlackJacket
+  - ContractorClothingOuterCoatMNKWhiteHoodie
+  - ContractorClothingOuterCoatMNKBlackTopCoat
   - ContractorClothingOuterPlagueSuit
   - ContractorWetFloorSign
   - ContractorClothingOuterCoatExpensive
@@ -673,6 +690,7 @@
   - ContractorClothingOuterPoncho
   - ContractorClothingOuterPonchoClassic
   - ContractorClothingNeckCloakMiner
+  - ContractorClothingNeckCloakWitchCloak
   - ContractorClothingNeckCloakMoth
   - ContractorClothingNeckScarfChaplainStole
   - ContractorClothingNeckStoleChaplain
@@ -695,6 +713,7 @@
   - ContractorClothingNeckIFFOrange
   - ContractorClothingNeckIFFPurple
   - ContractorClothingNeckMantleCap
+  - ContractorClothingNeckMantleSalvage
   - ContractorClothingNeckCloakCap
   - ContractorClothingNeckCloakCapFormal
   - ContractorClothingNeckCloakQm
@@ -871,6 +890,11 @@
   - ContractorToolboxEmergency
   - ContractorToolboxMechanical
   - ContractorCane
+  - ContractorOffsetCane
+  - ContractorOffsetCaneClown
+  - ContractorOffsetCaneMime
+  - ContractorOffsetCaneWood
+  - ContractorWheelchairFolded
   - ContractorLGBTQHandyFlag
   - ContractorNTHandyFlag
   - ContractorBalloonNT
@@ -882,7 +906,7 @@
   - ContractorHandheldGPSBasic
   - ContractorRadioHandheld
   - ContractorNetworkConfigurator
-  - ContractorHandheldHealthAnalyzerUnpowered
+  - ContractorHandheldHealthAnalyzer
   - ContractorAnomalyScanner
   - ContractorBucket
   - ContractorGeigerCounter
@@ -893,6 +917,7 @@
   - ContractorHandheldCrewMonitor
   - ContractorHypoMini
   - ContractorBible
+  - ContractorHandheldTelevision
   - ContractorBodycam
 
 - type: loadoutGroup
@@ -936,13 +961,14 @@
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
   minLimit: 0
-  maxLimit: 5
+  maxLimit: 6
   loadouts:
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
   - ContractorEncryptionKeyCargo
   - ContractorEncryptionKeyEngineering
   - ContractorEncryptionKeyScience
+  - ContractorEncryptionKeyGreeting
   fallbacks:
   - ContractorEncryptionKeyTraffic
 
@@ -994,15 +1020,28 @@
 
   - ContractorEmotionalPetCarrier
   - ContractorCrateEmotionalSupportCat
+  - ContractorCrateEmotionalSupportKitten
   - ContractorCrateEmotionalSupportCalicoCat
   - ContractorCrateEmotionalSupportCaracalCat
   - ContractorCrateEmotionalSupportBingusCat
   - ContractorCrateEmotionalSupportSpaceCat
+  - ContractorCrateEmotionalSupportSiameseCat
   - ContractorCrateEmotionalSupportCorgi
   - ContractorCrateEmotionalSupportCorgiPuppy
   - ContractorCrateEmotionalSupportPug
+  - ContractorCrateEmotionalSupportPibbleBlack
+  - ContractorCrateEmotionalSupportPibbleBrown
+  - ContractorCrateEmotionalSupportPibbleCoffee
+  - ContractorCrateEmotionalSupportPibbleDarkBrown
+  - ContractorCrateEmotionalSupportPibbleFawn
+  - ContractorCrateEmotionalSupportPibbleGrey
+  - ContractorCrateEmotionalSupportPibbleSusieQ
+  - ContractorCrateEmotionalSupportPibbleWhite
   - ContractorCrateEmotionalSupportChicken
   - ContractorCrateEmotionalSupportFox
   - ContractorCrateEmotionalSupportOpossum
   - ContractorCrateEmotionalSupportHamster
   - ContractorCrateEmotionalSupportRaccoon
+  - ContractorCrateEmotionalSupportParrot
+  - ContractorCrateEmotionalSupportMouse
+  - ContractorCrateEmotionalSupportFerret

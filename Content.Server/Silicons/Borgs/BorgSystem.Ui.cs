@@ -8,6 +8,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Configuration;
+using Content.Shared._DV.Silicons.Borgs; // Frontier
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -24,6 +25,7 @@ public sealed partial class BorgSystem
         SubscribeLocalEvent<BorgChassisComponent, BorgEjectBatteryBuiMessage>(OnEjectBatteryBuiMessage);
         SubscribeLocalEvent<BorgChassisComponent, BorgSetNameBuiMessage>(OnSetNameBuiMessage);
         SubscribeLocalEvent<BorgChassisComponent, BorgRemoveModuleBuiMessage>(OnRemoveModuleBuiMessage);
+        SubscribeLocalEvent<IdChipSlotComponent, BorgUiNeedsUpdateEvent>(OnBorgUiUpdateRequest); // Frontier - request UI update
 
         Subs.CVar(_cfgManager, CCVars.MaxNameLength, value => _maxNameLength = value, true);
     }
@@ -90,6 +92,16 @@ public sealed partial class BorgSystem
 
         UpdateUI(uid, component);
     }
+
+    // Frontier begin - Handle for borg UI update request when id chip is inserted
+    private void OnBorgUiUpdateRequest(EntityUid uid, IdChipSlotComponent component, ref BorgUiNeedsUpdateEvent args)
+    {
+        if (!TryComp(uid, out BorgChassisComponent? comp))
+            return;
+
+        UpdateUI(uid, comp);
+    }
+    // Frontier end
 
     public void UpdateUI(EntityUid uid, BorgChassisComponent? component = null)
     {

@@ -12,6 +12,8 @@
       sprite: Objects/Weapons/Melee/shields.rsi
       size: Ginormous
       heldPrefix: riot
+    - type: ExaminableDamage # Frontier
+      messages: ShieldMessages # Frontier
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -492,6 +494,8 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
+    - type: ExaminableDamage # Frontier
+      messages: ShieldMessages # Frontier
     - type: Destructible
       thresholds:
         - trigger:

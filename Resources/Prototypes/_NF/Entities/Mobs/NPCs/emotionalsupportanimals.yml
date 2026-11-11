@@ -38,6 +38,42 @@
     - MedicalTrackingImplant
 
 - type: entity
+  id: BaseEmotionalSmallGhost
+  abstract: true
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    prototype: EmotionalSupportPet
+    mindRoles:
+    - MindRoleGhostRoleEmotionalSupportPet
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: epicene
+  - type: IdExaminable
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+  - type: Inventory
+    templateId: nfpet
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+
+- type: entity
   id: BaseEmotionalGhostCat
   parent: BaseEmotionalGhost
   abstract: true
@@ -58,6 +94,7 @@
     - Meow
     - Growl
     - Purr
+    - Mew
   - type: TypingIndicator
     proto: felinid
   - type: Inventory
@@ -83,6 +120,12 @@
       Unsexed: Dog
   - type: Inventory
     speciesId: dog
+  - type: Speech
+    speechSounds: Dog
+    allowedEmotes:
+    - Growl
+    - Bark
+    - Whine
 
 - type: entity
   suffix: Ghost
@@ -93,6 +136,18 @@
     states:
       Alive:
         Base: cat
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostCat, MobCatKitten]
+  id: MobCatKittenGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesCatCalico]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: kitten
 
 - type: entity
   suffix: Ghost
@@ -148,6 +203,20 @@
 
 - type: entity
   suffix: Ghost
+  parent: [BaseEmotionalGhostCat, MobCatSiamese]
+  id: MobCatSiameseGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesCatSiamese]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pasha
+  - type: Inventory
+    templateId: nfpet
+
+- type: entity
+  suffix: Ghost
   parent: [BaseEmotionalGhostDog, MobCorgi]
   id: MobCorgiGhost
 
@@ -181,7 +250,71 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobChicken]
+  parent: [BaseEmotionalGhostDog, MobPibbleBlack]
+  id: MobPibbleBlackGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleBrown]
+  id: MobPibbleBrownGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleCoffee]
+  id: MobPibbleCoffeeGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleDarkBrown]
+  id: MobPibbleDarkBrownGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleFawn]
+  id: MobPibbleFawnGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleGrey]
+  id: MobPibbleGreyGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleSusieQ]
+  id: MobPibbleSusieQGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobPibbleWhite]
+  id: MobPibbleWhiteGhost
+  components:
+  - type: Inventory
+    speciesId: pitbull
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalSmallGhost, MobChicken]
   id: MobChickenGhost
   components:
   - type: ReplacementAccent
@@ -191,6 +324,9 @@
       Male: Chicken
       Female: Chicken
       Unsexed: Chicken
+  - type: Tag
+    tags:
+    - DoorBumpOpener
   - type: RandomMetadata
     nameSegments: [NamesChicken]
   - type: Inventory
@@ -222,6 +358,8 @@
     nameSegments: [NamesPossum]
   - type: Inventory
     speciesId: opossum
+  - type: ReplacementAccent
+    accent: xeno
 
 - type: entity
   suffix: Ghost
@@ -232,13 +370,61 @@
     nameSegments: [NamesRaccoon]
   - type: Inventory
     speciesId: raccoon
+  - type: ReplacementAccent
+    accent: xeno
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, MobHamster]
+  parent: [BaseEmotionalSmallGhost, MobHamsterHamlet]
   id: MobHamsterGhost
   components:
   - type: RandomMetadata
     nameSegments: [NamesHamster]
   - type: Inventory
     speciesId: hamster
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalSmallGhost, MobParrotNF]
+  id: MobParrotGhost
+  components:
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: RandomMetadata
+    nameSegments: [NamesParrot]
+  - type: Inventory
+    speciesId: parrot
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalSmallGhost, MobMouse3]
+  id: MobMouseGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesMouse]
+  - type: Inventory
+    speciesId: mouse
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhost, MobFerret]
+  id: MobFerretGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [NamesFerret]
+  - type: Inventory
+    speciesId: ferret
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent

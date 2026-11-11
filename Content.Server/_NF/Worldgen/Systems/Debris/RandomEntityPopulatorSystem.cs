@@ -11,11 +11,11 @@ namespace Content.Server.Worldgen.Systems.Debris;
 /// <summary>
 ///     This is for placing a finite, random number of entities on separate tiles on a structure.
 /// </summary>
-public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
+public sealed partial class RandomEntityPopulatorSystem : BaseWorldSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     /// <inheritdoc />
     public override void Initialize()

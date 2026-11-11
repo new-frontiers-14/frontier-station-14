@@ -59,18 +59,94 @@
       - id: NFBoxDartsTracking
 
 - type: entity
-  parent: ClothingBackpackDuffelNfsdBrown
-  id: ClothingBackpackDuffelNfsdEmpBundle
-  name: NFSD Lake EMP bundle
-  description: "An old repainted China-Lake grenade launcher bundled with 10 rounds of EMP."
+  parent: [ClothingBackpackDuffelPirateRed]
+  id: ClothingBackpackDuffelPirateAurecorsaBundle
+  name: aurecorsa hardsuit bundle
+  description: "A full kit of the aurecorsa battlesuit. Fashioned from stolen schematics reserved for naval officers, this command frame was transformed by the pirate lords, its ornate shell concealing classified kinetic systems the navy no longer controls."
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponLauncherGrenadeNfsd
+      - id: ClothingOuterHardsuitPirateAurecorsa
+      - id: ClothingNeckScarfPirateAurecorsa
+      - id: ClothingHandsKnuckleDusters
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdEmpAmmo
+  name: NFSD EMP Lake Ammo
+  description: "4 EMP rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
       - id: NFGrenadeEMP
-        amount: 10
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdFlashAmmo
+  name: NFSD Flash Lake Ammo
+  description: "4 flash rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeFlash
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdGasAmmo
+  name: NFSD Tear Gas Lake Ammo
+  description: "4 tear gas rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeTearGas
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdNetAmmo
+  name: NFSD Tear Gas Lake Ammo
+  description: "4 shock net rounds to be loaded into the NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdVariedAmmo
+  name: NFSD Varied Lake Ammo
+  description: "Variety pack of grenades to load into your NGP-40 projector"
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFShockNetGrenade
+        amount: 2
+      - id: NFGrenadeTearGas
+        amount: 2
+      - id: NFGrenadeFlash
+        amount: 2
+      - id: NFGrenadeEMP
+        amount: 2
 
 # Not a duffelbag, but stored with other uplink-related backpacks
+- type: entity
+  parent: BriefcaseBrown
+  id: BriefcaseBrownNfsdSniperBundle
+  suffix: NFSD, Sniper Bundle
+  description: "A product from Nanotrasen's optics department, now with extra binoculars!"
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleSniperAspect
+    - id: Binoculars
+    - id: NFAmmunitionBoxRifle60Rubber
+      amount: 2
+
 - type: entity
   parent: ClothingBackpackSatchelLeather
   id: ClothingBackpackPirateBundle

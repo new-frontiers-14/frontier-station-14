@@ -36,59 +36,55 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         OffButton.OnPressed += (_) => OnAdvancedModeChanged?.Invoke(false);
     }
 
-    public void Populate(PlantAnalyzerScannedSeedPlantInformation msg)
+    public void UpdateState(PlantAnalyzerBoundUserInterfaceState state)
     {
-        var target = _entityManager.GetEntity(msg.TargetEntity);
-        Title = Loc.GetString("plant-analyzer-interface-title");
+        OnButton.Pressed = state.AdvancedScanMode;
+        OffButton.Pressed = !state.AdvancedScanMode;
 
-        if (target == null)
+        if(state.PlantInfo == null || _entityManager.GetEntity(state.PlantInfo.Value.TargetEntity) == null)
         {
             NoData.Visible = true;
             return;
         }
+
+        var plantInfo = state.PlantInfo.Value;
+        var target = _entityManager.GetEntity(plantInfo.TargetEntity);
         NoData.Visible = false;
 
-        if (msg.AdvancedInfo is not null)
-        {
-            OnButton.Pressed = true;
-        }
-        else
-        {
-            OffButton.Pressed = true;
-        }
+        Title = Loc.GetString("plant-analyzer-interface-title");
 
         // Process message fields into strings.
         StringBuilder chemString = new();
-        if (msg.SeedChem != null)
+        if (plantInfo.SeedChem != null)
         {
-            foreach (var chem in msg.SeedChem)
+            foreach (var chem in plantInfo.SeedChem)
             {
                 chemString.Append(IndentedNewline);
                 chemString.Append(chem);
             }
         }
 
-        StringBuilder exudeGases = GetStringFromGasFlags(msg.ExudeGases);
-        StringBuilder consudeGases = GetStringFromGasFlags(msg.ConsumeGases);
+        StringBuilder exudeGases = GetStringFromGasFlags(plantInfo.ExudeGases);
+        StringBuilder consudeGases = GetStringFromGasFlags(plantInfo.ConsumeGases);
 
-        if (msg.IsTray)
-            PlantName.Text = Loc.GetString("plant-analyzer-window-label-name-scanned-plant", ("seedName", Loc.GetString(string.IsNullOrEmpty(msg.SeedName) ? "plant-analyzer-unknown-plant" : msg.SeedName)));
+        if (plantInfo.IsTray)
+            PlantName.Text = Loc.GetString("plant-analyzer-window-label-name-scanned-plant", ("seedName", Loc.GetString(string.IsNullOrEmpty(plantInfo.SeedName) ? "plant-analyzer-unknown-plant" : plantInfo.SeedName)));
         else
-            PlantName.Text = Loc.GetString("plant-analyzer-window-label-name-scanned-seed", ("seedName", Loc.GetString(string.IsNullOrEmpty(msg.SeedName) ? "plant-analyzer-unknown-plant" : msg.SeedName)));
+            PlantName.Text = Loc.GetString("plant-analyzer-window-label-name-scanned-seed", ("seedName", Loc.GetString(string.IsNullOrEmpty(plantInfo.SeedName) ? "plant-analyzer-unknown-plant" : plantInfo.SeedName)));
         // Basics
-        PlantYield.Text = Loc.GetString("plant-analyzer-plant-yield-text", ("seedYield", $"{msg.SeedYield:D0}"));
-        Potency.Text = Loc.GetString("plant-analyzer-plant-potency-text", ("seedPotency", $"{msg.SeedPotency:F0}"));
-        Repeat.Text = Loc.GetString("plant-analyzer-plant-harvest-text", ("plantHarvestType", Loc.GetString($"plant-analyzer-harvest-{msg.HarvestType}").ToString()));
-        Endurance.Text = Loc.GetString("plant-analyzer-plant-endurance-text", ("seedEndurance", $"{msg.Endurance:F0}"));
+        PlantYield.Text = Loc.GetString("plant-analyzer-plant-yield-text", ("seedYield", $"{plantInfo.SeedYield:D0}"));
+        Potency.Text = Loc.GetString("plant-analyzer-plant-potency-text", ("seedPotency", $"{plantInfo.SeedPotency:F0}"));
+        Repeat.Text = Loc.GetString("plant-analyzer-plant-harvest-text", ("plantHarvestType", Loc.GetString($"plant-analyzer-harvest-{plantInfo.HarvestType}").ToString()));
+        Endurance.Text = Loc.GetString("plant-analyzer-plant-endurance-text", ("seedEndurance", $"{plantInfo.Endurance:F0}"));
         Chemicals.Text = Loc.GetString("plant-analyzer-plant-chemistry-text", ("seedChem", chemString));
         ExudeGases.Text = Loc.GetString("plant-analyzer-plant-exude-text", ("gases", exudeGases.Length == 0 ? Loc.GetString("plant-analyzer-plant-gases-none") : exudeGases.ToString()));
         ConsumeGases.Text = Loc.GetString("plant-analyzer-plant-consume-text", ("gases", consudeGases.Length == 0 ? Loc.GetString("plant-analyzer-plant-gases-none") : consudeGases.ToString()));
-        Lifespan.Text = Loc.GetString("plant-analyzer-plant-lifespan-text", ("lifespan", $"{msg.Lifespan:F1}"));
-        Maturation.Text = Loc.GetString("plant-analyzer-plant-maturation-text", ("maturation", $"{msg.Maturation:F1}"));
-        Production.Text = Loc.GetString("plant-analyzer-plant-production-text", ("production", $"{msg.Production:F1}"));
-        GrowthStages.Text = Loc.GetString("plant-analyzer-plant-growthstages-text", ("growthStages", $"{msg.GrowthStages:D0}"));
+        Lifespan.Text = Loc.GetString("plant-analyzer-plant-lifespan-text", ("lifespan", $"{plantInfo.Lifespan:F1}"));
+        Maturation.Text = Loc.GetString("plant-analyzer-plant-maturation-text", ("maturation", $"{plantInfo.Maturation:F1}"));
+        Production.Text = Loc.GetString("plant-analyzer-plant-production-text", ("production", $"{plantInfo.Production:F1}"));
+        GrowthStages.Text = Loc.GetString("plant-analyzer-plant-growthstages-text", ("growthStages", $"{plantInfo.GrowthStages:D0}"));
         // Tolerances
-        var adv = msg.AdvancedInfo;
+        var adv = plantInfo.AdvancedInfo;
         NutrientUsage.Text = Loc.GetString("plant-analyzer-tolerance-nutrient-usage", ("nutrientUsage", adv is null ? "-" : $"{adv.Value.NutrientConsumption:F2}"));
         WaterUsage.Text = Loc.GetString("plant-analyzer-tolerance-water-usage", ("waterUsage", adv is null ? "-" : $"{adv.Value.WaterConsumption:F2}"));
         IdealHeat.Text = Loc.GetString("plant-analyzer-tolerance-ideal-heat", ("idealHeat", adv is null ? "-" : $"{adv.Value.IdealHeat:F0}"));
@@ -135,13 +131,13 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         }
 
         StringBuilder speciation = new();
-        if (msg.Speciation is null)
+        if (plantInfo.Speciation is null)
         {
             speciation.Append("-");
         }
         else
         {
-            foreach (var species in msg.Speciation)
+            foreach (var species in plantInfo.Speciation)
             {
                 speciation.Append(IndentedNewline);
                 speciation.Append(Loc.GetString(species));
@@ -149,6 +145,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         }
 
         PlantSpeciation.Text = Loc.GetString("plant-analyzer-plant-speciation-text", ("speciation", speciation.ToString()));
+
     }
 
     private StringBuilder GetStringFromGasFlags(GasFlags flags)
