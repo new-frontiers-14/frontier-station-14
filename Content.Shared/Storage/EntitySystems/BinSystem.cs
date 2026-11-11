@@ -106,7 +106,19 @@ public sealed partial class BinSystem : EntitySystem
         if (args.Using != null)
         {
             var canReach = args.CanAccess && args.CanInteract;
-            InsertIntoBin(args.User, args.Target, (EntityUid)args.Using, component, false, canReach);
+
+            // Start Frontier: no more vanishing pens
+            AlternativeVerb verb = new()
+            {
+                Act = () =>
+                {
+                    InsertIntoBin(args.User, args.Target, (EntityUid)args.Using, component, false, canReach);
+                },
+                Text = Loc.GetString("verb-categories-insert"),
+                Priority = 2
+            };
+            args.Verbs.Add(verb);
+            // End Frontier: no more vanishing pens
         }
     }
 
