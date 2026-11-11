@@ -14,8 +14,8 @@ namespace Content.Client._NF.Chemistry.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private EntityUid _injectorEntity = EntityUid.Invalid;
     private ReagentPrototype? _selectedReagent;

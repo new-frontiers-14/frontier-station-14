@@ -1,5 +1,6 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
@@ -11,15 +12,15 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Labels.EntitySystems;
 
-public abstract class SharedHandLabelerSystem : EntitySystem
+public abstract partial class SharedHandLabelerSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedUserInterfaceSystem UserInterfaceSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly LabelSystem _labelSystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!; // Frontier: prevent labelling PseudoItems
+    [Dependency] protected SharedUserInterfaceSystem UserInterfaceSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private LabelSystem _labelSystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!; // Frontier: prevent labelling PseudoItems
 
     [ValidatePrototypeId<TagPrototype>] // Frontier: prevent labelling PseudoItems
     private const string PreventTag = "PreventLabel"; // Frontier: prevent labelling PseudoItems
@@ -30,6 +31,7 @@ public abstract class SharedHandLabelerSystem : EntitySystem
 
         SubscribeLocalEvent<HandLabelerComponent, AfterInteractEvent>(AfterInteractOn);
         SubscribeLocalEvent<HandLabelerComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
+        SubscribeLocalEvent<HandLabelerComponent, ExaminedEvent>(OnExamined);
         // Bound UI subscriptions
         SubscribeLocalEvent<HandLabelerComponent, HandLabelerLabelChangedMessage>(OnHandLabelerLabelChanged);
         SubscribeLocalEvent<HandLabelerComponent, ComponentGetState>(OnGetState);
@@ -143,5 +145,16 @@ public abstract class SharedHandLabelerSystem : EntitySystem
         // Log label change
         _adminLogger.Add(LogType.Action, LogImpact.Low,
             $"{ToPrettyString(args.Actor):user} set {ToPrettyString(uid):labeler} to apply label \"{handLabeler.AssignedLabel}\"");
+    }
+
+    private void OnExamined(Entity<HandLabelerComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        var text = ent.Comp.AssignedLabel == string.Empty
+            ? Loc.GetString("hand-labeler-examine-blank")
+            : Loc.GetString("hand-labeler-examine-label-text", ("label-text", ent.Comp.AssignedLabel));
+        args.PushMarkup(text);
     }
 }

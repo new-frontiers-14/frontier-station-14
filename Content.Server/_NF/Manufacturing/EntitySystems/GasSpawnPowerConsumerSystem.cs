@@ -22,12 +22,12 @@ namespace Content.Shared._NF.Manufacturing.EntitySystems;
 /// </summary>
 public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly NodeContainerSystem _node = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private NodeContainerSystem _node = default!;
+    [Dependency] private NodeGroupSystem _nodeGroup = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     private GasMixture _mixture = new();
 
