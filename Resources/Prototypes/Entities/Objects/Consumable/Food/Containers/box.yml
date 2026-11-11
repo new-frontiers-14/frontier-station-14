@@ -1,4 +1,4 @@
-# Donut
+﻿# Donut
 
 # There is a newer, better version of the donutbox from tgstation included in the
 # donut.rsi. The reason it isn't implemented is it requires a StackVisuals offsetting
@@ -206,6 +206,7 @@
   parent: BoxCardboard
   id: FoodBoxPizza
   name: pizza box
+  description: A box for pizza. It keeps in the heat, the smell, and the memories of the best five minutes of your life.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
@@ -240,16 +241,10 @@
   - type: NFIngredient # Frontier
 
 - type: entity
-  name: pizza box
   parent: FoodBoxPizza
   id: FoodBoxPizzaFilled
   suffix: Filled
   components:
-  - type: Sprite
-    layers:
-    - state: box
-    - state: box-open
-      map: ["enum.StorageVisualLayers.Door"]
   - type: StorageFill
     contents:
     - id: FoodPizzaArnold
@@ -288,8 +283,7 @@
     - id: KnifePlastic
 
 - type: entity
-  name: pizza box
-  parent: FoodBoxPizzaFilled
+  parent: FoodBoxPizza
   id: FoodBoxPizzaCotton
   suffix: Cotton Pizza
   components:
@@ -397,8 +391,6 @@
   components:
   - type: Sprite
     state: spicy-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketSpicy
@@ -411,8 +403,6 @@
   components:
   - type: Sprite
     state: teriyaki-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketTeriyaki
@@ -425,8 +415,6 @@
   components:
   - type: Sprite
     state: pizza-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketPizza
@@ -439,8 +427,6 @@
   components:
   - type: Sprite
     state: stonk-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketStonk
@@ -465,8 +451,6 @@
   components:
   - type: Sprite
     state: berry-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketBerry
@@ -479,8 +463,6 @@
   components:
   - type: Sprite
     state: banana-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketHonk
@@ -494,8 +476,6 @@
   components:
   - type: Sprite
     state: dink-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketDink
@@ -508,8 +488,6 @@
   components:
   - type: Sprite
     state: moth-box
-  - type: Item
-    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketMoth
@@ -617,10 +595,8 @@
     - MimeHappyHonk
   - type: Sprite
     sprite: _NF/Objects/Storage/Happyhonk/mime.rsi # Frontier: _NF prefix
-    state: box
   - type: Item
     sprite: _NF/Objects/Storage/Happyhonk/mime.rsi # Frontier: _NF prefix
-    heldPrefix: box
 
 - type: entity
   id: HappyHonkNukie
@@ -631,10 +607,8 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Happyhonk/nukie.rsi # Frontier: _NF prefix
-    state: box
   - type: Item
     sprite: _NF/Objects/Storage/Happyhonk/nukie.rsi # Frontier: _NF prefix
-    heldPrefix: box
   - type: StorageFill
     contents:
       - id: C4
@@ -716,10 +690,8 @@
     - CluwneHappyHonk
   - type: Sprite
     sprite: _NF/Objects/Storage/Happyhonk/cluwne.rsi # Frontier: _NF prefix
-    state: box
   - type: Item
     sprite: _NF/Objects/Storage/Happyhonk/cluwne.rsi # Frontier: _NF prefix
-    heldPrefix: box
   - type: StorageFill
     contents:
       - id: CluwneHorn

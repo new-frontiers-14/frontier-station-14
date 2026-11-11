@@ -427,10 +427,10 @@
 - type: holiday
   id: FestiveSeason
   name: holiday-name-festive-season
-  beginDay: 3 # Frontier: 1<3
+  beginDay: 1
   endDay: 31
-  beginMonth: November
-  endMonth: December
+  beginMonth: December # Frontier: November < December
+#  endMonth: December # Frontier: Only need start month
   greet:
     !type:Custom
     text: holiday-custom-festive-season

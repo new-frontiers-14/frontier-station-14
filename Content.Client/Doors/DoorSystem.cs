@@ -7,12 +7,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Doors;
 
-public sealed class DoorSystem : SharedDoorSystem
+public sealed partial class DoorSystem : SharedDoorSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animationSystem = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -31,7 +31,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.OpeningAnimation = new Animation
         {
-            Length = TimeSpan.FromSeconds(comp.OpeningAnimationTime),
+            Length = comp.OpeningAnimationTime,
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -47,7 +47,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.ClosingAnimation = new Animation
         {
-            Length = TimeSpan.FromSeconds(comp.ClosingAnimationTime),
+            Length = comp.ClosingAnimationTime,
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -63,7 +63,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.EmaggingAnimation = new Animation
         {
-            Length = TimeSpan.FromSeconds(comp.EmaggingAnimationTime),
+            Length = comp.EmaggingAnimationTime,
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -116,14 +116,14 @@ public sealed class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Opening:
-                if (entity.Comp.OpeningAnimationTime == 0.0)
+                if (entity.Comp.OpeningAnimationTime == TimeSpan.Zero)
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.AnimationKey);
 
                 return;
             case DoorState.Closing:
-                if (entity.Comp.ClosingAnimationTime == 0.0 || entity.Comp.CurrentlyCrushing.Count != 0)
+                if (entity.Comp.ClosingAnimationTime == TimeSpan.Zero || entity.Comp.CurrentlyCrushing.Count != 0)
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.ClosingAnimation, DoorComponent.AnimationKey);
