@@ -10,7 +10,7 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
+    [Dependency] private DamageExamineSystem _damageExamine = default!;
 
     // needed for server system
     protected virtual void InitializeCartridge()
@@ -32,6 +32,12 @@ public abstract partial class SharedGunSystem
 
         if (damageSpec == null)
             return;
+
+        // Frontier begin
+        var ev = new ApplyClothingDamageModifierEvent(args.User, DamageContext.Ranged, damageSpec);
+        RaiseLocalEvent(args.User, ref ev);
+        damageSpec = ev.Damage;
+        // Frontier end
 
         _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-projectile"));
     }

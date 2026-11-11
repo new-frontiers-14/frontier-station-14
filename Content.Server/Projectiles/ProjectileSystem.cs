@@ -12,14 +12,14 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Projectiles;
 
-public sealed class ProjectileSystem : SharedProjectileSystem
+public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly GunSystem _guns = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ColorFlashEffectSystem _color = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private GunSystem _guns = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
 
 
     public override void Initialize()
@@ -47,6 +47,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
+        // Frontier - raise event on shooter too, when available
+        var damage = ev.Damage;
+        if (component.Shooter is { } shooter)
+        {
+            var ev2 = new ApplyClothingDamageModifierEvent(shooter, DamageContext.Ranged, ev.Damage);
+            RaiseLocalEvent(shooter, ref ev2);
+            damage = ev2.Damage;
+        }
+        // Frontier end
 
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);
@@ -55,7 +64,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             damageRequired -= damageableComponent.TotalDamage;
             damageRequired = FixedPoint2.Max(damageRequired, FixedPoint2.Zero);
         }
-        var modifiedDamage = _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter);
+        var modifiedDamage = _damageableSystem.TryChangeDamage(target, damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter, armorPenetration: component.ArmorPenetration); // Frontier ev.Damage<damage && Goobstation added ArmorPenetration
         var deleted = Deleted(target);
 
         if (modifiedDamage is not null && Exists(component.Shooter))

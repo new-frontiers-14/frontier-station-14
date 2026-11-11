@@ -105,6 +105,20 @@ public sealed partial class SprayPainterComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier SoundSwitchDecalMode = new SoundPathSpecifier("/Audio/Machines/quickbeep.ogg", AudioParams.Default.WithVolume(1.5f));
+
+    // Frontier start
+    /// <summary>
+    /// A list of decal tags that are hidden in the painter.
+    /// </summary>
+    [DataField]
+    public List<string> HiddenDecals = new();
+
+    /// <summary>
+    /// A list of entity painting styles that are hidden in the painter.
+    /// </summary>
+    [DataField]
+    public List<string> HiddenStyles = new();
+    // Frontier end
 }
 
 /// <summary>

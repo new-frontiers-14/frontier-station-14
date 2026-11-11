@@ -60,33 +60,33 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocutionSystem = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorageSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly FixtureSystem _fixtures = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
-    [Dependency] private readonly GhostKickManager _ghostKickManager = default!;
-    [Dependency] private readonly SharedGodmodeSystem _sharedGodmodeSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
-    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly TabletopSystem _tabletopSystem = default!;
-    [Dependency] private readonly VomitSystem _vomitSystem = default!;
-    [Dependency] private readonly WeldableSystem _weldableSystem = default!;
-    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
-    [Dependency] private readonly SlipperySystem _slipperySystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
-    [Dependency] private readonly DamageableSystem _damageable = default!; // Frontier
-    [Dependency] private readonly SleepingSystem _sleep = default!; // Frontier
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private CreamPieSystem _creamPieSystem = default!;
+    [Dependency] private ElectrocutionSystem _electrocutionSystem = default!;
+    [Dependency] private EntityStorageSystem _entityStorageSystem = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private FixtureSystem _fixtures = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
+    [Dependency] private GhostKickManager _ghostKickManager = default!;
+    [Dependency] private SharedGodmodeSystem _sharedGodmodeSystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private TabletopSystem _tabletopSystem = default!;
+    [Dependency] private VomitSystem _vomitSystem = default!;
+    [Dependency] private WeldableSystem _weldableSystem = default!;
+    [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SuperBonkSystem _superBonkSystem = default!;
+    [Dependency] private SlipperySystem _slipperySystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!; // Frontier
+    [Dependency] private DamageableSystem _damageable = default!; // Frontier
+    [Dependency] private SleepingSystem _sleep = default!; // Frontier
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -134,7 +134,6 @@ public sealed partial class AdminVerbSystem
             {
                 _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
                 EnsureComp<TabletopDraggableComponent>(args.Target);
-                RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
                 var xform = Transform(args.Target);
                 _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"), args.Target,
                     args.Target, PopupType.LargeCaution);
@@ -218,20 +217,25 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     int damageToDeal;
-                    if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Critical, out var criticalThreshold)) {
-                        // We can't crit them so try killing them.
-                        if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Dead,
-                                out var deadThreshold))
-                            return;// whelp.
-                        damageToDeal = deadThreshold.Value.Int() - (int) damageable.TotalDamage;
-                    }
-                    else
-                    {
-                        damageToDeal = criticalThreshold.Value.Int() - (int) damageable.TotalDamage;
-                    }
 
-                    if (damageToDeal <= 0)
-                        damageToDeal = 100; // murder time.
+                    // Frontier: make electrocute do fixed 50 damage
+                    // if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Critical, out var criticalThreshold)) {
+                    //     // We can't crit them so try killing them.
+                    //     if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Dead,
+                    //             out var deadThreshold))
+                    //         return;// whelp.
+                    //     damageToDeal = deadThreshold.Value.Int() - (int) damageable.TotalDamage;
+                    // }
+                    // else
+                    // {
+                    //     damageToDeal = criticalThreshold.Value.Int() - (int) damageable.TotalDamage;
+                    // }
+
+                    // if (damageToDeal <= 0)
+                    //     damageToDeal = 100; // murder time.
+
+                    damageToDeal = 50;
+                    // End Frontier: make electrocute do fixed 50 damage
 
                     if (_inventorySystem.TryGetSlots(args.Target, out var slotDefinitions))
                     {
@@ -610,20 +614,21 @@ public sealed partial class AdminVerbSystem
             */
         }
 
-        var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
-        Verb angerPointingArrows = new()
-        {
-            Text = angerPointingArrowsName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/pointing.rsi"), "pointing"),
-            Act = () =>
-            {
-                EnsureComp<PointingArrowAngeringComponent>(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", angerPointingArrowsName, Loc.GetString("admin-smite-anger-pointing-arrows-description"))
-        };
-        args.Verbs.Add(angerPointingArrows);
+        // Frontier: disabled some more destructive smites
+        // var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
+        // Verb angerPointingArrows = new()
+        // {
+        //     Text = angerPointingArrowsName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/pointing.rsi"), "pointing"),
+        //     Act = () =>
+        //     {
+        //         EnsureComp<PointingArrowAngeringComponent>(args.Target);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", angerPointingArrowsName, Loc.GetString("admin-smite-anger-pointing-arrows-description"))
+        // };
+        // args.Verbs.Add(angerPointingArrows);
 
         var dustName = Loc.GetString("admin-smite-dust-name").ToLowerInvariant();
         Verb dust = new()
@@ -831,24 +836,25 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(disarmProne);
 
-        var superSpeedName = Loc.GetString("admin-smite-super-speed-name").ToLowerInvariant();
-        Verb superSpeed = new()
-        {
-            Text = superSpeedName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/AdminActions/super_speed.png")),
-            Act = () =>
-            {
-                var movementSpeed = EnsureComp<MovementSpeedModifierComponent>(args.Target);
-                _movementSpeedModifierSystem?.ChangeBaseSpeed(args.Target, 400, 8000, 40, movementSpeed);
+        // Frontier: disabled some more destructive smites
+        // var superSpeedName = Loc.GetString("admin-smite-super-speed-name").ToLowerInvariant();
+        // Verb superSpeed = new()
+        // {
+        //     Text = superSpeedName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/AdminActions/super_speed.png")),
+        //     Act = () =>
+        //     {
+        //         var movementSpeed = EnsureComp<MovementSpeedModifierComponent>(args.Target);
+        //         _movementSpeedModifierSystem?.ChangeBaseSpeed(args.Target, 400, 8000, 40, movementSpeed);
 
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-super-speed-prompt"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", superSpeedName, Loc.GetString("admin-smite-super-speed-description"))
-        };
-        args.Verbs.Add(superSpeed);
+        //         _popupSystem.PopupEntity(Loc.GetString("admin-smite-super-speed-prompt"), args.Target,
+        //             args.Target, PopupType.LargeCaution);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", superSpeedName, Loc.GetString("admin-smite-super-speed-description"))
+        // };
+        // args.Verbs.Add(superSpeed);
 
         //Bonk
         var superBonkLiteName = Loc.GetString("admin-smite-super-bonk-lite-name").ToLowerInvariant();
@@ -866,20 +872,22 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(superBonkLite);
 
-        var superBonkName = Loc.GetString("admin-smite-super-bonk-name").ToLowerInvariant();
-        Verb superBonk = new()
-        {
-            Text = superBonkName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Structures/Furniture/Tables/generic.rsi"), "full"),
-            Act = () =>
-            {
-                _superBonkSystem.StartSuperBonk(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", superBonkName, Loc.GetString("admin-smite-super-bonk-description"))
-        };
-        args.Verbs.Add(superBonk);
+        // Frontier: disabled some more destructive smites
+        // var superBonkName = Loc.GetString("admin-smite-super-bonk-name").ToLowerInvariant();
+        // Verb superBonk = new()
+        // {
+        //     Text = superBonkName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new("Structures/Furniture/Tables/generic.rsi"), "full"),
+        //     Act = () =>
+        //     {
+        //         _superBonkSystem.StartSuperBonk(args.Target);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", superBonkName, Loc.GetString("admin-smite-super-bonk-description"))
+        // };
+        // args.Verbs.Add(superBonk);
+
 
         var superslipName = Loc.GetString("admin-smite-super-slip-name").ToLowerInvariant();
         Verb superslip = new()

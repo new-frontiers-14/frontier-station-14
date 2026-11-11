@@ -15,8 +15,8 @@ namespace Content.Client._NF.Market.UI;
 [GenerateTypedNameReferences]
 public sealed partial class MarketMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     public event Action<BaseButton.ButtonEventArgs>? OnAddToCart1;
     public event Action<BaseButton.ButtonEventArgs>? OnAddToCart5;

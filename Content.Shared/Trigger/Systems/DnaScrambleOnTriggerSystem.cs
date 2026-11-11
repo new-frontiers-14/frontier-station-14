@@ -9,14 +9,14 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class DnaScrambleOnTriggerSystem : EntitySystem
+public sealed partial class DnaScrambleOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private SharedIdentitySystem _identity = default!;
+    [Dependency] private SharedForensicsSystem _forensics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

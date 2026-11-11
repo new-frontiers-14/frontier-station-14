@@ -13,6 +13,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Standing;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
@@ -30,12 +31,12 @@ public abstract partial class SharedStunSystem
 {
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
 
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
@@ -244,11 +245,17 @@ public abstract partial class SharedStunSystem
         if (!Resolve(entity, ref entity.Comp1, false) || !_cfgManager.GetCVar(CCVars.MovementCrawling))
             return;
 
+        if (TryComp<BuckleComponent>(entity.Owner, out var buckle) && buckle.Buckled) // Frontier: wheelchair users can crawl
+            return; // Frontier: wheelchair users can crawl
+
         if (!Resolve(entity, ref entity.Comp2, false))
         {
             TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false);
             return;
         }
+
+        if (HasComp<LegsParalyzedComponent>(entity)) // Frontier: wheelchair users can crawl
+            return; // Frontier: wheelchair users can crawl
 
         var stand = !entity.Comp2.DoAfterId.HasValue;
         SetAutoStand((entity, entity.Comp2), stand);

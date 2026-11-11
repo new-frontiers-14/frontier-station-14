@@ -1,0 +1,10 @@
+names-parrot-dataset-1 = Scarlett
+names-parrot-dataset-2 = Maraschino
+names-parrot-dataset-3 = Skittle
+names-parrot-dataset-4 = Amaryllis
+names-parrot-dataset-5 = Paprika
+names-parrot-dataset-6 = O'Harrot
+names-parrot-dataset-7 = Ruby
+names-parrot-dataset-8 = Einstein
+names-parrot-dataset-9 = Aria
+names-parrot-dataset-10 = Cherry

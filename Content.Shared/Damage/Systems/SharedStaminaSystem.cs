@@ -26,6 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._NF.Clothing.Components; // Frontier
 
 namespace Content.Shared.Damage.Systems;
 
@@ -33,17 +34,17 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 {
     public static readonly EntProtoId StaminaLow = "StatusEffectStaminaLow";
 
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] protected readonly SharedStunSystem StunSystem = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] protected SharedStunSystem StunSystem = default!;
 
     /// <summary>
     /// How much of a buffer is there between the stun duration and when stuns can be re-applied.
@@ -183,6 +184,15 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         damage += hitEvent.FlatModifier;
 
+        // Frontier begin
+        if (args.User is { } user && HasComp<WearerDamageModifierComponent>(user))
+        {
+            var ev2 = new ApplyClothingStaminaModifierEvent(user, DamageContext.Melee, damage);
+            RaiseLocalEvent(user, ref ev2);
+            damage = ev2.StaminaDamage;
+        }
+        // Frontier end
+
         foreach (var (ent, comp) in toHit)
         {
             TakeStaminaDamage(ent, damage / toHit.Count, comp, source: args.User, with: args.Weapon, sound: component.Sound);
@@ -191,7 +201,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void OnProjectileHit(EntityUid uid, StaminaDamageOnCollideComponent component, ref ProjectileHitEvent args)
     {
-        OnCollide(uid, component, args.Target);
+        OnCollide(uid, component, args.Target, args.Shooter, DamageContext.Ranged); // Frontier - pass context and source
     }
 
     private void OnProjectileEmbed(EntityUid uid, StaminaDamageOnEmbedComponent component, ref EmbedEvent args)
@@ -204,10 +214,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void OnThrowHit(EntityUid uid, StaminaDamageOnCollideComponent component, ThrowDoHitEvent args)
     {
-        OnCollide(uid, component, args.Target);
+        OnCollide(uid, component, args.Target, args.Thrower, DamageContext.Thrown); // Frontier - pass context and source
     }
 
-    private void OnCollide(EntityUid uid, StaminaDamageOnCollideComponent component, EntityUid target)
+    private void OnCollide(EntityUid uid, StaminaDamageOnCollideComponent component, EntityUid target, EntityUid? source, DamageContext context = DamageContext.Ranged) // Frontier - add context and source
     {
         // you can't inflict stamina damage on things with no stamina component
         // this prevents stun batons from using up charges when throwing it at lockers or lights
@@ -219,7 +229,21 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        TakeStaminaDamage(target, component.Damage, source: uid, sound: component.Sound);
+        // Frontier begin
+        var damage = component.Damage;
+
+        if (source is { } origin)
+        {
+            if (HasComp<WearerDamageModifierComponent>(origin))
+            {
+                var ev2 = new ApplyClothingStaminaModifierEvent(origin, context, damage);
+                RaiseLocalEvent(origin, ref ev2);
+                damage = ev2.StaminaDamage;
+            }
+        }
+        // Frontier end
+
+        TakeStaminaDamage(target, damage, source: uid, sound: component.Sound); // Frontier component.Damage<damage
     }
 
     private void UpdateStaminaVisuals(Entity<StaminaComponent> entity)
