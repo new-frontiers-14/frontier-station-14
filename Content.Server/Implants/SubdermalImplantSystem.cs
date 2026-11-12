@@ -7,10 +7,10 @@ using Content.Shared.Store.Components;
 
 namespace Content.Server.Implants;
 
-public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
+public sealed partial class SubdermalImplantSystem : SharedSubdermalImplantSystem
 {
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         base.Initialize();

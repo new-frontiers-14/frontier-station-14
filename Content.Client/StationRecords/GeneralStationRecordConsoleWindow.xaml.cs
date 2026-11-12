@@ -12,7 +12,7 @@ namespace Content.Client.StationRecords;
 [GenerateTypedNameReferences]
 public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!; // Frontier
+    [Dependency] private IPrototypeManager _prototype = default!; // Frontier
 
     public Action<uint?>? OnKeySelected;
 

@@ -42,25 +42,25 @@ namespace Content.Server.Station.Systems;
 /// Also provides helpers for spawning in the player's mob.
 /// </summary>
 [PublicAPI]
-public sealed class StationSpawningSystem : SharedStationSpawningSystem
+public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 {
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly PdaSystem _pdaSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
-    [Dependency] private readonly IServerPreferencesManager _preferences = default!; // Frontier
-    [Dependency] private readonly BankSystem _bank = default!; // Frontier
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
-    [Dependency] private readonly TransformSystem _xformSystem = default!; // Frontier
-    [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier
-    [Dependency] private readonly SharedImplanterSystem _implanter = default!; // Frontier
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private ActorSystem _actors = default!;
+    [Dependency] private IdCardSystem _cardSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private PdaSystem _pdaSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private IDependencyCollection _dependencyCollection = default!; // Frontier
+    [Dependency] private IServerPreferencesManager _preferences = default!; // Frontier
+    [Dependency] private BankSystem _bank = default!; // Frontier
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
+    [Dependency] private TransformSystem _xformSystem = default!; // Frontier
+    [Dependency] private SharedContainerSystem _container = default!; // Frontier
+    [Dependency] private SharedImplanterSystem _implanter = default!; // Frontier
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.

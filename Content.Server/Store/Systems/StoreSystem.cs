@@ -21,9 +21,9 @@ namespace Content.Server.Store.Systems;
 /// </summary>
 public sealed partial class StoreSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -81,7 +81,9 @@ public sealed partial class StoreSystem : EntitySystem
         if (component.AccountOwner == mind)
             return;
 
-        _popup.PopupEntity(Loc.GetString("store-not-account-owner", ("store", uid)), uid, args.User);
+        if (!args.Silent)
+            _popup.PopupEntity(Loc.GetString("store-not-account-owner", ("store", uid)), uid, args.User);
+
         args.Cancel();
     }
 

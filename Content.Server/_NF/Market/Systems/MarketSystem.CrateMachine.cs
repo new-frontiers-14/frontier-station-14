@@ -13,7 +13,7 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
-    [Dependency] private readonly CrateMachineSystem _crateMachine = default!;
+    [Dependency] private CrateMachineSystem _crateMachine = default!;
 
     private void InitializeCrateMachine()
     {
