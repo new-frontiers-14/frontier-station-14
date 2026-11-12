@@ -27,10 +27,10 @@ namespace Content.Server.Shuttles.Components
 
         // Need to serialize this because RefreshParts isn't called on Init and this will break post-mapinit maps!
         [ViewVariables(VVAccess.ReadWrite), DataField("thrust")]
-        public float Thrust = 132f; // Frontier: 100<132
+        public float Thrust = 135f; // Frontier: 100<135
 
         [DataField("baseThrust"), ViewVariables(VVAccess.ReadWrite)]
-        public float BaseThrust = 132f; // Frontier: 100<132
+        public float BaseThrust = 135f; // Frontier: 100<135
 
         [DataField("thrusterType")]
         public ThrusterType Type = ThrusterType.Linear;
@@ -71,7 +71,7 @@ namespace Content.Server.Shuttles.Components
         public ProtoId<MachinePartPrototype> MachinePartThrust = "Capacitor";
 
         [DataField]
-        public float[] ThrustPerPartLevel = [132, 176, 220, 264];
+        public float[] ThrustPerPartLevel = [135, 180, 225, 270];
 
         /// <summary>
         /// Load on the power network, in watts.
