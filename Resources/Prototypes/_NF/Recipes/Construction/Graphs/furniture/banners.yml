@@ -356,3 +356,63 @@
           steps:
             - tool: Screwing
               doAfter: 1
+
+    - node: BannerInterdyne
+      entity: BannerInterdyne
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: BannerCybersun
+      entity: BannerCybersun
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: BannerDonkCo
+      entity: BannerDonkCo
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: BannerHonkCo
+      entity: BannerHonkCo
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
