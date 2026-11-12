@@ -233,7 +233,7 @@ async function init() {
 
     if (!SkipBuild) {
         console.log(chalk.yellow("Building MapRenderer..."));
-        const BuildMapRenderer = exec(`cd ${Root} && dotnet build Content.MapRenderer/Content.MapRenderer.csproj`);
+        const BuildMapRenderer = exec(`cd ${Root} && dotnet build Content.MapRenderer/Content.MapRenderer.csproj`, { maxBuffer: 1024 * 1024 * 1024 });
         AddExecLogs(BuildMapRenderer, "[MapRenderer]");
         BuildMapRenderer.on("close", () => {
             IsMapRendererBuilt = true;
@@ -318,7 +318,7 @@ async function init() {
                 console.log(
                     Tags.debug + chalk.cyan(`[${CurrentInstances + 1}-Render] Running ChildExec Command: ${Command}`)
                 );
-            const RenderShuttle = exec(Command);
+            const RenderShuttle = exec(Command, { maxBuffer: 1024 * 1024 * 1024 });
             AddExecLogs(RenderShuttle, `[#${CurrentInstances + 1}-Renderer-${ShuttleToRender}]`, ShuttleToRender);
             CurrentInstances++;
             RenderShuttle.on("close", () => {
