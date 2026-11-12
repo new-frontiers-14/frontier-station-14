@@ -3,9 +3,9 @@ using Content.Shared.Implants;
 
 namespace Content.Shared._DV.Implants.AddComponentsImplant;
 
-public sealed class AddComponentsImplantSystem : EntitySystem
+public sealed partial class AddComponentsImplantSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private IComponentFactory _factory = default!;
     public override void Initialize()
     {
         base.Initialize();

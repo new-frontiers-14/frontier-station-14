@@ -11,10 +11,10 @@ namespace Content.Server._NF.SectorServices;
 /// Allows service components to be registered and unregistered on a singular entity
 /// </summary>
 [PublicAPI]
-public sealed class SectorServiceSystem : EntitySystem
+public sealed partial class SectorServiceSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     private EntityUid _entity = EntityUid.Invalid; // The station entity that's storing our services.

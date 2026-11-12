@@ -16,12 +16,12 @@ using Robust.Shared.Timing;
 namespace Content.Server._NF.Commands;
 
 [AnyCommand()]
-public sealed class GhostRespawnCommand : IConsoleCommand
+public sealed partial class GhostRespawnCommand : IConsoleCommand
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entity = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IEntitySystemManager _entity = default!;
 
     public string Command => "ghostrespawn";
     public string Description => "Allows the player to return to the lobby if they've been dead long enough, allowing re-entering the round AS ANOTHER CHARACTER.";

@@ -147,7 +147,6 @@ guide-entry-shipyard-paladin = Paladin
 guide-entry-shipyard-prowler = Prowler
 guide-entry-shipyard-rogue = Rogue
 guide-entry-shipyard-templar = Templar
-guide-entry-shipyard-wasp = Wasp
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
