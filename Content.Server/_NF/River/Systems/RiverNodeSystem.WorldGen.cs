@@ -66,7 +66,7 @@ public partial class RiverNodeSystem
                             continue;
                         }
                         var distanceCheckWellPos = _transform.GetWorldPosition(distanceCheckWell);
-                        if (DistanceToLineSegmentSquared(distanceCheckWellPos, wellPosition, otherWellPosition, out var _, out var t) < 300f || t > 1f || t < 0f) //300f is pretty arbitrary, but 200 radius + 100 buffer.
+                        if (DistanceToLineSegmentSquared(distanceCheckWellPos, wellPosition, otherWellPosition, out var _, out var t) < MathF.Pow(300f, 2) || t > 1f || t < 0f) //300f is pretty arbitrary, but 200 radius + 100 buffer.
                         {
                             tooCloseToPoi = true;
                             break;
