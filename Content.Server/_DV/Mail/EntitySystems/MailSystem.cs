@@ -81,7 +81,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private BankSystem _bank = default!; // Frontier
         [Dependency] private PowerReceiverSystem _powerReceiver = default!; // Frontier
         [Dependency] private IPlayerManager _player = default!; // Frontier
-        [Dependency] private readonly CartridgeLoaderSystem _cartLoader = default!; // Frontier
+        [Dependency] private CartridgeLoaderSystem _cartLoader = default!; // Frontier
 
         private ISawmill _sawmill = default!;
         private static readonly ProtoId<TagPrototype> MailTag = "Mail"; // Frontier
