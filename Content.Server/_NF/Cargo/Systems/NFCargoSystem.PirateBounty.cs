@@ -23,7 +23,7 @@ namespace Content.Server._NF.Cargo.Systems;
 
 public sealed partial class NFCargoSystem
 {
-    [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!;
+    [Dependency] private NameIdentifierSystem _nameIdentifier = default!;
 
     [ValidatePrototypeId<NameIdentifierGroupPrototype>]
     private const string PirateBountyNameIdentifierGroup = "Bounty"; // Use the bounty name ID group (0-999) for now.
