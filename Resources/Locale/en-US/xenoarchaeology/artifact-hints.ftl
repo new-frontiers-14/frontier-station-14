@@ -1,3 +1,6 @@
+## Frontier: artifact-effect-hint-* messages are used by us, but not upstream code.
+## Frontier: if this file is ever deleted, move the hints to an _NF file.
+
 # you shouldn't be creating new hints for every effect/trigger
 # try and reuse them so that a hint isn't a dead giveaway. -emo
 

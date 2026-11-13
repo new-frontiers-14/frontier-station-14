@@ -17,7 +17,7 @@ namespace Content.Client._NF.Salvage.UI;
 public sealed partial class SalvageExpeditionWindow : FancyWindow,
     IComputerWindow<EmergencyConsoleBoundUserInterfaceState>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public Action? OnFinishPressed;
 

@@ -16,13 +16,13 @@ namespace Content.Shared.Storage.EntitySystems;
 /// <summary>
 /// This handles <see cref="BinComponent"/>
 /// </summary>
-public sealed class BinSystem : EntitySystem
+public sealed partial class BinSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedAdminLogManager _admin = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ISharedAdminLogManager _admin = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -106,7 +106,19 @@ public sealed class BinSystem : EntitySystem
         if (args.Using != null)
         {
             var canReach = args.CanAccess && args.CanInteract;
-            InsertIntoBin(args.User, args.Target, (EntityUid)args.Using, component, false, canReach);
+
+            // Start Frontier: no more vanishing pens
+            AlternativeVerb verb = new()
+            {
+                Act = () =>
+                {
+                    InsertIntoBin(args.User, args.Target, (EntityUid)args.Using, component, false, canReach);
+                },
+                Text = Loc.GetString("verb-categories-insert"),
+                Priority = 2
+            };
+            args.Verbs.Add(verb);
+            // End Frontier: no more vanishing pens
         }
     }
 
