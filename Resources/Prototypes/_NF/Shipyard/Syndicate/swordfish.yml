@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Swordfish
+  parent: BaseVesselAntag
+  name: CS Swordfish
+  description: A retired Cybersun 'Swordfish' torpedo bomber converted to a freighter.
+  price: 45000 #Appraises at ~31000.
+  category: Medium
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/swordfish.yml
+  guidebookPage: ShipyardSwordfish
+  class:
+  - Cargo
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Swordfish
+  mapName: 'CS Swordfish'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/swordfish.yml
+  minPlayers: 0
+  stations:
+    Swordfish:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Swordfish {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
