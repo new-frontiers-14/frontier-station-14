@@ -1,0 +1,12 @@
+ent-XenoAISpawnerEasy = спавнер ксено
+    .suffix = Легко
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawnerMedium = спавнер ксено
+    .suffix = Средже
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawnerHard = спавнер ксено
+    .suffix = Сложно
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawnerQueen = спавнер ксено
+    .suffix = Королева
+    .desc = { ent-MarkerBase.desc }

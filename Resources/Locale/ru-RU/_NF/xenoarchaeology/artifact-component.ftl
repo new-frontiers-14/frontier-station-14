@@ -1,0 +1,8 @@
+artifact-node-nf-class-1 = [color=#ff2bb1]Материальный[/color]
+artifact-node-nf-class-2 = [color=#ff8b2b]Психический[/color]
+artifact-node-nf-class-3 = [color=#a9ff38]Нуменаль[/color]
+artifact-node-nf-class-4 = [color=#2bfff8]Архон[/color]
+artifact-node-nf-class-5 = [color=#7883ff]Люминарный[/color]
+artifact-node-nf-class-6 = [color=#be78ff]Демиург[/color]
+artifact-node-nf-class-7 = [color=#ffda8a]Эон[/color]
+artifact-node-nf-class-8 = [color=#ffffff]Монадик[/color]

@@ -1,0 +1,21 @@
+# Мозолят глаза в меню строительства..
+ent-AceFlag = асексуальный флаг
+  .desc = Флаг «Be ace do crime».
+ent-AroFlag = аромантический флаг
+  .desc = Флаг «Be aro do crime».
+ent-BiFlag = бисексуальный флаг
+  .desc = Флаг «Be bi do crime».
+ent-EnbyFlag = небинарный флаг
+  .desc = «01100010 01100101 00100000 01100101 01101110 01100010 01111001 00100000 01100100 01101111 00100000 01100011 01110010 01101001 01101101 01100101 00100000 00100110 00101100 00100001 00100111»
+ent-GayFlag = гей‑флаг
+  .desc = Флаг «Be gay do crime».
+ent-IntersexFlag = интерсекс‑флаг
+  .desc = Флаг «Be intersex do crime».
+ent-LesbianFlag = лесбийский флаг
+  .desc = «Bacon flag.»
+ent-PanFlag = пансексуальный флаг
+  .desc = Флаг «Be pan do crime».
+ent-TransFlag = трансгендерный флаг
+  .desc = Флаг «Be trans do crime».
+ent-TransRoyalShrimpFlag = транс‑флаг с королевской креветкой
+  .desc = «you tellin me a shrimp transed this gender?»

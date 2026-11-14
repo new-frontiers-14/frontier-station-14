@@ -1,0 +1,14 @@
+ent-GuidebookMemeNpcGood = хороший
+    .desc = { ent-BaseMobHuman.desc }
+ent-GuidebookMemeNpcBad = плохой
+    .desc = { ent-BaseMobReptilian.desc }
+ent-GuidebookMemeNpcUgly = злой
+    .desc = { ent-MobFelinid.desc }
+ent-GuidebookMemeNpcThatGuy = и этот парень
+    .desc = { ent-MobGoblin.desc }
+ent-MobMawExpeditionsGuidebook = искажённая плоть
+    .desc = { ent-BaseItem.desc }
+ent-MobBloodCultDrainedOneGuidebook = истощённый
+    .desc = { ent-BaseItem.desc }
+ent-MobBloodCultShadeGuidebook = тень
+    .desc = { ent-BaseItem.desc }

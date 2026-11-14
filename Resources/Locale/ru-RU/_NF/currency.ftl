@@ -1,0 +1,1 @@
+bank-currency-display-spesos = кредитов

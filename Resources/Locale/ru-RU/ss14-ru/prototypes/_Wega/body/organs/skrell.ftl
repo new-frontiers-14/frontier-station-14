@@ -1,0 +1,16 @@
+ent-BaseSkrellOrgan = { ent-BaseHumanOrganUnGibbable }
+    .desc = { ent-BaseHumanOrganUnGibbable.desc }
+ent-OrganSkrellBrain = мозг
+    .desc = Источник невероятного, бесконечного интеллекта. Хонк.
+ent-OrganSkrellEyes = глаза
+    .desc = Я тебя вижу!
+ent-OrganSkrellLungs = лёгкие
+    .desc = Фильтрует кислород из атмосферы, который затем поступает в кровь для использования в качестве переносчика электронов.
+ent-OrganSkrellHeart = сердце
+    .desc = Мне жаль того бессердечного ублюдка, который его потерял.
+ent-OrganSkrellStomach = желудок
+    .desc = Мерзость. Не перевариваю его.
+ent-OrganSkrellLiver = печень
+    .desc = Рекомендуется подавать с бобами, под кьянти.
+ent-OrganSkrellKidneys = почки
+    .desc = Выводят токсины из кровеносной системы.

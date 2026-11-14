@@ -1,0 +1,12 @@
+ent-BorgModuleAdvancedParamedic = продвинутый медицинский модуль киборга
+    .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleRCDShipyard = инженерный модуль борга
+    .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleNFService = сервисный модуль борга
+    .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleChef = модуль готовки борга
+    .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleBureaucracy = бюрократический модуль борга
+    .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleJetpack = транспортный модуль борга
+    .desc = { ent-BaseBorgModule.desc }

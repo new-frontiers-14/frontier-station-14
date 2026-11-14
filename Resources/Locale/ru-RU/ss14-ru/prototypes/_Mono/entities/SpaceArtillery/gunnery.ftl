@@ -1,0 +1,20 @@
+ent-GunneryServerBase = базовый сервер управления стрельбой
+    .desc = Управляет дистанционным управлением корабельным оружием.
+ent-GunneryServerLow = сервер управления стрельбой низкой мощности
+    .desc = { ent-GunneryServerBase.desc }
+ent-GunneryServerMedium = сервер управления стрельбой средней мощности
+    .desc = { ent-GunneryServerBase.desc }
+ent-GunneryServerHigh = сервер управления стрельбой высокой мощности
+    .desc = { ent-GunneryServerBase.desc }
+ent-GunneryServerUltra = сервер управления стрельбой ультра высокой мощности
+    .desc = { ent-GunneryServerBase.desc }
+ent-GunneryServerOmega = сервер управления стрельбой омега высокой мощности
+    .desc = { ent-GunneryServerBase.desc }
+ent-GunneryServerStation = сервер управления стрельбой станционной мощности
+    .desc = { ent-GunneryServerBase.desc }
+    .suffix = POI
+
+ent-ComputerGunneryConsole = консоль управления орудиями
+    .desc = Взаимодействует с сервером управления артиллерийским орудием для управления корабельным вооружением.
+ent-GunneryControlComputerCircuitboard = консоль управления орудиями (машинная плата)
+    .desc = Печатная плата компьютера для консоли управления стрельбой.

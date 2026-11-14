@@ -1,0 +1,9 @@
+miners-bounty-description-generic = Каменщик! Вперёд работать без зарплаты!
+miners-bounty-item-space-quartz = руда кварца
+miners-bounty-item-steel-ore = руда железа
+miners-bounty-item-silver-ore = руда серебра
+miners-bounty-item-uranium-ore = руда урана
+miners-bounty-item-gold-ore = руда золота
+miners-bounty-item-diamond-ore = необработанный алмаз
+miners-bounty-item-bananium-ore = бананиумовая руда
+miners-bounty-item-plasma-ore = плазменная руда

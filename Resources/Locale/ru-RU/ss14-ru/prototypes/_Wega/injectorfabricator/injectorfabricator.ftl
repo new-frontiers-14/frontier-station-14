@@ -1,0 +1,27 @@
+ent-InjectorFabricator = фабрикатор инъекторов
+    .desc = Уникальная разработка компании Interdyne Pharmaceutics. Позволяет производить медицинские инъекторы с заданным составом реагентов.
+ent-InjectorFabricatorMachineCircuitboard = фабрикатор инъекторов (машинная плата)
+    .desc = Печатная плата фабрикатора инъекторов.
+ent-StimpackEmpty = { ent-ChemicalMedipen }
+    .desc = { ent-ChemicalMedipen.desc }
+
+injector-fabticator-label-beaker = Мензурка:
+injector-fabticator-button-eject = Извлечь
+injector-fabticator-no-beaker = Мензурка не вставлена
+injector-fabticator-label-transfer-reagents = Перенос реагентов:
+injector-fabticator-label-from-beaker = Из мензурки:
+injector-fabticator-button-to-buffer = В буфер
+injector-fabticator-label-from-buffer = Из буфера:
+injector-fabticator-button-to-beaker = В мензурку
+injector-fabticator-label-buffer-solution = Буферный раствор:
+injector-fabticator-label-recipe = Рецепт медипена (макс. 30u):
+injector-fabticator-label-reagent = Реагент:
+injector-fabticator-button-add = Добавить
+injector-fabticator-label-production-settings = Настройки производства:
+injector-fabticator-label-amount = Количество:
+injector-fabticator-label-custom-name = Свое название:
+injector-fabticator-button-start-production = Начать производство
+injector-fabticator-status-producing = Производится: { $remaining } осталось...
+injector-fabticator-status-ready = Готово
+injector-fabticator-empty = Пусто
+injector-fabticator-button-remove = Удалить

@@ -1,0 +1,24 @@
+player-panel-title = Информация о {$player}
+player-panel-username = Сикей: {$player}
+player-panel-whitelisted = Вайтлист:
+player-panel-bans = Банов: {$totalBans}
+player-panel-rolebans = Банов ролей: {$totalRoleBans}
+player-panel-notes = Заметок: {$totalNotes}
+player-panel-playtime = Наигранное время: {$days}d:{$hours}h:{$minutes}m
+player-panel-shared-connections = Общие соединения: {$sharedConnections}
+
+player-panel-copy-username = Копировать
+player-panel-show-notes = Заметки
+player-panel-show-bans = Баны
+player-panel-help = АХелп
+player-panel-freeze-and-mute = Заморозить+Мут
+player-panel-freeze = Заморозить
+player-panel-unfreeze = Разморозить
+player-panel-kick = Кикнуть
+player-panel-ban = Забанить
+player-panel-logs = Логи
+player-panel-delete = Удалить
+player-panel-rejuvenate = Вылечить
+player-panel-false = Нет
+player-panel-true = Да
+player-panel-follow = Следовать

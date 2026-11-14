@@ -1,0 +1,10 @@
+ent-ClosetO2N2 = аварийный шкаф
+    .desc = Хранилище с аварийными принадлежностями и баллонами для всех видов существ.
+ent-ClosetO2N2FilledRandom = { ent-ClosetO2N2 }
+    .suffix = Заполненный, Случайно
+    .desc = { ent-ClosetO2N2.desc }
+ent-ClosetFsbEva = шкаф EVA "FSB"
+    .desc = Хранилище, в котором может храниться EVA скафандр для выхода в открытый космос, производимый "Far Star Biotech". Там также могут быть и другие вещи.
+ent-ClosetFsbEvaFilled = { ent-ClosetFsbEva }
+    .suffix = Заполненный
+    .desc = { ent-ClosetFsbEva.desc }

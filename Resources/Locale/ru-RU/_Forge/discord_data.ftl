@@ -1,0 +1,6 @@
+st-not-authorized-error-text = Вы не авторизованы!
+st-not-in-guild = Вы не находитесь на нашем дискорд сервере.
+st-guild-role-empty = Не удалось получить роли.
+st-service-response-empty = Ответ от сервиса авторизации был пустым...
+st-service-unreachable = Сервис в данный момент недоступен. Повторите вход позже...
+st-unexpected-error = Неожиданная ошибка при аутентификации.

@@ -1,0 +1,16 @@
+ent-NFAmmunitionBoxPistol45 = коробка патронов (.45 магнум)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45Overpressure = коробка патронов (.45 магнум высокоскоростные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45Incendiary = коробка патронов (.45 магнум зажигательные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45Uranium = коробка патронов (.45 магнум урановые)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45Practice = коробка патронов (.45 магнум тренировочные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45Rubber = коробка патронов (.45 магнум резиновые)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45EMP = коробка патронов (.45 магнум ЭМИ)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45AP = коробка патронов (.45 магнум бронебойные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }

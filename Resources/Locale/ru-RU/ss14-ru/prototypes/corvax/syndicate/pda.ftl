@@ -1,0 +1,10 @@
+ent-SyndiPDASmugger = КПК контрабандиста
+    .desc = Окей, пора стать продуктивным членом... о, круто, я плохой парень, пора убивать людей!
+ent-SyndiPDAComa = КПК командира
+  .desc = { ent-SyndiPDASmugger.desc }
+ent-SyndiPDACadet = КПК телохранителя
+  .desc = { ent-SyndiPDASmugger.desc }
+ent-SyndiPDACParamed = КПК санитара синдиката
+  .desc = { ent-SyndiPDASmugger.desc }
+ent-SyndiPDACStorm = КПК штурмовика
+  .desc = { ent-SyndiPDASmugger.desc }

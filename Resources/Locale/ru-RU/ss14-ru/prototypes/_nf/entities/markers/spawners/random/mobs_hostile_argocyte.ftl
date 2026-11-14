@@ -1,0 +1,15 @@
+ent-SpawnMobArgocyteTiny = спавнер аргоцита
+    .suffix = AI, Враждебный, Мелкий
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobArgocyteSmall = спавнер аргоцита
+    .suffix = AI, Враждебный, Маленький
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobArgocyteMedium = спавнер аргоцита
+    .suffix = AI, Враждебный, Средний
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobArgocyteBig = спавнер аргоцита
+    .suffix = AI, Враждебный, Большой
+    .desc = { ent-MarkerBase.desc }
+ent-ArgocyteAISpawner = спавнер аргоцита
+    .suffix = AI, Враждебный
+    .desc = { ent-MarkerBase.desc }
