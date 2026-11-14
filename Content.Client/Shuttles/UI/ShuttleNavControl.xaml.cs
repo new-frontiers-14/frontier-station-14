@@ -14,6 +14,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Content.Client.Station; // Frontier
 using Content.Client._NF.Radar; // Frontier
+using Content.Client._NF.River; // Frontier
 
 namespace Content.Client.Shuttles.UI;
 
@@ -65,6 +66,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         // Frontier
         _station = EntManager.System<StationSystem>();
         _blips = EntManager.System<RadarBlipSystem>();
+        _rivers = EntManager.System<RiverNodeSystem>();
 
         OnMouseEntered += HandleMouseEntered;
         OnMouseExited += HandleMouseExited;
@@ -210,6 +212,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
         // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
+
+        // Frontier: Draw Rivers
+        var worldToView = worldToShuttle * shuttleToView;
+        NFDrawRivers(handle, worldToView, viewAABB);
+        // End Frontier
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);

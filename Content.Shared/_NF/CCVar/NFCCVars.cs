@@ -304,4 +304,39 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
         CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /*
+     * Rivers
+     */
+
+    /// <summary>
+    /// The rate of RiverNodeSystem update in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> RiverUpdateRate =
+        CVarDef.Create("nf14.rivers.update_rate", 1.0f, CVar.SERVER);
+
+    /// <summary>
+    /// How many linear sections make up a river segment (node to node). Used for approximating the Bezier curve for distance calculation.
+    /// Higher numbers may affect performance, lower numbers will affect accuracy.
+    /// </summary>
+    public static readonly CVarDef<int> ServerRiverResolution =
+        CVarDef.Create("nf14.rivers.server_resolution", 10, CVar.SERVER);
+
+    /// <summary>
+    /// How many base sections make up a river segment (node to node) for rendering purposes. 
+    /// </summary>
+    public static readonly CVarDef<int> ClientRiverRenderResolution =
+        CVarDef.Create("nf14.rivers.client_render_resolution", 5, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Minimum ClientRiverRenderResolution
+    /// </summary>
+    public static readonly CVarDef<int> MinClientRiverRenderResolution =
+        CVarDef.Create("nf14.rivers.min_client_render_resolution", 3, CVar.CLIENT);
+
+    /// <summary>
+    /// Maximum ClientRiverRenderResolution
+    /// </summary>
+    public static readonly CVarDef<int> MaxClientRiverRenderResolution =
+        CVarDef.Create("nf14.rivers.max_client_render_resolution", 20, CVar.CLIENT);
 }
