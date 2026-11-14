@@ -1,0 +1,24 @@
+- type: entity
+  name: spyglass
+  parent: [BaseC3PirateContraband, BaseItem]
+  id: Spyglass
+  description: A useful tool to spot your treasure before it spots you.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/spyglass.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.0
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 10
+    pvsIncrease: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Glass: 50
+  - type: StaticPrice
+    price: 100
