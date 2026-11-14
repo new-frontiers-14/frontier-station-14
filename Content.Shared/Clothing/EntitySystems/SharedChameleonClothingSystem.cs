@@ -143,10 +143,17 @@ public abstract partial class SharedChameleonClothingSystem : EntitySystem
     /// <summary>
     ///     Check if this entity prototype is valid target for chameleon item.
     /// </summary>
-    public bool IsValidTarget(EntityPrototype proto, SlotFlags chameleonSlot = SlotFlags.NONE, string? requiredTag = null)
+    public bool IsValidTarget(
+        EntityPrototype proto,
+        SlotFlags chameleonSlot = SlotFlags.NONE,
+        string? requiredTag = null,
+        IReadOnlyList<EntProtoId>? allowedPrototypes = null)
     {
         // check if entity is valid
         if (proto.Abstract || proto.HideSpawnMenu)
+            return false;
+
+        if (allowedPrototypes != null && !allowedPrototypes.Contains(proto.ID))
             return false;
 
         // check if it is marked as valid chameleon target
@@ -168,23 +175,16 @@ public abstract partial class SharedChameleonClothingSystem : EntitySystem
     /// <summary>
     ///     Get a list of valid chameleon targets for these slots.
     /// </summary>
-    public IEnumerable<EntProtoId> GetValidTargets(SlotFlags slot, string? tag = null)
+    public IEnumerable<EntProtoId> GetValidTargets(
+        SlotFlags slot,
+        string? tag = null,
+        IReadOnlyList<EntProtoId>? allowedPrototypes = null)
     {
-        var validTargets = new List<EntProtoId>();
-        if (tag != null)
-        {
-            foreach (var proto in _data[slot])
-            {
-                if (IsValidTarget(_proto.Index(proto), slot, tag))
-                    validTargets.Add(proto);
-            }
-        }
-        else
-        {
-            validTargets = _data[slot];
-        }
+        var validTargets = _data[slot];
+        if (tag == null && allowedPrototypes == null)
+            return validTargets;
 
-        return validTargets;
+        return validTargets.Where(proto => IsValidTarget(_proto.Index(proto), slot, tag, allowedPrototypes));
     }
 
     protected void PrepareAllVariants()
