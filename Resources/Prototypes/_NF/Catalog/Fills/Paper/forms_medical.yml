@@ -5,15 +5,11 @@
 # Filled Folder
 - type: entity
   id: BoxFolderMedicalDoctor
-  parent: BoxFolderBase
+  parent: [BoxFolderMedicalDoctorEmpty, BoxFolderFill]
   name: medical doctor folder
   description: A folder filled with medical paperwork templates.
   suffix: Forms
   components:
-  - type: Sprite
-    layers:
-    - state: folder-white
-    - state: folder-base
   - type: StorageFill
     contents:
     - id: PaperWrittenMedicalFormPatientInfo
