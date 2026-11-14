@@ -25,7 +25,9 @@ public sealed partial class GameTicker
         RandomizeLobbyBackground();
     }
 
-    private void RandomizeLobbyBackground() {
-        LobbyBackground = _lobbyBackgrounds!.Any() ? _robustRandom.Pick(_lobbyBackgrounds!).ToString() : null;
+    private void RandomizeLobbyBackground()
+    {
+        // UNEON: use a fixed branded lobby background.
+        LobbyBackground = "/Textures/_UNEON/lobby.png";
     }
 }
