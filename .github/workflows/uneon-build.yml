@@ -1,0 +1,87 @@
+name: UNEON - Build Linux
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: uneon-build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'unemo-tional/frontier-station-14'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+      DOTNET_NOLOGO: '1'
+    steps:
+      - name: Check out UNEON and engine
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore packages
+        run: dotnet restore Content.Packaging/Content.Packaging.csproj
+
+      - name: Build packaging tool
+        run: dotnet build Content.Packaging/Content.Packaging.csproj -c Release --no-restore
+
+      - name: Package Linux server with downloadable client
+        run: dotnet run --project Content.Packaging -c Release --no-build -- server --platform linux-x64 --hybrid-acz --configuration Release
+
+      - name: Verify package and record source
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import zipfile
+          from pathlib import Path
+          package = Path("release/SS14.Server_linux-x64.zip")
+          with zipfile.ZipFile(package) as archive:
+              names = set(archive.namelist())
+              assert "Content.Client.zip" in names, "Client package missing"
+              assert any(n.endswith("Robust.Server.dll") for n in names), "Server missing"
+              assert archive.testzip() is None, "Corrupt ZIP"
+          Path("release/SOURCE.txt").write_text(
+              f"Repository: {os.environ['SOURCE_REPOSITORY']}\n"
+              f"Commit: {os.environ['SOURCE_SHA']}\n"
+              f"Run: {os.environ['RUN_NUMBER']}\n"
+              "Target: linux-x64\nRuntime: .NET 9\n",
+              encoding="utf-8",
+          )
+          PY
+          cd release
+          sha256sum SS14.Server_linux-x64.zip > SHA256SUMS.txt
+
+      - name: Upload installable package
+        uses: actions/upload-artifact@v4
+        with:
+          name: UNEON-linux-x64-${{ github.run_number }}
+          path: |
+            release/SS14.Server_linux-x64.zip
+            release/SOURCE.txt
+            release/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Write build summary
+        run: |
+          echo "## UNEON Linux package" >> "$GITHUB_STEP_SUMMARY"
+          echo "Download the UNEON-linux-x64 artifact below this run." >> "$GITHUB_STEP_SUMMARY"
+          echo "Includes the server and Content.Client.zip for launcher downloads." >> "$GITHUB_STEP_SUMMARY"
+          echo "Source commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow builds a package; it does not restart the VPS." >> "$GITHUB_STEP_SUMMARY"
