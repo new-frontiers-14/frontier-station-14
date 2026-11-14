@@ -1,0 +1,71 @@
+- type: constructionGraph
+  id: GasUnaryStarlight
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: gasinletsiphon
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: gasinletsiphonAlt1
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: gasinletsiphonAlt2
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+  - node: gasinletsiphon
+    entity: GasInletSiphon
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: gasinletsiphonAlt1
+    entity: GasInletSiphonAlt1
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: gasinletsiphonAlt2
+    entity: GasInletSiphonAlt2
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
