@@ -11,8 +11,9 @@ namespace Content.IntegrationTests.Tests.Lobby
     [TestOf(typeof(ServerPreferencesManager))]
     public sealed class CharacterCreationTest
     {
-        [Test]
-        public async Task CreateDeleteCreateTest()
+        [TestCase(null)]
+        [TestCase("Иван Ёлкин")]
+        public async Task CreateDeleteCreateTest(string? name)
         {
             await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
             var server = pair.Server;
@@ -49,6 +50,8 @@ namespace Content.IntegrationTests.Tests.Lobby
                 });
 
                 profile = HumanoidCharacterProfile.Random();
+                if (name != null)
+                    profile = profile.WithName(name);
                 clientPrefManager.CreateCharacter(profile);
 
                 clientCharacters = clientPrefManager.Preferences?.Characters;
@@ -89,6 +92,8 @@ namespace Content.IntegrationTests.Tests.Lobby
             await client.WaitAssertion(() =>
             {
                 profile = HumanoidCharacterProfile.Random();
+                if (name != null)
+                    profile = profile.WithName(name);
 
                 clientPrefManager.CreateCharacter(profile);
 

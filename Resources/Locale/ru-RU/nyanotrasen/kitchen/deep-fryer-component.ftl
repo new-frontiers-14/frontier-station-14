@@ -30,15 +30,15 @@ deep-fryer-button-remove-all-items-tooltip = Удалите все предме�
 
 ## DeepFriedComponent
 
-deep-fried-crispy-item = хрустящий { $entity }
+deep-fried-crispy-item = хрустящий { $baseName }
 deep-fried-crispy-item-examine = Покрыт хрустящей, жирной корочкой.
-deep-fried-fried-item = жареный { $entity }
+deep-fried-fried-item = жареный { $baseName }
 deep-fried-fried-item-examine = Обволакивает толстый слой хрустящей корочки.
-deep-fried-burned-item = подгорелый { $entity }
+deep-fried-burned-item = подгорелый { $baseName }
 deep-fried-burned-item-examine = Почернел от нагара.
 reagent-name-oil-ghee = топлёное масло
 reagent-desc-oil-ghee = Густое и полупрозрачное.
-deep-fried-spooky-item = жуткий {$entity}
+deep-fried-spooky-item = жуткий {$baseName}
 deep-fried-spooky-item-examine = Масляный и полупрозрачный.
-deep-fried-spectral-item = призрачный {$entity}
+deep-fried-spectral-item = призрачный {$baseName}
 deep-fried-spectral-item-examine = Масляный, прозрачный и необычайно лёгкий.
