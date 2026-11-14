@@ -9,13 +9,16 @@ public sealed class MailMetricUiState : BoundUserInterfaceState
     public int UnopenedMailCount { get; }
     public int TotalMail { get; }
     public double SuccessRate { get; }
+    public bool NotificationsEnabled { get; } // Frontier: Mail notification toggle
 
-    public MailMetricUiState(MailStats metrics, int unopenedMailCount)
+    // Frontier: Add notifications enabled parameter
+    public MailMetricUiState(MailStats metrics, int unopenedMailCount, bool notificationsEnabled)
     {
         Metrics = metrics;
         UnopenedMailCount = unopenedMailCount;
         TotalMail = metrics.TotalMail(unopenedMailCount);
         SuccessRate = metrics.SuccessRate(unopenedMailCount);
+        NotificationsEnabled = notificationsEnabled; // Frontier
     }
 }
 
@@ -47,3 +50,15 @@ public partial record struct MailStats
             : 0;
     }
 }
+
+//Frontier: Mail notifications
+/// <summary>
+/// A message to inform the server that a client has toggled its notification status
+/// </summary>
+/// <param name="notificationsEnabled">The new status of the notification</param>
+[Serializable] [NetSerializable]
+public sealed class MailMetricsNotificationToggleMessage(bool notificationsEnabled) : CartridgeMessageEvent
+{
+    public readonly bool NotificationsEnabled = notificationsEnabled;
+}
+//End Frontier
