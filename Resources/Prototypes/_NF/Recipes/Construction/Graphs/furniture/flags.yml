@@ -39,6 +39,31 @@
       - material: Cloth
         amount: 5
         doAfter: 2
+    - to: InterdyneFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+    - to: CybersunFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+    - to: DonkCoFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+    - to: HonkCoFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
   - node: BlankFlag
     entity: BlankFlag
   - node: NTFlag
