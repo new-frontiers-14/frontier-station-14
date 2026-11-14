@@ -1,0 +1,24 @@
+[Unit]
+Description=UNEON Space Station 14
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=uneon
+Group=uneon
+WorkingDirectory=/opt/uneon/current
+ExecStart=/usr/bin/dotnet /opt/uneon/current/Robust.Server.dll --config-file /opt/uneon/config/server.toml --data-dir /opt/uneon/data --cvar log.path=/opt/uneon/data/logs
+Restart=on-failure
+RestartSec=10
+KillSignal=SIGINT
+TimeoutStopSec=120
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/uneon/data
+
+[Install]
+WantedBy=multi-user.target

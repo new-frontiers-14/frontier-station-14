@@ -1,0 +1,132 @@
+name: UNEON - Build Linux
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: uneon-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'unemo-tional/frontier-station-14' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+      DOTNET_NOLOGO: '1'
+    steps:
+      - name: Check out UNEON and engine
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Validate VPS scripts
+        run: |
+          bash -n Tools/uneon/install.sh
+          bash -n Tools/uneon/uneon-update.sh
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          text = Path("Tools/uneon/uneon-update.sh").read_text()
+          for index, block in enumerate(text.split("<<'PY'\n")[1:]):
+              ast.parse(block.split("\nPY\n", 1)[0], filename=f"updater-block-{index}")
+          PY
+
+      - name: Restore packages
+        run: dotnet restore Content.Packaging/Content.Packaging.csproj
+
+      - name: Build packaging tool
+        run: dotnet build Content.Packaging/Content.Packaging.csproj -c Release --no-restore
+
+      - name: Package Linux server with downloadable client
+        run: dotnet run --project Content.Packaging -c Release --no-build -- server --platform linux-x64 --hybrid-acz --configuration Release
+
+      - name: Verify package and record source
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import zipfile
+          import json
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          package = Path("release/SS14.Server_linux-x64.zip")
+          engine = ET.parse("RobustToolbox/MSBuild/Robust.Engine.Version.props").getroot()
+          version = next(node.text for node in engine.iter() if node.tag.split("}")[-1] == "Version")
+          assert version and version[0].isdigit()
+          build = {
+              "engine_version": version,
+              "fork_id": "uneon",
+              "version": os.environ["SOURCE_SHA"],
+          }
+          with zipfile.ZipFile(package, "a", compression=zipfile.ZIP_DEFLATED) as archive:
+              archive.writestr("build.json", json.dumps(build))
+          with zipfile.ZipFile(package) as archive:
+              names = set(archive.namelist())
+              assert "Content.Client.zip" in names, "Client package missing"
+              assert any(n.endswith("Robust.Server.dll") for n in names), "Server missing"
+              assert archive.testzip() is None, "Corrupt ZIP"
+          Path("release/SOURCE.txt").write_text(
+              f"Repository: {os.environ['SOURCE_REPOSITORY']}\n"
+              f"Commit: {os.environ['SOURCE_SHA']}\n"
+              f"Run: {os.environ['RUN_NUMBER']}\n"
+              "Target: linux-x64\nRuntime: .NET 9\n",
+              encoding="utf-8",
+          )
+          PY
+          cd release
+          sha256sum SS14.Server_linux-x64.zip > SHA256SUMS.txt
+
+      - name: Upload installable package
+        uses: actions/upload-artifact@v4
+        with:
+          name: UNEON-linux-x64-${{ github.run_number }}
+          path: |
+            release/SS14.Server_linux-x64.zip
+            release/SOURCE.txt
+            release/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish ready-to-install GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Do not publish an old queued build over a newer master.
+          head=$(gh api "repos/$GITHUB_REPOSITORY/commits/master" --jq .sha)
+          if [ "$head" != "$GITHUB_SHA" ]; then
+            echo "Master changed during this build; leaving this version as an artifact."
+            exit 0
+          fi
+          tag="uneon-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          printf 'UNEON Linux x64\nSource: %s\nInstall on the VPS with uneon-update.\n' "$GITHUB_SHA" > release/NOTES.txt
+          gh release create "$tag" \
+            release/SS14.Server_linux-x64.zip \
+            release/SHA256SUMS.txt release/SOURCE.txt \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "UNEON build $GITHUB_RUN_NUMBER.$GITHUB_RUN_ATTEMPT" \
+            --notes-file release/NOTES.txt --latest
+
+      - name: Write build summary
+        run: |
+          echo "## UNEON Linux package" >> "$GITHUB_STEP_SUMMARY"
+          echo "The ready version is published in this repository Releases; VPS command: uneon-update." >> "$GITHUB_STEP_SUMMARY"
+          echo "Includes the server and Content.Client.zip for launcher downloads." >> "$GITHUB_STEP_SUMMARY"
+          echo "Source commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow builds a package; it does not restart the VPS." >> "$GITHUB_STEP_SUMMARY"
