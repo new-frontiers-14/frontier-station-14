@@ -61,6 +61,18 @@ public sealed class NavInterfaceState
     /// </summary>
     public bool HideTarget = true;
     // End Frontier fields
+
+    // Wayfarer fields
+    /// <summary>
+    /// Whether autopilot is currently enabled on this shuttle.
+    /// </summary>
+    public bool AutopilotEnabled = false;
+
+    /// <summary>
+    /// Whether an autopilot server is installed on this shuttle.
+    /// </summary>
+    public bool HasAutopilotServer = false;
+    // End Wayfarer fields
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
@@ -70,7 +82,9 @@ public sealed class NavInterfaceState
         ServiceFlags serviceFlags, // Frontier
         Vector2? target, // Frontier
         NetEntity? targetEntity, // Frontier
-        bool hideTarget) // Frontier
+        bool hideTarget, // Frontier
+        bool autopilotEnabled = false, // Wayfarer
+        bool hasAutopilotServer = false) // Wayfarer
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
@@ -81,6 +95,8 @@ public sealed class NavInterfaceState
         Target = target; // Frontier
         TargetEntity = targetEntity; // Frontier
         HideTarget = hideTarget; // Frontier
+        AutopilotEnabled = autopilotEnabled; // Wayfarer
+        HasAutopilotServer = hasAutopilotServer; // Wayfarer
     }
 }
 

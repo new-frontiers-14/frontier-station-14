@@ -88,11 +88,17 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Fro
         {
             ent.Comp.TargetEntity = targetUid.Value;
             ent.Comp.Target = _transform.GetMapCoordinates(xform).Position;
+            // Store the target entity name
+            if (TryComp<MetaDataComponent>(targetUid, out var metaData))
+                ent.Comp.TargetEntityName = metaData.EntityName;
+            else
+                ent.Comp.TargetEntityName = null;
         }
         else
         {
             ent.Comp.Target = target;
             ent.Comp.TargetEntity = null;
+            ent.Comp.TargetEntityName = null;
         }
         Dirty(ent);
     }

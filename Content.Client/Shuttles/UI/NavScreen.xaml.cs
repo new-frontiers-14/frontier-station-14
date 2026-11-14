@@ -35,6 +35,7 @@ public sealed partial class NavScreen : BoxContainer
         DockToggle.Pressed = NavRadar.ShowDocks;
 
         NfInitialize(); // Frontier Initialization for the NavScreen
+        WfInitialize(); // Wayfarer Initialization for the NavScreen
     }
 
     // Frontier - IFF search
@@ -86,6 +87,7 @@ public sealed partial class NavScreen : BoxContainer
     {
         NavRadar.UpdateState(scc);
         NfUpdateState(scc); // Frontier Update State
+        WfUpdateState(scc); // Wayfarer Update State
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
