@@ -146,6 +146,19 @@
     castShadows: false
     color: "#ffca1b"
   - type: NFTreasure # Frontier
+  # Frontier - HONK STAMP
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-honk
+    stampState: "paper_stamp-clown"
+    stampLargeIcon: "/Textures/_NF/Interface/Stamps/large_stamp-honk.png"
+    reapply: true
+    sound:
+      collection: BikeHorn
+  - type: UseDelay
+    delays:
+      stamp:
+        length: 1.0
+  # End Frontier
 
 - type: entity
   parent: BikeHorn
