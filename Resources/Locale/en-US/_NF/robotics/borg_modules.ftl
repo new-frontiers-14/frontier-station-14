@@ -8,6 +8,7 @@ borg-slot-bucket-empty = Bucket
 borg-slot-pill-empty = Pill
 borg-slot-pillcanister-empty = Pill Canister
 borg-slot-cash-empty = Cash
+borg-slot-chembag-empty = Chemistry bag
 borg-slot-cleanade-empty = Cleanade
 borg-slot-compressed-matter-empty = Compressed matter
 borg-slot-construction-bag-empty = Construction bag
