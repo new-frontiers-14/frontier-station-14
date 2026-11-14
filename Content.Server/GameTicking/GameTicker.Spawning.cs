@@ -4,7 +4,6 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
-using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
@@ -491,7 +490,8 @@ namespace Content.Server.GameTicking
                 var spawn = _robustRandom.Pick(_possiblePositions);
                 var toMap = _transform.ToMapCoordinates(spawn);
 
-                if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
+                if (_map.TryFindGridAt(toMap, out var gridUid, out _))
+
                 {
                     var gridXform = Transform(gridUid);
 

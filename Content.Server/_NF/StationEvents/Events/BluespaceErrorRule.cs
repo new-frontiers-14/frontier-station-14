@@ -1,35 +1,35 @@
+using System;
 using System.Numerics;
+using System.Runtime.Intrinsics;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Salvage;
+using Content.Shared.Trigger.Components.Triggers;
+using Content.Shared._NF.Bank.BUI;
 using Content.Server.Cargo.Systems;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map;
+using Content.Server.GameTicking;
+using Content.Server.Maps.NameGenerators;
+using Content.Server.Procedural;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
-using Robust.Shared.Random;
-using Content.Server._NF.Salvage;
-using Content.Server._NF.Bank;
-using Content.Shared._NF.Bank.BUI;
-using Content.Server.GameTicking;
-using Content.Server.Procedural;
-using Robust.Shared.Prototypes;
-using Content.Shared.Salvage;
-using Content.Server.Maps.NameGenerators;
 using Content.Server.StationEvents.Events;
+using Content.Server._NF.Bank;
+using Content.Server._NF.Salvage;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
-using System.Runtime.Intrinsics;
-using Content.Shared.Trigger.Components.Triggers;
-using System;
+using Robust.Shared.Map;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Server.GameObjects;
+
 
 namespace Content.Server._NF.StationEvents.Events;
 
 public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
     NanotrasenNameGenerator _nameGenerator = new();
-    [Dependency] private IMapManager _mapManager = default!;
+
     [Dependency] private MapSystem _map = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
@@ -187,7 +187,7 @@ public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErr
 
         _mapSystem.CreateMap(out var mapId);
 
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
+        var spawnedGrid = _mapSystem.CreateGridEntity(mapId);
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProtoId, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);

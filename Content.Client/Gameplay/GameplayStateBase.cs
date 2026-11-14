@@ -20,7 +20,6 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using YamlDotNet.Serialization.TypeInspectors;
 
 namespace Content.Client.Gameplay
 {
@@ -35,7 +34,6 @@ namespace Content.Client.Gameplay
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private IGameTiming _timing = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] protected IUserInterfaceManager UserInterfaceManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private IViewVariablesManager _vvm = default!;
@@ -222,7 +220,7 @@ namespace Content.Client.Gameplay
                 var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
                 var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
 
-                coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _) ?
+                coordinates = mapSystem.TryFindGridAt(mousePosWorld, out var uid, out _) ?
                     mapSystem.MapToGrid(uid, mousePosWorld) :
                     transformSystem.ToCoordinates(mousePosWorld);
             }

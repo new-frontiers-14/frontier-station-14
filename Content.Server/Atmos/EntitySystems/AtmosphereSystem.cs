@@ -1,6 +1,5 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
-using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking; // Frontier
 using Content.Server.NodeContainer.EntitySystems;
@@ -25,7 +24,6 @@ namespace Content.Server.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;

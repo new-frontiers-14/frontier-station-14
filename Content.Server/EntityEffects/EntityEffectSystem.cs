@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -37,7 +36,6 @@ using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -58,7 +56,6 @@ public sealed partial class EntityEffectSystem : EntitySystem
     [Dependency] private ExplosionSystem _explosion = default!;
     [Dependency] private FlammableSystem _flammable = default!;
     [Dependency] private SharedFlashSystem _flash = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -538,7 +535,7 @@ public sealed partial class EntityEffectSystem : EntitySystem
             var transform = Comp<TransformComponent>(reagentArgs.TargetEntity);
             var mapCoords = _xform.GetMapCoordinates(reagentArgs.TargetEntity, xform: transform);
 
-            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
+            if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
                 !_map.TryGetTileRef(gridUid, grid, transform.Coordinates, out var tileRef))
             {
                 return;

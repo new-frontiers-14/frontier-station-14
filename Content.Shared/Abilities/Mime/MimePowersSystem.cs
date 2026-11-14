@@ -9,7 +9,6 @@ using Content.Shared.Paper;
 using Content.Shared.Physics;
 using Content.Shared.Speech.Muting;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Abilities.Mime;
@@ -20,7 +19,6 @@ public sealed partial class MimePowersSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private AlertsSystem _alertsSystem = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private IMapManager _mapMan = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IGameTiming _timing = default!;
 
@@ -90,7 +88,7 @@ public sealed partial class MimePowersSystem : EntitySystem
         var xform = Transform(ent);
         // Get the tile in front of the mime
         var offsetValue = xform.LocalRotation.ToWorldVec();
-        var coords = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager, _mapMan);
+        var coords = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager);
         var tile = _turf.GetTileRef(coords);
         if (tile == null)
             return;

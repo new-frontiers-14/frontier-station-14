@@ -1,38 +1,34 @@
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Content.Server.Atmos;
-using Content.Server.Atmos.Components;
+using ChunkIndicesEnumerator = Robust.Shared.Map.Enumerators.ChunkIndicesEnumerator;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Atmos;
-using Content.Shared.Decals;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
 using Content.Shared.Light.Components;
-using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Layers;
 using Content.Shared.Parallax.Biomes.Markers;
+using Content.Shared.Parallax.Biomes;
 using Content.Shared.Tag;
 using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Player;
-using Robust.Shared;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
+using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Threading;
 using Robust.Shared.Utility;
-using ChunkIndicesEnumerator = Robust.Shared.Map.Enumerators.ChunkIndicesEnumerator;
+using Robust.Shared;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Content.Server.Parallax;
 
@@ -40,7 +36,6 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 {
     [Dependency] private IConfigurationManager _configManager = default!;
     [Dependency] private IConsoleHost _console = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IParallelManager _parallel = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -137,7 +132,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         {
             var setTiles = new List<(Vector2i Index, Tile tile)>();
 
-            foreach (var grid in _mapManager.GetAllGrids(mapId))
+            foreach (var grid in _mapSystem.GetAllGrids(mapId))
             {
                 if (!_fixturesQuery.TryGetComponent(grid.Owner, out var fixtures))
                     continue;

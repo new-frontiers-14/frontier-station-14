@@ -2,8 +2,6 @@ using Content.Server.Radio.EntitySystems;
 using Content.Shared.Radio;
 using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Chat.Managers;
@@ -16,7 +14,6 @@ using Content.Shared.Construction.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
-using Content.Shared.Labels.EntitySystems;
 using Robust.Shared.EntitySerialization.Systems;
 using Content.Shared.Salvage.Expeditions; // Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
@@ -28,7 +25,6 @@ namespace Content.Server.Salvage
         [Dependency] private IChatManager _chat = default!;
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private ILogManager _logManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private AnchorableSystem _anchorable = default!;

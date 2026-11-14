@@ -1,15 +1,10 @@
 using System.Linq;
 using Content.Client.Gameplay;
-using Content.Shared.CombatMode;
 using Content.Shared.Effects;
-using Content.Shared.Hands.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Wieldable.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -101,7 +96,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         EntityCoordinates coordinates;
 
-        if (MapManager.TryFindGridAt(mousePos, out var gridUid, out _))
+        if (Maps.TryFindGridAt(mousePos, out var gridUid, out _))
         {
             coordinates = TransformSystem.ToCoordinates(gridUid, mousePos);
         }
