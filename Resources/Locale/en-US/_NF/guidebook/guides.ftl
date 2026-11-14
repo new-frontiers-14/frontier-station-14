@@ -143,6 +143,7 @@ guide-entry-shipyard-fighter = Fighter
 guide-entry-shipyard-heimdall = Heimdall
 guide-entry-shipyard-hospitaller = Hospitaller
 guide-entry-shipyard-hypnos = Hypnos
+guide-entry-shipyard-cataphract = Cataphract
 guide-entry-shipyard-paladin = Paladin
 guide-entry-shipyard-prowler = Prowler
 guide-entry-shipyard-rogue = Rogue
