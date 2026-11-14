@@ -8,7 +8,7 @@ Type=simple
 User=uneon
 Group=uneon
 WorkingDirectory=/opt/uneon/current
-ExecStart=/usr/bin/dotnet /opt/uneon/current/Robust.Server.dll --config-file /opt/uneon/config/server.toml --data-dir /opt/uneon/data
+ExecStart=/usr/bin/dotnet /opt/uneon/current/Robust.Server.dll --config-file /opt/uneon/config/server.toml --data-dir /opt/uneon/data --cvar log.path=/opt/uneon/data/logs
 Restart=on-failure
 RestartSec=10
 KillSignal=SIGINT
