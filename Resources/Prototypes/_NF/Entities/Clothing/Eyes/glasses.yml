@@ -89,3 +89,19 @@
   - type: ToggleClothing
     action: ActionToggleTray
   - type: TrayScanner
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons]
+  id: NFClothingEyesGlassesMesonMedical
+  name: medson goggles
+  description: Blue-tinted protective goggles with an inbuilt Medical Hud for providing accurate data about a person's health.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Glasses/meson_medical.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Glasses/meson_medical.rsi
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: StaticPrice
+    price: 150
