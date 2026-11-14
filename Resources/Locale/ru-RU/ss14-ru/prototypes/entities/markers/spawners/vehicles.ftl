@@ -1,0 +1,12 @@
+ent-SpawnVehicleSecway = спавнер сигвея
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnVehicleJanicart = спавнер уборочной машины
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnVehicleATV = спавнер квадроцикла
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnVehicleMotobike = спавнер мотоцикла
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnVehicleWheelchair = спавнер кресла коляски
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnVehicleWheelchairFolded = спавнер кресла коляски (сложенной)
+    .desc = { ent-MarkerBase.desc }

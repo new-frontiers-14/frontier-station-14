@@ -1,0 +1,12 @@
+ent-PinpointerSyndicatePOI = { ent-PinpointerSyndicateNuclear }
+    .desc = { ent-PinpointerBase.desc }
+    .suffix = Чарли
+ent-PinpointerSyndicateBravo = { ent-PinpointerSyndicateNuclear }
+    .desc = { ent-PinpointerBase.desc }
+    .suffix = Браво
+ent-PinpointerSyndicateAlfa = { ent-PinpointerSyndicateNuclear }
+    .desc = { ent-PinpointerBase.desc }
+    .suffix = Альфа
+ent-PinpointerSyndicateEpsilon = { ent-PinpointerSyndicateNuclear }
+    .desc = { ent-PinpointerBase.desc }
+    .suffix = Эпсилон

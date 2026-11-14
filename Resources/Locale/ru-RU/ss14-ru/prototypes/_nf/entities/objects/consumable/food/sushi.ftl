@@ -1,0 +1,21 @@
+ent-FoodMealCarpSushi = ролл с карпом
+    .desc = Определенно стоит рискнуть.
+ent-FoodMealCarpSushiSlice = ломтик ролла с карпом
+    .desc = Определенно стоит рискнуть.
+ent-FoodMealAvocadoSushi = ролл с авокадо
+    .desc = Откуда взялись водоросли?
+ent-FoodMealAvocadoSushiSlice = ломтик ролла с авокадо
+    .desc = { ent-FoodMealAvocadoSushi.desc }
+ent-FoodMealGasSafeSushiSlice = ролл с заправки
+    .desc = Стоит ли ради этого рисковать?
+ent-FoodMealGasBadSushiSlice = { ent-FoodMealGasSafeSushiSlice }
+    .desc = { ent-FoodMealGasSafeSushiSlice.desc }
+ent-FoodMealCuredCarpSushiSlice = свежий ролл
+  .desc = Ещё менее рискованно, но все равно вкусно. Вы всё еще не уверены, откуда взялись морские водоросли.
+
+ent-CuredCarpSushi = свежий ролл с рыбой
+    .desc = Менее рискованно, но всё ещё вкусно. Вы всё ещё не уверены, откуда взялись морские водоросли.
+ent-FoodMealGasSafeSushi = ролл с заправки
+    .desc = Стоит ли ради этого рисковать?
+ent-FoodMealGasBadSushi = испорченный ролл с заправки
+    .desc = Точно не стоит рисковать — последствия будут неприятными.

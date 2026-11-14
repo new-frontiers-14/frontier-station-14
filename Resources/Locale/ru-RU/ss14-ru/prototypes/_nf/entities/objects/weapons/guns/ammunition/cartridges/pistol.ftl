@@ -1,0 +1,16 @@
+ent-NFCartridgePistol35 = патрон (.35 пистолетный)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol35Overpressure = патрон (.35 пистолетный высокоскоростной)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol35Incendiary = патрон (.35 пистолетный зажигательный)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol35Uranium = патрон (.35 пистолетный урановый)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol35Practice = патрон (.35 пистолетный тренировочный)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol35Rubber = патрон (.35 пистолетный резиновый)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFBulletPistol35Emp = патрон (.35 пистолетный ЭМИ)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45AP = патрон (.45 магнум бронебойный)
+    .desc = { ent-BaseCartridgeRifle.desc }

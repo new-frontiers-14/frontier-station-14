@@ -1,0 +1,12 @@
+ent-SpawnMobWeaponTurretLaserSyndicateNF = спавнер лазерной турели синдиката
+    .suffix = Синдикат, Фронтир
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobWeaponTurretSyndicate = спавнер баллистической турели синдиката
+    .suffix = Синдикат, Фронтир
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobWeaponTurretLaserNanoTrasenDeployed = спавнер САЛТ
+    .suffix = NT, Фронтир
+    .desc = { ent-MarkerBase.desc }
+ent-NFSpawnMobWeaponTurretLaserSyndicate = { ent-SpawnMobWeaponTurretLaserNanoTrasenDeployed }
+    .suffix = Синдикат, Фронтир
+    .desc = { ent-MarkerBase.desc }

@@ -1,0 +1,1 @@
+stack-tyriumpack = пакет тириума

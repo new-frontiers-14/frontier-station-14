@@ -1,0 +1,9 @@
+ent-ClothingOuterArmorSrCarapace = панцирь представителя
+    .desc = Бронированный нагрудник, обеспечивающий защиту и при этом обладающий мобильностью и гибкостью. Выдается только лучшим представителям станции.
+ent-ClothingOuterBioArmoredSyndicate = биозащитный костюм
+    .desc = Продвинутый костюм, защищающий от биологического заражения, для любителей военных преступлений.
+    .suffix = Синдикат
+ent-ClothingOuterArmorNfsd = бронежилет ДСБФ
+    .desc = Позволяет выжить получив пулю. Возможно.
+ent-ClothingOuterVestWebMercenaryBlack = { ent-ClothingOuterVestWebMercenary }
+    .desc = { ent-ClothingOuterVestWebMercenary.desc }

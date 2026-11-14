@@ -1,0 +1,16 @@
+ent-NFCartridgePistol45 = патрон (.45 магнум)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45Overpressure = патрон (.45 магнум высокоскоростной)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45Incendiary = патрон (.45 магнум зажигательный)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45Uranium = патрон (.45 магнум урановый)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45Practice = патрон (.45 магнум тренировочный)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45Rubber = патрон (.45 магнум резиновый)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45Emp = патрон (.45 магнум ЭМИ)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-NFCartridgePistol45BB = патрон (.45 магнум бронебойный)
+    .desc = { ent-BaseCartridgeRifle.desc }

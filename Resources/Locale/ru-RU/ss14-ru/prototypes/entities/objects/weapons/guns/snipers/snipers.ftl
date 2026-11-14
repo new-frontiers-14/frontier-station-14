@@ -1,0 +1,17 @@
+ent-BaseWeaponSniper = BaseWeaponSniper
+    .desc = Дерзай — налетай, целься и стреляй.
+ent-NFWeaponRifleBarlowsBolt = Кардашёв-Мосин
+    .desc = Легальное гражданское оружие. Оружие охоты, или бесконечной окопной войны. Использует патроны калибра .30 винтовочный.
+    .suffix = Винтовка
+ent-NFWeaponRifleBarlowsBoltLessLethal = { ent-NFWeaponRifleBarlowsBolt }
+    .desc = { ent-NFWeaponRifleBarlowsBolt.desc }
+    .suffix = Винтовка, Травматический
+ent-NFWeaponRifleSniperHristov = Христов
+    .desc = Портативная крупнокалиберная снайперская винтовка. Стреляет мощными бронебойными патронами, калибра .60 крупнокалиберный. Запрещено к использованию гражданскими.
+    .suffix = Винтовка
+ent-NFWeaponPistolFlintlock = кремнёвый пистолет
+    .desc = Спутник пирата. Яррр! Использует патроны калибра .60 крупнокалиберный.
+    .suffix = Пистолет, Винтовка
+ent-NFWeaponRifleMusket = мушкет
+    .desc = Нелегальное оружие. Оно должно было оказаться в музее задолго до твоего рождения. Использует патроны калибра .60 крупнокалиберный.
+    .suffix = Винтовка

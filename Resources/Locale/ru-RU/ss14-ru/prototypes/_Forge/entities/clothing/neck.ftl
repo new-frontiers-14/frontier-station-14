@@ -1,0 +1,19 @@
+ent-ClothingNeckPonchoParamedic = пончо парамедика
+    .desc = Рекламируется как шедевр защиты от непогоды. На деле - колется, душное и слегка мешковатое. Зато, по крайней мере, не холодно. Это пончо с крестом, в цветах парамедика.
+ent-ClothingNeckMantleSheriffLight = мантия шерифа
+    .desc = Перестрелки с применением ядерного оружия - это просто очередной вторник для шерифа. Эта мантия - символ преданности своему участку.
+
+ent-ClothingNeckScarfBlackNiko = длинный чёрный кошачий шарф
+    .desc = Я не кот!
+ent-ClothingNeckScarfBlueNiko = длинный синий кошачий шарф
+    .desc = Я не кот!
+ent-ClothingNeckScarfGrayNiko = длинный серый кошачий шарф
+    .desc = Я не кот!
+ent-ClothingNeckScarfGreenNiko = длинный зелёный кошачий шарф
+    .desc = Я не кот!
+ent-ClothingNeckScarfPurpleNiko = длинный фиолетовый кошачий шарф
+    .desc = Я не кот!
+ent-ClothingNeckScarfRedNiko = длинный красный кошачий шарф
+    .desc = Я не кот!
+ent-ClothingNeckScarfYellowNiko = длинный жёлтый кошачий шарф
+    .desc = Я не кот!

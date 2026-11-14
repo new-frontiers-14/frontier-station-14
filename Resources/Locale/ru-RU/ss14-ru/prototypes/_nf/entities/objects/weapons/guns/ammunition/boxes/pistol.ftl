@@ -1,0 +1,16 @@
+ent-NFAmmunitionBoxPistol35 = коробка патронов (.35 пистолетный)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol35Overpressure = коробка патронов (.35 пистолетный высокоскоростные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol35Incendiary = коробка патронов (.35 пистолетный зажигательные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol35Uranium = коробка патронов (.35 пистолетный урановые)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol35Practice = коробка патронов (.35 пистолетный тренировочные)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol35Rubber = коробка патронов (.35 пистолетный резиновые)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol35Emp = коробка патронов (.35 пистолетный ЭМИ)
+    .desc = { ent-BaseMagazineBoxRifle.desc }
+ent-NFAmmunitionBoxPistol45Emp = коробка патронов (.45 магнум ЭМИ)
+    .desc = { ent-BaseMagazineBoxRifle.desc }

@@ -1,0 +1,3 @@
+station-event-bluespace-mercenary-ftl-start-announcement = Внимание всему персоналу NanoTrasen! Командование флота NanoTrasen обнаружило шаттл неизвестной организации, входящий в ваш сектор. Капитаны, аффилированные с NanoTrasen, должны проявлять осторожность. NanoTrasen не несет ответственности за полученные повреждения или потерю жизни.
+station-event-bluespace-mercenary-ftl-warning-announcement = Запущены удалённые FTL процедуры, осталось пять минут до рассеивания шаттла неизвестной организации.
+station-event-bluespace-mercenary-ftl-end-announcement = В соответствии с протоколами блюспейс-передвижений NanoTrasen, шаттл неизвестной организации был перемещён для избежания столкновений.

@@ -1,0 +1,24 @@
+dungeon-boss-grid-warning = Возвращайтесь в комплекс.
+
+salvage-faction-syndicate = Синдикат
+salvage-faction-cultists = Культисты
+salvage-faction-flesh = Плоть
+salvage-faction-argocytes = Аргоциты
+salvage-faction-dinosaurs = Динозавры
+salvage-faction-mercenaries = Наёмники
+salvage-faction-explorers = Исследователи
+salvage-faction-silicons = ИИ Мятежники
+salvage-faction-punks = Панки
+salvage-faction-carps = Карпы
+salvage-faction-xenos = Ксеносы
+nf-salvage-faction-xenos = Ксено
+nf-salvage-faction-carps = Карпы
+nf-salvage-faction-syndicate = Синдикат
+nf-salvage-faction-cultists = Культисты
+nf-salvage-faction-flesh = Плоть
+nf-salvage-faction-argocytes = Аргоциты
+nf-salvage-faction-dinosaurs = Динозавры
+nf-salvage-faction-mercenaries = Наемники
+nf-salvage-faction-explorers = Исследователи
+nf-salvage-faction-silicons = Сбойный ИИ
+nf-salvage-faction-punks = Панки

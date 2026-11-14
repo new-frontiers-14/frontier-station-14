@@ -1,0 +1,17 @@
+ent-DebugMechEquipment = { "" }
+    .suffix = DEBUG
+    .desc = { "" }
+ent-CombatMechEquipment = { "" }
+    .desc = { "" }
+ent-IndustrialMechEquipment = { "" }
+    .desc = { "" }
+ent-SpecialMechEquipment = { "" }
+    .desc = { "" }
+ent-SmallMechEquipment = { "" }
+    .desc = { "" }
+ent-MechAirTank = воздушный баллон экзокостюма
+    .desc = Специальный баллон для воздуха, способный вместить большое количество воздуха.
+ent-MechAirTankFilled = { ent-MechAirTank }
+    .desc = { ent-MechAirTank.desc }
+ent-MechThruster = двигатель экзоскелета
+    .desc = Двигатель, с помощью которого экзокостюм может безопасно перемещаться в условиях отсутствия гравитации.

@@ -1,0 +1,9 @@
+ent-MailSecurityFlashlight = { ent-BaseMail }
+    .suffix = вспышки
+    .desc = { ent-BaseMail.desc }
+ent-MailSecuritySpaceLaw = { ent-BaseMail }
+    .suffix = космический закон
+    .desc = { ent-BaseMail.desc }
+ent-MailWardenCrowdControl = { ent-BaseMail }
+    .suffix = контроль толпы
+    .desc = { ent-BaseMail.desc }
