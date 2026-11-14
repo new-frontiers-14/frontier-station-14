@@ -15,7 +15,13 @@ namespace Content.IntegrationTests.Tests.Lobby
         [TestCase("Иван Ёлкин")]
         public async Task CreateDeleteCreateTest(string? name)
         {
-            await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
+            // Character preferences persist in pooled pairs. Isolate each test case's database.
+            await using var pair = await PoolManager.GetServerClient(new PoolSettings
+            {
+                InLobby = true,
+                Fresh = true,
+                Destructive = true,
+            });
             var server = pair.Server;
             var client = pair.Client;
 
