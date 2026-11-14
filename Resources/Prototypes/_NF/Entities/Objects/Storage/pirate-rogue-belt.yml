@@ -1,0 +1,63 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltPirateRogueBelt
+  name: rogue belt
+  description: A handy belt designed to hold a rapier in the front and a dagger on the back.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Clothing/Belt/pirate_rogue_belt/pirate_rogue_belt.rsi
+    state: sheath
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _NF/Objects/Clothing/Belt/pirate_rogue_belt/pirate_rogue_belt.rsi
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,7,1
+  - type: ItemSlots #adjust how items are stored
+    slots:
+      rapierSlot:
+        name: clothing-belt-rapier
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - NFPirateRapier
+        priority: 2
+        ejectOnBreak: true
+      thrustingDaggerSlot:
+        name: clothing-belt-thrustingDagger
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - NFPirateThrustingDagger
+        priority: 1
+        ejectOnBreak: true
+  - type: ItemMapper #adjust how items are displayed
+    mapLayers:
+      pirateRapier:
+        whitelist:
+          tags:
+          - NFPirateRapier
+      pirateThrustingDagger:
+        whitelist:
+          tags:
+          - NFPirateThrustingDagger
+    sprite: _NF/Objects/Clothing/Belt/pirate_rogue_belt/pirate_rogue_belt.rsi/belt_overlay.rsi
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      rapierSlot: !type:ContainerSlot {}
+      thrustingDaggerSlot: !type:ContainerSlot {}
+  - type: Appearance
+  - type: Tag
+    tags:
+    - BeltSlotNotBelt
