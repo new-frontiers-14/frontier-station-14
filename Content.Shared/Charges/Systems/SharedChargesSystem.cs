@@ -7,10 +7,10 @@ using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Charges.Systems;
 
-public abstract class SharedChargesSystem : EntitySystem
+public abstract partial class SharedChargesSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!; // Frontier
+    [Dependency] protected IGameTiming _timing = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!; // Frontier
 
     /*
      * Despite what a bunch of systems do you don't need to continuously tick linear number updates and can just derive it easily.

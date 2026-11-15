@@ -20,12 +20,12 @@ namespace Content.Server._NF.Manufacturing.EntitySystems;
 /// <inheritdoc/>
 public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPowerConsumerSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-    [Dependency] private readonly NodeContainerSystem _node = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private MaterialStorageSystem _materialStorage = default!;
+    [Dependency] private NodeContainerSystem _node = default!;
+    [Dependency] private NodeGroupSystem _nodeGroup = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     private EntityQuery<AppearanceComponent> _appearanceQuery;
 

@@ -18,8 +18,8 @@ namespace Content.Client._NF.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class NFShuttleDockControl : BaseShuttleControl
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     private readonly DockingSystem _dockSystem;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;

@@ -9,13 +9,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
+public sealed partial class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
 {
     private static readonly ProtoId<LocalizedDatasetPrototype> DataSourceNames = "NFRandomSentienceEventData"; // Frontier: add NF prefix
     private static readonly ProtoId<LocalizedDatasetPrototype> IntelligenceLevelNames = "NFRandomSentienceEventStrength"; // Frontier: add NF prefix
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Started(EntityUid uid, RandomSentienceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -26,7 +26,7 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
         var query = EntityQueryEnumerator<SentienceTargetComponent, TransformComponent>();
         while (query.MoveNext(out var targetUid, out var target, out var xform))
         {
-            if (StationSystem.GetOwningStation(targetUid, xform) != station)
+            if (StationSystem.GetOwningStation(targetUid, xform) != station || target.Weight <= 0) // Frontier: No Admin PDA will be sentient again.
                 continue;
 
             targetList.Add((targetUid, target));

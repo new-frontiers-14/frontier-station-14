@@ -11,9 +11,9 @@ namespace Content.Server.Construction;
 
 public sealed partial class ConstructionSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly StationSystem _station = default!; // Frontier
-    [Dependency] private readonly BindToStationSystem _bindToStation = default!; // Frontier
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private StationSystem _station = default!; // Frontier
+    [Dependency] private BindToStationSystem _bindToStation = default!; // Frontier
 
     private void InitializeComputer()
     {

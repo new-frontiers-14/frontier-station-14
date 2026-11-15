@@ -9,7 +9,7 @@ namespace Content.Client._NF.Kitchen.UI
     [GenerateTypedNameReferences]
     public sealed partial class AssemblerMenu : FancyWindow
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private IGameTiming _timing = default!;
 
         public bool IsBusy;
         public TimeSpan CurrentCooktimeEnd;
