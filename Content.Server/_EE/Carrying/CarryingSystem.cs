@@ -33,25 +33,26 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Hands.EntitySystems; // Frontier
+using Content.Server._NF.CryoSleep; // Frontier
 
 namespace Content.Server.Carrying
 {
-    public sealed class CarryingSystem : EntitySystem
+    public sealed partial class CarryingSystem : EntitySystem
     {
-        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
-        [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
-        [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly StandingStateSystem _standingState = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-        [Dependency] private readonly PullingSystem _pullingSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-        [Dependency] private readonly EscapeInventorySystem _escapeInventorySystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-        [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
-        [Dependency] private readonly ContestsSystem _contests = default!;
-        [Dependency] private readonly TransformSystem _transform = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!; // Frontier
+        [Dependency] private VirtualItemSystem _virtualItemSystem = default!;
+        [Dependency] private CarryingSlowdownSystem _slowdown = default!;
+        [Dependency] private DoAfterSystem _doAfterSystem = default!;
+        [Dependency] private StandingStateSystem _standingState = default!;
+        [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+        [Dependency] private PullingSystem _pullingSystem = default!;
+        [Dependency] private MobStateSystem _mobStateSystem = default!;
+        [Dependency] private EscapeInventorySystem _escapeInventorySystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+        [Dependency] private PseudoItemSystem _pseudoItem = default!;
+        [Dependency] private ContestsSystem _contests = default!;
+        [Dependency] private TransformSystem _transform = default!;
+        [Dependency] private SharedHandsSystem _hands = default!; // Frontier
 
         public const float BaseDistanceCoeff = 0.5f; // Frontier: default throwing speed reduction
         public const float MaxDistanceCoeff = 1.0f; // Frontier: default throwing speed reduction
@@ -78,7 +79,15 @@ namespace Content.Server.Carrying
             SubscribeLocalEvent<BeingCarriedComponent, StrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<BeingCarriedComponent, UnstrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<BeingCarriedComponent, CryosleepEnterEvent>(OnCarriedCryoEnter); //Frontier
         }
+
+        //Frontier Begin - Remove virtual item when cryosleeping held character
+        private void OnCarriedCryoEnter(Entity<BeingCarriedComponent> ent, ref CryosleepEnterEvent args)
+        {
+            DropCarried(ent.Comp.Carrier, ent, attachToMap: false);
+        }
+        //Frontier End
 
         private void AddCarryVerb(EntityUid uid, CarriableComponent component, GetVerbsEvent<AlternativeVerb> args)
         {
@@ -321,7 +330,7 @@ namespace Content.Server.Carrying
             return true;
         }
 
-        public void DropCarried(EntityUid carrier, EntityUid carried)
+        public void DropCarried(EntityUid carrier, EntityUid carried, bool attachToMap = true) //Frontier add attachToMap parameter
         {
             RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recursively fire that event
             RemComp<CarryingSlowdownComponent>(carrier);
@@ -329,7 +338,12 @@ namespace Content.Server.Carrying
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
-            _transform.AttachToGridOrMap(carried);
+            //Begin Frontier: Drop person carried when dragging to cryo
+            if (attachToMap)
+            {
+                _transform.AttachToGridOrMap(carried);
+            }
+            //End Frontier
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
         }
@@ -373,7 +387,7 @@ namespace Content.Server.Carrying
                 // when this happens, it needs to be dropped because it leads to weird behavior
                 if (xform.ParentUid != carrier)
                 {
-                    DropCarried(carrier, carried);
+                    DropCarried(carrier, carried, attachToMap: false);
                     continue;
                 }
 

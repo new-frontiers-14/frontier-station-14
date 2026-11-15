@@ -64,6 +64,7 @@
     sprite: Structures/Machines/microwave.rsi
     drawdepth: SmallObjects
     snapCardinals: true
+    offset: "0.0,0.2"
     layers:
     - state: mw0
       map: ["enum.MicrowaveVisualizerLayers.Base"]
@@ -139,3 +140,24 @@
     providedRecipes:
     - RecipeBaguetteSword
     - RecipeThrowingCroissant
+  - type: Item
+    sprite: Structures/Machines/microwave_syndie.rsi
+    size: Ginormous
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 30
+        Shock: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 15
+  - type: DamageOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 25

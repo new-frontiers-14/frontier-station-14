@@ -12,13 +12,13 @@ using Content.Shared.Remotes.EntitySystems;
 
 namespace Content.Shared.Remotes
 {
-    public sealed class DoorRemoteSystem : SharedDoorRemoteSystem
+    public sealed partial class DoorRemoteSystem : SharedDoorRemoteSystem
     {
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AirlockSystem _airlock = default!;
-        [Dependency] private readonly DoorSystem _doorSystem = default!;
-        [Dependency] private readonly ExamineSystemShared _examine = default!;
-        [Dependency] private readonly GridAccessSystem _gridAccessSystem = default!; // Frontier
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private AirlockSystem _airlock = default!;
+        [Dependency] private DoorSystem _doorSystem = default!;
+        [Dependency] private ExamineSystemShared _examine = default!;
+        [Dependency] private GridAccessSystem _gridAccessSystem = default!; // Frontier
 
         public override void Initialize()
         {
