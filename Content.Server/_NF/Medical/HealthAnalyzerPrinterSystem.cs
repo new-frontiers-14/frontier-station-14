@@ -22,17 +22,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Medical;
 
-public sealed class HealthAnalyzerPrinterSystem : EntitySystem
+public sealed partial class HealthAnalyzerPrinterSystem : EntitySystem
 {
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly LabelSystem _label = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedGameTicker _gameTicker = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private LabelSystem _label = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
 
     private static readonly Regex TemplateInsert = new(@"\{([\w.]+)\}");
 

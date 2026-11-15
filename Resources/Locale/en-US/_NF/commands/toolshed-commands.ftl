@@ -4,3 +4,4 @@ command-description-drm-bindto =
     Binds a machine, computer or similar to the specified station.
 command-description-drm-unbind =
     Removes all DRM protection from a machine, computer or similar.
+cmd-hint-station-id = <StationID>

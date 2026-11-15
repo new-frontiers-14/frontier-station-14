@@ -21,6 +21,7 @@ seeds-cabbage-display-name = cabbages
 seeds-garlic-name = garlic head
 seeds-garlic-display-name = garlic heads
 seeds-lemon-name = lemon
+seeds-lemoon-name = lemoon
 seeds-lemon-display-name = lemon trees
 seeds-lime-name = lime
 seeds-lime-display-name = lime trees

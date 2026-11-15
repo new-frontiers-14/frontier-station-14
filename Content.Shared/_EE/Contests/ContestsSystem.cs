@@ -12,8 +12,8 @@ namespace Content.Shared.Contests;
 
 public sealed partial class ContestsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
 
     /// <summary>
     ///     The presumed average mass of a player entity

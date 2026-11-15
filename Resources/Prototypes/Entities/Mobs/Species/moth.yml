@@ -26,7 +26,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Moth # Frontier: upstream#37297
-    allowedEmotes: ['Chitter', 'Squeak']
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap']
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
@@ -49,6 +49,8 @@
       Male: UnisexMoth
       Female: UnisexMoth
       Unsexed: UnisexMoth
+  - type: BodyEmotes # Frontier
+    soundsId: MothBodyEmotes # Frontier: Added to this file to account for current Frontier body file structure, upstream found in Resources/Prototypes/Body/Species/moth.yml
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 1.5 # Move around more easily in space.
     baseWeightlessFriction: 1

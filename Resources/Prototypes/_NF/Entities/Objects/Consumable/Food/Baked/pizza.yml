@@ -1,0 +1,98 @@
+- type: entity
+  parent: FoodPizzaBase
+  id: NFFoodPizzaNoneLeftBeef
+  name: none pizza left beef
+  description: Just as ordered, precisely to the instructions. For better or for worse.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - sadness
+      - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Protein
+          Quantity: 6
+  - type: NFMultitypeSliceableFood
+    slices:
+      - id: FoodPizzaLeftBeefSlice
+        amount: 4
+      - id: FoodPizzaNoneSlice
+        amount: 4
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: none-left-beef
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+
+# if i was #effortpoasting i would make it instead slice into 4 dry bread slices and 4 beef slices
+- type: entity
+  name: slice of left beef pizza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaLeftBeefSlice
+  description: A dry triangle of bread with a couple meat pellets on it.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - sadness
+      - bread
+  - type: SolutionContainerManager # Default values if spawned by hand
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Protein
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: left-beef-slice
+  - type: Item
+    heldPrefix: left-beef-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+    - Slice
+
+- type: entity
+  name: slice of none pizza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaNoneSlice
+  description: A dry triangle of bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sadness
+      - bread
+  - type: SolutionContainerManager # Default values if spawned by hand
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: none-slice
+  - type: Item
+    heldPrefix: none-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+    - Slice

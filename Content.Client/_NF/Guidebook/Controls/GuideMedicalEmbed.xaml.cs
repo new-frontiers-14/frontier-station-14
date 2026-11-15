@@ -25,8 +25,8 @@ namespace Content.Client._NF.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuideMedicalEmbed : BoxContainer, IDocumentTag, ISearchableControl
 {
-    [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IEntitySystemManager _systemManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly MedicalGuideDataSystem _medicalGuideData;
     private readonly ISawmill _logger = default!;

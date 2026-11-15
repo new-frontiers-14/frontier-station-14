@@ -266,6 +266,9 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
+uplink-security-esword-name = eNFSD Sword
+uplink-security-esword-desc = An NFSD energy sword, your righteous beam of light in the dark.
+
 uplink-security-lake-name = NGP-40 projector
 uplink-security-lake-desc = Single shot grenade launcher able to lob both grenades and darts!
 
@@ -281,6 +284,9 @@ uplink-pirate-hardsuit-rogue-desc = Lightly armoured hardsuit designed to give y
 
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
+
+uplink-pirate-hardsuit-aurecorsa-name = Aurecorsa Pirate Hardsuit Bundle
+uplink-pirate-hardsuit-aurecorsa-desc = An ornamental hardsuit hiding heavily restricted technology. Designed for close quarters combat but offers little protection.
 
 uplink-pirate-crate-captain-name = Pirate Captain's Chest
 uplink-pirate-crate-captain-desc = A chest filled with the necessary goodies for a pirate captain.

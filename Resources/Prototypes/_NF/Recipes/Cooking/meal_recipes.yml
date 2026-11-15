@@ -1286,6 +1286,7 @@
     FoodBowlBig: 1
     FoodRiceNoodles: 1
     FoodSoybeans: 1
+    FoodGarlic: 1
     FoodMeatBacon: 1
   reagents:
     Soysauce: 5
@@ -1719,3 +1720,16 @@
     Gravy: 10
   recipeType:
   - Assembler
+
+# None pizza left beef
+- type: microwaveMealRecipe
+  id: NFNonePizzaLeftBeef
+  name: none pizza left beef recipe
+  result: NFFoodPizzaNoneLeftBeef
+  time: 30
+  group: Savory
+  solids:
+    FoodDoughFlat: 1
+    FoodMeatCutlet: 3
+  recipeType:
+  - Oven

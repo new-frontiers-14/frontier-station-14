@@ -1,10 +1,11 @@
+using Content.Shared._NF.Salvage.Expeditions.Modifiers; // Frontier - Faction specific dungeons
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
 [Prototype]
-public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpecificMod
+public sealed partial class SalvageDungeonModPrototype : IPrototype, IFactionSpecificMod
 {
     [IdDataField] public string ID { get; private set; } = default!;
 
@@ -17,6 +18,12 @@ public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpeci
     /// <inheridoc/>
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
+
+    // Frontier - Faction specific dungeons
+    /// <inheridoc/>
+    [DataField]
+    public List<ProtoId<SalvageFactionPrototype>>? Factions { get; private set; } = null;
+    // Frontier end
 
     /// <summary>
     /// The config to use for spawning the dungeon.
