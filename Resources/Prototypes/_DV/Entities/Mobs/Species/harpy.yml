@@ -110,7 +110,7 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
-    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Chirp', 'Squeak', 'Click', 'Belch', 'Bubble', 'Pop'] # Frontier: add Belch, Squish, Bubble, Pop
+    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'HarpySquish', 'Chitter', 'Chirp', 'Squeak', 'Click', 'Gnash']
   - type: Vocal
     sounds:
       Male: SoundsHarpyMale
@@ -124,8 +124,6 @@
           False: {visible: false}
           True: {visible: true}
   - type: MovementSpeedModifier
-#    baseWalkSpeed: 2.5 # Frontier
-#    baseSprintSpeed: 5.0 # Frontier
     weightlessAcceleration: 2.5
   - type: Inventory
     speciesId: harpy
@@ -207,26 +205,26 @@
       - map: [ "head" ]
 
 - type: entity
+  parent: BaseAction
   id: ActionHarpyPlayMidi
-  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Play MIDI
   description: Sing your heart out! Right click yourself to set an instrument.
   components:
-  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
+  - type: Action
     checkCanInteract: false
     icon: _DV/Interface/Actions/harpy_sing.png
-  - type: InstantAction # Frontier, Wizden#27422 compliance
+  - type: InstantAction
     event: !type:OpenUiActionEvent
       key: enum.InstrumentUiKey.Key
 
 - type: entity
+  parent: BaseAction
   id: ActionSyrinxChangeVoiceMask
-  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Set name
   description: Change the name others hear to something else.
   components:
-  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
+  - type: Action
     icon: _DV/Interface/Actions/harpy_syrinx.png
     itemIconStyle: BigAction
   - type: InstantAction # Frontier, Wizden#27422 compliance
-    event: !type:VoiceMaskSetNameEvent
+    event: !type:VoiceMaskSetNameEvent # Frontier
