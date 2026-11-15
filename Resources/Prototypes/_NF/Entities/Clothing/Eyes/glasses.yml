@@ -88,3 +88,22 @@
   - type: ToggleClothing
     action: ActionToggleTray
   - type: TrayScanner
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons]
+  id: ClothingEyesGlassesMedical
+  name: Medical glasses
+  description: A pair of sunglasses with a medical Hud built in
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Glasses/medglasses.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Glasses/medglasses.rsi
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - WhitelistChameleon
