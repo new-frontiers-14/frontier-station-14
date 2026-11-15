@@ -23,25 +23,25 @@ using Content.Shared.Roles; // RMC14
 
 namespace Content.Shared.Paper;
 
-public sealed class PaperSystem : EntitySystem
+public sealed partial class PaperSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!; // Frontier
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!; // Frontier
 
     private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
     private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
     private static readonly ProtoId<TagPrototype> NFPaperStampProtectedTag = "NFPaperStampProtected"; // Frontier
     private static readonly ProtoId<TagPrototype> NFWriteIgnoreUnprotectedStampsTag = "NFWriteIgnoreUnprotectedStamps"; // Frontier
-    [Dependency] private readonly SharedIdentitySystem _identitySystem = default!; // RMC14
+    [Dependency] private SharedIdentitySystem _identitySystem = default!; // RMC14
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
@@ -58,7 +58,7 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<PaperComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PaperComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PaperComponent, PaperInputTextMessage>(OnInputTextMessage);
-        SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb); // Frontier - Sign verb hook
+        SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs); // Frontier - Sign verb hook and Stamp verb for Pet Stamps
 
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
@@ -150,6 +150,81 @@ public sealed class PaperSystem : EntitySystem
             }
         }
     }
+
+    // Frontier - Pet Stamps
+    /// <summary>
+    ///     Adds the paper's alternative interaction verbs, such as signing and pet stamping.
+    /// </summary>
+    private void AddAlternativeVerbs(
+    EntityUid uid,
+    PaperComponent component,
+    GetVerbsEvent<AlternativeVerb> args)
+    {
+        AddSignVerb(uid, component, args);
+        AddStampVerb(uid, component, args);
+    }
+
+    /// <summary>
+    ///     Handles entities with a stamp component being able to stamp papers with their hands.
+    /// </summary>
+    private void AddStampVerb(EntityUid uid, PaperComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
+        // Sanity check
+        if (uid != args.Target || HasComp<GhostComponent>(args.User))
+            return;
+
+        // User must be a stamp.
+        if (!TryComp<StampComponent>(args.User, out var stampComp))
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                // Don't allow stamping while on cooldown
+                if (StampDelayed(args.User))
+                    return;
+
+                if (!TryStamp((uid, component), GetStampInfo(stampComp), stampComp.StampState))
+                    return;
+
+                // Start the cooldown after stamping
+                DelayStamp(args.User);
+
+                var stampPaperOtherMessage = Loc.GetString(
+                    "paper-component-action-stamp-paper-other-isstamp",
+                    ("user", args.User),
+                    ("target", uid));
+
+                _popupSystem.PopupEntity(
+                    stampPaperOtherMessage,
+                    args.User,
+                    Filter.PvsExcept(args.User, entityManager: EntityManager),
+                    true);
+
+                var stampPaperSelfMessage = Loc.GetString(
+                    "paper-component-action-stamp-paper-self-isstamp",
+                    ("target", uid));
+
+                _popupSystem.PopupClient(
+                    stampPaperSelfMessage,
+                    args.User,
+                    args.User);
+
+                _audio.PlayPredicted(stampComp.Sound, uid, args.User);
+
+                UpdateUserInterface((uid, component));
+            },
+            Text = Loc.GetString("paper-component-verb-stamp"),
+            Priority = 3 // Higher than edible verbs
+        };
+
+        args.Verbs.Add(verb);
+    }
+    // End Frontier - Pet Stamps
 
     private void OnInteractUsing(Entity<PaperComponent> entity, ref InteractUsingEvent args)
     {
@@ -248,7 +323,8 @@ public sealed class PaperSystem : EntitySystem
         {
             Reapply = stamp.Reapply, // Frontier
             StampedName = stamp.StampedName,
-            StampedColor = stamp.StampedColor
+            StampedColor = stamp.StampedColor,
+            StampLargeIcon = stamp.StampLargeIcon // imp - Stamp Icons
         };
     }
 
