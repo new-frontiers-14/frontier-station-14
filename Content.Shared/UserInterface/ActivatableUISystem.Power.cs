@@ -2,26 +2,28 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.PowerCell;
 using Robust.Shared.Containers;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 
 namespace Content.Shared.UserInterface;
 
 public sealed partial class ActivatableUISystem
 {
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedPowerCellSystem _cell = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedPowerCellSystem _cell = default!;
 
     private void InitializePower()
     {
-        SubscribeLocalEvent<ActivatableUIRequiresPowerCellComponent, ActivatableUIOpenAttemptEvent>(OnBatteryOpenAttempt);
+        SubscribeLocalEvent<ActivatableUIRequiresPowerCellComponent, ItemToggledEvent>(OnToggled);
         SubscribeLocalEvent<ActivatableUIRequiresPowerCellComponent, BoundUIOpenedEvent>(OnBatteryOpened);
         SubscribeLocalEvent<ActivatableUIRequiresPowerCellComponent, BoundUIClosedEvent>(OnBatteryClosed);
-        SubscribeLocalEvent<ActivatableUIRequiresPowerCellComponent, ItemToggledEvent>(OnToggled);
+        SubscribeLocalEvent<ActivatableUIRequiresPowerCellComponent, ActivatableUIOpenAttemptEvent>(OnBatteryOpenAttempt);
     }
 
     private void OnToggled(Entity<ActivatableUIRequiresPowerCellComponent> ent, ref ItemToggledEvent args)
     {
         // only close ui when losing power
-        if (!TryComp<ActivatableUIComponent>(ent, out var activatable) || args.Activated)
+        if (args.Activated || !TryComp<ActivatableUIComponent>(ent, out var activatable))
             return;
 
         if (activatable.Key == null)
@@ -77,13 +79,13 @@ public sealed partial class ActivatableUISystem
 
     private void OnBatteryOpenAttempt(EntityUid uid, ActivatableUIRequiresPowerCellComponent component, ActivatableUIOpenAttemptEvent args)
     {
-        if (!TryComp<PowerCellDrawComponent>(uid, out var draw))
+        if (args.Cancelled)
             return;
 
         // Check if we have the appropriate drawrate / userate to even open it.
-        if (args.Cancelled ||
-            !_cell.HasActivatableCharge(uid, draw, user: args.User) ||
-            !_cell.HasDrawCharge(uid, draw, user: args.User))
+        // Don't pass in the user for the popup if silent.
+        if (!_cell.HasActivatableCharge(uid, user: args.Silent ? null : args.User) ||
+            !_cell.HasDrawCharge(uid, user: args.Silent ? null : args.User))
         {
             args.Cancel();
         }
