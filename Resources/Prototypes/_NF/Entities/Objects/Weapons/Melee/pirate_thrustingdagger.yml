@@ -2,7 +2,7 @@
   name: thrusting dagger
   parent: [BaseC3PirateContraband, BaseSword]
   id: PirateThrustingDagger
-  description: Up close and personal. This weapon does 25% more damage with aimed strikes.
+  description: Up close and personal.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/pirate_thrustingdagger.rsi
@@ -18,11 +18,11 @@
     autoAttack: true
     attackRate: 2
     wideAnimationRotation: -135
-    animationOffset: 0.9
+    animationOffset: 1 #0.9 for when melee range can be adjusted
     damage:
       types:
         Piercing: 15 #if the plasteel epee ever gets nerfed this should be adjusted too
-    range: 1.3
+    #range: 1.3 for when melee range can be adjusted
     angle: 0
     animation: WeaponArcThrust
     soundHit:
