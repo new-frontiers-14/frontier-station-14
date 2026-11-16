@@ -20,8 +20,8 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly SharedMaterialStorageSystem _sharedMaterialStorageSystem = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private SharedMaterialStorageSystem _sharedMaterialStorageSystem = default!;
     private void InitializeConsole()
     {
         SubscribeLocalEvent<NFEntitySoldEvent>(OnEntitySoldEvent);
