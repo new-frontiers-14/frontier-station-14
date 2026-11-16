@@ -37,6 +37,26 @@
     - WhitelistChameleon
   - type: StaticPrice
     price: 1000 # Helmet is 500
+  # Begin Frontier
+  - type: GroupExamine
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2 # Slightly smaller shape than Departmental EVAs due to the helmet being separate
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.25
+  # End Frontier
 
 #Emergency EVA
 - type: entity
