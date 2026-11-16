@@ -17,12 +17,12 @@ namespace Content.Server._NF.Shipyard.Commands;
 /// Purchases a shuttle and docks it to a station.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class PurchaseShuttleCommand : IConsoleCommand
+public sealed partial class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entityManager = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private IEntitySystemManager _entityManager = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
 
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("shipyard-commands-purchase-desc");

@@ -12,10 +12,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Doors.Electronics;
 
-public sealed class DoorElectronicsSystem : EntitySystem
+public sealed partial class DoorElectronicsSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     public override void Initialize()
     {
@@ -50,7 +50,7 @@ public sealed class DoorElectronicsSystem : EntitySystem
         DoorElectronicsUpdateConfigurationMessage args)
     {
         var accessReader = EnsureComp<AccessReaderComponent>(uid);
-        _accessReader.SetAccesses((uid, accessReader), args.AccessList);
+        _accessReader.TrySetAccesses((uid, accessReader), args.AccessList);
     }
     */
     // End Frontier: no door electronics message handler

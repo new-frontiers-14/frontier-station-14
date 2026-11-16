@@ -13,9 +13,9 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Frontier: add partial
 {
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transform = default!; // Frontier
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private TransformSystem _transform = default!; // Frontier
 
     public override void Initialize()
     {

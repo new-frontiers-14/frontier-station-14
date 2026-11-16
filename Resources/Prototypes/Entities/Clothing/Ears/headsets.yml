@@ -242,7 +242,7 @@
     sprite: Clothing/Ears/Headsets/security.rsi
 
 - type: entity
-  parent: [ClothingHeadset, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingHeadset] # Frontier: removed BaseSecurityContraband (not actually used by brigmedic)
   id: ClothingHeadsetBrigmedic
   name: brigmedic headset
   description: A headset that helps to hear the death cries.
@@ -251,7 +251,7 @@
     containers:
       key_slots:
       - EncryptionKeyMedical
-      - EncryptionKeySecurity
+ #     - EncryptionKeySecurity # Frontier
       - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/brigmedic.rsi

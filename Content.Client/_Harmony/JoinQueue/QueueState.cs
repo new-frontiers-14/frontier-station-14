@@ -8,10 +8,10 @@ using Robust.Shared.Player;
 
 namespace Content.Client._Harmony.JoinQueue;
 
-public sealed class QueueState : State
+public sealed partial class QueueState : State
 {
-    [Dependency] private readonly IUserInterfaceManager _userInterface = default!;
-    [Dependency] private readonly IClientConsoleHost _console = default!;
+    [Dependency] private IUserInterfaceManager _userInterface = default!;
+    [Dependency] private IClientConsoleHost _console = default!;
 
 
     private static readonly SoundSpecifier JoinSoundPath = new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg");

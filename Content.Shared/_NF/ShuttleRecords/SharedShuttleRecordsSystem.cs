@@ -5,11 +5,11 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.ShuttleRecords;
 
-public abstract class SharedShuttleRecordsSystem : EntitySystem
+public abstract partial class SharedShuttleRecordsSystem : EntitySystem
 {
     // These dependencies are eventually needed for the consoles that are made for this system.
-    [Dependency] protected readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] protected readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] protected ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] protected SharedAudioSystem _audioSystem = default!;
 
     public override void Initialize()
     {

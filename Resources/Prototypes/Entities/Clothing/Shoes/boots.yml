@@ -21,8 +21,8 @@
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
-  # - type: ClothingSlowOnDamageModifier # Frontier: weird one-off
-  #   modifier: 0.5 # Frontier: weird one-off
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.25 # Frontier
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -57,6 +57,8 @@
     sprite: Clothing/Shoes/Boots/combatboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/combatboots.rsi
+  - type: ClothingSlowOnDamageModifier # Frontier
+    modifier: 0.25 # Frontier
 
 - type: entity
   parent: ClothingShoesMilitaryBase
@@ -80,7 +82,7 @@
         variation: 0.09
 
 - type: entity
-  parent: [ ClothingShoesMilitaryBase ] # Frontier: removed BaseRestrictedContraband
+  parent: [ClothingShoesMilitaryBase, BaseC1Contraband] # Frontier: removed BaseRestrictedContraband added BaseC1Contraband
   id: ClothingShoesBootsMercenary # Frontier: Merc to Mercenary
   name: mercenary boots
   description: Boots that have gone through many conflicts and that have proven their combat reliability.
@@ -89,6 +91,8 @@
     sprite: Clothing/Shoes/Boots/mercboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/mercboots.rsi
+  - type: ClothingSlowOnDamageModifier # Frontier
+    modifier: 0.25 # Frontier
 
 - type: entity
   parent: ClothingShoesBaseButcherable
