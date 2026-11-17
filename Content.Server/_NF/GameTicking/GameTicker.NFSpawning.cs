@@ -12,8 +12,8 @@ namespace Content.Server.GameTicking; // Intentionally colliding namespaces to e
 
 public sealed partial class GameTicker
 {
-    [Dependency] private readonly PlayTimeTrackingManager _playTimeManager = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private PlayTimeTrackingManager _playTimeManager = default!;
+    [Dependency] private RadioSystem _radio = default!;
     private bool _newPlayerGreetingEnabled = true;
     private TimeSpan _newPlayerGreetingMaxTime = TimeSpan.FromMinutes(180);
     private ProtoId<RadioChannelPrototype> _newPlayerRadioChannel = "Service";

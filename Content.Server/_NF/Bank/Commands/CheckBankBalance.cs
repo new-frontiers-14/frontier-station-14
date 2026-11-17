@@ -14,12 +14,12 @@ namespace Content.Server._NF.Bank.Commands;
 /// Ported from Monolith.
 /// </summary>
 [AdminCommand(AdminFlags.Admin)]
-public sealed class CheckBankBalance : IConsoleCommand
+public sealed partial class CheckBankBalance : IConsoleCommand
 {
-    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IServerPreferencesManager _prefsManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     public string Command => "checkbalance";
     public string Description => "Check a player's bank balance by username.";

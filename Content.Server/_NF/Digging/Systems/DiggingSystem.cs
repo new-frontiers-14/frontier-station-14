@@ -10,15 +10,15 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._NF.Digging.Systems;
 
-public sealed class DiggingSystem : EntitySystem
+public sealed partial class DiggingSystem : EntitySystem
 {
-    [Dependency] private readonly TileSystem _tiles = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedToolSystem _tools = default!;
-    [Dependency] private readonly TurfSystem _turfs = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private TileSystem _tiles = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedToolSystem _tools = default!;
+    [Dependency] private TurfSystem _turfs = default!;
+    [Dependency] private ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
