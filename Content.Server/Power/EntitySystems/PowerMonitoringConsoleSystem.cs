@@ -21,8 +21,8 @@ namespace Content.Server.Power.EntitySystems;
 [UsedImplicitly]
 internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsoleSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly SharedMapSystem _sharedMapSystem = default!;
+    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private SharedMapSystem _sharedMapSystem = default!;
 
     // Note: this data does not need to be saved
     private Dictionary<EntityUid, Dictionary<Vector2i, PowerCableChunk>> _gridPowerCableChunks = new();
@@ -753,7 +753,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             node.ReachableNodes.Count == 0)
         {
             // Make a child the new master of the collection if necessary
-            if (device.ChildDevices.TryFirstOrNull(out var kvp))
+            if (device.ChildDevices.TryFirstOrNull(child => !TerminatingOrDeleted(child.Key), out var kvp)) // Frontier: Ignore terminating children
             {
                 var newMaster = kvp.Value.Key;
                 var newMasterDevice = kvp.Value.Value;
@@ -763,6 +763,13 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
                 foreach ((var child, var childDevice) in device.ChildDevices)
                 {
+                    // Frontier: Ignore terminating children
+                    if (TerminatingOrDeleted(child))
+                    {
+                        Log.Warning("Attempting to update node group in deleted child {0}", child);
+                        continue;
+                    }
+                    // End Frontier
                     newMasterDevice.ChildDevices.Add(child, childDevice);
 
                     childDevice.CollectionMaster = newMaster;
