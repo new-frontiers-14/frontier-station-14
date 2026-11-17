@@ -73,7 +73,7 @@ public sealed partial class CryoPodComponent : Component
     /// How many units to transfer per injection from the beaker to the mob?
     /// </summary>
     [DataField]
-    public FixedPoint2 BeakerTransferAmount = .25f; // Frontier: 1<0.25 (applied per reagent)
+    public FixedPoint2 BeakerTransferAmount = .5f; // Frontier: 1<0.5 (applied per reagent)
 
     // Frontier: more efficient cryogenics (#1443)
     /// <summary>
