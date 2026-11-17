@@ -128,6 +128,7 @@ guide-entry-shipyard-dendron = Dendron
 guide-entry-shipyard-dove = Dove
 guide-entry-shipyard-dragonfly = Dragonfly
 guide-entry-shipyard-pathfinder = Pathfinder
+guide-entry-shipyard-sprinter = Sprinter
 
 # Scrap Shipyard entries
 guide-entry-shipyard-construct = Construct
