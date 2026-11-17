@@ -17,14 +17,14 @@ namespace Content.Shared._EstacaoPirata.Cards.Card;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class CardSystem : EntitySystem
+public sealed partial class CardSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly CardStackSystem _cardStack = default!;
-    [Dependency] private readonly CardDeckSystem _cardDeck = default!;
-    [Dependency] private readonly CardHandSystem _cardHand = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private CardStackSystem _cardStack = default!;
+    [Dependency] private CardDeckSystem _cardDeck = default!;
+    [Dependency] private CardHandSystem _cardHand = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
