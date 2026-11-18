@@ -753,7 +753,7 @@
   - type: Construction
     graph: NFHotdog
     node: hotteddog
-    
+
 - type: entity
   parent: FoodMealBase
   id: FoodMealPoutine
@@ -771,3 +771,21 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meals.rsi
     state: poutine
+
+- type: entity
+  parent: FoodMealBase
+  id: NFRatPotPie
+  name: rat pot pie
+  description: A delicious mini pot pie, is that a tail?
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - protein
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    layers:
+    - state: ratpotpie
