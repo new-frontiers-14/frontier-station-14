@@ -108,8 +108,6 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
-  - type: PirateBountyItem # Frontier
-    id: ClothingHandsGlovesCaptain # Frontier
 
 - type: entity
   parent: ClothingHandsBase
@@ -243,6 +241,7 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
+        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:

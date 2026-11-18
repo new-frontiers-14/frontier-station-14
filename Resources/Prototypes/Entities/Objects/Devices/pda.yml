@@ -138,8 +138,6 @@
   - type: StaticPrice # Frontier
     price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier: Liltenhead moment
-  - type: PirateBountyItem
-    id: Pda
   - type: ToggleableGhostRole # Frontier: Literally only for the wipe verb and nothing else.
     wipeVerbText: pda-wipe-device-verb-text # Frontier
     wipeVerbPopup: pda-wiped-device # Frontier
@@ -519,6 +517,7 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
+    - BountyContractsCartridge # Frontier
     - AstroNavCartridge
 
 - type: entity
@@ -989,6 +988,7 @@
       - MedTekCartridge
       - WantedListCartridge
       - LogProbeCartridge
+      - BountyContractsCartridge # Frontier
       - AstroNavCartridge
 
 - type: entity
@@ -1136,6 +1136,8 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NewsReaderCartridge # Frontier
+      - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
 
 - type: entity
@@ -1475,47 +1477,6 @@
     state: pda-seniorofficer
 
 - type: entity
-  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
-  id: PiratePDA
-  name: pirate PDA
-  description: Yargh!
-  categories: [ HideSpawnMenu ] # Frontier
-  components:
-  - type: Pda
-    id: PirateIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-pirate
-  - type: Icon
-    state: pda-pirate
-
-- type: entity
-  parent: [ BaseMedicalPDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
-  id: SyndiAgentPDA
-  name: syndicate corpsman PDA
-  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
-  components:
-  - type: Pda
-    id: SyndicateIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi-agent
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-agent
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - MedTekCartridge
-
-- type: entity
   parent: [BasePDA, SelectableLock]
   id: ChameleonPDA
   name: contractor PDA # Frontier passenger<contractor
@@ -1545,6 +1506,49 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+
+- type: entity
+  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
+  id: PiratePDA
+  name: pirate PDA
+  description: Yargh!
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: Pda
+    id: PirateIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-pirate
+  - type: PdaBorderColor # Frontier
+    borderColor: "#333333" # Frontier
+  - type: Icon
+    state: pda-pirate
+
+- type: entity
+  parent: [ BaseMedicalPDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
+  id: SyndiAgentPDA
+  name: syndicate corpsman PDA
+  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
+  components:
+  - type: Pda
+    id: SyndicateIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-agent
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-agent
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - MedTekCartridge
 
 - type: entity
   parent: BaseWidePDA

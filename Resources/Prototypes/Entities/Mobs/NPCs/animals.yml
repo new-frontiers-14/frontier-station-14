@@ -348,7 +348,7 @@
   - type: TimedDespawn #delete the egg after the chicken spawns
     lifetime: 21
 
-- type: entity # TODO: figure out how to make these guys gib when stepped on
+- type: entity
   name: cockroach
   parent: SimpleMobBase
   id: MobCockroach
@@ -397,7 +397,7 @@
   - type: Bloodstream
     bloodReagent: InsectBlood
     bloodMaxVolume: 20
-  - type: Food
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - horrible
@@ -433,8 +433,12 @@
       - !type:GibBehavior
         recursive: false
   - type: NonSpreaderZombie
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
+  - type: StepTrigger
+    requiredTriggeredSpeed: 1
+  - type: TriggerOnStepTrigger
+  - type: RandomChanceTriggerCondition
+    successChance: 0.2
+  - type: ProtectedFromStepTriggers
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -1810,7 +1814,7 @@
         Base: dead-0
       Dead:
         Base: splat-0
-  - type: Food
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - meaty
@@ -2545,6 +2549,8 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/snake_hiss.ogg
+  - type: Puller
+    needsHands: false
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
@@ -2981,8 +2987,6 @@
       amount: 2
   - type: ReplacementAccent
     accent: dog
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-corgi
   - type: Tag
     tags:
     - VimPilot
@@ -3169,6 +3173,13 @@
     factions:
     - Cat
   # End DeltaV
+  # Frontier: Pet Stamps
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cat
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-cat"
+    stampLargeIcon: "/Textures/_NF/Interface/Stamps/cat_stamp.png"
+  # End Frontier
 
 - type: entity
   name: calico cat
@@ -3241,6 +3252,13 @@
         Slash: 6
         Piercing: 6
         Structural: 15
+# Frontier: Pet Stamps
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cat
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-cat"
+    stampLargeIcon: "/Textures/_NF/Interface/Stamps/syndicat_stamp.png"
+# End Frontier
 
 - type: entity
   name: space cat
@@ -3279,6 +3297,13 @@
       path: /Audio/Animals/cat_meow.ogg
   - type: Respirator #It just works?
     minSaturation: 5.0
+  # Frontier: Pet Stamps
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-space-cat
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-cat"
+    stampLargeIcon: "/Textures/_NF/Interface/Stamps/astrocat_stamp.png"
+  # End Frontier
 
 - type: entity
   name: caracal cat
@@ -3334,6 +3359,13 @@
     thresholds:
       0: Alive
       25: Dead
+  # Frontier: Pet Stamps
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cat
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-cat"
+    stampLargeIcon: "/Textures/_NF/Interface/Stamps/kitten_stamp.png"
+  # End Frontier
 
 - type: entity
   name: sloth
@@ -3470,7 +3502,11 @@
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
-    allowedEmotes: ['Squeak']
+    allowedEmotes:
+    - Squeak
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Animals/mouse_squeak.ogg"
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/hamster.rsi
@@ -3527,7 +3563,7 @@
         Base: dead-0
       Dead:
         Base: splat-0
-  - type: Food
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - meaty
@@ -3604,6 +3640,19 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
+  # Frontier: Pet Stamps
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hamster
+    stampedColor: "#1c1c1c"
+    stampState: "paper_stamp-hamster"
+    stampLargeIcon: "/Textures/_Impstation/Interface/Paper/Stamps/large_stamp-hamster.png"
+    sound:
+      path: /Audio/Animals/mouse_squeak.ogg
+  - type: UseDelay
+    delays:
+      stamp:
+        length: 1.0
+  # End Frontier
 
 - type: entity
   name: pig
