@@ -41,6 +41,9 @@ class Store:
                 CREATE TABLE IF NOT EXISTS codes (
                     digest TEXT PRIMARY KEY, ss14 TEXT NOT NULL UNIQUE,
                     expires REAL NOT NULL);
+                CREATE TABLE IF NOT EXISTS discord_codes (
+                    digest TEXT PRIMARY KEY, discord TEXT NOT NULL UNIQUE,
+                    expires REAL NOT NULL);
             """)
 
     def connect(self):
@@ -78,8 +81,38 @@ class Store:
             row = db.execute("SELECT discord FROM links WHERE ss14=?", (account_id(ss14),)).fetchone()
             return row[0] if row else None
 
+    def issue_discord(self, discord: str) -> str:
+        if not re.fullmatch(r"[0-9]{1,20}", discord):
+            raise ValueError("Invalid Discord ID")
+        code = secrets.token_hex(8).upper()
+        with closing(self.connect()) as db, db:
+            db.execute("DELETE FROM discord_codes WHERE discord=? OR expires<=?", (discord, self.clock()))
+            db.execute("INSERT INTO discord_codes VALUES (?, ?, ?)",
+                       (hashlib.sha256(code.encode()).hexdigest(), discord, self.clock() + 600))
+        return code
+
+    def redeem_discord(self, code: str, ss14: str):
+        ss14 = account_id(ss14)
+        code = code.strip().upper()
+        if not re.fullmatch(r"[0-9A-F]{16}", code):
+            raise Rejected("Invalid or expired code")
+        digest = hashlib.sha256(code.encode()).hexdigest()
+        with closing(self.connect()) as db, db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT discord, expires FROM discord_codes WHERE digest=?", (digest,)).fetchone()
+            if not row or row[1] <= self.clock():
+                raise Rejected("Invalid or expired code")
+            pair = (ss14, row[0])
+            existing = db.execute("SELECT ss14, discord FROM links WHERE ss14=? OR discord=?", pair).fetchall()
+            if any(link != pair for link in existing):
+                raise Rejected("Account already linked; unlink in SS14 first")
+            db.execute("INSERT OR IGNORE INTO links VALUES (?, ?)", pair)
+            db.execute("DELETE FROM discord_codes WHERE digest=?", (digest,))
+
     def unlink(self, ss14: str):
         with closing(self.connect()) as db, db:
+            db.execute("DELETE FROM discord_codes WHERE discord IN (SELECT discord FROM links WHERE ss14=?)",
+                       (account_id(ss14),))
             db.execute("DELETE FROM links WHERE ss14=?", (account_id(ss14),))
             db.execute("DELETE FROM codes WHERE ss14=?", (account_id(ss14),))
 
@@ -183,6 +216,48 @@ def make_handler(bridge: Bridge, api_key: str):
         def do_POST(self):
             self.handle_api()
 
+        def read_body(self):
+            transfer = self.headers.get("Transfer-Encoding")
+            lengths = self.headers.get_all("Content-Length", [])
+            if transfer:
+                if transfer.lower().strip() != "chunked" or lengths:
+                    raise ValueError("Unsupported or ambiguous framing")
+                body = bytearray()
+                while True:
+                    line = self.rfile.readline(130)
+                    if not line.endswith(b"\r\n") or len(line) > 128:
+                        raise ValueError("Invalid chunk header")
+                    token = line[:-2].split(b";", 1)[0]
+                    if not re.fullmatch(rb"[0-9a-fA-F]+", token):
+                        raise ValueError("Invalid chunk size")
+                    size = int(token, 16)
+                    if size == 0:
+                        trailer_size = 0
+                        while True:
+                            trailer = self.rfile.readline(1026)
+                            trailer_size += len(trailer)
+                            if not trailer.endswith(b"\r\n") or trailer_size > 1024:
+                                raise ValueError("Invalid trailers")
+                            if trailer == b"\r\n":
+                                if not body:
+                                    raise ValueError("Empty body")
+                                return bytes(body)
+                    if len(body) + size > 1024:
+                        raise ValueError("Body too large")
+                    chunk = self.rfile.read(size)
+                    if len(chunk) != size or self.rfile.read(2) != b"\r\n":
+                        raise ValueError("Incomplete chunk")
+                    body.extend(chunk)
+            if len(lengths) != 1 or not lengths[0].isdigit():
+                raise ValueError("Content-Length required")
+            size = int(lengths[0])
+            if not 1 <= size <= 1024:
+                raise ValueError("Invalid body size")
+            body = self.rfile.read(size)
+            if len(body) != size:
+                raise ValueError("Incomplete body")
+            return body
+
         def handle_api(self):
             self.connection.settimeout(15)
             if not hmac.compare_digest(self.headers.get("Authorization", ""), f"Bearer {api_key}"):
@@ -192,21 +267,23 @@ def make_handler(bridge: Bridge, api_key: str):
                 if self.command == "GET" and self.path.startswith("/v1/entitlements/"):
                     self.send_json(200, bridge.entitlements(self.path.removeprefix("/v1/entitlements/")))
                     return
-                if self.command != "POST" or self.path not in ("/v1/link-code", "/v1/unlink"):
+                if self.command != "POST" or self.path not in ("/v1/link", "/v1/link-code", "/v1/unlink"):
                     self.send_json(404, {"error": "not_found"})
                     return
-                size = int(self.headers.get("Content-Length", "0"))
-                if size < 1 or size > 1024:
-                    raise ValueError("Invalid body size")
-                data = json.loads(self.rfile.read(size))
+                data = json.loads(self.read_body())
                 ss14 = account_id(data["user_id"])
-                if self.path == "/v1/link-code":
+                if self.path == "/v1/link":
+                    bridge.store.redeem_discord(data["code"], ss14)
+                    self.send_json(200, {"linked": True})
+                elif self.path == "/v1/link-code":
                     self.send_json(200, {"code": bridge.store.issue(ss14), "expires_in": 600})
                 else:
                     bridge.store.unlink(ss14)
                     self.send_json(200, {"unlinked": True})
             except (ValueError, KeyError, TypeError):
                 self.send_json(400, {"error": "invalid_request"})
+            except Rejected:
+                self.send_json(409, {"error": "invalid_or_conflicting_code"})
             except Unavailable:
                 self.send_json(503, {"error": "upstream_unavailable"})
             except sqlite3.Error:

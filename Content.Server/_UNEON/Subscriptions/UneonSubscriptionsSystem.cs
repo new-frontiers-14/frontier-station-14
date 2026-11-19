@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
@@ -51,10 +52,10 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
         [JsonPropertyName("verified_at")] public long VerifiedAt { get; set; }
     }
 
-    private sealed class CodeResponse
+    private sealed class LinkResponse
     {
-        public CodeResponse() { }
-        [JsonPropertyName("code")] public string Code { get; set; } = "";
+        public LinkResponse() { }
+        [JsonPropertyName("linked")] public bool Linked { get; set; }
     }
 
     public override void Initialize()
@@ -62,7 +63,7 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
         base.Initialize();
         _log = Logger.GetSawmill("uneon.subscriptions");
         _console.RegisterCommand("uneon_subscription", Loc.GetString("uneon-sub-help"),
-            "uneon_subscription [link|unlink CONFIRM]", Command);
+            "uneon_subscription [link CODE|unlink CONFIRM]", Command);
         if (_resources.UserData.RootDir is { } root)
         {
             _cachePath = Path.Combine(root, "uneon-subscriptions.json");
@@ -139,8 +140,9 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
             return;
         }
         var action = args.Length == 0 ? "status" : args[0];
-        if (action == "unlink" && (args.Length != 2 || args[1] != "CONFIRM") ||
-            action != "unlink" && (args.Length > 1 || action is not ("status" or "link")))
+        if (action == "link" && (args.Length != 2 || args[1].Length != 16 || args[1].Any(c => !char.IsAsciiHexDigit(c))) ||
+            action == "unlink" && (args.Length != 2 || args[1] != "CONFIRM") ||
+            action == "status" && args.Length > 1 || action is not ("status" or "link" or "unlink"))
         {
             shell.WriteLine(Loc.GetString("uneon-sub-help"));
             return;
@@ -152,11 +154,11 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
             return;
         }
         _lastCommand[user] = DateTimeOffset.UtcNow;
-        if (!StartRequest(user, action, shell))
+        if (!StartRequest(user, action, shell, action == "link" ? args[1] : null))
             shell.WriteLine(Loc.GetString("uneon-sub-wait"));
     }
 
-    private bool StartRequest(string user, string action, IConsoleShell? shell)
+    private bool StartRequest(string user, string action, IConsoleShell? shell, string? code = null)
     {
         if (!_busy.Add(user))
             return false;
@@ -172,19 +174,21 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
             shell?.WriteError(Loc.GetString("uneon-sub-config-error"));
             return true;
         }
-        _ = RequestAsync(user, action, shell, url, key);
+        _ = RequestAsync(user, action, shell, url, key, code);
         return true;
     }
 
-    private async Task RequestAsync(string user, string action, IConsoleShell? shell, string url, string key)
+    private async Task RequestAsync(string user, string action, IConsoleShell? shell, string url, string key, string? code)
     {
         try
         {
             using var request = new HttpRequestMessage(action == "status" ? HttpMethod.Get : HttpMethod.Post,
-                action == "status" ? $"{url}/v1/entitlements/{user}" : $"{url}/v1/{(action == "link" ? "link-code" : "unlink")}");
+                action == "status" ? $"{url}/v1/entitlements/{user}" : $"{url}/v1/{action}");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", key);
             if (action != "status")
-                request.Content = JsonContent.Create(new { user_id = user });
+                // JsonContent streams chunked HTTP/1.1 by default. Use a known length for simple API servers/proxies.
+                request.Content = new StringContent(JsonSerializer.Serialize(new { user_id = user, code }),
+                    Encoding.UTF8, "application/json");
             using var response = await _http.SendAsync(request, _shutdown.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             if (action == "status")
@@ -207,10 +211,15 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
             }
             else if (action == "link")
             {
-                var data = await response.Content.ReadFromJsonAsync<CodeResponse>(cancellationToken: _shutdown.Token).ConfigureAwait(false);
-                if (data == null || data.Code.Length != 16 || data.Code.Any(c => !char.IsAsciiHexDigit(c)))
-                    throw new JsonException("Invalid link code");
-                _completions.Enqueue(() => shell?.WriteLine(Loc.GetString("uneon-sub-code", ("code", data.Code))));
+                var data = await response.Content.ReadFromJsonAsync<LinkResponse>(cancellationToken: _shutdown.Token).ConfigureAwait(false);
+                if (data == null || !data.Linked)
+                    throw new JsonException("Invalid link confirmation");
+                _completions.Enqueue(() =>
+                {
+                    _cache.Remove(user);
+                    SaveCache();
+                    shell?.WriteLine(Loc.GetString("uneon-sub-linked"));
+                });
             }
             else
             {
@@ -231,7 +240,9 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
                     _log.Warning("Subscription request failed; using bounded last-confirmed rights where available.");
                     if (shell == null)
                         return;
-                    shell.WriteLine(Loc.GetString("uneon-sub-unavailable"));
+                    var rejectedCode = action == "link" && e is HttpRequestException
+                        { StatusCode: System.Net.HttpStatusCode.Conflict or System.Net.HttpStatusCode.BadRequest };
+                    shell.WriteLine(Loc.GetString(rejectedCode ? "uneon-sub-code-invalid" : "uneon-sub-unavailable"));
                     if (action == "status" && TryGetValidEntry(user, out var cached))
                         shell.WriteLine(Loc.GetString("uneon-sub-cached", ("tier", cached!.Tier),
                             ("time", cached.ConfirmedAt.ToString("u"))));

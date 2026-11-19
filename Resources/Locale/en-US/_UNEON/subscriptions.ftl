@@ -1,10 +1,11 @@
-uneon-sub-help = uneon_subscription — check subscription; uneon_subscription link — request a code; uneon_subscription unlink CONFIRM — unlink Discord.
+uneon-sub-help = Get a code with /uneon_link in UNEON Discord, then enter uneon_subscription link CODE. Check: uneon_subscription. Unlink: uneon_subscription unlink CONFIRM.
 uneon-sub-player-only = Run this command from your account's in-game console.
 uneon-sub-disabled = UNEON subscriptions are currently disabled.
 uneon-sub-wait = A request is pending or was sent recently. Wait 10 seconds.
 uneon-sub-config-error = The subscription service is not configured. Contact an administrator.
 uneon-sub-status = Discord linked: { $linked }. Tier: { $tier }. Permissions: { $permissions }.
-uneon-sub-code = Your code: { $code }. Within 10 minutes, use /uneon_link with this code in UNEON Discord. Do not share the code.
+uneon-sub-linked = Discord linked. Wait 10 seconds, then check with uneon_subscription.
+uneon-sub-code-invalid = The code is invalid, expired or conflicts with an existing link. Get a new code with /uneon_link in Discord; unlink in game first to change accounts.
 uneon-sub-unlinked = Discord unlinked. Cached subscription rights removed.
 uneon-sub-unavailable = Subscription verification failed. Try again later. No new benefits are granted.
 uneon-sub-cached = Last confirmed tier: { $tier }, verified: { $time } UTC. Cached rights expire after a limited grace period.
