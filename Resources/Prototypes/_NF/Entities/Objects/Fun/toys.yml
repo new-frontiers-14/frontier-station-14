@@ -1333,6 +1333,81 @@
     entries:
       CottonBurger: NFPlushieMimoth
 
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieMos
+  name: mos plushie
+  description: Chittering in French
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: mos
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: mos
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: mos-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieMos
+
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieYarrmos
+  name: yarrmos plushie
+  description: Chittering in French, but Pirately!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: yarrmos
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: yarrmos
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: yarrmos-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieYarrmos
+
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieSkoroth
+  name: skoroth plushie
+  description: Meowdy, but make it Mothly
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: skoroth
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: skoroth
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: skoroth-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieSkoroth
+
 #region toy guns
 - type: entity
   name: toy rocket launcher
