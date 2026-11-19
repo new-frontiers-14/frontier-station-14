@@ -1001,10 +1001,14 @@
     sprite: _NF/Objects/Fun/Plushies/moths.rsi
     heldPrefix: moff7
   - type: Clothing
-    sprite: _NF/Objects/Fun/Plushies/moths.rsi
-    state: moff7-equipped-HELMET
     slots:
     - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: moff7-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieMoth7
@@ -1304,13 +1308,14 @@
     sprite: _NF/Objects/Fun/Plushies/moths.rsi
     heldPrefix: mimoth
   - type: Clothing
-    sprite: _NF/Objects/Fun/Plushies/moths.rsi
     slots:
     - HEAD
     quickEquip: false
     clothingVisuals:
       head:
       - state: mimoth-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Voice/Moth/moth_chitter.ogg
@@ -1324,6 +1329,9 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieMimoth
 
 #region toy guns
 - type: entity
