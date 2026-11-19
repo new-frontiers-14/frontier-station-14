@@ -24,7 +24,8 @@ ILLEGAL_MATCHES = [
 LEGAL_OVERRIDES = [
     "ButtonFrameCautionSecurity", # red button
     "PosterLegitPDAAd",
-    "ShowcaseRobot" # decoration
+    "ShowcaseRobot", # decoration
+    "CrateSecureMercenaryPrivateSec", #mercenary item
 ]
 # List of matchers that are illegal to use, unless the map is a ship and the ship belongs to the keyed shipyard.
 CONDITIONALLY_ILLEGAL_MATCHES = {
