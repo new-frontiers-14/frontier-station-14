@@ -28,6 +28,9 @@ public partial struct StampDisplayInfo
 
     [DataField("reapply")] // Frontier: allow reapplying stamps
     public bool Reapply = false; // Frontier: allow reapplying stamps
+
+    [DataField("stampLargeIcon")] // imp - Stamp Icons
+    public string? StampLargeIcon; // imp - Stamp Icons
 };
 
 // FRONTIER - Stamp types, put it into an enum for modularity purposes.
@@ -78,4 +81,12 @@ public sealed partial class StampComponent : Component
     [DataField]
     public bool Protected = false;
     // End Frontier
+
+    // imp - Stamp Icons
+    /// <summary>
+    ///     The sprite state of the stamp to display on the paper when read from stamp Sprite path.
+    /// </summary>
+    [DataField("stampLargeIcon")]
+    public string? StampLargeIcon = null;
+    // End imp
 }

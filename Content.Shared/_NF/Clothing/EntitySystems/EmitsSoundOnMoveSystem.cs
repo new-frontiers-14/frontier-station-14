@@ -9,10 +9,10 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._NF.Clothing.EntitySystems;
 
-public sealed class EmitsSoundOnMoveSystem : EntitySystem
+public sealed partial class EmitsSoundOnMoveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
 
     private EntityQuery<InputMoverComponent> _moverQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;

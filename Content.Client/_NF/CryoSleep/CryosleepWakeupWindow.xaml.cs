@@ -8,7 +8,7 @@ namespace Content.Client._NF.CryoSleep;
 [GenerateTypedNameReferences]
 public sealed partial class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscriber
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
 
     public CryosleepWakeupWindow()
     {
