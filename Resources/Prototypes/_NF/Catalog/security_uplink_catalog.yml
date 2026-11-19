@@ -452,6 +452,25 @@
     - Bailiff
     - Sheriff
 
+- type: listing
+  id: UplinkSecurityEnergyShotogun
+  name: uplink-security-energyshotgun-name
+  description: uplink-security-energyshotgun-desc
+  productEntity: NFWeaponEnergyShotgun
+  icon: { sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 25
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    tags:
+    - SecurityUpLink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+
 #region utililty
 - type: listing
   id: UplinkSecurityHolo
@@ -795,7 +814,7 @@
     - SeniorOfficer
     - Bailiff
     - Sheriff
-    
+
 - type: listing
   id: UplinkSecurityMagazineSubMachineGunRubber
   name:  uplink-security-smgmagazine-rubber-name
