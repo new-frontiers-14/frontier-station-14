@@ -4,15 +4,20 @@
   name: reinforced clipboard
   description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
   components:
-  - type: Lock
-  - type: LockVisuals
-  - type: AccessReader
   - type: Sprite
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     layers:
     - state: reinforced_clipboard
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
     - state: reinforced_clipboard_cover_closed
-      map: ["enum.StorageVisualLayers.Door"]
+      map: [ cover ]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
@@ -21,6 +26,8 @@
           tags:
           - Document
           - Write
+  - type: AccessReader
+  - type: Appearance
   - type: Item
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     heldPrefix: reinforced_clipboard
@@ -67,3 +74,12 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: reinforced_clipboard_cover_open}
+          False: { state: reinforced_clipboard_cover_closed}
+  - type: Lock
+  - type: LockVisuals
+  - type: LockedStorage
