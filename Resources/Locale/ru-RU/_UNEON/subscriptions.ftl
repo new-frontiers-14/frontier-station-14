@@ -1,10 +1,11 @@
-uneon-sub-help = uneon_subscription — проверить подписку; uneon_subscription link — получить код; uneon_subscription unlink CONFIRM — отвязать Discord.
+uneon-sub-help = Получи код командой /uneon_link в Discord UNEON, затем введи uneon_subscription link КОД. Проверка: uneon_subscription. Отвязка: uneon_subscription unlink CONFIRM.
 uneon-sub-player-only = Выполни команду из игровой консоли своего аккаунта.
 uneon-sub-disabled = Проверка подписок UNEON пока выключена.
 uneon-sub-wait = Запрос уже выполняется или отправлен недавно. Подожди 10 секунд.
 uneon-sub-config-error = Сервис подписок не настроен. Сообщи администратору.
 uneon-sub-status = Discord привязан: { $linked }. Уровень: { $tier }. Права: { $permissions }.
-uneon-sub-code = Твой код: { $code }. В течение 10 минут введи /uneon_link с этим кодом в Discord UNEON. Не передавай код другим людям.
+uneon-sub-linked = Discord привязан. Подожди 10 секунд и проверь подписку командой uneon_subscription.
+uneon-sub-code-invalid = Код неверен, истёк или аккаунт уже связан с другой привязкой. Получи новый код через /uneon_link в Discord; для смены привязки сначала отвяжи аккаунт в игре.
 uneon-sub-unlinked = Discord отвязан. Сохранённые права подписки удалены.
 uneon-sub-unavailable = Не удалось подтвердить данные подписки. Попробуй позже. Новые преимущества не выдаются.
 uneon-sub-cached = Последний подтверждённый уровень: { $tier }, проверка: { $time } UTC. Сохранённые права действуют ограниченное время.

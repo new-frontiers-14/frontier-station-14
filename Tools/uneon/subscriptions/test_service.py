@@ -1,5 +1,6 @@
 import io
 import importlib.util
+import http.client
 import json
 import tempfile
 import threading
@@ -224,6 +225,109 @@ class ServiceTests(unittest.TestCase):
         path.write_text(json.dumps(TIERS), encoding="utf-8")
         with patch.dict("os.environ", {"UNEON_TIERS_FILE": str(path)}, clear=True):
             self.assertEqual(read_tiers(), TIERS)
+
+    def test_discord_first_code_is_single_use_and_persistent(self):
+        code = self.store.issue_discord("123")
+        restarted = Store(self.store.path, lambda: self.now)
+        restarted.redeem_discord(code.lower(), USER)
+        self.assertEqual(restarted.lookup(USER), "123")
+        with self.assertRaises(Rejected):
+            self.store.redeem_discord(code, USER)
+
+    def test_discord_first_code_expires_and_new_code_replaces_it(self):
+        old = self.store.issue_discord("123")
+        new = self.store.issue_discord("123")
+        with self.assertRaises(Rejected):
+            self.store.redeem_discord(old, USER)
+        self.now += 600
+        with self.assertRaises(Rejected):
+            self.store.redeem_discord(new, USER)
+
+    def test_discord_first_cannot_replace_existing_ss14_or_discord_link(self):
+        self.link()
+        with self.assertRaises(Rejected):
+            self.store.redeem_discord(self.store.issue_discord("456"), USER)
+        with self.assertRaises(Rejected):
+            self.store.redeem_discord(self.store.issue_discord("123"), OTHER)
+        self.assertEqual(self.store.lookup(USER), "123")
+
+    def test_unlink_cancels_outstanding_discord_code(self):
+        self.link()
+        code = self.store.issue_discord("123")
+        self.store.unlink(USER)
+        with self.assertRaises(Rejected):
+            self.store.redeem_discord(code, OTHER)
+
+    def test_discord_first_concurrent_redemption_has_one_winner(self):
+        code = self.store.issue_discord("123")
+        results = []
+        def redeem(user):
+            try:
+                self.store.redeem_discord(code, user)
+                results.append(True)
+            except Rejected:
+                results.append(False)
+        threads = [threading.Thread(target=redeem, args=(user,)) for user in (USER, OTHER)]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join()
+        self.assertEqual(sorted(results), [False, True])
+
+    def api_connection(self):
+        server = ThreadingHTTPServer(("127.0.0.1", 0), make_handler(self.bridge, "k" * 40))
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        def cleanup():
+            server.shutdown()
+            server.server_close()
+            thread.join()
+        self.addCleanup(cleanup)
+        connection = http.client.HTTPConnection("127.0.0.1", server.server_port, timeout=5)
+        self.addCleanup(connection.close)
+        return connection
+
+    def test_discord_first_http_link_with_content_length(self):
+        code = self.store.issue_discord("123")
+        connection = self.api_connection()
+        body = json.dumps({"user_id": USER, "code": code}).encode()
+        connection.request("POST", "/v1/link", body=body,
+                           headers={"Authorization": "Bearer " + "k" * 40})
+        response = connection.getresponse()
+        self.assertEqual(response.status, 200)
+        self.assertEqual(json.load(response), {"linked": True})
+        self.assertEqual(self.store.lookup(USER), "123")
+
+    def test_discord_first_http_link_accepts_streamed_dotnet_style_body(self):
+        code = self.store.issue_discord("123")
+        connection = self.api_connection()
+        body = json.dumps({"user_id": USER, "code": code}).encode()
+        connection.request("POST", "/v1/link", body=iter([body[:20], body[20:]]),
+                           headers={"Authorization": "Bearer " + "k" * 40}, encode_chunked=True)
+        response = connection.getresponse()
+        self.assertEqual(response.status, 200)
+        self.assertEqual(json.load(response), {"linked": True})
+
+    def test_streamed_body_is_bounded(self):
+        connection = self.api_connection()
+        connection.request("POST", "/v1/link", body=iter([b"x" * 1025]),
+                           headers={"Authorization": "Bearer " + "k" * 40}, encode_chunked=True)
+        self.assertEqual(connection.getresponse().status, 400)
+
+    def test_ambiguous_body_framing_is_rejected(self):
+        connection = self.api_connection()
+        connection.putrequest("POST", "/v1/link")
+        connection.putheader("Authorization", "Bearer " + "k" * 40)
+        connection.putheader("Transfer-Encoding", "chunked")
+        connection.putheader("Content-Length", "2")
+        connection.endheaders()
+        self.assertEqual(connection.getresponse().status, 400)
+
+    def test_discord_first_bad_code_returns_conflict_not_server_error(self):
+        connection = self.api_connection()
+        connection.request("POST", "/v1/link", body=json.dumps({"user_id": USER, "code": "0" * 16}).encode(),
+                           headers={"Authorization": "Bearer " + "k" * 40})
+        self.assertEqual(connection.getresponse().status, 409)
 
 
 class MonitorPatchTests(unittest.TestCase):
