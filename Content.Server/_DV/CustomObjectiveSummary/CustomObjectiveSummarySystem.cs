@@ -13,15 +13,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._DV.CustomObjectiveSummary;
 
-public sealed class CustomObjectiveSummarySystem : EntitySystem
+public sealed partial class CustomObjectiveSummarySystem : EntitySystem
 {
-    [Dependency] private readonly IServerNetManager _net = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    // [Dependency] private readonly SharedFeedbackOverwatchSystem _feedback = default!; // Frontier
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
-    [Dependency] private readonly ObjectivesSystem _objectives = default!; // Frontier
+    [Dependency] private IServerNetManager _net = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    // [Dependency] private SharedFeedbackOverwatchSystem _feedback = default!; // Frontier
+    [Dependency] private IConfigurationManager _cfg = default!; // Frontier
+    [Dependency] private ObjectivesSystem _objectives = default!; // Frontier
 
     private int _maxLengthSummaryLength; // Frontier: moved from ObjectiveSystem
     private Dictionary<NetUserId, PlayerStory> _stories = new(); // Frontier: store one story per user per round

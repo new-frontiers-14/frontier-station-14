@@ -22,13 +22,13 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 {
     private ISawmill _sawmill = default!;
 
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly NFAccessSystemUtilities _accessUtils = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private NFAccessSystemUtilities _accessUtils = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     public override void Initialize()
     {
