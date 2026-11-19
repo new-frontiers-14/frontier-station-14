@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 06/10/2026 02:48:02
+  time: 11/19/2026 10:00:23
   entityCount: 701
 maps: []
 grids:
@@ -4423,6 +4423,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-6.5
       parent: 1
+    - type: Thruster
+      enabled: False
+    - type: ApcPowerReceiver
+      powerLoad: 1
   - uid: 482
     components:
     - type: Transform
@@ -4464,12 +4468,12 @@ entities:
     - type: Transform
       pos: -7.5031505,-1.3179588
       parent: 1
-- proto: ToolboxMechanicalFilled
+- proto: ToolboxMechanicalFilledAllTools
   entities:
   - uid: 488
     components:
     - type: Transform
-      pos: -7.5031505,-1.5887918
+      pos: -7.491511,-1.6069686
       parent: 1
 - proto: ToySpawner
   entities:
