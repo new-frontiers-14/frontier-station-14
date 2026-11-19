@@ -37,3 +37,7 @@ food-sequence-burger-content-pomegranate = pomegranate
 food-sequence-burger-content-granatapfel = granatapfel
 food-sequence-cotton-burger-content-plushie-harpy = harpy
 food-sequence-cotton-burger-content-plushie-yarrpy = yarrpy
+food-sequence-cotton-burger-content-plushie-mimoth = mimoth
+food-sequence-cotton-burger-content-plushie-mos = mos
+food-sequence-cotton-burger-content-plushie-yarrmos = yarrmos
+food-sequence-cotton-burger-content-plushie-skoroth = skoroth
