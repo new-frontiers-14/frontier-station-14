@@ -7,16 +7,12 @@
   - type: Sprite
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     layers:
-    # needs all layers properly defined and mapped here cause of z-index/layering
     - state: reinforced_clipboard
       map: [ base ]
     - state: reinforced_clipboard_paper
       map: [ reinforced_clipboard_paper ]
       visible: false
     - state: reinforced_clipboard_clip
-    # - state: clipboard_pen # if a pen sprite is to be defined, it should go here (z-index/layering fuckery), and the state/map names changed to the proper names
-    #   map: ["clipboard_pen"]
-    #   visible: false
     - state: reinforced_clipboard_cover_closed
       map: [ cover ]
     - state: locked
@@ -25,17 +21,13 @@
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
-      reinforced_clipboard_paper: # contrary to the variable name (mapLayers), ItemMapper actually looks for states and not layer maps. what the fuck
+      reinforced_clipboard_paper:
         whitelist:
           tags:
           - Document
-          - Write # if pen sprite is made this line should be commented,
-      # clipboard_pen: # and also have to uncomment these
-      #   whitelist:
-      #     tags:
-      #     - Write
-  - type: AccessReader # moved around
-  - type: Appearance # added
+          - Write
+  - type: AccessReader
+  - type: Appearance
   - type: Item
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     heldPrefix: reinforced_clipboard
