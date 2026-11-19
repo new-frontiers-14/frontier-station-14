@@ -1,0 +1,26 @@
+name: UNEON - Subscription bridge tests
+
+on:
+  pull_request:
+    paths:
+      - 'Tools/uneon/subscriptions/**'
+      - '.github/workflows/uneon-subscriptions.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'Tools/uneon/subscriptions/**'
+      - '.github/workflows/uneon-subscriptions.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -B -m unittest discover -s Tools/uneon/subscriptions -p test_service.py -v

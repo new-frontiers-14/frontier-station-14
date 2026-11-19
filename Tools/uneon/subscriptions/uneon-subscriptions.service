@@ -1,0 +1,24 @@
+[Unit]
+Description=UNEON subscription bridge (VPS)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=uneon-subscriptions
+Group=uneon-subscriptions
+WorkingDirectory=/opt/uneon-subscriptions
+EnvironmentFile=/etc/uneon-subscriptions/subscriptions.env
+ExecStart=/usr/bin/python3 /opt/uneon-subscriptions/service.py
+Restart=on-failure
+RestartSec=10
+StateDirectory=uneon-subscriptions
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/uneon-subscriptions
+
+[Install]
+WantedBy=multi-user.target
