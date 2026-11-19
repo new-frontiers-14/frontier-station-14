@@ -46,6 +46,18 @@
     sprite: Clothing/Head/Helmets/eva_syndicate.rsi
   - type: StaticPrice
     price: 500 # Suit is 1000
+  # Begin Frontier
+  - type: Item
+    shape:
+    - 0,0,0,1 # Fits into same profile as departmental EVA when stored with suit
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.90
+  # End Frontier
 
 #Cosmonaut Helmet
 - type: entity
