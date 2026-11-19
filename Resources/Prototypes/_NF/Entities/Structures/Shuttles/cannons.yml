@@ -15,6 +15,63 @@
   - type: Machine
     board: Null
 
+- type: entity
+  id: ShuttleGunIonLance
+  parent: [ ShuttleGunBase, ConstructibleMachine, BaseStructureDisableToolUse]
+  name: Ion Lance
+  description: Pierce the void of space with ionized plasma, EMPing systems in an instant!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Shuttles/ion_lance.rsi
+    layers:
+    - state: ion-lance
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 70
+    fireRate: 0.25
+    useKey: false
+    soundGunshot:
+      path: /Audio/_NF/Weapons/Guns/Gunshots/ion.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: Null
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: ProjectileBatteryAmmoProvider
+    proto: ProjectileIonLance
+    fireCost: 1500
+
 # Mail
 - type: entity
   id: ShuttleGunMailLauncher
