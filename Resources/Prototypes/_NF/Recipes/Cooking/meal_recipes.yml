@@ -439,6 +439,18 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeFreshFishSashimi
+  name: fresh fish sashimi recipe
+  result: FoodMealFreshFishSashimi
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodCuredCarp: 2
+  recipeType: Assembler # Frontier
+
 # Salad
 
 - type: microwaveMealRecipe
@@ -1731,5 +1743,20 @@
   solids:
     FoodDoughFlat: 1
     FoodMeatCutlet: 3
+  recipeType:
+  - Oven
+
+# Pot Pies
+- type: microwaveMealRecipe
+  id: NFRatPotPie
+  name: rat pot pie
+  result: NFRatPotPie
+  time: 30
+  group: Savory
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughPie: 1
+  reagents:
+    Gravy: 10
   recipeType:
   - Oven
