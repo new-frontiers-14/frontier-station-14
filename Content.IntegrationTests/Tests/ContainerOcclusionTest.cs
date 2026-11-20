@@ -3,7 +3,6 @@ using Content.Server.Storage.EntitySystems;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 
 namespace Content.IntegrationTests.Tests
 {
@@ -42,7 +41,6 @@ namespace Content.IntegrationTests.Tests
             var serverEntManager = server.ResolveDependency<IEntityManager>();
 
             EntityUid dummy = default;
-            var mapManager = server.ResolveDependency<IMapManager>();
             var map = await pair.CreateTestMap();
 
             await server.WaitPost(() =>
@@ -84,7 +82,6 @@ namespace Content.IntegrationTests.Tests
             var serverEntManager = server.ResolveDependency<IEntityManager>();
 
             EntityUid dummy = default;
-            var mapManager = server.ResolveDependency<IMapManager>();
 
             var map = await pair.CreateTestMap();
 
@@ -127,7 +124,6 @@ namespace Content.IntegrationTests.Tests
             var serverEntManager = server.ResolveDependency<IEntityManager>();
 
             EntityUid dummy = default;
-            var mapManager = server.ResolveDependency<IMapManager>();
 
             var map = await pair.CreateTestMap();
 

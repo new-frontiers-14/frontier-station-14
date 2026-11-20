@@ -1,10 +1,7 @@
-using System.Linq;
 using Content.Server.Cargo.Systems;
 using Content.Shared._NF.Shipyard.Prototypes;
-using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
@@ -22,7 +19,7 @@ public sealed class ShipyardTest
         var entManager = server.ResolveDependency<IEntityManager>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var mapLoader = entManager.System<MapLoaderSystem>();
-        var map = entManager.System<MapSystem>();
+        var mapSystem = entManager.System<SharedMapSystem>();
 
         await server.WaitPost(() =>
         {
@@ -30,7 +27,7 @@ public sealed class ShipyardTest
             {
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
-                    map.CreateMap(out var mapId);
+                    mapSystem.CreateMap(out var mapId);
 
                     bool mapLoaded = false;
                     Entity<MapGridComponent>? shuttle = null;
@@ -41,7 +38,7 @@ public sealed class ShipyardTest
                     catch (Exception ex)
                     {
                         Assert.Fail($"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid threw exception {ex}");
-                        map.DeleteMap(mapId);
+                        mapSystem.DeleteMap(mapId);
                         continue;
                     }
 
@@ -51,7 +48,7 @@ public sealed class ShipyardTest
 
                     try
                     {
-                        map.DeleteMap(mapId);
+                        mapSystem.DeleteMap(mapId);
                     }
                     catch (Exception ex)
                     {
@@ -71,8 +68,8 @@ public sealed class ShipyardTest
         var server = pair.Server;
 
         var entManager = server.ResolveDependency<IEntityManager>();
-        var mapLoader = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<MapLoaderSystem>();
-        var map = entManager.System<MapSystem>();
+        var mapLoader = entManager.System<MapLoaderSystem>();
+        var mapSystem = entManager.System<SharedMapSystem>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var pricing = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<PricingSystem>();
 
@@ -82,7 +79,7 @@ public sealed class ShipyardTest
             {
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
-                    map.CreateMap(out var mapId);
+                    mapSystem.CreateMap(out var mapId);
                     double appraisePrice = 0;
 
                     bool mapLoaded = false;
@@ -94,7 +91,7 @@ public sealed class ShipyardTest
                     catch (Exception ex)
                     {
                         Assert.Fail($"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid threw exception {ex}");
-                        map.DeleteMap(mapId);
+                        mapSystem.DeleteMap(mapId);
                         continue;
                     }
                     Assert.That(mapLoaded, Is.True, $"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid returned false.");
@@ -114,7 +111,7 @@ public sealed class ShipyardTest
                     Assert.That(vessel.Price, Is.AtLeast(idealMinPrice),
                         $"Arbitrage possible on {vessel.ID}. Minimal price should be {idealMinPrice}, {(vessel.MinPriceMarkup - 1.0f) * 100}% over the appraise price ({appraisePrice}).");
 
-                    map.DeleteMap(mapId);
+                    mapSystem.DeleteMap(mapId);
                 }
             });
         });

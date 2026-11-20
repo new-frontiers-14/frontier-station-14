@@ -3,16 +3,15 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
-using Content.Shared.Examine;
 using Content.Shared.Localizations;
 using Content.Shared.Maps;
 using Content.Shared.Pinpointer;
+using Content.Shared.Warps;
 using JetBrains.Annotations;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Warps;
 
 namespace Content.Server.Pinpointer;
 
@@ -25,7 +24,6 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
 
@@ -453,7 +451,7 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             return beacon.Value.Comp.Text!;
 
         var gridOffset = Angle.Zero;
-        if (_mapManager.TryFindGridAt(pos.Value, out var grid, out _))
+        if (_mapSystem.TryFindGridAt(pos.Value, out var grid, out _))
             gridOffset = Transform(grid).LocalRotation;
 
         // get the angle between the two positions, adjusted for the grid rotation so that

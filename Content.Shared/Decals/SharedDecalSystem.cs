@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Robust.Shared.GameStates;
@@ -12,7 +11,6 @@ namespace Content.Shared.Decals
     public abstract partial class SharedDecalSystem : EntitySystem
     {
         [Dependency] protected IPrototypeManager PrototypeManager = default!;
-        [Dependency] protected IMapManager MapManager = default!;
 
         protected bool PvsEnabled;
 
