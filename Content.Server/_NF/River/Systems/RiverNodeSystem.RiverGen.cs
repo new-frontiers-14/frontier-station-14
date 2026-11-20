@@ -7,17 +7,29 @@ namespace Content.Server._NF.River.Systems;
 
 public partial class RiverNodeSystem
 {
+    /// <summary>
+    /// Calculates angles which forms the outer bounds beyond which no part of the river should generate. This system only takes into account two wells at a time,
+    /// and does not account for overlapping angles from other connections.
+    /// </summary>
+    /// <param name="well1">One of the two wells between which the rivers are to be generated.</param>
+    /// <param name="well2">The other of two wells between which the rivers are to be generated.</param>
+    /// <param name="well1CCWise">Returns the counter-clockwise (positive) Angle of well 1.</param>
+    /// <param name="well1CWise">Returns the clockwise (negative) Angle of well 1.</param>
+    /// <param name="well2CCWise">Returns the counter-clockwise (positive) Angle of well 2.</param>
+    /// <param name="well2CWise">Returns the clockwise (negative) Angle of well 2.</param>
+    /// <returns>Returns true if the action was successful. If false, then all angles returned are at the maximum angle (+/-45 degrees by default).</returns>
     public bool CalculateBoundingAngles(EntityUid well1, EntityUid well2, out Angle well1CCWise, out Angle well1CWise, out Angle well2CCWise, out Angle well2CWise)
     {
+        var maxAngle = Angle.FromDegrees(45d);
         var well1Pos = _transform.GetWorldPosition(well1);
         var well2Pos = _transform.GetWorldPosition(well2);
         var connectionAngle1 = Angle.FromWorldVec(well2Pos - well1Pos);
         var connectionAngle2 = Angle.FromWorldVec(well1Pos - well2Pos);
 
-        well1CCWise = connectionAngle1 + Angle.FromDegrees(45d);
-        well1CWise = connectionAngle1 + Angle.FromDegrees(-45d);
-        well2CCWise = connectionAngle2 + Angle.FromDegrees(45d);
-        well2CWise = connectionAngle2 + Angle.FromDegrees(-45d);
+        well1CCWise = connectionAngle1 + maxAngle;
+        well1CWise = connectionAngle1 - maxAngle;
+        well2CCWise = connectionAngle2 + maxAngle;
+        well2CWise = connectionAngle2 - maxAngle;
 
         if (!TryComp<RiverWellComponent>(well1, out var comp1) ||
             !TryComp<RiverWellComponent>(well2, out var comp2))
@@ -27,30 +39,57 @@ public partial class RiverNodeSystem
 
         if (comp1.FlowRotation == Chirality.Clockwise)
         {
-            well1CCWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].DepartureNode) - well1Pos);
-            well1CWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].ArrivalNode) - well1Pos);
+            var cCWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].DepartureNode) - well1Pos);
+            if (Math.Abs(Angle.ShortestDistance(cCWiseAngle, connectionAngle1)) < maxAngle)
+            {
+                well1CCWise = cCWiseAngle;
+            }
+            var clockWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].ArrivalNode) - well1Pos);
+            if (Math.Abs(Angle.ShortestDistance(clockWiseAngle, connectionAngle1)) < maxAngle)
+            {
+                well1CWise = clockWiseAngle;
+            }
         }
         else
         {
-            well1CCWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].ArrivalNode) - well1Pos);
-            well1CWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].DepartureNode) - well1Pos);
+            var cCWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].ArrivalNode) - well1Pos);
+            if (Math.Abs(Angle.ShortestDistance(cCWiseAngle, connectionAngle1)) < maxAngle)
+            {
+                well1CCWise = cCWiseAngle;
+            }
+            var clockWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp1.Connections[well2].DepartureNode) - well1Pos);
+            if (Math.Abs(Angle.ShortestDistance(clockWiseAngle, connectionAngle1)) < maxAngle)
+            {
+                well1CWise = clockWiseAngle;
+            }
         }
 
         if (comp2.FlowRotation == Chirality.Clockwise)
         {
-            well2CCWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].DepartureNode) - well2Pos);
-            well2CWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].ArrivalNode) - well2Pos);
+            var cCWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].DepartureNode) - well2Pos);
+            if (Math.Abs(Angle.ShortestDistance(cCWiseAngle, connectionAngle2)) < maxAngle)
+            {
+                well2CCWise = cCWiseAngle;
+            }
+            var clockWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].ArrivalNode) - well2Pos);
+            if (Math.Abs(Angle.ShortestDistance(clockWiseAngle, connectionAngle2)) < maxAngle)
+            {
+                well2CWise = clockWiseAngle;
+            }
         }
         else
         {
-            well2CCWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].ArrivalNode) - well2Pos);
-            well2CWise = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].DepartureNode) - well2Pos);
+            var cCWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].ArrivalNode) - well2Pos);
+            if (Math.Abs(Angle.ShortestDistance(cCWiseAngle, connectionAngle2)) < maxAngle)
+            {
+                well2CCWise = cCWiseAngle;
+            }
+            var clockWiseAngle = Angle.FromWorldVec(_transform.GetWorldPosition(comp2.Connections[well1].DepartureNode) - well2Pos);
+            if (Math.Abs(Angle.ShortestDistance(clockWiseAngle, connectionAngle2)) < maxAngle)
+            {
+                well2CWise = clockWiseAngle;
+            }
         }
-
-        well1CCWise = Math.Min(Angle.FromDegrees(45d) + connectionAngle1, well1CCWise);
-        well1CWise = Math.Max(Angle.FromDegrees(-45d) + connectionAngle1, well1CWise);
-        well2CCWise = Math.Min(Angle.FromDegrees(45d) + connectionAngle2, well2CCWise);
-        well2CWise = Math.Max(Angle.FromDegrees(-45d) + connectionAngle2, well2CWise);
 
         return true;
     }
@@ -74,29 +113,132 @@ public partial class RiverNodeSystem
         return true;
     }
 
+    //TODO: Think I fixed it? But double check please.
     public float DistanceToBoundary(Vector2 posAlongConnection, Angle connectionAngle, Vector2 boundaryStart, Vector2 boundaryEnd, Angle boundAngleStart, Angle boundAngleEnd)
     {
-        var connectionNormal = connectionAngle + Angle.FromDegrees(90d);
-
         //Reconstructing a triangle to do trigenometry.
+        Angle connectionNormal;
+        bool leftNormal;
+        if (Angle.ShortestDistance(connectionAngle, boundAngleStart) > 0d)
+        {
+            connectionNormal = connectionAngle + Angle.FromDegrees(90d);
+            leftNormal = true;
+        }
+        else
+        {
+            connectionNormal = connectionAngle - Angle.FromDegrees(90d);
+            leftNormal = false;
+        }
+        connectionNormal = connectionNormal.Reduced();
+
+        Angle angleStartTheta = Math.Abs(Angle.ShortestDistance(connectionAngle, boundAngleStart));
         var startToPosAlongConnect = Angle.FromWorldVec(boundaryStart - posAlongConnection);
         Angle angleA = Math.Abs(Angle.ShortestDistance(startToPosAlongConnect, connectionNormal));
-        var angleB = Math.Abs(Angle.ShortestDistance(connectionAngle, boundAngleStart)) + angleA - Angle.FromDegrees(90d);
+
+        angleA.Reduced();
+        Angle angleC;
+        if (leftNormal && Angle.ShortestDistance(startToPosAlongConnect, connectionNormal) < 0d)
+        {
+            angleC = Angle.FromDegrees(90d) - angleStartTheta;
+        }
+        else if (leftNormal)
+        {
+            angleC = Angle.FromDegrees(90d) + angleStartTheta;
+        }
+        else if (Angle.ShortestDistance(startToPosAlongConnect, connectionNormal) < 0d)
+        {
+            angleC = Angle.FromDegrees(90d) + angleStartTheta;
+        }
+        else
+        {
+            angleC = Angle.FromDegrees(90d) - angleStartTheta;
+        }
+        angleC = Math.Abs(angleC);
         var distanceC = (boundaryStart - posAlongConnection).Length();
 
-        var angleC = Angle.FromDegrees(180d) - angleB - angleA;
+        var angleB = Angle.FromDegrees(180d) - angleC - angleA;
 
         var distanceToStartAngle = Math.Abs(distanceC * Math.Sin(angleB) / Math.Sin(angleC));
 
         //Doing the same for the end.
+        Angle connectionNormalEnd;
+        bool leftNormalEnd;
+        var endConnectionAngle = connectionAngle.Opposite();
+        if (Angle.ShortestDistance(endConnectionAngle, boundAngleEnd) > 0d)
+        {
+            connectionNormalEnd = endConnectionAngle + Angle.FromDegrees(90d);
+            leftNormalEnd = true;
+        }
+        else
+        {
+            connectionNormalEnd = endConnectionAngle - Angle.FromDegrees(90d);
+            leftNormalEnd = false;
+        }
+        connectionNormalEnd = connectionNormalEnd.Reduced();
+
+        Angle angleEndTheta = Math.Abs(Angle.ShortestDistance(endConnectionAngle, boundAngleEnd));
         var endToPosAlongConnect = Angle.FromWorldVec(boundaryEnd - posAlongConnection);
-        Angle angleD = Math.Abs(Angle.ShortestDistance(endToPosAlongConnect, connectionNormal));
-        var angleE = Math.Abs(Angle.ShortestDistance(connectionAngle + Angle.FromDegrees(180d), boundAngleEnd)) + angleD - Angle.FromDegrees(90d);
+        Angle angleD = Math.Abs(Angle.ShortestDistance(endToPosAlongConnect, connectionNormalEnd));
+        Angle angleF;
+        if (leftNormalEnd && Angle.ShortestDistance(endToPosAlongConnect, connectionNormalEnd) < 0d)
+        {
+            angleF = Angle.FromDegrees(90d) - angleEndTheta;
+        }
+        else if (leftNormalEnd)
+        {
+            angleF = Angle.FromDegrees(90d) + angleEndTheta;
+        }
+        else if (Angle.ShortestDistance(endToPosAlongConnect, connectionNormalEnd) < 0d)
+        {
+            angleF = Angle.FromDegrees(90d) + angleEndTheta;
+        }
+        else
+        {
+            angleF = Angle.FromDegrees(90d) - angleEndTheta;
+        }
+
+        angleF = Math.Abs(angleF);
         var distanceF = (boundaryEnd - posAlongConnection).Length();
 
-        var angleF = Angle.FromDegrees(180d) - angleE - angleD;
+        var angleE = Angle.FromDegrees(180d) - angleF - angleD;
 
         var distanceToEndAngle = Math.Abs(distanceF * Math.Sin(angleE) / Math.Sin(angleF));
+
+        //DEBUG
+        //Log.Warning("AngleStart: " + boundAngleStart.Degrees.ToString());
+        //Log.Warning("ConnectionAngle: " + connectionAngle.Degrees.ToString());
+        //Log.Warning("ConnectionAngleEnd: " + endConnectionAngle.Degrees.ToString());
+        //Log.Warning("AngleEnd: " + boundAngleEnd.Degrees.ToString());
+        //
+        //if (Math.Abs(Angle.ShortestDistance(boundAngleStart, boundAngleEnd)) < Angle.FromDegrees(90d))
+        //{
+        //    Log.Error("Angle between Start and End too sharp! " + new Angle(Math.Abs(Angle.ShortestDistance(boundAngleStart, boundAngleEnd))).Degrees.ToString());
+        //}
+        //
+        //var totalAngleABC = (angleA + angleB + angleC).Degrees;
+        //var totalAngleDEF = (angleD + angleE + angleF).Degrees;
+        //if (totalAngleABC < 179 || totalAngleABC > 181 || angleC < 0d)
+        //{
+        //    Log.Warning("Normal: " + connectionNormal.Degrees.ToString());
+        //    Log.Warning("startToPosAlongConnect:" + startToPosAlongConnect.Degrees.ToString());
+        //
+        //    Log.Warning("AngleA: " + angleA.Degrees.ToString());
+        //    Log.Warning("AngleB: " + angleB.Degrees.ToString());
+        //    Log.Warning("AngleC: " + angleC.Degrees.ToString());
+        //    Log.Warning("DistanceToStartAngle: " + distanceToStartAngle.ToString());
+        //    Log.Warning("TotalAngle: " + totalAngleABC.ToString());
+        //}
+        //if (totalAngleABC < 179 || totalAngleABC > 181 || angleF < 0d)
+        //{
+        //    Log.Warning("Normal: " + connectionNormalEnd.Degrees.ToString());
+        //    Log.Warning("endToPosAlongConnect:" + endToPosAlongConnect.Degrees.ToString());
+        //    Log.Warning("AngleD: " + angleD.Degrees.ToString());
+        //    Log.Warning("AngleE: " + angleE.Degrees.ToString());
+        //    Log.Warning("AngleF: " + angleF.Degrees.ToString());
+        //    Log.Warning("DistanceToEndAngle: " + distanceToEndAngle.ToString());
+        //    Log.Warning("TotalAngle: " + totalAngleDEF.ToString());
+        //}
+        //DEBUG END
 
         return (float)Math.Min(distanceToStartAngle, distanceToEndAngle);
     }
@@ -111,10 +253,12 @@ public partial class RiverNodeSystem
 
         var crossRivers = wellComp1.FlowRotation != wellComp2.FlowRotation;
         int crossNode = 0;
-        var crossingLength = 150f;
+        var crossingLength = 100f;
+        var crossingBevel = 100f;
+        var crossMidOffset = 0f;
 
         var nodeRange = 40f; // the default Node Range
-        var segmentLength = 200f;
+        var segmentLength = 250f;
         var maxSegmentDrift = segmentLength;//200f; //How much side-to-side offset can there be per segment? This affects the sharpness of the river bends.
 
         var location1 = _transform.GetWorldPosition(well1);
@@ -155,11 +299,33 @@ public partial class RiverNodeSystem
 
         CalculateBoundingAngles(well1, well2, out var well1LeftBoundingAngle, out var well1RightBoundingAngle, out var well2RightBoundingAngle, out var well2LeftBoundingAngle);
 
+        //DEBUG
+        //var angle1to2 = Angle.FromWorldVec(_transform.GetWorldPosition(well2) - _transform.GetWorldPosition(well1));
+        //var angle2to1 = Angle.FromWorldVec(_transform.GetWorldPosition(well1) - _transform.GetWorldPosition(well2));
+        //Log.Warning("Well1: " + well1.ToString());
+        //Log.Warning("angle1To2: " + angle1to2.Degrees.ToString());
+        //Log.Error("Well2: " + well2.ToString());
+        //Log.Error("angle2To1: " + angle2to1.Degrees.ToString());
+        //Log.Warning("well1LeftBoundingAngle: " + well1LeftBoundingAngle.Degrees.ToString());
+        //Log.Warning("well1 left to connecting angle: " + Angle.ShortestDistance(angle1to2, well1LeftBoundingAngle).Degrees);
+        //Log.Warning("well1RightBoundingAngle: " + well1RightBoundingAngle.Degrees.ToString());
+        //Log.Warning("well1 right to connecting angle: " + Angle.ShortestDistance(angle1to2, well1RightBoundingAngle).Degrees);
+        //Log.Error("well2RightBoundingAngle: " + well2RightBoundingAngle.Degrees.ToString());
+        //Log.Error("well2 right to connecting angle: " + Angle.ShortestDistance(angle2to1, well2RightBoundingAngle).Degrees);
+        //Log.Error("well2LeftBoundingAngle: " + well2LeftBoundingAngle.Degrees.ToString());
+        //Log.Error("well2 left to connecting angle: " + Angle.ShortestDistance(angle2to1, well2LeftBoundingAngle).Degrees);
+        //Log.Info("Left difference: " + Angle.ShortestDistance(well1LeftBoundingAngle, well2LeftBoundingAngle).Degrees);
+        //Log.Info("Right difference: " + Angle.ShortestDistance(well1RightBoundingAngle, well2RightBoundingAngle).Degrees);
+
+        //DEBUG END
+
         var interwellTangent = location2 - location1;
         var interwellDistance = (interwellTangent).Length();
         var interwellNormal = Vector2.Normalize(new Vector2(-interwellTangent.Y, interwellTangent.X));
-
-        interwellNormal.Normalize();
+        var scalar1 = MathF.Max(Vector2.Dot(left1 - location1, interwellTangent.Normalized()), Vector2.Dot(right1 - location1, interwellTangent.Normalized()));
+        var scalar2 = MathF.Max(Vector2.Dot(left2 - location2, -interwellTangent.Normalized()), Vector2.Dot(right2 - location2, -interwellTangent.Normalized()));
+        var mid1 = location1 + interwellTangent.Normalized() * scalar1;
+        var mid2 = location2 + -interwellTangent.Normalized() * scalar2;
 
         int nodeAmount = (int)(interwellDistance / segmentLength + 0.5f); // Rounding rather than truncating.
         if (!crossRivers && nodeAmount < 2)
@@ -192,14 +358,37 @@ public partial class RiverNodeSystem
 
         for (int i = 0; i < nodeAmount; i++)
         {
+            var midPoint = Vector2.Lerp(mid1, mid2, nodeDivisor * i);
             var leftPoint = Vector2.Lerp(left1, left2, nodeDivisor * i);
             var rightPoint = Vector2.Lerp(right1, right2, nodeDivisor * i);
-            maxLeftDistances[i] = DistanceToBoundary(leftPoint, Angle.FromWorldVec(interwellTangent), left1, left2, well1LeftBoundingAngle, well2LeftBoundingAngle) - nodeRange;
-            maxRightDistances[i] = DistanceToBoundary(rightPoint, Angle.FromWorldVec(interwellTangent), right1, right2, well1RightBoundingAngle, well2RightBoundingAngle) - nodeRange;
+            maxLeftDistances[i] = DistanceToBoundary(midPoint, Angle.FromWorldVec(interwellTangent), left1, left2, well1LeftBoundingAngle, well2LeftBoundingAngle) - nodeRange;
+            maxRightDistances[i] = DistanceToBoundary(midPoint, Angle.FromWorldVec(interwellTangent), right1, right2, well1RightBoundingAngle, well2RightBoundingAngle) - nodeRange;
             var randomOffset1 = _random.NextFloat(-maxRightDistances[i], maxLeftDistances[i]);
             var randomOffset2 = _random.NextFloat(-maxRightDistances[i], maxLeftDistances[i]);
             var leftOffset = MathF.Max(randomOffset1, randomOffset2);
             var rightOffset = MathF.Min(randomOffset1, randomOffset2);
+
+            // Ensure they're not too close.
+            if (MathF.Abs(leftOffset - rightOffset) < nodeRange * 2)
+            {
+                if (leftOffset + nodeRange < maxLeftDistances[i])
+                {
+                    leftOffset += nodeRange;
+                }
+                else
+                {
+                    rightOffset -= nodeRange;
+                }
+
+                if (rightOffset - nodeRange > -maxRightDistances[i])
+                {
+                    rightOffset -= nodeRange;
+                }
+                else
+                {
+                    leftOffset += nodeRange;
+                }
+            }
 
             if (leftOffset < rightOffset + nodeRange * 2f)
             {
@@ -216,97 +405,300 @@ public partial class RiverNodeSystem
             rightOffsets[i] = rightOffset;
         }
 
+        //TODO: add smoothing here? (Secondary points going along the flow basically)
         leftSidePoints[0] = left1;
         leftSidePoints[lastNodeIndex] = left2;
 
         rightSidePoints[0] = right1;
         rightSidePoints[lastNodeIndex] = right2;
 
-        // Just setting these as narrow as possible so that the smoothing will work alright-ish, with a slight bias for keeping everything in the middle.
-        leftOffsets[0] = nodeRange;
-        rightOffsets[0] = -nodeRange;
-        leftOffsets[lastNodeIndex] = nodeRange;
-        rightOffsets[lastNodeIndex] = -nodeRange;
+        // Won't be 100% accurate, but close enough.
+        leftOffsets[0] = (mid1 - left1).Length();
+        rightOffsets[0] = -(mid1 - right1).Length();
+        leftOffsets[lastNodeIndex] = (mid2 - left2).Length();
+        rightOffsets[lastNodeIndex] = -(mid2 - right2).Length();
+
+        var left1Tangent = new Vector2(-(left1 - location1).Y, (left1 - location1).X);
+        var right1Tangent = -new Vector2(-(right1 - location1).Y, (right1 - location1).X);
+        var left2Tangent = new Vector2(-(left2 - location2).Y, (left2 - location2).X);
+        var right2Tangent = -new Vector2(-(right2 - location2).Y, (right2 - location2).X);
+
+        // Math such that the further from the interwell tangent the angle is, the smaller the offset.
 
         if (crossRivers)
         {
             if (nodeAmount > 3)
             {
-                crossNode = _random.Next(1, lastNodeIndex);
-            }
-            //The offsets start at a width already!!!
-            var midOffset = (leftOffsets[crossNode] + rightOffsets[crossNode]) * 0.3f; // Averages between the two random offsets, but also pulls it all towards the middle.
-
-            var leftCrossPos = Vector2.Lerp(left1, left2, crossNode * nodeDivisor);
-            var rightCrossPos = Vector2.Lerp(right1, right2, crossNode * nodeDivisor);
-            var midPos = Vector2.Lerp(leftCrossPos, rightCrossPos, 0.5f);
-            var sideToMidDistance = (leftCrossPos - midPos).Length();
-
-            if (MathF.Abs(midOffset) + crossingLength * 0.5f > maxSegmentDrift * crossNode ||
-                MathF.Abs(midOffset) + crossingLength * 0.5f > maxSegmentDrift * (nodeAmount - crossNode))
-            {
-                if (midOffset > 0f)
+                if (nodeAmount > 5)
                 {
-                    midOffset = MathF.Min(maxSegmentDrift * crossNode - crossingLength * 0.5f, maxSegmentDrift * (lastNodeIndex - crossNode) - crossingLength * 0.5f);
+                    crossNode = _random.Next(2, lastNodeIndex - 1);
                 }
                 else
                 {
-                    midOffset = MathF.Max(-maxSegmentDrift * crossNode + crossingLength * 0.5f, -maxSegmentDrift * (lastNodeIndex - crossNode) + crossingLength * 0.5f);
+                    crossNode = _random.Next(1, lastNodeIndex);
                 }
             }
-            midOffset = 0f;
-            if (midOffset > crossingLength)
-            {
-                leftOffsets[crossNode] = midOffset - sideToMidDistance;
-                rightOffsets[crossNode] = midOffset + sideToMidDistance - crossingLength;
-            }
-            if (midOffset < -crossingLength)
-            {
-                leftOffsets[crossNode] = midOffset - sideToMidDistance + crossingLength;
-                rightOffsets[crossNode] = midOffset + sideToMidDistance;
-            }
-            else
-            {
-                leftOffsets[crossNode] = midOffset + crossingLength * 0.5f - sideToMidDistance;
-                rightOffsets[crossNode] = midOffset - crossingLength * 0.5f + sideToMidDistance;
-            }
+            crossMidOffset = (leftOffsets[crossNode] + rightOffsets[crossNode]) * 0.5f;
+
+            //var midOffset = (leftOffsets[crossNode] + rightOffsets[crossNode]) * 0.3f; // Averages between the two random offsets, but also pulls it all towards the middle.
+            //
+            ////var leftCrossPos = Vector2.Lerp(left1, left2, crossNode * nodeDivisor);
+            ////var rightCrossPos = Vector2.Lerp(right1, right2, crossNode * nodeDivisor);
+            ////var midPos = Vector2.Lerp(leftCrossPos, rightCrossPos, 0.5f);
+            ////var sideToMidDistance = (leftCrossPos - midPos).Length();
+            //
+            //if (MathF.Abs(midOffset) + crossingLength * 0.5f > maxSegmentDrift * crossNode ||
+            //    MathF.Abs(midOffset) + crossingLength * 0.5f > maxSegmentDrift * (nodeAmount - crossNode))
+            //{
+            //    if (midOffset > 0f)
+            //    {
+            //        midOffset = MathF.Min(maxSegmentDrift * crossNode - crossingLength * 0.5f, maxSegmentDrift * (lastNodeIndex - crossNode) - crossingLength * 0.5f);
+            //    }
+            //    else
+            //    {
+            //        midOffset = MathF.Max(-maxSegmentDrift * crossNode + crossingLength * 0.5f, -maxSegmentDrift * (lastNodeIndex - crossNode) + crossingLength * 0.5f);
+            //    }
+            //}
+            //midOffset = 0f;
+            //if (midOffset > crossingLength)
+            //{
+            //    leftOffsets[crossNode] = midOffset;
+            //    rightOffsets[crossNode] = midOffset - crossingLength;
+            //}
+            //if (midOffset < -crossingLength)
+            //{
+            //    leftOffsets[crossNode] = midOffset + crossingLength;
+            //    rightOffsets[crossNode] = midOffset;
+            //}
+            //else
+            //{
+            //    leftOffsets[crossNode] = midOffset + crossingLength * 0.5f;
+            //    rightOffsets[crossNode] = midOffset - crossingLength * 0.5f;
+            //}
         }
 
+        // This is supposed to make the rivers curve gently going into and coming out of wells. Doesn't work, TODO: Fix this.
+        var peninitialL1Mod = Math.Abs(Angle.ShortestDistance(Angle.FromWorldVec(left1Tangent), Angle.FromWorldVec(interwellTangent))) / Math.PI;
+        var peninitialR1Mod = Math.Abs(Angle.ShortestDistance(Angle.FromWorldVec(right1Tangent), Angle.FromWorldVec(interwellTangent))) / Math.PI;
+        var penultimateL2Mod = Math.Abs(Angle.ShortestDistance(Angle.FromWorldVec(left2Tangent), Angle.FromWorldVec(interwellTangent))) / Math.PI;
+        var penultimateR2Mod = Math.Abs(Angle.ShortestDistance(Angle.FromWorldVec(right2Tangent), Angle.FromWorldVec(interwellTangent))) / Math.PI;
+
+        leftOffsets[1] = MathF.Min((float)peninitialL1Mod * wellComp1.Radius, maxLeftDistances[1]);
+        rightOffsets[1] = MathF.Max((float)peninitialR1Mod * -wellComp1.Radius, -maxRightDistances[1]);
+        leftOffsets[lastNodeIndex - 1] = MathF.Min((float)penultimateL2Mod * wellComp2.Radius, maxLeftDistances[lastNodeIndex - 1]);
+        rightOffsets[lastNodeIndex - 1] = MathF.Max((float)penultimateR2Mod * -wellComp2.Radius, -maxRightDistances[lastNodeIndex - 1]);
+
+        // River smoothing and ensuring no illegal positions happen.
         var isSmoothed = false;
         while (!isSmoothed)
         {
             isSmoothed = true;
+            //Run through the river length and check the left and right points to see if they need corrections.
             for (int i = 1; i < lastNodeIndex; i++)
             {
                 var priorIndex = i - 1;
                 var nextIndex = i + 1;
-                if (i == crossNode)
+
+                var halfCrossLength = crossingLength * 0.5f;
+
+                // If a right node is to the left of the left node, just swaps them for ease.
+                if (leftOffsets[i] < rightOffsets[i])
                 {
-                    continue;
+                    var tempLeft = leftOffsets[i];
+                    var tempRight = rightOffsets[i];
+                    leftOffsets[i] = tempRight;
+                    rightOffsets[i] = tempLeft;
                 }
-                if (Math.Abs(leftOffsets[i] - leftOffsets[priorIndex]) > maxSegmentDrift ||
-                    Math.Abs(leftOffsets[i] - leftOffsets[nextIndex]) > maxSegmentDrift)
+
+                // Ensures Rivers (usually) don't overlap. (This doesn't account for some overlaps, where the rivers are close, and the perturbations are steep.)
+                if (MathF.Abs(leftOffsets[i] - rightOffsets[i]) < nodeRange * 2f)
                 {
-                    leftOffsets[i] = (leftOffsets[i] + leftOffsets[priorIndex] + leftOffsets[nextIndex]) * 0.3f;
-                    isSmoothed = false;
+                    if (rightOffsets[i] > 0f)
+                    {
+                        rightOffsets[i] = rightOffsets[i] - nodeRange * 2f;
+                    }
+                    else if (leftOffsets[i] < 0f)
+                    {
+                        leftOffsets[i] = leftOffsets[i] + nodeRange * 2f;
+                    }
+                    else
+                    {
+                        rightOffsets[i] = rightOffsets[i] - nodeRange;
+                        leftOffsets[i] = leftOffsets[i] + nodeRange;
+                    }
                 }
-                if (Math.Abs(rightOffsets[i] - rightOffsets[priorIndex]) > maxSegmentDrift ||
-                    Math.Abs(rightOffsets[i] - rightOffsets[nextIndex]) > maxSegmentDrift)
+
+                if (crossRivers)
                 {
-                    rightOffsets[i] = (rightOffsets[i] + rightOffsets[priorIndex] + rightOffsets[nextIndex]) * 0.3f;
-                    isSmoothed = false;
+                    var closestMiddleRight = MathF.Max(rightOffsets[crossNode + 1], rightOffsets[crossNode - 1]);
+                    var closestMiddleLeft = MathF.Min(leftOffsets[crossNode + 1], leftOffsets[crossNode - 1]);
+                    var doubleBevel = crossingBevel * 2f;
+
+                    if (closestMiddleRight > 0f)
+                    {
+                        if (MathF.Abs(rightOffsets[crossNode + 1] - closestMiddleLeft) < crossingLength + doubleBevel)
+                        {
+                            rightOffsets[crossNode + 1] = closestMiddleLeft - crossingLength - doubleBevel;
+                        }
+                        if (MathF.Abs(rightOffsets[crossNode - 1] - closestMiddleLeft) < crossingLength + doubleBevel)
+                        {
+                            rightOffsets[crossNode - 1] = closestMiddleLeft - crossingLength - doubleBevel;
+                        }
+                    }
+                    else if (closestMiddleLeft < 0f)
+                    {
+                        if (MathF.Abs(leftOffsets[crossNode + 1] - closestMiddleRight) < crossingLength + doubleBevel)
+                        {
+                            leftOffsets[crossNode + 1] = closestMiddleRight + crossingLength + doubleBevel;
+                        }
+                        if (MathF.Abs(leftOffsets[crossNode - 1] - closestMiddleRight) < crossingLength + doubleBevel)
+                        {
+                            leftOffsets[crossNode - 1] = closestMiddleRight + crossingLength + doubleBevel;
+                        }
+                    }
+                    else
+                    {
+                        var middle = (closestMiddleRight + closestMiddleLeft) * 0.5f;
+                        if (MathF.Abs(rightOffsets[crossNode + 1] - closestMiddleLeft) < crossingLength + doubleBevel)
+                        {
+                            rightOffsets[crossNode + 1] = middle - halfCrossLength - crossingBevel;
+                        }
+                        if (MathF.Abs(rightOffsets[crossNode - 1] - closestMiddleLeft) < crossingLength + doubleBevel)
+                        {
+                            rightOffsets[crossNode - 1] = middle - halfCrossLength - crossingBevel;
+                        }
+                        if (MathF.Abs(leftOffsets[crossNode + 1] - closestMiddleRight) < crossingLength + doubleBevel)
+                        {
+                            leftOffsets[crossNode + 1] = middle + halfCrossLength + crossingBevel;
+                        }
+                        if (MathF.Abs(leftOffsets[crossNode - 1] - closestMiddleRight) < crossingLength + doubleBevel)
+                        {
+                            leftOffsets[crossNode - 1] = middle + halfCrossLength + crossingBevel;
+                        }
+                    }
+                }
+
+                //TODO: Fix this, it's broken, the min and/or max offsets aren't right.
+                // Okay, so... make it so that -1 and +1 cannot be too close to eachother, much like with the river width.
+                //if (crossRivers && (crossNode == nextIndex || crossNode == priorIndex)) // Handle the node before the crossNode
+                //{
+                //    int notCrossIndex;
+                //    if (crossNode == nextIndex)
+                //    {
+                //        notCrossIndex = priorIndex;
+                //    }
+                //    else
+                //    {
+                //        notCrossIndex = nextIndex;
+                //    }
+                //    if (Math.Abs(leftOffsets[i] - leftOffsets[priorIndex]) > maxSegmentDrift ||
+                //        Math.Abs(leftOffsets[i] - leftOffsets[nextIndex]) > maxSegmentDrift ||
+                //        leftOffsets[i] < leftOffsets[crossNode] + crossingBevel)
+                //    {
+                //        var minOffset = leftOffsets[crossNode] + crossingBevel;
+                //
+                //        var maxOffset = MathF.Max(leftOffsets[notCrossIndex], leftOffsets[crossNode] + crossingBevel);
+                //        maxOffset = MathF.Min(maxOffset, maxLeftDistances[i]);
+                //
+                //        if (minOffset > maxOffset)
+                //        {
+                //            leftOffsets[i] = maxOffset;
+                //        }
+                //        else
+                //        {
+                //            leftOffsets[i] = _random.NextFloat(minOffset, maxOffset);
+                //        }
+                //        isSmoothed = false;
+                //    }
+                //    if (Math.Abs(rightOffsets[i] - rightOffsets[priorIndex]) > maxSegmentDrift ||
+                //        Math.Abs(rightOffsets[i] - rightOffsets[nextIndex]) > maxSegmentDrift ||
+                //        rightOffsets[i] > rightOffsets[crossNode] - crossingBevel)
+                //    {
+                //        var minOffset = MathF.Min(rightOffsets[notCrossIndex], rightOffsets[crossNode] - crossingBevel);
+                //        minOffset = MathF.Max(minOffset, -maxRightDistances[i]);
+                //
+                //        var maxOffset = rightOffsets[crossNode] - crossingBevel;
+                //
+                //        if (minOffset > maxOffset)
+                //        {
+                //            rightOffsets[i] = minOffset;
+                //        }
+                //        else
+                //        {
+                //            rightOffsets[i] = _random.NextFloat(minOffset, maxOffset);
+                //        }
+                //        isSmoothed = false;
+                //    }
+                //}
+                if (crossRivers && i == crossNode)
+                {
+                    var leftLimit = crossMidOffset + halfCrossLength + crossingBevel;
+                    var rightLimit = crossMidOffset - halfCrossLength - crossingBevel;
+                    if (leftLimit > MathF.Min(leftOffsets[priorIndex], leftOffsets[nextIndex]) ||
+                        rightLimit < MathF.Max(rightOffsets[priorIndex], rightOffsets[nextIndex]))
+                    {
+                        crossMidOffset = _random.NextFloat(MathF.Max(rightOffsets[priorIndex], rightOffsets[nextIndex]) + crossingBevel + halfCrossLength, MathF.Min(leftOffsets[priorIndex], leftOffsets[nextIndex]) - crossingBevel - halfCrossLength);
+                        leftOffsets[i] = crossMidOffset + halfCrossLength;
+                        rightOffsets[i] = crossMidOffset - halfCrossLength;
+                        isSmoothed = false;
+                    }
+                }
+                else
+                {
+                    if (Math.Abs(leftOffsets[i] - leftOffsets[priorIndex]) > maxSegmentDrift ||
+                        Math.Abs(leftOffsets[i] - leftOffsets[nextIndex]) > maxSegmentDrift)
+                    {
+                        var minOffset = MathF.Min(leftOffsets[priorIndex], leftOffsets[nextIndex]);
+                        minOffset = MathF.Max(minOffset, rightOffsets[i] + nodeRange * 2f);
+
+                        var maxOffset = MathF.Max(leftOffsets[priorIndex], leftOffsets[nextIndex]);
+                        maxOffset = MathF.Min(maxOffset, maxLeftDistances[i]);
+
+                        leftOffsets[i] = _random.NextFloat(minOffset, maxOffset);
+                        isSmoothed = false;
+                    }
+                    if (Math.Abs(rightOffsets[i] - rightOffsets[priorIndex]) > maxSegmentDrift ||
+                        Math.Abs(rightOffsets[i] - rightOffsets[nextIndex]) > maxSegmentDrift)
+                    {
+                        var minOffset = MathF.Min(rightOffsets[priorIndex], rightOffsets[nextIndex]);
+                        minOffset = MathF.Max(minOffset, -maxRightDistances[i]);
+
+                        var maxOffset = MathF.Max(rightOffsets[priorIndex], rightOffsets[nextIndex]);
+                        maxOffset = MathF.Min(maxOffset, leftOffsets[i] - nodeRange * 2f);
+
+                        rightOffsets[i] = _random.NextFloat(minOffset, maxOffset);
+                        isSmoothed = false;
+                    }
+                }
+
+                if (!rightOffsets[i].IsValid() || !leftOffsets[i].IsValid())
+                {
+                    Log.Error("Offsets invalid! leftOffsets[" + i.ToString() + "] = " + leftOffsets[i].ToString() + " | rightOffsets[" + i.ToString() + "] = " + rightOffsets[i].ToString());
                 }
             }
         }
 
+        //DEBUG
+        //List<Vector2> maxLeft = new();
+        //List<Vector2> maxRight = new();
+        //for (int i = 0; i < nodeAmount; i++)
+        //{
+        //    var midNode = Vector2.Lerp(mid1, mid2, i * nodeDivisor);
+        //    maxLeft.Add(midNode + interwellNormal * maxLeftDistances[i]);
+        //    maxRight.Add(midNode + -interwellNormal * maxRightDistances[i]);
+        //}
+        //END DEBUG
+
         for (int i = 1; i < lastNodeIndex; i++)
         {
+            var midNode = Vector2.Lerp(mid1, mid2, i * nodeDivisor);
             var leftNode = Vector2.Lerp(left1, left2, i * nodeDivisor);
             var rightNode = Vector2.Lerp(right1, right2, i * nodeDivisor);
 
-            leftSidePoints[i] = leftNode + interwellNormal * leftOffsets[i];
-            rightSidePoints[i] = rightNode + interwellNormal * rightOffsets[i];
+            leftSidePoints[i] = midNode + interwellNormal * leftOffsets[i];
+            rightSidePoints[i] = midNode + interwellNormal * rightOffsets[i];
         }
+
 
         List<Vector2> river1To2 = new();
         List<Vector2> river2To1 = new();
@@ -360,6 +752,7 @@ public partial class RiverNodeSystem
             }
         }
 
+        //DEBUG STUFF
         var outOfBoundsCounter = 0;
         foreach (var node in river1To2)
         {
@@ -395,11 +788,9 @@ public partial class RiverNodeSystem
         //PopulateRiverFromVector2List(mapId, leftBound2);
         //PopulateRiverFromVector2List(mapId, rightBound1);
         //PopulateRiverFromVector2List(mapId, rightBound2);
-
-        if (crossRivers)
-        {
-            Log.Info("CrossNode: " + crossNode.ToString());
-        }
+        //PopulateRiverFromVector2List(mapId, maxLeft);
+        //PopulateRiverFromVector2List(mapId, maxRight);
+        //END OF DEBUG STUFF                
 
         PopulateRiverFromVector2List(mapId, river1To2);
         PopulateRiverFromVector2List(mapId, river2To1);
@@ -476,6 +867,10 @@ public partial class RiverNodeSystem
                 }
             }
 
+            if (double.IsNaN(flowDirection))
+            {
+                Log.Error("flowDirection is NaN!");
+            }
             // If relevant, create a new node, and connect nodes to form a river segment.
             if (mergeNode == EntityUid.Invalid)
             {
@@ -485,7 +880,6 @@ public partial class RiverNodeSystem
                 {
                     continue; //bad
                 }
-
                 newComp.FlowDirection = flowDirection;
                 if (i == 0)
                 {
@@ -630,7 +1024,6 @@ public partial class RiverNodeSystem
     {
         foreach (var well in wells)
         {
-            //Get the angles of all the connected wells in order, handle each well with relation to its neighbouring wells, merge them if their angles are too shallow.
             if (!TryComp<RiverWellComponent>(well, out var wellComp))
             {
                 continue;
@@ -653,7 +1046,8 @@ public partial class RiverNodeSystem
                     foreach (var otherConnection in sortedConnectedWells)
                     {
                         var otherConnectionDir = Angle.FromWorldVec(_transform.GetWorldPosition(otherConnection) - wellPos);
-                        if (Angle.ShortestDistance(connectionDirection, otherConnectionDir) < 0d) //Is otherConnection further right than Connection?
+                        var shortestDistance = Angle.ShortestDistance(connectionDirection, otherConnectionDir);
+                        if (Math.Max(connectionDirection, otherConnectionDir) == connectionDirection) //Is otherConnection further right than Connection?
                         {
                             insert = true;
                             break;
