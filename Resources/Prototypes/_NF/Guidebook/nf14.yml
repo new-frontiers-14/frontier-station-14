@@ -5,6 +5,7 @@
   priority: -1
   children: # note: children may be in other files. When adding to this, update the priority of anything after.
   - Bank
+  - SafetyDepositBox
   - Hiring
   - Piloting
   - Survival # Moved out from Station and Shifts section (upstream file)
@@ -18,6 +19,12 @@
   id: Bank
   name: guide-entry-bank
   text: "/ServerInfo/_NF/Guidebook/Bank.xml"
+  priority: 0
+
+- type: guideEntry
+  id: SafetyDepositBox
+  name: guide-entry-safety-deposit-box
+  text: "/ServerInfo/_NF/Guidebook/SafetyDepositBox.xml"
   priority: 0
 
 - type: guideEntry
