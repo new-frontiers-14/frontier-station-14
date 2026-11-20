@@ -81,7 +81,7 @@ namespace Content.Client.Communications.UI
                 _menu.CanBroadcast = commsState.CanBroadcast;
                 _menu.CanCall = commsState.CanCall;
                 _menu.CountdownStarted = commsState.CountdownStarted;
-                _menu.AlertLevelSelectable = commsState.AlertLevels != null && !float.IsNaN(commsState.CurrentAlertDelay) && commsState.CurrentAlertDelay <= 0;
+                _menu.AlertLevelSelectable = commsState.AlertLevels != null && !float.IsNaN(commsState.CurrentAlertDelay) && commsState.CurrentAlertDelay <= 0 && commsState.CanChangeAlertLevel; // Frontier: added && commsState.CanChangeAlertLevel
                 _menu.CurrentLevel = commsState.CurrentAlert;
                 _menu.CountdownEnd = commsState.ExpectedCountdownEnd;
 
