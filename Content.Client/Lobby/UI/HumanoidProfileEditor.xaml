@@ -73,6 +73,12 @@
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SexButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <BoxContainer Name="UneonVoiceRow" Visible="False" SeparationOverride="6">
+                                    <Label Text="{Loc 'uneon-tts-voice'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="UneonVoiceButton" />
+                                    <Button Name="UneonVoicePreview" Text="{Loc 'uneon-tts-preview'}" />
+                                </BoxContainer>
                                 <!-- Pronouns -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-pronouns-label'}" />

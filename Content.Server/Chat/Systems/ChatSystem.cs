@@ -44,6 +44,7 @@ namespace Content.Server.Chat.Systems;
 public sealed partial class ChatSystem : SharedChatSystem
 {
     [Dependency] private IReplayRecordingManager _replay = default!;
+    [Dependency] private Content.Server._UNEON.Tts.UneonTtsSystem _uneonTts = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IChatSanitizationManager _sanitizer = default!;
@@ -717,6 +718,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// </summary>
     private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
     {
+        List<ICommonSession>? speechListeners = channel == ChatChannel.Local && _uneonTts.Enabled ? new() : null;
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
             var entRange = MessageRangeCheck(session, data, range);
@@ -724,7 +726,12 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+            if (!entHideChat && data.Range >= 0)
+                speechListeners?.Add(session);
         }
+
+        if (speechListeners != null)
+            _uneonTts.Speak(source, message, speechListeners);
 
         _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
     }
