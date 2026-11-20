@@ -16,7 +16,6 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -28,7 +27,6 @@ public sealed partial class HandheldRadioSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private INetManager _netMan = default!;
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private InteractionSystem _interaction = default!;
 
@@ -145,7 +143,7 @@ public sealed partial class HandheldRadioSystem : EntitySystem
                 }
 
                 if (TryComp(parent, out ActorComponent? actor))
-                    _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+                    _radio.DeliverToPlayer(args, actor.PlayerSession);
                 break;
 
             case HandheldRadioMode.Intercom:

@@ -52,15 +52,12 @@ public sealed class UneonTtsSystem : EntitySystem
 
     public async void Speak(EntityUid source, string message, List<ICommonSession> listeners)
     {
-        if (!_cfg.GetCVar(UneonTts.Enabled) || listeners.Count == 0 || message.Length is 0 or > 200 ||
-            !TryComp<HumanoidAppearanceComponent>(source, out var humanoid) ||
-            humanoid.TtsVoice is not { } voice || !_prototypes.HasIndex<UneonTtsVoicePrototype>(voice))
+        if (listeners.Count == 0)
             return;
 
         var recipients = listeners.Select(session => (Session: session, Entity: session.AttachedEntity)).ToArray();
-        var round = _round;
-        var audio = await Generate(voice, message);
-        if (audio == null || round != _round || !_cfg.GetCVar(UneonTts.Enabled) ||
+        var audio = await GenerateSpeech(source, message);
+        if (audio == null ||
             !TryComp<TransformComponent>(source, out var emitter) || TerminatingOrDeleted(source))
             return;
 
@@ -74,6 +71,32 @@ public sealed class UneonTtsSystem : EntitySystem
 
             RaiseNetworkEvent(new UneonTtsAudioEvent(audio, GetNetEntity(source)), Filter.SinglePlayer(session), recordReplay: false);
         }
+    }
+
+    public async void SpeakRadio(EntityUid source, string message, HashSet<ICommonSession> listeners)
+    {
+        var recipients = listeners.Select(session => (Session: session, Entity: session.AttachedEntity)).ToArray();
+        var audio = await GenerateSpeech(source, message);
+        if (audio == null)
+            return;
+
+        foreach (var (session, entity) in recipients)
+        {
+            if (session.Status == SessionStatus.InGame && session.AttachedEntity == entity)
+                RaiseNetworkEvent(new UneonTtsAudioEvent(audio, null), Filter.SinglePlayer(session), recordReplay: false);
+        }
+    }
+
+    private async Task<byte[]?> GenerateSpeech(EntityUid source, string message)
+    {
+        if (!Enabled || message.Length is 0 or > 200 ||
+            !TryComp<HumanoidAppearanceComponent>(source, out var humanoid) ||
+            humanoid.TtsVoice is not { } voice || !_prototypes.HasIndex<UneonTtsVoicePrototype>(voice))
+            return null;
+
+        var round = _round;
+        var audio = await Generate(voice, message);
+        return round == _round && Enabled ? audio : null;
     }
 
     private async void OnPreview(UneonTtsPreviewEvent message, EntitySessionEventArgs args)

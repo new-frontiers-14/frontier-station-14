@@ -5,14 +5,12 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 
 namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class HeadsetSystem : SharedHeadsetSystem
 {
-    [Dependency] private INetManager _netMan = default!;
     [Dependency] private RadioSystem _radio = default!;
 
     public override void Initialize()
@@ -112,7 +110,7 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         }
 
         if (TryComp(parent, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            _radio.DeliverToPlayer(args, actor.PlayerSession);
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)

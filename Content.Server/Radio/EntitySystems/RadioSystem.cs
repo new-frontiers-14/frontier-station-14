@@ -1,4 +1,5 @@
 using Content.Server._NF.Radio; // Frontier
+using Content.Server._UNEON.Tts;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
@@ -32,6 +33,7 @@ public sealed partial class RadioSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private UneonTtsSystem _tts = default!;
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -76,7 +78,13 @@ public sealed partial class RadioSystem : EntitySystem
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         if (TryComp(uid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            DeliverToPlayer(args, actor.PlayerSession);
+    }
+
+    internal void DeliverToPlayer(in RadioReceiveEvent args, ICommonSession session)
+    {
+        _netMan.ServerSendMessage(args.ChatMsg, session.Channel);
+        args.VoiceRecipients?.Add(session);
     }
 
     /// <summary>
@@ -146,7 +154,10 @@ public sealed partial class RadioSystem : EntitySystem
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
+        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg)
+        {
+            VoiceRecipients = _tts.Enabled && escapeMarkup ? new() : null
+        };
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -200,6 +211,8 @@ public sealed partial class RadioSystem : EntitySystem
 
         _replay.RecordServerMessage(chat);
         _messages.Remove(message);
+        if (ev.VoiceRecipients is { Count: > 0 } recipients)
+            _tts.SpeakRadio(messageSource, message, recipients);
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>

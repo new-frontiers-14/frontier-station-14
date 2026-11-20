@@ -1,10 +1,14 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
+using Robust.Shared.Player;
 
 namespace Content.Server.Radio;
 
 [ByRefEvent]
-public readonly record struct RadioReceiveEvent(string Message, EntityUid MessageSource, RadioChannelPrototype Channel, EntityUid RadioSource, MsgChatMessage ChatMsg);
+public readonly record struct RadioReceiveEvent(string Message, EntityUid MessageSource, RadioChannelPrototype Channel, EntityUid RadioSource, MsgChatMessage ChatMsg)
+{
+    internal HashSet<ICommonSession>? VoiceRecipients { get; init; }
+}
 
 /// <summary>
 /// Event raised on the parent entity of a headset radio when a radio message is received
