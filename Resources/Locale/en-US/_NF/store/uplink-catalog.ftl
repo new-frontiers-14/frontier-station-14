@@ -23,6 +23,12 @@ uplink-security-hardsuit-combat-desc = A heavily armored NFSD suit. Space proof,
 uplink-security-hardsuit-commmand-name = Command Combat Suit
 uplink-security-hardsuit-commmand-desc = A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility. This variant has supervisor rank markings.
 
+uplink-security-hardsuit-recon-name = NFSD Recon Suit
+uplink-security-hardsuit-recon-desc = This hardsuit provides you decent protection while refusing to compromise on your mobility.
+
+uplink-security-hardsuit-elite-name = NFSD Elite Suit
+uplink-security-hardsuit-elite-desc = An elite version of the NFSD combat suit, with improved mobility and fireproofing. Property of Nanotrasen.
+
 uplink-security-lethalarmory-name = Lethal Armory Stock Crate
 uplink-security-lethalarmory-desc = A crate containing weapons necessary to fill an armory.
 
