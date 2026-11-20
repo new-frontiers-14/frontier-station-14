@@ -1,3 +1,5 @@
+using Content.Shared._UNEON.VipUplink;
+using Robust.Client.Player;
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
 using Robust.Shared.Utility;
@@ -238,8 +240,21 @@ namespace Content.Client.PDA
             LockUplinkButton.Visible = state.HasUplink;
         }
 
+        private readonly List<PdaProgramItem> _vipPrograms = new();
+
+        protected override void FrameUpdate(FrameEventArgs args)
+        {
+            base.FrameUpdate(args);
+            var actor = IoCManager.Resolve<IPlayerManager>().LocalEntity;
+            var entities = IoCManager.Resolve<IEntityManager>();
+            var allowed = entities.TryGetComponent<VipUplinkAccessComponent>(actor, out var access) && access.Tier > 0;
+            foreach (var item in _vipPrograms)
+                item.Visible = allowed;
+        }
+
         public void UpdateAvailablePrograms(List<(EntityUid, CartridgeComponent)> programs)
         {
+            _vipPrograms.Clear();
             ProgramList.RemoveAllChildren();
 
             if (programs.Count == 0)
@@ -269,6 +284,11 @@ namespace Content.Client.PDA
                 }
 
                 var item = new PdaProgramItem();
+                if (IoCManager.Resolve<IEntityManager>().HasComponent<VipUplinkCartridgeComponent>(uid))
+                {
+                    item.Visible = false;
+                    _vipPrograms.Add(item);
+                }
 
                 if (component.Icon is not null)
                     item.Icon.SetFromSpriteSpecifier(component.Icon);

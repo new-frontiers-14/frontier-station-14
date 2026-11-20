@@ -131,3 +131,10 @@ public sealed class CartridgeUiReadyEvent : EntityEventArgs
 /// <param name="Message">The message to be displayed</param>
 [ByRefEvent]
 public record struct CartridgeLoaderNotificationSentEvent(string Header, string Message);
+
+/// <summary>Allows applications to check the actual viewer before a UI activation request.</summary>
+public sealed class CartridgeProgramAccessAttemptEvent : CancellableEntityEventArgs
+{
+    public readonly EntityUid Actor;
+    public CartridgeProgramAccessAttemptEvent(EntityUid actor) { Actor = actor; }
+}

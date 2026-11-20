@@ -1,0 +1,10 @@
+uneon-vip-title = VIP uplink
+uneon-vip-loading = Loading catalogue…
+uneon-vip-balance = Bank balance: { $balance } spesos
+uneon-vip-buy = { $name } — { $price } spesos
+uneon-vip-steel = Steel (30 sheets)
+uneon-vip-glass = Glass (30 sheets)
+uneon-vip-plastic = Plastic (30 sheets)
+uneon-vip-denied = An active UNEON subscription is required to purchase items.
+uneon-vip-failed = Purchase failed. Check your access and bank balance.
+uneon-vip-success = Purchase delivered.

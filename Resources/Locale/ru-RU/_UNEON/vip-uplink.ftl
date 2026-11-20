@@ -1,0 +1,10 @@
+uneon-vip-title = VIP аплинк
+uneon-vip-loading = Загрузка каталога…
+uneon-vip-balance = Банковский счёт: { $balance } кредитов
+uneon-vip-buy = { $name } — { $price } кредитов
+uneon-vip-steel = Сталь (30 шт.)
+uneon-vip-glass = Стекло (30 шт.)
+uneon-vip-plastic = Пластик (30 шт.)
+uneon-vip-denied = Доступна только покупка по действующей подписке UNEON.
+uneon-vip-failed = Покупка не выполнена. Проверьте доступ и баланс счёта.
+uneon-vip-success = Покупка доставлена.
