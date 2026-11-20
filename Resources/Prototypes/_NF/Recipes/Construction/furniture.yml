@@ -507,6 +507,54 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: BannerInterdyne
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerInterdyne
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BannerCybersun
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerCybersun
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BannerDonkco
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerDonkco
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BannerHonkco
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerHonkco
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 # Altars
 - type: construction
   id: AltarToolbox
@@ -879,6 +927,46 @@
   graph: NF_Flags
   startNode: start
   targetNode: NFSDFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: InterdyneFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: InterdyneFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: CybersunFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: CybersunFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: DonkCoFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: DonkCoFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: HonkCoFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: HonkCoFlag
   category: construction-category-flags
   objectType: Structure
   placementMode: SnapgridCenter
