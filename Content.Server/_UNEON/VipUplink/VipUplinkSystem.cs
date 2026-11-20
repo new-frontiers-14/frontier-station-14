@@ -149,7 +149,7 @@ public sealed class VipUplinkSystem : EntitySystem
 
         // Stage the item outside the world before charging. A failed prototype spawn never costs money.
         EntityUid item;
-        try { item = Spawn(product.Product, EntityCoordinates.Invalid); }
+        try { item = Spawn(product.Product); }
         catch (Exception e)
         {
             Log.Error($"VIP uplink could not spawn product {product.ID}: {e.GetType().Name}");

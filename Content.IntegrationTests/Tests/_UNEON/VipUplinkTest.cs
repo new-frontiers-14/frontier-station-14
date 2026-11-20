@@ -35,8 +35,10 @@ public sealed class VipUplinkTest
             foreach (var id in new[] { "UneonVipSteel", "UneonVipGlass", "UneonVipPlastic" })
             {
                 var product = products.Single(p => p.ID == id);
-                var item = entities.SpawnEntity(product.Product, EntityCoordinates.Invalid);
+                var item = entities.Spawn(product.Product);
+                Assert.That(entities.GetComponent<TransformComponent>(item).MapID, Is.EqualTo(MapId.Nullspace));
                 entities.System<SharedTransformSystem>().SetCoordinates(item, map.GridCoords);
+                Assert.That(entities.GetComponent<TransformComponent>(item).MapID, Is.EqualTo(map.MapId));
                 Assert.That(entities.GetComponent<StackComponent>(item).Count, Is.EqualTo(30));
                 entities.DeleteEntity(item);
             }
