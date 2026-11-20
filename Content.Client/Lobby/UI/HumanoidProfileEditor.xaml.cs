@@ -126,8 +126,8 @@ namespace Content.Client.Lobby.UI
         {
             RobustXamlLoader.Load(this);
             _uneonVoices = prototypeManager.EnumeratePrototypes<UneonTtsVoicePrototype>()
-                .OrderBy(voice => Loc.GetString(voice.Name), StringComparer.CurrentCulture)
-                .ThenBy(voice => voice.ID, StringComparer.Ordinal)
+                .OrderBy(voice => Loc.GetString(voice.Name))
+                .ThenBy(voice => voice.ID)
                 .ToArray();
             UneonVoiceButton.AddItem(Loc.GetString("uneon-tts-off"), 0);
             for (var i = 0; i < _uneonVoices.Length; i++)
