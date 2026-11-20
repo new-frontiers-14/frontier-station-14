@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._UNEON.Tts;
 using Content.Shared._NF.Bank;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -70,6 +71,9 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public string FlavorText { get; set; } = string.Empty;
+
+        [DataField]
+        public string? TtsVoice { get; set; }
 
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
@@ -170,6 +174,7 @@ namespace Content.Shared.Preferences
             : this(other.Name, other.FlavorText, other.Species, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
                 jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts)
         {
+            TtsVoice = other.TtsVoice;
         }
 
         /// <summary>Copy constructor</summary>
@@ -189,6 +194,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
+            TtsVoice = other.TtsVoice;
         }
 
         /// <summary>
@@ -487,6 +493,7 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
+            if (TtsVoice != other.TtsVoice) return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -634,6 +641,8 @@ namespace Content.Shared.Preferences
 
             Name = name;
             FlavorText = flavortext;
+            if (TtsVoice != null && !prototypeManager.HasIndex<UneonTtsVoicePrototype>(TtsVoice))
+                TtsVoice = null;
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -751,6 +760,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
+            hashCode.Add(TtsVoice);
             hashCode.Add(Species);
             hashCode.Add(Age);
             hashCode.Add((int)Sex);

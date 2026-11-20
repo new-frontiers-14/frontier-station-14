@@ -859,6 +859,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("flavor_text");
 
+                    b.Property<string>("TtsVoice")
+                        .HasColumnType("text")
+                        .HasColumnName("tts_voice");
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("text")

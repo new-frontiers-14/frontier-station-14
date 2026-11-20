@@ -811,6 +811,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("flavor_text");
 
+                    b.Property<string>("TtsVoice")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("tts_voice");
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("TEXT")

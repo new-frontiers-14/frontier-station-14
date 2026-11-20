@@ -13,6 +13,8 @@ namespace Content.Shared.Humanoid;
 [NetworkedComponent, RegisterComponent, AutoGenerateComponentState(true)]
 public sealed partial class HumanoidAppearanceComponent : Component
 {
+    public string? TtsVoice;
+
     public MarkingSet ClientOldMarkings = new();
 
     [DataField, AutoNetworkedField]

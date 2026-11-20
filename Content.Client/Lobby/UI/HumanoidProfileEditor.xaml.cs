@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Client._UNEON.Tts;
 using Content.Client.Humanoid;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
@@ -10,6 +11,7 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
+using Content.Shared._UNEON.Tts;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Guidebook;
@@ -52,6 +54,7 @@ namespace Content.Client.Lobby.UI
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
         private readonly SpriteSystem _sprite;
+        private readonly UneonTtsVoicePrototype[] _uneonVoices;
 
         // CCvar.
         private int _maxNameLength;
@@ -122,6 +125,30 @@ namespace Content.Client.Lobby.UI
             MarkingManager markings)
         {
             RobustXamlLoader.Load(this);
+            _uneonVoices = prototypeManager.EnumeratePrototypes<UneonTtsVoicePrototype>()
+                .OrderBy(voice => Loc.GetString(voice.Name))
+                .ThenBy(voice => voice.ID)
+                .ToArray();
+            UneonVoiceButton.AddItem(Loc.GetString("uneon-tts-off"), 0);
+            for (var i = 0; i < _uneonVoices.Length; i++)
+                UneonVoiceButton.AddItem(Loc.GetString(_uneonVoices[i].Name), i + 1);
+            UneonVoiceButton.OnItemSelected += args =>
+            {
+                if (Profile == null)
+                    return;
+
+                Profile = new HumanoidCharacterProfile(Profile)
+                {
+                    TtsVoice = args.Id == 0 ? null : _uneonVoices[args.Id - 1].ID
+                };
+                UpdateUneonVoice();
+                SetDirty();
+            };
+            UneonVoicePreview.OnPressed += _ =>
+            {
+                if (Profile?.TtsVoice is { } voice)
+                    entManager.System<UneonTtsPlaybackSystem>().Preview(voice);
+            };
             _sawmill = logManager.GetSawmill("profile.editor");
             _cfgManager = configurationManager;
             _entManager = entManager;
@@ -766,6 +793,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateNameEdit();
             UpdateFlavorTextEdit();
+            UpdateUneonVoice();
             UpdateSexControls();
             UpdateGenderControls();
             UpdateSkinColor();
@@ -1306,6 +1334,14 @@ namespace Content.Client.Lobby.UI
                 var priority = Profile?.JobPriorities.GetValueOrDefault(jobId, JobPriority.Never) ?? JobPriority.Never;
                 prioritySelector.Select((int) priority);
             }
+        }
+
+        private void UpdateUneonVoice()
+        {
+            UneonVoiceRow.Visible = _cfgManager.GetCVar(UneonTts.Enabled);
+            var index = Array.FindIndex(_uneonVoices, voice => voice.ID == Profile?.TtsVoice);
+            UneonVoiceButton.SelectId(index + 1);
+            UneonVoicePreview.Disabled = index < 0;
         }
 
         private void UpdateSexControls()

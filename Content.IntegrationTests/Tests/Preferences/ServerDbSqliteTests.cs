@@ -43,6 +43,7 @@ namespace Content.IntegrationTests.Tests.Preferences
             {
                 Name = "Charlie Charlieson",
                 FlavorText = "The biggest boy around.",
+                TtsVoice = "father_grigori",
                 Species = "Human",
                 Age = 21,
                 Appearance = new(

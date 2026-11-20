@@ -392,6 +392,7 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
             return;
         }
 
+        humanoid.TtsVoice = profile.TtsVoice;
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
         humanoid.EyeColor = profile.Appearance.EyeColor;
