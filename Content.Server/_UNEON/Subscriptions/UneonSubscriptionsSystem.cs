@@ -119,6 +119,14 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
                    _cfg.GetCVar(CCVars.UneonSubscriptionsGraceMinutes));
     }
 
+    /// <summary>Returns zero for unlinked, expired or disabled subscriptions.</summary>
+    public int GetTier(NetUserId user)
+    {
+        return _cfg.GetCVar(CCVars.UneonSubscriptionsEnabled) &&
+               TryGetValidEntry(user.ToString(), out var entry) && entry!.Linked
+            ? Math.Max(0, entry.Tier) : 0;
+    }
+
     private bool TryGetValidEntry(string user, out UneonSubscriptionEntry? entry)
     {
         if (!_cache.TryGetValue(user, out entry))

@@ -1,4 +1,5 @@
-﻿using Content.Client.UserInterface.Fragments;
+﻿using Content.Shared._UNEON.VipUplink;
+using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -40,15 +41,16 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
 
         var activeUI = _entManager.GetEntity(loaderUiState.ActiveUI);
 
+        // Keep the same program fragment alive during PDA balance/status updates.
+        // Calling Setup again would redirect future states to a new, unattached control.
+        if (_activeProgram == activeUI && _activeUiFragment != null)
+            return;
+
         _activeProgram = activeUI;
 
         var ui = RetrieveCartridgeUI(activeUI);
         var comp = RetrieveCartridgeComponent(activeUI);
         var control = ui?.GetUIFragmentRoot();
-
-        //Prevent the same UI fragment from getting disposed and attached multiple times
-        if (_activeUiFragment?.GetType() == control?.GetType())
-            return;
 
         if (_activeUiFragment is not null)
             DetachCartridgeUI(_activeUiFragment);
@@ -62,6 +64,13 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
         _activeCartridgeUI = ui;
         _activeUiFragment?.Dispose();
         _activeUiFragment = control;
+    }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+        if (message is VipUplinkStateMessage vip)
+            _activeCartridgeUI?.UpdateState(vip.State);
     }
 
     protected void ActivateCartridge(EntityUid cartridgeUid)

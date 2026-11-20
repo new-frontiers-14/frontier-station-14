@@ -414,6 +414,12 @@ public sealed partial class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
         switch (message.Action)
         {
             case CartridgeUiMessageAction.Activate:
+                if (!HasProgram(loaderUid, cartridge, component))
+                    break;
+                var access = new CartridgeProgramAccessAttemptEvent(message.Actor);
+                RaiseLocalEvent(cartridge, access);
+                if (access.Cancelled)
+                    break;
                 ActivateProgram(loaderUid, cartridge, component);
                 break;
             case CartridgeUiMessageAction.Deactivate:
