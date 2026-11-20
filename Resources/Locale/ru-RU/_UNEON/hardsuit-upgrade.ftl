@@ -34,3 +34,7 @@ uneon-hardsuit-material-gold = Золото
 uneon-hardsuit-material-uranium = Уран
 uneon-hardsuit-material-plasma = Плазма
 uneon-hardsuit-material-bluespace = Блюспейс-кристаллы
+
+uneon-hardsuit-silo-available = Склад материалов подключён. Показан общий запас.
+uneon-hardsuit-silo-unavailable = Склад материалов подключён, но сейчас недоступен.
+uneon-hardsuit-silo-unlinked = Локальный запас. Станок можно подключить через меню склада материалов.

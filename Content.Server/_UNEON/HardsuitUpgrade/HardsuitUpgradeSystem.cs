@@ -16,6 +16,7 @@ using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Materials;
+using Content.Shared.Materials.OreSilo;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -27,6 +28,8 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
 {
     [Dependency] private ItemSlotsSystem _slots = default!;
     [Dependency] private MaterialStorageSystem _materials = default!;
+    [Dependency] private OreSiloSystem _silos = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ArmorSystem _armor = default!;
     [Dependency] private SharedExplosionSystem _explosions = default!;
     [Dependency] private ClothingSpeedModifierSystem _speed = default!;
@@ -85,7 +88,7 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
     {
         if (comp.Job != null || !CanUse(uid, args.Actor))
             return;
-        _materials.EjectAllMaterial(uid);
+        _materials.EjectAllMaterial(uid, localOnly: true);
         UpdateUi(uid, comp);
     }
 
@@ -110,7 +113,15 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
     private void CancelAndRefund(EntityUid uid, HardsuitUpgradeComponent comp)
     {
         var paid = comp.PaidMaterials;
+        var siloPaid = comp.PaidSiloMaterials;
+        var silo = comp.PaidSilo;
         ClearJob(uid, comp);
+        if (siloPaid.Count > 0 && (silo is not { } source || TerminatingOrDeleted(source) ||
+            !_materials.TryChangeMaterialAmount((source, null), siloPaid, localOnly: true)))
+        {
+            foreach (var (material, amount) in siloPaid)
+                paid[material] = paid.GetValueOrDefault(material) + amount;
+        }
         if (paid.Count > 0 && !Terminating(uid))
             _materials.TryChangeMaterialAmount((uid, null), paid, localOnly: true);
     }
@@ -122,7 +133,10 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
         comp.Remaining = 0;
         comp.Duration = 0;
         comp.PaidMaterials = new();
+        comp.PaidSilo = null;
+        comp.PaidSiloMaterials = new();
         _slots.SetLock(uid, HardsuitUpgradeRules.Slot, false);
+        _appearance.SetData(uid, HardsuitUpgradeVisuals.Working, false);
     }
 
     public float Current(EntityUid suit, HardsuitUpgradeKind kind)
@@ -152,18 +166,45 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
             return false;
         var target = HardsuitUpgradeRules.Target(kind, current);
         var cost = Volumes(HardsuitUpgradeRules.Cost(kind, target));
-        // One atomic multi-material transaction: partial payments are impossible.
-        if (!_materials.TryChangeMaterialAmount((uid, null), cost.ToDictionary(p => p.Key, p => -p.Value), localOnly: true))
+        var stored = _materials.GetStoredMaterials((uid, null));
+        if (cost.Any(p => stored.GetValueOrDefault(p.Key) < p.Value))
             return false;
+        var local = _materials.GetStoredMaterials((uid, null), localOnly: true);
+        var localPaid = new Dictionary<string, int>();
+        var siloPaid = new Dictionary<string, int>();
+        foreach (var (material, amount) in cost)
+        {
+            var fromLocal = Math.Min(amount, local.GetValueOrDefault(material));
+            if (fromLocal > 0)
+                localPaid.Add(material, fromLocal);
+            if (fromLocal < amount)
+                siloPaid.Add(material, amount - fromLocal);
+        }
+        var silo = TryComp<OreSiloClientComponent>(uid, out var client) ? client.Silo : null;
+        if (siloPaid.Count > 0 && (silo is not { } source || !_silos.CanTransmitMaterials(source, uid) ||
+            !Debit(source, siloPaid)))
+            return false;
+        if (localPaid.Count > 0 && !Debit(uid, localPaid))
+        {
+            if (silo is { } refundSource && siloPaid.Count > 0)
+                _materials.TryChangeMaterialAmount((refundSource, null), siloPaid, localOnly: true);
+            return false;
+        }
         comp.Job = kind;
         comp.JobSuit = suit;
         comp.Target = target;
         comp.Duration = comp.Remaining = HardsuitUpgradeRules.Seconds(kind, target);
-        comp.PaidMaterials = cost;
+        comp.PaidMaterials = localPaid;
+        comp.PaidSilo = siloPaid.Count > 0 ? silo : null;
+        comp.PaidSiloMaterials = siloPaid;
         _slots.SetLock(uid, HardsuitUpgradeRules.Slot, true);
+        _appearance.SetData(uid, HardsuitUpgradeVisuals.Working, true);
         UpdateUi(uid, comp);
         return true;
     }
+
+    private bool Debit(EntityUid uid, Dictionary<string, int> payment) =>
+        _materials.TryChangeMaterialAmount((uid, null), payment.ToDictionary(p => p.Key, p => -p.Value), localOnly: true);
 
     public override void Update(float frameTime)
     {
@@ -177,9 +218,11 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
         {
             if (comp.Job is { } kind)
             {
+                var powered = Powered(uid);
+                _appearance.SetData(uid, HardsuitUpgradeVisuals.Working, powered);
                 if (Suit(uid) != comp.JobSuit || comp.JobSuit is not { } suit || Deleted(suit))
                     CancelAndRefund(uid, comp);
-                else if (Powered(uid))
+                else if (powered)
                 {
                     comp.Remaining = MathF.Max(0, comp.Remaining - frameTime);
                     if (comp.Remaining <= 0)
@@ -216,7 +259,9 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
     private void UpdateUi(EntityUid uid, HardsuitUpgradeComponent comp)
     {
         var suit = Suit(uid);
-        var stored = _materials.GetStoredMaterials((uid, null), localOnly: true);
+        var stored = _materials.GetStoredMaterials((uid, null));
+        var local = _materials.GetStoredMaterials((uid, null), localOnly: true);
+        var silo = TryComp<OreSiloClientComponent>(uid, out var client) ? client.Silo : null;
         var options = new List<HardsuitUpgradeOption>();
         if (suit is { } item && IsHardsuit(item))
         {
@@ -231,7 +276,9 @@ public sealed class HardsuitUpgradeSystem : EntitySystem
         }
         var quantities = stored.ToDictionary(p => p.Key.ToString(), p =>
             p.Value / Math.Max(1, _materials.GetSheetVolume(_prototypes.Index(p.Key))));
-        _ui.SetUiState(uid, HardsuitUpgradeUiKey.Key, new HardsuitUpgradeState(suit is { } s ? Name(s) : null,
-            Powered(uid), comp.Job != null, comp.Remaining, comp.Duration, options, quantities));
+        _ui.SetUiState(uid, HardsuitUpgradeUiKey.Key, new HardsuitUpgradeState(GetNetEntity(suit),
+            suit is { } s ? Name(s) : null, Powered(uid), comp.Job != null, comp.Remaining, comp.Duration, options, quantities,
+            local.Any(p => p.Value >= _materials.GetSheetVolume(_prototypes.Index(p.Key))),
+            silo != null, silo is { } source && _silos.CanTransmitMaterials(source, uid)));
     }
 }

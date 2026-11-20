@@ -14,14 +14,100 @@ using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Materials;
+using Content.Shared.Materials.OreSilo;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Verbs;
+using Robust.Client.ResourceManagement;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Maths;
 
 namespace Content.IntegrationTests.Tests._UNEON;
 
 [TestFixture]
 public sealed class HardsuitUpgradeTest
 {
+    [Test]
+    public async Task AnchoredStationRotatesAndLoadsFourAnimatedViews()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var map = await pair.CreateTestMap();
+        await pair.Server.WaitAssertion(() =>
+        {
+            var em = pair.Server.EntMan;
+            var station = em.SpawnEntity("UneonHardsuitUpgradeStation", map.GridCoords);
+            var actor = em.SpawnEntity("MobHuman", map.GridCoords);
+            var transform = em.GetComponent<TransformComponent>(station);
+            var verbs = new GetVerbsEvent<Verb>(actor, station, null, null,
+                canInteract: true, canComplexInteract: true, canAccess: true, extraCategories: null);
+            em.EventBus.RaiseLocalEvent(station, verbs);
+            Assert.That(verbs.Verbs.Count, Is.GreaterThanOrEqualTo(3));
+            var clockwise = verbs.Verbs.Single(v => v.Category == VerbCategory.Rotate && v.Priority == -1);
+            for (var turn = 1; turn <= 4; turn++)
+            {
+                clockwise.Act!();
+                Assert.That(transform.Anchored, Is.True);
+                Assert.That(transform.LocalRotation.EqualsApprox(Angle.FromDegrees(-90 * turn)), Is.True);
+            }
+            em.DeleteEntity(actor);
+            em.DeleteEntity(station);
+        });
+        await pair.Client.WaitAssertion(() =>
+        {
+            var cache = pair.Client.ResolveDependency<IResourceCache>();
+            var sprite = cache.GetResource<RSIResource>(
+                "/Textures/_UNEON/Structures/Machines/hardsuit_upgrade.rsi").RSI;
+            Assert.That(sprite["icon"].Icons.Select(frames => frames.Length), Is.EqualTo(new[] { 1, 1, 1, 1 }));
+            Assert.That(sprite["working"].Icons.Select(frames => frames.Length), Is.EqualTo(new[] { 6, 6, 6, 6 }));
+        });
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task SiloPaymentUsesBothSourcesAndRefundsAfterUnlinking()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+        await server.WaitAssertion(() =>
+        {
+            var em = server.EntMan;
+            var system = em.System<HardsuitUpgradeSystem>();
+            var materials = em.System<MaterialStorageSystem>();
+            var station = em.SpawnEntity("UneonHardsuitUpgradeStation", map.GridCoords);
+            var silo = em.SpawnEntity("MachineMaterialSilo", map.GridCoords);
+            var suit = em.SpawnEntity("ClothingOuterHardsuitEngineering", map.GridCoords);
+            em.GetComponent<ApcPowerReceiverComponent>(station).Powered = true;
+            var siloPower = em.GetComponent<ApcPowerReceiverComponent>(silo);
+            siloPower.Powered = true;
+            Assert.That(em.System<ItemSlotsSystem>().TryInsert(station, HardsuitUpgradeRules.Slot, suit, null), Is.True);
+            var link = new ToggleOreSiloClientMessage(em.GetNetEntity(station));
+            em.EventBus.RaiseLocalEvent(silo, link);
+            Assert.That(materials.TryChangeMaterialAmount(station, "Steel", 500, localOnly: true), Is.True);
+            materials.TrySetMaterialAmount(silo, "Steel", 2500);
+            materials.TrySetMaterialAmount(silo, "Plasteel", 1500);
+            Assert.That(system.TryStartUpgrade(station, HardsuitUpgradeKind.Blunt), Is.False);
+            Assert.That(materials.GetMaterialAmount(silo, "Steel"), Is.EqualTo(2500));
+            materials.TrySetMaterialAmount(silo, "Plastic", 1000);
+
+            siloPower.Powered = false;
+            Assert.That(system.TryStartUpgrade(station, HardsuitUpgradeKind.Blunt), Is.False);
+            siloPower.Powered = true;
+            Assert.That(system.TryStartUpgrade(station, HardsuitUpgradeKind.Blunt), Is.True);
+            Assert.That(materials.GetMaterialAmount(station, "Steel", localOnly: true), Is.Zero);
+            Assert.That(materials.GetMaterialAmount(silo, "Steel"), Is.Zero);
+
+            em.EventBus.RaiseLocalEvent(silo, link);
+            em.EventBus.RaiseLocalEvent(station, new MachineDeconstructedEvent());
+            Assert.That(materials.GetMaterialAmount(station, "Steel", localOnly: true), Is.EqualTo(500));
+            Assert.That(materials.GetMaterialAmount(silo, "Steel"), Is.EqualTo(2500));
+            Assert.That(materials.GetMaterialAmount(silo, "Plasteel"), Is.EqualTo(1500));
+            Assert.That(materials.GetMaterialAmount(silo, "Plastic"), Is.EqualTo(1000));
+            foreach (var entity in new[] { station, silo, suit })
+                em.DeleteEntity(entity);
+        });
+        await pair.CleanReturnAsync();
+    }
+
     [Test]
     public async Task UpgradeChargesOncePausesWithoutPowerAndOnlyChangesTheInsertedSuit()
     {

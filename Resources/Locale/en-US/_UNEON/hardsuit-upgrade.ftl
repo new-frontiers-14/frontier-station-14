@@ -12,6 +12,9 @@ uneon-hardsuit-working = Upgrading. Remaining: { $seconds } sec.
 uneon-hardsuit-paused = Paused: no power or unanchored. Remaining: { $seconds } sec.
 uneon-hardsuit-stored = Stored materials (sheets / ingots / crystals):
 uneon-hardsuit-empty = No materials.
+uneon-hardsuit-silo-available = Material Silo connected. Available stock includes both sources.
+uneon-hardsuit-silo-unavailable = Material Silo linked, currently unavailable.
+uneon-hardsuit-silo-unlinked = Local storage. Link this station from the Material Silo menu.
 uneon-hardsuit-stat =
     { $name }
     { $current }% → { $target }% (limit: { $limit }%)

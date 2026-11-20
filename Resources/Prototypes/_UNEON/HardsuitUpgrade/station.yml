@@ -5,21 +5,33 @@
   description: Refits a single hardsuit using raw materials. Its appearance remains unchanged.
   components:
   - type: HardsuitUpgrade
+  - type: Rotatable
+    rotateWhileAnchored: true
   - type: Sprite
-    sprite: Structures/Machines/protolathe.rsi
+    sprite: _UNEON/Structures/Machines/hardsuit_upgrade.rsi
     layers:
     - state: icon
-    - state: unlit
+    - state: working
       shader: unshaded
+      map: ["working"]
+      visible: false
   - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HardsuitUpgradeVisuals.Working:
+        working:
+          True: { visible: true }
+          False: { visible: false }
   - type: Machine
     board: UneonHardsuitUpgradeMachineCircuitboard
   - type: ApcPowerReceiver
     powerLoad: 2000
   - type: MaterialStorage
+    canEjectStoredMaterials: false
     materialWhiteList: [Steel, Plasteel, Plastic, Gold, Uranium, Plasma, Bluespace]
     whitelist:
       tags: [Sheet, RawMaterial, Ingot]
+  - type: OreSiloClient
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -42,6 +54,7 @@
         type: HardsuitUpgradeBoundUserInterface
   - type: Transform
     anchored: true
+    noRot: false
   - type: WiresPanel
   - type: StaticPrice
     price: 1000
