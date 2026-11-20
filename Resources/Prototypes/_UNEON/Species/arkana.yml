@@ -1,0 +1,162 @@
+# UNEON species definition. Physiology and equipment compatibility use Frontier's human base.
+- type: species
+  id: Arkana
+  name: species-name-arkana
+  roundStart: true
+  prototype: MobArkana
+  sprites: MobArkanaSprites
+  defaultSkinTone: "#c8a48a"
+  markingLimits: MobArkanaMarkingLimits
+  dollPrototype: MobArkanaDummy
+  skinColoration: Hues
+
+- type: speciesBaseSprites
+  id: MobArkanaSprites
+  sprites:
+    Special: MobHumanoidAnyMarking
+    Head: MobArkanaHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobArkanaTorso
+    Eyes: MobHumanoidEyes
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobArkanaLArm
+    RArm: MobArkanaRArm
+    LHand: MobArkanaLHand
+    RHand: MobArkanaRHand
+    LLeg: MobArkanaLLeg
+    RLeg: MobArkanaRLeg
+    LFoot: MobArkanaLFoot
+    RFoot: MobArkanaRFoot
+
+- type: markingPoints
+  id: MobArkanaMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Snout:
+      points: 1
+      required: false
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ ArkanaHornsSmall ]
+    HeadSide:
+      points: 1
+      required: true
+      defaultMarkings: [ ArkanaEars ]
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ ArkanaTail ]
+    Chest:
+      points: 2
+      required: false
+    Head:
+      points: 3
+      required: false
+    Arms:
+      points: 4
+      required: false
+    Legs:
+      points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobArkanaHead
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: head_t
+
+- type: humanoidBaseSprite
+  id: MobArkanaHeadMale
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobArkanaHeadFemale
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobArkanaTorso
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: torso_t
+
+- type: humanoidBaseSprite
+  id: MobArkanaTorsoMale
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobArkanaTorsoFemale
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobArkanaLArm
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobArkanaRArm
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobArkanaLHand
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobArkanaRHand
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobArkanaLLeg
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobArkanaRLeg
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobArkanaLFoot
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobArkanaRFoot
+  baseSprite:
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: r_foot

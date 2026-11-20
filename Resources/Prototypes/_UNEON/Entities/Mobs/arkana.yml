@@ -1,0 +1,48 @@
+- type: entity
+  parent: BaseMobHuman
+  id: BaseMobArkana
+  name: Urist McArkana
+  abstract: true
+  components:
+  - type: Icon
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: full_m
+  - type: HumanoidAppearance
+    species: Arkana
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - Tail
+  - type: Body
+    prototype: Arkana
+    requiredLegs: 2
+  - type: Wagging
+
+- type: entity
+  parent: BaseMobArkana
+  id: MobArkana
+  name: Urist McArkana
+  save: false
+
+- type: entity
+  parent: MobHumanDummy
+  id: MobArkanaDummy
+  name: Arkana mannequin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _UNEON/Mobs/Species/Arkana/parts.rsi
+    state: full_m
+  - type: HumanoidAppearance
+    species: Arkana
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - Tail
+  - type: Body
+    prototype: Arkana
+    requiredLegs: 2
