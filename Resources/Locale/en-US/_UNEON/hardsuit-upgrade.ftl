@@ -1,0 +1,36 @@
+ent-UneonHardsuitUpgradeStation = hardsuit upgrade station
+    .desc = Improves one hardsuit's protection and mobility using materials, retaining its appearance.
+ent-UneonHardsuitUpgradeMachineCircuitboard = hardsuit upgrade station machine board
+    .desc = A circuit board for a hardsuit upgrade station.
+uneon-hardsuit-research = Hardsuit Modernization
+uneon-hardsuit-title = Hardsuit upgrade station
+uneon-hardsuit-slot = Hardsuit
+uneon-hardsuit-insert = Insert one hardsuit.
+uneon-hardsuit-ready = Ready. Each operation improves a stat by 5 percentage points.
+uneon-hardsuit-no-power = No power or the station is unanchored.
+uneon-hardsuit-working = Upgrading. Remaining: { $seconds } sec.
+uneon-hardsuit-paused = Paused: no power or unanchored. Remaining: { $seconds } sec.
+uneon-hardsuit-stored = Stored materials (sheets / ingots / crystals):
+uneon-hardsuit-empty = No materials.
+uneon-hardsuit-stat =
+    { $name }
+    { $current }% → { $target }% (limit: { $limit }%)
+uneon-hardsuit-upgrade = Upgrade ({ $seconds } sec.)
+uneon-hardsuit-limit = Limit reached
+uneon-hardsuit-eject = Eject hardsuit
+uneon-hardsuit-eject-materials = Eject materials
+uneon-hardsuit-stat-blunt = Blunt protection
+uneon-hardsuit-stat-slash = Slash protection
+uneon-hardsuit-stat-piercing = Piercing protection
+uneon-hardsuit-stat-heat = Heat protection
+uneon-hardsuit-stat-radiation = Radiation protection
+uneon-hardsuit-stat-caustic = Caustic protection
+uneon-hardsuit-stat-explosion = Explosion protection
+uneon-hardsuit-stat-speed = Walking / sprinting slowdown (largest)
+uneon-hardsuit-material-steel = Steel
+uneon-hardsuit-material-plasteel = Plasteel
+uneon-hardsuit-material-plastic = Plastic
+uneon-hardsuit-material-gold = Gold
+uneon-hardsuit-material-uranium = Uranium
+uneon-hardsuit-material-plasma = Plasma
+uneon-hardsuit-material-bluespace = Bluespace crystals

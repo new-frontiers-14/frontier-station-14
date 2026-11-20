@@ -15,6 +15,12 @@ public abstract class SharedExplosionSystem : EntitySystem
         SubscribeLocalEvent<ExplosionResistanceComponent, ArmorExamineEvent>(OnArmorExamine);
     }
 
+    public void SetDamageCoefficient(Entity<ExplosionResistanceComponent> ent, float coefficient)
+    {
+        ent.Comp.DamageCoefficient = coefficient;
+        Dirty(ent);
+    }
+
     private void OnArmorExamine(Entity<ExplosionResistanceComponent> ent, ref ArmorExamineEvent args)
     {
         var value = MathF.Round((1f - ent.Comp.DamageCoefficient) * 100, 1);
