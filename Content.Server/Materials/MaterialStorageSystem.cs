@@ -283,20 +283,21 @@ public sealed partial class MaterialStorageSystem : SharedMaterialStorageSystem
         string material,
         int? maxAmount = null,
         EntityCoordinates? coordinates = null,
-        MaterialStorageComponent? component = null)
+        MaterialStorageComponent? component = null,
+        bool localOnly = false)
     {
         if (!Resolve(entity, ref component))
             return new List<EntityUid>();
 
         coordinates ??= Transform(entity).Coordinates;
 
-        var amount = GetMaterialAmount(entity, material, component);
+        var amount = GetMaterialAmount(entity, material, component, localOnly);
         if (maxAmount != null)
             amount = Math.Min(maxAmount.Value, amount);
 
         var spawned = SpawnMultipleFromMaterial(amount, material, coordinates.Value, out var overflow);
 
-        TryChangeMaterialAmount(entity, material, -(amount - overflow), component);
+        TryChangeMaterialAmount(entity, material, -(amount - overflow), component, localOnly: localOnly);
         return spawned;
     }
 
@@ -310,7 +311,8 @@ public sealed partial class MaterialStorageSystem : SharedMaterialStorageSystem
     public List<EntityUid> EjectAllMaterial(
         EntityUid entity,
         EntityCoordinates? coordinates = null,
-        MaterialStorageComponent? component = null)
+        MaterialStorageComponent? component = null,
+        bool localOnly = false)
     {
         if (!Resolve(entity, ref component))
             return new List<EntityUid>();
@@ -320,7 +322,7 @@ public sealed partial class MaterialStorageSystem : SharedMaterialStorageSystem
         var allSpawned = new List<EntityUid>();
         foreach (var material in component.Storage.Keys.ToArray())
         {
-            var spawned = EjectMaterial(entity, material, null, coordinates, component);
+            var spawned = EjectMaterial(entity, material, null, coordinates, component, localOnly);
             allSpawned.AddRange(spawned);
         }
 

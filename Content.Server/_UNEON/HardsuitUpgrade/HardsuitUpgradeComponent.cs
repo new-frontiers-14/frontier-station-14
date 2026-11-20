@@ -12,4 +12,6 @@ public sealed partial class HardsuitUpgradeComponent : Component
     [DataField] public float Remaining;
     [DataField] public float Duration;
     [DataField] public Dictionary<string, int> PaidMaterials = new();
+    [DataField] public EntityUid? PaidSilo;
+    [DataField] public Dictionary<string, int> PaidSiloMaterials = new();
 }
