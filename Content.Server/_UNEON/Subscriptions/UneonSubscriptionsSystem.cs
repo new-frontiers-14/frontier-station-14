@@ -158,6 +158,20 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
             shell.WriteLine(Loc.GetString("uneon-sub-wait"));
     }
 
+    private string SubscriptionName(int tier)
+    {
+        return Loc.GetString(tier switch
+        {
+            0 => "uneon-sub-tier-none",
+            1 => "uneon-sub-tier-adventurer",
+            2 => "uneon-sub-tier-cosmopioneer",
+            3 => "uneon-sub-tier-shuttle-captain",
+            4 => "uneon-sub-tier-sector-baron",
+            5 => "uneon-sub-tier-frontier-legend",
+            _ => "uneon-sub-tier-unknown"
+        });
+    }
+
     private bool StartRequest(string user, string action, IConsoleShell? shell, string? code = null)
     {
         if (!_busy.Add(user))
@@ -205,8 +219,8 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
                 {
                     _cache[user] = entry; // An explicit tier 0 revokes old rights immediately.
                     SaveCache();
-                    shell?.WriteLine(Loc.GetString("uneon-sub-status", ("linked", entry.Linked.ToString()),
-                        ("tier", entry.Tier), ("permissions", string.Join(", ", entry.Permissions))));
+                    shell?.WriteLine(Loc.GetString("uneon-sub-status", ("linked", Loc.GetString(entry.Linked ? "uneon-sub-discord-linked" : "uneon-sub-discord-not-linked")),
+                        ("tier", entry.Tier), ("name", SubscriptionName(entry.Tier))));
                 });
             }
             else if (action == "link")
@@ -244,7 +258,7 @@ public sealed class UneonSubscriptionsSystem : EntitySystem
                         { StatusCode: System.Net.HttpStatusCode.Conflict or System.Net.HttpStatusCode.BadRequest };
                     shell.WriteLine(Loc.GetString(rejectedCode ? "uneon-sub-code-invalid" : "uneon-sub-unavailable"));
                     if (action == "status" && TryGetValidEntry(user, out var cached))
-                        shell.WriteLine(Loc.GetString("uneon-sub-cached", ("tier", cached!.Tier),
+                        shell.WriteLine(Loc.GetString("uneon-sub-cached", ("tier", cached!.Tier), ("name", SubscriptionName(cached.Tier)),
                             ("time", cached.ConfirmedAt.ToString("u"))));
                 });
         }
