@@ -1,0 +1,36 @@
+ent-UneonHardsuitUpgradeStation = станок для скафандров
+    .desc = Улучшает защиту и подвижность одного скафандра за материалы, сохраняя его внешний вид.
+ent-UneonHardsuitUpgradeMachineCircuitboard = станок для скафандров (машинная плата)
+    .desc = Печатная плата станка для улучшения скафандров.
+uneon-hardsuit-research = Модернизация скафандров
+uneon-hardsuit-title = Станок для скафандров
+uneon-hardsuit-slot = Скафандр
+uneon-hardsuit-insert = Вставьте один скафандр.
+uneon-hardsuit-ready = Готов к работе. Один шаг — 5 процентных пунктов.
+uneon-hardsuit-no-power = Нет питания или станок не закреплён.
+uneon-hardsuit-working = Выполняется улучшение. Осталось: { $seconds } сек.
+uneon-hardsuit-paused = Работа приостановлена: нет питания или крепления. Осталось: { $seconds } сек.
+uneon-hardsuit-stored = Загруженные материалы (листы / слитки / кристаллы):
+uneon-hardsuit-empty = Нет материалов.
+uneon-hardsuit-stat =
+    { $name }
+    { $current }% → { $target }% (предел: { $limit }%)
+uneon-hardsuit-upgrade = Улучшить ({ $seconds } сек.)
+uneon-hardsuit-limit = Предел достигнут
+uneon-hardsuit-eject = Извлечь скафандр
+uneon-hardsuit-eject-materials = Извлечь материалы
+uneon-hardsuit-stat-blunt = Ударная защита
+uneon-hardsuit-stat-slash = Режущая защита
+uneon-hardsuit-stat-piercing = Колющая защита
+uneon-hardsuit-stat-heat = Высокотемпературная защита
+uneon-hardsuit-stat-radiation = Радиационная защита
+uneon-hardsuit-stat-caustic = Кислотная защита
+uneon-hardsuit-stat-explosion = Взрывная защита
+uneon-hardsuit-stat-speed = Замедление ходьбы / бега (наибольшее)
+uneon-hardsuit-material-steel = Сталь
+uneon-hardsuit-material-plasteel = Пласталь
+uneon-hardsuit-material-plastic = Пластик
+uneon-hardsuit-material-gold = Золото
+uneon-hardsuit-material-uranium = Уран
+uneon-hardsuit-material-plasma = Плазма
+uneon-hardsuit-material-bluespace = Блюспейс-кристаллы

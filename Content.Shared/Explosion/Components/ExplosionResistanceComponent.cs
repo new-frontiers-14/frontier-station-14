@@ -13,14 +13,14 @@ namespace Content.Shared.Explosion.Components;
 ///     This is desirable over just using damage modifier sets, given that equipment like bomb-suits need to
 ///     significantly reduce the damage, but shouldn't be silly overpowered in regular combat.
 /// </remarks>
-[NetworkedComponent, RegisterComponent]
+[NetworkedComponent, RegisterComponent, AutoGenerateComponentState]
 [Access(typeof(SharedExplosionSystem))]
 public sealed partial class ExplosionResistanceComponent : Component
 {
     /// <summary>
     ///     The explosive resistance coefficient, This fraction is multiplied into the total resistance.
     /// </summary>
-    [DataField("damageCoefficient")]
+    [DataField("damageCoefficient"), AutoNetworkedField]
     public float DamageCoefficient = 1;
 
     /// <summary>

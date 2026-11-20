@@ -1,0 +1,83 @@
+- type: entity
+  id: UneonHardsuitUpgradeStation
+  parent: [BaseMachinePowered, ConstructibleMachine]
+  name: hardsuit upgrade station
+  description: Refits a single hardsuit using raw materials. Its appearance remains unchanged.
+  components:
+  - type: HardsuitUpgrade
+  - type: Sprite
+    sprite: Structures/Machines/protolathe.rsi
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+  - type: Appearance
+  - type: Machine
+    board: UneonHardsuitUpgradeMachineCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 2000
+  - type: MaterialStorage
+    materialWhiteList: [Steel, Plasteel, Plastic, Gold, Uranium, Plasma, Bluespace]
+    whitelist:
+      tags: [Sheet, RawMaterial, Ingot]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      uneon-hardsuit: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      uneon-hardsuit:
+        name: uneon-hardsuit-slot
+        swap: false
+        whitelist:
+          tags: [Hardsuit]
+        ejectOnBreak: true
+        ejectOnDeconstruct: true
+  - type: ActivatableUI
+    key: enum.HardsuitUpgradeUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HardsuitUpgradeUiKey.Key:
+        type: HardsuitUpgradeBoundUserInterface
+  - type: Transform
+    anchored: true
+  - type: WiresPanel
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: UneonHardsuitUpgradeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: hardsuit upgrade station machine board
+  description: A circuit board for a hardsuit upgrade station.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: UneonHardsuitUpgradeStation
+    requirements:
+      MatterBin: 2
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: latheRecipe
+  id: UneonHardsuitUpgradeMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory]
+  result: UneonHardsuitUpgradeMachineCircuitboard
+
+- type: technology
+  id: UneonHardsuitUpgrades
+  name: uneon-hardsuit-research
+  entityIcon: UneonHardsuitUpgradeStation
+  discipline: NFSalvage
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - UneonHardsuitUpgradeMachineCircuitboard
+  technologyPrerequisites:
+  - NFImprovedSalvageWeapons
+  position: 3, 40
