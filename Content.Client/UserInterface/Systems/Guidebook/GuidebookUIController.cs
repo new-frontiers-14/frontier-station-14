@@ -48,6 +48,8 @@ public sealed partial class GuidebookUIController : UIController, IOnStateEntere
 
         // setup window
         _guideWindow = UIManager.CreateWindow<GuidebookWindow>();
+        // Frontier: contextual pages can return to the complete guidebook.
+        _guideWindow.OnBrowseAllGuides += () => OpenGuidebook(selected: _guideWindow.LastEntry);
         _guideWindow.OnClose += OnWindowClosed;
         _guideWindow.OnOpen += OnWindowOpen;
 
@@ -211,6 +213,9 @@ public sealed partial class GuidebookUIController : UIController, IOnStateEntere
         // Expand up to depth-2.
         _guideWindow.Tree.SetAllExpanded(false);
         _guideWindow.Tree.SetAllExpanded(true, 0); // Frontier: 1->0 (too many entries at depth 2)
+        // Frontier: keep the requested page visible after collapsing the other categories.
+        if (_guideWindow.Tree.SelectedIndex is { } index)
+            _guideWindow.Tree.ExpandParentEntries(index);
 
         _guideWindow.OpenCenteredRight();
     }
@@ -222,6 +227,15 @@ public sealed partial class GuidebookUIController : UIController, IOnStateEntere
         bool includeChildren = true,
         ProtoId<GuideEntryPrototype>? selected = null)
     {
+        // Frontier: ordinary help links, including shipyard manuals, retain the full guidebook.
+        // Explicit roots and requests without children still support focused guide collections.
+        if (rootEntries == null && forceRoot == null && includeChildren && guideList.Count > 0)
+        {
+            OpenGuidebook(selected: selected ?? guideList[0]);
+            return;
+        }
+        // End Frontier
+
         Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> guides = new();
         foreach (var guideId in guideList)
         {

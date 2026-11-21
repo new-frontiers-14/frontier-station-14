@@ -34,6 +34,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         _sawmill = Logger.GetSawmill("guidebook");
 
         Tree.OnSelectedItemChanged += OnSelectionChanged;
+        InitializeNavigation(); // Frontier: search, sidebar, and navigation (Starlight #6822, #6895).
 
         SearchBar.OnTextChanged += _ =>
         {
@@ -43,16 +44,35 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
     public void HandleClick(string link)
     {
+        // Frontier: a link may point outside a focused guide collection.
+        ClearCategorySearch();
         if (!_entries.TryGetValue(link, out var entry))
-            return;
+        {
+            if (!_prototypeManager.TryIndex<GuideEntryPrototype>(link, out var prototype))
+            {
+                _sawmill.Warning($"Unknown guidebook link: {link}");
+                return;
+            }
+
+            entry = prototype;
+            _entries[link] = entry;
+        }
+        // End Frontier
 
         if (Tree.TryGetIndexFromMetadata(entry, out var index))
         {
             Tree.ExpandParentEntries(index.Value);
-            Tree.SetSelectedIndex(index);
+            // Frontier: selecting the current tree item does not raise a selection event.
+            if (Tree.SelectedIndex == index)
+                NavigateToEntry(entry);
+            else
+                Tree.SetSelectedIndex(index);
         }
         else
-            ShowGuide(entry);
+        { // Frontier: don't highlight an unrelated page when following a link outside the contents.
+            Tree.SetSelectedIndex(null);
+            NavigateToEntry(entry); // Frontier: track pages outside the contents in navigation history.
+        } // End Frontier
     }
 
     public void HandleAnchor(IPrototypeLinkControl prototypeLinkControl)
@@ -60,6 +80,9 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         var prototype = prototypeLinkControl.LinkedPrototype;
         if (prototype == null)
             return;
+
+        // Frontier: reveal the entire containing embed before scrolling to a filtered item.
+        SearchBar.SetText("", invokeEvent: true);
 
         var (linkableControls, _) = GetLinkableControlsAndLinks(EntryContainer);
         foreach (var linkableControl in linkableControls)
@@ -91,11 +114,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
     {
         if (item != null && item.Metadata is GuideEntry entry)
         {
-            ShowGuide(entry);
-
-            var isRulesEntry = entry.RuleEntry;
-            ReturnContainer.Visible = isRulesEntry;
-            HomeButton.OnPressed += _ => ShowGuide(entry);
+            NavigateToEntry(entry); // Frontier: history and rules navigation use one handler per window.
         }
         else
             ClearSelectedGuide();
@@ -128,6 +147,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         }
 
         LastEntry = entry.Id;
+        ReturnContainer.Visible = entry.RuleEntry; // Frontier: also update for links outside the contents.
 
         var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
 
@@ -153,33 +173,28 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         ProtoId<GuideEntryPrototype>? forceRoot = null,
         ProtoId<GuideEntryPrototype>? selected = null)
     {
-        _entries = entries;
+        // Frontier: discard cached tree items before rebuilding the contents.
+        ClearCategorySearch();
+        ClearGuidebookSearchIndex();
+        ResetNavigationHistory();
+        _entries = new(entries); // Frontier: resolving external links must not change the caller's collection.
         RepopulateTree(rootEntries, forceRoot);
         ClearSelectedGuide();
 
-        Split.State = SplitContainer.SplitState.Auto;
+        // Frontier: preserve the player's sidebar preference (Starlight #6895).
+        SetSidebarAvailable(Tree.Items.Count > 1);
         if (entries.Count == 1)
         {
-            TreeBox.Visible = false;
-            Split.ResizeMode = SplitContainer.SplitResizeMode.NotResizable;
             selected = entries.Keys.First();
         }
-        else
-        {
-            TreeBox.Visible = true;
-            Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
-        }
 
-        if (selected != null)
-        {
-            var item = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry entry && entry.Id == selected);
-            Tree.SetSelectedIndex(item?.Index);
-        }
+        // Frontier: focused or empty collections may not contain the configured default page.
+        var selectedItem = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry entry && entry.Id == selected);
+        if (selectedItem == null && selected is { } selectedId && _entries.TryGetValue(selectedId, out var selectedEntry))
+            NavigateToEntry(selectedEntry);
         else
-        {
-            var item = Tree.Items.First();
-            Tree.SetSelectedIndex(item?.Index);
-        }
+            Tree.SetSelectedIndex((selectedItem ?? Tree.Items.FirstOrDefault())?.Index);
+        // End Frontier
     }
 
     private IEnumerable<GuideEntry> GetSortedEntries(List<ProtoId<GuideEntryPrototype>>? rootEntries)
@@ -242,6 +257,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         item.Metadata = entry;
         var name = Loc.GetString(entry.Name);
         item.Label.Text = name;
+        IndexGuidebookEntry(item, parent, entry); // Frontier: Starlight #6822 search and category colors.
 
         foreach (var child in entry.Children)
         {
@@ -253,9 +269,8 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
     private void HandleFilter()
     {
-        var emptySearch = SearchBar.Text.Trim().Length == 0;
-
-        if (Tree.SelectedItem != null && Tree.SelectedItem.Metadata is GuideEntry entry && entry.FilterEnabled)
+        // Frontier: links may display pages that are not present in the current tree.
+        if (_entries.TryGetValue(LastEntry, out var entry) && entry.FilterEnabled)
         {
             var foundElements = EntryContainer.GetSearchableControls();
 
@@ -277,7 +292,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
             if (child is IPrototypeLinkControl linkChild)
                 linkList.Add(linkChild);
-            else if (child is IPrototypeRepresentationControl linkableChild)
+            if (child is IPrototypeRepresentationControl linkableChild) // Frontier: a control may implement both interfaces.
                 linkableList.Add(linkableChild);
 
             if (!hasChildren)
