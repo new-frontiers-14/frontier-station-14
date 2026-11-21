@@ -97,7 +97,7 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/private_security.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/private_security.rsi
-    
+
 - type: entity
   parent: ClothingUniformJumpskirtHoP
   id: ClothingUniformJumpskirtSr
@@ -108,3 +108,110 @@
     sprite: _NF/Clothing/Uniforms/Jumpskirt/sr.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/sr.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtChemise
+  name: Chemise
+  description: A light chemise to wear under your clothes.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/chemise.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/chemise.rsi
+
+# Tuxskirts
+
+- type: entity
+  parent: [ClothingUniformSkirtBase]
+  id: ClothingUniformJumpskirtBlackTuxskirt
+  name: black tuxskirt
+  description: A striking black tuxskirt!
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/blacktuxskirt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/blacktuxskirt.rsi
+  - type: ChameleonClothing
+    slot: [innerClothing]
+    default: ClothingUniformJumpskirtBlackTuxskirt
+    requireTag: ClothingUniformTuxskirt
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothingUniformTuxskirt
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+  - type: StaticPrice
+    vendPrice: 1000
+
+- type: entity
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
+  id: ClothingUniformJumpskirtDarkTuxskirt
+  name: dark Tuxskirt
+  description: You look good in this! "Yeah... I know."
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/darktuxskirt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/darktuxskirt.rsi
+  - type: ChameleonClothing
+    default: ClothingUniformJumpskirtDarkTuxskirt
+
+- type: entity
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
+  id: ClothingUniformJumpskirtGreyTuxskirt
+  name: grey Tuxskirt
+  description: A soft grey tuxskirt!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/greytuxskirt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/greytuxskirt.rsi
+  - type: ChameleonClothing
+    default: ClothingUniformJumpskirtGreyTuxskirt
+
+- type: entity
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
+  id: ClothingUniformJumpskirtNavyTuxskirt
+  name: navy Tuxskirt
+  description: A bold navy tuxskirt!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/navytuxskirt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/navytuxskirt.rsi
+  - type: ChameleonClothing
+    default: ClothingUniformJumpskirtNavyTuxskirt
+
+- type: entity
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
+  id: ClothingUniformJumpskirtTanTuxskirt
+  name: tan Tuxskirt
+  description: A daring tan tuxskirt!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/tantuxskirt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/tantuxskirt.rsi
+  - type: ChameleonClothing
+    default: ClothingUniformJumpskirtTanTuxskirt
+
+- type: entity
+  parent: [ClothingUniformJumpskirtBlackTuxskirt]
+  id: ClothingUniformJumpskirtWhiteTuxskirt
+  name: white Tuxskirt
+  description: A pure white tuxskirt!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/whitetuxskirt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/whitetuxskirt.rsi
+  - type: ChameleonClothing
+    default: ClothingUniformJumpskirtWhiteTuxskirt
