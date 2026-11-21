@@ -1,6 +1,6 @@
 #region whistle
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseC3WizardContraband ]
   id: CrateWizardLuggageWhistle
   name: wizard's luggage whistle
   description: A whistle that summons a wizard's luggage when blown.
@@ -67,7 +67,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.40,-0.30,0.40,0.45"
-        density: 350
+        density: 20
         mask:
         - TableMask
         layer:
@@ -102,7 +102,7 @@
     - DoorBumpOpener
     - CannotSuicide
   - type: EntityStorage
-    capacity: 40
+    capacity: 90
     closeSound:
       path: /Audio/Misc/zip.ogg
     openSound:
@@ -121,7 +121,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 120
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
