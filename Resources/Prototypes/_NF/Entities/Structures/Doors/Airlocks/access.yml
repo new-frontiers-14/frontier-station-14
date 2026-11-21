@@ -179,6 +179,24 @@
     containers:
       board: [ DoorElectronicsMailCarrier ]
 
+- type: entity
+  parent: AirlockPirate
+  id: AirlockPirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockPirateCaptain
+  id: AirlockPirateCaptainLocked
+  suffix: Pirate Captain, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
 # region Glass Airlocks
 - type: entity
   parent: AirlockCommandGlassLocked
@@ -327,7 +345,25 @@
 - type: entity
   parent: AirlockGlassShuttleSyndicate
   id: AirlockGlassShuttleSyndicatePirateLocked
-  suffix: Pirate, Glass Locked
+  suffix: Pirate, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockPirateGlass
+  id: AirlockPirateGlassLocked2
+  suffix: Pirate, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockPirateCaptainGlass
+  id: AirlockPirateCaptainGlassLocked
+  suffix: Pirate Captain, Glass, Locked
   components:
   - type: ContainerFill
     containers:

@@ -16,6 +16,24 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi
+
+- type: entity
+  parent: Airlock
+  id: AirlockPirate
+  suffix: Pirate
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Standard/pirate.rsi
+
+- type: entity
+  parent: AirlockPirate
+  id: AirlockPirateCaptain
+  suffix: Pirate Captain
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Standard/piratecap.rsi
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
 # endregion
 
 # region Glass
@@ -58,6 +76,24 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsBrigmedic ]
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockPirateGlass
+  suffix: Pirate
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/pirate.rsi
+
+- type: entity
+  parent: AirlockPirateGlass
+  id: AirlockPirateCaptainGlass
+  suffix: Pirate Captain
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/piratecap.rsi
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
 # endregion
 
 # region External
