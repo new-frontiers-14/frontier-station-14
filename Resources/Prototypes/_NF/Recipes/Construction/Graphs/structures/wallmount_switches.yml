@@ -29,6 +29,36 @@
       - material: Steel
         amount: 1
         doAfter: 1
+    - to: ButtonFrameThrusterNode
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
+    - to: ButtonFrameShutterNode
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
+    - to: ButtonFrameBoltsNode
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
+    - to: ButtonFrameBlastDoorNode
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
+    - to: ButtonFrameEmergencyVentNode
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
+    - to: ButtonFrameLightsNode
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
 
   - node: ButtonFrameGreyNode
     entity: ButtonFrameGrey
@@ -84,6 +114,84 @@
 
   - node: ButtonFrameJanitorNode
     entity: ButtonFrameJanitor
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+
+  - node: ButtonFrameThrusterNode
+    entity: ButtonFrameThruster
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+
+  - node: ButtonFrameShutterNode
+    entity: ButtonFrameShutter
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+
+  - node: ButtonFrameBoltsNode
+    entity: ButtonFrameBolts
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+
+  - node: ButtonFrameBlastDoorNode
+    entity: ButtonFrameBlastDoor
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+
+  - node: ButtonFrameEmergencyVentNode
+    entity: ButtonFrameEmergencyVent
+    edges:
+    - to: start
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+
+  - node: ButtonFrameLightsNode
+    entity: ButtonFrameLights
     edges:
     - to: start
       steps:
