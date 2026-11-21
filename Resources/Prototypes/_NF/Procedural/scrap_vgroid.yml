@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 ErhardSteinhauer
+# SPDX-FileCopyrightText: 2025 GreaseMonk
+# SPDX-FileCopyrightText: 2025 Ilya246
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # Okay so my general thought is this:
 # 1. Generate the large mass
 # 2. Generate smaller masses offset
@@ -152,6 +159,18 @@
       count: 2
       minGroupSize: 1
       maxGroupSize: 1
+    # Mono - has less
+    - !type:EntityTableDunGen
+      minCount: 3
+      maxCount: 7
+      table: !type:NestedSelector
+        tableId: VgroidGasDepositTable
+    # but has guaranteed frezon deposit
+    - !type:EntityTableDunGen
+      minCount: 1
+      maxCount: 1
+      table: !type:NestedSelector
+        tableId: DeepGasDepositFrezon
 
 # Configs
 - type: dungeonConfig

@@ -1,3 +1,11 @@
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 ErhardSteinhauer
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2025 GreaseMonk
+# SPDX-FileCopyrightText: 2025 Ilya246
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # Okay so my general thought is this:
 # 1. Generate the large mass
 # 2. Generate smaller masses offset
@@ -147,6 +155,12 @@
       count: 5
       minGroupSize: 1
       maxGroupSize: 1
+    # Mono
+    - !type:EntityTableDunGen
+      minCount: 5
+      maxCount: 11
+      table: !type:NestedSelector
+        tableId: VgroidGasDepositTable
 
 # Configs
 - type: dungeonConfig
