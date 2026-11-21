@@ -111,6 +111,26 @@
     - type: TimedSpawner
     - type: Jittering
 
+- type: entity
+  abstract: true
+  id: NFBaseMobRestrictionsNoInventory
+  components:
+  - type: NFSalvageMobRestrictions
+    addComponentsOnDeath:
+    - type: Unrevivable
+    removeComponentsOnDeath:
+    - type: Insulated
+    - type: Reflect
+    - type: MovementIgnoreGravity
+    - type: Tool
+    - type: Prying
+    - type: CanMoveInAir
+    - type: Tag
+    - type: Access
+    - type: Timer
+    - type: TimedSpawner
+    - type: Jittering
+
 # Restriction modifiers.
 # Will be applied on top of NFBaseMobRestrictions.
 - type: entity
@@ -427,7 +447,7 @@
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
   save: false
-  suffix: AI, Hostile
+  suffix: Frontier, AI, Hostile
   abstract: true
   parent:
   - NFMobAtmos
@@ -485,7 +505,7 @@
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
   save: false
-  suffix: AI, Hostile
+  suffix: Frontier, AI, Hostile
   abstract: true
   parent:
   - BaseMob
@@ -499,7 +519,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
   - BaseC3MobCreature
-  - NFBaseMobRestrictions
+  - NFBaseMobRestrictionsNoInventory
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
@@ -554,10 +574,18 @@
     - CannotSuicide
   - type: FTLKnockdownImmune
 
+# NonHuman NPC base, limited equipment, immune to vacuum/low pressure
+- type: entity
+  save: false
+  abstract: true
+  parent: [NFBaseMobRestrictions, MobHumanoidInvetorySimplified, MobNonHumanHostileBase]
+  id: MobNonHumanHostileInvetorySimplifiedBase
+  suffix: Frontier, AI, Hostile
+
 # A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
   save: false
-  suffix: Frontier, Hostile
+  suffix: Frontier, AI, Hostile
   abstract: true
   parent:
   - MobFlammable
@@ -566,7 +594,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAISimpleMelee
   - BaseC3MobCreature
-  - NFBaseMobRestrictions
+  - NFBaseMobRestrictionsNoInventory
   id: NFMobSimpleHostileBase
   components:
   - type: NPCRetaliation
