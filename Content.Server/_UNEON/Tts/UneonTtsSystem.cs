@@ -8,6 +8,7 @@ using Content.Shared._UNEON.Tts;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using NVorbis;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
@@ -75,15 +76,73 @@ public sealed class UneonTtsSystem : EntitySystem
 
     public async void SpeakRadio(EntityUid source, string message, HashSet<ICommonSession> listeners)
     {
+        if (listeners.Count == 0)
+            return;
+
         var recipients = listeners.Select(session => (Session: session, Entity: session.AttachedEntity)).ToArray();
         var audio = await GenerateSpeech(source, message);
         if (audio == null)
             return;
 
+        var radio = FilterRadioAudio(audio);
         foreach (var (session, entity) in recipients)
         {
             if (session.Status == SessionStatus.InGame && session.AttachedEntity == entity)
-                RaiseNetworkEvent(new UneonTtsAudioEvent(audio, null), Filter.SinglePlayer(session), recordReplay: false);
+                RaiseNetworkEvent(new UneonTtsAudioEvent(radio ?? audio, null, radio: radio != null), Filter.SinglePlayer(session), recordReplay: false);
+        }
+    }
+
+    private byte[]? FilterRadioAudio(byte[] audio)
+    {
+        try
+        {
+            using var stream = new MemoryStream(audio, writable: false);
+            using var reader = new VorbisReader(stream, false);
+            reader.Initialize();
+            var rate = reader.SampleRate;
+            var channels = reader.Channels;
+            var frames = reader.TotalSamples;
+            if (rate is < UneonTts.RadioSampleRate or > 96000 || channels is < 1 or > 2 ||
+                frames <= 0 || frames > (long) UneonTts.MaxAudioBytes * rate / UneonTts.RadioSampleRate)
+                return null;
+
+            var output = new byte[(int) (frames * UneonTts.RadioSampleRate / rate)];
+            Span<float> buffer = stackalloc float[2048];
+            var highPass = MathF.Exp(-2f * MathF.PI * 350f / rate);
+            var lowPass = 1f - MathF.Exp(-2f * MathF.PI * 2600f / rate);
+            float previous = 0f, high = 0f, band = 0f;
+            var phase = 0;
+            var written = 0;
+            while (frames > 0)
+            {
+                var requested = (int) Math.Min(frames, buffer.Length / channels);
+                var read = reader.ReadSamples(buffer[..(requested * channels)]);
+                if (read == 0)
+                    break;
+
+                frames -= read;
+                for (var frame = 0; frame < read; frame++)
+                {
+                    var index = frame * channels;
+                    var sample = channels == 1 ? buffer[index] : (buffer[index] + buffer[index + 1]) * 0.5f;
+                    high = highPass * (high + sample - previous);
+                    previous = sample;
+                    band += lowPass * (high - band);
+                    phase += UneonTts.RadioSampleRate;
+                    if (phase < rate)
+                        continue;
+
+                    phase -= rate;
+                    output[written++] = (byte) (128f + 127f * MathF.Tanh(2f * band));
+                }
+            }
+
+            return written == 0 ? null : output[..written];
+        }
+        catch (Exception ex)
+        {
+            Log.Warning($"Could not apply UNEON radio audio filter ({ex.GetType().Name}).");
+            return null;
         }
     }
 

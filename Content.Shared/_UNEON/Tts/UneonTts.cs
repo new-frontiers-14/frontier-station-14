@@ -7,6 +7,7 @@ namespace Content.Shared._UNEON.Tts;
 public sealed class UneonTts
 {
     public const int MaxAudioBytes = 128 * 1024;
+    public const int RadioSampleRate = 8000;
 
     public static readonly CVarDef<bool> Enabled = CVarDef.Create("tts.enabled", false, CVar.SERVER | CVar.REPLICATED);
     public static readonly CVarDef<string> ApiToken = CVarDef.Create("tts.api_token", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
@@ -19,8 +20,9 @@ public sealed class UneonTtsPreviewEvent(string voice) : EntityEventArgs
 }
 
 [Serializable, NetSerializable]
-public sealed class UneonTtsAudioEvent(byte[] audio, NetEntity? source) : EntityEventArgs
+public sealed class UneonTtsAudioEvent(byte[] audio, NetEntity? source, bool radio = false) : EntityEventArgs
 {
     public byte[] Audio { get; } = audio;
     public NetEntity? Source { get; } = source;
+    public bool Radio { get; } = radio;
 }

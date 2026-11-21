@@ -36,7 +36,7 @@ public sealed class UneonTtsPlaybackSystem : EntitySystem
         try
         {
             using var input = new MemoryStream(message.Audio, writable: false);
-            stream = _audioManager.LoadAudioOggVorbis(input);
+            stream = message.Radio ? LoadRadioAudio(message.Audio) : _audioManager.LoadAudioOggVorbis(input);
             var parameters = AudioParams.Default.WithVolume(-10f).WithMaxDistance(SharedChatSystem.VoiceRange);
             var playing = source is { } uid
                 ? _audio.PlayEntity(stream, uid, null, parameters)
@@ -55,6 +55,15 @@ public sealed class UneonTtsPlaybackSystem : EntitySystem
         {
             stream?.Dispose();
         }
+    }
+
+    private AudioStream LoadRadioAudio(byte[] audio)
+    {
+        var samples = new short[audio.Length];
+        for (var i = 0; i < samples.Length; i++)
+            samples[i] = (short) ((audio[i] - 128) << 8);
+
+        return _audioManager.LoadAudioRaw(samples, 1, UneonTts.RadioSampleRate);
     }
 
     public override void Update(float frameTime)
