@@ -4,18 +4,14 @@
   table: !type:GroupSelector
     children:
     - id: TreasureCoinIron
-      weight: 30
-    - id: TreasureCoinIron3
-      weight: 25
+      weight: 40
     - id: TreasureCoinSilver
-      weight: 20
-    - id: TreasureCoinSilver3
-      weight: 5
+      weight: 30
     - id: TreasureCoinGold
-      weight: 10
-    - id: TreasureCoinGold3
-      weight: 5
+      weight: 15
     - id: TreasureCoinAdamantine
+      weight: 9
+    - id: TreasureCoinDiamond
       weight: 5
 
 #region coin spawner
@@ -64,6 +60,6 @@
     prototypes:
     - SpawnTreeCoin
     chance: 0.75
-    intervalSeconds: 120
+    intervalSeconds: 60
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 2
