@@ -124,7 +124,7 @@
   suffix: BlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerBankATMDeposit]
   id: ComputerBlackMarketBankATM
-  description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
+  description: Has some sketchy looking modifications and a sticker that says "NOW 100% TAX FREE!" covering an old sticker.
   components:
   - type: Sprite
     netsync: false
@@ -141,15 +141,12 @@
     interfaces:
       enum.BankATMMenuUiKey.BlackMarket:
         type: BankATMMenuBoundUserInterface
-  - type: BankATM
-    taxAccounts:
-      Frontier: 0.3 # The scandal!
 
 - type: entity
   suffix: Wallmount, BlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBlackMarketBankATM
-  description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
+  description: Has some sketchy looking modifications and a sticker that says "NOW 100% TAX FREE!" covering an old sticker.
   components:
   - type: Sprite
     netsync: false
@@ -165,9 +162,6 @@
     interfaces:
       enum.BankATMMenuUiKey.BlackMarket:
         type: BankATMMenuBoundUserInterface
-  - type: BankATM
-    taxAccounts:
-      Frontier: 0.3 # The scandal!
 
 - type: entity
   name: station administration console
