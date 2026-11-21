@@ -1,0 +1,43 @@
+- type: entity
+  parent: [GasPipeLayerAlt1, GasInletSiphon]
+  id: GasInletSiphonAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphonAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasInletSiphon]
+  id: GasInletSiphonAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphonAlt2
