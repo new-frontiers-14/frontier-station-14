@@ -106,6 +106,7 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
                 ("name", meta.EntityName),
                 ("username", username)));
         }
+        args.AddLine("");
     }
 
     /// <summary>

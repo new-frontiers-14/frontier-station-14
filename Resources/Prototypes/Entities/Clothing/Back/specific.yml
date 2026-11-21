@@ -122,3 +122,57 @@
         location: Middle
       extra_hand_2:
         location: Middle
+
+- type: entity
+  parent: ClothingBackpack
+  id: XenoborgMaterialBag
+  name: silicon storage square
+  description: A knockoff version of a bluespace bag, can vacumn up select materials, unfit for use by humanoids due to harmful emissions.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/silicon_storage_cube.rsi
+    state: xenoborg
+  - type: MagnetPickup
+    magnetEnabled: false # Frontier
+    magnetCanBeEnabled: false # Frontier
+  - type: Dumpable
+  - type: Storage
+    grid:
+    - 0,0,7,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - Sheet
+        - ConstructionMaterial
+        - RawMaterial
+        - Ingot
+      components:
+        #- ConstructionMaterial #Frontier: This component does not exist and will get removed in a upcoming upstream PR
+        - Circuitboard
+        - Flatpack
+        - FloorTile
+    blacklist:
+      components:
+      - SiliconLawProvider
+  # Begin DeltaV Additions: toggle magnet from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled: # Frontier: Enum changes from Wizden#35341
+        enum.ToggleableVisuals.Layer: # Frontier: Enum changes from Wizden#35341
+          True: { visible: True }
+          False: { visible: False }
+  # End DeltaV Additions
