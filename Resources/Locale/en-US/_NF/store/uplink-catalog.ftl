@@ -363,14 +363,8 @@ uplink-pirate-revolverspeedloader-desc = An empty revolver speed loader.
 uplink-pirate-flintlockammo-name = Flintlock Pistol Ammo Box
 uplink-pirate-flintlockammo-desc = A box of .60 anti-materiel rounds, used in the flintlock pistol.
 
-uplink-pirate-flintlockammorubber-name = Flintlock Pistol Rubber Ammo Box
-uplink-pirate-flintlockammorubber-desc = A box of .60 rubber rounds, used in the flintlock pistol.
-
 uplink-pirate-flintlockammobulk-name = Flintlock Pistol Bulk Ammo Box
 uplink-pirate-flintlockammobulk-desc = A big box of .60 anti-materiel rounds, used in the flintlock pistol.
-
-uplink-pirate-flintlockammobulkrubber-name = Flintlock Pistol Bulk Rubber Ammo Box
-uplink-pirate-flintlockammobulkrubber-desc = A big box of .60 rubber rounds, used in the flintlock pistol.
 
 uplink-pirate-rifleammo-name = Romulan Rifle Ammo Box
 uplink-pirate-rifleammo-desc = A box of .20 rifle rounds, used in the Romulan rifle.
