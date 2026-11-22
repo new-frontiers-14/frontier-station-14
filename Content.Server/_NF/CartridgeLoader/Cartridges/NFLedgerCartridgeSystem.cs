@@ -8,10 +8,10 @@ using Content.Server._NF.Bank;
 namespace Content.Server._NF.CartridgeLoader.Cartridges;
 
 // System for ledger cartridges - pushes updates to PDA UI when ledger is updated.
-public sealed class NFLedgerCartridgeSystem : EntitySystem
+public sealed partial class NFLedgerCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private SectorServiceSystem _sectorService = default!;
 
     public override void Initialize()
     {

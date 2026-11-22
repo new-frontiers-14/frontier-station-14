@@ -188,6 +188,7 @@
     sprite: _NF/Structures/Machines/assembler.rsi
     drawdepth: SmallObjects
     snapCardinals: true
+    offset: "0.0,0.0"
     layers:
     - state: assembler
       map: ["enum.MicrowaveVisualizerLayers.Base"]
@@ -213,6 +214,8 @@
     interfaces:
       enum.MicrowaveUiKey.AssemblerKey:
         type: AssemblerBoundUserInterface
+  - type: PirateBountyItem
+    id: NOBOUNTY #Overrides bounty to not be a valid bounty
 
 - type: entity
   id: MedicalAssembler
@@ -244,6 +247,7 @@
   - type: Sprite
     sprite: _NF/Structures/Machines/medical_assembler.rsi
     snapCardinals: true
+    offset: "0.0,0.0"
     layers:
     - state: mediwave-base
       map: ["enum.MicrowaveVisualizerLayers.Base"]

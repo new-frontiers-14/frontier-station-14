@@ -12,9 +12,9 @@ namespace Content.Client._DV.CustomObjectiveSummary;
 [GenerateTypedNameReferences]
 public sealed partial class CustomObjectiveSummaryWindow : FancyWindow
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private SharedMindSystem? _mind;
 

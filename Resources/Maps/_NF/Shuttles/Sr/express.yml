@@ -1063,7 +1063,7 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 1
-- proto: GasMixerOn
+- proto: GasMixerDistroSideOxygen
   entities:
   - uid: 193
     components:
@@ -1071,11 +1071,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-3.5
       parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.20999998
-      inletOneConcentration: 0.79
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 156
@@ -1513,15 +1508,21 @@ entities:
   - uid: 11
     components:
     - type: Transform
+      anchored: True
       pos: 1.5,-4.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: OxygenCanister
   entities:
   - uid: 82
     components:
     - type: Transform
+      anchored: True
       pos: 1.5,-3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PaperBin20
   entities:
   - uid: 89

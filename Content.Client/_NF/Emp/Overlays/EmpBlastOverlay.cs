@@ -10,11 +10,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._NF.Emp.Overlays
 {
-    public sealed class EmpBlastOverlay : Overlay
+    public sealed partial class EmpBlastOverlay : Overlay
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
         private TransformSystem? _transform;
 
         private const float PvsDist = 25.0f;
