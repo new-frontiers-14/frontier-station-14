@@ -5,11 +5,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class WeatherTriggerSystem : EntitySystem
+public sealed partial class WeatherTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedWeatherSystem _weather = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedWeatherSystem _weather = default!;
 
     public override void Initialize()
     {

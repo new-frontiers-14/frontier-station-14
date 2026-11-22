@@ -10,12 +10,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Players.GhostRole;
 
-public sealed class GhostRoleWhitelistSystem : EntitySystem
+public sealed partial class GhostRoleWhitelistSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly JobWhitelistManager _manager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private JobWhitelistManager _manager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private ImmutableArray<ProtoId<GhostRolePrototype>> _whitelistedGhostRoles = [];
 
