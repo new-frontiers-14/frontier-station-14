@@ -780,24 +780,6 @@ entities:
     - type: Transform
       pos: 9.5,-1.5
       parent: 2
-- proto: BaseComputerLibrary
-  entities:
-  - uid: 269
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,0.5
-      parent: 2
-    - type: ContainerContainer
-      containers:
-        bookConsole_Book: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: BenchSofaCorpLeft
   entities:
   - uid: 70
@@ -1530,6 +1512,24 @@ entities:
     - type: Transform
       pos: 8.5,2.5
       parent: 2
+- proto: ComputerLibrary
+  entities:
+  - uid: 269
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,0.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        bookConsole_Book: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 186

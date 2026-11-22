@@ -611,7 +611,7 @@
 #region Library
 - type: entity
   parent: BaseComputer
-  id: BaseComputerLibrary
+  id: ComputerLibrary
   name: library console
   description: Facilitates the uploading and downloading of books.
   components:
@@ -629,7 +629,7 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: generic_panel_open
   - type: Computer
-    board: BaseComputerLibraryComputerCircuitboard
+    board: LibraryComputerCircuitboard
   - type: LibraryConsole
     bookSlot:
       whitelist:
