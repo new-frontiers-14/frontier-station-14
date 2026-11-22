@@ -1880,7 +1880,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #endregion
 
-        #region Library
+        // Frontier: library
+        #region Frontier: Library
 
         public async Task AddNFLibraryBookAsync(
             int roundId,
@@ -1923,6 +1924,24 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .ToListAsync();
         }
 
+        public async Task<NFLibraryBook?> GetNFLibraryBookByIdAsync(int bookId)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.NFLibraryBook
+                .FirstOrDefaultAsync(b => b.Id == bookId);
+        }
+
+        public async Task<bool> GetNFLibraryBookAlreadyExists(string title, string author, string content)
+        {
+            // A book is considered to already exist if there is an exact match
+            // for title and author, or if the exact contents are already present.
+            await using var db = await GetDb();
+            return await db.DbContext.NFLibraryBook
+                .Where(b => b.Title == title && b.Author == author || b.Content == content)
+                .AnyAsync();
+        }
+
         public async Task<bool> DeleteNFLibraryBookAsync(int bookId)
         {
             await using var db = await GetDb();
@@ -1938,7 +1957,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
-        #endregion Library
+        #endregion
+        // End Frontier: Library
 
         public abstract Task SendNotification(DatabaseNotification notification);
 

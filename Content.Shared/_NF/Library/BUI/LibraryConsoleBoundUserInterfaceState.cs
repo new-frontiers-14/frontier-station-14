@@ -7,6 +7,7 @@ namespace Content.Shared._NF.Library.BUI;
 [NetSerializable, Serializable]
 public sealed class LibraryConsoleBoundUserInterfaceState(
     bool enabled,
+    string? bookName = null,
     string? bookContent = null,
     List<LibraryBookData>? books = null) : BoundUserInterfaceState
 {
@@ -16,7 +17,12 @@ public sealed class LibraryConsoleBoundUserInterfaceState(
     public bool Enabled = enabled;
 
     /// <summary>
-    /// The content of the inserted BookRandomSimple, or null if the book is not inserted.
+    /// The name of the inserted book entity, or null if no book is inserted.
+    /// </summary>
+    public string? BookName = bookName;
+
+    /// <summary>
+    /// The content of the inserted book entity, or null if no book is inserted.
     /// </summary>
     public string? BookContent = bookContent;
 

@@ -25,17 +25,17 @@ namespace Content.Server._NF.Library.Systems;
 /// </summary>
 public sealed class LibraryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private ServerDbEntryManager _serverDbEntry = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     private const string BookSlotId = "bookConsole_Book";
 
@@ -108,7 +108,6 @@ public sealed class LibraryConsoleSystem : EntitySystem
         var authorPlayerUserId = session.UserId.UserId;
         var date = DateTime.UtcNow;
 
-        _audio.PlayPvs(ent.Comp.PrintSound, ent.Owner);
         _ = AddBookAsync(ent, args.Actor, title, author, content, date, authorPlayerUserId);
     }
 
@@ -117,8 +116,8 @@ public sealed class LibraryConsoleSystem : EntitySystem
         var server = await _serverDbEntry.ServerEntity;
 
         // Reject uploads whose content already exists in the library.
-        var existingBooks = await _dbManager.GetNFLibraryBooksAsync();
-        if (existingBooks.Any(b => string.Equals(b.Content, content, StringComparison.Ordinal)))
+        var bookExists = await _dbManager.GetNFLibraryBookAlreadyExistsAsync(title, author, content);
+        if (bookExists)
         {
             if (EntityManager.EntityExists(ent))
             {
@@ -136,7 +135,10 @@ public sealed class LibraryConsoleSystem : EntitySystem
 
         // Refresh the UI so the browse tab shows the newly uploaded book.
         if (EntityManager.EntityExists(ent))
+        {
+            _audio.PlayPvs(ent.Comp.UploadSound, ent.Owner);
             UpdateUiState(ent);
+        }
     }
 
     private void OnDownloadBook(Entity<LibraryConsoleComponent> ent, ref LibraryConsoleDownloadBookMessage args)
@@ -146,8 +148,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
 
     private async Task DownloadBookAsync(Entity<LibraryConsoleComponent> ent, int bookId)
     {
-        var books = await _dbManager.GetNFLibraryBooksAsync();
-        var book = books.FirstOrDefault(b => b.Id == bookId);
+        var book = await _dbManager.GetNFLibraryBookByIdAsync(bookId);
 
         if (book == null || !EntityManager.EntityExists(ent))
             return;
@@ -161,7 +162,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
 
         _paper.SetContent((bookEntity, paper), book.Content);
         _metaData.SetEntityName(bookEntity, book.Title);
-        _audio.PlayPvs(ent.Comp.PrintSound, ent.Owner);
+        _audio.PlayPvs(ent.Comp.DownloadSound, ent.Owner);
 
         // Refresh UI so the inserted book's content field stays in sync.
         UpdateUiState(ent);
@@ -185,10 +186,12 @@ public sealed class LibraryConsoleSystem : EntitySystem
         if (!EntityManager.EntityExists(ent))
             return;
 
+        string? bookName = null;
         string? bookContent = null;
         if (ent.Comp.BookSlot.Item is { } bookEntity &&
             TryComp<PaperComponent>(bookEntity, out var paper))
         {
+            bookName = Name(bookEntity);
             bookContent = paper.Content;
         }
 
@@ -196,7 +199,7 @@ public sealed class LibraryConsoleSystem : EntitySystem
             .Select(b => new LibraryBookData(b.Id, b.Title, b.Author, b.Date.ToString("yyyy-MM-dd")))
             .ToList();
 
-        var state = new LibraryConsoleBoundUserInterfaceState(enabled: true, bookContent, bookData);
+        var state = new LibraryConsoleBoundUserInterfaceState(enabled: true, bookName, bookContent, bookData);
         _ui.SetUiState(ent.Owner, LibraryConsoleUiKey.Key, state);
     }
 }

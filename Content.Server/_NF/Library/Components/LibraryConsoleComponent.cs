@@ -18,10 +18,16 @@ public sealed partial class LibraryConsoleComponent : Component
     public ItemSlot BookSlot = new();
 
     /// <summary>
-    /// Sound played on a successful print.
+    /// Sound played on a successful upload.
     /// </summary>
     [DataField]
-    public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/printer.ogg");
+    public SoundSpecifier UploadSound = new SoundPathSpecifier("/Audio/Machines/high_tech_confirm.ogg");
+
+    /// <summary>
+    /// Sound played on a successful download (printing to the inserted book).
+    /// </summary>
+    [DataField]
+    public SoundSpecifier DownloadSound = new SoundPathSpecifier("/Audio/Machines/printer.ogg");
 
     /// <summary>
     /// Sound played when the action cannot be completed.

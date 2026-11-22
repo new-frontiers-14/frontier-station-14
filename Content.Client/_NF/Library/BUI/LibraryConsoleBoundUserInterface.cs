@@ -1,6 +1,7 @@
 using Content.Client._NF.Library.UI;
 using Content.Shared._NF.Library.BUI;
 using Content.Shared._NF.Library.Events;
+using Content.Shared.Containers.ItemSlots;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Library.BUI;
@@ -18,6 +19,7 @@ public sealed class LibraryConsoleBoundUserInterface(EntityUid owner, Enum uiKey
         _menu = this.CreateWindow<LibraryConsoleMenu>();
         _menu.UploadBookRequested += OnUploadBook;
         _menu.DownloadBookRequested += OnDownloadBook;
+        _menu.TargetBookButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("bookConsole_Book"));
     }
 
     private void OnUploadBook(string title, string author, string content)
@@ -37,8 +39,11 @@ public sealed class LibraryConsoleBoundUserInterface(EntityUid owner, Enum uiKey
         if (state is not LibraryConsoleBoundUserInterfaceState libraryState)
             return;
 
-        _menu?.SetEnabled(libraryState.Enabled);
-        _menu?.SetBookContent(libraryState.Enabled, libraryState.BookContent);
-        _menu?.PopulateBookList(libraryState.Books);
+        if (_menu is { } menu)
+        {
+            menu.SetEnabled(libraryState.Enabled);
+            menu.SetBookContent(libraryState.Enabled, libraryState.BookName, libraryState.BookContent);
+            menu.PopulateBookList(libraryState.Books);
+        }
     }
 }

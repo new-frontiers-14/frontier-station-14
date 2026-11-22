@@ -20,10 +20,22 @@
                           PlaceHolder="{Loc 'library-console-author-placeholder'}"
                           HorizontalExpand="True"
                           Margin="0 0 0 4" />
+                <BoxContainer Orientation="Horizontal"
+                              HorizontalExpand="True"
+                              SeparationOverride="4"
+                              Margin="0 0 0 4">
+                    <Label Text="{Loc 'library-console-content-label'}" HorizontalAlignment="Left" />
+                    <Button Name="TargetBookButton"
+                            Access="Public"
+                            Text="{Loc 'library-console-insert-book-button'}"
+                            HorizontalExpand="False" />
+                    <Label Name="TargetBookName"
+                           Text="{Loc 'library-console-content-placeholder'}" />
+                </BoxContainer>
                 <Button Name="UploadBookButton"
                         Text="{Loc 'library-console-upload-book-button'}"
                         HorizontalExpand="True"
-                        Margin="0 0 0 4" />
+                        Margin="0 4 0 4" />
             </BoxContainer>
             <!-- Tab 1: Browse -->
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="4">
@@ -36,6 +48,11 @@
                        HorizontalAlignment="Center"
                        Visible="False"
                        Margin="0 0 0 4" />
+                <Label Name="BrowseNoMatchesLabel"
+                       Text="{Loc 'library-console-browse-no-matches'}"
+                       HorizontalAlignment="Center"
+                       Visible="False"
+                       Margin="0 0 0 4"/>
                 <ItemList Name="BookList"
                           SelectMode="Single"
                           HorizontalExpand="True"

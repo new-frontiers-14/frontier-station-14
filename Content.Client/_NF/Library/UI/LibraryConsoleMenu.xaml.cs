@@ -37,6 +37,14 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
             DownloadBookRequested?.Invoke(_bookIds[_selectedBookIndex]);
         };
 
+        TitleEdit.OnTextChanged += args =>
+        {
+            UpdateUploadButtonState();
+        };
+        AuthorEdit.OnTextChanged += args =>
+        {
+            UpdateUploadButtonState();
+        };
         BookList.OnItemSelected += args =>
         {
             _selectedBookIndex = args.ItemIndex;
@@ -63,11 +71,17 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
     /// <summary>
     /// Updates the content field from the inserted book. Pass null when no book is inserted.
     /// </summary>
-    public void SetBookContent(bool powered, string? content)
+    public void SetBookContent(bool powered, string? name, string? content)
     {
         _powered = powered;
         _hasBook = content != null;
         _bookContent = content ?? string.Empty;
+        TargetBookButton.Text = content != null
+            ? Loc.GetString("library-console-eject-book-button")
+            : Loc.GetString("library-console-insert-book-button");
+        TargetBookName.Text = name is { } bookName
+            ? bookName
+            : Loc.GetString("library-console-content-placeholder");
         UpdateUploadButtonState();
         UpdateDownloadButtonState();
     }
@@ -93,21 +107,24 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
         _selectedBookIndex = -1;
 
         var query = SearchEdit.Text.Trim();
+        var showAll = string.IsNullOrEmpty(query);
 
-        var filtered = string.IsNullOrEmpty(query)
+        var filtered = showAll
             ? _allBooks
             : _allBooks.FindAll(b =>
-                b.Title.Contains(query, System.StringComparison.OrdinalIgnoreCase) ||
-                b.Author.Contains(query, System.StringComparison.OrdinalIgnoreCase));
+                b.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                b.Author.Contains(query, StringComparison.OrdinalIgnoreCase));
 
         if (filtered.Count == 0)
         {
-            BrowseEmptyLabel.Visible = true;
+            BrowseEmptyLabel.Visible = showAll;
+            BrowseNoMatchesLabel.Visible = !showAll;
             UpdateDownloadButtonState();
             return;
         }
 
         BrowseEmptyLabel.Visible = false;
+        BrowseNoMatchesLabel.Visible = false;
         foreach (var book in filtered)
         {
             BookList.AddItem($"{book.Title}  —  {book.Author}");
@@ -118,7 +135,10 @@ public sealed partial class LibraryConsoleMenu : FancyWindow
 
     private void UpdateUploadButtonState()
     {
-        UploadBookButton.Disabled = !_powered || !_hasBook;
+        UploadBookButton.Disabled = !_powered
+            || !_hasBook
+            || string.IsNullOrWhiteSpace(TitleEdit.Text)
+            || string.IsNullOrWhiteSpace(AuthorEdit.Text);
     }
 
     private void UpdateDownloadButtonState()
