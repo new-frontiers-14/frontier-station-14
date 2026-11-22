@@ -1,10 +1,7 @@
-using System;
-using System.Numerics;
-using System.Runtime.Intrinsics;
-using Content.Shared.GameTicking.Components;
-using Content.Shared.Salvage;
-using Content.Shared.Trigger.Components.Triggers;
-using Content.Shared._NF.Bank.BUI;
+using Content.Server._NF.Bank;
+using Content.Server._NF.Salvage;
+using Content.Server._NF.Station.Systems;
+using Content.Server._NF.StationEvents.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Maps.NameGenerators;
@@ -12,17 +9,15 @@ using Content.Server.Procedural;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Events;
-using Content.Server._NF.Bank;
-using Content.Server._NF.Salvage;
-using Content.Server._NF.Station.Systems;
-using Content.Server._NF.StationEvents.Components;
+using Content.Shared._NF.Bank.BUI;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Salvage;
+using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Server.GameObjects;
-
+using System.Numerics;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -70,43 +65,44 @@ public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErr
             {
                 EntityUid spawned;
 
-                var rawCoords = Vector2.Zero;
-
-                EntityUid? biasTarget = null;
+                Vector2? biasDirection = null;
                 // If there is a bias target, see if one exists with a matching ID
                 if (group.SpawnBiasTarget is not null)
                 {
-                    var query = EntityQueryEnumerator<SpawningModifierComponent>();
+                    var query = EntityQueryEnumerator<BiasTargetComponent>();
 
-                    List<EntityUid> targets = new();
+                    List<Vector2> targets = new();
 
-                    while (query.MoveNext(out var ent, out var comp))
+                    while (query.MoveNext(out var ent, out var biasComp))
                     {
-                        if (comp.id == group.SpawnBiasTarget)
-                            targets.Add(ent);
+                        if (biasComp.id == group.SpawnBiasTarget)
+                        {
+                            targets.Add(_transform.GetMapCoordinates(ent).Position);
+                        }
                     }
 
                     if (targets.Count > 0)
                     {
-                        // Pick a random one from the list of possible targets. The new spawning area will be centred around this. If there were no matches continue as if it was unset.
-                        biasTarget = _random.Pick<EntityUid>(targets);
+                        // Pick a random one from the list of possible targets. We don't care where it is, only its direction.
+                        biasDirection = Vector2.Normalize(_random.Pick<Vector2>(targets));
                     }
                 }
 
-                if (biasTarget is not null)
-                    rawCoords = rawCoords + _transform.GetMapCoordinates(biasTarget.Value).Position;
-
-                if (biasTarget is not null && group.SpawnBiasOverride && TryComp<SpawningModifierComponent>(biasTarget, out var spawnModComp))
+                if (group.MinimumDistance > 0f)
                 {
-                    var spawnAngle = new Angle(rawCoords) + _random.NextAngle(spawnModComp.MinimumAngle*(Math.Tau/360), spawnModComp.MaximumAngle*(Math.Tau/360));
-                    rawCoords = rawCoords + spawnAngle.RotateVec(new Vector2(_random.NextFloat(spawnModComp.MinimumDistance, spawnModComp.MaximumDistance),0));
+                    if (biasDirection is not null)
+                    {
+                        // The spawning region describes a circle with a diameter equal to the width between the minimum and maximum distance.
+                        // We construct this by placing the centre of the circle with a vector in the direction of the bias target with a magnitude equal to the average of the two
+                        // and adding a random vector with a maximum magnitude half of the difference between the two.
+                        var spawnCentre = biasDirection.Value * ((group.MaximumDistance + group.MinimumDistance) / 2);
+                        spawnCoords = spawnCoords.WithPosition(spawnCentre + _random.NextVector2((group.MaximumDistance - group.MinimumDistance) / 2));
+                    }
+                    else
+                    {
+                        spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                    }
                 }
-                else
-                {
-                    rawCoords = rawCoords + _random.NextVector2(group.MinimumDistance, group.MaximumDistance);
-                }
-
-                spawnCoords = spawnCoords.WithPosition(rawCoords);
 
                 switch (group)
                 {
