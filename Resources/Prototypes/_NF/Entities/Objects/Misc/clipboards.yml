@@ -1,11 +1,8 @@
-# Reinforced Clipboard;
-# Serves as a parent for other reinforced clipboards.
-# TODO: Maybe move reinforced clipboard contents to a separate entity and make a NFReinforcedClipboardBase instead? Unsure if its needed. Would be lovely to see a way to simplify the variation entities (aka just pass in "bluespace_clipboard" or "cc_clipboard", for example, and have it mostly autosetup itself)
+# Base Reinforced Clipboard
 - type: entity
   parent: [ BoxFolderClipboardEmpty, ContentsExplosionResistanceBase ]
-  id: NFReinforcedLockableClipboard
-  name: reinforced clipboard
-  description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
+  id: NFReinforcedClipboardBase
+  abstract: true
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/bureaucracy.rsi
@@ -24,7 +21,7 @@
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
-      reinforced_clipboard_paper: # TODO: why the fuck does this pull from state and not the actual mapped layer? this is evil, this is wrong, and I feel ragebaited. once someone makes this refer to the actual _paper map instead of the _paper state, this can be cut off from the variations. I hate it so fucking much
+      reinforced_clipboard_paper: # TODO: why the fuck does this pull from state and not the actual mapped layer? this is evil, this is wrong, and I feel ragebaited. once someone makes this refer to the actual map instead of the state, this can be cut off from the variations. I hate it so fucking much
         whitelist:
           tags:
           - Document
@@ -72,17 +69,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 40
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
   - type: GenericVisualizer
     visuals:
       enum.StorageVisuals.Open:
@@ -94,13 +80,43 @@
   - type: LockedStorage
   - type: ExplosionResistance
     damageCoefficient: 0
-  - type: Tag
-    tags:
-    - FitsWallet
 
-# Additional storage sizes - defined here when the variations share them
+# Different damage limits - defined here when the variations share them
 - type: entity
-  id: ReinforcedClipboardStorageCommand
+  id: NFReinforcedClipboardDestructibleDefault
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+- type: entity
+  id: NFReinforcedClipboardDestructibleTough
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+# Additional storage sizes - defined here when the variations share them. default is defined on NFReinforcedClipboardBase
+- type: entity
+  id: NFReinforcedClipboardStorageCommand
   abstract: true
   components:
   - type: Storage
@@ -111,10 +127,16 @@
       - Document
 
 # Variations:
+# Reinforced Clipboard - uses Base's default configuration.
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardDestructibleDefault ]
+  id: NFReinforcedClipboard
+  name: reinforced clipboard
+  description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
 
 # Weh.
 - type: entity
-  parent: NFReinforcedLockableClipboard # no bigger storage for weh. 1984
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardDestructibleDefault ]
   id: NFWehReinforcedClipboard
   name: wehboard
   description: Paperwehk!
@@ -147,6 +169,8 @@
     mapLayers:
       weh_clipboard_paper:
         whitelist:
+          components:
+          - NFPlushie
           tags:
           - Document
   - type: Storage
@@ -161,7 +185,7 @@
 
 # Bluespace Reinforced Clipboard
 - type: entity
-  parent: NFReinforcedLockableClipboard
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardDestructibleDefault ]
   id: NFBluespaceReinforcedClipboard
   name: clipboard of holding
   description: A robust clipboard with a lockable cover. Uses bluespace technology to create a localized pocket around itself, effectively shrinking itself and it's contents for remarkably easier storage
@@ -174,12 +198,12 @@
       map: [ bluespace_clipboard_paper ]
       visible: false
     - state: reinforced_clipboard_clip
+    - state: bluespace_unlit
+      shader: unshaded
     - state: reinforced_clipboard_cover_closed
       map: [ cover ]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
-      shader: unshaded
-    - state: bluespace_unlit
       shader: unshaded
   - type: Item
     heldPrefix: bluespace_clipboard
@@ -205,10 +229,13 @@
     whitelist:
       tags:
       - Document
+  - type: Tag
+    tags:
+    - FitsWallet
 
 # CC Reinforced Clipboard
 - type: entity
-  parent: NFBluespaceReinforcedClipboard # inherit off of bluespace for additional bonuses - this one is meant to be admin-only anyway
+  parent: NFReinforcedClipboardBase
   id: NFCentralCommandReinforcedClipboard
   name: central command reinforced clipboard
   description: A robust clipboard with a lockable cover, painted in an iconic lime green with tinted glass, and a solid gold paper clip for Central Command agents. Only for the top of the line soldiers of bureaucracy.
@@ -228,6 +255,11 @@
       shader: unshaded
   - type: Item
     heldPrefix: cc_clipboard
+    size: Tiny # smaller
+  - type: ItemSlots
+    slots:
+      pen_slot:
+        startingItem: PenCentcom
   - type: Clothing
     equippedPrefix: cc_clipboard
   - type: GenericVisualizer
@@ -255,10 +287,15 @@
     damage:
       types:
         Blunt: 20 # bonk
+  - type: Lock
+    breakOnAccessBreaker: false
+  - type: Tag
+    tags:
+    - FitsWallet
 
 # NFSD Reinforced Clipboard
 - type: entity
-  parent: [ NFReinforcedLockableClipboard, ReinforcedClipboardStorageCommand ]
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
   id: NFNFSDReinforcedClipboard
   name: nfsd reinforced clipboard
   description: A robust clipboard with a lockable cover, painted in a deep walnut with a plastitanium glass cover for the NFSD. Resistant to cannonballs made against rudely interrupted paperwork.
@@ -292,7 +329,7 @@
 
 # Pirate Reinforced Clipboard
 - type: entity
-  parent: [NFReinforcedLockableClipboard, ReinforcedClipboardStorageCommand ]
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
   id: NFPirateReinforcedClipboard
   name: pirate reinforced clipbarrd
   description: A robust clipboard with a lockable cover. Well-worn, was definitely not ill-gotten, and was definitely NOT hit with a cannonball. Just ignore the hole in the glass.
@@ -333,7 +370,7 @@
 
 # Syndie Reinforced Clipboard
 - type: entity
-  parent: [ NFReinforcedLockableClipboard, ReinforcedClipboardStorageCommand ]
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
   id: NFSyndicateReinforcedClipboard
   name: syndicate plastitanium clipboard
   description: A sinister looking clipboard with a lockable cover, packs a punch. Even clandestine megacorporations have to do the paperwork after a mission. It has odd stickers on the back of it
@@ -375,7 +412,7 @@
 
 # DoC Reinforced Clipboard
 - type: entity
-  parent: [ NFReinforcedLockableClipboard, ReinforcedClipboardStorageCommand ]
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
   id: NFDirectorOfCareReinforcedClipboard
   name: director of care reinforced clipboard
   description: A robust clipboard with a lockable cover, painted in a light blue with a lightweight shuttle glass cover for the Director of Care. Good for protecting patient records while you save the next salvager from another fish.
@@ -409,7 +446,7 @@
 
 # Plant Manager Reinforced Clipboard
 - type: entity
-  parent: [ NFReinforcedLockableClipboard, ReinforcedClipboardStorageCommand ]
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
   id: NFPlantManagerReinforcedClipboard
   name: plant manager reinforced clipboard
   description: A robust clipboard with a lockable cover, atypically made from the same material as the Chief Engineer's hardsuit instead of being painted. Plasma glass protects the contents from radiation, but definitely not you.
@@ -442,7 +479,7 @@
 
 # Station Rep Reinforced Clipboard
 - type: entity
-  parent: [ NFReinforcedLockableClipboard, ReinforcedClipboardStorageCommand ]
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
   id: NFStationRepReinforcedClipboard
   name: station representative reinforced clipboard
   description: A robust clipboard with a lockable cover, painted in a forest green with a lightly painted glass cover for the Station Representative. You don't really know what the symbol means.
