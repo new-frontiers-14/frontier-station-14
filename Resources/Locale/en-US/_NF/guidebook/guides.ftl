@@ -94,6 +94,7 @@ guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-pulsar = Pulsar
 guide-entry-shipyard-retort = Retort
+guide-entry-shipyard-Serafina = Serafina
 guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spectre = Spectre
 guide-entry-shipyard-stellaris = Stellaris
@@ -111,7 +112,6 @@ guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-tyne = Tyne
 guide-entry-shipyard-vitalis = Vitalis
-guide-entry-shipyard-voltage = Voltage
 
 # Frontier Staff Shipyard entries
 guide-entry-shipyard-broom = Broom
@@ -146,6 +146,10 @@ guide-entry-shipyard-paladin = Paladin
 guide-entry-shipyard-prowler = Prowler
 guide-entry-shipyard-rogue = Rogue
 guide-entry-shipyard-templar = Templar
+
+# Blackmarket Shipyard entries
+guide-entry-shipyard-serafina = Serafina
+guide-entry-shipyard-voltage = Voltage
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance

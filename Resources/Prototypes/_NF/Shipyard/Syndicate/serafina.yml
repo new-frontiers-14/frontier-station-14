@@ -1,0 +1,31 @@
+- type: vessel
+  id: Serafina
+  parent: BaseVesselAntag
+  name: GX Serafina
+  description: A small-time mercenary work ship with a weapon storefront, manufactured by Gorlex Marauders.
+  price: 50000
+  category: Medium
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/serafina.yml
+  guidebookPage: ShipyardSerafina
+  class:
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Serafina
+  mapName: 'GX Serafina'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/serafina.yml
+  minPlayers: 0
+  stations:
+    Serafina:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Serafina {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
