@@ -25,13 +25,13 @@ namespace Content.Server._WF.Shuttles.Systems;
 /// </summary>
 public sealed class AutopilotSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ThrusterSystem _thruster = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private ThrusterSystem _thruster = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
     // [Dependency] private readonly IChatManager _chatManager = default!; // Frontier
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
 
     public override void Initialize()
     {

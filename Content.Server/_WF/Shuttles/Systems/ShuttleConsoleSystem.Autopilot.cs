@@ -11,7 +11,7 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
 {
-    [Dependency] private readonly AutopilotSystem _autopilot = default!;
+    [Dependency] private AutopilotSystem _autopilot = default!;
 
     private void InitializeAutopilot()
     {
