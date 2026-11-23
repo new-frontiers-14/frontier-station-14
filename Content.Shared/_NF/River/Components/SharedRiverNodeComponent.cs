@@ -24,6 +24,11 @@ public abstract partial class SharedRiverNodeComponent : Component
     public List<NetEntity> NextNodes = new();
 
     /// <summary>
+    /// A dictionary that holds the lengths of each segment. The NetEntity is the NextNodes entity the segment connects to.
+    /// </summary>
+    public Dictionary<NetEntity, float> SegmentControlPointMultiplier = new();
+
+    /// <summary>
     /// A list of nodes which flow into this node.
     /// </summary>
     //[AutoNetworkedField]
@@ -43,14 +48,10 @@ public abstract partial class SharedRiverNodeComponent : Component
     public float NodeRange = 40.0f; //TODO: Figure out a reasonable value
 
     /// <summary>
-    /// Influences whether rivers are keen to merge or split. Higher numbers wish to split rather than merge.
-    /// Lower numbers wish to merge rather than split.
+    /// Whether or not to allow systems to change the flow direction of this Node.
     /// </summary>
-    public float Saturation = 1f;
-
-    //[AutoNetworkedField]
-    public Vector2 ForwardControlPoint = new Vector2(0f, 0f);
-
+    [DataField]
+    public bool LockFlowDirection = false;
 }
 
 [Serializable, NetSerializable]
@@ -58,20 +59,20 @@ public sealed class RiverNodeComponentState : ComponentState
 {
     public Vector2 Location;
     public List<NetEntity> NextNodes;
+    public Dictionary<NetEntity, float> SegmentControlPointMultiplier;
     public List<NetEntity> PriorNodes;
     public Angle FlowDirection;
     public float NodeRange;
-    public float Saturation;
-    public Vector2 ForwardControlPoint;
+    public bool LockFlowDirection;
 
-    public RiverNodeComponentState(Vector2 location, List<NetEntity> nextNodes, List<NetEntity> priorNodes, Angle flowDirection, float nodeRange, float saturation, Vector2 forwardControlPoint)
+    public RiverNodeComponentState(Vector2 location, List<NetEntity> nextNodes, Dictionary<NetEntity, float> segmentControlPointMultiplier, List<NetEntity> priorNodes, Angle flowDirection, float nodeRange, bool lockFlowDirection)
     {
         Location = location;
         NextNodes = nextNodes;
+        SegmentControlPointMultiplier = segmentControlPointMultiplier;
         PriorNodes = priorNodes;
         FlowDirection = flowDirection;
         NodeRange = nodeRange;
-        Saturation = saturation;
-        ForwardControlPoint = forwardControlPoint;
+        LockFlowDirection = lockFlowDirection;
     }
 }

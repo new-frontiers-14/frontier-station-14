@@ -231,8 +231,11 @@ public sealed partial class ShuttleNavControl
                     {
                         continue;
                     }
-                    Vector2 controlPoint1 = nodeComp.Location + nodeComp.ForwardControlPoint;
-                    Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.ForwardControlPoint;
+
+                    var controlPointMod = _rivers.GetControlPointModifier(nodeComp, nextNode);
+
+                    Vector2 controlPoint1 = nodeComp.Location + nodeComp.FlowDirection.ToWorldVec() * controlPointMod;
+                    Vector2 controlPoint2 = nextNodeComp.Location + -nextNodeComp.FlowDirection.ToWorldVec() * controlPointMod;
 
                     handle.DrawCircle(Vector2.Transform(controlPoint1, worldToView), 5f * MinimapScale, Color.Magenta);
                     handle.DrawCircle(Vector2.Transform(controlPoint2, worldToView), 5f * MinimapScale, Color.Lime);

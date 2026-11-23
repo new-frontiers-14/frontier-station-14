@@ -143,7 +143,7 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
 
     private static void OnNodeGetState(EntityUid uid, RiverNodeComponent component, ref ComponentGetState args)
     {
-        args.State = new RiverNodeComponentState(component.Location, component.NextNodes, component.PriorNodes, component.FlowDirection, component.NodeRange, component.Saturation, component.ForwardControlPoint);
+        args.State = new RiverNodeComponentState(component.Location, component.NextNodes, component.SegmentControlPointMultiplier, component.PriorNodes, component.FlowDirection, component.NodeRange, component.LockFlowDirection);
     }
 
     /// <summary>
@@ -182,8 +182,10 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
                     var nodeLocation = _transform.GetWorldPosition(entity);
                     var nextNodeLocation = _transform.GetWorldPosition(nextNode);
 
-                    var controlPoint1 = nodeLocation + node.ForwardControlPoint;
-                    var controlPoint2 = nextNodeLocation + -nextComp.ForwardControlPoint;
+                    var segmentControlMod = node.SegmentControlPointMultiplier[segment];
+
+                    var controlPoint1 = nodeLocation + node.FlowDirection.ToWorldVec() * segmentControlMod;
+                    var controlPoint2 = nextNodeLocation + -nextComp.FlowDirection.ToWorldVec() * segmentControlMod;
                     var distanceToRiver = CubicDistanceToBezier(shuttleLocation, nodeLocation, controlPoint1, controlPoint2, nextNodeLocation, out var closestPoint, out var distAlongCurve, SegmentResolution);
                     var flowDirection = Vector2.Normalize(CalculateBezierTangent(nodeLocation, controlPoint1, controlPoint2, nextNodeLocation, distAlongCurve));
                     var distanceMod = 1.0f;
@@ -363,17 +365,21 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             return false;
         }
         // There's so many magic numbers in this class... TODO: get rid of as many magic numbers as possible.
-        lastComp.ForwardControlPoint = lastComp.FlowDirection.ToWorldVec() * lastComp.Boost * 50f;
-        newComp.ForwardControlPoint = newFlowDirection.ToWorldVec() * newComp.Boost * 50f;
+        //lastComp.ForwardControlPoint = lastComp.FlowDirection.ToWorldVec();
+        //newComp.ForwardControlPoint = newFlowDirection.ToWorldVec();
         //END TODO magic number cleanup
 
         if (true)//connectableNodes.Count == 0)
         {
             newComp.FlowDirection = newFlowDirection;
         }
-
-        lastComp.NextNodes.Add(GetNetEntity(newNode));
+        var netNewNode = GetNetEntity(newNode);
+        lastComp.NextNodes.Add(netNewNode);
         newComp.PriorNodes.Add(GetNetEntity(lastNode));
+
+        var nodeDistance = (_transform.GetWorldPosition(newNode) - _transform.GetWorldPosition(lastNode)).Length();
+        lastComp.SegmentControlPointMultiplier.Add(netNewNode, nodeDistance * 0.25f);
+
         Dirty(lastNode, lastComp);
         Dirty(newNode, newComp);
 

@@ -93,11 +93,11 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         }
         comp.Location = state.Location;
         comp.NextNodes = state.NextNodes;
+        comp.SegmentControlPointMultiplier = state.SegmentControlPointMultiplier;
         comp.PriorNodes = state.PriorNodes;
         comp.FlowDirection = state.FlowDirection;
         comp.NodeRange = state.NodeRange;
-        comp.Saturation = state.Saturation;
-        comp.ForwardControlPoint = state.ForwardControlPoint;
+        comp.LockFlowDirection = state.LockFlowDirection;
     }
 
     private void UpdateAllNodes()
@@ -148,6 +148,12 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         return GetEntityList(node.PriorNodes);
     }
 
+    public float GetControlPointModifier(RiverNodeComponent comp, EntityUid nextNode)
+    {
+        var netNode = GetNetEntity(nextNode);
+        return comp.SegmentControlPointMultiplier[netNode];
+    }
+
     public static List<Vector2> CalcCubicCurveSections(Vector2 entryPoint, Vector2 controlPoint1, Vector2 controlPoint2, Vector2 endPoint, int resolution)
     {
         List<Vector2> result = new();
@@ -184,8 +190,11 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
             //TODO: Figure out a tighter fit, less naive.
             var entryXForm = entryComp.Location;
             var exitXForm = _transform.GetWorldPosition(endNode);
-            var control1XForm = entryXForm + entryComp.ForwardControlPoint;
-            var control2XForm = entryXForm + -endComp.ForwardControlPoint;
+
+            var segmentControlMod = entryComp.SegmentControlPointMultiplier[GetNetEntity(endNode)];
+
+            var control1XForm = entryXForm + entryComp.FlowDirection.ToWorldVec() * segmentControlMod;
+            var control2XForm = entryXForm + -endComp.FlowDirection.ToWorldVec() * segmentControlMod;
             var centrePoint = (entryXForm + control1XForm + control2XForm + exitXForm) / 4f;
 
             var maxX = MathF.Max(MathF.Max(entryXForm.X, control1XForm.X), MathF.Max(control2XForm.X, exitXForm.X)) + entryComp.NodeRange;
@@ -374,9 +383,10 @@ public sealed partial class RiverNodeSystem : SharedRiverNodeSystem
         var entryPoint = _transform.GetWorldPosition(entryNode);
         var endPoint = _transform.GetWorldPosition(exitNode);
 
+        var controlPointMod = nodeComp.SegmentControlPointMultiplier[GetNetEntity(exitNode)];
         //Vector2 controlPoint = nodeLink.ControlPoint;
-        var controlPoint1 = entryPoint + nodeComp.ForwardControlPoint;
-        var controlPoint2 = endPoint + -exitComp.ForwardControlPoint;
+        var controlPoint1 = entryPoint + nodeComp.FlowDirection.ToWorldVec() * controlPointMod;
+        var controlPoint2 = endPoint + -exitComp.FlowDirection.ToWorldVec() * controlPointMod;
 
         float increment = 1f / resolution;
         for (var i = 0; i < resolution; i++)
