@@ -1,0 +1,81 @@
+#region frame
+- type: entity
+  abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseGunMeleeAttackMedium, BaseWeaponBattery ]
+  id: NFBaseWeaponFrameEnergyShotgun
+  suffix: Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 3.4
+    maxAngle: 17
+    angleIncrease: 0.9
+    angleDecay: 4.5
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: Battery # Default: 16 shots with 150 fireCost
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5 # Default recharge rate: 1 shot per 30 seconds with 150 fireCost
+  - type: StaticPrice
+    price: 400
+  - type: NFWeaponDetails
+    class: weapon-details-class-shotgun
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameEnergyShotgunNanotrasen
+  parent: NFBaseWeaponFrameEnergyShotgun
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3.4
+    maxAngle: 17
+    angleIncrease: 0.9
+    angleDecay: 4.5
+    fireRate: 1.5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+    
+#region chamber
+- type: entity
+  id: NFBaseWeaponEnergyShotgunFireModes
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-high
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserSpreadNarrow
+    fireCost: 150
+  - type: EnergyGun
+    fireModes:
+    - proto: NFBulletLaserSpreadNarrow
+      fireCost: 150
+      name: kill
+    - proto: NFBulletDisablerSpread
+      fireCost: 150
+      name: stun

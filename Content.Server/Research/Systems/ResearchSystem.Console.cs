@@ -15,7 +15,7 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: silent R&D computers, useless
+    // [Dependency] private EmagSystem _emag = default!; // Frontier: silent R&D computers, useless
 
     private void InitializeConsole()
     {
