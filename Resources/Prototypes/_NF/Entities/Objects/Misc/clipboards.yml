@@ -311,7 +311,7 @@
   components:
   - type: Sprite
     layers:
-    - state: nfsd_clipboard
+    - state: nfsd_clipboard_alt
       map: [ base ]
     - state: reinforced_clipboard_paper
       map: [ reinforced_clipboard_paper ]
@@ -335,6 +335,29 @@
   - type: AccessReader
     access: [["Security"]]
 
+
+# Sheriff Reinforced Clipboard
+- type: entity
+  parent: NFNFSDReinforcedClipboard
+  id: NFSheriffReinforcedClipboard
+  name: sheriff reinforced clipboard
+  description: A robust clipboard with a lockable cover, painted in a deep walnut with a plastitanium glass cover for the NFSD. Resistant to cannonballs made against rudely interrupted paperwork.
+  components:
+  - type: Sprite
+    layers:
+    - state: nfsd_clipboard
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: nfsd_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
 
 # Pirate Reinforced Clipboard
 - type: entity
