@@ -16,7 +16,7 @@
     - state: reinforced_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
@@ -37,6 +37,7 @@
       storagebase: !type:Container
         ents: []
       pen_slot: !type:ContainerSlot {}
+      stamp_slot: !type:ContainerSlot {}
   - type: ItemSlots
     slots:
       pen_slot:
@@ -45,6 +46,12 @@
         whitelist:
           tags:
           - Write
+        insertOnInteract: true
+      stamp_slot:
+        name: clipboard-slot-component-slot-name-stamp
+        whitelist:
+          components:
+          - Stamp
         insertOnInteract: true
   - type: Clothing
     slots: [belt]
@@ -73,8 +80,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: reinforced_clipboard_cover_open}
-          False: { state: reinforced_clipboard_cover_closed}
+          True: { state: reinforced_clipboard_cover_open }
+          False: { state: reinforced_clipboard_cover_closed }
   - type: Lock
   - type: LockVisuals
   - type: LockedStorage
@@ -152,7 +159,7 @@
     - state: weh_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: weh_clipboard
@@ -162,8 +169,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: weh_clipboard_cover_open}
-          False: { state: weh_clipboard_cover_closed}
+          True: { state: weh_clipboard_cover_open }
+          False: { state: weh_clipboard_cover_closed }
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
@@ -203,7 +210,7 @@
     - state: reinforced_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: bluespace_clipboard
@@ -214,8 +221,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: reinforced_clipboard_cover_open}
-          False: { state: reinforced_clipboard_cover_closed}
+          True: { state: reinforced_clipboard_cover_open }
+          False: { state: reinforced_clipboard_cover_closed }
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
@@ -251,7 +258,7 @@
     - state: cc_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: cc_clipboard
@@ -260,14 +267,16 @@
     slots:
       pen_slot:
         startingItem: PenCentcom
+      stamp_slot:
+        startingItem: RubberStampCentcom
   - type: Clothing
     equippedPrefix: cc_clipboard
   - type: GenericVisualizer
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: cc_clipboard_cover_open}
-          False: { state: cc_clipboard_cover_closed}
+          True: { state: cc_clipboard_cover_open }
+          False: { state: cc_clipboard_cover_closed }
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
@@ -311,7 +320,7 @@
     - state: nfsd_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: nfsd_clipboard
@@ -321,8 +330,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: nfsd_clipboard_cover_open}
-          False: { state: nfsd_clipboard_cover_closed}
+          True: { state: nfsd_clipboard_cover_open }
+          False: { state: nfsd_clipboard_cover_closed }
   - type: AccessReader
     access: [["Security"]]
 
@@ -345,7 +354,7 @@
     - state: pirate_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: pirate_clipboard
@@ -355,8 +364,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: pirate_clipboard_cover_open}
-          False: { state: pirate_clipboard_cover_closed}
+          True: { state: pirate_clipboard_cover_open }
+          False: { state: pirate_clipboard_cover_closed }
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
@@ -366,7 +375,10 @@
           - Document
   - type: AccessReader
     access: [["Pirate"]]
-
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
 
 # Syndie Reinforced Clipboard
 - type: entity
@@ -386,7 +398,7 @@
     - state: syndi_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: syndi_clipboard
@@ -396,8 +408,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: syndi_clipboard_cover_open}
-          False: { state: syndi_clipboard_cover_closed}
+          True: { state: syndi_clipboard_cover_open }
+          False: { state: syndi_clipboard_cover_closed }
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
@@ -428,7 +440,7 @@
     - state: doc_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: doc_clipboard
@@ -438,8 +450,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: doc_clipboard_cover_open}
-          False: { state: doc_clipboard_cover_closed}
+          True: { state: doc_clipboard_cover_open }
+          False: { state: doc_clipboard_cover_closed }
   - type: AccessReader
     access: [["ChiefMedicalOfficer"]]
 
@@ -462,7 +474,7 @@
     - state: pm_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: pm_clipboard
@@ -472,8 +484,8 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: pm_clipboard_cover_open}
-          False: { state: pm_clipboard_cover_closed}
+          True: { state: pm_clipboard_cover_open }
+          False: { state: pm_clipboard_cover_closed }
   - type: AccessReader
     access: [["ChiefEngineer"]]
 
@@ -495,7 +507,7 @@
     - state: sr_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
     heldPrefix: sr_clipboard
@@ -505,7 +517,7 @@
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: sr_clipboard_cover_open}
-          False: { state: sr_clipboard_cover_closed}
+          True: { state: sr_clipboard_cover_open }
+          False: { state: sr_clipboard_cover_closed }
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
