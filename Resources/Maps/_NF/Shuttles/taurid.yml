@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/10/2026 01:43:03
-  entityCount: 608
+  time: 11/24/2026 19:42:01
+  entityCount: 609
 maps: []
 grids:
 - 1
@@ -603,6 +603,29 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,1.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        440:
+        - - AirDanger
+          - Close
+        439:
+        - - AirDanger
+          - Close
+        438:
+        - - AirDanger
+          - Close
+        437:
+        - - AirDanger
+          - Close
+        436:
+        - - AirDanger
+          - Close
+        435:
+        - - AirDanger
+          - Close
+        434:
+        - - AirDanger
+          - Close
     - type: DeviceList
       devices:
       - 237
@@ -623,6 +646,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,5.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        437:
+        - - AirDanger
+          - Close
+        436:
+        - - AirDanger
+          - Close
+        435:
+        - - AirDanger
+          - Close
+        434:
+        - - AirDanger
+          - Close
+        440:
+        - - AirDanger
+          - Close
+        439:
+        - - AirDanger
+          - Close
+        438:
+        - - AirDanger
+          - Close
     - type: DeviceList
       devices:
       - 346
@@ -2151,6 +2197,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,8.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal:
+      - - Maintenance
     - type: DeviceNetwork
       deviceLists:
       - 2
@@ -2173,6 +2222,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,0.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal:
+      - - Maintenance
     - type: DeviceNetwork
       deviceLists:
       - 3
@@ -2185,6 +2237,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,4.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal:
+      - - Maintenance
     - type: DeviceNetwork
       deviceLists:
       - 3
@@ -3559,6 +3614,13 @@ entities:
     components:
     - type: Transform
       pos: -5.5,5.5
+      parent: 1
+- proto: RandomPosterLegit
+  entities:
+  - uid: 411
+    components:
+    - type: Transform
+      pos: 6.5,10.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
