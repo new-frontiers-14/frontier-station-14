@@ -94,7 +94,6 @@ guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-pulsar = Pulsar
 guide-entry-shipyard-retort = Retort
-guide-entry-shipyard-Serafina = Serafina
 guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spectre = Spectre
 guide-entry-shipyard-stellaris = Stellaris
