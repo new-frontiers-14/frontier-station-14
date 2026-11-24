@@ -495,6 +495,18 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: BannerNfsd
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerNfsd
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 # Altars
 - type: construction
   id: AltarToolbox
@@ -857,6 +869,16 @@
   graph: NF_Flags
   startNode: start
   targetNode: PirateFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: NFSDFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: NFSDFlag
   category: construction-category-flags
   objectType: Structure
   placementMode: SnapgridCenter

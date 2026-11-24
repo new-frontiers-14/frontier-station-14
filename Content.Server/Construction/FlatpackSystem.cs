@@ -13,12 +13,12 @@ using Content.Server._NF.BindToStation; // Frontier: station binding
 namespace Content.Server.Construction;
 
 /// <inheritdoc/>
-public sealed class FlatpackSystem : SharedFlatpackSystem
+public sealed partial class FlatpackSystem : SharedFlatpackSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly BindToStationSystem _bindToStation = default!; // Frontier
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AmbientSoundSystem _ambientSound = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private BindToStationSystem _bindToStation = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
