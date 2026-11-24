@@ -48,7 +48,6 @@ guide-entry-expedition-syndicate-naval-forces = Syndicate Naval Forces
 guide-entry-expedition-xenos = Xenos
 
 # Civilian Shipyard entries
-guide-entry-shipyard-adder = Adder
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-backpacker = Backpacker
 guide-entry-shipyard-balena = Balena
@@ -148,7 +147,6 @@ guide-entry-shipyard-paladin = Paladin
 guide-entry-shipyard-prowler = Prowler
 guide-entry-shipyard-rogue = Rogue
 guide-entry-shipyard-templar = Templar
-guide-entry-shipyard-wasp = Wasp
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance

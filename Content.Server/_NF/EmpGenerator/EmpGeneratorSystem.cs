@@ -8,12 +8,12 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.EmpGenerator;
 
-public sealed class EmpGeneratorSystem : EntitySystem
+public sealed partial class EmpGeneratorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPointLightSystem _lights = default!;
-    [Dependency] private readonly EmpSystem _emp = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private SharedPointLightSystem _lights = default!;
+    [Dependency] private EmpSystem _emp = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {
