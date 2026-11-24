@@ -48,7 +48,6 @@ guide-entry-expedition-syndicate-naval-forces = Syndicate Naval Forces
 guide-entry-expedition-xenos = Xenos
 
 # Civilian Shipyard entries
-guide-entry-shipyard-adder = Adder
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-backpacker = Backpacker
 guide-entry-shipyard-balena = Balena

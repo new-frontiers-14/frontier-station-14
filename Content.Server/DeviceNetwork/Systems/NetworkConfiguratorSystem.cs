@@ -878,11 +878,5 @@ public sealed partial class NetworkConfiguratorSystem : SharedNetworkConfigurato
 
         UpdateListUiState(conf, conf.Comp);
     }
-
-    private void OnUiOpenAttempt(EntityUid uid, NetworkConfiguratorComponent configurator, ActivatableUIOpenAttemptEvent args)
-    {
-        if (configurator.LinkModeActive)
-            args.Cancel();
-    }
     #endregion
 }
