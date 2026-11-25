@@ -476,3 +476,6 @@ uplink-syndicate-segway-desc = Move around in style without dirtying your blood 
 
 uplink-syndicate-spray-painter-name = Syndicate Spray Painter
 uplink-syndicate-spray-painter-desc = Turn your evil house into an evil home. Includes patented syndicate designs not provided by NT spray painters.
+
+uplink-syndicate-reinforced-clipboard-name = Syndicate Plastitanium Clipboard
+uplink-syndicate-reinforced-clipboard-desc = For the evilest paperwork enjoyers. Quite tough and amazing in protecting all your business cards, suspicious papers and lizard printouts.

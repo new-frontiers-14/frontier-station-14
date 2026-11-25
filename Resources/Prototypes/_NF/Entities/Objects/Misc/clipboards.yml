@@ -1,8 +1,8 @@
+# Base Reinforced Clipboard
 - type: entity
-  parent: BoxFolderClipboardEmpty
-  id: NFReinforcedClipboard
-  name: reinforced clipboard
-  description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
+  parent: [ BoxFolderClipboardEmpty, ContentsExplosionResistanceBase ]
+  id: NFReinforcedClipboardBase
+  abstract: true
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/bureaucracy.rsi
@@ -16,42 +16,53 @@
     - state: reinforced_clipboard_cover_closed
       map: [ cover ]
     - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
+      map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: ItemMapper
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     mapLayers:
-      reinforced_clipboard_paper:
+      reinforced_clipboard_paper: # TODO: why the fuck does this pull from state and not the actual mapped layer? this is evil, this is wrong, and I feel ragebaited. once someone makes this refer to the actual map instead of the state, this can be cut off from the variations. I hate it so fucking much
         whitelist:
           tags:
           - Document
-          - Write
   - type: AccessReader
+    access: [ ]
   - type: Appearance
   - type: Item
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     heldPrefix: reinforced_clipboard
+    size: Normal
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
         ents: []
       pen_slot: !type:ContainerSlot {}
+      stamp_slot: !type:ContainerSlot {}
   - type: ItemSlots
     slots:
       pen_slot:
+        startingItem: LuxuryPen # we give paperworkers a little bit of a treat
         name: clipboard-slot-component-slot-name-pen
         whitelist:
           tags:
           - Write
-        insertOnInteract: false
+        insertOnInteract: true
+      stamp_slot:
+        name: clipboard-slot-component-slot-name-stamp
+        whitelist:
+          components:
+          - Stamp
+        insertOnInteract: true
   - type: Clothing
     slots: [belt]
     quickEquip: false
     sprite: _NF/Objects/Misc/bureaucracy.rsi
-    state: reinforced_clipboard_belt
+    equippedPrefix: reinforced_clipboard
   - type: Storage
     grid:
-    - 0,0,5,3
+    - 0,0,3,8
+    storageOpenSound: /Audio/Effects/woodenclosetopen.ogg
+    storageCloseSound: /Audio/Effects/woodenclosetclose.ogg
     whitelist:
       tags:
       - Document
@@ -60,9 +71,28 @@
     damage:
       types:
         Blunt: 8
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: reinforced_clipboard_cover_open }
+          False: { state: reinforced_clipboard_cover_closed }
+  - type: Lock
+  - type: LockVisuals
+  - type: LockedStorage
+  - type: ExplosionResistance
+    damageCoefficient: 0
+
+# Different damage limits - defined here when the variations share them
+- type: entity
+  id: NFReinforcedClipboardDestructibleDefault
+  abstract: true
+  components:
   - type: Destructible
     thresholds:
     - trigger:
@@ -74,12 +104,443 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+
+- type: entity
+  id: NFReinforcedClipboardDestructibleTough
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+# Additional storage sizes - defined here when the variations share them. default is defined on NFReinforcedClipboardBase
+- type: entity
+  id: NFReinforcedClipboardStorageCommand
+  abstract: true
+  components:
+  - type: Storage
+    grid:
+    - 0,0,4,8
+    whitelist:
+      tags:
+      - Document
+
+# Variations:
+# Reinforced Clipboard - uses Base's default configuration.
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardDestructibleDefault ]
+  id: NFReinforcedClipboard
+  name: reinforced clipboard
+  description: A robust clipboard with a lockable cover. Perfect for waging bureaucratic war without scorching your paperwork, or a mothroach eating it.
+
+# Weh.
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardDestructibleDefault ]
+  id: NFWehReinforcedClipboard
+  name: wehboard
+  description: Paperwehk!
+  components:
+  - type: Sprite
+    layers:
+    - state: weh_clipboard
+      map: [ base ]
+    - state: weh_clipboard_paper
+      map: [ weh_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: weh_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: weh_clipboard
+  - type: Clothing
+    equippedPrefix: weh_clipboard
   - type: GenericVisualizer
     visuals:
       enum.StorageVisuals.Open:
         cover:
-          True: { state: reinforced_clipboard_cover_open}
-          False: { state: reinforced_clipboard_cover_closed}
+          True: { state: weh_clipboard_cover_open }
+          False: { state: weh_clipboard_cover_closed }
+  - type: ItemMapper
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    mapLayers:
+      weh_clipboard_paper:
+        whitelist:
+          components:
+          - NFPlushie
+          tags:
+          - Document
+  - type: Storage
+    storageOpenSound:
+      collection: Weh
+      params:
+        variation: 0.125
+    storageCloseSound:
+      collection: Weh
+      params:
+        variation: 0.125
+
+# Bluespace Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardDestructibleDefault ]
+  id: NFBluespaceReinforcedClipboard
+  name: clipboard of holding
+  description: A robust clipboard with a lockable cover. Uses bluespace technology to create a localized pocket around itself, effectively shrinking itself and it's contents for remarkably easier storage
+  components:
+  - type: Sprite
+    layers:
+    - state: bluespace_clipboard
+      map: [ base ]
+    - state: bluespace_clipboard_paper
+      map: [ bluespace_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: bluespace_unlit
+      shader: unshaded
+    - state: reinforced_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: bluespace_clipboard
+    size: Tiny # smaller
+  - type: Clothing
+    equippedPrefix: bluespace_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: reinforced_clipboard_cover_open }
+          False: { state: reinforced_clipboard_cover_closed }
+  - type: ItemMapper
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    mapLayers:
+      bluespace_clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+  - type: Storage
+    grid:
+    - 0,0,6,8
+    whitelist:
+      tags:
+      - Document
+  - type: Tag
+    tags:
+    - FitsWallet
+
+# CC Reinforced Clipboard
+- type: entity
+  parent: NFReinforcedClipboardBase
+  id: NFCentralCommandReinforcedClipboard
+  name: central command reinforced clipboard
+  description: A robust clipboard with a lockable cover, painted in an iconic lime green with tinted glass, and a solid gold paper clip for Central Command agents. Only for the top of the line soldiers of bureaucracy.
+  components:
+  - type: Sprite
+    layers:
+    - state: cc_clipboard
+      map: [ base ]
+    - state: cc_clipboard_paper
+      map: [ cc_clipboard_paper ]
+      visible: false
+    - state: cc_clipboard_clip
+    - state: cc_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: cc_clipboard
+    size: Tiny # smaller
+  - type: ItemSlots
+    slots:
+      pen_slot:
+        startingItem: PenCentcom
+      stamp_slot:
+        startingItem: RubberStampCentcom
+  - type: Clothing
+    equippedPrefix: cc_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: cc_clipboard_cover_open }
+          False: { state: cc_clipboard_cover_closed }
+  - type: ItemMapper
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    mapLayers:
+      cc_clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+  - type: Storage
+    grid:
+    - 0,0,8,10 # CC's ultimate in paperwork handling
+    whitelist:
+      tags:
+      - Document
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20 # bonk
   - type: Lock
-  - type: LockVisuals
-  - type: LockedStorage
+    breakOnAccessBreaker: false
+  - type: Tag
+    tags:
+    - FitsWallet
+
+# NFSD Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
+  id: NFNFSDReinforcedClipboard
+  name: nfsd reinforced clipboard
+  description: A robust clipboard with a lockable cover, painted in a deep walnut with a plastitanium glass cover for the NFSD. Resistant to cannonballs made against rudely interrupted paperwork.
+  components:
+  - type: Sprite
+    layers:
+    - state: nfsd_clipboard_alt
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: nfsd_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: nfsd_clipboard
+  - type: Clothing
+    equippedPrefix: nfsd_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: nfsd_clipboard_cover_open }
+          False: { state: nfsd_clipboard_cover_closed }
+  - type: AccessReader
+    access: [["Security"]]
+
+
+# Sheriff Reinforced Clipboard
+- type: entity
+  parent: NFNFSDReinforcedClipboard
+  id: NFSheriffReinforcedClipboard
+  name: sheriff reinforced clipboard
+  description: A robust clipboard with a lockable cover, painted in a deep walnut with a plastitanium glass cover for the NFSD. Resistant to cannonballs made against rudely interrupted paperwork.
+  components:
+  - type: Sprite
+    layers:
+    - state: nfsd_clipboard
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: nfsd_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
+
+# Pirate Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
+  id: NFPirateReinforcedClipboard
+  name: pirate reinforced clipbarrd
+  description: A robust clipboard with a lockable cover. Well-worn, was definitely not ill-gotten, and was definitely NOT hit with a cannonball. Just ignore the hole in the glass.
+  components:
+  - type: Sprite
+    layers:
+    - state: pirate_clipboard
+      map: [ base ]
+    - state: pirate_clipboard_paper
+      map: [ pirate_clipboard_paper ]
+      visible: false
+    - state: pirate_clipboard_clip
+    - state: pirate_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: pirate_clipboard
+  - type: Clothing
+    equippedPrefix: pirate_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: pirate_clipboard_cover_open }
+          False: { state: pirate_clipboard_cover_closed }
+  - type: ItemMapper
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    mapLayers:
+      pirate_clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+  - type: AccessReader
+    access: [["Pirate"]]
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+
+# Syndie Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
+  id: NFSyndicateReinforcedClipboard
+  name: syndicate plastitanium clipboard
+  description: A sinister looking clipboard with a lockable cover, packs a punch. Even clandestine megacorporations have to do the paperwork after a mission. It has odd stickers on the back of it
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi_clipboard
+      map: [ base ]
+    - state: syndi_clipboard_paper
+      map: [ syndi_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: syndi_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: syndi_clipboard
+  - type: Clothing
+    equippedPrefix: syndi_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: syndi_clipboard_cover_open }
+          False: { state: syndi_clipboard_cover_closed }
+  - type: ItemMapper
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    mapLayers:
+      syndi_clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+
+# DoC Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
+  id: NFDirectorOfCareReinforcedClipboard
+  name: director of care reinforced clipboard
+  description: A robust clipboard with a lockable cover, painted in a light blue with a lightweight shuttle glass cover for the Director of Care. Good for protecting patient records while you save the next salvager from another fish.
+  components:
+  - type: Sprite
+    layers:
+    - state: doc_clipboard
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: doc_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: doc_clipboard
+  - type: Clothing
+    equippedPrefix: doc_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: doc_clipboard_cover_open }
+          False: { state: doc_clipboard_cover_closed }
+  - type: AccessReader
+    access: [["ChiefMedicalOfficer"]]
+
+
+# Plant Manager Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
+  id: NFPlantManagerReinforcedClipboard
+  name: plant manager reinforced clipboard
+  description: A robust clipboard with a lockable cover, atypically made from the same material as the Chief Engineer's hardsuit instead of being painted. Plasma glass protects the contents from radiation, but definitely not you.
+  components:
+  - type: Sprite
+    layers:
+    - state: pm_clipboard
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: pm_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: pm_clipboard
+  - type: Clothing
+    equippedPrefix: pm_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: pm_clipboard_cover_open }
+          False: { state: pm_clipboard_cover_closed }
+  - type: AccessReader
+    access: [["ChiefEngineer"]]
+
+# Station Rep Reinforced Clipboard
+- type: entity
+  parent: [ NFReinforcedClipboardBase, NFReinforcedClipboardStorageCommand, NFReinforcedClipboardDestructibleTough ]
+  id: NFStationRepReinforcedClipboard
+  name: station representative reinforced clipboard
+  description: A robust clipboard with a lockable cover, painted in a forest green with a lightly painted glass cover for the Station Representative. You don't really know what the symbol means.
+  components:
+  - type: Sprite
+    layers:
+    - state: sr_clipboard
+      map: [ base ]
+    - state: reinforced_clipboard_paper
+      map: [ reinforced_clipboard_paper ]
+      visible: false
+    - state: reinforced_clipboard_clip
+    - state: sr_clipboard_cover_closed
+      map: [ cover ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    heldPrefix: sr_clipboard
+  - type: Clothing
+    equippedPrefix: sr_clipboard
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        cover:
+          True: { state: sr_clipboard_cover_open }
+          False: { state: sr_clipboard_cover_closed }
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
