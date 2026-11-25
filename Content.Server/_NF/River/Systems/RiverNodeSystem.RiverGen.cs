@@ -581,7 +581,7 @@ public partial class RiverNodeSystem
                         Math.Abs(leftOffsets[i] - leftOffsets[nextIndex]) > maxSegmentDrift ||
                         leftOffsets[i] > maxLeftDistances[i])
                     {
-                        var centreMostOffset = MathF.Min(leftOffsets[priorIndex] + maxSegmentDrift, leftOffsets[nextIndex] + maxSegmentDrift);
+                        var centreMostOffset = MathF.Min(leftOffsets[priorIndex], leftOffsets[nextIndex]);
                         leftOffsets[i] = _random.NextFloat(MathF.Min(rightOffsets[i], 0f), centreMostOffset);
                         isSmoothed = false;
                     }
@@ -589,7 +589,7 @@ public partial class RiverNodeSystem
                         Math.Abs(rightOffsets[i] - rightOffsets[nextIndex]) > maxSegmentDrift ||
                         rightOffsets[i] < -maxRightDistances[i])
                     {
-                        var centreMostOffset = MathF.Max(rightOffsets[priorIndex] - maxSegmentDrift, rightOffsets[nextIndex] - maxSegmentDrift);
+                        var centreMostOffset = MathF.Max(rightOffsets[priorIndex], rightOffsets[nextIndex]);
                         rightOffsets[i] = _random.NextFloat(centreMostOffset, MathF.Max(leftOffsets[i], 0f));
                         isSmoothed = false;
                     }
