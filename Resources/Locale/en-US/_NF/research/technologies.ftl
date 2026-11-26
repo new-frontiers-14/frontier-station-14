@@ -60,6 +60,7 @@ nf-research-technology-biomass = Organic Matter Recycling
 nf-research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 nf-research-technology-bluespace-chemistry = Bluespace Chemistry
 nf-research-technology-bluespace-storage = Bluespace Storage
+nf-research-technology-bluespace-paperwork-utilities = Bluespace Paperwork Utilities
 nf-research-technology-bluespace-time-manipulation = Bluespace Time Manipulation
 nf-research-technology-bluespace-gas-tanks = Bluespace Gas Tanks
 nf-research-technology-boot-based-propulsion = Rocket Boots
