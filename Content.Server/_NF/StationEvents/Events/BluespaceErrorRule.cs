@@ -20,30 +20,27 @@ using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using System.Runtime.Intrinsics;
-using Content.Shared.Trigger.Components.Triggers;
-using System;
-using Robust.Shared.Maths;
 
 namespace Content.Server._NF.StationEvents.Events;
 
-public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
+public sealed partial class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
     NanotrasenNameGenerator _nameGenerator = new();
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly DungeonSystem _dungeon = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
-    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly SharedSalvageSystem _salvage = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private DungeonSystem _dungeon = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
+    [Dependency] private StationRenameWarpsSystems _renameWarps = default!;
+    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private SharedSalvageSystem _salvage = default!;
 
     public override void Initialize()
     {
@@ -70,43 +67,44 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             {
                 EntityUid spawned;
 
-                var rawCoords = Vector2.Zero;
-
-                EntityUid? biasTarget = null;
+                Vector2? biasDirection = null;
                 // If there is a bias target, see if one exists with a matching ID
                 if (group.SpawnBiasTarget is not null)
                 {
-                    var query = EntityQueryEnumerator<SpawningModifierComponent>();
+                    var query = EntityQueryEnumerator<BiasTargetComponent>();
 
-                    List<EntityUid> targets = new();
+                    List<Vector2> targets = new();
 
-                    while (query.MoveNext(out var ent, out var comp))
+                    while (query.MoveNext(out var ent, out var biasComp))
                     {
-                        if (comp.id == group.SpawnBiasTarget)
-                            targets.Add(ent);
+                        if (biasComp.id == group.SpawnBiasTarget)
+                        {
+                            targets.Add(_transform.GetMapCoordinates(ent).Position);
+                        }
                     }
 
                     if (targets.Count > 0)
                     {
-                        // Pick a random one from the list of possible targets. The new spawning area will be centred around this. If there were no matches continue as if it was unset.
-                        biasTarget = _random.Pick<EntityUid>(targets);
+                        // Pick a random one from the list of possible targets. We don't care where it is, only its direction.
+                        biasDirection = Vector2.Normalize(_random.Pick<Vector2>(targets));
                     }
                 }
 
-                if (biasTarget is not null)
-                    rawCoords = rawCoords + _transform.GetMapCoordinates(biasTarget.Value).Position;
-
-                if (biasTarget is not null && group.SpawnBiasOverride && TryComp<SpawningModifierComponent>(biasTarget, out var spawnModComp))
+                if (group.MinimumDistance > 0f)
                 {
-                    var spawnAngle = new Angle(rawCoords) + _random.NextAngle(spawnModComp.MinimumAngle*(Math.Tau/360), spawnModComp.MaximumAngle*(Math.Tau/360));
-                    rawCoords = rawCoords + spawnAngle.RotateVec(new Vector2(_random.NextFloat(spawnModComp.MinimumDistance, spawnModComp.MaximumDistance),0));
+                    if (biasDirection is not null)
+                    {
+                        // The spawning region describes a circle with a diameter equal to the width between the minimum and maximum distance.
+                        // We construct this by placing the centre of the circle with a vector in the direction of the bias target with a magnitude equal to the average of the two
+                        // and adding a random vector with a maximum magnitude half of the difference between the two.
+                        var spawnCentre = biasDirection.Value * ((group.MaximumDistance + group.MinimumDistance) / 2);
+                        spawnCoords = spawnCoords.WithPosition(spawnCentre + _random.NextVector2((group.MaximumDistance - group.MinimumDistance) / 2));
+                    }
+                    else
+                    {
+                        spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                    }
                 }
-                else
-                {
-                    rawCoords = rawCoords + _random.NextVector2(group.MinimumDistance, group.MaximumDistance);
-                }
-
-                spawnCoords = spawnCoords.WithPosition(rawCoords);
 
                 switch (group)
                 {
