@@ -36,19 +36,3 @@ marking-UndergarmentBottomBriefsReptilian = Briefs
 marking-UndergarmentBottomBriefsReptilian-briefs_reptilian = Briefs
 marking-UndergarmentBottomSatinReptilian = Satin
 marking-UndergarmentBottomSatinReptilian-satin_reptilian = Satin
-
-marking-UndergarmentTopTanktopVulpkanin = Tanktop
-marking-UndergarmentTopTanktopVulpkanin-tanktop_vulpkanin = Tanktop
-marking-UndergarmentTopBinderVulpkanin = Binder
-marking-UndergarmentTopBinderVulpkanin-binder_vulpkanin = Binder
-marking-UndergarmentTopBraVulpkanin = Classic Bra
-marking-UndergarmentTopBraVulpkanin-classic_vulpkanin = Classic Bra
-marking-UndergarmentTopSportsbraVulpkanin = Sports Bra
-marking-UndergarmentTopSportsbraVulpkanin-sports_vulpkanin = Sports Bra
-
-marking-UndergarmentBottomBoxersVulpkanin = Boxers
-marking-UndergarmentBottomBoxersVulpkanin-boxers_vulpkanin = Boxers
-marking-UndergarmentBottomBriefsVulpkanin = Briefs
-marking-UndergarmentBottomBriefsVulpkanin-briefs_vulpkanin = Briefs
-marking-UndergarmentBottomSatinVulpkanin = Satin
-marking-UndergarmentBottomSatinVulpkanin-satin_vulpkanin = Satin
