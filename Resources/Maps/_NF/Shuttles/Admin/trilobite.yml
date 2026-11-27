@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/27/2026 05:14:28
+  time: 11/27/2026 05:32:55
   entityCount: 437
 maps: []
 grids:
@@ -116,6 +116,11 @@ entities:
             397: 7,-9
             493: 7,-11
             494: -1,-11
+        - node:
+            color: '#1F6626FF'
+            id: BotRightGreyscale
+          decals:
+            643: 4,-4
         - node:
             zIndex: 5
             color: '#334E6DC8'
@@ -741,6 +746,13 @@ entities:
       - 190
     - type: Fixtures
       fixtures: {}
+- proto: AirlockAtmosphericsLocked
+  entities:
+  - uid: 105
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
+      parent: 1
 - proto: AirlockCentralCommandGlassLocked
   entities:
   - uid: 113
@@ -757,19 +769,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-5.5
       parent: 1
-- proto: AirlockEngineering
+- proto: AirlockEngineeringLocked
   entities:
   - uid: 46
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 6.5,-7.5
-      parent: 1
-  - uid: 105
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-7.5
       parent: 1
 - proto: AirlockExternalGlass
   entities:
@@ -1435,11 +1440,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-3.5
-      parent: 1
-  - uid: 188
-    components:
-    - type: Transform
-      pos: 4.5,-3.5
       parent: 1
 - proto: ChairOfficeLight
   entities:
@@ -2563,6 +2563,11 @@ entities:
       parent: 1
 - proto: PottedPlantRandom
   entities:
+  - uid: 188
+    components:
+    - type: Transform
+      pos: 4.5,-7.5
+      parent: 1
   - uid: 197
     components:
     - type: Transform
