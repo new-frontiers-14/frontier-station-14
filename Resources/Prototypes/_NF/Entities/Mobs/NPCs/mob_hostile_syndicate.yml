@@ -666,7 +666,8 @@
 # Syndicate Captain, "armed" with Python
 - type: entity
   name: syndicate captain
-  parent: [MobMovementSpeedModifierEVARanged, MobSyndicateNavalCaptainA]
+  parent: [MobMovementSpeedModifierEVARanged, MobSyndicateNavalCaptainA, NFMobBossRestrictions]
+  # NFMobBossRestrictions for Syndi UIV Ghost Role
   id: MobSyndicateNavalCaptainVoid
   categories: [ HideSpawnMenu ]
   components:
@@ -677,6 +678,19 @@
     proto: NFCartridgePistol45Uranium
     capacity: 1
     count: 1
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-syndicate-captain-dungeon-name
+    description: ghost-role-information-syndicate-captain-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: Body
+    prototype: HumanSyntheticOrgansOnehand
 
 # Second Officer, "armed" with Advanced Laser Pistol
 - type: entity
