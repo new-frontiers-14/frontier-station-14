@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/27/2026 05:32:55
-  entityCount: 437
+  time: 11/27/2026 06:07:11
+  entityCount: 440
 maps: []
 grids:
 - 1
@@ -1533,6 +1533,15 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-8.5
       parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 368
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: EmergencyLight
   entities:
   - uid: 95
@@ -1587,6 +1596,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 369
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 370
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FaxMachineCentcom
   entities:
   - uid: 184
