@@ -204,3 +204,1298 @@
     sprite: _NF/Clothing/OuterClothing/Misc/wizard/wizard-fake.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/wizard/wizard-fake.rsi
+
+# Wedding Gowns base types
+- type: entity
+  abstract: true
+  parent: [ClothingOuterStorageBase]
+  id: ClothingOuterWeddingGownBase
+  name: ball gown base
+  description: ball gown base
+  components:
+  - type: Item
+    size: Tiny
+  - type: ChameleonClothing
+    slot: [outerClothing]
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: StaticPrice
+    vendPrice: 1000
+
+- type: entity
+  parent: [ ClothingOuterWeddingGownBase ]
+  id: ClothingOuterWeddingBallGown
+  name: Ball Gown
+  description: A poofy and beautiful princess-style ball gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingballgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingballgown.rsi
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGown
+    requireTag: ClothingOuterWeddingBallGown
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingBallGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingGownBase ]
+  id: ClothingOuterWeddingColumnGown
+  name: Column Gown
+  description: A simple and straight column gown.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingcolumngown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingcolumngown.rsi
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGown
+    requireTag: ClothingOuterWeddingColumnGown
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingColumnGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingGownBase ]
+  id: ClothingOuterWeddingElegantJumpsuit
+  name: Elegant Jumpsuit
+  description: An elegant feminine jumpsuit.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingjumpsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingjumpsuit.rsi
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuit
+    requireTag: ClothingOuterWeddingElegantJumpsuit
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingElegantJumpsuit
+
+- type: entity
+  parent: [ ClothingOuterWeddingGownBase ]
+  id: ClothingOuterWeddingMermaidGown
+  name: Mermaid Gown
+  description: A form-fitting gown with a flared bottom.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingmermaidgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingmermaidgown.rsi
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGown
+    requireTag: ClothingOuterWeddingMermaidGown
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingMermaidGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingGownBase ]
+  id: ClothingOuterWeddingWaterfallGown
+  name: Waterfall Gown
+  description: A flowing gown with a slit up one leg.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingwaterfallgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddingwaterfallgown.rsi
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGown
+    requireTag: ClothingOuterWeddingWaterfallGown
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingWaterfallGown
+
+- type: entity
+  parent: [ ClothingOuterWeddingGownBase ]
+  id: ClothingOuterWeddingLongSleevedGown
+  name: Long Sleeved Gown
+  description: An elegant long-sleeved gown with a high neck.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/weddinglongsleevedgown.rsi
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGown
+    requireTag: ClothingOuterWeddingLongSleevedGown
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - ClothingOuterWeddingLongSleevedGown
+
+# Gown colors
+- type: entity
+  abstract: true
+  id: GreyColoredGown
+  name: grey colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#b3b3b3"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: inhand-right
+        color: "#b3b3b3"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#b3b3b3"
+
+- type: entity
+  abstract: true
+  id: BlackColoredGown
+  name: black colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#3f3f3f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3f3f3f"
+      right:
+      - state: inhand-right
+        color: "#3f3f3f"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#3f3f3f"
+        
+- type: entity
+  abstract: true
+  id: BlueColoredGown
+  name: blue colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#52aecc"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#52aecc"
+      right:
+      - state: inhand-right
+        color: "#52aecc"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#52aecc"
+
+- type: entity
+  abstract: true
+  id: DarkBlueColoredGown
+  name: dark blue colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#3285ba"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3285ba"
+      right:
+      - state: inhand-right
+        color: "#3285ba"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#3285ba"
+        
+- type: entity
+  abstract: true
+  id: TealColoredGown
+  name: teal colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#77f3b7"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#77f3b7"
+      right:
+      - state: inhand-right
+        color: "#77f3b7"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#77f3b7"
+        
+- type: entity
+  abstract: true
+  id: GreenColoredGown
+  name: green colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#9ed63a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#9ed63a"
+      right:
+      - state: inhand-right
+        color: "#9ed63a"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#9ed63a"
+        
+- type: entity
+  abstract: true
+  id: DarkGreenColoredGown
+  name: dark green colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#007923"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#007923"
+      right:
+      - state: inhand-right
+        color: "#007923"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#007923"
+        
+- type: entity
+  abstract: true
+  id: OrangeColoredGown
+  name: orange colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#ff8c19"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ff8c19"
+      right:
+      - state: inhand-right
+        color: "#ff8c19"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#ff8c19"
+        
+- type: entity
+  abstract: true
+  id: PinkColoredGown
+  name: pink colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#ffa69b"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffa69b"
+      right:
+      - state: inhand-right
+        color: "#ffa69b"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#ffa69b"
+        
+- type: entity
+  abstract: true
+  id: RedColoredGown
+  name: red colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#eb0c07"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#eb0c07"
+      right:
+      - state: inhand-right
+        color: "#eb0c07"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#eb0c07"
+        
+- type: entity
+  abstract: true
+  id: YellowColoredGown
+  name: yellow colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#ffe14d"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffe14d"
+      right:
+      - state: inhand-right
+        color: "#ffe14d"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#ffe14d"
+        
+- type: entity
+  abstract: true
+  id: PurpleColoredGown
+  name: purple colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#9f70cc"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#9f70cc"
+      right:
+      - state: inhand-right
+        color: "#9f70cc"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#9f70cc"
+        
+- type: entity
+  abstract: true
+  id: LightBrownColoredGown
+  name: light brown colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#c59431"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c59431"
+      right:
+      - state: inhand-right
+        color: "#c59431"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#c59431"
+
+- type: entity
+  abstract: true
+  id: BrownColoredGown
+  name: brown colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#a17229"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a17229"
+      right:
+      - state: inhand-right
+        color: "#a17229"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#a17229"
+        
+- type: entity
+  abstract: true
+  id: MaroonColoredGown
+  name: maroon colored gown
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#cc295f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#cc295f"
+      right:
+      - state: inhand-right
+        color: "#cc295f"
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#cc295f"
+
+# Colored ballgowns
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, GreyColoredGown ]
+  id: ClothingOuterWeddingBallGownColorGrey
+  name: grey ballgown
+  description: A poofy grey ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorGrey
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, BlackColoredGown ]
+  id: ClothingOuterWeddingBallGownColorBlack
+  name: black ballgown
+  description: A poofy black ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorBlack
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, BlueColoredGown ]
+  id: ClothingOuterWeddingBallGownColorBlue
+  name: blue ballgown
+  description: A poofy blue ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, DarkBlueColoredGown ]
+  id: ClothingOuterWeddingBallGownColorDarkBlue
+  name: dark blue ballgown
+  description: A poofy dark blue ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorDarkBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, TealColoredGown ]
+  id: ClothingOuterWeddingBallGownColorTeal
+  name: teal ballgown
+  description: A poofy teal ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorTeal
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, GreenColoredGown ]
+  id: ClothingOuterWeddingBallGownColorGreen
+  name: green ballgown
+  description: A poofy green ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, DarkGreenColoredGown ]
+  id: ClothingOuterWeddingBallGownColorDarkGreen
+  name: dark green ballgown
+  description: A poofy dark green ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorDarkGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, OrangeColoredGown ]
+  id: ClothingOuterWeddingBallGownColorOrange
+  name: orange ballgown
+  description: A poofy orange ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorOrange
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, PinkColoredGown ]
+  id: ClothingOuterWeddingBallGownColorPink
+  name: pink ballgown
+  description: A poofy pink ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorPink
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, RedColoredGown ]
+  id: ClothingOuterWeddingBallGownColorRed
+  name: red ballgown
+  description: A poofy red ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorRed
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, YellowColoredGown ]
+  id: ClothingOuterWeddingBallGownColorYellow
+  name: yellow ballgown
+  description: A poofy yellow ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorYellow
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, PurpleColoredGown ]
+  id: ClothingOuterWeddingBallGownColorPurple
+  name: purple ballgown
+  description: A poofy light purple ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorPurple
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, LightBrownColoredGown ]
+  id: ClothingOuterWeddingBallGownColorLightBrown
+  name: light brown ballgown
+  description: A poofy light brown ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorLightBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, BrownColoredGown ]
+  id: ClothingOuterWeddingBallGownColorBrown
+  name: brown ballgown
+  description: A poofy brown ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingBallGown, MaroonColoredGown ]
+  id: ClothingOuterWeddingBallGownColorMaroon
+  name: maroon ballgown
+  description: A poofy maroon ballgown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingBallGownColorMaroon
+
+# Colored column Gowns
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, GreyColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorGrey
+  name: grey column gown
+  description: An elegant grey column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorGrey
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, BlackColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorBlack
+  name: black column gown
+  description: An elegant black column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorBlack
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, BlueColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorBlue
+  name: blue column gown
+  description: An elegant blue column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, DarkBlueColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorDarkBlue
+  name: dark blue column gown
+  description: An elegant dark blue column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorDarkBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, TealColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorTeal
+  name: teal column gown
+  description: An elegant teal column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorTeal
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, GreenColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorGreen
+  name: green column gown
+  description: An elegant green column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, DarkGreenColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorDarkGreen
+  name: dark green column gown
+  description: An elegant dark green column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorDarkGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, OrangeColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorOrange
+  name: orange column gown
+  description: An elegant orange column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorOrange
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, PinkColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorPink
+  name: pink column gown
+  description: An elegant pink column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorPink
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, RedColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorRed
+  name: red column gown
+  description: An elegant red column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorRed
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, YellowColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorYellow
+  name: yellow column gown
+  description: An elegant yellow column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorYellow
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, PurpleColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorPurple
+  name: purple column gown
+  description: An elegant light purple column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorPurple
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, LightBrownColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorLightBrown
+  name: light brown column gown
+  description: An elegant light brown column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorLightBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, BrownColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorBrown
+  name: brown column gown
+  description: An elegant brown column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingColumnGown, MaroonColoredGown ]
+  id: ClothingOuterWeddingColumnGownColorMaroon
+  name: maroon column gown
+  description: An elegant maroon column gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingColumnGownColorMaroon
+
+# Colored elegant jumpsuits
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, GreyColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorGrey
+  name: grey elegant jumpsuit
+  description: A sleek grey elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorGrey
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, BlackColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorBlack
+  name: black elegant jumpsuit
+  description: A sleek black elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorBlack
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, BlueColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorBlue
+  name: blue elegant jumpsuit
+  description: A sleek blue elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, DarkBlueColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorDarkBlue
+  name: dark blue elegant jumpsuit
+  description: A sleek dark blue elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorDarkBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, TealColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorTeal
+  name: teal elegant jumpsuit
+  description: A sleek teal elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorTeal
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, GreenColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorGreen
+  name: green elegant jumpsuit
+  description: A sleek green elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, DarkGreenColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorDarkGreen
+  name: dark green elegant jumpsuit
+  description: A sleek dark green elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorDarkGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, OrangeColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorOrange
+  name: orange elegant jumpsuit
+  description: A sleek orange elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorOrange
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, PinkColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorPink
+  name: pink elegant jumpsuit
+  description: A sleek pink elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorPink
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, RedColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorRed
+  name: red elegant jumpsuit
+  description: A sleek red elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorRed
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, YellowColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorYellow
+  name: yellow elegant jumpsuit
+  description: A sleek yellow elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorYellow
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, PurpleColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorPurple
+  name: purple elegant jumpsuit
+  description: A sleek light purple elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorPurple
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, LightBrownColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorLightBrown
+  name: light brown elegant jumpsuit
+  description: A sleek light brown elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorLightBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, BrownColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorBrown
+  name: brown elegant jumpsuit
+  description: A sleek brown elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingElegantJumpsuit, MaroonColoredGown ]
+  id: ClothingOuterWeddingElegantJumpsuitColorMaroon
+  name: maroon elegant jumpsuit
+  description: A sleek maroon elegant jumpsuit.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingElegantJumpsuitColorMaroon
+
+# Colored mermaid gowns
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, GreyColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorGrey
+  name: grey mermaid gown
+  description: A form-fitting grey mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorGrey
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, BlackColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorBlack
+  name: black mermaid gown
+  description: A form-fitting black mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorBlack
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, BlueColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorBlue
+  name: blue mermaid gown
+  description: A form-fitting blue mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, DarkBlueColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorDarkBlue
+  name: dark blue mermaid gown
+  description: A form-fitting dark blue mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorDarkBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, TealColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorTeal
+  name: teal mermaid gown
+  description: A form-fitting teal mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorTeal
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, GreenColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorGreen
+  name: green mermaid gown
+  description: A form-fitting green mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, DarkGreenColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorDarkGreen
+  name: dark green mermaid gown
+  description: A form-fitting dark green mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorDarkGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, OrangeColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorOrange
+  name: orange mermaid gown
+  description: A form-fitting orange mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorOrange
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, PinkColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorPink
+  name: pink mermaid gown
+  description: A form-fitting pink mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorPink
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, RedColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorRed
+  name: red mermaid gown
+  description: A form-fitting red mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorRed
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, YellowColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorYellow
+  name: yellow mermaid gown
+  description: A form-fitting yellow mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorYellow
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, PurpleColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorPurple
+  name: purple mermaid gown
+  description: A form-fitting light purple mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorPurple
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, LightBrownColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorLightBrown
+  name: light brown mermaid gown
+  description: A form-fitting light brown mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorLightBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, BrownColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorBrown
+  name: brown mermaid gown
+  description: A form-fitting brown mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingMermaidGown, MaroonColoredGown ]
+  id: ClothingOuterWeddingMermaidGownColorMaroon
+  name: maroon mermaid gown
+  description: A form-fitting maroon mermaid gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingMermaidGownColorMaroon
+
+# Colored waterfall gowns
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, GreyColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorGrey
+  name: grey waterfall gown
+  description: A flowing grey waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorGrey
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, BlackColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorBlack
+  name: black waterfall gown
+  description: A flowing black waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorBlack
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, BlueColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorBlue
+  name: blue waterfall gown
+  description: A flowing blue waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, DarkBlueColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorDarkBlue
+  name: dark blue waterfall gown
+  description: A flowing dark blue waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorDarkBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, TealColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorTeal
+  name: teal waterfall gown
+  description: A flowing teal waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorTeal
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, GreenColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorGreen
+  name: green waterfall gown
+  description: A flowing green waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, DarkGreenColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorDarkGreen
+  name: dark green waterfall gown
+  description: A flowing dark green waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorDarkGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, OrangeColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorOrange
+  name: orange waterfall gown
+  description: A flowing orange waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorOrange
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, PinkColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorPink
+  name: pink waterfall gown
+  description: A flowing pink waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorPink
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, RedColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorRed
+  name: red waterfall gown
+  description: A flowing red waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorRed
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, YellowColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorYellow
+  name: yellow waterfall gown
+  description: A flowing yellow waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorYellow
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, PurpleColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorPurple
+  name: purple waterfall gown
+  description: A flowing light purple waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorPurple
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, LightBrownColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorLightBrown
+  name: light brown waterfall gown
+  description: A flowing light brown waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorLightBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, BrownColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorBrown
+  name: brown waterfall gown
+  description: A flowing brown waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingWaterfallGown, MaroonColoredGown ]
+  id: ClothingOuterWeddingWaterfallGownColorMaroon
+  name: maroon waterfall gown
+  description: A flowing maroon waterfall gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingWaterfallGownColorMaroon
+
+# Colored long sleeved gowns
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, GreyColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorGrey
+  name: grey long sleeved gown
+  description: A flowing grey long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorGrey
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, BlackColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorBlack
+  name: black long sleeved gown
+  description: A flowing black long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorBlack
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, BlueColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorBlue
+  name: blue long sleeved gown
+  description: A flowing blue long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, DarkBlueColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorDarkBlue
+  name: dark blue long sleeved gown
+  description: A flowing dark blue long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorDarkBlue
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, TealColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorTeal
+  name: teal long sleeved gown
+  description: A flowing teal long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorTeal
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, GreenColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorGreen
+  name: green long sleeved gown
+  description: A flowing green long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, DarkGreenColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorDarkGreen
+  name: dark green long sleeved gown
+  description: A flowing dark green long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorDarkGreen
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, OrangeColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorOrange
+  name: orange long sleeved gown
+  description: A flowing orange long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorOrange
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, PinkColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorPink
+  name: pink long sleeved gown
+  description: A flowing pink long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorPink
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, RedColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorRed
+  name: red long sleeved gown
+  description: A flowing red long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorRed
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, YellowColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorYellow
+  name: yellow long sleeved gown
+  description: A flowing yellow long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorYellow
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, PurpleColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorPurple
+  name: purple long sleeved gown
+  description: A flowing light purple long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorPurple
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, LightBrownColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorLightBrown
+  name: light brown long sleeved gown
+  description: A flowing light brown long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorLightBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, BrownColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorBrown
+  name: brown long sleeved gown
+  description: A flowing brown long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorBrown
+
+- type: entity
+  parent: [ ClothingOuterWeddingLongSleevedGown, MaroonColoredGown ]
+  id: ClothingOuterWeddingLongSleevedGownColorMaroon
+  name: maroon long sleeved gown
+  description: A flowing maroon long sleeved gown.
+  components:
+  - type: ChameleonClothing
+    default: ClothingOuterWeddingLongSleevedGownColorMaroon
