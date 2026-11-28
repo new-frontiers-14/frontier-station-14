@@ -36,6 +36,9 @@ trait-dwarf-accent-desc = Ye sound like ye've spent tae long wi ae pickaxe in yo
 trait-russian-accent-name = Russian Accent
 trait-russian-accent-desc = Usнаика иот iисludеd.
 
+trait-slothful-accent-name = Slothful Accent
+trait-slothful-accent-desc = Maaaakes… youuuu… taaaalk… liiiike… thiiiis.
+
 trait-fluffy-name = Fluffy (Moth only)
 trait-fluffy-desc = You look more fluffy than other moths.
 
