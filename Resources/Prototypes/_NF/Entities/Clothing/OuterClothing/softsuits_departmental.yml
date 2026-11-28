@@ -143,8 +143,8 @@
 - type: entity
   parent: NFDepartmentalEVASuit
   id: ClothingOuterEVASuitMailman
-  name: mailcarrier EVA suit
-  description: An EVA suit with a built-in helmet commonly issued to hydroponics workers.
+  name: mail carrier EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to mail carriers.
   components:
   - type: Sprite
     layers:
@@ -1277,14 +1277,14 @@
   components:
   - type: Sprite
     layers:
-    - state: equipped-base
+    - state: icon-base
       color: "#fff4e2"
-    - state: equipped-reinforced-points
+    - state: icon-reinforced-points
       color: "#606275"
-    - state: equipped-decals-02-boxer
-      map: [ "eva_decal_boxing" ]
-    - state: equipped-breathing-gear
-    - state: equipped-unshaded
+    - state: icon-decals-02-boxer
+      map: [ "decals" ]
+    - state: icon-breathing-gear
+    - state: icon-unshaded
       shader: unshaded
   - type: Clothing
     clothingVisuals:
@@ -1294,14 +1294,18 @@
       - state: equipped-reinforced-points
         color: "#606275"
       - state: equipped-decals-02-boxer
-        map: [ "eva_decal_boxing" ]
+        map: [ "clothingDecals" ]
       - state: equipped-breathing-gear
       - state: equipped-unshaded
         shader: unshaded
   - type: RandomSprite
     available:
-    - eva_decal_boxing:
-        equipped-decals-02-boxer: Cyberpunk
+      - decals:
+          icon-decals-02-boxer: Base
+        clothingDecals:
+          equipped-decals-02-boxer: Base
+    mappedColors:
+      Base: Cyberpunk
   - type: Item
     inhandVisuals:
       left:
