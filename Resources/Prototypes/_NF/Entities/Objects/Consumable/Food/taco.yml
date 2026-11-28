@@ -1,0 +1,71 @@
+- type: entity
+  name: carp taco
+  parent: FoodTacoBase
+  id: FoodTacoCarp
+  description: Sounds kinda gross, but it actually is that bad.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - fishy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    layers:
+    - state: carpfishtaco
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: CarpoToxin
+          Quantity: 15
+
+- type: entity
+  name: fish taco supreme
+  parent: FoodTacoBase
+  id: FoodTacoFishSupreme
+  description: It's like a regular fish taco, but supreme!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - onion
+    - fishy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    layers:
+    - state: fishtacosupreme
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 22
+        - ReagentId: Vitamin
+          Quantity: 6
+
+- type: entity
+  name: rat taco surpeme
+  parent: FoodTacoBase
+  id: FoodTacoRatSupreme
+  description: It's like a regular rat taco, but supreme!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    layers:
+    - state: rattacosupreme
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - chewy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 22
+        - ReagentId: Vitamin
+          Quantity: 6

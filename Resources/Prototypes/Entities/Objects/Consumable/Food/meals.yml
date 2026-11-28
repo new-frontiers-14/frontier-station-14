@@ -624,6 +624,33 @@
 # tastes exotic
 
 - type: entity
+  name: fresh fish sashimi #frontier
+  parent: FoodMealBase
+  id: FoodMealFreshFishSashimi
+  description: Its taste can only be described as "Exotic". Uncommonly carpotoxin free.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    layers:
+    - state: freshfishsashimi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+# tastes exotic
+
+- type: entity
   parent: FoodMealBase
   id: FoodMealEnchiladas
   name: enchiladas
