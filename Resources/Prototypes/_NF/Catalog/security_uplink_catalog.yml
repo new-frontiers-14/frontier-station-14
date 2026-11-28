@@ -795,7 +795,7 @@
     - SeniorOfficer
     - Bailiff
     - Sheriff
-    
+
 - type: listing
   id: UplinkSecurityMagazineSubMachineGunRubber
   name:  uplink-security-smgmagazine-rubber-name
@@ -1473,3 +1473,24 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityEnergyMagnum
+  name: uplink-security-energy-magnum-name
+  description: uplink-security-energy-magnum-desc
+  productEntity: NFWeaponEnergyMagnum
+  icon: { sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 30
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+     - Sheriff
+     - Bailiff
+     - SeniorOfficer
