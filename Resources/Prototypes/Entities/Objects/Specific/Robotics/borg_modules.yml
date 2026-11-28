@@ -1002,7 +1002,7 @@
     - item: HandheldCrewMonitorPowerd # Frontier
     # - item: BorgFireExtinguisher # Frontier
     # - item: BorgHandheldGPSBasic # Frontier
-    - item: HandLabeler
+    # - item: HandLabeler #Frontier: HandLabeler inside Bureaucracy module
     # Frontier
     - item: BodyBagFolded
       hand:
@@ -1045,6 +1045,15 @@
           - Syringe
       # End Frontier
     - item: BorgDropper
+    # Frontier
+    - item: ChemBag
+      hand:
+        emptyLabel: borg-slot-chembag-empty
+        emptyRepresentative: ChemBag
+        whitelist:
+          components:
+          - NFChemBag
+    # End Frontier
     - item: BaseChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
@@ -1094,6 +1103,15 @@
           - Syringe
       # End Frontier
     # - item: BorgDropper # Frontier
+    # Frontier
+    - item: ChemBag
+      hand:
+        emptyLabel: borg-slot-chembag-empty
+        emptyRepresentative: ChemBag
+        whitelist:
+          components:
+          - NFChemBag
+    # End Frontier
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
