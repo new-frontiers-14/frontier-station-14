@@ -1,0 +1,205 @@
+using System.Linq;
+using System.Threading.Tasks;
+using Content.Server.Administration.Logs;
+using Content.Server._NF.Library.Components;
+using Content.Server.Database;
+using Content.Shared._NF.Library;
+using Content.Server.Popups;
+using Content.Shared._NF.Library.BUI;
+using Content.Shared._NF.Library.Events;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Database;
+using Content.Shared.Paper;
+using Content.Shared.Power;
+using Robust.Server.GameObjects;
+using Content.Server.GameTicking;
+using Robust.Server.Player;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Localization;
+
+namespace Content.Server._NF.Library.Systems;
+
+/// <summary>
+/// Handles the library console. Opens the UI, allows the user to upload and download books.
+/// </summary>
+public sealed class LibraryConsoleSystem : EntitySystem
+{
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private ServerDbEntryManager _serverDbEntry = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+
+    private const string BookSlotId = "bookConsole_Book";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<LibraryConsoleComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<LibraryConsoleComponent, ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<LibraryConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
+        SubscribeLocalEvent<LibraryConsoleComponent, LibraryConsoleUploadBookMessage>(OnUploadBook);
+        SubscribeLocalEvent<LibraryConsoleComponent, LibraryConsoleDownloadBookMessage>(OnDownloadBook);
+        SubscribeLocalEvent<LibraryConsoleComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<LibraryConsoleComponent, EntInsertedIntoContainerMessage>(OnSlotChanged);
+        SubscribeLocalEvent<LibraryConsoleComponent, EntRemovedFromContainerMessage>(OnSlotChanged);
+    }
+
+    private void OnComponentInit(Entity<LibraryConsoleComponent> ent, ref ComponentInit args)
+    {
+        _itemSlots.AddItemSlot(ent, BookSlotId, ent.Comp.BookSlot);
+    }
+
+    private void OnComponentRemove(Entity<LibraryConsoleComponent> ent, ref ComponentRemove args)
+    {
+        _itemSlots.RemoveItemSlot(ent, ent.Comp.BookSlot);
+    }
+
+    private void OnSlotChanged(EntityUid uid, LibraryConsoleComponent component, ContainerModifiedMessage args)
+    {
+        if (args.Container.ID != component.BookSlot.ID)
+            return;
+
+        UpdateUiState((uid, component));
+    }
+
+    private void OnUiOpened(Entity<LibraryConsoleComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        UpdateUiState(ent);
+    }
+
+    private void OnUploadBook(Entity<LibraryConsoleComponent> ent, ref LibraryConsoleUploadBookMessage args)
+    {
+        if (!_playerManager.TryGetSessionByEntity(args.Actor, out var session))
+            return;
+
+        if (string.IsNullOrWhiteSpace(args.Title) ||
+            string.IsNullOrWhiteSpace(args.Author) ||
+            string.IsNullOrWhiteSpace(args.Content))
+        {
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            _popup.PopupEntity(Loc.GetString("library-console-upload-missing-fields"), args.Actor, args.Actor);
+            return;
+        }
+
+        if (args.Title.Length > LibraryBookLimits.MaxTitleLength ||
+            args.Author.Length > LibraryBookLimits.MaxAuthorLength ||
+            args.Content.Length > LibraryBookLimits.MaxContentLength)
+        {
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            _popup.PopupEntity(Loc.GetString("library-console-upload-too-long",
+                ("maxTitle", LibraryBookLimits.MaxTitleLength),
+                ("maxAuthor", LibraryBookLimits.MaxAuthorLength),
+                ("maxContent", LibraryBookLimits.MaxContentLength)), args.Actor, args.Actor);
+            return;
+        }
+
+        var title = args.Title;
+        var author = args.Author;
+        var content = args.Content;
+        var authorPlayerUserId = session.UserId.UserId;
+        var date = DateTime.UtcNow;
+
+        _ = AddBookAsync(ent, args.Actor, title, author, content, date, authorPlayerUserId);
+    }
+
+    private async Task AddBookAsync(Entity<LibraryConsoleComponent> ent, EntityUid actor, string title, string author, string content, DateTime date, Guid authorPlayerUserId)
+    {
+        var server = await _serverDbEntry.ServerEntity;
+
+        // Reject uploads whose content already exists in the library.
+        var bookExists = await _dbManager.GetNFLibraryBookAlreadyExistsAsync(title, author, content);
+        if (bookExists)
+        {
+            if (EntityManager.EntityExists(ent))
+            {
+                _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+                _popup.PopupEntity(Loc.GetString("library-console-upload-duplicate"), actor, actor);
+            }
+            return;
+        }
+
+        await _dbManager.AddNFLibraryBookAsync(_gameTicker.RoundId, server.Id, title, author, content, date, authorPlayerUserId);
+
+        _adminLog.Add(LogType.Action,
+            LogImpact.Medium,
+            $"{ToPrettyString(actor):player} uploaded book \"{title}\" by \"{author}\" to {ToPrettyString(ent):entity}");
+
+        // Refresh the UI so the browse tab shows the newly uploaded book.
+        if (EntityManager.EntityExists(ent))
+        {
+            _audio.PlayPvs(ent.Comp.UploadSound, ent.Owner);
+            UpdateUiState(ent);
+        }
+    }
+
+    private void OnDownloadBook(Entity<LibraryConsoleComponent> ent, ref LibraryConsoleDownloadBookMessage args)
+    {
+        _ = DownloadBookAsync(ent, args.BookId);
+    }
+
+    private async Task DownloadBookAsync(Entity<LibraryConsoleComponent> ent, int bookId)
+    {
+        var book = await _dbManager.GetNFLibraryBookByIdAsync(bookId);
+
+        if (book == null || !EntityManager.EntityExists(ent))
+            return;
+
+        if (ent.Comp.BookSlot.Item is not { } bookEntity ||
+            !TryComp<PaperComponent>(bookEntity, out var paper))
+        {
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            return;
+        }
+
+        _paper.SetContent((bookEntity, paper), book.Content);
+        _metaData.SetEntityName(bookEntity, book.Title);
+        _audio.PlayPvs(ent.Comp.DownloadSound, ent.Owner);
+
+        // Refresh UI so the inserted book's content field stays in sync.
+        UpdateUiState(ent);
+    }
+
+    private void OnPowerChanged(Entity<LibraryConsoleComponent> ent, ref PowerChangedEvent args)
+    {
+        if (!args.Powered)
+            _ui.CloseUi(ent.Owner, LibraryConsoleUiKey.Key);
+    }
+
+    private void UpdateUiState(Entity<LibraryConsoleComponent> ent)
+    {
+        _ = UpdateUiStateAsync(ent);
+    }
+
+    private async Task UpdateUiStateAsync(Entity<LibraryConsoleComponent> ent)
+    {
+        var books = await _dbManager.GetNFLibraryBooksAsync();
+
+        if (!EntityManager.EntityExists(ent))
+            return;
+
+        string? bookName = null;
+        string? bookContent = null;
+        if (ent.Comp.BookSlot.Item is { } bookEntity &&
+            TryComp<PaperComponent>(bookEntity, out var paper))
+        {
+            bookName = Name(bookEntity);
+            bookContent = paper.Content;
+        }
+
+        var bookData = books
+            .Select(b => new LibraryBookData(b.Id, b.Title, b.Author, b.Date.ToString("yyyy-MM-dd")))
+            .ToList();
+
+        var state = new LibraryConsoleBoundUserInterfaceState(enabled: true, bookName, bookContent, bookData);
+        _ui.SetUiState(ent.Owner, LibraryConsoleUiKey.Key, state);
+    }
+}

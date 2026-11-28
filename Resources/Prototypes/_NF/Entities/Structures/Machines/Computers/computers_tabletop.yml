@@ -927,3 +927,29 @@
   - type: Sprite
     drawdepth: SmallObjects
     layers: *NFTabletopShuttleConsoleVisuals
+
+#region Library
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerLibrary]
+  id: ComputerTabletopLibrary
+  suffix: Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: library
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: generic_panel_open

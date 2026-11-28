@@ -347,6 +347,18 @@ namespace Content.Server.Database
 
         #endregion
 
+        // Frontier: library books
+        #region Frontier: library books
+
+        Task AddNFLibraryBookAsync(int roundId, int serverId, string title, string author, string content, DateTime date, Guid authorPlayerUserId);
+        Task<List<NFLibraryBook>> GetNFLibraryBooksAsync();
+        Task<NFLibraryBook?> GetNFLibraryBookByIdAsync(int bookId);
+        Task<bool> GetNFLibraryBookAlreadyExistsAsync(string title, string author, string content);
+        Task<bool> DeleteNFLibraryBookAsync(int bookId);
+
+        #endregion
+        // End Frontier
+
         #region DB Notifications
 
         void SubscribeToNotifications(Action<DatabaseNotification> handler);
@@ -1074,6 +1086,38 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
+
+        // Frontier: library books
+        public Task AddNFLibraryBookAsync(int roundId, int serverId, string title, string author, string content, DateTime date, Guid authorPlayerUserId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddNFLibraryBookAsync(roundId, serverId, title, author, content, date, authorPlayerUserId));
+        }
+
+        public Task<List<NFLibraryBook>> GetNFLibraryBooksAsync()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNFLibraryBooksAsync());
+        }
+
+        public Task<NFLibraryBook?> GetNFLibraryBookByIdAsync(int bookId)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNFLibraryBookByIdAsync(bookId));
+        }
+
+        public Task<bool> GetNFLibraryBookAlreadyExistsAsync(string title, string author, string content)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNFLibraryBookAlreadyExists(title, author, content));
+        }
+
+        public Task<bool> DeleteNFLibraryBookAsync(int bookId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteNFLibraryBookAsync(bookId));
+        }
+        // End Frontier
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {

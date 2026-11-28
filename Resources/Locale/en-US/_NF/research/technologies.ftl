@@ -95,6 +95,7 @@ nf-research-technology-industrial-cutter = Mechanical Material Cutting
 nf-research-technology-industrial-engineering = Industrial Engineering
 nf-research-technology-industrial-medicine = Industrial Chemistry
 nf-research-technology-industrial-silo = Improved Material Logistics
+nf-research-technology-library = Literature Dissemination
 nf-research-technology-mobile-service = Mobile Logistics and Sanitation
 nf-research-technology-journalism = Wireless News Syndication
 nf-research-technology-magnets-tech = Magnetic Field Control
