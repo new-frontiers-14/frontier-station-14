@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: OfflcerSam
+# Discord: [terminated]
+
+# Maintainer Info
+# GitHub: OfflcerSam
+# Discord: [terminated]
+
+# Shuttle Notes:
+# Technically a Stonian Industries commission of sorts, but licensing bought by NT.
+- type: vessel
+  id: Trilobite
+  parent: BaseVessel
+  name: NT Trilobite
+  description: TBA
+  price: 40000  # ~34388 (calculated) * ~1.10 (markup) = 34389.1
+  category: Small
+  group: Centcomm
+  access: CentralCommand
+  shuttlePath: /Maps/_NF/Shuttles/Admin/trilobite.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - APU
+
+- type: gameMap
+  id: Trilobite
+  mapName: 'Trilobite'
+  mapPath: /Maps/_NF/Shuttles/Admin/trilobite.yml
+  minPlayers: 0
+  stations:
+    Trilobite:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Trilobite {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
