@@ -254,7 +254,7 @@
         - ReagentId: Fiber
           Quantity: 10
         - ReagentId: Ethanol
-          Quantity: 10
+          Quantity: 20
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieHitchhiker
@@ -997,6 +997,18 @@
     sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
     layers:
       - state: moff7
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: moff7
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: moff7-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieMoth7
@@ -1114,6 +1126,8 @@
     - PlushieMoth12
     - PlushieMoth13
     - PlushieMoth14
+    - NFPlushieMos
+    - NFPlushieYarrmos
 
 - type: entity
   parent: PlushieMoth
@@ -1282,6 +1296,119 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieYarrpy
+
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieMimoth #Screams!
+  name: mimoth plushie
+  description: Why does it keep screaming?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: mimoth
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: mimoth
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: mimoth-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieMimoth
+
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieMos
+  name: mos plushie
+  description: Chittering in French
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: mos
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: mos
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: mos-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieMos
+
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieYarrmos
+  name: yarrmos plushie
+  description: Chittering in French, but Pirately!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: yarrmos
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: yarrmos
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: yarrmos-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieYarrmos
+
+- type: entity
+  parent: PlushieMoth
+  id: NFPlushieSkoroth
+  name: skoroth plushie
+  description: Meowdy, but make it Mothly
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    state: skoroth
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/moths.rsi
+    heldPrefix: skoroth
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: skoroth-equipped-HELMET
+        sprite: _NF/Objects/Fun/Plushies/moths.rsi
+        offset: "0, 0.03"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieSkoroth
 
 #region toy guns
 - type: entity
