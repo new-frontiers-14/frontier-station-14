@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.Clothing.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Tag;
@@ -40,7 +41,7 @@ public sealed partial class ChameleonBoundUserInterface : BoundUserInterface
             return;
 
         var targets = _chameleon.GetValidTargets(st.Slot);
-        if (st.RequiredTag != null)
+        if (st.RequiredTag != null || st.AllowedPrototypes != null)
         {
             var newTargets = new List<EntProtoId>();
             foreach (var target in targets)
@@ -48,7 +49,12 @@ public sealed partial class ChameleonBoundUserInterface : BoundUserInterface
                 if (string.IsNullOrEmpty(target) || !_proto.TryIndex(target, out EntityPrototype? proto))
                     continue;
 
-                if (!proto.TryGetComponent(out TagComponent? tag, EntMan.ComponentFactory) || !_tag.HasTag(tag, st.RequiredTag))
+                if (st.RequiredTag != null &&
+                    (!proto.TryGetComponent(out TagComponent? tag, EntMan.ComponentFactory) ||
+                     !_tag.HasTag(tag, st.RequiredTag)))
+                    continue;
+
+                if (st.AllowedPrototypes != null && !st.AllowedPrototypes.Contains(target.Id))
                     continue;
 
                 newTargets.Add(target);

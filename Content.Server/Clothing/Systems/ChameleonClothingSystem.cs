@@ -45,7 +45,7 @@ public sealed partial class ChameleonClothingSystem : SharedChameleonClothingSys
         if (component.EmpContinuous)
             component.NextEmpChange = _timing.CurTime + TimeSpan.FromSeconds(1f / component.EmpChangeIntensity);
 
-        var pick = GetRandomValidPrototype(component.Slot, component.RequireTag);
+        var pick = GetRandomValidPrototype(component.Slot, component.RequireTag, component.AllowedPrototypes);
         SetSelectedPrototype(uid, pick, component: component);
 
         args.Affected = true;
@@ -57,7 +57,11 @@ public sealed partial class ChameleonClothingSystem : SharedChameleonClothingSys
         if (!Resolve(uid, ref component))
             return;
 
-        var state = new ChameleonBoundUserInterfaceState(component.Slot, component.Default, component.RequireTag);
+        var state = new ChameleonBoundUserInterfaceState(
+            component.Slot,
+            component.Default,
+            component.RequireTag,
+            component.AllowedPrototypes?.Select(proto => proto.Id).ToArray());
         UI.SetUiState(uid, ChameleonUiKey.Key, state);
     }
 
@@ -78,7 +82,7 @@ public sealed partial class ChameleonClothingSystem : SharedChameleonClothingSys
         // make sure that it is valid change
         if (string.IsNullOrEmpty(protoId) || !_proto.TryIndex(protoId, out EntityPrototype? proto))
             return;
-        if (!IsValidTarget(proto, component.Slot, component.RequireTag))
+        if (!IsValidTarget(proto, component.Slot, component.RequireTag, component.AllowedPrototypes))
             return;
         component.Default = protoId;
 
@@ -91,9 +95,12 @@ public sealed partial class ChameleonClothingSystem : SharedChameleonClothingSys
     /// <summary>
     ///     Get a random prototype for a given slot.
     /// </summary>
-    public string GetRandomValidPrototype(SlotFlags slot, string? tag = null)
+    public string GetRandomValidPrototype(
+        SlotFlags slot,
+        string? tag = null,
+        IReadOnlyList<EntProtoId>? allowedPrototypes = null)
     {
-        return _random.Pick(GetValidTargets(slot, tag).ToList());
+        return _random.Pick(GetValidTargets(slot, tag, allowedPrototypes).ToList());
     }
 
     public override void Update(float frameTime)
@@ -110,7 +117,7 @@ public sealed partial class ChameleonClothingSystem : SharedChameleonClothingSys
                 continue;
 
             // randomly pick cloth element from available and apply it
-            var pick = GetRandomValidPrototype(chameleon.Slot, chameleon.RequireTag);
+            var pick = GetRandomValidPrototype(chameleon.Slot, chameleon.RequireTag, chameleon.AllowedPrototypes);
             SetSelectedPrototype(uid, pick, component: chameleon);
 
             chameleon.NextEmpChange += TimeSpan.FromSeconds(1f / chameleon.EmpChangeIntensity);

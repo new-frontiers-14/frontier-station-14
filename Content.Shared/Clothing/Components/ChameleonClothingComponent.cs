@@ -39,6 +39,12 @@ public sealed partial class ChameleonClothingComponent : Component
     public string? RequireTag;
 
     /// <summary>
+    ///     Restrict possible chameleon options to these entity prototypes.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId>? AllowedPrototypes;
+
+    /// <summary>
     ///     Will component owner be affected by EMP pulses?
     /// </summary>
     [DataField]
@@ -73,12 +79,18 @@ public sealed class ChameleonBoundUserInterfaceState : BoundUserInterfaceState
     public readonly SlotFlags Slot;
     public readonly string? SelectedId;
     public readonly string? RequiredTag;
+    public readonly string[]? AllowedPrototypes;
 
-    public ChameleonBoundUserInterfaceState(SlotFlags slot, string? selectedId, string? requiredTag)
+    public ChameleonBoundUserInterfaceState(
+        SlotFlags slot,
+        string? selectedId,
+        string? requiredTag,
+        string[]? allowedPrototypes)
     {
         Slot = slot;
         SelectedId = selectedId;
         RequiredTag = requiredTag;
+        AllowedPrototypes = allowedPrototypes;
     }
 }
 
