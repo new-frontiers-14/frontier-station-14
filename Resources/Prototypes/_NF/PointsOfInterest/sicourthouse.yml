@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: OfflcerSam
+# Discord: [Terminated]
+
+# Maintainer Info
+# GitHub: OfflcerSam
+# Discord: [Terminated]
+
+# Notes:
+# Stonian Industries Grand Courthouse
+- type: pointOfInterest
+  id: GrandCourthouse
+  parent: BasePOI
+  name: "Grand Courthouse"
+  minimumDistance: 1150
+  maximumDistance: 2050
+  spawnGroup: Courthouse
+  gridPath: /Maps/_NF/POI/sicourthouse.yml
+  addComponents:
+  - type: IFF
+    color: "#ae7d57"
+  - type: StationTransit
+    routes:
+      MinorPointsOfInterest: 30
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+
+- type: gameMap
+  id: GrandCourthouse
+  mapName: "Grand Courthouse"
+  mapPath: /Maps/_NF/POI/sicourthouse.yml
+  minPlayers: 0
+  stations:
+    GrandCourthouse:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Courthouse"
+        - type: StationDeadDropHintExempt
