@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Atmos.Components;
-using Content.Shared.Atmos;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
@@ -8,7 +7,6 @@ using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 
@@ -18,7 +16,6 @@ namespace Content.Server.Atmos.EntitySystems
     public sealed partial class AtmosDebugOverlaySystem : SharedAtmosDebugOverlaySystem
     {
         [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private IConfigurationManager _configManager = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
         [Dependency] private MapSystem _mapSystem = default!;
@@ -140,7 +137,7 @@ namespace Content.Server.Atmos.EntitySystems
                     new Vector2(LocalViewRange, LocalViewRange));
 
                 _grids.Clear();
-                _mapManager.FindGridsIntersecting(transform.MapID, worldBounds, ref _grids);
+                _mapSystem.FindGridsIntersecting(transform.MapID, worldBounds, ref _grids);
 
                 foreach (var grid in _grids)
                 {

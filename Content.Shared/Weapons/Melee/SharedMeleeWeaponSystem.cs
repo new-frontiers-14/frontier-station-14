@@ -56,11 +56,11 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected ActionBlockerSystem Blocker = default!;
     [Dependency] protected DamageableSystem Damageable = default!;
     [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] protected IMapManager MapManager = default!;
     [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
     [Dependency] protected MobStateSystem MobState = default!;
     [Dependency] protected SharedCombatModeSystem CombatMode = default!;
     [Dependency] protected SharedInteractionSystem Interaction = default!;
+    [Dependency] protected SharedMapSystem Maps = default!;
     [Dependency] protected SharedPopupSystem PopupSystem = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
 

@@ -28,7 +28,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Maps;
 using Robust.Shared.Map.Components;
 using Content.Shared.Tiles; // Frontier: safe zone
 
@@ -36,19 +35,18 @@ namespace Content.Server.Explosion.EntitySystems;
 
 public sealed partial class ExplosionSystem : SharedExplosionSystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
 
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
     [Dependency] private PathfindingSystem _pathfindingSystem = default!;
     [Dependency] private SharedCameraRecoilSystem _recoilSystem = default!;
-    [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private ThrowingSystem _throwingSystem = default!;
     [Dependency] private PvsOverrideSystem _pvsSys = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -353,14 +351,14 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
         // Frontier - Block explosions on safe zone
-        var location = EntityCoordinates.FromMap(_mapManager.GetMapEntityId(pos.MapId), pos, _transformSystem, EntityManager);
-        var gridId = location.GetGridUid(EntityManager);
+        var location = _transformSystem.ToCoordinates(_map.GetMap(pos.MapId), pos);
+        var gridId = _transformSystem.GetGrid(location);
         if (!HasComp<MapGridComponent>(gridId))
         {
             location = location.AlignWithClosestGridTile();
-            gridId = location.GetGridUid(EntityManager);
+            gridId = _transformSystem.GetGrid(location);
             // Check if fixing it failed / get final grid ID
-            if (EntityManager.TryGetComponent<MapGridComponent>(gridId, out var mapGrid))
+            if (TryComp<MapGridComponent>(gridId, out var mapGrid))
             {
                 var ev = new FloorTileAttemptEvent();
                 if ((TryComp<ProtectedGridComponent>(gridId, out var prot) && prot.PreventExplosions) || ev.Cancelled)

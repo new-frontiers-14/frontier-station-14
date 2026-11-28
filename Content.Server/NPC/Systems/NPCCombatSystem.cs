@@ -1,10 +1,7 @@
 using Content.Server.Interaction;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Melee;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -16,7 +13,6 @@ namespace Content.Server.NPC.Systems;
 public sealed partial class NPCCombatSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private GunSystem _gun = default!;
     [Dependency] private InteractionSystem _interaction = default!;
