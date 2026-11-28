@@ -7,7 +7,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
@@ -219,7 +218,7 @@ public sealed partial class MarkingPicker : Control
         var sortedMarkings = GetMarkings(_selectedMarkingCategory).Values.Where(m =>
             m.ID.ToLower().Contains(filter.ToLower()) ||
             GetMarkingName(m).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => Loc.GetString(GetMarkingName(p)));
+        ).OrderBy(p => GetMarkingName(p));
 
         foreach (var marking in sortedMarkings)
         {
@@ -228,7 +227,7 @@ public sealed partial class MarkingPicker : Control
                 continue;
             }
 
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
+            var item = CMarkingsUnused.AddItem(GetMarkingName(marking), _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
         }
 
@@ -256,10 +255,10 @@ public sealed partial class MarkingPicker : Control
                 continue;
             }
 
-            var text = Loc.GetString(marking.Forced ? "marking-used-forced" : "marking-used", ("marking-name", $"{GetMarkingName(newMarking)}"),
+            var text = Loc.GetString(marking.Forced ? "marking-used-forced" : "marking-used", ("marking-name", GetMarkingName(newMarking)),
                 ("marking-category", Loc.GetString($"markings-category-{newMarking.MarkingCategory}")));
 
-            var _item = new ItemList.Item(CMarkingsUsed)
+            var item = new ItemList.Item(CMarkingsUsed)
             {
                 Text = text,
                 Icon = _sprite.Frame0(newMarking.Sprites[0]),
@@ -268,7 +267,7 @@ public sealed partial class MarkingPicker : Control
                 IconModulate = marking.MarkingColors[0]
             };
 
-            CMarkingsUsed.Add(_item);
+            CMarkingsUsed.Add(item);
         }
 
         // since all the points have been processed, update the points visually
@@ -529,7 +528,7 @@ public sealed partial class MarkingPicker : Control
         CMarkingsUnused.Remove(_selectedUnusedMarking);
         var item = new ItemList.Item(CMarkingsUsed)
         {
-            Text = Loc.GetString("marking-used", ("marking-name", $"{GetMarkingName(marking)}"), ("marking-category", Loc.GetString($"markings-category-{marking.MarkingCategory}"))),
+            Text = Loc.GetString("marking-used", ("marking-name", GetMarkingName(marking)), ("marking-category", Loc.GetString($"markings-category-{marking.MarkingCategory}"))),
             Icon = _sprite.Frame0(marking.Sprites[0]),
             Selectable = true,
             Metadata = marking,
@@ -554,7 +553,7 @@ public sealed partial class MarkingPicker : Control
 
         if (marking.MarkingCategory == _selectedMarkingCategory)
         {
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
+            var item = CMarkingsUnused.AddItem(GetMarkingName(marking), _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
         }
         _selectedMarking = null;
