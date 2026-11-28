@@ -145,6 +145,38 @@
   - type: NFWallmountable
     spawn: NFPosterLegitGunTurnIn
 
+- type: entity
+  parent: NFPosterRolledLegit
+  id: NFPosterRolledSignBar
+  name: "Bar Sign"
+  components:
+  - type: NFWallmountable
+    spawn: NFSignBar
+
+- type: entity
+  parent: NFPosterRolledLegit
+  id: NFPosterRolledSignCafe
+  name: "Cafe Sign"
+  components:
+  - type: NFWallmountable
+    spawn: NFSignCafe
+
+- type: entity
+  parent: NFPosterRolledLegit
+  id: NFPosterRolledSignCoffee
+  name: "Coffee Sign"
+  components:
+  - type: NFWallmountable
+    spawn: NFSignCoffee
+
+- type: entity
+  parent: NFPosterRolledLegit
+  id: NFPosterRolledSignTea
+  name: "Tea Sign"
+  components:
+  - type: NFWallmountable
+    spawn: NFSignTea
+
 - type: entityTable
   id: TablePosterRolledLegitFrontier
   table: !type:GroupSelector
