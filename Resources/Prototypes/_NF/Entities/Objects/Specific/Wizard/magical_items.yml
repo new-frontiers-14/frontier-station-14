@@ -147,7 +147,7 @@
       params:
         variation: 0.125
 
-#region Gas tank
+#region Gas tanks
 - type: entity
   id: GasTankWizardBottomless
   parent: [ GasTankRoundBase, BaseC3WizardContraband ]
@@ -169,6 +169,32 @@
   - type: Clothing
     sprite: _NF/Objects/Tanks/wizard.rsi
   - type: CatWearable
+
+- type: entity
+  id: GasTankWizardBottomlessPocket
+  parent: [ GasTankWizardBottomless, BaseC3WizardContraband ]
+  name: pocket bottomless gas tank
+  description: An unusual looking gas tank that can hold more volume than its size would suggest. Lovingly crafted for commercial use by the "Bottomless" brand.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/wizard_pocket.rsi
+    layers:
+    - state: icon-gas-portal
+      shader: unshaded
+    - state: icon
+  - type: Item
+    sprite: _NF/Objects/Tanks/wizard_pocket.rsi
+    size: Small
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/wizard_pocket.rsi
+    slots:
+    - Pocket
+    - Belt
+    - suitStorage
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
 
 #region Wings
 - type: entity
@@ -229,6 +255,12 @@
     - state: wizard-unshaded
       shader: unshaded
   - type: Dumpable
+  - type: Storage
+    grid:
+    - 0,0,4,2
+    blacklist:
+      components:
+      - Paper
   - type: MagnetPickup
     magnetEnabled: true
 

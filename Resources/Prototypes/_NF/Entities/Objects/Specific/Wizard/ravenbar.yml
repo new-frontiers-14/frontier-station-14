@@ -1,18 +1,25 @@
 - type: entity
-  parent: [ BaseCrowbar, BaseC3WizardContraband ]
+  parent: [ JawsOfLife, BaseC3WizardContraband ]
   id: NFRavenbar
   name: ravenbar
   description: CAAAW!
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
-    state: icon
+    state: icon-pry
   - type: Clothing
     sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
   - type: Item
-    storedSprite:
-      sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
-      state: storage
+    sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
+    size: Normal
+    shape:
+    - 0,0,0,1
+    storedRotation: -45
+    storedOffset: 2,0
+  - type: Tool
+    qualities:
+      - Prying
+    useSound: /Audio/_NF/Animals/crow_caw1.ogg
   - type: Prying
     speedModifier: 3
     pryPowered: !type:Bool
@@ -20,3 +27,25 @@
     force: !type:Bool
       true
     useSound: /Audio/_NF/Animals/crow_caw1.ogg
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
+          state: icon-pry
+        useSound: /Audio/_NF/Animals/crow_caw1.ogg
+        changeSound: /Audio/Weapons/Guns/Misc/selector.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _NF/Objects/Specific/Wizard/ravenbar.rsi
+          state: icon-cutter
+        useSound: /Audio/Items/wirecutter.ogg
+        changeSound: /Audio/Weapons/Guns/Misc/selector.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      collection: MetalThud

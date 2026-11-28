@@ -67,3 +67,17 @@
   - type: ConditionalSpawner
     prototypes:
     - NFVehicleHoverbike
+
+- type: entity
+  name: flying broom spawner
+  id: NFSpawnVehicleFlyingBroom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Vehicles/broom.rsi
+      state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+    - NFVehicleFlyingBroomWithKey
