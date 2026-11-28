@@ -1,0 +1,481 @@
+# SPDX-FileCopyrightText: 2025 Ilya246
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Base Deposits
+- type: entity
+  id: BaseDeepGasDeposit
+  parent: BaseGasDeposit
+  name: deep gas deposit
+  description: Deep solidified reserves of an element, normally a gas at room temperature, can be drilled, heated and piped out. Should provide an unlimited supply once the easily reachable gas is depleted.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: GasDeposit
+    yieldBased: true
+
+# endregion Base Deposits
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - BaseDeepGasDeposit
+  id: DeepGasDepositVerySmall
+  suffix: Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - BaseDeepGasDeposit
+  id: DeepGasDepositSmall
+  suffix: Small
+
+- type: entity
+  parent:
+  - BaseDeepGasDeposit
+  id: DeepGasDeposit
+  suffix: Normal
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - BaseDeepGasDeposit
+  id: DeepGasDepositLarge
+  suffix: Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - BaseDeepGasDeposit
+  id: DeepGasDepositVeryLarge
+  suffix: Very Large
+
+# region Standard Deposits
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositOxygen
+  suffix: Oxygen
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyOxygen
+  - type: Sprite
+    color: "#DDDDEE"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositNitrogen
+  suffix: Nitrogen
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrogen
+  - type: Sprite
+    color: "#FFCCCC"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositCarbonDioxide
+  suffix: Carbon Dioxide
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyCarbonDioxide
+  - type: Sprite
+    color: "#CCCCCC"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositPlasma
+  suffix: Plasma
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyPlasma
+  - type: Sprite
+    color: "#FFCCFF"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositAmmonia
+  suffix: Ammonia
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyAmmonia
+  - type: Sprite
+    color: "#FFFFCC"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositWaterVapor
+  suffix: Water Vapor
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyWaterVapor
+  - type: Sprite
+    color: "#DDEEEE"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositNitrousOxide
+  suffix: Nitrous Oxide
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrousOxide
+  - type: Sprite
+    color: "#EEDDDD"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositAir
+  suffix: Air-like
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: AirLike
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositMuddleEven
+  suffix: Muddled
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddleEven
+  - type: Sprite
+    color: "#DDEEDD"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositMuddlePlasma
+  suffix: Muddled PL+
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddlePlasma
+  - type: Sprite
+    color: "#F0DDF0"
+
+- type: entity
+  parent: BaseDeepGasDeposit
+  id: DeepGasDepositFrezon
+  suffix: Frezon
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: Frezon
+  - type: GasDeposit
+    outputTemperature: 23.15 # naturally occuring frezon
+  - type: Sprite
+    color: "#AADDFF"
+# endregion Standard Deposits
+
+# region Very Small Deposits
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositOxygen
+  id: DeepGasDepositOxygenVerySmall
+  suffix: Oxygen, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositNitrogen
+  id: DeepGasDepositNitrogenVerySmall
+  suffix: Nitrogen, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositCarbonDioxide
+  id: DeepGasDepositCarbonDioxideVerySmall
+  suffix: Carbon Dioxide, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositPlasma
+  id: DeepGasDepositPlasmaVerySmall
+  suffix: Plasma, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositAmmonia
+  id: DeepGasDepositAmmoniaVerySmall
+  suffix: Ammonia, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositWaterVapor
+  id: DeepGasDepositWaterVaporVerySmall
+  suffix: Water Vapor, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositNitrousOxide
+  id: DeepGasDepositNitrousOxideVerySmall
+  suffix: Nitrous Oxide, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositAir
+  id: DeepGasDepositAirVerySmall
+  suffix: Air-like, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositMuddleEven
+  id: DeepGasDepositMuddleEvenVerySmall
+  suffix: Muddled, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositMuddlePlasma
+  id: DeepGasDepositMuddlePlasmaVerySmall
+  suffix: Muddled P+, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - DeepGasDepositFrezon
+  id: DeepGasDepositFrezonVerySmall
+  suffix: Frezon, Very Small
+# endregion Very Small Deposits
+
+# region Small Deposits
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositOxygen
+  id: DeepGasDepositOxygenSmall
+  suffix: Oxygen, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositNitrogen
+  id: DeepGasDepositNitrogenSmall
+  suffix: Nitrogen, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositCarbonDioxide
+  id: DeepGasDepositCarbonDioxideSmall
+  suffix: Carbon Dioxide, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositPlasma
+  id: DeepGasDepositPlasmaSmall
+  suffix: Plasma, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositAmmonia
+  id: DeepGasDepositAmmoniaSmall
+  suffix: Ammonia, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositWaterVapor
+  id: DeepGasDepositWaterVaporSmall
+  suffix: Water Vapor, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositNitrousOxide
+  id: DeepGasDepositNitrousOxideSmall
+  suffix: Nitrous Oxide, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositAir
+  id: DeepGasDepositAirSmall
+  suffix: Air-like, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositMuddleEven
+  id: DeepGasDepositMuddleEvenSmall
+  suffix: Muddled, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositMuddlePlasma
+  id: DeepGasDepositMuddlePlasmaSmall
+  suffix: Muddled P+, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - DeepGasDepositFrezon
+  id: DeepGasDepositFrezonSmall
+  suffix: Frezon, Small
+# endregion Small Deposits
+
+# region Large Deposits
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositOxygen
+  id: DeepGasDepositOxygenLarge
+  suffix: Oxygen, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositNitrogen
+  id: DeepGasDepositNitrogenLarge
+  suffix: Nitrogen, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositCarbonDioxide
+  id: DeepGasDepositCarbonDioxideLarge
+  suffix: Carbon Dioxide, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositPlasma
+  id: DeepGasDepositPlasmaLarge
+  suffix: Plasma, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositAmmonia
+  id: DeepGasDepositAmmoniaLarge
+  suffix: Ammonia, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositWaterVapor
+  id: DeepGasDepositWaterVaporLarge
+  suffix: Water Vapor, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositNitrousOxide
+  id: DeepGasDepositNitrousOxideLarge
+  suffix: Nitrous Oxide, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositAir
+  id: DeepGasDepositAirLarge
+  suffix: Air-like, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositMuddleEven
+  id: DeepGasDepositMuddleEvenLarge
+  suffix: Muddled, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositMuddlePlasma
+  id: DeepGasDepositMuddlePlasmaLarge
+  suffix: Muddled P+, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - DeepGasDepositFrezon
+  id: DeepGasDepositFrezonLarge
+  suffix: Frezon, Large
+# endregion Large Deposits
+
+# region Very Large Deposits
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositOxygen
+  id: DeepGasDepositOxygenVeryLarge
+  suffix: Oxygen, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositNitrogen
+  id: DeepGasDepositNitrogenVeryLarge
+  suffix: Nitrogen, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositCarbonDioxide
+  id: DeepGasDepositCarbonDioxideVeryLarge
+  suffix: Carbon Dioxide, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositPlasma
+  id: DeepGasDepositPlasmaVeryLarge
+  suffix: Plasma, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositAmmonia
+  id: DeepGasDepositAmmoniaVeryLarge
+  suffix: Ammonia, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositWaterVapor
+  id: DeepGasDepositWaterVaporVeryLarge
+  suffix: Water Vapor, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositNitrousOxide
+  id: DeepGasDepositNitrousOxideVeryLarge
+  suffix: Nitrous Oxide, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositAir
+  id: DeepGasDepositAirVeryLarge
+  suffix: Air-like, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositMuddleEven
+  id: DeepGasDepositMuddleEvenVeryLarge
+  suffix: Muddled, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositMuddlePlasma
+  id: DeepGasDepositMuddlePlasmaVeryLarge
+  suffix: Muddled P+, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - DeepGasDepositFrezon
+  id: DeepGasDepositFrezonVeryLarge
+  suffix: Frezon, Very Large
+# endregion Very Large Deposits
+

@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Milon
+// SPDX-FileCopyrightText: 2025 Whatstone
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared._NF.Atmos.Systems;
 using Content.Shared._NF.Atmos.Visuals;
 using Content.Shared.Atmos;
@@ -49,12 +55,6 @@ public sealed partial class GasDepositExtractorComponent : Component
 
     [DataField, AutoNetworkedField]
     public float TargetPressure = Atmospherics.OneAtmosphere;
-
-    /// <summary>
-    /// The output temperature, in K.
-    /// </summary>
-    [DataField]
-    public float OutputTemperature = Atmospherics.T20C;
 
     /// <summary>
     /// The entity to be extracted from.
