@@ -69,6 +69,9 @@ ghost-role-information-explorer-captain-dungeon-description = You got to this fa
 ghost-role-information-mercenary-captain-dungeon-name = Mercenary Captain
 ghost-role-information-mercenary-captain-dungeon-description = You have a job to do. Don't let anyone stand in your way. Defend the installation and your employer's property with other soldiers of fortune!
 
+ghost-role-information-syndicate-captain-dungeon-name = Syndicate Corvette Captain
+ghost-role-information-syndicate-captain-dungeon-description = Nanotrasen intercepted our FTL frequency, and warped us into Frontier space! Defend the corvette and our equipment from Nanotrasen scum with your Syndicate crew!
+
 ghost-role-information-punk-boss-dungeon-name = Punk Gang Leader
 ghost-role-information-punk-boss-dungeon-description = Defend the expedition dungeon and your loot with other punks from NT squares!
 
