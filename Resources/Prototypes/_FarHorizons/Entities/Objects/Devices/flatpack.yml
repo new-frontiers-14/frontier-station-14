@@ -1,0 +1,47 @@
+- type: entity
+  parent: [BaseFlatpack]
+  id: NuclearReactorFlatpack
+  name: nuclear reactor flatpack
+  description: A flatpack used for constructing a nuclear reactor. Parts sold separately.
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: NuclearReactorEmpty
+
+- type: entity
+  parent: [BaseFlatpack]
+  id: GasTurbineFlatpack
+  name: gas turbine flatpack
+  description: A flatpack used for constructing a gas turbine.
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: Turbine
+
+- type: entity
+  parent: [BaseFlatpack]
+  id: SmallNuclearReactorFlatpack  # HL
+  name: small nuclear reactor flatpack
+  description: A flatpack used for constructing a small nuclear reactor. Now in Fun Size! Parts still sold separately.
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: NuclearReactorSmallEmpty
+
+- type: entity
+  parent: [BaseFlatpack]
+  id: GasTurbineSmallFlatpack # HL
+  name: small gas turbine flatpack
+  description: A flatpack used for constructing a small gas turbine. Now in Fun Size!
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: TurbineSmall

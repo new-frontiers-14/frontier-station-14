@@ -1,0 +1,68 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BaseGasTurbinePartRecipe
+  categories:
+  - Engineering
+  completetime: 10
+
+## Recipes
+
+# Blades
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: SteelGasTurbineBlade
+  result: SteelGasTurbineBlade
+  materials:
+    Steel: 2000
+
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: BrassGasTurbineBlade
+  result: BrassGasTurbineBlade
+  materials:
+    Brass: 2000
+
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: DiamondGasTurbineBlade
+  result: DiamondGasTurbineBlade
+  materials:
+    Diamond: 2000
+
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: GoldGasTurbineBlade
+  result: GoldGasTurbineBlade
+  materials:
+    Gold: 2000
+
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: PlasteelGasTurbineBlade
+  result: PlasteelGasTurbineBlade
+  materials:
+    Plasteel: 2000
+
+# Stators
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: SteelGasTurbineStator
+  result: SteelGasTurbineStator
+  materials:
+    Steel: 2000
+
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: SilverGasTurbineStator
+  result: SilverGasTurbineStator
+  materials:
+    Silver: 2000
+
+- type: latheRecipe
+  parent: BaseGasTurbinePartRecipe
+  id: GoldGasTurbineStator
+  result: GoldGasTurbineStator
+  materials:
+    Gold: 2000
