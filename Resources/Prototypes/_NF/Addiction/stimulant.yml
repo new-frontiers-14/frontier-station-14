@@ -1,0 +1,128 @@
+- type: addiction
+  id: Stimulant
+  name: addiction-stimulant-name
+  defaultReagent: Desoxyephedrine
+  threshold: 100
+  decayRate: 0.6
+  checkPeriod: 40s
+  withdrawal:
+    decayRate: 0.25
+    symptoms:
+      ## Cravings
+      - min: 2
+        max: 150
+        probability: 0.2
+        rating: 1
+        duration: 15
+        minTimeSinceHit: 30s
+        messages:
+          priority: 2
+          dataSet: AddictionStimulantCraveLow
+      - min: 151
+        probability: 0.3
+        rating: 5
+        duration: 12
+        minTimeSinceHit: 20s
+        messages:
+          priority: 3
+          dataSet: AddictionStimulantCraveHigh
+          visualType: MediumCaution
+      ## Paranoia
+      - min: 20
+        max: 139
+        probability: 0.1
+        rating: 1
+        duration: 18
+        messages:
+          dataSet: AddictionSymptomParanoiaLow
+      - min: 140
+        probability: 0.15
+        rating: 1
+        duration: 20
+        messages:
+          dataSet: AddictionSymptomParanoiaHigh
+          visualType: MediumCaution
+      ## Depression
+      - min: 10
+        max: 129
+        probability: 0.1
+        rating: 1
+        duration: 15
+        messages:
+          dataSet: AddictionSymptomDepressionLow
+      - min: 130
+        probability: 0.15
+        rating: 1
+        duration: 18
+        messages:
+          dataSet: AddictionSymptomDepressionHigh
+          visualType: MediumCaution
+      ## Increased Hunger
+      - min: 30
+        max: 90
+        rating: 10
+        duration: 1
+        probability: 0.9
+        effects:
+          - !type:SatiateHunger
+            factor: -1
+      - min: 91
+        max: 149
+        rating: 40
+        duration: 10
+        effects:
+          - !type:SatiateHunger
+            factor: -3
+      - min: 150
+        rating: 50
+        duration: 2
+        repeatable: true
+        effects:
+          - !type:SatiateHunger
+            factor: -5
+      ## Fatigue
+      - min: 30
+        max: 129
+        rating: 10
+        duration: 4
+        repeatable: true
+        effects:
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 8
+            type: Add
+      - min: 130
+        rating: 50
+        duration: 2
+        repeatable: true
+        effects:
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 30
+            type: Add
+          - !type:MovespeedModifier
+            walkSpeedModifier: 0.75 #This should roughly cancel the speed up effect of Desox
+            sprintSpeedModifier: 0.75
+            statusLifetime: 8
+      - min: 30
+        max: 89
+        rating: 10
+        duration: 10
+        probability: 0.1
+        effects:
+          - !type:Emote
+            emote: Yawn
+            showInChat: true
+      - min: 90
+        rating: 50
+        probability: 0.3
+        duration: 15
+        effects:
+          - !type:Emote
+            emote: Yawn
+            showInChat: true
+          - !type:ModifyStatusEffect
+            effectProto: StatusEffectDrowsiness
+            time: 25
+            type: Add
+
