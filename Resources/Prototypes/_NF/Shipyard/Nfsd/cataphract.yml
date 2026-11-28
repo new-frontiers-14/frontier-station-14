@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: Duran_cmd
+# Discord: Duran
+
+# Maintainer Info
+# GitHub: Duran_cmd
+# Discord: Duran
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Cataphract
+  parent: BaseVessel
+  name: NSF Cataphract
+  description: A medium ship with a recommended crew of 2 officers, the Cataphract is a dedicated disruption vessel equipped with a long-range ion lance EMP weapon designed to disable escaping vessels with precision.
+  price: 34400
+  category: Medium
+  group: Security
+  access: Sergeant
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/cataphract.yml
+  guidebookPage: ShipyardCataphract
+  class:
+  - Pursuit
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Cataphract
+  mapName: 'NSF Cataphract'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/cataphract.yml
+  minPlayers: 0
+  stations:
+    Cataphract:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cataphract {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
