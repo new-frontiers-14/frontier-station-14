@@ -1,0 +1,32 @@
+- type: vessel
+  id: Triage
+  parent: BaseVesselAntag
+  name: ID Triage
+  description: A rapid-response armored medical vessel manufactured by Interdyne Shuttlecraft.
+  price: 45000
+  category: Small
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/triage.yml
+  guidebookPage: ShipyardTriage
+  class:
+  - Medical
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Triage
+  mapName: 'ID Triage'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/triage.yml
+  minPlayers: 0
+  stations:
+    Triage:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Triage {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
